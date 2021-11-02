@@ -1,0 +1,94 @@
+@mixin link-hover {
+  position: relative;
+  display: inline-block;
+
+  &:hover,
+  &:active,
+  &:focus {
+    font-weight: bold;
+  }
+
+  &::after {
+    display: block;
+    content: attr(data-title);
+    font-weight: bold;
+    height: 0;
+    width: auto;
+    overflow: hidden;
+    visibility: hidden;
+    margin-left: 0;
+    transition: none;
+  }
+}
+
+@mixin link-active {
+  position: relative;
+
+  &.active {
+    color: inherit;
+
+    &::before {
+      background-color: var(--color-secondary);
+      content: "";
+      height: 8px;
+      left: 50%;
+      position: absolute;
+      top: 57%;
+      transform: translateX(-50%);
+      width: calc(100% - (#{$header-nav-link-padding-x} * 2) + 8px);
+      z-index: -1;
+    }
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin text-highlight {
+  background-position-x: 1em;
+  background-position-y: 0.6em;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-secondary) 0%,
+    var(--color-secondary) 100%
+  );
+  background-repeat: repeat-x;
+}
+
+@function get-container-width($name, $with-padding: true) {
+  $width: map-get($container-widths, $name);
+
+  @if ($with-padding) {
+    @return calc(#{$width} - (2 * #{$header-floating-inner-padding-x}));
+  } @else {
+    @return $width;
+  }
+}
+
+@mixin safari {
+  @media not all and (min-resolution: 0.001dpcm) {
+    @supports (-webkit-appearance: none) {
+      @content;
+    }
+  }
+}

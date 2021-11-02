@@ -1,0 +1,111 @@
+$animation-transition: cubic-bezier(.19, 1, .20, 1);
+
+@mixin background-grow($color) {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    height: 100%;
+    width: 0;
+    left: 0;
+    top: 0;
+    background-color: $color;
+    animation: grow;
+    animation-duration: .8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: $animation-transition;
+    z-index: -1;
+  }
+}
+
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 85%;
+  }
+}
+
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes moveRightLeft {
+  0% {
+    transform: translateX(0%);
+  }
+
+  30% {
+    transform: translateX(20%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+/**
+* Animation for Background Shapes
+*/
+@mixin svg-shape-animation($shapeCount: 4) {
+  @for $i from 1 through $shapeCount {
+    path {
+      &:nth-child(#{$i}n) {
+        animation: svgShape#{$i} #{$i + 8}s ease-in-out alternate infinite;
+        transform-origin: center;
+      }
+    }
+  }
+}
+
+@keyframes svgShape1 {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  100% {
+    transform: translateY(50px) rotate(-5deg) scale(1.1);
+  }
+}
+@keyframes svgShape2 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(50px) rotate(-5deg);
+  }
+}
+@keyframes svgShape3 {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  100% {
+    transform: translateY(-50px) rotate(2deg) scale(0.8);
+  }
+}
+@keyframes svgShape4 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50px) rotate(-2deg);
+  }
+}
+
+.svg-shape-animation {
+  @include svg-shape-animation;
+}

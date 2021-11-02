@@ -1,0 +1,61 @@
+$site: "radiusaas";
+
+$header-logo-spacing-right: 5.7rem;
+$header-nav-link-color-light: var(--color-white);
+$header-nav-offset: 6rem;
+
+$bootstrap-space-3: 6rem;
+
+$container-widths: (
+  lg: 992px,
+  xl: 1280px,
+  xxl: 1340px
+);
+
+
+// theme vars
+
+$theme-colors: (
+  "primary": red,
+  "secondary": red,
+  "danger": red
+);
+
+$font-size-base: 1rem;
+$font-size-sm: $font-size-base * 0.85;
+$font-size-lg: $font-size-base * 1.5;
+$font-size-2: $font-size-base * 1.25;
+$font-size-3: $font-size-2 * 1.25;
+$font-size-4: $font-size-3 * 1.25;
+
+$h1-font-size: $font-size-base * 5;
+$h1-font-size-sm: $h1-font-size / 1.8;
+$h1-font-size-lg: $h1-font-size / 1.3;
+$h2-font-size: $font-size-base * 3.75;
+$h2-font-size-sm: $h2-font-size / 1.8;
+$h2-font-size-lg: $h2-font-size / 1.3;
+$h3-font-size: $font-size-base * 2.5;
+$h3-font-size-sm: $h3-font-size / 1.8;
+$h3-font-size-lg: $h3-font-size / 1.3;
+$h4-font-size: $font-size-base * 1.8;
+$h4-font-size-sm: $h4-font-size / 0.98;
+$h4-font-size-lg: $h4-font-size / 0.95;
+
+$header-floating-inner-padding-x: 2rem;
+$header-navbar-brand-width: 12.5rem;
+$header-nav-link-padding-x: 1rem;
+
+$box-shadow-sm: 0 12px 15px rgba($gray-600, .1);
+$header-section-box-shadow: $box-shadow-sm;
+$header-nav-link-color: var(--color-black);
+
+// plain copies
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1340px
+);

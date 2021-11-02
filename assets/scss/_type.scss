@@ -1,0 +1,117 @@
+.#{$site} {
+  .h1,
+  h1 {
+    font-size: $h1-font-size-sm;
+    line-height: 1.1;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $h1-font-size-lg;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $h1-font-size;
+    }
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  .h1,
+  .h2,
+  .h3,
+  .h4,
+  .h5,
+  .h6 {
+    color: var(--color-headlines);
+  }
+
+  .text-white {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .h1,
+    .h2,
+    .h3,
+    .h4,
+    .h5,
+    .h6 {
+      color: var(--color-white);
+    }
+  }
+
+  .text-orange {
+    color: var(--color-orange);
+  }
+
+  .text-green-blue {
+    color: var(--color-green-blue);
+
+    &.h1,
+    &.h2,
+    &.h3,
+    &.h4,
+    &.h5,
+    &.h6 {
+      color: var(--color-green-blue);
+    }
+  }
+
+  .highlight-orange {
+    background-color: var(--color-orange);
+    padding: 0 0 3px;
+  }
+
+  .highlight-yellow {
+    background-color: var(--color-yellow);
+    padding: 0 0 3px;
+  }
+
+  .highlight {
+    background-color: var(--color-primary);
+    padding: 0 0 3px;
+  }
+
+  .lead {
+    font-size: $font-size-lg;
+  }
+
+  .font-size-sm {
+    font-size: $font-size-sm;
+  }
+
+  .font-size-2 {
+    font-size: $font-size-2;
+  }
+
+  .font-size-3 {
+    font-size: $font-size-2;
+    line-height: 2rem;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-2;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $font-size-3;
+    }
+  }
+
+  .font-size-4 {
+    font-size: $font-size-3;
+    line-height: 2rem;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-3;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $font-size-4;
+    }
+  }
+}
