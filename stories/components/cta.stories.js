@@ -1,5 +1,3 @@
-// import "../site.css";
-
 import { createComponent } from "../../.storybook/templates";
 import ctaTemplate from "../../includes/cta.html";
 
