@@ -1,0 +1,29 @@
+<!-- Cta Section -->
+{% if include.link %}
+  {% capture skin %}{% if include.skin %}{{ include.skin }}{% endif %}{% endcapture %}
+  {% assign baseClass = "link d-inline-flex align-items-center" %}
+{% else %}
+  {% capture width %}{% if include.width %}{{ include.width }}{% else %}w-100{% unless include.grow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
+  {% capture skin %}{% if include.skin %}btn-{{ include.skin }}{% else %}btn-primary{% endif %}{% endcapture %}
+  {% capture baseClass %}btn {{ width }}{% endcapture %}
+{% endif %}
+{% if include.button %}
+  <button class="cta {{ baseClass }} {{ skin }}" role="button" type="{{ include.type }}" data-text="{{ include.text }}">
+    {{ include.text }}
+  </button>
+{% else %}
+  <a class="cta {{ baseClass }} {{ skin }}"
+    role="button"
+    href="{{ include.href }}"
+    data-text="{{ include.text }}"
+    {% if include.target %}target="{{ include.target }}"{% endif %}
+    {% if include.alternativeHref %}data-alternative-href="{{ include.alternativeHref }}"{% endif %}
+  >
+    {{ include.text }}
+
+    {% if include.link %}
+      {% include arrow.html %}
+    {% endif %}
+  </a>
+{% endif %}
+<!-- End Cta Section -->

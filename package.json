@@ -1,0 +1,29 @@
+{
+  "name": "www-component-library",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.15.8",
+    "@storybook/addon-actions": "^6.3.10",
+    "@storybook/addon-essentials": "^6.3.10",
+    "@storybook/addon-links": "^6.3.10",
+    "@storybook/html": "^6.3.10",
+    "babel-loader": "^8.2.2"
+  },
+  "dependencies": {
+    "liquidjs": "^9.28.0",
+    "node-sass": "^6.0.1",
+    "raw-loader": "^4.0.2",
+    "sass-loader": "^10.1.0",
+    "style-loader": "^1.3.0"
+  }
+}

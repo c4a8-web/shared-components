@@ -1,0 +1,53 @@
+@charset 'UTF-8';
+
+@import "colors";
+// @import "user-variables";
+// @import "animations";
+// @import "mixins";
+// @import "type";
+
+body {
+  font-family: "Miriam Libre", sans-serif;
+  color: var(--color-copy);
+  overflow-x: hidden;
+}
+
+.other {
+  font-family: "Roboto", sans-serif;
+  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto Mono", monospace;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+/* Banner */
+.navbar-banner {
+  background-size: 289px 180px; // reset cover
+  background-position: center center; // top cover
+}
+
+.navbar-banner::after {
+  background-color: transparent; // reset background-color
+}
+
+ul.dashed {
+  list-style-type: none;
+}
+
+ul.dashed li:before {
+  content: "\2014";
+  position: absolute;
+  margin-left: -30px;
+  color: var(--color-macaroni-and-cheese);
+}
+
+.drop-shadow {
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.2));
+}
+
+.text-shadow {
+  text-shadow: 7px 5px 7px #ffffff;
+}

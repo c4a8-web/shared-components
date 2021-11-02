@@ -1,0 +1,97 @@
+// https://chir.ag/projects/name-that-color/
+
+:root {
+  --color-black: #000000;
+  --color-black-85: #262626;
+  --color-black-70: #4c4c4c;
+  --color-black-50: #7f7f7f;
+  --color-black-30: #b2b2b2;
+  --color-black-15: #d9d9d9;
+  --color-black-4: #f5f5f5;
+  --color-blue-dark: #000520;
+  --color-blue-medium: #0072c6;
+  --color-blue-light: #5cbbff;
+  --color-blue-lighter: #77c6ff;
+  --color-green-blue: #008187;
+  --color-green: #acd653;
+  --color-yellow-medium: #dab61d;
+  --color-yellow: #fcd116;
+  --color-orange: #f8842c;
+  --color-red: #e44418;
+  --color-french-rose: #ed4c78;
+  --color-white: #fff;
+  --color-porcelain: #f3f5f6;
+  --color-bon-jour: #e5e2e2;
+  --color-deep-sea: #008774;
+
+  // GKGAB Colors
+  --color-midnight: #011e33;
+  --color-regent-grey: #808e99;
+  --color-geyser: #d1d9dd;
+  --color-porcellain: #f1f3f4;
+
+  // RADIUSaas Colors
+  --color-conifer: #acd653;
+  --color-macaroni-and-cheese: #fcb975;
+  --color-nevada: #60727f;
+
+  // Theme colors
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
+  --color-primary: var(--color-conifer);
+  --color-primary-accent: #809f3e;
+  --color-secondary: var(--color-macaroni-and-cheese);
+  --color-secondary-accent: var(--color-macaroni-and-cheese);
+
+  // Element colors
+  --color-bg-grey: var(--color-porcellain);
+  --color-bg-dark-grey: var(--color-regent-grey);
+  --color-svg-icon: var(--color-primary);
+  --color-svg-icon--hover: var(--color-primary-accent);
+}
+
+$white-30: rgba(255, 255, 255, 0.3);
+
+// plain copies
+$gray-600: #8c98a4;
+
+// Override theme classes
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.text-midnight {
+  color: var(--color-midnight) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.bg-secondary {
+  background-color: var(--color-secondary) !important;
+}
+
+.bg-white {
+  background-color: var(--color-white);
+}
+
+.bg-grey {
+  background-color: var(--color-bg-grey);
+}
+
+.bg-blue-medium {
+  background-color: var(--color-blue-medium);
+}
+
+.bg-blue-light {
+  background-color: var(--color-blue-light);
+}
+
+.bg-footer {
+  background-color: var(--color-midnight);
+}
