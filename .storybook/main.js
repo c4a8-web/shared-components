@@ -1,5 +1,7 @@
 const path = require("path");
 
+const includePath = path.resolve(__dirname, "../");
+
 module.exports = {
   stories: [
     "../stories/**/*.stories.mdx",
@@ -22,7 +24,7 @@ module.exports = {
     config.module.rules.push({
       test: /\.scss$/,
       use: ["style-loader", "css-loader", "sass-loader"],
-      include: path.resolve(__dirname, "../"),
+      include: includePath,
     });
 
     return config;
