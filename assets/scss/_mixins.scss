@@ -92,3 +92,15 @@
     }
   }
 }
+
+@function shared-assets($url) {
+  @return url("#{$url}");
+}
+
+@function assets($url) {
+  @if ($shared-components) {
+    @return shared-assets($url);
+  } @else {
+    @return static-assets($url);
+  }
+}

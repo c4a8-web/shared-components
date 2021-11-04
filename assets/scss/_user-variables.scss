@@ -9,16 +9,15 @@ $bootstrap-space-3: 6rem;
 $container-widths: (
   lg: 992px,
   xl: 1280px,
-  xxl: 1340px
+  xxl: 1340px,
 );
-
 
 // theme vars
 
 $theme-colors: (
   "primary": red,
   "secondary": red,
-  "danger": red
+  "danger": red,
 );
 
 $font-size-base: 1rem;
@@ -45,7 +44,7 @@ $header-floating-inner-padding-x: 2rem;
 $header-navbar-brand-width: 12.5rem;
 $header-nav-link-padding-x: 1rem;
 
-$box-shadow-sm: 0 12px 15px rgba($gray-600, .1);
+$box-shadow-sm: 0 12px 15px rgba($gray-600, 0.1);
 $header-section-box-shadow: $box-shadow-sm;
 $header-nav-link-color: var(--color-black);
 
@@ -57,5 +56,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1340px
+  xxl: 1340px,
 );
+
+$shared-components: true !default;

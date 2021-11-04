@@ -1,6 +1,7 @@
 .cta {
   position: relative;
   border-radius: 0;
+  background-image: assets("../svg/repo.svg");
 
   &.link {
     font-size: inherit;
@@ -9,8 +10,8 @@
       &:hover::after,
       &::after {
         // background-image: url("../svg/arrow-right.svg");
-        background-image: url("../repo.svg");
-        filter: brightness(400%);
+        // background-image: url("../repo.svg");
+        // filter: brightness(400%);
       }
     }
 

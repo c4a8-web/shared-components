@@ -25,4 +25,5 @@ Cta.args = {
   text: "Ich bin der CTA Text",
   href: "javascript:void(0)",
   skin: "primary is-cutoff",
+  link: true,
 };
