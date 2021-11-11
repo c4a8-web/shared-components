@@ -14,16 +14,62 @@ export default {
         "primary is-cutoff is-light",
       ],
     },
+    grow: {
+      defaultValue: false,
+      control: { type: "boolean" },
+      description: "Will apply w-lg-auto when you don't specify a width.",
+      type: {
+        summary: null,
+      },
+    },
+    width: {
+      table: {
+        disabled: false,
+      },
+      control: {
+        type: "text",
+      },
+      type: {
+        summary: "Bootstrap widths",
+        detail: "w-10, w-20, w-30, ... or w-lg-80, w-md-60, ...",
+      },
+      description: "Here you can add helper classes for the width:",
+    },
   },
 };
 
 const Template = (args) => createComponent(args, ctaTemplate);
 
-export const Cta = Template.bind({});
+export const PrimaryButton = Template.bind({});
 
-Cta.args = {
-  text: "Ich bin der CTA Text",
+PrimaryButton.args = {
+  text: "Primary Button Cutoff",
   href: "javascript:void(0)",
   skin: "primary is-cutoff",
+  button: true,
+};
+
+export const SecondaryButton = Template.bind({});
+
+SecondaryButton.args = {
+  text: "Secondary Button Cutoff",
+  href: "javascript:void(0)",
+  skin: "secondary is-cutoff",
+};
+
+export const PrimaryLink = Template.bind({});
+
+PrimaryLink.args = {
+  text: "Primary Link",
+  href: "javascript:void(0)",
   link: true,
+};
+
+PrimaryLink.argTypes = {
+  width: {
+    table: { disable: true },
+  },
+  skin: {
+    table: { disable: true },
+  },
 };

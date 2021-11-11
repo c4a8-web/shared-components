@@ -2,8 +2,31 @@
   position: relative;
   border-radius: 0;
 
+  &.btn {
+    @include font-style("font-size-1");
+
+    font-weight: bold;
+    display: inline-block;
+    padding: spacing(3) spacing(4);
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: transparent;
+    transition: all $transition-tween-t1;
+    border: 0.0625rem solid transparent;
+
+    &:not(:disabled):not(.disabled) {
+      cursor: pointer;
+    }
+  }
+
   &.link {
     font-size: inherit;
+    display: inline-flex;
+    align-items: center;
 
     &:hover {
       svg {

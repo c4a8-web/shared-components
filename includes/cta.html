@@ -1,7 +1,7 @@
 <!-- Cta Section -->
 {% if include.link %}
   {% capture skin %}{% if include.skin %}{{ include.skin }}{% endif %}{% endcapture %}
-  {% assign baseClass = "link d-inline-flex align-items-center" %}
+  {% assign baseClass = "link" %}
 {% else %}
   {% capture width %}{% if include.width %}{{ include.width }}{% else %}w-100{% unless include.grow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
   {% capture skin %}{% if include.skin %}btn-{{ include.skin }}{% else %}btn-primary{% endif %}{% endcapture %}

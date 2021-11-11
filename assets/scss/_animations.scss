@@ -1,4 +1,4 @@
-$animation-transition: cubic-bezier(.19, 1, .20, 1);
+$animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
 
 @mixin background-grow($color) {
   position: relative;
@@ -6,7 +6,7 @@ $animation-transition: cubic-bezier(.19, 1, .20, 1);
 
   &::before {
     position: absolute;
-    content: '';
+    content: "";
     display: block;
     height: 100%;
     width: 0;
@@ -14,13 +14,12 @@ $animation-transition: cubic-bezier(.19, 1, .20, 1);
     top: 0;
     background-color: $color;
     animation: grow;
-    animation-duration: .8s;
+    animation-duration: 0.8s;
     animation-fill-mode: forwards;
     animation-timing-function: $animation-transition;
     z-index: -1;
   }
 }
-
 
 @keyframes grow {
   from {
@@ -32,7 +31,6 @@ $animation-transition: cubic-bezier(.19, 1, .20, 1);
   }
 }
 
-
 @keyframes slideInUp {
   from {
     opacity: 0;
@@ -43,7 +41,6 @@ $animation-transition: cubic-bezier(.19, 1, .20, 1);
     opacity: 1;
   }
 }
-
 
 @keyframes moveRightLeft {
   0% {
@@ -109,3 +106,5 @@ $animation-transition: cubic-bezier(.19, 1, .20, 1);
 .svg-shape-animation {
   @include svg-shape-animation;
 }
+
+$transition-tween-t1: 0.2s ease-in-out;

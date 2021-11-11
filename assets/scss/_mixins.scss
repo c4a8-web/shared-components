@@ -1,3 +1,98 @@
+@function breakpoint-next(
+  $name,
+  $breakpoints: $grid-breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
+  $n: index($breakpoint-names, $name);
+
+  @return if(
+    $n != null and $n < length($breakpoint-names),
+    nth($breakpoint-names, $n + 1),
+    null
+  );
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between(
+  $lower,
+  $upper,
+  $breakpoints: $grid-breakpoints
+) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
 @mixin link-hover {
   position: relative;
   display: inline-block;
@@ -102,5 +197,51 @@
     @return shared-assets($url);
   } @else {
     @return static-assets($url);
+  }
+}
+
+@function spacing($size, $negative: false) {
+  $value: $size * 0.25;
+
+  $prefix: "";
+
+  @if $negative {
+    $prefix: "-";
+  }
+
+  @return #{$prefix}#{$value}rem;
+}
+
+@function fa-content($fa-var) {
+  // prettier-ignore
+  @return unquote("\"#{ $fa-var }\"");
+}
+
+@mixin icon($name, $font: "", $weight: 300, $after: true) {
+  $selector: "before";
+
+  @if ($after) {
+    $selector: "after";
+  }
+
+  $icon: map-get($icons, $name);
+
+  $icon-font: $icon-font-free;
+
+  @if ($font == "brand") {
+    $icon-font: $icon-font-brand;
+  }
+
+  &::#{$selector} {
+    font-family: $icon-font;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: $weight;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    text-rendering: auto;
+    content: fa-content($icon);
+
+    @content;
   }
 }

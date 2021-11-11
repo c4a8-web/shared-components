@@ -1,3 +1,14 @@
+$font-style-map: (
+  "font-size-1": ".font-size-1",
+);
+
+@mixin font-style($modifier) {
+  $map: $font-style-map;
+  $selector: map-get($map, $modifier);
+
+  @extend #{$selector};
+}
+
 .#{$site} {
   .h1,
   h1 {
@@ -83,6 +94,11 @@
 
   .font-size-sm {
     font-size: $font-size-sm;
+  }
+
+  .font-size-1 {
+    font-size: $font-size-1;
+    line-height: 1.6;
   }
 
   .font-size-2 {
