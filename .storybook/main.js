@@ -7,7 +7,11 @@ module.exports = {
     "../stories/**/*.stories.mdx",
     "../stories/**/*.stories.@(js|jsx|ts|tsx)",
   ],
-  addons: ["@storybook/addon-links", "@storybook/addon-essentials"],
+  addons: [
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "./themes/src/preset.js",
+  ],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.html$i/,

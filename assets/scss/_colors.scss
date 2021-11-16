@@ -5,9 +5,11 @@
   --color-black-85: #262626;
   --color-black-70: #4c4c4c;
   --color-black-50: #7f7f7f;
+  --color-black-40: #999;
   --color-black-30: #b2b2b2;
   --color-black-15: #d9d9d9;
   --color-black-4: #f5f5f5;
+
   --color-blue-dark: #000520;
   --color-blue-medium: #0072c6;
   --color-blue-light: #5cbbff;
@@ -19,21 +21,18 @@
   --color-orange: #f8842c;
   --color-red: #e44418;
   --color-french-rose: #ed4c78;
-  --color-white: #fff;
+  --color-trout: #4c5062;
   --color-porcelain: #f3f5f6;
   --color-bon-jour: #e5e2e2;
   --color-deep-sea: #008774;
-
-  // GKGAB Colors
   --color-midnight: #011e33;
   --color-regent-grey: #808e99;
   --color-geyser: #d1d9dd;
-  --color-porcellain: #f1f3f4;
 
-  // RADIUSaas Colors
-  --color-conifer: #acd653;
-  --color-macaroni-and-cheese: #fcb975;
-  --color-nevada: #60727f;
+  --color-white: #fff;
+
+  --color-headlines: var(--color-blue-dark);
+  --color-copy: var(--color-blue-dark);
 
   // Theme colors
   --color-headlines: var(--color-midnight);
@@ -44,8 +43,8 @@
   --color-secondary-accent: var(--color-macaroni-and-cheese);
 
   // Element colors
-  --color-bg-grey: var(--color-porcellain);
-  --color-bg-dark-grey: var(--color-regent-grey);
+  //   --color-bg-grey: var(--color-porcellain);
+  //   --color-bg-dark-grey: var(--color-regent-grey);
   --color-svg-icon: var(--color-primary);
   --color-svg-icon--hover: var(--color-primary-accent);
 }

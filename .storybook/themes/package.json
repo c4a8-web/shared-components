@@ -1,0 +1,20 @@
+{
+  "name": "gk-storybook-themes",
+  "version": "1.0.0",
+  "description": "GK Theme Switcher",
+  "main": "dist/preset.js",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "*.js"
+  ],
+  "keywords": [
+    "storybook",
+    "addons"
+  ],
+  "author": "Listor",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel ./src --out-dir ./dist"
+  }
+}
