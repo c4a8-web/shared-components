@@ -1,12 +1,13 @@
 {
-  "name": "www-component-library",
+  "name": "shared-components",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "node scripts/generateIncludes.js && start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "keywords": [],
   "author": "",
@@ -18,6 +19,7 @@
     "@storybook/addon-essentials": "^6.3.10",
     "@storybook/addon-links": "^6.3.10",
     "@storybook/html": "^6.3.10",
+    "@storybook/storybook-deployer": "^2.8.10",
     "babel-loader": "^8.2.2"
   },
   "dependencies": {
