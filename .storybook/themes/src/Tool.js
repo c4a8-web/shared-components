@@ -6,8 +6,7 @@ import {
   TooltipLinkList,
 } from "@storybook/components";
 import { useStorybookApi, useParameter, useAddonState } from "@storybook/api";
-import { TOOL_ID, ADDON_ID, PARAM_KEY, EVENTS } from "./constants";
-import { THEME_LIST } from "./defaults";
+import { TOOL_ID, ADDON_ID, PARAM_KEY, EVENTS, THEME_LIST } from "./themes";
 
 const defaultTheme = {
   id: "reset",

@@ -14,6 +14,7 @@
   --color-blue-medium: #0072c6;
   --color-blue-light: #5cbbff;
   --color-blue-lighter: #77c6ff;
+  --color-conifer: #acd653;
   --color-green-blue: #008187;
   --color-green: #acd653;
   --color-yellow-medium: #dab61d;
@@ -35,18 +36,18 @@
   --color-copy: var(--color-blue-dark);
 
   // Theme colors
-  --color-headlines: var(--color-midnight);
-  --color-copy: var(--color-midnight);
-  --color-primary: var(--color-conifer);
-  --color-primary-accent: #809f3e;
-  --color-secondary: var(--color-macaroni-and-cheese);
-  --color-secondary-accent: var(--color-macaroni-and-cheese);
+  // --color-headlines: var(--color-midnight);
+  // --color-copy: var(--color-midnight);
+  // --color-primary: var(--color-conifer);
+  // --color-primary-accent: #809f3e;
+  // --color-secondary: var(--color-macaroni-and-cheese);
+  // --color-secondary-accent: var(--color-macaroni-and-cheese);
 
   // Element colors
   //   --color-bg-grey: var(--color-porcellain);
   //   --color-bg-dark-grey: var(--color-regent-grey);
-  --color-svg-icon: var(--color-primary);
-  --color-svg-icon--hover: var(--color-primary-accent);
+  // --color-svg-icon: var(--color-primary);
+  // --color-svg-icon--hover: var(--color-primary-accent);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

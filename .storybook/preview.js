@@ -1,14 +1,26 @@
+import "../assets/scss/index.scss";
+import "../assets/js/index.js";
+
+import { Styles } from "./themeImports";
+
 import addons from "@storybook/addons";
-import { EVENTS } from "./themes/src/constants";
+import { EVENTS, DEFAULT_THEME, addStyles } from "./themes/src/themes";
+
+let currentTheme = DEFAULT_THEME;
+
+function loadTheme(theme) {
+  addStyles(Styles[theme]);
+
+  currentTheme = theme;
+}
 
 const channel = addons.getChannel();
 
 channel.on(EVENTS.CHANGE, (theme) => {
-  console.log("channel.on ~ theme", theme);
+  loadTheme(theme);
 });
 
-import "../assets/scss/index.scss";
-import "../assets/js/index.js";
+loadTheme(DEFAULT_THEME);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

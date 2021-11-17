@@ -14,7 +14,13 @@ module.exports = {
   ],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
-      test: /\.html$i/,
+      test: /\.scss$/,
+      use: ["style-loader", "css-loader", "sass-loader"],
+      include: includePath,
+    });
+
+    config.module.rules.push({
+      test: /\.(html)$i/,
       use: [
         {
           loader: "raw-loader",
@@ -23,12 +29,6 @@ module.exports = {
           },
         },
       ],
-    });
-
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
-      include: includePath,
     });
 
     return config;
