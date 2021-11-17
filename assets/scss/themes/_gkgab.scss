@@ -3,16 +3,16 @@
 :root {
   --site: "gkgab";
   // Theme colors
-  --color-headlines: red;
-  --color-copy: red;
-  --color-primary: red;
-  --color-primary-accent: red;
+  --color-headlines: var(--color-blue-dark);
+  --color-copy: var(--color-blue-dark);
+  --color-primary: var(--color-blue-light);
+  --color-primary-accent: var(--color-blue-medium);
   --color-secondary: red;
   --color-secondary-accent: red;
 
   // Element colors
-  //   --color-bg-grey: var(--color-porcellain);
-  //   --color-bg-dark-grey: var(--color-regent-grey);
+  --color-bg-grey: var(--color-porcellain);
+  --color-bg-dark-grey: var(--color-regent-grey);
   --color-svg-icon: var(--color-primary);
   --color-svg-icon--hover: var(--color-primary-accent);
 }

@@ -29,25 +29,13 @@
   --color-midnight: #011e33;
   --color-regent-grey: #808e99;
   --color-geyser: #d1d9dd;
+  --color-macaroni-and-cheese: #fcb975;
+  --color-nevada: #60727f;
 
   --color-white: #fff;
 
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
-
-  // Theme colors
-  // --color-headlines: var(--color-midnight);
-  // --color-copy: var(--color-midnight);
-  // --color-primary: var(--color-conifer);
-  // --color-primary-accent: #809f3e;
-  // --color-secondary: var(--color-macaroni-and-cheese);
-  // --color-secondary-accent: var(--color-macaroni-and-cheese);
-
-  // Element colors
-  //   --color-bg-grey: var(--color-porcellain);
-  //   --color-bg-dark-grey: var(--color-regent-grey);
-  // --color-svg-icon: var(--color-primary);
-  // --color-svg-icon--hover: var(--color-primary-accent);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

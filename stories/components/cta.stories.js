@@ -11,6 +11,8 @@ export default {
       options: [
         "primary is-cutoff",
         "secondary is-cutoff",
+        "primary",
+        "secondary",
         "primary is-cutoff is-light",
       ],
     },
@@ -40,21 +42,39 @@ export default {
 
 const Template = (args) => createComponent(args, ctaTemplate);
 
-export const PrimaryButton = Template.bind({});
+export const PrimaryButtonCutoff = Template.bind({});
 
-PrimaryButton.args = {
+PrimaryButtonCutoff.args = {
   text: "Primary Button Cutoff",
   href: "javascript:void(0)",
   skin: "primary is-cutoff",
   button: true,
 };
 
-export const SecondaryButton = Template.bind({});
+export const SecondaryButtonCutoff = Template.bind({});
 
-SecondaryButton.args = {
+SecondaryButtonCutoff.args = {
   text: "Secondary Button Cutoff",
   href: "javascript:void(0)",
   skin: "secondary is-cutoff",
+};
+
+export const PrimaryButton = Template.bind({});
+
+PrimaryButton.args = {
+  text: "Primary Button",
+  href: "javascript:void(0)",
+  skin: "primary",
+  button: true,
+};
+
+export const SecondaryButton = Template.bind({});
+
+SecondaryButton.args = {
+  text: "Secondary Button",
+  href: "javascript:void(0)",
+  skin: "secondary",
+  button: true,
 };
 
 export const PrimaryLink = Template.bind({});
