@@ -1,11 +1,9 @@
 import gkgab from "!!raw-loader!../assets/scss/themes/_gkgab.scss";
-import radius from "!!raw-loader!../assets/scss/themes/_radius.scss";
-
-// import test from "../assets/scss/themes/_radius.scss";
+import radiusaas from "!!raw-loader!../assets/scss/themes/_radiusaas.scss";
 
 const Styles = {
   gkgab,
-  radius,
+  radiusaas,
 };
 
 export { Styles };

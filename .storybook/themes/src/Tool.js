@@ -8,6 +8,10 @@ import {
 import { useStorybookApi, useParameter, useAddonState } from "@storybook/api";
 import { TOOL_ID, ADDON_ID, PARAM_KEY, EVENTS, THEME_LIST } from "./themes";
 
+const getThemeName = function (type) {
+  return THEME_LIST[type]?.name || `Theme by type ${type} not found`;
+};
+
 const defaultTheme = {
   id: "reset",
   title: "Reset Theme",
@@ -50,13 +54,17 @@ const toLinks = (list, active, set, state, api, close) => {
     .filter(Boolean);
 };
 
+const IconButtonLabel = function (props) {
+  return <div style={{ marginLeft: 10 }}>{props.children}</div>;
+};
+
 export const Tool = function () {
   const {
-    viewports = THEME_LIST,
+    themes = THEME_LIST,
     defaultThemeId = defaultTheme.id,
   } = useParameter(PARAM_KEY, {});
 
-  const list = toList(viewports);
+  const list = toList(themes);
   const api = useStorybookApi();
 
   const [state, setState] = useAddonState(ADDON_ID, {
@@ -72,6 +80,12 @@ export const Tool = function () {
     list.find((i) => i.default) ||
     defaultTheme;
 
+  const active = false;
+  const label =
+    selected === "reset"
+      ? getThemeName(defaultTheme.type)
+      : getThemeName(selected);
+
   return (
     <Fragment>
       <WithTooltip
@@ -86,8 +100,9 @@ export const Tool = function () {
           );
         }}
       >
-        <IconButton key={TOOL_ID} active={true} title="Pick a Theme">
+        <IconButton key={TOOL_ID} active={active} title="Pick a Theme">
           <Icons icon="switchalt" />
+          <IconButtonLabel>{label}</IconButtonLabel>
         </IconButton>
       </WithTooltip>
     </Fragment>

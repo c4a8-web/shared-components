@@ -5,6 +5,6 @@ export const THEME_LIST = {
   },
   radius: {
     name: "Radius",
-    type: "radius",
+    type: "radiusaas",
   },
 };

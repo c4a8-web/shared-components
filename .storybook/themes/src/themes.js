@@ -7,7 +7,7 @@ import {
 } from "./constants";
 import { Tool } from "./Tool";
 import { THEME_LIST } from "./defaults";
-import { addStyles } from "./helper";
+import { addStyles, addBaseClass } from "./helper";
 
 export {
   ADDON_ID,
@@ -18,4 +18,5 @@ export {
   Tool,
   THEME_LIST,
   addStyles,
+  addBaseClass,
 };

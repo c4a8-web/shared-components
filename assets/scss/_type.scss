@@ -9,7 +9,7 @@ $font-style-map: (
   @extend #{$selector};
 }
 
-.#{$site} {
+.shared-components {
   .h1,
   h1 {
     font-size: $h1-font-size-sm;

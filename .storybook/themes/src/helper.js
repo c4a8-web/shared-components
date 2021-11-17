@@ -1,16 +1,17 @@
 import { ADDON_ID } from "./constants";
 
 function removeComments(styles) {
-  return styles;
+  return styles ? styles.replace(/\/\*[\s\S]*?\*\/|\/\/.*/g, "") : styles;
 }
 
 function addStyles(styles) {
-  console.log("addStyles ~ styles", styles);
-  const styleTag = document.getElementById(`#${ADDON_ID}`);
+  const styleTag = document.getElementById(`${ADDON_ID}`);
   const cleanedStyles = removeComments(styles);
 
-  if (styleTag && styleTag.innerHTML !== styles) {
-    styleTag.innerHTML = cleanedStyles;
+  if (styleTag) {
+    if (styleTag.innerHTML !== styles) {
+      styleTag.innerHTML = cleanedStyles;
+    }
   } else {
     const newStyle = document.createElement("style");
 
@@ -21,4 +22,17 @@ function addStyles(styles) {
   }
 }
 
-export { addStyles };
+function addBaseClass(theme) {
+  const root = document.querySelector("#root");
+  const baseSharedClass = "shared-components";
+
+  if (root) {
+    const wrapper = root.firstChild;
+
+    if (wrapper) {
+      wrapper.classList = `${baseSharedClass} ${theme}`;
+    }
+  }
+}
+
+export { addStyles, addBaseClass };
