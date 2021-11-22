@@ -11,8 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Build and Deploy
+      - name: Install and Build
         run: |
           npm install
           npm run build-storybook
-          npm run deploy-storybook
+      - name: Deploy
+        run: npm run deploy-storybook
