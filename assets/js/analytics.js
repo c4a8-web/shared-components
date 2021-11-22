@@ -45,6 +45,7 @@ class Analytics {
       });
     } else {
       console.error("GTag not found");
+      callback();
     }
   }
 
