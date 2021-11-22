@@ -16,4 +16,4 @@ jobs:
           npm install
           npm run build-storybook
       - name: Deploy
-        run: npm run deploy-storybook
+        run: npm run deploy-storybook -- --ci
