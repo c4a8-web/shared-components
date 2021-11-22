@@ -1,16 +1,21 @@
 import Tools from "../tools.js";
+import State from "../state.js";
 
 class Form {
   static rootSelector = ".form";
   static instances = [];
 
-  constructor(root) {
+  constructor(root, options) {
     this.root = root;
     this.groups = {};
     this.minLengthOther = 1;
+    this.options = options;
 
     this.addValidation();
-    this.bindEvents();
+
+    if (!this.options?.noEvents) {
+      this.bindEvents();
+    }
   }
 
   bindEvents() {
@@ -20,21 +25,39 @@ class Form {
   }
 
   handleSubmit(e) {
-    if (!this.isValid()) {
-      e.stopImmediatePropagation();
-      e.preventDefault();
+    this.validate(e);
+  }
 
-      this.triggerExternalValidation();
-    }
+  submit() {
+    this.root.submit();
   }
 
   triggerExternalValidation() {
+    let result = false;
+
     if (window.$) {
-      $(this.root).validate().form();
+      result = $(this.root).validate().form();
     }
+
+    return result;
   }
 
-  isValid() {
+  validate(e) {
+    let result = true;
+
+    if (!this.isValid(e)) {
+      e.stopImmediatePropagation();
+      e.preventDefault();
+
+      result = this.triggerExternalValidation();
+    }
+
+    return result;
+  }
+
+  isValid(e) {
+    e.stopImmediatePropagation();
+
     let result = true;
     let isFirstError = true;
 
@@ -203,11 +226,19 @@ class Form {
     }
   }
 
+  static initElement(element, options) {
+    const instance = new this(element, options);
+
+    this.instances.push(instance);
+
+    return instance;
+  }
+
   static init() {
     this.instances = [];
 
     [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
-      this.instances.push(new this(element));
+      this.initElement(element);
     });
   }
 }

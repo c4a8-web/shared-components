@@ -1,4 +1,10 @@
 <!-- Shared Cta Section -->
+{%- if include.analytics -%}
+  {%- capture analytics -%}data-analytics="{{ include.analytics }}"{%- endcapture -%}
+{%- else -%}
+  {%- assign analytics = '' -%}
+{%- endif -%}
+
 {% if include.link %}
   {% capture skin %}{% if include.skin %}{{ include.skin }}{% endif %}{% endcapture %}
   {% assign baseClass = "link" %}
@@ -8,7 +14,7 @@
   {% capture baseClass %}btn {{ width }}{% endcapture %}
 {% endif %}
 {% if include.button %}
-  <button class="cta {{ baseClass }} {{ skin }}" role="button" type="{{ include.type }}" data-text="{{ include.text }}">
+  <button class="cta {{ baseClass }} {{ skin }}" role="button" type="{{ include.type }}" data-text="{{ include.text }}" {{ analytics }}>
     {{ include.text }}
   </button>
 {% else %}
@@ -16,6 +22,7 @@
     role="button"
     href="{{ include.href }}"
     data-text="{{ include.text }}"
+    {{ analytics }}
     {% if include.target %}target="{{ include.target }}"{% endif %}
     {% if include.alternativeHref %}data-alternative-href="{{ include.alternativeHref }}"{% endif %}
   >
@@ -27,4 +34,3 @@
   </a>
 {% endif %}
 <!-- End Shared Cta Section -->
-

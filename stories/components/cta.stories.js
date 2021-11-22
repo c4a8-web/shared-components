@@ -1,6 +1,8 @@
 import { createComponent } from "../../.storybook/templates";
 import ctaTemplate from "../../includes/cta.html";
 
+import { analytics } from "../globalArgTypes";
+
 // More on default export: https://storybook.js.org/docs/html/writing-stories/introduction#default-export
 export default {
   title: "Components/Cta",
@@ -16,6 +18,7 @@ export default {
         "primary is-cutoff is-light",
       ],
     },
+    analytics,
     grow: {
       defaultValue: false,
       control: { type: "boolean" },
