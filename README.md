@@ -111,6 +111,18 @@ In your \_user-variables.scss you need to add the scss variable for the site:
 $site: "radiusaas";
 ```
 
+For all layouts you use you need to change the body class from
+
+```
+class="site"
+```
+
+to the site and the `shared-components` so for `Radiusaas` it would be:
+
+```
+class="shared-components radiusaas"
+```
+
 This should be everything you need to use the `shared-components` Styles. If you want to load an image through scss use the function `assets()` this will make sure the paths are correct.
 
 ## JavaScript
