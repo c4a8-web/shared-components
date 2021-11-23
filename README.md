@@ -152,3 +152,18 @@ Replace `text/javascript` with `module`
 You also need to create a color theme file for your new site in `scss/themes` you can copy the `_theme-template.scss`as a start and change that to your needs.
 After that you need to add that theme to the Theme Switcher Addon of Storybook. Go to `.storybook/themes/src` add your theme in `defaults.js` and in `.storybook/themeImports.js` add
 the path to the themes scss.
+
+## CloudCannon
+
+In order for cloud cannon to work with this submodule which they can't out of the box we need a preinstall hook to clone the repo.
+For that go to the `.cloudcannon` folder and create a file `preinstall` with this content:
+
+```
+#!/bin/bash
+
+cd ./_includes
+rm -Rf shared-components
+
+git clone https://github.com/c4a8-web/shared-components.git
+
+```
