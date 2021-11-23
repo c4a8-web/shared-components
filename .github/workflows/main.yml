@@ -16,4 +16,9 @@ jobs:
           npm install
           npm run build-storybook
       - name: Deploy
-        run: npm run deploy-storybook -- --ci --host-token-env-variable=GH_TOKEN
+        uses: JamesIves/github-pages-deploy-action@4.1.6
+        with:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: storybook-static
+          CLEAN: true

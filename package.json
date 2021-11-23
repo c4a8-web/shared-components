@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "node scripts/generateIncludes.js && start-storybook -p 6006",
-    "build-storybook": "node scripts/generateIncludes.js && build-storybook",
-    "deploy-storybook": "storybook-to-ghpages"
+    "build-storybook": "node scripts/generateIncludes.js && build-storybook"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +18,6 @@
     "@storybook/addon-essentials": "^6.3.10",
     "@storybook/addon-links": "^6.3.10",
     "@storybook/html": "^6.3.10",
-    "@storybook/storybook-deployer": "^2.8.10",
     "babel-loader": "^8.2.2"
   },
   "dependencies": {
