@@ -7,4 +7,8 @@ export const THEME_LIST = {
     name: "Radius",
     type: "radiusaas",
   },
+  konnekt: {
+    name: "Konnekt",
+    type: "konnekt",
+  },
 };

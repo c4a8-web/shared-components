@@ -1,0 +1,18 @@
+// konnekt theme related styling here
+
+:root {
+  --site: "konnekt";
+  // Theme colors
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
+  --color-primary: var(--color-blue-medium);
+  --color-primary-accent: var(--color-midnight);
+  --color-secondary: var(--color-edgewater);
+  --color-secondary-accent: var(--color-edgewater);
+
+  // Element colors
+  --color-bg-grey: var(--color-porcellain);
+  --color-bg-dark-grey: var(--color-regent-grey);
+  --color-svg-icon: var(--color-primary);
+  --color-svg-icon--hover: var(--color-primary-accent);
+}

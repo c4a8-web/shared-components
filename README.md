@@ -48,7 +48,7 @@ In your Jekyll configuration you need to add the path to the `shared-components`
 shared_components_path: _includes/shared-components/assets
 ```
 
-You also need a Generator called `sharedcompeonts.rb` in your \_plugins folder that looks like this:
+You also need a Generator called `sharedcomponents.rb` in your \_plugins folder that looks like this:
 
 ```
 module SharedComponents
@@ -122,3 +122,21 @@ import { State } from '/_includes/shared-components/assets/js/index.js';
 ```
 
 If you don't need the State in your Code you can import it without it. Everything else is handled by the JavaScript itself.
+You also need to update the type of your `app.js` Script in the `scripts.html` file:
+
+```
+<script
+  type="module"
+  charset="UTF-8"
+  src="{{site.baseurl}}/assets/js/app.js"
+  id="appjs"
+></script>
+```
+
+Replace `text/javascript` with `module`
+
+## Storybook
+
+You also need to create a color theme file for your new site in `scss/themes` you can copy the `_theme-template.scss`as a start and change that to your needs.
+After that you need to add that theme to the Theme Switcher Addon of Storybook. Go to `.storybook/themes/src` add your theme in `defaults.js` and in `.storybook/themeImports.js` add
+the path to the themes scss.
