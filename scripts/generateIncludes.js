@@ -1,6 +1,5 @@
 const fs = require("fs");
-
-let glob = require("glob");
+const glob = require("glob");
 
 const includesDir = "./includes";
 const includesReplaceDir = "../includes";
