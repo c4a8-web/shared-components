@@ -25,7 +25,10 @@ function getAllIncludes() {
     let exportResult = "export {";
 
     files.forEach((filePath) => {
-      const camelCaseName = filePath.replace(/\//g, "").replace(/\./g, "");
+      const camelCaseName = filePath
+        .replace(/\//g, "")
+        .replace(/\./g, "")
+        .replace(/-/g, "");
       const pathText = filePath.replace(includesDir, includesReplaceDir);
       const importText = `import ${camelCaseName} from '${pathText}';`;
       const exportText = `  ${camelCaseName},`;
