@@ -1,6 +1,7 @@
 import Tools from "../tools.js";
 import State from "../state.js";
 
+// TODO extend from basecomponent
 class Form {
   static rootSelector = ".form";
   static instances = [];

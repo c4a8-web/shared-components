@@ -5,6 +5,7 @@ const State = {
   HIDDEN: "d-none",
   SHOW: "show",
   FADE: "fade",
+  INITIALIZED: "is-initialized",
 };
 
 export default State;

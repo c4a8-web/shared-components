@@ -40,6 +40,20 @@ You need to add this project as a git submodule to the project you want to use t
 	url = git@github.com:c4a8-web/shared-components.git
 ```
 
+If your Git Client doesn't initialize the submodule automatically or you use a terminal for git commands you need to run
+
+```
+git submodule init "_includes/shared-components"
+```
+
+and
+
+```
+git submodule update "_includes/shared-components"
+```
+
+to update and checkout the submodule.
+
 ## Jekyll
 
 In your Jekyll configuration you need to add the path to the `shared-components` folder like this:
