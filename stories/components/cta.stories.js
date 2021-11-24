@@ -11,11 +11,14 @@ export default {
     skin: {
       control: { type: "select" },
       options: [
-        "primary is-cutoff",
-        "secondary is-cutoff",
         "primary",
         "secondary",
+        "primary is-cutoff",
+        "secondary is-cutoff",
         "primary is-cutoff is-light",
+        "secondary is-cutoff is-light",
+        "primary is-light",
+        "secondary is-light",
       ],
     },
     analytics,

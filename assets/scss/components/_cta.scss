@@ -115,6 +115,11 @@
         &:not(label.btn):not([href]) {
           color: var(--color-primary);
           background-color: var(--color-white);
+
+          &:hover {
+            background-color: var(--color-primary-accent-light);
+            color: var(--color-primary-accent);
+          }
         }
 
         &::after {
@@ -122,6 +127,7 @@
         }
 
         &:hover {
+          background-color: var(--color-primary-accent-light);
           color: var(--color-primary-accent);
         }
       }
