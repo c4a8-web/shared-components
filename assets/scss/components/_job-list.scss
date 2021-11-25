@@ -1,7 +1,14 @@
 .job-list {
+  &.is-loading {
+    .job-list__entry {
+      opacity: 0;
+    }
+  }
 }
 
 .job-list__entry {
   border: 1px solid var(--color-border);
   padding: spacing(6);
+  opacity: 1;
+  transition: opacity 1.3s $animation-transition;
 }

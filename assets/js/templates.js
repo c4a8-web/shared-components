@@ -56,13 +56,6 @@ class Templates {
 
     return promise;
   }
-
-  append(element, html) {
-    const wrapper = document.createElement("div");
-    wrapper.innerHTML = html;
-
-    element.appendChild(wrapper.children[0]);
-  }
 }
 
 export default Templates;

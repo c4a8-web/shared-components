@@ -1,0 +1,73 @@
+:root {
+  --loading-scale: 5vh;
+  --loading-floor: 10vh;
+  --loading-variance: 0vh;
+  --loading-height: calc(
+    -1 * 20vh - calc(var(--loading-scale) - var(--loading-floor) +
+          var(--loading-variance))
+  );
+}
+
+.loading {
+  position: relative;
+
+  &.is-loading {
+    min-height: 300px;
+
+    .loading__shape {
+      display: block;
+    }
+  }
+}
+
+.loading__shape {
+  position: absolute;
+  display: none;
+  left: 50%;
+  top: 150px;
+  margin-left: calc(-1 * (var(--loading-scale) / 2));
+  margin-bottom: var(--loading-floor);
+  background: var(--color-loading);
+}
+
+.loading__shape--circle,
+.loading__shape--square {
+  width: var(--loading-scale);
+  height: var(--loading-scale);
+}
+
+.loading__shape--circle {
+  border-radius: 50%;
+}
+
+.loading__shape--rectangle {
+  width: calc(var(--loading-scale) * 1.5);
+  height: var(--loading-scale);
+}
+
+.loading__shape--triangle,
+.loading__shape--triangle-2 {
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+.loading__shape--triangle {
+  border-bottom: var(--loading-scale) solid var(--color-loading);
+  border-right: var(--loading-scale) solid transparent;
+}
+
+.loading__shape--triangle-2 {
+  border-top: var(--loading-scale) solid var(--color-loading);
+  border-left: var(--loading-scale) solid transparent;
+}
+
+.loading--bounce-up {
+  transition: transform 400ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transform: translateY(var(--loading-height)) rotate(0deg);
+}
+
+.loading--bounce-down {
+  transition: transform 300ms cubic-bezier(0.6, 0.04, 0.98, 0.335);
+  transform: translateY(0) rotate(var(--loading-rotation));
+}

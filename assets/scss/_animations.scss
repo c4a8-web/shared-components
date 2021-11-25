@@ -1,4 +1,5 @@
 $animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
+$transition-tween-t1: 0.2s ease-in-out;
 
 @mixin background-grow($color) {
   position: relative;
@@ -106,5 +107,3 @@ $animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
 .svg-shape-animation {
   @include svg-shape-animation;
 }
-
-$transition-tween-t1: 0.2s ease-in-out;

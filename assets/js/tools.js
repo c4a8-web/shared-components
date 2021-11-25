@@ -25,6 +25,18 @@ class Tools {
       }
     }
   }
+
+  static append(element, html) {
+    const wrapper = document.createElement("div");
+    wrapper.innerHTML = html?.nodeType ? html.outerHTML : html;
+    const children = wrapper?.children[0];
+
+    if (children) {
+      return element.appendChild(children);
+    }
+
+    return null;
+  }
 }
 
 export default Tools;

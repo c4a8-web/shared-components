@@ -6,6 +6,7 @@ const State = {
   SHOW: "show",
   FADE: "fade",
   INITIALIZED: "is-initialized",
+  LOADING: "is-loading",
 };
 
 export default State;

@@ -1,5 +1,7 @@
 import BaseComponent from "./base-component.js";
 import RecruiterBox from "../recruiter-box.js";
+import Loading from "../loading.js";
+import Tools from "../tools.js";
 
 class JobList extends BaseComponent {
   static rootSelector = ".job-list";
@@ -13,42 +15,49 @@ class JobList extends BaseComponent {
     });
 
     this.templates = window.Templates;
+    this.loading = new Loading(this.root);
 
     this.init();
   }
 
   init() {
     if (!this.options) {
-      this.api
-        ?.getAll()
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("JobList ~ .then ~ data", data);
-          const promiseList = [];
+      this.loading.on();
 
-          for (let i = 0; i < data.objects?.length; i++) {
-            const entry = data.objects[i];
-            const { city } = entry?.location;
-            const { title } = entry;
+      setTimeout(() => {
+        this.api
+          ?.getAll()
+          .then((response) => response.json())
+          .then((data) => {
+            // console.log("JobList ~ .then ~ data", data);
+            const promiseList = [];
 
-            const entryData = {
-              city,
-              title,
-            };
+            for (let i = 0; i < data.objects?.length; i++) {
+              const entry = data.objects[i];
+              const { city } = entry?.location;
+              const { title } = entry;
 
-            promiseList.push(
-              this.templates?.load("job-list-entry", entryData).then((html) => {
-                this.templates?.append(this.root, html);
-              })
-            );
-          }
-          Promise.all(promiseList).then(() => {
-            console.log("alle jobs geladen");
+              const entryData = {
+                city,
+                title,
+              };
+
+              promiseList.push(
+                this.templates
+                  ?.load("job-list-entry", entryData)
+                  .then((html) => {
+                    Tools.append(this.root, html);
+                  })
+              );
+            }
+            Promise.all(promiseList).then(() => {
+              this.loading.off();
+            });
+          })
+          .catch((error) => {
+            console.error("Job-list Error:", error);
           });
-        })
-        .catch((error) => {
-          console.error("Job-list Error:", error);
-        });
+      }, 2000);
     }
   }
 }
