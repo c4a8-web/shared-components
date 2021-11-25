@@ -20,9 +20,10 @@ class RecruiterBox {
 
   getAll() {
     const url = this.getUrl(this.types.OPENINGS);
-    console.log("RecruiterBox ~ getAll ~ url", url);
 
-    // const promise = fetch
+    const promise = fetch(url);
+
+    return promise;
   }
 }
 

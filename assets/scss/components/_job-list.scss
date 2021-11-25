@@ -1,2 +1,7 @@
 .job-list {
 }
+
+.job-list__entry {
+  border: 1px solid var(--color-border);
+  padding: spacing(6);
+}

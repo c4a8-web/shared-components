@@ -2,13 +2,13 @@ import { createComponent } from "../../.storybook/templates";
 import jobListTemplate from "../../includes/job-list.html";
 
 export default {
-  title: "Components/Job List",
+  title: "Components/Job/List",
 };
 
 const Template = (args) => createComponent(args, jobListTemplate);
 
-export const JobList = Template.bind({});
+export const List = Template.bind({});
 
-JobList.args = {
+List.args = {
   client_name: "glueckkanja",
 };

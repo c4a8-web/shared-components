@@ -37,7 +37,7 @@ You need to add this project as a git submodule to the project you want to use t
 ```
 [submodule "_includes/shared-components"]
 	path = _includes/shared-components
-	url = git@github.com:c4a8-web/shared-components.git
+	url = https://github.com/c4a8-web/shared-components.git
 ```
 
 If your Git Client doesn't initialize the submodule automatically or you use a terminal for git commands you need to run
