@@ -1,7 +1,8 @@
 <!-- Shared Job List Section -->
-<div class="job-list container" data-id="{{ include.clientName }}">
+<div class="job-list container" data-id="{{ include.clientName }}" data-max-items="{{ include.maxItems }}">
   <div class="row">
     <div class="job-list__entries"></div>
+    <div class="job-list__expand-button is-invisible">{{ include.expandText }}</div>
   </div>
 </div>
 <!-- End Shared Job List Section -->
