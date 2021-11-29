@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[12],{"./assets/js/i18n/de/index.js":function(module,__webpack_exports__,__webpack_require__){"use strict";__webpack_require__.r(__webpack_exports__);__webpack_exports__.default={full_time:"Vollzeit",part_time:"Teilzeit",contract:"Leiharbeitszeit",gender:"(m/w/d)"}}}]);
