@@ -15,7 +15,7 @@
 @import "components/job-list";
 
 body {
-  font-family: "Miriam Libre", sans-serif;
+  font-family: var(--font-family);
   color: var(--color-copy);
   overflow-x: hidden;
 }

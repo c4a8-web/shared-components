@@ -19,10 +19,10 @@ class Templates {
     if (!this.engine) {
       await LoadLiquid;
 
-      const partialsPath = window.partialsPath || "includes";
+      this.partialsPath = window.partialsPath || "includes/";
 
       this.engine = new Liquid({
-        partials: [partialsPath],
+        partials: [this.partialsPath],
         dynamicPartials: false,
         extname: "html",
       });
@@ -37,7 +37,7 @@ class Templates {
         return this.getHtml(component, data);
       });
     } else {
-      const templateUrl = `includes/${template}.html`;
+      const templateUrl = `${this.partialsPath}${template}.html`;
 
       this.cache[template] = this.createCache();
 

@@ -17,10 +17,13 @@
   --color-svg-icon: var(--color-primary);
   --color-svg-icon--hover: var(--color-primary-accent);
   --color-bg-checkbox: var(--color-blue-medium);
-  --color-border: var(--color-porcelain);
+  --color-border: var(--color-blue-dark);
   --color-loading: var(--color-primary);
   --color-loading--1: var(--color-primary);
   --color-loading--2: var(--color-yellow);
   --color-loading--3: var(--color-conifer);
   --color-loading--4: var(--color-orange);
+
+  // fonts
+  --font-family: "Lato", sans-serif;
 }

@@ -38,11 +38,12 @@ class JobList extends BaseComponent {
             for (let i = 0; i < data.objects?.length; i++) {
               const entry = data.objects[i];
               const { city } = entry?.location;
-              const { title } = entry;
+              const { title, position_type } = entry;
 
               const entryData = {
                 city,
                 title,
+                positionType: position_type,
               };
 
               promiseList.push(

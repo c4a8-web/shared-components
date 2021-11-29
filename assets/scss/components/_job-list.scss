@@ -1,3 +1,5 @@
+$job-list-entries-gap: spacing(6);
+
 .job-list {
   &.is-loading {
     .job-list__entry {
@@ -7,18 +9,29 @@
 }
 
 .job-list__entry {
-  border: 1px solid var(--color-border);
-  padding: spacing(6);
+  border: 2px solid var(--color-border);
+  padding: spacing(8);
   opacity: 1;
   transition: opacity 1.3s $animation-transition;
   flex: 1 0 100%;
+  margin-bottom: spacing(3);
 
   @include media-breakpoint-up(lg) {
-    flex: 1 0 50%;
+    flex: 1 0 calc(50% - #{$job-list-entries-gap};
   }
 }
 
 .job-list__entries {
   display: flex;
   flex-wrap: wrap;
+
+  @include media-breakpoint-up(lg) {
+    gap: $job-list-entries-gap;
+  }
+}
+
+.job-list__entry-title {
+  @include font-style("font-size-4");
+
+  margin-top: spacing(4);
 }

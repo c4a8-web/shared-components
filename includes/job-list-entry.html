@@ -1,6 +1,8 @@
 <!-- Shared Job List Entry Section -->
 <div class="job-list__entry">
-  <div class="job-list__entry-header">{{ include.city }}</div>
+  <div class="job-list__entry-header">
+    {{ include.team }} / {{ include.positionType }} / {{ include.city }}
+  </div>
   <div class="job-list__entry-title">{{ include.title }}</div>
 </div>
 <!-- End Shared Job List Entry Section -->

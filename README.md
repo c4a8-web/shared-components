@@ -68,7 +68,7 @@ You also need a Generator called `sharedcomponents.rb` in your \_plugins folder 
 module SharedComponents
   class Generator < Jekyll::Generator
     def generate(site)
-      asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif}'
+      asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map}'
       partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
       puts "Generate Shared Components as Static Files in " + asset_path
 
