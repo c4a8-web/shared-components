@@ -513,3 +513,42 @@
     padding-bottom: 15rem !important;
   }
 }
+
+.shared-components {
+  .container,
+  .container-fluid,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    @include media-breakpoint-up(lg) {
+      padding-right: $header-floating-inner-padding-x;
+      padding-left: $header-floating-inner-padding-x;
+    }
+  }
+
+  .row {
+    @include media-breakpoint-up(lg) {
+      margin-right: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+@media (min-width: 1340px) {
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    max-width: get-container-width(xl, false);
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  // TODO replace with spacing value
+  margin-right: -15px;
+  margin-left: -15px;
+}

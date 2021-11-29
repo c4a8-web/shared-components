@@ -11,4 +11,14 @@
   padding: spacing(6);
   opacity: 1;
   transition: opacity 1.3s $animation-transition;
+  flex: 1 0 100%;
+
+  @include media-breakpoint-up(lg) {
+    flex: 1 0 50%;
+  }
+}
+
+.job-list__entries {
+  display: flex;
+  flex-wrap: wrap;
 }

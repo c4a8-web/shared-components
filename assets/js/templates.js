@@ -1,17 +1,37 @@
-import { Liquid } from "./lib/liquid.browser.min.js";
+let Liquid;
+
+const LoadLiquid = import("./lib/liquid.browser.min.js").then((module) => {
+  if (module.Liquid) {
+    Liquid = module.Liquid;
+  } else if (window.liquidjs?.Liquid) {
+    Liquid = window.liquidjs.Liquid;
+  } else {
+    console.error("LiquidJS was not loaded");
+  }
+});
 
 class Templates {
   constructor() {
     this.cache = {};
-
-    this.engine = new Liquid({
-      partials: ["includes"],
-      dynamicPartials: false,
-      extname: "html",
-    });
   }
 
-  load(template, data) {
+  async loadTemplateEngine() {
+    if (!this.engine) {
+      await LoadLiquid;
+
+      const partialsPath = window.partialsPath || "includes";
+
+      this.engine = new Liquid({
+        partials: [partialsPath],
+        dynamicPartials: false,
+        extname: "html",
+      });
+    }
+  }
+
+  async load(template, data) {
+    await this.loadTemplateEngine();
+
     if (this.cache[template]) {
       return this.cache[template].then((component) => {
         return this.getHtml(component, data);

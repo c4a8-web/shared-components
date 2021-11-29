@@ -59,7 +59,7 @@ to update and checkout the submodule.
 In your Jekyll configuration you need to add the path to the `shared-components` folder like this:
 
 ```
-shared_components_path: _includes/shared-components/assets
+shared_components_path: _includes/shared-components
 ```
 
 You also need a Generator called `sharedcomponents.rb` in your \_plugins folder that looks like this:
@@ -68,7 +68,8 @@ You also need a Generator called `sharedcomponents.rb` in your \_plugins folder 
 module SharedComponents
   class Generator < Jekyll::Generator
     def generate(site)
-      asset_path = site.config['shared_components_path'] + '/**/*.{js,png,svg,gif}'
+      asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif}'
+      partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
       puts "Generate Shared Components as Static Files in " + asset_path
 
       i=0
@@ -85,10 +86,22 @@ module SharedComponents
         end
       end
 
+      Dir.glob(partials_path, File::FNM_DOTMATCH) do |f|
+        file = File.stat(f)
+        next unless file.file?
+        i += 1
+        curr_file = [f, file]
+        if curr_file != nil then
+          filePath = curr_file[0]
+          site.static_files << Jekyll::StaticFile.new(site, site.source, File.dirname(filePath), File.basename(filePath))
+        end
+      end
+
       puts "Total files: #{i}"
     end
   end
 end
+
 
 ```
 
@@ -148,9 +161,12 @@ import { State } from '/_includes/shared-components/assets/js/index.js';
 ```
 
 If you don't need the State in your Code you can import it without it. Everything else is handled by the JavaScript itself.
-You also need to update the type of your `app.js` Script in the `scripts.html` file:
+You also need to update the type of your `app.js` Script in the `scripts.html` file and add the partialsPath like this:
 
 ```
+<script>
+  window.partialsPath = '/_includes/shared-components/includes/';
+</script>
 <script
   type="module"
   charset="UTF-8"

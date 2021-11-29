@@ -10,5 +10,5 @@ const Template = (args) => createComponent(args, jobListTemplate);
 export const List = Template.bind({});
 
 List.args = {
-  client_name: "glueckkanja",
+  clientName: "glueckkanja",
 };

@@ -9,6 +9,9 @@ class JobList extends BaseComponent {
   constructor(root, options) {
     super(root, options);
 
+    this.entriesSelector = ".job-list__entries";
+    this.entries = this.root.querySelector(this.entriesSelector);
+
     this.api = new RecruiterBox({
       ...this.options,
       client_name: this.root.dataset.id,
@@ -46,7 +49,7 @@ class JobList extends BaseComponent {
                 this.templates
                   ?.load("job-list-entry", entryData)
                   .then((html) => {
-                    Tools.append(this.root, html);
+                    Tools.append(this.entries, html);
                   })
               );
             }
