@@ -40,3 +40,9 @@ export const parameters = {
     },
   },
 };
+
+export const decorators = [
+  (story, params) => {
+    return story();
+  },
+];

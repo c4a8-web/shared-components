@@ -1,8 +1,12 @@
 <!-- Shared Job List Entry Section -->
 <div class="job-list__entry">
   <div class="job-list__entry-header">
-    {{ include.team }} / {{ include.positionType }} / {{ include.city }}
+    {% if include.team %} {{ include.team }} / {% endif %} {% if include.positionType %} {{ include.positionType }} / {%
+    endif %} {{ include.city }}
   </div>
-  <div class="job-list__entry-title">{{ include.title }}</div>
+  <div class="job-list__entry-title">
+    {{ include.title }}
+    <span class="job-list__entry-gender">{{ include.gender }}</span>
+  </div>
 </div>
 <!-- End Shared Job List Entry Section -->

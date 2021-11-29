@@ -17,7 +17,7 @@ $job-list-entries-gap: spacing(6);
   margin-bottom: spacing(3);
 
   @include media-breakpoint-up(lg) {
-    flex: 1 0 calc(50% - #{$job-list-entries-gap};
+    flex: 1 0 calc(50% - #{$job-list-entries-gap});
   }
 }
 
@@ -31,7 +31,11 @@ $job-list-entries-gap: spacing(6);
 }
 
 .job-list__entry-title {
-  @include font-style("font-size-4");
+  @include font-style('font-size-4');
 
   margin-top: spacing(4);
+}
+
+.job-list__entry-gender {
+  @include font-style('font-size-2');
 }

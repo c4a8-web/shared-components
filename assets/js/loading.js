@@ -20,7 +20,7 @@ class Loading {
       "--color-loading--4",
     ];
 
-    this.scaleMin = 3;
+    this.scaleMin = 4;
     this.scaleMax = 5;
 
     this.rotationMin = 90;
