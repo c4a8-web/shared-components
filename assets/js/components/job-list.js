@@ -2,6 +2,7 @@ import BaseComponent from './base-component.js';
 import RecruiterBox from '../recruiter-box.js';
 import Loading from '../loading.js';
 import Tools from '../tools.js';
+import State from '../state.js';
 
 class JobList extends BaseComponent {
   static rootSelector = '.job-list';
@@ -10,7 +11,10 @@ class JobList extends BaseComponent {
     super(root, options);
 
     this.entriesSelector = '.job-list__entries';
+    this.entrySelector = '.job-list__entry';
     this.entries = this.root.querySelector(this.entriesSelector);
+    this.expandButton = this.root.querySelector('.job-list__expand-button');
+    this.maxItems = this.root.dataset.maxItems;
 
     this.api = new RecruiterBox({
       ...this.options,
@@ -36,7 +40,34 @@ class JobList extends BaseComponent {
       } else {
         this.loadJobs();
       }
+
+      this.bindEvents();
     }
+  }
+
+  bindEvents() {
+    this.expandButton?.addEventListener('click', this.handleExpand.bind(this));
+  }
+
+  handleExpand() {
+    this.expandButton.classList.add(State.INVISIBLE);
+    this.expandButton.classList.add(State.HIDDEN);
+
+    this.showJobs();
+  }
+
+  showJobs() {
+    [].forEach.call(this.root.querySelectorAll(`${this.entrySelector}.${State.HIDDEN}`), (element) => {
+      this.fadeInJob(element);
+    });
+  }
+
+  fadeInJob(element) {
+    // TODO add fade in composition
+
+    element.classList.add(State.INVISIBLE);
+    element.classList.remove(State.HIDDEN);
+    element.classList.remove(State.INVISIBLE);
   }
 
   loadJobs() {
@@ -47,7 +78,6 @@ class JobList extends BaseComponent {
         ?.getAll()
         .then((response) => response.json())
         .then((data) => {
-          // console.log("JobList ~ .then ~ data", data);
           const promiseList = [];
 
           for (let i = 0; i < data.objects?.length; i++) {
@@ -60,22 +90,35 @@ class JobList extends BaseComponent {
               title,
               gender,
               positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
+              isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
             };
 
             promiseList.push(
               this.templates?.load('job-list-entry', entryData).then((html) => {
                 Tools.append(this.entries, html);
+
+                // TODO fix the order
               })
             );
           }
+
           Promise.all(promiseList).then(() => {
+            if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
+              this.showExpandButton();
+            }
+
             this.loading.off();
           });
         })
         .catch((error) => {
           console.error('Job-list Error:', error);
         });
-    }, 2000);
+    }, 200);
+  }
+
+  showExpandButton() {
+    this.expandButton?.classList.remove(State.HIDDEN);
+    this.expandButton?.classList.remove(State.INVISIBLE);
   }
 }
 

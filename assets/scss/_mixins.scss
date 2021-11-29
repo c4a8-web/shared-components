@@ -1,15 +1,7 @@
-@function breakpoint-next(
-  $name,
-  $breakpoints: $grid-breakpoints,
-  $breakpoint-names: map-keys($breakpoints)
-) {
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $name);
 
-  @return if(
-    $n != null and $n < length($breakpoint-names),
-    nth($breakpoint-names, $n + 1),
-    null
-  );
+  @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
 
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
@@ -25,7 +17,7 @@
 }
 
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
 }
 
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
@@ -51,11 +43,7 @@
   }
 }
 
-@mixin media-breakpoint-between(
-  $lower,
-  $upper,
-  $breakpoints: $grid-breakpoints
-) {
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($lower, $breakpoints);
   $max: breakpoint-max($upper, $breakpoints);
 
@@ -124,7 +112,7 @@
 
     &::before {
       background-color: var(--color-secondary);
-      content: "";
+      content: '';
       height: 8px;
       left: 50%;
       position: absolute;
@@ -140,7 +128,7 @@
   position: relative;
 
   &:before {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     padding-top: ($height / $width) * 100%;
@@ -162,11 +150,7 @@
   background-origin: initial;
   background-clip: initial;
   background-color: initial;
-  background-image: linear-gradient(
-    to bottom,
-    var(--color-secondary) 0%,
-    var(--color-secondary) 100%
-  );
+  background-image: linear-gradient(to bottom, var(--color-secondary) 0%, var(--color-secondary) 100%);
   background-repeat: repeat-x;
 }
 
@@ -189,7 +173,7 @@
 }
 
 @function shared-assets($url) {
-  @return url("#{$url}");
+  @return url('#{$url}');
 }
 
 @function assets($url) {
@@ -203,10 +187,10 @@
 @function spacing($size, $negative: false) {
   $value: $size * 0.25;
 
-  $prefix: "";
+  $prefix: '';
 
   @if $negative {
-    $prefix: "-";
+    $prefix: '-';
   }
 
   @return #{$prefix}#{$value}rem;
@@ -217,18 +201,18 @@
   @return unquote("\"#{ $fa-var }\"");
 }
 
-@mixin icon($name, $font: "", $weight: 300, $after: true) {
-  $selector: "before";
+@mixin icon($name, $font: '', $weight: 300, $after: true) {
+  $selector: 'before';
 
   @if ($after) {
-    $selector: "after";
+    $selector: 'after';
   }
 
   $icon: map-get($icons, $name);
 
   $icon-font: $icon-font-free;
 
-  @if ($font == "brand") {
+  @if ($font == 'brand') {
     $icon-font: $icon-font-brand;
   }
 
@@ -243,5 +227,27 @@
     content: fa-content($icon);
 
     @content;
+  }
+}
+
+@mixin underline($color, $selector: null) {
+  @if ($selector) {
+  } @else {
+    $selector: '&';
+  }
+
+  #{$selector} {
+    text-decoration: none;
+    background-image: linear-gradient($color, $color);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 0% 3px;
+    transition: background-size 0.4s ease-in-out;
+  }
+
+  &:hover {
+    #{$selector} {
+      background-size: 100% 3px;
+    }
   }
 }

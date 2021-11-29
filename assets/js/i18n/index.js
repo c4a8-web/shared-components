@@ -11,7 +11,6 @@ class i18n {
 
   load() {
     this.loader = import(`./${this.lang}/index.js`).then((module) => {
-      console.log('und hier oder ?');
       this.translations = module.default;
     });
   }

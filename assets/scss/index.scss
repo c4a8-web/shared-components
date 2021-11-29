@@ -1,18 +1,19 @@
 @charset 'UTF-8';
 
-@import "colors";
-@import "user-variables";
-@import "animations";
-@import "mixins";
-@import "type";
-@import "spacings";
-@import "theme";
-@import "bootstrap-helper";
-@import "loading";
+@import 'colors';
+@import 'user-variables';
+@import 'animations';
+@import 'mixins';
+@import 'type';
+@import 'spacings';
+@import 'theme';
+@import 'bootstrap-helper';
+@import 'helper';
+@import 'loading';
 
-@import "components/arrow";
-@import "components/cta";
-@import "components/job-list";
+@import 'components/arrow';
+@import 'components/cta';
+@import 'components/job-list';
 
 body {
   font-family: var(--font-family);
@@ -21,9 +22,9 @@ body {
 }
 
 .other {
-  font-family: "Roboto", sans-serif;
-  font-family: "Roboto Condensed", sans-serif;
-  font-family: "Roboto Mono", monospace;
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
 img {
@@ -46,7 +47,7 @@ ul.dashed {
 }
 
 ul.dashed li:before {
-  content: "\2014";
+  content: '\2014';
   position: absolute;
   margin-left: -30px;
   color: var(--color-macaroni-and-cheese);
