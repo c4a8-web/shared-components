@@ -1,4 +1,4 @@
-import { Liquid } from "liquidjs";
+import { Liquid } from "./lib/liquid.browser.min.js";
 
 class Templates {
   constructor() {
