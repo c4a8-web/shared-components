@@ -40,6 +40,8 @@ $font-style-map: (
   .h5,
   .h6 {
     color: var(--color-headlines);
+    margin-bottom: spacing(2);
+    line-height: 1.4;
   }
 
   .text-white {

@@ -1,5 +1,5 @@
 import { createComponent } from '../../.storybook/templates';
-import jobListTemplate from '../../includes/job-list.html';
+import { includesjoblisthtml as jobListTemplate } from '../../.storybook/generatedIncludes';
 
 export default {
   title: 'Components/Job/List',

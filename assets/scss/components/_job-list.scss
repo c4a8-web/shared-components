@@ -21,6 +21,7 @@ $job-list-transition-time: 1.3s;
   h5,
   h6 {
     transition: opacity 0.1s $animation-transition;
+    margin-bottom: spacing(10);
   }
 }
 
