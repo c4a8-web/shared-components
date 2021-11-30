@@ -1,6 +1,12 @@
 <!-- Shared Job List Section -->
 <div class="job-list container" data-id="{{ include.clientName }}" data-max-items="{{ include.maxItems }}">
   <div class="row">
+    {%
+      include headline.html
+      text=include.headline.text
+      level=include.headline.level
+      classes=include.headline.classes
+    %}
     <div class="job-list__entries"></div>
     <div class="job-list__expand-button is-invisible">{{ include.expandText }}</div>
   </div>

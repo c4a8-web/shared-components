@@ -9,6 +9,10 @@ const Template = (args) => createComponent(args, jobListTemplate);
 
 const baseArgs = {
   clientName: 'glueckkanja',
+  headline: {
+    level: 'h2',
+    text: 'Offene Stellen',
+  },
 };
 
 export const List = Template.bind({});
