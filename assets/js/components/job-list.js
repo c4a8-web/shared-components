@@ -79,6 +79,7 @@ class JobList extends BaseComponent {
         .then((response) => response.json())
         .then((data) => {
           const promiseList = [];
+          const orderedList = [];
 
           for (let i = 0; i < data.objects?.length; i++) {
             const entry = data.objects[i];
@@ -95,9 +96,7 @@ class JobList extends BaseComponent {
 
             promiseList.push(
               this.templates?.load('job-list-entry', entryData).then((html) => {
-                Tools.append(this.entries, html);
-
-                // TODO fix the order
+                orderedList[i] = html;
               })
             );
           }
@@ -106,6 +105,8 @@ class JobList extends BaseComponent {
             if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
               this.showExpandButton();
             }
+
+            this.appendEntries(orderedList);
 
             this.loading.off();
           });
@@ -116,9 +117,20 @@ class JobList extends BaseComponent {
     }, 200);
   }
 
+  appendEntries(list) {
+    for (let i = 0; i < list.length; i++) {
+      Tools.append(this.entries, list[i]);
+    }
+  }
+
   showExpandButton() {
     this.expandButton?.classList.remove(State.HIDDEN);
     this.expandButton?.classList.remove(State.INVISIBLE);
+  }
+
+  generateUrl() {
+    // TODO only letters and characters and no umlaute
+    // https://www.glueckkanja-gab.com/de/jobs/#lust-auf-modern-collaboration
   }
 }
 
