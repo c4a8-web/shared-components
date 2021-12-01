@@ -1,7 +1,7 @@
 {%- assign jobListDetailColor = include.detailColor | default: '--color-job-list-detail' -%}
 
 <!-- Shared Job List Detail Section -->
-<div class="job-list__detail {% if include.isInvisible %}d-none{% endif %}" style="--job-list-detail-color: var({{ jobListDetailColor }})">
+<div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }})">
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
       <div class="col-lg-5">
