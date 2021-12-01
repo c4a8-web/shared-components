@@ -31,7 +31,7 @@ class JobListDetail extends BaseComponent {
   init() {
     setTimeout(() => {
       this.root.classList.remove(State.LOADING);
-    }, 200);
+    }, 500);
 
     if (!this.options) {
       // this.loading.on();
