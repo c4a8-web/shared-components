@@ -4,20 +4,14 @@
   {%- assign data = include -%}
 {%- endif -%}
 
-{%- if data.classes -%}
-  {%- assign classList = data.classes -%}
-{%- else -%}
-  {%- capture classList %}{{ data.level }}-font-size{% endcapture -%}
-{%- endif -%}
+{%- assign headlineClasses = headlineClasses | default: data.classes -%}
+{%- assign headlineLevel = headlineLevel | default: data.level | default: 'h2' -%}
+{%- assign headlineText = headlineText | default: data.text -%}
 
-{%- if data.level -%}
-  {%- assign level = data.level -%}
-{%- else -%}
-  {%- assign level = 'h1' -%}
-{%- endif -%}
+{%- capture classList %}{{ headlineClasses }} {{ headlineLevel }}-font-size{% endcapture -%}
 
 <!-- Shared Headline Section -->
-<{{ level }} {% if classList %}class="{{ classList }}"{% endif %}>
-  {{ data.text }}
-</{{ level }}>
+<{{ headlineLevel }} {% if classList %}class="{{ classList }}"{% endif %}>
+  {{ headlineText }}
+</{{ headlineLevel }}>
 <!-- Shared End Headline Section -->
