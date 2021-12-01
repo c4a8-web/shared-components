@@ -114,6 +114,7 @@ $job-list-transition-time: 1.3s;
       }
       .job-list__detail-headline {
         opacity: 0;
+        transition: none;
       }
     }
   }
