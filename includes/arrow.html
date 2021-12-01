@@ -1,13 +1,19 @@
+{%- if sharedComponents -%}
+  {%- assign data = include.arrow -%}
+{% else %}
+  {%- assign data = include -%}
+{%- endif -%}
+
 <!-- Shared Arrow Section -->
-{% assign color = include.color | default: 'currentColor' %}
-{% assign direction = include.direction | default: 'right' %}
+{% assign color = data.color | default: 'currentColor' %}
+{% assign direction = data.direction | default: 'right' %}
 
 {% capture rotation %}
   {% if direction == 'left' %}180deg{% else %}0deg{% endif %}
 {% endcapture %}
 
 {% capture size %}
-  {% if include.size == 'small' %}18px{% elsif include.size == 'large' %}48px{% else %}28px{% endif %}
+  {% if data.size == 'small' %}18px{% elsif data.size == 'large' %}48px{% else %}28px{% endif %}
 {% endcapture %}
 
 <span class="arrow arrow--{{ direction }}">

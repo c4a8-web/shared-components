@@ -5,14 +5,12 @@ export default {
   title: 'Components/Job/List',
 };
 
-const Template = (args) => createComponent(args, jobListTemplate);
+const Template = (args) => createComponent(args, jobListTemplate, 'headline');
 
 const baseArgs = {
   clientName: 'glueckkanja',
-  headline: {
-    level: 'h2',
-    text: 'Offene Stellen',
-  },
+  headlineText: 'Offene Stellen',
+  headlineLevel: 'h2',
 };
 
 export const List = Template.bind({});

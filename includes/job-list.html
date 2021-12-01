@@ -1,11 +1,14 @@
 <!-- Shared Job List Section -->
 <div class="job-list container" data-id="{{ include.clientName }}" data-max-items="{{ include.maxItems }}">
   <div class="row">
+    {%- capture headlineClasses -%}job-list__headline {{ include.headlineClasses }}{%- endcapture -%}
+    {%- assign headlineLevel = include.headlineLevel | default: 'h2' -%}
+
     {%
       include headline.html
-      text=include.headline.text
-      level=include.headline.level
-      classes=include.headline.classes
+      text=include.headlineText
+      level=headlineLevel
+      classes=headlineClasses
     %}
     <div class="job-list__entries"></div>
     <div class="job-list__expand-button is-invisible">{{ include.expandText }}</div>

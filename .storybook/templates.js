@@ -8,7 +8,20 @@ export const createComponent = function async(include, component, expand) {
   };
 
   if (expand) {
-    include[expand] = include;
+    let newInclude = {};
+    const filteredKeys = Object.keys(include).filter((key) => key.indexOf(expand) !== -1);
+
+    if (filteredKeys.length) {
+      filteredKeys.forEach((key) => {
+        const cleanedKey = key.replace(expand, '').toLocaleLowerCase();
+
+        newInclude[cleanedKey] = include[key];
+      });
+    } else {
+      newInclude = include;
+    }
+
+    include[expand] = newInclude;
   }
 
   const engine = new Liquid({
