@@ -3,6 +3,8 @@ $font-style-map: (
   'font-size-2': '.font-size-2',
   'font-size-3': '.font-size-3',
   'font-size-4': '.font-size-4',
+  'h2-font-size': '.h2-font-size',
+  'h2-font-size-bold': '.h2-font-size.bold',
 );
 
 @mixin font-style($modifier) {
@@ -42,7 +44,65 @@ $font-style-map: (
     color: var(--color-headlines);
     margin-top: 0;
     margin-bottom: spacing(2);
-    line-height: 1.4;
+    line-height: 1.4em;
+  }
+
+  .h1-font-size {
+    font-size: $h1-font-size-sm;
+    line-height: 1.1em;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $h1-font-size-lg;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $h1-font-size;
+    }
+  }
+
+  .h2-font-size.bold,
+  .h2-font-size {
+    font-size: $h2-font-size-sm;
+    font-weight: lighter;
+    line-height: 1.2em;
+
+    &.bold {
+      font-weight: bold;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: $h2-font-size-lg;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $h2-font-size;
+    }
+  }
+
+  .h3-font-size {
+    font-size: $h3-font-size-sm;
+    font-weight: lighter;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $h3-font-size-lg;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $h3-font-size;
+    }
+  }
+
+  .h4-font-size {
+    font-size: $h4-font-size-sm;
+    font-weight: normal;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $h4-font-size-lg;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $h4-font-size;
+    }
   }
 
   .text-white {
@@ -136,45 +196,5 @@ $font-style-map: (
     @include media-breakpoint-up(xl) {
       font-size: $font-size-4;
     }
-  }
-}
-
-.h2-font-size {
-  font-size: $h2-font-size-sm;
-  font-weight: lighter;
-  line-height: 1.2em;
-
-  @include media-breakpoint-up(lg) {
-    font-size: $h2-font-size-lg;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: $h2-font-size;
-  }
-}
-
-.h3-font-size {
-  font-size: $h3-font-size-sm;
-  font-weight: lighter;
-
-  @include media-breakpoint-up(lg) {
-    font-size: $h3-font-size-lg;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: $h3-font-size;
-  }
-}
-
-.h4-font-size {
-  font-size: $h4-font-size-sm;
-  font-weight: normal;
-
-  @include media-breakpoint-up(lg) {
-    font-size: $h4-font-size-lg;
-  }
-
-  @include media-breakpoint-up(xl) {
-    font-size: $h4-font-size;
   }
 }

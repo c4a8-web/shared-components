@@ -40,6 +40,11 @@
 
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
+
+  // rules that default to everything
+
+  --color-job-list-detail: var(--color-yellow);
+  --color-job-list-detail-copy: var(--color-black-85);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

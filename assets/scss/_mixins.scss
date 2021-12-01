@@ -251,3 +251,10 @@
     }
   }
 }
+
+@function get-full-column-width($container, $columns) {
+  $container-width: get-container-width($container, false);
+  $percentage: calc(100 / #{$grid-columns} * #{$columns} / 100);
+
+  @return calc(((100vw - #{$container-width}) / 2) + (#{$container-width} * #{$percentage}));
+}

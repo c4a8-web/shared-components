@@ -11,6 +11,9 @@ const baseArgs = {
   clientName: 'glueckkanja',
   headlineText: 'Offene Stellen',
   headlineLevel: 'h2',
+  sublineText:
+    'Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in',
+  detailUrl: '123',
 };
 
 export const List = Template.bind({});
@@ -25,6 +28,7 @@ ListLimit.args = {
   ...baseArgs,
   maxItems: 4,
   expandText: 'Weitere Stellenanzeigen',
+  sublineText: null,
 };
 
 export const FilteredList = Template.bind({});

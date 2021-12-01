@@ -1,4 +1,4 @@
-$site: "radiusaas";
+$site: 'radiusaas';
 
 $header-logo-spacing-right: 5.7rem;
 $header-nav-link-color-light: var(--color-white);
@@ -15,9 +15,9 @@ $container-widths: (
 // theme vars
 
 $theme-colors: (
-  "primary": red,
-  "secondary": red,
-  "danger": red,
+  'primary': red,
+  'secondary': red,
+  'danger': red,
 );
 
 $font-size-base: 1rem;
@@ -59,5 +59,8 @@ $grid-breakpoints: (
   xl: 1200px,
   xxl: 1340px,
 );
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
 
 $shared-components: true !default;

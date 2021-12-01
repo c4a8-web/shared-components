@@ -1,0 +1,28 @@
+{%- assign jobListDetailColor = include.detailColor | default: '--color-job-list-detail' -%}
+
+<!-- Shared Job List Detail Section -->
+<div class="job-list__detail {% if include.isInvisible %}d-none{% endif %}" style="--job-list-detail-color: var({{ jobListDetailColor }})">
+  <div class="job-list__detail-container container">
+    <div class="job-list__detail-start row">
+      <div class="col-lg-5">
+        {%- assign headlineText = include.title -%}
+        {%- assign headlineLevel = include.headlineLevel | default: 'h1' -%}
+        {%- capture headlineClasses -%}job-list__detail-headline {{ include.headlineClasses }}{%- endcapture -%}
+        {%
+          include headline.html
+          text=headlineText
+          level=headlineLevel
+          classes=headlineClasses
+        %}
+      </div>
+      <div class="col-lg-7">
+        {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
+      </div>
+
+    </div>
+
+  </div>
+
+
+</div>
+<!-- End Shared Job List Detail Section -->

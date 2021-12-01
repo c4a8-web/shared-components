@@ -1,17 +1,17 @@
 {%- if sharedComponents -%}
   {%- assign data = include.headline -%}
-  {%- assign classes = headlineClasses -%}
-  {%- assign level = headlineLevel -%}
 {% else %}
   {%- assign data = include -%}
-  {%- assign classes = data.classes -%}
-  {%- assign level = data.level | default 'h2' -%}
 {%- endif -%}
 
-{%- capture classList %}{{ classes }} {{ level }}-font-size{% endcapture -%}
+{%- assign headlineClasses = headlineClasses | default: data.classes -%}
+{%- assign headlineLevel = headlineLevel | default: data.level | default: 'h2' -%}
+{%- assign headlineText = headlineText | default: data.text -%}
+
+{%- capture classList %}{{ headlineClasses }} {{ headlineLevel }}-font-size{% endcapture -%}
 
 <!-- Shared Headline Section -->
-<{{ level }} {% if classList %}class="{{ classList }}"{% endif %}>
-  {{ data.text }}
-</{{ level }}>
+<{{ headlineLevel }} {% if classList %}class="{{ classList }}"{% endif %}>
+  {{ headlineText }}
+</{{ headlineLevel }}>
 <!-- Shared End Headline Section -->

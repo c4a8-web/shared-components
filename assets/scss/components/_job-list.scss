@@ -3,27 +3,37 @@ $job-list-transition-time: 1.3s;
 
 .job-list {
   &.is-loading {
-    h1,
-    h2,
-    h3,
-    h4,
-    h5,
-    h6,
+    .job-list__header,
+    .job-list__meta,
     .job-list__entry {
       opacity: 0;
     }
   }
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    transition: opacity 0.1s $animation-transition;
-    margin-bottom: spacing(10);
-    margin-top: spacing(10);
+.job-list__header {
+  margin-bottom: spacing(6);
+  margin-top: spacing(12);
+
+  + .job-list__meta {
+    margin-top: spacing($size: 4, $negative: true);
+    margin-bottom: spacing(6);
+
+    @include media-breakpoint-up(lg) {
+      margin-top: spacing($size: 8, $negative: true);
+      margin-bottom: spacing(10);
+    }
   }
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(10);
+    margin-top: spacing(16);
+  }
+}
+
+.job-list__header,
+.job-list__meta {
+  transition: opacity 0.1s $animation-transition;
 }
 
 .job-list__entry {
@@ -92,4 +102,30 @@ $job-list-transition-time: 1.3s;
     margin: spacing(16) auto;
     width: 50%;
   }
+}
+
+.job-list__detail {
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-color: var(--job-list-detail-color);
+
+    @include media-breakpoint-up(lg) {
+      width: get-full-column-width($container: 'lg', $columns: 5);
+    }
+  }
+
+  .job-list__detail-headline {
+    @include font-style('h2-font-size-bold');
+
+    color: var(--color-job-list-detail-copy);
+  }
+}
+
+.job-list__detail-start {
+  padding-top: spacing(22);
 }
