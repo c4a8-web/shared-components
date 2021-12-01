@@ -1,11 +1,12 @@
-import i18n from "./i18n/index.js";
+import i18n from './i18n/index.js';
 
-import Form from "./components/form.js";
-import JobList from "./components/job-list.js";
+import Form from './components/form.js';
+import JobList from './components/job-list.js';
+import JobListDetail from './components/job-list-detail.js';
 
-import Analytics from "./analytics.js";
-import State from "./state.js";
-import Templates from "./templates.js";
+import Analytics from './analytics.js';
+import State from './state.js';
+import Templates from './templates.js';
 
 const initSharedComponents = function () {
   window.Templates = new Templates();
@@ -14,9 +15,10 @@ const initSharedComponents = function () {
   Analytics.init();
   Form.init();
   JobList.init();
+  JobListDetail.init();
 };
 
-document.addEventListener("DOMContentLoaded", (e) => {
+document.addEventListener('DOMContentLoaded', (e) => {
   initSharedComponents();
 });
 

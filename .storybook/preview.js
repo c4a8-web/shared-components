@@ -1,16 +1,11 @@
-import "../assets/scss/index.scss";
-import "../assets/js/index.js";
+import '../assets/scss/index.scss';
+import '../assets/js/index.js';
 
-import { Styles } from "./themeImports";
+import { Styles } from './themeImports';
 
-import { STORY_RENDERED } from "@storybook/core-events";
-import addons from "@storybook/addons";
-import {
-  EVENTS,
-  DEFAULT_THEME,
-  addStyles,
-  addBaseClass,
-} from "./themes/src/themes";
+import { STORY_RENDERED } from '@storybook/core-events';
+import addons from '@storybook/addons';
+import { EVENTS, DEFAULT_THEME, addStyles, addBaseClass } from './themes/src/themes';
 
 let currentTheme = DEFAULT_THEME;
 
@@ -32,7 +27,7 @@ channel.on(STORY_RENDERED, () => {
 });
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
+  actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
       color: /(background|color)$/i,

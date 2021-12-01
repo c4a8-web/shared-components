@@ -1,4 +1,5 @@
 import { createComponent } from '../../.storybook/templates';
+import { hrefTo } from '../../.storybook/tools';
 import { includesjoblisthtml as jobListTemplate } from '../../.storybook/generatedIncludes';
 
 export default {
@@ -13,7 +14,7 @@ const baseArgs = {
   headlineLevel: 'h2',
   sublineText:
     'Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in',
-  detailUrl: '123',
+  detailUrl: hrefTo('Components/Job/Detail', 'Detail'),
 };
 
 export const List = Template.bind({});
@@ -35,4 +36,5 @@ export const FilteredList = Template.bind({});
 
 FilteredList.args = {
   ...baseArgs,
+  headlineText: 'TODO add filter by tag or team',
 };

@@ -15,6 +15,7 @@ class JobList extends BaseComponent {
     this.entries = this.root.querySelector(this.entriesSelector);
     this.expandButton = this.root.querySelector('.job-list__expand-button');
     this.maxItems = this.root.dataset.maxItems;
+    this.detailUrl = this.root.dataset.detailUrl;
 
     this.api = new RecruiterBox({
       ...this.options,
@@ -47,6 +48,23 @@ class JobList extends BaseComponent {
 
   bindEvents() {
     this.expandButton?.addEventListener('click', this.handleExpand.bind(this));
+  }
+
+  bindEntriesEvents() {
+    if (this.entries) {
+      [].forEach.call(this.entries.querySelectorAll(this.entrySelector), (element) => {
+        element.addEventListener('click', this.handleEntryClick.bind(this));
+      });
+    }
+  }
+
+  handleEntryClick(e) {
+    const current = e.currentTarget;
+
+    if (current && this.detailUrl) {
+      // TODO load component in page and don't redirect
+      document.location.href = this.detailUrl;
+    }
   }
 
   handleExpand() {
@@ -107,6 +125,7 @@ class JobList extends BaseComponent {
             }
 
             this.appendEntries(orderedList);
+            this.bindEntriesEvents();
 
             this.loading.off();
           });
