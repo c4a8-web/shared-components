@@ -23,7 +23,7 @@ class JobListDetail extends BaseComponent {
     });
 
     this.templates = window.Templates;
-    this.loading = new Loading(this.root);
+    // this.loading = new Loading(this.root);
 
     this.init();
   }
