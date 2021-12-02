@@ -1,34 +1,52 @@
+{%- if sharedComponents and include.cta -%}
+  {%- assign data = include.cta -%}
+{% else %}
+  {%- assign data = include -%}
+{%- endif -%}
+
+{%- assign ctaText = ctaText | default: data.text -%}
+{%- assign ctaType = ctaType | default: data.type -%}
+{%- assign ctaButton = ctaButton | default: data.button -%}
+{%- assign ctaLink = ctaLink | default: data.link -%}
+{%- assign ctaSkin = ctaSkin | default: data.skin -%}
+{%- assign ctaHref = ctaHref | default: data.href -%}
+{%- assign ctaAlternativeHref = ctaAlternativeHref | default: data.alternativeHref -%}
+{%- assign ctaTarget = ctaTarget | default: data.target -%}
+{%- assign ctaWidth = ctaWidth | default: data.width -%}
+{%- assign ctaGrow = ctaGrow | default: data.grow -%}
+{%- assign ctaAnalytics = ctaAnalytics | default: data.analytics -%}
+
 <!-- Shared Cta Section -->
-{%- if include.analytics -%}
-  {%- capture analytics -%}data-analytics="{{ include.analytics }}"{%- endcapture -%}
+{%- if ctaAnalytics -%}
+  {%- capture analytics -%}data-analytics="{{ ctaAnalytics }}"{%- endcapture -%}
 {%- else -%}
   {%- assign analytics = '' -%}
 {%- endif -%}
 
-{% if include.link %}
-  {% capture skin %}{% if include.skin %}{{ include.skin }}{% endif %}{% endcapture %}
+{% if ctaLink %}
+  {% capture skin %}{% if ctaSkin %}{{ ctaSkin }}{% endif %}{% endcapture %}
   {% assign baseClass = "link" %}
 {% else %}
-  {% capture width %}{% if include.width %}{{ include.width }}{% else %}w-100{% unless include.grow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
-  {% capture skin %}{% if include.skin %}btn-{{ include.skin }}{% else %}btn-primary{% endif %}{% endcapture %}
+  {% capture width %}{% if ctaWidth %}{{ ctaWidth }}{% else %}w-100{% unless ctaGrow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
+  {% capture skin %}{% if ctaSkin %}btn-{{ ctaSkin }}{% else %}btn-primary{% endif %}{% endcapture %}
   {% capture baseClass %}btn {{ width }}{% endcapture %}
 {% endif %}
-{% if include.button %}
-  <button class="cta {{ baseClass }} {{ skin }}" role="button" type="{{ include.type }}" data-text="{{ include.text }}" {{ analytics }}>
-    {{ include.text }}
+{% if ctaButton %}
+  <button class="cta {{ baseClass }} {{ skin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }}>
+    {{ ctaText }}
   </button>
 {% else %}
   <a class="cta {{ baseClass }} {{ skin }}"
     role="button"
-    href="{{ include.href }}"
-    data-text="{{ include.text }}"
+    href="{{ ctaHref }}"
+    data-text="{{ ctaText }}"
     {{ analytics }}
-    {% if include.target %}target="{{ include.target }}"{% endif %}
-    {% if include.alternativeHref %}data-alternative-href="{{ include.alternativeHref }}"{% endif %}
+    {% if ctaTarget %}target="{{ ctaTarget }}"{% endif %}
+    {% if ctaAlternativeHref %}data-alternative-href="{{ ctaAlternativeHref }}"{% endif %}
   >
-    {{ include.text }}
+    {{ ctaText }}
 
-    {% if include.link %}
+    {% if ctaLink %}
       {% include arrow.html %}
     {% endif %}
   </a>
