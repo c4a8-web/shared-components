@@ -1,6 +1,7 @@
 import { Liquid } from 'liquidjs';
 // to force hot reload on includes add them here
 import { AllIncludes } from './generatedIncludes';
+import { hrefTo } from './tools';
 
 export const createComponent = function async(include, component, expand) {
   const globals = {
@@ -38,3 +39,14 @@ export const createComponent = function async(include, component, expand) {
 
   return wrapper;
 };
+
+const getTitle = ({ page, title }) => {
+  const titleText = `${page ? 'Pages' : 'Components'}/${title}`;
+
+  return {
+    title: titleText,
+    ...(page && { parameters: { root: true } }),
+  };
+};
+
+export { hrefTo, getTitle };

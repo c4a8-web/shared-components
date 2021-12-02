@@ -38,6 +38,14 @@ export const parameters = {
 
 export const decorators = [
   (story, params) => {
+    const body = document.querySelector('body');
+
+    if (params.parameters?.root) {
+      body.setAttribute('style', 'padding: 0 !important; margin: 0 !important');
+    } else {
+      body.setAttribute('style', '');
+    }
+
     return story();
   },
 ];

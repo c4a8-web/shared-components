@@ -1,9 +1,12 @@
-import { createComponent } from '../../.storybook/templates';
-import { hrefTo } from '../../.storybook/tools';
+import { createComponent, hrefTo, getTitle } from '../../.storybook/templates';
 import { includesjoblisthtml as jobListTemplate } from '../../.storybook/generatedIncludes';
 
+const options = getTitle({
+  title: 'Job/List',
+});
+
 export default {
-  title: 'Components/Job/List',
+  ...options,
 };
 
 const Template = (args) => createComponent(args, jobListTemplate, 'headline');

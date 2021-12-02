@@ -1,8 +1,9 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, hrefTo, getTitle } from '../../.storybook/templates';
 import { includesjoblistdetailhtml as jobListDetailTemplate } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Job/Detail',
+  title: 'Jobs',
+  page: true,
 });
 
 export default {
@@ -16,8 +17,8 @@ const baseArgs = {
   title: '',
 };
 
-export const Detail = Template.bind({});
+export const Jobs = Template.bind({});
 
-Detail.args = {
+Jobs.args = {
   ...baseArgs,
 };

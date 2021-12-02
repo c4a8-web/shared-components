@@ -1,8 +1,12 @@
-import { createComponent } from '../../.storybook/templates';
+import { createComponent, getTitle } from '../../.storybook/templates';
 import { includesheadlinehtml as headlineTemplate } from '../../.storybook/generatedIncludes';
 
+const options = getTitle({
+  title: 'Headline',
+});
+
 export default {
-  title: 'Components/Headline',
+  ...options,
 };
 
 const Template = (args) => createComponent(args, headlineTemplate, 'headline');
