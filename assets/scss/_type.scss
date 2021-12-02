@@ -60,6 +60,8 @@ $font-style-map: (
     }
   }
 
+  // TODO Consider `@extend .h2-font-size, .bold` instead.
+
   .h2-font-size.bold,
   .h2-font-size {
     font-size: $h2-font-size-sm;

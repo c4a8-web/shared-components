@@ -36,6 +36,10 @@ class Templates {
         extname: 'html',
         globals,
       });
+
+      // add map of jekyll filter
+      this.engine.filters.impls.jsonify = this.engine.filters?.impls?.json;
+      console.log('Templates ~ loadTemplateEngine ~ this.engine', this.engine);
     }
   }
 

@@ -8,6 +8,8 @@ export const createComponent = function async(include, component, expand) {
     sharedComponents: true,
   };
 
+  // TODO maybe force the include method to render method to find parameters and pass them to the partials
+
   if (expand) {
     let newInclude = {};
     const filteredKeys = Object.keys(include).filter((key) => key.indexOf(expand) !== -1);
@@ -30,6 +32,9 @@ export const createComponent = function async(include, component, expand) {
     dynamicPartials: false,
     globals,
   });
+
+  // add map of jekyll filter
+  engine.filters.impls.jsonify = engine.filters?.impls?.json;
 
   const wrapper = document.createElement('div');
   const tpl = engine.parse(component);
