@@ -5,7 +5,7 @@
   data-id="{{ include.clientName }}"
   {% if include.jobId %}data-job-id="{{ include.jobId }}"{% endif %}
   {% if include.apiUrl %}data-api-url="{{ include.apiUrl }}"{% endif %}
-  {% if include.base %}data-base='{{ include.base | json }}'{% endif %}
+  {% if include.base %}data-base='{{ include.base | jsonify }}'{% endif %}
 >
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
