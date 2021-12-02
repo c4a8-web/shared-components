@@ -1,17 +1,35 @@
-const path = require("path");
-const glob = require("glob");
-const fs = require("fs");
+const path = require('path');
+const glob = require('glob');
+const fs = require('fs');
 
-const includesDir = "includes";
+const mockDir = 'mock';
+const mockPath = `./${mockDir}`;
+const includesDir = 'includes';
 const includesPath = `./${includesDir}`;
-const destinationDir = "./storybook-static/";
+const destinationDir = './storybook-static/';
 const destinationPath = `${destinationDir}${includesDir}/`;
-const extensionName = ".html";
+const destinationMockPath = `${destinationDir}${mockDir}/`;
+const extensionName = '.html';
 
 function createDir(dir) {
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir);
   }
+}
+
+function getAllMocks() {
+  glob(`${mockPath}/**/*.json`, function (err, files) {
+    if (err) throw err;
+
+    files.forEach((filePath) => {
+      let fileName = path.basename(filePath);
+
+      fs.copyFile(filePath, `${destinationMockPath}${fileName}`, (err) => {
+        if (err) throw err;
+        console.log(`${fileName} was copied to ${destinationMockPath}`);
+      });
+    });
+  });
 }
 
 function getAllIncludes() {
@@ -31,3 +49,5 @@ function getAllIncludes() {
 
 createDir(destinationPath);
 getAllIncludes();
+createDir(destinationMockPath);
+getAllMocks();

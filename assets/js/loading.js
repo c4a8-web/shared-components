@@ -15,6 +15,7 @@ class Loading {
 
     this.colors = ['--color-loading--1', '--color-loading--2', '--color-loading--3', '--color-loading--4'];
     this.currentColors = {};
+    this.maxRuns = 20;
 
     this.scaleMin = 4;
     this.scaleMax = 5;
@@ -25,15 +26,18 @@ class Loading {
     this.animationInterval = 800;
 
     this.intervals = [];
+    this.hasShapes = false;
 
     this.init();
   }
 
-  getRandomColor() {
+  getRandomColor(runs) {
     let randomColor = this.colors[Math.floor(Math.random() * this.colors.length)];
 
-    if (this.currentColors[randomColor]) {
-      randomColor = this.getRandomColor();
+    if (runs < this.maxRuns && this.currentColors[randomColor]) {
+      runs++;
+
+      randomColor = this.getRandomColor(runs);
     }
 
     return randomColor;
@@ -114,11 +118,15 @@ class Loading {
 
   init() {
     this.root.classList.add(this.loadingClass);
-
-    this.createShapes();
   }
 
   on() {
+    if (!this.hasShapes) {
+      this.hasShapes = true;
+
+      this.createShapes();
+    }
+
     this.root.classList.add(State.LOADING);
   }
 

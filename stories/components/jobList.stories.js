@@ -32,9 +32,28 @@ ListLimit.args = {
   sublineText: null,
 };
 
-export const FilteredList = Template.bind({});
+export const ListFilteredById = Template.bind({});
 
-FilteredList.args = {
+ListFilteredById.args = {
   ...baseArgs,
-  headlineText: 'TODO add filter by tag or team',
+  headlineText: 'Einzelne Stellenausschreibung mit Id',
+  jobId: 'fk034tm',
+};
+
+export const ListFilteredByTags = Template.bind({});
+
+ListFilteredByTags.args = {
+  ...baseArgs,
+  headlineText: 'Offene UX + Dev Stellen',
+  tags: 'dev,ux',
+  apiUrl: 'mock/jobList.json',
+};
+
+export const ListFilteredByTeam = Template.bind({});
+
+ListFilteredByTeam.args = {
+  ...baseArgs,
+  headlineText: 'Offene Stellen in Team 1',
+  team: 'team 1',
+  apiUrl: 'mock/jobList.json',
 };

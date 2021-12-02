@@ -1,9 +1,9 @@
 class RecruiterBox {
-  apiUrl = "https://jsapi.recruiterbox.com/v1/";
+  apiUrl = 'https://jsapi.recruiterbox.com/v1/';
   openingsUrl = `${this.apiUrl}openings`;
 
   types = {
-    OPENINGS: "openings",
+    OPENINGS: 'openings',
   };
 
   constructor(options) {
@@ -11,19 +11,23 @@ class RecruiterBox {
   }
 
   getUrl(type, params) {
-    // TODO add params
+    const typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
+    const idParam = params ? `/${params}/` : '';
+    const urlParams = this.options.apiUrl ? '' : `${idParam}?client_name=${this.options?.client_name}`;
 
-    const typeUrl = this[`${type}Url`];
-
-    return `${typeUrl}?client_name=${this.options?.client_name}`;
+    return `${typeUrl}${urlParams}`;
   }
 
   getAll() {
     const url = this.getUrl(this.types.OPENINGS);
 
-    const promise = fetch(url);
+    return fetch(url);
+  }
 
-    return promise;
+  getOpening() {
+    const url = this.getUrl(this.types.OPENINGS, this.options?.jobId);
+
+    return fetch(url);
   }
 }
 
