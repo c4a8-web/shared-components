@@ -1,5 +1,13 @@
 <!-- Shared Job List Section -->
-<div class="job-list container" data-id="{{ include.clientName }}" data-max-items="{{ include.maxItems }}" data-detail-url="{{ include.detailUrl }}">
+<div class="job-list container"
+  data-id="{{ include.clientName }}"
+  data-max-items="{{ include.maxItems }}"
+  data-detail-url="{{ include.detailUrl }}"
+  {% if include.jobId %}data-job-id="{{ include.jobId }}"{% endif %}
+  {% if include.tags %}data-tags="{{ include.tags }}"{% endif %}
+  {% if include.team %}data-team="{{ include.team }}"{% endif %}
+  {% if include.apiUrl %}data-api-url="{{ include.apiUrl }}"{% endif %}
+>
   <div class="row">
     <div class="job-list__header col-lg-12">
       {%- capture headlineClasses -%}job-list__headline {{ include.headlineClasses }}{%- endcapture -%}
