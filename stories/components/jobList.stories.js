@@ -41,6 +41,7 @@ ListFilteredById.args = {
   ...baseArgs,
   headlineText: 'Einzelne Stellenausschreibung mit Id',
   jobId: 'fk034tm',
+  apiUrl: 'mock/job.json',
 };
 
 export const ListFilteredByTags = Template.bind({});

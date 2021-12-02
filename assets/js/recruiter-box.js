@@ -21,13 +21,23 @@ class RecruiterBox {
   getAll() {
     const url = this.getUrl(this.types.OPENINGS);
 
-    return fetch(url);
+    return this.fetch(url);
   }
 
   getOpening() {
     const url = this.getUrl(this.types.OPENINGS, this.options?.jobId);
 
-    return fetch(url);
+    return this.fetch(url);
+  }
+
+  fetch(url) {
+    return new Promise((resolve, reject) => {
+      if (this.options?.client_name) {
+        resolve(fetch(url));
+      } else {
+        reject('no client_name specified');
+      }
+    });
   }
 }
 

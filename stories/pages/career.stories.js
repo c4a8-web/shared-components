@@ -1,5 +1,6 @@
 import { createComponent, hrefTo, getTitle } from '../../.storybook/templates';
 import { includesjoblisthtml as jobListTemplate } from '../../.storybook/generatedIncludes';
+import { List } from '../components/jobList.stories';
 
 const options = getTitle({
   title: 'Career',
@@ -13,11 +14,7 @@ export default {
 const Template = (args) => createComponent(args, jobListTemplate, 'headline');
 
 const baseArgs = {
-  clientName: 'glueckkanja',
-  headlineText: 'Offene Stellen',
-  headlineLevel: 'h2',
-  sublineText:
-    'Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in',
+  ...List?.args,
   detailUrl: hrefTo('Pages/Jobs', ''),
 };
 

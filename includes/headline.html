@@ -1,4 +1,4 @@
-{%- if sharedComponents -%}
+{%- if sharedComponents and include.headline -%}
   {%- assign data = include.headline -%}
 {% else %}
   {%- assign data = include -%}

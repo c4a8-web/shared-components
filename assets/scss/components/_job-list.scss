@@ -106,12 +106,17 @@ $job-list-transition-time: 1.3s;
 
 .job-list__detail {
   min-height: 100vh;
+  position: relative;
 
   &.is-loading {
     @include media-breakpoint-up(lg) {
       &::before {
         width: 0;
       }
+
+      .cta,
+      .job-list__detail-description,
+      .job-list__detail-gender,
       .job-list__detail-headline {
         opacity: 0;
         transition: none;
@@ -139,11 +144,34 @@ $job-list-transition-time: 1.3s;
     color: var(--color-job-list-detail-copy);
 
     @include media-breakpoint-up(lg) {
-      transition: opacity 0.4s 0.5s $animation-transition;
+      transition: opacity 0.4s 0.9s $animation-transition;
+    }
+  }
+
+  .cta,
+  .job-list__detail-gender {
+    @include media-breakpoint-up(lg) {
+      transition: opacity 0.6s 1.3s $animation-transition;
+    }
+  }
+
+  .job-list__detail-description {
+    @include media-breakpoint-up(lg) {
+      transition: opacity 0.6s 1.8s $animation-transition;
     }
   }
 }
 
 .job-list__detail-start {
   padding-top: spacing(44);
+}
+
+.job-list__detail-gender {
+  @include font-style('font-size-4');
+
+  font-weight: bold;
+}
+
+.job-list__detail-share {
+  margin-bottom: spacing(10);
 }

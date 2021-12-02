@@ -13,7 +13,12 @@ const Template = (args) => createComponent(args, jobListDetailTemplate);
 
 const baseArgs = {
   clientName: 'glueckkanja',
-  title: '',
+  jobId: 'fk034tm',
+  apiUrl: 'mock/job.json',
+  base: {
+    ctaText: 'Jetzt bewerben',
+    ctaButton: true,
+  },
 };
 
 export const Detail = Template.bind({});
