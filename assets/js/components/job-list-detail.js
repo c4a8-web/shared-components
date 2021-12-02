@@ -1,7 +1,5 @@
 import BaseComponent from './base-component.js';
 import RecruiterBox from '../recruiter-box.js';
-import Loading from '../loading.js';
-import Tools from '../tools.js';
 import State from '../state.js';
 
 class JobListDetail extends BaseComponent {
@@ -26,7 +24,6 @@ class JobListDetail extends BaseComponent {
     });
 
     this.templates = window.Templates;
-    // this.loading = new Loading(this.root);
 
     this.init();
   }
@@ -93,22 +90,8 @@ class JobListDetail extends BaseComponent {
 
     this.templates?.load('job-list-detail', entryData).then((html) => {
       this.appendHtml(html);
-      // orderedList[i] = html;
-      // Tools.append(this.entries, list[i]);
-      // this.bindEntriesEvents();
       this.stopLoading();
     });
-
-    // Promise.all(promiseList).then(() => {
-    // if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
-    //   this.showExpandButton();
-    // }
-
-    // this.appendEntries(orderedList);
-    // this.bindEntriesEvents();
-
-    //   this.loading.off();
-    // });
   }
 
   appendHtml(html) {

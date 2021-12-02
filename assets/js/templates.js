@@ -39,7 +39,6 @@ class Templates {
 
       // add map of jekyll filter
       this.engine.filters.impls.jsonify = this.engine.filters?.impls?.json;
-      console.log('Templates ~ loadTemplateEngine ~ this.engine', this.engine);
     }
   }
 
@@ -81,7 +80,7 @@ class Templates {
 
   getHtml(component, data, template) {
     const promise = new Promise((resolve) => {
-      const tpl = this.engine.parse(component);
+      const tpl = this.engine.parse(this.fixComponent(component));
 
       if (StaticExpands[template]) {
         for (let i = 0; i < StaticExpands[template].length; i++) {
@@ -110,6 +109,10 @@ class Templates {
     });
 
     return promise;
+  }
+
+  fixComponent(html) {
+    return html.replace('<html><head></head><body>', '').replace('</body></html>', '');
   }
 }
 
