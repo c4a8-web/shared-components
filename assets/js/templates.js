@@ -18,6 +18,7 @@ const StaticExpands = {
 class Templates {
   constructor() {
     this.cache = {};
+    this.extensionName = 'liquid';
   }
 
   async loadTemplateEngine() {
@@ -33,7 +34,7 @@ class Templates {
       this.engine = new Liquid({
         partials: [this.partialsPath],
         dynamicPartials: false,
-        extname: 'html',
+        extname: this.extensionName,
         globals,
       });
 
@@ -50,7 +51,7 @@ class Templates {
         return this.getHtml(component, data);
       });
     } else {
-      const templateUrl = `${this.partialsPath}${template}.html`;
+      const templateUrl = `${this.partialsPath}${template}.${this.extensionName}`;
 
       this.cache[template] = this.createCache();
 
@@ -112,7 +113,7 @@ class Templates {
   }
 
   fixComponent(html) {
-    return html.replace('<html><head></head><body>', '').replace('</body></html>', '');
+    return html.replace(/\.html/g, `.${this.extensionName}`);
   }
 }
 

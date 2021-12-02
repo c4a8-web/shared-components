@@ -39,6 +39,8 @@ function getAllIncludes() {
     files.forEach((filePath) => {
       let fileName = path.basename(filePath);
 
+      // TODO fix this static build rewrite file extension and change .html to .liquid in static files
+
       fs.copyFile(filePath, `${destinationPath}${fileName}`, (err) => {
         if (err) throw err;
         console.log(`${fileName} was copied to ${destinationPath}`);

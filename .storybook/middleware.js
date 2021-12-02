@@ -21,11 +21,14 @@ module.exports = function expressMiddleware(app) {
         console.log('error', error);
         res.send(`error ${req.url} could not be loaded`);
       }
-    } else if (/\.html/.test(req.url) && /^\/includes\//.test(req.url)) {
+    } else if (
+      (/\.html/.test(req.url) && /^\/includes\//.test(req.url)) ||
+      (/\.liquid/.test(req.url) && /^\/includes\//.test(req.url))
+    ) {
       res.setHeader('Content-Type', 'text/plain');
 
       try {
-        const result = fs.readFileSync(`${includesPath}${req.url}`, 'utf8');
+        const result = fs.readFileSync(`${includesPath}${req.url.replace('.liquid', '.html')}`, 'utf8');
 
         res.send(result);
       } catch (error) {
