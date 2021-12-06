@@ -3,29 +3,55 @@ import { Liquid } from 'liquidjs';
 import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
 
+const fixComponent = function (text) {
+  let fixedText = text;
+
+  const includesRegex = new RegExp(/{%(\s)*include([\S\s]*?)%}/, 'g');
+  const matchAllIncludes = fixedText.match(includesRegex);
+
+  if (matchAllIncludes) {
+    for (let i = 0; i < matchAllIncludes.length; i++) {
+      const includeText = matchAllIncludes[i];
+
+      fixedText = fixedText.replace(includeText, fixInclude(includeText));
+    }
+  }
+
+  return fixedText;
+};
+
+const fixInclude = function (includeText) {
+  let include = includeText.replace(/\n/g, ',').replace(/=/g, ':');
+
+  const lastIndex = include.lastIndexOf(',');
+
+  include = include.substr(0, lastIndex) + include.substr(lastIndex + 1);
+  include = include.replace('{%,', '{%');
+
+  return include;
+};
+
 export const createComponent = function async(include, component, expand) {
-  const globals = {
-    sharedComponents: true,
-  };
+  const globals = {};
 
   // TODO maybe force the include method to render method to find parameters and pass them to the partials
 
-  if (expand) {
-    let newInclude = {};
-    const filteredKeys = Object.keys(include).filter((key) => key.indexOf(expand) !== -1);
+  // if (expand) {
+  //   let newInclude = {};
+  //   const filteredKeys = Object.keys(include).filter((key) => key.indexOf(expand) !== -1);
 
-    if (filteredKeys.length) {
-      filteredKeys.forEach((key) => {
-        const cleanedKey = key.replace(expand, '').toLocaleLowerCase();
+  //   if (filteredKeys.length) {
+  //     filteredKeys.forEach((key) => {
+  //       const cleanedKey = key.replace(expand, '').toLocaleLowerCase();
 
-        newInclude[cleanedKey] = include[key];
-      });
-    } else {
-      newInclude = include;
-    }
+  //       newInclude[cleanedKey] = include[key];
+  //     });
+  //   } else {
+  //     newInclude = include;
+  //   }
 
-    include[expand] = newInclude;
-  }
+  //   include[expand] = newInclude;
+  // }
 
   const engine = new Liquid({
     partials: ['includes'],
@@ -37,7 +63,7 @@ export const createComponent = function async(include, component, expand) {
   engine.filters.impls.jsonify = engine.filters?.impls?.json;
 
   const wrapper = document.createElement('div');
-  const tpl = engine.parse(component);
+  const tpl = engine.parse(fixComponent(component));
   const html = engine.renderSync(tpl, { include });
 
   wrapper.innerHTML = html;

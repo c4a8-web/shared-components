@@ -30,7 +30,7 @@ or the npm version of that if you are using npm.
 
 If you want to use the `shared-components` in your project you need to go through these Integration steps.
 
-## Git Submodule
+## Git
 
 You need to add this project as a git submodule to the project you want to use the `shared-components`. Add a .gitmodules File or add them via GUI.
 
@@ -54,6 +54,12 @@ git submodule update "_includes/shared-components"
 
 to update and checkout the submodule.
 
+You also need to update your .gitignore file with this part
+
+```
+_temp
+```
+
 ## Jekyll
 
 In your Jekyll configuration you need to add the path to the `shared-components` folder like this:
@@ -62,14 +68,20 @@ In your Jekyll configuration you need to add the path to the `shared-components`
 shared_components_path: _includes/shared-components
 ```
 
+And you need to add the \_temp/ folder to your exclude list
+
 You also need a Generator called `sharedcomponents.rb` in your \_plugins folder that looks like this:
 
 ```
+require 'fileutils'
+
 module SharedComponents
   class Generator < Jekyll::Generator
     def generate(site)
       asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map}'
-      partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
+      temp_path = "_temp/"
+      base_partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
+      partials_path = temp_path + site.config['shared_components_path'] + '/includes/**/*.{liquid}'
       puts "Generate Shared Components as Static Files in " + asset_path
 
       i=0
@@ -86,6 +98,23 @@ module SharedComponents
         end
       end
 
+      Dir.glob(base_partials_path, File::FNM_DOTMATCH) do |f|
+        file = File.stat(f)
+        next unless file.file?
+        curr_file = [f, file]
+        if curr_file != nil then
+          filePath = curr_file[0]
+          full_path = temp_path + File.dirname(filePath)
+          destination_path = full_path + "/" + File.basename(filePath).sub('.html', '.liquid')
+
+          unless File.directory?(full_path)
+            FileUtils.mkdir_p(full_path)
+          end
+
+          FileUtils.cp(filePath, destination_path)
+        end
+      end
+
       Dir.glob(partials_path, File::FNM_DOTMATCH) do |f|
         file = File.stat(f)
         next unless file.file?
@@ -93,7 +122,11 @@ module SharedComponents
         curr_file = [f, file]
         if curr_file != nil then
           filePath = curr_file[0]
-          site.static_files << Jekyll::StaticFile.new(site, site.source, File.dirname(filePath), File.basename(filePath))
+          source_path = site.source + '/' + temp_path
+          dirname = File.dirname(filePath).sub(temp_path, '')
+
+          staticFile = Jekyll::StaticFile.new(site, source_path, dirname, File.basename(filePath))
+          site.static_files << staticFile
         end
       end
 
@@ -101,7 +134,6 @@ module SharedComponents
     end
   end
 end
-
 
 ```
 
