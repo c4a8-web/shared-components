@@ -1,12 +1,6 @@
-{%- if sharedComponents and include.headline -%}
-  {%- assign data = include.headline -%}
-{% else %}
-  {%- assign data = include -%}
-{%- endif -%}
-
-{%- assign headlineClasses = headlineClasses | default: data.classes -%}
-{%- assign headlineLevel = headlineLevel | default: data.level | default: 'h2' -%}
-{%- assign headlineText = headlineText | default: data.text -%}
+{%- assign headlineClasses = classes | default: include.classes -%}
+{%- assign headlineLevel = level | default: include.level | default: 'h2' -%}
+{%- assign headlineText = text | default: include.text -%}
 
 {%- capture classList %}{{ headlineClasses }} {{ headlineLevel }}-font-size{% endcapture -%}
 
