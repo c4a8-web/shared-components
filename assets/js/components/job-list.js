@@ -69,8 +69,12 @@ class JobList extends BaseComponent {
     const current = e.currentTarget;
 
     if (current && this.detailUrl) {
+      const currentData = this.getData(current);
       // TODO load component in page and don't redirect
-      document.location.href = this.detailUrl;
+
+      const url = Tools.generateUrl(currentData?.title, this.detailUrl, currentData?.id);
+
+      document.location.href = url;
     }
   }
 
@@ -116,20 +120,36 @@ class JobList extends BaseComponent {
     return result;
   }
 
+  getData(element) {
+    let result = null;
+
+    if (element && element.dataset.id && this.data?.objects) {
+      result = this.data.objects[element.dataset.id];
+    }
+
+    return result;
+  }
+
   handleJobs(data) {
+    let localData = data;
+
     const gender = window.i18n?.translate('gender');
     const promiseList = [];
     const orderedList = [];
 
-    if (typeof data.objects !== 'object') {
-      const dereferencedData = { ...data };
+    if (typeof localData.objects !== 'object') {
+      const newObject = {
+        objects: [localData],
+      };
 
-      data.objects = [dereferencedData];
+      localData = newObject;
     }
 
-    for (let i = 0; i < data.objects?.length; i++) {
-      const entry = data.objects[i];
-      const { city } = entry?.location;
+    this.data = localData;
+
+    for (let i = 0; i < localData.objects?.length; i++) {
+      const entry = localData.objects[i];
+      const { city } = entry?.location || {};
       const { title, position_type, team } = entry;
 
       const entryData = {
@@ -139,6 +159,7 @@ class JobList extends BaseComponent {
         team,
         positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
         isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
+        id: i,
       };
 
       if (this.isAvailableEntry(entry)) {
@@ -199,11 +220,6 @@ class JobList extends BaseComponent {
   showExpandButton() {
     this.expandButton?.classList.remove(State.HIDDEN);
     this.expandButton?.classList.remove(State.INVISIBLE);
-  }
-
-  generateUrl() {
-    // TODO only letters and characters and no umlaute
-    // https://www.glueckkanja-gab.com/de/jobs/#lust-auf-modern-collaboration
   }
 }
 

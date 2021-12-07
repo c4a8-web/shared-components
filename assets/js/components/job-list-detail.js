@@ -10,11 +10,49 @@ class JobListDetail extends BaseComponent {
 
     this.containerSelector = '.job-list__detail-container';
     this.headlineSelector = '.job-list__detail-headline';
+    this.backSelector = '.job-list__detail-back';
+    this.hasBackClass = 'job-list__detail--has-back';
 
     this.loadingDelay = 300;
     this.base = this.root.dataset.base ? JSON.parse(this.root.dataset.base) : undefined;
-    this.jobId = this.root.dataset.jobId;
     this.apiUrl = this.root.dataset.apiUrl;
+
+    this.templates = window.Templates;
+
+    this.preInit();
+    this.init();
+  }
+
+  preInit() {
+    this.root.dataset.jobId = this.getJobId();
+  }
+
+  showBackButton() {
+    if (document.referrer.indexOf(document.location.host) !== -1) {
+      this.root.classList.add(this.hasBackClass);
+    }
+  }
+
+  getJobId() {
+    let jobId = '';
+
+    const hash = window.location.hash;
+
+    if (hash) {
+      if (hash.indexOf('-') !== -1) {
+        const splitHash = hash.split('-');
+
+        jobId = splitHash[splitHash.length - 1];
+      } else {
+        jobId = hash;
+      }
+    }
+
+    return jobId;
+  }
+
+  init() {
+    this.jobId = this.root.dataset.jobId;
 
     this.api = new RecruiterBox({
       ...this.options,
@@ -23,12 +61,8 @@ class JobListDetail extends BaseComponent {
       client_name: this.root.dataset.id,
     });
 
-    this.templates = window.Templates;
+    this.showBackButton();
 
-    this.init();
-  }
-
-  init() {
     const hasLanguageLoader = window.i18n?.loader;
 
     if (hasLanguageLoader) {
@@ -38,8 +72,6 @@ class JobListDetail extends BaseComponent {
     } else {
       this.loadJob();
     }
-
-    this.bindEvents();
   }
 
   stopLoading() {
@@ -49,7 +81,15 @@ class JobListDetail extends BaseComponent {
   }
 
   bindEvents() {
-    // this.expandButton?.addEventListener('click', this.handleExpand.bind(this));
+    this.back = this.root.querySelector(this.backSelector);
+
+    this.back?.addEventListener('click', this.handleBack.bind(this));
+  }
+
+  handleBack() {
+    console.log('back');
+
+    window.history.back();
   }
 
   loadJob() {
@@ -71,27 +111,34 @@ class JobListDetail extends BaseComponent {
   }
 
   handleJob(entry) {
-    const gender = window.i18n?.translate('gender');
+    const localEntry = entry.objects ? entry.objects[0] : entry;
 
-    const { city } = entry?.location;
-    const { title, position_type, team, description } = entry;
+    if (localEntry && localEntry.location) {
+      const gender = window.i18n?.translate('gender');
 
-    const entryData = {
-      city,
-      description: this.filterDescription(description),
-      title,
-      gender,
-      team,
-      positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
-      isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
-      ...(this.base && { ...this.base }),
-      expand: ['cta'],
-    };
+      const { city } = localEntry?.location || {};
+      const { title, position_type, team, description } = localEntry;
 
-    this.templates?.load('job-list-detail', entryData).then((html) => {
-      this.appendHtml(html);
-      this.stopLoading();
-    });
+      const entryData = {
+        city,
+        description: this.filterDescription(description),
+        title,
+        gender,
+        team,
+        positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
+        isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
+        ...(this.base && { ...this.base }),
+        expand: ['cta'],
+      };
+
+      this.templates?.load('job-list-detail', entryData).then((html) => {
+        this.appendHtml(html);
+        this.bindEvents();
+        this.stopLoading();
+      });
+    } else {
+      console.error('handleJob has no entry');
+    }
   }
 
   appendHtml(html) {

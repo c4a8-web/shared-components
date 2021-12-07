@@ -108,12 +108,25 @@ $job-list-transition-time: 1.3s;
   min-height: 100vh;
   position: relative;
 
+  &.job-list__detail--has-back {
+    .job-list__detail-start {
+      padding-top: spacing(44);
+    }
+
+    .job-list__detail-back {
+      display: inline-flex;
+    }
+  }
+
   &.is-loading {
     @include media-breakpoint-up(lg) {
       &::before {
         width: 0;
       }
 
+      .job-list__detail-animation-1,
+      .job-list__detail-animation-2,
+      .job-list__detail-animation-3,
       .cta,
       .job-list__detail-description,
       .job-list__detail-gender,
@@ -138,6 +151,7 @@ $job-list-transition-time: 1.3s;
     }
   }
 
+  .job-list__detail-animation-1,
   .job-list__detail-headline {
     @include font-style('h2-font-size-bold');
 
@@ -148,6 +162,7 @@ $job-list-transition-time: 1.3s;
     }
   }
 
+  .job-list__detail-animation-2,
   .cta,
   .job-list__detail-gender {
     @include media-breakpoint-up(lg) {
@@ -155,6 +170,7 @@ $job-list-transition-time: 1.3s;
     }
   }
 
+  .job-list__detail-animation-3,
   .job-list__detail-description {
     @include media-breakpoint-up(lg) {
       transition: opacity 0.6s 1.8s $animation-transition;
@@ -163,7 +179,7 @@ $job-list-transition-time: 1.3s;
 }
 
 .job-list__detail-start {
-  padding-top: spacing(44);
+  padding-top: spacing(28);
 }
 
 .job-list__detail-gender {
@@ -178,4 +194,30 @@ $job-list-transition-time: 1.3s;
 
 .job-list__detail-description {
   margin-bottom: spacing(10);
+}
+
+.job-list__detail-back {
+  position: absolute;
+  cursor: pointer;
+  border-radius: 100%;
+  border: 1px solid currentColor;
+  display: none;
+  width: spacing(9);
+  height: spacing(9);
+  justify-content: center;
+  align-items: center;
+  margin-bottom: spacing(14);
+  top: spacing($size: 24, $negative: true);
+
+  &:hover {
+    background-color: currentColor;
+
+    .arrow {
+      color: var(--color-job-list-detail);
+    }
+  }
+
+  .arrow {
+    width: 60%;
+  }
 }
