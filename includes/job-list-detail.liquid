@@ -1,0 +1,42 @@
+{%- assign jobListDetailColor = include.detailColor | default: '--color-job-list-detail' -%}
+
+<!-- Shared Job List Detail Section -->
+<div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }})"
+  data-id="{{ include.clientName }}"
+  {% if include.jobId %}data-job-id="{{ include.jobId }}"{% endif %}
+  {% if include.apiUrl %}data-api-url="{{ include.apiUrl }}"{% endif %}
+  {% if include.base %}data-base='{{ include.base | jsonify }}'{% endif %}
+>
+  <div class="job-list__detail-container container">
+    <div class="job-list__detail-start row">
+      <div class="col-lg-5">
+        {% comment %}TODO conditional back button that is relative and not absolute{% endcomment %}
+
+        {%- assign headlineText = include.title -%}
+        {%- assign headlineLevel = include.headlineLevel | default: 'h1' -%}
+        {%- capture headlineClasses -%}job-list__detail-headline {{ include.headlineClasses }}{%- endcapture -%}
+        {%
+          include headline.html
+          text=headlineText
+          level=headlineLevel
+          classes=headlineClasses
+        %}
+        <span class="job-list__detail-gender">{{ include.gender }}</span>
+        <div class="job-list__detail-share">
+          {% comment %}TODO share bar{% endcomment %}
+        </div>
+        {%
+          include cta.html
+          text=include.ctaText
+          button=include.ctaButton
+        %}
+      </div>
+      <div class="job-list__detail-description offset-lg-1 col-lg-6">
+        {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
+        {{ include.description }}
+
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Job List Detail Section -->

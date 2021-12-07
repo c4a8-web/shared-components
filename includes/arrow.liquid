@@ -1,0 +1,27 @@
+{%- if sharedComponents -%}
+  {%- assign data = include.arrow -%}
+{% else %}
+  {%- assign data = include -%}
+{%- endif -%}
+
+<!-- Shared Arrow Section -->
+{% assign color = data.color | default: 'currentColor' %}
+{% assign direction = data.direction | default: 'right' %}
+
+{% capture rotation %}
+  {% if direction == 'left' %}180deg{% else %}0deg{% endif %}
+{% endcapture %}
+
+{% capture size %}
+  {% if data.size == 'small' %}18px{% elsif data.size == 'large' %}48px{% else %}28px{% endif %}
+{% endcapture %}
+
+<span class="arrow arrow--{{ direction }}">
+  <svg style="stroke: {{ color }}; transform: rotate({{ rotation }});" width="{{ size }}" height="{{ size }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(0.75 0.75)">
+      <path d="M0.5 0.5L26 0.5" transform="translate(0 7)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    </g>
+  </svg>
+</span>
+<!-- End Shared Arrow Section -->

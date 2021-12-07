@@ -1,0 +1,34 @@
+<!-- Shared Job List Section -->
+<div class="job-list container"
+  data-id="{{ include.clientName }}"
+  data-max-items="{{ include.maxItems }}"
+  data-detail-url="{{ include.detailUrl }}"
+  {% if include.jobId %}data-job-id="{{ include.jobId }}"{% endif %}
+  {% if include.tags %}data-tags="{{ include.tags }}"{% endif %}
+  {% if include.team %}data-team="{{ include.team }}"{% endif %}
+  {% if include.apiUrl %}data-api-url="{{ include.apiUrl }}"{% endif %}
+>
+  <div class="row">
+    <div class="job-list__header col-lg-12">
+      {%- capture headlineClasses -%}job-list__headline {{ include.headlineClasses }}{%- endcapture -%}
+      {%- assign headlineLevel = include.headlineLevel | default: 'h2' -%}
+
+      {%
+        include headline.html
+        text=include.headlineText
+        level=headlineLevel
+        classes=headlineClasses
+      %}
+    </div>
+    {%- if include.sublineText -%}
+    <div class="job-list__meta col-lg-7">
+      <div class="job-list__subline">{{ include.sublineText }}</div>
+    </div>
+    {%- endif -%}
+    <div class="col-lg-12">
+      <div class="job-list__entries"></div>
+      <div class="job-list__expand-button is-invisible">{{ include.expandText }}</div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Job List Section -->
