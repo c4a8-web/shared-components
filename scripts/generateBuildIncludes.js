@@ -45,6 +45,13 @@ function getAllIncludes() {
         if (err) throw err;
         console.log(`${fileName} was copied to ${destinationPath}`);
       });
+
+      const liquidFileName = fileName.replace(extensionName, '.liquid');
+
+      fs.copyFile(filePath, `${destinationPath}${liquidFileName}`, (err) => {
+        if (err) throw err;
+        console.log(`${liquidFileName} was copied to ${destinationPath}`);
+      });
     });
   });
 }
