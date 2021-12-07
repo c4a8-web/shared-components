@@ -1,33 +1,46 @@
+{% assign jobListClientName = clientName | default: include.clientName %}
+{% assign jobListMaxItems = maxItems | default: include.maxItems %}
+{% assign jobListDetailUrl = detailUrl | default: include.detailUrl %}
+{% assign jobListJobId = jobId | default: include.jobId %}
+{% assign jobListTags = tags | default: include.tags %}
+{% assign jobListTeam = team | default: include.team %}
+{% assign jobListApiUrl = apiUrl | default: include.apiUrl %}
+{% assign jobListHeadlineClasses = headlineClasses | default: include.headlineClasses %}
+{% assign jobListHeadlineLevel = headlineLevel | default: include.headlineLevel %}
+{% assign jobListHeadlineText = headlineText | default: include.headlineText %}
+{% assign jobListSublineText = sublineText | default: include.sublineText %}
+{% assign jobListExpandText = expandText | default: include.expandText %}
+
 <!-- Shared Job List Section -->
 <div class="job-list container"
-  data-id="{{ include.clientName }}"
-  data-max-items="{{ include.maxItems }}"
-  data-detail-url="{{ include.detailUrl }}"
-  {% if include.jobId %}data-job-id="{{ include.jobId }}"{% endif %}
-  {% if include.tags %}data-tags="{{ include.tags }}"{% endif %}
-  {% if include.team %}data-team="{{ include.team }}"{% endif %}
-  {% if include.apiUrl %}data-api-url="{{ include.apiUrl }}"{% endif %}
+  data-id="{{ jobListClientName }}"
+  data-max-items="{{ jobListMaxItems }}"
+  data-detail-url="{{ jobListDetailUrl }}"
+  {% if jobListJobId %}data-job-id="{{ jobListJobId }}"{% endif %}
+  {% if jobListTags %}data-tags="{{ jobListTags }}"{% endif %}
+  {% if jobListTeam %}data-team="{{ jobListTeam }}"{% endif %}
+  {% if jobListApiUrl %}data-api-url="{{ jobListApiUrl }}"{% endif %}
 >
   <div class="row">
     <div class="job-list__header col-lg-12">
-      {%- capture headlineClasses -%}job-list__headline {{ include.headlineClasses }}{%- endcapture -%}
-      {%- assign headlineLevel = include.headlineLevel | default: 'h2' -%}
+      {%- capture headlineClasses -%}job-list__headline {{ jobListHeadlineClasses }}{%- endcapture -%}
+      {%- assign headlineLevel = jobListHeadlineLevel | default: 'h2' -%}
 
       {%
         include headline.html
-        text=include.headlineText
+        text=jobListHeadlineText
         level=headlineLevel
         classes=headlineClasses
       %}
     </div>
-    {%- if include.sublineText -%}
+    {%- if jobListSublineText -%}
     <div class="job-list__meta col-lg-7">
-      <div class="job-list__subline">{{ include.sublineText }}</div>
+      <div class="job-list__subline">{{ jobListSublineText }}</div>
     </div>
     {%- endif -%}
     <div class="col-lg-12">
       <div class="job-list__entries"></div>
-      <div class="job-list__expand-button is-invisible">{{ include.expandText }}</div>
+      <div class="job-list__expand-button is-invisible">{{ jobListExpandText }}</div>
     </div>
   </div>
 </div>

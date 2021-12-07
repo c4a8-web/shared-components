@@ -1,39 +1,49 @@
-{%- assign jobListDetailColor = include.detailColor | default: '--color-job-list-detail' -%}
+{%- assign jobListDetailColor = detailColor | default: include.detailColor | default: '--color-job-list-detail' -%}
+{%- assign jobListDetailClientName = clientName | default: include.clientName -%}
+{%- assign jobListDetailJobId = jobId | default: include.jobId -%}
+{%- assign jobListDetailApiUrl = apiUrl | default: include.apiUrl -%}
+{%- assign jobListDetailBase = base | default: include.base -%}
+{%- assign jobListDetailTitle = title | default: include.title -%}
+{%- assign jobListDetailHeadlineLevel = headlineLevel | default: include.headlineLevel -%}
+{%- assign jobListDetailHeadlineClasses = headlineClasses | default: include.headlineClasses -%}
+{%- assign jobListDetailGender = gender | default: include.gender -%}
+{%- assign jobListDetailCtaText = ctaText | default: include.ctaText -%}
+{%- assign jobListDetailCtaButton = ctaButton | default: include.ctaButton -%}
+{%- assign jobListDetailDescription = description | default: include.description -%}
 
 <!-- Shared Job List Detail Section -->
 <div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }})"
-  data-id="{{ include.clientName }}"
-  {% if include.jobId %}data-job-id="{{ include.jobId }}"{% endif %}
-  {% if include.apiUrl %}data-api-url="{{ include.apiUrl }}"{% endif %}
-  {% if include.base %}data-base='{{ include.base | jsonify }}'{% endif %}
+  data-id="{{ jobListDetailClientName }}"
+  {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}"{% endif %}
+  {% if jobListDetailApiUrl %}data-api-url="{{ jobListDetailApiUrl }}"{% endif %}
+  {% if jobListDetailBase %}data-base='{{ jobListDetailBase | jsonify }}'{% endif %}
 >
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
       <div class="col-lg-5">
         {% comment %}TODO conditional back button that is relative and not absolute{% endcomment %}
 
-        {%- assign headlineText = include.title -%}
-        {%- assign headlineLevel = include.headlineLevel | default: 'h1' -%}
-        {%- capture headlineClasses -%}job-list__detail-headline {{ include.headlineClasses }}{%- endcapture -%}
+        {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
+        {%- capture headlineClasses -%}job-list__detail-headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
         {%
           include headline.html
-          text=headlineText
+          text=jobListDetailTitle
           level=headlineLevel
           classes=headlineClasses
         %}
-        <span class="job-list__detail-gender">{{ include.gender }}</span>
+        <span class="job-list__detail-gender">{{ jobListDetailGender }}</span>
         <div class="job-list__detail-share">
           {% comment %}TODO share bar{% endcomment %}
         </div>
         {%
           include cta.html
-          text=include.ctaText
-          button=include.ctaButton
+          text=jobListDetailCtaText
+          button=jobListDetailCtaButton
         %}
       </div>
       <div class="job-list__detail-description offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
-        {{ include.description }}
+        {{ jobListDetailDescription }}
 
       </div>
     </div>

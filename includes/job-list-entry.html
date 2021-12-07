@@ -1,13 +1,20 @@
+{% assign jobListEntryIsInvisible = isInvisible | default: include.isInvisible %}
+{% assign jobListEntryTeam = team | default: include.team %}
+{% assign jobListEntryCity = city | default: include.city %}
+{% assign jobListEntryPositionType = positionType | default: include.positionType %}
+{% assign jobListEntryTitle = title | default: include.title %}
+{% assign jobListEntryGender = gender | default: include.gender %}
+
 <!-- Shared Job List Entry Section -->
-<div class="job-list__entry {% if include.isInvisible %}d-none{% endif %}">
+<div class="job-list__entry {% if jobListEntryIsInvisible %}d-none{% endif %}">
   <div class="job-list__entry-header">
-    {% if include.team %} {{ include.team }} / {% endif %} {% if include.positionType %} {{ include.positionType }} / {%
-    endif %} {{ include.city }}
+    {% if jobListEntryTeam %} {{ jobListEntryTeam }} / {% endif %} {% if jobListEntryPositionType %} {{ jobListEntryPositionType }} / {%
+    endif %} {{ jobListEntryCity }}
   </div>
   <div class="job-list__entry-content">
     <div class="job-list__entry-title">
-      {{ include.title }}
-      <span class="job-list__entry-gender">{{ include.gender }}</span>
+      {{ jobListEntryTitle }}
+      <span class="job-list__entry-gender">{{ jobListEntryGender }}</span>
     </div>
   </div>
 </div>
