@@ -10,11 +10,6 @@ const LoadLiquid = import('./lib/liquid.browser.min.js').then((module) => {
   }
 });
 
-// TODO generate this one
-const StaticExpands = {
-  'job-list-detail': ['cta'],
-};
-
 class Templates {
   constructor() {
     this.cache = {};
@@ -36,59 +31,10 @@ class Templates {
         globals,
       };
 
-      /*
-      const oldRenderSync = Liquid.prototype.renderSync;
-
-      Liquid.prototype.renderSync = function (tpl, scope) {
-        console.log('Templates ~ loadTemplateEngine ~ tpl', tpl);
-        console.log(this);
-
-        const fn = this;
-
-        console.log('before rendersync');
-        // oldRenderSync(tpl, scope).bind(this.prototype);
-
-        return function (tpl, scope) {
-          try {
-            return fn.apply(this, arguments);
-          } catch (ex) {
-            ErrorHandler.Exception(ex);
-          }
-        };
-      };
-
-      */
-
       this.engine = new Liquid(liquidOptions);
 
       // add map of jekyll filter
       this.engine.filters.impls.jsonify = this.engine.filters?.impls?.json;
-
-      /*
-
-      const newEngine = new Liquid(liquidOptions);
-      const newParse = newEngine.tags.impls.include.parse.bind(this.engine.tags.impls.include);
-
-      const newParseFunction = function (token) {
-        this.liquid = newEngine;
-        console.log('Templates ~ newParseFunction ~ newEngine', newEngine);
-        console.log('over');
-
-        const fixedToken = token;
-
-        // fixedToken.content = `include 'cta.liquid', nocheinneuer='ABC', text=include.ctaText, mirnichtegal='ABC'`;
-
-        newParse(fixedToken);
-
-        // fix hash
-
-        // this.hash.hash = { nocheinneuer: 'moep', text: 'HAHAHA' };
-
-        console.log('AFTER', this.hash);
-      };
-      */
-
-      // this.engine.tags.impls.include.parse = newParseFunction.bind(this.engine.tags.impls.include);
     }
   }
 
@@ -131,25 +77,6 @@ class Templates {
   getHtml(component, data, template) {
     const promise = new Promise((resolve) => {
       const tpl = this.engine.parse(this.fixComponent(component));
-
-      // if (StaticExpands[template]) {
-      //   for (let i = 0; i < StaticExpands[template].length; i++) {
-      //     const expand = StaticExpands[template][i];
-
-      //     let newInclude = {};
-      //     const filteredKeys = Object.keys(data).filter((key) => key.indexOf(expand) !== -1);
-
-      //     if (filteredKeys.length) {
-      //       filteredKeys.forEach((key) => {
-      //         const cleanedKey = key.replace(expand, '').toLocaleLowerCase();
-
-      //         newInclude[cleanedKey] = data[key];
-      //       });
-
-      //       data[expand] = newInclude;
-      //     }
-      //   }
-      // }
 
       const html = this.engine.renderSync(tpl, {
         include: data,

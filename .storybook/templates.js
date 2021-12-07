@@ -34,25 +34,6 @@ const fixInclude = function (includeText) {
 export const createComponent = function async(include, component, expand) {
   const globals = {};
 
-  // TODO maybe force the include method to render method to find parameters and pass them to the partials
-
-  // if (expand) {
-  //   let newInclude = {};
-  //   const filteredKeys = Object.keys(include).filter((key) => key.indexOf(expand) !== -1);
-
-  //   if (filteredKeys.length) {
-  //     filteredKeys.forEach((key) => {
-  //       const cleanedKey = key.replace(expand, '').toLocaleLowerCase();
-
-  //       newInclude[cleanedKey] = include[key];
-  //     });
-  //   } else {
-  //     newInclude = include;
-  //   }
-
-  //   include[expand] = newInclude;
-  // }
-
   const engine = new Liquid({
     partials: ['includes'],
     dynamicPartials: false,
