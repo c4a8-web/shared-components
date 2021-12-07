@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, headlineTemplate, 'headline');
+const Template = (args) => createComponent(args, headlineTemplate);
 
 export const h1 = Template.bind({});
 

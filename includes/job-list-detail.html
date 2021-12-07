@@ -1,3 +1,4 @@
+<!-- Shared Job List Detail Section -->
 {%- assign jobListDetailColor = detailColor | default: include.detailColor | default: '--color-job-list-detail' -%}
 {%- assign jobListDetailClientName = clientName | default: include.clientName -%}
 {%- assign jobListDetailJobId = jobId | default: include.jobId -%}
@@ -11,7 +12,6 @@
 {%- assign jobListDetailCtaButton = ctaButton | default: include.ctaButton -%}
 {%- assign jobListDetailDescription = description | default: include.description -%}
 
-<!-- Shared Job List Detail Section -->
 <div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }})"
   data-id="{{ jobListDetailClientName }}"
   {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}"{% endif %}
@@ -21,6 +21,7 @@
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
       <div class="col-lg-5">
+        {% comment %}TODO make the left side sticky on desktop{% endcomment %}
         <div class="job-list__detail-back job-list__detail-animation-3">
           {%
             include arrow.html
@@ -49,7 +50,6 @@
       <div class="job-list__detail-description offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
         {{ jobListDetailDescription }}
-
       </div>
     </div>
   </div>

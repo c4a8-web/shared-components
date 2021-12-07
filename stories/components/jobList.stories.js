@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, jobListTemplate, 'headline');
+const Template = (args) => createComponent(args, jobListTemplate);
 
 const baseArgs = {
   clientName: 'glueckkanja',

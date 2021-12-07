@@ -2,16 +2,30 @@ $font-style-map: (
   'font-size-1': '.font-size-1',
   'font-size-2': '.font-size-2',
   'font-size-3': '.font-size-3',
+  'font-size-3-light': '.font-size-3, .light',
   'font-size-4': '.font-size-4',
   'h2-font-size': '.h2-font-size',
-  'h2-font-size-bold': '.h2-font-size.bold',
+  'h2-font-size-bold': '.h2-font-size, .bold',
+  'h3-font-size': '.h3-font-size',
 );
 
-@mixin font-style($modifier) {
+@mixin font-style($style, $weight: null, $line: null) {
   $map: $font-style-map;
-  $selector: map-get($map, $modifier);
+  $selector: map-get($map, $style);
 
-  @extend #{$selector};
+  $selector-list: #{$selector};
+
+  @if $weight {
+    $selector-list: $selector-list + ', .' + $weight;
+  }
+
+  @if $line {
+    $selector-list: $selector-list + ', .' + $line;
+  }
+
+  // TODO find a better way of extending without the use of @extend
+
+  @extend #{$selector-list} !optional;
 }
 
 .shared-components {
@@ -47,6 +61,33 @@ $font-style-map: (
     line-height: 1.4em;
   }
 
+  .font-size-1,
+  .font-size-2,
+  .font-size-3,
+  .font-size-4,
+  .h1-font-size,
+  .h2-font-size,
+  .h3-font-size,
+  .h4-font-size,
+  .h5-font-size,
+  .h6-font-size {
+    &.bold {
+      font-weight: bold !important;
+    }
+
+    &.light {
+      font-weight: 100 !important;
+
+      strong {
+        font-weight: inherit;
+      }
+    }
+
+    &.wide {
+      line-height: 1.7em;
+    }
+  }
+
   .h1-font-size {
     font-size: $h1-font-size-sm;
     line-height: 1.1em;
@@ -60,17 +101,10 @@ $font-style-map: (
     }
   }
 
-  // TODO Consider `@extend .h2-font-size, .bold` instead.
-
-  .h2-font-size.bold,
   .h2-font-size {
     font-size: $h2-font-size-sm;
     font-weight: lighter;
     line-height: 1.2em;
-
-    &.bold {
-      font-weight: bold;
-    }
 
     @include media-breakpoint-up(lg) {
       font-size: $h2-font-size-lg;
@@ -175,7 +209,7 @@ $font-style-map: (
 
   .font-size-3 {
     font-size: $font-size-2;
-    line-height: 2rem;
+    line-height: 2.5rem;
 
     @include media-breakpoint-up(lg) {
       font-size: $font-size-2;

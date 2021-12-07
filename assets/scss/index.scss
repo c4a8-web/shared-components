@@ -12,9 +12,12 @@
 @import 'helper';
 @import 'loading';
 
+@import 'components/application-form';
 @import 'components/arrow';
 @import 'components/cta';
+@import 'components/form';
 @import 'components/job-list';
+@import 'components/link';
 
 body {
   font-family: var(--font-family);

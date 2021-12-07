@@ -110,7 +110,7 @@ $job-list-transition-time: 1.3s;
 
   &.job-list__detail--has-back {
     .job-list__detail-start {
-      padding-top: spacing(44);
+      padding-top: spacing(50);
     }
 
     .job-list__detail-back {
@@ -133,6 +133,7 @@ $job-list-transition-time: 1.3s;
       .job-list__detail-headline {
         opacity: 0;
         transition: none;
+        pointer-events: none;
       }
     }
   }
@@ -153,7 +154,7 @@ $job-list-transition-time: 1.3s;
 
   .job-list__detail-animation-1,
   .job-list__detail-headline {
-    @include font-style('h2-font-size-bold');
+    @include font-style($style: 'h2-font-size', $weight: 'bold');
 
     color: var(--color-job-list-detail-copy);
 
@@ -179,13 +180,11 @@ $job-list-transition-time: 1.3s;
 }
 
 .job-list__detail-start {
-  padding-top: spacing(28);
+  padding-top: spacing(36);
 }
 
 .job-list__detail-gender {
-  @include font-style('font-size-4');
-
-  font-weight: bold;
+  @include font-style($style: 'font-size-4', $weight: bold);
 }
 
 .job-list__detail-share {
@@ -193,7 +192,52 @@ $job-list-transition-time: 1.3s;
 }
 
 .job-list__detail-description {
+  @include font-style($style: 'font-size-2', $line: 'wide');
+
   margin-bottom: spacing(10);
+
+  > p:first-of-type {
+    @include font-style($style: 'font-size-3', $weight: 'light');
+  }
+
+  > h1:first-child,
+  > h2:first-child,
+  > h1:first-child + h2 {
+    display: none;
+  }
+
+  p {
+    margin-bottom: spacing(12);
+  }
+
+  ul {
+    margin-bottom: spacing(12);
+    list-style: none;
+
+    li {
+      position: relative;
+      margin-bottom: spacing(4);
+
+      &::before {
+        content: '';
+        position: absolute;
+        display: inline-flex;
+        height: 2px;
+        width: 20px;
+        top: 16px;
+        left: -20px;
+        background-color: var(--color-primary);
+        padding-right: 20px;
+        transform: translateX(-100%);
+      }
+    }
+  }
+
+  h2 {
+    @include font-style($style: 'h3-font-size', $weight: 'light');
+
+    margin-bottom: spacing(4);
+  }
 }
 
 .job-list__detail-back {

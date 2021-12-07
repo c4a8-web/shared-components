@@ -1,10 +1,10 @@
+<!-- Shared Headline Section -->
 {%- assign headlineClasses = classes | default: include.classes -%}
 {%- assign headlineLevel = level | default: include.level | default: 'h2' -%}
 {%- assign headlineText = text | default: include.text -%}
 
 {%- capture classList %}{{ headlineClasses }} {{ headlineLevel }}-font-size{% endcapture -%}
 
-<!-- Shared Headline Section -->
 <{{ headlineLevel }} {% if classList %}class="{{ classList }}"{% endif %}>
   {{ headlineText }}
 </{{ headlineLevel }}>

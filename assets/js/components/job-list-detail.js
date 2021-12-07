@@ -44,7 +44,7 @@ class JobListDetail extends BaseComponent {
 
         jobId = splitHash[splitHash.length - 1];
       } else {
-        jobId = hash;
+        jobId = hash.substr(1);
       }
     }
 
@@ -87,8 +87,6 @@ class JobListDetail extends BaseComponent {
   }
 
   handleBack() {
-    console.log('back');
-
     window.history.back();
   }
 
@@ -106,10 +104,6 @@ class JobListDetail extends BaseComponent {
     }, this.loadingDelay);
   }
 
-  filterDescription(description) {
-    return description.replace(/<h1>[\s\S]*?<\/h1>/, '');
-  }
-
   handleJob(entry) {
     const localEntry = entry.objects ? entry.objects[0] : entry;
 
@@ -121,7 +115,7 @@ class JobListDetail extends BaseComponent {
 
       const entryData = {
         city,
-        description: this.filterDescription(description),
+        description,
         title,
         gender,
         team,

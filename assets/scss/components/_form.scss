@@ -1,0 +1,175 @@
+$form-background-color: var(--color-porcelain);
+$form-background-color-light: var(--color-white);
+$form-error-color: var(--color-red);
+$form-success-color: var(--color-deep-sea);
+$form-border-hover-color: var(--color-black-30);
+$form-checkbox-size: 2em;
+$form-checkbox-spacing: 1em;
+$form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
+
+.shared-components {
+  .custom-control-input,
+  .form-control {
+    border-radius: 0;
+  }
+
+  form {
+    &.is-light {
+      textarea.form-textarea,
+      input[type=''].form-control,
+      input[type='text'].form-control,
+      .form__input {
+        background-color: $form-background-color-light;
+        border-color: $form-background-color-light;
+
+        &:hover {
+          border-color: $form-border-hover-color;
+        }
+      }
+
+      .custom-checkbox label.custom-control-label,
+      .form__checkbox-label {
+        &::before {
+          background-color: $form-background-color-light;
+        }
+      }
+
+      .form__checkbox:checked ~ .form__checkbox-label::before {
+        background-color: var(--color-bg-checkbox);
+      }
+    }
+
+    .invalid-feedback {
+      color: $form-error-color;
+    }
+
+    .form__checkbox:checked ~ .form__checkbox-label::before {
+      background-color: var(--color-bg-checkbox);
+    }
+
+    .was-validated .form-control:invalid,
+    .form-control.is-invalid {
+      border-color: $form-error-color;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='none' stroke='%23e44418' viewBox='0 0 12 12'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ed4c78' stroke='none'/%3e%3c/svg%3e");
+    }
+
+    .was-validated .form-control:valid,
+    .form-control.is-valid,
+    .was-validated .form-control:valid:focus,
+    .form-control.is-valid:focus {
+      border-color: $form-success-color;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23008774' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+    }
+  }
+}
+
+.form__row {
+  @include media-breakpoint-up(md) {
+    justify-content: center;
+  }
+}
+
+.form-textarea {
+  resize: none;
+}
+
+input {
+  &[readonly] {
+    pointer-events: none;
+  }
+}
+
+label.input-label,
+.form__label {
+  color: var(--color-midnight);
+  opacity: 0.7;
+
+  + .invalid-feedback {
+    margin-bottom: 0.5em;
+  }
+}
+
+textarea.form-textarea,
+input[type=''].form-control,
+input[type='text'].form-control,
+.form__input {
+  background-color: $form-background-color;
+  border-color: $form-background-color;
+
+  &:hover {
+    border-color: $form-border-hover-color;
+  }
+}
+
+input[type='checkbox'].custom-control-input,
+.form__checkbox {
+  position: absolute;
+  left: 0;
+  z-index: -1;
+  width: $form-checkbox-size;
+  height: $form-checkbox-size;
+
+  &:checked ~ {
+    .form__checkbox-label {
+      &::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26l2.974 2.99L8 2.193z'/%3e%3c/svg%3e");
+      }
+    }
+  }
+}
+
+.custom-checkbox label.custom-control-label,
+.form__checkbox-label {
+  position: relative;
+  padding-top: 3px;
+  margin-bottom: 0;
+  vertical-align: top;
+  cursor: pointer;
+
+  &::before {
+    background-color: $form-background-color;
+    border-radius: 0;
+    border-color: var(--color-bon-jour);
+    pointer-events: none;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    width: $form-checkbox-size;
+    height: $form-checkbox-size;
+    top: 0;
+    left: -#{$form-checkbox-offset};
+  }
+
+  + .form__input {
+    display: inline-block;
+    margin-left: -4px;
+    flex: 1;
+
+    @include media-breakpoint-up(lg) {
+      flex-basis: 50%;
+      flex-grow: 0;
+    }
+  }
+
+  &:hover {
+    &::before {
+      border-color: $form-border-hover-color;
+    }
+  }
+}
+
+div.custom-control,
+.form__checkbox-control {
+  padding-left: $form-checkbox-offset;
+  min-height: $form-checkbox-size;
+  display: flex;
+
+  .custom-control-input {
+    width: $form-checkbox-size;
+    height: $form-checkbox-size;
+  }
+}
