@@ -21,7 +21,12 @@
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
       <div class="col-lg-5">
-        {% comment %}TODO conditional back button that is relative and not absolute{% endcomment %}
+        <div class="job-list__detail-back job-list__detail-animation-3">
+          {%
+            include arrow.html
+            direction="left"
+          %}
+        </div>
 
         {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
         {%- capture headlineClasses -%}job-list__detail-headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
