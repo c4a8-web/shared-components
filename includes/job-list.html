@@ -1,3 +1,4 @@
+<!-- Shared Job List Section -->
 {% assign jobListClientName = clientName | default: include.clientName %}
 {% assign jobListMaxItems = maxItems | default: include.maxItems %}
 {% assign jobListDetailUrl = detailUrl | default: include.detailUrl %}
@@ -11,7 +12,6 @@
 {% assign jobListSublineText = sublineText | default: include.sublineText %}
 {% assign jobListExpandText = expandText | default: include.expandText %}
 
-<!-- Shared Job List Section -->
 <div class="job-list container"
   data-id="{{ jobListClientName }}"
   data-max-items="{{ jobListMaxItems }}"

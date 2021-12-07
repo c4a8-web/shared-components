@@ -1,3 +1,4 @@
+<!-- Shared Job List Entry Section -->
 {% assign jobListEntryIsInvisible = isInvisible | default: include.isInvisible %}
 {% assign jobListEntryTeam = team | default: include.team %}
 {% assign jobListEntryCity = city | default: include.city %}
@@ -6,7 +7,6 @@
 {% assign jobListEntryGender = gender | default: include.gender %}
 {% assign jobListEntryId = id | default: include.id %}
 
-<!-- Shared Job List Entry Section -->
 <div class="job-list__entry {% if jobListEntryIsInvisible %}d-none{% endif %}" data-id="{{ jobListEntryId }}">
   <div class="job-list__entry-header">
     {% if jobListEntryTeam %} {{ jobListEntryTeam }} / {% endif %} {% if jobListEntryPositionType %} {{ jobListEntryPositionType }} / {%

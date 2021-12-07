@@ -18,19 +18,19 @@
 {%- endif -%}
 
 {% if ctaLink %}
-  {% capture skin %}{% if ctaSkin %}{{ ctaSkin }}{% endif %}{% endcapture %}
+  {% capture innerSkin %}{% if ctaSkin %}{{ ctaSkin }}{% endif %}{% endcapture %}
   {% assign baseClass = "link" %}
 {% else %}
   {% capture width %}{% if ctaWidth %}{{ ctaWidth }}{% else %}w-100{% unless ctaGrow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
-  {% capture skin %}{% if ctaSkin %}btn-{{ ctaSkin }}{% else %}btn-primary{% endif %}{% endcapture %}
+  {% capture innerSkin %}{% if ctaSkin %}btn-{{ ctaSkin }}{% else %}btn-primary{% endif %}{% endcapture %}
   {% capture baseClass %}btn {{ width }}{% endcapture %}
 {% endif %}
 {% if ctaButton %}
-  <button class="cta {{ baseClass }} {{ skin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }}>
+  <button class="cta {{ baseClass }} {{ innerSkin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }}>
     {{ ctaText }}
   </button>
 {% else %}
-  <a class="cta {{ baseClass }} {{ skin }}"
+  <a class="cta {{ baseClass }} {{ innerSkin }}"
     role="button"
     href="{{ ctaHref }}"
     data-text="{{ ctaText }}"
