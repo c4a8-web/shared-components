@@ -1,10 +1,10 @@
 <!-- Shared Icon Section -->
-{% assign iconIcon = icon | default: include.icon | default: 'close' %}
-{% assign iconColor = color | default: include.color | default: 'currentColor' %}
-{% assign iconDirection = direction | default: include.direction | default: 'right' %}
-{% assign iconSize = size | default: include.size %}
-{% assign iconCircle = circle | default: include.circle %}
-{% assign iconHover = hover | default: include.hover %}
+{% assign iconIcon = include.icon | default: icon | default: 'close' %}
+{% assign iconColor = include.color | default: color | default: 'currentColor' %}
+{% assign iconDirection = include.direction | default: direction | default: 'right' %}
+{% assign iconSize = include.size | default: size %}
+{% assign iconCircle = include.circle | default: circle %}
+{% assign iconHover = include.hover | default: hover %}
 
 {% capture rotation %}
   {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}

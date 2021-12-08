@@ -1,11 +1,11 @@
 <!-- Shared Job List Entry Section -->
-{% assign jobListEntryIsInvisible = isInvisible | default: include.isInvisible %}
-{% assign jobListEntryTeam = team | default: include.team %}
-{% assign jobListEntryCity = city | default: include.city %}
-{% assign jobListEntryPositionType = positionType | default: include.positionType %}
-{% assign jobListEntryTitle = title | default: include.title %}
-{% assign jobListEntryGender = gender | default: include.gender %}
-{% assign jobListEntryId = id | default: include.id %}
+{% assign jobListEntryIsInvisible = include.isInvisible | default: isInvisible %}
+{% assign jobListEntryTeam = include.team | default: team %}
+{% assign jobListEntryCity = include.city | default: city %}
+{% assign jobListEntryPositionType = include.positionType | default: positionType %}
+{% assign jobListEntryTitle = include.title | default: title %}
+{% assign jobListEntryGender = include.gender | default: gender %}
+{% assign jobListEntryId = include.id | default: id %}
 
 <div class="job-list__entry {% if jobListEntryIsInvisible %}d-none{% endif %}" data-id="{{ jobListEntryId }}">
   <div class="job-list__entry-header">

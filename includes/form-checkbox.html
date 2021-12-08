@@ -1,7 +1,7 @@
 <!-- Shared Form Checkbox Section -->
 {%- assign checkboxCheckbox = include.checkbox | default: checkbox -%}
 {%- assign checkboxGroup = include.group | default: group -%}
-{%- assign checkboxId = include.id | default: id | default: checkboxCheckbox.id -%}
+{%- assign checkboxId = include.id | default: checkboxCheckbox.id | default: id -%}
 
 {%- if checkboxCheckbox.required -%}
   {%- assign required = 'required' -%}

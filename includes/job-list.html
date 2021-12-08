@@ -1,16 +1,16 @@
 <!-- Shared Job List Section -->
-{% assign jobListClientName = clientName | default: include.clientName %}
-{% assign jobListMaxItems = maxItems | default: include.maxItems %}
-{% assign jobListDetailUrl = detailUrl | default: include.detailUrl %}
-{% assign jobListJobId = jobId | default: include.jobId %}
-{% assign jobListTags = tags | default: include.tags %}
-{% assign jobListTeam = team | default: include.team %}
-{% assign jobListApiUrl = apiUrl | default: include.apiUrl %}
-{% assign jobListHeadlineClasses = headlineClasses | default: include.headlineClasses %}
-{% assign jobListHeadlineLevel = headlineLevel | default: include.headlineLevel %}
-{% assign jobListHeadlineText = headlineText | default: include.headlineText %}
-{% assign jobListSublineText = sublineText | default: include.sublineText %}
-{% assign jobListExpandText = expandText | default: include.expandText %}
+{% assign jobListClientName = include.clientName | default: clientName %}
+{% assign jobListMaxItems = include.maxItems | default: maxItems %}
+{% assign jobListDetailUrl = include.detailUrl | default: detailUrl %}
+{% assign jobListJobId = include.jobId | default: jobId %}
+{% assign jobListTags = include.tags | default: tags %}
+{% assign jobListTeam = include.team | default: team %}
+{% assign jobListApiUrl = include.apiUrl | default: apiUrl %}
+{% assign jobListHeadlineClasses = include.headlineClasses | default: headlineClasses %}
+{% assign jobListHeadlineLevel = include.headlineLevel | default: headlineLevel %}
+{% assign jobListHeadlineText = include.headlineText | default: headlineText %}
+{% assign jobListSublineText = include.sublineText | default: sublineText %}
+{% assign jobListExpandText = include.expandText | default: expandText %}
 
 <div class="job-list container"
   data-id="{{ jobListClientName }}"
