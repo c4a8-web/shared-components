@@ -21,6 +21,7 @@ class Templates {
       await LoadLiquid;
 
       const globals = {};
+      const scope = this;
 
       this.partialsPath = window.partialsPath || 'includes/';
 
@@ -29,6 +30,35 @@ class Templates {
         dynamicPartials: false,
         extname: this.extensionName,
         globals,
+        fs: {
+          readFileSync(file) {
+            const request = new XMLHttpRequest();
+            if (
+              (request.open('GET', `${scope.partialsPath}${file}`, !1),
+              request.send(),
+              request.status < 200 || 300 <= request.status)
+            ) {
+              throw new Error(request.statusText);
+            }
+
+            return scope.fixComponent(request.responseText);
+          },
+          existsSync() {
+            return true;
+          },
+          exists() {
+            return true;
+          },
+          resolve(_, file) {
+            return file;
+          },
+          dirname() {
+            return;
+          },
+          sep() {
+            return;
+          },
+        },
       };
 
       this.engine = new Liquid(liquidOptions);
@@ -93,6 +123,7 @@ class Templates {
 
     const includesRegex = new RegExp(/{%(\s)*include([\S\s]*?)%}/, 'g');
     const matchAllIncludes = fixedText.match(includesRegex);
+    // console.log('Templates ~ fixComponent ~ matchAllIncludes', matchAllIncludes);
 
     if (matchAllIncludes) {
       for (let i = 0; i < matchAllIncludes.length; i++) {
@@ -107,6 +138,7 @@ class Templates {
 
   fixInclude(includeText) {
     let include = includeText.replace(/\n/g, ',').replace(/=/g, ':');
+    // console.log('Templates ~ fixInclude ~ includeText', includeText);
 
     const lastIndex = include.lastIndexOf(',');
 
