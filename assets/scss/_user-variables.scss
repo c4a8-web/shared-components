@@ -49,6 +49,37 @@ $box-shadow-sm: 0 12px 15px rgba($gray-600, 0.1);
 $header-section-box-shadow: $box-shadow-sm;
 $header-nav-link-color: var(--color-black);
 
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
+    3: $spacer,
+    4: (
+      $spacer * 1.5,
+    ),
+    5: (
+      $spacer * 2,
+    ),
+    6: (
+      $spacer * 2.5,
+    ),
+    7: (
+      $spacer * 3,
+    ),
+    8: (
+      $spacer * 3.5,
+    ),
+  ),
+  $spacers
+);
+
 // plain copies
 
 $grid-breakpoints: (
