@@ -1,13 +1,22 @@
-import Tools from "../tools.js";
-import State from "../state.js";
+import Tools from '../tools.js';
+import State from '../state.js';
 
 // TODO extend from basecomponent
 class Form {
-  static rootSelector = ".form";
+  static rootSelector = '.form';
   static instances = [];
 
   constructor(root, options) {
     this.root = root;
+
+    this.formSelector = '.form__form';
+    this.form = root.querySelector(this.formSelector);
+
+    if (this.form) {
+      // TODO remove this after you migrated all forms to the shared component
+      this.root = this.form;
+    }
+
     this.groups = {};
     this.minLengthOther = 1;
     this.options = options;
@@ -21,7 +30,7 @@ class Form {
 
   bindEvents() {
     if (Object.keys(this.groups).length) {
-      this.root.addEventListener("submit", this.handleSubmit.bind(this));
+      this.root.addEventListener('submit', this.handleSubmit.bind(this));
     }
   }
 
@@ -96,10 +105,10 @@ class Form {
     if (element && !element.classList.contains(State.ERROR)) {
       element.classList.add(State.ERROR);
 
-      const error = document.createElement("div");
+      const error = document.createElement('div');
 
       error.innerHTML = element.dataset.msg;
-      error.classList.add("invalid-feedback");
+      error.classList.add('invalid-feedback');
 
       element.parentNode.insertBefore(error, element.nextSibling);
     }
@@ -136,16 +145,12 @@ class Form {
     for (let i = 0; i < length; i++) {
       const element = group[i];
 
-      if (element.type === "checkbox" && element.checked) {
+      if (element.type === 'checkbox' && element.checked) {
         isValid = true;
       } else {
         const otherField = element.closest('input[type="text"]');
 
-        if (
-          otherField &&
-          !isValid &&
-          otherField.value.length >= this.minLengthOther
-        ) {
+        if (otherField && !isValid && otherField.value.length >= this.minLengthOther) {
           isValid = true;
         }
       }
@@ -159,30 +164,24 @@ class Form {
   }
 
   addValidation() {
-    [].forEach.call(
-      this.root.querySelectorAll("[data-form-group]"),
-      (input) => {
-        if (input.dataset.formGroup) {
-          this.addGroupValidation(input);
-          this.addLiveValidation(input);
-        }
+    [].forEach.call(this.root.querySelectorAll('[data-form-group]'), (input) => {
+      if (input.dataset.formGroup) {
+        this.addGroupValidation(input);
+        this.addLiveValidation(input);
       }
-    );
+    });
   }
 
   isCheckbox(element) {
-    return element?.getAttribute("type") === "checkbox" ? true : false;
+    return element?.getAttribute('type') === 'checkbox' ? true : false;
   }
 
   addLiveValidation(element) {
     if (element) {
       if (this.isCheckbox(element)) {
-        element.addEventListener(
-          "change",
-          this.handleLiveValidation.bind(this)
-        );
+        element.addEventListener('change', this.handleLiveValidation.bind(this));
       } else {
-        element.addEventListener("keyup", this.handleLiveValidation.bind(this));
+        element.addEventListener('keyup', this.handleLiveValidation.bind(this));
       }
     }
   }
@@ -193,7 +192,7 @@ class Form {
     if (element) {
       const group = this.getGroupByName(element.dataset.formGroup);
 
-      if (element.getAttribute("type") === "checkbox") {
+      if (element.getAttribute('type') === 'checkbox') {
         if (element.checked) {
           this.delGroupError(group);
         } else if (!this.isValidGroup(group)) {
@@ -210,7 +209,7 @@ class Form {
   }
 
   getGroupParent(element) {
-    return element.closest(".js-form-message")?.querySelector("[data-msg]");
+    return element.closest('.js-form-message')?.querySelector('[data-msg]');
   }
 
   addGroupValidation(element) {

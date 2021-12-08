@@ -22,14 +22,24 @@ function loadTheme(theme) {
 
 const channel = addons.getChannel();
 
+const removeModal = function () {
+  const modal = document.querySelector('.modal-backdrop');
+
+  if (modal) {
+    modal.remove();
+  }
+};
+
 channel.on(EVENTS.CHANGE, (theme) => {
   loadTheme(theme);
   Interim();
+  removeModal();
 });
 
 channel.on(STORY_RENDERED, () => {
   loadTheme(currentTheme);
   Interim();
+  removeModal();
 });
 
 export const parameters = {

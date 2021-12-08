@@ -79,3 +79,10 @@ export const Form = Template.bind({});
 Form.args = {
   ...baseArgs,
 };
+
+// TODO add examples with checkboxes validation
+// export const Form = Template.bind({});
+
+// Form.args = {
+//   ...baseArgs,
+// };
