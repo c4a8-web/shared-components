@@ -11,8 +11,9 @@
 {%- assign jobListDetailCtaText = ctaText | default: include.ctaText -%}
 {%- assign jobListDetailCtaButton = ctaButton | default: include.ctaButton -%}
 {%- assign jobListDetailDescription = description | default: include.description -%}
+{%- assign jobListDetailForm = form | default: include.form %}
 
-<div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }})"
+<div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
   data-id="{{ jobListDetailClientName }}"
   {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}"{% endif %}
   {% if jobListDetailApiUrl %}data-api-url="{{ jobListDetailApiUrl }}"{% endif %}
@@ -24,8 +25,11 @@
         {% comment %}TODO make the left side sticky on desktop{% endcomment %}
         <div class="job-list__detail-back job-list__detail-animation-3">
           {%
-            include arrow.html
+            include icon.html
+            icon='arrow'
             direction="left"
+            hover=true
+            circle=true
           %}
         </div>
 
@@ -41,15 +45,41 @@
         <div class="job-list__detail-share">
           {% comment %}TODO share bar{% endcomment %}
         </div>
-        {%
-          include cta.html
-          text=jobListDetailCtaText
-          button=jobListDetailCtaButton
-        %}
+        <div class="job-list__detail-cta">
+          {%
+            include cta.html
+            text=jobListDetailCtaText
+            button=jobListDetailCtaButton
+          %}
+        </div>
       </div>
       <div class="job-list__detail-description offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
         {{ jobListDetailDescription }}
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)">
+    <div class="modal-dialog modal-xl">
+      <div class="modal__content">
+        <div class="modal__header">
+          <div class="modal__close">
+            {%
+              include icon.html
+              icon='close'
+              hover=true
+              circle=true
+            %}
+          </div>
+        </div>
+        <div class="modal__body">
+          {%
+            include form.html
+            form=jobListDetailForm
+            space=' '
+          %}
+        </div>
       </div>
     </div>
   </div>

@@ -41,7 +41,10 @@
     {{ ctaText }}
 
     {% if ctaLink %}
-      {% include arrow.html %}
+      {%
+        include icon.html
+        icon='arrow'
+      %}
     {% endif %}
   </a>
 {% endif %}
