@@ -1,6 +1,10 @@
 import '../assets/scss/index.scss';
 import '../assets/js/index.js';
 
+// TODO move bootstrap scss to this location
+// TODO remove after migration is done
+import Interim from './interim.js';
+
 import { Styles } from './themeImports';
 
 import { STORY_RENDERED } from '@storybook/core-events';
@@ -20,10 +24,12 @@ const channel = addons.getChannel();
 
 channel.on(EVENTS.CHANGE, (theme) => {
   loadTheme(theme);
+  Interim();
 });
 
 channel.on(STORY_RENDERED, () => {
   loadTheme(currentTheme);
+  Interim();
 });
 
 export const parameters = {
