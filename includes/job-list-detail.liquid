@@ -1,17 +1,17 @@
 <!-- Shared Job List Detail Section -->
-{%- assign jobListDetailColor = detailColor | default: include.detailColor | default: '--color-job-list-detail' -%}
-{%- assign jobListDetailClientName = clientName | default: include.clientName -%}
-{%- assign jobListDetailJobId = jobId | default: include.jobId -%}
-{%- assign jobListDetailApiUrl = apiUrl | default: include.apiUrl -%}
-{%- assign jobListDetailBase = base | default: include.base -%}
-{%- assign jobListDetailTitle = title | default: include.title -%}
-{%- assign jobListDetailHeadlineLevel = headlineLevel | default: include.headlineLevel -%}
-{%- assign jobListDetailHeadlineClasses = headlineClasses | default: include.headlineClasses -%}
-{%- assign jobListDetailGender = gender | default: include.gender -%}
-{%- assign jobListDetailCtaText = ctaText | default: include.ctaText -%}
-{%- assign jobListDetailCtaButton = ctaButton | default: include.ctaButton -%}
-{%- assign jobListDetailDescription = description | default: include.description -%}
-{%- assign jobListDetailForm = form | default: include.form %}
+{%- assign jobListDetailColor = include.detailColor | default: detailColor | default: '--color-job-list-detail' -%}
+{%- assign jobListDetailClientName = include.clientName | default: clientName -%}
+{%- assign jobListDetailJobId = include.jobId | default: jobId -%}
+{%- assign jobListDetailApiUrl = include.apiUrl | default: apiUrl -%}
+{%- assign jobListDetailBase = include.base | default: base -%}
+{%- assign jobListDetailTitle = include.title | default: title -%}
+{%- assign jobListDetailHeadlineLevel = include.headlineLevel | default: headlineLevel -%}
+{%- assign jobListDetailHeadlineClasses = include.headlineClasses | default: headlineClasses -%}
+{%- assign jobListDetailGender = include.gender | default: gender -%}
+{%- assign jobListDetailCtaText = include.ctaText | default: ctaText -%}
+{%- assign jobListDetailCtaButton = include.ctaButton | default: ctaButton -%}
+{%- assign jobListDetailDescription = include.description | default: description -%}
+{%- assign jobListDetailForm = include.form | default: form %}
 
 <div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
   data-id="{{ jobListDetailClientName }}"

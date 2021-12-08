@@ -1,8 +1,8 @@
 <!-- Shared Form Section -->
-{% assign formForm = form | default: include.form %}
-{% assign formLight = light | default: include.light %}
-{% assign formAnalytics = analytics | default: include.analytics %}
-{% assign formSpace = space | default: include.space | default: 'space-top-2' %}
+{% assign formForm = include.form | default: form %}
+{% assign formLight = include.light | default: light %}
+{% assign formAnalytics = include.analytics | default: analytics %}
+{% assign formSpace = include.space | default: space | default: 'space-top-2' %}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}

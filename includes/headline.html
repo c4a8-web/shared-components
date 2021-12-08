@@ -1,7 +1,7 @@
 <!-- Shared Headline Section -->
-{%- assign headlineClasses = classes | default: include.classes -%}
-{%- assign headlineLevel = level | default: include.level | default: 'h2' -%}
-{%- assign headlineText = text | default: include.text -%}
+{%- assign headlineClasses = include.classes | default: classes -%}
+{%- assign headlineLevel = include.level | default: level | default: 'h2' -%}
+{%- assign headlineText = include.text | default: text -%}
 
 {%- capture classList %}{{ headlineClasses }} {{ headlineLevel }}-font-size{% endcapture -%}
 
