@@ -1,6 +1,7 @@
 import BaseComponent from './base-component.js';
 import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
+import Modal from '../modal.js';
 
 class JobListDetail extends BaseComponent {
   static rootSelector = '.job-list__detail';
@@ -10,6 +11,7 @@ class JobListDetail extends BaseComponent {
 
     this.containerSelector = '.job-list__detail-container';
     this.headlineSelector = '.job-list__detail-headline';
+    this.ctaSelector = '.job-list__detail-cta .cta';
     this.backSelector = '.job-list__detail-back';
     this.hasBackClass = 'job-list__detail--has-back';
 
@@ -28,6 +30,8 @@ class JobListDetail extends BaseComponent {
   }
 
   showBackButton() {
+    // TODO check why referrer is empty on staging. propably due to content security policy
+
     if (document.referrer.indexOf(document.location.host) !== -1) {
       this.root.classList.add(this.hasBackClass);
     }
@@ -80,10 +84,22 @@ class JobListDetail extends BaseComponent {
     }, this.loadingDelay);
   }
 
-  bindEvents() {
+  queryElements() {
     this.back = this.root.querySelector(this.backSelector);
+    this.cta = this.root.querySelector(this.ctaSelector);
+  }
+
+  bindEvents() {
+    this.queryElements();
 
     this.back?.addEventListener('click', this.handleBack.bind(this));
+    this.cta?.addEventListener('click', this.handleCta.bind(this));
+  }
+
+  handleCta() {
+    const modalElement = this.root.querySelector('.modal');
+
+    Modal.open(modalElement);
   }
 
   handleBack() {

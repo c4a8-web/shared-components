@@ -1,0 +1,35 @@
+<!-- Shared Icon Section -->
+{% assign iconIcon = icon | default: include.icon | default: 'close' %}
+{% assign iconColor = color | default: include.color | default: 'currentColor' %}
+{% assign iconDirection = direction | default: include.direction | default: 'right' %}
+{% assign iconSize = size | default: include.size %}
+{% assign iconCircle = circle | default: include.circle %}
+{% assign iconHover = hover | default: include.hover %}
+
+{% capture rotation %}
+  {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
+{% endcapture %}
+
+{% capture size %}
+  {% if iconSize == 'small' %}18px{% elsif iconSize == 'large' %}48px{% else %}28px{% endif %}
+{% endcapture %}
+
+<span class="icon icon--{{ iconDirection }} {% if iconCircle %}icon--circle{% endif %} {% if iconHover %}icon--hover{% endif %}" style="--color-icon: {{ iconColor }}">
+  {% if iconIcon == 'close' %}
+    <svg style="stroke: {{ iconColor }}; transform: rotate({{ rotation }});" width="{{ size }}" height="{{ size }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0.75 0.75)">
+        <path d="M0.5 0.5L26 0.5" transform="translate(0 7)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+    </svg>
+  {% else if iconIcon == 'arrow' %}
+    <svg style="stroke: {{ iconColor }}; transform: rotate({{ rotation }});" width="{{ size }}" height="{{ size }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(0.75 0.75)">
+        <path d="M0.5 0.5L26 0.5" transform="translate(0 7)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </g>
+    </svg>
+  {% endif %}
+
+</span>
+<!-- End Shared Icon Section -->

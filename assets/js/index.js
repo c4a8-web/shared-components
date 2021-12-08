@@ -5,6 +5,7 @@ import JobList from './components/job-list.js';
 import JobListDetail from './components/job-list-detail.js';
 
 import Analytics from './analytics.js';
+import Modal from './modal.js';
 import State from './state.js';
 import Templates from './templates.js';
 
@@ -16,6 +17,7 @@ const initSharedComponents = function () {
   Form.init();
   JobList.init();
   JobListDetail.init();
+  Modal.init();
 };
 
 document.addEventListener('DOMContentLoaded', (e) => {

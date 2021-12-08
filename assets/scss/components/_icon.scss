@@ -1,0 +1,28 @@
+.icon {
+  display: inline-flex;
+
+  svg {
+    margin-bottom: 0;
+  }
+
+  &.icon--circle {
+    flex: 1;
+    border: 1px solid var(--color-icon);
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+
+    svg {
+      width: 60%;
+    }
+  }
+
+  &.icon--hover {
+    cursor: pointer;
+
+    &:hover {
+      background-color: var(--color-icon-hover-background);
+      color: var(--color-icon-hover-color);
+    }
+  }
+}
