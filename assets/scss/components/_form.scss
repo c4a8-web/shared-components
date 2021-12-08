@@ -1,8 +1,8 @@
-$form-background-color: var(--color-porcelain);
-$form-background-color-light: var(--color-white);
-$form-error-color: var(--color-red);
-$form-success-color: var(--color-deep-sea);
-$form-border-hover-color: var(--color-black-30);
+$form-background-color: var(--color-form-background);
+$form-background-color-light: var(--color-form-background-light);
+$form-error-color: var(--color-form-error);
+$form-success-color: var(--color-form-success);
+$form-border-hover-color: var(--color-form-border-hover);
 $form-checkbox-size: 2em;
 $form-checkbox-spacing: 1em;
 $form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
@@ -108,6 +108,7 @@ input[type='checkbox'].custom-control-input,
   z-index: -1;
   width: $form-checkbox-size;
   height: $form-checkbox-size;
+  opacity: 0;
 
   &:checked ~ {
     .form__checkbox-label {
@@ -128,9 +129,13 @@ input[type='checkbox'].custom-control-input,
 
   &::before {
     background-color: $form-background-color;
+    border: 1px solid var(--color-form-border);
     border-radius: 0;
-    border-color: var(--color-bon-jour);
     pointer-events: none;
+  }
+
+  &::after {
+    background: no-repeat 50% / 50% 50%;
   }
 
   &::before,
@@ -172,4 +177,13 @@ div.custom-control,
     width: $form-checkbox-size;
     height: $form-checkbox-size;
   }
+}
+
+.form__submit {
+  display: flex;
+  justify-content: center;
+}
+
+.form__form {
+  margin-top: spacing(10);
 }

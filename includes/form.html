@@ -2,11 +2,16 @@
 {% assign formForm = form | default: include.form %}
 {% assign formLight = light | default: include.light %}
 {% assign formAnalytics = analytics | default: include.analytics %}
+{% assign formModal = modal | default: include.modal %}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}
 {% else %}
-  {% assign formclasses = '' %}
+  {% assign formClasses = '' %}
+{% endif %}
+
+{% if formModal %}
+  {% capture formClasses %}{{ formClasses }} modal{% endcapture %}
 {% endif %}
 
 <div class="form {{ formClasses }} container">
@@ -108,7 +113,7 @@
             </div>
           {%- endif -%}
         {% endfor %}
-        <div class="d-flex mt-5 justify-content-center">
+        <div class="form__submit mt-5 justify-content-center">
           {%
             include cta.html
             text=formForm.ctaText
