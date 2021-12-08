@@ -11,6 +11,7 @@
 {%- assign jobListDetailCtaText = ctaText | default: include.ctaText -%}
 {%- assign jobListDetailCtaButton = ctaButton | default: include.ctaButton -%}
 {%- assign jobListDetailDescription = description | default: include.description -%}
+{%- assign jobListDetailForm = form | default: include.form %}
 
 <div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }})"
   data-id="{{ jobListDetailClientName }}"
@@ -53,5 +54,10 @@
       </div>
     </div>
   </div>
+  {%
+    include form.html
+    form=jobListDetailForm
+    modal=true
+  %}
 </div>
 <!-- End Shared Job List Detail Section -->
