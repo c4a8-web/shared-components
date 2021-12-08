@@ -13,7 +13,7 @@ $form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
     border-radius: 0;
   }
 
-  form {
+  .form {
     &.is-light {
       textarea.form-textarea,
       input[type=''].form-control,

@@ -70,6 +70,7 @@ const baseArgs = {
       },
     ],
   },
+  light: false,
 };
 
 const Template = (args) => createComponent(args, formTemplate);
