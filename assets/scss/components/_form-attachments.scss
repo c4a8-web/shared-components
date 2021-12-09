@@ -1,0 +1,58 @@
+.form-attachments {
+  border: 2px dashed var(--color-primary);
+  padding: spacing(6);
+  background-color: var(--color-form-background);
+  display: flex;
+  align-items: center;
+
+  .is-light & {
+    background-color: var(--color-form-background-light);
+  }
+}
+
+.form-attachments__button {
+  width: spacing(11);
+  height: spacing(11);
+  margin-right: spacing(6);
+  color: var(--color-form-background);
+  flex: 0 0 auto;
+
+  --color-icon-hover-background: var(--color-primary-accent);
+
+  .icon {
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-primary);
+  }
+}
+
+.form-attachments__description {
+  @include font-style($style: 'font-size-1', $weight: 'bold');
+
+  margin-bottom: spacing(2);
+}
+
+.form-attachments__description,
+.form-attachments__text {
+  color: var(--color-primary);
+}
+
+.form-attachments__text {
+  @include font-style($style: 'font-size-sm');
+
+  text-decoration: underline;
+  cursor: pointer;
+  margin-bottom: spacing(10);
+
+  &:hover {
+    color: var(--color-primary-accent);
+  }
+}
+
+.form-attachments__extensions {
+  color: var(--color-copy-lowlight);
+}
+
+.form-attachments__files {
+  display: none;
+}

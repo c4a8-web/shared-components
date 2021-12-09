@@ -20,7 +20,7 @@ const baseArgs = {
     ctaButton: true,
   },
   form: {
-    headline: 'Headline Form',
+    headline: 'Bewerbungsformular (m/w/d)',
     cta: {
       skin: 'primary',
       width: 'w-30',
@@ -79,6 +79,18 @@ const baseArgs = {
         label: 'Nachricht (optional)',
         type: 'textarea',
         id: 'msg',
+      },
+      {
+        type: 'file',
+        col: 6,
+        rowStart: true,
+        rowEnd: true,
+        formAttachments: {
+          description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
+          text: 'Oder Datei auswählen',
+          extensions: ['pdf', 'txt'],
+          maxSize: 10000000,
+        },
       },
       {
         label:
