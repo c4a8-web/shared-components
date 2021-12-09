@@ -1,7 +1,7 @@
 // scepman theme related styling here
 
 :root {
-  --site: "scepman";
+  --site: 'scepman';
   // Theme colors
   --color-headlines: red;
   --color-copy: red;
@@ -10,6 +10,7 @@
   --color-primary-accent-light: red;
   --color-secondary: red;
   --color-secondary-accent: red;
+  --color-copy-highlight: red;
 
   // Element colors
   --color-bg-grey: red;
@@ -25,5 +26,5 @@
   --color-loading--4: var(--color-orange);
 
   // fonts
-  --font-family: "Miriam Libre", sans-serif;
+  --font-family: 'Miriam Libre', sans-serif;
 }

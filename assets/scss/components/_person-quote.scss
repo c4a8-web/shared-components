@@ -1,0 +1,33 @@
+.person-quote {
+  margin-top: spacing(6);
+  display: flex;
+}
+
+.person-quote__img {
+  margin-right: spacing(6);
+}
+
+.person-quote__content {
+  position: relative;
+  margin-top: spacing(9);
+
+  &::before {
+    color: var(--color-person-quote-detail);
+    content: '„';
+    display: block;
+    position: absolute;
+    font-size: 9rem;
+    top: spacing(2);
+    transform: translateY(-100%);
+  }
+}
+
+.person-quote__text {
+  @include font-style($style: 'font-size-2', $line: 'wide');
+
+  margin-bottom: spacing(2);
+}
+
+.person-quote__name {
+  color: var(--color-copy-highlight);
+}

@@ -1,7 +1,7 @@
 // gkgab theme related styling here
 
 :root {
-  --site: "gkgab";
+  --site: 'gkgab';
   // Theme colors
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
@@ -10,6 +10,7 @@
   --color-primary-accent-light: var(--color-link-water);
   --color-secondary: red;
   --color-secondary-accent: red;
+  --color-copy-highlight: var(--color-orange);
 
   // Element colors
   --color-bg-grey: var(--color-porcelain);
@@ -25,5 +26,5 @@
   --color-loading--4: var(--color-orange);
 
   // fonts
-  --font-family: "Lato", sans-serif;
+  --font-family: 'Lato', sans-serif;
 }

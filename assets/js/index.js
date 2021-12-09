@@ -1,6 +1,6 @@
 import i18n from './i18n/index.js';
 
-import FormAttachments from './components/form-attachments';
+import FormAttachments from './components/form-attachments.js';
 import Form from './components/form.js';
 import JobList from './components/job-list.js';
 import JobListDetail from './components/job-list-detail.js';
