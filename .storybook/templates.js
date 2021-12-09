@@ -3,14 +3,11 @@ import { Liquid } from 'liquidjs';
 import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
 
-// TODO fix component needs to work for partials of partials as well
-
 const fixComponent = function (text) {
   let fixedText = text;
 
   const includesRegex = new RegExp(/{%(\s)*include([\S\s]*?)%}/, 'g');
   const matchAllIncludes = fixedText.match(includesRegex);
-  // console.log('fixComponent ~ matchAllIncludes', matchAllIncludes);
 
   if (matchAllIncludes) {
     for (let i = 0; i < matchAllIncludes.length; i++) {
@@ -25,7 +22,6 @@ const fixComponent = function (text) {
 
 const fixInclude = function (includeText) {
   let include = includeText.replace(/\n/g, ',').replace(/=/g, ':');
-  // console.log('fixInclude ~ includeText', includeText);
 
   const lastIndex = include.lastIndexOf(',');
 
@@ -37,11 +33,42 @@ const fixInclude = function (includeText) {
 
 export const createComponent = function async(include, component) {
   const globals = {};
+  const partialsPath = 'includes';
+  const includesPath = `../${partialsPath}/`;
 
   const engine = new Liquid({
-    partials: ['includes'],
+    partials: [partialsPath],
     dynamicPartials: false,
     globals,
+    fs: {
+      readFileSync(file) {
+        const request = new XMLHttpRequest();
+        if (
+          (request.open('GET', `${includesPath}${file}`, !1),
+          request.send(),
+          request.status < 200 || 300 <= request.status)
+        ) {
+          throw new Error(request.statusText);
+        }
+
+        return fixComponent(request.responseText);
+      },
+      existsSync() {
+        return true;
+      },
+      exists() {
+        return true;
+      },
+      resolve(_, file) {
+        return file;
+      },
+      dirname() {
+        return;
+      },
+      sep() {
+        return;
+      },
+    },
   });
 
   // add map of jekyll filter
@@ -49,7 +76,7 @@ export const createComponent = function async(include, component) {
 
   const wrapper = document.createElement('div');
   const tpl = engine.parse(fixComponent(component));
-  const html = engine.renderSync(tpl, { include });
+  const html = engine.renderSync(tpl, include);
 
   wrapper.innerHTML = html;
 

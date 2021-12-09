@@ -108,9 +108,7 @@ class Templates {
     const promise = new Promise((resolve) => {
       const tpl = this.engine.parse(this.fixComponent(component));
 
-      const html = this.engine.renderSync(tpl, {
-        include: data,
-      });
+      const html = this.engine.renderSync(tpl, data);
 
       resolve(html);
     });
