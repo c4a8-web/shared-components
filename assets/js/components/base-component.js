@@ -1,7 +1,7 @@
-import State from "../state.js";
+import State from '../state.js';
 
 class BaseComponent {
-  static rootSelector = "";
+  static rootSelector = '';
   static instances = [];
 
   constructor(root, options) {
@@ -19,17 +19,15 @@ class BaseComponent {
     return instance;
   }
 
-  static init() {
+  static init(element) {
     this.instances = [];
 
+    const selectedElement = element || document;
     const notInitializedSelector = `${this.rootSelector}:not(.${State.INITIALIZED})`;
 
-    [].forEach.call(
-      document.querySelectorAll(notInitializedSelector),
-      (element) => {
-        this.initElement(element);
-      }
-    );
+    [].forEach.call(selectedElement.querySelectorAll(notInitializedSelector), (element) => {
+      this.initElement(element);
+    });
   }
 }
 
