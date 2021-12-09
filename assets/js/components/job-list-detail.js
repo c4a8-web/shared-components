@@ -15,6 +15,8 @@ class JobListDetail extends BaseComponent {
     this.backSelector = '.job-list__detail-back';
     this.hasBackClass = 'job-list__detail--has-back';
 
+    this.modal = this.root.querySelector('.modal');
+
     this.loadingDelay = 300;
     this.base = this.root.dataset.base ? JSON.parse(this.root.dataset.base) : undefined;
     this.apiUrl = this.root.dataset.apiUrl;
@@ -97,9 +99,7 @@ class JobListDetail extends BaseComponent {
   }
 
   handleCta() {
-    const modalElement = this.root.querySelector('.modal');
-
-    Modal.open(modalElement);
+    Modal.open(this.modal);
   }
 
   handleBack() {

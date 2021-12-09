@@ -10,6 +10,7 @@ export default {
 };
 
 const baseArgs = {
+  container: true,
   form: {
     headline: 'Headline Form',
     subline: 'Subline lorem ipsum dolor sit',
@@ -26,24 +27,28 @@ const baseArgs = {
         type: 'text',
         col: 6,
         rowStart: true,
+        required: true,
       },
       {
         label: 'Nachname',
         type: 'text',
         col: 6,
         rowEnd: true,
+        required: true,
       },
       {
         label: 'E-Mail Adresse',
         type: 'text',
         col: 6,
         rowStart: true,
+        required: true,
       },
       {
         label: 'Telefon',
         type: 'text',
         col: 6,
         rowEnd: true,
+        required: true,
       },
       {
         label: 'Kündigungsfrist (optional)',

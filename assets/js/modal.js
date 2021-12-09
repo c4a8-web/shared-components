@@ -1,4 +1,5 @@
 import State from './state.js';
+import { initComponentList } from './index.js';
 
 class Modal {
   static rootSelector = '.modal';
@@ -36,6 +37,8 @@ class Modal {
   static open(element) {
     if (window.$) {
       $(element).modal('show');
+
+      // initComponentList(element);
     }
   }
 

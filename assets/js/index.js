@@ -9,19 +9,26 @@ import Modal from './modal.js';
 import State from './state.js';
 import Templates from './templates.js';
 
+const componentList = [Analytics, Form, JobList, JobListDetail, Modal];
+
+const initComponentList = function (element) {
+  for (let i = 0; i < componentList.length; i++) {
+    const component = componentList[i];
+
+    component.init(element);
+  }
+};
+
 const initSharedComponents = function () {
   window.Templates = new Templates();
 
   window.i18n = new i18n();
-  Analytics.init();
-  Form.init();
-  JobList.init();
-  JobListDetail.init();
-  Modal.init();
+
+  initComponentList();
 };
 
 document.addEventListener('DOMContentLoaded', (e) => {
   initSharedComponents();
 });
 
-export { Form, initSharedComponents, State };
+export { Form, initSharedComponents, initComponentList, State };
