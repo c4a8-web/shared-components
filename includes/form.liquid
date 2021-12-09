@@ -3,6 +3,7 @@
 {% assign formLight = include.light | default: light %}
 {% assign formAnalytics = include.analytics | default: analytics %}
 {% assign formSpace = include.space | default: space | default: 'space-top-2' %}
+{% assign formContainer = include.container | default: container | default: false %}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}
@@ -10,9 +11,9 @@
   {% assign formClasses = '' %}
 {% endif %}
 
-<div class="form {{ formClasses }} container">
-  <div class="form__row row">
-    <div class="col-md-11 col-lg-10">
+<div class="form {{ formClasses }} {% if formContainer %}container{% endif %}">
+  <div class="form__row {% if formContainer %}row{% endif %}">
+    <div class="{% if formContainer %}col-md-11 col-lg-10{% endif %}">
       {% if formForm.headline %}
         <div class="container {{ formSpace }} headline-row">
           <div class="row">

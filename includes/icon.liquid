@@ -5,6 +5,7 @@
 {% assign iconSize = include.size | default: size %}
 {% assign iconCircle = include.circle | default: circle %}
 {% assign iconHover = include.hover | default: hover %}
+{% assign iconPadding = include.padding | default: 6 %}
 
 {% capture rotation %}
   {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
@@ -16,11 +17,11 @@
 
 <span class="icon icon--{{ iconDirection }} {% if iconCircle %}icon--circle{% endif %} {% if iconHover %}icon--hover{% endif %}" style="--color-icon: {{ iconColor }}">
   {% if iconIcon == 'close' %}
-    <svg style="stroke: {{ iconColor }}; transform: rotate({{ rotation }});" width="{{ size }}" height="{{ size }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-      <g transform="translate(0.75 0.75)">
-        <path d="M0.5 0.5L26 0.5" transform="translate(0 7)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-        <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-      </g>
+    {% assign iconCloseSize = 48 %}
+    {% assign iconCloseOuterPos = iconCloseSize | minus: iconPadding %}
+    <svg style="stroke: {{ iconColor }}; transform: rotate({{ rotation }});" width="{{ size }}" height="{{ size }}" viewBox="0 0 {{ iconCloseSize }} {{ iconCloseSize }}" style="enable-background:new 0 0 {{ iconCloseSize }} {{ iconCloseSize }};" xml:space="preserve"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <line fill="none" stroke-linecap="round" stroke-linejoin="round" x1="{{ iconCloseOuterPos }}" y1="{{ iconPadding }}" x2="{{ iconPadding }}" y2="{{ iconCloseOuterPos }}"/>
+      <line fill="none" stroke-linecap="round" stroke-linejoin="round" x1="{{ iconCloseOuterPos }}" y1="{{ iconCloseOuterPos }}" x2="{{ iconPadding }}" y2="{{ iconPadding }}"/>
     </svg>
   {% else if iconIcon == 'arrow' %}
     <svg style="stroke: {{ iconColor }}; transform: rotate({{ rotation }});" width="{{ size }}" height="{{ size }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
