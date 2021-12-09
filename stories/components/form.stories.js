@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesformhtml as formTemplate } from '../../.storybook/generatedIncludes';
+import { includesformhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Form',
@@ -78,7 +78,7 @@ const baseArgs = {
   light: false,
 };
 
-const Template = (args) => createComponent(args, formTemplate);
+const Template = (args) => createComponent(args, component);
 
 export const Form = Template.bind({});
 

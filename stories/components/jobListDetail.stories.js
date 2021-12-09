@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesjoblistdetailhtml as jobListDetailTemplate } from '../../.storybook/generatedIncludes';
+import { includesjoblistdetailhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Job/Detail',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, jobListDetailTemplate);
+const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   clientName: 'glueckkanja',

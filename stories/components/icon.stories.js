@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesiconhtml as iconTemplate } from '../../.storybook/generatedIncludes';
+import { includesiconhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Icon',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, iconTemplate);
+const Template = (args) => createComponent(args, component);
 
 export const Arrow = Template.bind({});
 

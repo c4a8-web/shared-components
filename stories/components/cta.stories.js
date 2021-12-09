@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesctahtml as ctaTemplate } from '../../.storybook/generatedIncludes';
+import { includesctahtml as component } from '../../.storybook/generatedIncludes';
 
 import { analytics } from '../globalArgTypes';
 
@@ -50,7 +50,7 @@ export default {
   },
 };
 
-const Template = (args) => createComponent(args, ctaTemplate);
+const Template = (args) => createComponent(args, component);
 
 export const PrimaryButtonCutoff = Template.bind({});
 
