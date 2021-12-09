@@ -34,7 +34,7 @@ const fixInclude = function (includeText) {
 export const createComponent = function async(include, component) {
   const globals = {};
   const partialsPath = 'includes';
-  const includesPath = `../${partialsPath}/`;
+  const includesPath = `${partialsPath}/`;
 
   const engine = new Liquid({
     partials: [partialsPath],
