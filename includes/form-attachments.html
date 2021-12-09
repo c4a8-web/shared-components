@@ -1,6 +1,38 @@
 <!-- Shared Form Attachments Section -->
+{% assign formAttachmentsDescription = include.description | default: description %}
+{% assign formAttachmentsText = include.text | default: text %}
+{% assign formAttachmentsExtensions = include.extensions | default: extensions %}
+{% assign formAttachmentsMaxSize = include.maxSize | default: maxSize %}
 
-<div class="form-attachments">
- form attachments
+<div class="form-attachments" data-max-size="{{ formAttachmentsMaxSize }}">
+  <div class="form-attachments__button">
+    {%
+      include icon.html
+      icon='close'
+      rotation='45deg'
+      circle=true
+      hover=true
+      padding=10
+    %}
+  </div>
+  <div class="form-attachments__content">
+    <div class="form-attachments__description">
+      {{ formAttachmentsDescription }}
+    </div>
+    <div class="form-attachments__text">
+      {{ formAttachmentsText }}
+    </div>
+    <div class="form-attachments__extensions">
+      {% capture extensionList %}
+        {%- for ext in formAttachmentsExtensions -%}
+          ,&nbsp;{{ ext | capitalize }}
+        {%- endfor -%}
+      {% endcapture %}
+      {{ extensionList | remove_first: ',&nbsp;' }} max. {{ formAttachmentsMaxSize | divided_by: 1000000 }} MB
+    </div>
+  </div>
+  <div class="form-attachments__files">
+    <input type="file">
+  </div>
 </div>
 <!-- End Shared Form Attachments Section -->

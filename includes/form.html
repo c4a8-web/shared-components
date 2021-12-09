@@ -63,6 +63,8 @@
 
           {%- if field.type == 'checkbox' -%}
             {%- assign groupClass = 'mb-3' -%}
+          {%- elsif field.type == 'file' -%}
+            {%- assign groupClass = 'mb-8' -%}
           {%- else -%}
             {%- assign groupClass = '' -%}
           {%- endif -%}
@@ -82,6 +84,14 @@
                     {%
                       include form-checkboxes.html
                       field=field
+                    %}
+                  {% elsif field.type == 'file' %}
+                    {%
+                      include form-attachments.html
+                      description=field.formAttachments.description
+                      text=field.formAttachments.text
+                      extensions=field.formAttachments.extensions
+                      maxSize=field.formAttachments.maxSize
                     %}
                   {% elsif field.type == 'select' %}
                     {%- if field.options.first -%}

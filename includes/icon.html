@@ -5,7 +5,7 @@
 {% assign iconSize = include.size | default: size %}
 {% assign iconCircle = include.circle | default: circle %}
 {% assign iconHover = include.hover | default: hover %}
-{% assign iconPadding = include.padding | default: 6 %}
+{% assign iconPadding = include.padding | default: padding | default: 6 %}
 
 {% capture rotation %}
   {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
