@@ -27,6 +27,8 @@ const removeModal = function () {
 
   if (modal) {
     modal.remove();
+
+    document.body.classList.remove('modal-open');
   }
 };
 
