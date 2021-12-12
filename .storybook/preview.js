@@ -1,4 +1,5 @@
 import '../assets/scss/index.scss';
+import '../assets/scss/storybook.scss';
 import '../assets/js/index.js';
 
 // TODO move bootstrap scss to this location

@@ -2,6 +2,7 @@ import BaseComponent from './base-component.js';
 import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
 import Modal from '../modal.js';
+import Tools from '../tools.js';
 
 class JobListDetail extends BaseComponent {
   static rootSelector = '.job-list__detail';
@@ -12,6 +13,8 @@ class JobListDetail extends BaseComponent {
     this.containerSelector = '.job-list__detail-container';
     this.headlineSelector = '.job-list__detail-headline';
     this.ctaSelector = '.job-list__detail-cta .cta';
+    this.introSelector = '.job-list__detail-intro';
+    this.descriptionSelector = '.job-list__detail-description';
     this.backSelector = '.job-list__detail-back';
     this.hasBackClass = 'job-list__detail--has-back';
 
@@ -157,10 +160,14 @@ class JobListDetail extends BaseComponent {
 
     fullHtml.innerHTML = html;
 
-    const containerHtml = fullHtml.querySelector(this.containerSelector)?.innerHTML;
+    const newContainer = fullHtml.querySelector(this.containerSelector);
 
-    if (container && containerHtml) {
-      container.innerHTML = containerHtml;
+    if (container && newContainer) {
+      Tools.replace(container.querySelector(this.introSelector), newContainer.querySelector(this.introSelector));
+      Tools.replace(
+        container.querySelector(this.descriptionSelector),
+        newContainer.querySelector(this.descriptionSelector)
+      );
     }
   }
 }

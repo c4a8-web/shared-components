@@ -101,6 +101,11 @@ const baseArgs = {
       },
     ],
   },
+  personQuote: {
+    img: 'people/people-sophie-luna.png',
+    text: 'Viel geiler geht’s nicht, aber wir arbeiten daran. Neun firmenübergreifende Teams arbeiten an Themen wie ganzheitlichen Angebotenfür unsere Kunden und gemeinsamen Projektbörsen sowie Produktentwicklung. Endlich mit Profis!',
+    name: 'Jochen, dein neuer Kollege',
+  },
 };
 
 export const Detail = Template.bind({});

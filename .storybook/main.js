@@ -1,21 +1,15 @@
-const path = require("path");
+const path = require('path');
 
-const includePath = path.resolve(__dirname, "../");
+const includePath = path.resolve(__dirname, '../');
 
 module.exports = {
-  stories: [
-    "../stories/**/*.stories.mdx",
-    "../stories/**/*.stories.@(js|jsx|ts|tsx)",
-  ],
-  addons: [
-    "@storybook/addon-links",
-    "@storybook/addon-essentials",
-    "./themes/src/preset.js",
-  ],
+  stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', './themes/src/preset.js'],
+  staticDirs: ['../static'],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ["style-loader", "css-loader", "sass-loader"],
+      use: ['style-loader', 'css-loader', 'sass-loader'],
       include: includePath,
     });
 
@@ -23,7 +17,7 @@ module.exports = {
       test: /\.(html)$i/,
       use: [
         {
-          loader: "raw-loader",
+          loader: 'raw-loader',
           options: {
             esModule: false,
           },

@@ -42,6 +42,12 @@ class Tools {
     return null;
   }
 
+  static replace(element, newElement) {
+    if (element && newElement) {
+      element.innerHTML = newElement.innerHTML;
+    }
+  }
+
   static generateUrl(title, prefix, id) {
     let url;
 

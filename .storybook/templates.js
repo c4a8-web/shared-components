@@ -2,6 +2,15 @@ import { Liquid } from 'liquidjs';
 // to force hot reload on includes add them here
 import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
+import ImgSrcSets from './data/imgSrcSets';
+import Cloudinary from './config/cloudinary';
+
+const site = {
+  cloudinary: Cloudinary,
+  data: {
+    imgSrcSets: ImgSrcSets,
+  },
+};
 
 const fixComponent = function (text) {
   let fixedText = text;
@@ -31,12 +40,34 @@ const fixInclude = function (includeText) {
   return include;
 };
 
+const registerTags = function (engine) {
+  engine.registerTag('cloudinary', {
+    parse: function (tagToken) {
+      this.args = tagToken.args;
+    },
+    render: function (ctx, emitter) {
+      // TODO make a more complete version
+      const data = ctx?.scopes[0];
+
+      return `<img src="https://res.cloudinary.com/c4a8/image/upload/q_auto:best/${data.imgImg}" alt="${data.imgAlt}">`;
+
+      // return `<img alt="Kontakt mit Sophie" class="no-small img-responsive " crossorigin="anonymous" data-cms-original-srcset="https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_320/people/people-sophie-luna.png 320w,
+      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_640/people/people-sophie-luna.png 640w,
+      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_960/people/people-sophie-luna.png 960w,
+      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1280/people/people-sophie-luna.png 1280w,
+      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1600/people/people-sophie-luna.png 1600w" height="3744" sizes="(min-width: 50rem) 50rem, 90vw" src="https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_800/people/people-sophie-luna.png" srcset="https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_320/people/people-sophie-luna.png 320w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_640/people/people-sophie-luna.png 640w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_960/people/people-sophie-luna.png 960w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1280/people/people-sophie-luna.png 1280w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1600/people/people-sophie-luna.png 1600w" width="5616">`;
+    },
+  });
+
+  return engine;
+};
+
 export const createComponent = function async(include, component) {
-  const globals = {};
+  const globals = { site };
   const partialsPath = 'includes';
   const includesPath = `${partialsPath}/`;
 
-  const engine = new Liquid({
+  let engine = new Liquid({
     partials: [partialsPath],
     dynamicPartials: false,
     globals,
@@ -71,6 +102,8 @@ export const createComponent = function async(include, component) {
     },
   });
 
+  engine = registerTags(engine);
+
   // add map of jekyll filter
   engine.filters.impls.jsonify = engine.filters?.impls?.json;
 
@@ -92,4 +125,4 @@ const getTitle = ({ page, title }) => {
   };
 };
 
-export { hrefTo, getTitle };
+export { hrefTo, getTitle, site };
