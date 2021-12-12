@@ -38,5 +38,3 @@ ImgSrcSet.args = {
   cloudinary: true,
   imgSrcSets: site.data.imgSrcSets.cardSmall,
 };
-
-console.log('site.data.imgSrcSets.cardSmall', site.data.imgSrcSets.cardSmall);
