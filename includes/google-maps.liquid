@@ -1,0 +1,112 @@
+<!-- Shared Google Map Section -->
+{% assign googleMapsAddress = include.address | default: address %}
+{% assign googleMapsCoords = include.coords | default: coords %}
+{% assign googleMapsMarker = include.marker | default: marker %}
+{% assign googleMapsHeadline = include.headline | default: headline %}
+{% assign googleMapsDefaultLatitude = '50.10343087097074' %}
+{% assign googleMapsDefaultLongitude = '8.760059035466721' %}
+
+{% capture googleMapsText %}
+{{ googleMapsAddress.name }}<br />
+{{ googleMapsAddress.street }}<br />
+{{ googleMapsAddress.postalCode }} {{ googleMapsAddress.city }}
+{% endcapture %}
+
+<div class="google-maps position-relative">
+  <div class="container space-1 space-lg-3" style="display: none;">
+    <div class="row justify-content-md-end">
+      <div class="col-md-6 col-lg-5">
+        <div class="card bg-white position-relative z-index-999 p-5 p-sm-7">
+          <div class="mb-5">
+            <span class="d-block font-size-2 text-dark text-lh-sm">Hauptsitz</span>
+            <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">Offenbach</span>
+          </div>
+
+          <!-- Contacts -->
+          <div class="media mb-5">
+            <span class="navbar-promo-icon" style="width:30px;">{% streamlinelight "phone/phone" "title" "extra-class"
+              %}</span>
+
+            <div class="media-body">
+              <h5 class=" mb-1">Rufen Sie uns an</h5>
+              <span class="d-block text-body font-size-1">+49 69 4005520</span>
+            </div>
+          </div>
+          <!-- End Contacts -->
+
+          <!-- Contacts -->
+          <div class="media mb-5">
+            <span class="navbar-promo-icon" style="width:30px;">{% streamlinelight "email-actions/email-action-unread"
+              "title" "extra-class" %}</span>
+
+            <div class="media-body text-truncate">
+              <h5 class=" mb-1">Schreiben Sie uns</h5>
+              <span class="d-block text-body font-size-1">info@glueckkanja-gab.com</span>
+            </div>
+          </div>
+          <!-- End Contacts -->
+
+          <!-- Contacts -->
+          <div class="media mb-5">
+            <span class="navbar-promo-icon" style="width:30px;">{% streamlinelight "pins/pin" "title" "extra-class"
+              %}</span>
+
+            <div class="media-body">
+              <h5 class=" mb-1">Kommen Sie vorbei</h5>
+              <span class="d-block text-body font-size-1">Kaiserpalais<br /> Kaiserstraße 39, 63065 Offenbach am
+                Main</span>
+            </div>
+          </div>
+          <!-- End Contacts -->
+          <!-- Contacts -->
+          <div class="media">
+            <span class="navbar-promo-icon" style="width:30px;">{% streamlinelight "power/phone-charger" "title"
+              "extra-class" %}</span>
+            <div class="media-body text-truncate">
+              <h5 class="mb-1">Mit einem Elektrofahrzeug unterwegs</h5></a>
+              <span class="d-block text-body font-size-1">E-Tankstellen in unserer Tiefgarage</span>
+            </div>
+          </div>
+          <!-- End Contacts -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% if googleMapsHeadline %}
+  <div class="google-maps__headline">
+    {%
+      include headline.html
+      text=googleMapsHeadline.text
+      level=googleMapsHeadline.level
+      classes=googleMapsHeadline.classes
+    %}
+  </div>
+  {% endif %}
+
+  <!-- Gmap -->
+  <div class="position-md-absolute top-0 right-0 bottom-0 left-0">
+    <div class="google-maps__map min-h-300rem h-100 rounded-lg" data-hs-leaflet-options='{
+            "map": {
+              "scrollWheelZoom": false,
+              "coords": [{{ googleMapsCoords.latitude | default: googleMapsDefaultLatitude }},{{ googleMapsCoords.longitude | default: googleMapsDefaultLongitude }}]
+            },
+            "marker": [
+              {
+                "coords": [{{ googleMapsMarker.latitude | default: googleMapsDefaultLatitude }},{{ googleMapsMarker.longitude | default: googleMapsDefaultLongitude }}],
+                "icon": {
+                  "iconUrl": "https://front.trustedroot.net/dist/assets/svg/components/map-pin.svg",
+                  "iconSize": [50, 45]
+                },
+                "popup": {
+                  "text": "{{ googleMapsText | strip_newlines }}",
+                  "title": "Adresse"
+                }
+              }
+            ]
+          }'>
+    </div>
+  </div>
+  <!-- End Gmap -->
+</div>
+<!-- Shared End Map Section -->

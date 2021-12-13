@@ -13,13 +13,13 @@
 {%- assign jobListDetailDescription = include.description | default: description -%}
 {%- assign jobListDetailForm = include.form | default: form %}
 {%- assign jobListDetailPersonQuote = include.personQuote | default: personQuote %}
+{%- assign jobListDetailGoogleMaps = include.googleMaps | default: googleMaps %}
 
-<div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
-  data-id="{{ jobListDetailClientName }}"
-  {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}"{% endif %}
-  {% if jobListDetailApiUrl %}data-api-url="{{ jobListDetailApiUrl }}"{% endif %}
-  {% if jobListDetailBase %}data-base='{{ jobListDetailBase | jsonify }}'{% endif %}
->
+<div class="job-list__detail is-loading"
+  style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
+  data-id="{{ jobListDetailClientName }}" {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}" {% endif %}
+  {% if jobListDetailApiUrl %}data-api-url="{{ jobListDetailApiUrl }}" {% endif %} {% if jobListDetailBase
+  %}data-base='{{ jobListDetailBase | jsonify }}' {% endif %}>
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
       <div class="col-lg-5">
@@ -62,14 +62,23 @@
           {{ jobListDetailDescription }}
         </div>
         {% if jobListDetailPersonQuote %}
-          <div class="job-list__detail-quote">
-            {%
-              include person-quote.html
-              img=jobListDetailPersonQuote.img
-              text=jobListDetailPersonQuote.text
-              name=jobListDetailPersonQuote.name
-            %}
-          </div>
+        <div class="job-list__detail-quote">
+          {%
+            include person-quote.html
+            img=jobListDetailPersonQuote.img
+            text=jobListDetailPersonQuote.text
+            name=jobListDetailPersonQuote.name
+          %}
+        </div>
+        <div class="job-list__detail-maps">
+          {%
+            include google-maps.html
+            headline=jobListDetailGoogleMaps.headline
+            address=jobListDetailGoogleMaps.address
+            coords=jobListDetailGoogleMaps.coords
+            marker=jobListDetailGoogleMaps.marker
+          %}
+        </div>
         {% endif %}
       </div>
     </div>
