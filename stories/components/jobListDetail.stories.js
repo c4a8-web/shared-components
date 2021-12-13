@@ -103,8 +103,20 @@ const baseArgs = {
   },
   personQuote: {
     img: 'career/remote-working.png',
-    text: 'Viel geiler geht’s nicht, aber wir arbeiten daran. Neun firmenübergreifende Teams arbeiten an Themen wie ganzheitlichen Angebotenfür unsere Kunden und gemeinsamen Projektbörsen sowie Produktentwicklung. Endlich mit Profis!',
+    text: 'Viel geiler geht’s nicht, aber wir arbeiten daran. Neun firmenübergreifende Teams arbeiten an Themen wie ganzheitlichen Angeboten für unsere Kunden und gemeinsamen Projektbörsen sowie Produktentwicklung. Endlich mit Profis!',
     name: 'Jochen, dein neuer Kollege',
+  },
+  googleMaps: {
+    headline: {
+      text: 'Hier sind wir',
+      level: 'h3',
+    },
+    address: {
+      name: 'glueckkanja-gab AG',
+      street: 'Kaiserstraße 39',
+      postalCode: '63065',
+      city: 'Offenbach am Main',
+    },
   },
 };
 

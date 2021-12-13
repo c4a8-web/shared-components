@@ -1,3 +1,5 @@
+// TODO look at for implementation https://github.com/nhoizey/jekyll-cloudinary/blob/master/lib/jekyll/cloudinary.rb
+
 class CloudinaryTag {
   constructor({ engine, site, imageInfo }) {
     this.imageInfo = imageInfo;
@@ -25,7 +27,6 @@ class CloudinaryTag {
   render(context, emitter) {
     // TODO make a more complete version
     const data = context?.scopes[0];
-    console.log('CloudinaryTag ~ render ~ data', data);
     const cloudinary = this.site?.cloudinary;
     const preset = cloudinary?.presets[data?.imgPreset];
 

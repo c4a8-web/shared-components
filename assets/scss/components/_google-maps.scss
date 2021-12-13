@@ -1,0 +1,25 @@
+.google-maps {
+  .leaflet-popup-content-wrapper {
+    @include font-style($style: 'font-size-1') background-color: var(--color-google-maps-popup-background);
+    color: var(--color-copy-light);
+    border-radius: 0;
+  }
+
+  .leaflet-popup-tip,
+  .leaflet-popup-close-button {
+    display: none;
+  }
+
+  .leaflet-marker-icon {
+    filter: brightness(0) saturate(100%) invert(7%) sepia(10%) saturate(6482%) hue-rotate(196deg) brightness(95%)
+      contrast(113%);
+  }
+}
+
+.google-maps__map {
+  min-height: 24rem;
+}
+
+.google-maps__headline {
+  margin-bottom: spacing(6);
+}

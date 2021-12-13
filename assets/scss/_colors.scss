@@ -40,6 +40,7 @@
 
   --color-headlines: var(--color-blue-dark);
   --color-copy: var(--color-blue-dark);
+  --color-copy-light: var(--color-white);
   --color-copy-lowlight: var(--color-black-30);
 
   // rules that default to everything
@@ -60,6 +61,10 @@
   --color-form-success: var(--color-deep-sea);
   --color-form-border: var(--color-bon-jour);
   --color-form-border-hover: var(--color-black-30);
+
+  --color-job-list-border: var(--color-black-30);
+
+  --color-google-maps-popup-background: var(--color-blue-dark);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

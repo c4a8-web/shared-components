@@ -5,6 +5,7 @@ import { hrefTo } from './tools';
 import ImgSrcSets from './data/imgSrcSets';
 import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
+import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
 
 const site = {
   cloudinary: Cloudinary,
@@ -43,8 +44,9 @@ const fixInclude = function (includeText) {
 
 const registerTags = function (engine) {
   const cloudinaryTag = new CloudinaryTag({ engine, site });
+  const streamlinelightTag = new StreamlinelightTag({ engine: cloudinaryTag.engine, site });
 
-  return cloudinaryTag.engine;
+  return streamlinelightTag.engine;
 };
 
 export const createComponent = function async(include, component) {

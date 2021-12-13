@@ -226,6 +226,8 @@ For that go to the `.cloudcannon` folder and create a file `preinstall` with thi
 cd ./_includes
 rm -Rf shared-components
 
-git clone https://github.com/c4a8-web/shared-components.git
+git clone --branch 0.0.1 https://github.com/c4a8-web/shared-components.git
 
 ```
+
+The 0.0.1 stands for the latest tag that was released so the number might be different now.
