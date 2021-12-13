@@ -3,7 +3,11 @@ class Tools {
 
   static scrollIntoView(element) {
     if (element) {
-      const headerOffset = document.querySelector('header').offsetHeight + 40;
+      const header = document.querySelector('header');
+
+      if (header === null) return;
+
+      const headerOffset = header.offsetHeight + 40;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - headerOffset + window.scrollY;
 
@@ -68,6 +72,26 @@ class Tools {
     }
 
     return url;
+  }
+
+  static toBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+  }
+
+  static toSize(bytes) {
+    const units = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+
+    if (bytes == 0) return '0 Byte';
+
+    const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+
+    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + units[i];
   }
 }
 

@@ -3,6 +3,7 @@ import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
 import Modal from '../modal.js';
 import Tools from '../tools.js';
+import Form from './form.js';
 
 class JobListDetail extends BaseComponent {
   static rootSelector = '.job-list__detail';
@@ -19,8 +20,10 @@ class JobListDetail extends BaseComponent {
     this.hasBackClass = 'job-list__detail--has-back';
 
     this.modal = this.root.querySelector('.modal');
+    this.modalForm = this.modal?.querySelector('.form');
 
     this.loadingDelay = 300;
+    // this.loadingDelay = 0;
     this.base = this.root.dataset.base ? JSON.parse(this.root.dataset.base) : undefined;
     this.apiUrl = this.root.dataset.apiUrl;
 
@@ -99,6 +102,19 @@ class JobListDetail extends BaseComponent {
 
     this.back?.addEventListener('click', this.handleBack.bind(this));
     this.cta?.addEventListener('click', this.handleCta.bind(this));
+
+    const modalFormInstance = Form.getInstance(this.modalForm);
+
+    if (modalFormInstance) {
+      modalFormInstance.customSubmit = this.handleSubmit.bind(this);
+    }
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    // TODO recruiterbox submit
   }
 
   handleCta() {

@@ -1,21 +1,18 @@
+import BaseComponent from './base-component.js';
 import Tools from '../tools.js';
 import State from '../state.js';
 
-// TODO extend from basecomponent
-class Form {
+class Form extends BaseComponent {
   static rootSelector = '.form';
   static instances = [];
 
   constructor(root, options) {
+    super(root, options);
+
     this.root = root;
 
     this.formSelector = '.form__form';
     this.form = root.querySelector(this.formSelector);
-
-    if (this.form) {
-      // TODO remove this after you migrated all forms to the shared component
-      this.root = this.form;
-    }
 
     this.groups = {};
     this.minLengthOther = 1;
@@ -28,38 +25,51 @@ class Form {
     }
   }
 
+  hasCustomValidation() {
+    return this.root.classList.contains('form--custom-validation');
+  }
+
   bindEvents() {
-    if (Object.keys(this.groups).length) {
-      this.root.addEventListener('submit', this.handleSubmit.bind(this));
+    if (Object.keys(this.groups).length || this.hasCustomValidation()) {
+      this.form.addEventListener('submit', this.handleSubmit.bind(this));
     }
   }
 
   handleSubmit(e) {
-    this.validate(e);
+    if (this.validate(e)) {
+      this.submit(e);
+    }
   }
 
-  submit() {
-    this.root.submit();
+  submit(e) {
+    e.stopImmediatePropagation();
+    e.preventDefault();
+
+    if (this.customSubmit) {
+      this.customSubmit(e);
+    } else {
+      this.form.submit();
+    }
   }
 
   triggerExternalValidation() {
     let result = false;
 
     if (window.$) {
-      result = $(this.root).validate().form();
+      result = $(this.form).validate().form();
     }
 
     return result;
   }
 
   validate(e) {
-    let result = true;
+    let result = this.triggerExternalValidation();
 
-    if (!this.isValid(e)) {
+    if (!this.isValid(e) || result === false) {
       e.stopImmediatePropagation();
       e.preventDefault();
 
-      result = this.triggerExternalValidation();
+      result = false;
     }
 
     return result;
@@ -164,7 +174,7 @@ class Form {
   }
 
   addValidation() {
-    [].forEach.call(this.root.querySelectorAll('[data-form-group]'), (input) => {
+    [].forEach.call(this.form.querySelectorAll('[data-form-group]'), (input) => {
       if (input.dataset.formGroup) {
         this.addGroupValidation(input);
         this.addLiveValidation(input);
@@ -224,22 +234,6 @@ class Form {
 
       this.groups[group].push(element);
     }
-  }
-
-  static initElement(element, options) {
-    const instance = new this(element, options);
-
-    this.instances.push(instance);
-
-    return instance;
-  }
-
-  static init() {
-    this.instances = [];
-
-    [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
-      this.initElement(element);
-    });
   }
 }
 

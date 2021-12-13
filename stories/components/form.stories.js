@@ -80,15 +80,70 @@ const baseArgs = {
 
 const Template = (args) => createComponent(args, component);
 
-export const Form = Template.bind({});
+export const BaseValidation = Template.bind({});
 
-Form.args = {
+BaseValidation.args = {
   ...baseArgs,
 };
 
-// TODO add examples with checkboxes validation
-// export const Form = Template.bind({});
+export const WithCheckboxes = Template.bind({});
 
-// Form.args = {
-//   ...baseArgs,
-// };
+WithCheckboxes.args = {
+  ...baseArgs,
+  form: {
+    headline: 'Headline with Checkboxes',
+    subline: 'Subline lorem ipsum dolor sit',
+    cta: {
+      skin: 'primary',
+      width: 'w-50',
+    },
+    ctaText: 'Bewerbung absenden',
+    method: 'post',
+    action: '',
+    fields: [
+      {
+        label: 'Vorname',
+        type: 'text',
+        col: 6,
+        rowStart: true,
+        required: true,
+      },
+      {
+        label: 'Nachname',
+        type: 'text',
+        col: 6,
+        rowEnd: true,
+        required: true,
+      },
+      {
+        label: 'Lorem ipsum',
+        type: 'text',
+        required: true,
+      },
+      {
+        label: 'How are your client devices managed?',
+        id: 'managed_',
+        required: true,
+        requiredMsg: 'Please select at least one answer.',
+        checkboxes: [
+          {
+            id: 'not 1',
+            label: 'Not managed 1',
+          },
+          {
+            id: 'not 2',
+            label: 'Not managed 2',
+          },
+          {
+            id: 'not 3',
+            label: 'Not managed 3 ',
+          },
+          {
+            id: 'not 4',
+            label: 'Not managed 4',
+          },
+        ],
+      },
+    ],
+  },
+};

@@ -4,6 +4,18 @@
 {% assign formAttachmentsExtensions = include.extensions | default: extensions %}
 {% assign formAttachmentsMaxSize = include.maxSize | default: maxSize %}
 
+{% capture extensionList %}
+{%- for ext in formAttachmentsExtensions -%}
+  ,&nbsp;{{ ext | capitalize }}
+{%- endfor -%}
+{% endcapture %}
+
+{% capture acceptList %}
+{%- for ext in formAttachmentsExtensions -%}
+  ,.{{ ext }}
+{%- endfor -%}
+{% endcapture %}
+
 <div class="form-attachments" data-max-size="{{ formAttachmentsMaxSize }}">
   <div class="form-attachments__button">
     {%
@@ -23,16 +35,11 @@
       {{ formAttachmentsText }}
     </div>
     <div class="form-attachments__extensions">
-      {% capture extensionList %}
-        {%- for ext in formAttachmentsExtensions -%}
-          ,&nbsp;{{ ext | capitalize }}
-        {%- endfor -%}
-      {% endcapture %}
       {{ extensionList | remove_first: ',&nbsp;' }} max. {{ formAttachmentsMaxSize | divided_by: 1000000 }} MB
     </div>
   </div>
   <div class="form-attachments__files">
-    <input type="file">
+    <input type="file" class="form-attachments__file" accept="{{ acceptList | remove_first: ',' }}">
   </div>
 </div>
 <!-- End Shared Form Attachments Section -->

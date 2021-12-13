@@ -30,6 +30,8 @@ class RecruiterBox {
     return this.fetch(url);
   }
 
+  apply() {}
+
   fetch(url) {
     return new Promise((resolve, reject) => {
       if (this.options?.client_name) {
