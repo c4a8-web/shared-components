@@ -83,30 +83,25 @@
     %}
   </div>
   {% endif %}
-
-  <!-- Gmap -->
-  <div class="position-md-absolute top-0 right-0 bottom-0 left-0">
-    <div class="google-maps__map min-h-300rem h-100 rounded-lg" data-hs-leaflet-options='{
-            "map": {
-              "scrollWheelZoom": false,
-              "coords": [{{ googleMapsCoords.latitude | default: googleMapsDefaultLatitude }},{{ googleMapsCoords.longitude | default: googleMapsDefaultLongitude }}]
-            },
-            "marker": [
-              {
-                "coords": [{{ googleMapsMarker.latitude | default: googleMapsDefaultLatitude }},{{ googleMapsMarker.longitude | default: googleMapsDefaultLongitude }}],
-                "icon": {
-                  "iconUrl": "https://front.trustedroot.net/dist/assets/svg/components/map-pin.svg",
-                  "iconSize": [50, 45]
-                },
-                "popup": {
-                  "text": "{{ googleMapsText | strip_newlines }}",
-                  "title": "Adresse"
-                }
+  <div class="google-maps__map min-h-300rem h-100 rounded-lg" data-hs-leaflet-options='{
+          "map": {
+            "scrollWheelZoom": false,
+            "coords": [{{ googleMapsCoords.latitude | default: googleMapsDefaultLatitude }},{{ googleMapsCoords.longitude | default: googleMapsDefaultLongitude }}]
+          },
+          "marker": [
+            {
+              "coords": [{{ googleMapsMarker.latitude | default: googleMapsDefaultLatitude }},{{ googleMapsMarker.longitude | default: googleMapsDefaultLongitude }}],
+              "icon": {
+                "iconUrl": "https://front.trustedroot.net/dist/assets/svg/components/map-pin.svg",
+                "iconSize": [50, 45]
+              },
+              "popup": {
+                "text": "{{ googleMapsText | strip_newlines }}",
+                "title": "Adresse"
               }
-            ]
-          }'>
-    </div>
+            }
+          ]
+        }'>
   </div>
-  <!-- End Gmap -->
 </div>
 <!-- Shared End Map Section -->
