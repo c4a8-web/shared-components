@@ -4,6 +4,7 @@ import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
 import ImgSrcSets from './data/imgSrcSets';
 import Cloudinary from './config/cloudinary';
+import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 
 const site = {
   cloudinary: Cloudinary,
@@ -41,25 +42,9 @@ const fixInclude = function (includeText) {
 };
 
 const registerTags = function (engine) {
-  engine.registerTag('cloudinary', {
-    parse: function (tagToken) {
-      this.args = tagToken.args;
-    },
-    render: function (ctx, emitter) {
-      // TODO make a more complete version
-      const data = ctx?.scopes[0];
+  const cloudinaryTag = new CloudinaryTag({ engine, site });
 
-      return `<img src="https://res.cloudinary.com/c4a8/image/upload/q_auto:best/${data.imgImg}" alt="${data.imgAlt}">`;
-
-      // return `<img alt="Kontakt mit Sophie" class="no-small img-responsive " crossorigin="anonymous" data-cms-original-srcset="https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_320/people/people-sophie-luna.png 320w,
-      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_640/people/people-sophie-luna.png 640w,
-      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_960/people/people-sophie-luna.png 960w,
-      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1280/people/people-sophie-luna.png 1280w,
-      // https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1600/people/people-sophie-luna.png 1600w" height="3744" sizes="(min-width: 50rem) 50rem, 90vw" src="https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_800/people/people-sophie-luna.png" srcset="https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_320/people/people-sophie-luna.png 320w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_640/people/people-sophie-luna.png 640w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_960/people/people-sophie-luna.png 960w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1280/people/people-sophie-luna.png 1280w, https://res.cloudinary.com/c4a8/image/upload/c_limit,f_auto,q_auto,dpr_auto,w_1600/people/people-sophie-luna.png 1600w" width="5616">`;
-    },
-  });
-
-  return engine;
+  return cloudinaryTag.engine;
 };
 
 export const createComponent = function async(include, component) {

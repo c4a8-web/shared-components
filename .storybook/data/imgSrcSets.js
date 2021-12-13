@@ -1,5 +1,6 @@
 const ImgSrcSets = {
   square: {
+    ratioClasses: 'ratio-1x1',
     srcSets: [
       {
         params: 'c_fill,g_face,h_600,w_600,x_0,y_0/',

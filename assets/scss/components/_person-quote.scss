@@ -1,15 +1,25 @@
 .person-quote {
   margin-top: spacing(6);
   display: flex;
+  flex-wrap: wrap;
+
+  @include media-breakpoint-up(lg) {
+    flex-wrap: nowrap;
+  }
 }
 
 .person-quote__img {
   margin-right: spacing(6);
+  flex: 0 0 48%;
+
+  @include media-breakpoint-up(lg) {
+    flex: 0 0 23%;
+  }
 }
 
 .person-quote__content {
   position: relative;
-  margin-top: spacing(9);
+  margin-top: spacing(6);
 
   &::before {
     color: var(--color-person-quote-detail);
@@ -17,8 +27,20 @@
     display: block;
     position: absolute;
     font-size: 9rem;
-    top: spacing(2);
+    top: spacing($size: 1, $negative: true);
+    left: 50%;
     transform: translateY(-100%);
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: spacing(9);
+
+    &::before {
+      left: 0;
+      top: -10rem;
+      line-height: 9rem;
+      transform: none;
+    }
   }
 }
 

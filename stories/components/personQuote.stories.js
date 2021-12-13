@@ -10,7 +10,7 @@ export default {
 };
 
 const baseArgs = {
-  img: 'people/people-sophie-luna.png',
+  img: 'career/remote-working.png',
   text: 'Viel geiler geht’s nicht, aber wir arbeiten daran. Neun firmenübergreifende Teams arbeiten an Themen wie ganzheitlichen Angebotenfür unsere Kunden und gemeinsamen Projektbörsen sowie Produktentwicklung. Endlich mit Profis!',
   name: 'Jochen, dein neuer Kollege',
 };

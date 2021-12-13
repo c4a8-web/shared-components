@@ -36,5 +36,6 @@ ImgSrcSet.args = {
   ...baseArgs,
   img: 'career/remote-working.jpg',
   cloudinary: true,
+  preset: 'cardSmall',
   imgSrcSets: site.data.imgSrcSets.cardSmall,
 };
