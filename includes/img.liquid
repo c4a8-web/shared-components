@@ -1,0 +1,44 @@
+<!-- Shared Img Section -->
+{% assign imgPreset = include.preset | default: preset | default: "default" %}
+{% assign imgImg = include.img | default: img %}
+{% assign imgCloudinary = include.cloudinary | default: cloudinary %}
+{% assign imgImgSrcSets = include.imgSrcSets | default: imgSrcSets %}
+{% assign imgClass = include.class | default: class %}
+{% assign imgAlt = include.alt | default: alt %}
+
+{% if imgImg %}
+  {%- if imgCloudinary -%}
+    {%- if imgImgSrcSets -%}
+      <div class="img__picture-wrapper {{ imgImgSrcSets.ratioClasses }}">
+        <picture>
+          {% for srcSet in imgImgSrcSets.srcSets %}
+            {% capture imgUrl %}https://res.cloudinary.com/{{ site.cloudinary.cloud_name }}/image/upload/{{- srcSet.params -}}{{ imgImg }}{% endcapture %}
+            {% if srcSet.media %}
+              <source media="{{ srcSet.media }}" srcset="{{ imgUrl }}" />
+            {% else %}
+              {% capture cloudinaryImgUrl %}{{- srcSet.params -}}{{ imgImg }}{% endcapture %}
+              {% cloudinary {{ imgPreset }} {{ cloudinaryImgUrl }} alt="{{ imgAlt }}" class="img-responsive {{ imgClass }}" %}
+            {% endif %}
+          {% endfor %}
+        </picture>
+      </div>
+    {%- else -%}
+      {% if imgImg contains '.jpg' or imgImg contains '.webp' or imgImg contains '.png' or imgImg contains '.svg' %}
+        {% assign imgUrl = imgImg %}
+      {% else %}
+        {% capture imgUrl %}{{ imgImg }}.jpg{% endcapture %}
+      {% endif %}
+      {%- assign imgUrl = imgUrl | strip_newlines -%}
+      {% cloudinary {{ imgPreset }} {{ imgUrl }} alt="{{ imgAlt }}" class="no-small img-responsive {{ imgClass }}" %}
+    {%- endif -%}
+  {%- else -%}
+    {% if imgImg contains ".svg" %}
+      {% assign additionalClasses = 'is-svg' %}
+    {% else %}
+      {% assign additionalClasses = '' %}
+    {% endif %}
+
+    <img src="/assets/{{ imgImg }}" alt="{{ imgAlt }}" class="{{ imgClass }} {{ additionalClasses }}">
+  {%- endif -%}
+{% endif %}
+<!-- End Shared Img Section -->

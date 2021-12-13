@@ -4,7 +4,14 @@
 {% assign personQuoteName = include.name | default: name %}
 
 <div class="person-quote">
-  <div class="person-quote__img">{{ personQuoteImg }}</div>
+  <div class="person-quote__img">
+    {%
+      include img.html
+      img=personQuoteImg
+      cloudinary=true
+      imgSrcSets=site.data.imgSrcSets.square
+    %}
+  </div>
   <div class="person-quote__content">
     <div class="person-quote__text">{{ personQuoteText }}</div>
     <div class="person-quote__name">{{ personQuoteName }}</div>

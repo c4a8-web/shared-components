@@ -12,6 +12,7 @@
 {%- assign jobListDetailCtaButton = include.ctaButton | default: ctaButton -%}
 {%- assign jobListDetailDescription = include.description | default: description -%}
 {%- assign jobListDetailForm = include.form | default: form %}
+{%- assign jobListDetailPersonQuote = include.personQuote | default: personQuote %}
 
 <div class="job-list__detail is-loading" style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
   data-id="{{ jobListDetailClientName }}"
@@ -33,32 +34,45 @@
           %}
         </div>
 
-        {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
-        {%- capture headlineClasses -%}job-list__detail-headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
-        {%
-          include headline.html
-          text=jobListDetailTitle
-          level=headlineLevel
-          classes=headlineClasses
-        %}
-        <span class="job-list__detail-gender">{{ jobListDetailGender }}</span>
-        <div class="job-list__detail-share">
-          {% comment %}TODO share bar{% endcomment %}
-        </div>
-        <div class="job-list__detail-cta">
+        <div class="job-list__detail-intro">
+          {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
+          {%- capture headlineClasses -%}job-list__detail-headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
           {%
-            include cta.html
-            text=jobListDetailCtaText
-            button=jobListDetailCtaButton
+            include headline.html
+            text=jobListDetailTitle
+            level=headlineLevel
+            classes=headlineClasses
           %}
+          <span class="job-list__detail-gender">{{ jobListDetailGender }}</span>
+          <div class="job-list__detail-share">
+            {% comment %}TODO share bar{% endcomment %}
+          </div>
+          <div class="job-list__detail-cta">
+            {%
+              include cta.html
+              text=jobListDetailCtaText
+              button=jobListDetailCtaButton
+            %}
+          </div>
         </div>
       </div>
-      <div class="job-list__detail-description offset-lg-1 col-lg-6">
+      <div class="job-list__detail-content job-list__detail-animation-3 offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
-        {{ jobListDetailDescription }}
+        <div class="job-list__detail-description">
+          {{ jobListDetailDescription }}
+        </div>
+        {% if jobListDetailPersonQuote %}
+          <div class="job-list__detail-quote">
+            {%
+              include person-quote.html
+              img=jobListDetailPersonQuote.img
+              text=jobListDetailPersonQuote.text
+              name=jobListDetailPersonQuote.name
+            %}
+          </div>
+        {% endif %}
       </div>
     </div>
-    {% comment %}TODO replace only the dynamic part and keep a static part for person-quote and map{% endcomment %}
   </div>
 
   <div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)">
