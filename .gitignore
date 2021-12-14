@@ -5,5 +5,4 @@ _site/
 node_modules
 .storybook/generatedIncludes.js
 storybook-static
-
 .vscode/

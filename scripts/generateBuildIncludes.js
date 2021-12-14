@@ -22,7 +22,7 @@ function getAllMocks() {
     if (err) throw err;
 
     files.forEach((filePath) => {
-      let fileName = path.basename(filePath);
+      const fileName = path.basename(filePath);
 
       fs.copyFile(filePath, `${destinationMockPath}${fileName}`, (err) => {
         if (err) throw err;
@@ -37,7 +37,7 @@ function getAllIncludes() {
     if (err) throw err;
 
     files.forEach((filePath) => {
-      let fileName = path.basename(filePath);
+      const fileName = path.basename(filePath);
 
       // TODO fix this static build rewrite file extension and change .html to .liquid in static files
 
