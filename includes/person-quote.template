@@ -17,4 +17,4 @@
     <div class="person-quote__name">{{ personQuoteName }}</div>
   </div>
 </div>
-<!-- End Shared Person Quote  Section -->
+<!-- End Shared Person Quote Section -->

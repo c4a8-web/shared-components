@@ -1,0 +1,5 @@
+{% assign tabStartId = include.id | default: id %}
+{% assign tabStartOpen = include.open | default: open %}
+
+<!-- Shared Tab Content -->
+  <section class="tab-start tab-pane fade{% if tabStartOpen %} show active{% endif %}" id="{{ tabStartId }}" role="tabpanel" aria-labelledby="{{ tabStartId }}-tab">
