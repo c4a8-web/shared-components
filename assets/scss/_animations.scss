@@ -7,7 +7,7 @@ $transition-tween-t1: 0.2s ease-in-out;
 
   &::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     height: 100%;
     width: 0;
@@ -29,6 +29,16 @@ $transition-tween-t1: 0.2s ease-in-out;
 
   to {
     width: 85%;
+  }
+}
+
+@keyframes growFull {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
   }
 }
 

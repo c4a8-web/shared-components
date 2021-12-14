@@ -85,6 +85,10 @@ $font-style-map: (
     &.wide {
       line-height: 1.7em;
     }
+
+    &.thin {
+      line-height: 1.2em;
+    }
   }
 
   .h1-font-size {

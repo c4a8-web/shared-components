@@ -31,12 +31,20 @@
       {% endif %}
       <div class="hero-text-image__wrapper col-lg-8 space-top-2 space-top-lg-4">
         {% if heroTextImageHero.overline %}
-          <span class="hero-text-image__overline d-inline-block mb-2 pl-2 py-1">
+          <span class="hero-text-image__overline">
             {{ heroTextImageHero.overline }}
           </span>
         {% endif %}
         <h1 class="{{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
         <p class="lead mt-5">{{ heroTextImageHero.subline }}</p>
+        {% if heroTextImageHero.cta %}
+          <div class="hero-text-image__cta">
+            {%
+              include cta.html
+              text=heroTextImageHero.cta.text
+            %}
+          </div>
+        {% endif %}
         {% if heroTextImageHero.img %}
           <div class="pt-4">
             {% include img.html img=heroTextImageHero.img alt=heroTextImageHero.alt class="hero-text-image__img" cloudinary=heroTextImageHero.cloudinary %}

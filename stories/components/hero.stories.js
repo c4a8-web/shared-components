@@ -9,7 +9,35 @@ export default {
   ...options,
 };
 
-const baseArgs = {
+const baseArgs = {};
+
+const Template = (args) => createComponent(args, component);
+
+export const HeroCareer = Template.bind({});
+
+HeroCareer.args = {
+  hero: {
+    cta: {
+      text: 'Zu den Stellenanzeigen',
+    },
+    variant: 'hero--career',
+    light: true,
+    overline: 'Deine Karriere',
+    headline: 'Hey,',
+    headlineClass: '',
+    subline: 'Schön dich hier zu sehen! Lorem Ipsum dolor sit amet? Dann schau ...',
+    background: {
+      img: '../svg/shapes/shape-career.svg',
+      alt: 'Shape',
+      spacing: 'space-top-lg-5',
+    },
+    bgColor: 'var(--color-blue-dark)',
+  },
+};
+
+export const HeroTextImage = Template.bind({});
+
+HeroTextImage.args = {
   hero: {
     light: true,
     overline: 'Karriere bei einem der führenden Microsoft Gold Partner',
@@ -27,19 +55,4 @@ const baseArgs = {
     },
     bgColor: '#ffffff',
   },
-};
-
-const Template = (args) => createComponent(args, component);
-
-export const HeroCareer = Template.bind({});
-
-HeroCareer.args = {
-  ...baseArgs,
-  variant: 'hero--career',
-};
-
-export const HeroTextImage = Template.bind({});
-
-HeroTextImage.args = {
-  ...baseArgs,
 };
