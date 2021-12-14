@@ -197,6 +197,7 @@ $font-style-map: (
     font-size: $font-size-sm;
   }
 
+  .is-error,
   .font-size-1 {
     font-size: $font-size-1;
     line-height: 1.6;
@@ -231,5 +232,10 @@ $font-style-map: (
     @include media-breakpoint-up(xl) {
       font-size: $font-size-4;
     }
+  }
+
+  .is-error {
+    color: var(--color-form-error);
+    font-weight: bold;
   }
 }

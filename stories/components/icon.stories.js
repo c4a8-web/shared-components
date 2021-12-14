@@ -44,3 +44,10 @@ CloseCircleHover.args = {
   circle: true,
   hover: true,
 };
+
+export const Rocket = Template.bind({});
+
+Rocket.args = {
+  icon: 'rocket',
+  size: 'large',
+};

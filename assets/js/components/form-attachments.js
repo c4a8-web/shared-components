@@ -1,5 +1,6 @@
 import BaseComponent from './base-component.js';
 import Tools from '../tools.js';
+import State from '../state.js';
 
 class FormAttachments extends BaseComponent {
   static rootSelector = '.form-attachments';
@@ -22,6 +23,10 @@ class FormAttachments extends BaseComponent {
     this.button?.addEventListener('click', this.handleAddAttachment.bind(this));
     this.text?.addEventListener('click', this.handleAddAttachment.bind(this));
     this.file?.addEventListener('change', this.handleChange.bind(this));
+
+    const parent = Tools.getParent(this.root, 'form');
+
+    parent?.addEventListener('reset', this.resetText.bind(this));
   }
 
   handleAddAttachment() {
@@ -32,6 +37,10 @@ class FormAttachments extends BaseComponent {
     this.text.innerText = this.text.dataset.text;
   }
 
+  resetError() {
+    this.root.classList.remove(State.HAS_ERROR);
+  }
+
   switchText(files) {
     const file = files[0];
     const fileName = file?.name ?? null;
@@ -39,7 +48,8 @@ class FormAttachments extends BaseComponent {
     if (fileName) {
       this.text.dataset.text = this.text.innerText;
 
-      this.text.innerText = `${fileName} ( ${Tools.toSize(file.size)} )`;
+      this.text.innerHTML = `${fileName} <nobr>( ${Tools.toSize(file.size)} )</nobr>`;
+      this.resetError();
     } else {
       this.resetText();
     }

@@ -14,6 +14,7 @@
 {%- assign jobListDetailForm = include.form | default: form %}
 {%- assign jobListDetailPersonQuote = include.personQuote | default: personQuote %}
 {%- assign jobListDetailGoogleMaps = include.googleMaps | default: googleMaps %}
+{%- assign jobListDetailModalSuccess = include.modalSuccess | default: modalSuccess %}
 
 <div class="job-list__detail is-loading"
   style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
@@ -98,13 +99,55 @@
           </div>
         </div>
         <div class="modal__body">
-          {%
-            include form.html
-            form=jobListDetailForm
-            space=' '
-            container=true
-            customValidation=true
-          %}
+          <div class="modal__body-default">
+            {%
+              include form.html
+              form=jobListDetailForm
+              space=' '
+              container=true
+              customValidation=true
+              %}
+          </div>
+          <div class="modal__success container">
+            <div class="modal__success-row row">
+              <div class="modal__success-content col-lg-8">
+                <div class="modal__success-headline">
+                  {%
+                    include headline.html
+                    text=jobListDetailModalSuccess.headline.text
+                    level='h2'
+                    classes=jobListDetailModalSuccess.headline.classes
+                  %}
+                </div>
+                <div class="modal__success-icon">
+                  {%
+                    include icon.html
+                    icon='rocket'
+                  %}
+                </div>
+                <div class="modal__success-subline">
+                  {{ jobListDetailModalSuccess.subline }}
+                </div>
+                <div class="modal__success-subheadline">
+                  {%
+                    include headline.html
+                    text=jobListDetailModalSuccess.subheadline.text
+                    level='h4'
+                    classes=jobListDetailModalSuccess.subheadline.classes
+                  %}
+                </div>
+                <div class="modal__success-text">
+                  {{ jobListDetailModalSuccess.text }}
+                </div>
+                <div class="modal__success-close">
+                  {%
+                    include cta.html
+                    text=jobListDetailModalSuccess.cta.text
+                  %}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

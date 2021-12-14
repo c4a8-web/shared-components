@@ -10,8 +10,10 @@ class Modal {
     this.options = options;
 
     this.closeSelector = '.modal__close';
+    this.successCloseSelector = '.modal__success-close .cta';
 
     this.close = this.root.querySelector(this.closeSelector);
+    this.successClose = this.root.querySelector(this.successCloseSelector);
 
     this.root.classList.add(State.READY);
 
@@ -20,9 +22,12 @@ class Modal {
 
   bindEvents() {
     this.close?.addEventListener('click', this.handleClose.bind(this));
+    this.successClose?.addEventListener('click', this.handleClose.bind(this));
   }
 
-  handleClose() {
+  handleClose(e) {
+    e.preventDefault();
+
     Modal.close(this.root);
   }
 
@@ -45,7 +50,19 @@ class Modal {
   static close(element) {
     if (window.$) {
       $(element).modal('hide');
+
+      Modal.resetModal(element);
     }
+  }
+
+  static resetModal(element) {
+    setTimeout(function () {
+      const form = element.querySelector('form');
+
+      form?.reset();
+
+      element.classList.remove(State.SUCCESS);
+    }, 200);
   }
 
   static init(element) {

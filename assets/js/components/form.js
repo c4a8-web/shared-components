@@ -1,6 +1,7 @@
 import BaseComponent from './base-component.js';
 import Tools from '../tools.js';
 import State from '../state.js';
+import FormAttachments from './form-attachments.js';
 
 class Form extends BaseComponent {
   static rootSelector = '.form';
@@ -12,6 +13,7 @@ class Form extends BaseComponent {
     this.root = root;
 
     this.formSelector = '.form__form';
+    this.attachmentSelector = 'input[type="file"][required]';
     this.form = root.querySelector(this.formSelector);
 
     this.groups = {};
@@ -32,7 +34,14 @@ class Form extends BaseComponent {
   bindEvents() {
     if (Object.keys(this.groups).length || this.hasCustomValidation()) {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
+      this.form.addEventListener('reset', this.handleReset.bind(this));
     }
+  }
+
+  handleReset() {
+    [].forEach.call(this.form.querySelectorAll(`.${State.VALID}`), (element) => {
+      element.classList.remove(State.VALID);
+    });
   }
 
   handleSubmit(e) {
@@ -81,6 +90,10 @@ class Form extends BaseComponent {
     let result = true;
     let isFirstError = true;
 
+    if (this.hasAttachments()) {
+      result = this.validateAttachments();
+    }
+
     for (const [key, group] of Object.entries(this.groups)) {
       if (!this.isValidGroup(group)) {
         result = false;
@@ -92,6 +105,28 @@ class Form extends BaseComponent {
     }
 
     return result;
+  }
+
+  validateAttachments() {
+    let result = true;
+
+    [].forEach.call(this.form.querySelectorAll(this.attachmentSelector), (attachment) => {
+      if (attachment.files.length === 0) {
+        result = false;
+
+        const parent = Tools.getParent(attachment, FormAttachments.rootSelector);
+
+        if (parent === null) return;
+
+        parent.classList.add(State.HAS_ERROR);
+      }
+    });
+
+    return result;
+  }
+
+  hasAttachments() {
+    return this.form.querySelector(this.attachmentSelector);
   }
 
   addGroupError(group, isFirst) {

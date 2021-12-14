@@ -93,6 +93,10 @@ class Tools {
 
     return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + units[i];
   }
+
+  static camalCaseToSnakeCase(camalCase) {
+    return camalCase.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+  }
 }
 
 export default Tools;

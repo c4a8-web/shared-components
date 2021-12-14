@@ -93,6 +93,9 @@
                       text=field.formAttachments.text
                       extensions=field.formAttachments.extensions
                       maxSize=field.formAttachments.maxSize
+                      id=field.formAttachments.id
+                      required=field.formAttachments.required
+                      requiredMsg=field.formAttachments.requiredMsg
                     %}
                   {% elsif field.type == 'select' %}
                     {%- if field.options.first -%}

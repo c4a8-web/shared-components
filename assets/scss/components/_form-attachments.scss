@@ -8,6 +8,18 @@
   .is-light & {
     background-color: var(--color-form-background-light);
   }
+
+  &.has-error {
+    border-color: var(--color-form-error);
+
+    .form-attachments__text {
+      margin-bottom: spacing(3.5);
+    }
+
+    .form-attachments__error {
+      display: block;
+    }
+  }
 }
 
 .form-attachments__button {
@@ -23,6 +35,10 @@
     width: 100%;
     height: 100%;
     background-color: var(--color-primary);
+
+    svg {
+      --icon-rotation: 45deg;
+    }
   }
 }
 
@@ -40,8 +56,8 @@
 .form-attachments__text {
   @include font-style($style: 'font-size-sm');
 
-  text-decoration: underline;
   cursor: pointer;
+  text-decoration: underline;
   margin-bottom: spacing(10);
 
   &:hover {
@@ -53,6 +69,7 @@
   color: var(--color-copy-lowlight);
 }
 
+.form-attachments__error,
 .form-attachments__files {
   display: none;
 }

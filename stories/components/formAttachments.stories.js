@@ -14,12 +14,22 @@ const baseArgs = {
   text: 'Oder Datei auswählen',
   extensions: ['pdf', 'txt'],
   maxSize: 10000000,
+  id: 'file',
 };
 
 const Template = (args) => createComponent(args, component);
 
-export const FormAttachments = Template.bind({});
+export const NotRequired = Template.bind({});
 
-FormAttachments.args = {
+NotRequired.args = {
   ...baseArgs,
+};
+
+export const RequiredWithError = Template.bind({});
+
+RequiredWithError.args = {
+  ...baseArgs,
+  required: true,
+  requiredMsg: 'Bitte einen Anhang hinzufügen',
+  hasError: true,
 };

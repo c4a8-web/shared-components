@@ -35,7 +35,7 @@ const baseArgs = {
         col: 6,
         rowStart: true,
         required: true,
-        id: 'name',
+        id: 'firstName',
       },
       {
         label: 'Nachname',
@@ -43,7 +43,7 @@ const baseArgs = {
         col: 6,
         rowEnd: true,
         required: true,
-        id: 'surname',
+        id: 'lastName',
       },
       {
         label: 'E-Mail Adresse',
@@ -51,7 +51,7 @@ const baseArgs = {
         col: 6,
         rowStart: true,
         required: true,
-        id: 'mail',
+        id: 'email',
       },
       {
         label: 'Telefon',
@@ -66,19 +66,19 @@ const baseArgs = {
         type: 'text',
         col: 6,
         rowStart: true,
-        id: 'time',
+        id: 'cancellation',
       },
       {
         label: 'Gehaltsvorstellung (optional)',
         type: 'text',
         col: 6,
         rowEnd: true,
-        id: 'money',
+        id: 'salary',
       },
       {
         label: 'Nachricht (optional)',
         type: 'textarea',
-        id: 'msg',
+        id: 'message',
       },
       {
         type: 'file',
@@ -86,6 +86,9 @@ const baseArgs = {
         rowStart: true,
         rowEnd: true,
         formAttachments: {
+          required: true,
+          requiredMsg: 'Bitte einen Anhang hinzufügen',
+          id: 'file',
           description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
           text: 'Oder Datei auswählen',
           extensions: ['pdf', 'txt'],
@@ -117,6 +120,22 @@ const baseArgs = {
       postalCode: '63065',
       city: 'Offenbach am Main',
     },
+  },
+  modalSuccess: {
+    cta: {
+      skin: 'primary',
+      width: 'w-30',
+      text: 'Schließen',
+    },
+    headline: {
+      text: 'Vielen Dank',
+    },
+    subline:
+      'Inhaltlich: Deine Bewerbung ist bei uns eingegangen. Super, wir freuen uns.  Eine Bestätigunsmail solltest du in deinem Postfach von dir angegebne Adresse finden.',
+    subheadline: {
+      text: 'So geht es nun weiter',
+    },
+    text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
   },
 };
 

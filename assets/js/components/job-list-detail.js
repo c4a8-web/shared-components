@@ -114,7 +114,63 @@ class JobListDetail extends BaseComponent {
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    // TODO recruiterbox submit
+    const fileInput = this.modalForm.querySelector('input[type="file"]');
+    const fileData = fileInput?.files[0];
+    const fields = this.api.getFormData(this.modalForm);
+
+    if (fileData) {
+      Tools.toBase64(fileData).then((data) => {
+        const file = {
+          key: 'resume',
+          value: {
+            encoded_data: data,
+            file_name: fileData.name,
+          },
+        };
+
+        fields.push(file);
+
+        this.handleApply(fields);
+      });
+    } else {
+      this.handleApplyError({
+        errors: 'no files',
+      });
+    }
+  }
+
+  handleApply(fields) {
+    this.api
+      .apply({ fields })
+      .then((response) => response.json())
+      .then((response) => {
+        if (response.errors && this.handleApplyError(response.errors)) return null;
+
+        this.handleApplySuccess(fields);
+      })
+      .catch((error) => {
+        this.handleApplyError(error);
+      });
+  }
+
+  handleApplySuccess(response) {
+    this.modal.classList.add(State.SUCCESS);
+
+    const modalSuccessHeadline = this.modal.querySelector('.modal__success-headline > *');
+
+    if (modalSuccessHeadline) {
+      if (!modalSuccessHeadline.dataset.text) {
+        modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
+      }
+
+      const firstName = response[0];
+
+      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+    }
+  }
+
+  handleApplyError(errors) {
+    // TODO define error case
   }
 
   handleCta() {
