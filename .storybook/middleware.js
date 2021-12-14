@@ -2,6 +2,8 @@ var fs = require('fs');
 
 const includesPath = '.';
 const servicesPath = '.';
+const fixedExtension = '.template';
+const extensionRegex = new RegExp(`${fixedExtension}`);
 
 // If you add a new middleware, you need to make sure it works with the static build of storybook
 
@@ -23,12 +25,14 @@ module.exports = function expressMiddleware(app) {
       }
     } else if (
       (/\.html/.test(req.url) && /^\/includes\//.test(req.url)) ||
-      (/\.liquid/.test(req.url) && /^\/includes\//.test(req.url))
+      (extensionRegex.test(req.url) && /^\/includes\//.test(req.url))
     ) {
       res.setHeader('Content-Type', 'text/plain');
 
+      console.log('Get Template: ' + req.url);
+
       try {
-        const result = fs.readFileSync(`${includesPath}${req.url.replace('.liquid', '.html')}`, 'utf8');
+        const result = fs.readFileSync(`${includesPath}${req.url.replace(fixedExtension, '.html')}`, 'utf8');
 
         res.send(result);
       } catch (error) {

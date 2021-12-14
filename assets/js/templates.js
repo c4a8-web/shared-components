@@ -13,7 +13,7 @@ const LoadLiquid = import('./lib/liquid.browser.min.js').then((module) => {
 class Templates {
   constructor() {
     this.cache = {};
-    this.extensionName = 'liquid';
+    this.extensionName = 'template';
   }
 
   async loadTemplateEngine() {
@@ -23,6 +23,7 @@ class Templates {
       const globals = {};
       const scope = this;
 
+      this.fileCache = {};
       this.partialsPath = window.partialsPath || 'includes/';
 
       const liquidOptions = {
@@ -32,16 +33,27 @@ class Templates {
         globals,
         fs: {
           readFileSync(file) {
-            const request = new XMLHttpRequest();
-            if (
-              (request.open('GET', `${scope.partialsPath}${file}`, !1),
-              request.send(),
-              request.status < 200 || 300 <= request.status)
-            ) {
-              throw new Error(request.statusText);
-            }
+            const name = file.split('.')[0];
 
-            return scope.fixComponent(request.responseText);
+            if (scope.fileCache[name]) {
+              return scope.fileCache[name];
+            } else {
+              const request = new XMLHttpRequest();
+
+              if (
+                (request.open('GET', `${scope.partialsPath}${file}`, !1),
+                request.send(),
+                request.status < 200 || 300 <= request.status)
+              ) {
+                throw new Error(request.statusText);
+              }
+
+              const fixedComponent = scope.fixComponent(request.responseText);
+
+              scope.fileCache[name] = fixedComponent;
+
+              return fixedComponent;
+            }
           },
           existsSync() {
             return true;
@@ -121,7 +133,6 @@ class Templates {
 
     const includesRegex = new RegExp(/{%(\s)*include([\S\s]*?)%}/, 'g');
     const matchAllIncludes = fixedText.match(includesRegex);
-    // console.log('Templates ~ fixComponent ~ matchAllIncludes', matchAllIncludes);
 
     if (matchAllIncludes) {
       for (let i = 0; i < matchAllIncludes.length; i++) {
@@ -136,7 +147,6 @@ class Templates {
 
   fixInclude(includeText) {
     let include = includeText.replace(/\n/g, ',').replace(/=/g, ':');
-    // console.log('Templates ~ fixInclude ~ includeText', includeText);
 
     const lastIndex = include.lastIndexOf(',');
 

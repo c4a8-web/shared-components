@@ -10,6 +10,7 @@ const destinationDir = './storybook-static/';
 const destinationPath = `${destinationDir}${includesDir}/`;
 const destinationMockPath = `${destinationDir}${mockDir}/`;
 const extensionName = '.html';
+const fixedExtension = '.template';
 
 function createDir(dir) {
   if (!fs.existsSync(dir)) {
@@ -39,14 +40,12 @@ function getAllIncludes() {
     files.forEach((filePath) => {
       const fileName = path.basename(filePath);
 
-      // TODO fix this static build rewrite file extension and change .html to .liquid in static files
-
       fs.copyFile(filePath, `${destinationPath}${fileName}`, (err) => {
         if (err) throw err;
         console.log(`${fileName} was copied to ${destinationPath}`);
       });
 
-      const liquidFileName = fileName.replace(extensionName, '.liquid');
+      const liquidFileName = fileName.replace(extensionName, fixedExtension);
 
       fs.copyFile(filePath, `${destinationPath}${liquidFileName}`, (err) => {
         if (err) throw err;
