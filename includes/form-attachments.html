@@ -3,13 +3,28 @@
 {% assign formAttachmentsText = include.text | default: text %}
 {% assign formAttachmentsExtensions = include.extensions | default: extensions %}
 {% assign formAttachmentsMaxSize = include.maxSize | default: maxSize %}
+{% assign formAttachmentsId = include.id | default: id %}
+{% assign formAttachmentsRequired = include.required | default: required %}
+{% assign formAttachmentsRequiredMsg = include.requiredMsg | default: requiredMsg %}
+{% assign formAttachmentsHasError = include.hasError | default: hasError %}
 
-<div class="form-attachments" data-max-size="{{ formAttachmentsMaxSize }}">
+{% capture extensionList %}
+{%- for ext in formAttachmentsExtensions -%}
+  ,&nbsp;{{ ext | capitalize }}
+{%- endfor -%}
+{% endcapture %}
+
+{% capture acceptList %}
+{%- for ext in formAttachmentsExtensions -%}
+  ,.{{ ext }}
+{%- endfor -%}
+{% endcapture %}
+
+<div class="form-attachments {% if formAttachmentsHasError %}has-error{% endif %}" data-max-size="{{ formAttachmentsMaxSize }}">
   <div class="form-attachments__button">
     {%
       include icon.html
       icon='close'
-      rotation='45deg'
       circle=true
       hover=true
       padding=10
@@ -22,17 +37,21 @@
     <div class="form-attachments__text">
       {{ formAttachmentsText }}
     </div>
+    {% if formAttachmentsRequiredMsg %}
+      <div class="form-attachments__error is-error">
+        {{ formAttachmentsRequiredMsg }}
+      </div>
+    {% endif %}
     <div class="form-attachments__extensions">
-      {% capture extensionList %}
-        {%- for ext in formAttachmentsExtensions -%}
-          ,&nbsp;{{ ext | capitalize }}
-        {%- endfor -%}
-      {% endcapture %}
       {{ extensionList | remove_first: ',&nbsp;' }} max. {{ formAttachmentsMaxSize | divided_by: 1000000 }} MB
     </div>
   </div>
   <div class="form-attachments__files">
-    <input type="file">
+    <input type="file" class="form-attachments__file"
+      {% if formAttachmentsRequired %}required{% endif %}
+      id="{{ formAttachmentsId }}"
+      name="{{ formAttachmentsId }}"
+      accept="{{ acceptList | remove_first: ',' }}">
   </div>
 </div>
 <!-- End Shared Form Attachments Section -->

@@ -4,6 +4,7 @@
 {% assign formAnalytics = include.analytics | default: analytics %}
 {% assign formSpace = include.space | default: space | default: 'space-top-2' %}
 {% assign formContainer = include.container | default: container | default: false %}
+{% assign formCustomValidation = include.customValidation | default: customValidation | default: false %}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}
@@ -11,7 +12,7 @@
   {% assign formClasses = '' %}
 {% endif %}
 
-<div class="form {{ formClasses }} {% if formContainer %}container{% endif %}">
+<div class="form {{ formClasses }} {% if formContainer %}container{% endif %} {% if formCustomValidation %}form--custom-validation{% endif %}">
   <div class="form__row {% if formContainer %}row{% endif %}">
     <div class="{% if formContainer %}col-md-11 col-lg-10{% endif %}">
       {% if formForm.headline %}
@@ -92,6 +93,9 @@
                       text=field.formAttachments.text
                       extensions=field.formAttachments.extensions
                       maxSize=field.formAttachments.maxSize
+                      id=field.formAttachments.id
+                      required=field.formAttachments.required
+                      requiredMsg=field.formAttachments.requiredMsg
                     %}
                   {% elsif field.type == 'select' %}
                     {%- if field.options.first -%}
