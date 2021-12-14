@@ -1,0 +1,66 @@
+<!-- Shared Hero Text Image Section -->
+{%- assign heroTextImageHero = page.hero | default: include.hero | default: hero -%}
+{%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
+
+{% if heroTextImageHero.background %}
+  {% capture heroClasses %}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{% endcapture %}
+{% else %}
+  {% assign heroClasses = "" %}
+{% endif %}
+
+<div class="hero-text-image {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
+    {% if heroTextImageHero.light %}text-white{% endif %}"
+    style="{% if heroTextImageHero.bgColor %}background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
+>
+  {% if heroTextImageHero.fullscreen %}
+  <div class="hero-text-image__fullscreen position-absolute">
+    {%
+      include img.html
+      img=heroTextImageHero.fullscreen.img
+      alt=heroTextImageHero.fullscreen.alt
+      cloudinary=heroTextImageHero.fullscreen.cloudinary
+    %}
+  </div>
+  {% endif %}
+  <div class="container z-index-4 position-relative space-bottom-2">
+    <div class="row justify-content-lg-between align-items-lg-center pt-lg-5 position-relative">
+      {% if heroTextImageHero.background %}
+        <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" style="height: 700px;">
+          <!--{% include img.html img=heroTextImageHero.background.img alt=heroTextImageHero.background.alt class=heroClasses %}-->
+        </div>
+      {% endif %}
+      <div class="hero-text-image__wrapper col-lg-8 space-top-2 space-top-lg-4">
+        {% if heroTextImageHero.overline %}
+          <span class="hero-text-image__overline">
+            {{ heroTextImageHero.overline }}
+          </span>
+        {% endif %}
+        <h1 class="{{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
+        <p class="lead mt-5">{{ heroTextImageHero.subline }}</p>
+        {% if heroTextImageHero.cta %}
+          <div class="hero-text-image__cta">
+            {%
+              include cta.html
+              text=heroTextImageHero.cta.text
+            %}
+          </div>
+        {% endif %}
+        {% if heroTextImageHero.img %}
+          <div class="pt-4">
+            {% include img.html img=heroTextImageHero.img alt=heroTextImageHero.alt class="hero-text-image__img" cloudinary=heroTextImageHero.cloudinary %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {%- if heroTextImageHero.background -%}
+    <div class="hero-text-image__background container position-absolute z-index-2 space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
+      <div class="row">
+        <div class="col-sm-12 d-flex justify-content-end">
+          {% include img.html img=heroTextImageHero.background.img alt=heroTextImageHero.background.alt class=heroClasses %}
+        </div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+<!-- Shared End Hero Text Image Section -->
