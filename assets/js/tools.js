@@ -1,5 +1,9 @@
 class Tools {
   static urlSeperator = '#';
+  static priceFormatter = new Intl.NumberFormat('de-DE', {
+    style: 'decimal',
+    maximumFractionDigits: 0,
+  });
 
   static scrollIntoView(element) {
     if (element) {
@@ -96,6 +100,23 @@ class Tools {
 
   static camalCaseToSnakeCase(camalCase) {
     return camalCase.replace(/[A-Z]/g, (letter) => `_${letter.toLowerCase()}`);
+  }
+
+  static animateValue(element, start, end, duration, formatter = Tools.priceFormatter) {
+    var startTimestamp = null;
+
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      var progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      var currentResult = progress * (end - start) + start;
+      var formattedResult = formatter.format(currentResult);
+      element.innerHTML = formattedResult;
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
   }
 }
 
