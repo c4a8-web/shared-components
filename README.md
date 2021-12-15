@@ -81,7 +81,7 @@ module SharedComponents
       asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map}'
       temp_path = "_temp/"
       base_partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
-      partials_path = temp_path + site.config['shared_components_path'] + '/includes/**/*.{liquid}'
+      partials_path = temp_path + site.config['shared_components_path'] + '/includes/**/*.{template}'
       puts "Generate Shared Components as Static Files in " + asset_path
 
       i=0
@@ -105,7 +105,7 @@ module SharedComponents
         if curr_file != nil then
           filePath = curr_file[0]
           full_path = temp_path + File.dirname(filePath)
-          destination_path = full_path + "/" + File.basename(filePath).sub('.html', '.liquid')
+          destination_path = full_path + "/" + File.basename(filePath).sub('.html', '.template')
 
           unless File.directory?(full_path)
             FileUtils.mkdir_p(full_path)
