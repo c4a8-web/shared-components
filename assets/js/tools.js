@@ -103,13 +103,13 @@ class Tools {
   }
 
   static animateValue(element, start, end, duration, formatter = Tools.priceFormatter) {
-    var startTimestamp = null;
+    const startTimestamp = null;
 
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
-      var progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      var currentResult = progress * (end - start) + start;
-      var formattedResult = formatter.format(currentResult);
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const currentResult = progress * (end - start) + start;
+      const formattedResult = formatter.format(currentResult);
       element.innerHTML = formattedResult;
 
       if (progress < 1) {
