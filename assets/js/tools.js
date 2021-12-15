@@ -103,7 +103,7 @@ class Tools {
   }
 
   static animateValue(element, start, end, duration, formatter = Tools.priceFormatter) {
-    const startTimestamp = null;
+    let startTimestamp = null;
 
     const step = (timestamp) => {
       if (!startTimestamp) startTimestamp = timestamp;
