@@ -49,5 +49,12 @@ export const Rocket = Template.bind({});
 
 Rocket.args = {
   icon: 'rocket',
+  size: 'xl',
+};
+
+export const Smile = Template.bind({});
+
+Smile.args = {
+  icon: 'smile',
   size: 'large',
 };

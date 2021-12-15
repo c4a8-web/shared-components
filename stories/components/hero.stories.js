@@ -27,8 +27,7 @@ HeroCareer.args = {
     headlineClass: '',
     subline: 'Schön dich hier zu sehen! Lorem Ipsum dolor sit amet? Dann schau ...',
     background: {
-      img: '../svg/shapes/shape-career.svg',
-      alt: 'Shape',
+      icon: 'smile',
       spacing: 'space-top-lg-5',
     },
     bgColor: 'var(--color-blue-dark)',

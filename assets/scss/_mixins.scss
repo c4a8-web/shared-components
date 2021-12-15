@@ -258,3 +258,19 @@
 
   @return calc(((100vw - #{$container-width}) / 2) + (#{$container-width} * #{$percentage}));
 }
+
+@function to-string($list, $separator: '', $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $separator, true)};
+    } @else {
+      $result: if($i != length($list) or $is-nested, $result#{$e}#{$separator}, $result#{$e});
+    }
+  }
+
+  @return $result;
+}

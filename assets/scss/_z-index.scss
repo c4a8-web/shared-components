@@ -1,0 +1,36 @@
+$z-indexed-elements: ('.hero-text-image__cta');
+
+$static-z-indexed-elements: (
+  '.something-fancy': 1000,
+);
+
+$z-index-map: $static-z-indexed-elements;
+$z-index-counter: 10;
+
+@each $element in $z-indexed-elements {
+  $z-index-map: map-merge(
+    $z-index-map,
+    (
+      $element: $z-index-counter,
+    )
+  );
+  $z-index-counter: $z-index-counter + 10;
+}
+
+@mixin z-index($selector: &, $important: false) {
+  $component: to-string($selector);
+  $value: map-get($z-index-map, $component);
+
+  @if $value {
+    z-index: $value #{if($important, '!important', '')};
+  } @else {
+    background: #f00 !important;
+    color: #000 !important;
+    z-index: 1000 !important;
+    display: block !important;
+
+    &::before {
+      content: 'Missing item: `#{$component}` in $z-indexed-elements' !important;
+    }
+  }
+}

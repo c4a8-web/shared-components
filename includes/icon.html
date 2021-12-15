@@ -2,7 +2,7 @@
 {% assign iconIcon = include.icon | default: icon | default: 'close' %}
 {% assign iconColor = include.color | default: color | default: 'currentColor' %}
 {% assign iconDirection = include.direction | default: direction | default: 'right' %}
-{% assign iconSize = include.size | default: size %}
+{% assign iconSize = include.size | default: size | default: 'large' %}
 {% assign iconCircle = include.circle | default: circle %}
 {% assign iconHover = include.hover | default: hover %}
 {% assign iconPadding = include.padding | default: padding | default: 6 %}
@@ -11,20 +11,20 @@
   {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
 {% endcapture %}
 
-{% capture size %}
-  {% if iconSize == 'small' %}18px{% elsif iconSize == 'large' %}48px{% else %}28px{% endif %}
+{% capture iconInnerSize %}
+  {% if iconSize == 'small' %}18px{% elsif iconSize == 'large' %}48px{% elsif iconSize == 'xl' %}120px{% elsif iconSize == 'xxl' %}200px{% else %}28px{% endif %}
 {% endcapture %}
 
 <span class="icon icon--{{ iconDirection }} {% if iconCircle %}icon--circle{% endif %} {% if iconHover %}icon--hover{% endif %}" style="--color-icon: {{ iconColor }}; --icon-rotation: {{ rotation }}">
   {% if iconIcon == 'close' %}
     {% assign iconCloseSize = 48 %}
     {% assign iconCloseOuterPos = iconCloseSize | minus: iconPadding %}
-    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" width="{{ size }}" height="{{ size }}" viewBox="0 0 {{ iconCloseSize }} {{ iconCloseSize }}" style="enable-background:new 0 0 {{ iconCloseSize }} {{ iconCloseSize }};" xml:space="preserve"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" width="{{ iconInnerSize }}" height="{{ iconInnerSize }}" viewBox="0 0 {{ iconCloseSize }} {{ iconCloseSize }}" style="enable-background:new 0 0 {{ iconCloseSize }} {{ iconCloseSize }};" xml:space="preserve"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
       <line fill="none" stroke-linecap="round" stroke-linejoin="round" x1="{{ iconCloseOuterPos }}" y1="{{ iconPadding }}" x2="{{ iconPadding }}" y2="{{ iconCloseOuterPos }}"/>
       <line fill="none" stroke-linecap="round" stroke-linejoin="round" x1="{{ iconCloseOuterPos }}" y1="{{ iconCloseOuterPos }}" x2="{{ iconPadding }}" y2="{{ iconPadding }}"/>
     </svg>
   {% elsif iconIcon == 'rocket' %}
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ size }}" height="{{ size }}"
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ iconInnerSize }}" height="{{ iconInnerSize }}"
       viewBox="0 0 210.22 222.22">
       <defs>
         <style>
@@ -131,8 +131,23 @@
         <path class="rocket-cls-10" d="M62.3,99a50.37,50.37,0,0,1,19-9.39" />
       </g>
     </svg>
-  {% else if iconIcon == 'arrow' %}
-    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" width="{{ size }}" height="{{ size }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  {% elsif iconIcon == 'smile' %}
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="{{ iconInnerSize }}" height="{{ iconInnerSize }}"
+      viewBox="0 0 341.78 342.67">
+      <defs>
+        <clipPath id="clip-path">
+          <rect x="-979.96" y="-267.47" width="1440" height="13150" fill="none" />
+        </clipPath>
+      </defs>
+      <g style="clip-path: url(#clip-path);">
+        <path style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M92.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59" />
+        <path style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M250,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59" />
+        <path style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M85,221.75a93.26,93.26,0,0,0,172.17,0" />
+        <circle style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" cx="171.04" cy="171.53" r="165" />
+      </g>
+    </svg>
+  {% elsif iconIcon == 'arrow' %}
+    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" width="{{ iconInnerSize }}" height="{{ iconInnerSize }}" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
       <g transform="translate(0.75 0.75)">
         <path d="M0.5 0.5L26 0.5" transform="translate(0 7)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
         <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
