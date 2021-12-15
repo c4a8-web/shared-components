@@ -1,0 +1,46 @@
+<!-- Shared People Square Section -->
+{%- assign peopleSquareGrid = include.grid | default: grid -%}
+{%- assign peopleSquareWidth = include.width | default: width | default: 3 -%}
+{%- assign peopleSquareHeight = include.height | default: height | default: 3 -%}
+{%- assign peopleSquareAbsolute = include.absolute | default: absolute -%}
+{%- assign peopleSquareSize = 100 | divided_by: peopleSquareWidth -%}
+
+<div class="people-square {% if peopleSquareAbsolute %}people-square--absolute{% endif %}">
+  <div class="people-square__grid" style="grid-template-columns: repeat({{ peopleSquareWidth }}, 1fr); grid-template-rows: repeat({{ peopleSquareHeight }}, 1fr);--people-square-size: {{ peopleSquareSize }};">
+    {% for element in peopleSquareGrid %}
+      <div class="people-square__element"
+            style="{% if element.start and element.end %}grid-row-start: {{ element.start }};grid-row-end: {{ element.end | plus: 1 }};{% endif %}">
+        {% if element.img %}
+          {%
+            include img.html
+            img=element.img.src
+            cloudinary=element.img.cloudinary
+          %}
+        {% else %}
+          <div class="people-square__background" {% if element.color %}style="background-color: {{ element.color }}"{% endif %}>
+            {% if element.shape %}
+              {%
+                include img.html
+                img=element.shape.src
+                cloudinary=element.shape.cloudinary
+              %}
+            {% endif %}
+          </div>
+          <div class="people-square__content">
+            {% if element.number %}
+              <div class="people-square__number" data-animate-number='{"start": 0, "end": {{ element.number }}}'>
+                {{ element.number }}
+              </div>
+            {% endif %}
+            {% if element.number %}
+              <div class="people-square__text">
+                {{ element.text }}
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
+<!-- End Shared People Square Section -->
