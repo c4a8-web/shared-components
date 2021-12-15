@@ -37,30 +37,58 @@
         {% endif %}
         <h1 class="{{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
         <p class="lead mt-5">{{ heroTextImageHero.subline }}</p>
-        {% if heroTextImageHero.cta %}
-          <div class="hero-text-image__cta">
-            {%
-              include cta.html
-              text=heroTextImageHero.cta.text
-            %}
-          </div>
-        {% endif %}
         {% if heroTextImageHero.img %}
           <div class="pt-4">
-            {% include img.html img=heroTextImageHero.img alt=heroTextImageHero.alt class="hero-text-image__img" cloudinary=heroTextImageHero.cloudinary %}
+            {%
+              include img.html
+              img=heroTextImageHero.img
+              alt=heroTextImageHero.alt
+              class="hero-text-image__img"
+              cloudinary=heroTextImageHero.cloudinary
+            %}
           </div>
         {% endif %}
       </div>
     </div>
   </div>
-  {%- if heroTextImageHero.background -%}
+  {%- if heroTextImageHero.background and heroTextImageHero.background.img -%}
     <div class="hero-text-image__background container position-absolute z-index-2 space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
       <div class="row">
-        <div class="col-sm-12 d-flex justify-content-end">
-          {% include img.html img=heroTextImageHero.background.img alt=heroTextImageHero.background.alt class=heroClasses %}
+        <div class="hero-text-image__background-wrapper col-sm-12">
+          {%
+            include img.html
+            img=heroTextImageHero.background.img
+            alt=heroTextImageHero.background.alt
+            class=heroClasses
+          %}
+        </div>
+      </div>
+    </div>
+  {% elsif heroTextImageHero.background.icon %}
+    <div class="hero-text-image__background has-icon container position-absolute z-index-2 space-bottom-2 top-0 {{ heroTextImageHero.background.spacing }}">
+      <div class="row">
+        <div class="hero-text-image__background-wrapper col-sm-12">
+          <div class="hero-text-image__icon">
+            {%
+              include icon.html
+              icon=heroTextImageHero.background.icon
+            %}
+          </div>
         </div>
       </div>
     </div>
   {%- endif -%}
+  {% if heroTextImageHero.cta %}
+    <div class="hero-text-image__cta container">
+      <div class="row">
+        <div class="col-lg-12">
+          {%
+            include cta.html
+            text=heroTextImageHero.cta.text
+          %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 <!-- Shared End Hero Text Image Section -->
