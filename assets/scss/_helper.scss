@@ -1,5 +1,10 @@
 .is-invisible {
   visibility: collapse;
   opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
   pointer-events: none;
 }
