@@ -85,6 +85,7 @@
           {%
             include cta.html
             text=heroTextImageHero.cta.text
+            href=heroTextImageHero.cta.href
           %}
         </div>
       </div>
