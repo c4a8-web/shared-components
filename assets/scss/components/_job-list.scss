@@ -268,3 +268,9 @@ $job-list-detail-transition-3-delay: 1.8s;
 .job-list__detail-maps {
   margin-top: spacing(22);
 }
+
+.job-list__detail-intro {
+  @include media-breakpoint-up(lg) {
+    padding-bottom: spacing(10);
+  }
+}
