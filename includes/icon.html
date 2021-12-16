@@ -153,6 +153,12 @@
         <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" fill="none" fill-rule="evenodd" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
       </g>
     </svg>
+  {%- elsif iconIcon == 'arrow-narrow' -%}
+    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" width="{{ iconInnerSize }}"
+      height="{{ iconInnerSize }}" viewBox="0 0 19.74 69.3" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg">
+      <polyline class="cls-1ddd" fill="none" stroke-width="3px" stroke-linecap="round" stroke-miterlimit="10" points="1.62 1.62 17.91 34.62 1.62 67.62" />
+    </svg>
   {%- endif %}
 </span>
 <!-- End Shared Icon Section -->

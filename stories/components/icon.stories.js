@@ -24,6 +24,12 @@ ArrowLeft.args = {
   direction: 'left',
 };
 
+export const ArrowNarrow = Template.bind({});
+
+ArrowNarrow.args = {
+  icon: 'arrow-narrow',
+};
+
 export const Close = Template.bind({});
 
 Close.args = {
