@@ -1,7 +1,24 @@
+$step-list-counter-width: spacing(16);
+
 .step-list {
   padding: spacing(24) 0;
   background-color: var(--step-list-background);
   color: var(--step-list-color);
+
+  @include media-breakpoint-up(lg) {
+    .step-list__list {
+      display: flex;
+    }
+
+    .step-list__icon {
+      padding-right: spacing(6);
+      display: list-item;
+
+      svg {
+        --icon-rotation: 0deg;
+      }
+    }
+  }
 }
 
 .step-list__headline {
@@ -17,33 +34,59 @@
   counter-reset: step-list;
   list-style: none;
   padding-left: 0;
-  display: flex;
+  gap: 6px;
   justify-content: space-between;
+}
 
-  li {
-    &:not(.step-list__list-element) {
-    }
+.step-list__icon {
+  display: flex;
+  justify-content: center;
+
+  svg {
+    width: 64px;
+    height: 100%;
+
+    --icon-rotation: 90deg;
   }
 }
 
 .step-list__list-element {
-  display: flex;
-  align-items: flex-start;
   color: var(--color-step-list-highlight);
+  display: grid;
+  grid-template-columns: fit-content($step-list-counter-width) 1fr;
+  grid-template-rows: min-content max-content;
+  flex: 1;
+}
+
+.step-list__title {
+  padding-left: spacing(6);
+  display: flex;
+  align-items: center;
+}
+
+.step-list__counter {
+  @include font-style($style: 'h3-font-size', $weight: 'light');
+
+  grid-row-start: 1;
+  grid-row-end: 2;
 
   &::before {
-    @include font-style($style: 'h3-font-size', $weight: 'light');
-
     counter-increment: step-list;
     content: counter(step-list);
-    margin-right: spacing(6);
     background-color: var(--color-step-list-highlight);
     color: var(--color-step-list-highlight-copy);
-    width: spacing(16);
-    height: spacing(16);
+    width: $step-list-counter-width;
+    height: $step-list-counter-width;
     border-radius: 100%;
     display: inline-flex;
     justify-content: center;
     align-items: center;
   }
+}
+
+.step-list__content {
+  margin-top: spacing(8);
+  grid-column-start: 1;
+  grid-column-end: 3;
+  color: var(--step-list-color);
 }
