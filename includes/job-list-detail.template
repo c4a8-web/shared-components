@@ -23,8 +23,7 @@
   %}data-base='{{ jobListDetailBase | jsonify }}' {% endif %}>
   <div class="job-list__detail-container container">
     <div class="job-list__detail-start row">
-      <div class="col-lg-5">
-        {% comment %}TODO make the left side sticky on desktop{% endcomment %}
+      <div class="job-list__sticky-start col-lg-5 test">
         <div class="job-list__detail-back job-list__detail-animation-3">
           {%
             include icon.html
@@ -35,7 +34,16 @@
           %}
         </div>
 
-        <div class="job-list__detail-intro">
+        <div class="job-list__detail-intro js-sticky-block"
+          data-hs-sticky-block-options='{
+            "parentSelector": ".job-list__sticky-start",
+            "breakpoint": "xl",
+            "startPoint": ".job-list__sticky-start",
+            "endPoint": ".job-list__sticky-end",
+            "stickyOffsetTop": 100,
+            "stickyOffsetBottom": 20
+          }'
+        >
           {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
           {%- capture headlineClasses -%}job-list__detail-headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
           {%
@@ -84,6 +92,7 @@
       </div>
     </div>
   </div>
+  <div class="job-list__sticky-end"></div>
 
   <div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)">
     <div class="modal-dialog modal-xl">
