@@ -116,13 +116,29 @@ class Templates {
     return promise;
   }
 
-  getHtml(component, data, template) {
+  setPreRender(method) {
+    if (typeof method !== 'function') return null;
+
+    this.preRender = method;
+  }
+
+  getHtml(component, data) {
     const promise = new Promise((resolve) => {
-      const tpl = this.engine.parse(this.fixComponent(component));
+      let wait = 0;
 
-      const html = this.engine.renderSync(tpl, data);
+      if (this.preRender) {
+        this.preRender();
+        this.preRender = null;
 
-      resolve(html);
+        wait = 50;
+      }
+
+      setTimeout(() => {
+        const tpl = this.engine.parse(this.fixComponent(component));
+        const html = this.engine.renderSync(tpl, data);
+
+        resolve(html);
+      }, wait);
     });
 
     return promise;

@@ -12,6 +12,7 @@ const State = {
   FADE: 'fade',
   INITIALIZED: 'is-initialized',
   LOADING: 'is-loading',
+  HIDE_LOADING: 'hide-loading',
 };
 
 export default State;

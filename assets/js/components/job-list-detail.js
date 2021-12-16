@@ -4,6 +4,7 @@ import State from '../state.js';
 import Modal from '../modal.js';
 import Tools from '../tools.js';
 import Form from './form.js';
+import Loading from '../loading.js';
 
 class JobListDetail extends BaseComponent {
   static rootSelector = '.job-list__detail';
@@ -23,11 +24,12 @@ class JobListDetail extends BaseComponent {
     this.modalForm = this.modal?.querySelector('.form');
 
     this.loadingDelay = 300;
-    // this.loadingDelay = 0;
     this.base = this.root.dataset.base ? JSON.parse(this.root.dataset.base) : undefined;
     this.apiUrl = this.root.dataset.apiUrl;
 
     this.templates = window.Templates;
+
+    this.loading = new Loading(this.root);
 
     this.preInit();
     this.init();
@@ -64,6 +66,8 @@ class JobListDetail extends BaseComponent {
   }
 
   init() {
+    this.loading.on();
+
     this.jobId = this.root.dataset.jobId;
 
     this.api = new RecruiterBox({
@@ -215,6 +219,11 @@ class JobListDetail extends BaseComponent {
         ...(this.base && { ...this.base }),
         expand: ['cta'],
       };
+
+      this.templates.setPreRender(() => {
+        this.root.classList.add(State.HIDE_LOADING);
+        this.loading.off(true);
+      });
 
       this.templates?.load('job-list-detail', entryData).then((html) => {
         this.appendHtml(html);

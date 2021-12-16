@@ -2,10 +2,7 @@
   --loading-scale: 5vh;
   --loading-floor: 10vh;
   --loading-variance: 0vh;
-  --loading-height: calc(
-    -1 * 20vh - calc(var(--loading-scale) - var(--loading-floor) +
-          var(--loading-variance))
-  );
+  --loading-height: calc(-1 * 20vh - calc(var(--loading-scale) - var(--loading-floor) + var(--loading-variance)));
 }
 
 .loading {
@@ -16,6 +13,12 @@
 
     .loading__shape {
       display: block;
+    }
+  }
+
+  &.hide-loading {
+    .loading__shape {
+      opacity: 0;
     }
   }
 }

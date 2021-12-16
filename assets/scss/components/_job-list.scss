@@ -4,10 +4,6 @@ $job-list-detail-transition-1-delay: 0.9s;
 $job-list-detail-transition-2-delay: 1.3s;
 $job-list-detail-transition-3-delay: 1.8s;
 
-// $job-list-detail-transition-1-delay: 0.1s;
-// $job-list-detail-transition-2-delay: 0.1s;
-// $job-list-detail-transition-3-delay: 0.1s;
-
 .job-list {
   &.is-loading {
     .job-list__header,
@@ -123,6 +119,10 @@ $job-list-detail-transition-3-delay: 1.8s;
     .job-list__detail-back {
       display: inline-flex;
     }
+  }
+
+  .loading__shape {
+    top: 300px;
   }
 
   &.is-loading {

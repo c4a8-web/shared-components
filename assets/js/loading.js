@@ -130,14 +130,22 @@ class Loading {
     this.root.classList.add(State.LOADING);
   }
 
-  off() {
-    setTimeout(() => {
-      this.intervals.forEach((interval) => {
-        clearInterval(interval);
-      });
+  clear() {
+    this.intervals.forEach((interval) => {
+      clearInterval(interval);
+    });
+  }
 
-      this.root.classList.remove(State.LOADING);
-    }, 100);
+  off(force) {
+    if (force) {
+      this.clear();
+    } else {
+      setTimeout(() => {
+        this.clear();
+
+        this.root.classList.remove(State.LOADING);
+      }, 100);
+    }
   }
 }
 
