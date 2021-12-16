@@ -113,7 +113,7 @@ const getTitle = ({ page, title }) => {
 };
 
 const getAssetPath = (path) => {
-  return process.env.NODE_ENV === 'production' ? `/shared-components/${path}` : `${path}`;
+  return process.env.NODE_ENV === 'production' ? `../shared-components/${path}` : `${path}`;
 };
 
 export { hrefTo, getTitle, getAssetPath, site };

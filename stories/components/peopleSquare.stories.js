@@ -26,17 +26,17 @@ ThreeByThree.args = {
       number: 410,
       text: 'Kunden',
       shape: {
-        src: getAssetPath('../svg/shapes/shape-career-3.svg'),
+        src: getAssetPath('svg/shapes/shape-career-3.svg'),
       },
     },
     {
       shape: {
-        src: getAssetPath('./svg/shapes/shape-career-2.svg'),
+        src: getAssetPath('svg/shapes/shape-career-2.svg'),
       },
     },
     {
       img: {
-        src: 'img/image-placeholder-2.jpg',
+        src: getAssetPath('img/image-placeholder-2.jpg'),
       },
     },
     {
@@ -46,17 +46,17 @@ ThreeByThree.args = {
     },
     {
       img: {
-        src: 'img/image-placeholder-3.jpg',
+        src: getAssetPath('img/image-placeholder-3.jpg'),
       },
     },
     {
       shape: {
-        src: 'svg/shapes/shape-career-4.svg',
+        src: getAssetPath('svg/shapes/shape-career-4.svg'),
       },
     },
     {
       img: {
-        src: 'img/image-placeholder-4.jpg',
+        src: getAssetPath('img/image-placeholder-4.jpg'),
       },
     },
   ],
@@ -73,17 +73,17 @@ TwoByTwo.args = {
       number: 410,
       text: 'Kunden',
       shape: {
-        src: './svg/shapes/shape-career-3.svg',
+        src: getAssetPath('./svg/shapes/shape-career-3.svg'),
       },
     },
     {
       img: {
-        src: 'img/image-placeholder-2.jpg',
+        src: getAssetPath('img/image-placeholder-2.jpg'),
       },
     },
     {
       img: {
-        src: 'img/image-placeholder-4.jpg',
+        src: getAssetPath('img/image-placeholder-4.jpg'),
       },
     },
     {

@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "node scripts/generateIncludes.js && cross-env BASE_HREF_ENV='' start-storybook -p 6006",
-    "build-storybook": "node scripts/generateIncludes.js && cross-env BASE_HREF_ENV='/shared-components/' build-storybook && node scripts/generateBuildIncludes.js"
+    "storybook": "node scripts/generateIncludes.js && start-storybook -p 6006",
+    "build-storybook": "node scripts/generateIncludes.js && build-storybook && node scripts/generateBuildIncludes.js"
   },
   "keywords": [],
   "author": "",

@@ -2,9 +2,6 @@ import '../assets/scss/index.scss';
 import '../assets/scss/storybook.scss';
 import '../assets/js/index.js';
 
-console.log('process.env.PRODUCTION', process.env.PRODUCTION);
-console.log('process.env', process.env);
-
 // TODO move bootstrap scss to this location
 // TODO remove after migration is done
 import Interim from './interim.js';

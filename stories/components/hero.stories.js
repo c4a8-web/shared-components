@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
 import { includesherotextimagehtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -48,7 +48,7 @@ HeroTextImage.args = {
       cloudinary: true,
     },
     background: {
-      img: '../svg/shapes/shape-career.svg',
+      img: getAssetPath('svg/shapes/shape-career.svg'),
       alt: 'Shape',
       spacing: 'space-top-lg-4',
     },

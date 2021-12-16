@@ -1,4 +1,4 @@
-import { createComponent, getTitle, site } from '../../.storybook/templates';
+import { createComponent, getTitle, getAssetPath, site } from '../../.storybook/templates';
 import { includesimghtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -19,7 +19,7 @@ export const Img = Template.bind({});
 
 Img.args = {
   ...baseArgs,
-  img: '../img/image-placeholder-1.jpg',
+  img: getAssetPath('img/image-placeholder-1.jpg'),
 };
 
 export const ImgCloudinary = Template.bind({});
