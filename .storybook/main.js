@@ -5,7 +5,7 @@ const includePath = path.resolve(__dirname, '../');
 module.exports = {
   stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials', './themes/src/preset.js'],
-  staticDirs: ['../static'],
+  staticDirs: ['../static', { from: '../static', to: 'assets' }],
   webpackFinal: async (config, { configType }) => {
     config.module.rules.push({
       test: /\.scss$/,

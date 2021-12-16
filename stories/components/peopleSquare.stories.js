@@ -17,7 +17,7 @@ ThreeByThree.args = {
   grid: [
     {
       img: {
-        src: '../img/image-placeholder-1.jpg',
+        src: 'img/image-placeholder-1.jpg',
       },
       start: 1,
       end: 2,
@@ -25,16 +25,18 @@ ThreeByThree.args = {
     {
       number: 410,
       text: 'Kunden',
+      shape: {
+        src: 'svg/shapes/shape-career-3.svg',
+      },
     },
     {
       shape: {
-        src: '../svg/shapes/shape-career-2.svg',
+        src: 'svg/shapes/shape-career-2.svg',
       },
-      text: 'Shape',
     },
     {
       img: {
-        src: '../img/image-placeholder-2.jpg',
+        src: 'img/image-placeholder-2.jpg',
       },
     },
     {
@@ -44,15 +46,17 @@ ThreeByThree.args = {
     },
     {
       img: {
-        src: '../img/image-placeholder-3.jpg',
+        src: 'img/image-placeholder-3.jpg',
       },
     },
     {
-      text: 'shape',
+      shape: {
+        src: 'svg/shapes/shape-career-4.svg',
+      },
     },
     {
       img: {
-        src: '../img/image-placeholder-4.jpg',
+        src: 'img/image-placeholder-4.jpg',
       },
     },
   ],
@@ -71,12 +75,12 @@ TwoByTwo.args = {
     },
     {
       img: {
-        src: '../img/image-placeholder-2.jpg',
+        src: 'img/image-placeholder-2.jpg',
       },
     },
     {
       img: {
-        src: '../img/image-placeholder-4.jpg',
+        src: 'img/image-placeholder-4.jpg',
       },
     },
     {
