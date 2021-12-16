@@ -118,7 +118,7 @@
   position: relative;
 }
 
-.hero-text-image__keyvisual {
+/*.hero-text-image__keyvisual {
   max-height: 600px;
 
   &.is-large {
@@ -130,7 +130,7 @@
   @include media-breakpoint-up(lg) {
     max-height: 700px;
   }
-}
+}*/
 
 .hero-text-image {
   &.hero--career {
