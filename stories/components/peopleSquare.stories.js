@@ -31,12 +31,12 @@ ThreeByThree.args = {
     },
     {
       shape: {
-        src: '../assets/svg/shapes/shape-career-2.svg',
+        src: 'svg/shapes/shape-career-2.svg',
       },
     },
     {
       img: {
-        src: '../img/image-placeholder-2.jpg',
+        src: 'img/image-placeholder-2.jpg',
       },
     },
     {
