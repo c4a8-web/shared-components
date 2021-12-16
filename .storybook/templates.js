@@ -112,4 +112,8 @@ const getTitle = ({ page, title }) => {
   };
 };
 
-export { hrefTo, getTitle, site };
+const getAssetPath = (path) => {
+  return process.env.NODE_ENV === 'production' ? `/shared-components/${path}` : `${path}`;
+};
+
+export { hrefTo, getTitle, getAssetPath, site };

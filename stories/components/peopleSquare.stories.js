@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
 import { includespeoplesquarehtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -17,7 +17,7 @@ ThreeByThree.args = {
   grid: [
     {
       img: {
-        src: '/img/image-placeholder-1.jpg',
+        src: getAssetPath('img/image-placeholder-1.jpg'),
       },
       start: 1,
       end: 2,
@@ -26,12 +26,12 @@ ThreeByThree.args = {
       number: 410,
       text: 'Kunden',
       shape: {
-        src: '../svg/shapes/shape-career-3.svg',
+        src: getAssetPath('../svg/shapes/shape-career-3.svg'),
       },
     },
     {
       shape: {
-        src: 'svg/shapes/shape-career-2.svg',
+        src: getAssetPath('./svg/shapes/shape-career-2.svg'),
       },
     },
     {
@@ -72,6 +72,9 @@ TwoByTwo.args = {
     {
       number: 410,
       text: 'Kunden',
+      shape: {
+        src: './svg/shapes/shape-career-3.svg',
+      },
     },
     {
       img: {
@@ -84,6 +87,7 @@ TwoByTwo.args = {
       },
     },
     {
+      color: 'var(--color-yellow)',
       number: 140,
       text: 'Mitarbeiter',
     },
