@@ -1,0 +1,46 @@
+<!-- Shared Step List Section -->
+{%- assign stepListBackground = include.background | default: background | default: "var(--color-primary-accent)" -%}
+{%- assign stepListColor = include.color | default: color | default: "var(--color-copy-light)" -%}
+{%- assign stepListHeadline = include.headline | default: headline -%}
+{%- assign stepListSubline = include.subline | default: subline -%}
+{%- assign stepListList = include.list | default: list -%}
+
+<div class="step-list" style="--step-list-background: {{ stepListBackground }};--step-list-color: {{ stepListColor }}">
+  <div class="container">
+    {%- if stepListHeadline -%}
+      <div class="row">
+        <div class="col-lg-8">
+          {%- capture stepListHeadlineClasses -%}{{ stepListHeadline.classes }} step-list__headline{%- endcapture -%}
+          {%
+            include headline.html
+            text=stepListHeadline.text
+            level=stepListHeadline.level
+            classes=stepListHeadlineClasses
+          %}
+          <div class="step-list__subline font-size-2">
+            {{ stepListSubline }}
+          </div>
+        </div>
+      </div>
+    {%- endif -%}
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="step-list__list">
+          {%- for element in stepListList -%}
+            <li class="step-list__list-element font-size-2">{{ element.title }}</li>
+            {%- if forloop.index < forloop.length -%}
+              <li>
+                {%
+                  include icon.html
+                  icon='arrow'
+                  color='var(--color-step-list-highlight)'
+                %}
+              </li>
+            {% endif %}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Step List Section -->

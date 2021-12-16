@@ -46,6 +46,8 @@
 
   // rules that default to everything
 
+  --color-job-list-border: var(--color-black-30);
+
   --color-job-list-detail: var(--color-yellow);
   --color-job-list-detail-copy: var(--color-black-85);
 
@@ -63,13 +65,14 @@
   --color-form-border: var(--color-bon-jour);
   --color-form-border-hover: var(--color-black-30);
 
-  --color-job-list-border: var(--color-black-30);
-
   --color-google-maps-popup-background: var(--color-blue-dark);
 
   --color-hero-icon: var(--color-yellow);
 
   --color-people-square-copy: var(--color-white);
+
+  --color-step-list-highlight: var(--color-yellow);
+  --color-step-list-highlight-copy: var(--color-copy);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

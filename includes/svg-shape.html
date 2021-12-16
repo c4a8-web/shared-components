@@ -1,0 +1,26 @@
+<!-- Shared Svg Shape -->
+{% assign svgShapeAlign = include.align | default: align | default: "bottom" %}
+{% assign svgShapePeak = include.peak | default: peak | default: "right" %}
+{% assign svgShapeColor = include.color | default: color | default: "var(--color-white)" %}
+{% assign svgShapeObliquity = include.obiquity | default: obiquity | default: 10 %}
+{% assign svgShapeClass = include.class | default: class %}
+
+{% if svgShapeAlign == "top" %}
+    {% capture basePoints %}0,0 100,0{% endcapture %}
+    {% assign peakPointY = svgShapeObliquity %}
+{% else %}
+    {% capture basePoints %}0,{{ svgShapeObliquity }} 100,{{ svgShapeObliquity }}{% endcapture %}
+    {% assign peakPointY = 0 %}
+{% endif %}
+
+{% capture peakPointX %}
+    {% if svgShapePeak == "left" %}0{% else %}100{% endif %}
+{% endcapture %}
+
+{% capture points %}{{ basePoints }} {{ peakPointX }},{{ peakPointY }}{% endcapture %}
+<figure class="svgshape {{ svgShapeClass }}" style="pointer-events: none; transform: translateY(2px);">
+    <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 {{ svgShapeObliquity }}">
+        <polygon fill="{{ svgShapeColor }}" points="{{ points }}"/>
+    </svg>
+</figure>
+<!-- End Shared Svg Shape -->

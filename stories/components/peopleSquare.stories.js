@@ -38,7 +38,7 @@ ThreeByThree.args = {
       },
     },
     {
-      color: 'var(--color-blue-medium)',
+      color: 'var(--color-primary-accent)',
       number: 140,
       text: 'Mitarbeiter',
     },

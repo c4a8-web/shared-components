@@ -5,6 +5,8 @@
 
   &.people-square--absolute {
     @include media-breakpoint-up(lg) {
+      @include z-index;
+
       position: absolute;
       width: 50%;
     }
