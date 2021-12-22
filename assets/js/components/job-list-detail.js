@@ -146,11 +146,13 @@ class JobListDetail extends BaseComponent {
   handleApply(fields) {
     this.api
       .apply({ fields })
-      .then((response) => response.json())
       .then((response) => {
-        if (response.errors && this.handleApplyError(response.errors)) return null;
+        if (response.status === 201 || response.status === 204) return this.handleApplySuccess(fields);
 
-        this.handleApplySuccess(fields);
+        response.json().then((jsonResponse) => {
+          // console.log('JobListDetail ~ .then ~ jsonResponse', jsonResponse);
+          if (jsonResponse.errors && this.handleApplyError(jsonResponse.errors)) return null;
+        });
       })
       .catch((error) => {
         this.handleApplyError(error);
