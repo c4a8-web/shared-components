@@ -38,7 +38,7 @@ const baseArgs = {
       },
       {
         label: 'E-Mail Adresse',
-        type: 'text',
+        type: 'email',
         col: 6,
         rowStart: true,
         required: true,

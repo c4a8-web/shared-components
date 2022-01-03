@@ -18,6 +18,7 @@ $form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
       textarea.form-textarea,
       input[type=''].form-control,
       input[type='text'].form-control,
+      input[type='email'].form-control,
       .form__input {
         background-color: $form-background-color-light;
         border-color: $form-background-color-light;
@@ -96,6 +97,7 @@ label.input-label,
 textarea.form-textarea,
 input[type=''].form-control,
 input[type='text'].form-control,
+input[type='email'].form-control,
 .form__input {
   background-color: $form-background-color;
   border-color: $form-background-color;
