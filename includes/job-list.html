@@ -4,6 +4,7 @@
 {% assign jobListDetailUrl = include.detailUrl | default: detailUrl %}
 {% assign jobListJobId = include.jobId | default: jobId %}
 {% assign jobListTags = include.tags | default: tags %}
+{% assign jobListLang = include.lang | default: lang %}
 {% assign jobListTeam = include.team | default: team %}
 {% assign jobListApiUrl = include.apiUrl | default: apiUrl %}
 {% assign jobListHeadlineClasses = include.headlineClasses | default: headlineClasses %}
@@ -18,6 +19,7 @@
   data-detail-url="{{ jobListDetailUrl }}"
   {% if jobListJobId %}data-job-id="{{ jobListJobId }}"{% endif %}
   {% if jobListTags %}data-tags="{{ jobListTags }}"{% endif %}
+  {% if jobListLang %}data-lang="{{ jobListLang }}"{% endif %}
   {% if jobListTeam %}data-team="{{ jobListTeam }}"{% endif %}
   {% if jobListApiUrl %}data-api-url="{{ jobListApiUrl }}"{% endif %}
 >
