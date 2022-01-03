@@ -8,16 +8,34 @@ class RecruiterBox {
     OPENINGS: 'openings',
   };
 
+  langTagPrefix = 'lang_';
+
   constructor(options) {
     this.options = options;
+    this.filter = '';
+  }
+
+  setLang(lang) {
+    this.setFilter({
+      tags: this.langTagPrefix + lang,
+    });
+  }
+
+  setFilter(params) {
+    if (!params) return;
+
+    Object.keys(params).forEach((key) => {
+      this.filter += `&${key}=${params[key]}`;
+    });
   }
 
   getUrl(type, params, action) {
     const typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
     const idParam = params ? `/${params}/${action ?? ''}` : '';
     const urlParams = this.options.apiUrl ? '' : `${idParam}?client_name=${this.options?.client_name}`;
+    const filter = this.options.apiUrl ? '' : this.filter;
 
-    return `${typeUrl}${urlParams}`;
+    return `${typeUrl}${urlParams}${filter}`;
   }
 
   getAll() {

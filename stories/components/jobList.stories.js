@@ -61,3 +61,12 @@ ListFilteredByTeam.args = {
   team: 'team 1',
   apiUrl: 'mock/jobList.json',
 };
+
+export const ListFilteredByLang = Template.bind({});
+
+ListFilteredByLang.args = {
+  ...baseArgs,
+  headlineText: 'English Jobs',
+  lang: 'en',
+  apiUrl: 'mock/jobListEn.json',
+};

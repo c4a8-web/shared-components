@@ -21,6 +21,7 @@ class JobList extends BaseComponent {
     this.jobId = this.root.dataset.jobId;
     this.tags = this.root.dataset.tags ? this.root.dataset.tags.split(',') : undefined;
     this.team = this.root.dataset.team;
+    this.lang = this.root.dataset.lang;
     this.apiUrl = this.root.dataset.apiUrl;
 
     this.api = new RecruiterBox({
@@ -29,6 +30,12 @@ class JobList extends BaseComponent {
       ...(this.apiUrl && { apiUrl: this.apiUrl }),
       client_name: this.root.dataset.id,
     });
+
+    if (this.lang) {
+      this.api.setLang(this.lang);
+    } else if (this.tags) {
+      this.api.setFilter({ tags: this.tags });
+    }
 
     this.templates = window.Templates;
     this.loading = new Loading(this.root);
@@ -102,13 +109,7 @@ class JobList extends BaseComponent {
   isAvailableEntry(data) {
     let result = true;
 
-    if (this.tags) {
-      const tagsFound = this.tags.filter((tag) => data.tags.includes(tag));
-
-      if (!tagsFound.length) {
-        result = false;
-      }
-    } else if (this.team) {
+    if (this.team) {
       const entryTeam = data.team?.toLowerCase();
       const filterTeam = this.team.toLowerCase();
 
@@ -146,6 +147,8 @@ class JobList extends BaseComponent {
     }
 
     this.data = localData;
+
+    if (!this.data.meta) return this.loading.off();
 
     for (let i = 0; i < localData.objects?.length; i++) {
       const entry = localData.objects[i];
