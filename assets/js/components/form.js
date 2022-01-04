@@ -223,6 +223,8 @@ class Form extends BaseComponent {
   }
 
   addValidation() {
+    if (!this.form) return;
+
     [].forEach.call(this.form.querySelectorAll('[data-form-group]'), (input) => {
       if (input.dataset.formGroup) {
         this.addGroupValidation(input);
