@@ -65,6 +65,20 @@ $form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
       background-position: right calc(0.4em + 0.375rem) center;
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8' viewBox='0 0 8 8'%3e%3cpath fill='%23008774' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
     }
+
+    .is-valid ~ {
+      .form__checkbox-label {
+        color: var(--color-copy);
+      }
+    }
+
+    .is-valid:checked ~ {
+      .form__checkbox-label {
+        &::before {
+          border-color: var(--color-bg-checkbox);
+        }
+      }
+    }
   }
 }
 
@@ -178,6 +192,10 @@ div.custom-control,
   padding-left: $form-checkbox-offset;
   min-height: $form-checkbox-size;
   display: flex;
+
+  + .invalid-feedback {
+    display: none !important;
+  }
 
   .custom-control-input {
     width: $form-checkbox-size;

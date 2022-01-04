@@ -17,7 +17,10 @@ const baseArgs = {
   headlineLevel: 'h2',
   sublineText:
     'Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in',
-  detailUrl: hrefTo('Components/Job/Detail', 'Detail'),
+  detailUrl: {
+    default: hrefTo('Components/Job/Detail', 'De'),
+    en: hrefTo('Components/Job/Detail', 'En'),
+  },
 };
 
 export const List = Template.bind({});

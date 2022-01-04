@@ -139,8 +139,15 @@ const baseArgs = {
   },
 };
 
-export const Detail = Template.bind({});
+export const De = Template.bind({});
 
-Detail.args = {
+De.args = {
   ...baseArgs,
+};
+
+export const En = Template.bind({});
+
+En.args = {
+  ...baseArgs,
+  apiUrl: 'mock/jobEn.json',
 };

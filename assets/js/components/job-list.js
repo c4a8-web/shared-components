@@ -15,7 +15,13 @@ class JobList extends BaseComponent {
     this.entries = this.root.querySelector(this.entriesSelector);
     this.expandButton = this.root.querySelector('.job-list__expand-button');
     this.maxItems = this.root.dataset.maxItems;
-    this.detailUrl = this.root.dataset.detailUrl;
+
+    try {
+      this.detailUrl = JSON.parse(this.root.dataset.detailUrl);
+    } catch (e) {
+      this.detailUrl = this.root.dataset.detailUrl;
+    }
+
     this.loadingDelay = 1500;
 
     this.jobId = this.root.dataset.jobId;
@@ -79,7 +85,8 @@ class JobList extends BaseComponent {
       const currentData = this.getData(current);
       // TODO load component in page and don't redirect
 
-      const url = Tools.generateUrl(currentData?.title, this.detailUrl, currentData?.id);
+      const detailUrl = this.getDetailUrl(currentData);
+      const url = Tools.generateUrl(currentData?.title, detailUrl, currentData?.id);
 
       document.location.href = url;
     }
@@ -90,6 +97,15 @@ class JobList extends BaseComponent {
     this.expandButton.classList.add(State.HIDDEN);
 
     this.showJobs();
+  }
+
+  getDetailUrl(data) {
+    if (typeof this.detailUrl !== 'object') return this.detailUrl;
+    if (data?.tags?.length === 0) return this.detailUrl.default;
+
+    const lang = this.api.getLangFromEntry(data);
+
+    return this.detailUrl[lang] || this.detailUrl.default;
   }
 
   showJobs() {

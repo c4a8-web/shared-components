@@ -15,6 +15,12 @@ class RecruiterBox {
     this.filter = '';
   }
 
+  getLangFromEntry(entry) {
+    const langs = entry?.tags.filter((value, _) => value.indexOf(this.langTagPrefix) === 0);
+
+    return langs[0]?.replace(this.langTagPrefix, '') || null;
+  }
+
   setLang(lang) {
     this.setFilter({
       tags: this.langTagPrefix + lang,

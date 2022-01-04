@@ -11,11 +11,14 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component, 'headline');
+const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   ...List?.args,
-  detailUrl: hrefTo('Pages/Jobs', ''),
+  detailUrl: {
+    default: hrefTo('Pages/Jobs', ''),
+    en: hrefTo('Pages/Jobs', ''),
+  },
 };
 
 export const Career = Template.bind({});

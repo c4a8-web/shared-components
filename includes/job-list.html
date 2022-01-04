@@ -16,7 +16,7 @@
 <div class="job-list container"
   data-id="{{ jobListClientName }}"
   data-max-items="{{ jobListMaxItems }}"
-  data-detail-url="{{ jobListDetailUrl }}"
+  data-detail-url='{{ jobListDetailUrl | jsonify }}'
   {% if jobListJobId %}data-job-id="{{ jobListJobId }}"{% endif %}
   {% if jobListTags %}data-tags="{{ jobListTags }}"{% endif %}
   {% if jobListLang %}data-lang="{{ jobListLang }}"{% endif %}
