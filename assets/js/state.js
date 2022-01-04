@@ -6,6 +6,7 @@ const State = {
   SUCCESS: 'is-successful',
   HAS_ERROR: 'has-error',
   HOVERING: 'is-hovering',
+  DRAGGING: 'is-dragging',
   HIDDEN: 'd-none',
   INVISIBLE: 'is-invisible',
   SHOW: 'show',

@@ -54,7 +54,7 @@ class RecruiterBox {
     if (form === null || form === undefined) return [];
 
     // TODO refactor with select
-    const inputs = form.querySelectorAll('input[type="text"], textarea');
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
     const customFields = ['cancellation', 'salary', 'message'];
 
@@ -63,7 +63,7 @@ class RecruiterBox {
 
       let value;
 
-      if (input.type === 'text' || input.tagName === 'TEXTAREA') {
+      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
         value = input.value;
       } else {
         // TODO handle select

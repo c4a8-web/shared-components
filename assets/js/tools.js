@@ -28,7 +28,7 @@ class Tools {
     if (parent === null || parent.tagName === 'body') {
       return null;
     } else {
-      if (!parent.parentNode.querySelector(selector)) {
+      if (!parent.parentNode?.querySelector(selector)) {
         return Tools.getParent(parent, selector);
       } else {
         return parent;
@@ -83,7 +83,11 @@ class Tools {
       const reader = new FileReader();
 
       reader.readAsDataURL(file);
-      reader.onload = () => resolve(reader.result);
+      reader.onload = () => {
+        const base64 = reader.result.split(',')[1];
+
+        resolve(base64);
+      };
       reader.onerror = (error) => reject(error);
     });
   }
@@ -118,6 +122,27 @@ class Tools {
     };
     window.requestAnimationFrame(step);
   }
+
+  static debounce = function (func, wait, immediate) {
+    let timeout;
+
+    return function () {
+      const context = this;
+      const args = arguments;
+
+      var later = function () {
+        timeout = null;
+        if (!immediate) func.apply(context, args);
+      };
+
+      var callNow = immediate && !timeout;
+
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+
+      if (callNow) func.apply(context, args);
+    };
+  };
 }
 
 export default Tools;

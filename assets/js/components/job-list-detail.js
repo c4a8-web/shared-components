@@ -4,6 +4,7 @@ import State from '../state.js';
 import Modal from '../modal.js';
 import Tools from '../tools.js';
 import Form from './form.js';
+import FormAttachments from './form-attachments.js';
 import Loading from '../loading.js';
 
 class JobListDetail extends BaseComponent {
@@ -118,29 +119,49 @@ class JobListDetail extends BaseComponent {
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const fileInput = this.modalForm.querySelector('input[type="file"]');
-    const fileData = fileInput?.files[0];
+    const base64 = this.modalForm.querySelector(FormAttachments.base64Selector);
+    const base64Value = base64?.value;
     const fields = this.api.getFormData(this.modalForm);
 
+    let fileData;
+
+    if (base64Value) {
+      fileData = {
+        name: base64.dataset.fileName,
+      };
+    } else {
+      const fileInput = this.modalForm.querySelector('input[type="file"]');
+
+      fileData = fileInput?.files[0];
+    }
+
     if (fileData) {
-      Tools.toBase64(fileData).then((data) => {
-        const file = {
-          key: 'resume',
-          value: {
-            encoded_data: data,
-            file_name: fileData.name,
-          },
-        };
-
-        fields.push(file);
-
-        this.handleApply(fields);
-      });
+      if (base64Value) {
+        this.applyFileData(fileData, base64Value, fields);
+      } else {
+        Tools.toBase64(fileData).then((data) => {
+          this.applyFileData(fileData, data, fields);
+        });
+      }
     } else {
       this.handleApplyError({
         errors: 'no files',
       });
     }
+  }
+
+  applyFileData(fileData, data, fields) {
+    const file = {
+      key: 'resume',
+      value: {
+        encoded_data: data,
+        file_name: fileData.name,
+      },
+    };
+
+    fields.push(file);
+
+    this.handleApply(fields);
   }
 
   handleApply(fields) {
@@ -176,7 +197,8 @@ class JobListDetail extends BaseComponent {
   }
 
   handleApplyError(errors) {
-    // TODO define error case
+    // console.log('JobListDetail ~ handleApplyError ~ errors', errors);
+    // TODO define error case with kristin
   }
 
   handleCta() {

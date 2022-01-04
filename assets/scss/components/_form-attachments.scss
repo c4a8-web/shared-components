@@ -4,6 +4,19 @@
   background-color: var(--color-form-background);
   display: flex;
   align-items: center;
+  transition: background-color 0.5s $animation-transition;
+
+  &.is-dragging {
+    background-color: transparent;
+
+    .icon {
+      transform: scale(1.5);
+
+      svg {
+        --icon-rotation: 135deg;
+      }
+    }
+  }
 
   .is-light & {
     background-color: var(--color-form-background-light);
@@ -35,8 +48,10 @@
     width: 100%;
     height: 100%;
     background-color: var(--color-primary);
+    transition: transform 0.5s $animation-transition;
 
     svg {
+      transition: transform 0.5s $animation-transition;
       --icon-rotation: 45deg;
     }
   }

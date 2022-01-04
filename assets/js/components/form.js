@@ -110,19 +110,33 @@ class Form extends BaseComponent {
   validateAttachments() {
     let result = true;
 
+    [].forEach.call(this.form.querySelectorAll(FormAttachments.base64Selector), (base64) => {
+      if (!base64.value) {
+        result = false;
+      }
+    });
+
+    if (result) return result;
+
+    result = true;
+
     [].forEach.call(this.form.querySelectorAll(this.attachmentSelector), (attachment) => {
       if (attachment.files.length === 0) {
         result = false;
 
-        const parent = Tools.getParent(attachment, FormAttachments.rootSelector);
-
-        if (parent === null) return;
-
-        parent.classList.add(State.HAS_ERROR);
+        this.addAttachmentError(attachment);
       }
     });
 
     return result;
+  }
+
+  addAttachmentError(attachment) {
+    const parent = Tools.getParent(attachment, FormAttachments.rootSelector);
+
+    if (parent === null) return;
+
+    parent.classList.add(State.HAS_ERROR);
   }
 
   hasAttachments() {
