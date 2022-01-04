@@ -2,8 +2,8 @@
 {% assign svgShapeAlign = include.align | default: align | default: "bottom" %}
 {% assign svgShapePeak = include.peak | default: peak | default: "right" %}
 {% assign svgShapeColor = include.color | default: color | default: "var(--color-white)" %}
-{% assign svgShapeObliquity = include.obiquity | default: obiquity | default: 10 %}
-{% assign svgShapeClass = include.class | default: class %}
+{% assign svgShapeObliquity = include.obliquity | default: obliquity | default: 10 %}
+{% assign svgShapeClasses = include.classes | default: classes %}
 
 {% if svgShapeAlign == "top" %}
     {% capture basePoints %}0,0 100,0{% endcapture %}
@@ -18,7 +18,7 @@
 {% endcapture %}
 
 {% capture points %}{{ basePoints }} {{ peakPointX }},{{ peakPointY }}{% endcapture %}
-<figure class="svgshape {{ svgShapeClass }}" style="pointer-events: none; transform: translateY(2px);">
+<figure class="svgshape {{ svgShapeClasses }}" style="pointer-events: none; transform: translateY(2px);">
     <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 {{ svgShapeObliquity }}">
         <polygon fill="{{ svgShapeColor }}" points="{{ points }}"/>
     </svg>
