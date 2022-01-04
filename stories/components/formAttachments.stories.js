@@ -12,7 +12,7 @@ export default {
 const baseArgs = {
   description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
   text: 'Oder Datei auswählen',
-  extensions: ['pdf', 'txt'],
+  extensions: ['pdf'],
   maxSize: 10000000,
   id: 'file',
 };
