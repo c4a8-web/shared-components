@@ -8,7 +8,8 @@ https://c4a8-web.github.io/shared-components/
 
 ## Prerequisites
 
-To start and install storybook you need node with the version provided in the .nvmrc file and the package manager yarn or the default package manager npm
+To start and install storybook you need node with the version provided in the .nvmrc file and the package manager yarn or the default package manager npm.
+Node can be found at [nodejs.org](https://nodejs.org/en/).
 
 ## Install
 
@@ -64,7 +65,7 @@ _temp
 
 ## Jekyll
 
-In your Jekyll configuration you need to add the path to the `shared-components` folder like this:
+In your Jekyll configuration the `_config.yml` you need to add the path to the `shared-components` folder like this:
 
 ```
 shared_components_path: _includes/shared-components
@@ -172,7 +173,7 @@ In your \_user-variables.scss you need to add the scss variable for the site:
 $site: "radiusaas";
 ```
 
-For all layouts you use you need to change the body class from
+For all layouts in the `_layouts` folder, you need to change the body class from
 
 ```
 class="site"
@@ -209,7 +210,7 @@ You also need to update the type of your `app.js` Script in the `scripts.html` f
 ></script>
 ```
 
-Replace `text/javascript` with `module`
+Replace the type `text/javascript` with `module`
 
 ## Storybook
 
