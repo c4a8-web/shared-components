@@ -3,6 +3,7 @@ const de = {
   part_time: 'Part-Time',
   contract: 'Contract work',
   gender: '(m/f/d)',
+  formAttachmentsWrongType: 'Please choose a valid file format',
 };
 
 export default de;

@@ -65,6 +65,8 @@ export const decorators = [
       body.setAttribute('style', '');
     }
 
+    document.querySelector('html')?.setAttribute('lang', 'de');
+
     return story();
   },
 ];
