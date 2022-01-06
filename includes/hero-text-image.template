@@ -23,9 +23,23 @@
   {%- endcapture -%}
 {%- endif -%}
 
-{%- assign heroTextImageCloudinary = heroTextImageHero.cloudinary | default: true -%}
-{%- assign heroTextImageFullscreenCloudinary = heroTextImageHero.fullscreen.cloudinary | default: true -%}
-{%- assign heroTextImageBackgroundCloudinary = heroTextImageHero.background.cloudinary | default: true -%}
+{%- if heroTextImageHero.cloudinary == false or heroTextImageHero.img contains '.svg' -%}
+  {%- assign heroTextImageCloudinary = heroTextImageHero.cloudinary -%}
+{%- else -%}
+  {%- assign heroTextImageCloudinary = true -%}
+{% endif %}
+
+{%- if heroTextImageHero.background.cloudinary == false or heroTextImageHero.background.img contains '.svg' -%}
+  {%- assign heroTextImageBackgroundCloudinary = heroTextImageHero.background.cloudinary -%}
+{%- else -%}
+  {%- assign heroTextImageBackgroundCloudinary = true -%}
+{% endif %}
+
+{%- if heroTextImageHero.fullscreen.cloudinary == false or heroTextImageHero.fullscreen.img contains '.svg' -%}
+  {%- assign heroTextImageFullscreenCloudinary = heroTextImageHero.fullscreen.cloudinary -%}
+{%- else -%}
+  {%- assign heroTextImageFullscreenCloudinary = true -%}
+{% endif %}
 
 {%- if heroTextImageHero.background -%}
   {%- capture heroClasses -%}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{%- endcapture -%}
