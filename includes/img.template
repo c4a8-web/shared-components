@@ -23,7 +23,7 @@
         </picture>
       </div>
     {%- else -%}
-      {% if imgImg contains '.jpg' or imgImg contains '.webp' or imgImg contains '.png' or imgImg contains '.svg' %}
+      {% if imgImg contains '.jpg' or imgImg contains '.webp' or imgImg contains '.png' or imgImg contains '.svg' or imgImg contains '.gif' %}
         {% assign imgUrl = imgImg %}
       {% else %}
         {% capture imgUrl %}{{ imgImg }}.jpg{% endcapture %}
