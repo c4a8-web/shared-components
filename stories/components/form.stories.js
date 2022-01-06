@@ -28,6 +28,7 @@ const baseArgs = {
         col: 6,
         rowStart: true,
         required: true,
+        id: 'firstName',
       },
       {
         label: 'Nachname',
@@ -35,6 +36,7 @@ const baseArgs = {
         col: 6,
         rowEnd: true,
         required: true,
+        id: 'lastName',
       },
       {
         label: 'E-Mail Adresse',
@@ -42,6 +44,7 @@ const baseArgs = {
         col: 6,
         rowStart: true,
         required: true,
+        id: 'email',
       },
       {
         label: 'Telefon',
@@ -49,22 +52,26 @@ const baseArgs = {
         col: 6,
         rowEnd: true,
         required: true,
+        id: 'phone',
       },
       {
         label: 'Kündigungsfrist (optional)',
         type: 'text',
         col: 6,
         rowStart: true,
+        id: 'cancellation',
       },
       {
         label: 'Gehaltsvorstellung (optional)',
         type: 'text',
         col: 6,
         rowEnd: true,
+        id: 'salary',
       },
       {
         label: 'Nachricht (optional)',
         type: 'textarea',
+        id: 'message',
       },
       {
         label:
