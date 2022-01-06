@@ -94,7 +94,7 @@ class Form extends BaseComponent {
       result = this.validateAttachments();
     }
 
-    for (const [key, group] of Object.entries(this.groups)) {
+    for (const [_, group] of Object.entries(this.groups)) {
       if (!this.isValidGroup(group)) {
         result = false;
 

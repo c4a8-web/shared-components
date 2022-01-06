@@ -1,21 +1,22 @@
-import Tools from "./tools.js";
-import Form from "./components/form.js";
+import Tools from './tools.js';
+import Form from './components/form.js';
 
 class Analytics {
-  static rootSelector = "[data-analytics]";
+  static rootSelector = '[data-analytics]';
   static instances = [];
 
   constructor(root) {
     this.root = root;
     this.code = this.root.dataset.analytics;
     this.parent = Tools.getParent(this.root, Form.rootSelector);
-    this.form = Form.initElement(this.parent, { noEvents: true });
+    this.formInstance = Form.initElement(this.parent, { noEvents: true });
+    this.form = this.formInstance?.form;
 
     this.bindEvents();
   }
 
   bindEvents() {
-    this.parent?.addEventListener("submit", this.handleSubmit.bind(this));
+    this.form?.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
   handleSubmit(e) {
@@ -30,7 +31,7 @@ class Analytics {
   }
 
   isFormValidated(e) {
-    return this.form?.validate(e) && this.form.triggerExternalValidation();
+    return this.formInstance?.validate(e) && this.formInstance.triggerExternalValidation();
   }
 
   track(url, callback) {
@@ -39,12 +40,12 @@ class Analytics {
 
   static track(code, callback, url) {
     if (window.gtag && code) {
-      window.gtag("event", "conversion", {
+      window.gtag('event', 'conversion', {
         send_to: code,
         event_callback: callback,
       });
     } else {
-      console.error("GTag not found");
+      console.error('GTag not found');
       callback();
     }
   }

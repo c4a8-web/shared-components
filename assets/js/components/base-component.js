@@ -9,7 +9,9 @@ class BaseComponent {
     this.root = root;
     this.options = options;
 
-    this.root.classList.add(State.INITIALIZED);
+    if (!this.options?.noInit) {
+      this.root.classList.add(State.INITIALIZED);
+    }
   }
 
   static getInstancesKey() {
