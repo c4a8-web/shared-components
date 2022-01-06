@@ -1,12 +1,39 @@
 <!-- Shared Hero Text Image Section -->
 {%- assign heroTextImageHero = page.hero | default: include.hero | default: hero -%}
 {%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
+{%- assign heroTextImagePattern = heroTextImageHero.pattern | default: false -%}
 
-{% if heroTextImageHero.background %}
-  {% capture heroClasses %}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{% endcapture %}
-{% else %}
-  {% assign heroClasses = "" %}
-{% endif %}
+{%- if heroTextImageVariant == 'hero--career' -%}
+  {% assign heroTextImageCtaTop = false -%}
+{%- else -%}
+  {% assign heroTextImageCtaTop = true -%}
+{%- endif -%}
+
+{%- if heroTextImageHero.cta -%}
+  {%- capture heroTextImageCta -%}
+    {%
+      include cta.html
+      text=heroTextImageHero.cta.text
+      href=heroTextImageHero.cta.href
+      type=heroTextImageHero.cta.type
+      target=heroTextImageHero.cta.target
+      link=heroTextImageHero.cta.link
+      skin=heroTextImageHero.cta.skin
+    %}
+  {%- endcapture -%}
+{%- else -%}
+
+{%- endif -%}
+
+{%- if heroTextImageHero.background -%}
+  {%- capture heroClasses -%}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{%- endcapture -%}
+{%- else -%}
+  {%- assign heroClasses = "" -%}
+{%- endif -%}
+
+{%- if heroTextImageVariant == '' and heroTextImagePattern -%}
+  {%- assign heroTextImageVariant = 'hero--pattern' -%}
+{%- endif -%}
 
 <div class="hero-text-image {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
@@ -22,21 +49,27 @@
     %}
   </div>
   {% endif %}
-  <div class="container z-index-4 position-relative space-bottom-2">
+  <div class="container z-index-4">
     <div class="row justify-content-lg-between align-items-lg-center pt-lg-5 position-relative">
       {% if heroTextImageHero.background %}
-        <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" style="height: 750px;">
-          <!--{% include img.html img=heroTextImageHero.background.img alt=heroTextImageHero.background.alt class=heroClasses %}-->
+        <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
+          {%
+            include img.html
+            img=heroTextImageHero.background.img
+            alt=heroTextImageHero.background.alt
+            class=heroClasses
+            cloudinary=heroTextImageHero.background.cloudinary
+          %}
         </div>
       {% endif %}
-      <div class="hero-text-image__wrapper col-lg-8 space-top-2 space-top-lg-4">
+      <div class="hero-text-image__wrapper col-lg-8">
         {% if heroTextImageHero.overline %}
           <span class="hero-text-image__overline">
             {{ heroTextImageHero.overline }}
           </span>
         {% endif %}
-        <h1 class="{{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
-        <p class="lead mt-5">{{ heroTextImageHero.subline }}</p>
+        <h1 class="hero-text-image__headline {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
+        <p class="hero-text-image__subline {{ hero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         {% if heroTextImageHero.img %}
           <div class="pt-4">
             {%
@@ -46,6 +79,11 @@
               class="hero-text-image__img"
               cloudinary=heroTextImageHero.cloudinary
             %}
+          </div>
+        {% endif %}
+        {% if heroTextImageHero.cta and heroTextImageCtaTop == true %}
+          <div class="pt-4">
+            {{ heroTextImageCta }}
           </div>
         {% endif %}
       </div>
@@ -59,6 +97,7 @@
             include img.html
             img=heroTextImageHero.background.img
             alt=heroTextImageHero.background.alt
+            cloudinary=heroTextImageHero.background.cloudinary
             class=heroClasses
           %}
         </div>
@@ -78,18 +117,55 @@
       </div>
     </div>
   {%- endif -%}
-  {% if heroTextImageHero.cta %}
+  {% if heroTextImageHero.cta and heroTextImageCtaTop == false %}
     <div class="hero-text-image__cta container">
       <div class="row">
         <div class="col-lg-12">
-          {%
-            include cta.html
-            text=heroTextImageHero.cta.text
-            href=heroTextImageHero.cta.href
-          %}
+          {{ heroTextImageCta }}
         </div>
       </div>
     </div>
   {% endif %}
+  {%- if heroTextImagePattern -%}
+    <div class="hero-text-image__pattern position-absolute right-0 top-0 space-top-lg-2">
+      <svg width="1393" height="696" viewBox="0 0 1393 696" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M616 13L1194 103L1242 606L636 696L616 13Z" fill="#D1D9DD"/>
+        <g filter="url(#filter0_f)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7762 72.1904L42.6441 74.2293L56.4455 97.8893L18.8934 106.099L11.7762 72.1904Z" fill="#D1D9DD"/>
+        </g>
+        <g filter="url(#filter1_f)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M392.512 537.332L490.251 496.165L459 537L426.691 580.548L392.512 537.332Z" fill="#D1D9DD"/>
+        </g>
+        <g filter="url(#filter2_f)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1013.26 51.2925L989.911 103.324L987.275 75.8276L984.063 46.8784L1013.26 51.2925Z" fill="#D1D9DD"/>
+        </g>
+        <g filter="url(#filter3_f)">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M1264.1 60.4603L1342.54 9.19567L1393.77 77.3657L1332.46 100.181L1264.1 60.4603Z" fill="#D1D9DD"/>
+        </g>
+        <defs>
+        <filter id="filter0_f" x="0.90324" y="61.3173" width="66.4156" height="55.6548" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur stdDeviation="5.43656" result="effect1_foregroundBlur"></feGaussianBlur>
+        </filter>
+        <filter id="filter1_f" x="389.793" y="493.447" width="103.176" height="89.8188" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur stdDeviation="1.35914" result="effect1_foregroundBlur"></feGaussianBlur>
+        </filter>
+        <filter id="filter2_f" x="975.909" y="38.7236" width="45.5049" height="72.7549" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur stdDeviation="4.07742" result="effect1_foregroundBlur"></feGaussianBlur>
+        </filter>
+        <filter id="filter3_f" x="1261.38" y="6.47752" width="135.108" height="96.4219" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"></feFlood>
+          <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"></feBlend>
+          <feGaussianBlur stdDeviation="1.35914" result="effect1_foregroundBlur"></feGaussianBlur>
+        </filter>
+        </defs>
+        </svg>
+    </div>
+  {%- endif -%}
 </div>
 <!-- Shared End Hero Text Image Section -->

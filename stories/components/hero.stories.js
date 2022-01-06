@@ -55,3 +55,25 @@ HeroTextImage.args = {
     bgColor: '#ffffff',
   },
 };
+
+export const HeroTextImagePattern = Template.bind({});
+
+HeroTextImagePattern.args = {
+  hero: {
+    pattern: true,
+    headline: 'RADIUSaaS',
+    subline: 'Authentication service for your network',
+    background: {
+      img: '/products/radius/radius-hero-screen.png',
+      alt: 'Home',
+      cloudinary: true,
+      spacing: 'space-top-lg-4',
+    },
+    cta: {
+      text: 'Try RADIUSaas now',
+      href: 'start-now/#try',
+      skin: 'primary is-cutoff',
+    },
+    sublineClass: 'is-light',
+  },
+};
