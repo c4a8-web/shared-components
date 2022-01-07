@@ -3,21 +3,21 @@
 :root {
   --site: 'scepman';
   // Theme colors
-  --color-headlines: red;
-  --color-copy: red;
-  --color-primary: red;
-  --color-primary-accent: red;
-  --color-primary-accent-light: red;
-  --color-secondary: red;
-  --color-secondary-accent: red;
-  --color-copy-highlight: red;
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
+  --color-primary: var(--color-yellow);
+  --color-primary-accent: var(--color-ripe-lemon);
+  --color-primary-accent-light: var(--color-ripe-lemon);
+  --color-secondary: var(--color-cold-purple);
+  --color-secondary-accent: var(--color-cold-purple);
+  --color-copy-highlight: var(--color-cold-purple);
 
   // Element colors
   --color-bg-grey: var(--color-porcelain);
   --color-bg-dark-grey: var(--color-regent-grey);
-  --color-svg-icon: red;
-  --color-svg-icon--hover: red;
-  --color-bg-checkbox: red;
+  --color-svg-icon: var(--color-primary);
+  --color-svg-icon--hover: var(--color-primary-accent);
+  --color-bg-checkbox: var(--color-blue-medium);
   --color-border: red;
   --color-loading: red;
   --color-loading--1: var(--color-primary);
