@@ -14,19 +14,7 @@
 @import 'modal';
 @import 'z-index';
 
-@import 'components/cta';
-@import 'components/form-attachments';
-@import 'components/form';
-@import 'components/google-maps';
-@import 'components/hero';
-@import 'components/icon';
-@import 'components/img';
-@import 'components/job-list';
-@import 'components/link';
-@import 'components/people-square';
-@import 'components/person-quote';
-@import 'components/step-list';
-@import 'components/tab-list';
+@import 'components/index';
 
 body {
   font-family: var(--font-family);
