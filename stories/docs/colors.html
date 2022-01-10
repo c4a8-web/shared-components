@@ -1,0 +1,13 @@
+<!-- Shared Colors Section -->
+{%- assign colorsColors = include.colors | default: colors -%}
+
+<div style="display: flex; grid-gap: 10px; flex-wrap: wrap;font-size: .8em;">
+  {% for colorValues in colorsColors %}
+    <div style="width: 200px">
+      {{ colorValues.color | replace: 'var(', '' | replace: ')', '' }}
+      <div style="width:100px; height:100px; background-color: {{ colorValues.color }}"></div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- End Shared Colors Section -->

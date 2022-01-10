@@ -103,8 +103,18 @@ export const createComponent = function async(include, component) {
   return wrapper;
 };
 
-const getTitle = ({ page, title }) => {
-  const titleText = `${page ? 'Pages' : 'Components'}/${title}`;
+const getTitle = ({ page, title, docs }) => {
+  let type;
+
+  if (page) {
+    type = 'Pages';
+  } else if (docs) {
+    type = 'Docs';
+  } else {
+    type = 'Components';
+  }
+
+  const titleText = `${type}/${title}`;
 
   return {
     title: titleText,
