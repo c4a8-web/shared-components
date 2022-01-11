@@ -12,7 +12,12 @@
 {%- assign textImageCopy = include.copy | default: copy -%}
 {%- assign textImageList = include.list | default: list -%}
 {%- assign textImageBgColor = include.bgColor | default: bgColor -%}
+{%- assign textImageCopyClasses = include.copyClasses | default: copyClasses | default: false -%}
+{%- assign textImageCopyLight = include.copyLight | default: copyLight | default: false -%}
 {%- assign textImageBackground = include.background | default: background -%}
+{%- assign textImageFirstColWidth = include.firstColWidth | default: firstColWidth | default: 6 -%}
+{%- assign textImageSecondColWidth = include.secondColWidth | default: secondColWidth | default: 6 -%}
+{%- assign textImageReduceSpacing = include.reduceSpacing | default: reduceSpacing | default: false -%}
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 <div class="text-image {{ textImageSpacing }} {% if textImageFloat %}text-image--float{% endif %}"
@@ -21,7 +26,7 @@ style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endi
   <div class="container">
     <div class="row {% if textImageLeft %}flex-row-reverse{% endif %}">
       {% if textImageFloat %}
-        <div class="col-lg-6 justify-content-end text-image__floating-img position-absolute top-0 right-0">
+        <div class="text-image__floating-col col-lg-6 justify-content-end text-image__floating-img position-absolute top-0 right-0">
           {%
             include img.html
             img=textImageImage
@@ -32,14 +37,14 @@ style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endi
           %}
         </div>
       {% endif %}
-      <div class="d-flex text-image__img justify-content-center
+      <div class="text-image__first-col d-flex text-image__img justify-content-center
                   col-lg-
-                  {%- if textImageFloat -%}6 text-image__img--floating{%- else -%}
+                  {%- if textImageFloat -%}{{ textImageFirstColWidth }} text-image__img--floating{%- else -%}
                     {%- if textImageOffset -%}
-                      5
+                      {{ textImageFirstColWidth | minus: 1 }}
                       {% unless textImageLeft %} offset-lg-1{% endunless %}
                     {%- else -%}
-                      6
+                      {{ textImageFirstColWidth }}
                     {% endif %}
                   {%- endif -%}"
       >
@@ -60,9 +65,12 @@ style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endi
           alt=textImageAlt
         %}
       </div>
-      <div class="col-lg-6 pt-2 pt-lg-4
+      <div class="text-image__second-col col-lg-{{ textImageSecondColWidth }} pt-2 pt-lg-4
                   {% if textImageWhite %}text-white{% endif %}
-                  {% if textImageLeft %}pr-lg-{% else %}pl-lg-{% endif %}6
+                  {{ textImageReduceSpacing }}
+                  {% unless textImageReduceSpacing %}
+                    {% if textImageLeft %}pr-lg-{% else %}pl-lg-{% endif %}6
+                  {% endunless %}
                   {% unless textImageFloat %}{% if textImageLeft and textImageOffset %}offset-lg-1{% endif %}{% endunless %}"
       >
         <span class="text-image__overline d-inline-block mb-2 font-size-2">
@@ -71,7 +79,7 @@ style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endi
         <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4">
           {{ textImageHeadline }}
         </{{ textImageLevel }}>
-        <p>
+        <p class="{% if textImageCopyClasses %}{{ textImageCopyClasses }}{% endif %} {% if textImageCopyLight %}light{% endif %}">
           {{ textImageCopy }}
         </p>
         {% if textImageList %}
