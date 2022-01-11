@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const Right = Template.bind({});
 
 Right.args = {
-  image: getAssetPath('svg/icon-consulting-services.svg'),
+  image: getAssetPath('svg/icons/icon-consulting-services.svg'),
   alt: 'Consulting Services',
   headline: 'Consulting Services',
   offset: true,
@@ -41,10 +41,15 @@ Right.args = {
 export const Left = Template.bind({});
 
 Left.args = {
+  image: getAssetPath('svg/icons/icon-hand.svg'),
+  imageSize: 'medium',
   left: true,
   bgColor: 'var(--color-text-image-background)',
   white: true,
   copy: 'Komm zu uns, anderes Wording natürlich. Abschließende prominente Aufforderung die Stellenseite zu besuchen',
-  // TODO add font-size
+  copyClasses: 'h2-font-size',
+  firstColWidth: 5,
+  secondColWidth: 7,
+  reduceSpacing: true,
   // TODO add cta
 };
