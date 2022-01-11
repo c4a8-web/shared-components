@@ -13,7 +13,15 @@ Node can be found at [nodejs.org](https://nodejs.org/en/).
 
 ## Install
 
-To install the packages use yarn package manager or npm.
+To install the packages use yarn package manager or npm. For this documentation we will use yarn.
+If you don't have yarn installed you can install it with:
+
+```
+npm install --global yarn
+```
+
+After that yarn should be working. Sometimes you need to restart your terminal or your editor for it to work.
+If it works you can continue with:
 
 ```
 yarn install
