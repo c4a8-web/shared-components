@@ -1,6 +1,6 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
 
-import colors from '!!raw-loader!./colors.html';
+import colorsHtml from '!!raw-loader!./colors.html';
 
 const options = getTitle({
   title: 'Colors',
@@ -11,7 +11,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, colors);
+const Template = (args) => createComponent(args, colorsHtml);
 
 const baseArgs = {};
 

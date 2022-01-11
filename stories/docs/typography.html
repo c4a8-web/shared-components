@@ -1,0 +1,18 @@
+<!-- Shared Typography Section -->
+{%- assign typographyTypes = include.types | default: types -%}
+
+<div style="display: flex; grid-gap: 10px; flex-direction: column;">
+  {% for typeValues in typographyTypes %}
+    <div>
+      <div class="{{ typeValues.class }} {% if typeValues.light %}light{% elsif typeValues.bold %}bold{% endif %}" style="">
+        {% unless typeValues.headline %}
+          {{ typeValues.class }} ({% if typeValues.light %}light{% elsif typeValues.bold %}bold{% else %}default{% endif %})
+        {% else %}
+          <div style="margin: 1em 0;" class="h4-font-size">{{ typeValues.headline }}</div>
+        {% endunless %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<!-- End Shared Typography Section -->
