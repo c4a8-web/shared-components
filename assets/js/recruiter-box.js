@@ -9,6 +9,7 @@ class RecruiterBox {
   };
 
   langTagPrefix = 'lang_';
+  hiddenTag = 'hidden';
 
   constructor(options) {
     this.options = options;

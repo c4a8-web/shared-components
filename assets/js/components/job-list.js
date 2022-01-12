@@ -125,6 +125,8 @@ class JobList extends BaseComponent {
   isAvailableEntry(data) {
     let result = true;
 
+    if (data.tags.includes(this.api.hiddenTag)) return false;
+
     if (this.team) {
       const entryTeam = data.team?.toLowerCase();
       const filterTeam = this.team.toLowerCase();
