@@ -3,6 +3,42 @@
   background-repeat: no-repeat;
   z-index: 1;
 
+  .row {
+    &.flex-row-reverse {
+      .text-image__first-col {
+        order: 2;
+        margin-top: 2rem;
+
+        @include media-breakpoint-up(lg) {
+          margin-top: 0;
+          order: 1;
+        }
+      }
+
+      .text-image__second-col {
+        order: 1;
+
+        @include media-breakpoint-up(lg) {
+          order: 2;
+        }
+      }
+    }
+  }
+
+  .img__picture-wrapper {
+    &.ratio-1x1 {
+      @include aspect-ratio(1, 1);
+
+      overflow: hidden;
+
+      > img {
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 0;
+      }
+    }
+  }
+
   &.text-image--float {
     @include media-breakpoint-up(lg) {
       .text-image__img {

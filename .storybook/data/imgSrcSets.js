@@ -30,6 +30,33 @@ const ImgSrcSets = {
       },
     ],
   },
+  textImageFloating: {
+    srcSets: [
+      {
+        params: 'c_fill,g_xy_center,h_1000,w_490,x_870,y_0/',
+        media: '(max-width: 1199px)',
+      },
+      {
+        params: 'c_fill,g_face,h_1200,w_800,x_0,y_0/',
+      },
+    ],
+  },
+  textImageFloatingSmallSquare: {
+    ratioClasses: 'ratio-1x1',
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_500,w_500,x_0,y_0/',
+      },
+    ],
+  },
+  textImageFloatingSmall: {
+    ratioClasses: 'ratio-2x1',
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_500,w_1000,x_0,y_0/',
+      },
+    ],
+  },
 };
 
 export default ImgSrcSets;
