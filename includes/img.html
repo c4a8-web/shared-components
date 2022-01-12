@@ -38,7 +38,14 @@
       {% assign additionalClasses = '' %}
     {% endif %}
 
-    <img src="/assets/{{ imgImg }}" alt="{{ imgAlt }}" class="{{ imgClass }} {{ additionalClasses }}">
+    {% if imgImgSrcSets.ratioClasses %}
+      <div class="img__picture-wrapper {{ imgImgSrcSets.ratioClasses }}">
+    {% endif %}
+      <img src="/assets/{{ imgImg }}" alt="{{ imgAlt }}" class="{{ imgClass }} {{ additionalClasses }}">
+    {% if imgImgSrcSets.ratioClasses %}
+      </div>
+    {% endif %}
+
   {%- endif -%}
 {% endif %}
 <!-- End Shared Img Section -->
