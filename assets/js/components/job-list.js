@@ -182,7 +182,7 @@ class JobList extends BaseComponent {
         team,
         positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
         isInvisible: this.maxItems > 0 && counter > this.maxItems - 1 ? true : false,
-        id: counter,
+        id: i,
       };
 
       if (this.isAvailableEntry(entry)) {
