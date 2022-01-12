@@ -29,7 +29,12 @@
         {% capture imgUrl %}{{ imgImg }}.jpg{% endcapture %}
       {% endif %}
       {%- assign imgUrl = imgUrl | strip_newlines -%}
-      {% cloudinary {{ imgPreset }} {{ imgUrl }} alt="{{ imgAlt }}" class="no-small img-responsive {{ imgClass }}" %}
+
+      {% if imgImg contains '.gif' %}
+        <img src="https://res.cloudinary.com/{{ site.cloudinary.cloud_name }}/image/upload/{{ imgUrl }}">
+      {% else %}
+        {% cloudinary {{ imgPreset }} {{ imgUrl }} alt="{{ imgAlt }}" class="no-small img-responsive {{ imgClass }}" %}
+      {% endif %}
     {%- endif -%}
   {%- else -%}
     {% if imgImg contains ".svg" %}
