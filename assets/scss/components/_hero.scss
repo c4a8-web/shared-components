@@ -130,16 +130,18 @@
 }
 
 .hero-text-image__keyvisual {
-  max-height: 600px;
+  &.is-svg {
+    max-height: 600px;
 
-  &.is-large {
-    @include media-breakpoint-up(lg) {
-      max-height: 900px;
+    &.is-large {
+      @include media-breakpoint-up(lg) {
+        max-height: 900px;
+      }
     }
-  }
 
-  @include media-breakpoint-up(lg) {
-    max-height: 725px;
+    @include media-breakpoint-up(lg) {
+      max-height: 725px;
+    }
   }
 }
 
