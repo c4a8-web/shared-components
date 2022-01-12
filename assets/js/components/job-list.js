@@ -168,6 +168,8 @@ class JobList extends BaseComponent {
 
     if (!this.data.meta) return this.loading.off();
 
+    let counter = 0;
+
     for (let i = 0; i < localData.objects?.length; i++) {
       const entry = localData.objects[i];
       const { city } = entry?.location || {};
@@ -179,8 +181,8 @@ class JobList extends BaseComponent {
         gender,
         team,
         positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
-        isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
-        id: i,
+        isInvisible: this.maxItems > 0 && counter > this.maxItems - 1 ? true : false,
+        id: counter,
       };
 
       if (this.isAvailableEntry(entry)) {
@@ -189,6 +191,8 @@ class JobList extends BaseComponent {
             orderedList[i] = html;
           })
         );
+
+        counter++;
       }
     }
 
