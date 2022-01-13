@@ -1,0 +1,56 @@
+<!-- Shared Modal Application Section -->
+{%- assign modalApplicationForm = include.form -%}
+{%- assign modalApplicationSuccess = include.success -%}
+
+<div class="modal__application">
+  <div class="modal__body-default">
+    {%
+      include form.html
+      form=modalApplicationForm
+      space=' '
+      container=true
+      customValidation=true
+      %}
+  </div>
+  <div class="modal__success container">
+    <div class="modal__success-row row">
+      <div class="modal__success-content col-lg-8">
+        <div class="modal__success-headline">
+          {%
+            include headline.html
+            text=modalApplicationSuccess.headline.text
+            level='h2'
+            classes=modalApplicationSuccess.headline.classes
+          %}
+        </div>
+        <div class="modal__success-icon">
+          {%
+            include icon.html
+            icon='rocket'
+          %}
+        </div>
+        <div class="modal__success-subline">
+          {{ modalApplicationSuccess.subline }}
+        </div>
+        <div class="modal__success-subheadline">
+          {%
+            include headline.html
+            text=modalApplicationSuccess.subheadline.text
+            level='h4'
+            classes=modalApplicationSuccess.subheadline.classes
+          %}
+        </div>
+        <div class="modal__success-text">
+          {{ modalApplicationSuccess.text }}
+        </div>
+        <div class="modal__success-close">
+          {%
+            include cta.html
+            text=modalApplicationSuccess.cta.text
+          %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Modal Application Section -->

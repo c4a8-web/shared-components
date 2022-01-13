@@ -1,20 +1,20 @@
 <!-- Shared Job List Detail Section -->
-{%- assign jobListDetailColor = include.detailColor | default: detailColor | default: '--color-job-list-detail' -%}
-{%- assign jobListDetailClientName = include.clientName | default: clientName -%}
-{%- assign jobListDetailJobId = include.jobId | default: jobId -%}
-{%- assign jobListDetailApiUrl = include.apiUrl | default: apiUrl -%}
-{%- assign jobListDetailBase = include.base | default: base -%}
-{%- assign jobListDetailTitle = include.title | default: title -%}
-{%- assign jobListDetailHeadlineLevel = include.headlineLevel | default: headlineLevel -%}
-{%- assign jobListDetailHeadlineClasses = include.headlineClasses | default: headlineClasses -%}
-{%- assign jobListDetailGender = include.gender | default: gender -%}
-{%- assign jobListDetailCtaText = include.ctaText | default: ctaText -%}
-{%- assign jobListDetailCtaButton = include.ctaButton | default: ctaButton -%}
-{%- assign jobListDetailDescription = include.description | default: description -%}
-{%- assign jobListDetailForm = include.form | default: form %}
-{%- assign jobListDetailPersonQuote = include.personQuote | default: personQuote %}
-{%- assign jobListDetailGoogleMaps = include.googleMaps | default: googleMaps %}
-{%- assign jobListDetailModalSuccess = include.modalSuccess | default: modalSuccess %}
+{%- assign jobListDetailColor = include.detailColor | default: '--color-job-list-detail' -%}
+{%- assign jobListDetailClientName = include.clientName -%}
+{%- assign jobListDetailJobId = include.jobId -%}
+{%- assign jobListDetailApiUrl = include.apiUrl -%}
+{%- assign jobListDetailBase = include.base -%}
+{%- assign jobListDetailTitle = include.title -%}
+{%- assign jobListDetailHeadlineLevel = include.headlineLevel -%}
+{%- assign jobListDetailHeadlineClasses = include.headlineClasses -%}
+{%- assign jobListDetailGender = include.gender -%}
+{%- assign jobListDetailCtaText = include.ctaText -%}
+{%- assign jobListDetailCtaButton = include.ctaButton -%}
+{%- assign jobListDetailDescription = include.description -%}
+{%- assign jobListDetailForm = include.form %}
+{%- assign jobListDetailPersonQuote = include.personQuote %}
+{%- assign jobListDetailGoogleMaps = include.googleMaps %}
+{%- assign jobListDetailModalSuccess = include.modalSuccess %}
 
 <div class="job-list__detail is-loading"
   style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
@@ -94,72 +94,15 @@
   </div>
   <div class="job-list__sticky-end"></div>
 
-  <div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)">
-    <div class="modal-dialog modal-xl">
-      <div class="modal__content">
-        <div class="modal__header">
-          <div class="modal__close">
-            {%
-              include icon.html
-              icon='close'
-              hover=true
-              circle=true
-            %}
-          </div>
-        </div>
-        <div class="modal__body">
-          <div class="modal__body-default">
-            {%
-              include form.html
-              form=jobListDetailForm
-              space=' '
-              container=true
-              customValidation=true
-              %}
-          </div>
-          <div class="modal__success container">
-            <div class="modal__success-row row">
-              <div class="modal__success-content col-lg-8">
-                <div class="modal__success-headline">
-                  {%
-                    include headline.html
-                    text=jobListDetailModalSuccess.headline.text
-                    level='h2'
-                    classes=jobListDetailModalSuccess.headline.classes
-                  %}
-                </div>
-                <div class="modal__success-icon">
-                  {%
-                    include icon.html
-                    icon='rocket'
-                  %}
-                </div>
-                <div class="modal__success-subline">
-                  {{ jobListDetailModalSuccess.subline }}
-                </div>
-                <div class="modal__success-subheadline">
-                  {%
-                    include headline.html
-                    text=jobListDetailModalSuccess.subheadline.text
-                    level='h4'
-                    classes=jobListDetailModalSuccess.subheadline.classes
-                  %}
-                </div>
-                <div class="modal__success-text">
-                  {{ jobListDetailModalSuccess.text }}
-                </div>
-                <div class="modal__success-close">
-                  {%
-                    include cta.html
-                    text=jobListDetailModalSuccess.cta.text
-                  %}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  {%
+    include modal.html
+    form=jobListDetailForm
+    success=jobListDetailModalSuccess
+    application=true
+    clientName=jobListDetailClientName
+    apiUrl=jobListDetailApiUrl
+    jobId=jobListDetailJobId
+  %}
+
 </div>
 <!-- End Shared Job List Detail Section -->
