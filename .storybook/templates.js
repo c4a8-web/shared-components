@@ -49,6 +49,18 @@ const registerTags = function (engine) {
   return streamlinelightTag.engine;
 };
 
+const rewriteInclude = function (engine) {
+  const oldEval = engine._evalValue.bind(engine);
+
+  engine._evalValue = function (str, ctx) {
+    let newStr = str.replace('include.', '');
+
+    return oldEval(newStr, ctx);
+  };
+
+  return engine;
+};
+
 export const createComponent = function async(include, component) {
   const globals = { site };
   const partialsPath = 'includes';
@@ -96,6 +108,9 @@ export const createComponent = function async(include, component) {
 
   const wrapper = document.createElement('div');
   const tpl = engine.parse(fixComponent(component));
+
+  engine = rewriteInclude(engine);
+
   const html = engine.renderSync(tpl, include);
 
   wrapper.innerHTML = html;

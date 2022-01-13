@@ -1,15 +1,15 @@
 <!-- Shared Cta Section -->
-{% assign ctaText = include.text | default: text %}
-{% assign ctaAnalytics = include.analytics | default: analytics | default: false %}
-{% assign ctaLink = include.link | default: link %}
-{% assign ctaSkin = include.skin | default: skin %}
-{% assign ctaWidth = include.width | default: width %}
-{% assign ctaGrow = include.grow | default: grow %}
-{% assign ctaHref = include.href | default: href %}
-{% assign ctaTarget = include.target | default: target %}
-{% assign ctaButton = include.button | default: button %}
-{% assign ctaAlternativeHref = include.alternativeHref | default: alternativeHref %}
-{% assign ctaType = include.type | default: type %}
+{% assign ctaText = include.text %}
+{% assign ctaAnalytics = include.analytics | default: false %}
+{% assign ctaLink = include.link %}
+{% assign ctaSkin = include.skin %}
+{% assign ctaWidth = include.width %}
+{% assign ctaGrow = include.grow %}
+{% assign ctaHref = include.href %}
+{% assign ctaTarget = include.target %}
+{% assign ctaButton = include.button %}
+{% assign ctaAlternativeHref = include.alternativeHref %}
+{% assign ctaType = include.type %}
 
 {%- if ctaAnalytics -%}
   {%- capture analytics -%}data-analytics="{{ ctaAnalytics }}"{%- endcapture -%}

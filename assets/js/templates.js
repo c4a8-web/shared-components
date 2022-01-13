@@ -75,6 +75,8 @@ class Templates {
 
       this.engine = new Liquid(liquidOptions);
 
+      this.engine = this.rewriteInclude(this.engine);
+
       // add map of jekyll filter
       this.engine.filters.impls.jsonify = this.engine.filters?.impls?.json;
     }
@@ -170,6 +172,18 @@ class Templates {
     include = include.replace('{%,', '{%');
 
     return include;
+  }
+
+  rewriteInclude(engine) {
+    const oldEval = engine._evalValue.bind(engine);
+
+    engine._evalValue = function (str, ctx) {
+      let newStr = str.replace('include.', '');
+
+      return oldEval(newStr, ctx);
+    };
+
+    return engine;
   }
 }
 

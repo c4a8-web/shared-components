@@ -38,11 +38,10 @@ Right.args = {
   copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
 };
 
-export const Left = Template.bind({});
+export const JobApplication = Template.bind({});
 
-Left.args = {
+JobApplication.args = {
   image: getAssetPath('svg/icons/icon-hand.svg'),
-  imageSize: 'medium',
   left: true,
   bgColor: 'var(--color-text-image-background)',
   white: true,
@@ -51,6 +50,7 @@ Left.args = {
   firstColWidth: 5,
   secondColWidth: 7,
   reduceSpacing: true,
+  // TODO add icon with animations
   // TODO add cta
 };
 

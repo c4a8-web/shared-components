@@ -241,7 +241,6 @@ class JobListDetail extends BaseComponent {
         positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
         isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
         ...(this.base && { ...this.base }),
-        expand: ['cta'],
       };
 
       this.templates.setPreRender(() => {

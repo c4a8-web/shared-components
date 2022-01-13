@@ -1,26 +1,26 @@
 <!-- Shared Text Image Section -->
-{%- assign textImageSpacing = include.spacing | default: spacing | default: 'space-top-2' -%}
-{%- assign textImageImage = include.image | default: image -%}
-{%- assign textImageImageClasses = include.imageClasses | default: imageClasses -%}
-{%- assign textImageImagePreset = include.imagePreset | default: imagePreset -%}
-{%- assign textImageFloat = include.float | default: float -%}
-{%- assign textImageOverline = include.overline | default: overline -%}
-{%- assign textImageHeadline = include.headline | default: headline -%}
-{%- assign textImageLeft = include.left | default: left -%}
-{%- assign textImageAlt = include.alt | default: alt -%}
-{%- assign textImageCloudinary = include.cloudinary | default: cloudinary -%}
-{%- assign textImageOffset = include.offset | default: offset -%}
-{%- assign textImageWhite = include.white | default: white -%}
-{%- assign textImageCopy = include.copy | default: copy -%}
-{% comment %}TODO fix the scoping problem with front matter variables{% endcomment %}
+{%- assign textImageSpacing = include.spacing | default: 'space-top-2' -%}
+{%- assign textImageImage = include.image -%}
+{%- assign textImageImageClasses = include.imageClasses -%}
+{%- assign textImageImagePreset = include.imagePreset -%}
+{%- assign textImageFloat = include.float -%}
+{%- assign textImageOverline = include.overline -%}
+{%- assign textImageHeadline = include.headline -%}
+{%- assign textImageLeft = include.left -%}
+{%- assign textImageAlt = include.alt -%}
+{%- assign textImageCloudinary = include.cloudinary -%}
+{%- assign textImageOffset = include.offset -%}
+{%- assign textImageWhite = include.white -%}
+{%- assign textImageCopy = include.copy -%}
 {%- assign textImageList = include.list -%}
-{%- assign textImageBgColor = include.bgColor | default: bgColor -%}
-{%- assign textImageCopyClasses = include.copyClasses | default: copyClasses | default: false -%}
-{%- assign textImageCopyLight = include.copyLight | default: copyLight | default: false -%}
-{%- assign textImageBackground = include.background | default: background -%}
-{%- assign textImageFirstColWidth = include.firstColWidth | default: firstColWidth -%}
-{%- assign textImageSecondColWidth = include.secondColWidth | default: secondColWidth -%}
-{%- assign textImageReduceSpacing = include.reduceSpacing | default: reduceSpacing | default: false -%}
+{%- assign textImageBgColor = include.bgColor -%}
+{%- assign textImageCopyClasses = include.copyClasses | default: false -%}
+{%- assign textImageCopyLight = include.copyLight | default: false -%}
+{%- assign textImageBackground = include.background -%}
+{%- assign textImageFirstColWidth = include.firstColWidth -%}
+{%- assign textImageSecondColWidth = include.secondColWidth -%}
+{%- assign textImageReduceSpacing = include.reduceSpacing | default: false -%}
+{%- assign textImageList = include.list -%}
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageFirstColWidth -%}
@@ -110,6 +110,9 @@ style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endi
           </div>
         {% endif %}
       </div>
+      {% if textImageCta %}
+
+      {% endif %}
     </div>
   </div>
 </div>
