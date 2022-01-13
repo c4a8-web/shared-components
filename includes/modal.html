@@ -1,0 +1,38 @@
+<!-- Shared Modal Section -->
+{%- assign modalForm = include.form -%}
+{%- assign modalSuccess = include.success -%}
+{%- assign modalApplication = include.application -%}
+{%- assign modalClientName = include.clientName -%}
+{%- assign modalApiUrl = include.apiUrl -%}
+{%- assign modalJobId = include.jobId -%}
+
+<div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)"
+  {% if modalClientName %}data-client-name="{{ modalClientName }}" {% endif %}
+  {% if modalApiUrl %}data-api-url="{{ modalApiUrl }}" {% endif %}
+  {% if modalJobId %}data-job-id="{{ modalJobId }}" {% endif %}
+>
+  <div class="modal-dialog modal-xl">
+    <div class="modal__content">
+      <div class="modal__header">
+        <div class="modal__close">
+          {%
+            include icon.html
+            icon='close'
+            hover=true
+            circle=true
+          %}
+        </div>
+      </div>
+      <div class="modal__body">
+        {% if modalApplication %}
+          {%
+            include modal-application.html
+            form=modalForm
+            success=modalSuccess
+          %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Modal Section -->

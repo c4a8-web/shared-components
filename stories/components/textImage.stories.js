@@ -50,8 +50,11 @@ JobApplication.args = {
   firstColWidth: 5,
   secondColWidth: 7,
   reduceSpacing: true,
+  cta: {
+    text: 'Initiativbewerbung',
+    trigger: 'js-modal-application',
+  },
   // TODO add icon with animations
-  // TODO add cta
 };
 
 export const LeftFloating = Template.bind({});

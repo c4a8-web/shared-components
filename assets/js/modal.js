@@ -1,5 +1,9 @@
 import State from './state.js';
-import { initComponentList } from './index.js';
+import Form from './components/form.js';
+import FormAttachments from './components/form-attachments.js';
+import RecruiterBox from './recruiter-box.js';
+import Tools from './tools.js';
+// import { initComponentList } from './index.js';
 
 class Modal {
   static rootSelector = '.modal';
@@ -11,11 +15,27 @@ class Modal {
 
     this.closeSelector = '.modal__close';
     this.successCloseSelector = '.modal__success-close .cta';
+    this.applicationSelector = '.modal__application';
+    this.formSelector = '.form';
 
     this.close = this.root.querySelector(this.closeSelector);
     this.successClose = this.root.querySelector(this.successCloseSelector);
+    this.application = this.root.querySelector(this.applicationSelector);
+    this.form = this.root.querySelector(this.formSelector);
 
     this.root.classList.add(State.READY);
+
+    if (this.application) {
+      this.clientName = this.root.dataset.clientName;
+      this.apiUrl = this.root.dataset.apiUrl;
+      this.jobId = this.root.dataset.jobId;
+
+      this.api = new RecruiterBox({
+        ...(this.jobId && { jobId: this.jobId }),
+        ...(this.apiUrl && { apiUrl: this.apiUrl }),
+        client_name: this.clientName,
+      });
+    }
 
     this.bindEvents();
   }
@@ -23,6 +43,57 @@ class Modal {
   bindEvents() {
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
+
+    if (this.application) {
+      const formInstance = Form.getInstance(this.form);
+
+      if (formInstance) {
+        formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
+      }
+    }
+  }
+
+  handleApplicationSubmit(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+
+    const base64 = this.form.querySelector(FormAttachments.base64Selector);
+    const base64Value = base64?.value;
+    let fields = this.api.getFormData(this.form);
+
+    let fileData;
+
+    if (base64Value) {
+      fileData = {
+        name: base64.dataset.fileName,
+      };
+    } else {
+      const fileInput = this.form.querySelector('input[type="file"]');
+
+      fileData = fileInput?.files[0];
+    }
+
+    if (fileData) {
+      if (base64Value) {
+        fields = this.api.applyFileData(fileData, base64Value, fields);
+        this.handleApplicationRequest(fields);
+      } else {
+        Tools.toBase64(fileData).then((data) => {
+          fields = this.api.applyFileData(fileData, data, fields);
+          this.handleApplicationRequest(fields);
+        });
+      }
+    } else {
+      console.log('handle generic error no files');
+
+      // this.handleApplyError({
+      //   errors: 'no files',
+      // });
+    }
+  }
+
+  handleApplicationRequest(fields) {
+    this.api.handleApply(fields).then().catch();
   }
 
   handleClose(e) {
@@ -41,9 +112,8 @@ class Modal {
 
   static open(element) {
     if (window.$) {
+      // TODO replace with custom event trigger ?
       $(element).modal('show');
-
-      // initComponentList(element);
     }
   }
 

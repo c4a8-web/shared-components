@@ -10,6 +10,7 @@
 {% assign ctaButton = include.button %}
 {% assign ctaAlternativeHref = include.alternativeHref %}
 {% assign ctaType = include.type %}
+{% assign ctaTrigger = include.trigger %}
 
 {%- if ctaAnalytics -%}
   {%- capture analytics -%}data-analytics="{{ ctaAnalytics }}"{%- endcapture -%}
@@ -26,7 +27,7 @@
   {% capture baseClass %}btn {{ ctaInnerWidth }}{% endcapture %}
 {% endif %}
 {% if ctaButton %}
-  <button class="cta {{ baseClass }} {{ innerSkin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }}>
+  <button class="cta {{ baseClass }} {{ innerSkin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }} {% if ctaTrigger %}data-trigger="{{ ctaTrigger }}"{% endif %}>
     {{ ctaText }}
   </button>
 {% else %}

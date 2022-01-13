@@ -21,6 +21,7 @@
 {%- assign textImageSecondColWidth = include.secondColWidth -%}
 {%- assign textImageReduceSpacing = include.reduceSpacing | default: false -%}
 {%- assign textImageList = include.list -%}
+{%- assign textImageCta = include.cta %}
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageFirstColWidth -%}
@@ -37,9 +38,11 @@
   {%- assign textImageSecondColWidth = 6 -%}
 {%- endif -%}
 
-<div class="text-image {{ textImageSpacing }} {% if textImageFloat %}text-image--float{% endif %}"
-style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endif %}
-        {% if textImageBackground %}background-image:url('{{ textImageBackground }}');{% endif %}">
+<div class="text-image {{ textImageSpacing }}
+          {% if textImageBgColor %}text-image--bg-color{% endif %}
+          {% if textImageFloat %}text-image--float{% endif %}"
+     style="{% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endif %}
+            {% if textImageBackground %}background-image:url('{{ textImageBackground }}');{% endif %}">
   <div class="container">
     <div class="row {% if textImageLeft %}flex-row-reverse{% endif %}">
       {% if textImageFloat %}
@@ -111,7 +114,15 @@ style=" {% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endi
         {% endif %}
       </div>
       {% if textImageCta %}
-
+        <div class="text-image__cta">
+          {%
+            include cta.html
+            text=textImageCta.text
+            button=true
+            href=textImageCta.href
+            trigger=textImageCta.trigger
+          %}
+        </div>
       {% endif %}
     </div>
   </div>

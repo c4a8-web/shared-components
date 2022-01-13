@@ -89,6 +89,58 @@ class RecruiterBox {
     return data;
   }
 
+  applyFileData(fileData, data, fields) {
+    const file = {
+      key: 'resume',
+      value: {
+        encoded_data: data,
+        file_name: fileData.name,
+      },
+    };
+
+    fields.push(file);
+
+    return fields;
+  }
+
+  handleApply(fields) {
+    console.log('RecruiterBox ~ handleApply ~ fields', fields);
+
+    return;
+
+    this.apply({ fields })
+      .then((response) => {
+        if (response.status === 201 || response.status === 204) return this.handleApplySuccess(fields);
+
+        response.json().then((jsonResponse) => {
+          // console.log('JobListDetail ~ .then ~ jsonResponse', jsonResponse);
+          if (jsonResponse.errors && this.handleApplyError(jsonResponse.errors)) return null;
+        });
+      })
+      .catch((error) => {
+        this.handleApplyError(error);
+      });
+  }
+
+  handleApplySuccess(response) {
+    // TODO thenable
+    // this.modal.classList.add(State.SUCCESS);
+    // const modalSuccessHeadline = this.modal.querySelector('.modal__success-headline > *');
+    // if (modalSuccessHeadline) {
+    //   if (!modalSuccessHeadline.dataset.text) {
+    //     modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
+    //   }
+    //   const firstName = response[0];
+    //   modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+    // }
+  }
+
+  handleApplyError(errors) {
+    // TODO thenable
+    // console.log('JobListDetail ~ handleApplyError ~ errors', errors);
+    // TODO define error case with kristin
+  }
+
   async apply(fields) {
     const url = this.getUrl(this.types.OPENINGS, this.options?.jobId, 'apply');
 

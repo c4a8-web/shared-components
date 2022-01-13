@@ -3,8 +3,8 @@ import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
 import Modal from '../modal.js';
 import Tools from '../tools.js';
-import Form from './form.js';
-import FormAttachments from './form-attachments.js';
+// import Form from './form.js';
+// import FormAttachments from './form-attachments.js';
 import Loading from '../loading.js';
 
 class JobListDetail extends BaseComponent {
@@ -22,7 +22,7 @@ class JobListDetail extends BaseComponent {
     this.hasBackClass = 'job-list__detail--has-back';
 
     this.modal = this.root.querySelector('.modal');
-    this.modalForm = this.modal?.querySelector('.form');
+    // this.modalForm = this.modal?.querySelector('.form');
 
     this.loadingDelay = 300;
     this.base = this.root.dataset.base ? JSON.parse(this.root.dataset.base) : undefined;
@@ -112,98 +112,98 @@ class JobListDetail extends BaseComponent {
     this.back?.addEventListener('click', this.handleBack.bind(this));
     this.cta?.addEventListener('click', this.handleCta.bind(this));
 
-    const modalFormInstance = Form.getInstance(this.modalForm);
+    // const modalFormInstance = Form.getInstance(this.modalForm);
 
-    if (modalFormInstance) {
-      modalFormInstance.customSubmit = this.handleSubmit.bind(this);
-    }
+    // if (modalFormInstance) {
+    //   modalFormInstance.customSubmit = this.handleSubmit.bind(this);
+    // }
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    e.stopImmediatePropagation();
+  // handleSubmit(e) {
+  //   e.preventDefault();
+  //   e.stopImmediatePropagation();
 
-    const base64 = this.modalForm.querySelector(FormAttachments.base64Selector);
-    const base64Value = base64?.value;
-    const fields = this.api.getFormData(this.modalForm);
+  //   const base64 = this.modalForm.querySelector(FormAttachments.base64Selector);
+  //   const base64Value = base64?.value;
+  //   const fields = this.api.getFormData(this.modalForm);
 
-    let fileData;
+  //   let fileData;
 
-    if (base64Value) {
-      fileData = {
-        name: base64.dataset.fileName,
-      };
-    } else {
-      const fileInput = this.modalForm.querySelector('input[type="file"]');
+  //   if (base64Value) {
+  //     fileData = {
+  //       name: base64.dataset.fileName,
+  //     };
+  //   } else {
+  //     const fileInput = this.modalForm.querySelector('input[type="file"]');
 
-      fileData = fileInput?.files[0];
-    }
+  //     fileData = fileInput?.files[0];
+  //   }
 
-    if (fileData) {
-      if (base64Value) {
-        this.applyFileData(fileData, base64Value, fields);
-      } else {
-        Tools.toBase64(fileData).then((data) => {
-          this.applyFileData(fileData, data, fields);
-        });
-      }
-    } else {
-      this.handleApplyError({
-        errors: 'no files',
-      });
-    }
-  }
+  //   if (fileData) {
+  //     if (base64Value) {
+  //       this.applyFileData(fileData, base64Value, fields);
+  //     } else {
+  //       Tools.toBase64(fileData).then((data) => {
+  //         this.applyFileData(fileData, data, fields);
+  //       });
+  //     }
+  //   } else {
+  //     this.handleApplyError({
+  //       errors: 'no files',
+  //     });
+  //   }
+  // }
 
-  applyFileData(fileData, data, fields) {
-    const file = {
-      key: 'resume',
-      value: {
-        encoded_data: data,
-        file_name: fileData.name,
-      },
-    };
+  // applyFileData(fileData, data, fields) {
+  //   const file = {
+  //     key: 'resume',
+  //     value: {
+  //       encoded_data: data,
+  //       file_name: fileData.name,
+  //     },
+  //   };
 
-    fields.push(file);
+  //   fields.push(file);
 
-    this.handleApply(fields);
-  }
+  //   this.handleApply(fields);
+  // }
 
-  handleApply(fields) {
-    this.api
-      .apply({ fields })
-      .then((response) => {
-        if (response.status === 201 || response.status === 204) return this.handleApplySuccess(fields);
+  // handleApply(fields) {
+  //   this.api
+  //     .apply({ fields })
+  //     .then((response) => {
+  //       if (response.status === 201 || response.status === 204) return this.handleApplySuccess(fields);
 
-        response.json().then((jsonResponse) => {
-          // console.log('JobListDetail ~ .then ~ jsonResponse', jsonResponse);
-          if (jsonResponse.errors && this.handleApplyError(jsonResponse.errors)) return null;
-        });
-      })
-      .catch((error) => {
-        this.handleApplyError(error);
-      });
-  }
+  //       response.json().then((jsonResponse) => {
+  //         // console.log('JobListDetail ~ .then ~ jsonResponse', jsonResponse);
+  //         if (jsonResponse.errors && this.handleApplyError(jsonResponse.errors)) return null;
+  //       });
+  //     })
+  //     .catch((error) => {
+  //       this.handleApplyError(error);
+  //     });
+  // }
 
-  handleApplySuccess(response) {
-    this.modal.classList.add(State.SUCCESS);
+  // handleApplySuccess(response) {
+  //   this.modal.classList.add(State.SUCCESS);
 
-    const modalSuccessHeadline = this.modal.querySelector('.modal__success-headline > *');
+  //   const modalSuccessHeadline = this.modal.querySelector('.modal__success-headline > *');
 
-    if (modalSuccessHeadline) {
-      if (!modalSuccessHeadline.dataset.text) {
-        modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
-      }
+  //   if (modalSuccessHeadline) {
+  //     if (!modalSuccessHeadline.dataset.text) {
+  //       modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
+  //     }
 
-      const firstName = response[0];
+  //     const firstName = response[0];
 
-      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
-    }
-  }
+  //     modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+  //   }
+  // }
 
-  handleApplyError(errors) {
-    // console.log('JobListDetail ~ handleApplyError ~ errors', errors);
-    // TODO define error case with kristin
-  }
+  // handleApplyError(errors) {
+  //   // console.log('JobListDetail ~ handleApplyError ~ errors', errors);
+  //   // TODO define error case with kristin
+  // }
 
   handleCta() {
     Modal.open(this.modal);

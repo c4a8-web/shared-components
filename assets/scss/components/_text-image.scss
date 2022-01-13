@@ -3,6 +3,12 @@
   background-repeat: no-repeat;
   z-index: 1;
 
+  &.text-image--bg-color {
+    + *[class*='mt-'] {
+      margin-top: 0 !important;
+    }
+  }
+
   .row {
     &.flex-row-reverse {
       .text-image__first-col {
@@ -48,6 +54,15 @@
       }
     }
   }
+}
+
+.text-image__cta {
+  margin-top: spacing(8);
+  margin-bottom: spacing(24);
+  order: 3;
+  display: flex;
+  flex: 1;
+  justify-content: center;
 }
 
 .text-image__overline {
