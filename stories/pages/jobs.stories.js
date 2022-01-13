@@ -16,6 +16,7 @@ const Template = (args) => createComponent(args, component);
 const baseArgs = {
   ...De?.args,
   apiUrl: null,
+  jobId: 'fk0stpa',
 };
 
 export const Jobs = Template.bind({});

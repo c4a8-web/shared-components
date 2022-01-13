@@ -37,7 +37,11 @@ class JobListDetail extends BaseComponent {
   }
 
   preInit() {
-    this.root.dataset.jobId = this.getJobId();
+    const jobId = this.getJobId();
+
+    if (jobId) {
+      this.root.dataset.jobId = jobId;
+    }
   }
 
   showBackButton() {
