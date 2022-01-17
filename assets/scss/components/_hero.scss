@@ -161,6 +161,12 @@
   }
 
   &.hero--career {
+    > .container {
+      &.z-index-4 {
+        pointer-events: none;
+      }
+    }
+
     &.text-white {
       .hero-text-image__overline {
         color: var(--color-copy);
@@ -229,6 +235,9 @@
 .hero-text-image__icon {
   .icon {
     color: var(--color-hero-icon);
+
+    z-index: 1000;
+    position: relative;
   }
 
   svg {
@@ -245,4 +254,10 @@
 .hero-text-image__background-wrapper {
   display: flex;
   justify-content: flex-end;
+}
+
+.hero-text-image__icon-2 {
+  opacity: 0.2;
+  opacity: 0;
+  transform: scale(1.21);
 }

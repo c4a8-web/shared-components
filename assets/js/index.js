@@ -6,6 +6,7 @@ import GoogleMaps from './components/google-maps.js';
 import JobListDetail from './components/job-list-detail.js';
 import JobList from './components/job-list.js';
 import TabList from './components/tab-list.js';
+import TextAnimation from './components/text-animation.js';
 
 import Analytics from './analytics.js';
 import Events from './events.js';
@@ -14,7 +15,17 @@ import State from './state.js';
 import Templates from './templates.js';
 import Tools from './tools.js';
 
-const componentList = [Analytics, FormAttachments, Form, GoogleMaps, JobListDetail, JobList, TabList, Modal];
+const componentList = [
+  Analytics,
+  FormAttachments,
+  Form,
+  GoogleMaps,
+  JobListDetail,
+  JobList,
+  TabList,
+  TextAnimation,
+  Modal,
+];
 
 const captureRefreshAnimateNumber = function (event) {
   if (event.detail === null) return;

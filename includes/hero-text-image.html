@@ -51,7 +51,7 @@
   {%- assign heroTextImageVariant = 'hero--pattern' -%}
 {%- endif -%}
 
-<div class="hero-text-image {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
+<div class="hero-text-image is-component {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
     style="{% if heroTextImageHero.bgColor %}background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
 >
@@ -84,8 +84,16 @@
             {{ heroTextImageHero.overline }}
           </span>
         {% endif %}
-        <h1 class="hero-text-image__headline {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
-        <p class="hero-text-image__subline {{ hero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+        {% if heroTextImageHero.animation %}
+          {%
+            include text-animation.html
+            sequence=heroTextImageHero.animation.sequence
+          %}
+        {% else %}
+          <h1 class="hero-text-image__headline {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
+          <p class="hero-text-image__subline {{ hero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+        {% endif %}
+
         {% if heroTextImageHero.img %}
           <div class="pt-4">
             {%
@@ -127,6 +135,13 @@
             {%
               include icon.html
               icon=heroTextImageHero.background.icon
+              animation=heroTextImageHero.animation
+            %}
+          </div>
+          <div class="hero-text-image__icon position-absolute hero-text-image__icon-2">
+            {%
+              include icon.html
+              icon='smile-where'
             %}
           </div>
         </div>
