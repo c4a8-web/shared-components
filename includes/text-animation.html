@@ -1,0 +1,10 @@
+<!-- Shared Text Animation Section -->
+{%- assign textAnimationSequence = include.sequence -%}
+{%- assign textAnimationFirstSequence = textAnimationSequence | first -%}
+
+<div class="text-animation" data-sequence='{{ textAnimationSequence | jsonify }}'>
+  <span class="{{ textAnimationFirstSequence.textSize }}">{{ textAnimationFirstSequence.text }}</span>
+
+</div>
+
+<!-- End Shared Text Animation Section -->

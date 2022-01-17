@@ -1,11 +1,12 @@
 <!-- Shared Icon Section -->
-{% assign iconIcon = include.icon | default: icon | default: 'close' -%}
-{%- assign iconColor = include.color | default: color | default: 'currentColor' -%}
-{%- assign iconDirection = include.direction | default: direction | default: 'right' -%}
-{%- assign iconSize = include.size | default: size | default: 'large' -%}
-{%- assign iconCircle = include.circle | default: circle -%}
-{%- assign iconHover = include.hover | default: hover -%}
-{%- assign iconPadding = include.padding | default: padding | default: 6 -%}
+{% assign iconIcon = include.icon | default: 'close' -%}
+{%- assign iconColor = include.color | default: 'currentColor' -%}
+{%- assign iconDirection = include.direction | default: 'right' -%}
+{%- assign iconSize = include.size | default: 'large' -%}
+{%- assign iconCircle = include.circle  -%}
+{%- assign iconHover = include.hover -%}
+{%- assign iconPadding = include.padding | default: 6 -%}
+{%- assign iconAnimation = include.animation -%}
 
 {%- capture rotation -%}
   {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
@@ -15,7 +16,10 @@
   {% if iconSize == 'small' %}18px{% elsif iconSize == 'large' %}48px{% elsif iconSize == 'xl' %}120px{% elsif iconSize == 'xxl' %}200px{% else %}28px{% endif %}
 {%- endcapture -%}
 
-<span class="icon icon--{{ iconDirection }} {% if iconCircle %}icon--circle{% endif %} {% if iconHover %}icon--hover{% endif %}" style="--color-icon: {{ iconColor }}; --icon-rotation: {{ rotation }}">
+<span class="icon icon--{{ iconDirection }} icon--{{ iconIcon }}
+            {% if iconAnimation %}js-text-animation__icon{% endif %}
+            {% if iconCircle %}icon--circle{% endif %}
+            {% if iconHover %}icon--hover{% endif %}" style="--color-icon: {{ iconColor }}; --icon-rotation: {{ rotation }}">
   {% if iconIcon == 'close' %}
     {%- assign iconCloseSize = 48 -%}
     {%- assign iconCloseOuterPos = iconCloseSize | minus: iconPadding -%}
@@ -140,10 +144,48 @@
         </clipPath>
       </defs>
       <g style="clip-path: url(#clip-path);">
-        <path style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M92.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59" />
-        <path style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M250,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59" />
-        <path style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M85,221.75a93.26,93.26,0,0,0,172.17,0" />
-        <circle style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" cx="171.04" cy="171.53" r="165" />
+        <path class="left-eye" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M92.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59" />
+        <path class="left-eyebrow" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" fill="none" d="M131.55,81.59a53.31,53.31,0,0,0-58,27.83" />
+        <path class="right-eyebrow" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" fill="none" d="M212.55,102.49a53.23,53.23,0,0,1,53,26.93" />
+        <path class="right-eye" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M250,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59" />
+        <path class="mouth" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M85,221.75a93.26,93.26,0,0,0,172.17,0" />
+        <path class="test" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M170.12,335.42a165,165,0,1,1,0.1,0" />
+        <path class="circle" style="stroke: {{ iconColor }}" stroke-linecap="round" stroke-linejoin="round" stroke-width="6px" fill="none" d="M170.12,335.42a165,165,0,1,1,0.1,0" />
+      </g>
+    </svg>
+  {%- elsif iconIcon == 'smile-where' -%}
+    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" xmlns="http://www.w3.org/2000/svg" width="{{ iconInnerSize }}" height="{{ iconInnerSize }}"
+          xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 420 420">
+      <defs>
+        <style>
+          .cls-1,
+          .cls-3 {
+            fill: none;
+          }
+
+          .cls-2 {
+            clip-path: url(#clip-path);
+          }
+
+          .cls-3 {
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-width: 6px;
+          }
+        </style>
+        <clipPath id="clip-path">
+          <rect class="cls-1" x="-945.45" y="-266.58" width="1440" height="1155" />
+        </clipPath>
+      </defs>
+      <g class="cls-2">
+        <path class="p-1 cls-3" d="M82.12,315.42a165,165,0,1,1,254.87,0" />
+        <path class="p-2 cls-3" d="M270.05,178.42a3.5,3.5,0,1,1-3.5,3.5,3.5,3.5,0,0,1,3.5-3.5" />
+        <path class="mouth cls-3" d="M255.55,243.42c-13,20-38,17-52,19" />
+        <path class="left-eyebrow p-4 cls-3" d="M168.55,119.59a53.31,53.31,0,0,0-58,27.83" />
+        <path class="p-5 cls-3" d="M152.05,178.42a3.5,3.5,0,1,1-3.5,3.5,3.5,3.5,0,0,1,3.5-3.5" />
+        <path class="right-eyebrow p-6 cls-3" d="M250.55,141.49a53.23,53.23,0,0,1,58,27.93" />
+        <path class="p-7 cls-3"
+          d="M109.55,350.07l44.86-15.78-5-35.5a14.32,14.32,0,1,1,28.36-4l5,35.5,96.32-29.75a14.32,14.32,0,0,1,17.76,9.75,13.42,13.42,0,0,1,.43,2l.13.94a14.35,14.35,0,0,1-8.78,15.31l-31.91,12.91L260,364.36a30.7,30.7,0,0,1-.42,11.06" />
       </g>
     </svg>
   {%- elsif iconIcon == 'arrow' -%}
