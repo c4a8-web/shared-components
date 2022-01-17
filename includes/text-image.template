@@ -21,7 +21,8 @@
 {%- assign textImageSecondColWidth = include.secondColWidth -%}
 {%- assign textImageReduceSpacing = include.reduceSpacing | default: false -%}
 {%- assign textImageList = include.list -%}
-{%- assign textImageCta = include.cta %}
+{%- assign textImageCta = include.cta -%}
+{%- assign textImageModal = include.modal -%}
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageFirstColWidth -%}
@@ -38,7 +39,7 @@
   {%- assign textImageSecondColWidth = 6 -%}
 {%- endif -%}
 
-<div class="text-image {{ textImageSpacing }}
+<div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
           {% if textImageFloat %}text-image--float{% endif %}"
      style="{% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endif %}
@@ -126,5 +127,16 @@
       {% endif %}
     </div>
   </div>
+  {% if textImageModal %}
+    {%
+      include modal.html
+      form=textImageModal.form
+      success=textImageModal.success
+      application=true
+      clientName=textImageModal.clientName
+      jobId=textImageModal.jobId
+      apiUrl=textImageModal.apiUrl
+    %}
+  {% endif %}
 </div>
 <!-- End Shared Text Image Section -->
