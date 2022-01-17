@@ -111,6 +111,8 @@ class FormAttachments extends BaseComponent {
   }
 
   setErrorText(text) {
+    if (!this.error) return;
+
     this.error.innerText = text;
   }
 
