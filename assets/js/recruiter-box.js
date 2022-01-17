@@ -11,6 +11,8 @@ class RecruiterBox {
   langTagPrefix = 'lang_';
   hiddenTag = 'hidden';
 
+  mockApplyUrl = 'mock/jobApply.json';
+
   constructor(options) {
     this.options = options;
     this.filter = '';
@@ -37,7 +39,14 @@ class RecruiterBox {
   }
 
   getUrl(type, params, action) {
-    const typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
+    let typeUrl;
+
+    if (this.options.apiUrl?.match(/.json$/) && action) {
+      typeUrl = this.mockApplyUrl;
+    } else {
+      typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
+    }
+
     const idParam = params ? `/${params}/${action ?? ''}` : '';
     const urlParams = this.options.apiUrl ? '' : `${idParam}?client_name=${this.options?.client_name}`;
     const filter = this.options.apiUrl ? '' : this.filter;
@@ -103,42 +112,29 @@ class RecruiterBox {
     return fields;
   }
 
+  isValidResponseCode(response) {
+    return this.options.apiUrl ? response.status === 200 : response.status === 201 || response.status === 204;
+  }
+
   handleApply(fields) {
-    console.log('RecruiterBox ~ handleApply ~ fields', fields);
+    return new Promise((resolve, reject) => {
+      this.apply({ fields })
+        .then((response) => {
+          if (this.isValidResponseCode(response)) return resolve();
 
-    return;
-
-    this.apply({ fields })
-      .then((response) => {
-        if (response.status === 201 || response.status === 204) return this.handleApplySuccess(fields);
-
-        response.json().then((jsonResponse) => {
-          // console.log('JobListDetail ~ .then ~ jsonResponse', jsonResponse);
-          if (jsonResponse.errors && this.handleApplyError(jsonResponse.errors)) return null;
+          response
+            .json()
+            .then((jsonResponse) => {
+              if (jsonResponse.errors) return reject(jsonResponse.errors);
+            })
+            .catch((error) => {
+              return reject(error);
+            });
+        })
+        .catch((error) => {
+          return reject(error);
         });
-      })
-      .catch((error) => {
-        this.handleApplyError(error);
-      });
-  }
-
-  handleApplySuccess(response) {
-    // TODO thenable
-    // this.modal.classList.add(State.SUCCESS);
-    // const modalSuccessHeadline = this.modal.querySelector('.modal__success-headline > *');
-    // if (modalSuccessHeadline) {
-    //   if (!modalSuccessHeadline.dataset.text) {
-    //     modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
-    //   }
-    //   const firstName = response[0];
-    //   modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
-    // }
-  }
-
-  handleApplyError(errors) {
-    // TODO thenable
-    // console.log('JobListDetail ~ handleApplyError ~ errors', errors);
-    // TODO define error case with kristin
+    });
   }
 
   async apply(fields) {

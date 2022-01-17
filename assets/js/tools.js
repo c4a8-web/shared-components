@@ -22,6 +22,10 @@ class Tools {
     }
   }
 
+  static getParentComponent(element) {
+    return Tools.getParent(element, '.is-component');
+  }
+
   static getParent(element, selector) {
     const parent = element.parentNode;
 

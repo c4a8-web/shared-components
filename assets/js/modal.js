@@ -16,6 +16,8 @@ class Modal {
     this.closeSelector = '.modal__close';
     this.successCloseSelector = '.modal__success-close .cta';
     this.applicationSelector = '.modal__application';
+    this.modalSuccessHeadlineSelector = '.modal__success-headline > *';
+    this.buttonSelector = '[data-trigger="modal"]';
     this.formSelector = '.form';
 
     this.close = this.root.querySelector(this.closeSelector);
@@ -45,7 +47,14 @@ class Modal {
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
+      const parent = Tools.getParentComponent(this.root);
       const formInstance = Form.getInstance(this.form);
+
+      if (parent) {
+        const button = parent.querySelector(this.buttonSelector);
+
+        button?.addEventListener('click', this.handleOpen.bind(this));
+      }
 
       if (formInstance) {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
@@ -84,22 +93,52 @@ class Modal {
         });
       }
     } else {
-      console.log('handle generic error no files');
+      console.error('handle generic error no files');
 
-      // this.handleApplyError({
-      //   errors: 'no files',
-      // });
+      this.handleError();
     }
   }
 
   handleApplicationRequest(fields) {
-    this.api.handleApply(fields).then().catch();
+    this.api
+      .handleApply(fields)
+      .then(() => {
+        this.handleApplicationSuccess(fields);
+      })
+      .catch(() => {
+        this.handleError();
+      });
+  }
+
+  handleApplicationSuccess(fields) {
+    this.root.classList.add(State.SUCCESS);
+
+    const modalSuccessHeadline = this.root.querySelector(this.modalSuccessHeadlineSelector);
+    if (modalSuccessHeadline) {
+      if (!modalSuccessHeadline.dataset.text) {
+        modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
+      }
+
+      const firstName = fields[0];
+      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+    }
+  }
+
+  handleError() {
+    console.error('error modal');
+    // TODO add the generic error message here
   }
 
   handleClose(e) {
     e.preventDefault();
 
     Modal.close(this.root);
+  }
+
+  handleOpen(e) {
+    e.preventDefault();
+
+    Modal.open(this.root);
   }
 
   static initElement(element, options) {
