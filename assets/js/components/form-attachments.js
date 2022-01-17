@@ -21,7 +21,7 @@ class FormAttachments extends BaseComponent {
     this.base64 = this.root.querySelector(FormAttachments.base64Selector);
 
     this.isRequired = this.file.required;
-    this.requiredMsg = this.error.innerText;
+    this.requiredMsg = this.error?.innerText;
 
     this.bindEvents();
 
@@ -43,8 +43,7 @@ class FormAttachments extends BaseComponent {
     this.root.addEventListener('dragleave', this.handleDrop.bind(this));
     this.root.addEventListener('dragend', this.handleDrop.bind(this));
 
-    this.button?.addEventListener('click', this.handleAddAttachment.bind(this));
-    this.text?.addEventListener('click', this.handleAddAttachment.bind(this));
+    this.root.addEventListener('click', this.handleAddAttachment.bind(this));
     this.file?.addEventListener('change', this.handleChange.bind(this));
 
     const parent = Tools.getParent(this.root, 'form');

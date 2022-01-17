@@ -1,10 +1,24 @@
 .form-attachments {
+  cursor: pointer;
   border: 2px dashed var(--color-primary);
   padding: spacing(6);
   background-color: var(--color-form-background);
   display: flex;
   align-items: center;
   transition: background-color 0.5s $animation-transition;
+
+  &:hover {
+    .form-attachments__text {
+      color: var(--color-primary-accent);
+    }
+
+    .form-attachments__button .icon {
+      --color-icon-hover-background: var(--color-primary-accent);
+
+      background-color: var(--color-icon-hover-background);
+      color: var(--color-icon-hover-color);
+    }
+  }
 
   &.is-dragging {
     background-color: transparent;
@@ -42,8 +56,6 @@
   color: var(--color-form-background);
   flex: 0 0 auto;
 
-  --color-icon-hover-background: var(--color-primary-accent);
-
   .icon {
     width: 100%;
     height: 100%;
@@ -74,10 +86,6 @@
   cursor: pointer;
   text-decoration: underline;
   margin-bottom: spacing(10);
-
-  &:hover {
-    color: var(--color-primary-accent);
-  }
 }
 
 .form-attachments__extensions {
