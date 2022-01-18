@@ -64,10 +64,3 @@ Smile.args = {
   icon: 'smile',
   size: 'large',
 };
-
-export const SmileWhere = Template.bind({});
-
-SmileWhere.args = {
-  icon: 'smile-where',
-  size: 'large',
-};

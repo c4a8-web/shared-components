@@ -64,6 +64,12 @@
     }
   }
 
+  .text-animation {
+    @include media-breakpoint-up(lg) {
+      margin-right: spacing(16);
+    }
+  }
+
   .container {
     position: relative;
     padding-bottom: spacing(16);
@@ -191,12 +197,6 @@
         @include font-style($style: 'h3-font-size', $line: 'thin');
       }
     }
-
-    h1 {
-      font-size: $font-size-6;
-      line-height: 1em;
-      margin-left: -15px;
-    }
   }
 
   &:not(.text-white) {
@@ -254,10 +254,4 @@
 .hero-text-image__background-wrapper {
   display: flex;
   justify-content: flex-end;
-}
-
-.hero-text-image__icon-2 {
-  opacity: 0.2;
-  opacity: 0;
-  transform: scale(1.21);
 }

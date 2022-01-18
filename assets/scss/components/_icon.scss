@@ -4,13 +4,13 @@
   svg {
     margin-bottom: 0;
 
-    height: 500px;
-    width: 500px;
+    // height: 500px;
+    // width: 500px;
 
     path,
     line,
     polyline {
-      transition: d $animation-transition 0.5s, stroke-width $animation-transition 0.5s;
+      transition: d $animation-transition 0.7s, stroke-width ease-in 0.3s, transform $animation-transition 0.7s;
     }
   }
 
@@ -50,54 +50,94 @@
           d: path('M229,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59');
         }
 
+        .hand,
+        .left-eyebrow,
         .right-eyebrow {
           stroke-width: 6px !important;
         }
 
-        .left-eyebrow {
-          stroke-width: 6px !important;
-        }
-
-        .test {
-          //  cx="171.04" cy="171.53" r="165"
-          cx: '';
-          display: none;
-
-          d: path('M 80 270 A 150 150 0 0 1 250 0');
-        }
-
         .circle {
-          // M170.12,335.42a165,165,0,1,1,0.1,0
           d: path('M44.12,277.42a165,165,0,1,1,254.87,0');
+        }
+
+        .hand {
+          transition-delay: 0.2s;
         }
       }
     }
 
-    &:hover {
+    &.icon--step-2 {
       svg {
         .mouth {
-          d: path('M164.55,220.75a93.26,174.26,0,0,0,54.17,-16');
+          d: path('M140.55,206.75a59.26,86.26,0,0,0,107.17,0');
+        }
+
+        .mouth-upper {
+          stroke-width: 6px !important;
         }
 
         .left-eye {
-          d: path('M113.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59');
+          d: path('M127.13,129.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59');
         }
 
         .right-eye {
-          d: path('M229,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59');
+          d: path('M265,129.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59');
         }
 
-        .right-eyebrow {
+        .circle {
+          d: path('M44.12,277.42a165,165,0,1,1,254.87,0');
+          transform: rotate(54deg);
+          transform-origin: center center;
+        }
+
+        .hand-upper {
           stroke-width: 6px !important;
+          transition-delay: 0.15s;
+        }
+
+        .hand {
+          stroke-width: 0 !important;
+        }
+      }
+    }
+
+    &.icon--step-3 {
+      svg {
+        .mouth {
+          d: path('M85,221.75a93.26,93.26,0,0,0,172.17,0');
+        }
+
+        .mouth-upper {
+          stroke-width: 0px !important;
         }
 
         .left-eyebrow {
           stroke-width: 6px !important;
+          d: path('M140.35,121.86a33.84,33.84,0,0,1-57.39,0');
+        }
+
+        .right-eyebrow {
+          stroke-width: 6px !important;
+          d: path('M214.09,120.86a33.84,33.84,0,0,0,57.39,0');
+        }
+
+        .left-eye {
+          stroke-width: 0 !important;
+          d: path('M127.13,129.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59');
+        }
+
+        .right-eye {
+          stroke-width: 0 !important;
+          d: path('M265,129.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59');
         }
 
         .circle {
-          // M170.12,335.42a165,165,0,1,1,0.1,0
-          d: path('M44.12,277.42a165,165,0,1,1,254.87,0');
+          d: path('M170.12,335.42a165,165,0,1,1,0.1,0');
+          transform-origin: center center;
+        }
+
+        .hand-upper {
+          stroke-width: 0 !important;
         }
       }
     }

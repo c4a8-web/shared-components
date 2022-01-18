@@ -29,22 +29,19 @@ HeroCareer.args = {
     animation: {
       sequence: [
         {
-          text: 'Hey',
-          textSize: 'h1-font-size',
+          text: 'HEY',
+          textSize: 'font-size-6',
         },
         {
           text: 'Wo bin ich denn hier gelandet?',
-          textSize: 'h2-font-size',
         },
         {
           text: 'Da, wo eine neue Welt entsteht',
-          textSize: 'h2-font-size',
         },
         {
-          text: 'Hey',
-          textSize: 'h2-font-size',
+          text: 'Gemeinsam',
           subline:
-            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident.',
+            'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident.',
           sublineSize: 'font-size-2',
         },
       ],
