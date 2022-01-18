@@ -138,12 +138,6 @@
               animation=heroTextImageHero.animation
             %}
           </div>
-          <div class="hero-text-image__icon position-absolute hero-text-image__icon-2">
-            {%
-              include icon.html
-              icon='smile-where'
-            %}
-          </div>
         </div>
       </div>
     </div>
