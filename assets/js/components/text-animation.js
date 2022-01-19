@@ -1,7 +1,6 @@
 import BaseComponent from './base-component.js';
 import Tools from '../tools.js';
-
-// import State from './state.js';
+import State from '../state.js';
 
 class TextAnimation extends BaseComponent {
   static rootSelector = '.text-animation';
@@ -13,21 +12,30 @@ class TextAnimation extends BaseComponent {
     const parent = Tools.getParentComponent(this.root);
 
     this.iconSelector = '.js-text-animation__icon';
+    this.buttonSelector = '.js-text-animation__button';
     this.textSelector = '.text-animation__text';
     this.sublineSelector = '.text-animation__subline';
 
     this.icon = parent?.querySelector(this.iconSelector);
+    this.button = parent?.querySelector(this.buttonSelector);
     this.text = this.root.querySelector(this.textSelector);
     this.subline = this.root.querySelector(this.sublineSelector);
 
     this.defaultTextSize = 'h1-font-size';
+    this.defaultSublineSize = 'font-size-2';
     this.timeout = null;
     this.letterDelay = 120;
-    this.sublineLetterDelay = this.letterDelay / 4;
+    this.minDelay = 3100;
+    this.sublineLetterDelay = this.letterDelay / 6;
     this.delayOffset = 1600;
     this.step = 0;
 
     this.sequence = this.root.dataset.sequence ? JSON.parse(this.root.dataset.sequence) : [];
+
+    // if (true) {
+    //   this.minDelay = 300;
+    //   this.delayOffset = 300;
+    // }
 
     this.start();
   }
@@ -44,18 +52,20 @@ class TextAnimation extends BaseComponent {
       this.currentText.length * this.letterDelay +
       this.currentSubline.length * this.sublineLetterDelay +
       this.delayOffset;
+
+    if (this.currentDelay < this.minDelay) this.currentDelay = this.minDelay;
+  }
+
+  end() {
+    window.clearTimeout(this.timeout);
   }
 
   next() {
-    // if (this.step >= this.sequence.length - 1) return;
-
     if (this.step >= this.sequence.length - 1) {
       // TODO remove me after testing
-
+      this.button.classList.toggle(State.INVISIBLE);
       this.icon?.classList.remove(`icon--step-3`);
-
       this.step = 0;
-
       this.animate();
 
       return;
@@ -74,15 +84,18 @@ class TextAnimation extends BaseComponent {
   resetText() {
     this.text.innerHTML = '';
     this.subline.innerHTML = '';
-    console.log('TextAnimation ~ resetText ~ this.text', this.text);
 
     this.oldStep = this.sequence[this.step - 1];
     this.nextStep = this.sequence[this.step + 1] || this.sequence[0];
 
     this.text.classList.remove(this.currentTextSize);
+    this.subline.classList.remove(this.currentSublineSize);
 
     this.currentTextSize = this.nextStep.textSize || this.defaultTextSize;
     this.text.classList.add(this.currentTextSize);
+
+    this.currentSublineSize = this.nextStep.sublineSize || this.defaultSublineSize;
+    this.subline.classList.add(this.currentSublineSize);
   }
 
   animate() {
@@ -98,22 +111,40 @@ class TextAnimation extends BaseComponent {
   animateText() {
     this.currentTextSize = this.currentSequenceStep.textSize || this.defaultTextSize;
     this.text.classList.add(this.currentTextSize);
+    this.currentSublineSize = this.currentSequenceStep.sublineSize || this.defaultSublineSize;
+    this.subline.classList.add(this.currentSublineSize);
 
-    var timeout;
+    var textTimeout;
 
     for (let i = 0; i < this.currentText.length; i++) {
-      timeout = i * this.letterDelay + this.letterDelay;
+      textTimeout = i * this.letterDelay + this.letterDelay;
 
       setTimeout(() => {
         this.typeLetter(this.currentText[i]);
-      }, timeout);
+      }, textTimeout);
     }
 
+    var sublineTimeout;
+
     for (let i = 0; i < this.currentSubline.length; i++) {
+      sublineTimeout = i * this.sublineLetterDelay + this.sublineLetterDelay + textTimeout;
+
       setTimeout(() => {
         this.typeSublineLetter(this.currentSubline[i]);
-      }, i * this.sublineLetterDelay + this.sublineLetterDelay + timeout);
+      }, sublineTimeout);
     }
+
+    this.showButtonAtLastRun(sublineTimeout || textTimeout);
+  }
+
+  showButtonAtLastRun(timeout) {
+    if (this.step + 1 < this.sequence.length) return;
+
+    setTimeout(() => {
+      // TODO comment this in when ready
+      // this.end();
+      this.button.classList.toggle(State.INVISIBLE);
+    }, timeout);
   }
 
   typeLetter(letter) {

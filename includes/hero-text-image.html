@@ -11,15 +11,17 @@
 
 {%- if heroTextImageHero.cta -%}
   {%- capture heroTextImageCta -%}
-    {%
-      include cta.html
-      text=heroTextImageHero.cta.text
-      href=heroTextImageHero.cta.href
-      type=heroTextImageHero.cta.type
-      target=heroTextImageHero.cta.target
-      link=heroTextImageHero.cta.link
-      skin=heroTextImageHero.cta.skin
-    %}
+    <div class="hero-text-image__cta-wrapper {% if heroTextImageHero.animation %}js-text-animation__button is-invisible{% endif %}">
+      {%
+        include cta.html
+        text=heroTextImageHero.cta.text
+        href=heroTextImageHero.cta.href
+        type=heroTextImageHero.cta.type
+        target=heroTextImageHero.cta.target
+        link=heroTextImageHero.cta.link
+        skin=heroTextImageHero.cta.skin
+      %}
+    </div>
   {%- endcapture -%}
 {%- endif -%}
 

@@ -23,9 +23,7 @@ HeroCareer.args = {
     variant: 'hero--career',
     light: true,
     overline: 'Deine Karriere',
-    headline: 'Hey,',
     headlineClass: '',
-    subline: 'Schön dich hier zu sehen! Lorem Ipsum dolor sit amet? Dann schau ...',
     animation: {
       sequence: [
         {
@@ -42,7 +40,6 @@ HeroCareer.args = {
           text: 'Gemeinsam',
           subline:
             'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident.',
-          sublineSize: 'font-size-2',
         },
       ],
     },
