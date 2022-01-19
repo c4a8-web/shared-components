@@ -16,18 +16,18 @@ export const ThreeByThree = Template.bind({});
 ThreeByThree.args = {
   grid: [
     {
-      img: {
-        src: getAssetPath('img/image-placeholder-1.jpg'),
-      },
-      start: 1,
-      end: 2,
-    },
-    {
       number: 410,
       text: 'Kunden',
       shape: {
         src: getAssetPath('svg/shapes/shape-career-3.svg'),
       },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-1.jpg'),
+      },
+      start: 1,
+      end: 2,
     },
     {
       shape: {
