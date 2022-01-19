@@ -88,5 +88,15 @@ Typography.args = {
       class: 'font-size-4',
       light: true,
     },
+    {
+      headline: 'Extra Sizes',
+    },
+    {
+      class: 'font-size-6',
+    },
+    {
+      class: 'font-size-6',
+      light: true,
+    },
   ],
 };
