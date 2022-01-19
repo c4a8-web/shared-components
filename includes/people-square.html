@@ -1,15 +1,17 @@
 <!-- Shared People Square Section -->
-{%- assign peopleSquareGrid = include.grid | default: grid -%}
-{%- assign peopleSquareWidth = include.width | default: width | default: 3 -%}
-{%- assign peopleSquareHeight = include.height | default: height | default: 3 -%}
-{%- assign peopleSquareAbsolute = include.absolute | default: absolute -%}
+{%- assign peopleSquareGrid = include.grid -%}
+{%- assign peopleSquareWidth = include.width | default: 3 -%}
+{%- assign peopleSquareHeight = include.height | default: 3 -%}
+{%- assign peopleSquareAbsolute = include.absolute -%}
 {%- assign peopleSquareSize = 100 | divided_by: peopleSquareWidth -%}
+{%- assign peopleSquareCounter = 0 -%}
+{%- assign peopleSquareCounterDiff = 0 -%}
 
 <div class="people-square {% if peopleSquareAbsolute %}people-square--absolute{% endif %}">
   <div class="people-square__grid" style="grid-template-columns: repeat({{ peopleSquareWidth }}, 1fr); grid-template-rows: repeat({{ peopleSquareHeight }}, 1fr);--people-square-size: {{ peopleSquareSize }};">
     {% for element in peopleSquareGrid %}
       <div class="people-square__element"
-            style="{% if element.start and element.end %}grid-row-start: {{ element.start }};grid-row-end: {{ element.end | plus: 1 }};{% endif %}">
+            style="{% if element.start and element.end %}grid-row-start: {{ element.start }};grid-row-end: {{ element.end | plus: 1 }};grid-column-start: {{ peopleSquareCounter | plus: 1 }}{% endif %}">
         {% if element.img %}
           {%
             include img.html
@@ -40,6 +42,19 @@
           </div>
         {% endif %}
       </div>
+      {%- if element.start and element.end -%}
+        {%- assign peopleSquareCounterDiff = 1 -%}
+      {%- endif -%}
+      {%- assign peopleSquareCounter = peopleSquareCounter | plus: 1 -%}
+
+      {%- if peopleSquareCounter == peopleSquareWidth -%}
+        {%- assign peopleSquareCounter = 0 -%}
+
+        {%- if peopleSquareCounterDiff > 0 -%}
+          {%- assign peopleSquareCounter = peopleSquareCounter | plus: peopleSquareCounterDiff -%}
+          {%- assign peopleSquareCounterDiff = 0 -%}
+        {%- endif -%}
+      {%- endif -%}
     {% endfor %}
   </div>
 </div>

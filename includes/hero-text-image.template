@@ -86,15 +86,10 @@
             {{ heroTextImageHero.overline }}
           </span>
         {% endif %}
-        {% if heroTextImageHero.animation %}
-          {%
-            include text-animation.html
-            sequence=heroTextImageHero.animation.sequence
-          %}
-        {% else %}
+        {% unless heroTextImageHero.animation %}
           <h1 class="hero-text-image__headline {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
           <p class="hero-text-image__subline {{ hero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
-        {% endif %}
+        {% endunless %}
 
         {% if heroTextImageHero.img %}
           <div class="pt-4">
@@ -194,5 +189,20 @@
         </svg>
     </div>
   {%- endif -%}
+  {% if heroTextImageHero.animation %}
+    <div class="hero-text-image__animation">
+      <div class="container animation">
+        <div class="row">
+          <div class="col-lg-8">
+            {%
+              include text-animation.html
+              sequence=heroTextImageHero.animation.sequence
+              fixed=true
+            %}
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
 </div>
 <!-- Shared End Hero Text Image Section -->
