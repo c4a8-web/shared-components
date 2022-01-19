@@ -26,8 +26,7 @@ class TextAnimation extends BaseComponent {
     this.timeout = null;
     this.letterDelay = 120;
     this.minDelay = 3100;
-    this.sublineLetterDelay = this.letterDelay / 6;
-    this.delayOffset = 1600;
+    this.delayOffset = 3200;
     this.step = 0;
 
     this.sequence = this.root.dataset.sequence ? JSON.parse(this.root.dataset.sequence) : [];
@@ -48,10 +47,7 @@ class TextAnimation extends BaseComponent {
     this.currentSequenceStep = this.sequence[this.step];
     this.currentText = this.currentSequenceStep.text;
     this.currentSubline = this.currentSequenceStep?.subline || '';
-    this.currentDelay =
-      this.currentText.length * this.letterDelay +
-      this.currentSubline.length * this.sublineLetterDelay +
-      this.delayOffset;
+    this.currentDelay = this.currentText.length * this.letterDelay + this.delayOffset;
 
     if (this.currentDelay < this.minDelay) this.currentDelay = this.minDelay;
   }
@@ -84,6 +80,7 @@ class TextAnimation extends BaseComponent {
   resetText() {
     this.text.innerHTML = '';
     this.subline.innerHTML = '';
+    this.subline.classList.add(State.INVISIBLE);
 
     this.oldStep = this.sequence[this.step - 1];
     this.nextStep = this.sequence[this.step + 1] || this.sequence[0];
@@ -124,17 +121,14 @@ class TextAnimation extends BaseComponent {
       }, textTimeout);
     }
 
-    var sublineTimeout;
-
-    for (let i = 0; i < this.currentSubline.length; i++) {
-      sublineTimeout = i * this.sublineLetterDelay + this.sublineLetterDelay + textTimeout;
-
+    if (this.currentSubline.length) {
       setTimeout(() => {
-        this.typeSublineLetter(this.currentSubline[i]);
-      }, sublineTimeout);
+        this.subline.innerHTML = this.currentSubline;
+        this.subline.classList.remove(State.INVISIBLE);
+      }, textTimeout);
     }
 
-    this.showButtonAtLastRun(sublineTimeout || textTimeout);
+    this.showButtonAtLastRun(textTimeout);
   }
 
   showButtonAtLastRun(timeout) {
@@ -151,12 +145,6 @@ class TextAnimation extends BaseComponent {
     if (!letter) return;
 
     this.text.innerHTML = this.text.innerHTML + letter;
-  }
-
-  typeSublineLetter(letter) {
-    if (!letter) return;
-
-    this.subline.innerHTML = this.subline.innerHTML + letter;
   }
 }
 
