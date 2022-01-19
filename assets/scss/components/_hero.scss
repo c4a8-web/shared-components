@@ -70,9 +70,22 @@
     }
   }
 
-  .container {
+  .container:not(.animation) {
     position: relative;
     padding-bottom: spacing(16);
+  }
+}
+
+.hero-text-image__animation {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+
+  .row,
+  .container {
+    height: 100%;
   }
 }
 
@@ -131,6 +144,8 @@
 .hero-text-image__wrapper {
   position: relative;
   padding-top: spacing(16);
+
+  pointer-events: all;
 
   @include media-breakpoint-up(lg) {
     padding-top: spacing(50);

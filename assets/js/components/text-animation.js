@@ -149,3 +149,5 @@ class TextAnimation extends BaseComponent {
 }
 
 export default TextAnimation;
+
+// TODO move cta to this component

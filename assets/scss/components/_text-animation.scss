@@ -1,4 +1,23 @@
+.text-animation {
+  position: relative;
+
+  &.text-animation--fixed {
+    // TODO only for the upper breakpoints
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
 .text-animation__subline {
   margin-top: spacing(6);
   transition: opacity $animation-transition 1.1s;
+}
+
+.text-animation__placeholder {
+  // opacity: 0.2;
+}
+
+.text-animation__visibile {
+  position: absolute;
 }
