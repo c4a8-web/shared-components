@@ -16,7 +16,7 @@ export const TextAnimation = Template.bind({});
 TextAnimation.args = {
   sequence: [
     {
-      text: 'HEY',
+      text: 'HEY,',
       textSize: 'font-size-6',
     },
     {
@@ -28,8 +28,7 @@ TextAnimation.args = {
     {
       text: 'Gemeinsam',
       subline:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exerit non proident.',
-      sublineSize: 'font-size-2',
+        'wollen wir nichts weniger als die Welt verändern: die Dinge neu denken, die Revolution des Digitalen, einen Entwicklungssprung für unsere Kunden. Dafür braucht es Menschen, die nicht nach einem bloßen Job, sondern nach einer echten Aufgabe suchen. Menschen, die eine Vision haben. Menschen, die Utopien Realität werden lassen wollen.',
     },
   ],
 };

@@ -14,6 +14,7 @@ const State = {
   INITIALIZED: 'is-initialized',
   LOADING: 'is-loading',
   HIDE_LOADING: 'hide-loading',
+  END: 'is-end',
 };
 
 export default State;

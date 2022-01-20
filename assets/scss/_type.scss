@@ -246,7 +246,7 @@ $font-style-map: (
     margin-left: -5px;
 
     @include media-breakpoint-up(lg) {
-      font-size: $font-size-5;
+      font-size: $font-size-6;
       line-height: 12rem;
       margin-left: -15px;
     }

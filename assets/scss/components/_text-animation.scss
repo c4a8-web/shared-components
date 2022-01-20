@@ -2,22 +2,38 @@
   position: relative;
 
   &.text-animation--fixed {
-    // TODO only for the upper breakpoints
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
 }
 
 .text-animation__subline {
   margin-top: spacing(6);
-  transition: opacity $animation-transition 1.1s;
+  transition: opacity $animation-transition 1.5s;
 }
 
 .text-animation__placeholder {
-  // opacity: 0.2;
+  opacity: 0;
+  pointer-events: none;
+
+  @include media-breakpoint-up(lg) {
+    max-height: 300px;
+  }
 }
 
-.text-animation__visibile {
+.text-animation__visible {
   position: absolute;
+  top: 0;
+}
+
+.text-animation__cta {
+  margin-top: spacing(6);
+  transition: opacity $animation-transition 1.5s;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: spacing(12);
+  }
 }
