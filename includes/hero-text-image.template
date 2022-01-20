@@ -11,7 +11,7 @@
 
 {%- if heroTextImageHero.cta -%}
   {%- capture heroTextImageCta -%}
-    <div class="hero-text-image__cta-wrapper {% if heroTextImageHero.animation %}js-text-animation__button is-invisible{% endif %}">
+    <div class="hero-text-image__cta-wrapper">
       {%
         include cta.html
         text=heroTextImageHero.cta.text
@@ -125,29 +125,21 @@
       </div>
     </div>
   {% elsif heroTextImageHero.background.icon %}
-    <div class="hero-text-image__background has-icon container position-absolute z-index-2 space-bottom-2 top-0 {{ heroTextImageHero.background.spacing }}">
-      <div class="row">
-        <div class="hero-text-image__background-wrapper col-sm-12">
-          <div class="hero-text-image__icon">
-            {%
-              include icon.html
-              icon=heroTextImageHero.background.icon
-              animation=heroTextImageHero.animation
-            %}
+    {% unless heroTextImageHero.animation %}
+      <div class="hero-text-image__background has-icon container position-absolute z-index-2 space-bottom-2 top-0 {{ heroTextImageHero.background.spacing }}">
+        <div class="row">
+          <div class="hero-text-image__background-wrapper col-sm-12">
+            <div class="hero-text-image__icon">
+              {%
+                include icon.html
+                icon=heroTextImageHero.background.icon
+              %}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    {% endunless %}
   {%- endif -%}
-  {% if heroTextImageHero.cta and heroTextImageCtaTop == false %}
-    <div class="hero-text-image__cta container">
-      <div class="row">
-        <div class="col-lg-12">
-          {{ heroTextImageCta }}
-        </div>
-      </div>
-    </div>
-  {% endif %}
   {%- if heroTextImagePattern -%}
     <div class="hero-text-image__pattern position-absolute right-0 top-0 space-top-lg-2">
       <svg width="1393" height="696" viewBox="0 0 1393 696" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -193,12 +185,22 @@
     <div class="hero-text-image__animation">
       <div class="container animation">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="hero-text-image__animation-content col-lg-8">
             {%
               include text-animation.html
               sequence=heroTextImageHero.animation.sequence
               fixed=true
+              cta=heroTextImageHero.cta
             %}
+          </div>
+          <div class="hero-text-image__animation-icon col-lg-4">
+            <div class="hero-text-image__icon hero-text-image__icon--fixed">
+              {%
+                include icon.html
+                icon=heroTextImageHero.background.icon
+                animation=heroTextImageHero.animation
+              %}
+            </div>
           </div>
         </div>
       </div>

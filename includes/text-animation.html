@@ -2,16 +2,38 @@
 {%- assign textAnimationSequence = include.sequence -%}
 {%- assign textAnimationFirstSequence = textAnimationSequence | first -%}
 {%- assign textAnimationFixed = include.fixed -%}
+{%- assign textAnimationCta = include.cta -%}
 
 <div class="text-animation {% if textAnimationFixed %}text-animation--fixed{% endif %}" data-sequence='{{ textAnimationSequence | jsonify }}'>
   <div class="text-animation__placeholder">
     <span class="text-animation__text"></span>
     <div class="text-animation__subline"></div>
+    <div class="text-animation__cta is-invisible">
+      {%
+        include cta.html
+        text=textAnimationCta.text
+        href=textAnimationCta.href
+        type=textAnimationCta.type
+        target=textAnimationCta.target
+        link=textAnimationCta.link
+        skin=textAnimationCta.skin
+      %}
+    </div>
   </div>
   <div class="text-animation__visible">
     <span class="text-animation__text"></span>
     <div class="text-animation__subline is-invisible"></div>
+    <div class="text-animation__cta is-invisible">
+      {%
+        include cta.html
+        text=textAnimationCta.text
+        href=textAnimationCta.href
+        type=textAnimationCta.type
+        target=textAnimationCta.target
+        link=textAnimationCta.link
+        skin=textAnimationCta.skin
+      %}
+    </div>
   </div>
 </div>
-
 <!-- End Shared Text Animation Section -->
