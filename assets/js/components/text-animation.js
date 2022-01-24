@@ -63,6 +63,12 @@ class TextAnimation extends BaseComponent {
   calculateDelay() {
     this.currentSequenceStep = this.sequence[this.step];
     this.currentText = this.currentSequenceStep.text;
+    this.currentTextSize = this.currentSequenceStep.textSize || this.defaultTextSize;
+
+    const textSizeValue = parseInt(this.currentTextSize.match(/\d+/)[0]);
+
+    this.getDelayByValue(textSizeValue);
+
     this.currentSubline = this.currentSequenceStep?.subline || '';
     this.currentDelay =
       this.currentText.length * this.sizeBasedDelay +
@@ -134,7 +140,6 @@ class TextAnimation extends BaseComponent {
   }
 
   animateText() {
-    this.currentTextSize = this.currentSequenceStep.textSize || this.defaultTextSize;
     this.text.classList.add(this.currentTextSize);
     this.currentSublineSize = this.currentSequenceStep.sublineSize || this.defaultSublineSize;
     this.subline.classList.add(this.currentSublineSize);
@@ -152,10 +157,6 @@ class TextAnimation extends BaseComponent {
     }
 
     var textTimeout;
-
-    const textSizeValue = parseInt(this.currentTextSize.match(/\d+/)[0]);
-
-    this.getDelayByValue(textSizeValue);
 
     for (let i = 0; i < this.currentText.length; i++) {
       textTimeout = i * this.sizeBasedDelay + this.sizeBasedDelay;
