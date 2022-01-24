@@ -10,6 +10,7 @@
   --color-black-15: #d9d9d9;
   --color-black-4: #f5f5f5;
 
+  --color-manatee: #999ba6;
   --color-blue-dark: #000520;
   --color-blue-medium: #0072c6;
   --color-blue-light: #5cbbff;
@@ -39,7 +40,7 @@
   --color-ripe-lemon: #f7cb0b;
   --color-cold-purple: #a09edb;
   --color-varden: #fff8dc;
-  --color-sahara: #bd9d11; 
+  --color-sahara: #bd9d11;
 
   --color-white: #fff;
 
@@ -81,6 +82,8 @@
   --color-career-background: var(--color-blue-dark);
 
   --color-text-image-background: var(--color-career-background);
+
+  --color-pricing-product-border: var(--color-manatee);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);
