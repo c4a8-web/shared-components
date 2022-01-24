@@ -1,0 +1,9 @@
+.product-blocks__block {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.product-blocks__content {
+  flex: 1;
+}

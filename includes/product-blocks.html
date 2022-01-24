@@ -1,0 +1,62 @@
+<!-- Shared Product Blocks Section -->
+{%- assign productBlocks = include.productBlocks -%}
+{%- assign cta = include.cta -%}
+{%- assign headline = include.headline -%}
+
+<div class="container-fluid" style="background-color: {{ productBlocks.bgColor }};">
+  <div class="container space-2">
+    {% if headline %}
+      <div class="container">
+          {%
+            include headline-row.html
+            text=headline
+            centered=true
+          %}
+      </div>
+    {% endif %}
+    <div class="row">
+      {% for item in productBlocks.items %}
+        {% assign productBlocksList = item.list %}
+        <div class="product-blocks__item col-md-6 mb-5 mb-md-0 space-1">
+          <!-- Shared Product Blocks -->
+          <div class="product-blocks__block{% if item.copy == "" %}text-center{% endif %} px-lg-3">
+            <div class="product-blocks__content">
+              <figure class="{% if item.copy == "" %}mx-auto{% endif %} mb-4" style="width:12rem;">
+                {%
+                  include img.html
+                  img=item.image
+                  cloudinary=item.cloudinary
+                  alt=iconBlocks.alt
+                %}
+              </figure>
+              <h3>{{ item.headline }}</h3>
+              <p>{{ item.copy }}</p>
+            </div>
+            <div class="product-blocks__buttons">
+              {% if productBlocksList %}
+                {%
+                  include cta-list.html
+                  list=productBlocksList
+                %}
+              {% else %}
+                {% comment %}This is for backwards compatibility. Remove after cleaning it up{% endcomment %}
+                {% if item.ctaText %}
+                  {%
+                      include cta.html
+                      text=item.ctaText
+                      href=item.ctaHref
+                      link=item.link
+                      target=item.target
+                      type=item.type
+                  %}
+                {% endif %}
+              {% endif %}
+            </div>
+          </div>
+          <!-- End Shared Product Blocks -->
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- End Shared Product Blocks Section -->
