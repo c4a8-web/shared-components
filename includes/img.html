@@ -5,6 +5,7 @@
 {% assign imgImgSrcSets = include.imgSrcSets | default: imgSrcSets %}
 {% assign imgClass = include.class | default: class %}
 {% assign imgAlt = include.alt | default: alt %}
+{% assign imgLazy = include.lazy %}
 
 {% if imgImg %}
   {%- if imgCloudinary -%}
@@ -31,7 +32,7 @@
       {%- assign imgUrl = imgUrl | strip_newlines -%}
 
       {% if imgImg contains '.gif' %}
-        <img src="https://res.cloudinary.com/{{ site.cloudinary.cloud_name }}/image/upload/{{ imgUrl }}">
+        <img src="https://res.cloudinary.com/{{ site.cloudinary.cloud_name }}/image/upload/{{ imgUrl }}" {% if imgLazy %}loading="lazy"{% endif %}>
       {% else %}
         {% cloudinary {{ imgPreset }} {{ imgUrl }} alt="{{ imgAlt }}" class="no-small img-responsive {{ imgClass }}" %}
       {% endif %}
@@ -46,7 +47,7 @@
     {% if imgImgSrcSets.ratioClasses %}
       <div class="img__picture-wrapper {{ imgImgSrcSets.ratioClasses }}">
     {% endif %}
-      <img src="/assets/{{ imgImg }}" alt="{{ imgAlt }}" class="{{ imgClass }} {{ additionalClasses }}">
+      <img src="/assets/{{ imgImg }}" alt="{{ imgAlt }}" class="{{ imgClass }} {{ additionalClasses }}" {% if imgLazy %}loading="lazy"{% endif %}>
     {% if imgImgSrcSets.ratioClasses %}
       </div>
     {% endif %}
