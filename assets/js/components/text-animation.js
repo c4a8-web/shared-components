@@ -85,12 +85,12 @@ class TextAnimation extends BaseComponent {
   next() {
     if (this.step >= this.sequence.length - 1) {
       // TODO remove me after testing
-      // this.icon.classList.remove(State.END);
-      // this.root.classList.remove(State.END);
-      // this.button.classList.toggle(State.INVISIBLE);
-      // this.icon?.classList.remove(`icon--step-3`);
-      // this.step = 0;
-      // this.animate();
+      this.icon.classList.remove(State.END);
+      this.root.classList.remove(State.END);
+      this.button.classList.toggle(State.INVISIBLE);
+      this.icon?.classList.remove(`icon--step-3`);
+      this.step = 0;
+      this.animate();
 
       return;
     }
@@ -183,7 +183,7 @@ class TextAnimation extends BaseComponent {
 
     setTimeout(() => {
       // TODO comment this in when ready
-      this.end();
+      // this.end();
       this.button.classList.toggle(State.INVISIBLE);
     }, timeout + this.buttonDelay);
   }
