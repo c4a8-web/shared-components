@@ -1,0 +1,20 @@
+<!-- Shared Cta List Section -->
+{%- assign ctaListList = include.list -%}
+{%- assign ctaListClasses = include.classes -%}
+
+{% for cta in ctaListList %}
+  <div class="{% if ctaListClasses %}{{ ctaListClasses }}{% else %}d-inline-block mr-3 mb-2{% endif %}">
+    {%
+      include cta.html
+      text=cta.ctaText
+      href=cta.ctaHref
+      alternativeHref=cta.alternativeHref
+      type=cta.ctaType
+      target=cta.target
+      link=cta.link
+      skin=cta.skin
+      grow=cta.grow
+    %}
+  </div>
+{% endfor %}
+<!-- End Shared Cta List Section -->

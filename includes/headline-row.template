@@ -1,0 +1,18 @@
+<!-- Shared Headline Row Section -->
+{%- assign headlineRowCentered = include.centered -%}
+{%- assign headlineRowLevel = include.level | default: "h2" -%}
+{%- assign headlineRowText = include.text -%}
+{% capture headlineRowCenteredClass %}{% if headlineRowCentered %}text-center{% endif %}{% endcapture %}
+
+<div class="container space-top-2 headline-row">
+  <div class="row">
+    <div class="col-sm-12 {{ headlineRowCenteredClass }}">
+      {%
+        include headline.html
+        level=headlineRowLevel
+        text=headlineRowText
+      %}
+    </div>
+  </div>
+</div>
+<!-- End Shared Headline Row Section -->

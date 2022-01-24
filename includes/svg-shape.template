@@ -18,7 +18,7 @@
 {% endcapture %}
 
 {% capture points %}{{ basePoints }} {{ peakPointX }},{{ peakPointY }}{% endcapture %}
-<figure class="svgshape {{ svgShapeClasses }}" style="pointer-events: none; transform: translateY(2px);">
+<figure class="svgshape {{ svgShapeClasses }}" style="pointer-events: all;{% unless svgShapeAlign == 'top' %} transform: translateY(2px);{% endunless %}">
     <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 {{ svgShapeObliquity }}">
         <polygon fill="{{ svgShapeColor }}" points="{{ points }}"/>
     </svg>

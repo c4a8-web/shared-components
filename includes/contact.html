@@ -1,0 +1,74 @@
+<!-- Shared Contact Section -->
+{%- assign contactInfos = include.infos -%}
+
+{%- if contactInfos -%}
+  {%- assign contact = contactInfos -%}
+{%- else -%}
+  {%- if page.contact == 'form-long' -%}
+    {%- assign contact = site.data.contact.form-long  -%}
+  {%- else -%}
+  {%- if page.contact == 'form-short' -%}
+    {%- assign contact = site.data.contact.form-short  -%}
+  {%- else -%}
+    {%- assign contact = site.data.contact.infos -%}
+  {%- endif -%}
+{%- endif -%}
+{%- endif -%}
+
+{% if contact.svgShape %}
+  {% include svg-shape.html
+    align=contact.svgShape.align
+    peak=contact.svgShape.peak
+    spacing="mt-8 mt-lg-10"
+    color="var(--color-bg-grey)"
+  %}
+{% endif %}
+
+<div class="contact{% unless page.contactNoTopSpacing or contact.svgShape %} mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} bg-white{% endif %} space-bottom-2">
+  <div class="container pt-8 pt-lg-10">
+    <div class="row">
+      <div class="col-md-11 col-lg-6 order-2 order-lg-1">
+        {%- assign contactHeadlineClasses = contact.headlineClasses | default: "h3-font-size" -%}
+        {%
+          include headline.html
+          level=contact.level
+          text=contact.headline
+          classes=contactHeadlineClasses
+        %}
+        <span class="font-weight-bold font-size-2">{{ contact.subline }}</span>
+        {% if contact.form %}
+          {%
+            include form.html
+            form=contact.form
+          %}
+        {% endif %}
+
+        {% if contact.buttons %}
+          <div class="pt-4 pt-lg-6 pb-6">
+          {%
+            include cta-list.html
+            list=contact.buttons
+          %}
+        </div>
+        {% endif %}
+      </div>
+      <div class="contact__box col-md-10 col-lg-5 offset-lg-1 order-1 order-lg-2">
+        <div class="contact__person pb-11">
+          <div class="contact__image p-2">
+            {%
+              include img.html
+              img=contact.person.image
+              cloudinary=contact.person.cloudinary
+              alt=contact.person.alt
+            %}
+          </div>
+          <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
+          <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
+            <div class="contact__mail w-100 px-5 d-flex align-items-center"><a href="mailto:{{ contact.person.mail }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/mail" %}</span>{{ contact.person.mail }}</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Contact Section -->
