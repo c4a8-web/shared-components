@@ -12,6 +12,7 @@ class TextAnimation extends BaseComponent {
     const parent = Tools.getParentComponent(this.root);
 
     this.iconSelector = '.js-text-animation__icon';
+    this.iconStepSelector = '.js-text-animation__step-';
     this.buttonSelector = '.text-animation__cta';
     this.placeHolderSelector = '.text-animation__placeholder';
     this.visibleSelector = '.text-animation__visible';
@@ -33,8 +34,10 @@ class TextAnimation extends BaseComponent {
     this.timeout = null;
     this.letterDelay = 120;
     this.sizeBasedDelay = this.letterDelay;
-    this.minDelay = 3100;
-    this.delayOffset = 3200;
+    this.minDelay = 2500;
+    this.currentDelay = 0;
+    this.lastDelay = 0;
+    this.delayOffset = 2600;
     this.sublineDelay = 1150;
     this.buttonDelay = 800;
     this.step = 0;
@@ -47,11 +50,11 @@ class TextAnimation extends BaseComponent {
   getDelayByValue(value) {
     switch (value) {
       case 1:
-        this.sizeBasedDelay = this.letterDelay / 2.5;
+        this.sizeBasedDelay = this.letterDelay / 1.8;
         break;
       case 6:
       default:
-        this.sizeBasedDelay = this.letterDelay;
+        this.sizeBasedDelay = this.letterDelay / 10;
         break;
     }
   }
@@ -76,24 +79,29 @@ class TextAnimation extends BaseComponent {
       (this.currentSubline.length > 0 ? this.sublineDelay : 0);
 
     if (this.currentDelay < this.minDelay) this.currentDelay = this.minDelay;
+
+    this.lastDelay = this.lastDelay + this.currentDelay;
   }
 
   end() {
     window.clearTimeout(this.timeout);
   }
 
-  next() {
-    if (this.step >= this.sequence.length - 1) {
-      // TODO remove me after testing
-      this.icon.classList.remove(State.END);
-      this.root.classList.remove(State.END);
-      this.button.classList.toggle(State.INVISIBLE);
-      this.icon?.classList.remove(`icon--step-3`);
-      this.step = 0;
-      this.animate();
+  updateStepAnimations() {
+    if (!this.icon) return;
 
-      return;
-    }
+    const delayOffset = 150;
+    const updateDelay = this.lastDelay;
+
+    [].forEach.call(this.icon.querySelectorAll(`${this.iconStepSelector}${this.step + 1}`), (animation) => {
+      const delay = (updateDelay - delayOffset) / 1000 + 's';
+
+      animation.setAttribute('begin', delay);
+    });
+  }
+
+  next() {
+    if (this.step >= this.sequence.length - 1) return;
 
     this.step++;
 
@@ -131,6 +139,7 @@ class TextAnimation extends BaseComponent {
 
   animate() {
     this.calculateDelay();
+    this.updateStepAnimations();
     this.animateText();
 
     this.timeout = setTimeout(() => {
@@ -182,8 +191,7 @@ class TextAnimation extends BaseComponent {
     if (this.step + 1 < this.sequence.length) return;
 
     setTimeout(() => {
-      // TODO comment this in when ready
-      // this.end();
+      this.end();
       this.button.classList.toggle(State.INVISIBLE);
     }, timeout + this.buttonDelay);
   }
