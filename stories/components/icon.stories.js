@@ -64,3 +64,10 @@ Smile.args = {
   icon: 'smile',
   size: 'large',
 };
+
+export const PhoneMail = Template.bind({});
+
+PhoneMail.args = {
+  icon: 'phone-mail',
+  size: 'large',
+};
