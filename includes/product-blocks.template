@@ -6,7 +6,7 @@
 <div class="container-fluid" style="background-color: {{ productBlocks.bgColor }};">
   <div class="container space-2">
     {% if headline %}
-      <div class="container">
+      <div class="container pb-4 pb-lg-6">
           {%
             include headline-row.html
             text=headline
@@ -19,9 +19,9 @@
         {% assign productBlocksList = item.list %}
         <div class="product-blocks__item col-md-6 mb-5 mb-md-0 space-1">
           <!-- Shared Product Blocks -->
-          <div class="product-blocks__block{% if item.copy == "" %}text-center{% endif %} px-lg-3">
+          <div class="product-blocks__block{% if item.copy == "" %}text-center{% endif %} pl-lg-3 pr-lg-8">
             <div class="product-blocks__content">
-              <figure class="{% if item.copy == "" %}mx-auto{% endif %} mb-4" style="width:12rem;">
+              <figure class="product-blocks__img {% if item.copy == "" %}mx-auto{% endif %} mb-4">
                 {%
                   include img.html
                   img=item.image
