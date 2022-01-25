@@ -92,6 +92,13 @@ Typography.args = {
       headline: 'Extra Sizes',
     },
     {
+      class: 'font-size-5',
+    },
+    {
+      class: 'font-size-5',
+      light: true,
+    },
+    {
       class: 'font-size-6',
     },
     {

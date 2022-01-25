@@ -240,6 +240,20 @@ $font-style-map: (
     }
   }
 
+  .font-size-5 {
+    font-size: 4rem;
+    line-height: 1.1em;
+
+    @include media-breakpoint-up(lg) {
+      font-size: 5rem;
+      margin-left: -5px;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: 6rem;
+    }
+  }
+
   .font-size-6 {
     font-size: $font-size-5;
     line-height: 8rem;
