@@ -1,0 +1,14 @@
+<!-- Shared Fab Section -->
+{%- assign fabIcon = include.fabIcon | default: 'close' -%}
+
+<div class="fab d-inline-block">
+  {%
+    include icon.html
+    icon=fabIcon
+    hover=true
+    circle=true
+  %}
+
+</div>
+
+<!-- End Shared Fab Section -->
