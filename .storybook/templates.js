@@ -7,6 +7,7 @@ import Products from './data/products';
 import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
+import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
   cloudinary: Cloudinary,
@@ -47,8 +48,9 @@ const fixInclude = function (includeText) {
 const registerTags = function (engine) {
   const cloudinaryTag = new CloudinaryTag({ engine, site });
   const streamlinelightTag = new StreamlinelightTag({ engine: cloudinaryTag.engine, site });
+  const siteiconsTag = new SiteiconsTag({ engine: streamlinelightTag.engine, site });
 
-  return streamlinelightTag.engine;
+  return siteiconsTag.engine;
 };
 
 const rewriteInclude = function (engine) {
