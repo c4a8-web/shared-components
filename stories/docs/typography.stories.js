@@ -105,5 +105,12 @@ Typography.args = {
       class: 'font-size-6',
       light: true,
     },
+    {
+      class: 'font-size-7',
+    },
+    {
+      class: 'font-size-7',
+      light: true,
+    },
   ],
 };

@@ -29,7 +29,7 @@ class TextAnimation extends BaseComponent {
     this.text = this.visible?.querySelector(this.textSelector);
     this.subline = this.visible?.querySelector(this.sublineSelector);
 
-    this.defaultTextSize = 'font-size-5';
+    this.defaultTextSize = 'font-size-6';
     this.defaultSublineSize = 'font-size-2';
     this.timeout = null;
     this.letterDelay = 120;
@@ -49,10 +49,10 @@ class TextAnimation extends BaseComponent {
 
   getDelayByValue(value) {
     switch (value) {
-      case 5:
+      case 6:
         this.sizeBasedDelay = this.letterDelay / 1.8;
         break;
-      case 6:
+      case 7:
       default:
         this.sizeBasedDelay = this.letterDelay / 10;
         break;

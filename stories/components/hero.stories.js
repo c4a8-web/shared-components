@@ -28,7 +28,7 @@ HeroCareer.args = {
       sequence: [
         {
           text: 'HEY,',
-          textSize: 'font-size-6',
+          textSize: 'font-size-7',
         },
         {
           text: 'Wo bin ich denn hier gelandet?',
