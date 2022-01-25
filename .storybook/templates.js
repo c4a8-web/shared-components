@@ -2,8 +2,10 @@ import { Liquid } from 'liquidjs';
 // to force hot reload on includes add them here
 import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
+// TODO implement an autoloader of the data folder
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
+import Contact from './data/contact';
 import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
@@ -14,6 +16,7 @@ const site = {
   data: {
     imgSrcSets: ImgSrcSets,
     products: Products,
+    contact: Contact,
   },
 };
 

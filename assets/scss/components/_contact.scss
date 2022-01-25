@@ -1,0 +1,57 @@
+.contact {
+  + footer {
+    margin-top: 0 !important;
+  }
+}
+
+.contact__person {
+  background-color: var(--color-primary);
+  height: 100%;
+}
+
+.contact__box {
+  margin-bottom: 5rem;
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: -7rem;
+  }
+}
+
+.contact__details {
+  &::before {
+    content: '';
+    display: block;
+    height: 100%;
+    width: 10px;
+    position: absolute;
+    background-color: var(--color-orange);
+  }
+
+  a,
+  a:visited {
+    color: inherit;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .fas {
+    font-size: 1.5em;
+  }
+}
+
+.page-content {
+  > * {
+    &:last-of-type {
+      &.contact {
+        // they must match the footer margin-top
+        margin-bottom: -3.5rem !important;
+
+        @include media-breakpoint-up(lg) {
+          margin-bottom: -5rem !important;
+        }
+      }
+    }
+  }
+}
