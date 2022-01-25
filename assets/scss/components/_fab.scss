@@ -1,2 +1,25 @@
 .fab {
+  position: absolute;
+}
+
+.fab__icon {
+  @include shadow;
+
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-fab-background);
+  border-radius: 100%;
+  padding: spacing(3);
+
+  svg {
+    width: 90%;
+  }
+}
+
+.fab__modal {
+  position: relative;
+  background-color: var(--color-fab-background);
 }

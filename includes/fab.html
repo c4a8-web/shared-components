@@ -1,14 +1,19 @@
 <!-- Shared Fab Section -->
-{%- assign fabIcon = include.fabIcon | default: 'close' -%}
+{%- assign fabIcon = include.fabIcon | default: 'phone-mail' -%}
+{%- assign fabModal = include.fabModal -%}
 
 <div class="fab d-inline-block">
-  {%
-    include icon.html
-    icon=fabIcon
-    hover=true
-    circle=true
-  %}
-
+  <div class="fab__icon">
+    {%
+      include icon.html
+      icon=fabIcon
+      size="large"
+    %}
+  </div>
+  {% if fabModal %}
+    <div class="fab__modal">
+      fab
+    </div>
+  {% endif %}
 </div>
-
 <!-- End Shared Fab Section -->
