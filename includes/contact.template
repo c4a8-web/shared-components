@@ -16,6 +16,8 @@
 {%- endif -%}
 {%- endif -%}
 
+{%- assign contactDetails = contactInfos.person.details -%}
+
 {%- if contact.svgShape -%}
   {%- assign contactVariantClass = 'contact--has-shape' -%}
 
@@ -36,7 +38,7 @@
   {%- assign contactOffsetClass = 'offset-lg-1 ' -%}
 {%- endif -%}
 
-<div class="contact {{ contactVariantClass }} {% unless page.contactNoTopSpacing or contact.svgShape %}mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} space-bottom-2">
+<div class="contact {{ contactVariantClass }} {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %}mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2{% endunless %}">
   <div class="container pt-8 pt-lg-10">
     <div class="row">
       <div class="contact__form col-md-11 col-lg-6 order-2 order-lg-1">
@@ -76,8 +78,16 @@
           </div>
           <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
           <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
-            <div class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"><a href="tel:{{ contact.person.number }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/phone" %}</span>{{ contact.person.number }}</a></div>
-            <div class="contact__mail w-100 px-5 d-flex align-items-center"><a href="mailto:{{ contact.person.mail }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/mail" %}</span>{{ contact.person.mail }}</a></div>
+            {% for detail in contactDetails %}
+              <div class="contact__detail w-100 px-5 d-flex align-items-center {% unless forloop.last %}mb-3 mb-lg-4{% endunless %}"><a href="{{ detail.href }}" class="custom"><span class="streamline-sm mr-4">{% siteicons {{ contact.icon }} %}</span>{{ detail.text }}</a></div>
+            {% endfor %}
+
+            {% if contact.person.number %}
+              <div class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"><a href="tel:{{ contact.person.number }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/phone" %}</span>{{ contact.person.number }}</a></div>
+            {% endif %}
+            {% if contact.person.mail %}
+              <div class="contact__mail w-100 px-5 d-flex align-items-center"><a href="mailto:{{ contact.person.mail }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/mail" %}</span>{{ contact.person.mail }}</a></div>
+            {% endif %}
           </div>
         </div>
       </div>
