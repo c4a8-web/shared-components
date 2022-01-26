@@ -1,5 +1,6 @@
 import i18n from './i18n/index.js';
 
+import Contact from './components/contact.js';
 import FormAttachments from './components/form-attachments.js';
 import Form from './components/form.js';
 import GoogleMaps from './components/google-maps.js';
@@ -17,6 +18,7 @@ import Tools from './tools.js';
 
 const componentList = [
   Analytics,
+  Contact,
   FormAttachments,
   Form,
   GoogleMaps,
