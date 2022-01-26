@@ -1,6 +1,6 @@
 <!-- Shared Fab Section -->
-{%- assign fabIcon = include.fabIcon | default: 'phone-mail' -%}
-{%- assign fabModal = include.fabModal -%}
+{%- assign fabIcon = include.icon | default: 'phone-mail' -%}
+{%- assign fabModal = include.modal -%}
 
 <div class="fab d-inline-block">
   <div class="fab__icon">
@@ -12,7 +12,13 @@
   </div>
   {% if fabModal %}
     <div class="fab__modal">
-      fab
+      {% if fabModal.contact %}
+        {%
+          include contact.html
+          infos=fabModal.contact.infos
+          collapsed=true
+        %}
+      {% endif %}
     </div>
   {% endif %}
 </div>
