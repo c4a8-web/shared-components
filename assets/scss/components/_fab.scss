@@ -20,7 +20,9 @@
 }
 
 .fab__modal {
-  position: relative;
+  position: fixed;
+  width: 100vw;
+  // left: 50%;
 
   .contact {
     --color-contact-person: var(--color-fab-background);
