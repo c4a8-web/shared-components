@@ -11,6 +11,12 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Contact = Template.bind({});
+export const Expanded = Template.bind({});
 
-Contact.args = {};
+Expanded.args = {};
+
+export const Collapsed = Template.bind({});
+
+Collapsed.args = {
+  collapsed: true,
+};

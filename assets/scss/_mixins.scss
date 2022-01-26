@@ -278,3 +278,14 @@
 @mixin shadow($size: 'medium') {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
 }
+
+@mixin is-invisible {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+}

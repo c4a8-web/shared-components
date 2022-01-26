@@ -1,4 +1,12 @@
 .contact {
+  &.is-collapsed {
+    .contact__form {
+      @include is-invisible;
+
+      flex: 0;
+    }
+  }
+
   + footer {
     margin-top: 0 !important;
   }

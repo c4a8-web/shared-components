@@ -9,6 +9,7 @@ const State = {
   DRAGGING: 'is-dragging',
   HIDDEN: 'd-none',
   INVISIBLE: 'is-invisible',
+  COLLAPSED: 'is-collapsed',
   SHOW: 'show',
   FADE: 'fade',
   INITIALIZED: 'is-initialized',

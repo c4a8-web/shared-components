@@ -1,5 +1,6 @@
 <!-- Shared Contact Section -->
 {%- assign contactInfos = include.infos -%}
+{%- assign contactCollapsed = include.collapsed -%}
 
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}
@@ -24,10 +25,18 @@
   %}
 {% endif %}
 
-<div class="contact{% unless page.contactNoTopSpacing or contact.svgShape %} mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} bg-white{% endif %} space-bottom-2">
+{%- if contactCollapsed -%}
+  {%- assign contactVariantClass = 'is-collapsed' -%}
+  {%- assign contactOffsetClass = '' -%}
+{%- else -%}
+  {%- assign contactVariantClass = '' -%}
+  {%- assign contactOffsetClass = 'offset-lg-1 ' -%}
+{%- endif -%}
+
+<div class="contact {{ contactVariantClass }} {% unless page.contactNoTopSpacing or contact.svgShape %}mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} bg-white{% endif %} space-bottom-2">
   <div class="container pt-8 pt-lg-10">
     <div class="row">
-      <div class="col-md-11 col-lg-6 order-2 order-lg-1">
+      <div class="contact__form col-md-11 col-lg-6 order-2 order-lg-1">
         {%- assign contactHeadlineClasses = contact.headlineClasses | default: "h3-font-size" -%}
         {%
           include headline.html
@@ -52,7 +61,7 @@
         </div>
         {% endif %}
       </div>
-      <div class="contact__box col-md-10 col-lg-5 offset-lg-1 order-1 order-lg-2">
+      <div class="contact__box col-md-10 col-lg-5 {{ contactOffsetClass }} order-1 order-lg-2">
         <div class="contact__person pb-11">
           <div class="contact__image p-2">
             {%
