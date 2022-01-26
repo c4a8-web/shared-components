@@ -206,5 +206,11 @@
       </div>
     </div>
   {% endif %}
+  {% if heroTextImageHero.fab %}
+    {%
+      include fab.html
+      modal=heroTextImageHero.fab
+    %}
+  {% endif %}
 </div>
 <!-- Shared End Hero Text Image Section -->

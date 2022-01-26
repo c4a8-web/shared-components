@@ -17,16 +17,24 @@ Contact.args = {
   modal: {
     contact: {
       infos: {
-        // headline: 'Hast du Fragen?',
-        // level: 'h2',
-        // subline: 'Sprich uns gerne an!',
         person: {
           image: 'people/people-sophie-luna.png',
           cloudinary: true,
           alt: 'Kontakt mit Sophie',
           name: 'Hast du Fragen? Sprich uns gerne an!',
-          number: '+49 69 4005520',
-          mail: 'sales@glueckkanja-gab.com',
+          details: [
+            {
+              text: 'kontakt@glueckkanja-gab.com',
+              href: 'mailto:kontakt@glueckkanja-gab.com',
+              icon: 'site/mail',
+            },
+            {
+              text: '+49 69 4005520',
+              href: 'tel:+49 69 4005520',
+              details: 'lorem ipsum dolor sit amet lore',
+              icon: 'site/phone',
+            },
+          ],
         },
         form: {
           ctaText: 'Absenden',
@@ -37,11 +45,18 @@ Contact.args = {
           action: '/',
           fields: [
             {
-              label: 'Name',
+              label: 'Vorname',
               type: 'text',
-              id: 'name',
+              id: 'prename',
               required: true,
-              requiredMsg: 'Bitte geben Sie Ihren Namen an.',
+              requiredMsg: 'Bitte geben Sie Ihren Vornamen an.',
+            },
+            {
+              label: 'Nachname',
+              type: 'text',
+              id: 'surname',
+              required: true,
+              requiredMsg: 'Bitte geben Sie Ihren Nachnamen an.',
             },
             {
               label: 'Email-Adresse',

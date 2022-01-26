@@ -64,6 +64,16 @@
     }
   }
 
+  .fab {
+    bottom: 0;
+    right: spacing(4);
+    transform: translateY(50%);
+
+    @include media-breakpoint-up(lg) {
+      right: spacing(8);
+    }
+  }
+
   .text-animation {
     @include media-breakpoint-up(lg) {
       margin-right: spacing(16);

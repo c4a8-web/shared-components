@@ -21,5 +21,8 @@
 
 .fab__modal {
   position: relative;
-  background-color: var(--color-fab-background);
+
+  .contact {
+    --color-contact-person: var(--color-fab-background);
+  }
 }
