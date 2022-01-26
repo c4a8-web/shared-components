@@ -1,4 +1,14 @@
 .contact {
+  &.contact--has-shape {
+    .contact__person {
+      background-color: var(--color-primary);
+    }
+  }
+
+  &:not(.contact--has-shape) {
+    background-color: var(--color-primary);
+  }
+
   &.is-collapsed {
     .contact__form {
       @include is-invisible;
@@ -13,7 +23,7 @@
 }
 
 .contact__person {
-  background-color: var(--color-primary);
+  background-color: var(--color-yellow);
   height: 100%;
 }
 
