@@ -1,0 +1,77 @@
+.fab-button {
+  @include z-index;
+
+  position: relative;
+  width: 100%;
+
+  &.fab-button--sticky {
+    top: -70vh;
+
+    &[style^='height'] {
+      .fab-button__wrapper {
+        top: 85vh;
+      }
+    }
+
+    .fab-button__wrapper {
+      top: 65vh;
+    }
+  }
+
+  &.is-expanded {
+    .fab-button__icon {
+      // @include is-invisible;
+    }
+
+    .fab-button__modal {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+}
+
+.fab-button__wrapper {
+  position: relative;
+  right: spacing(4);
+  width: 100% !important;
+  margin-left: auto;
+}
+
+.fab-button__icon {
+  @include shadow;
+
+  position: absolute;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-fab-background);
+  border-radius: 100%;
+  padding: spacing(3);
+  right: 0;
+  // transition: opacity 0.5s $animation-transition;
+
+  svg {
+    width: 90%;
+  }
+}
+
+.fab-button__modal {
+  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition;
+  right: 0;
+  // opacity: 1;
+  // transform: translateX(0%);
+  bottom: spacing(4);
+  position: absolute;
+  width: unquote('min(480px, 90vw)');
+  // will-change: transform, opacity;
+
+  &.is-off-screen {
+    opacity: 0;
+    transform: translateX(120%);
+  }
+
+  .contact {
+    --color-contact-person: var(--color-fab-background);
+  }
+}

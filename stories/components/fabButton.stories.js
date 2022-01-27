@@ -1,8 +1,8 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesfabhtml as component } from '../../.storybook/generatedIncludes';
+import { includesfabbuttonhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Fab',
+  title: 'Fab Button',
 });
 
 export default {
@@ -92,4 +92,5 @@ Contact.args = {
       },
     },
   },
+  noSticky: true,
 };

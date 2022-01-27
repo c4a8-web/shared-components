@@ -1,14 +1,14 @@
 import BaseComponent from './base-component.js';
 import State from '../state.js';
 
-class Fab extends BaseComponent {
-  static rootSelector = '.fab';
+class FabButton extends BaseComponent {
+  static rootSelector = '.fab-button';
 
   constructor(root, options) {
     super(root, options);
 
-    this.iconSelector = '.fab__icon';
-    this.modalSelector = '.fab__modal';
+    this.iconSelector = '.fab-button__icon';
+    this.modalSelector = '.fab-button__modal';
 
     this.icon = this.root.querySelector(this.iconSelector);
     this.modal = this.root.querySelector(this.modalSelector);
@@ -24,11 +24,19 @@ class Fab extends BaseComponent {
     if (!this.icon || !this.modal) return;
 
     this.icon.addEventListener('click', this.handleClick.bind(this));
+
+    // force redraw
+    this.modal.style = 'opacity: 1';
   }
 
   handleClick() {
-    this.modal.classList.toggle(State.INVISIBLE);
+    this.root.classList.toggle(State.EXPANDED);
+    this.modal.classList.toggle(State.OFF_SCREEN);
+
+    if (this.modal.classList.contains(State.OFF_SCREEN)) {
+      this.modal.style = '';
+    }
   }
 }
 
-export default Fab;
+export default FabButton;

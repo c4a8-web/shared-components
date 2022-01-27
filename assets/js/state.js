@@ -9,6 +9,8 @@ const State = {
   DRAGGING: 'is-dragging',
   HIDDEN: 'd-none',
   INVISIBLE: 'is-invisible',
+  EXPANDED: 'is-expanded',
+  OFF_SCREEN: 'is-off-screen',
   COLLAPSED: 'is-collapsed',
   SHOW: 'show',
   FADE: 'fade',
