@@ -10,7 +10,7 @@ import JobList from './components/job-list.js';
 import TabList from './components/tab-list.js';
 import TextAnimation from './components/text-animation.js';
 
-import Analytics from './analytics.js';
+import Analytics from './data-an.js';
 import Events from './events.js';
 import Modal from './modal.js';
 import State from './state.js';

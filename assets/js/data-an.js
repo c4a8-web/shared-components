@@ -1,3 +1,4 @@
+// File name was changed because of u-block thinking this is a bad file
 import Tools from './tools.js';
 import Form from './components/form.js';
 
