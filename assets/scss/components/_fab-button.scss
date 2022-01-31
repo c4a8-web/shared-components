@@ -84,7 +84,7 @@ $fab-button-top-offset-lg: 85vh;
   right: spacing($size: 4, $negative: true);
   top: -#{$fab-button-top-offset};
   position: absolute;
-  width: unquote('min(500px, 100vw)');
+  width: unquote('min(460px, 100vw)');
   overflow: hidden;
   will-change: transform, opacity, height;
   display: flex;
@@ -102,30 +102,22 @@ $fab-button-top-offset-lg: 85vh;
   @include media-breakpoint-up(lg) {
     flex-direction: row;
     bottom: -#{$fab-button-icon-size};
-    right: 0;
     top: auto;
   }
 }
 
 .fab-button__close {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 0;
+  z-index: 1;
 
-  .icon {
-    padding-right: spacing(3);
-    padding-left: spacing(2);
-    padding-top: spacing(4);
-    padding-bottom: spacing(4);
+  > .icon {
+    margin: spacing(5);
+    padding: spacing(1);
     cursor: pointer;
-  }
 
-  @include media-breakpoint-up(lg) {
-    display: block;
-
-    .icon {
-      padding-right: spacing(8);
-      padding-left: spacing(4);
-      padding-top: spacing(2);
+    &.icon--circle svg {
+      width: 80%;
     }
   }
 }

@@ -2,6 +2,7 @@
   --color-contact-person: var(--color-yellow);
   --color-detail-highlight: var(--color-orange);
   --color-contact-background: var(--color-primary);
+  --contact-spacing-collapsed: #{spacing(3)};
 
   &.contact--has-shape {
     --color-contact-person: var(--color-primary);
@@ -18,6 +19,7 @@
 
     &.show {
       .contact__form {
+        padding: spacing(2) spacing(4) spacing(2);
         opacity: 1;
       }
 
@@ -35,7 +37,6 @@
     }
 
     .contact__form {
-      padding: spacing(2) spacing(4) spacing(2);
       overflow: hidden;
       flex: 0;
       height: 0;
@@ -48,10 +49,19 @@
 
     .contact__details {
       font-size: $font-size-1;
+      padding-left: var(--contact-spacing-collapsed);
 
       @include media-breakpoint-up(lg) {
         font-size: $font-size-2;
       }
+    }
+
+    .contact__image {
+      padding: var(--contact-spacing-collapsed) !important;
+    }
+
+    .contact__person {
+      padding-bottom: var(--contact-spacing-collapsed) !important;
     }
   }
 
@@ -78,14 +88,6 @@
 .contact__person {
   background-color: var(--color-contact-person);
   height: 100%;
-}
-
-.contact__box {
-  margin-bottom: 5rem;
-
-  @include media-breakpoint-up(lg) {
-    margin-bottom: 0;
-  }
 }
 
 .contact__details {
