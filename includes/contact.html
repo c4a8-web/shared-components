@@ -87,7 +87,15 @@
           <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
           <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
             {% for detail in contactDetails %}
-              <div class="contact__detail w-100 px-5 d-flex align-items-center {% unless forloop.last %}mb-3 mb-lg-4{% endunless %}"><a href="{{ detail.href }}" class="custom"><span class="streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>{{ detail.text }}</a></div>
+              <div class="contact__detail w-100 px-5 d-flex align-items-center {% unless forloop.last %}mb-3 mb-lg-4{% endunless %}">
+                <a href="{{ detail.href }}" class="custom"><span class="streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>{{ detail.text }}</a>
+                {% if detail.notes %}
+                  <div class="contact__notes">
+                    <span class="contact__notes-spacing streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>
+                    {{ detail.notes }}
+                  </div>
+                {% endif %}
+              </div>
             {% endfor %}
 
             {% if contact.person.number %}
