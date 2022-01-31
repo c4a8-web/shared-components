@@ -2,9 +2,10 @@
 {%- assign headlineRowCentered = include.centered -%}
 {%- assign headlineRowLevel = include.level | default: "h2" -%}
 {%- assign headlineRowText = include.text -%}
+{%- assign headlineRowSpacing = include.spacing | default: "space-top-3" -%}
 {% capture headlineRowCenteredClass %}{% if headlineRowCentered %}text-center{% endif %}{% endcapture %}
 
-<div class="container space-top-2 headline-row">
+<div class="container {{ headlineRowSpacing }} headline-row">
   <div class="row">
     <div class="col-sm-12 {{ headlineRowCenteredClass }}">
       {%
