@@ -1,5 +1,6 @@
 import BaseComponent from './base-component.js';
 import State from '../state.js';
+import Events from '../events.js';
 
 class FabButton extends BaseComponent {
   static rootSelector = '.fab-button';
@@ -14,6 +15,8 @@ class FabButton extends BaseComponent {
     this.icon = this.root.querySelector(this.iconSelector);
     this.modal = this.root.querySelector(this.modalSelector);
     this.close = this.root.querySelector(this.closeSelector);
+
+    this.resetDelay = 300;
 
     this.init();
   }
@@ -34,6 +37,10 @@ class FabButton extends BaseComponent {
 
   handleClose() {
     this.handleClick();
+
+    setTimeout(() => {
+      document.dispatchEvent(new CustomEvent(Events.FAB_BUTTON_CLOSE, { detail: { target: this.root } }));
+    }, this.resetDelay);
   }
 
   handleClick() {

@@ -1,0 +1,5 @@
+.shared-components {
+  .header {
+    @include z-index;
+  }
+}

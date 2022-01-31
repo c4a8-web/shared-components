@@ -79,14 +79,14 @@ $fab-button-top-offset-lg: 85vh;
   @include shadow('light');
 
   background-color: var(--color-fab-background);
-  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition;
+  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
+    height 0.7s $animation-transition;
   right: spacing($size: 4, $negative: true);
   top: -#{$fab-button-top-offset};
   position: absolute;
   width: unquote('min(500px, 100vw)');
-  max-height: 100vh;
   overflow: hidden;
-  will-change: transform, opacity;
+  will-change: transform, opacity, height;
   display: flex;
   flex-direction: column;
 
@@ -100,7 +100,6 @@ $fab-button-top-offset-lg: 85vh;
   }
 
   @include media-breakpoint-up(lg) {
-    max-height: 90vh;
     flex-direction: row;
     bottom: -#{$fab-button-icon-size};
     right: 0;

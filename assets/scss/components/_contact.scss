@@ -13,11 +13,37 @@
 
   &.is-collapsed {
     max-width: 500px;
+    overflow: hidden;
+
+    &.show {
+      .contact__form {
+        opacity: 1;
+      }
+
+      .contact__box {
+        opacity: 0;
+      }
+    }
+
+    &:not(.show) {
+      .contact__form {
+        // height: 0;
+        visibility: collapse;
+        pointer-events: none;
+        opacity: 0;
+      }
+    }
 
     .contact__form {
-      @include is-invisible;
-
+      padding: spacing(2) spacing(4) spacing(2);
+      overflow: hidden;
       flex: 0;
+      height: 0;
+      transition: opacity 0.7s $animation-transition, height 0.7s $animation-transition;
+    }
+
+    .contact__box {
+      transition: opacity 0.7s $animation-transition;
     }
 
     .contact__details {
