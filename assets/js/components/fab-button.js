@@ -9,9 +9,11 @@ class FabButton extends BaseComponent {
 
     this.iconSelector = '.fab-button__icon';
     this.modalSelector = '.fab-button__modal';
+    this.closeSelector = '.fab-button__close';
 
     this.icon = this.root.querySelector(this.iconSelector);
     this.modal = this.root.querySelector(this.modalSelector);
+    this.close = this.root.querySelector(this.closeSelector);
 
     this.init();
   }
@@ -24,9 +26,14 @@ class FabButton extends BaseComponent {
     if (!this.icon || !this.modal) return;
 
     this.icon.addEventListener('click', this.handleClick.bind(this));
+    this.close?.addEventListener('click', this.handleClose.bind(this));
 
     // force redraw
     this.modal.style = 'opacity: 1';
+  }
+
+  handleClose() {
+    this.handleClick();
   }
 
   handleClick() {

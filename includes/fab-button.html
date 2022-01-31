@@ -8,7 +8,7 @@
   <div class="fab-button__wrapper ad-inline-block {% unless fabButtonNoSticky %}js-sticky-block{% endunless %}"
     data-hs-sticky-block-options='{
       "parentSelector": ".fab-button",
-      "breakpoint": "md",
+      "breakpoint": "xs",
       "startPoint": ".fab-button__start",
       "endPoint": "999999",
       "stickyOffsetTop": "200",
@@ -17,6 +17,12 @@
   >
     {% if fabButtonModal %}
       <div class="fab-button__modal is-off-screen">
+        <div class="fab-button__close">
+          {%
+            include icon.html
+            icon='close'
+          %}
+        </div>
         {% if fabButtonModal.contact %}
           {%
             include contact.html

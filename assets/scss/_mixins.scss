@@ -276,7 +276,11 @@
 }
 
 @mixin shadow($size: 'medium') {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
+  @if ($size == 'medium') {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
+  } @else if ($size == 'light') {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  }
 }
 
 @mixin is-invisible {

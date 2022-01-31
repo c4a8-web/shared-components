@@ -1,4 +1,9 @@
-$z-indexed-elements: ('.hero-text-image__cta', '.people-square.people-square--absolute', '.fab-button');
+$z-indexed-elements: (
+  '.hero-text-image__cta',
+  '.hero-text-image__icon.icon',
+  '.people-square.people-square--absolute',
+  '.fab-button'
+);
 
 $static-z-indexed-elements: (
   '.something-fancy': 1000,

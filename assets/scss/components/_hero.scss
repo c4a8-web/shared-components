@@ -334,8 +334,10 @@
   }
 
   .icon {
+    @include z-index;
+
     color: var(--color-hero-icon);
-    z-index: 1000;
+    // z-index: 1000;
     position: relative;
   }
 
