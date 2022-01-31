@@ -31,7 +31,7 @@ Contact.args = {
             {
               text: '+49 69 4005520',
               href: 'tel:+49 69 4005520',
-              details: 'lorem ipsum dolor sit amet lore',
+              notes: '( Mo-Do 09-17 Uhr )',
               icon: 'site/phone',
             },
           ],

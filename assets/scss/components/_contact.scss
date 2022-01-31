@@ -14,6 +14,7 @@
   &.is-collapsed {
     max-width: 500px;
     overflow: hidden;
+    transition: height 0.7s $animation-transition;
 
     &.show {
       .contact__form {
@@ -27,7 +28,6 @@
 
     &:not(.show) {
       .contact__form {
-        // height: 0;
         visibility: collapse;
         pointer-events: none;
         opacity: 0;
@@ -58,6 +58,21 @@
   + footer {
     margin-top: 0 !important;
   }
+}
+
+.contact__detail {
+  flex-wrap: wrap;
+}
+
+.contact__notes-spacing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact__notes {
+  @include font-style('font-size-1');
+
+  flex: 1 0 100%;
 }
 
 .contact__person {
