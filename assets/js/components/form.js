@@ -42,6 +42,23 @@ class Form extends BaseComponent {
     [].forEach.call(this.form.querySelectorAll(`.${State.VALID}`), (element) => {
       element.classList.remove(State.VALID);
     });
+
+    // TODO refactor to use the static function
+    // Form.reset(this.form);
+  }
+
+  static reset(form) {
+    if (!form) return;
+
+    form.reset();
+
+    [].forEach.call(form.querySelectorAll(`.${State.VALID}`), (element) => {
+      element.classList.remove(State.VALID);
+    });
+
+    [].forEach.call(form.querySelectorAll(`.${State.ERROR}`), (element) => {
+      element.classList.remove(State.ERROR);
+    });
   }
 
   handleSubmit(e) {

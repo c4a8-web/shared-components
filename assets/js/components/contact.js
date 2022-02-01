@@ -1,4 +1,5 @@
 import BaseComponent from './base-component.js';
+import Form from './form.js';
 import State from '../state.js';
 import Events from '../events.js';
 
@@ -57,6 +58,8 @@ class Contact extends BaseComponent {
     this.root.classList.remove(State.SHOW);
     this.form.style.height = '';
     this.root.style.height = '';
+
+    Form.reset(this.form.querySelector('form'));
   }
 }
 
