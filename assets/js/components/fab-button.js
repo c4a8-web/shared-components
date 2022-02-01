@@ -31,8 +31,14 @@ class FabButton extends BaseComponent {
     this.icon.addEventListener('click', this.handleClick.bind(this));
     this.close?.addEventListener('click', this.handleClose.bind(this));
 
+    document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit.bind(this));
+
     // force redraw
     this.modal.style = 'opacity: 1';
+  }
+
+  handleSubmit() {
+    this.handleClose();
   }
 
   handleClose() {

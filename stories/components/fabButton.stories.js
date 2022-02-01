@@ -42,7 +42,7 @@ Contact.args = {
             skin: 'primary is-light',
           },
           method: 'post',
-          action: '/',
+          action: '/mock/fabButton.json',
           fields: [
             {
               label: 'Vorname',
@@ -77,6 +77,7 @@ Contact.args = {
                 'Ich bin mit der Speicherung meiner Daten einverstanden, die Datenschutzerklärung habe ich gelesen und akzeptiert. Meine Einwilligung kann ich jederzeit widerrufen.',
               type: 'checkbox',
               id: 'checkbox1',
+              required: true,
             },
             {
               type: 'hidden',

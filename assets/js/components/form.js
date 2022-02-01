@@ -1,7 +1,8 @@
 import BaseComponent from './base-component.js';
+import FormAttachments from './form-attachments.js';
 import Tools from '../tools.js';
 import State from '../state.js';
-import FormAttachments from './form-attachments.js';
+import Events from '../events.js';
 
 class Form extends BaseComponent {
   static rootSelector = '.form';
@@ -31,20 +32,19 @@ class Form extends BaseComponent {
     return this.root.classList.contains('form--custom-validation');
   }
 
+  hasAjaxSubmit() {
+    return this.root.classList.contains('form--ajax');
+  }
+
   bindEvents() {
-    if (Object.keys(this.groups).length || this.hasCustomValidation()) {
+    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit()) {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
       this.form.addEventListener('reset', this.handleReset.bind(this));
     }
   }
 
   handleReset() {
-    [].forEach.call(this.form.querySelectorAll(`.${State.VALID}`), (element) => {
-      element.classList.remove(State.VALID);
-    });
-
-    // TODO refactor to use the static function
-    // Form.reset(this.form);
+    Form.reset(this.form);
   }
 
   static reset(form) {
@@ -73,9 +73,46 @@ class Form extends BaseComponent {
 
     if (this.customSubmit) {
       this.customSubmit(e);
+    } else if (this.hasAjaxSubmit()) {
+      this.ajaxSubmit();
     } else {
       this.form.submit();
     }
+  }
+
+  static getFormData(form) {
+    const formData = new FormData(form);
+    const data = [];
+
+    for (let fieldData of formData) {
+      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
+    }
+
+    return data.join('&');
+  }
+
+  ajaxSubmit() {
+    const data = Form.getFormData(this.form);
+
+    fetch(this.form.action, {
+      method: this.form.method || 'POST',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      redirect: 'follow',
+    }).then((response) => {
+      console.log('Form ~ ajaxSubmit ~ response', response);
+
+      if (response.status === 200 || response.status === 302) {
+        this.ajaxSubmitCompleted();
+      } else {
+        // TODO handle error
+      }
+    });
+  }
+
+  ajaxSubmitCompleted() {
+    document.dispatchEvent(new CustomEvent(Events.FORM_AJAX_SUBMIT, { detail: { target: this.root } }));
   }
 
   triggerExternalValidation() {

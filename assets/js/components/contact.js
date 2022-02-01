@@ -59,7 +59,7 @@ class Contact extends BaseComponent {
     this.form.style.height = '';
     this.root.style.height = '';
 
-    Form.reset(this.form.querySelector('form'));
+    this.form.querySelector('form')?.reset();
   }
 }
 
