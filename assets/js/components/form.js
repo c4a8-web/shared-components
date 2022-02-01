@@ -102,8 +102,6 @@ class Form extends BaseComponent {
       redirect: 'follow',
       body: data,
     }).then((response) => {
-      console.log('Form ~ ajaxSubmit ~ response', response);
-
       if (response.status === 200 || response.status === 302) {
         this.ajaxSubmitCompleted();
       } else {
