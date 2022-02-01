@@ -100,6 +100,7 @@ class Form extends BaseComponent {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       redirect: 'follow',
+      body: data,
     }).then((response) => {
       console.log('Form ~ ajaxSubmit ~ response', response);
 
