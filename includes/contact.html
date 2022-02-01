@@ -12,7 +12,11 @@
   {%- if page.contact == 'form-short' -%}
     {%- assign contact = site.data.contact.form-short  -%}
   {%- else -%}
-    {%- assign contact = site.data.contact.infos -%}
+    {%- if page.lang == 'en' -%}
+      {%- assign contact = site.data.contact.infosEn -%}
+    {%- else -%}
+      {%- assign contact = site.data.contact.infos -%}
+    {%- endif -%}
   {%- endif -%}
 {%- endif -%}
 {%- endif -%}
