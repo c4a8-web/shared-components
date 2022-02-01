@@ -1,6 +1,7 @@
 <!-- Shared Contact Section -->
 {%- assign contactInfos = include.infos -%}
 {%- assign contactCollapsed = include.collapsed -%}
+{%- assign contactAjax = include.ajax -%}
 
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}
@@ -62,6 +63,7 @@
           {%
             include form.html
             form=contact.form
+            ajax=contactAjax
           %}
         {% endif %}
 

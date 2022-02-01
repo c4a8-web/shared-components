@@ -5,7 +5,7 @@
 {%- assign formSpace = include.space | default: 'space-top-2' -%}
 {%- assign formContainer = include.container | default: false -%}
 {%- assign formCustomValidation = include.customValidation | default: false -%}
-{%- assign formAjax = include.ajax -%}
+{%- assign formAjax = include.ajax | default: false -%}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}
