@@ -91,7 +91,7 @@ $fab-button-scroll-top: 200px;
   transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
     height 0.7s $animation-transition;
   right: 0;
-  top: 0;
+  bottom: 0;
   position: fixed;
   width: unquote('min(460px, 100vw)');
   overflow: hidden;
@@ -112,7 +112,6 @@ $fab-button-scroll-top: 200px;
     right: spacing($size: 4, $negative: true);
     flex-direction: row;
     bottom: -#{$fab-button-icon-size};
-    top: auto;
     position: absolute;
   }
 }
