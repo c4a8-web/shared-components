@@ -1,5 +1,5 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesfabbuttonhtml as component } from '../../.storybook/generatedIncludes';
+import { createTemplate, getTitle } from '../../.storybook/templates';
+import fabButtonTemplate from '!!raw-loader!./fabButton.html';
 
 const options = getTitle({
   title: 'Fab Button',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createTemplate(args, fabButtonTemplate);
 
 export const Contact = Template.bind({});
 
@@ -93,5 +93,4 @@ Contact.args = {
       },
     },
   },
-  noSticky: true,
 };

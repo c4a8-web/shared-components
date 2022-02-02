@@ -1,6 +1,7 @@
 $fab-button-icon-size: 72px;
-$fab-button-top-offset: 80vh;
-$fab-button-top-offset-lg: 85vh;
+$fab-button-bottom-offset-lg: 16px;
+$fab-button-bottom-offset-xs: 32px;
+$fab-button-scroll-top: 200px;
 
 .fab-button {
   @include z-index;
@@ -9,29 +10,33 @@ $fab-button-top-offset-lg: 85vh;
   width: 100%;
 
   &.fab-button--sticky {
-    top: -62vh;
+    .fab-button__start {
+      top: calc(-100vh + (#{$fab-button-bottom-offset-xs} * 2));
+    }
 
     &[style^='height'] {
       .fab-button__wrapper {
-        top: $fab-button-top-offset;
+        top: calc(100vh - (#{$fab-button-icon-size} + #{$fab-button-bottom-offset-xs})) !important;
       }
     }
 
     .fab-button__wrapper {
-      top: 55vh;
+      top: calc(-#{$fab-button-icon-size} + #{$fab-button-bottom-offset-xs});
     }
 
     @include media-breakpoint-up(lg) {
-      top: -70vh;
+      .fab-button__start {
+        top: calc(-100vh + (#{$fab-button-bottom-offset-lg} * 2));
+      }
 
       &[style^='height'] {
         .fab-button__wrapper {
-          top: $fab-button-top-offset-lg;
+          top: calc(100vh - (#{$fab-button-icon-size} + #{$fab-button-bottom-offset-lg})) !important;
         }
       }
 
       .fab-button__wrapper {
-        top: 65vh;
+        top: calc(-#{$fab-button-icon-size} + #{$fab-button-bottom-offset-lg});
       }
     }
   }
@@ -46,6 +51,10 @@ $fab-button-top-offset-lg: 85vh;
       transform: translateX(0%);
     }
   }
+}
+
+.fab-button__start {
+  position: absolute;
 }
 
 .fab-button__wrapper {
@@ -81,9 +90,9 @@ $fab-button-top-offset-lg: 85vh;
   background-color: var(--color-fab-background);
   transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
     height 0.7s $animation-transition;
-  right: spacing($size: 4, $negative: true);
-  top: -#{$fab-button-top-offset};
-  position: absolute;
+  right: 0;
+  top: 0;
+  position: fixed;
   width: unquote('min(460px, 100vw)');
   overflow: hidden;
   will-change: transform, opacity, height;
@@ -100,9 +109,11 @@ $fab-button-top-offset-lg: 85vh;
   }
 
   @include media-breakpoint-up(lg) {
+    right: spacing($size: 4, $negative: true);
     flex-direction: row;
     bottom: -#{$fab-button-icon-size};
     top: auto;
+    position: absolute;
   }
 }
 
@@ -110,6 +121,8 @@ $fab-button-top-offset-lg: 85vh;
   position: absolute;
   right: 0;
   z-index: 1;
+  width: 78px;
+  height: 78px;
 
   > .icon {
     margin: spacing(5);

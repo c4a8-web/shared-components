@@ -4,15 +4,5 @@
     > img {
       max-width: 600px;
     }
-
-    .fab-button {
-      margin-top: 85vh;
-
-      &:after {
-        content: '';
-        display: block;
-        height: 20vh;
-      }
-    }
   }
 }

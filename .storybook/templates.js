@@ -68,9 +68,9 @@ const rewriteInclude = function (engine) {
   return engine;
 };
 
-export const createComponent = function async(include, component) {
+export const createTemplate = function async(include, template, path = 'includes') {
   const globals = { site };
-  const partialsPath = 'includes';
+  const partialsPath = path;
   const includesPath = `${partialsPath}/`;
 
   let engine = new Liquid({
@@ -114,7 +114,7 @@ export const createComponent = function async(include, component) {
   engine.filters.impls.jsonify = engine.filters?.impls?.json;
 
   const wrapper = document.createElement('div');
-  const tpl = engine.parse(fixComponent(component));
+  const tpl = engine.parse(fixComponent(template));
 
   engine = rewriteInclude(engine);
 
@@ -123,6 +123,10 @@ export const createComponent = function async(include, component) {
   wrapper.innerHTML = html;
 
   return wrapper;
+};
+
+export const createComponent = function async(include, component) {
+  return createTemplate(include, component);
 };
 
 const getTitle = ({ page, title, docs }) => {
