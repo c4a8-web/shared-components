@@ -3,8 +3,6 @@ import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
 import Modal from '../modal.js';
 import Tools from '../tools.js';
-// import Form from './form.js';
-// import FormAttachments from './form-attachments.js';
 import Loading from '../loading.js';
 
 class JobListDetail extends BaseComponent {
@@ -31,16 +29,7 @@ class JobListDetail extends BaseComponent {
 
     this.loading = new Loading(this.root);
 
-    this.preInit();
     this.init();
-  }
-
-  preInit() {
-    const jobId = this.getJobId();
-
-    if (jobId) {
-      this.root.dataset.jobId = jobId;
-    }
   }
 
   showBackButton() {
@@ -51,32 +40,11 @@ class JobListDetail extends BaseComponent {
     }
   }
 
-  getJobId() {
-    let jobId = '';
-
-    const hash = window.location.hash;
-
-    if (hash) {
-      if (hash.indexOf('-') !== -1) {
-        const splitHash = hash.split('-');
-
-        jobId = splitHash[splitHash.length - 1];
-      } else {
-        jobId = hash.substr(1);
-      }
-    }
-
-    return jobId;
-  }
-
   init() {
     this.loading.on();
 
-    this.jobId = this.root.dataset.jobId;
-
     this.api = new RecruiterBox({
       ...this.options,
-      ...(this.jobId && { jobId: this.jobId }),
       ...(this.apiUrl && { apiUrl: this.apiUrl }),
       client_name: this.root.dataset.id,
     });

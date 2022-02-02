@@ -16,6 +16,26 @@ class RecruiterBox {
   constructor(options) {
     this.options = options;
     this.filter = '';
+
+    this.options.jobId = this.getJobId();
+  }
+
+  getJobId() {
+    let jobId = '';
+
+    const hash = window.location.hash;
+
+    if (hash) {
+      if (hash.indexOf('-') !== -1) {
+        const splitHash = hash.split('-');
+
+        jobId = splitHash[splitHash.length - 1];
+      } else {
+        jobId = hash.substr(1);
+      }
+    }
+
+    return jobId;
   }
 
   getLangFromEntry(entry) {
