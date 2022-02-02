@@ -11,7 +11,7 @@
       "breakpoint": "xs",
       "startPoint": ".fab-button__start",
       "endPoint": "999999",
-      "stickyOffsetTop": "200",
+      "stickyOffsetTop": "0",
       "stickyOffsetBottom": 20
     }'
   >
