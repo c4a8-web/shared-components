@@ -14,6 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const TestimonialTeaser = Template.bind({});
 
 TestimonialTeaser.args = {
+  href: 'javascript:void(0)',
   name: 'Matti Puolitaival',
   title: 'Senior Consultant Azure',
   img: {

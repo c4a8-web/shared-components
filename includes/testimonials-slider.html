@@ -11,7 +11,7 @@
 {%- endif -%}
 
 <!-- Shared Testimonial Slider Section -->
-<div class="testimonials-slider container">
+<div class="testimonials-slider container space-bottom-3">
   <div class="testimonials-slider__header row">
     <div class="col-lg-12">
       {%
@@ -26,10 +26,37 @@
   </div>
   <div class="row mt-6">
     <div class="col-lg-12">
-      <div class="testimonials-slider__slides">
+      <div class="testimonials-slider__slides js-slick-carousel"
+        data-hs-slick-carousel-options='{
+          "dots": true,
+          "dotsClass": "slick-pagination is-default mt-8 mb-n6",
+          "prevArrow": "<span class=\"slick__arrow-left rounded-circle\"></span>",
+          "nextArrow": "<span class=\"slick__arrow-right rounded-circle\"></span>",
+          "slidesToScroll": 1,
+          "slidesToShow": 2,
+          "responsive": [{
+            "breakpoint": 992,
+            "settings": {
+              "slidesToShow": 2,
+              "slidesToScroll": 1
+              }
+            }, {
+              "todobreakpoint": 576,
+              "settings": "unslick"
+          },
+          {
+            "breakpoint": 576,
+            "settings": {
+              "slidesToShow": 1,
+              "slidesToScroll": 1
+              }
+          }]
+        }'
+      >
         {% for testimonial in testimonialsSliderSlides %}
           {%
             include testimonial-teaser.html
+            href=testimonial.href
             name=testimonial.name
             title=testimonial.title
             img=testimonial.img

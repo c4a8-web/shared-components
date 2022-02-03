@@ -20,7 +20,8 @@ TestimonialsSlider.args = {
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata,',
   slides: [
     {
-      name: 'Nadine Kern',
+      href: 'javascript:void(0)',
+      name: '1Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       img: {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
@@ -28,7 +29,44 @@ TestimonialsSlider.args = {
       },
     },
     {
-      name: 'Matti Puolitaival',
+      href: 'javascript:void(0)',
+      name: '2Matti Puolitaival',
+      title: 'Senior Consultant Azure',
+      img: {
+        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        alt: 'lorem ipsum',
+      },
+    },
+    {
+      href: 'javascript:void(0)',
+      name: '3Nadine Kern',
+      title: 'Consultant, Cloud Security Architect',
+      img: {
+        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        alt: 'lorem ipsum',
+      },
+    },
+    {
+      href: 'javascript:void(0)',
+      name: '4Matti Puolitaival',
+      title: 'Senior Consultant Azure',
+      img: {
+        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        alt: 'lorem ipsum',
+      },
+    },
+    {
+      href: 'javascript:void(0)',
+      name: '5Nadine Kern',
+      title: 'Consultant, Cloud Security Architect',
+      img: {
+        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        alt: 'lorem ipsum',
+      },
+    },
+    {
+      href: 'javascript:void(0)',
+      name: '6Matti Puolitaival',
       title: 'Senior Consultant Azure',
       img: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',

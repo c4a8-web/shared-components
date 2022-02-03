@@ -1,3 +1,4 @@
+{%- assign testimonialTeaserHref = include.href -%}
 {%- assign testimonialTeaserName = include.name -%}
 {%- assign testimonialTeaserTitle = include.title -%}
 {%- assign testimonialTeaserImg = include.img -%}
@@ -5,20 +6,22 @@
 
 <!-- Shared Testimonial Teaser Section -->
 
-<div class="testimonial-teaser">
-  <div class="testimonial-teaser__img">
-    <div class="testimonial-teaser__img-wrapper">
-      {%
-        include img.html
-        img=testimonialTeaserImg.img
-        alt=testimonialTeaserImg.alt
-        cloudinary=testimonialTeaserImgCloudinary
-      %}
+<a href="{{ testimonialTeaserHref }}" class="testimonial-teaser">
+  <div class="testimonial-teaser__wrapper">
+    <div class="testimonial-teaser__img">
+      <div class="testimonial-teaser__img-wrapper">
+        {%
+          include img.html
+          img=testimonialTeaserImg.img
+          alt=testimonialTeaserImg.alt
+          cloudinary=testimonialTeaserImgCloudinary
+        %}
+      </div>
+    </div>
+    <div class="testimonial-teaser__content">
+      <div class="testimonial-teaser__name font-size-4 bold">{{ testimonialTeaserName | replace: ' ', '<br/>' }}</div>
+      <div class="testimonial-teaser__title font-size-1">{{ testimonialTeaserTitle }}</div>
     </div>
   </div>
-  <div class="testimonial-teaser__content">
-    <div class="testimonial-teaser__name font-size-4 bold">{{ testimonialTeaserName | replace: ' ', '<br/>' }}</div>
-    <div class="testimonial-teaser__title font-size-1">{{ testimonialTeaserTitle }}</div>
-  </div>
-</div>
+</a>
 <!-- End Shared Testimonial Teaser Section -->
