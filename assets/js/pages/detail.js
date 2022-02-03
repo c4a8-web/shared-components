@@ -1,6 +1,5 @@
 import BaseComponent from '../components/base-component.js';
 import State from '../state.js';
-// import Loading from '../loading.js';
 
 class PageDetail extends BaseComponent {
   static rootSelector = '.page-detail';
@@ -20,8 +19,6 @@ class PageDetail extends BaseComponent {
 
     this.templates = window.Templates;
 
-    // this.loading = new Loading(this.root);
-
     this.init();
   }
 
@@ -34,29 +31,25 @@ class PageDetail extends BaseComponent {
   }
 
   init() {
-    // this.loading.on();
-
     this.showBackButton();
-
+    this.bindEvents();
     this.stopLoading();
   }
 
   stopLoading() {
     setTimeout(() => {
-      // this.loading.off(true);
-
       this.root.classList.remove(State.LOADING);
     }, this.loadingDelay);
   }
 
-  // queryElements() {
-  //   this.back = this.root.querySelector(this.backSelector);
-  //   this.cta = this.root.querySelector(this.ctaSelector);
-  // }
+  queryElements() {
+    this.back = this.root.querySelector(this.backSelector);
+    this.cta = this.root.querySelector(this.ctaSelector);
+  }
 
   bindEvents() {
-    // this.queryElements();
-    // this.back?.addEventListener('click', this.handleBack.bind(this));
+    this.queryElements();
+    this.back?.addEventListener('click', this.handleBack.bind(this));
     // this.cta?.addEventListener('click', this.handleCta.bind(this));
   }
 
