@@ -17,7 +17,7 @@ class JobListDetail extends BaseComponent {
     this.introSelector = '.job-list__detail-intro';
     this.descriptionSelector = '.job-list__detail-description';
     this.backSelector = '.job-list__detail-back';
-    this.hasBackClass = 'job-list__detail--has-back';
+    this.hasBackClass = 'page-detail--has-back';
 
     this.modal = this.root.querySelector('.modal');
 

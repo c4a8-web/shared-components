@@ -159,8 +159,6 @@ To include the Styles of the `shared-components` you need to add this to your si
   $basePath: '/_includes/shared-components/assets/';
   $assetPath: $basePath + str-slice($url, 4);
 
-  @debug $assetPath;
-
   @return url(#{$assetPath});
 }
 

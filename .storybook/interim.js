@@ -5,6 +5,7 @@ const Interim = () => {
 
   $('.js-sticky-block').each(function () {
     new HSStickyBlock($(this)).init();
+    console.log('this', this);
   });
 
   var carousel = $('.js-slick-carousel');

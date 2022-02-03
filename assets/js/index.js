@@ -10,6 +10,8 @@ import JobList from './components/job-list.js';
 import TabList from './components/tab-list.js';
 import TextAnimation from './components/text-animation.js';
 
+import PageDetail from './pages/detail.js';
+
 import Analytics from './data-an.js';
 import Events from './events.js';
 import Modal from './modal.js';
@@ -29,6 +31,7 @@ const componentList = [
   TabList,
   TextAnimation,
   Modal,
+  PageDetail,
 ];
 
 const captureRefreshAnimateNumber = function (event) {
