@@ -169,6 +169,8 @@ class FormAttachments extends BaseComponent {
   }
 
   handleChange(event) {
+    if (!this.isAllowedFileExtension(event?.target?.files[0])) return this.showError(this.wrongTypeText);
+
     this.resetDroppedFile();
 
     if (this.file.value === '') {
