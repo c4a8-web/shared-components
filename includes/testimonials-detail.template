@@ -1,12 +1,68 @@
 <!-- Shared Testimonials Detail Section -->
 {%- assign testimonialsDetailColor = include.detailColor | default: '--color-testimonials' -%}
 {%- assign testimonialsDetailTitle = include.title -%}
+{%- assign testimonialsDetailName = include.name | replace: ' ', '<br/>' -%}
+{%- assign testimonialsDetailLocation = include.location -%}
 {%- assign testimonialsDetailHeadlineLevel = include.headlineLevel -%}
-{%- assign testimonialsDetailHeadlineClasses = include.headlineClasses -%}
-{%- assign testimonialsDetailSubline = include.subline -%}
+{%- assign testimonialsDetailHeadlineClasses = include.headlineClasses | default: 'h2-font-size bold' -%}
+{%- assign testimonialsDetailDescription = include.description -%}
+{%- assign testimonialsDetailImage = include.image -%}
+{%- assign testimonialsDetailImageCloudinary = testimonialsDetailImage.cloudinary | default: true -%}
+{%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
 
-<div class="testimonials-detail is-loading">
+<div class="testimonials-detail page-detail is-loading"
+style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
+>
+  <div class="page-detail__container container">
+    <div class="page-detail__start row">
+      <div class="page-detail__sticky-start col-lg-5 test">
+        <div class="page-detail__back page-detail__animation-3">
+          {%
+            include icon.html
+            icon='arrow'
+            direction="left"
+            hover=true
+            circle=true
+          %}
+        </div>
 
+        <div class="page-detail__intro js-sticky-block"
+          data-hs-sticky-block-options='{
+            "parentSelector": ".page-detail__sticky-start",
+            "breakpoint": "xl",
+            "startPoint": ".page-detail__sticky-start",
+            "endPoint": ".page-detail__sticky-end",
+            "stickyOffsetTop": 100,
+            "stickyOffsetBottom": 20
+          }'
+        >
+          {%- assign headlineLevel = testimonialsDetailHeadlineLevel | default: 'h1' -%}
+          {%- capture headlineClasses -%}page-detail__headline {{ testimonialsDetailHeadlineClasses }}{%- endcapture -%}
+          {%
+            include headline.html
+            text=testimonialsDetailName
+            level=headlineLevel
+            classes=headlineClasses
+          %}
+          <span class="page-detail__subline">{{ testimonialsDetailSubline }}</span>
+          <div class="page-detail__img page-detail__animation-3">
+            {%
+              include img.html
+              img=testimonialsDetailImage.img
+              alt=testimonialsDetailImage.alt
+              cloudinary=testimonialsDetailImageCloudinary
+            %}
+          </div>
+        </div>
+      </div>
+      <div class="page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
+        <div class="page-detail__description">
+          {{ testimonialsDetailDescription }}
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="page-detail__sticky-end"></div>
 </div>
 <!-- End Shared Testimonials Detail Section -->

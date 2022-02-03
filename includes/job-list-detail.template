@@ -16,15 +16,15 @@
 {%- assign jobListDetailGoogleMaps = include.googleMaps %}
 {%- assign jobListDetailModalSuccess = include.modalSuccess %}
 
-<div class="job-list__detail is-loading"
-  style="--job-list-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--job-list-detail-color)"
+<div class="job-list__detail page-detail is-loading"
+  style="--page-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
   data-id="{{ jobListDetailClientName }}" {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}" {% endif %}
   {% if jobListDetailApiUrl %}data-api-url="{{ jobListDetailApiUrl }}" {% endif %} {% if jobListDetailBase
   %}data-base='{{ jobListDetailBase | jsonify }}' {% endif %}>
-  <div class="job-list__detail-container container">
-    <div class="job-list__detail-start row">
-      <div class="job-list__sticky-start col-lg-5 test">
-        <div class="job-list__detail-back job-list__detail-animation-3">
+  <div class="job-list__detail-container page-detail__container container">
+    <div class="job-list__detail-start page-detail__start row">
+      <div class="job-list__sticky-start page-detail__sticky-start col-lg-5 test">
+        <div class="job-list__detail-back page-detail__back page-detail__animation-3">
           {%
             include icon.html
             icon='arrow'
@@ -34,7 +34,7 @@
           %}
         </div>
 
-        <div class="job-list__detail-intro js-sticky-block"
+        <div class="job-list__detail-intro page-detail__intro js-sticky-block"
           data-hs-sticky-block-options='{
             "parentSelector": ".job-list__sticky-start",
             "breakpoint": "xl",
@@ -45,7 +45,7 @@
           }'
         >
           {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
-          {%- capture headlineClasses -%}job-list__detail-headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
+          {%- capture headlineClasses -%}job-list__detail-headline page-detail__headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
           {%
             include headline.html
             text=jobListDetailTitle
@@ -65,9 +65,9 @@
           </div>
         </div>
       </div>
-      <div class="job-list__detail-content job-list__detail-animation-3 offset-lg-1 col-lg-6">
+      <div class="job-list__detail-content page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
-        <div class="job-list__detail-description">
+        <div class="job-list__detail-description page-detail__description">
           {{ jobListDetailDescription }}
         </div>
         {% if jobListDetailPersonQuote %}
