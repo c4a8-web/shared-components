@@ -1,0 +1,42 @@
+{%- if include.json -%}
+  {%- assign testimonialsSliderHeadline = include.json.headline -%}
+  {%- assign testimonialsSliderHeadlineLevel = include.json.headlineLevel -%}
+  {%- assign testimonialsSliderSubline = include.json.subline -%}
+  {%- assign testimonialsSliderSlides = include.json.slides -%}
+{%- else -%}
+  {%- assign testimonialsSliderHeadline = include.headline -%}
+  {%- assign testimonialsSliderHeadlineLevel = include.headlineLevel -%}
+  {%- assign testimonialsSliderSubline = include.subline -%}
+  {%- assign testimonialsSliderSlides = include.slides -%}
+{%- endif -%}
+
+<!-- Shared Testimonial Slider Section -->
+<div class="testimonials-slider container">
+  <div class="testimonials-slider__header row">
+    <div class="col-lg-12">
+      {%
+        include headline.html
+        text=testimonialsSliderHeadline
+        level=testimonialsSliderHeadlineLevel
+      %}
+      {% if testimonialsSliderSubline %}
+        <div class="testimonials-slider__subline mt-4">{{ testimonialsSliderSubline }}</div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row mt-6">
+    <div class="col-lg-12">
+      <div class="testimonials-slider__slides">
+        {% for testimonial in testimonialsSliderSlides %}
+          {%
+            include testimonial-teaser.html
+            name=testimonial.name
+            title=testimonial.title
+            img=testimonial.img
+          %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Testimonial Slider Section -->

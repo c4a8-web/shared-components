@@ -1,0 +1,5 @@
+.testimonials__subline {
+  @include media-breakpoint-up(lg) {
+    width: 60%;
+  }
+}

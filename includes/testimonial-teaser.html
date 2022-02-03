@@ -1,0 +1,24 @@
+{%- assign testimonialTeaserName = include.name -%}
+{%- assign testimonialTeaserTitle = include.title -%}
+{%- assign testimonialTeaserImg = include.img -%}
+{%- assign testimonialTeaserImgCloudinary = testimonialTeaserImg.cloudinary | default: true -%}
+
+<!-- Shared Testimonial Teaser Section -->
+
+<div class="testimonial-teaser">
+  <div class="testimonial-teaser__img">
+    <div class="testimonial-teaser__img-wrapper">
+      {%
+        include img.html
+        img=testimonialTeaserImg.img
+        alt=testimonialTeaserImg.alt
+        cloudinary=testimonialTeaserImgCloudinary
+      %}
+    </div>
+  </div>
+  <div class="testimonial-teaser__content">
+    <div class="testimonial-teaser__name font-size-4 bold">{{ testimonialTeaserName | replace: ' ', '<br/>' }}</div>
+    <div class="testimonial-teaser__title font-size-1">{{ testimonialTeaserTitle }}</div>
+  </div>
+</div>
+<!-- End Shared Testimonial Teaser Section -->
