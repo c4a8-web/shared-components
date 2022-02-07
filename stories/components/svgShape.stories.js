@@ -27,4 +27,5 @@ export const PrimaryAccent = Template.bind({});
 
 PrimaryAccent.args = {
   color: 'var(--color-primary-accent)',
+  peak: 'left',
 };
