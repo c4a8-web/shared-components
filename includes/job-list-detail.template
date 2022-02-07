@@ -67,7 +67,7 @@
       </div>
       <div class="job-list__detail-content page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
-        <div class="job-list__detail-description page-detail__description">
+        <div class="job-list__detail-description page-detail__description richtext">
           {{ jobListDetailDescription }}
         </div>
         {% if jobListDetailPersonQuote %}

@@ -57,7 +57,7 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
         </div>
       </div>
       <div class="page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
-        <div class="page-detail__description">
+        <div class="page-detail__description richtext">
           {{ testimonialsDetailDescription }}
         </div>
       </div>
