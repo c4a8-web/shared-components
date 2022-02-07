@@ -1,14 +1,32 @@
 $page-detail-transition-1-delay: 0.9s;
 $page-detail-transition-2-delay: 1.3s;
 $page-detail-transition-3-delay: 1.8s;
+$page-detail-image-offset-size: 20;
+$page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 
 .page-detail {
   min-height: 100vh;
   position: relative;
 
+  &.page-detail--image {
+    .page-detail__description {
+      margin-top: spacing($page-detail-image-offset-size);
+      padding-top: spacing(6);
+
+      @include media-breakpoint-up(lg) {
+        padding-top: 0;
+        margin-top: 0;
+      }
+    }
+  }
+
   &.page-detail--has-back {
     .page-detail__start {
-      padding-top: spacing(50);
+      padding-top: spacing(26);
+
+      @include media-breakpoint-up(lg) {
+        padding-top: spacing(50);
+      }
     }
 
     .page-detail__back {
@@ -136,12 +154,15 @@ $page-detail-transition-3-delay: 1.8s;
   display: none;
   width: spacing(9);
   height: spacing(9);
-  margin-bottom: spacing(14);
-  top: spacing($size: 24, $negative: true);
+  top: spacing($size: 18, $negative: true);
 
   .icon {
     width: 100%;
     height: 100%;
+  }
+
+  @include media-breakpoint-up(lg) {
+    top: spacing($size: 24, $negative: true);
   }
 }
 
@@ -184,4 +205,9 @@ $page-detail-transition-3-delay: 1.8s;
 
 .page-detail__img {
   margin-top: spacing(8);
+  margin-bottom: spacing($size: $page-detail-image-offset-size-double, $negative: true);
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: 0;
+  }
 }

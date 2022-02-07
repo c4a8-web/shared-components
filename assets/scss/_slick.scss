@@ -80,3 +80,47 @@ $slick-arrow-offset: 2;
     right: -#{spacing($slick-arrow-offset-xl + $slick-arrow-offset)};
   }
 }
+
+.shared-components {
+  .slick-pagination {
+    &:not(.is-default) {
+      display: flex !important;
+
+      li {
+        &.slick-active {
+          span {
+            opacity: 0.6;
+          }
+        }
+
+        span {
+          background-color: var(--color-white);
+          border: 0;
+          transform: scale(0.6);
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        display: none !important;
+      }
+    }
+
+    &.is-default {
+      li {
+        margin: 0 spacing(3);
+
+        &.slick-active {
+          span {
+            background-color: var(--color-blue-medium);
+            transform: scale(0.7);
+          }
+        }
+
+        span {
+          background-color: var(--color-black-40);
+          transform: scale(0.6);
+        }
+      }
+    }
+  }
+}

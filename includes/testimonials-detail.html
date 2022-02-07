@@ -10,7 +10,7 @@
 {%- assign testimonialsDetailImageCloudinary = testimonialsDetailImage.cloudinary | default: true -%}
 {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
 
-<div class="testimonials-detail page-detail is-loading"
+<div class="testimonials-detail page-detail page-detail--image is-loading"
 style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
 >
   <div class="page-detail__container container">
@@ -29,7 +29,7 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
         <div class="page-detail__intro js-sticky-block"
           data-hs-sticky-block-options='{
             "parentSelector": ".page-detail__sticky-start",
-            "breakpoint": "xl",
+            "breakpoint": "lg",
             "startPoint": ".page-detail__sticky-start",
             "endPoint": ".page-detail__sticky-end",
             "stickyOffsetTop": 100,
@@ -51,6 +51,7 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
               img=testimonialsDetailImage.img
               alt=testimonialsDetailImage.alt
               cloudinary=testimonialsDetailImageCloudinary
+              imgSrcSets=site.data.imgSrcSets.testimonial
             %}
           </div>
         </div>
