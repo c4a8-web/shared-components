@@ -1,0 +1,37 @@
+$event-teaser-default-spacing: 5;
+
+.event-teaser {
+  @include shadow('light');
+}
+
+.event-teaser--size-33 {
+  width: 33%;
+}
+
+.event-teaser--size-50 {
+  width: 50%;
+}
+
+.event-teaser--size-100 {
+  width: 100%;
+}
+
+.event-teaser__authors {
+  width: 60%;
+  margin-left: spacing($event-teaser-default-spacing);
+  margin-bottom: spacing(4);
+}
+
+.event-teaser__header {
+  padding-top: spacing($event-teaser-default-spacing);
+}
+
+.event-teaser__footer,
+.event-teaser__main {
+  padding: spacing($event-teaser-default-spacing);
+}
+
+.event-teaser__headline {
+  width: 80%;
+  margin-bottom: spacing(6);
+}

@@ -1,0 +1,41 @@
+{%- if include.json -%}
+  {%- assign eventTeaserHeadline = include.json.headline -%}
+  {%- assign eventTeaserContent = include.json.content -%}
+  {%- assign eventTeaserDate = include.json.date -%}
+  {%- assign eventTeaserTime = include.json.time -%}
+  {%- assign eventTeaserShapes = include.json.shapes -%}
+  {%- assign eventTeaserAuthors = include.json.authors -%}
+  {%- assign eventTeaserImage = include.json.image -%}
+  {%- assign eventTeaserBadge = include.json.badge -%}
+  {%- assign eventTeaserPrice = include.json.price -%}
+  {%- assign eventTeaserCta = include.json.cta -%}
+  {%- assign eventTeaserVariant = include.json.variant | default: '33' %}
+{%- else -%}
+  {%- assign eventTeaserHeadline = include.headline -%}
+  {%- assign eventTeaserContent = include.content -%}
+  {%- assign eventTeaserDate = include.date -%}
+  {%- assign eventTeaserTime = include.time -%}
+  {%- assign eventTeaserShapes = include.shapes -%}
+  {%- assign eventTeaserAuthors = include.authors -%}
+  {%- assign eventTeaserImage = include.image -%}
+  {%- assign eventTeaserBadge = include.badge -%}
+  {%- assign eventTeaserPrice = include.price -%}
+  {%- assign eventTeaserCta = include.cta -%}
+  {%- assign eventTeaserVariant = include.variant | default: '33' %}
+{%- endif -%}
+
+{%- assign eventTeaserAuthors = eventTeaserAuthors | replace: '&', '<br/>&' -%}
+
+<!-- Shared Event Teaser Section -->
+<article class="event-teaser event-teaser--size-{{ eventTeaserVariant }}">
+  <header class="event-teaser__header">
+    <div class="event-teaser__authors font-size-2 thin bold">{{ eventTeaserAuthors }}</div>
+  </header>
+  <main class="event-teaser__main">
+    <div class="event-teaser__headline font-size-4">{{ eventTeaserHeadline }}</div>
+    <div class="event-teaser__content richtext">{{ content }}</div>
+  </main>
+  <footer class="event-teaser__footer">3</footer>
+</article>
+
+<!-- End Shared Event Teaser Section -->
