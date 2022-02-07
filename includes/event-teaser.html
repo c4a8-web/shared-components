@@ -9,7 +9,8 @@
   {%- assign eventTeaserBadge = include.json.badge -%}
   {%- assign eventTeaserPrice = include.json.price -%}
   {%- assign eventTeaserCta = include.json.cta -%}
-  {%- assign eventTeaserVariant = include.json.variant | default: '33' %}
+  {%- assign eventTeaserVariant = include.json.variant | default: '33' -%}
+  {%- assign eventTeaserWebcast = include.json.webcast -%}
 {%- else -%}
   {%- assign eventTeaserHeadline = include.headline -%}
   {%- assign eventTeaserContent = include.content -%}
@@ -22,14 +23,65 @@
   {%- assign eventTeaserPrice = include.price -%}
   {%- assign eventTeaserCta = include.cta -%}
   {%- assign eventTeaserVariant = include.variant | default: '33' %}
+  {%- assign eventTeaserWebcast = include.webcast -%}
 {%- endif -%}
 
 {%- assign eventTeaserAuthors = eventTeaserAuthors | replace: '&', '<br/>&' -%}
 
 <!-- Shared Event Teaser Section -->
-<article class="event-teaser event-teaser--size-{{ eventTeaserVariant }}">
+<article class="event-teaser event-teaser--size-{{ eventTeaserVariant }} {% if eventTeaserWebcast %}event-teaser--webcast{% endif %}">
   <header class="event-teaser__header">
-    <div class="event-teaser__authors font-size-2 thin bold">{{ eventTeaserAuthors }}</div>
+    <div class="event-teaser__background">
+      <div class="event-teaser__shapes">
+        {% for eventTeaserShape in eventTeaserShapes %}
+          {% if eventTeaserShape.peak %}
+           {% assign eventTeaserShapePeak = eventTeaserShape.peak %}
+           {% assign eventTeaserShapeHeight = eventTeaserShape.height %}
+          {% else %}
+            {% if eventTeaserWebcast %}
+              {% if forloop.index == 1 %}
+                {% assign eventTeaserShapePeak = 'left' %}
+                {% assign eventTeaserShapeHeight = '84' %}
+              {% else %}
+                {% assign eventTeaserShapePeak = 'right' %}
+                {% assign eventTeaserShapeHeight = '20' %}
+                {% assign eventTeaserShapeWidth = '60' %}
+              {% endif %}
+            {% else %}
+
+            {% endif %}
+          {% endif %}
+          <div class="event-teaser__shape {{ eventTeaserShapePeak }}" {% if eventTeaserShapeWidth %}style="width: {{ eventTeaserShapeWidth }}%;"{% endif %}>
+            {%
+              include svg-shape.html
+              color=eventTeaserShape.color
+              peak=eventTeaserShapePeak
+              height=eventTeaserShapeHeight
+            %}
+          </div>
+        {% endfor %}
+      </div>
+      <div class="event-teaser__image">
+        {%
+          include img.html
+          img=eventTeaserImage.img
+          alt=eventTeaserImage.alt
+          cloudinary=true
+        %}
+      </div>
+    </div>
+    <div class="event-teaser__foreground">
+      <div class="event-teaser__details">
+        <div class="event-teaser__badge">badge</div>
+        {% if eventTeaserDate or eventTeaserTime %}
+          <div class="event-teaser__timing font-size-1">
+            {% if eventTeaserDate %}<span class="event-teaser__date">{{ eventTeaserDate }}</span>{% endif %}
+            {% if eventTeaserTime %}<span class="event-teaser__time">{{ eventTeaserTime }}</span>{% endif %}
+          </div>
+        {% endif %}
+        <div class="event-teaser__authors font-size-2 thin bold">{{ eventTeaserAuthors }}</div>
+      </div>
+    </div>
   </header>
   <main class="event-teaser__main">
     <div class="event-teaser__headline font-size-4">{{ eventTeaserHeadline }}</div>

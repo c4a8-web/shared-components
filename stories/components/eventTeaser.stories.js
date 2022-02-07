@@ -19,10 +19,18 @@ EventTeaserWebcast.args = {
     '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
   date: '16.02.2022',
   time: '14-15 Uhr',
-  shapes: {},
+  shapes: [
+    {
+      color: 'var(--color-green-blue)',
+    },
+    {
+      color: 'var(--color-yellow)',
+    },
+  ],
+  webcast: true,
   authors: 'Mit Nadine Kern & Max Mustermann',
   image: {
-    img: '',
+    img: '/events/authors/authors-demo.png',
     alt: 'lorem ipsum',
   },
   badge: {},
@@ -43,7 +51,7 @@ EventTeaserTraining.args = {
   shapes: {},
   authors: 'Mit Nadine Kern & Max Mustermann',
   image: {
-    img: '',
+    img: '/events/authors/authors-demo.png',
     alt: 'lorem ipsum',
   },
   badge: {},
