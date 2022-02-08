@@ -43,7 +43,7 @@ EventTeaserWebcast.args = {
     skin: 'primary',
     button: true,
   },
-  variant: 50,
+  variant: 6,
 };
 
 export const EventTeaserTraining = Template.bind({});
@@ -64,6 +64,22 @@ EventTeaserTraining.args = {
   price: 'Kostenlos',
   cta: {
     text: 'Jetzt anmelden',
+    href: 'javascript:void(0)',
+    skin: 'primary',
+    button: true,
+  },
+};
+
+export const EventTeaser = Template.bind({});
+
+EventTeaser.args = {
+  teaser: true,
+  headline: 'Eigenes Training Lorem Ipsum dolor Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
+  content:
+    '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
+  color: '#ff0000',
+  cta: {
+    text: 'Schulungen anfragen',
     href: 'javascript:void(0)',
     skin: 'primary',
     button: true,
