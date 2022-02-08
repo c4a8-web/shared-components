@@ -1,0 +1,20 @@
+{%- if include.json -%}
+  {%- assign badgeText = include.json.text -%}
+  {%- assign badgeIcon = include.json.icon | default: 'computer-shield' -%}
+  {%- assign badgeColor = include.json.color | default: 'var(--color-badge-background)' -%}
+{%- else -%}
+  {%- assign badgeText = include.text -%}
+  {%- assign badgeIcon = include.icon | default: 'computer-shield' -%}
+  {%- assign badgeColor = include.color | default: 'var(--color-badge-background)' -%}
+{%- endif -%}
+
+<!-- Shared Badge Section -->
+<div class="badge badge--normal font-size-1 light" style="background-color: {{ badgeColor }}; color: var(--color-badge-icon);">
+  <div class="badge__text">{{ badgeText }}</div>
+  {%
+    include icon.html
+    icon=badgeIcon
+    color='var(--color-badge-icon)'
+  %}
+</div>
+<!-- End Shared Badge Section -->

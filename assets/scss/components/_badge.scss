@@ -1,0 +1,15 @@
+.badge {
+  &.badge--normal {
+    display: inline-flex;
+    align-items: center;
+    padding: spacing(0) spacing(3);
+    text-align: left;
+    border-radius: 0;
+    transition: none;
+  }
+}
+
+.badge__text {
+  display: inline-block;
+  margin-right: spacing(4);
+}
