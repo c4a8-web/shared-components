@@ -12,6 +12,7 @@
   {%- assign eventTeaserVariant = include.json.variant | default: '4' -%}
   {%- assign eventTeaserWebcast = include.json.webcast -%}
   {%- assign eventTeaserTeaser = include.json.teaser -%}
+  {%- assign eventTeaserUrl = include.json.url -%}
 {%- else -%}
   {%- assign eventTeaserHeadline = include.headline -%}
   {%- assign eventTeaserContent = include.content -%}
@@ -26,6 +27,7 @@
   {%- assign eventTeaserVariant = include.variant | default: '4' %}
   {%- assign eventTeaserWebcast = include.webcast -%}
   {%- assign eventTeaserTeaser = include.teaser -%}
+  {%- assign eventTeaserUrl = include.url -%}
 {%- endif -%}
 
 {%- assign eventTeaserAuthors = eventTeaserAuthors | replace: '&', '<br/>&' -%}
@@ -97,7 +99,21 @@
     </div>
   </header>
   <main class="event-teaser__main">
-    <div class="event-teaser__headline font-size-4">{{ eventTeaserHeadline }}</div>
+    <div class="event-teaser__headline font-size-4">
+      {% if eventTeaserWebcast or eventTeaserTeaser %}
+      {% else %}
+        {% if eventTeaserUrl %}
+          <a href="{{ eventTeaserUrl }}">
+        {% endif %}
+      {% endif %}
+      {{ eventTeaserHeadline }}
+      {% if eventTeaserWebcast or eventTeaserTeaser %}
+      {% else %}
+        {% if eventTeaserUrl %}
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
     <div class="event-teaser__content richtext">{{ eventTeaserContent }}</div>
   </main>
   {% if eventTeaserPrice or eventTeaserCta %}

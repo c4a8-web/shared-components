@@ -84,4 +84,5 @@ EventTeaser.args = {
     skin: 'primary',
     button: true,
   },
+  url: 'javascript:void(0)',
 };
