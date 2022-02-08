@@ -275,11 +275,11 @@
   @return $result;
 }
 
-@mixin shadow($size: 'medium') {
+@mixin shadow($size: 'medium', $x-offset: 0) {
   @if ($size == 'medium') {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.45);
+    box-shadow: #{$x-offset} 0 15px rgba(0, 0, 0, 0.45);
   } @else if ($size == 'light') {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    box-shadow: #{$x-offset} 0 10px rgba(0, 0, 0, 0.25);
   }
 }
 

@@ -1,3 +1,17 @@
+.event-list {
+  @include z-index;
+
+  position: relative;
+
+  &.event-list--overlap {
+    margin-top: spacing($size: 10, $negative: true);
+
+    @include media-breakpoint-up(lg) {
+      margin-top: spacing($size: 40, $negative: true);
+    }
+  }
+}
+
 .event-list__row {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
