@@ -72,7 +72,13 @@
     </div>
     <div class="event-teaser__foreground">
       <div class="event-teaser__details">
-        <div class="event-teaser__badge">badge</div>
+        <div class="event-teaser__badge">
+          {%
+            include badge.html
+            text=eventTeaserBadge.text
+            color=eventTeaserBadge.color
+          %}
+        </div>
         {% if eventTeaserDate or eventTeaserTime %}
           <div class="event-teaser__timing font-size-1">
             {% if eventTeaserDate %}<span class="event-teaser__date">{{ eventTeaserDate }}</span>{% endif %}
@@ -87,7 +93,29 @@
     <div class="event-teaser__headline font-size-4">{{ eventTeaserHeadline }}</div>
     <div class="event-teaser__content richtext">{{ content }}</div>
   </main>
-  <footer class="event-teaser__footer">3</footer>
+  {% if eventTeaserPrice or eventTeaserCta %}
+    <footer class="event-teaser__footer">
+      {% if eventTeaserPrice %}
+        <div class="event-teaser__price font-size-2 bold">
+          {{ eventTeaserPrice }}
+        </div>
+      {% endif %}
+      {% if eventTeaserCta %}
+        {% assign eventTeaserCtaSkin = eventTeaserCta.skin | default: 'primary' %}
+        {% assign eventTeaserCtaWidth = eventTeaserCta.width | default: '' %}
+        <div class="event-teaser__cta">
+          {%
+            include cta.html
+            text=eventTeaserCta.text
+            type="button"
+            button=true
+            skin=eventTeaserCtaSkin
+            width=eventTeaserCtaWidth
+          %}
+        </div>
+      {% endif %}
+    </footer>
+  {% endif %}
 </article>
 
 <!-- End Shared Event Teaser Section -->

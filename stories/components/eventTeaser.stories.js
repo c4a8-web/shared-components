@@ -33,7 +33,9 @@ EventTeaserWebcast.args = {
     img: '/events/authors/authors-demo.png',
     alt: 'lorem ipsum',
   },
-  badge: {},
+  badge: {
+    text: 'Neuer Webcast',
+  },
   cta: {
     text: 'Jetzt anmelden',
     href: 'javascript:void(0)',
@@ -54,7 +56,10 @@ EventTeaserTraining.args = {
     img: '/events/authors/authors-demo.png',
     alt: 'lorem ipsum',
   },
-  badge: {},
+  badge: {
+    text: 'Training',
+    color: 'var(--color-sunglow)',
+  },
   price: 'Kostenlos',
   cta: {
     text: 'Jetzt anmelden',
