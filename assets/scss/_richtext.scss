@@ -1,6 +1,8 @@
 .richtext {
   p {
-    margin-bottom: spacing(12);
+    + * {
+      margin-top: spacing(12);
+    }
   }
 
   ul {
