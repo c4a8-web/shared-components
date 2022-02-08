@@ -11,8 +11,17 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Badge = Template.bind({});
+export const WithIcon = Template.bind({});
 
-Badge.args = {
+WithIcon.args = {
   text: 'Neuer Webcast',
+  icon: '',
+};
+
+export const WithoutIcon = Template.bind({});
+
+WithoutIcon.args = {
+  text: 'Training',
+  textColor: 'var(--color-black)',
+  color: 'var(--color-sunglow)',
 };
