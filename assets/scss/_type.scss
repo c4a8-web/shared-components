@@ -80,6 +80,10 @@ $font-style-map: (
       font-weight: bold !important;
     }
 
+    &.normal {
+      font-weight: 400 !important;
+    }
+
     &.light {
       font-weight: 100 !important;
 
