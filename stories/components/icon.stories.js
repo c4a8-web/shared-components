@@ -71,3 +71,10 @@ PhoneMail.args = {
   icon: 'phone-mail',
   size: 'large',
 };
+
+export const ComputerShield = Template.bind({});
+
+ComputerShield.args = {
+  icon: 'computer-shield',
+  size: 'large',
+};
