@@ -1,4 +1,5 @@
 {%- assign eventListList = include.list -%}
+{%- assign eventListOverlap = include.overlap -%}
 {%- assign eventListSettings = include.settings -%}
 
 {% comment %}
@@ -6,7 +7,7 @@ TODO figure out what happens when the teaser is the last element so the variants
 {% endcomment %}
 
 <!-- Shared Event List Section -->
-<div class="event-list container">
+<div class="event-list container {% if eventListOverlap %}event-list--overlap{% endif %}">
   <div class="event-list__row row col-lg-12">
     {% assign eventListTeaserIndex = 0 %}
     {% for eventListTeaser in eventListList %}
@@ -20,7 +21,7 @@ TODO figure out what happens when the teaser is the last element so the variants
           include event-teaser.html
           headline=eventListTeaserData.headline
           content=eventListTeaserData.content
-          date=eventListTeaserData.date
+          moment=eventListTeaserData.moment
           time=eventListTeaserData.time
           shapes=eventListTeaserData.shapes
           authors=eventListTeaserData.authors
@@ -42,7 +43,7 @@ TODO figure out what happens when the teaser is the last element so the variants
         include event-teaser.html
         headline=eventListTeaser.headline
         content=eventListTeaser.content
-        date=eventListTeaser.date
+        moment=eventListTeaser.moment
         time=eventListTeaser.time
         shapes=eventListTeaser.shapes
         authors=eventListTeaser.authors

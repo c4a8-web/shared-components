@@ -1,7 +1,7 @@
 {%- if include.json -%}
   {%- assign eventTeaserHeadline = include.json.headline -%}
   {%- assign eventTeaserContent = include.json.content -%}
-  {%- assign eventTeaserDate = include.json.date -%}
+  {%- assign eventTeaserMoment = include.json.moment -%}
   {%- assign eventTeaserTime = include.json.time -%}
   {%- assign eventTeaserShapes = include.json.shapes -%}
   {%- assign eventTeaserAuthors = include.json.authors -%}
@@ -16,7 +16,7 @@
 {%- else -%}
   {%- assign eventTeaserHeadline = include.headline -%}
   {%- assign eventTeaserContent = include.content -%}
-  {%- assign eventTeaserDate = include.date -%}
+  {%- assign eventTeaserMoment = include.moment -%}
   {%- assign eventTeaserTime = include.time -%}
   {%- assign eventTeaserShapes = include.shapes -%}
   {%- assign eventTeaserAuthors = include.authors -%}
@@ -34,29 +34,42 @@
 
 <!-- Shared Event Teaser Section -->
 <article class="event-teaser event-teaser--size-{{ eventTeaserVariant }}
-              {% if eventTeaserWebcast %}event-teaser--webcast{% endif %}
-              {% if eventTeaserTeaser %}event-teaser--teaser{% endif %}
+              {% if eventTeaserWebcast %}event-teaser--webcast
+              {% elsif eventTeaserTeaser %}event-teaser--teaser
+              {% else %}event-teaser--training
+              {% endif %}
               "
 >
   <header class="event-teaser__header">
     <div class="event-teaser__background">
       <div class="event-teaser__shapes">
         {% for eventTeaserShape in eventTeaserShapes %}
-          {% if eventTeaserShape.peak %}
-           {% assign eventTeaserShapePeak = eventTeaserShape.peak %}
-           {% assign eventTeaserShapeHeight = eventTeaserShape.height %}
-          {% else %}
-            {% if eventTeaserWebcast %}
+          {% if eventTeaserWebcast %}
+            {% if eventTeaserShapes.size > 1 %}
               {% if forloop.index == 1 %}
-                {% assign eventTeaserShapePeak = 'left' %}
-                {% assign eventTeaserShapeHeight = '84' %}
+                {% assign eventTeaserShapePeak = eventTeaserShape.peak | default: 'left' %}
+                {% assign eventTeaserShapeHeight = eventTeaserShape.height | default: '84' %}
+                {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '100' %}
               {% else %}
-                {% assign eventTeaserShapePeak = 'right' %}
-                {% assign eventTeaserShapeHeight = '20' %}
-                {% assign eventTeaserShapeWidth = '60' %}
+                {% assign eventTeaserShapePeak = eventTeaserShape.peak | default: 'right' %}
+                {% assign eventTeaserShapeHeight = eventTeaserShape.height | default: '17' %}
+                {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '60' %}
               {% endif %}
             {% else %}
-
+              {% assign eventTeaserShapePeak = eventTeaserShape.peak | default: 'right' %}
+              {% assign eventTeaserShapeHeight = eventTeaserShape.height | default: '40' %}
+              {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '100' %}
+            {% endif %}
+          {% else %}
+            {% if forloop.index == 1 %}
+              {% assign eventTeaserShapePeak = eventTeaserShape.peak | default: 'right' %}
+              {% assign eventTeaserShapeHeight = eventTeaserShape.height | default: '12' %}
+              {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '237' %}
+              {% assign eventTeaserShapeObliquity = eventTeaserShape.obliquity | default: '4' %}
+            {% else %}
+              {% assign eventTeaserShapePeak = eventTeaserShape.peak | default: 'left' %}
+              {% assign eventTeaserShapeHeight = eventTeaserShape.height | default: '10' %}
+              {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '80' %}
             {% endif %}
           {% endif %}
           <div class="event-teaser__shape {{ eventTeaserShapePeak }}" {% if eventTeaserShapeWidth %}style="width: {{ eventTeaserShapeWidth }}%;"{% endif %}>
@@ -65,6 +78,7 @@
               color=eventTeaserShape.color
               peak=eventTeaserShapePeak
               height=eventTeaserShapeHeight
+              obliquity=eventTeaserShapeObliquity
             %}
           </div>
         {% endfor %}
@@ -88,9 +102,9 @@
             color=eventTeaserBadge.color
           %}
         </div>
-        {% if eventTeaserDate or eventTeaserTime %}
+        {% if eventTeaserMoment or eventTeaserTime %}
           <div class="event-teaser__timing font-size-1">
-            {% if eventTeaserDate %}<span class="event-teaser__date">{{ eventTeaserDate }}</span>{% endif %}
+            {% if eventTeaserMoment %}<span class="event-teaser__moment">{{ eventTeaserMoment }}</span>{% endif %}
             {% if eventTeaserTime %}<span class="event-teaser__time">{{ eventTeaserTime }}</span>{% endif %}
           </div>
         {% endif %}
@@ -114,7 +128,9 @@
         {% endif %}
       {% endif %}
     </div>
-    <div class="event-teaser__content richtext">{{ eventTeaserContent }}</div>
+    {% if eventTeaserWebcast or eventTeaserTeaser %}
+      <div class="event-teaser__content richtext">{{ eventTeaserContent }}</div>
+    {% endif %}
   </main>
   {% if eventTeaserPrice or eventTeaserCta %}
     <footer class="event-teaser__footer">
@@ -130,8 +146,7 @@
           {%
             include cta.html
             text=eventTeaserCta.text
-            type="button"
-            button=true
+            href=eventTeaserUrl
             skin=eventTeaserCtaSkin
             width=eventTeaserCtaWidth
           %}
