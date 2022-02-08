@@ -35,6 +35,7 @@ EventTeaserWebcast.args = {
   },
   badge: {
     text: 'Neuer Webcast',
+    icon: '',
   },
   cta: {
     text: 'Jetzt anmelden',
