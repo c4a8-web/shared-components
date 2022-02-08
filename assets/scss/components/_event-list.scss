@@ -1,0 +1,9 @@
+.event-list__row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  column-gap: spacing(5);
+
+  > * {
+    margin-bottom: spacing(5);
+  }
+}
