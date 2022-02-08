@@ -1,0 +1,19 @@
+{
+  "storybook-component": {
+    "prefix": "storybook-component",
+    "body": [
+      "import { createComponent, getTitle } from '../../.storybook/templates';",
+      "import { includes$1html as component } from '../../.storybook/generatedIncludes';\n",
+      "const options = getTitle({",
+      "  title: '$2',",
+      "});\n",
+      "export default {",
+      "  ...options,",
+      "};\n",
+      "const Template = (args) => createComponent(args, component);\n",
+      "export const $3 = Template.bind({});\n",
+      "$3.args = {",
+      "};\n"
+    ]
+  }
+}
