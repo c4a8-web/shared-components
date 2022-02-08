@@ -9,8 +9,10 @@
   {%- assign eventTeaserBadge = include.json.badge -%}
   {%- assign eventTeaserPrice = include.json.price -%}
   {%- assign eventTeaserCta = include.json.cta -%}
-  {%- assign eventTeaserVariant = include.json.variant | default: '33' -%}
+  {%- assign eventTeaserVariant = include.json.variant | default: '4' -%}
   {%- assign eventTeaserWebcast = include.json.webcast -%}
+  {%- assign eventTeaserTeaser = include.json.teaser -%}
+  {%- assign eventTeaserUrl = include.json.url -%}
 {%- else -%}
   {%- assign eventTeaserHeadline = include.headline -%}
   {%- assign eventTeaserContent = include.content -%}
@@ -22,14 +24,20 @@
   {%- assign eventTeaserBadge = include.badge -%}
   {%- assign eventTeaserPrice = include.price -%}
   {%- assign eventTeaserCta = include.cta -%}
-  {%- assign eventTeaserVariant = include.variant | default: '33' %}
+  {%- assign eventTeaserVariant = include.variant | default: '4' %}
   {%- assign eventTeaserWebcast = include.webcast -%}
+  {%- assign eventTeaserTeaser = include.teaser -%}
+  {%- assign eventTeaserUrl = include.url -%}
 {%- endif -%}
 
 {%- assign eventTeaserAuthors = eventTeaserAuthors | replace: '&', '<br/>&' -%}
 
 <!-- Shared Event Teaser Section -->
-<article class="event-teaser event-teaser--size-{{ eventTeaserVariant }} {% if eventTeaserWebcast %}event-teaser--webcast{% endif %}">
+<article class="event-teaser event-teaser--size-{{ eventTeaserVariant }}
+              {% if eventTeaserWebcast %}event-teaser--webcast{% endif %}
+              {% if eventTeaserTeaser %}event-teaser--teaser{% endif %}
+              "
+>
   <header class="event-teaser__header">
     <div class="event-teaser__background">
       <div class="event-teaser__shapes">
@@ -91,8 +99,22 @@
     </div>
   </header>
   <main class="event-teaser__main">
-    <div class="event-teaser__headline font-size-4">{{ eventTeaserHeadline }}</div>
-    <div class="event-teaser__content richtext">{{ content }}</div>
+    <div class="event-teaser__headline font-size-4">
+      {% if eventTeaserWebcast or eventTeaserTeaser %}
+      {% else %}
+        {% if eventTeaserUrl %}
+          <a href="{{ eventTeaserUrl }}">
+        {% endif %}
+      {% endif %}
+      {{ eventTeaserHeadline }}
+      {% if eventTeaserWebcast or eventTeaserTeaser %}
+      {% else %}
+        {% if eventTeaserUrl %}
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+    <div class="event-teaser__content richtext">{{ eventTeaserContent }}</div>
   </main>
   {% if eventTeaserPrice or eventTeaserCta %}
     <footer class="event-teaser__footer">

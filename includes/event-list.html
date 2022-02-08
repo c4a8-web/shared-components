@@ -1,0 +1,62 @@
+{%- assign eventListList = include.list -%}
+{%- assign eventListSettings = include.settings -%}
+
+{% comment %}
+TODO figure out what happens when the teaser is the last element so the variants are bigger than the list. add only the missing teaser after that
+{% endcomment %}
+
+<!-- Shared Event List Section -->
+<div class="event-list container">
+  <div class="event-list__row row col-lg-12">
+    {% assign eventListTeaserIndex = 0 %}
+    {% for eventListTeaser in eventListList %}
+      {% assign eventListTeaserSetting = eventListSettings[eventListTeaserIndex] %}
+      {% assign eventListTeaserVariant = eventListTeaser.variant | default: eventListTeaserSetting.variant %}
+
+      {% if eventListTeaserSetting.teaser %}
+        {% assign eventListTeaserIndex = eventListTeaserIndex | plus: 1 %}
+        {% assign eventListTeaserData = eventListTeaserSetting.teaser %}
+        {%
+          include event-teaser.html
+          headline=eventListTeaserData.headline
+          content=eventListTeaserData.content
+          date=eventListTeaserData.date
+          time=eventListTeaserData.time
+          shapes=eventListTeaserData.shapes
+          authors=eventListTeaserData.authors
+          image=eventListTeaserData.image
+          badge=eventListTeaserData.badge
+          price=eventListTeaserData.price
+          cta=eventListTeaserData.cta
+          variant=eventListTeaserVariant
+          webcast=eventListTeaserData.webcast
+          teaser=eventListTeaserData.teaser
+          url=eventListTeaserData.url
+        %}
+      {% endif %}
+
+      {% assign eventListTeaserSetting = eventListSettings[eventListTeaserIndex] %}
+      {% assign eventListTeaserVariant = eventListTeaser.variant | default: eventListTeaserSetting.variant %}
+
+      {%
+        include event-teaser.html
+        headline=eventListTeaser.headline
+        content=eventListTeaser.content
+        date=eventListTeaser.date
+        time=eventListTeaser.time
+        shapes=eventListTeaser.shapes
+        authors=eventListTeaser.authors
+        image=eventListTeaser.image
+        badge=eventListTeaser.badge
+        price=eventListTeaser.price
+        cta=eventListTeaser.cta
+        variant=eventListTeaserVariant
+        webcast=eventListTeaser.webcast
+        teaser=eventListTeaser.teaser
+        url=eventListTeaser.url
+      %}
+      {% assign eventListTeaserIndex = eventListTeaserIndex | plus: 1 %}
+    {% endfor %}
+  </div>
+</div>
+<!-- End Shared Event List Section -->
