@@ -47,6 +47,39 @@ EventTeaserWebcast.args = {
   url: 'javascript:void(0)',
 };
 
+export const EventTeaserFullWidth = Template.bind({});
+
+EventTeaserFullWidth.args = {
+  headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
+  content:
+    'Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was even in the midst of the all the negative influences from family TWhen',
+  moment: '16.02.2022',
+  time: '14-15 Uhr',
+  shapes: [
+    {
+      color: 'var(--color-yellow)',
+    },
+  ],
+  webcast: true,
+  authors: 'Mit Nadine Kern & Max Mustermann',
+  image: {
+    img: '/events/authors/authors-demo.png',
+    alt: 'lorem ipsum',
+  },
+  badge: {
+    text: 'Neuer Webcast',
+    icon: '',
+  },
+  cta: {
+    text: 'Jetzt anmelden',
+    href: 'javascript:void(0)',
+    skin: 'primary',
+    button: true,
+  },
+  variant: 12,
+  url: 'javascript:void(0)',
+};
+
 export const EventTeaserCustomShapes = Template.bind({});
 
 EventTeaserCustomShapes.args = {

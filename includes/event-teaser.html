@@ -60,7 +60,12 @@
             {% else %}
               {% assign eventTeaserShapePeak = eventTeaserShape.peak | default: 'right' %}
               {% assign eventTeaserShapeHeight = eventTeaserShape.height | default: '40' %}
-              {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '100' %}
+
+              {% if eventTeaserVariant == 12 %}
+                {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '80' %}
+              {% else %}
+                {% assign eventTeaserShapeWidth = eventTeaserShape.width | default: '100' %}
+              {% endif %}
             {% endif %}
           {% else %}
             {% if forloop.index == 1 %}
