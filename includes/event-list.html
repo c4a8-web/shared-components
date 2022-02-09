@@ -33,6 +33,7 @@ TODO figure out what happens when the teaser is the last element so the variants
           webcast=eventListTeaserData.webcast
           teaser=eventListTeaserData.teaser
           url=eventListTeaserData.url
+          externalUrl=eventListTeaserData.externalUrl
         %}
       {% endif %}
 
@@ -55,6 +56,7 @@ TODO figure out what happens when the teaser is the last element so the variants
         webcast=eventListTeaser.webcast
         teaser=eventListTeaser.teaser
         url=eventListTeaser.url
+        externalUrl=eventListTeaser.externalUrl
       %}
       {% assign eventListTeaserIndex = eventListTeaserIndex | plus: 1 %}
     {% endfor %}

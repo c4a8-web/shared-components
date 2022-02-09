@@ -1,0 +1,76 @@
+<!-- Shared Event Detail Section -->
+{%- assign eventDetailColor = include.detailColor | default: '--color-event-detail' -%}
+{%- assign eventDetailHeadline = include.headline -%}
+{%- assign eventDetailName = include.name | replace: '&', '<br/>&' -%}
+{%- assign eventDetailHeadlineLevel = include.headlineLevel -%}
+{%- assign eventDetailHeadlineClasses = include.headlineClasses | default: 'h2-font-size bold' -%}
+{%- assign eventDetailContent = include.content -%}
+{%- assign eventDetailForm = include.form -%}
+{%- assign eventDetailImage = include.image -%}
+{%- assign eventDetailImageCloudinary = eventDetailImage.cloudinary | default: true -%}
+
+<div class="event-detail page-detail page-detail--image is-loading"
+style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
+>
+  <div class="page-detail__container container">
+    <div class="page-detail__start row">
+      <div class="page-detail__sticky-start col-lg-5 test">
+        <div class="page-detail__back page-detail__animation-3">
+          {%
+            include icon.html
+            icon='arrow'
+            direction="left"
+            hover=true
+            circle=true
+          %}
+        </div>
+
+        <div class="page-detail__intro js-sticky-block"
+          data-hs-sticky-block-options='{
+            "parentSelector": ".page-detail__sticky-start",
+            "breakpoint": "lg",
+            "startPoint": ".page-detail__sticky-start",
+            "endPoint": ".page-detail__sticky-end",
+            "stickyOffsetTop": 100,
+            "stickyOffsetBottom": 20
+          }'
+        >
+          {%- assign headlineLevel = eventDetailHeadlineLevel | default: 'h1' -%}
+          {%- capture headlineClasses -%}page-detail__headline {{ eventDetailHeadlineClasses }}{%- endcapture -%}
+          {%
+            include headline.html
+            text=eventDetailHeadline
+            level=headlineLevel
+            classes=headlineClasses
+          %}
+          <div class="page-detail__img page-detail__animation-3">
+            {%
+              include img.html
+              img=eventDetailImage.img
+              alt=eventDetailImage.alt
+              cloudinary=eventDetailImageCloudinary
+              imgSrcSets=site.data.imgSrcSets.testimonial
+              %}
+          </div>
+          <span class="page-detail__subline">{{ eventDetailName }}</span>
+        </div>
+      </div>
+      <div class="page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
+        <div class="page-detail__description has-no-border richtext">
+          {{ eventDetailContent }}
+        </div>
+        {% if eventDetailForm %}
+          <div class="event-detail__form">
+            {%
+              include form.html
+              form=eventDetailForm
+            %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="page-detail__sticky-end"></div>
+</div>
+<!-- End Shared Event Detail Section -->
