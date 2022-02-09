@@ -95,6 +95,79 @@ EventList.args = {
       },
       badge: {
         text: 'Training',
+        textColor: 'var(--color-black)',
+        color: 'var(--color-sunglow)',
+      },
+      price: 'Kostenlos',
+    },
+    {
+      url: 'javascript:void(0)',
+      headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+      time: '1-4 Tage',
+      shapes: [
+        {
+          color: 'var(--color-yellow)',
+        },
+        {
+          color: 'var(--color-blue-medium)',
+        },
+      ],
+      authors: 'Mit Nadine Kern & Max Mustermann',
+      image: {
+        img: '/events/authors/authors-demo.png',
+        alt: 'lorem ipsum',
+      },
+      badge: {
+        text: 'Training',
+        textColor: 'var(--color-black)',
+        color: 'var(--color-sunglow)',
+      },
+      price: 'Kostenlos',
+    },
+    {
+      url: 'javascript:void(0)',
+      headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+      time: '1-4 Tage',
+      shapes: [
+        {
+          color: 'var(--color-yellow)',
+        },
+        {
+          color: 'var(--color-blue-medium)',
+        },
+      ],
+      authors: 'Mit Nadine Kern & Max Mustermann',
+      image: {
+        img: '/events/authors/authors-demo.png',
+        alt: 'lorem ipsum',
+      },
+      badge: {
+        text: 'Training',
+        textColor: 'var(--color-black)',
+        color: 'var(--color-sunglow)',
+      },
+      price: 'Kostenlos',
+    },
+    {
+      url: 'javascript:void(0)',
+      headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+      time: '1-4 Tage',
+      shapes: [
+        {
+          color: 'var(--color-yellow)',
+        },
+        {
+          color: 'var(--color-blue-medium)',
+        },
+      ],
+      authors: 'Mit Nadine Kern & Max Mustermann',
+      image: {
+        img: '/events/authors/authors-demo.png',
+        alt: 'lorem ipsum',
+      },
+      badge: {
+        text: 'Training',
+        textColor: 'var(--color-black)',
         color: 'var(--color-sunglow)',
       },
       price: 'Kostenlos',

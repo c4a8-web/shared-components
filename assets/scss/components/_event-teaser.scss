@@ -16,6 +16,21 @@ $event-teaser-default-spacing: 6;
       width: 100%;
       height: 85%;
     }
+
+    .event-teaser__main {
+      .event-teaser__details {
+        display: flex;
+      }
+    }
+
+    .event-teaser__details {
+      width: calc(100% + #{spacing($event-teaser-default-spacing)});
+      flex-direction: row;
+      height: auto;
+      justify-content: space-between;
+      margin-left: spacing($size: $event-teaser-default-spacing, $negative: true);
+      margin-bottom: spacing($event-teaser-default-spacing);
+    }
   }
 
   &.event-teaser--teaser {
@@ -121,6 +136,10 @@ $event-teaser-default-spacing: 6;
 
 .event-teaser__main {
   padding: spacing($event-teaser-default-spacing);
+
+  .event-teaser__details {
+    display: none;
+  }
 }
 
 .event-teaser__footer {
