@@ -6,6 +6,8 @@
 {%- assign formContainer = include.container | default: false -%}
 {%- assign formCustomValidation = include.customValidation | default: false -%}
 {%- assign formAjax = include.ajax | default: false -%}
+{%- assign formAdditionalFields = include.additionalFields -%}
+{%- assign formUncentered = formForm.uncentered -%}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}
@@ -41,95 +43,18 @@
       {% endif %}
       <form class="form__form js-validate mt-6" method="{{ formForm.method }}" action="{{ formForm.action }}">
         {% for field in formForm.fields %}
-          {%- if field.readonly -%}
-            {%- assign readonly = 'readonly' -%}
-          {%- else -%}
-            {%- assign readonly = '' -%}
-          {%- endif -%}
-
-          {%- if field.required -%}
-            {%- assign required = 'required' -%}
-          {%- else -%}
-            {%- assign required = '' -%}
-          {%- endif -%}
-
-          {%- if field.placeholder -%}
-            {%- capture placeholder %}placeholder="{{ field.placeholder }}"{% endcapture -%}
-          {%- else -%}
-            {%- assign placeholder = '' -%}
-          {%- endif -%}
-
-          {%- if field.rowStart -%}
-            <div class="row mx-n3 {{ field.rowClass }}">
-          {%- endif -%}
-
-          {%- if field.col -%}
-              <div class="col-md-{{ field.col }} px-3">
-          {%- endif -%}
-
-          {%- if field.type == 'checkbox' -%}
-            {%- assign groupClass = 'mb-3' -%}
-          {%- elsif field.type == 'file' -%}
-            {%- assign groupClass = 'mb-8' -%}
-          {%- else -%}
-            {%- assign groupClass = '' -%}
-          {%- endif -%}
-
-                <div class="js-form-message {% if field.type != 'select' %}form-group{% endif %} {% if field.type == 'hidden' %}d-none{% endif %} {{ groupClass }}">
-                  {% if field.type == 'textarea' %}
-                    <label class="input-label" for="{{ field.id }}">{{ field.label }}</label>
-                    <textarea class="form-control form-textarea" id="{{ field.id }}" name="{{ field.id }}" rows="4" {{ placeholder }} {{ required }} {{ readonly }}></textarea>
-                  {% elsif field.type == 'checkbox' %}
-                    {%
-                      include form-checkbox.html
-                      checkbox=field
-                    %}
-                  {% elsif field.type == 'hidden' %}
-                    <input type="hidden" name="{{ field.id }}" value="{{ field.value }}" {% if field.id == '_gotcha' %}style="display:none;"{% endif %}>
-                  {% elsif field.checkboxes %}
-                    {%
-                      include form-checkboxes.html
-                      field=field
-                    %}
-                  {% elsif field.type == 'file' %}
-                    {%
-                      include form-attachments.html
-                      description=field.formAttachments.description
-                      text=field.formAttachments.text
-                      extensions=field.formAttachments.extensions
-                      maxSize=field.formAttachments.maxSize
-                      id=field.formAttachments.id
-                      required=field.formAttachments.required
-                      requiredMsg=field.formAttachments.requiredMsg
-                    %}
-                  {% elsif field.type == 'select' %}
-                    {%- if field.options.first -%}
-                      {%- assign options = field.options -%}
-                    {%- else -%}
-                      {%- assign options = site.data[field.options].list -%}
-                    {%- endif -%}
-                    <label class="input-label" for="{{ field.id }}">{{ field.label }}</label>
-                    <select class="form-control custom-select text-muted" name="{{ field.id }}" {{ required }}>
-                      <option value>{{ field.placeholder }}</option>
-                      {% for option in options %}
-                        <option value="{{ option.value }}">{{ option.text }}</option>
-                      {% endfor %}
-                    </select>
-                  {% else %}
-                    <label class="input-label" for="{{ field.id }}">{{ field.label }}</label>
-                    <input type="{{ field.type }}" id="{{ field.id }}" name="{{ field.id }}" class="form-control" data-msg="{{ field.requiredMsg }}" value="{{ field.value }}" {{ placeholder }} {{ required }} {{ readonly }}>
-                  {% endif %}
-                </div>
-
-          {%- if field.col -%}
-              </div>
-          {%- endif -%}
-
-          {%- if field.rowEnd -%}
-            </div>
-          {%- endif -%}
+          {%
+            include form-fields.html
+            field=field
+          %}
         {% endfor %}
-        <div class="form__submit mt-5 justify-content-center">
+        {% for field in formAdditionalFields %}
+          {%
+            include form-fields.html
+            field=field
+          %}
+        {% endfor %}
+        <div class="form__submit mt-5 {% unless formUncentered %}justify-content-center{% endunless %}">
           {%
             include cta.html
             text=formForm.ctaText
