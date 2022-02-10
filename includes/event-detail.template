@@ -1,5 +1,6 @@
 <!-- Shared Event Detail Section -->
 {%- assign eventDetailColor = include.detailColor | default: '--color-event-detail' -%}
+{%- assign eventDetailShapeColor = include.detailShapeColor | default: 'var(--color-event-detail-shape)' -%}
 {%- assign eventDetailHeadline = include.headline -%}
 {%- assign eventDetailName = include.name | replace: '&', '<br/>&' -%}
 {%- assign eventDetailHeadlineLevel = include.headlineLevel -%}
@@ -14,6 +15,16 @@
 <div class="event-detail page-detail page-detail--image is-loading"
 style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
 >
+  <div class="page-detail__shape page-detail__animation-3">
+    <div class="page-detail__shape-corner">
+      {%
+        include svg-shape.html
+        color=eventDetailShapeColor
+        height=30
+      %}
+    </div>
+    <div class="page-detail__shape-background"></div>
+  </div>
   <div class="page-detail__container container">
     <div class="page-detail__start row">
       <div class="page-detail__sticky-start col-lg-5 test">
@@ -54,7 +65,7 @@ style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-colo
               imgSrcSets=site.data.imgSrcSets.testimonial
               %}
           </div>
-          <span class="page-detail__subline">{{ eventDetailName }}</span>
+          <div class="page-detail__subline pt-4 font-size-2 bold">{{ eventDetailName }}</div>
         </div>
       </div>
       <div class="page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
