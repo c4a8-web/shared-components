@@ -16,26 +16,25 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
   <div class="page-detail__container container">
     <div class="page-detail__start row">
       <div class="page-detail__sticky-start col-lg-5 test">
-        <div class="page-detail__back page-detail__animation-3">
-          {%
-            include icon.html
-            icon='arrow'
-            direction="left"
-            hover=true
-            circle=true
-          %}
-        </div>
-
         <div class="page-detail__intro js-sticky-block"
           data-hs-sticky-block-options='{
             "parentSelector": ".page-detail__sticky-start",
             "breakpoint": "lg",
             "startPoint": ".page-detail__sticky-start",
             "endPoint": ".page-detail__sticky-end",
-            "stickyOffsetTop": 100,
+            "stickyOffsetTop": 200,
             "stickyOffsetBottom": 20
           }'
         >
+          <div class="page-detail__back page-detail__animation-3">
+            {%
+              include icon.html
+              icon='arrow'
+              direction="left"
+              hover=true
+              circle=true
+            %}
+          </div>
           {%- assign headlineLevel = testimonialsDetailHeadlineLevel | default: 'h1' -%}
           {%- capture headlineClasses -%}page-detail__headline {{ testimonialsDetailHeadlineClasses }}{%- endcapture -%}
           {%

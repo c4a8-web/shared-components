@@ -24,26 +24,25 @@
   <div class="job-list__detail-container page-detail__container container">
     <div class="job-list__detail-start page-detail__start row">
       <div class="job-list__sticky-start page-detail__sticky-start col-lg-5 test">
-        <div class="job-list__detail-back page-detail__back page-detail__animation-3">
-          {%
-            include icon.html
-            icon='arrow'
-            direction="left"
-            hover=true
-            circle=true
-          %}
-        </div>
-
         <div class="job-list__detail-intro page-detail__intro js-sticky-block"
           data-hs-sticky-block-options='{
             "parentSelector": ".job-list__sticky-start",
-            "breakpoint": "xl",
+            "breakpoint": "lg",
             "startPoint": ".job-list__sticky-start",
             "endPoint": ".job-list__sticky-end",
-            "stickyOffsetTop": 100,
+            "stickyOffsetTop": 200,
             "stickyOffsetBottom": 20
           }'
         >
+          <div class="job-list__detail-back page-detail__back page-detail__animation-3">
+            {%
+              include icon.html
+              icon='arrow'
+              direction="left"
+              hover=true
+              circle=true
+            %}
+          </div>
           {%- assign headlineLevel = jobListDetailHeadlineLevel | default: 'h1' -%}
           {%- capture headlineClasses -%}job-list__detail-headline page-detail__headline {{ jobListDetailHeadlineClasses }}{%- endcapture -%}
           {%

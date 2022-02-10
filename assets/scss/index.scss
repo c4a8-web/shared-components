@@ -24,6 +24,12 @@ body {
   font-family: var(--font-family);
   color: var(--color-copy);
   overflow-x: hidden;
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      --container-width: #{get-container-width($name: $breakpoint, $with-padding: true)};
+    }
+  }
 }
 
 .other {

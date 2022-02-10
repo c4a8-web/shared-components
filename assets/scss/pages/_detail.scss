@@ -3,6 +3,7 @@ $page-detail-transition-2-delay: 1.3s;
 $page-detail-transition-3-delay: 1.8s;
 $page-detail-image-offset-size: 20;
 $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
+$page-detail-padding-top: 36;
 
 .page-detail {
   min-height: 100vh;
@@ -21,6 +22,7 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
   }
 
   &.page-detail--has-back {
+    .page-detail__shape,
     .page-detail__start {
       padding-top: spacing(26);
 
@@ -31,6 +33,10 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 
     .page-detail__back {
       display: inline-flex;
+    }
+
+    .page-detail__intro {
+      margin-top: 0;
     }
   }
 
@@ -124,7 +130,7 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 }
 
 .page-detail__start {
-  padding-top: spacing(36);
+  padding-top: spacing($page-detail-padding-top);
 }
 
 .page-detail__back {
@@ -176,6 +182,7 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 
 .page-detail__intro {
   @include media-breakpoint-up(lg) {
+    margin-top: -56px;
     padding-bottom: spacing(10);
   }
 }
@@ -194,6 +201,7 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
   left: 0;
   height: 100%;
   overflow: hidden;
+  padding-top: spacing($page-detail-padding-top);
 
   @include media-breakpoint-up(lg) {
     width: get-full-column-width($container: 'lg', $columns: 5);
@@ -201,7 +209,6 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 }
 
 .page-detail__shape-corner {
-  transform: translateY(calc(100vh - 100%));
   position: relative;
   padding-bottom: 5px;
 
@@ -219,7 +226,21 @@ $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 .page-detail__shape-background {
   position: relative;
   height: 100%;
-  bottom: calc(-100vh);
   background-color: var(--color-page-detail-shape);
   width: 100%;
+}
+
+.page-detail__shape-spacer {
+  pointer-events: none;
+  opacity: 0;
+  padding-left: spacing(8);
+  margin-right: 30px;
+  margin-left: calc((100vw - var(--container-width)) / 2);
+  margin-bottom: spacing(50);
+}
+
+.page-detail__sticky-start {
+  @include media-breakpoint-up(lg) {
+    min-height: 200px;
+  }
 }
