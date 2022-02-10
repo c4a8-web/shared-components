@@ -8,6 +8,7 @@
 {%- assign formAjax = include.ajax | default: false -%}
 {%- assign formAdditionalFields = include.additionalFields -%}
 {%- assign formUncentered = formForm.uncentered -%}
+{%- assign formReplaceValue = include.replaceValue -%}
 
 {% if formLight %}
   {% assign formClasses = 'is-light' %}
@@ -52,6 +53,7 @@
           {%
             include form-fields.html
             field=field
+            replaceValue=formReplaceValue
           %}
         {% endfor %}
         <div class="form__submit mt-5 {% unless formUncentered %}justify-content-center{% endunless %}">

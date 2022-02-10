@@ -6,6 +6,8 @@
 {%- assign eventDetailHeadlineClasses = include.headlineClasses | default: 'h2-font-size bold' -%}
 {%- assign eventDetailContent = include.content -%}
 {%- assign eventDetailForm = include.form -%}
+{%- assign eventDetailFormAdditionalFields = include.formAdditionalFields -%}
+{%- assign eventDetailFormReplaceValue = include.formReplaceValue -%}
 {%- assign eventDetailImage = include.image -%}
 {%- assign eventDetailImageCloudinary = eventDetailImage.cloudinary | default: true -%}
 
@@ -64,6 +66,8 @@ style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-colo
             {%
               include form.html
               form=eventDetailForm
+              additionalFields=eventDetailFormAdditionalFields
+              replaceValue=eventDetailFormReplaceValue
             %}
           </div>
         {% endif %}
