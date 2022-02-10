@@ -25,3 +25,12 @@ WithoutIcon.args = {
   textColor: 'var(--color-black)',
   color: 'var(--color-sunglow)',
 };
+
+export const Overlapping = Template.bind({});
+
+Overlapping.args = {
+  text: 'Training',
+  textColor: 'var(--color-black)',
+  color: 'var(--color-sunglow)',
+  overlapping: true,
+};

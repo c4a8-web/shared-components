@@ -7,6 +7,25 @@
     border-radius: 0;
     transition: none;
   }
+
+  &.badge--overlapping {
+    // TODO add inverting css property
+    position: relative;
+    padding-left: 0;
+
+    &::before {
+      @include shadow('super-light');
+
+      content: '';
+      display: block;
+      height: 100%;
+      position: absolute;
+      right: 0;
+      background-color: inherit;
+      width: 50vw;
+      z-index: -1;
+    }
+  }
 }
 
 .badge__text {
