@@ -57,6 +57,8 @@ EventDetail.args = {
         id: 'people',
         required: true,
         requiredMsg: 'Bitte geben Sie eine Personenanzahl an.',
+        rowStart: true,
+        rowEnd: true,
         col: 5,
       },
       {
@@ -85,6 +87,14 @@ EventDetail.args = {
       },
     ],
   },
+  formReplaceValue: 'neue event id',
+  formAdditionalFields: [
+    {
+      type: 'hidden',
+      id: 'eventid',
+      value: '#form-field-replace-value#',
+    },
+  ],
   headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
   name: 'Mit Nadine Kern & Max Mustermann',
   time: '1-4 Tage',
