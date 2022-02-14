@@ -13,7 +13,6 @@
   {%- assign eventTeaserWebcast = include.json.webcast -%}
   {%- assign eventTeaserTeaser = include.json.teaser -%}
   {%- assign eventTeaserUrl = include.json.url -%}
-  {%- assign eventTeaserExternalUrl = include.json.externalUrl -%}
 {%- else -%}
   {%- assign eventTeaserHeadline = include.headline -%}
   {%- assign eventTeaserContent = include.content -%}
@@ -29,18 +28,19 @@
   {%- assign eventTeaserWebcast = include.webcast -%}
   {%- assign eventTeaserTeaser = include.teaser -%}
   {%- assign eventTeaserUrl = include.url -%}
-  {%- assign eventTeaserExternalUrl = include.externalUrl -%}
 {%- endif -%}
 
 {%- assign eventTeaserAuthors = eventTeaserAuthors | replace: '&', '<br/>&' -%}
+{%- assign eventTeaserHref = eventTeaserCta.href | default: eventTeaserUrl -%}
 
 <!-- Shared Event Teaser Section -->
-<article class="event-teaser event-teaser--size-{{ eventTeaserVariant }}
+<article class="event-teaser hover__parent event-teaser--size-{{ eventTeaserVariant }}
               {% if eventTeaserWebcast %}event-teaser--webcast
               {% elsif eventTeaserTeaser %}event-teaser--teaser
               {% else %}event-teaser--training
               {% endif %}
               "
+          onclick="document.location.href='{{ eventTeaserHref }}'"
 >
   <header class="event-teaser__header">
     <div class="event-teaser__background">
@@ -167,12 +167,12 @@
       {% if eventTeaserCta %}
         {% assign eventTeaserCtaSkin = eventTeaserCta.skin | default: 'primary' %}
         {% assign eventTeaserCtaWidth = eventTeaserCta.width | default: '' %}
-        {% assign eventTeaserCtaHref = eventTeaserExternalUrl | default: eventTeaserUrl %}
+
         <div class="event-teaser__cta">
           {%
             include cta.html
             text=eventTeaserCta.text
-            href=eventTeaserCtaHref
+            href=eventTeaserHref
             skin=eventTeaserCtaSkin
             width=eventTeaserCtaWidth
           %}

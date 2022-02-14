@@ -23,7 +23,7 @@
   %}data-base='{{ jobListDetailBase | jsonify }}' {% endif %}>
   <div class="job-list__detail-container page-detail__container container">
     <div class="job-list__detail-start page-detail__start row">
-      <div class="job-list__sticky-start page-detail__sticky-start col-lg-5 test">
+      <div class="job-list__sticky-start page-detail__sticky-start col-md-11 col-lg-5">
         <div class="job-list__detail-intro page-detail__intro js-sticky-block"
           data-hs-sticky-block-options='{
             "parentSelector": ".job-list__sticky-start",
@@ -64,7 +64,7 @@
           </div>
         </div>
       </div>
-      <div class="job-list__detail-content page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
+      <div class="job-list__detail-content page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
         {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
         <div class="job-list__detail-description page-detail__description richtext">
           {{ jobListDetailDescription }}

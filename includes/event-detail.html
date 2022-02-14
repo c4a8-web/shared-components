@@ -2,7 +2,7 @@
 {%- assign eventDetailColor = include.detailColor | default: '--color-event-detail' -%}
 {%- assign eventDetailShapeColor = include.detailShapeColor | default: 'var(--color-event-detail-shape)' -%}
 {%- assign eventDetailHeadline = include.headline -%}
-{%- assign eventDetailName = include.name | replace: '&', '<br/>&' -%}
+{%- assign eventDetailName = include.name -%}
 {%- assign eventDetailHeadlineLevel = include.headlineLevel -%}
 {%- assign eventDetailHeadlineClasses = include.headlineClasses | default: 'h3-font-size bold' -%}
 {%- assign eventDetailContent = include.content -%}
@@ -55,7 +55,7 @@
   </div>
   <div class="page-detail__container container">
     <div class="page-detail__start row">
-      <div class="page-detail__sticky-start col-lg-5 test">
+      <div class="page-detail__sticky-start col-md-11 col-lg-5">
         <div class="page-detail__intro js-sticky-block"
           data-hs-sticky-block-options='{
             "parentSelector": ".page-detail__sticky-start",
@@ -76,19 +76,24 @@
             %}
           </div>
           {{ eventDetailIntro }}
-          <div class="page-detail__img page-detail__animation-3">
-            {%
-              include img.html
-              img=eventDetailImage.img
-              alt=eventDetailImage.alt
-              cloudinary=eventDetailImageCloudinary
-              imgSrcSets=site.data.imgSrcSets.testimonial
-              %}
+          <div class="page-detail__img-wrapper">
+            <div class="page-detail__img page-detail__animation-3">
+              {%
+                include img.html
+                img=eventDetailImage.img
+                alt=eventDetailImage.alt
+                cloudinary=eventDetailImageCloudinary
+                imgSrcSets=site.data.imgSrcSets.event
+                %}
+            </div>
+            <div class="page-detail__subline page-detail__subline--overlapped font-size-2 bold">
+              <div class="page-detail__subline-background"></div>
+              <div class="page-detail__subline-foreground">{{ eventDetailName }}</div>
+            </div>
           </div>
-          <div class="page-detail__subline pt-4 font-size-2 bold">{{ eventDetailName }}</div>
         </div>
       </div>
-      <div class="page-detail__content page-detail__animation-3 offset-lg-1 col-lg-6">
+      <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
         <div class="page-detail__description has-no-border richtext">
           {{ eventDetailContent }}
         </div>
