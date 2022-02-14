@@ -157,7 +157,7 @@ EventTeaser.args = {
   cta: {
     text: 'Schulungen anfragen',
     href: 'javascript:void(0)',
-    skin: 'primary',
+    skin: 'secondary is-light',
     button: true,
   },
   url: 'javascript:void(0)',

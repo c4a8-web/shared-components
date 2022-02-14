@@ -1,4 +1,6 @@
 $event-teaser-default-spacing: 6;
+$event-teaser-transition-time: 1.3s;
+$event-teaser-hover-scale: 1.025;
 
 .event-teaser {
   @include shadow('light');
@@ -7,6 +9,21 @@ $event-teaser-default-spacing: 6;
   display: flex;
   flex-direction: column;
   background-color: var(--color-event-teaser-background);
+  cursor: pointer;
+
+  &:hover {
+    .event-teaser__shapes {
+      transform: scale($event-teaser-hover-scale);
+      transition-duration: $event-teaser-transition-time;
+    }
+
+    .event-teaser__image {
+      img {
+        transform: scale($event-teaser-hover-scale);
+        transition-duration: $event-teaser-transition-time;
+      }
+    }
+  }
 
   &.event-teaser--training {
     .event-teaser__image {
@@ -247,6 +264,7 @@ $event-teaser-default-spacing: 6;
     top: 0;
     z-index: 3;
     height: 100%;
+    transform-origin: top right;
   }
 }
 
@@ -297,6 +315,14 @@ $event-teaser-default-spacing: 6;
   position: absolute;
   width: 100%;
   height: 100%;
+  transform-origin: bottom right;
+}
+
+.event-teaser__shapes,
+.event-teaser__image img {
+  transition-property: transform;
+  transition-timing-function: $animation-transition;
+  transition-duration: 0.4s;
 }
 
 .event-teaser__price {

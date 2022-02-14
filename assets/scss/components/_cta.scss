@@ -1,9 +1,73 @@
+.hover__parent:hover .cta,
+.shared-components .cta:hover {
+  box-shadow: none;
+  color: var(--color-primary-accent);
+
+  &.link {
+    svg {
+      animation: moveRightLeft;
+      animation-duration: 0.4s;
+      animation-fill-mode: forwards;
+      animation-timing-function: $animation-transition;
+      stroke: var(--color-svg-icon--hover);
+    }
+  }
+
+  &:not(.btn):not(.custom):not(.nav-link) {
+    &.is-light {
+      color: var(--color-white);
+    }
+  }
+
+  &.btn-primary {
+    &.is-light {
+      &:not(label.btn):not([href]) {
+        background-color: var(--color-primary-accent-light);
+        color: var(--color-primary-accent);
+      }
+
+      background-color: var(--color-primary-accent-light);
+      color: var(--color-primary-accent);
+    }
+
+    &::after {
+      opacity: 1;
+      background-position: left bottom;
+    }
+  }
+
+  &.btn-secondary {
+    border-color: var(--color-primary-accent);
+    color: var(--color-primary-accent);
+
+    &.is-cutoff {
+      &::before {
+        background: var(--color-primary-accent);
+      }
+    }
+
+    &.is-light {
+      border-color: var(--color-white);
+      color: var(--color-primary-accent);
+
+      &::before {
+        background: var(--color-white);
+      }
+
+      &::after {
+        opacity: 1;
+        background-position: left bottom;
+      }
+    }
+  }
+}
+
 .cta {
   position: relative;
   border-radius: 0;
 
   &.btn {
-    @include font-style("font-size-1");
+    @include font-style('font-size-1');
 
     font-weight: bold;
     display: inline-block;
@@ -28,16 +92,6 @@
     display: inline-flex;
     align-items: center;
 
-    &:hover {
-      svg {
-        animation: moveRightLeft;
-        animation-duration: 0.4s;
-        animation-fill-mode: forwards;
-        animation-timing-function: $animation-transition;
-        stroke: var(--color-svg-icon--hover);
-      }
-    }
-
     &:not(:last-of-type) {
       margin-right: 0.5rem;
     }
@@ -58,21 +112,11 @@
     &:not(.btn):not(.custom):not(.nav-link) {
       &.is-light {
         color: var(--color-white);
-
-        &:hover {
-          color: var(--color-white);
-        }
       }
     }
 
     &.is-cutoff:not(.link) {
-      clip-path: polygon(
-        calc(100% - #{$cutoffSize}) 0,
-        100% #{$cutoffSize},
-        100% 100%,
-        0 100%,
-        0 0
-      );
+      clip-path: polygon(calc(100% - #{$cutoffSize}) 0, 100% #{$cutoffSize}, 100% 100%, 0 100%, 0 0);
       position: relative;
     }
 
@@ -97,11 +141,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: linear-gradient(
-          to right,
-          var(--color-primary-accent) 50%,
-          transparent 50%
-        );
+        background: linear-gradient(to right, var(--color-primary-accent) 50%, transparent 50%);
         background-size: 200% 100%;
         background-position: right bottom;
         opacity: 0;
@@ -115,27 +155,10 @@
         &:not(label.btn):not([href]) {
           color: var(--color-primary);
           background-color: var(--color-white);
-
-          &:hover {
-            background-color: var(--color-primary-accent-light);
-            color: var(--color-primary-accent);
-          }
         }
 
         &::after {
           display: none;
-        }
-
-        &:hover {
-          background-color: var(--color-primary-accent-light);
-          color: var(--color-primary-accent);
-        }
-      }
-
-      &:hover {
-        &::after {
-          opacity: 1;
-          background-position: left bottom;
         }
       }
     }
@@ -145,27 +168,11 @@
       border-color: var(--color-primary);
       color: var(--color-primary);
 
-      &:hover {
-        border-color: var(--color-primary-accent);
-        color: var(--color-primary-accent);
-      }
-
       &.is-cutoff {
-        &:hover {
-          &::before {
-            background: var(--color-primary-accent);
-          }
-        }
-
         &::before {
-          clip-path: polygon(
-            calc(100% - #{$cutoffSize} + 1px) 0,
-            100% calc(#{$cutoffSize} - 1px),
-            100% 100%,
-            100% 0
-          );
+          clip-path: polygon(calc(100% - #{$cutoffSize} + 1px) 0, 100% calc(#{$cutoffSize} - 1px), 100% 100%, 100% 0);
           background: var(--color-primary);
-          content: "";
+          content: '';
           position: absolute;
           left: 0;
           top: 0;
@@ -195,38 +202,13 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          background: linear-gradient(
-            to right,
-            rgba(255, 255, 255, 0.8) 50%,
-            transparent 50%
-          );
+          background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 50%, transparent 50%);
           background-size: 200% 100%;
           background-position: right bottom;
           opacity: 0;
           transition: background 0.5s $animation-transition;
         }
-
-        &:hover {
-          border-color: var(--color-white);
-          color: var(--color-primary-accent);
-
-          &:hover {
-            &::before {
-              background: var(--color-white);
-            }
-          }
-
-          &::after {
-            opacity: 1;
-            background-position: left bottom;
-          }
-        }
       }
-    }
-
-    &:hover {
-      box-shadow: none;
-      color: var(--color-primary-accent);
     }
   }
 }
