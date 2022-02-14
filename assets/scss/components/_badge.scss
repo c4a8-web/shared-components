@@ -23,13 +23,15 @@
       right: 0;
       background-color: inherit;
       width: 50vw;
-      z-index: -1;
+      z-index: 0;
     }
   }
 }
 
 .badge__text {
+  position: relative;
   display: inline-block;
+  z-index: 1;
 
   + .badge__icon {
     margin-left: spacing(4);

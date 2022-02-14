@@ -4,6 +4,9 @@ $page-detail-transition-3-delay: 1.8s;
 $page-detail-image-offset-size: 20;
 $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 $page-detail-padding-top: 36;
+$page-detail-subline-left-spacing: calc(#{$header-floating-inner-padding-x} + ((100vw - var(--container-width)) / 2));
+$page-detail-subline-background-color: rgba(255, 255, 255, 0.3);
+$page-detail-subline-background-color: #ff0000;
 
 .page-detail {
   min-height: 100vh;
@@ -93,11 +96,15 @@ $page-detail-padding-top: 36;
     height: 100%;
     width: 100%;
     background-color: var(--page-detail-color);
-    z-index: -1;
+    z-index: 0;
     box-shadow: 0px 0px 23px rgba(0, 0, 0, 0.12);
 
-    @include media-breakpoint-up(lg) {
+    @include media-breakpoint-up(md) {
       transition: width 0.6s $animation-transition;
+      width: get-full-column-width($container: 'md', $columns: 11);
+    }
+
+    @include media-breakpoint-up(lg) {
       width: get-full-column-width($container: 'lg', $columns: 5);
     }
   }
@@ -247,4 +254,59 @@ $page-detail-padding-top: 36;
 
 .page-detail__badge {
   margin-bottom: spacing(12);
+}
+
+.page-detail__subline {
+  &.page-detail__subline--overlapped {
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    bottom: 0;
+
+    @include media-breakpoint-up(md) {
+      transform: translateY(-100%);
+      width: calc(
+        #{get-full-column-width($container: 'md', $columns: 11)} - (#{$page-detail-subline-left-spacing} + 53px)
+      );
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: calc(
+        #{get-full-column-width($container: 'lg', $columns: 5)} - (#{$page-detail-subline-left-spacing} + 13px)
+      );
+    }
+  }
+}
+
+.page-detail__img-wrapper {
+  position: relative;
+}
+
+.page-detail__subline-background {
+  position: absolute;
+  content: '';
+  display: block;
+  top: 0;
+  left: 0;
+  background-color: $page-detail-subline-background-color;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: spacing(8);
+    transform: translateX(-100%);
+    background-color: $page-detail-subline-background-color;
+  }
+}
+
+.page-detail__subline-foreground {
+  position: relative;
+  z-index: 1;
+  margin: spacing(2) spacing(4) spacing(2) 0;
 }
