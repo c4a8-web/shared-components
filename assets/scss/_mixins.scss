@@ -252,8 +252,8 @@
   }
 }
 
-@function get-full-column-width($container, $columns) {
-  $container-width: get-container-width($container, false);
+@function get-full-column-width($container, $columns, $with-padding: false) {
+  $container-width: get-container-width($container, $with-padding);
   $percentage: calc(100 / #{$grid-columns} * #{$columns} / 100);
 
   @return calc(((100vw - #{$container-width}) / 2) + (#{$container-width} * #{$percentage}));
