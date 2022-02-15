@@ -11,6 +11,8 @@
 {%- assign eventDetailFormReplaceValue = include.formReplaceValue -%}
 {%- assign eventDetailImage = include.image -%}
 {%- assign eventDetailBadge = include.badge -%}
+{%- assign eventDetailMoment = include.moment -%}
+{%- assign eventDetailTime = include.time -%}
 {%- assign eventDetailImageCloudinary = eventDetailImage.cloudinary | default: true -%}
 
 {%- assign headlineLevel = eventDetailHeadlineLevel | default: 'h1' -%}
@@ -29,6 +31,10 @@
       %}
     </div>
   {% endif %}
+  <div class="page-detail__details mb-2 page-detail__animation-3">
+    {% if eventDetailMoment %}<span class="page-detail__moment font-size-1 bold">{{ eventDetailMoment }}</span>{% endif %}
+    {% if eventDetailTime %}<span class="page-detail__time font-size-1">{{ eventDetailTime }}</span>{% endif %}
+  </div>
   {%
     include headline.html
     text=eventDetailHeadline
