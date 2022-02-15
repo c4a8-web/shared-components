@@ -4,3 +4,6 @@
 - change the the method for font-style from extend to something else
 - event detail positioning of the name. should be right aligned
 - event detail mix-blend-mode: difference
+- fully migrade
+  - card.html
+  - authors.html
