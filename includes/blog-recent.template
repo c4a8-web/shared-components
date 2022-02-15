@@ -1,0 +1,99 @@
+{%- if include.slider -%}
+  {%- assign skin = 'has-slider' -%}
+  {%- assign containerClasses = 'js-slick-carousel' -%}
+  {%- assign itemClasses = 'mb-6 mb-lg-0 blog-recent__slide' -%}
+  {%- assign hideContainer = false -%}
+{%- else -%}
+  {%- assign skin = '' -%}
+  {%- assign containerClasses = 'row mb-3' -%}
+  {%- assign itemClasses = 'col-sm-6 col-lg-4 mb-3 mb-sm-8' -%}
+  {%- assign hideContainer = include.hideContainer | default: false -%}
+{%- endif -%}
+
+{% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+{% if include.tag %}
+  {% assign tagExpression = '' %}
+
+  {% for tag in include.tag %}
+    {% capture tagExpression %}{{ tagExpression }}item.tags contains '{{ tag }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
+  {% endfor %}
+
+  {% assign posts = posts | where_exp: "item", tagExpression %}
+{% endif %}
+{% assign limit = include.limit | default: 3 %}
+{%- assign bgColor = include.bgColor | default: '#5cbbff' -%}
+
+{% if posts.size -%}
+  <!-- Shared Blog Recent Section -->
+  <div class="blog-recent {{ skin }} {% unless hideContainer %}mt-10{% endunless %}">
+    {% if skin != '' %}
+    <div class="blog-recent__bg" style="background-color:{{ bgColor }}"></div>
+    {% endif %}
+  {% unless hideContainer %}
+  <div class="container">
+  {% endunless %}
+      {% if include.headline %}
+        <div class="row">
+          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
+            {% assign level = include.level | default: "h3" %}
+            {%
+              include headline.html
+              level=level
+              text=include.headline
+              classes="h2-font-size"
+            %}
+          </div>
+        </div>
+      {% endif %}
+      <div class="blog-recent__container {{ containerClasses }}"
+        data-hs-slick-carousel-options='{
+          "slidesToShow": 3,
+          "slidesToScroll": 3,
+          "prevArrow": "<span class=\"blog-recent__arrow-left rounded-circle\"></span>",
+          "nextArrow": "<span class=\"blog-recent__arrow-right rounded-circle\"></span>",
+          "dots": true,
+          "dotsClass": "slick-pagination is-default mt-2",
+          "responsive": [{
+            "breakpoint": 1200,
+              "settings": {
+                "slidesToShow": 3,
+                "slidesToScroll": 3
+              }
+            }, {
+            "breakpoint": 992,
+            "settings": {
+              "slidesToShow": 2,
+              "slidesToScroll": 2
+              }
+            }, {
+              "breakpoint": 576,
+              "settings": {
+                "slidesToShow": 1,
+                "slidesToScroll": 1
+            }
+          }]
+        }'
+      >
+        {% for post in posts %}
+          {% if forloop.index <= limit %}
+            <div class="{{ itemClasses }}">
+              {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
+              {%
+                include card.html
+                title=post.title
+                blogtitlepic=imgUrl
+                excerpt=post.excerpt
+                date=post.date
+                url=post.url
+                author=post.author
+              %}
+            </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+  {% unless hideContainer %}
+    </div>
+  {% endunless %}
+  </div>
+  <!-- End Shared Blog Recent Section -->
+{% endif %}
