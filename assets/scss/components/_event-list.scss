@@ -16,8 +16,13 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   column-gap: spacing(5);
+  width: calc(100% + (2 * #{$header-nav-link-padding-x}));
 
   > * {
     margin-bottom: spacing(5);
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 100%;
   }
 }

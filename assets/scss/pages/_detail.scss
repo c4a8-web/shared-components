@@ -5,7 +5,7 @@ $page-detail-image-offset-size: 20;
 $page-detail-image-offset-size-double: $page-detail-image-offset-size * 2;
 $page-detail-padding-top: 36;
 $page-detail-subline-left-spacing: calc(#{$header-floating-inner-padding-x} + ((100vw - var(--container-width)) / 2));
-$page-detail-subline-background-color: rgba(255, 255, 255, 0.3);
+$page-detail-subline-background-color: $white-30;
 
 .page-detail {
   min-height: 100vh;

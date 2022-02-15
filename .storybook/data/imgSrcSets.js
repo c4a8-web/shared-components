@@ -45,6 +45,21 @@ const ImgSrcSets = {
       },
     ],
   },
+  eventTeaser: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_450,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,h_450,w_600,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: '',
+      },
+    ],
+  },
   cardSmall: {
     srcSets: [
       {
