@@ -96,6 +96,7 @@
           img=eventTeaserImage.img
           alt=eventTeaserImage.alt
           cloudinary=true
+          imgSrcSets=site.data.imgSrcSets.eventTeaser
         %}
       </div>
     </div>
@@ -110,13 +111,12 @@
             textColor=eventTeaserBadge.textColor
           %}
         </div>
-        {% if eventTeaserMoment or eventTeaserTime %}
-          <div class="event-teaser__timing font-size-1">
-            {% if eventTeaserMoment %}<span class="event-teaser__moment">{{ eventTeaserMoment }}</span>{% endif %}
-            {% if eventTeaserTime %}<span class="event-teaser__time">{{ eventTeaserTime }}</span>{% endif %}
+        <div class="event-teaser__authors font-size-2 thin bold">
+          <div class="event-teaser__authors-frame">
+            <div class="event-teaser__authors-background"></div>
+            <div class="event-teaser__authors-foreground">{{ eventTeaserAuthors }}</div>
           </div>
-        {% endif %}
-        <div class="event-teaser__authors font-size-2 thin bold">{{ eventTeaserAuthors }}</div>
+        </div>
       </div>
     </div>
   </header>
@@ -132,9 +132,9 @@
         %}
       </div>
       {% if eventTeaserMoment or eventTeaserTime %}
-        <div class="event-teaser__timing font-size-1">
-          {% if eventTeaserMoment %}<span class="event-teaser__moment">{{ eventTeaserMoment }}</span>{% endif %}
-          {% if eventTeaserTime %}<span class="event-teaser__time">{{ eventTeaserTime }}</span>{% endif %}
+        <div class="event-teaser__timing">
+          {% if eventTeaserMoment %}<span class="event-teaser__moment font-size-1 bold">{{ eventTeaserMoment }}</span>{% endif %}
+          {% if eventTeaserTime %}<span class="event-teaser__time font-size-1">{{ eventTeaserTime }}</span>{% endif %}
         </div>
       {% endif %}
     </div>
@@ -166,7 +166,7 @@
       {% endif %}
       {% if eventTeaserCta %}
         {% assign eventTeaserCtaSkin = eventTeaserCta.skin | default: 'primary' %}
-        {% assign eventTeaserCtaWidth = eventTeaserCta.width | default: '' %}
+        {% assign eventTeaserCtaWidth = eventTeaserCta.width | default: 'w-100 w-lg-auto' %}
 
         <div class="event-teaser__cta">
           {%
