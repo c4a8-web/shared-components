@@ -30,6 +30,12 @@ ArrowNarrow.args = {
   icon: 'arrow-narrow',
 };
 
+export const ArrowExternal = Template.bind({});
+
+ArrowExternal.args = {
+  icon: 'arrow-external',
+};
+
 export const Close = Template.bind({});
 
 Close.args = {

@@ -333,6 +333,16 @@
         </g>
       </g>
     </svg>
+
+  {%- elsif iconIcon == 'arrow-external' -%}
+    <svg style="stroke: {{ iconColor }}; transform: rotate(var(--icon-rotation));" width="{{ iconInnerSize }}"
+      height="{{ iconInnerSize }}" viewBox="0 0 34 34" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M33.23,2.39,1.79,33.79" transform="translate(-0.79 -0.79)"
+        style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"></path>
+      <path d="M33.79,33.79v-30a2,2,0,0,0-2-2h-30" transform="translate(-0.79 -0.79)"
+        style="fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-width:2px"></path>
+    </svg>
   {%- endif %}
 </span>
 <!-- End Shared Icon Section -->
