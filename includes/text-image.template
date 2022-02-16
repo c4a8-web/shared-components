@@ -115,7 +115,7 @@
         {% endif %}
       </div>
       {% if textImageCta %}
-        <div class="text-image__cta">
+        <div class="text-image__cta col-lg-12">
           {%
             include cta.html
             text=textImageCta.text

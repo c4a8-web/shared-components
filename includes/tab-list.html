@@ -9,9 +9,9 @@
   {% capture tabListColumnClass %}col-{% unless tablistTabs %}lg-{% endunless %}{{ 12 | divided_by: tablistList.size }}{% endcapture %}
 {% endif %}
 
-<ul class="tab-list {{ tablistVariant }} row nav nav-pills{% if tablistTabs %} px-1 px-lg-0{% endif %}" role="tablist">
+<ul class="tab-list {{ tablistVariant }} row nav nav-pills{% if tablistTabs %} px-4 px-lg-0{% endif %}" role="tablist">
   {% for tab in tablistList %}
-    <li class="{{ tabListColumnClass }}{% if tablistTabs %} px-1 px-lg-3 nav-item{% else %} mb-6 mb-md-8 mb-lg-0{% endif %}">
+    <li class="{{ tabListColumnClass }}{% if tablistTabs %} px-2 px-lg-3 nav-item{% else %} mb-6 mb-md-8 mb-lg-0{% endif %}">
       {% if tab.link %}
         <a href="{{ tab.link.href }}" target="{{ tab.link.target }}"
           class="tab-list__tab rounded {% if tablistTabs and forloop.index == 1 %} active{% endif %}"
