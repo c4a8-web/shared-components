@@ -3,8 +3,11 @@
   margin-bottom: spacing(14);
 
   &.tab-list--small {
-    justify-content: center;
     flex-wrap: nowrap;
+
+    @include media-breakpoint-up(sm) {
+      justify-content: center;
+    }
   }
 }
 
@@ -35,8 +38,12 @@
 }
 
 .tab-list__text {
-  @include font-style($style: 'font-size-2');
+  @include font-size-sm($breakpoint: false, $important: true);
 
   position: relative;
   --color-headlines: var(--color-primary);
+
+  @include media-breakpoint-up(lg) {
+    @include font-size-2($breakpoint: 'lg', $important: true);
+  }
 }

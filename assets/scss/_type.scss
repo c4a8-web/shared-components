@@ -47,6 +47,37 @@ $font-style-map: (
   }
 }
 
+@mixin font-size-sm($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  font-size: $font-size-sm #{$important-string};
+}
+
+@mixin font-size-1($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  font-size: $font-size-1 #{$important-string};
+  line-height: 1.6 #{$important-string};
+}
+
+@mixin font-size-2($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  font-size: $font-size-2 #{$important-string};
+}
+
 @mixin font-style($style, $weight: null, $line: null) {
   $map: $font-style-map;
   $selector: map-get($map, $style);
@@ -61,8 +92,13 @@ $font-style-map: (
     $selector-list: $selector-list + ', .' + $line;
   }
 
+  // @if $style == 'font-size-2' {
+  //   // @include font-size-2()
+
+  // } @else {
   // TODO find a better way of extending without the use of @extend
   @extend #{$selector-list} !optional;
+  // }
 }
 
 .shared-components {
@@ -276,19 +312,18 @@ $font-style-map: (
 
   %font-size-sm,
   .font-size-sm {
-    font-size: $font-size-sm;
+    @include font-size-sm;
   }
 
   .is-error,
   %font-size-1,
   .font-size-1 {
-    font-size: $font-size-1;
-    line-height: 1.6;
+    @include font-size-1;
   }
 
   %font-size-2,
   .font-size-2 {
-    font-size: $font-size-2;
+    @include font-size-2;
   }
 
   %font-size-3,
