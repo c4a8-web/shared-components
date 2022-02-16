@@ -82,6 +82,33 @@ $slick-arrow-offset: 2;
 }
 
 .shared-components {
+  .slick-track,
+  .slick-list {
+    display: flex;
+  }
+
+  .slick-slide {
+    margin: 0 10px 0 0;
+
+    &:first-of-type {
+      margin-left: -20px;
+    }
+
+    @include media-breakpoint-up(sm) {
+      &:first-of-type {
+        margin-left: -30px;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin: 0;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+
   .slick-pagination {
     &:not(.is-default) {
       display: flex !important;
@@ -106,19 +133,95 @@ $slick-arrow-offset: 2;
     }
 
     &.is-default {
+      margin: spacing(5) 0;
+      overflow: hidden;
+
       li {
-        margin: 0 spacing(3);
+        margin: 0 spacing(1);
 
         &.slick-active {
           span {
             background-color: var(--color-blue-medium);
             transform: scale(0.7);
+            border-color: var(--color-blue-medium);
           }
         }
 
         span {
           background-color: var(--color-black-40);
           transform: scale(0.6);
+        }
+
+        @include media-breakpoint-up(md) {
+          margin: 0 spacing(3);
+        }
+      }
+
+      @include media-breakpoint-up(md) {
+        overflow: visible;
+      }
+
+      @include media-breakpoint-down(sm) {
+        li {
+          display: none;
+
+          &.slick-active {
+            display: block;
+
+            &:not(:first-of-type) {
+              + li + li {
+                display: none;
+              }
+            }
+
+            &:not(:first-of-type)::before,
+            &:nth-of-type(1n + 3)::after {
+              content: '';
+              display: inline-block;
+              width: 0.9375rem;
+              height: 0.9375rem;
+              background-color: var(--color-black-40);
+              border-radius: 50%;
+              transition: 0.3s;
+              border: 0.1875rem solid transparent;
+              transform: scale(0.6);
+              margin: 0 0.5rem 0 0;
+            }
+
+            &:nth-of-type(1n + 3) {
+              span {
+                background-color: var(--color-black-40);
+                transform: scale(0.6);
+                border-color: transparent;
+              }
+
+              &::before {
+                display: none;
+              }
+
+              &::after {
+                background-color: var(--color-blue-medium);
+                border-color: var(--color-blue-medium);
+                transform: scale(0.7);
+                margin-left: 0.5rem;
+                margin-right: 0;
+              }
+            }
+
+            &:last-of-type {
+              &::before {
+                display: inline-block;
+              }
+            }
+
+            + li {
+              display: inline-block;
+
+              + li {
+                display: inline-block;
+              }
+            }
+          }
         }
       }
     }
