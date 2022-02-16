@@ -1,15 +1,51 @@
 $font-style-map: (
-  'font-size-sm': '.font-size-sm',
-  'font-size-1': '.font-size-1',
-  'font-size-2': '.font-size-2',
-  'font-size-3': '.font-size-3',
-  'font-size-4': '.font-size-4',
-  'font-size-5': '.font-size-5',
-  'font-size-6': '.font-size-6',
-  'font-size-7': '.font-size-7',
-  'h2-font-size': '.h2-font-size',
-  'h3-font-size': '.h3-font-size',
+  'font-size-sm': '%font-size-sm',
+  'font-size-1': '%font-size-1',
+  'font-size-2': '%font-size-2',
+  'font-size-3': '%font-size-3',
+  'font-size-4': '%font-size-4',
+  'font-size-5': '%font-size-5',
+  'font-size-6': '%font-size-6',
+  'font-size-7': '%font-size-7',
+  'h1-font-size': '%h1-font-size',
+  'h2-font-size': '%h2-font-size',
+  'h3-font-size': '%h3-font-size',
 );
+
+@mixin h2($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  @if $breakpoint == 'xl' {
+    font-size: $h2-font-size #{$important-string};
+  } @else if $breakpoint == 'lg' {
+    font-size: $h2-font-size-lg #{$important-string};
+  } @else {
+    font-size: $h2-font-size-sm #{$important-string};
+    font-weight: lighter;
+    line-height: 1.2em;
+  }
+}
+
+@mixin h3($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  @if $breakpoint == 'xl' {
+    font-size: $h3-font-size #{$important-string};
+  } @else if $breakpoint == 'lg' {
+    font-size: $h3-font-size-lg #{$important-string};
+  } @else {
+    font-size: $h3-font-size-sm #{$important-string};
+    font-weight: lighter #{$important-string};
+  }
+}
 
 @mixin font-style($style, $weight: null, $line: null) {
   $map: $font-style-map;
@@ -26,11 +62,11 @@ $font-style-map: (
   }
 
   // TODO find a better way of extending without the use of @extend
-
   @extend #{$selector-list} !optional;
 }
 
 .shared-components {
+  %h1,
   .h1,
   h1 {
     font-size: $h1-font-size-sm;
@@ -45,6 +81,12 @@ $font-style-map: (
     }
   }
 
+  %h1,
+  %h2,
+  %h3,
+  %h4,
+  %h5,
+  %h6,
   h1,
   h2,
   h3,
@@ -63,6 +105,18 @@ $font-style-map: (
     line-height: 1.4em;
   }
 
+  %font-size-1,
+  %font-size-2,
+  %font-size-3,
+  %font-size-4,
+  %font-size-5,
+  %font-size-6,
+  %h1-font-size,
+  %h2-font-size,
+  %h3-font-size,
+  %h4-font-size,
+  %h5-font-size,
+  %h6-font-size,
   .font-size-1,
   .font-size-2,
   .font-size-3,
@@ -101,6 +155,7 @@ $font-style-map: (
     }
   }
 
+  %h1-font-size,
   .h1-font-size {
     font-size: $h1-font-size-sm;
     line-height: 1.1em;
@@ -114,33 +169,33 @@ $font-style-map: (
     }
   }
 
+  %h2-font-size,
   .h2-font-size {
-    font-size: $h2-font-size-sm;
-    font-weight: lighter;
-    line-height: 1.2em;
+    @include h2;
 
     @include media-breakpoint-up(lg) {
-      font-size: $h2-font-size-lg;
+      @include h2('lg');
     }
 
     @include media-breakpoint-up(xl) {
-      font-size: $h2-font-size;
+      @include h2('xl');
     }
   }
 
+  %h3-font-size,
   .h3-font-size {
-    font-size: $h3-font-size-sm;
-    font-weight: lighter;
+    @include h3;
 
     @include media-breakpoint-up(lg) {
-      font-size: $h3-font-size-lg;
+      @include h3('lg');
     }
 
     @include media-breakpoint-up(xl) {
-      font-size: $h3-font-size;
+      @include h3('xl');
     }
   }
 
+  %h4-font-size,
   .h4-font-size {
     font-size: $h4-font-size-sm;
     font-weight: normal;
@@ -155,6 +210,12 @@ $font-style-map: (
   }
 
   .text-white {
+    %h1,
+    %h2,
+    %h3,
+    %h4,
+    %h5,
+    %h6,
     h1,
     h2,
     h3,
@@ -178,6 +239,12 @@ $font-style-map: (
   .text-green-blue {
     color: var(--color-green-blue);
 
+    &%h1,
+    &%h2,
+    &%h3,
+    &%h4,
+    &%h5,
+    &%h6,
     &.h1,
     &.h2,
     &.h3,
@@ -207,20 +274,24 @@ $font-style-map: (
     font-size: $font-size-lg;
   }
 
+  %font-size-sm,
   .font-size-sm {
     font-size: $font-size-sm;
   }
 
   .is-error,
+  %font-size-1,
   .font-size-1 {
     font-size: $font-size-1;
     line-height: 1.6;
   }
 
+  %font-size-2,
   .font-size-2 {
     font-size: $font-size-2;
   }
 
+  %font-size-3,
   .font-size-3 {
     font-size: $font-size-2;
     line-height: 2.5rem;
@@ -234,6 +305,7 @@ $font-style-map: (
     }
   }
 
+  %font-size-4,
   .font-size-4 {
     font-size: $font-size-3;
     line-height: 2rem;
@@ -248,10 +320,12 @@ $font-style-map: (
     }
   }
 
+  %font-size-5,
   .font-size-5 {
     font-size: $font-size-5;
   }
 
+  %font-size-6,
   .font-size-6 {
     font-size: 4rem;
     line-height: 1.1em;
@@ -266,6 +340,7 @@ $font-style-map: (
     }
   }
 
+  %font-size-7,
   .font-size-7 {
     font-size: 9.76563rem;
     line-height: 8rem;

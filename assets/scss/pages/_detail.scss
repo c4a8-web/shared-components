@@ -131,9 +131,17 @@ $page-detail-subline-background-color: $white-30;
   }
 
   h2 {
-    @include font-style($style: 'h3-font-size', $weight: 'light');
+    @include h2;
 
     margin-bottom: spacing(4);
+
+    @include media-breakpoint-up(lg) {
+      @include h3($breakpoint: 'lg');
+    }
+
+    @include media-breakpoint-up(xl) {
+      @include h3($breakpoint: 'xl');
+    }
   }
 }
 
