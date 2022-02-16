@@ -103,6 +103,51 @@
   }
 }
 
+@mixin cta-no-btn-is-light {
+  color: var(--color-white);
+}
+
+@mixin cta-btn-primary-is-light {
+  color: var(--color-primary);
+  background-color: var(--color-white);
+
+  &:not(label.btn):not([href]) {
+    color: var(--color-primary);
+    background-color: var(--color-white);
+  }
+
+  &::after {
+    display: none;
+  }
+}
+
+@mixin cta-btn-secondary-is-light {
+  border-color: var(--color-white);
+  color: var(--color-white);
+
+  &::before {
+    background: var(--color-white);
+  }
+
+  &::after {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: attr(data-text);
+    color: var(--color-primary-accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 50%, transparent 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    opacity: 0;
+    transition: background 0.5s $animation-transition;
+  }
+}
+
 .shared-components {
   $cutoffSize: 15px;
 
@@ -111,7 +156,7 @@
 
     &:not(.btn):not(.custom):not(.nav-link) {
       &.is-light {
-        color: var(--color-white);
+        @include cta-no-btn-is-light;
       }
     }
 
@@ -149,16 +194,12 @@
       }
 
       &.is-light {
-        color: var(--color-primary);
-        background-color: var(--color-white);
+        @include cta-btn-primary-is-light;
+      }
 
-        &:not(label.btn):not([href]) {
-          color: var(--color-primary);
-          background-color: var(--color-white);
-        }
-
-        &::after {
-          display: none;
+      &.is-light-lg {
+        @include media-breakpoint-up(lg) {
+          @include cta-btn-primary-is-light;
         }
       }
     }
@@ -184,29 +225,12 @@
       }
 
       &.is-light {
-        border-color: var(--color-white);
-        color: var(--color-white);
+        @include cta-btn-secondary-is-light;
+      }
 
-        &::before {
-          background: var(--color-white);
-        }
-
-        &::after {
-          position: absolute;
-          left: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          content: attr(data-text);
-          color: var(--color-primary-accent);
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background: linear-gradient(to right, rgba(255, 255, 255, 0.8) 50%, transparent 50%);
-          background-size: 200% 100%;
-          background-position: right bottom;
-          opacity: 0;
-          transition: background 0.5s $animation-transition;
+      &.is-light-lg {
+        @include media-breakpoint-up(lg) {
+          @include cta-btn-secondary-is-light;
         }
       }
     }
