@@ -147,6 +147,12 @@ class Tools {
       if (callNow) func.apply(context, args);
     };
   };
+
+  static isOutsideOf(name, e) {
+    return !e.path.some(
+      (element) => element.className && element.className.includes && element.className.includes(name)
+    );
+  }
 }
 
 export default Tools;

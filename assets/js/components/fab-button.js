@@ -1,6 +1,7 @@
 import BaseComponent from './base-component.js';
 import State from '../state.js';
 import Events from '../events.js';
+import Tools from '../tools.js';
 
 class FabButton extends BaseComponent {
   static rootSelector = '.fab-button';
@@ -32,9 +33,16 @@ class FabButton extends BaseComponent {
     this.close?.addEventListener('click', this.handleClose.bind(this));
 
     document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit.bind(this));
+    window.addEventListener('click', this.handleOutsideClick.bind(this));
 
     // force redraw
     this.modal.style = 'opacity: 1';
+  }
+
+  handleOutsideClick(e) {
+    if (this.root.classList.contains(State.EXPANDED) && Tools.isOutsideOf(FabButton.rootSelector.substring(1), e)) {
+      this.handleClose();
+    }
   }
 
   handleSubmit() {
