@@ -175,6 +175,7 @@
             href=eventTeaserHref
             skin=eventTeaserCtaSkin
             width=eventTeaserCtaWidth
+            external=eventTeaserCta.external
           %}
         </div>
       {% endif %}

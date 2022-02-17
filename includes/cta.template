@@ -1,3 +1,6 @@
+{% comment %}
+                                      NOTICE ! There is a static version of this file in static-templates.js so if you update this file update the static version as well ! NOTICE
+{% endcomment %}
 <!-- Shared Cta Section -->
 {% assign ctaText = include.text %}
 {% assign ctaAnalytics = include.analytics | default: false %}
@@ -11,12 +14,27 @@
 {% assign ctaAlternativeHref = include.alternativeHref %}
 {% assign ctaType = include.type %}
 {% assign ctaTrigger = include.trigger %}
+{%- assign ctaExternal = include.external -%}
 
 {%- if ctaAnalytics -%}
   {%- capture analytics -%}data-analytics="{{ ctaAnalytics }}"{%- endcapture -%}
 {%- else -%}
   {%- assign analytics = '' -%}
 {%- endif -%}
+
+{% capture ctaIconBox %}
+  {% if ctaLink or ctaExternal %}
+    {% if ctaLink %}
+      {% assign ctaIcon = 'arrow' %}
+    {% else %}
+      {% assign ctaIcon = 'arrow-external' %}
+    {% endif %}
+    {%
+      include icon.html
+      icon=ctaIcon
+    %}
+  {% endif %}
+{% endcapture %}
 
 {% if ctaLink %}
   {% capture innerSkin %}{% if ctaSkin %}{{ ctaSkin }}{% endif %}{% endcapture %}
@@ -26,9 +44,15 @@
   {% capture innerSkin %}{% if ctaSkin %}btn-{{ ctaSkin }}{% else %}btn-primary{% endif %}{% endcapture %}
   {% capture baseClass %}btn {{ ctaInnerWidth }}{% endcapture %}
 {% endif %}
+
+{% if ctaExternal %}
+  {% capture baseClass %}{{ baseClass }} cta--external{% endcapture %}
+{% endif %}
+
 {% if ctaButton %}
   <button class="cta {{ baseClass }} {{ innerSkin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }} {% if ctaTrigger %}data-trigger="{{ ctaTrigger }}"{% endif %}>
     {{ ctaText }}
+    {{ ctaIconBox }}
   </button>
 {% else %}
   <a class="cta {{ baseClass }} {{ innerSkin }}"
@@ -40,13 +64,7 @@
     {% if ctaAlternativeHref %}data-alternative-href="{{ ctaAlternativeHref }}"{% endif %}
   >
     {{ ctaText }}
-
-    {% if ctaLink %}
-      {%
-        include icon.html
-        icon='arrow'
-      %}
-    {% endif %}
+    {{ ctaIconBox }}
   </a>
 {% endif %}
 <!-- End Shared Cta Section -->
