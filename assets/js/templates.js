@@ -126,11 +126,9 @@ class Templates {
   }
 
   async load(template, data) {
-    console.log('Templates ~ load ~ template', template);
     await this.loadTemplateEngine();
 
     const staticTemplate = this.getStaticTemplate(template);
-    console.log('Templates ~ load ~ staticTemplate', staticTemplate);
 
     if (staticTemplate) {
       return this.getHtml(staticTemplate, data);

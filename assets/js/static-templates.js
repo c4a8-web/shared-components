@@ -1,3 +1,5 @@
+// NOTICE do not edit in this file. always copy from the correct template file
+
 const icon = `<!-- Shared Icon Section -->
 {% assign iconIcon = include.icon | default: 'close' -%}
 {%- assign iconColor = include.color | default: 'currentColor' -%}
