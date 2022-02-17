@@ -291,6 +291,14 @@
     }
   }
 
+  &.hero--medium {
+    .hero-text-imge__img-spacer {
+      @include media-breakpoint-up(lg) {
+        min-height: 600px;
+      }
+    }
+  }
+
   &:not(.text-white) {
     .hero-text-image__subline {
       color: var(--color-nevada);
