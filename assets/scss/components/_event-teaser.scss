@@ -3,15 +3,18 @@ $event-teaser-transition-time: 1.3s;
 $event-teaser-hover-scale: 1.025;
 
 .event-teaser {
-  @include shadow('light');
+  @include shadow('super-light');
 
   position: relative;
   display: flex;
   flex-direction: column;
   background-color: var(--color-event-teaser-background);
   cursor: pointer;
+  transition: box-shadow 1.5s $animation-transition;
 
   &:hover {
+    @include shadow('medium-light');
+
     .event-teaser__shapes {
       transform: scale($event-teaser-hover-scale);
       transition-duration: $event-teaser-transition-time;
