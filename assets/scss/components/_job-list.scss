@@ -132,6 +132,7 @@ $job-list-detail-transition-3-delay: 1.8s;
     @include font-style($style: 'h2-font-size', $weight: 'bold');
 
     color: var(--color-job-list-detail-copy);
+    word-break: break-word;
 
     // @include media-breakpoint-up(lg) {
     //   transition: opacity 0.4s $job-list-detail-transition-1-delay $animation-transition;
