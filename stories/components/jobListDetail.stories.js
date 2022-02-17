@@ -23,7 +23,7 @@ const baseArgs = {
     headline: 'Bewerbungsformular (m/w/d)',
     cta: {
       skin: 'primary',
-      width: 'w-30',
+      width: 'w-100 w-lg-30',
     },
     ctaText: 'Bewerbung absenden',
     method: 'post',
@@ -124,7 +124,7 @@ const baseArgs = {
   modalSuccess: {
     cta: {
       skin: 'primary',
-      width: 'w-30',
+      width: 'w-100 w-lg-30',
       text: 'Schließen',
     },
     headline: {
