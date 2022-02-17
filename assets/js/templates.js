@@ -1,3 +1,5 @@
+import { icon, jobListDetail, cta, modal, headline, modalApplication, form } from './static-templates.js';
+
 let Liquid;
 
 const LoadLiquid = import('./lib/liquid.browser.min.js').then((module) => {
@@ -14,6 +16,38 @@ class Templates {
   constructor() {
     this.cache = {};
     this.extensionName = 'template';
+  }
+
+  getStaticTemplate(file) {
+    let template = null;
+
+    switch (file) {
+      case 'icon.template':
+        template = icon;
+        break;
+      case 'job-list-detail':
+      case 'job-list-detail.template':
+        template = jobListDetail;
+        break;
+      case 'cta.template':
+        template = cta;
+        break;
+      case 'modal.template':
+        template = modal;
+        break;
+      case 'headline.template':
+        template = headline;
+        break;
+      case 'modal-application.template':
+        template = modalApplication;
+        break;
+      case 'form.template':
+        template = form;
+        break;
+      default:
+    }
+
+    return template;
   }
 
   async loadTemplateEngine() {
@@ -39,20 +73,29 @@ class Templates {
               return scope.fileCache[name];
             } else {
               const request = new XMLHttpRequest();
+              const staticTemplate = scope.getStaticTemplate(file);
 
-              if (
-                (request.open('GET', `${scope.partialsPath}${file}`, !1),
-                request.send(),
-                request.status < 200 || 300 <= request.status)
-              ) {
-                throw new Error(request.statusText);
+              if (staticTemplate) {
+                const fixedComponent = scope.fixComponent(staticTemplate);
+
+                scope.fileCache[name] = fixedComponent;
+
+                return fixedComponent;
+              } else {
+                if (
+                  (request.open('GET', `${scope.partialsPath}${file}`, !1),
+                  request.send(),
+                  request.status < 200 || 300 <= request.status)
+                ) {
+                  throw new Error(request.statusText);
+                }
+
+                const fixedComponent = scope.fixComponent(request.responseText);
+
+                scope.fileCache[name] = fixedComponent;
+
+                return fixedComponent;
               }
-
-              const fixedComponent = scope.fixComponent(request.responseText);
-
-              scope.fileCache[name] = fixedComponent;
-
-              return fixedComponent;
             }
           },
           existsSync() {
@@ -83,7 +126,15 @@ class Templates {
   }
 
   async load(template, data) {
+    console.log('Templates ~ load ~ template', template);
     await this.loadTemplateEngine();
+
+    const staticTemplate = this.getStaticTemplate(template);
+    console.log('Templates ~ load ~ staticTemplate', staticTemplate);
+
+    if (staticTemplate) {
+      return this.getHtml(staticTemplate, data);
+    }
 
     if (this.cache[template]) {
       return this.cache[template].then((component) => {
