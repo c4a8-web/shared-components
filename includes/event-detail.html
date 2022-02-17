@@ -78,11 +78,20 @@
       </div>
     </div>
     <div class="page-detail__shape-corner">
-      {%
-        include svg-shape.html
-        color=eventDetailShapeColor
-        height=30
-      %}
+      <div class="page-detail__shape-corner-desktop">
+        {%
+          include svg-shape.html
+          color=eventDetailShapeColor
+          height=30
+        %}
+      </div>
+      <div class="page-detail__shape-corner-mobile">
+        {%
+          include svg-shape.html
+          color=eventDetailShapeColor
+          height=15
+        %}
+      </div>
     </div>
   </div>
   <div class="page-detail__container container">
