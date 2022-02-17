@@ -99,9 +99,17 @@ $event-teaser-hover-scale: 1.025;
     }
 
     .event-teaser__headline {
-      @include font-style($style: 'h3-font-size', $weight: 'light', $line: 'thin');
+      @include h2;
 
       margin-bottom: spacing(7);
+
+      @include media-breakpoint-up(lg) {
+        @include h3($breakpoint: 'lg');
+      }
+
+      @include media-breakpoint-up(xl) {
+        @include h3($breakpoint: 'xl');
+      }
     }
 
     .event-teaser__content {
