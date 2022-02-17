@@ -4,7 +4,7 @@
 {%- assign eventDetailHeadline = include.headline -%}
 {%- assign eventDetailName = include.name -%}
 {%- assign eventDetailHeadlineLevel = include.headlineLevel -%}
-{%- assign eventDetailHeadlineClasses = include.headlineClasses | default: 'h3-font-size bold' -%}
+{%- assign eventDetailHeadlineClasses = include.headlineClasses | default: 'bold' -%}
 {%- assign eventDetailContent = include.content -%}
 {%- assign eventDetailForm = include.form -%}
 {%- assign eventDetailFormAdditionalFields = include.formAdditionalFields -%}
@@ -16,41 +16,66 @@
 {%- assign eventDetailImageCloudinary = eventDetailImage.cloudinary | default: true -%}
 
 {%- assign headlineLevel = eventDetailHeadlineLevel | default: 'h1' -%}
-{%- capture headlineClasses -%}page-detail__headline {{ eventDetailHeadlineClasses }}{%- endcapture -%}
+{%- capture headlineClasses -%}page-detail__headline event-detail__headline {{ eventDetailHeadlineClasses }}{%- endcapture -%}
 
 {%- capture eventDetailIntro -%}
-  {% if eventDetailBadge %}
-    <div class="page-detail__badge page-detail__animation-3">
-      {%
-        include badge.html
-        text=eventDetailBadge.text
-        icon=eventDetailBadge.icon
-        color=eventDetailBadge.color
-        textColor=eventDetailBadge.textColor
-        overlapping=true
-      %}
-    </div>
-  {% endif %}
-  {% if eventDetailMoment or eventDetailTime %}
-    <div class="page-detail__details mb-2 page-detail__animation-3">
-      {% if eventDetailMoment %}<span class="page-detail__moment font-size-1 bold">{{ eventDetailMoment }}</span>{% endif %}
-      {% if eventDetailTime %}<span class="page-detail__time font-size-1">{{ eventDetailTime }}</span>{% endif %}
-    </div>
-  {% endif %}
-  {%
-    include headline.html
-    text=eventDetailHeadline
-    level=headlineLevel
-    classes=headlineClasses
-  %}
+  <div class="page-detail__intro-content">
+    {% if eventDetailBadge %}
+      <div class="page-detail__badge page-detail__animation-3">
+        {%
+          include badge.html
+          text=eventDetailBadge.text
+          icon=eventDetailBadge.icon
+          color=eventDetailBadge.color
+          textColor=eventDetailBadge.textColor
+          overlapping=true
+        %}
+      </div>
+    {% endif %}
+    {% if eventDetailMoment or eventDetailTime %}
+      <div class="page-detail__details mb-2 page-detail__animation-3">
+        {% if eventDetailMoment %}<span class="page-detail__moment font-size-1 bold">{{ eventDetailMoment }}</span>{% endif %}
+        {% if eventDetailTime %}<span class="page-detail__time font-size-1">{{ eventDetailTime }}</span>{% endif %}
+      </div>
+    {% endif %}
+    {%
+      include headline.html
+      text=eventDetailHeadline
+      level=headlineLevel
+      classes=headlineClasses
+    %}
+    {% if eventDetailImage %}
+      <div class="page-detail__img-wrapper">
+        <div class="page-detail__img page-detail__animation-3">
+          {%
+            include img.html
+            img=eventDetailImage.img
+            alt=eventDetailImage.alt
+            cloudinary=eventDetailImageCloudinary
+            imgSrcSets=site.data.imgSrcSets.event
+          %}
+        </div>
+        <div class="page-detail__subline page-detail__subline--overlapped font-size-1 bold">
+          <div class="page-detail__subline-background"></div>
+          <div class="page-detail__subline-foreground">{{ eventDetailName }}</div>
+        </div>
+      </div>
+    {% endif %}
+  </div>
 {%- endcapture -%}
 
-<div class="event-detail page-detail page-detail--image is-loading"
+<div class="event-detail page-detail page-detail--image is-loading page-detail--no-overflow"
       style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-color: var(--page-detail-color); --color-page-detail-shape: {{ eventDetailShapeColor }}"
 >
   <div class="page-detail__shape page-detail__animation-3">
-    <div class="page-detail__shape-spacer">
-      {{ eventDetailIntro }}
+    <div class="page-detail__shape-container container">
+      <div class="row">
+        <div class="col-md-11 col-lg-5">
+          <div class="page-detail__shape-spacer">
+            {{ eventDetailIntro }}
+          </div>
+        </div>
+      </div>
     </div>
     <div class="page-detail__shape-corner">
       {%
@@ -59,7 +84,6 @@
         height=30
       %}
     </div>
-    <div class="page-detail__shape-background"></div>
   </div>
   <div class="page-detail__container container">
     <div class="page-detail__start row">
@@ -84,23 +108,6 @@
             %}
           </div>
           {{ eventDetailIntro }}
-          {% if eventDetailImage %}
-            <div class="page-detail__img-wrapper">
-              <div class="page-detail__img page-detail__animation-3">
-                {%
-                  include img.html
-                  img=eventDetailImage.img
-                  alt=eventDetailImage.alt
-                  cloudinary=eventDetailImageCloudinary
-                  imgSrcSets=site.data.imgSrcSets.event
-                %}
-              </div>
-              <div class="page-detail__subline page-detail__subline--overlapped font-size-2 bold">
-                <div class="page-detail__subline-background"></div>
-                <div class="page-detail__subline-foreground">{{ eventDetailName }}</div>
-              </div>
-            </div>
-          {% endif %}
         </div>
       </div>
       <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">

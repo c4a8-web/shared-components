@@ -42,6 +42,7 @@ $page-detail-subline-background-color: $white-30;
 .page-detail {
   min-height: 100vh;
   position: relative;
+  overflow: hidden;
 
   &.page-detail--image {
     .page-detail__description {
@@ -51,6 +52,22 @@ $page-detail-subline-background-color: $white-30;
       @include media-breakpoint-up(lg) {
         padding-top: 0;
         margin-top: 0;
+      }
+    }
+
+    &.page-detail--no-overflow {
+      .page-detail__description {
+        margin-top: 0;
+      }
+
+      .page-detail__img {
+        margin-bottom: 0;
+      }
+
+      @include media-breakpoint-down(md) {
+        .page-detail__content {
+          margin-top: 0;
+        }
       }
     }
   }
@@ -132,12 +149,10 @@ $page-detail-subline-background-color: $white-30;
     @include media-breakpoint-up(md) {
       transition: width 0.6s $animation-transition;
       width: get-full-column-width($container: 'md', $columns: 11);
-      test: get-container-width('lg', false);
     }
 
     @include media-breakpoint-up(lg) {
       width: get-full-column-width($container: 'lg', $columns: 5, $with-padding: false);
-      test: get-container-width('lg', true);
     }
   }
 }
@@ -233,9 +248,21 @@ $page-detail-subline-background-color: $white-30;
   }
 }
 
+.page-detail__intro-content {
+  min-height: 200px;
+
+  @include media-breakpoint-up(lg) {
+    min-height: 300px;
+  }
+}
+
 .page-detail__img {
   margin-top: spacing(8);
   margin-bottom: spacing($size: $page-detail-image-offset-size-double, $negative: true);
+
+  .img__picture-wrapper {
+    text-align: right;
+  }
 
   @include media-breakpoint-up(lg) {
     margin-bottom: 0;
@@ -244,47 +271,48 @@ $page-detail-subline-background-color: $white-30;
 
 .page-detail__shape {
   position: absolute;
-  left: 0;
+  padding-top: spacing($page-detail-padding-top);
+  width: 100%;
+}
+
+.page-detail__shape-container {
+  position: relative;
   height: 100%;
   overflow: hidden;
-  padding-top: spacing($page-detail-padding-top);
+
+  > * {
+    height: 100%;
+  }
+}
+
+.page-detail__shape-corner {
+  position: absolute;
+  padding-bottom: 5px;
+  width: 100%;
+  bottom: 0;
+
+  &::after {
+    content: '';
+    display: block;
+    height: 10000%;
+    width: 100%;
+    position: absolute;
+    top: calc(100% - 4px);
+    background-color: var(--color-page-detail-shape);
+  }
+
+  @include media-breakpoint-up(md) {
+    width: get-full-column-width($container: 'md', $columns: 11);
+  }
 
   @include media-breakpoint-up(lg) {
     width: get-full-column-width($container: 'lg', $columns: 5);
   }
 }
 
-.page-detail__shape-corner {
-  position: relative;
-  padding-bottom: 5px;
-
-  &::after {
-    content: '';
-    display: block;
-    height: calc(100% + 6px);
-    width: 100%;
-    position: absolute;
-    top: calc(100% - 4px);
-    background-color: var(--color-page-detail-shape);
-  }
-}
-
-.page-detail__shape-background {
-  position: relative;
-  height: 100%;
-  background-color: var(--color-page-detail-shape);
-  width: 100%;
-}
-
 .page-detail__shape-spacer {
   pointer-events: none;
   opacity: 0;
-  padding-left: spacing(8);
-  margin-right: 30px;
-  margin-left: calc((100vw - var(--container-width)) / 2);
-  margin-bottom: spacing(50);
-
-  // TODO figure out how to position this at the bottom of the image
 }
 
 .page-detail__sticky-start {
@@ -294,23 +322,31 @@ $page-detail-subline-background-color: $white-30;
 }
 
 .page-detail__badge {
-  margin-bottom: spacing(10);
+  margin-bottom: spacing(6);
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(10);
+  }
 }
 
 .page-detail__subline {
   &.page-detail__subline--overlapped {
+    @include font-size-1;
+
     position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
 
     @include media-breakpoint-up(md) {
+      @include font-size-2($breakpoint: 'md');
       // width: calc(
       //   #{get-full-column-width($container: 'md', $columns: 11)} - (#{$page-detail-subline-left-spacing} + 53px)
       // );
-      width: 100%;
     }
 
     @include media-breakpoint-up(lg) {
+      @include font-size-2($breakpoint: 'lg');
       // width: calc(
       //   #{get-full-column-width($container: 'lg', $columns: 5)} - (#{$page-detail-subline-left-spacing} + 13px)
       // );

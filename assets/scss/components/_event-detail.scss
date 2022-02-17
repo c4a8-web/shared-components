@@ -1,0 +1,7 @@
+.event-detail__headline {
+  @include h2($breakpoint: false, $important: true);
+
+  @include media-breakpoint-up(lg) {
+    @include h3($breakpoint: 'lg', $important: true);
+  }
+}
