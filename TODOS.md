@@ -1,15 +1,13 @@
 # List
 
-- navi cta mobile is-light-lg or something like that
-- detail page background z-index staging -1 -> yellow content is not ending where it should end
-- svg icon proportions are distorted on mobile
 - Vue Proof of Concept
 - webcasts und blogs zusammen über tags in blog-recent
 - fully migrade
+
   - card.html
   - authors.html
   - accordion.html in konnekt ist der letzte stand
-- cta add icon arrow-external to external links
+
 - main navi sticky buggy
 - main navi active state
 - autoplay videos desktop und mobile feature detection autoplay
