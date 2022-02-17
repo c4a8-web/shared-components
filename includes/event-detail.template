@@ -31,10 +31,12 @@
       %}
     </div>
   {% endif %}
-  <div class="page-detail__details mb-2 page-detail__animation-3">
-    {% if eventDetailMoment %}<span class="page-detail__moment font-size-1 bold">{{ eventDetailMoment }}</span>{% endif %}
-    {% if eventDetailTime %}<span class="page-detail__time font-size-1">{{ eventDetailTime }}</span>{% endif %}
-  </div>
+  {% if eventDetailMoment or eventDetailTime %}
+    <div class="page-detail__details mb-2 page-detail__animation-3">
+      {% if eventDetailMoment %}<span class="page-detail__moment font-size-1 bold">{{ eventDetailMoment }}</span>{% endif %}
+      {% if eventDetailTime %}<span class="page-detail__time font-size-1">{{ eventDetailTime }}</span>{% endif %}
+    </div>
+  {% endif %}
   {%
     include headline.html
     text=eventDetailHeadline
@@ -44,7 +46,7 @@
 {%- endcapture -%}
 
 <div class="event-detail page-detail page-detail--image is-loading"
-      style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
+      style="--page-detail-color: var({{ eventDetailColor }}); --color-icon-hover-color: var(--page-detail-color); --color-page-detail-shape: {{ eventDetailShapeColor }}"
 >
   <div class="page-detail__shape page-detail__animation-3">
     <div class="page-detail__shape-spacer">
@@ -82,21 +84,23 @@
             %}
           </div>
           {{ eventDetailIntro }}
-          <div class="page-detail__img-wrapper">
-            <div class="page-detail__img page-detail__animation-3">
-              {%
-                include img.html
-                img=eventDetailImage.img
-                alt=eventDetailImage.alt
-                cloudinary=eventDetailImageCloudinary
-                imgSrcSets=site.data.imgSrcSets.event
-              %}
+          {% if eventDetailImage %}
+            <div class="page-detail__img-wrapper">
+              <div class="page-detail__img page-detail__animation-3">
+                {%
+                  include img.html
+                  img=eventDetailImage.img
+                  alt=eventDetailImage.alt
+                  cloudinary=eventDetailImageCloudinary
+                  imgSrcSets=site.data.imgSrcSets.event
+                %}
+              </div>
+              <div class="page-detail__subline page-detail__subline--overlapped font-size-2 bold">
+                <div class="page-detail__subline-background"></div>
+                <div class="page-detail__subline-foreground">{{ eventDetailName }}</div>
+              </div>
             </div>
-            <div class="page-detail__subline page-detail__subline--overlapped font-size-2 bold">
-              <div class="page-detail__subline-background"></div>
-              <div class="page-detail__subline-foreground">{{ eventDetailName }}</div>
-            </div>
-          </div>
+          {% endif %}
         </div>
       </div>
       <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
