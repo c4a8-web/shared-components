@@ -45,6 +45,7 @@ EventList.args = {
         href: 'javascript:void(0)',
         skin: 'primary',
         button: true,
+        external: true,
       },
     },
     {
@@ -74,6 +75,7 @@ EventList.args = {
         href: 'javascript:void(0)',
         skin: 'primary',
         button: true,
+        external: true,
       },
     },
     {

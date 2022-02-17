@@ -459,7 +459,10 @@ const jobListDetail = `<!-- Shared Job List Detail Section -->
 <!-- End Shared Job List Detail Section -->
 `;
 
-const cta = `<!-- Shared Cta Section -->
+const cta = `{% comment %}
+NOTICE ! There is a static version of this file in static-templates.js so if you update this file update the static version as well ! NOTICE
+{% endcomment %}
+<!-- Shared Cta Section -->
 {% assign ctaText = include.text %}
 {% assign ctaAnalytics = include.analytics | default: false %}
 {% assign ctaLink = include.link %}
@@ -472,43 +475,58 @@ const cta = `<!-- Shared Cta Section -->
 {% assign ctaAlternativeHref = include.alternativeHref %}
 {% assign ctaType = include.type %}
 {% assign ctaTrigger = include.trigger %}
+{%- assign ctaExternal = include.external -%}
 
 {%- if ctaAnalytics -%}
-  {%- capture analytics -%}data-analytics="{{ ctaAnalytics }}"{%- endcapture -%}
+{%- capture analytics -%}data-analytics="{{ ctaAnalytics }}"{%- endcapture -%}
 {%- else -%}
-  {%- assign analytics = '' -%}
+{%- assign analytics = '' -%}
 {%- endif -%}
 
+{% capture ctaIconBox %}
+{% if ctaLink or ctaExternal %}
 {% if ctaLink %}
-  {% capture innerSkin %}{% if ctaSkin %}{{ ctaSkin }}{% endif %}{% endcapture %}
-  {% assign baseClass = "link" %}
+{% assign ctaIcon = 'arrow' %}
 {% else %}
-  {% capture ctaInnerWidth %}{% if ctaWidth %}{{ ctaWidth }}{% else %}w-100{% unless ctaGrow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
-  {% capture innerSkin %}{% if ctaSkin %}btn-{{ ctaSkin }}{% else %}btn-primary{% endif %}{% endcapture %}
-  {% capture baseClass %}btn {{ ctaInnerWidth }}{% endcapture %}
+{% assign ctaIcon = 'arrow-external' %}
 {% endif %}
-{% if ctaButton %}
-  <button class="cta {{ baseClass }} {{ innerSkin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }} {% if ctaTrigger %}data-trigger="{{ ctaTrigger }}"{% endif %}>
-    {{ ctaText }}
-  </button>
-{% else %}
-  <a class="cta {{ baseClass }} {{ innerSkin }}"
-    role="button"
-    href="{{ ctaHref }}"
-    data-text="{{ ctaText }}"
-    {{ analytics }}
-    {% if ctaTarget %}target="{{ ctaTarget }}"{% endif %}
-    {% if ctaAlternativeHref %}data-alternative-href="{{ ctaAlternativeHref }}"{% endif %}
-  >
-    {{ ctaText }}
+{%
+include icon.html
+icon=ctaIcon
+%}
+{% endif %}
+{% endcapture %}
 
-    {% if ctaLink %}
-      {%
-        include icon.html
-        icon='arrow'
-      %}
-    {% endif %}
-  </a>
+{% if ctaLink %}
+{% capture innerSkin %}{% if ctaSkin %}{{ ctaSkin }}{% endif %}{% endcapture %}
+{% assign baseClass = "link" %}
+{% else %}
+{% capture ctaInnerWidth %}{% if ctaWidth %}{{ ctaWidth }}{% else %}w-100{% unless ctaGrow == true %} w-lg-auto{% endunless %}{% endif %}{% endcapture %}
+{% capture innerSkin %}{% if ctaSkin %}btn-{{ ctaSkin }}{% else %}btn-primary{% endif %}{% endcapture %}
+{% capture baseClass %}btn {{ ctaInnerWidth }}{% endcapture %}
+{% endif %}
+
+{% if ctaExternal %}
+{% capture baseClass %}{{ baseClass }} cta--external{% endcapture %}
+{% endif %}
+
+{% if ctaButton %}
+<button class="cta {{ baseClass }} {{ innerSkin }}" role="button" type="{{ ctaType }}" data-text="{{ ctaText }}" {{ analytics }} {% if ctaTrigger %}data-trigger="{{ ctaTrigger }}"{% endif %}>
+{{ ctaText }}
+{{ ctaIconBox }}
+</button>
+{% else %}
+<a class="cta {{ baseClass }} {{ innerSkin }}"
+role="button"
+href="{{ ctaHref }}"
+data-text="{{ ctaText }}"
+{{ analytics }}
+{% if ctaTarget %}target="{{ ctaTarget }}"{% endif %}
+{% if ctaAlternativeHref %}data-alternative-href="{{ ctaAlternativeHref }}"{% endif %}
+>
+{{ ctaText }}
+{{ ctaIconBox }}
+</a>
 {% endif %}
 <!-- End Shared Cta Section -->
 `;

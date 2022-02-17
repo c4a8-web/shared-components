@@ -78,6 +78,16 @@ PrimaryButton.args = {
   button: true,
 };
 
+export const PrimaryButtonExternal = Template.bind({});
+
+PrimaryButtonExternal.args = {
+  text: 'Primary Button',
+  href: 'javascript:void(0)',
+  skin: 'primary',
+  button: true,
+  external: true,
+};
+
 export const SecondaryButton = Template.bind({});
 
 SecondaryButton.args = {

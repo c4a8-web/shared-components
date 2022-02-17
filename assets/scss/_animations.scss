@@ -67,6 +67,20 @@ $transition-tween-t1: 0.2s ease-in-out;
   }
 }
 
+@keyframes moveTopRight {
+  0% {
+    transform: translateX(0%);
+  }
+
+  30% {
+    transform: translateX(10%) translateY(-10%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
 /**
 * Animation for Background Shapes
 */
