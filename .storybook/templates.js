@@ -8,6 +8,7 @@ import Products from './data/products';
 import Contact from './data/contact';
 import Posts from './data/posts';
 import Authors from './data/authors';
+import Lang from './data/lang';
 import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
@@ -20,6 +21,7 @@ const site = {
     products: Products,
     contact: Contact,
     authors: Authors,
+    lang: Lang,
   },
   posts: Posts,
   blog_image_path: 'blog/heads/',

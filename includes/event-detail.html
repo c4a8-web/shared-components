@@ -1,3 +1,5 @@
+{%- assign lang = page.lang | default: 'de' -%}
+
 <!-- Shared Event Detail Section -->
 {%- assign eventDetailColor = include.detailColor | default: '--color-event-detail' -%}
 {%- assign eventDetailShapeColor = include.detailShapeColor | default: 'var(--color-event-detail-shape)' -%}
@@ -55,10 +57,12 @@
             imgSrcSets=site.data.imgSrcSets.event
           %}
         </div>
-        <div class="page-detail__subline page-detail__subline--overlapped font-size-1 bold">
-          <div class="page-detail__subline-background"></div>
-          <div class="page-detail__subline-foreground">{{ eventDetailName }}</div>
-        </div>
+        {% if eventDetailName %}
+          <div class="page-detail__subline page-detail__subline--overlapped font-size-1 bold">
+            <div class="page-detail__subline-background"></div>
+            <div class="page-detail__subline-foreground">{{ site.data.lang[lang].withAuthor }} {{ eventDetailName | join: ' & '}}</div>
+          </div>
+        {% endif %}
       </div>
     {% endif %}
   </div>

@@ -96,7 +96,7 @@ EventDetail.args = {
     },
   ],
   headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
-  name: 'Mit Nadine Kern & Max Mustermann',
+  name: ['Nadine Kern', 'Max Mustermann'],
   time: '1-4 Tage',
   shapes: [
     {

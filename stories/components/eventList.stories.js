@@ -31,7 +31,7 @@ EventList.args = {
         },
       ],
       webcast: true,
-      authors: 'Mit Nadine Kern & Max Mustermann',
+      author: ['Nadine Kern', 'Max Mustermann'],
       image: {
         img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
@@ -61,7 +61,7 @@ EventList.args = {
         },
       ],
       webcast: true,
-      authors: 'Mit Nadine Kern & Max Mustermann',
+      author: ['Nadine Kern', 'Max Mustermann'],
       image: {
         img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
@@ -90,7 +90,7 @@ EventList.args = {
           color: 'var(--color-blue-medium)',
         },
       ],
-      authors: 'Mit Nadine Kern & Max Mustermann',
+      author: ['Nadine Kern', 'Max Mustermann'],
       image: {
         img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
@@ -114,7 +114,7 @@ EventList.args = {
           color: 'var(--color-blue-medium)',
         },
       ],
-      authors: 'Mit Nadine Kern & Max Mustermann',
+      author: ['Nadine Kern', 'Max Mustermann'],
       image: {
         img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
@@ -138,7 +138,7 @@ EventList.args = {
           color: 'var(--color-blue-medium)',
         },
       ],
-      authors: 'Mit Nadine Kern & Max Mustermann',
+      author: ['Nadine Kern', 'Max Mustermann'],
       image: {
         img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
@@ -162,7 +162,7 @@ EventList.args = {
           color: 'var(--color-blue-medium)',
         },
       ],
-      authors: 'Mit Nadine Kern & Max Mustermann',
+      author: ['Nadine Kern', 'Max Mustermann'],
       image: {
         img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',

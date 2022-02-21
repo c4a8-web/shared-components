@@ -28,7 +28,7 @@ EventTeaserWebcast.args = {
     },
   ],
   webcast: true,
-  authors: 'Mit Nadine Kern & Max Mustermann',
+  author: ['Nadine Kern', 'Max Mustermann'],
   image: {
     img: '/demo/authors-demo.png',
     alt: 'lorem ipsum',
@@ -61,7 +61,7 @@ EventTeaserFullWidth.args = {
     },
   ],
   webcast: true,
-  authors: 'Mit Nadine Kern & Max Mustermann',
+  author: ['Nadine Kern', 'Max Mustermann'],
   image: {
     img: '/demo/authors-demo.png',
     alt: 'lorem ipsum',
@@ -101,7 +101,7 @@ EventTeaserCustomShapes.args = {
     },
   ],
   webcast: true,
-  authors: 'Mit Nadine Kern & Max Mustermann',
+  author: ['Nadine Kern', 'Max Mustermann'],
   image: {
     img: '/demo/authors-demo.png',
     alt: 'lorem ipsum',
@@ -133,7 +133,7 @@ EventTeaserTraining.args = {
       color: 'var(--color-blue-medium)',
     },
   ],
-  authors: 'Mit Nadine Kern & Max Mustermann',
+  author: ['Nadine Kern', 'Max Mustermann'],
   image: {
     img: '/demo/authors-demo.png',
     alt: 'lorem ipsum',

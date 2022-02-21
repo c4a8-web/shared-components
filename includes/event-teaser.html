@@ -1,10 +1,12 @@
+{%- assign lang = page.lang | default: 'de' -%}
+
 {%- if include.json -%}
   {%- assign eventTeaserHeadline = include.json.headline -%}
   {%- assign eventTeaserContent = include.json.content -%}
   {%- assign eventTeaserMoment = include.json.moment -%}
   {%- assign eventTeaserTime = include.json.time -%}
   {%- assign eventTeaserShapes = include.json.shapes -%}
-  {%- assign eventTeaserAuthors = include.json.authors -%}
+  {%- assign eventTeaserAuthor = include.json.author -%}
   {%- assign eventTeaserImage = include.json.image -%}
   {%- assign eventTeaserBadge = include.json.badge -%}
   {%- assign eventTeaserPrice = include.json.price -%}
@@ -19,7 +21,7 @@
   {%- assign eventTeaserMoment = include.moment -%}
   {%- assign eventTeaserTime = include.time -%}
   {%- assign eventTeaserShapes = include.shapes -%}
-  {%- assign eventTeaserAuthors = include.authors -%}
+  {%- assign eventTeaserAuthor = include.author -%}
   {%- assign eventTeaserImage = include.image -%}
   {%- assign eventTeaserBadge = include.badge -%}
   {%- assign eventTeaserPrice = include.price -%}
@@ -30,7 +32,6 @@
   {%- assign eventTeaserUrl = include.url -%}
 {%- endif -%}
 
-{%- assign eventTeaserAuthors = eventTeaserAuthors | replace: '&', '<br/>&' -%}
 {%- assign eventTeaserHref = eventTeaserCta.href | default: eventTeaserUrl -%}
 
 <!-- Shared Event Teaser Section -->
@@ -111,12 +112,14 @@
             textColor=eventTeaserBadge.textColor
           %}
         </div>
-        <div class="event-teaser__authors font-size-2 thin bold">
-          <div class="event-teaser__authors-frame">
-            <div class="event-teaser__authors-background"></div>
-            <div class="event-teaser__authors-foreground">{{ eventTeaserAuthors }}</div>
+        {% if eventTeaserAuthor %}
+          <div class="event-teaser__authors font-size-2 thin bold">
+            <div class="event-teaser__authors-frame">
+              <div class="event-teaser__authors-background"></div>
+              <div class="event-teaser__authors-foreground">{{ site.data.lang[lang].withAuthor }} {{ eventTeaserAuthor | join: '</br>& '}}</div>
+            </div>
           </div>
-        </div>
+        {% endif %}
       </div>
     </div>
   </header>
