@@ -8,6 +8,12 @@
   - authors.html
   - accordion.html in konnekt ist der letzte stand
 
+- career components
+  - benfits to shared components
+  - faq
+  - reviews
+  - techstack
+  - kollegen
 - main navi sticky buggy
 - main navi active state
 - autoplay videos desktop und mobile feature detection autoplay
@@ -18,3 +24,4 @@
 - Change Layouts in shared components so they don't have the manual site name in it
 - benefits in komponente umziehen
 - unified contacts repo aufsetzen
+- content security warning checken
