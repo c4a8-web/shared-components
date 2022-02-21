@@ -107,7 +107,7 @@ EventDetail.args = {
     },
   ],
   image: {
-    img: '/events/authors/authors-demo.png',
+    img: '/demo/authors-demo.png',
     alt: 'lorem ipsum',
   },
   badge: {

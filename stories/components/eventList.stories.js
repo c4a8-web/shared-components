@@ -33,7 +33,7 @@ EventList.args = {
       webcast: true,
       authors: 'Mit Nadine Kern & Max Mustermann',
       image: {
-        img: '/events/authors/authors-demo.png',
+        img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
       },
       badge: {
@@ -63,7 +63,7 @@ EventList.args = {
       webcast: true,
       authors: 'Mit Nadine Kern & Max Mustermann',
       image: {
-        img: '/events/authors/authors-demo.png',
+        img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
       },
       badge: {
@@ -92,7 +92,7 @@ EventList.args = {
       ],
       authors: 'Mit Nadine Kern & Max Mustermann',
       image: {
-        img: '/events/authors/authors-demo.png',
+        img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
       },
       badge: {
@@ -116,7 +116,7 @@ EventList.args = {
       ],
       authors: 'Mit Nadine Kern & Max Mustermann',
       image: {
-        img: '/events/authors/authors-demo.png',
+        img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
       },
       badge: {
@@ -140,7 +140,7 @@ EventList.args = {
       ],
       authors: 'Mit Nadine Kern & Max Mustermann',
       image: {
-        img: '/events/authors/authors-demo.png',
+        img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
       },
       badge: {
@@ -164,7 +164,7 @@ EventList.args = {
       ],
       authors: 'Mit Nadine Kern & Max Mustermann',
       image: {
-        img: '/events/authors/authors-demo.png',
+        img: '/demo/authors-demo.png',
         alt: 'lorem ipsum',
       },
       badge: {
