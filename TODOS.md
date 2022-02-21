@@ -25,3 +25,4 @@
 - benefits in komponente umziehen
 - unified contacts repo aufsetzen
 - content security warning checken
+- event teaser shape hat noch ein problem beim übergeben von obliquity
