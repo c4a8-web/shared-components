@@ -21,6 +21,7 @@ So you can check if everything still works properly and if not look at some issu
 
 A tag is basically a specific version that can then be deployed and released. You can do this through your git client or through the [Github website](https://github.com/c4a8-web/shared-components/releases/new). Usually you use the latest master / main branch to create a tag from. The Structure is _Major Version.Minor Version.Patch_. So for instance usually you
 would just increase the last number so if you are on 0.0.10 you would increase it to 0.0.11. If you made a bigger change you can also increase the minor version and if you made a big change you can also increase the major version.
+If you use the github interface you will always create a release with the newly added tag. So after you created the tag + the release. Simply go to the releases tab and delete the release. The Tag will stay there.
 
 3. Check if your tag is pushed
 
