@@ -69,15 +69,16 @@ $transition-tween-t1: 0.2s ease-in-out;
 
 @keyframes moveTopRight {
   0% {
-    transform: translateX(0%);
-  }
-
-  30% {
-    transform: translateX(10%) translateY(-10%);
+    transform: scale(1);
+    transform-origin: left bottom;
+    position: relative;
   }
 
   100% {
-    transform: translateX(0%);
+    transform: scale(1.2);
+    transform-origin: left bottom;
+    position: relative;
+    top: 1px;
   }
 }
 
