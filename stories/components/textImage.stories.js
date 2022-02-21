@@ -18,23 +18,23 @@ Right.args = {
   alt: 'Consulting Services',
   headline: 'Consulting Services',
   offset: true,
-  // list: [
-  //   {
-  //     ctaText: 'Modern Workplace',
-  //     ctaHref: '/de/modern-workplace/consulting-services',
-  //     link: true,
-  //   },
-  //   {
-  //     ctaText: 'Azure',
-  //     ctaHref: '/de/azure/azure-consulting',
-  //     link: true,
-  //   },
-  //   {
-  //     ctaText: 'Security',
-  //     ctaHref: '/de/security/security-consulting',
-  //     link: true,
-  //   },
-  // ], // TODO comment in after cta-list is migrated
+  list: [
+    {
+      ctaText: 'Modern Workplace',
+      ctaHref: '/de/modern-workplace/consulting-services',
+      link: true,
+    },
+    {
+      ctaText: 'Azure',
+      ctaHref: '/de/azure/azure-consulting',
+      link: true,
+    },
+    {
+      ctaText: 'Security',
+      ctaHref: '/de/security/security-consulting',
+      link: true,
+    },
+  ],
   copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
 };
 
@@ -166,6 +166,7 @@ JobApplication.args = {
 export const LeftFloating = Template.bind({});
 
 LeftFloating.args = {
+  href: '',
   image: getAssetPath('svg/products/protection-shield.svg'),
   imagePreset: 'textImageFloatingSmallSquare',
   imageClasses: 'center',

@@ -23,6 +23,7 @@
 {%- assign textImageList = include.list -%}
 {%- assign textImageCta = include.cta -%}
 {%- assign textImageModal = include.modal -%}
+{%- assign textImageHref = include.href -%}
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageFirstColWidth -%}
@@ -48,7 +49,9 @@
     <div class="row {% if textImageLeft %}flex-row-reverse{% endif %}">
       {% if textImageFloat %}
         <div class="text-image__floating-col col-lg-{{ textImageFirstColWidth }} justify-content-end text-image__floating-img position-absolute top-0 right-0
-                  {% if textImageFloat %}col-xl-{{ textImageFirstColWidthXl }}{% endif %}">
+                  {% if textImageFloat %}col-xl-{{ textImageFirstColWidthXl }}{% endif %}"
+                  {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
+        >
           {%
             include img.html
             img=textImageImage
@@ -69,6 +72,7 @@
                       {{ textImageFirstColWidth }}
                     {% endif %}
                   {%- endif -%}"
+                  {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
       >
         {% if textImageFloat %}
           {% assign imgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
