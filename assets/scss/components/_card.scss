@@ -1,4 +1,6 @@
 .card {
+  max-width: unquote('min(480px, 100vw)');
+
   .ie-curved-x,
   .ie-curved-y {
     display: none;
