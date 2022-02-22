@@ -4,6 +4,7 @@
 {%- assign blogRecentHeadlineLevel = include.level -%}
 {%- assign blogRecentLimit = include.limit | default: 3 -%}
 {%- assign blogRecentBgColor = include.bgColor | default: 'var(--color-blue-light)' -%}
+{%- assign blogRecentEvents = include.events -%}
 
 {%- if blogRecentSlider -%}
   {%- assign skin = 'has-slider' -%}
@@ -17,7 +18,12 @@
   {%- assign hideContainer = include.hideContainer | default: false -%}
 {%- endif -%}
 
-{% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+{% if blogRecentEvents %}
+  {% assign posts = site.events | where_exp:"item","item.lang == page.lang" %}
+{% else %}
+  {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+{% endif %}
+
 {% if blogRecentTag %}
   {% assign tagExpression = '' %}
 
