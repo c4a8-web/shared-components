@@ -7,6 +7,7 @@ import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
 import Contact from './data/contact';
 import Posts from './data/posts';
+import Events from './data/events';
 import Authors from './data/authors';
 import Lang from './data/lang';
 import Cloudinary from './config/cloudinary';
@@ -24,6 +25,7 @@ const site = {
     lang: Lang,
   },
   posts: Posts,
+  events: Events,
   blog_image_path: 'blog/heads/',
 };
 
