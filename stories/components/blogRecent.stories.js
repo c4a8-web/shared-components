@@ -19,3 +19,13 @@ BlogRecent.args = {
   headline: 'lorem ipsum headline',
   slider: true,
 };
+
+export const Events = Template.bind({});
+
+Events.args = {
+  // tag=page.tags
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  slider: true,
+  events: true,
+};
