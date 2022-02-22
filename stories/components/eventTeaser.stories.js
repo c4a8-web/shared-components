@@ -39,12 +39,12 @@ EventTeaserWebcast.args = {
   },
   cta: {
     text: 'Jetzt anmelden',
-    href: 'javascript:void(0)',
+    href: 'https://www.google.com',
     skin: 'primary',
     button: true,
+    external: true,
   },
   variant: 6,
-  url: 'javascript:void(0)',
 };
 
 export const EventTeaserFullWidth = Template.bind({});
@@ -77,7 +77,6 @@ EventTeaserFullWidth.args = {
     button: true,
   },
   variant: 12,
-  url: 'javascript:void(0)',
 };
 
 export const EventTeaserCustomShapes = Template.bind({});
@@ -117,7 +116,6 @@ EventTeaserCustomShapes.args = {
     button: true,
   },
   variant: 6,
-  url: 'javascript:void(0)',
 };
 
 export const EventTeaserTraining = Template.bind({});
@@ -160,6 +158,5 @@ EventTeaser.args = {
     skin: 'secondary is-light',
     button: true,
   },
-  url: 'javascript:void(0)',
   variant: 8,
 };
