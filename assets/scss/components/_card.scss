@@ -20,4 +20,9 @@
       border-radius: 0;
     }
   }
+
+  .card-footer,
+  .card-body {
+    background-color: var(--color-card-background);
+  }
 }

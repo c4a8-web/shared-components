@@ -44,9 +44,9 @@
   --color-varden: #fff8dc;
   --color-sahara: #bd9d11;
   --color-gigas: #543b9c;
-  --color-sahara-sand: #F6EE8C; 
+  --color-sahara-sand: #f6ee8c;
   --color-sunflower: #e1d429;
-  --color-piper: #C66A23;
+  --color-piper: #c66a23;
 
   --color-white: #fff;
 
@@ -111,6 +111,8 @@
 
   --color-badge-icon: var(--color-white);
   --color-badge-background: var(--color-orange);
+
+  --color-card-background: var(--color-black-4);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);
