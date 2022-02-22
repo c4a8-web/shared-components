@@ -1,5 +1,7 @@
 .card {
-  max-width: unquote('min(480px, 100vw)');
+  &:not(.card--large) {
+    max-width: unquote('min(480px, 100vw)');
+  }
 
   .ie-curved-x,
   .ie-curved-y {

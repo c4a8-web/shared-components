@@ -4,6 +4,7 @@
 {%- assign cardTitle = include.title -%}
 {%- assign cardAuthor = include.author -%}
 {%- assign cardDate = include.date -%}
+{%- assign cardLarge = include.large -%}
 
 <!-- Shared Card Section -->
 {% if cardBlogTitlePic contains '.jpg' or cardBlogTitlePic contains '.webp' or cardBlogTitlePic contains '.png' %}
@@ -12,8 +13,8 @@
   {% capture cardImgUrl %}{{ cardBlogTitlePic }}.jpg{% endcapture %}
 {% endif %}
 
-<article class="card {% if include.large %}mb-11{% else %}h-100{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
-  {% if include.large %}
+<article class="card {% if cardLarge %}card--large mb-11{% else %}h-100{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
+  {% if cardLarge %}
     <div class="row no-gutters">
       <div class="col-lg-8">
         <div class="position-relative overflow-hidden">
