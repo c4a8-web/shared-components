@@ -28,6 +28,7 @@
   {% if cardLarge %}
     <div class="row no-gutters">
       <div class="col-lg-8">
+        {% if cardBlogTitlePic %}
         <div class="position-relative overflow-hidden">
           {%
             include img.html
@@ -48,6 +49,7 @@
             </svg>
           </figure>
         </div>
+        {% endif %}
       </div>
 
       <div class="col-lg-4">
@@ -78,22 +80,24 @@
       </div>
     </div>
   {% else %}
-    <div class="card-img-top position-relative">
-      {%
-        include img.html
-        img=cardImgUrl
-        cloudinary=true
-        preset="cardSmall"
-        imgSrcSets=site.data.imgSrcSets.cardSmall
-        alt=cardTitle
-        class="card-img"
-      %}
-      <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
-        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
-          <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
-        </svg>
-      </figure>
-    </div>
+    {% if cardBlogTitlePic %}
+      <div class="card-img-top position-relative">
+        {%
+          include img.html
+          img=cardImgUrl
+          cloudinary=true
+          preset="cardSmall"
+          imgSrcSets=site.data.imgSrcSets.cardSmall
+          alt=cardTitle
+          class="card-img"
+        %}
+        <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
+          <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+            <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+          </svg>
+        </figure>
+      </div>
+    {% endif %}
 
     <div class="card-body">
       <h3><a class="text-inherit" href="{{ cardUrl }}">{{ cardTitle }}</a></h3>
