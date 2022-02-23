@@ -3,6 +3,12 @@
     max-width: unquote('min(480px, 100vw)');
   }
 
+  &.card--event {
+    .card__author {
+      text-align: right;
+    }
+  }
+
   .ie-curved-x,
   .ie-curved-y {
     display: none;
