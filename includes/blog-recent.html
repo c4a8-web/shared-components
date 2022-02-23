@@ -20,6 +20,7 @@
 
 {% if blogRecentEvents %}
   {% assign posts = site.events | where_exp:"item","item.lang == page.lang" %}
+  {% assign posts = posts | where_exp:"item","item.hideInRecent != true" %}
 {% else %}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
 {% endif %}
@@ -104,7 +105,11 @@
         {% for post in posts %}
           {% if forloop.index <= blogRecentLimit %}
             <div class="{{ itemClasses }}">
-              {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
+              {% if post.blogtitlepic %}
+                {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
+              {% else %}
+                {% assign imgUrl = false %}
+              {% endif %}
               {%
                 include card.html
                 title=post.title
@@ -113,6 +118,7 @@
                 date=post.date
                 url=post.url
                 author=post.author
+                event=blogRecentEvents
               %}
             </div>
           {% endif %}
