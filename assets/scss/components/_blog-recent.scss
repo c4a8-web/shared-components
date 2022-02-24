@@ -53,3 +53,8 @@ $blog-recent-arrow-offset-xl: 12;
     margin: 0;
   }
 }
+
+.blog-recent__cta-row {
+  place-content: end;
+  margin: spacing(5) 0;
+}

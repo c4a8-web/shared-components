@@ -28,4 +28,22 @@ Events.args = {
   headline: 'lorem ipsum headline',
   slider: true,
   events: true,
+  cta: {
+    text: 'Primary Button',
+    href: 'javascript:void(0)',
+    skin: 'primary',
+    button: true,
+    external: true,
+  },
+};
+
+export const Combined = Template.bind({});
+
+Combined.args = {
+  // tag=page.tags
+  limit: 21,
+  limitEvents: 2,
+  headline: 'lorem ipsum headline',
+  slider: true,
+  combine: true,
 };
