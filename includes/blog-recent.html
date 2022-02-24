@@ -3,10 +3,11 @@
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
 {%- assign blogRecentLimit = include.limit | default: 3 -%}
-{%- assign blogRecentLimitEvents = include.limitEvents | default: 3 -%}
+{%- assign blogRecentLimitEvents = include.limitEvents | default: blogRecentLimit -%}
 {%- assign blogRecentBgColor = include.bgColor | default: 'var(--color-blue-light)' -%}
 {%- assign blogRecentEvents = include.events -%}
 {%- assign blogRecentCombine = include.combine -%}
+{%- assign blogRecentCta = include.cta -%}
 
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
@@ -146,6 +147,18 @@
           {% endif %}
         {% endfor %}
       </div>
+      {% if blogRecentCta %}
+        <div class="blog-recent__cta-row row col-lg-12">
+          {%
+            include cta.html
+            text=blogRecentCta.text
+            href=blogRecentCta.href
+            skin=blogRecentCta.skin
+            width=blogRecentCta.width
+            external=blogRecentCta.external
+          %}
+        </div>
+      {% endif %}
   {% unless hideContainer %}
     </div>
   {% endunless %}
