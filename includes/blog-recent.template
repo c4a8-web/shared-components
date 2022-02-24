@@ -3,8 +3,14 @@
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
 {%- assign blogRecentLimit = include.limit | default: 3 -%}
+{%- assign blogRecentLimitEvents = include.limitEvents | default: 3 -%}
 {%- assign blogRecentBgColor = include.bgColor | default: 'var(--color-blue-light)' -%}
 {%- assign blogRecentEvents = include.events -%}
+{%- assign blogRecentCombine = include.combine -%}
+
+{%- if blogRecentCombine -%}
+  {%- assign blogRecentEvents = true -%}
+{%- endif -%}
 
 {%- if blogRecentSlider -%}
   {%- assign skin = 'has-slider' -%}
@@ -18,12 +24,22 @@
   {%- assign hideContainer = include.hideContainer | default: false -%}
 {%- endif -%}
 
-{% if blogRecentEvents %}
-  {% assign posts = site.events | where_exp:"item","item.lang == page.lang" %}
-  {% assign posts = posts | where_exp:"item","item.hideInRecent != true" %}
-{% else %}
+{%- if blogRecentEvents -%}
+  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' | reverse %}
+  {% assign events = events | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitEvents %}
+{%- endif -%}
+
+{%- if blogRecentCombine -%}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
-{% endif %}
+  {% assign posts = posts | concat: events %}
+  {% assign posts = posts | sort: 'date' | reverse %}
+{%- else -%}
+  {% if blogRecentEvents %}
+    {% assign posts = events %}
+  {% else %}
+    {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+  {% endif %}
+{%- endif -%}
 
 {% if blogRecentTag %}
   {% assign tagExpression = '' %}
@@ -110,6 +126,12 @@
               {% else %}
                 {% assign imgUrl = false %}
               {% endif %}
+              {% if post.layout == 'post' %}
+                {% assign cardEvent = false %}
+              {% else %}
+                {% assign cardEvent = true %}
+              {% endif %}
+
               {%
                 include card.html
                 title=post.title
@@ -118,7 +140,7 @@
                 date=post.date
                 url=post.url
                 author=post.author
-                event=blogRecentEvents
+                event=cardEvent
               %}
             </div>
           {% endif %}
