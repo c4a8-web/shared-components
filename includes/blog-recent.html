@@ -27,6 +27,7 @@
 
 {%- if blogRecentEvents -%}
   {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' | reverse %}
+  {% assign events = events | where_exp:"item","item.webcast == true" %}
   {% assign events = events | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitEvents %}
 {%- endif -%}
 
@@ -129,8 +130,12 @@
               {% endif %}
               {% if post.layout == 'post' %}
                 {% assign cardEvent = false %}
+                {% assign cardTarget = false %}
+                {% assign cardUrl = post.url %}
               {% else %}
                 {% assign cardEvent = true %}
+                {% assign cardUrl = post.cta.href %}
+                {% assign cardTarget = '_blank' %}
               {% endif %}
 
               {%
@@ -139,9 +144,10 @@
                 blogtitlepic=imgUrl
                 excerpt=post.excerpt
                 date=post.date
-                url=post.url
+                url=cardUrl
                 author=post.author
                 event=cardEvent
+                target=cardTarget
               %}
             </div>
           {% endif %}
