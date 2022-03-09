@@ -297,3 +297,7 @@
   border-width: 0;
   pointer-events: none;
 }
+
+@mixin vue-loading {
+  display: none;
+}

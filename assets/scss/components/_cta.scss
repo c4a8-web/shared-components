@@ -264,3 +264,7 @@
     }
   }
 }
+
+cta {
+  @include vue-loading;
+}

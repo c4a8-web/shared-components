@@ -90,3 +90,37 @@ TODO after figuring out the architecture with kanni
 # New Components
 
 TODO describe the process
+
+# Add variants
+
+To create new variants for a component or to create a new "story" for a component that has none yet you need to create or change a file with the name of the component in camel case. For instance **eventTeaser.stories.js** with .stories.js at the end.
+
+The structure of that file has to be like this:
+
+```
+import { createComponent, getTitle } from '../../.storybook/templates';
+import { includesnameofthehtmlfileshtml as component } from '../../.storybook/generatedIncludes';
+
+const options = getTitle({
+  title: 'Component Name in Storybook',
+});
+
+export default {
+  ...options,
+};
+
+const Template = (args) => createComponent(args, component);
+
+export const NameOfTheVariant = Template.bind({});
+
+NameOfTheVariant.args = {
+  parameter1: 'value',
+};
+
+```
+
+Make sure that the name of the html file is between **includes** and **html** so for event-teaser.html that will be **includeseventteaserhtml** no . or - in the string.
+
+If you only have one variant use the same name as the title so no folder will be created. For more variants use specific names. You need an export block with the args and the parameters for each variant you want to see. After saving you will directly see your variant in storybook. If you don't see it you propably have an error in your story which you will see in the console. Be aware that new stories will be shown at the end of the list and not in alphabetical order. But only for the first time.
+
+When you just add a new variant you can basically copy the last one and just rename the name in those two places and change the paramters accordingly.

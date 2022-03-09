@@ -1,4 +1,6 @@
-import { icon, jobListDetail, cta, modal, headline, modalApplication, form } from './static-templates.js';
+// import './lib/vue/vue.global.js';
+import { icon, cta, jobListDetail, modal, headline, modalApplication, form } from './static-templates.js';
+// import Cta from './vue/cta.js';
 
 let Liquid;
 
@@ -21,6 +23,8 @@ class Templates {
   getStaticTemplate(file) {
     let template = null;
 
+    // const vApp = window.vApp;
+
     switch (file) {
       case 'icon.template':
         template = icon;
@@ -30,6 +34,12 @@ class Templates {
         template = jobListDetail;
         break;
       case 'cta.template':
+        // let vNode = Vue.createVNode(Cta, { text: 'hallo', button: true });
+
+        // vNode.appContext = { ...vApp._context };
+
+        // Vue.render(vNode, vApp._container);
+
         template = cta;
         break;
       case 'modal.template':
@@ -74,6 +84,7 @@ class Templates {
             } else {
               const request = new XMLHttpRequest();
               const staticTemplate = scope.getStaticTemplate(file);
+              // console.log('Templates ~ readFileSync ~ staticTemplate', staticTemplate);
 
               if (staticTemplate) {
                 const fixedComponent = scope.fixComponent(staticTemplate);

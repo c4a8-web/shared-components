@@ -1,7 +1,8 @@
 # List
 
-- webcasts und blogs zusammen über tags in blog-recent
 - Vue Proof of Concept
+- gotcha hidden field erstmal nicht hidden dann im js dann ausblendenl
+- how to create a story variant ?
 - fully migrade
 
   - card.html
@@ -27,3 +28,4 @@
 - Change Layouts in shared components so they don't have the manual site name in it
 - benefits in komponente umziehen
 - try out the mix-blend-mode: difference on the detail pages
+- patch package https://www.npmjs.com/package/patch-package for vue js

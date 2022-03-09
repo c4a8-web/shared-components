@@ -1,4 +1,5 @@
 import i18n from './i18n/index.js';
+import VueSetup from './vue-setup.js';
 
 import Contact from './components/contact.js';
 import FabButton from './components/fab-button.js';
@@ -63,14 +64,17 @@ const initComponentList = function (element) {
 
 const initSharedComponents = function () {
   window.Templates = new Templates();
-
   window.i18n = new i18n();
 
-  initComponentList();
+  VueSetup();
 };
 
 document.addEventListener('DOMContentLoaded', (e) => {
   initSharedComponents();
+});
+
+document.addEventListener('VUE_IS_MOUNTED', (e) => {
+  initComponentList();
 });
 
 export { Form, initSharedComponents, initComponentList, State };

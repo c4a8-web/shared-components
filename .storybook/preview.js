@@ -33,6 +33,12 @@ const removeModal = function () {
   }
 };
 
+function vueForceUpdate() {
+  const customEvent = new CustomEvent('VUE_FORCE_UPDATE', {});
+
+  document.dispatchEvent(customEvent);
+}
+
 channel.on(EVENTS.CHANGE, (theme) => {
   loadTheme(theme);
   Interim();
@@ -41,6 +47,7 @@ channel.on(EVENTS.CHANGE, (theme) => {
 
 channel.on(STORY_RENDERED, () => {
   loadTheme(currentTheme);
+  vueForceUpdate();
   Interim();
   removeModal();
 });
