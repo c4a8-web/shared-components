@@ -214,3 +214,14 @@ div.custom-control,
 .form__form {
   margin-top: spacing(10);
 }
+
+.form__super-field {
+  opacity: 0.0001;
+  position: absolute;
+  pointer-events: none;
+  z-index: -1;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  transform: translateY(-100%);
+}
