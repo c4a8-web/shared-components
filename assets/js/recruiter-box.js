@@ -33,6 +33,8 @@ class RecruiterBox {
       } else {
         jobId = hash.substr(1);
       }
+    } else if (this.options.jobId) {
+      jobId = this.options.jobId;
     }
 
     return jobId;
