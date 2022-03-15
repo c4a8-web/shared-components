@@ -1,7 +1,7 @@
 $animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
 $transition-tween-t1: 0.2s ease-in-out;
 
-@mixin background-grow($color) {
+@mixin background-grow($color, $half: false) {
   position: relative;
   z-index: 1;
 
@@ -19,6 +19,11 @@ $transition-tween-t1: 0.2s ease-in-out;
     animation-fill-mode: forwards;
     animation-timing-function: $animation-transition;
     z-index: -1;
+
+    @if $half {
+      height: 1rem;
+      top: 1rem;
+    }
   }
 }
 
