@@ -5,8 +5,13 @@
 
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = false %}
+{%- else if heroTextImageVariant == 'hero--study' -%}
+  {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
+  {% assign heroTextImageSrcSet = false %}
 {%- endif -%}
 
 {%- if heroTextImageHero.cta -%}
@@ -77,6 +82,7 @@
             alt=heroTextImageHero.background.alt
             class=heroClasses
             cloudinary=heroTextImageBackgroundCloudinary
+            imgSrcSets=heroTextImageSrcSet
           %}
         </div>
       {% endif %}
@@ -120,6 +126,7 @@
             alt=heroTextImageHero.background.alt
             cloudinary=heroTextImageBackgroundCloudinary
             class=heroClasses
+            imgSrcSets=heroTextImageSrcSet
           %}
         </div>
       </div>
