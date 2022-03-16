@@ -308,6 +308,21 @@
       }
     }
 
+    @include media-breakpoint-down(md) {
+      .container:not(.animation) {
+        padding-bottom: 0;
+        margin-bottom: spacing($size: 8, $negative: true);
+      }
+
+      .hero-text-image__headline {
+        margin-bottom: spacing(4);
+      }
+    }
+
+    .hero-text-image__headline {
+      line-height: 1.2em;
+    }
+
     .hero-text-image__background {
       top: auto;
       bottom: -4rem;
@@ -337,11 +352,6 @@
 
     .hero-text-imge__img-spacer,
     .hero-text-image__background-wrapper {
-      @include media-breakpoint-up(lg) {
-        // max-width: 50%;
-        // margin-left: auto;
-      }
-
       @include media-breakpoint-down(md) {
         padding-left: 0;
       }
@@ -415,7 +425,6 @@
     @include z-index;
 
     color: var(--color-hero-icon);
-    // z-index: 1000;
     position: relative;
   }
 

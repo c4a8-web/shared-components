@@ -386,7 +386,7 @@ const jobListDetail = `<!-- Shared Job List Detail Section -->
             "stickyOffsetBottom": 20
           }'
         >
-          <div class="job-list__detail-back page-detail__back page-detail__animation-3">
+          <div class="job-list__detail-back page-detail__back page-detail__animation-3 back back--animated">
             {%
               include icon.html
               icon='arrow'

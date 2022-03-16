@@ -87,6 +87,17 @@
         </div>
       {% endif %}
       <div class="hero-text-image__wrapper col-lg-8">
+        {% if heroTextImageHero.back %}
+          <div class="hero-text-image__back back">
+            {%
+              include icon.html
+              icon='arrow'
+              direction="left"
+              hover=true
+              circle=true
+            %}
+          </div>
+        {% endif %}
         {% if heroTextImageHero.overline %}
           <span class="hero-text-image__overline">
             {{ heroTextImageHero.overline }}
