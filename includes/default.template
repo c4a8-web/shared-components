@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body id="page-top" class="shared-components gkgab">
+
+    {%
+      include navigation.html
+      light=page.light
+    %}
+
+    <main class="page-content" aria-label="Content">
+      {% if page.hero %}
+        {%
+          include hero-text-image.html
+        %}
+      {% endif %}
+     947129371927319273912 {{ content }}
+    </main>
+
+    {% if page.contact %}
+      {% include contact.html %}
+    {% endif %}
+    {% unless page.nofooter %}
+      {% include footer.html %}
+    {% endunless %}
+    {% include footer-copyright.html %}
+    {% include scripts.html %}
+
+    </body>
+  </html>
+  <!-- Page Info: DEFAULT Layout -->

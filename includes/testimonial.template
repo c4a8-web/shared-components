@@ -1,0 +1,12 @@
+---
+layout: default
+---
+
+{%
+  include testimonials-detail.html
+  name=page.name
+  title=page.title
+  location=page.location
+  description=page.content
+  image=page.image
+%}
