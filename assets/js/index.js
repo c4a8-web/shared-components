@@ -1,5 +1,6 @@
 import i18n from './i18n/index.js';
 
+import Back from './components/back.js';
 import Contact from './components/contact.js';
 import FabButton from './components/fab-button.js';
 import FormAttachments from './components/form-attachments.js';
@@ -21,6 +22,7 @@ import Tools from './tools.js';
 
 const componentList = [
   Analytics,
+  Back,
   Contact,
   FabButton,
   FormAttachments,
