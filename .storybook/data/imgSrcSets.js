@@ -11,7 +11,7 @@ const ImgSrcSets = {
       },
       {
         params: 'c_fill,g_face,h_600,w_1000,x_0,y_0/',
-        media: '(max-width: 992px)',
+        media: '(max-width: 1200px)',
       },
       {
         params: 'c_fill,g_face,h_600,w_1350,x_0,y_0/',
