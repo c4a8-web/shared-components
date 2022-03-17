@@ -137,3 +137,10 @@ $transition-tween-t1: 0.2s ease-in-out;
 .svg-shape-animation {
   @include svg-shape-animation;
 }
+
+@mixin move-top-right {
+  animation: moveTopRight;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
+}

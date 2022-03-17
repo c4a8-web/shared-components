@@ -5,10 +5,7 @@
 
   &.cta--external {
     .icon svg {
-      animation: moveTopRight;
-      animation-duration: 0.4s;
-      animation-fill-mode: forwards;
-      animation-timing-function: $animation-transition;
+      @include move-top-right;
     }
   }
 

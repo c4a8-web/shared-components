@@ -1,0 +1,83 @@
+// TODO link this with .container padding
+$service-overview-offset: 15px;
+
+.service-overview {
+  @include media-breakpoint-up(lg) {
+    margin-top: spacing(20);
+  }
+}
+
+.service-overview__header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: spacing(4);
+  margin-bottom: spacing(3);
+  border-bottom: 1px solid var(--color-service-overview-border);
+}
+
+.service-overview__logo-frame {
+  display: flex;
+  align-items: flex-end;
+}
+
+.service-overview__logo {
+  @include z-index;
+
+  background-color: var(--color-white);
+  padding: spacing(3) spacing(4) spacing(3) #{$service-overview-offset};
+  margin-left: -#{$service-overview-offset};
+  transform: translateY(-99%);
+  position: relative;
+
+  &:hover {
+    .icon {
+      svg {
+        @include move-top-right;
+      }
+    }
+  }
+
+  .icon {
+    width: spacing(3);
+    height: spacing(3);
+  }
+
+  @include media-breakpoint-up(lg) {
+    order: 2;
+    z-index: auto;
+    transform: none;
+    padding: 0;
+  }
+}
+
+.service-overview__img {
+  margin-right: spacing(5);
+}
+
+.service-overview__title {
+  flex: 1 0 100%;
+
+  @include media-breakpoint-up(lg) {
+    order: 1;
+    flex: 1 1 auto;
+    padding-top: spacing(3);
+  }
+}
+
+.service-overview__content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.service-overview__list {
+  @include media-breakpoint-up(lg) {
+    flex: 1 0 60%;
+  }
+}
+
+.service-overview__services {
+  @include media-breakpoint-up(lg) {
+    flex: 1 0 40%;
+  }
+}
