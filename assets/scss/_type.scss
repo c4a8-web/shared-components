@@ -210,6 +210,7 @@ $font-style-map: (
   }
 
   %h1-font-size,
+  h1,
   .h1-font-size {
     font-size: $h1-font-size-sm;
     line-height: 1.1em;
@@ -224,6 +225,7 @@ $font-style-map: (
   }
 
   %h2-font-size,
+  h2,
   .h2-font-size {
     @include h2;
 
@@ -237,6 +239,7 @@ $font-style-map: (
   }
 
   %h3-font-size,
+  h3,
   .h3-font-size {
     @include h3;
 
@@ -250,6 +253,7 @@ $font-style-map: (
   }
 
   %h4-font-size,
+  h4,
   .h4-font-size {
     font-size: $h4-font-size-sm;
     font-weight: normal;
