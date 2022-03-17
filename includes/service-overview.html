@@ -37,7 +37,13 @@
             %}
           </div>
           <div class="service-overview__services">
-            services
+            {%
+              include services.html
+              title=serviceOverviewServices.title
+              label=serviceOverviewServices.label
+              value=serviceOverviewServices.value
+              items=serviceOverviewServices.items
+            %}
           </div>
         </div>
       </div>
