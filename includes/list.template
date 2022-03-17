@@ -1,0 +1,11 @@
+{%- assign listItems = include.items -%}
+
+<!-- Shared List Section -->
+<div class="list richtext">
+  <ul class="list__items font-size-2">
+    {% for item in listItems %}
+      <li>{{ item }}</li>
+    {% endfor %}
+  </ul>
+</div>
+<!-- End Shared List Section -->
