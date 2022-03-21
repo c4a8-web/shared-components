@@ -47,6 +47,16 @@ $font-style-map: (
   }
 }
 
+@mixin font-size-xs($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  font-size: $font-size-xs #{$important-string};
+}
+
 @mixin font-size-sm($breakpoint: false, $important: false) {
   $important-string: '';
 
@@ -159,6 +169,8 @@ $font-style-map: (
     line-height: 1.4em;
   }
 
+  %font-size-xs,
+  %font-size-sm,
   %font-size-1,
   %font-size-2,
   %font-size-3,
@@ -171,6 +183,8 @@ $font-style-map: (
   %h4-font-size,
   %h5-font-size,
   %h6-font-size,
+  .font-size-xs,
+  .font-size-sm,
   .font-size-1,
   .font-size-2,
   .font-size-3,
@@ -335,6 +349,11 @@ $font-style-map: (
   %font-size-sm,
   .font-size-sm {
     @include font-size-sm;
+  }
+
+  %font-size-xs,
+  .font-size-xs {
+    @include font-size-xs;
   }
 
   .is-error,

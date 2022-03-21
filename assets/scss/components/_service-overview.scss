@@ -77,7 +77,12 @@ $service-overview-offset: 15px;
 }
 
 .service-overview__services {
+  width: 100%;
+  @include media-breakpoint-up(md) {
+  }
+
   @include media-breakpoint-up(lg) {
     flex: 1 0 40%;
+    width: 40%;
   }
 }
