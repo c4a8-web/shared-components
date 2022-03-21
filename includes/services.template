@@ -5,10 +5,10 @@
 
 <!-- Shared Services Section -->
 <div class="services">
-  <div class="services__title">{{ servicesTitle }}</div>
+  <div class="services__title font-size-xs bold">{{ servicesTitle }}</div>
   <div class="services__items font-size-1">
     {% for item in servicesItems %}
-      <div>
+      <div class="services__item">
         {%
           include cta.html
           text=item.text
@@ -19,7 +19,7 @@
     {% endfor %}
   </div>
   <div class="services__footer">
-    <div class="services__label">{{ servicesLabel }}</div>
+    <div class="services__label font-size-xs bold">{{ servicesLabel }}</div>
     <div class="services__value">{{ servicesValue }}</div>
   </div>
 </div>
