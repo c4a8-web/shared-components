@@ -29,6 +29,12 @@ const site = {
   blog_image_path: 'blog/heads/',
 };
 
+const page = {
+  scripts: {
+    slick: true,
+  },
+};
+
 const fixComponent = function (text) {
   let fixedText = text;
 
@@ -78,7 +84,7 @@ const rewriteInclude = function (engine) {
 };
 
 export const createTemplate = function async(include, template, path = 'includes') {
-  const globals = { site };
+  const globals = { site, page };
   const partialsPath = path;
   const includesPath = `${partialsPath}/`;
 
