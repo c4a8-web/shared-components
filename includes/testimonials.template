@@ -1,0 +1,50 @@
+{%- if page.scripts.slick -%}
+  <!-- Shared Testimonials Section -->
+  {% assign testimonials = include.testimonials %}
+
+  {%- if testimonials.items[0].img -%}
+    {%- assign testimonialsImage = true -%}
+  {% else %}
+    {%- assign testimonialsImage = false -%}
+  {% endif %}
+
+  <div class="testimonials {% if testimonialsImage %}mb-lg-8{% else %}testimonials--no-image{% endif %} mt-8 mt-lg-10">
+    <div class="container space-top-1 space-bottom-2 space-top-lg-2 space-bottom-lg-0">
+      <div class="testimonials__row row">
+        <div class="col-lg-12 mb-4 mb-lg-6">
+          {%
+            include headline.html
+            level=testimonials.level
+            text=testimonials.headline
+            classes="h2-font-size testimonials__headline"
+          %}
+        </div>
+        <div class="col-sm-12 js-slick-carousel mb-lg-n8"
+          data-hs-slick-carousel-options='{
+            "prevArrow": "<span class=\"testimonials__arrow-left slick-arrow rounded-circle\"></span>",
+            "nextArrow": "<span class=\"testimonials__arrow-right slick-arrow rounded-circle\"></span>",
+            "dots": true,
+            "dotsClass": "slick-pagination mt-8 mb-n6"
+          }'
+        >
+          {% for item in testimonials.items %}
+            {% if forloop.index == 1 %}
+              {%- assign active = true -%}
+            {% else %}
+              {%- assign active = false -%}
+            {% endif %}
+            {%
+              include testimonials-entry.html
+              entry=item
+              active=active
+              image=testimonialsImage
+            %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End Shared Testimonials Section -->
+{%- else -%}
+  {% include snippet-warning.html name='slick' %}
+{%- endif -%}
