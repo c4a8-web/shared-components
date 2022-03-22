@@ -19,6 +19,10 @@ $service-overview-offset: 15px;
 .service-overview__logo-frame {
   display: flex;
   align-items: flex-end;
+
+  .icon {
+    align-self: center;
+  }
 }
 
 .service-overview__logo {
@@ -39,8 +43,8 @@ $service-overview-offset: 15px;
   }
 
   .icon {
-    width: spacing(3);
-    height: spacing(3);
+    width: spacing(4);
+    height: spacing(4);
   }
 
   @include media-breakpoint-up(lg) {
@@ -48,6 +52,7 @@ $service-overview-offset: 15px;
     z-index: auto;
     transform: none;
     padding: 0;
+    display: flex;
   }
 }
 
@@ -59,9 +64,14 @@ $service-overview-offset: 15px;
   flex: 1 0 100%;
 
   @include media-breakpoint-up(lg) {
+    line-height: 1em;
     order: 1;
     flex: 1 1 auto;
     padding-top: spacing(3);
+  }
+
+  @include media-breakpoint-up(xl) {
+    line-height: 1.2em;
   }
 }
 
@@ -73,7 +83,7 @@ $service-overview-offset: 15px;
 .service-overview__list {
   @include media-breakpoint-up(lg) {
     flex: 1 0 60%;
-    padding-right: spacing(14);
+    padding-right: spacing(16);
   }
 }
 
