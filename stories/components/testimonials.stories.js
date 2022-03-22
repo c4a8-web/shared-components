@@ -49,9 +49,10 @@ NoImage.args = {
   testimonials: {
     items: [
       {
-        text: 'Die Entscheidung für einen Wechsel in die Azure Cloud wurde maßgeblich durch den Dialog mit glueckkanja-gab vorangetrieben. Neben einer insgesamt kosteneffizienten Cloud-Infrastruktur haben wir zusammen mit unserem 100 % Cloud Modern Desktop einen Arbeitsplatz geschaffen, mit dem wir unsere Geschäftsanwender schnell, sicher und flexibel unterstützen können.',
-        name: 'Patrick Lange',
-        company: 'Franz Haniel & Cie. GmbH',
+        text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
+        name: 'Ronnie Kolk',
+        position: 'Projektmanager',
+        company: 'Pöppelmann GmbH & Co.KG',
       },
     ],
   },

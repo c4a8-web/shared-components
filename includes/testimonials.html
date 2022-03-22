@@ -8,7 +8,7 @@
     {%- assign testimonialsImage = false -%}
   {% endif %}
 
-  <div class="testimonials {% unless testimonialsImage %}testimonials--no-image{% endunless %} mt-8 mt-lg-10 mb-lg-8">
+  <div class="testimonials {% if testimonialsImage %}mb-lg-8{% else %}testimonials--no-image{% endif %} mt-8 mt-lg-10">
     <div class="container space-top-1 space-bottom-2 space-top-lg-2 space-bottom-lg-0">
       <div class="testimonials__row row">
         <div class="col-lg-12 mb-4 mb-lg-6">
