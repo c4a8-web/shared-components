@@ -1,7 +1,7 @@
 .services {
   padding-top: spacing(4);
   margin-top: spacing(5);
-  border-top: 2px solid var(--color-service-border);
+  border-top: 2px solid var(--color-services-border);
 
   @include media-breakpoint-up(md) {
     display: flex;
@@ -19,6 +19,7 @@
 .services__label,
 .services__title {
   text-transform: uppercase;
+  color: var(--color-services-labels);
 }
 
 .services__title {
@@ -47,8 +48,8 @@
   padding-top: spacing(4);
   padding-bottom: spacing(5);
   margin-top: spacing(4);
-  border-top: 1px solid var(--color-service-border);
-  border-bottom: 2px solid var(--color-service-border);
+  border-top: 1px solid var(--color-services-border);
+  border-bottom: 2px solid var(--color-services-border);
   flex: 1 0 100%;
 
   @include media-breakpoint-up(md) {
