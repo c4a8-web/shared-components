@@ -6,7 +6,7 @@
 {% capture videoId %}video-id__{{ videoInner.id }}{% endcapture %}
 {% capture videoFrameId %}{{ videoId }}-frame{% endcapture %}
 {% capture videoLevel %}{{ include.level | default: "h4" }}{% endcapture %}
-<!-- Shared Video Inner Block -->
+<!-- Shared Video Inner Section -->
 <div class="video d-flex flex-column h-100 space-bottom-1 space-bottom-lg-0 {% if videoInnerVariant %}video--{{ videoInnerVariant }}{% endif %}">
   <div id="{{ videoId }}" class="video-player {% unless videoInnerVariant %}bg-dark{% endunless %}">
     {% if videoInner.lightbox %}
@@ -129,4 +129,4 @@
     </div>
   {% endif %}
 </div>
-<!-- End Shared Video Inner Block -->
+<!-- End Shared Video Inner Section -->
