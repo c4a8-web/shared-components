@@ -1,0 +1,16 @@
+.video {
+  &.video--post {
+    img {
+      left: 0;
+      max-width: inherit;
+    }
+  }
+}
+
+.video__content {
+  background-color: var(--color-black-4);
+}
+
+.video__logo {
+  text-align: right;
+}

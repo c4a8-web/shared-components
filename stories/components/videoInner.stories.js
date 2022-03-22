@@ -25,14 +25,17 @@ VideoInner.args = {
   },
 };
 
-// export const VideoNoContent = Template.bind({});
+export const VideoInnerPost = Template.bind({});
 
-// VideoNoContent.args = {
-//   video: {
-//     thumb: 'thumbs/video-thumb-haniel.jpg',
-//     alt: 'Video Casestudy Franz Haniel',
-//     id: 'hV97zDTlDko',
-//     logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
-//     logoAlt: 'Franz Haniel',
-//   },
-// };
+VideoInnerPost.args = {
+  variant: 'post',
+  video: {
+    thumb: 'thumbs/video-thumb-haniel.jpg',
+    alt: 'Video Casestudy Franz Haniel',
+    id: 'hV97zDTlDko',
+    headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+    logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
+    logoAlt: 'Franz Haniel',
+    text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+  },
+};
