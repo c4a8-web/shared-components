@@ -26,4 +26,6 @@
   - muss noch fertig migriert werden
 - Change Layouts in shared components so they don't have the manual site name in it
 - benefits in komponente umziehen
+- aside in eine komponente umziehen. so dass man beliebig viele texte als paragraph übergeben kann und 1 bild für das aside element als html tag ohne klasse
+- text für varianten erstellen nochmal anpassen between includes and html noch klarer erklären
 - try out the mix-blend-mode: difference on the detail pages
