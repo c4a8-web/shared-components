@@ -1,5 +1,6 @@
 import i18n from './i18n/index.js';
 
+import BackToTop from './components/back-to-top.js';
 import Back from './components/back.js';
 import Contact from './components/contact.js';
 import FabButton from './components/fab-button.js';
@@ -22,6 +23,7 @@ import Tools from './tools.js';
 
 const componentList = [
   Analytics,
+  BackToTop,
   Back,
   Contact,
   FabButton,

@@ -5,7 +5,7 @@ class Tools {
     maximumFractionDigits: 0,
   });
 
-  static scrollIntoView(element) {
+  static scrollIntoView(element, smooth) {
     if (element) {
       const header = document.querySelector('header');
 
@@ -17,9 +17,13 @@ class Tools {
 
       window.scrollTo({
         top: offsetPosition,
-        behavior: 'auto',
+        behavior: smooth ? 'smooth' : 'auto',
       });
     }
+  }
+
+  static scrollToTop() {
+    Tools.scrollIntoView(document.querySelector('body'), true);
   }
 
   static getParentComponent(element) {
