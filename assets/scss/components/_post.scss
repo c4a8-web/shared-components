@@ -1,5 +1,6 @@
 $post-offset-spacing-xl: 7.5rem;
 $post-content-width-lg: 80%;
+$post-headline-top-spacing: spacing(20);
 
 .post {
   .post-title {
@@ -26,7 +27,7 @@ $post-content-width-lg: 80%;
         background-color: var(--color-green-blue);
         color: var(--color-white);
         padding: $spacing-content-default $spacing-content-default 2.5rem;
-        margin: spacing(16) 0 0 0;
+        margin: $post-headline-top-spacing 0 0 0;
 
         @include media-breakpoint-up(lg) {
           width: $post-content-width-lg;
@@ -125,7 +126,30 @@ $post-content-width-lg: 80%;
       + h4,
       + h5,
       + h6 {
-        margin-top: spacing(20);
+        margin-top: $post-headline-top-spacing;
+      }
+
+      &.has-aside {
+        width: 60%;
+      }
+
+      &.is-aside {
+        width: 40%;
+        position: absolute;
+        padding-left: spacing(14);
+        right: 0;
+        transform: translateY(-100%);
+
+        img {
+          max-width: inherit;
+          left: 0;
+          width: 100%;
+          margin-bottom: spacing($size: 2, $negative: true);
+
+          @include media-breakpoint-up(xl) {
+            width: calc(100% + #{$post-offset-spacing-xl});
+          }
+        }
       }
     }
   }
