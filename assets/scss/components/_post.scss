@@ -116,7 +116,17 @@ $post-content-width-lg: 80%;
         margin-top: 0;
       }
 
-      margin: 2rem 0;
+      margin: spacing(8) 0;
+    }
+
+    p {
+      + h2,
+      + h3,
+      + h4,
+      + h5,
+      + h6 {
+        margin-top: spacing(20);
+      }
     }
   }
 
