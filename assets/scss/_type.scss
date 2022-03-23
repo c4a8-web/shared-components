@@ -129,6 +129,16 @@ $font-style-map: (
   // }
 }
 
+@mixin font-mods($weight: 'light') {
+  @if $weight == 'light' {
+    font-weight: 100 !important;
+
+    strong {
+      font-weight: inherit;
+    }
+  }
+}
+
 .shared-components {
   %h1,
   .h1,
@@ -207,11 +217,7 @@ $font-style-map: (
     }
 
     &.light {
-      font-weight: 100 !important;
-
-      strong {
-        font-weight: inherit;
-      }
+      @include font-mods('light');
     }
 
     &.wide {

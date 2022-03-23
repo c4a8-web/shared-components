@@ -3,12 +3,51 @@
   color: var(--color-white);
 
   &.testimonials--no-image {
-    padding-bottom: spacing(22);
+    padding-bottom: spacing(24);
 
     .testimonials__entry-quote,
     .testimonials__entry-infos,
     .testimonials__entry-text {
       text-align: center;
+    }
+
+    .testimonials__entry-text {
+      @include h2;
+    }
+
+    .testimonials__entry-text-wrapper {
+      margin: spacing(16) 0;
+    }
+  }
+
+  &:not(.testimonials--no-image) {
+    .testimonials__entry-text {
+      @include media-breakpoint-up(lg) {
+        @include aspect-ratio(400, 160);
+
+        overflow: hidden;
+
+        &.font-size-3 {
+          font-size: 1rem;
+          line-height: 1.5rem;
+        }
+      }
+
+      @include media-breakpoint-up(xl) {
+        @include aspect-ratio(400, 160);
+
+        &.font-size-3 {
+          font-size: 1.1rem;
+          line-height: 1.8rem;
+        }
+      }
+
+      @include media-breakpoint-up(xxl) {
+        &.font-size-3 {
+          font-size: 1.5rem;
+          line-height: 2rem;
+        }
+      }
     }
   }
 
@@ -65,6 +104,10 @@
     top: -11%;
     padding-bottom: 4.5rem;
   }
+}
+
+.testimonials__entry-position {
+  margin-top: spacing(4);
 }
 
 .testimonials__entry-name {
@@ -128,35 +171,6 @@
 
   @include media-breakpoint-up(lg) {
     right: 3.5rem;
-  }
-}
-
-.testimonials__entry-text {
-  @include media-breakpoint-up(lg) {
-    @include aspect-ratio(400, 160);
-
-    overflow: hidden;
-
-    &.font-size-3 {
-      font-size: 1rem;
-      line-height: 1.5rem;
-    }
-  }
-
-  @include media-breakpoint-up(xl) {
-    @include aspect-ratio(400, 160);
-
-    &.font-size-3 {
-      font-size: 1.1rem;
-      line-height: 1.8rem;
-    }
-  }
-
-  @include media-breakpoint-up(xxl) {
-    &.font-size-3 {
-      font-size: 1.5rem;
-      line-height: 2rem;
-    }
   }
 }
 
