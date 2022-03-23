@@ -1,0 +1,24 @@
+<!-- Shared Back to Top Section -->
+<div class="back-to-top ">
+  <div class="back-to-top__start"></div>
+  <div class="back-to-top__wrapper ad-inline-block js-sticky-block"
+    data-hs-sticky-block-options='{
+      "parentSelector": ".back-to-top",
+      "breakpoint": "xs",
+      "startPoint": ".back-to-top__start",
+      "endPoint": "9999999",
+      "stickyOffsetTop": "0",
+      "stickyOffsetBottom": 20
+    }'
+  >
+    <div class="back-to-top__icon">
+      {%
+        include icon.html
+        icon='arrow'
+        size="large"
+      %}
+    </div>
+  </div>
+  <div class="back-to-top__end"></div>
+</div>
+<!-- End Shared Back to Top Section -->
