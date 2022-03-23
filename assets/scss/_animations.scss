@@ -33,7 +33,7 @@ $transition-tween-t1: 0.2s ease-in-out;
   }
 
   to {
-    width: 85%;
+    width: unquote('min(30vw, 150px)');
   }
 }
 
