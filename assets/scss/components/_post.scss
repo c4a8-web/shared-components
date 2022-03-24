@@ -19,7 +19,9 @@ $post-headline-top-spacing: spacing(20);
   }
 
   main {
-    h2 {
+    h2,
+    h3,
+    h4 {
       &[id^='über'],
       &[id^='about'],
       &#fazit,
@@ -139,12 +141,14 @@ $post-headline-top-spacing: spacing(20);
         padding-left: spacing(14);
         right: 0;
         transform: translateY(-100%);
+        margin-bottom: 0;
 
         img {
           max-width: inherit;
           left: 0;
           width: 100%;
-          margin-bottom: spacing($size: 2, $negative: true);
+          margin-bottom: spacing(6);
+          margin-top: 0;
 
           @include media-breakpoint-up(xl) {
             width: calc(100% + #{$post-offset-spacing-xl});
