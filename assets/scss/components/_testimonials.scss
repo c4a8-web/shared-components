@@ -21,6 +21,10 @@
   }
 
   &:not(.testimonials--no-image) {
+    &:last-child {
+      margin-bottom: spacing(0) !important;
+    }
+
     .testimonials__entry-text {
       @include media-breakpoint-up(lg) {
         @include aspect-ratio(400, 160);
