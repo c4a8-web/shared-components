@@ -1,4 +1,4 @@
-$back-to-top-size: spacing(18);
+$back-to-top-size: spacing(12);
 $back-to-top-bottom-offset-lg: 16px;
 $back-to-top-bottom-offset-xs: 32px;
 
@@ -64,6 +64,6 @@ $back-to-top-bottom-offset-xs: 32px;
   transform: translateY(100%) rotate(-90deg);
 
   svg {
-    width: 70%;
+    width: 50%;
   }
 }
