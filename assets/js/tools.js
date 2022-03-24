@@ -157,6 +157,10 @@ class Tools {
       (element) => element.className && element.className.includes && element.className.includes(name)
     );
   }
+
+  static getExtension(fileName) {
+    return fileName.split('.').pop();
+  }
 }
 
 export default Tools;

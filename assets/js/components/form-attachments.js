@@ -83,7 +83,7 @@ class FormAttachments extends BaseComponent {
   isAllowedFileExtension(file) {
     const accept = this.file.getAttribute('accept')?.toLowerCase();
     const allowedExtensions = accept?.split(',') || [];
-    const fileExtension = file.name.split('.')[1];
+    const fileExtension = Tools.getExtension(file.name);
 
     return allowedExtensions.includes(`.${fileExtension}`);
   }
