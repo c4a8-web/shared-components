@@ -18,7 +18,7 @@ TestimonialTeaser.args = {
   name: 'Matti Puolitaival',
   title: 'Senior Consultant Azure',
   img: {
-    img: 'people/testimonials/matti-puolitaival_sample.png',
+    img: 'people/testimonials/matti-puolitaival.png',
     alt: 'lorem ipsum',
   },
 };

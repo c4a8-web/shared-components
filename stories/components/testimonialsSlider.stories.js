@@ -24,7 +24,7 @@ TestimonialsSlider.args = {
       name: '1Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       img: {
-        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -33,7 +33,7 @@ TestimonialsSlider.args = {
       name: '2Matti Puolitaival',
       title: 'Senior Consultant Azure',
       img: {
-        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -42,7 +42,7 @@ TestimonialsSlider.args = {
       name: '3Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       img: {
-        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -51,7 +51,7 @@ TestimonialsSlider.args = {
       name: '4Matti Puolitaival',
       title: 'Senior Consultant Azure',
       img: {
-        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -60,7 +60,7 @@ TestimonialsSlider.args = {
       name: '5Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       img: {
-        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -69,7 +69,7 @@ TestimonialsSlider.args = {
       name: '6Matti Puolitaival',
       title: 'Senior Consultant Azure',
       img: {
-        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival_sample.png',
+        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
