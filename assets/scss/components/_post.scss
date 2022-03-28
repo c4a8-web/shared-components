@@ -1,6 +1,8 @@
 $post-offset-spacing-xl: 7.5rem;
 $post-content-width-lg: 80%;
 $post-headline-top-spacing: spacing(20);
+$post-conclusion-spacing-sm: spacing(4);
+$post-conclusion-spacing-lg: $spacing-content-default;
 
 .post {
   .post-title {
@@ -28,19 +30,24 @@ $post-headline-top-spacing: spacing(20);
       &#conclusion {
         background-color: var(--color-green-blue);
         color: var(--color-white);
-        padding: $spacing-content-default $spacing-content-default 2.5rem;
+        padding: $post-conclusion-spacing-sm $post-conclusion-spacing-sm spacing(10);
         margin: $post-headline-top-spacing 0 0 0;
-
-        @include media-breakpoint-up(lg) {
-          width: $post-content-width-lg;
-        }
 
         ~ p {
           background-color: var(--color-green-blue);
           color: var(--color-white);
-          padding: 0 $spacing-content-default $spacing-content-default;
+          padding: 0 $post-conclusion-spacing-sm $post-conclusion-spacing-sm;
           margin-top: -1px;
           margin-bottom: 0;
+        }
+
+        @include media-breakpoint-up(lg) {
+          padding: $post-conclusion-spacing-lg $post-conclusion-spacing-lg spacing(10);
+          width: $post-content-width-lg;
+
+          ~ p {
+            padding: 0 $post-conclusion-spacing-lg $post-conclusion-spacing-lg;
+          }
         }
       }
 
@@ -132,25 +139,31 @@ $post-headline-top-spacing: spacing(20);
       }
 
       &.has-aside {
-        width: 60%;
+        @include media-breakpoint-up(lg) {
+          width: 60%;
+        }
       }
 
       &.is-aside {
-        width: 40%;
-        position: absolute;
-        padding-left: spacing(14);
-        right: 0;
-        transform: translateY(-100%);
-        margin-bottom: 0;
+        @include media-breakpoint-up(lg) {
+          width: 40%;
+          position: absolute;
+          padding-left: spacing(14);
+          right: 0;
+          transform: translateY(-100%);
+          margin-bottom: 0;
 
-        img {
-          max-width: inherit;
-          left: 0;
-          width: 100%;
-          margin-bottom: spacing(6);
-          margin-top: 0;
+          img {
+            max-width: inherit;
+            left: 0;
+            width: 100%;
+            margin-bottom: spacing(6);
+            margin-top: 0;
+          }
+        }
 
-          @include media-breakpoint-up(xl) {
+        @include media-breakpoint-up(xl) {
+          img {
             width: calc(100% + #{$post-offset-spacing-xl});
           }
         }
