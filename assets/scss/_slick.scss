@@ -82,6 +82,22 @@ $slick-arrow-offset: 2;
 }
 
 .shared-components {
+  .slick--no-offset {
+    .slick-slide {
+      &:first-of-type {
+        margin-left: 0;
+
+        @include media-breakpoint-up(sm) {
+          margin-left: 0;
+        }
+
+        @include media-breakpoint-up(lg) {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
   .slick-track,
   .slick-list {
     display: flex;
