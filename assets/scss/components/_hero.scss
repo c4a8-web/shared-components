@@ -339,8 +339,11 @@
     }
 
     .hero-text-image__subline {
-      @include background-grow($color: var(--color-yellow), $half: true);
       @include font-size-2;
+
+      .highlight {
+        @include text-highlight;
+      }
     }
 
     .hero-text-imge__img-spacer {

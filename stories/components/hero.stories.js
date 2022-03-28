@@ -183,7 +183,7 @@ HeroTextImageStudy.args = {
     back: true,
     headline: 'Pöppelmann Case',
     subline:
-      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      '<span class="highlight">Lorem ipsum dolor</span> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
     background: {
       img: '/casestudies/casestudy-demo.png',
       alt: 'Img',
