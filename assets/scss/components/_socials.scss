@@ -1,0 +1,42 @@
+.socials__label {
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: var(--color-trout);
+  font-weight: bold;
+}
+
+.socials {
+  display: inline-flex;
+
+  &.socials--epxand {
+    width: 100%;
+
+    .socials__item {
+      &:first-child {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  .fas,
+  .fab {
+    font-size: 1.6em;
+    color: var(--color-trout);
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  &.is-vertical-xl {
+    @include media-breakpoint-up(xl) {
+      display: flex;
+      flex-direction: column;
+
+      .fas,
+      .fab {
+        font-size: 1.5em;
+      }
+    }
+  }
+}

@@ -27,12 +27,14 @@ const site = {
   posts: Posts,
   events: Events,
   blog_image_path: 'blog/heads/',
+  url: 'http://localhost:6006/?',
 };
 
 const page = {
   scripts: {
     slick: true,
   },
+  url: '',
 };
 
 const fixComponent = function (text) {

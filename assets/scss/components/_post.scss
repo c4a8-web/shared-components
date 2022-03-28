@@ -263,6 +263,10 @@ $post-conclusion-spacing-lg: $spacing-content-default;
 }
 
 .post__sticky-bar {
+  &.post__sticky-bar--lg-only {
+    display: none;
+  }
+
   @include media-breakpoint-up(xl) {
     display: flex;
     margin-bottom: 0;
