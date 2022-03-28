@@ -1,0 +1,69 @@
+{%- assign lang = page.lang | default: 'de' -%}
+
+{%- assign socialsLabel = include.hideLabel -%}
+{%- assign socialsAuthor = include.author -%}
+{%- assign socialsVertical = include.vertical -%}
+{%- assign socialsExpand = include.expand -%}
+
+{%- assign twitterUrl = 'https://www.twitter.com/' -%}
+{%- assign linkedinUrl = 'https://www.linkedin.com/in/' -%}
+
+{%- if socialsLabel -%}
+  {%- assign showLabel = false -%}
+{%- else -%}
+  {%- assign showLabel = true -%}
+{%- endif -%}
+
+{%- if socialsVertical -%}
+  {%- assign classes = 'is-vertical-xl mr-5 mr-xl-0 align-items-xl-start mb-xl-4' -%}
+  {%- assign iconClasses = 'mb-5 mr-xl-0' -%}
+{%- else -%}
+  {%- assign classes = '' -%}
+  {%- assign iconClasses = '' -%}
+{%- endif -%}
+
+{%- if socialsAuthor -%}
+  {%- capture list -%}
+  {{ twitterUrl }}{{ socialsAuthor.twitter }},
+  {{ linkedinUrl }}{{ socialsAuthor.linkedin }}
+  {%- endcapture -%}
+  {%- capture iconList -%}
+  fab fa-twitter,
+  fab fa-linkedin
+  {%- endcapture -%}
+{%- else -%}
+  {%- capture shareUrl -%}{{ site.url }}{{ page.url }}{%- endcapture -%}
+
+  {%- capture list -%}
+  mailto:?subject={{ shareUrl }},
+  https://www.linkedin.com/shareArticle?mini=true&url={{ shareUrl }},
+  https://www.xing.com/app/user?op=share;url={{ shareUrl }},
+  https://twitter.com/intent/tweet?text=&url={{ shareUrl }}
+  {%- endcapture -%}
+  {%- capture iconList -%}
+  fas fa-envelope,
+  fab fa-linkedin,
+  fab fa-xing,
+  fab fa-twitter
+  {%- endcapture -%}
+{%- endif -%}
+
+{% assign list = list | strip | strip_newlines | split: "," %}
+{% assign iconList = iconList | strip | strip_newlines | split: "," %}
+
+<!-- Shared Socials -->
+{%- if list -%}
+  <div class="socials align-items-center {{ classes }}{% if socialsExpand %}socials--epxand{% endif %}">
+    {%- if showLabel -%}
+      <span class="socials__label mr-4">{{ site.data.lang[lang].follow }}</span>
+    {%- endif -%}
+
+    {%- for url in list -%}
+      <a href="{{ url }}" target="_blank" rel="noopener"
+        class="socials__item {% unless forloop.last %}{% if socialsExpand %}mr-5{% else %}mr-3{% endif %}{% endunless %} {{ iconClasses }}" >
+        <i class="{{ iconList[forloop.index0 ] }}"></i>
+      </a>
+    {%- endfor -%}
+  </div>
+{%- endif -%}
+<!-- End Shared Socials -->
