@@ -33,6 +33,7 @@ const site = {
 const page = {
   scripts: {
     slick: true,
+    video: true,
   },
   url: '',
 };
