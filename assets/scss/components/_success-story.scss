@@ -1,0 +1,24 @@
+.success-story {
+  position: relative;
+  overflow: hidden;
+}
+
+.success-story__bg {
+  position: absolute;
+  height: 420vw;
+  width: 148vh;
+  left: -188px;
+  top: 100px;
+  transform: rotate(320deg);
+  transform-origin: top left;
+
+  @include media-breakpoint-up(md) {
+    transform: rotate(310deg);
+  }
+
+  @include media-breakpoint-up(lg) {
+    left: -100px;
+    top: 130px;
+    transform: rotate(288deg);
+  }
+}

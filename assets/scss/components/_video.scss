@@ -1,3 +1,13 @@
+.video__player-btn:hover,
+.video__player:hover {
+  cursor: pointer;
+
+  .video__player-icon {
+    transform: scale(1.1);
+    color: var(--color-primary-accent);
+  }
+}
+
 .video {
   &.video--post {
     img {
@@ -13,4 +23,16 @@
 
 .video__logo {
   text-align: right;
+}
+
+.video__player {
+  position: relative;
+}
+
+.video__player-btn {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  place-items: center;
+  place-content: center;
 }

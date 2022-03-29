@@ -1,0 +1,22 @@
+{%- if page.scripts.video -%}
+  {%- assign video = include.video -%}
+  {%- assign videoLightbox = video.lightbox -%}
+
+  {%- if videoLightbox and page.scripts.lightbox -%}
+    {%
+      include video-inner.html
+      video=video
+    %}
+  {%- else -%}
+    {%- if videoLightbox -%}
+      {% include snippet-warning.html name='lightbox' %}
+    {%- else -%}
+      {%
+        include video-inner.html
+        video=video
+      %}
+    {%- endif -%}
+  {%- endif -%}
+{%- else -%}
+  {% include snippet-warning.html name='video' %}
+{%- endif -%}
