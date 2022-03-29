@@ -1,0 +1,29 @@
+{%- assign successStory = include.successStory -%}
+{%- assign successStoryLevel = include.level | default: "h3" -%}
+
+<!-- Shared Success Story Section -->
+<div class="success-story mt-8 mt-lg-10">
+  <div class="success-story__bg" style="background-color:{{ successStory.bgColor }}"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 col-md-10 mt-6 mt-lg-8">
+        {%
+          include headline.html
+          level=successStoryLevel
+          text=successStory.headline
+          classes="h2-font-size"
+        %}
+        <div class="mt-5 mb-5 w-lg-65">{{ successStory.subline }}</div>
+      </div>
+      {% for video in successStory.videos %}
+        <div class="col-lg-6 col-md-10 mb-lg-5">
+          {%
+            include video.html
+            video=video
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- End Shared Success Story Section -->
