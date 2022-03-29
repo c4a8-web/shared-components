@@ -9,7 +9,7 @@
 
 <!-- Shared Video Inner Section -->
 <div class="video d-flex flex-column h-100 space-bottom-1 space-bottom-lg-0 {% if videoInnerVariant %}video--{{ videoInnerVariant }}{% endif %}">
-  <div id="{{ videoId }}" class="video__player {% unless videoInnerVariant %}bg-dark{% endunless %}">
+  <div id="{{ videoId }}" class="video__player {% unless videoInnerVariant %}bg-dark{% endunless %} {% if videoInner.ctaText %}video__player--has-link{% endif %}">
     {% if videoInner.lightbox %}
       <a class="js-fancybox media-viewer video-player-btn" href="javascript:;"
         data-hs-fancybox-options='{
@@ -68,6 +68,8 @@
             <i class="fas fa-play"></i>
           </span>
         </a>
+      {% else %}
+        {% comment %}TODO placeholder to click and hover the button{% endcomment %}
       {% endif %}
 
       <div class="embed-responsive embed-responsive-16by9">
@@ -77,7 +79,7 @@
 
   </div>
   {% if videoInner.headline %}
-    <div class="video__content flex-grow-1 py-4 px-3 p-lg-5">
+    <div class="video__content {% if videoInner.ctaText %}hover__parent{% endif %} flex-grow-1 py-4 px-3 p-lg-5" {% if videoInner.ctaText %}onclick="this.querySelector('a').click()"{% endif %}>
       <div class="row no-gutters d-flex flex-wrap">
         {% if videoInner.logo %}
           <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">

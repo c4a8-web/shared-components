@@ -1,11 +1,12 @@
 // TODO look at for implementation https://github.com/nhoizey/jekyll-cloudinary/blob/master/lib/jekyll/cloudinary.rb
 
 const dummyDimensions = function (img) {
-  console.log('dummyDimensions ~ img', img);
   let width;
   let height;
 
   switch (img) {
+    case 'thumbs/video-thumb-wvd-webcast.jpg':
+    case 'thumbs/video-thumb-fuchs.jpg':
     case 'thumbs/video-thumb-uniper.jpg':
     case 'thumbs/video-thumb-haniel.jpg':
       width = 1280;

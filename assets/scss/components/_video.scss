@@ -1,10 +1,16 @@
 .video__player-btn:hover,
-.video__player:hover {
+.video__player.video__player--has-link:hover {
   cursor: pointer;
 
   .video__player-icon {
     transform: scale(1.1);
     color: var(--color-primary-accent);
+  }
+}
+
+.video__content:hover {
+  &.hover__parent {
+    cursor: pointer;
   }
 }
 
