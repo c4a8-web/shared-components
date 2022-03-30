@@ -1,4 +1,9 @@
 {%- assign successStory = include.successStory -%}
+{% if successStory.videos.length > 2 %}
+  {%- assign successStorySlider = true -%}
+{% else %}
+  {%- assign successStorySlider = false -%}
+{% endif %}
 {%- assign successStoryLevel = include.level | default: "h3" -%}
 
 <!-- Shared Success Story Section -->
@@ -15,14 +20,67 @@
         %}
         <div class="mt-5 mb-5 w-lg-65">{{ successStory.subline }}</div>
       </div>
-      {% for video in successStory.videos %}
-        <div class="col-lg-6 col-md-10 mb-lg-5">
-          {%
-            include video.html
-            video=video
-          %}
+      {% if successStorySlider %}
+        <div class="col success-story__container js-slick-carousel"
+          data-hs-slick-carousel-options='{
+            "slidesToShow": 2,
+            "slidesToScroll": 2,
+            "prevArrow": "<span class=\"slick__arrow-left rounded-circle\"></span>",
+            "nextArrow": "<span class=\"slick__arrow-right rounded-circle\"></span>",
+            "dots": true,
+            "centerMode": false,
+            "dotsClass": "slick-pagination is-default",
+            "responsive": [{
+              "breakpoint": 992,
+              "settings": {
+                "centerMode": true,
+                "infinite": true,
+                "centerPadding": "30px",
+                "slidesToShow": 2,
+                "slidesToScroll": 2
+                }
+              }, {
+              "breakpoint": 768,
+              "settings": {
+                "centerMode": true,
+                "infinite": false,
+                "centerPadding": "30px",
+                "slidesToShow": 1,
+                "slidesToScroll": 1
+                }
+              }, {
+                "breakpoint": 576,
+                "settings": {
+                  "centerMode": true,
+                  "infinite": false,
+                  "centerPadding": "20px",
+                  "slidesToShow": 1,
+                  "slidesToScroll": 1
+              }
+            }]
+          }'
+
+        >
+
+          {% for video in successStory.videos %}
+              <div class="success-story__slide mb-lg-5">
+              {%
+                include video.html
+                video=video
+              %}
+            </div>
+          {% endfor %}
         </div>
-      {% endfor %}
+      {% else %}
+        {% for video in successStory.videos %}
+          <div class="col-lg-6 col-md-10 mb-lg-5">
+            {%
+              include video.html
+              video=video
+            %}
+          </div>
+        {% endfor %}
+      {% endif %}
     </div>
   </div>
 </div>
