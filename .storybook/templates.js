@@ -147,13 +147,15 @@ export const createComponent = function async(include, component) {
   return createTemplate(include, component);
 };
 
-const getTitle = ({ page, title, docs }) => {
+const getTitle = ({ page, title, docs, context }) => {
   let type;
 
   if (page) {
     type = 'Pages';
   } else if (docs) {
     type = 'Docs';
+  } else if (context) {
+    type = 'Context';
   } else {
     type = 'Components';
   }
