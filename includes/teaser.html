@@ -1,0 +1,31 @@
+{%- assign teaserCtaText = include.ctaText -%}
+{%- assign teaserCtaHref = include.ctaHref -%}
+{%- assign teaserCtaType = include.type -%}
+{%- assign teaserCtaTarget = include.target -%}
+{%- assign teaserThumb = include.thumb -%}
+{%- assign teaserAlt = include.alt -%}
+{%- assign teaserVideoId = include.id -%}
+{%- assign teaserHeadline = include.headline -%}
+{%- assign teaserOverline = include.overline -%}
+{%- assign teaserLogo = include.logo -%}
+{%- assign teaserLogoAlt = include.logoAlt -%}
+{%- assign teaserText = include.text -%}
+
+<!-- Shared Teaser Section -->
+
+<div class="teaser">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <span class="teaser__overline">{{ teaserOverline }}</span>
+        {%
+          include headline.html
+          text=teaserHeadline
+          level="h3"
+        %}
+      </div>
+      <div class="col-lg-6"></div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Teaser Section -->
