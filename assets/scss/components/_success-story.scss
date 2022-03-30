@@ -22,3 +22,25 @@
     transform: rotate(288deg);
   }
 }
+
+.success-story__slide {
+  padding: 0;
+
+  @include media-breakpoint-up(sm) {
+    padding: 0 spacing(2);
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 spacing(4);
+  }
+}
+
+.success-story__container {
+  @include media-breakpoint-up(sm) {
+    margin: 0 spacing($size: 2, $negative: true);
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 spacing($size: 4, $negative: true);
+  }
+}
