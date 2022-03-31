@@ -20,7 +20,6 @@ class BackToTop extends BaseComponent {
   }
 
   handleClick() {
-    console.log('klick');
     Tools.scrollToTop();
   }
 }

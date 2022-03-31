@@ -2,18 +2,21 @@ $back-to-top-size: spacing(12);
 $back-to-top-bottom-offset-lg: 16px;
 $back-to-top-bottom-offset-xs: 32px;
 
-.back-to-top:hover {
-  svg {
-    animation: moveRightLeft;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
-    animation-timing-function: $animation-transition;
-    color: var(--color-back-to-top-hover-foreground);
-  }
+// TODO figure out a better way of prevent that sticky hover
+@media (hover: hover) {
+  .back-to-top:hover {
+    svg {
+      animation: moveRightLeft;
+      animation-duration: 0.4s;
+      animation-fill-mode: forwards;
+      animation-timing-function: $animation-transition;
+      color: var(--color-back-to-top-hover-foreground);
+    }
 
-  .back-to-top__icon {
-    background-color: var(--color-back-to-top-hover-background);
-    border-color: var(--color-back-to-top-hover-background);
+    .back-to-top__icon {
+      background-color: var(--color-back-to-top-hover-background);
+      border-color: var(--color-back-to-top-hover-background);
+    }
   }
 }
 
@@ -37,6 +40,13 @@ $back-to-top-bottom-offset-xs: 32px;
 
     .back-to-top__icon {
       transform: translateY(0) rotate(-90deg);
+    }
+  }
+
+  .back-to-top__icon {
+    .icon {
+      width: inherit;
+      height: inherit;
     }
   }
 }
