@@ -23,7 +23,7 @@
           data-hs-slick-carousel-options='{
             "prevArrow": "<span class=\"testimonials__arrow-left slick-arrow rounded-circle\"></span>",
             "nextArrow": "<span class=\"testimonials__arrow-right slick-arrow rounded-circle\"></span>",
-            "dots": {% if testimonials.items.length > 1 %}true{% else %}false{% endif %},
+            "dots": {% if testimonials.items.size > 1 %}true{% else %}false{% endif %},
             "dotsClass": "slick-pagination mt-8 mb-n6"
           }'
         >

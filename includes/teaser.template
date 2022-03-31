@@ -1,6 +1,7 @@
 {%- assign teaserCtaText = include.ctaText -%}
 {%- assign teaserCtaHref = include.ctaHref -%}
 {%- assign teaserCtaType = include.type -%}
+{%- assign teaserCtaLink = include.link -%}
 {%- assign teaserCtaTarget = include.target -%}
 {%- assign teaserThumb = include.thumb -%}
 {%- assign teaserAlt = include.alt -%}
@@ -16,7 +17,7 @@
 <div class="teaser">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="teaser__header">
         <span class="teaser__overline">{{ teaserOverline }}</span>
         {%
           include headline.html
@@ -24,7 +25,22 @@
           level="h3"
         %}
       </div>
-      <div class="col-lg-6"></div>
+      <div class="teaser__visuals">
+        {%
+          include img.html
+        %}
+      </div>
+      <div class="teaser__footer">
+        <span class="teaser__text">{{ teaserText }}</span>
+        {%
+          include cta.html
+          text=teaserCtaText
+          href=teaserCtaHref
+          link=teaserCtaLink
+          target=teaserCtaTarget
+          type=teaserCtaType
+        %}
+      </div>
     </div>
   </div>
 </div>
