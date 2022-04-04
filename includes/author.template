@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
+
+{% comment %}
 {%- assign lang = page.lang | default: 'de' -%}
 {%- assign author = site.data.authors[page.name] -%}
 
@@ -57,3 +59,4 @@ layout: default
 {%- else -%}
 Author not found
 {%- endif -%}
+{% endcomment %}
