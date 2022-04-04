@@ -44,6 +44,11 @@
 
   // TODO mobile grid with 2 rows and the items align where they fit. free swiping mode without the dots.
 
+  .slick-list,
+  .slick-track {
+    align-items: flex-start;
+  }
+
   .testimonial-teaser {
     max-width: 75%;
     width: 75%;
