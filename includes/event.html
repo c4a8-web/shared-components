@@ -88,7 +88,7 @@ additionalFields:
   {% assign eventForm = layout.form %}
 {% endif %}
 
-{%
+{% comment %}
   include event-detail.html
   headline=page.headline
   content=page.content
@@ -101,4 +101,4 @@ additionalFields:
   moment=page.moment
   time=page.time
   detailShapeColor=page.detailShapeColor
-%}
+{% endcomment %}
