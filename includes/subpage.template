@@ -1,3 +1,4 @@
+{% comment %}
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
 
@@ -25,3 +26,4 @@
     </body>
   </html>
   <!-- Page Info: SUBPAGE Layout -->
+  {% endcomment %}
