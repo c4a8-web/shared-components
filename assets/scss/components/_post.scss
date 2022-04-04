@@ -1,8 +1,5 @@
 $post-offset-spacing-xl: 7.5rem;
 $post-content-width-lg: 80%;
-$post-headline-top-spacing: spacing(20);
-$post-conclusion-spacing-sm: spacing(4);
-$post-conclusion-spacing-lg: $spacing-content-default;
 
 .post {
   .post-title {
@@ -19,168 +16,15 @@ $post-conclusion-spacing-lg: $spacing-content-default;
       }
     }
   }
-
-  main {
-    h2,
-    h3,
-    h4 {
-      &[id^='über'],
-      &[id^='about'],
-      &#fazit,
-      &#conclusion {
-        background-color: var(--color-green-blue);
-        color: var(--color-white);
-        padding: $post-conclusion-spacing-sm $post-conclusion-spacing-sm spacing(10);
-        margin: $post-headline-top-spacing 0 0 0;
-
-        ~ p {
-          background-color: var(--color-green-blue);
-          color: var(--color-white);
-          padding: 0 $post-conclusion-spacing-sm $post-conclusion-spacing-sm;
-          margin-top: -1px;
-          margin-bottom: 0;
-        }
-
-        @include media-breakpoint-up(lg) {
-          padding: $post-conclusion-spacing-lg $post-conclusion-spacing-lg spacing(10);
-          width: $post-content-width-lg;
-
-          ~ p {
-            padding: 0 $post-conclusion-spacing-lg $post-conclusion-spacing-lg;
-          }
-        }
-      }
-
-      &#fazit,
-      &#conclusion {
-        margin: spacing(8) 0 0 0;
-      }
-    }
-
-    h6:last-of-type {
-      margin-top: $spacing-content-default;
-      margin-bottom: 0;
-      padding-top: spacing(14);
-      font-size: $font-size-4;
-
-      + ul {
-        margin-bottom: $spacing-content-default;
-        list-style: none;
-        padding-top: $spacing-content-default;
-        padding-bottom: spacing(8);
-
-        li {
-          padding-bottom: spacing(4);
-          width: calc(100% - #{spacing(4)});
-
-          @include media-breakpoint-up(md) {
-            width: 75%;
-          }
-
-          @include media-breakpoint-up(xl) {
-            width: 60%;
-          }
-        }
-
-        a {
-          &::before {
-            content: '';
-            display: inline-block;
-            background-image: assets('../svg/arrow-right.svg');
-            background-repeat: no-repeat;
-            width: 28px;
-            height: 17px;
-            float: right;
-            transform: translateX(spacing(4)) translateY(spacing(1)) rotate(-45deg);
-          }
-
-          &:hover {
-            &::before {
-              background-image: assets('../svg/arrow-right-blue-medium.svg');
-            }
-          }
-        }
-      }
-    }
-
-    h6:last-of-type + ul,
-    h6 {
-      &:last-of-type {
-        background-color: var(--color-black-4);
-        width: 100%;
-        padding-left: spacing(8);
-        padding-right: spacing(8);
-
-        @include media-breakpoint-up(xl) {
-          width: calc(100% + (2 * #{$post-offset-spacing-xl}));
-          margin-left: -#{$post-offset-spacing-xl};
-          padding-left: $post-offset-spacing-xl;
-          padding-right: $post-offset-spacing-xl;
-        }
-      }
-    }
-
-    h2,
-    h3 {
-      &:first-child {
-        margin-top: 0;
-      }
-
-      margin: spacing(8) 0;
-    }
-
-    p {
-      + h2,
-      + h3,
-      + h4,
-      + h5,
-      + h6 {
-        margin-top: $post-headline-top-spacing;
-      }
-
-      &.has-aside {
-        @include media-breakpoint-up(lg) {
-          width: 60%;
-        }
-      }
-
-      &.is-aside {
-        @include media-breakpoint-up(lg) {
-          width: 40%;
-          position: absolute;
-          padding-left: spacing(14);
-          right: 0;
-          transform: translateY(-100%);
-          margin-bottom: 0;
-
-          img {
-            max-width: inherit;
-            left: 0;
-            width: 100%;
-            margin-bottom: spacing(6);
-            margin-top: 0;
-          }
-        }
-
-        @include media-breakpoint-up(xl) {
-          img {
-            width: calc(100% + #{$post-offset-spacing-xl});
-          }
-        }
-      }
-    }
-  }
-
-  blockquote {
-    border-left: 6px solid var(--color-green-blue);
-    padding-left: 1.5em;
-  }
 }
 
 .post-content {
   main {
-    > blockquote,
     > p {
+      &:not(.post__sticky-excerpt) {
+        line-height: 2;
+      }
+
       &:last-of-type {
         margin-bottom: 0;
 
@@ -189,20 +33,8 @@ $post-conclusion-spacing-lg: $spacing-content-default;
         }
       }
 
-      &:first-of-type {
-        img {
-          margin-top: 0;
-        }
-      }
-
       @include media-breakpoint-up(lg) {
-        width: $post-content-width-lg;
-      }
-    }
-
-    > p {
-      &:not(.post__sticky-excerpt) {
-        line-height: 2;
+        width: $richtext-content-width-lg;
       }
     }
   }
