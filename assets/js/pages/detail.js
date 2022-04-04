@@ -12,7 +12,6 @@ class PageDetail extends BaseComponent {
     this.ctaSelector = '.page-detail__cta .cta';
     this.introSelector = '.page-detail__intro';
     this.descriptionSelector = '.page-detail__description';
-    this.backSelector = '.page-detail__back';
     this.hasBackClass = 'page-detail--has-back';
 
     this.loadingDelay = 300;
@@ -49,12 +48,6 @@ class PageDetail extends BaseComponent {
 
   bindEvents() {
     this.queryElements();
-    this.back?.addEventListener('click', this.handleBack.bind(this));
-    // this.cta?.addEventListener('click', this.handleCta.bind(this));
-  }
-
-  handleBack() {
-    window.history.back();
   }
 }
 

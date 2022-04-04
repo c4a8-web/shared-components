@@ -84,7 +84,9 @@ class JobListDetail extends BaseComponent {
     Modal.open(this.modal);
   }
 
-  handleBack() {
+  handleBack(e) {
+    e.stopImmediatePropagation();
+
     window.history.back();
   }
 

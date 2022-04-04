@@ -26,7 +26,9 @@ class Back extends BaseComponent {
     return document.referrer.indexOf(document.location.host) !== -1;
   }
 
-  handleClick() {
+  handleClick(e) {
+    e.stopImmediatePropagation();
+
     window.history.back();
   }
 }
