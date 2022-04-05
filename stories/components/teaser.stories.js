@@ -28,4 +28,6 @@ Teaser.args = {
   text: 'Effiziente Umsetzung der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)',
 };
 
+// TODO add hover
+// TODO add click on left full element
 // TODO create video variant
