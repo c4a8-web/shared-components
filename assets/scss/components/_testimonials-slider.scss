@@ -44,6 +44,10 @@
 
   // TODO mobile grid with 2 rows and the items align where they fit. free swiping mode without the dots.
 
+  .testimonial-teaser__img {
+    width: calc(100vw - 180px);
+  }
+
   .slick-list,
   .slick-track {
     align-items: flex-start;
@@ -66,6 +70,14 @@
     }
   }
 
+  @include media-breakpoint-down(md) {
+    .slick-slide {
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+
   // @include media-breakpoint-down(md) {
   //   .testimonial-teaser {
   //     &:nth-child(even) {
@@ -82,4 +94,10 @@
   //     }
   //   }
   // }
+
+  @include media-breakpoint-up(sm) {
+    .testimonial-teaser__img {
+      width: auto;
+    }
+  }
 }
