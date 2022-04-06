@@ -285,7 +285,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   }
 
   .event-teaser__headline {
-    @include font-style($style: 'h2-font-size', $weight: 'normal', $line: 'thin');
+    @include font-style($style: 'h3-font-size', $weight: 'lighter', $line: 'thin');
 
     width: 100%;
   }
