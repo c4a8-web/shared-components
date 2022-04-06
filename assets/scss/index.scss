@@ -28,6 +28,7 @@ body {
   @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
       --container-width: #{get-container-width($name: $breakpoint, $with-padding: true)};
+      --container-width-no-padding: #{get-container-width($name: $breakpoint, $with-padding: false)};
     }
   }
 }
