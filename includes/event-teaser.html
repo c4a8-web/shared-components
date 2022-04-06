@@ -1,36 +1,59 @@
 {%- assign lang = page.lang | default: 'de' -%}
 
-{%- if include.json -%}
-  {%- assign eventTeaserHeadline = include.json.headline -%}
-  {%- assign eventTeaserContent = include.json.content -%}
-  {%- assign eventTeaserMoment = include.json.moment -%}
-  {%- assign eventTeaserTime = include.json.time -%}
-  {%- assign eventTeaserShapes = include.json.shapes -%}
-  {%- assign eventTeaserAuthor = include.json.author -%}
-  {%- assign eventTeaserImage = include.json.image -%}
-  {%- assign eventTeaserBadge = include.json.badge -%}
-  {%- assign eventTeaserPrice = include.json.price -%}
-  {%- assign eventTeaserCta = include.json.cta -%}
-  {%- assign eventTeaserVariant = include.json.variant | default: '4' -%}
-  {%- assign eventTeaserWebcast = include.json.webcast -%}
-  {%- assign eventTeaserTeaser = include.json.teaser -%}
-  {%- assign eventTeaserUrl = include.json.url -%}
-{%- else -%}
-  {%- assign eventTeaserHeadline = include.headline -%}
-  {%- assign eventTeaserContent = include.content -%}
-  {%- assign eventTeaserMoment = include.moment -%}
-  {%- assign eventTeaserTime = include.time -%}
-  {%- assign eventTeaserShapes = include.shapes -%}
-  {%- assign eventTeaserAuthor = include.author -%}
-  {%- assign eventTeaserImage = include.image -%}
-  {%- assign eventTeaserBadge = include.badge -%}
-  {%- assign eventTeaserPrice = include.price -%}
-  {%- assign eventTeaserCta = include.cta -%}
-  {%- assign eventTeaserVariant = include.variant | default: '4' %}
-  {%- assign eventTeaserWebcast = include.webcast -%}
-  {%- assign eventTeaserTeaser = include.teaser -%}
-  {%- assign eventTeaserUrl = include.url -%}
-{%- endif -%}
+{%- assign eventId = include.id -%}
+
+{% if eventId %}
+  {% capture eventExpression %}item.eventid contains '{{ eventId }}'{% endcapture %}
+  {% assign events = site.events | where_exp: "item", eventExpression %}
+  {% assign event = events[0] %}
+
+  {%- assign eventTeaserHeadline = event.headline -%}
+  {%- assign eventTeaserContent = event.content -%}
+  {%- assign eventTeaserMoment = event.moment -%}
+  {%- assign eventTeaserTime = event.time -%}
+  {%- assign eventTeaserShapes = include.shapes | default: event.shapes -%}
+  {%- assign eventTeaserAuthor = event.author -%}
+  {%- assign eventTeaserImage = event.image -%}
+  {%- assign eventTeaserBadge = include.badge | default: event.badge -%}
+  {%- assign eventTeaserPrice = event.price -%}
+  {%- assign eventTeaserCta = event.cta -%}
+  {%- assign eventTeaserVariant = event.variant | default: '12 event-teaser--size-full' %}
+  {%- assign eventTeaserWebcast = event.webcast -%}
+  {%- assign eventTeaserTeaser = event.teaser -%}
+  {%- assign eventTeaserUrl = event.url -%}
+{% else %}
+  {%- if include.json -%}
+    {%- assign eventTeaserHeadline = include.json.headline -%}
+    {%- assign eventTeaserContent = include.json.content -%}
+    {%- assign eventTeaserMoment = include.json.moment -%}
+    {%- assign eventTeaserTime = include.json.time -%}
+    {%- assign eventTeaserShapes = include.json.shapes -%}
+    {%- assign eventTeaserAuthor = include.json.author -%}
+    {%- assign eventTeaserImage = include.json.image -%}
+    {%- assign eventTeaserBadge = include.json.badge -%}
+    {%- assign eventTeaserPrice = include.json.price -%}
+    {%- assign eventTeaserCta = include.json.cta -%}
+    {%- assign eventTeaserVariant = include.json.variant | default: '4' -%}
+    {%- assign eventTeaserWebcast = include.json.webcast -%}
+    {%- assign eventTeaserTeaser = include.json.teaser -%}
+    {%- assign eventTeaserUrl = include.json.url -%}
+  {%- else -%}
+    {%- assign eventTeaserHeadline = include.headline -%}
+    {%- assign eventTeaserContent = include.content -%}
+    {%- assign eventTeaserMoment = include.moment -%}
+    {%- assign eventTeaserTime = include.time -%}
+    {%- assign eventTeaserShapes = include.shapes -%}
+    {%- assign eventTeaserAuthor = include.author -%}
+    {%- assign eventTeaserImage = include.image -%}
+    {%- assign eventTeaserBadge = include.badge -%}
+    {%- assign eventTeaserPrice = include.price -%}
+    {%- assign eventTeaserCta = include.cta -%}
+    {%- assign eventTeaserVariant = include.variant | default: '4' %}
+    {%- assign eventTeaserWebcast = include.webcast -%}
+    {%- assign eventTeaserTeaser = include.teaser -%}
+    {%- assign eventTeaserUrl = include.url -%}
+  {%- endif -%}
+{% endif %}
 
 {%- assign eventTeaserHref = eventTeaserCta.href | default: eventTeaserUrl -%}
 
