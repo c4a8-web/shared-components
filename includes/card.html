@@ -101,7 +101,7 @@
     {% endif %}
 
     <div class="card-body">
-      <h3><a class="text-inherit" href="{{ cardUrl }}" {% if cardTarget %}target="{{ cardTarget }}"{% endif %}>{{ cardTitle }}</a></h3>
+      <h4><a class="text-inherit" href="{{ cardUrl }}" {% if cardTarget %}target="{{ cardTarget }}"{% endif %}>{{ cardTitle }}</a></h4>
       <p>{{ cardExcerpt | strip_html | truncatewords: 20, " ..." }}</p>
     </div>
 
