@@ -38,6 +38,10 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
       height: 85%;
     }
 
+    .event-teaser__details {
+      display: none;
+    }
+
     .event-teaser__main {
       .event-teaser__details {
         display: flex;
@@ -145,10 +149,6 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
   .event-teaser__header {
     height: 290px;
-  }
-
-  .event-teaser__details {
-    display: none;
   }
 
   @include media-breakpoint-up(md) {
