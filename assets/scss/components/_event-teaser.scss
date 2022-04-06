@@ -216,6 +216,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
         max-width: get-container-max-width('lg');
         padding-left: calc(#{spacing(8)} + 15px);
         padding-right: calc(#{spacing(8)} + 15px);
+        width: 100%;
 
         > * {
           width: 60%;
