@@ -5,12 +5,15 @@
 {%- assign teaserCtaTarget = include.target -%}
 {%- assign teaserThumb = include.thumb -%}
 {%- assign teaserAlt = include.alt -%}
-{%- assign teaserVideoId = include.id -%}
+{%- assign teaserId = include.id -%}
 {%- assign teaserHeadline = include.headline -%}
 {%- assign teaserOverline = include.overline -%}
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
+
+{% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
+{% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
 
 <!-- Shared Teaser Section -->
 
@@ -24,7 +27,21 @@
         level="h2"
         classes="teaser__headline"
       %}
-      <div class="teaser__thumb">
+      <div class="teaser__thumb js-inline-video-player" data-hs-video-player-options='{
+        "videoId": "{{ teaserId }}",
+        "parentSelector": "#{{ teaserVideoId }}",
+        "targetSelector": "#{{ teaserVideoFrameId }}",
+        "isAutoplay": true,
+        "classMap": {
+          "toggle": "video-player-played"
+        }
+      }'>
+        <div class="teaser__video-frame embed-responsive">
+          <div id="{{ teaserVideoFrameId }}"></div>
+        </div>
+        <span class="teaser__video-play video-player-icon video__player-icon">
+          <i class="fas fa-play"></i>
+        </span>
         {%
           include img.html
           img=teaserThumb
@@ -32,6 +49,7 @@
           alt=teaserAlt
         %}
       </div>
+
       <div class="teaser__logo">
         {%
           include img.html
@@ -40,7 +58,7 @@
           alt=teaserLogoAlt
         %}
       </div>
-      <div class="teaser__text">{{ teaserText }}</div>
+      <div class="teaser__text font-size-2">{{ teaserText }}</div>
       <div class="teaser__cta">
         {%
           include cta.html
