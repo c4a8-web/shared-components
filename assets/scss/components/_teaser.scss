@@ -71,18 +71,35 @@
   @include media-breakpoint-up(md) {
     height: auto;
     grid-template-columns: 1fr 1fr;
-    grid-template-areas: 'Header Header' 'Left Right' 'Left Right' 'Left Right' 'Left Right' 'Left Right';
+    grid-template-areas: 'Header Header' 'Left Right' 'Left Right' 'Left Right';
   }
 }
 
-.teaser__text {
-  margin-bottom: spacing(6);
+.teaser__cta {
+  margin-top: spacing(6);
 
   @include media-breakpoint-up(md) {
-    margin-bottom: spacing(12);
+    margin-top: spacing(12);
   }
 }
 
 .teaser__logo {
   margin: spacing(4) 0;
+}
+
+.teaser__video-frame {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.teaser__thumb {
+  position: relative;
+}
+
+.teaser__video-play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: perspective(1px) translateZ(0) translateX(-50%) translateY(-50%);
 }
