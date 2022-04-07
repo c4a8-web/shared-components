@@ -1,0 +1,44 @@
+{%- assign videoFrameThumb = include.thumb -%}
+{%- assign videoFrameAlt = include.alt -%}
+{%- assign videoFrameId = include.id -%}
+
+{% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
+{% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
+
+
+{% if videoFrameId %}
+  {%- assign videoFrameHasVideo = true -%}
+{% else %}
+  {%- assign videoFrameHasVideo = false -%}
+{% endif %}
+
+<!-- Shared Video Frame Section -->
+
+<div id="{{ videoFrameParentId }}"  class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
+  <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
+    "videoId": "{{ videoFrameId }}",
+    "parentSelector": "#{{ videoFrameParentId }}",
+    "targetSelector": "#{{ videoFrameTargetId }}",
+    "isAutoplay": true,
+    "classMap": {
+      "toggle": "video-frame--played"
+    }
+  }'>
+    <div class="video-frame__target embed-responsive">
+      <div id="{{ videoFrameTargetId }}"></div>
+    </div>
+    <div class="video-frame__play-wrapper">
+      <span class="video-frame__play video-player-icon video-frame__player-icon">
+        <i class="fas fa-play"></i>
+      </span>
+    </div>
+    {%
+      include img.html
+      img=videoFrameThumb
+      cloudinary=true
+      alt=videoFrameAlt
+    %}
+  </div>
+</div>
+
+<!-- End Shared Video Frame Section -->

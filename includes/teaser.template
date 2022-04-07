@@ -27,29 +27,15 @@
         level="h2"
         classes="teaser__headline"
       %}
-      <div class="teaser__thumb js-inline-video-player" data-hs-video-player-options='{
-        "videoId": "{{ teaserId }}",
-        "parentSelector": "#{{ teaserVideoId }}",
-        "targetSelector": "#{{ teaserVideoFrameId }}",
-        "isAutoplay": true,
-        "classMap": {
-          "toggle": "video-player-played"
-        }
-      }'>
-        <div class="teaser__video-frame embed-responsive">
-          <div id="{{ teaserVideoFrameId }}"></div>
-        </div>
-        <span class="teaser__video-play video-player-icon video__player-icon">
-          <i class="fas fa-play"></i>
-        </span>
+      <div class="teaser__video-wrapper">
         {%
-          include img.html
-          img=teaserThumb
-          cloudinary=true
+          include video-frame.html
+          id=teaserId
+          thumb=teaserThumb
           alt=teaserAlt
         %}
-      </div>
 
+      </div>
       <div class="teaser__logo">
         {%
           include img.html
