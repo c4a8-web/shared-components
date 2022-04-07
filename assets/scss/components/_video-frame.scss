@@ -1,0 +1,43 @@
+.video-frame.video-frame--has-video:hover {
+  cursor: pointer;
+
+  .video-frame__player-icon {
+    transform: scale(1.1);
+    color: var(--color-primary-accent);
+  }
+}
+
+.video-frame {
+  display: inline-block;
+
+  &.video-frame--played {
+    pointer-events: none;
+
+    .video-frame__player-icon {
+      animation: scaleOut 0.4s ease-in-out forwards;
+    }
+
+    .video-frame__target {
+      pointer-events: all;
+    }
+  }
+}
+
+.video-frame__player,
+.video-frame {
+  position: relative;
+}
+
+.video-frame__target {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.video-frame__play-wrapper {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}

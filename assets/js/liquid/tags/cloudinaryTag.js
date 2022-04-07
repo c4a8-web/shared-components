@@ -47,7 +47,7 @@ const dummyDimensions = function (img) {
       height = 882;
       break;
     case 'shared-components/teaser-dekra.png':
-      width = 1350;
+      width = 1067;
       height = 600;
       break;
     default:
