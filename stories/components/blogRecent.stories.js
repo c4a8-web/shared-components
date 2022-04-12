@@ -23,7 +23,23 @@ BlogRecent.args = {
 export const Events = Template.bind({});
 
 Events.args = {
-  // tag=page.tags
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  slider: true,
+  events: true,
+  cta: {
+    text: 'Primary Button',
+    href: 'javascript:void(0)',
+    skin: 'primary',
+    button: true,
+    external: true,
+  },
+};
+
+export const EventsReversed = Template.bind({});
+
+EventsReversed.args = {
+  reversed: true,
   limit: 21,
   headline: 'lorem ipsum headline',
   slider: true,
