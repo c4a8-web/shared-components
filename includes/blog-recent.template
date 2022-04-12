@@ -1,4 +1,5 @@
 {%- assign blogRecentSlider = include.slider -%}
+{%- assign blogRecentReversed = include.reversed -%}
 {%- assign blogRecentTag = include.tag -%}
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
@@ -26,7 +27,12 @@
 {%- endif -%}
 
 {%- if blogRecentEvents -%}
-  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' | reverse %}
+  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
+
+  {% unless blogRecentReversed %}
+    {% assign events = events | reverse %}
+  {% endunless %}
+
   {% assign events = events | where_exp:"item","item.webcast == true" %}
   {% assign events = events | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitEvents %}
 {%- endif -%}
@@ -34,7 +40,11 @@
 {%- if blogRecentCombine -%}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
   {% assign posts = posts | concat: events %}
-  {% assign posts = posts | sort: 'date' | reverse %}
+  {% assign posts = posts | sort: 'date' %}
+
+  {% unless blogRecentReversed %}
+    {% assign posts = posts | reverse %}
+  {% endunless %}
 {%- else -%}
   {% if blogRecentEvents %}
     {% assign posts = events %}
