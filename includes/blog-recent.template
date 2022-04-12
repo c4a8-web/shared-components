@@ -81,7 +81,7 @@
           "slidesToScroll": 3,
           "prevArrow": "<span class=\"slick__arrow-left rounded-circle\"></span>",
           "nextArrow": "<span class=\"slick__arrow-right rounded-circle\"></span>",
-          "dots": true,
+          "dots": {% if posts.size > 3 %}true{% else %}false{% endif %},
           "centerMode": false,
           "dotsClass": "slick-pagination is-default",
           "responsive": [{
@@ -97,7 +97,8 @@
               "infinite": true,
               "centerPadding": "30px",
               "slidesToShow": 2,
-              "slidesToScroll": 2
+              "slidesToScroll": 2,
+              "dots": {% if posts.size > 2 %}true{% else %}false{% endif %}
               }
             }, {
             "breakpoint": 768,
@@ -106,7 +107,8 @@
               "infinite": false,
               "centerPadding": "30px",
               "slidesToShow": 1,
-              "slidesToScroll": 1
+              "slidesToScroll": 1,
+              "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
               }
             }, {
               "breakpoint": 576,
@@ -115,7 +117,8 @@
                 "infinite": false,
                 "centerPadding": "20px",
                 "slidesToShow": 1,
-                "slidesToScroll": 1
+                "slidesToScroll": 1,
+                "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
             }
           }]
         }'
