@@ -158,8 +158,6 @@ $page-detail-subline-background-color: $white-30;
 }
 
 .page-detail__description {
-  @include font-style($style: 'font-size-2', $line: 'wide');
-
   margin-bottom: spacing(20);
 
   &:not(.has-no-border) {
@@ -167,7 +165,7 @@ $page-detail-subline-background-color: $white-30;
   }
 
   > p:first-of-type {
-    @include font-style($style: 'font-size-2', $weight: 'light');
+    @include font-style($style: 'font-size-3', $weight: 'light');
   }
 
   > h1:first-child,
@@ -199,7 +197,6 @@ $page-detail-subline-background-color: $white-30;
   &.back {
     position: absolute;
     display: none;
-    // opacity: 1;
     top: spacing($size: 18, $negative: true);
 
     @include media-breakpoint-up(lg) {
