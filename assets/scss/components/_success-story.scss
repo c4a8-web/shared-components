@@ -1,0 +1,46 @@
+.success-story {
+  position: relative;
+  overflow: hidden;
+}
+
+.success-story__bg {
+  position: absolute;
+  height: 420vw;
+  width: 148vh;
+  left: -188px;
+  top: 100px;
+  transform: rotate(320deg);
+  transform-origin: top left;
+
+  @include media-breakpoint-up(md) {
+    transform: rotate(310deg);
+  }
+
+  @include media-breakpoint-up(lg) {
+    left: -100px;
+    top: 130px;
+    transform: rotate(288deg);
+  }
+}
+
+.success-story__slide {
+  padding: 0;
+
+  @include media-breakpoint-up(sm) {
+    padding: 0 spacing(2);
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 spacing(4);
+  }
+}
+
+.success-story__container {
+  @include media-breakpoint-up(sm) {
+    margin: 0 spacing($size: 2, $negative: true);
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 spacing($size: 4, $negative: true);
+  }
+}

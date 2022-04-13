@@ -3,7 +3,7 @@ const de = {
   part_time: 'Teilzeit',
   contract: 'Leiharbeitszeit',
   gender: '(m/w/d)',
-  formAttachmentsWrongType: 'Bitte ein gültiges Dateiformat wählen',
+  formAttachmentsWrongType: 'Bitte wählen Sie ein gültiges Dateiformat oder überprüfen Sie den Dateinamen (keine Sonderzeichen benutzen).',
 };
 
 export default de;

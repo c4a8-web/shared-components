@@ -1,4 +1,5 @@
 {%- assign blogRecentSlider = include.slider -%}
+{%- assign blogRecentReversed = include.reversed -%}
 {%- assign blogRecentTag = include.tag -%}
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
@@ -26,7 +27,12 @@
 {%- endif -%}
 
 {%- if blogRecentEvents -%}
-  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' | reverse %}
+  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
+
+  {% unless blogRecentReversed %}
+    {% assign events = events | reverse %}
+  {% endunless %}
+
   {% assign events = events | where_exp:"item","item.webcast == true" %}
   {% assign events = events | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitEvents %}
 {%- endif -%}
@@ -34,7 +40,11 @@
 {%- if blogRecentCombine -%}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
   {% assign posts = posts | concat: events %}
-  {% assign posts = posts | sort: 'date' | reverse %}
+  {% assign posts = posts | sort: 'date' %}
+
+  {% unless blogRecentReversed %}
+    {% assign posts = posts | reverse %}
+  {% endunless %}
 {%- else -%}
   {% if blogRecentEvents %}
     {% assign posts = events %}
@@ -81,7 +91,7 @@
           "slidesToScroll": 3,
           "prevArrow": "<span class=\"slick__arrow-left rounded-circle\"></span>",
           "nextArrow": "<span class=\"slick__arrow-right rounded-circle\"></span>",
-          "dots": true,
+          "dots": {% if posts.size > 3 %}true{% else %}false{% endif %},
           "centerMode": false,
           "dotsClass": "slick-pagination is-default",
           "responsive": [{
@@ -97,7 +107,8 @@
               "infinite": true,
               "centerPadding": "30px",
               "slidesToShow": 2,
-              "slidesToScroll": 2
+              "slidesToScroll": 2,
+              "dots": {% if posts.size > 2 %}true{% else %}false{% endif %}
               }
             }, {
             "breakpoint": 768,
@@ -106,7 +117,8 @@
               "infinite": false,
               "centerPadding": "30px",
               "slidesToShow": 1,
-              "slidesToScroll": 1
+              "slidesToScroll": 1,
+              "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
               }
             }, {
               "breakpoint": 576,
@@ -115,7 +127,8 @@
                 "infinite": false,
                 "centerPadding": "20px",
                 "slidesToShow": 1,
-                "slidesToScroll": 1
+                "slidesToScroll": 1,
+                "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
             }
           }]
         }'

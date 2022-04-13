@@ -1,0 +1,106 @@
+---
+layout: default
+---
+{% comment %}
+{% assign lang = page.lang | default: 'de' %}
+
+
+<div class="container space-top-2 space-top-lg-4">
+  <div class="w-xl-80 mx-xl-auto">
+    <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+      <header class="post-header">
+        <h1 class="post-title p-name h2" itemprop="name headline">{{ page.title | escape }}</h1>
+        <div class="py-4 mt-5">
+          <div class="row align-items-md-center">
+            <div class="col-md-7 mb-5 mb-md-0">
+              <div class="media align-items-center">
+                {% for person in page.author %}
+                  <div class="avatar mr-2">
+                    {%- assign author = site.data.authors[person] -%}
+                    {%- assign imgUrl = author.avatar -%}
+                    {% if imgUrl %}
+                      {%
+                        include author-avatar.html
+                        imgUrl=imgUrl
+                        author=author
+                      %}
+                    {% endif %}
+                  </div>
+                {% endfor %}
+                <div class="media-body font-size-1 ml-3">
+                  {%
+                    include authors.html
+                    authors=page.author
+                  %}
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 align-self-end pr-lg-0">
+              <div class="text-muted text-right font-size-1">
+                <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+                  {{ page.date | date: '%d.%m.%Y' }}
+                </time>
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="post-content e-content" itemprop="articleBody">
+        {% if page.blogtitlepic %}
+          {% capture imgUrl %}{{ site.blog_image_path }}{{ page.blogtitlepic }}{% endcapture %}
+          {%
+            include img.html
+            img=imgUrl
+            cloudinary=true
+            alt=page.title
+          %}
+          {%- if page.blogtitlepicsubline -%}
+            <figcaption>{{ page.blogtitlepicsubline }}</figcaption>
+          {%- endif -%}
+        {% endif %}
+        <div class="post__sticky-bar mb-8 mb-lg-10">
+          <div id="js-sticky-block-start" class="post__sticky-socials pl-xl-2">
+            <div class="js-sticky-block" data-hs-sticky-block-options='{
+              "parentSelector": "#js-sticky-block-start",
+              "breakpoint": "xl",
+              "startPoint": "#js-sticky-block-start",
+              "endPoint": "#js-sticky-block-end",
+              "stickyOffsetTop": 100,
+              "stickyOffsetBottom": 20
+            }'>
+              {%
+                include socials.html
+                vertical=true
+                hideLabel=true
+              %}
+            </div>
+          </div>
+          <p class="post__sticky-excerpt font-size-2 font-weight-lighter">{{ page.excerpt }}</p>
+        </div>
+        <main>
+          {{ content | markdownify }}
+        </main>
+        <div id="js-sticky-block-end"></div>
+        <div class="mt-5">
+          {% for tag in page.tags %}
+            {%
+              include tag.html
+              tag=tag
+            %}
+          {% endfor %}
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+{% assign headline = site.data.lang[lang].similarPosts %}
+
+{%
+  include blog-recent.html
+  tag=page.tags
+  limit=21
+  headline=headline
+  slider=true
+%}
+{% endcomment %}

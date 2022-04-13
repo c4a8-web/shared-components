@@ -47,6 +47,16 @@ $font-style-map: (
   }
 }
 
+@mixin font-size-xs($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  font-size: $font-size-xs #{$important-string};
+}
+
 @mixin font-size-sm($breakpoint: false, $important: false) {
   $important-string: '';
 
@@ -119,6 +129,16 @@ $font-style-map: (
   // }
 }
 
+@mixin font-mods($weight: 'light') {
+  @if $weight == 'light' {
+    font-weight: 100 !important;
+
+    strong {
+      font-weight: inherit;
+    }
+  }
+}
+
 .shared-components {
   %h1,
   .h1,
@@ -159,6 +179,8 @@ $font-style-map: (
     line-height: 1.4em;
   }
 
+  %font-size-xs,
+  %font-size-sm,
   %font-size-1,
   %font-size-2,
   %font-size-3,
@@ -171,6 +193,8 @@ $font-style-map: (
   %h4-font-size,
   %h5-font-size,
   %h6-font-size,
+  .font-size-xs,
+  .font-size-sm,
   .font-size-1,
   .font-size-2,
   .font-size-3,
@@ -193,11 +217,7 @@ $font-style-map: (
     }
 
     &.light {
-      font-weight: 100 !important;
-
-      strong {
-        font-weight: inherit;
-      }
+      @include font-mods('light');
     }
 
     &.wide {
@@ -210,6 +230,7 @@ $font-style-map: (
   }
 
   %h1-font-size,
+  h1,
   .h1-font-size {
     font-size: $h1-font-size-sm;
     line-height: 1.1em;
@@ -224,6 +245,7 @@ $font-style-map: (
   }
 
   %h2-font-size,
+  h2,
   .h2-font-size {
     @include h2;
 
@@ -237,6 +259,7 @@ $font-style-map: (
   }
 
   %h3-font-size,
+  h3,
   .h3-font-size {
     @include h3;
 
@@ -250,6 +273,7 @@ $font-style-map: (
   }
 
   %h4-font-size,
+  h4,
   .h4-font-size {
     font-size: $h4-font-size-sm;
     font-weight: normal;
@@ -331,6 +355,11 @@ $font-style-map: (
   %font-size-sm,
   .font-size-sm {
     @include font-size-sm;
+  }
+
+  %font-size-xs,
+  .font-size-xs {
+    @include font-size-xs;
   }
 
   .is-error,

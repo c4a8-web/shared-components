@@ -14,6 +14,10 @@ const Interim = () => {
       $.HSCore.components.HSSlickCarousel.init($(this));
     });
   }
+
+  $('.js-inline-video-player').each(function () {
+    new HSVideoPlayer($(this)).init();
+  });
 };
 
 export default Interim;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg width="28px" height="17px" viewbox="0 0 28 17" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+  <g id="arrow-right" transform="translate(0.75 0.75)">
+    <path d="M0.5 0.5L26 0.5" transform="translate(0 7)" id="Path" fill="none" fill-rule="evenodd" stroke="#0072C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M0 15L7 7.5L0 0" transform="translate(19 0)" id="Path" fill="none" fill-rule="evenodd" stroke="#0072C6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+  </g>
+</svg>

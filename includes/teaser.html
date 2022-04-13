@@ -1,0 +1,62 @@
+{%- assign teaserCtaText = include.ctaText -%}
+{%- assign teaserCtaHref = include.ctaHref -%}
+{%- assign teaserCtaType = include.type -%}
+{%- assign teaserCtaLink = include.link -%}
+{%- assign teaserCtaTarget = include.target -%}
+{%- assign teaserThumb = include.thumb -%}
+{%- assign teaserAlt = include.alt -%}
+{%- assign teaserId = include.id -%}
+{%- assign teaserHeadline = include.headline -%}
+{%- assign teaserOverline = include.overline -%}
+{%- assign teaserLogo = include.logo -%}
+{%- assign teaserLogoAlt = include.logoAlt -%}
+{%- assign teaserText = include.text -%}
+
+{% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
+{% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
+
+<!-- Shared Teaser Section -->
+
+<div class="teaser">
+  <div class="container">
+    <div class="row teaser__row">
+      <span class="teaser__overline">{{ teaserOverline }}</span>
+      {%
+        include headline.html
+        text=teaserHeadline
+        level="h2"
+        classes="teaser__headline"
+      %}
+      <div class="teaser__video-wrapper">
+        {%
+          include video-frame.html
+          id=teaserId
+          thumb=teaserThumb
+          alt=teaserAlt
+        %}
+
+      </div>
+      <div class="teaser__logo">
+        {%
+          include img.html
+          img=teaserLogo
+          cloudinary=true
+          alt=teaserLogoAlt
+        %}
+      </div>
+      <div class="teaser__text font-size-2">{{ teaserText }}</div>
+      <div class="teaser__cta">
+        {%
+          include cta.html
+          text=teaserCtaText
+          href=teaserCtaHref
+          link=teaserCtaLink
+          target=teaserCtaTarget
+          type=teaserCtaType
+          width="w-100 w-md-auto"
+        %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Teaser Section -->

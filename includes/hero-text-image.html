@@ -5,8 +5,13 @@
 
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = false %}
+{%- else if heroTextImageVariant == 'hero--study' -%}
+  {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
+  {% assign heroTextImageSrcSet = false %}
 {%- endif -%}
 
 {%- if heroTextImageHero.cta -%}
@@ -77,10 +82,22 @@
             alt=heroTextImageHero.background.alt
             class=heroClasses
             cloudinary=heroTextImageBackgroundCloudinary
+            imgSrcSets=heroTextImageSrcSet
           %}
         </div>
       {% endif %}
       <div class="hero-text-image__wrapper col-lg-8">
+        {% if heroTextImageHero.back %}
+          <div class="hero-text-image__back back">
+            {%
+              include icon.html
+              icon='arrow'
+              direction="left"
+              hover=true
+              circle=true
+            %}
+          </div>
+        {% endif %}
         {% if heroTextImageHero.overline %}
           <span class="hero-text-image__overline">
             {{ heroTextImageHero.overline }}
@@ -120,6 +137,7 @@
             alt=heroTextImageHero.background.alt
             cloudinary=heroTextImageBackgroundCloudinary
             class=heroClasses
+            imgSrcSets=heroTextImageSrcSet
           %}
         </div>
       </div>

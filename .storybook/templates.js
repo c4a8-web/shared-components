@@ -27,6 +27,15 @@ const site = {
   posts: Posts,
   events: Events,
   blog_image_path: 'blog/heads/',
+  url: 'http://localhost:6006/?',
+};
+
+const page = {
+  scripts: {
+    slick: true,
+    video: true,
+  },
+  url: '',
 };
 
 const fixComponent = function (text) {
@@ -78,7 +87,7 @@ const rewriteInclude = function (engine) {
 };
 
 export const createTemplate = function async(include, template, path = 'includes') {
-  const globals = { site };
+  const globals = { site, page };
   const partialsPath = path;
   const includesPath = `${partialsPath}/`;
 
@@ -138,13 +147,15 @@ export const createComponent = function async(include, component) {
   return createTemplate(include, component);
 };
 
-const getTitle = ({ page, title, docs }) => {
+const getTitle = ({ page, title, docs, context }) => {
   let type;
 
   if (page) {
     type = 'Pages';
   } else if (docs) {
     type = 'Docs';
+  } else if (context) {
+    type = 'Context';
   } else {
     type = 'Components';
   }

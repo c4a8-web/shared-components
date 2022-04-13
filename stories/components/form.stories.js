@@ -74,6 +74,10 @@ const baseArgs = {
         id: 'message',
       },
       {
+        type: 'hidden',
+        id: '_gotcha',
+      },
+      {
         label:
           "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
         type: 'checkbox',

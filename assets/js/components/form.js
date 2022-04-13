@@ -16,6 +16,7 @@ class Form extends BaseComponent {
     this.root = root;
 
     this.formSelector = '.form__form';
+    this.gotchaSelector = '.form__super-field';
     this.attachmentSelector = 'input[type="file"][required]';
     this.form = root.querySelector(this.formSelector);
 
@@ -23,6 +24,7 @@ class Form extends BaseComponent {
     this.minLengthOther = 1;
     this.options = options;
 
+    this.updateGotcha();
     this.addValidation();
 
     if (!this.options?.noEvents) {
@@ -340,6 +342,12 @@ class Form extends BaseComponent {
 
       this.groups[group].push(element);
     }
+  }
+
+  updateGotcha() {
+    const gotcha = this.root.querySelector(this.gotchaSelector);
+
+    gotcha?.classList.add(State.HIDDEN);
   }
 }
 

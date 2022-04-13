@@ -174,3 +174,21 @@ HeroTextImagePattern.args = {
     sublineClass: 'is-light',
   },
 };
+
+export const HeroTextImageStudy = Template.bind({});
+
+HeroTextImageStudy.args = {
+  hero: {
+    variant: 'hero--study',
+    back: true,
+    headline: 'Pöppelmann Case',
+    subline:
+      '<span class="highlight">Lorem ipsum dolor</span> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    background: {
+      img: '/casestudies/casestudy-demo.png',
+      alt: 'Img',
+      spacing: 'space-top-lg-4',
+    },
+    bgColor: 'var(--color-hero-study-background)',
+  },
+};

@@ -5,10 +5,7 @@
 
   &.cta--external {
     .icon svg {
-      animation: moveTopRight;
-      animation-duration: 0.4s;
-      animation-fill-mode: forwards;
-      animation-timing-function: $animation-transition;
+      @include move-top-right;
     }
   }
 
@@ -78,15 +75,15 @@
   &.cta--external {
     &::after,
     &.btn {
-      padding-right: spacing(10);
+      padding-right: spacing(12);
       text-align: left;
       padding-left: spacing(4);
     }
 
     .icon {
       position: absolute;
-      width: 13px;
-      height: 13px;
+      width: 16px;
+      height: 16px;
       top: calc(50% - 1px);
       transform: translateY(-50%);
       right: spacing(4);

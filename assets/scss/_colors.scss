@@ -47,6 +47,8 @@
   --color-sahara-sand: #f6ee8c;
   --color-sunflower: #e1d429;
   --color-piper: #c66a23;
+  --color-cream-can: #f5c663;
+  --color-cyprus: #004144;
 
   --color-white: #fff;
 
@@ -56,6 +58,11 @@
   --color-copy-lowlight: var(--color-black-30);
 
   // rules that default to everything
+
+  --color-service-overview-border: var(--color-black-30);
+
+  --color-services-border: var(--color-service-overview-border);
+  --color-services-labels: var(--color-trout);
 
   --color-page-detail-border: var(--color-black-30);
   --color-page-detail-copy: var(--color-black-85);
@@ -84,6 +91,8 @@
   --color-google-maps-popup-background: var(--color-blue-dark);
 
   --color-hero-icon: var(--color-yellow);
+  --color-hero-study-background: var(--color-primary);
+  --color-hero-study-copy: var(--color-copy);
 
   --color-people-square-copy: var(--color-white);
 
@@ -113,6 +122,12 @@
   --color-badge-background: var(--color-orange);
 
   --color-card-background: var(--color-black-4);
+
+  --color-back-to-top-border: var(--color-black-30);
+  --color-back-to-top-hover-background: var(--color-blue-dark);
+  --color-back-to-top-hover-foreground: var(--color-white);
+
+  --color-background: var(--color-white);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

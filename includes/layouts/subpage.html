@@ -1,0 +1,29 @@
+{% comment %}
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body id="page-top" class="shared-components gkgab">
+
+    {%
+      include navigation.html
+      light=page.light
+    %}
+
+    <main class="page-content" aria-label="Content">
+      {% include hero-text-image.html %}
+      {{ content }}
+    </main>
+
+    {% if page.contact %}
+      {% include contact.html %}
+    {% endif %}
+    {% include footer.html %}
+    {% include footer-copyright.html %}
+    {% include scripts.html %}
+
+    </body>
+  </html>
+  <!-- Page Info: SUBPAGE Layout -->
+  {% endcomment %}
