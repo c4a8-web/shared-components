@@ -4,6 +4,7 @@ import './lib/vue/vue.global.prod.js';
 
 import Cta from './vue/cta.js';
 import Headline from './vue/headline.js';
+import Icon from './vue/icon.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -19,7 +20,7 @@ const addApp = () => {
     },
   });
 
-  const components = [Cta, Headline];
+  const components = [Cta, Headline, Icon];
 
   components.forEach((component) => {
     app.component(component.tagName, component);

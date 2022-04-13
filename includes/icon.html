@@ -19,6 +19,24 @@
   {% if iconSize == 'small' %}18px{% elsif iconSize == 'large' %}48px{% elsif iconSize == 'xl' %}120px{% elsif iconSize == 'xxl' %}200px{% else %}28px{% endif %}
 {%- endcapture -%}
 
+
+{{ iconAnimation }}###
+
+<icon
+      icon="{{ iconIcon }}"
+      color="{{ iconColor }}"
+      direction="{{ iconDirection }}"
+      size="{{ iconSize }}"
+      circle="{{ iconCircle }}"
+      hover="{{ iconHover }}"
+      padding="{{ iconPadding }}"
+      animation="{{ iconAnimation }}"
+>
+</icon>
+
+
+{% comment %}
+
 <span class="icon icon--{{ iconDirection }} icon--{{ iconIcon }}
             {% if iconAnimation %}js-text-animation__icon{% endif %}
             {% if iconCircle %}icon--circle{% endif %}
@@ -348,4 +366,7 @@
     </svg>
   {%- endif %}
 </span>
+
+{% endcomment %}
+
 <!-- End Shared Icon Section -->
