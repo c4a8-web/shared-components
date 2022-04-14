@@ -1,6 +1,6 @@
 // TODO look at for implementation https://github.com/nhoizey/jekyll-cloudinary/blob/master/lib/jekyll/cloudinary.rb
 
-const dummyDimensions = function (img) {
+const dummyDimensions = function (img, data) {
   let width;
   let height;
 
@@ -50,6 +50,16 @@ const dummyDimensions = function (img) {
       width = 1067;
       height = 600;
       break;
+    case 'visuals/security-ninjacat.png':
+      // TODO read those params out of the url
+      if (data.cloudinaryImgUrl === 'c_fill,g_face,h_500,w_1000,x_0,y_0/visuals/security-ninjacat.png') {
+        width = 1000;
+        height = 500;
+      } else {
+        width = 800;
+        height = 1200;
+      }
+      break;
     default:
       width = 800;
       height = 800;
@@ -88,6 +98,7 @@ class CloudinaryTag {
   render(context, emitter) {
     // TODO make a more complete version
     const data = context?.scopes[0];
+    console.log('CloudinaryTag ~ render ~ data', data);
     const cloudinary = this.site?.cloudinary;
     const preset = cloudinary?.presets[data?.imgPreset];
 
@@ -100,8 +111,7 @@ class CloudinaryTag {
       let srcSet = '';
 
       for (let i = 0; i < preset?.steps; i++) {
-        const srcSetWidth = ``;
-        const dummyData = dummyDimensions(data.imgImg);
+        const dummyData = dummyDimensions(data.imgImg, data);
 
         let srcSetParams;
 
