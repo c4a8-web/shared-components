@@ -1,0 +1,75 @@
+<!-- Shared Feature Grid Item Section -->
+{% assign props = include.featureGridItem %}
+
+{% assign title = props.title %}
+{% assign description = props.description %}
+{% assign list = props.list %}
+{% assign image = props.image %}
+{% assign cta = props.cta %}
+{% assign copy = props.copy %}
+{% assign list_1 = props.list_1 %}
+{% assign copy_1 = props.copy_1 %}
+{% assign featureGridLevel = props.level | default: 'h3' -%}
+{% assign featureGridClasses = props.classes | default: 'font-size-2 bold' -%}
+{% capture featureGridClasses -%}{{ featureGridClasses }} mb-2{%- endcapture -%}
+
+<div class="bg-white d-flex flex-column  h-100 py-5 px-3">
+  {% if image %}
+    <figure class="w-100 max-w-10rem mb-5 mx-auto">
+      {%
+        include img.html
+        img=image.src
+        alt=image.alt
+      %}
+    </figure>
+  {% endif %}
+
+  {% if title %}
+    {%
+      include headline.html
+      text=title
+      level=featureGridLevel
+      classes=featureGridClasses
+    %}
+  {% endif %}
+
+  {% if description %}
+    <p class="mb-0">{{ description }}</p>
+  {% endif %}
+
+  {% if copy %}
+  <p class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;">{{ copy }}</p>
+  {% endif %}
+
+  {% if list %}
+    <ul class="m-0 p-0 flex-grow-1" style="margin-bottom:10px !important;">
+      {% for text in list %}
+        <li class="feature-grid-item__text font-size-sm d-flex" d-flex>{{ text }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+  {% if copy_1 %}
+  <p class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;">{{ copy_1 }}</p>
+  {% endif %}
+
+  {% if list_1 %}
+    <ul class="m-0 p-0 flex-grow-1">
+      {% for text_1 in list_1 %}
+        <li class="feature-grid-item__text font-size-sm d-flex" d-flex>{{ text_1 }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+
+
+  {% if cta %}
+    <div class="mt-5{% if cta.align == 'right' %} d-flex justify-content-end{% endif %}">
+      {%
+        include cta.html
+        text=cta.text
+        link=cta.link
+      %}
+    </div>
+  {% endif %}
+</div>
+<!-- End Shared Feature Grid Item Section -->
