@@ -1,0 +1,35 @@
+{%- assign iconBlocks = include.iconBlocks -%}
+{%- assign iconBlocksLevel = include.level | default: 'h3' -%}
+{%- assign iconBlocksClasses = include.classes | default: 'font-size-2' -%}
+
+<!-- Shared Icon Blocks Section -->
+<div class="icon-blocks container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
+  <div class="container space-2">
+    <div class="row">
+      {% for item in iconBlocks.items %}
+      <div class="col-md-4 mb-5 mb-md-0">
+        <!-- Shared Icon Blocks -->
+        <div class="{% if item.copy == "" %}text-center{% endif %} px-lg-3">
+          <figure class="max-w-15rem {% if item.copy == "" %}mx-auto{% endif %} mb-4">
+            {%
+              include img.html
+              img=item.image
+              cloudinary=item.cloudinary
+              alt=iconBlocks.alt
+            %}
+          </figure>
+          {%
+            include headline.html
+            text=item.headline
+            level=iconBlocksLevel
+            classes=iconBlocksClasses
+          %}
+          <p>{{ item.copy }}</p>
+        </div>
+        <!-- End Shared Icon Blocks -->
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<!-- End Shared Icon Blocks Section -->

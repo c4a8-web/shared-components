@@ -17,7 +17,7 @@
 
 <!-- Shared Teaser Section -->
 
-<div class="teaser">
+<div class="teaser {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="javascript:document.location.href='{{ teaserCtaHref }}'" {% endif %}>
   <div class="container">
     <div class="row teaser__row">
       <span class="teaser__overline">{{ teaserOverline }}</span>

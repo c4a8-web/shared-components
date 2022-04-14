@@ -5,7 +5,6 @@
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
 
-
 {% if videoFrameId %}
   {%- assign videoFrameHasVideo = true -%}
 {% else %}
