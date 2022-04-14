@@ -1,0 +1,11 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="174px" height="53px" viewbox="0 0 174 53" version="1.1">
+	<g id="Grafik" transform="matrix(-4.371139E-08 -1 1 -4.371139E-08 -0.7145996 50.51538)">
+		<g id="Group-2">
+			<path d="M0 0L51.0153 0L51.0153 50.9503L0 50.9503L0 0Z" id="Rectangle" fill="#5CBBFF" fill-rule="evenodd" stroke="none" />
+			<path d="M0 0L51.0153 0L51.0153 50.9503L0 50.9503L0 0Z" transform="translate(0 50.950195)" id="Rectangle-Copy-3" fill="#F8842C" fill-rule="evenodd" stroke="none" />
+			<path d="M0 0L51.0153 0L51.0153 72.0995L0 0Z" transform="matrix(1 8.742278E-08 -8.742278E-08 1 -1.3262625E-06 101.90064)" id="Rectangle-Copy-4" fill="#FCD116" fill-rule="evenodd" stroke="none" />
+			<path d="M0 19.4691L25.5076 3.1307e-13L25.5076 24.2712L0 43.7403L0 19.4691Z" transform="translate(0 7.209961)" id="Rectangle" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
+			<path d="M0 19.4691L25.5076 3.1307e-13L25.5076 21.9136L25.5076 24.2712L0 43.7403L0 19.4691Z" transform="matrix(-1 0 0 1 51.01538 7.209961)" id="Rectangle-Copy-2" fill="#F8842C" fill-rule="evenodd" stroke="none" />
+		</g>
+	</g>
+</svg>
