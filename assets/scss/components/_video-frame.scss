@@ -21,6 +21,12 @@
       pointer-events: all;
     }
   }
+
+  &.video-frame--has-video {
+    .video-frame__play-wrapper {
+      display: inline-block;
+    }
+  }
 }
 
 .video-frame__player,
@@ -36,7 +42,7 @@
 
 .video-frame__play-wrapper {
   position: absolute;
-  display: inline-block;
+  display: none;
   left: 50%;
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
