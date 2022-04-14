@@ -98,7 +98,6 @@ class CloudinaryTag {
   render(context, emitter) {
     // TODO make a more complete version
     const data = context?.scopes[0];
-    console.log('CloudinaryTag ~ render ~ data', data);
     const cloudinary = this.site?.cloudinary;
     const preset = cloudinary?.presets[data?.imgPreset];
 
