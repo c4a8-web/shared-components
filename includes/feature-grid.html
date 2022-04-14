@@ -1,0 +1,56 @@
+<!-- Shared Feature Grid Section -->
+{% assign props = include.featureGrid %}
+
+{% assign backgroundColor = props.backgroundColor %}
+{% assign headline = props.headline %}
+{% assign gridSize = props.gridSize | default: 4 %}
+{% assign image = props.image %}
+{% assign features = props.features %}
+{% assign footer = props.footer %}
+
+{% capture columnClass %}
+col-lg-{{ 12 | divided_by: gridSize }}
+{% endcapture %}
+
+<div
+  class="feature-grid py-7"
+  style="background-color:{{ backgroundColor | default: 'var(--color-bg-grey)' }}"
+>
+  <div class="container {{ include.spacing }}">
+    {%
+      include headline-row.html
+      text=headline
+      centered=true
+    %}
+
+    {% if image %}
+      <figure class="d-flex mt-8 justify-content-center">
+        {%
+          include img.html
+          img=image.src
+          cloudinary=image.cloudinary
+          alt=image.alt
+        %}
+      </figure>
+    {% endif %}
+
+    <div class="my-8">
+      <div class="d-flex flex-wrap">
+        {% for feature in features %}
+          <div class="feature-grid__item {{ columnClass }} mb-3">
+            {%
+              include feature-grid-item.html
+              featureGridItem=feature
+            %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% if footer %}
+    <div class="container pb-6">
+      {{ footer }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+<!-- End Shared Feature Grid Section -->
