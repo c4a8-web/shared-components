@@ -11,6 +11,7 @@
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
+{%- assign teaserPreset = include.preset | default: 'teaser' -%}
 
 {% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
 {% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
@@ -33,7 +34,7 @@
           id=teaserId
           thumb=teaserThumb
           alt=teaserAlt
-          preset="teaser"
+          preset=teaserPreset
         %}
 
       </div>
