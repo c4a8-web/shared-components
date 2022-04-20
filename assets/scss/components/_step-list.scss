@@ -1,9 +1,75 @@
 $step-list-counter-width: spacing(16);
+$step-list-counter-width-small: spacing(13);
 
 .step-list {
   padding: spacing(24) 0;
   background-color: var(--step-list-background);
   color: var(--step-list-color);
+
+  &:not(.step-list--small) {
+    .step-list__counter {
+      @include font-style($style: 'h3-font-size', $weight: 'light');
+    }
+  }
+
+  &.step-list--small {
+    --step-list-color: var(--color-copy);
+    --color-step-list-highlight: var(--color-primary-accent-light);
+    --color-step-list-highlight-copy: var(--color-primary-accent);
+
+    .step-list__title {
+      padding-left: 0;
+    }
+
+    .step-list__list-element {
+      position: relative;
+    }
+
+    .step-list__counter {
+      @include font-style($style: 'font-size-1', $weight: 'bold');
+
+      &.step-list__counter--manual {
+        &::before {
+          content: attr(data-content);
+        }
+      }
+
+      &::before {
+        width: $step-list-counter-width-small;
+        height: $step-list-counter-width-small;
+      }
+
+      &::after {
+        content: '';
+        position: absolute;
+        border-top: 2px solid var(--color-step-list-border);
+        width: calc(100% - #{spacing(12)});
+        height: 2px;
+        top: calc(#{$step-list-counter-width-small} / 2);
+        transform: translateX(spacing(4));
+      }
+    }
+
+    .step-list__icon {
+      opacity: 0;
+      pointer-events: none;
+
+      svg {
+        width: spacing(2);
+      }
+    }
+
+    .step-list__title--no-small {
+      display: none;
+    }
+
+    .step-list__title--no-default {
+      @include font-style($style: 'h4-font-size', $weight: 'light');
+
+      display: block;
+      margin-bottom: spacing(4);
+    }
+  }
 
   @include media-breakpoint-up(lg) {
     .step-list__list {
@@ -65,8 +131,6 @@ $step-list-counter-width: spacing(16);
 }
 
 .step-list__counter {
-  @include font-style($style: 'h3-font-size', $weight: 'light');
-
   grid-row-start: 1;
   grid-row-end: 2;
 
@@ -89,4 +153,8 @@ $step-list-counter-width: spacing(16);
   grid-column-start: 1;
   grid-column-end: 3;
   color: var(--step-list-color);
+}
+
+.step-list__title--no-default {
+  display: none;
 }
