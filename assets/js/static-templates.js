@@ -576,10 +576,15 @@ const headline = `<!-- Shared Headline Section -->
 {%- assign headlineLevel = include.level | default: level | default: 'h2' -%}
 {%- assign headlineText = include.text | default: text -%}
 
-{% comment %}
-TODO check if we need this headlineLevel-font-size class still or not
-{% endcomment %}
-{%- capture classList %}{{ headlineClasses }} {{ headlineLevel }}-font-size{% endcapture -%}
+{% if headlineClasses contains 'font-size' %}
+  {%- assign headlineLevelClass = '' -%}
+{% else %}
+  {%- capture headlineLevelClass -%}
+    {{ headlineLevel }}-font-size
+  {%- endcapture -%}
+{% endif %}
+
+{%- capture classList %}{{ headlineClasses }} {{ headlineLevelClass }}{% endcapture -%}
 
 <{{ headlineLevel }} {% if classList %}class="{{ classList }}"{% endif %}>
   {{ headlineText }}
