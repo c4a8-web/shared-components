@@ -4,12 +4,13 @@
 {%- assign stepListHeadline = include.headline | default: headline -%}
 {%- assign stepListSubline = include.subline | default: subline -%}
 {%- assign stepListList = include.list | default: list -%}
+{%- assign stepListVariant = include.variant -%}
 
-<div class="step-list" style="--step-list-background: {{ stepListBackground }};--step-list-color: {{ stepListColor }}">
+<div class="step-list {% if stepListVariant %}step-list--{{ stepListVariant }}{% endif %}" style="{% unless stepListVariant %}--step-list-background: {{ stepListBackground }};--step-list-color: {{ stepListColor }}{% endunless %}">
   <div class="container">
     {%- if stepListHeadline -%}
       <div class="row">
-        <div class="col-lg-8">
+        <div class="{% unless stepListVariant %}col-lg-8{% endunless %}">
           {%- capture stepListHeadlineClasses -%}{{ stepListHeadline.classes }} step-list__headline{%- endcapture -%}
           {%
             include headline.html
@@ -28,11 +29,14 @@
         <ul class="step-list__list">
           {%- for element in stepListList -%}
             <li class="step-list__list-element font-size-2">
-              <div class="step-list__counter"></div>
-              <div class="step-list__title">
+              <div class="step-list__counter {% if element.step %}step-list__counter--manual {% endif %}" {% if element.step %}data-content="{{ element.step }}"{% endif %}></div>
+              <div class="step-list__title step-list__title--no-small">
                 {{ element.title }}
               </div>
-              <div class="step-list__content font-size-1 light">
+              <div class="step-list__content font-size-1 {% unless stepListVariant %}light{% endunless %}">
+                <div class="step-list__title step-list__title--no-default">
+                  {{ element.title }}
+                </div>
                 {{ element.content }}
               </div>
             </li>
