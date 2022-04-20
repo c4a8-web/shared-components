@@ -21,8 +21,11 @@
         <div class="tab-list__content">
           <div class="tab-list__box rounded {% unless tab.link %}bg-white shadow-lg{% endunless %}">
             <div class="d-flex flex-column align-items-center position-relative z-index-2">
-              {% if tab.title %}<h2 class="tab-list__text mb-2 mb-md-6 text-center">
-                {{ tab.title }}</h2>{% endif %}
+              {% if tab.title %}
+                <h2 class="tab-list__text mb-2 mb-md-6 text-center">
+                  {{ tab.title }}
+                </h2>
+              {% endif %}
               {% if tab.description %}<p class="mb-6 flex-grow-1">{{ tab.description }}</p>{% endif %}
               {% if tab.cta != tab.href %}
                 {%
