@@ -38,9 +38,10 @@
 }
 
 .tab-list__text {
-  @include font-size-sm($breakpoint: false, $important: true);
+  @include font-size-1($breakpoint: false, $important: true);
 
   position: relative;
+  font-weight: normal !important;
   --color-headlines: var(--color-primary);
 
   @include media-breakpoint-up(lg) {

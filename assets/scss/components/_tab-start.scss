@@ -1,0 +1,23 @@
+.tab-start {
+  .tab-start__headline {
+    @include media-breakpoint-up(lg) {
+      margin-bottom: spacing(4);
+    }
+  }
+}
+
+.tab-start__headline {
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+}
+
+.tab-start__headline-small {
+  margin: 0 $grid-gutter-half-width;
+
+  @include media-breakpoint-up(lg) {
+    display: none;
+  }
+}

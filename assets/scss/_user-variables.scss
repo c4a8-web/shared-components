@@ -99,5 +99,6 @@ $grid-breakpoints: (
 
 $grid-columns: 12 !default;
 $grid-gutter-width: 30px !default;
+$grid-gutter-half-width: $grid-gutter-width / 2;
 
 $shared-components: true !default;
