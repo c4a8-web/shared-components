@@ -10,7 +10,7 @@
   <div class="container">
     {%- if stepListHeadline -%}
       <div class="row">
-        <div class="{% unless stepListVariant %}col-lg-8{% endunless %}">
+        <div class="col {% unless stepListVariant %}col-lg-8{% endunless %}">
           {%- capture stepListHeadlineClasses -%}{{ stepListHeadline.classes }} step-list__headline{%- endcapture -%}
           {%
             include headline.html
@@ -49,6 +49,16 @@
                   {{ element.title }}
                 </div>
                 {{ element.content }}
+                {% if element.ctaText %}
+                  {%
+                    include cta.html
+                    text=element.ctaText
+                    href=element.ctaHref
+                    link=element.link
+                    target=element.target
+                    type=element.type
+                  %}
+                {% endif %}
               </div>
             </li>
             {%- if forloop.index < forloop.length -%}
