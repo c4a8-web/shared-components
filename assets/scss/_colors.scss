@@ -1,5 +1,8 @@
 // https://chir.ag/projects/name-that-color/
 
+$color-blue-dark: #000520;
+$color-blue-medium: #0072c6;
+
 :root {
   --color-black: #000000;
   --color-black-85: #262626;
@@ -12,8 +15,8 @@
   --color-black-2: #fbfbfb;
 
   --color-manatee: #999ba6;
-  --color-blue-dark: #000520;
-  --color-blue-medium: #0072c6;
+  --color-blue-dark: #{$color-blue-dark};
+  --color-blue-medium: #{$color-blue-medium};
   --color-blue-light: #5cbbff;
   --color-blue-lighter: #77c6ff;
   --color-conifer: #acd653;
@@ -132,6 +135,8 @@
 }
 
 $white-30: rgba(255, 255, 255, 0.3);
+$color-primary-accent: $color-blue-medium;
+$color-copy: $color-blue-dark;
 
 // plain copies
 $gray-600: #8c98a4;

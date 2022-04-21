@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
 import { includessteplisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -41,8 +41,6 @@ Default.args = {
 
 export const Small = Template.bind({});
 
-// TODO manual override step count
-
 Small.args = {
   variant: 'small',
   headline: {
@@ -65,6 +63,46 @@ Small.args = {
       title: 'Roadmap to Production',
       content:
         '<ul class="dashed"> <li><strong>Ro<span class="highlight-yellow">admap zum produktiven</span> Einsatz</strong></li> <li>Präsentation der Pilot- und Testergebnisse</li> <li>Überprüfung zusätzlicher Geschäftsanwendungen</li> <li>Prozess Diskussion zu:</li> <ul class="dashed"> <li>Updates (OS & Apps)</li> <li>Monitoring</li> <li>Printing</li> </ul> </ul>',
+    },
+  ],
+};
+
+export const SmallWithIcons = Template.bind({});
+
+SmallWithIcons.args = {
+  variant: 'small',
+  headline: {
+    text: 'Experiencing & Pilot Package',
+    level: 'h2',
+  },
+  list: [
+    {
+      img: getAssetPath('svg/icons/icon-hand.svg'),
+      tint: true,
+      alt: 'lorem ipsum dolor sit amet, consectetur adipis',
+      title: 'Anmelden',
+      content: '10. - 12.11.2021',
+    },
+    {
+      img: getAssetPath('svg/icons/icon-consulting-services.svg'),
+      alt: 'lorem ipsum dolor sit amet, consectetur adipis',
+      title: 'Wo',
+      content: 'Remote per Teams Meeting',
+    },
+    {
+      img: getAssetPath('svg/icons/phone-mail.svg'),
+      tint: true,
+      alt: 'lorem ipsum dolor sit amet, consectetur adipis',
+      title: 'Gebühr',
+      content:
+        '1300,00 € pro Teilnehmer<br/>(200,00 € Discount bei laufenden Projekten oder ab zwei Teilnehmern eines Unternehmens)',
+    },
+    {
+      img: getAssetPath('svg/icons/icon-checklist-write.svg'),
+      overlapping: true,
+      alt: 'lorem ipsum dolor sit amet, consectetur adipis',
+      title: 'Zielgruppe',
+      content: 'Windows Client Architekten, Cloud Architekten, SCCM Spezialisten',
     },
   ],
 };
