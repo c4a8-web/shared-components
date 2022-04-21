@@ -71,10 +71,6 @@ export const SmallWithIcons = Template.bind({});
 
 SmallWithIcons.args = {
   variant: 'small',
-  headline: {
-    text: 'Experiencing & Pilot Package',
-    level: 'h2',
-  },
   list: [
     {
       img: getAssetPath('svg/icons/icon-hand.svg'),
@@ -82,6 +78,9 @@ SmallWithIcons.args = {
       alt: 'lorem ipsum dolor sit amet, consectetur adipis',
       title: 'Anmelden',
       content: '10. - 12.11.2021',
+      ctaText: 'Jetzt registrieren',
+      ctaHref: 'https://www.eventbrite.de/e/138562252427',
+      link: true,
     },
     {
       img: getAssetPath('svg/icons/icon-consulting-services.svg'),

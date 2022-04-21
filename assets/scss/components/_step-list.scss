@@ -171,6 +171,14 @@ $step-list-color-img-tint: $color-copy;
   grid-column-start: 1;
   grid-column-end: 3;
   color: var(--step-list-color);
+
+  .cta {
+    margin-top: spacing(4);
+
+    &.link {
+      display: flex;
+    }
+  }
 }
 
 .step-list__title--no-default {
