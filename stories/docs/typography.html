@@ -4,15 +4,44 @@
 <div style="display: flex; grid-gap: 10px; flex-direction: column;">
   {% for typeValues in typographyTypes %}
     <div>
-      <div class="{{ typeValues.class }} {% if typeValues.light %}light{% elsif typeValues.bold %}bold{% endif %}" style="">
+      <div class="typography__item {{ typeValues.class }} {% if typeValues.light %}light{% elsif typeValues.bold %}bold{% endif %}" style="">
         {% unless typeValues.headline %}
-          {{ typeValues.class }} ({% if typeValues.light %}light{% elsif typeValues.bold %}bold{% else %}default{% endif %})
+          {{ typeValues.class }} {% if typeValues.light %}(light){% elsif typeValues.bold %}(bold){% else %}{% endif %}
         {% else %}
           <div style="margin: 1em 0;" class="h4-font-size">{{ typeValues.headline }}</div>
         {% endunless %}
+        {% if typeValues.docs %}
+          <div class="typography__tooltip">
+            {{ typeValues.docs }}
+          </div>
+        {% endif %}
       </div>
     </div>
   {% endfor %}
 </div>
+
+<style>
+  .typography__item:hover .typography__tooltip {
+    visibility: visible;
+  }
+
+  .typography__item {
+    position: relative;
+  }
+
+  .typography__tooltip {
+    font-size: 2rem;
+    font-weight: 100 !important;
+    line-height: 2.7rem;
+    visibility: hidden;
+    width: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 1rem;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
 
 <!-- End Shared Typography Section -->
