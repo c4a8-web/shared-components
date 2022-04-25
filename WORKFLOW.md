@@ -90,3 +90,41 @@ TODO after figuring out the architecture with kanni
 # New Components
 
 TODO describe the process
+
+## Get Collection Data
+
+To select data from a collection list like casestudies you can use the component get-collection-data like this:
+
+```
+{%
+  include get-collection-data.html
+  id=1
+%}
+```
+
+To get the data for the collection ( default is casestudies ) or you can pass a collection to the component
+
+```
+{%
+  include get-collection-data.html
+  id=1
+  collection=site.collection
+%}
+```
+
+After that you can use the variable `getCollectionData` and pass the values in that object to a teaser for example like this:
+
+```
+{%
+  include teaser.html
+  overline=getCollectionData.overline
+  headline=getCollectionData.title
+  text=getCollectionData.hero.subline
+  ctaText="Mehr lesen"
+  ctaHref=getCollectionData.url
+  thumb=getCollectionData.hero.background.img
+  alt=getCollectionData.hero.background.alt
+  logo=serviceOverview.logo.img
+  logoAlt=serviceOverview.logo.alt
+%}
+```
