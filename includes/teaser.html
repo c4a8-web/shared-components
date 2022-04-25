@@ -11,7 +11,12 @@
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
+{%- assign teaserTextHtml = include.textHtml | default: false %}
 {%- assign teaserPreset = include.preset | default: 'teaser' -%}
+
+{% unless teaserTextHtml %}
+  {%- assign teaserText = teaserText | strip_html -%}
+{% endunless %}
 
 {% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
 {% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
