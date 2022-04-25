@@ -43,11 +43,11 @@ const settings = {
   },
   'Copy Sizes': null,
   'font-size-1': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: [''],
     variant: 'bold',
   },
   'font-size-2': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: [''],
     variant: 'bold',
   },
   'font-size-3': {
@@ -60,7 +60,7 @@ const settings = {
   },
   'Extra Sizes': null,
   'font-size-5': {
-    breakpoints: ['sm', 'lg', ''],
+    breakpoints: [''],
     variant: 'light',
   },
   'font-size-6': {
@@ -84,6 +84,7 @@ const generateDocs = function (typeFace, breakpoints) {
   if (!breakpoints) return;
 
   let docs = '';
+  let aboveBreakpointLabel = breakpoints.length > 1 ? 'Above Breakpoint' : 'All Breakpoints';
 
   breakpoints.forEach(function (breakpoint) {
     const typeFaceKey = `${typeFace}${breakpoint ? '-' + breakpoint : ''}`;
@@ -94,7 +95,7 @@ const generateDocs = function (typeFace, breakpoints) {
     const pxValue = typeFaceValue.replace('rem', '') * baseFontSize;
     const formattedValue = formatter.format(pxValue);
 
-    docs += `${breakpoint ? 'Breakpoint (' + breakpoint + ')' : 'Above Breakpoint'}: ${formattedValue}px<br/>`;
+    docs += `${breakpoint ? 'Breakpoint (' + breakpoint + ')' : aboveBreakpointLabel}: ${formattedValue}px<br/>`;
   });
 
   if (docs === '') return null;

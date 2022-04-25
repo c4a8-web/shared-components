@@ -1,13 +1,29 @@
+// TODO get rid of depdendency
 $font-size-base: 1rem;
 $font-size-sm: $font-size-base * 0.85;
 $font-size-xs: $font-size-sm * 0.89;
-$font-size-lg: $font-size-base * 1.5;
-$font-size-1: $font-size-base;
-$font-size-2: $font-size-base * 1.25;
-$font-size-3: $font-size-2 * 1.25;
-$font-size-4: $font-size-3 * 1.25;
+$font-size-lg: 1.5rem;
+
+$font-size-1: 1rem;
+
+$font-size-2: 1.25rem;
+
+$font-size-3: 1.5625rem;
+$font-size-3-sm: 1.25rem;
+$font-size-3-lg: 1.25rem;
+
+$font-size-4: 1.95313rem;
+$font-size-4-sm: 1.5625rem;
+$font-size-4-lg: 1.5625rem;
+
 $font-size-5: 3rem;
-$font-size-6: 9.76563rem * 1.25;
+
+$font-size-6: 6rem;
+$font-size-6-sm: 4rem;
+$font-size-6-lg: 5rem;
+
+$font-size-7: 9.76563rem * 1.25;
+$font-size-7-sm: 9.76563rem;
 
 $h1-font-size: $font-size-base * 5;
 $h1-font-size-sm: $h1-font-size / 1.8;
