@@ -64,7 +64,7 @@
 {% endif %}
 
 {% if posts.size -%}
-  <!-- Shared Blog Recent Section xx -->
+  <!-- Shared Blog Recent Section -->
   <div class="blog-recent {{ skin }} {% unless hideContainer %}mt-10{% endunless %}">
     {% if skin != '' %}
     <div class="blog-recent__bg" style="background-color:{{ blogRecentBgColor }}"></div>
