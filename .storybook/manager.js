@@ -1,4 +1,4 @@
-import { addons } from "@storybook/addons";
+import { addons } from '@storybook/addons';
 
 // https://storybook.js.org/docs/react/configure/features-and-behavior
 
@@ -6,14 +6,14 @@ addons.setConfig({
   isFullscreen: false,
   showNav: true,
   showPanel: true,
-  panelPosition: "bottom",
+  panelPosition: 'bottom',
   enableShortcuts: true,
   isToolshown: true,
   theme: undefined,
   selectedPanel: undefined,
-  initialActive: "sidebar",
+  initialActive: 'sidebar',
   sidebar: {
     showRoots: true,
-    collapsedRoots: ["other"],
+    collapsedRoots: ['context', 'docs'],
   },
 });

@@ -60,6 +60,11 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  options: {
+    storySort: {
+      order: ['Components', 'Pages', 'Context', 'Docs'],
+    },
+  },
 };
 
 export const decorators = [
