@@ -177,3 +177,27 @@ LeftFloating.args = {
   float: true,
   copy: 'We hear this question frequently: <strong>&quot;Why should I not log in to my WIFI by using my (Azure) Active Directory credentials?&quot; </strong><br /><br />We believe that users should use their (Azure) Active Directory credentials as little as possible. Working password-less is state of the art and prevents identity theft. This is why we use certificates for network authentication. While authenticating with certificates, no credentials are transferred. <br /><br />There is another benefit: device certificates are available for the operating system prior to user login. Therefore, network connections can be established before Windows user logon. <br /><br />And finally, it is not a big deal: Certificates and WIFI profiles can be deployed to clients easily. You just need a Certificate Authority (e.g. <a href="https://scepman.com/" target="_blank">SCEPman</a> – super-easy) and a device management system, like Microsoft Intune or JAMF.',
 };
+
+export const LeftFloatingBg = Template.bind({});
+
+LeftFloatingBg.args = {
+  href: '',
+  image: 'visuals/security-ninjacat.png',
+  alt: 'Calling with teams',
+  cloudinary: true,
+  bgColor: '#f5f5f5',
+  headline: 'Workplace Ninja Virtual Edition',
+  level: 'h2',
+  left: true,
+  float: true,
+  copy: 'Dieses Jahr findet die Workplace Ninja Virtual Edition 2021 <strong>vom 31. August bis 2. September </strong> statt. Eine der wichtigsten europäischen Technologiekonferenzen für Hardcore-Techies in ConfigMgr, Intune, Microsoft Security, Azure AD, PowerShell und Azure Virtual Desktop. Ziel der Veranstaltung ist es, Workplace-Experten zusammenzubringen, um ihr Wissen zu teilen und gemeinsam zu lernen. glueckkanja-gab ist dieses Jahr Platin-Sponsor und wird mit zwei Beiträgen dabei sein. Aufgrund der COVID-19 ist die Veranstaltung <strong>virtuell und komplett kostenlos</strong>. Die Anmeldung ist bereits möglich. Wir freuen uns darauf, euch dort zu treffen.',
+  background: getAssetPath('svg/shapes/shape-5.svg'),
+  list: [
+    {
+      ctaText: 'Jetzt anmelden',
+      ctaHref: 'https://www.eventbrite.ch/e/workplace-ninja-virtual-edition-2021-tickets-135839310033',
+      link: false,
+      target: '_blank',
+    },
+  ],
+};

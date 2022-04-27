@@ -1,7 +1,6 @@
 .testimonials-slider {
   @include media-breakpoint-up(md) {
     .testimonials-slider__slides {
-      // display: block;
       column-width: inherit;
       column-gap: inherit;
       width: auto;
@@ -77,23 +76,6 @@
       }
     }
   }
-
-  // @include media-breakpoint-down(md) {
-  //   .testimonial-teaser {
-  //     &:nth-child(even) {
-  //       .testimonial-teaser__wrapper {
-  //         margin-top: spacing(20);
-  //         opacity: 0.5;
-  //       }
-
-  //       + .testimonial-teaser {
-  //         .testimonial-teaser__wrapper {
-  //           opacity: 0.2;
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
 
   @include media-breakpoint-up(sm) {
     .testimonial-teaser__img {

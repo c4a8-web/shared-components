@@ -1,5 +1,4 @@
-// TODO link this with .container padding
-$service-overview-offset: 15px;
+$service-overview-offset: $grid-gutter-half-width;
 
 .service-overview {
   margin-bottom: spacing(10);

@@ -106,16 +106,6 @@ $slick-arrow-offset: 2;
   .slick-slide {
     margin: 0 10px 0 0;
 
-    &:first-of-type {
-      margin-left: -20px;
-    }
-
-    @include media-breakpoint-up(sm) {
-      &:first-of-type {
-        margin-left: -30px;
-      }
-    }
-
     @include media-breakpoint-up(lg) {
       margin: 0;
 

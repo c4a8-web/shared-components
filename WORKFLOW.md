@@ -124,3 +124,41 @@ Make sure that the name of the html file is between **includes** and **html** so
 If you only have one variant use the same name as the title so no folder will be created. For more variants use specific names. You need an export block with the args and the parameters for each variant you want to see. After saving you will directly see your variant in storybook. If you don't see it you propably have an error in your story which you will see in the console. Be aware that new stories will be shown at the end of the list and not in alphabetical order. But only for the first time.
 
 When you just add a new variant you can basically copy the last one and just rename the name in those two places and change the paramters accordingly.
+
+## Get Collection Data
+
+To select data from a collection list like casestudies you can use the component get-collection-data like this:
+
+```
+{%
+  include get-collection-data.html
+  id=1
+%}
+```
+
+To get the data for the collection ( default is casestudies ) or you can pass a collection to the component
+
+```
+{%
+  include get-collection-data.html
+  id=1
+  collection=site.collection
+%}
+```
+
+After that you can use the variable `getCollectionData` and pass the values in that object to a teaser for example like this:
+
+```
+{%
+  include teaser.html
+  overline=getCollectionData.overline
+  headline=getCollectionData.title
+  text=getCollectionData.hero.subline
+  ctaText="Mehr lesen"
+  ctaHref=getCollectionData.url
+  thumb=getCollectionData.hero.background.img
+  alt=getCollectionData.hero.background.alt
+  logo=serviceOverview.logo.img
+  logoAlt=serviceOverview.logo.alt
+%}
+```

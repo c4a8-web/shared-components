@@ -1,10 +1,10 @@
 {%- assign videoFrameThumb = include.thumb -%}
 {%- assign videoFrameAlt = include.alt -%}
 {%- assign videoFrameId = include.id -%}
+{%- assign videoFramePreset = include.preset | default: 'default' -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
-
 
 {% if videoFrameId %}
   {%- assign videoFrameHasVideo = true -%}
@@ -37,6 +37,7 @@
       img=videoFrameThumb
       cloudinary=true
       alt=videoFrameAlt
+      preset=videoFramePreset
     %}
   </div>
 </div>

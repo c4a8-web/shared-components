@@ -5,6 +5,10 @@
   position: relative;
   padding: spacing(16) 0 spacing(10);
 
+  &:not(.teaser--has-video) {
+    cursor: pointer;
+  }
+
   &::after {
     content: '';
     display: block;

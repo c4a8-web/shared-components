@@ -1,7 +1,6 @@
 .text-image {
   position: relative;
   background-repeat: no-repeat;
-  // z-index: 1;
 
   &.text-image--bg-color {
     + *[class*='mt-'] {
@@ -9,12 +8,22 @@
     }
   }
 
-  .row {
-    &.flex-row-reverse {
+  &.text-image--float {
+    .row {
       .text-image__first-col {
         order: 2;
         margin-top: 2rem;
+      }
 
+      .text-image__second-col {
+        order: 1;
+      }
+    }
+  }
+
+  .row {
+    &.flex-row-reverse {
+      .text-image__first-col {
         @include media-breakpoint-up(lg) {
           margin-top: 0;
           order: 1;
@@ -22,8 +31,6 @@
       }
 
       .text-image__second-col {
-        order: 1;
-
         @include media-breakpoint-up(lg) {
           order: 2;
         }

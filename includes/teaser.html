@@ -11,13 +11,19 @@
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
+{%- assign teaserTextHtml = include.textHtml | default: false %}
+{%- assign teaserPreset = include.preset | default: 'teaser' -%}
+
+{% unless teaserTextHtml %}
+  {%- assign teaserText = teaserText | strip_html -%}
+{% endunless %}
 
 {% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
 {% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
 
 <!-- Shared Teaser Section -->
 
-<div class="teaser">
+<div class="teaser {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="javascript:document.location.href='{{ teaserCtaHref }}'" {% endif %}>
   <div class="container">
     <div class="row teaser__row">
       <span class="teaser__overline">{{ teaserOverline }}</span>
@@ -33,6 +39,7 @@
           id=teaserId
           thumb=teaserThumb
           alt=teaserAlt
+          preset=teaserPreset
         %}
 
       </div>

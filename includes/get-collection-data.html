@@ -1,0 +1,7 @@
+{%- assign getCollectionDataId = include.id -%}
+{%- assign getCollectionDataCollection = include.collection | default: site.casestudies -%}
+
+{% capture getCollectionDataExpression %}item.uid == {{ getCollectionDataId }}{% endcapture %}
+
+{%- assign getCollectionDataDataList = getCollectionDataCollection | where_exp: "item", getCollectionDataExpression -%}
+{%- assign getCollectionData = getCollectionDataDataList[0] -%}
