@@ -1,11 +1,11 @@
 <!-- Shared Icon Section -->
-{%- assign iconIcon = include.icon | default: 'close' -%}
-{%- assign iconColor = include.color | default: 'currentColor' -%}
-{%- assign iconDirection = include.direction | default: 'right' -%}
-{%- assign iconSize = include.size | default: 'large' -%}
+{%- assign iconIcon = include.icon -%}
+{%- assign iconColor = include.color -%}
+{%- assign iconDirection = include.direction -%}
+{%- assign iconSize = include.size -%}
 {%- assign iconCircle = include.circle  -%}
 {%- assign iconHover = include.hover -%}
-{%- assign iconPadding = include.padding | default: 6 -%}
+{%- assign iconPadding = include.padding -%}
 {%- assign iconAnimation = include.animation -%}
 
 {%- capture rotation -%}
@@ -24,7 +24,7 @@
       circle="{{ iconCircle }}"
       hover="{{ iconHover }}"
       padding="{{ iconPadding }}"
-      animation="{{ iconAnimation }}"
+      animation='{{ iconAnimation }}'
 >
 </icon>
 <!-- End Shared Icon Section -->

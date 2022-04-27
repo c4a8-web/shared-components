@@ -9,10 +9,11 @@ import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
 import Close from './vue/icons/close.js';
-import ComputerShield from './vue/icons/computer-shield';
-import PhoneMail from './vue/icons/phone-mail';
+import ComputerShield from './vue/icons/computer-shield.js';
+import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
+import Modal from './vue/modal.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -40,6 +41,7 @@ const addApp = () => {
     PhoneMail,
     Rocket,
     Smile,
+    Modal,
   ];
 
   components.forEach((component) => {

@@ -4,7 +4,7 @@ export default {
     tag() {
       return this.button ? 'button' : 'a';
     },
-    classes() {
+    classList() {
       return `${this.baseClass} ${this.innerSkin} vue-component`;
     },
     innerSkin() {
@@ -62,7 +62,7 @@ export default {
   },
   template: `
     <component :is='tag' role="button"
-               :class="classes"
+               :class="classList"
                :data-text="text"
                :href="href ? href : null"
                :data-analytics="analytics ? analytics : null"

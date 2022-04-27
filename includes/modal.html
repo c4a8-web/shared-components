@@ -9,6 +9,8 @@
 {%- assign modalApiUrl = include.apiUrl -%}
 {%- assign modalJobId = include.jobId -%}
 
+{% comment %}
+
 <div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)"
   {% if modalClientName %}data-client-name="{{ modalClientName }}" {% endif %}
   {% if modalApiUrl %}data-api-url="{{ modalApiUrl }}" {% endif %}
@@ -38,4 +40,21 @@
     </div>
   </div>
 </div>
+
+
+TODO FIX this json property
+:form='{{ modalForm | jsonify }}'
+success="{{ modalSuccess }}"
+application={{ modalApplication }}
+
+
+{% endcomment %}
+
+<modal
+      clientName="{{ modalClientName }}"
+      apiUrl="{{ modalApiUrl }}"
+      jobId="{{ modalJobId }}"
+>
+  {{ ctaIconBox }}
+</modal>
 <!-- End Shared Modal Section -->
