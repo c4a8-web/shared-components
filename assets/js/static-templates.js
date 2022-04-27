@@ -1,5 +1,6 @@
 // NOTICE do not edit in this file. always copy from the correct template file
 
+// done
 const icon = `<!-- Shared Icon Section -->
 {% assign iconIcon = include.icon | default: 'close' -%}
 {%- assign iconColor = include.color | default: 'currentColor' -%}
@@ -459,6 +460,7 @@ const jobListDetail = `<!-- Shared Job List Detail Section -->
 <!-- End Shared Job List Detail Section -->
 `;
 
+// done
 const cta = `{% comment %}
 NOTICE ! There is a static version of this file in static-templates.js so if you update this file update the static version as well ! NOTICE
 {% endcomment %}
@@ -571,6 +573,7 @@ const modal = `<!-- Shared Modal Section -->
 <!-- End Shared Modal Section -->
 `;
 
+// done
 const headline = `<!-- Shared Headline Section -->
 {%- assign headlineClasses = include.classes | default: classes -%}
 {%- assign headlineLevel = include.level | default: level | default: 'h2' -%}

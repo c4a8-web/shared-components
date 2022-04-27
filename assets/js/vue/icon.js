@@ -2,14 +2,13 @@ export default {
   tagName: 'icon',
   computed: {
     classList() {
-      console.log('ani', this.animation);
-
       return [
         'icon',
         `icon--${this.direction}`,
         `icon--${this.icon}`,
-        `${this.animation ? 'js-text-animation__icon' : null}`,
-        `${this.circle ? 'icon--circle' : null}`,
+        `${this.animation ? 'js-text-animation__icon' : ''}`,
+        `${this.circle ? 'icon--circle' : ''}`,
+        `${this.hover ? 'icon--hover' : ''}`,
         'vue-component',
       ];
     },
@@ -30,42 +29,26 @@ export default {
 
       return innerSize;
     },
-    viewBoxWidth() {
-      var viewBoxWidth;
-
-      switch (this.icon) {
-        case 'close':
-          viewBoxWidth = 48;
-          break;
-        default:
-          viewBoxWidth = 24;
-          break;
+    parentStyle() {
+      return `--color-icon: ${this.color}; --icon-rotation: ${this.rotation}`;
+    },
+    rotation() {
+      if (this.direction === 'left') {
+        return '180deg';
+      } else {
+        return '0deg';
       }
-
-      return viewBoxWidth;
     },
-    viewBoxHeight() {
-      var viewBoxWidth;
-
-      switch (this.icon) {
-        case 'close':
-          viewBoxWidth = 48;
-          break;
-        default:
-          viewBoxWidth = 24;
-          break;
-      }
-
-      return viewBoxWidth;
-    },
-    viewBox() {
-      return `0 0 ${this.viewBoxWidth} ${this.viewBoxHeight}`;
-    },
-    style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation));`;
-    },
-    closeOuterPos() {
-      return this.viewBoxWidth - this.padding;
+    settings() {
+      return {
+        width: this.innerSize,
+        height: this.innerSize,
+        padding: this.padding,
+        'xml:space': 'preserve',
+        version: '1.1',
+        xmlns: 'http://www.w3.org/2000/svg',
+        'xmlns:link': 'http://www.w3.org/1999/xlink',
+      };
     },
   },
   props: {
@@ -73,20 +56,20 @@ export default {
     color: String,
     direction: String,
     size: String,
-    circle: Boolean,
-    hover: Boolean,
+    circle: {
+      default: null,
+    },
+    hover: {
+      default: null,
+    },
     padding: Number,
-    animation: Boolean,
+    animation: {
+      default: null,
+    },
   },
   template: `
-    <span :class="classList">
-      <svg v-if="icon === 'close'" :style="style" :width="innerSize" :height="innerSize" :viewBox="viewBox" xml:space="preserve"  version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-        <line fill="none" stroke-linecap="round" stroke-linejoin="round" :x1="closeOuterPos" :y1="padding" :x2="padding" :y2="closeOuterPos"/>
-        <line fill="none" stroke-linecap="round" stroke-linejoin="round" :x1="closeOuterPos" :y1="closeOuterPos" :x2="padding" :y2="padding"/>
-      </svg>
+    <span :class="classList" :style="parentStyle">
+      <component :is="icon" v-bind="settings" :color="color" />
     </span>
-
-
-
     `,
 };

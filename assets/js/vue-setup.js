@@ -5,6 +5,14 @@ import './lib/vue/vue.global.prod.js';
 import Cta from './vue/cta.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
+import ArrowExternal from './vue/icons/arrow-external.js';
+import ArrowNarrow from './vue/icons/arrow-narrow.js';
+import Arrow from './vue/icons/arrow.js';
+import Close from './vue/icons/close.js';
+import ComputerShield from './vue/icons/computer-shield';
+import PhoneMail from './vue/icons/phone-mail';
+import Rocket from './vue/icons/rocket.js';
+import Smile from './vue/icons/smile.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -20,7 +28,19 @@ const addApp = () => {
     },
   });
 
-  const components = [Cta, Headline, Icon];
+  const components = [
+    Cta,
+    Headline,
+    Icon,
+    ArrowExternal,
+    ArrowNarrow,
+    Arrow,
+    Close,
+    ComputerShield,
+    PhoneMail,
+    Rocket,
+    Smile,
+  ];
 
   components.forEach((component) => {
     app.component(component.tagName, component);
