@@ -47,22 +47,22 @@
   {%- assign contactOffsetClass = 'offset-lg-1 ' -%}
   {%- assign contactContainerClass = 'container pt-8 pt-lg-10' -%}
   {%- assign contactRowClass = 'row' -%}
-  {%- assign contactFormClass = 'col-md-11 col-lg-6 order-2 order-lg-1' -%}
-  {%- assign contactBoxClass = 'col-md-10 col-lg-5 {{ contactOffsetClass }} order-1 order-lg-2' -%}
+  {%- assign contactFormClass = 'col-md-10 col-lg-6 order-1' -%}
+  {%- capture contactBoxClass %}col-md-10 col-lg-5 {{ contactOffsetClass }} order-2{% endcapture -%}
 {%- endif -%}
 
 <div class="contact {{ contactVariantClass }} {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %}mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2{% endunless %}">
   <div class="{{ contactContainerClass }}">
     <div class="{{ contactRowClass }}">
       <div class="contact__form {{ contactFormClass }}">
-        {%- assign contactHeadlineClasses = contact.headlineClasses | default: "h3-font-size" -%}
+        {%- capture contactHeadlineClasses %}{{ contact.headlineClasses }} contact__healdine{% endcapture -%}
         {%
           include headline.html
           level=contact.level
           text=contact.headline
           classes=contactHeadlineClasses
         %}
-        <span class="font-weight-bold font-size-2">{{ contact.subline }}</span>
+        <span class="contact__subline font-weight-bold font-size-2">{{ contact.subline }}</span>
         {% if contact.form %}
           {%
             include form.html
