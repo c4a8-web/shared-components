@@ -12,6 +12,36 @@
     background-color: var(--color-contact-background);
   }
 
+  &:not(.is-collapsed) {
+    .contact__form {
+      .form {
+        margin-bottom: spacing(12);
+      }
+    }
+
+    .contact__subline {
+      display: block;
+    }
+
+    .contact__subline,
+    .contact__healdine {
+      text-align: center;
+    }
+
+    @include media-breakpoint-up(lg) {
+      .contact__form {
+        .form {
+          margin-bottom: 0;
+        }
+      }
+
+      .contact__subline,
+      .contact__healdine {
+        text-align: left;
+      }
+    }
+  }
+
   &.is-collapsed {
     max-width: 500px;
     overflow: hidden;
