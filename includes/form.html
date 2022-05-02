@@ -1,23 +1,16 @@
-{% comment %}
-                                      NOTICE ! There is a static version of this file in static-templates.js so if you update this file update the static version as well ! NOTICE
-{% endcomment %}
 <!-- Shared Form Section -->
 {%- assign formForm = include.form -%}
 {%- assign formLight = include.light -%}
 {%- assign formAnalytics = include.analytics -%}
-{%- assign formSpace = include.space | default: 'space-top-2' -%}
-{%- assign formContainer = include.container | default: false -%}
-{%- assign formCustomValidation = include.customValidation | default: false -%}
-{%- assign formAjax = include.ajax | default: false -%}
+{%- assign formSpace = include.space -%}
+{%- assign formContainer = include.container -%}
+{%- assign formCustomValidation = include.customValidation -%}
+{%- assign formAjax = include.ajax -%}
 {%- assign formAdditionalFields = include.additionalFields -%}
 {%- assign formUncentered = formForm.uncentered -%}
 {%- assign formReplaceValue = include.replaceValue -%}
 
-{% if formLight %}
-  {% assign formClasses = 'is-light' %}
-{% else %}
-  {% assign formClasses = '' %}
-{% endif %}
+{% comment %}
 
 <div class="form {{ formClasses }}
             {% if formContainer %}container{% endif %}
@@ -75,4 +68,20 @@
     </div>
   </div>
 </div>
+
+{% endcomment %}
+
+<Formular
+  :form="{{ formForm | jsonify | escape }}"
+  light="{{ formLight }}"
+  analytics="{{ analytics }}"
+  space="{{ formSpace }}"
+  container="{{ formContainer }}"
+  custom-validation="{{ formCustomValidation }}"
+  ajax="{{ formAjax }}"
+  :additional-fields="{{ formAdditionalFields | jsonify | escape }}"
+  uncentered="{{ formUncentered }}"
+  replace-value="{{ formReplaceValue }}"
+></Formular>
+
 <!-- End Shared Form Section -->

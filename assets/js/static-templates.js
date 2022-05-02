@@ -533,6 +533,7 @@ data-text="{{ ctaText }}"
 <!-- End Shared Cta Section -->
 `;
 
+// done
 const modal = `<!-- Shared Modal Section -->
 {%- assign modalForm = include.form -%}
 {%- assign modalSuccess = include.success -%}
@@ -595,6 +596,7 @@ const headline = `<!-- Shared Headline Section -->
 <!-- Shared End Headline Section -->
 `;
 
+// skipped at this point
 const modalApplication = `<!-- Shared Modal Application Section -->
 {%- assign modalApplicationForm = include.form -%}
 {%- assign modalApplicationSuccess = include.success -%}
@@ -698,6 +700,7 @@ const form = `<!-- Shared Form Section -->
         </div>
       {% endif %}
       <form class="form__form js-validate mt-6" method="{{ formForm.method }}" action="{{ formForm.action }}">
+                12312312
         {% for field in formForm.fields %}
           {%
             include form-fields.html

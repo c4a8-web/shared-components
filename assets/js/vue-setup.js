@@ -3,6 +3,7 @@
 import './lib/vue/vue.global.prod.js';
 
 import Cta from './vue/cta.js';
+import Form from './vue/form.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
@@ -31,6 +32,7 @@ const addApp = () => {
 
   const components = [
     Cta,
+    Form,
     Headline,
     Icon,
     ArrowExternal,
