@@ -1,7 +1,7 @@
 <!-- Shared Back to Top Section -->
 <div class="back-to-top ">
   <div class="back-to-top__start"></div>
-  <div class="back-to-top__wrapper ad-inline-block js-sticky-block"
+  <div class="back-to-top__wrapper js-sticky-block"
     data-hs-sticky-block-options='{
       "parentSelector": ".back-to-top",
       "breakpoint": "xs",
