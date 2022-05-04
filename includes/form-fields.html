@@ -1,6 +1,9 @@
 {%- assign formField = include.field -%}
 {%- assign formFieldReplaceValue = include.replaceValue -%}
 
+
+{% comment %}
+
 {% unless formField.id == '_gotcha' %}
   {%- if formField.readonly -%}
     {%- assign readonly = 'readonly' -%}
@@ -98,3 +101,7 @@
   {%- endif -%}
   <!-- End Shared Form Fields Section -->
 {% endunless %}
+
+{% endcomment %}
+
+<form-fields :field="{{ formField | jsonify | escape }}" replace-value="{{ formFieldReplaceValue }}" />

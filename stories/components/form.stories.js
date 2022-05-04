@@ -155,6 +155,10 @@ WithCheckboxes.args = {
           },
         ],
       },
+      {
+        type: 'hidden',
+        id: '_gotcha',
+      },
     ],
   },
 };

@@ -4,9 +4,9 @@ export default {
     classList() {
       return [
         'form',
-        `${this.light ? 'is-light' : ''}`,
-        `${this.ajax ? 'form--ajax' : ''}`,
-        `${this.container ? 'container' : ''}`,
+        `${this.light === true ? 'is-light' : ''}`,
+        `${this.ajax === true ? 'form--ajax' : ''}`,
+        `${this.container === true ? 'container' : ''}`,
         'vue-component',
       ];
     },
@@ -28,6 +28,37 @@ export default {
     method() {
       return this.form.method ? this.form.method : 'post';
     },
+    preparedBlocks() {
+      const blocks = [];
+
+      let index = 0;
+      let tempBlock = [];
+      // console.log('preparedFields ~ this.form.fields', this.form.fields);
+
+      this.form.fields.forEach((field) => {
+        if (field.rowStart) {
+          blocks[index] = tempBlock;
+
+          tempBlock.push(field);
+        } else if (field.rowEnd) {
+          tempBlock.push(field);
+
+          tempBlock = [];
+          index++;
+        } else {
+          tempBlock.push(field);
+
+          blocks[index] = tempBlock;
+
+          tempBlock = [];
+          index++;
+        }
+      });
+
+      // console.log(blocks);
+
+      return blocks;
+    },
   },
   props: {
     form: Object,
@@ -47,9 +78,10 @@ export default {
     uncentered: {
       default: null,
     },
+    // TODO replace value is missing
   },
   template: `
-    <div :class="classList" v-bind="settings">
+    <div :class="classList">
       <div :class="rowClassList">
         <div :class="wrapperClassList">
           <div v-if="form.headline" :class="headlineClassList" >
@@ -63,7 +95,16 @@ export default {
             </div>
           </div>
           <form class="form__form js-validate mt-6" :method="method" :action="form.action">
-            // TODO FORM FIELDS + additionalfields
+            <template v-for="block in preparedBlocks">
+              <div :class="['row mx-n3', block[0].rowClass]" v-if="block.length > 1">
+                <div :class="['px-3', 'col-md-' + field.col]" v-for="field in block">
+                  <form-fields :field='field' />
+                </div>
+              </div>
+              <template v-else>
+                <form-fields :field='block[0]' />
+              </template>
+            </template>
             <div :class="formClassList">
               <cta :text="form.ctaText" type="submit" :button="true" :skin="form.cta.skin" :width="form.cta.width" :analytics="analytics" />
             </div>

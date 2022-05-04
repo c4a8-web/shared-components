@@ -1,25 +1,11 @@
 <!-- Shared Form Checkbox Section -->
-{%- assign checkboxCheckbox = include.checkbox | default: checkbox -%}
-{%- assign checkboxGroup = include.group | default: group -%}
-{%- assign checkboxId = include.id | default: checkboxCheckbox.id | default: id -%}
+{%- assign checkboxCheckbox = include.checkbox -%}
+{%- assign checkboxGroup = include.group -%}
+{%- assign checkboxId = include.id | default: checkboxCheckbox.id -%}
 
-{%- if checkboxCheckbox.required -%}
-  {%- assign required = 'required' -%}
-{%- else -%}
-  {%- assign required = '' -%}
-{%- endif -%}
-
-<div class="form__checkbox-control custom-control custom-checkbox mb-1">
-  {% if checkboxCheckbox.placeholder %}
-    {%- capture otherId -%}{{ checkboxId }}_checkbox{%- endcapture -%}
-    <input class="form__checkbox form-check-input custom-control-input" type="checkbox" {{ checkboxGroup }} {{ required }} name="{{ otherId }}" id="{{ otherId }}">
-    <label class="form__checkbox-label custom-control-label" for="{{ otherId }}"></label>
-    <input class="form__input form-control form-control-sm" type="text" name="{{ checkboxId }}" id="{{ checkboxId }}" placeholder="{{ checkboxCheckbox.placeholder }}" {{ checkboxGroup }}>
-  {% else %}
-    <input class="form__checkbox form-check-input custom-control-input" type="checkbox" name="{{ checkboxId }}" id="{{ checkboxId }}" {{ checkboxGroup }} {{ required }}>
-    <label class="form__checkbox-label custom-control-label" for="{{ checkboxId }}">
-      {{ checkboxCheckbox.label }}
-    </label>
-  {% endif %}
-</div>
+<form-checkbox
+  :checkbox="{{ checkboxCheckbox | jsonify | escape }}"
+  group="{{ checkboxGroup }}"
+  id="{{ checkboxId }}"
+></form-checkbox>
 <!-- End Shared Form Checkbox Section -->
