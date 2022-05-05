@@ -33,7 +33,6 @@ export default {
 
       let index = 0;
       let tempBlock = [];
-      // console.log('preparedFields ~ this.form.fields', this.form.fields);
 
       this.form.fields.forEach((field) => {
         if (field.rowStart) {
@@ -54,8 +53,6 @@ export default {
           index++;
         }
       });
-
-      // console.log(blocks);
 
       return blocks;
     },
@@ -112,5 +109,6 @@ export default {
           </form>
         </div>
       </div>
-    </div>`,
+    </div>
+  `,
 };
