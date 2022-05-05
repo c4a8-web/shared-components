@@ -35,7 +35,7 @@ export default {
       return innerSize;
     },
     parentStyle() {
-      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.props.rotation}`;
+      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.rotation}`;
     },
     rotation() {
       if (this.props.direction === 'left') {
