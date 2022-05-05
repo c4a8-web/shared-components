@@ -31,20 +31,7 @@ export default {
     rowClassList() {
       return ['row mx-n3 ', this.field.rowClass];
     },
-    // rowClassList() {
-    //   return ['form__row', `${this.container ? 'row' : ''}`];
-    // },
-    /*
-
-
-    */
     value() {
-      //   {% if formFieldReplaceValue and formField.value == '#form-field-replace-value#' %}
-      //   {% assign formFieldValue = formFieldReplaceValue %}
-      // {% else %}
-      //   {% assign formFieldValue = formField.value %}
-      // {% endif %}
-
       return this.replaceValue && this.field.value === '#form-field-replace-value#'
         ? this.replaceValue
         : this.field.value;
@@ -71,7 +58,18 @@ export default {
           <input type="hidden" :name="field.id" :value="value">
         </template>
         <template v-else-if="field.checkboxes">
-          <form-checkboxes :field="field.checkboxes" />
+          <form-checkboxes :field="field" />
+        </template>
+        <template v-else-if="field.type === 'file'">
+          <form-attachments
+            :description="field.formAttachments?.description"
+            :text="field.formAttachments?.text"
+            :extensions="field.formAttachments?.extensions"
+            :maxSize="field.formAttachments?.maxSize"
+            :id="field.formAttachments?.id"
+            :required="field.formAttachments?.required"
+            :required-msg="field.formAttachments?.requiredMsg"
+          />
         </template>
       </div>
     </template>`,
@@ -80,22 +78,6 @@ export default {
 /*----------------------------------------------------------------
 
 
-        {% elsif formField.checkboxes %}
-          {%
-            include form-checkboxes.html
-            field=field
-          %}
-        {% elsif formField.type == 'file' %}
-          {%
-            include form-attachments.html
-            description=formField.formAttachments.description
-            text=formField.formAttachments.text
-            extensions=formField.formAttachments.extensions
-            maxSize=formField.formAttachments.maxSize
-            id=formField.formAttachments.id
-            required=formField.formAttachments.required
-            requiredMsg=formField.formAttachments.requiredMsg
-          %}
         {% elsif formField.type == 'select' %}
           {%- if formField.options.first -%}
             {%- assign options = formField.options -%}
