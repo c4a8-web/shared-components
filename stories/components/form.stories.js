@@ -138,19 +138,19 @@ WithCheckboxes.args = {
         requiredMsg: 'Please select at least one answer.',
         checkboxes: [
           {
-            id: 'not 1',
+            id: 'not_1',
             label: 'Not managed 1',
           },
           {
-            id: 'not 2',
+            id: 'not_2',
             label: 'Not managed 2',
           },
           {
-            id: 'not 3',
+            id: 'not_3',
             label: 'Not managed 3 ',
           },
           {
-            id: 'not 4',
+            id: 'not_4',
             label: 'Not managed 4',
           },
         ],
