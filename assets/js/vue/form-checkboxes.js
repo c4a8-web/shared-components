@@ -7,13 +7,17 @@ export default {
     required() {
       return this.checkbox?.required ? 'required' : null;
     },
+    message() {
+      return this.field.required ? this.field.requiredMsg : null;
+    },
   },
   props: {
-    checkbox: Object,
-    group: String,
-    id: String,
+    field: Object,
   },
   template: `
-   TODO integrate form checkboxses markup
-    `,
+    <label class="form__label input-label" :data-msg="message" >{{ field?.label }}</label>
+    <template v-for="checkbox in field?.checkboxes">
+      <form-checkbox :checkbox="checkbox" :group="checkbox?.id" :id="field.id + checkbox.id" />
+    </template>
+  `,
 };
