@@ -3,6 +3,7 @@
 import './lib/vue/vue.global.prod.js';
 
 import Cta from './vue/cta.js';
+import FormAttachments from './vue/form-attachments.js';
 import FormCheckbox from './vue/form-checkbox.js';
 import FormCheckboxes from './vue/form-checkboxes.js';
 import FormFields from './vue/form-fields.js';
@@ -35,6 +36,7 @@ const addApp = () => {
 
   const components = [
     Cta,
+    FormAttachments,
     FormCheckbox,
     FormCheckboxes,
     FormFields,

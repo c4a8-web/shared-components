@@ -1,58 +1,22 @@
 <!-- Shared Form Attachments Section -->
-{%- assign formAttachmentsDescription = include.description | default: description -%}
-{%- assign formAttachmentsText = include.text | default: text -%}
-{%- assign formAttachmentsExtensions = include.extensions | default: extensions -%}
-{%- assign formAttachmentsMaxSize = include.maxSize | default: maxSize -%}
-{%- assign formAttachmentsId = include.id | default: id -%}
-{%- assign formAttachmentsRequired = include.required | default: required -%}
-{%- assign formAttachmentsRequiredMsg = include.requiredMsg | default: requiredMsg -%}
-{%- assign formAttachmentsHasError = include.hasError | default: hasError -%}
+{%- assign formAttachmentsDescription = include.description -%}
+{%- assign formAttachmentsText = include.text -%}
+{%- assign formAttachmentsExtensions = include.extensions -%}
+{%- assign formAttachmentsMaxSize = include.maxSize -%}
+{%- assign formAttachmentsId = include.id -%}
+{%- assign formAttachmentsRequired = include.required -%}
+{%- assign formAttachmentsRequiredMsg = include.requiredMsg -%}
+{%- assign formAttachmentsHasError = include.hasError -%}
 
-{% capture extensionList %}
-{%- for ext in formAttachmentsExtensions -%}
-  ,&nbsp;{{ ext | capitalize }}
-{%- endfor -%}
-{% endcapture %}
+<form-attachments
+  description="{{ formAttachmentsDescription }}"
+  text="{{ formAttachmentsText }}"
+  extensions="{{ formAttachmentsExtensions }}"
+  max-size="{{ formAttachmentsMaxSize }}"
+  id="{{ formAttachmentsId }}"
+  required="{{ formAttachmentsRequired }}"
+  required-msg="{{ formAttachmentsRequiredMsg }}"
+  :has-error="{{ formAttachmentsHasError }}"
+/>
 
-{% capture acceptList %}
-{%- for ext in formAttachmentsExtensions -%}
-  ,.{{ ext }}
-{%- endfor -%}
-{% endcapture %}
-
-<div class="form-attachments {% if formAttachmentsHasError %}has-error{% endif %}" data-max-size="{{ formAttachmentsMaxSize }}">
-  <div class="form-attachments__button">
-    {%
-      include icon.html
-      icon='close'
-      circle=true
-      hover=true
-      padding=10
-    %}
-  </div>
-  <div class="form-attachments__content">
-    <div class="form-attachments__description">
-      {{ formAttachmentsDescription }}
-    </div>
-    <div class="form-attachments__text">
-      {{ formAttachmentsText }}
-    </div>
-    {% if formAttachmentsRequiredMsg %}
-      <div class="form-attachments__error is-error">
-        {{ formAttachmentsRequiredMsg }}
-      </div>
-    {% endif %}
-    <div class="form-attachments__extensions">
-      {{ extensionList | remove_first: ',&nbsp;' }} max. {{ formAttachmentsMaxSize | divided_by: 1000000 }} MB
-    </div>
-  </div>
-  <div class="form-attachments__files">
-    <input type="file" class="form-attachments__file"
-      {% if formAttachmentsRequired %}required{% endif %}
-      id="{{ formAttachmentsId }}"
-      name="{{ formAttachmentsId }}"
-      accept="{{ acceptList | remove_first: ',' }}">
-    <input type="hidden" class="form-attachments__base64">
-  </div>
-</div>
 <!-- End Shared Form Attachments Section -->
