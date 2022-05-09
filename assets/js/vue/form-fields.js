@@ -38,6 +38,7 @@ export default {
     },
   },
   props: {
+    options: Array,
     field: Object,
     replaceValue: {
       default: null,
@@ -46,7 +47,6 @@ export default {
   template: `
     <template v-if="field.id !== '_gotcha'">
       <div :class="classList">
-        FormField
         <template v-if="field.type === 'textarea'">
           <label class="input-label" :for="field.id">{{field.label}}</label>
           <textarea class="form-control form-textarea" :id="field.id" :name="field.id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
@@ -71,29 +71,13 @@ export default {
             :required-msg="field.formAttachments?.requiredMsg"
           />
         </template>
+        <template v-else-if="field.type === 'select'">
+          <form-select :field="field" :options="options" />
+        </template>
+        <template v-else-if="field.type">
+          <label class="input-label" :for="field.id">{{field.label}}</label>
+          <input :type="field.type" :id="field.id" :name="field.id" class="form-control" :data-msg="field?.requiredMsg" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
+        </template>
       </div>
     </template>`,
 };
-
-/*----------------------------------------------------------------
-
-
-        {% elsif formField.type == 'select' %}
-          {%- if formField.options.first -%}
-            {%- assign options = formField.options -%}
-          {%- else -%}
-            {%- assign options = site.data[formField.options].list -%}
-          {%- endif -%}
-          <label class="input-label" for="{{ formField.id }}">{{ formField.label }}</label>
-          <select class="form-control custom-select text-muted" name="{{ formField.id }}" {{ required }}>
-            <option value>{{ formField.placeholder }}</option>
-            {% for option in options %}
-              <option value="{{ option.value }}">{{ option.text }}</option>
-            {% endfor %}
-          </select>
-        {% else %}
-          <label class="input-label" for="{{ formField.id }}">{{ formField.label }}</label>
-          <input type="{{ formField.type }}" id="{{ formField.id }}" name="{{ formField.id }}" class="form-control" data-msg="{{ formField.requiredMsg }}" value="{{ formFieldValue }}" {{ placeholder }} {{ required }} {{ readonly }}>
-        {% endif %}
-
-*/

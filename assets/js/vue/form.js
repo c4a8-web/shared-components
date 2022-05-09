@@ -4,9 +4,10 @@ export default {
     classList() {
       return [
         'form',
-        `${this.light === true ? 'is-light' : ''}`,
-        `${this.ajax === true ? 'form--ajax' : ''}`,
-        `${this.container === true ? 'container' : ''}`,
+        `${!!this.light === true ? 'is-light' : ''}`,
+        `${!!this.ajax === true ? 'form--ajax' : ''}`,
+        `${!!this.container === true ? 'container' : ''}`,
+        `${!!this.customValidation === true ? 'form--custom-validation' : ''}`,
         'vue-component',
       ];
     },
@@ -57,6 +58,14 @@ export default {
       return blocks;
     },
   },
+  methods: {
+    getOptions(field) {
+      return typeof field.options === 'string' ? this.options[field.options] : field.options;
+    },
+    getBlockClassList(block) {
+      return ['row mx-n3', `${block?.rowClass ? block.rowClass : ''}`];
+    },
+  },
   props: {
     form: Object,
     light: {
@@ -75,7 +84,13 @@ export default {
     uncentered: {
       default: null,
     },
-    // TODO replace value is missing
+    replaceValue: {
+      default: null,
+    },
+    customValidation: {
+      default: null,
+    },
+    options: Object,
   },
   template: `
     <div :class="classList">
@@ -93,13 +108,13 @@ export default {
           </div>
           <form class="form__form js-validate mt-6" :method="method" :action="form.action">
             <template v-for="block in preparedBlocks">
-              <div :class="['row mx-n3', block[0].rowClass]" v-if="block.length > 1">
+              <div :class="getBlockClassList(block[0])" v-if="block.length > 1">
                 <div :class="['px-3', 'col-md-' + field.col]" v-for="field in block">
-                  <form-fields :field='field' />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" />
                 </div>
               </div>
               <template v-else>
-                <form-fields :field='block[0]' />
+                <form-fields :field='block[0]' :options="getOptions(block[0])" :replace-value="replaceValue" />
               </template>
             </template>
             <div :class="formClassList">

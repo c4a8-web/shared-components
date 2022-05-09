@@ -7,6 +7,7 @@ import FormAttachments from './vue/form-attachments.js';
 import FormCheckbox from './vue/form-checkbox.js';
 import FormCheckboxes from './vue/form-checkboxes.js';
 import FormFields from './vue/form-fields.js';
+import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
@@ -40,6 +41,7 @@ const addApp = () => {
     FormCheckbox,
     FormCheckboxes,
     FormFields,
+    FormSelect,
     Form,
     Headline,
     Icon,
