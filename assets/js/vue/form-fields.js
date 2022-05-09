@@ -37,6 +37,11 @@ export default {
         : this.field.value;
     },
   },
+  methods: {
+    getRequiredMsg(element) {
+      return element.requiredMsg ? element.requiredMsg : '';
+    },
+  },
   props: {
     options: Array,
     field: Object,
@@ -68,7 +73,7 @@ export default {
             :maxSize="field.formAttachments?.maxSize"
             :id="field.formAttachments?.id"
             :required="field.formAttachments?.required"
-            :required-msg="field.formAttachments?.requiredMsg"
+            :required-msg="getRequiredMsg(field.formAttachments)"
           />
         </template>
         <template v-else-if="field.type === 'select'">
@@ -76,7 +81,7 @@ export default {
         </template>
         <template v-else-if="field.type">
           <label class="input-label" :for="field.id">{{field.label}}</label>
-          <input :type="field.type" :id="field.id" :name="field.id" class="form-control" :data-msg="field?.requiredMsg" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
+          <input :type="field.type" :id="field.id" :name="field.id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
         </template>
       </div>
     </template>`,
