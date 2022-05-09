@@ -19,6 +19,29 @@
 {%- assign jobListDetailGoogleMaps = include.googleMaps %}
 {%- assign jobListDetailModalSuccess = include.modalSuccess %}
 
+
+
+<job-list-detail
+  detail-color="{{ jobListDetailColor }}"
+  client-name="{{ jobListDetailClientName }}"
+  job-id="{{ jobListDetailJobId }}"
+  api-url="{{ jobListDetailApiUrl }}"
+  base="{{ jobListDetailBase }}"
+  title="{{ jobListDetailTitle }}"
+  headline-level="{{ jobListDetailHeadlineLevel }}"
+  headline-classes="{{ jobListDetailHeadlineClasses }}"
+  gender="{{ jobListDetailGender }}"
+  cta-text="{{ jobListDetailCtaText }}"
+  cta-button="{{ jobListDetailCtaButton }}"
+  description="{{ jobListDetailDescription }}"
+  form="{{ jobListDetailForm | jsonify | escape }}"
+  person-quote="{{ jobListDetailPersonQuote | jsonify | escape }}"
+  google-maps="{{ jobListDetailGoogleMaps | jsonify | escape }}"
+  modal-success="{{ jobListDetailModalSuccess | jsonify | escape }}"
+/>
+
+{% comment %}
+
 <div class="job-list__detail page-detail is-loading"
   style="--page-detail-color: var({{ jobListDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
   data-id="{{ jobListDetailClientName }}" {% if jobListDetailJobId %}data-job-id="{{ jobListDetailJobId }}" {% endif %}
@@ -56,7 +79,7 @@
           %}
           <span class="job-list__detail-gender">{{ jobListDetailGender }}</span>
           <div class="job-list__detail-share">
-            {% comment %}TODO share bar{% endcomment %}
+            {% endcomment %}{% comment %}TODO share bar{% endcomment %}{% comment %}
           </div>
           <div class="job-list__detail-cta">
             {%
@@ -68,7 +91,7 @@
         </div>
       </div>
       <div class="job-list__detail-content page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
-        {% comment %}job list detail can switch to profile based on url parameter{% endcomment %}
+        {% endcomment %}{% comment %}job list detail can switch to profile based on url parameter{% endcomment %}{% comment %}
         <div class="job-list__detail-description page-detail__description richtext">
           {{ jobListDetailDescription }}
         </div>
@@ -107,4 +130,9 @@
   %}
 
 </div>
+
+{% endcomment %}
+
+
+
 <!-- End Shared Job List Detail Section -->
