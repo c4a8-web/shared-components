@@ -1,13 +1,15 @@
+import Tools from '../tools.js';
+
 export default {
   tagName: 'formular',
   computed: {
     classList() {
       return [
         'form',
-        `${!!this.light === true ? 'is-light' : ''}`,
-        `${!!this.ajax === true ? 'form--ajax' : ''}`,
-        `${!!this.container === true ? 'container' : ''}`,
-        `${!!this.customValidation === true ? 'form--custom-validation' : ''}`,
+        `${Tools.isTrue(this.light) === true ? 'is-light' : ''}`,
+        `${Tools.isTrue(this.ajax) === true ? 'form--ajax' : ''}`,
+        `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
+        `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
         'vue-component',
       ];
     },

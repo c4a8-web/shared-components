@@ -180,6 +180,10 @@ class Tools {
     return data;
   }
 
+  static isTrue(value) {
+    return value === true || value === 'true';
+  }
+
   static capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
