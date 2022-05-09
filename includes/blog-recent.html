@@ -63,7 +63,7 @@
   {% assign posts = posts | where_exp: "item", tagExpression %}
 {% endif %}
 
-{% if posts.size -%}
+{% if posts.size > 0 -%}
   <!-- Shared Blog Recent Section -->
   <div class="blog-recent {{ skin }} {% unless hideContainer %}mt-10{% endunless %}">
     {% if skin != '' %}
