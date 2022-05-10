@@ -10,7 +10,9 @@ class JobListDetail extends BaseComponent {
 
   constructor(root, options) {
     super(root, options);
+    console.log('JobListDetail ~ constructor ~ options', options);
 
+    return;
     this.containerSelector = '.job-list__detail-container';
     this.headlineSelector = '.job-list__detail-headline';
     this.ctaSelector = '.job-list__detail-cta .cta';
@@ -28,6 +30,7 @@ class JobListDetail extends BaseComponent {
     this.templates = window.Templates;
 
     this.loading = new Loading(this.root);
+    console.log('JobListDetail ~ constructor ~ this.loading', this.loading);
 
     this.init();
   }
@@ -124,16 +127,26 @@ class JobListDetail extends BaseComponent {
         ...(this.base && { ...this.base }),
       };
 
-      this.templates.setPreRender(() => {
-        this.root.classList.add(State.HIDE_LOADING);
-        this.loading.off(true);
-      });
+      console.log('rest');
 
-      this.templates?.load('job-list-detail', entryData).then((html) => {
-        this.appendHtml(html);
-        this.bindEvents();
-        this.stopLoading();
-      });
+      console.log('vue', window.vApp);
+
+      this.root.classList.add(State.HIDE_LOADING);
+      this.loading.off(true);
+
+      this.bindEvents();
+      this.stopLoading();
+
+      // this.templates.setPreRender(() => {
+      //   this.root.classList.add(State.HIDE_LOADING);
+      //   this.loading.off(true);
+      // });
+
+      // this.templates?.load('job-list-detail', entryData).then((html) => {
+      //   this.appendHtml(html);
+      //   this.bindEvents();
+      //   this.stopLoading();
+      // });
     } else {
       console.error('handleJob has no entry');
     }
