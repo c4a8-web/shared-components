@@ -6,7 +6,9 @@ export default {
     },
     classList() {
       const classes =
-        this.classes.indexOf('-font-size') !== -1 ? this.classes : `${this.classes} ${this.tag}-font-size`;
+        this.classes && this.classes.indexOf('-font-size') !== -1
+          ? this.classes
+          : `${this.classes ? this.classes : ''} ${this.tag}-font-size`;
 
       return `${classes} vue-component`;
     },
