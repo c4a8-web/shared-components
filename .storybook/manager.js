@@ -5,7 +5,7 @@ import { addons } from '@storybook/addons';
 addons.setConfig({
   isFullscreen: false,
   showNav: true,
-  showPanel: true,
+  showPanel: false,
   panelPosition: 'bottom',
   enableShortcuts: true,
   isToolshown: true,
