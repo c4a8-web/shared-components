@@ -11,7 +11,7 @@ import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
-import JobListDetail from './vue/job-list-detail';
+import JobListDetail from './vue/job-list-detail.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
@@ -21,6 +21,7 @@ import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import Modal from './vue/modal.js';
+// import PersonQuote from './vue/person-quote.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -56,6 +57,7 @@ const addApp = () => {
     Rocket,
     Smile,
     Modal,
+    // PersonQuote,
   ];
 
   components.forEach((component) => {
