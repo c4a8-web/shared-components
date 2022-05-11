@@ -1,6 +1,8 @@
 import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
 import Loading from '../loading.js';
+import Modal from '../modal.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'job-list-detail',
@@ -10,6 +12,7 @@ export default {
         'job-list__detail page-detail',
         `${this.hasLoading ? State.LOADING : ''}`,
         `${this.hasLoader ? 'loading' : ''}`,
+        `${this.hideLoading ? State.HIDE_LOADING : ''}`,
         `${this.hasBack ? 'page-detail--has-back' : ''}`,
         'vue-component',
       ];
@@ -26,20 +29,27 @@ export default {
     color() {
       return this.detailColor ? this.detailColor : '--color-job-list-detail';
     },
+    baseData() {
+      return this.base ? JSON.parse(this.base) : {};
+    },
   },
   mounted() {
     this.loading = new Loading(this.$refs['job-list-detail'], () => {
       this.hasLoader = true;
     });
 
+    this.loading.on(true);
+
     this.init();
   },
   data() {
     return {
       loadingDelay: 300,
+      sleepDelay: 1300,
       loading: {},
       hasLoading: true,
       hasLoader: false,
+      hideLoading: false,
       api: {},
       hasBack: false,
       entryData: {},
@@ -47,10 +57,7 @@ export default {
   },
   methods: {
     init() {
-      this.loading.on(true);
-
       this.api = new RecruiterBox({
-        // ...this.options, // TODO check what i need in options
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
       });
@@ -73,69 +80,49 @@ export default {
       }
     },
     loadJob() {
-      setTimeout(() => {
-        this.api
-          ?.getOpening()
-          .then((response) => response.json())
-          .then((data) => {
-            this.handleJob(data);
-          })
-          .catch((error) => {
-            console.error('Job-list Error:', error);
-          });
-      }, this.loadingDelay);
+      this.api
+        ?.getOpening()
+        .then((response) => response.json())
+        .then((data) => {
+          this.handleJob(data);
+        })
+        .catch((error) => {
+          console.error('Job-list Error:', error);
+        });
+    },
+    handleCta() {
+      Modal.open(this.$refs['modal-component']?.modal);
     },
     handleJob(entry) {
-      const localEntry = entry.objects ? entry.objects[0] : entry;
+      Tools.sleep(this.sleepDelay).then(() => {
+        const localEntry = entry.objects ? entry.objects[0] : entry;
 
-      if (localEntry && localEntry.location) {
-        const gender = window.i18n?.translate('gender');
+        if (localEntry && localEntry.location) {
+          const gender = window.i18n?.translate('gender');
+          const { title, description } = localEntry;
 
-        const { city } = localEntry?.location || {};
-        const { title, position_type, team, description } = localEntry;
+          const entryData = {
+            description,
+            title,
+            gender,
+          };
 
-        const entryData = {
-          city,
-          description,
-          title,
-          gender,
-          team,
-          positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
-          isInvisible: this.maxItems > 0 && i > this.maxItems - 1 ? true : false,
-          ...(this.base && { ...this.base }),
-        };
+          this.hideLoading = true;
 
-        // TODO base is missing
-        // TODO hide loading is missing
-        // TODO check bindevents
-
-        // this.root.classList.add(State.HIDE_LOADING);
-        this.loading.off(true, true);
-
-        // this.bindEvents();
-        this.update(entryData);
-
-        // this.templates.setPreRender(() => {
-        //   this.root.classList.add(State.HIDE_LOADING);
-        //   this.loading.off(true);
-        // });
-
-        // this.templates?.load('job-list-detail', entryData).then((html) => {
-        //   this.appendHtml(html);
-        //   this.bindEvents();
-        //   this.stopLoading();
-        // });
-      } else {
-        console.error('handleJob has no entry');
-      }
+          this.update(entryData);
+        } else {
+          console.error('handleJob has no entry');
+        }
+      });
     },
     stopLoading() {
       setTimeout(() => {
+        this.loading.off(true, true);
+
         this.hasLoading = false;
       }, this.loadingDelay);
     },
     update(entryData) {
-      console.log('update ~ entryData', entryData);
       this.entryData = entryData;
 
       this.stopLoading();
@@ -149,7 +136,6 @@ export default {
     base: String,
     headlineLevel: String,
     headlineClasses: String,
-    // gender: String,
     ctaText: String,
     ctaButton: Boolean,
     form: Object,
@@ -158,7 +144,7 @@ export default {
     modalSuccess: Object,
   },
   template: `
-    <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobId" :data-api-url="apiUrl" :data-base="base" ref="job-list-detail">
+    <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobId" :data-api-url="apiUrl" ref="job-list-detail">
       <div class="job-list__detail-container page-detail__container container">
         <div class="job-list__detail-start page-detail__start row">
           <div class="job-list__sticky-start page-detail__sticky-start col-md-11 col-lg-5">
@@ -181,7 +167,7 @@ export default {
                 <!-- TODO share bar -->
               </div>
               <div class="job-list__detail-cta">
-                <cta :text="ctaText" :button="ctaButton" />
+                <cta :text="baseData?.ctaText" :button="baseData?.ctaButton" @click="handleCta" />
               </div>
             </div>
           </div>
@@ -199,6 +185,7 @@ export default {
       </div>
       <div class="job-list__sticky-end"></div>
       <modal
+        ref="modal-component"
         :client-name="clientName"
         :api-url="apiUrl"
         :job-id="jobId"

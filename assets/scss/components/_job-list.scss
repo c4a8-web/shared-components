@@ -169,3 +169,8 @@ $job-list-detail-transition-3-delay: 1.8s;
 .job-list__detail-maps {
   margin-top: spacing(22);
 }
+
+job-list-detail {
+  min-height: 100vh;
+  display: block;
+}

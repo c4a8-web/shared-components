@@ -187,6 +187,10 @@ class Tools {
   static capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
+
+  static sleep(milliseconds) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
 }
 
 export default Tools;

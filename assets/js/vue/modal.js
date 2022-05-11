@@ -11,6 +11,9 @@ export default {
         'data-job-id': this.jobId ? this.jobId : null,
       };
     },
+    modal() {
+      return this.$refs.modal;
+    },
   },
   props: {
     clientName: String,
@@ -18,7 +21,7 @@ export default {
     jobId: String,
   },
   template: `
-    <div :class="classList" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)"
+    <div :class="classList" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)" ref="modal"
           v-bind="settings" >
       <div class="modal-dialog modal-xl">
         <div class="modal__content">
