@@ -12,6 +12,7 @@ import Form from './vue/form.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
 import JobListDetail from './vue/job-list-detail.js';
+import JobListEntry from './vue/job-list-entry.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
@@ -48,6 +49,7 @@ const addApp = () => {
     Headline,
     Icon,
     JobListDetail,
+    JobListEntry,
     ArrowExternal,
     ArrowNarrow,
     Arrow,
