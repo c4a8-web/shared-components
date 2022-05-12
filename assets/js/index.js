@@ -8,7 +8,6 @@ import FabButton from './components/fab-button.js';
 import FormAttachments from './components/form-attachments.js';
 import Form from './components/form.js';
 import GoogleMaps from './components/google-maps.js';
-import JobList from './components/job-list.js';
 import TabList from './components/tab-list.js';
 import TextAnimation from './components/text-animation.js';
 
@@ -30,7 +29,6 @@ const componentList = [
   FormAttachments,
   Form,
   GoogleMaps,
-  JobList,
   TabList,
   TextAnimation,
   Modal,

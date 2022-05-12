@@ -1,49 +1,32 @@
 <!-- Shared Job List Section -->
-{% assign jobListClientName = include.clientName | default: clientName %}
-{% assign jobListMaxItems = include.maxItems | default: maxItems %}
-{% assign jobListDetailUrl = include.detailUrl | default: detailUrl %}
-{% assign jobListJobId = include.jobId | default: jobId %}
-{% assign jobListTags = include.tags | default: tags %}
-{% assign jobListLang = include.lang | default: lang %}
-{% assign jobListTeam = include.team | default: team %}
-{% assign jobListApiUrl = include.apiUrl | default: apiUrl %}
-{% assign jobListHeadlineClasses = include.headlineClasses | default: headlineClasses %}
-{% assign jobListHeadlineLevel = include.headlineLevel | default: headlineLevel %}
-{% assign jobListHeadlineText = include.headlineText | default: headlineText %}
-{% assign jobListSublineText = include.sublineText | default: sublineText %}
-{% assign jobListExpandText = include.expandText | default: expandText %}
+{% assign jobListClientName = include.clientName %}
+{% assign jobListMaxItems = include.maxItems %}
+{% assign jobListDetailUrl = include.detailUrl %}
+{% assign jobListJobId = include.jobId %}
+{% assign jobListTags = include.tags %}
+{% assign jobListLang = include.lang %}
+{% assign jobListTeam = include.team %}
+{% assign jobListApiUrl = include.apiUrl %}
+{% assign jobListHeadlineClasses = include.headlineClasses %}
+{% assign jobListHeadlineLevel = include.headlineLevel %}
+{% assign jobListHeadlineText = include.headlineText %}
+{% assign jobListSublineText = include.sublineText %}
+{% assign jobListExpandText = include.expandText %}
 
-<div class="job-list container"
-  data-id="{{ jobListClientName }}"
-  data-max-items="{{ jobListMaxItems }}"
-  data-detail-url='{{ jobListDetailUrl | jsonify }}'
-  {% if jobListJobId %}data-job-id="{{ jobListJobId }}"{% endif %}
-  {% if jobListTags %}data-tags="{{ jobListTags }}"{% endif %}
-  {% if jobListLang %}data-lang="{{ jobListLang }}"{% endif %}
-  {% if jobListTeam %}data-team="{{ jobListTeam }}"{% endif %}
-  {% if jobListApiUrl %}data-api-url="{{ jobListApiUrl }}"{% endif %}
->
-  <div class="row">
-    <div class="job-list__header col-lg-12">
-      {%- capture headlineClasses -%}job-list__headline {{ jobListHeadlineClasses }}{%- endcapture -%}
-      {%- assign headlineLevel = jobListHeadlineLevel | default: 'h2' -%}
+<job-list
+  client-name="{{ jobListClientName }}"
+  max-items="{{ jobListMaxItems }}"
+  :detail-url='{{ jobListDetailUrl | jsonify }}'
+  job-id="{{ jobListJobId }}"
+  tags="{{ jobListTags }}"
+  lang="{{ jobListLang }}"
+  team="{{ jobListTeam }}"
+  api-url="{{ jobListApiUrl }}"
+  headline-classes="{{ jobListHeadlineClasses }}"
+  headline-level="{{ jobListHeadlineLevel }}"
+  headline-text="{{ jobListHeadlineText }}"
+  subline-text="{{ jobListSublineText }}"
+  expand-text="{{ jobListExpandText }}"
+/>
 
-      {%
-        include headline.html
-        text=jobListHeadlineText
-        level=headlineLevel
-        classes=headlineClasses
-      %}
-    </div>
-    {%- if jobListSublineText -%}
-    <div class="job-list__meta col-lg-7">
-      <div class="job-list__subline">{{ jobListSublineText }}</div>
-    </div>
-    {%- endif -%}
-    <div class="col-lg-12">
-      <div class="job-list__entries"></div>
-      <div class="job-list__expand-button is-invisible">{{ jobListExpandText }}</div>
-    </div>
-  </div>
-</div>
 <!-- End Shared Job List Section -->
