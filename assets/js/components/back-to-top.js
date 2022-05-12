@@ -1,6 +1,5 @@
 import Tools from '../tools.js';
 import BaseComponent from './base-component.js';
-// import State from '../state.js';
 
 class BackToTop extends BaseComponent {
   static rootSelector = '.back-to-top';

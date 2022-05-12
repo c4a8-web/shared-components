@@ -3,23 +3,23 @@
 :root {
   --site: 'realmigrator';
   // Theme colors
-  --color-headlines: red;
-  --color-copy: red;
-  --color-primary: red;
-  --color-primary-accent: red;
-  --color-primary-accent-light: red;
-  --color-secondary: red;
-  --color-secondary-accent: red;
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
+  --color-primary: var(--color-gigas);
+  --color-primary-accent: var(--color-jacarta);
+  --color-primary-accent-light: var(--color-wistful);
+  --color-secondary: var(--color-wax-flower);
+  --color-secondary-accent: var(--color-wax-flower);
   --color-copy-highlight: red;
 
   // Element colors
-  --color-bg-grey: red;
-  --color-bg-dark-grey: red;
-  --color-svg-icon: red;
-  --color-svg-icon--hover: red;
-  --color-bg-checkbox: red;
-  --color-border: red;
-  --color-loading: red;
+  --color-bg-grey: var(--color-porcelain);
+  --color-bg-dark-grey: var(--color-regent-grey);
+  --color-svg-icon: var(--color-primary);
+  --color-svg-icon--hover: var(--color-primary-accent);
+  --color-bg-checkbox: var(--color-blue-medium);
+  --color-border: var(--color-porcelain);
+  --color-loading: var(--color-primary);
   --color-loading--1: var(--color-primary);
   --color-loading--2: var(--color-yellow);
   --color-loading--3: var(--color-conifer);

@@ -1,37 +1,79 @@
 import i18n from './i18n/index.js';
 import VueSetup from './vue-setup.js';
 
-import BackToTop from './components/back-to-top.js';
-import Back from './components/back.js';
-import Contact from './components/contact.js';
-import FabButton from './components/fab-button.js';
-import FormAttachments from './components/form-attachments.js';
-import Form from './components/form.js';
-import GoogleMaps from './components/google-maps.js';
-import TabList from './components/tab-list.js';
-import TextAnimation from './components/text-animation.js';
+const handleLoadingError = function (error) {
+  console.error('There was an issue loading a component. It might be blocked my an Adblock Script.', error);
+};
 
-import PageDetail from './pages/detail.js';
+const Form = import('./components/form.js')
+  .then((module) => {
+    return module.default;
+  })
+  .catch(handleLoadingError);
 
-import Analytics from './data-an.js';
 import Events from './events.js';
-import Modal from './modal.js';
 import State from './state.js';
 import Tools from './tools.js';
 
+let componentLoaadingList;
+
 const componentList = [
-  Analytics,
-  BackToTop,
-  Back,
-  Contact,
-  FabButton,
-  FormAttachments,
+  import('./data-an.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/back.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/back-to-top.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/contact.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/fab-button.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/form-attachments.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   Form,
-  GoogleMaps,
-  TabList,
-  TextAnimation,
-  Modal,
-  PageDetail,
+  import('./components/google-maps.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/tab-list.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/text-animation.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./modal.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./pages/detail.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
 ];
 
 const captureRefreshAnimateNumber = function (event) {
@@ -50,15 +92,25 @@ const refreshAnimateNumber = function (parent) {
 };
 
 const initComponentList = function (element) {
-  for (let i = 0; i < componentList.length; i++) {
-    const component = componentList[i];
+  for (let i = 0; i < componentLoaadingList.length; i++) {
+    const component = componentLoaadingList[i];
 
-    component.init(element);
+    if (component && component.init) {
+      component.init(element);
+    }
   }
 
   document.addEventListener(Events.REFRESH_ANIMATE_NUMBERS, captureRefreshAnimateNumber);
 
   refreshAnimateNumber(document);
+};
+
+const loadComponents = function () {
+  Promise.all(componentList).then((data) => {
+    componentLoaadingList = data;
+
+    initComponentList();
+  });
 };
 
 const initSharedComponents = function () {
@@ -72,7 +124,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 });
 
 document.addEventListener('VUE_IS_MOUNTED', (e) => {
-  initComponentList();
+  loadComponents();
 });
 
 export { Form, initSharedComponents, initComponentList, State };
