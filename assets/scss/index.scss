@@ -73,3 +73,11 @@ ul.dashed li:before {
 .text-shadow {
   text-shadow: 7px 5px 7px #ffffff;
 }
+
+#app {
+  opacity: 0;
+
+  &[data-v-app] {
+    opacity: 1;
+  }
+}

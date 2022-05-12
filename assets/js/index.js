@@ -17,7 +17,6 @@ import Analytics from './data-an.js';
 import Events from './events.js';
 import Modal from './modal.js';
 import State from './state.js';
-import Templates from './templates.js';
 import Tools from './tools.js';
 
 const componentList = [
@@ -63,7 +62,6 @@ const initComponentList = function (element) {
 };
 
 const initSharedComponents = function () {
-  window.Templates = new Templates();
   window.i18n = new i18n();
 
   VueSetup();

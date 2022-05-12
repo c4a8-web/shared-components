@@ -16,8 +16,6 @@ class PageDetail extends BaseComponent {
 
     this.loadingDelay = 300;
 
-    this.templates = window.Templates;
-
     this.init();
   }
 
