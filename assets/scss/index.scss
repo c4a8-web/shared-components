@@ -76,8 +76,10 @@ ul.dashed li:before {
 
 #app {
   opacity: 0;
+  pointer-events: none;
 
   &[data-v-app] {
     opacity: 1;
+    pointer-events: auto;
   }
 }
