@@ -91,6 +91,12 @@ const refreshAnimateNumber = function (parent) {
   });
 };
 
+const loadThemeComponents = function () {
+  const customEvent = new CustomEvent('SHARED_COMPONENTS_READY', {});
+
+  document.dispatchEvent(customEvent);
+};
+
 const initComponentList = function (element) {
   for (let i = 0; i < componentLoaadingList.length; i++) {
     const component = componentLoaadingList[i];
@@ -103,6 +109,7 @@ const initComponentList = function (element) {
   document.addEventListener(Events.REFRESH_ANIMATE_NUMBERS, captureRefreshAnimateNumber);
 
   refreshAnimateNumber(document);
+  loadThemeComponents();
 };
 
 const loadComponents = function () {
