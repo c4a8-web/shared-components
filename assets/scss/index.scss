@@ -34,6 +34,10 @@ body {
   }
 }
 
+body {
+  line-height: var(--type-default-line-height);
+}
+
 .other {
   font-family: 'Roboto', sans-serif;
   font-family: 'Roboto Condensed', sans-serif;
