@@ -1,5 +1,7 @@
-$tag-cloud-background-color: white;
-
 .tag-cloud {
-    background-color: $tag-cloud-background-color;
+    background-color: var(--color-midnight);
+    color: var(--color-white);
+    h1 {
+        color: var(--color-white);
+    }
 }

@@ -1,0 +1,17 @@
+{%- assign tagCloudItems = include.items -%}
+{%- assign tagCloudSize = include.itemsize -%}
+{%- assign tagCloudRandom = include.random -%}
+
+<div class='container-fluid tag-cloud'>
+    <div class='row'>
+        <div class='col'>
+        <h1 class="my-3">Consulting Technology</h1>
+        <p>Weit hinten, hinter den Worbergen, fern der Länder Vokalien und </p>
+        </div>
+    </div>
+    {% for i in tagCloudItems %}
+        <div class='row'>
+            <p style="font-size: {{ i.tagCloudSize | sample }};">{{ i }} </p>
+        </div>
+    {% endfor %}
+</div>
