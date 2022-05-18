@@ -1,0 +1,10 @@
+<!-- Shared Faq Section -->
+{%- assign faqHealdine = include.headline -%}
+{%- assign faqEntries = include.entries -%}
+
+<faq
+      :headline="{{ faqHealdine | jsonify | escape }}"
+      :entries="{{ faqEntries | jsonify | escape }}"
+>
+</faq>
+<!-- End Shared Faq Section -->
