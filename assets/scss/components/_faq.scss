@@ -1,0 +1,23 @@
+.faq {
+  summary {
+    @include font-style($style: 'font-size-2', $line: 'wide');
+  }
+
+  details {
+    margin: spacing(4) 0;
+
+    + details {
+      padding-top: spacing(3);
+      border-top: 1px solid var(--color-faq-border);
+    }
+  }
+}
+
+.faq__headline {
+  padding-bottom: spacing(6);
+}
+
+.faq__text {
+  margin-top: spacing(4);
+  margin-bottom: spacing(14);
+}
