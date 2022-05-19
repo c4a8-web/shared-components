@@ -21,7 +21,7 @@ export default {
   template: `
     <component :is='tag'
                :class="classList"
+               v-html="text"
     >
-      {{ text }}
     </component>`,
 };
