@@ -117,8 +117,9 @@ class TagCloud extends BaseComponent {
     // get a b values
     if (this.active) {
       //TODO: replace this.mouseY with diff Event
-      a = (-Math.min(Math.max(-this.mouseY, -this.size), this.size) / this.size) * this.velocity;
-      b = (Math.min(Math.max(-this.mouseX, -this.size), this.size) / this.size) * this.velocity;
+      // at what speed the text moves away
+      a = (Math.min(Math.max(-this.mouseY, -this.size), this.size) / this.size) * this.velocity;
+      b = (-Math.min(Math.max(-this.mouseX, -this.size), this.size) / this.size) * this.velocity;
     } else {
       a = this.lasta * 0.98;
       b = this.lastb * 0.98;
@@ -211,6 +212,36 @@ class TagCloud extends BaseComponent {
 
     for (i = 0; i < this.aA.length; i++) {
       aTmp.push(this.aA[i]);
+    }
+
+    aTmp.sort(function() { return Math.random() < 0.5 ? 1 : -1; });
+
+    for (i = 0; i < aTmp.length; i++) {
+      oFragment.appendChild(aTmp[i]);
+    }
+
+    this.oDiv.appendChild(oFragment);
+
+    for (i = 0; i < max; i++) {
+      if (this.distr) {
+        phi = Math.acos(-1 + (2 * (i + 1) - 1) / max);
+        theta = Math.sqrt(max * Math.PI) * phi;
+      } else {
+        phi = Math.random() * (Math.PI);
+        theta = Math.random() * (2 * Math.PI);
+      }
+
+      this.mcList[i].cx = this.radius * Math.cos(theta) * Math.sin(phi);
+      this.mcList[i].cy = this.radius * Math.sin(theta) * Math.sin(phi);
+      this.mcList[i].cz = this.radius * Math.cos(phi);
+    }
+  }
+
+  doPosition() {
+    let l = oDiv.offsetWidth / 2;
+    let t = oDiv.offsetHeight / 2;
+    for (var i = 0; i < this.mclist.length; i++) {
+      this.aA[i].style.left = (this.mcList[i].cx + l - this.mcList[i].offsetWidth / 2) + 'px';
     }
   }
 
