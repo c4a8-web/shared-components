@@ -1,7 +1,11 @@
 .tag-cloud {
     background-color: var(--color-midnight);
     color: var(--color-white);
-    h1 {
+    h2 {
         color: var(--color-white);
+    }
+    .tag-cloud-container {
+        // position: absolute;
+
     }
 }

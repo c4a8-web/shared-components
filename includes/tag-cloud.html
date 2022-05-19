@@ -1,17 +1,25 @@
 {%- assign tagCloudItems = include.items -%}
-{%- assign tagCloudSize = include.itemsize -%}
-{%- assign tagCloudRandom = include.random -%}
+{%- assign tagCloudLevel = include.level | default: "h2" -%}
+{%- assign tagCloudHeadline = include.headline -%}
+{%- assign tagCloudSubline = include.subline -%}
 
 <div class='container-fluid tag-cloud'>
     <div class='row'>
         <div class='col'>
-        <h1 class="my-3">Consulting Technology</h1>
-        <p>Weit hinten, hinter den Worbergen, fern der Länder Vokalien und </p>
+            {%
+                include headline.html
+                level=tagCloudLevel
+                text=tagCloudHeadline
+                classes="h2-font-size"
+            %}
+            <div class='mt-5 mb-5 w-lg-65'>{{ tagCloudSubline }}</div>
         </div>
     </div>
-    {% for i in tagCloudItems %}
+    <div class="tag-cloud-container">
+        {% for item in tagCloudItems %}
         <div class='row'>
-            <p style="font-size: {{ i.tagCloudSize | sample }};">{{ i }} </p>
+            <p> {{ item }} </p>
         </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
