@@ -201,6 +201,7 @@ class TagCloud extends BaseComponent {
     }
   }
 
+  // takes care of distributiong between elements
   positionAll() {
     let phi = 0;
     let theta = 0;
@@ -237,11 +238,14 @@ class TagCloud extends BaseComponent {
     }
   }
 
+  //apply all the transforms to the elements
   doPosition() {
     let l = oDiv.offsetWidth / 2;
     let t = oDiv.offsetHeight / 2;
     for (var i = 0; i < this.mclist.length; i++) {
-      this.aA[i].style.left = (this.mcList[i].cx + l - this.mcList[i].offsetWidth / 2) + 'px';
+      this.aA[i].style.left = 'transform(' + (this.mcList[i].cx + l - this.mcList[i].offsetWidth / 2) + 'px, ' + (this.mcList[i].cy + t - this.mcList[i].offsetHeight / 2) + 'px' + ') scale(' + Math.ceil(this.mcList[i].scale *100 *0.8)/100 + ')';
+      this.aA[i].style.filter = 'alpha(opacity=' + 100 * (this.mclist[i].alpha + 0.1) + ')';
+      this.aA[i].style.opacity = this.mclist[i].alpha + 0.1;
     }
   }
 
