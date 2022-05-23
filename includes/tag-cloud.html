@@ -5,7 +5,7 @@
 
 <div class='container-fluid tag-cloud'>
     <div class='row'>
-        <div class='col'>
+        <div class='col my-5'>
             {%
                 include headline.html
                 level=tagCloudLevel
@@ -18,7 +18,7 @@
     <div class="tag-cloud-container">
         {% for item in tagCloudItems %}
         <div class='row tag-cloud-items'>
-            <p> {{ item }} </p>
+            <a href="#"><p> {{ item }} </p></a>
         </div>
         {% endfor %}
     </div>
