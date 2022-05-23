@@ -9,6 +9,7 @@ export default {
     classList() {
       return [
         'icon',
+        `${this.classes ? this.classes : ''}`,
         `icon--${this.props.direction}`,
         `icon--${this.props.icon}`,
         `${this.props.animation ? 'js-text-animation__icon' : ''}`,
@@ -40,6 +41,8 @@ export default {
     rotation() {
       if (this.props.direction === 'left') {
         return '180deg';
+      } else if (this.props.direction === 'clockwise') {
+        return '90deg';
       } else {
         return '0deg';
       }
@@ -80,6 +83,9 @@ export default {
     },
     animation: {
       default: null,
+    },
+    classes: {
+      default: '',
     },
   },
   template: `

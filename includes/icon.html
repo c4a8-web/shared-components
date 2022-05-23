@@ -7,6 +7,7 @@
 {%- assign iconHover = include.hover -%}
 {%- assign iconPadding = include.padding -%}
 {%- assign iconAnimation = include.animation -%}
+{%- assign iconClasses = include.classes -%}
 
 {%- capture rotation -%}
   {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
@@ -25,6 +26,7 @@
       hover="{{ iconHover }}"
       padding="{{ iconPadding }}"
       animation='{{ iconAnimation }}'
+      classes="{{ iconClasses }}"
 >
 </icon>
 <!-- End Shared Icon Section -->
