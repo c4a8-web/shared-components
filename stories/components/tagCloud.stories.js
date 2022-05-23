@@ -17,5 +17,4 @@ TagCloud.args = {
   headline: "Consultings Technology",
   subline: "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und",
   items: ['Intune', 'Azure Active Directory', 'MIP', 'Security', 'MIM', 'Azure', 'MDM', 'Windows 365', 'Teams', 'M.Defender', 'Autopilot', 'MS 365'],
-  itemsize: ["15px", "20px", "35px", "16px", "24px"],
 };
