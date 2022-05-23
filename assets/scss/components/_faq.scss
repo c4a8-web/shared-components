@@ -1,14 +1,35 @@
 .faq {
   summary {
     @include font-style($style: 'font-size-2', $line: 'wide');
+
+    display: flex;
+    position: relative;
   }
 
   details {
     margin: spacing(4) 0;
 
+    &[open] {
+      .faq__icon {
+        transform: rotate(-180deg);
+      }
+    }
+
     + details {
       padding-top: spacing(3);
       border-top: 1px solid var(--color-faq-border);
+    }
+  }
+
+  .faq__icon {
+    transition: transform 0.5s $animation-transition;
+
+    .icon {
+      position: relative;
+      right: 2px;
+      top: 2px;
+      transform: scaleY(2.2) scale(1.2);
+      margin-bottom: spacing(1);
     }
   }
 }
@@ -20,4 +41,20 @@
 .faq__text {
   margin-top: spacing(4);
   margin-bottom: spacing(14);
+}
+
+.faq__summary {
+  display: inline-block;
+}
+
+.faq__text,
+.faq__summary {
+  width: 90%;
+}
+
+.faq__icon-frame {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
