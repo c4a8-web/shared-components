@@ -8,8 +8,8 @@ class TagCloud extends BaseComponent {
     this.active = false;
     this.velocity = 10;
     this.size= 250;
-    this.oDiv = document.querySelector('');
-    this.aA = this.oDiv.querySelectorAll('');
+    this.oDiv = document.querySelector('.tag-cloud-items');
+    this.aA = this.oDiv.querySelectorAll('.text');
     this.keep = false;
     this.radius = 200;
     this.direction = 135;
@@ -25,12 +25,13 @@ class TagCloud extends BaseComponent {
   }
 
   on(target, event, handler, option) {
-    if (target.addEventlistener) {
-      target.addEventlistener(event, handler, option);
-    } else if (target.attachEvent) {
-      target.attachEvent('on ' + event, handler);
+    let tg = (target != undefined) ? target : window;
+    if (tg.addEventListener) {
+      tg.addEventListener(event, handler, option);
+    } else if (tg.attachEvent) {
+      tg.attachEvent('on ' + event, handler);
     } else {
-      target['on ' + event] = handler;
+      tg['on ' + event] = handler;
     }
   }
 
@@ -55,9 +56,9 @@ class TagCloud extends BaseComponent {
 
     this.oDiv.appendChild(oFramgent);
 
-    for (i = 0; i < max; i++) {
+    for (i = 1; i < max; i++) {
       if (this.distr) {
-        phi = Math.acos(-1 + (2 * i - 1) / max);
+        phi = Math.acos(-1 + (2 * i + 1) / max);
         theta = Math.sqrt(max * Math.PI) * phi;
       } else {
         phi = Math.random() * (Math.PI);
@@ -70,21 +71,6 @@ class TagCloud extends BaseComponent {
 
 
     }
-  }
-
-  setActiveTrue() {
-    this.active = true;
-  }
-
-  setActiveFalse() {
-    this.active = false;
-  }
-
-  mouseMove () {
-    let oEvent = window.event || ev;
-    this.mouseX = (oEvent.clientX - (this.oDiv.offsetLeft + this.oDiv.offsetWidth/2))/5;
-    this.mouseY = (oEvent.clientY - (this.oDiv.offsetTop + this.oDiv.offsetHeight/2))/5;
-
   }
 
   init() {
@@ -104,9 +90,13 @@ class TagCloud extends BaseComponent {
 
     this.positionAll();
 
-    TagCloud.on(this.$target, 'mouseover', this.setActiveTrue);
-    TagCloud.on(this.$target, 'mouseout', this.setActiveFalse);
-    TagCloud.on(this.keep ? window : self$target, 'mousemove', this.mouseMove);
+    this.on(this.oDiv, 'mouseover', () => { this.active = true; });
+    this.on(this.oDiv, 'mouseout', () => { this.active = false; });
+    this.on(this.oDiv, 'mousemove', () => {
+      let oEvent = window.event || ev;
+      this.mouseX = (oEvent.clientX - (this.oDiv.offsetLeft + this.oDiv.offsetWidth/2))/5;
+      this.mouseY = (oEvent.clientY - (this.oDiv.offsetTop + this.oDiv.offsetHeight/2))/5;
+    });
 
     this.update();
 
@@ -124,8 +114,6 @@ class TagCloud extends BaseComponent {
       b = this.lastb * 0.98;
 
     let c = 0;
-
-    let req = window.requestAnimationFrame;
 
     if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) {
       return;
@@ -157,18 +145,16 @@ class TagCloud extends BaseComponent {
       this.items[j].alpha = (this.items[j].alpha - 0.6) * (10 / 6);
     }
 
-    this.doPosition();
+    () => {
+      let l = this.oDiv.offsetWidth / 2;
+      let t = this.oDiv.offsetHeight / 2;
+      for (let i = 0; i < this.items.length; i++) {
+        this.aA[i].style.transform = 'translate(' + (this.items[i].cx + l - this.items[i].offsetWidth / 2) + 'px,' + (this.items[i].cy + t - this.items[i].offsetHeight / 2) + 'px) scale(' + Math.ceil(this.items[i].scale * 100 * 9.8) / 100 + ')';
+        this.aA[i].style.filter = 'alpha(opacity=' + this.items[i].alpha * 100 + ')';
+        this.aA[i].style.opacity = this.items[i].alpha;
+      }
+    };
 
   }
   }
-
-  doPosition() {
-    let l = this.oDiv.offsetWidth / 2;
-    let t = this.oDiv.offsetHeight / 2;
-    for (let i = 0; i < this.items.length; i++) {
-      this.aA[i].style.transform = 'translate(' + (this.items[i].cx + l - this.items[i].offsetWidth / 2) + 'px,' + (this.items[i].cy + t - this.items[i].offsetHeight / 2) + 'px) scale(' + Math.ceil(this.items[i].scale * 100 * 9.8) / 100 + ')';
-      this.aA[i].style.filter = 'alpha(opacity=' + this.items[i].alpha * 100 + ')';
-      this.aA[i].style.opacity = this.items[i].alpha;
-    }
-  }
-  }
+}
