@@ -38,9 +38,15 @@
   padding-bottom: spacing(6);
 }
 
+.faq__content {
+  transition: height 0.5s $animation-transition;
+  overflow: hidden;
+}
+
 .faq__text {
-  margin-top: spacing(4);
-  margin-bottom: spacing(14);
+  padding-top: spacing(4);
+  padding-bottom: spacing(14);
+  overflow: hidden;
 }
 
 .faq__summary {
