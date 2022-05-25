@@ -16,10 +16,13 @@ export default {
   },
   computed: {
     classList() {
-      return ['faq container space-top-1', 'vue-component'];
+      return ['faq container space-top-2', 'vue-component'];
     },
     headlineClasses() {
       return `faq__headline ${this.headline?.classes ? this.headline.classes : ''}`;
+    },
+    headlineLevel() {
+      return this.headline?.level ? this.headline.level : 'h2';
     },
   },
   methods: {
@@ -57,7 +60,7 @@ export default {
     <div :class="classList">
       <div class="row">
         <div class="col-lg-8">
-          <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+          <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" />
           <details v-for="entry in entriesWithState" :open="entry.isOpen">
             <summary @click.prevent="handleClick(entry)" :open="entry.isOpen">
               <div class="faq__summary">{{ entry.summary }}</div>

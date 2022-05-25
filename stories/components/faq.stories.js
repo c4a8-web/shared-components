@@ -30,7 +30,6 @@ export const MultipleEntries = Template.bind({});
 
 MultipleEntries.args = {
   headline: {
-    level: 'h3',
     text: 'FAQs X Entries',
   },
   entries: [
