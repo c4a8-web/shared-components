@@ -16,15 +16,19 @@ class TagCloud extends BaseComponent {
     //mouse position
     this.mouseX = 0;
     this.mouseY = 0;
-    this.mouseIsOver = true;
+    this.mouseIsInactive = true;
     this.velocity = 5;
-    this.lastX = 0;
-    this.lastY = 0;
+    this.lastX = 1;
+    this.lastY = 1;
 
     this.startEvent(window, 'load', this.mouseEvaluation());
     //this.update(0.98, 0.98, 0);
   }
 
+  tagCloudInitializer() {
+  }
+
+  //EventHandler
   startEvent(divObject, event, func, option) {
     let target = (divObject != undefined) ? divObject : window;
     if (divObject.addEventListener) {
@@ -47,11 +51,11 @@ class TagCloud extends BaseComponent {
 
   //mouse tracking of current state
   mouseOver() {
-    this.mouseIsOver = false;
+    this.mouseIsInactive = false;
   }
 
   mouseOut() {
-    this.mouseIsOver = true;
+    this.mouseIsInactive = true;
   }
 
   //evaluate the mouse position and update the positions
@@ -62,8 +66,8 @@ class TagCloud extends BaseComponent {
     this.startEvent(this.divObject, 'mousemove', this.getRandomValue());
 
     let size = 200;
-    console.log(this.mouseIsOver);
-    if (this.mouseIsOver) {
+    console.log(this.mouseIsInactive);
+    if (this.mouseIsInactive) {
       //
       this.mouseY = -(Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
       this.mouseX = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
@@ -77,6 +81,7 @@ class TagCloud extends BaseComponent {
     this.lastX = this.mouseX;
 
     this.update(this.mouseX, this.mouseY, 0);
+
   }
 
   setTags() {
@@ -161,6 +166,7 @@ class TagCloud extends BaseComponent {
   doPosition() {
     let l = this.divObject.offsetWidth / 2;
     let t = this.divObject.offsetHeight / 2;
+    console.log(this.tagList);
     for (let i = 0; i < this.tagList.length; i++) {
       this.textElements[i].style.transform = 'translate(' + (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2)+ 'px, ' + (this.tagList[i].cy + t - this.tagList[i].offsetHeight/2)+ 'px ) scale(' + Math.ceil(this.tagList[i].scale * 100 * 0.7)/100 + ')';
 

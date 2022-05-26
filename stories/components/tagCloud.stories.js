@@ -15,6 +15,19 @@ export const TagCloud = Template.bind({});
 
 TagCloud.args = {
   headline: "Consultings Technology",
+  test: [{arg: "test", link: "test"}, {arg: "test1", link: "test1"}],
   subline: "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und",
-  items: ['Intune', 'Azure Active Directory', 'MIP', 'Security', 'MIM', 'Azure', 'MDM', 'Windows 365', 'Teams', 'M.Defender', 'Autopilot', 'MS 365'],
+  items: [{title: 'Intune', link: '#'},
+          {title: 'Azure Active Directory', link: '#'},
+          {title: 'MIP', link: '#'},
+          {title: 'Security', link: '#'},
+          {title: 'MIM', link: '#'},
+          {title: 'Azure', link: '#'},
+          {title: 'MDM', link: '#'},
+          {title: 'Windows 365', link: '#'},
+          {title: 'Teams', link: '#'},
+          {title: 'M.Defender', link: '#'},
+          {title: 'Autopilot', link: '#'},
+          {title: 'MS 365', link: '#'}
+        ],
 };
