@@ -21,11 +21,14 @@ class TagCloud extends BaseComponent {
     this.lastX = 1;
     this.lastY = 1;
 
-    this.startEvent(window, 'load', this.mouseEvaluation());
+    this.startEvent(window, 'load', this.tagCloudInitiator());
     //this.update(0.98, 0.98, 0);
   }
 
-  tagCloudInitializer() {
+  tagCloudInitiator() {
+    this.setTags();
+    this.positionObjects();
+    this.mouseEvaluation();
   }
 
   //EventHandler
@@ -60,13 +63,13 @@ class TagCloud extends BaseComponent {
 
   //evaluate the mouse position and update the positions
   mouseEvaluation() {
+    let size = 200;
 
     this.startEvent(this.divObject, 'mouseover', this.mouseOver());
     this.startEvent(this.divObject, 'mouseout', this.mouseOut());
     this.startEvent(this.divObject, 'mousemove', this.getRandomValue());
 
-    let size = 200;
-    console.log(this.mouseIsInactive);
+
     if (this.mouseIsInactive) {
       //
       this.mouseY = -(Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
@@ -81,13 +84,12 @@ class TagCloud extends BaseComponent {
     this.lastX = this.mouseX;
 
     this.update(this.mouseX, this.mouseY, 0);
-
+    setTimeout(this.mouseEvaluation.bind(this), 10);
   }
 
   setTags() {
     for (let i = 0; i < this.textElements.length; i++) {
       let tag = {};
-      // offsetWidth, offsetHeight, cx, cy, x, y, scale, alpha
       tag.offsetWidth = this.textElements[i].offsetWidth;
       tag.offsetHeight = this.textElements[i].offsetHeight;
       this.tagList.push(tag);
@@ -141,9 +143,6 @@ class TagCloud extends BaseComponent {
     }
 
   update(a, b, c) {
-
-    this.setTags();
-    this.positionObjects();
     for (let i = 0; i < this.tagList.length; i++) {
       let vector3 = this.rotationMatrix(a, b, c, i);
 
