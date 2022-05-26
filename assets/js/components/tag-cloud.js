@@ -11,53 +11,70 @@ class TagCloud extends BaseComponent {
     // a list with all our ObjectTags for each textElement
     this.tagList = []
     this.depth = 300;
-    this.radius = 150;
+    this.radius = 200;
 
     //mouse position
     this.mouseX = 0;
     this.mouseY = 0;
-    this.mouseIsOver = false;
+    this.mouseIsOver = true;
     this.velocity = 5;
+    this.lastX = 0;
+    this.lastY = 0;
 
-    this.update(10, 5, 20);
+    this.startEvent(window, 'load', this.mouseEvaluation());
+    //this.update(0.98, 0.98, 0);
+  }
+
+  startEvent(divObject, event, func, option) {
+    let target = (divObject != undefined) ? divObject : window;
+    if (divObject.addEventListener) {
+      let opt = option || false;
+      target.addEventListener(event, func, opt);
+    } else {
+      target.attachEvent('on' + event, func);
+    }
   }
 
   // replace mouse by random input
-  //
+  getRandomValue() {
+    let sign = Math.random() < 0.5 ? -1 : 1;
+    let randomX = sign * Math.random() * 5;
+    let randomY = sign * Math.random() * 5;
+    this.mouseX = randomX;
+    this.mouseY = randomY;
+  }
 
 
   //mouse tracking of current state
   mouseOver() {
-    this.mouseIsOver = true;
-  }
-
-  mouseOut() {
     this.mouseIsOver = false;
   }
 
-  mouseMove() {
-    let oEvent = window.event || ev;
-    this.mouseX = oEvent.clientX
-    console.log(this.mouseX);
+  mouseOut() {
+    this.mouseIsOver = true;
   }
 
   //evaluate the mouse position and update the positions
   mouseEvaluation() {
-    this.divObject.addEventListener('mouseover', this.mouseOver());
-    this.divObject.addEventListener('mouseout', this.mouseOut());
-    this.divObject.addEventListener('mousemove', this.mouseMove());
+
+    this.startEvent(this.divObject, 'mouseover', this.mouseOver());
+    this.startEvent(this.divObject, 'mouseout', this.mouseOut());
+    this.startEvent(this.divObject, 'mousemove', this.getRandomValue());
 
     let size = 200;
+    console.log(this.mouseIsOver);
     if (this.mouseIsOver) {
       //
       this.mouseY = -(Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
       this.mouseX = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
-      this.lastY = this.mouseY;
-      this.lastX = this.mouseX;
+
     } else {
       this.mouseY = this.lastY * 0.98;
       this.mouseX = this.lastX * 0.98;
     }
+
+    this.lastY = this.mouseY;
+    this.lastX = this.mouseX;
 
     this.update(this.mouseX, this.mouseY, 0);
   }
@@ -79,7 +96,6 @@ class TagCloud extends BaseComponent {
     let i = 0
     let max = this.tagList.length + 1;
     for (i = 1; i < max; i++) {
-      if (true) {}
       phi = Math.acos(-1 + (2 * i + 1 )/max);
       theta = Math.sqrt(max * Math.PI) * phi;
 
@@ -129,9 +145,10 @@ class TagCloud extends BaseComponent {
       this.tagList[i].cx = vector3.rx3;
       this.tagList[i].cy = vector3.ry3;
       this.tagList[i].cz = vector3.rz3;
-      console.log(vector3.per);
+
       this.tagList[i].x = (vector3.rx3 * vector3.per) - 2;
       this.tagList[i].y = vector3.ry3 * vector3.per;
+
       this.tagList[i].scale = vector3.per;
       this.tagList[i].alpha = vector3.per;
       this.tagList[i].alpha = (this.tagList[i].alpha - 0.6) * (10/6);
@@ -145,13 +162,10 @@ class TagCloud extends BaseComponent {
     let l = this.divObject.offsetWidth / 2;
     let t = this.divObject.offsetHeight / 2;
     for (let i = 0; i < this.tagList.length; i++) {
-      /*
-      'translate(' + (mcList[i].cx + l - mcList[i].offsetWidth / 2) + 'px, ' + (mcList[i].cy + t - mcList[i].offsetHeight / 2) + 'px' + ') scale(' + Math.ceil(mcList[i].scale * 100  * 0.8) / 100 + ')'
-      */
       this.textElements[i].style.transform = 'translate(' + (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2)+ 'px, ' + (this.tagList[i].cy + t - this.tagList[i].offsetHeight/2)+ 'px ) scale(' + Math.ceil(this.tagList[i].scale * 100 * 0.7)/100 + ')';
-      console.log(this.textElements[i].style.transform);
-      this.textElements[i].style.opacity = this.tagList[i].alpha;
+
       this.textElements[i].style.filter = 'alpha(opacity=' + (this.tagList[i].alpha + 0.1) * 100 + ')';
+      this.textElements[i].style.opacity = this.tagList[i].alpha + 0.1;
     }
 
   }
@@ -159,171 +173,3 @@ class TagCloud extends BaseComponent {
 
 
 export default TagCloud;
-
-
-
-
-/*
-
- constructor(root, options) {
-    super(root, options);
-    this.active = false;
-    this.velocity = 10;
-    this.size= 250;
-    this.oDiv = document.querySelector('.tag-cloud-items');
-    this.aA = this.oDiv.querySelectorAll('.text');
-    this.keep = false;
-    this.radius = 200;
-    this.direction = 135;
-    this.depth = 300;
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.items = [];
-    this.howElliptical = 1;
-    this.lasta = 1;
-    this.lastb = 1;
-    this.distr = true;
-    this.init();
-  }
-
-  on(target, event, handler, option) {
-    let tg = (target != undefined) ? target : window;
-    if (tg.addEventListener) {
-      tg.addEventListener(event, handler, option);
-    } else if (tg.attachEvent) {
-      tg.attachEvent('on ' + event, handler);
-    } else {
-      tg['on ' + event] = handler;
-    }
-  }
-  init() {
-    this.active = false;
-    let oTag = null;
-    let i = 0;
-
-    for (i = 0; i < this.aA.length; i++) {
-      oTag = {};
-      oTag.offsetWidth = this.aA[i].offsetWidth;
-      oTag.offsetHeight = this.aA[i].offsetHeight;
-      this.items.push(oTag);
-    }
-
-    this.mouseX = this.velocity * Math.sin(this.direction * (Math.PI / 180));
-    this.mouseY = -this.velocity * Math.cos(this.direction * (Math.PI / 180));
-
-    this.positionAll();
-
-    this.on(this.oDiv, 'mouseover', () => { this.active = true; });
-    this.on(this.oDiv, 'mouseout', () => { this.active = false; });
-    this.on(this.oDiv, 'mousemove', () => {
-      let oEvent = window.event || ev;
-      this.mouseX = (oEvent.clientX - (this.oDiv.offsetLeft + this.oDiv.offsetWidth/2))/5;
-      this.mouseY = (oEvent.clientY - (this.oDiv.offsetTop + this.oDiv.offsetHeight/2))/5;
-    });
-
-    this.update();
-
-  }
-
-  positionAll() {
-    let phi = 0;
-    let theta = 0;
-    let max = this.items.length;
-    let i = 0;
-
-    let aTmp = [];
-    let oFramgent = document.createDocumentFragment();
-
-    for (i = 0; i < max; i++) {
-      aTmp.push(this.aA[i])
-    }
-
-    aTmp.sort(function() { return Math.random() < 0.5 ? 1 : -1; });
-
-    for (i = 0; i < aTmp.length; i++) {
-      oFramgent.appendChild(aTmp[i]);
-    }
-
-    this.oDiv.appendChild(oFramgent);
-
-    for (i = 1; i < max; i++) {
-      if (this.distr) {
-        phi = Math.acos(-1 + (2 * i + 1) / max);
-        theta = Math.sqrt(max * Math.PI) * phi;
-      } else {
-        phi = Math.random() * (Math.PI);
-        theta = Math.random() * (2 * Math.PI);
-      }
-
-      this.items[i - 1].cx = this.radius * Math.cos(theta) * Math.sin(phi);
-      this.items[i - 1].cy = this.radius * Math.sin(theta) * Math.sin(phi);
-      this.items[i - 1].cz = this.radius * Math.cos(phi);
-
-
-    }
-  }
-
-
-  update() {
-    let a;
-    let b;
-
-    if (this.active) {
-      a = -(Math.min(Math.max(-this.mouseY, -this.size) /this.radius)) * this.velocity;
-      b = (Math.min(Math.max(-this.mouseX, -this.size), this.size)/this.radius) * this.velocity;
-    } else {
-      a = this.lasta * 0.98;
-      b = this.lastb * 0.98;
-    }
-
-    this.lasta = a;
-    this.lastb = b;
-    let c = 0;
-
-    if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) {
-      return;
-    }
-    const radiansToDegree = Math.PI/180;
-    for (let j = 0; j < this.items.length; j++) {
-      let rx1 = this.items[j].cx;
-      let ry1 = this.items[j].cy * Math.cos(a * radiansToDegree) + this.items[j].cz * (-Math.sin(a * radiansToDegree));
-      let rz1 = this.items[j].cy * Math.sin(a * radiansToDegree) + this.items[j].cz * Math.cos(a * radiansToDegree);
-
-      let rx2 = rx1 * Math.cos(b * radiansToDegree) + rz1 * Math.sin(b * radiansToDegree);
-      let ry2 = ry1;
-      let rz2 = rx1 * (-Math.sin(b * radiansToDegree)) + rz1 * Math.cos(b * radiansToDegree);
-
-      let rx3 = rx2 * Math.cos(c * radiansToDegree) + ry2 * (-Math.sin(c * radiansToDegree));
-      let ry3 = rx2 * Math.sin(c * radiansToDegree) + ry2 * Math.cos(c * radiansToDegree);
-      let rz3 = rz2
-
-      const per = (2 * self.depth) / (2* self.depth + rz2);
-
-      this.items[j].cx = rx3;
-      this.items[j].cy = ry3;
-      this.items[j].cz = rz3;
-
-      this.items[j].x = (this.howElliptical * rx3 * per) - (this.howElliptical * 2);
-      this.items[j].y = (ry3 * per);
-      this.items[j].scale = per;
-      this.items[j].alpha = per;
-      this.items[j].alpha = (this.items[j].alpha - 0.6) * (10 / 6);
-    }
-
-    this.doPosition();
-  }
-
-
-  doPosition() {
-    let l = this.oDiv.offsetWidth / 2;
-    let t = this.oDiv.offsetHeight / 2;
-
-    // here
-    for (let i = 0; i < this.items.length; i++) {
-      this.aA[i].style.transform = 'translate(' + (this.items[i].cx + l - this.items[i].offsetWidth / 2) + 'px,' + (this.items[i].cy + t - this.items[i].offsetHeight / 2) + 'px) scale(' + Math.ceil(this.items[i].scale * 100 * 9.8) / 100 + ')';
-      this.aA[i].style.filter = 'alpha(opacity=' + this.items[i].alpha * 100 + ')';
-      this.aA[i].style.opacity = this.items[i].alpha;
-    }
-  }
-
-*/
