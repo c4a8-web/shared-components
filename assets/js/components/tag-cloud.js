@@ -69,7 +69,7 @@ class TagCloud extends BaseComponent {
     }
 
     this.lastY = tempYPosition;
-    this.lastX = tempYPosition;
+    this.lastX = tempXPosition;
     setTimeout(this.getMouseState.bind(this), 10);
     this.update(tempYPosition, tempXPosition, 0);
   }
@@ -87,9 +87,8 @@ class TagCloud extends BaseComponent {
   positionObjects() {
     let phi = 0;
     let theta = 0;
-    let i = 0
     let max = this.tagList.length + 1;
-    for (i = 1; i < max; i++) {
+    for (let i = 1; i < max; i++) {
       phi = Math.acos(-1 + (2 * i + 1 )/max);
       theta = Math.sqrt(max * Math.PI) * phi;
 
@@ -125,7 +124,7 @@ class TagCloud extends BaseComponent {
     let ry3 = rx2 * result.sinC + ry2 * result.cosC;
     let rz3 = rz2;
 
-    let per = this.depth / (this.depth + rz3);
+    let per = (this.depth) / (this.depth + rz3);
     return { rx3, ry3, rz3, per };
     }
 
@@ -162,7 +161,7 @@ class TagCloud extends BaseComponent {
     for (let i = 0; i < this.tagList.length; i++) {
       xPlacement = (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2);
       yPlacement = (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
-      newScale = Math.ceil(this.tagList[i].scale * 100 * 0.7)/100;
+      newScale = Math.ceil(this.tagList[i].scale * 100 )/100;
       newAlpha = (this.tagList[i].alpha + 0.1) * 100;
       newBlur = (0.75/this.tagList[i].scale)
 
