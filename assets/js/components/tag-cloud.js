@@ -8,7 +8,6 @@ class TagCloud extends BaseComponent {
 
     this.divObject = document.querySelector('.tag-cloud-container');
     this.textElements = this.divObject.querySelectorAll('a');
-    this.responsiveRadius = this.divObject.clientWidth;
 
     this.tagList = []
     this.depth = 300;
@@ -30,12 +29,6 @@ class TagCloud extends BaseComponent {
     this.update(1, 1, 1);
 
     this.getMouseState();
-  }
-
-  responsiveRadius() {
-    this.responsiveRadius = this.divObject.clientWidth;
-    this.radius = this.responsiveRadius / 2;
-
   }
 
   getRandomValue() {
