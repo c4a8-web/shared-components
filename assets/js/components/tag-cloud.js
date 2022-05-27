@@ -16,7 +16,7 @@ class TagCloud extends BaseComponent {
     this.mouseX = 0;
     this.mouseY = 0;
     this.mouseIsInactive = false;
-    this.velocity = 10;
+    this.velocity = 50;
     this.lastX = 1;
     this.lastY = 1;
 
@@ -49,12 +49,18 @@ class TagCloud extends BaseComponent {
 
   }
 
+  responsiveRadius() {
+    let responsiveRadius = this.divObject.clientWidth;
+    this.radius = Math.trunc(responsiveRadius/2);
+  }
+
   getMouseState() {
     let size = 200;
 
     this.divObject.addEventListener('mouseover', this.mouseOver.bind(this));
     this.divObject.addEventListener('mouseout', this.mouseOut.bind(this));
     this.divObject.addEventListener('mousemove', this.getRandomValue.bind(this));
+    window.addEventListener('resize', this.responsiveRadius.bind(this));
 
     let tempYPosition = 0;
     let tempXPosition = 0;
@@ -163,8 +169,7 @@ class TagCloud extends BaseComponent {
       yPlacement = (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
       newScale = Math.ceil(this.tagList[i].scale * 100 )/100;
       newAlpha = (this.tagList[i].alpha + 0.1) * 100;
-      newBlur = (0.75/this.tagList[i].scale)
-
+      newBlur = 1* (1/(this.tagList[i].scale)**2);
       this.textElements[i].style.transform = 'translate(' + xPlacement + 'px, ' + yPlacement + 'px ) scale(' + newScale + ')';
 
       this.textElements[i].style.filter = 'alpha(opacity=' + newAlpha + ')';
