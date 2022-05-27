@@ -15,7 +15,6 @@ export const TagCloud = Template.bind({});
 
 TagCloud.args = {
   headline: "Consultings Technology",
-  test: [{arg: "test", link: "test"}, {arg: "test1", link: "test1"}],
   subline: "Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und",
   items: [{title: 'Intune', link: '#'},
           {title: 'Azure Active Directory', link: '#'},

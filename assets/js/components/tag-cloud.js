@@ -5,18 +5,18 @@ class TagCloud extends BaseComponent {
 
   constructor(root, options) {
     super(root, options);
-    // get div and all the objects/links in that div
+
     this.divObject = document.querySelector('.tag-cloud-container');
     this.textElements = this.divObject.querySelectorAll('a');
-    // a list with all our ObjectTags for each textElement
+    this.responsiveRadius = this.divObject.clientWidth;
+
     this.tagList = []
     this.depth = 300;
     this.radius = 200;
 
-    //mouse position
     this.mouseX = 0;
     this.mouseY = 0;
-    this.mouseIsInactive = true;
+    this.mouseIsInactive = false;
     this.velocity = 10;
     this.lastX = 1;
     this.lastY = 1;
@@ -28,10 +28,16 @@ class TagCloud extends BaseComponent {
     this.setTags();
     this.positionObjects();
     this.update(1, 1, 1);
+
     this.getMouseState();
   }
 
-  // replace mouse by random input
+  responsiveRadius() {
+    this.responsiveRadius = this.divObject.clientWidth;
+    this.radius = this.responsiveRadius / 2;
+
+  }
+
   getRandomValue() {
     let sign = Math.random() < 0.5 ? -1 : 1;
     let randomX = sign * Math.random() * 5;
@@ -40,8 +46,6 @@ class TagCloud extends BaseComponent {
     this.mouseY = randomY;
   }
 
-
-  //mouse tracking of current state
   mouseOver() {
     this.mouseIsInactive = false;
 
@@ -52,7 +56,6 @@ class TagCloud extends BaseComponent {
 
   }
 
-  //evaluate the mouse position and update the positions
   getMouseState() {
     let size = 200;
 
@@ -143,7 +146,7 @@ class TagCloud extends BaseComponent {
       this.tagList[i].cy = vector3.ry3;
       this.tagList[i].cz = vector3.rz3;
 
-      this.tagList[i].x = (vector3.rx3 * vector3.per) - 2;
+      this.tagList[i].x = (vector3.rx3 * vector3.per) - (2);
       this.tagList[i].y = vector3.ry3 * vector3.per;
 
       this.tagList[i].scale = vector3.per;
@@ -154,22 +157,26 @@ class TagCloud extends BaseComponent {
     this.doPosition();
   }
 
-  //TODO: doPostion() rewrite
-
   doPosition() {
     let l = this.divObject.offsetWidth / 2;
     let t = this.divObject.offsetHeight / 2;
-    let avgFilter = this.tagList.filter(tag => tag.scale > 0);
-    console.log(avgFilter);
-    let avg = avgFilter.reduce((total, next) => total + next, 0) / avgFilter.length;
-    console.log(avg);
+    let xPlacement = 0;
+    let yPlacement = 0;
+    let newScale = 0;
+    let newAlpha = 0;
+    let newBlur = 0;
 
     for (let i = 0; i < this.tagList.length; i++) {
-      this.textElements[i].style.transform = 'translate(' + (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2)+ 'px, ' + (this.tagList[i].cy + t - this.tagList[i].offsetHeight/2)+ 'px ) scale(' + Math.ceil(this.tagList[i].scale * 100 * 0.7)/100 + ')';
+      xPlacement = (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2);
+      yPlacement = (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
+      newScale = Math.ceil(this.tagList[i].scale * 100 * 0.7)/100;
+      newAlpha = (this.tagList[i].alpha + 0.1) * 100;
+      newBlur = (0.75/this.tagList[i].scale)
 
-      this.textElements[i].style.filter = 'alpha(opacity=' + (this.tagList[i].alpha + 0.1) * 100 + ')';
-      // find a better function for blur
-      this.textElements[i].style.filter =  'blur( ' + (0.75/this.tagList[i].scale) + 'px)';
+      this.textElements[i].style.transform = 'translate(' + xPlacement + 'px, ' + yPlacement + 'px ) scale(' + newScale + ')';
+
+      this.textElements[i].style.filter = 'alpha(opacity=' + newAlpha + ')';
+      this.textElements[i].style.filter =  'blur( ' + newBlur + 'px)';
       this.textElements[i].style.opacity = this.tagList[i].alpha + 0.1;
     }
 

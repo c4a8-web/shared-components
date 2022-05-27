@@ -5,18 +5,18 @@
 
 <div class='container-fluid tag-cloud'>
     <div class='row'>
-        <div class='col my-5'>
+        <div class='col tag-cloud-header'>
             {%
                 include headline.html
                 level=tagCloudLevel
                 text=tagCloudHeadline
                 classes="h2-font-size"
             %}
-            <div class='mt-5 mb-5 w-lg-65'>{{ tagCloudSubline }}</div>
+            <div class=' w-lg-65'>{{ tagCloudSubline }}</div>
         </div>
     </div>
-    <div class="tag-cloud-content">
-      <div class="tag-cloud-container">
+    <div class="tag-cloud-content row">
+      <div class="tag-cloud-container col">
         {% for item in tagCloudItems %}
         <div class='row tag-cloud-items'>
             <a href="{{item.link}}">{{ item.title }}</a>
