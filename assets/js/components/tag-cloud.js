@@ -63,7 +63,6 @@ class TagCloud extends BaseComponent {
     let tempYPosition = 0;
     let tempXPosition = 0;
 
-    console.log(this.mouseIsInactive);
     if (this.mouseIsInactive) {
       tempYPosition = (-Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
       tempXPosition = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
@@ -75,8 +74,6 @@ class TagCloud extends BaseComponent {
 
     this.lastY = tempYPosition;
     this.lastX = tempYPosition;
-    console.log('a: ', tempYPosition);
-    console.log('b: ', tempXPosition)
     setTimeout(this.getMouseState.bind(this), 10);
     this.update(tempYPosition, tempXPosition, 0);
   }
@@ -162,10 +159,17 @@ class TagCloud extends BaseComponent {
   doPosition() {
     let l = this.divObject.offsetWidth / 2;
     let t = this.divObject.offsetHeight / 2;
+    let avgFilter = this.tagList.filter(tag => tag.scale > 0);
+    console.log(avgFilter);
+    let avg = avgFilter.reduce((total, next) => total + next, 0) / avgFilter.length;
+    console.log(avg);
+
     for (let i = 0; i < this.tagList.length; i++) {
       this.textElements[i].style.transform = 'translate(' + (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2)+ 'px, ' + (this.tagList[i].cy + t - this.tagList[i].offsetHeight/2)+ 'px ) scale(' + Math.ceil(this.tagList[i].scale * 100 * 0.7)/100 + ')';
 
       this.textElements[i].style.filter = 'alpha(opacity=' + (this.tagList[i].alpha + 0.1) * 100 + ')';
+      // find a better function for blur
+      this.textElements[i].style.filter =  'blur( ' + (0.75/this.tagList[i].scale) + 'px)';
       this.textElements[i].style.opacity = this.tagList[i].alpha + 0.1;
     }
 
