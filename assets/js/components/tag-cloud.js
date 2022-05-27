@@ -17,29 +17,18 @@ class TagCloud extends BaseComponent {
     this.mouseX = 0;
     this.mouseY = 0;
     this.mouseIsInactive = true;
-    this.velocity = 5;
+    this.velocity = 10;
     this.lastX = 1;
     this.lastY = 1;
 
-    this.startEvent(window, 'load', this.tagCloudInitiator());
-    //this.update(0.98, 0.98, 0);
+    window.addEventListener('load', this.tagCloudInitiator())
   }
 
   tagCloudInitiator() {
     this.setTags();
     this.positionObjects();
-    this.mouseEvaluation();
-  }
-
-  //EventHandler
-  startEvent(divObject, event, func, option) {
-    let target = (divObject != undefined) ? divObject : window;
-    if (divObject.addEventListener) {
-      let opt = option || false;
-      target.addEventListener(event, func, opt);
-    } else {
-      target.attachEvent('on' + event, func);
-    }
+    this.update(1, 1, 1);
+    this.getMouseState();
   }
 
   // replace mouse by random input
@@ -55,36 +44,41 @@ class TagCloud extends BaseComponent {
   //mouse tracking of current state
   mouseOver() {
     this.mouseIsInactive = false;
+
   }
 
   mouseOut() {
     this.mouseIsInactive = true;
+
   }
 
   //evaluate the mouse position and update the positions
-  mouseEvaluation() {
+  getMouseState() {
     let size = 200;
 
-    this.startEvent(this.divObject, 'mouseover', this.mouseOver());
-    this.startEvent(this.divObject, 'mouseout', this.mouseOut());
-    this.startEvent(this.divObject, 'mousemove', this.getRandomValue());
+    this.divObject.addEventListener('mouseover', this.mouseOver.bind(this));
+    this.divObject.addEventListener('mouseout', this.mouseOut.bind(this));
+    this.divObject.addEventListener('mousemove', this.getRandomValue.bind(this));
 
+    let tempYPosition = 0;
+    let tempXPosition = 0;
 
+    console.log(this.mouseIsInactive);
     if (this.mouseIsInactive) {
-      //
-      this.mouseY = -(Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
-      this.mouseX = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
+      tempYPosition = (-Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
+      tempXPosition = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
 
     } else {
-      this.mouseY = this.lastY * 0.98;
-      this.mouseX = this.lastX * 0.98;
+      tempYPosition = this.lastY * 0.98;
+      tempXPosition = this.lastX * 0.98;
     }
 
-    this.lastY = this.mouseY;
-    this.lastX = this.mouseX;
-
-    this.update(this.mouseX, this.mouseY, 0);
-    setTimeout(this.mouseEvaluation.bind(this), 10);
+    this.lastY = tempYPosition;
+    this.lastX = tempYPosition;
+    console.log('a: ', tempYPosition);
+    console.log('b: ', tempXPosition)
+    setTimeout(this.getMouseState.bind(this), 10);
+    this.update(tempYPosition, tempXPosition, 0);
   }
 
   setTags() {
@@ -143,6 +137,8 @@ class TagCloud extends BaseComponent {
     }
 
   update(a, b, c) {
+    if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01 && Math.abs(c) <= 0.01) {return}
+
     for (let i = 0; i < this.tagList.length; i++) {
       let vector3 = this.rotationMatrix(a, b, c, i);
 
@@ -161,11 +157,11 @@ class TagCloud extends BaseComponent {
     this.doPosition();
   }
 
-  //TODO: doPostion()
+  //TODO: doPostion() rewrite
+
   doPosition() {
     let l = this.divObject.offsetWidth / 2;
     let t = this.divObject.offsetHeight / 2;
-    console.log(this.tagList);
     for (let i = 0; i < this.tagList.length; i++) {
       this.textElements[i].style.transform = 'translate(' + (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2)+ 'px, ' + (this.tagList[i].cy + t - this.tagList[i].offsetHeight/2)+ 'px ) scale(' + Math.ceil(this.tagList[i].scale * 100 * 0.7)/100 + ')';
 
