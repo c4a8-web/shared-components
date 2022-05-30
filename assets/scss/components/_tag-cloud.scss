@@ -5,7 +5,7 @@
 
     .tag-cloud-header {
         margin-top: var(--size);
-        margin-bottom: 2rem;
+        margin-bottom: var(--size);
         margin-left: var(--size);
         h2 {
           color: var(--color-white);
@@ -20,7 +20,8 @@
       .tag-cloud-container {
         position: relative;
         height: 43.75rem;
-        width: 30rem;
+        //overflow: hidden;
+        //width: 30rem;
 
         .tag-cloud-items {
 

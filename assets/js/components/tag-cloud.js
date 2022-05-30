@@ -10,13 +10,13 @@ class TagCloud extends BaseComponent {
     this.textElements = this.divObject.querySelectorAll('a');
 
     this.tagList = [];
-    this.depth = 500;
-    this.radius = 400;
+    this.radius = Math.floor(this.divObject.offsetWidth / 2);
+    this.depth = this.radius + 100;
 
     this.mouseX = 0;
     this.mouseY = 0;
-    this.mouseIsInactive = false;
-    this.velocity = 10;
+    this.mouseIsInactive = true;
+    this.velocity = 5;
     this.lastXPosition = 1;
     this.lastYPosition = 1;
 
@@ -32,29 +32,34 @@ class TagCloud extends BaseComponent {
   }
 
   getRandomValue() {
-    let sign = Math.random() < 0.5 ? -1 : 1;
+    this.mouseX = event.clientX - (this.divObject.offsetLeft + this.divObject.offsetWidth / 2);
+    this.mouseY = event.clientY - (this.divObject.offsetTop + this.divObject.offsetHeight / 2);
+
+    this.mouseX /= 5;
+    this.mouseY /= 5;
+    /*let sign = Math.random() < 0.5 ? -1 : 1;
     this.mouseX = sign * Math.random() * 5;
-    this.mouseY = sign * Math.random() * 5;
+    this.mouseY = sign * Math.random() * 5;*/
   }
 
   mouseOver() {
+    this.mouseIsInactive = true;
+  }
+
+  mouseOut() {
     this.mouseIsInactive = false;
 
   }
 
-  mouseOut() {
-    this.mouseIsInactive = true;
-
-  }
-
   responsiveRadius() {
-    let responsiveRadius = this.divObject.clientWidth;
-    this.radius = Math.trunc(responsiveRadius/4);
+    let responsiveRadius = this.divObject.offsetWidth;
+    this.radius = Math.floor(responsiveRadius/2);
+    this.depth = this.radius + 100;
   }
 
   getMouseState() {
     let size = 200;
-
+    //Change
     this.divObject.addEventListener('mouseover', this.mouseOver.bind(this));
     this.divObject.addEventListener('mouseout', this.mouseOut.bind(this));
     this.divObject.addEventListener('mousemove', this.getRandomValue.bind(this));
@@ -64,8 +69,8 @@ class TagCloud extends BaseComponent {
     let tempXPosition = 0;
 
     if (this.mouseIsInactive) {
-      tempYPosition = (-Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
-      tempXPosition = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
+      tempYPosition = (Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
+      tempXPosition = -(Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
 
     } else {
       tempYPosition = this.lastYPosition * 0.98;
@@ -104,13 +109,13 @@ class TagCloud extends BaseComponent {
   }
 
   sinCos(a, b, c) {
-    const degreeToRadians = Math.PI / 180;
-    let sinA =  Math.sin(a * degreeToRadians);
-    let cosA =  Math.cos(a * degreeToRadians);
-    let sinB =  Math.sin(b * degreeToRadians);
-    let cosB =  Math.cos(b * degreeToRadians);
-    let sinC =  Math.sin(c * degreeToRadians);
-    let cosC =  Math.cos(c * degreeToRadians);
+    const radiansToDegree = Math.PI / 180;
+    let sinA =  Math.sin(a * radiansToDegree);
+    let cosA =  Math.cos(a * radiansToDegree);
+    let sinB =  Math.sin(b * radiansToDegree);
+    let cosB =  Math.cos(b * radiansToDegree);
+    let sinC =  Math.sin(c * radiansToDegree);
+    let cosC =  Math.cos(c * radiansToDegree);
     return { sinA, cosA, sinB, cosB, sinC, cosC };
   }
 
@@ -142,7 +147,7 @@ class TagCloud extends BaseComponent {
       this.tagList[i].cy = vector3.ry3;
       this.tagList[i].cz = vector3.rz3;
 
-      this.tagList[i].x = ((vector3.rx3 * vector3.per) - (2));
+      this.tagList[i].x = vector3.rx3 * vector3.per;
       this.tagList[i].y = vector3.ry3 * vector3.per;
 
       this.tagList[i].scale = vector3.per;
@@ -156,6 +161,7 @@ class TagCloud extends BaseComponent {
   doPosition() {
     let l = this.divObject.offsetWidth / 2;
     let t = this.divObject.offsetHeight / 2;
+    let ellipticValue = 0.25;
     let xPlacement = 0;
     let yPlacement = 0;
     let newScale = 0;
@@ -163,14 +169,13 @@ class TagCloud extends BaseComponent {
     let newBlur = 0;
 
     for (let i = 0; i < this.tagList.length; i++) {
-      let ellipticValue = 0.5;
       xPlacement = (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2);
       yPlacement = ellipticValue * (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
       newScale = Math.ceil(this.tagList[i].scale * 100 )/100;
       newAlpha = (this.tagList[i].alpha + 0.1) * 100;
-      newBlur = (1/(this.tagList[i].scale)**2);
-      this.textElements[i].style.transform = 'translate(' + xPlacement + 'px, ' + yPlacement + 'px ) scale(' + newScale + ')';
+      newBlur = (1/(this.tagList[i].scale)**1.5);
 
+      this.textElements[i].style.transform = 'translate(' + xPlacement + 'px, ' + yPlacement + 'px ) scale(' + newScale + ')';
       this.textElements[i].style.filter = 'alpha(opacity=' + newAlpha + ')';
       this.textElements[i].style.filter =  'blur( ' + newBlur + 'px)';
       this.textElements[i].style.opacity = this.tagList[i].alpha + 0.1;
