@@ -79,11 +79,18 @@ ul.dashed li:before {
 }
 
 #app {
-  opacity: 0;
-  pointer-events: none;
+  .header-meta,
+  nav:not(.hs-menu-initialized),
+  main {
+    opacity: 0;
+    pointer-events: none;
+  }
 
   &[data-v-app] {
-    opacity: 1;
-    pointer-events: auto;
+    .header-meta,
+    main {
+      opacity: 1;
+      pointer-events: auto;
+    }
   }
 }
