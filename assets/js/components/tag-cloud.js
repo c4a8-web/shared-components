@@ -16,7 +16,7 @@ class TagCloud extends BaseComponent {
     this.mouseX = 0;
     this.mouseY = 0;
     this.mouseIsInactive = false;
-    this.velocity = 50;
+    this.velocity = 10;
     this.lastXPosition = 1;
     this.lastYPosition = 1;
 
@@ -49,7 +49,7 @@ class TagCloud extends BaseComponent {
 
   responsiveRadius() {
     let responsiveRadius = this.divObject.clientWidth;
-    this.radius = Math.trunc(responsiveRadius/2);
+    this.radius = Math.trunc(responsiveRadius/4);
   }
 
   getMouseState() {
@@ -95,7 +95,7 @@ class TagCloud extends BaseComponent {
     for (let i = 1; i < max; i++) {
       phi = Math.acos(-1 + (2 * i + 1 )/max);
       theta = Math.sqrt(max * Math.PI) * phi;
-      // coefficient infront of radius to change shape of cloud
+
       this.tagList[i -1].cx = this.radius * Math.cos(theta) * Math.sin(phi);
       this.tagList[i -1].cy = this.radius * Math.sin(theta) * Math.sin(phi);
       this.tagList[i -1].cz = this.radius * Math.cos(phi);
