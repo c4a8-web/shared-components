@@ -15,6 +15,10 @@ import Icon from './vue/icon.js';
 import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
+import Modal from './vue/modal.js';
+// component is not ready yet
+// import PersonQuote from './vue/person-quote.js';
+import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
@@ -23,8 +27,7 @@ import ComputerShield from './vue/icons/computer-shield.js';
 import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
-import Modal from './vue/modal.js';
-// import PersonQuote from './vue/person-quote.js';
+import SBlock from './vue/shapes/s-block.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -54,6 +57,8 @@ const addApp = () => {
     JobListDetail,
     JobListEntry,
     JobList,
+    Modal,
+    Shape,
     ArrowExternal,
     ArrowNarrow,
     Arrow,
@@ -62,7 +67,7 @@ const addApp = () => {
     PhoneMail,
     Rocket,
     Smile,
-    Modal,
+    SBlock,
     // PersonQuote,
   ];
 
@@ -71,11 +76,11 @@ const addApp = () => {
   });
 
   // TODO figure out how to get all of them
-  const illegalTags = root.querySelectorAll('style');
+  // const illegalTags = root.querySelectorAll('style');
 
-  illegalTags.forEach((element) => {
-    document.body.appendChild(element);
-  });
+  // illegalTags.forEach((element) => {
+  //   document.body.appendChild(element);
+  // });
 
   app.mount(root);
 
