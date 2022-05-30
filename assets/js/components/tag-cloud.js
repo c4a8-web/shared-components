@@ -9,16 +9,16 @@ class TagCloud extends BaseComponent {
     this.divObject = document.querySelector('.tag-cloud-container');
     this.textElements = this.divObject.querySelectorAll('a');
 
-    this.tagList = []
-    this.depth = 300;
-    this.radius = 200;
+    this.tagList = [];
+    this.depth = 500;
+    this.radius = 400;
 
     this.mouseX = 0;
     this.mouseY = 0;
     this.mouseIsInactive = false;
     this.velocity = 50;
-    this.lastX = 1;
-    this.lastY = 1;
+    this.lastXPosition = 1;
+    this.lastYPosition = 1;
 
     window.addEventListener('load', this.tagCloudInitiator())
   }
@@ -33,10 +33,8 @@ class TagCloud extends BaseComponent {
 
   getRandomValue() {
     let sign = Math.random() < 0.5 ? -1 : 1;
-    let randomX = sign * Math.random() * 5;
-    let randomY = sign * Math.random() * 5;
-    this.mouseX = randomX;
-    this.mouseY = randomY;
+    this.mouseX = sign * Math.random() * 5;
+    this.mouseY = sign * Math.random() * 5;
   }
 
   mouseOver() {
@@ -70,12 +68,12 @@ class TagCloud extends BaseComponent {
       tempXPosition = (Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
 
     } else {
-      tempYPosition = this.lastY * 0.98;
-      tempXPosition = this.lastX * 0.98;
+      tempYPosition = this.lastYPosition * 0.98;
+      tempXPosition = this.lastXPosition * 0.98;
     }
 
-    this.lastY = tempYPosition;
-    this.lastX = tempXPosition;
+    this.lastYPosition = tempYPosition;
+    this.lastXPosition = tempXPosition;
     setTimeout(this.getMouseState.bind(this), 10);
     this.update(tempYPosition, tempXPosition, 0);
   }
@@ -97,7 +95,7 @@ class TagCloud extends BaseComponent {
     for (let i = 1; i < max; i++) {
       phi = Math.acos(-1 + (2 * i + 1 )/max);
       theta = Math.sqrt(max * Math.PI) * phi;
-
+      // coefficient infront of radius to change shape of cloud
       this.tagList[i -1].cx = this.radius * Math.cos(theta) * Math.sin(phi);
       this.tagList[i -1].cy = this.radius * Math.sin(theta) * Math.sin(phi);
       this.tagList[i -1].cz = this.radius * Math.cos(phi);
@@ -144,7 +142,7 @@ class TagCloud extends BaseComponent {
       this.tagList[i].cy = vector3.ry3;
       this.tagList[i].cz = vector3.rz3;
 
-      this.tagList[i].x = (vector3.rx3 * vector3.per) - (2);
+      this.tagList[i].x = ((vector3.rx3 * vector3.per) - (2));
       this.tagList[i].y = vector3.ry3 * vector3.per;
 
       this.tagList[i].scale = vector3.per;
@@ -165,11 +163,12 @@ class TagCloud extends BaseComponent {
     let newBlur = 0;
 
     for (let i = 0; i < this.tagList.length; i++) {
+      let ellipticValue = 0.5;
       xPlacement = (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2);
-      yPlacement = (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
+      yPlacement = ellipticValue * (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
       newScale = Math.ceil(this.tagList[i].scale * 100 )/100;
       newAlpha = (this.tagList[i].alpha + 0.1) * 100;
-      newBlur = 1* (1/(this.tagList[i].scale)**2);
+      newBlur = (1/(this.tagList[i].scale)**2);
       this.textElements[i].style.transform = 'translate(' + xPlacement + 'px, ' + yPlacement + 'px ) scale(' + newScale + ')';
 
       this.textElements[i].style.filter = 'alpha(opacity=' + newAlpha + ')';

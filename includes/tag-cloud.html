@@ -15,8 +15,8 @@
             <div class='w-lg-65'>{{ tagCloudSubline }}</div>
         </div>
     </div>
-    <div class="tag-cloud-content row">
-      <div class="tag-cloud-container col">
+    <div class="tag-cloud-content row mt-5">
+      <div class="col-5 tag-cloud-container">
         {% for item in tagCloudItems %}
         <div class='row tag-cloud-items'>
             <a href="{{item.link}}">{{ item.title }}</a>
