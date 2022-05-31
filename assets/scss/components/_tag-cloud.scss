@@ -3,7 +3,7 @@
     color: var(--color-white);
     --size: 5rem;
 
-    .tag-cloud-header {
+    .tag-cloud__header {
         margin-top: var(--size);
         margin-bottom: var(--size);
         margin-left: var(--size);
@@ -13,17 +13,14 @@
       }
     }
 
-    .tag-cloud-content {
+    .tag-cloud__content {
       display: flex;
       justify-content: left;
       margin-left: var(--size);
-      .tag-cloud-container {
+      .tag-cloud__container {
         position: relative;
-        height: 43.75rem;
-        //overflow: hidden;
-        //width: 30rem;
-
-        .tag-cloud-items {
+        height: 800px;
+        .tag-cloud__items {
 
           a {
             position: absolute;

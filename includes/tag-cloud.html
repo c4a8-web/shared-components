@@ -5,7 +5,7 @@
 
 <div class='container-fluid tag-cloud'>
     <div class='row'>
-        <div class='col tag-cloud-header'>
+        <div class='col tag-cloud__header'>
             {%
                 include headline.html
                 level=tagCloudLevel
@@ -15,11 +15,11 @@
             <div class='w-lg-65'>{{ tagCloudSubline }}</div>
         </div>
     </div>
-    <div class="tag-cloud-content row">
+    <div class="tag-cloud__content row">
       <!-- Add Div for responsive design?-->
-      <div class="col-5 tag-cloud-container">
+      <div class="col-5 tag-cloud__container">
         {% for item in tagCloudItems %}
-        <div class='row tag-cloud-items'>
+        <div class='row tag-cloud__items'>
             <a href="{{item.link}}">{{ item.title }}</a>
         </div>
         {% endfor %}

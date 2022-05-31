@@ -5,183 +5,99 @@ class TagCloud extends BaseComponent {
 
   constructor(root, options) {
     super(root, options);
+    console.log(root)
 
-    this.divObject = document.querySelector('.tag-cloud-container');
-    this.textElements = this.divObject.querySelectorAll('a');
-
+    this.container = root.querySelector('.tag-cloud__container');
+    this.textElements = this.container.querySelectorAll('a');
+    this.radius = 150;
+    this.centerX = 0;
+    this.centerY = 0;
     this.tagList = [];
-    this.radius = Math.floor(this.divObject.offsetWidth / 2);
-    this.depth = this.radius + 100;
+    this.distance = 100;
 
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.mouseIsInactive = true;
-    this.velocity = 5;
-    this.lastXPosition = 1;
-    this.lastYPosition = 1;
+    this.coordinates = [];
+    this.ellipticValue = 0.5;
 
-    window.addEventListener('load', this.tagCloudInitiator())
-  }
-
-  tagCloudInitiator() {
-    this.setTags();
-    this.positionObjects();
-    this.update(1, 1, 1);
-
-    this.getMouseState();
-  }
-
-  getRandomValue() {
-    this.mouseX = event.clientX - (this.divObject.offsetLeft + this.divObject.offsetWidth / 2);
-    this.mouseY = event.clientY - (this.divObject.offsetTop + this.divObject.offsetHeight / 2);
-
-    this.mouseX /= 5;
-    this.mouseY /= 5;
-    /*let sign = Math.random() < 0.5 ? -1 : 1;
-    this.mouseX = sign * Math.random() * 5;
-    this.mouseY = sign * Math.random() * 5;*/
-  }
-
-  mouseOver() {
-    this.mouseIsInactive = true;
-  }
-
-  mouseOut() {
-    this.mouseIsInactive = false;
-
-  }
-
-  responsiveRadius() {
-    let responsiveRadius = this.divObject.offsetWidth;
-    this.radius = Math.floor(responsiveRadius/2);
-    this.depth = this.radius + 100;
-  }
-
-  getMouseState() {
-    let size = 200;
-    //Change
-    this.divObject.addEventListener('mouseover', this.mouseOver.bind(this));
-    this.divObject.addEventListener('mouseout', this.mouseOut.bind(this));
-    this.divObject.addEventListener('mousemove', this.getRandomValue.bind(this));
-    window.addEventListener('resize', this.responsiveRadius.bind(this));
-
-    let tempYPosition = 0;
-    let tempXPosition = 0;
-
-    if (this.mouseIsInactive) {
-      tempYPosition = (Math.min(Math.max(-this.mouseY, -size)/this.radius) * this.velocity);
-      tempXPosition = -(Math.min(Math.max(-this.mouseX, -size), size)/this.radius) * this.velocity;
-
-    } else {
-      tempYPosition = this.lastYPosition * 0.98;
-      tempXPosition = this.lastXPosition * 0.98;
+    this.weightingElement();
+    this.calculateMidPoint();
+    this.placeObjects();
     }
 
-    this.lastYPosition = tempYPosition;
-    this.lastXPosition = tempXPosition;
-    setTimeout(this.getMouseState.bind(this), 10);
-    this.update(tempYPosition, tempXPosition, 0);
-  }
+  weightingElement () {
+    let avgOffsetWidth = 0;
 
-  setTags() {
+    for (let j = 0; j < this.textElements.length; j++) {
+      avgOffsetWidth += this.textElements[j].offsetWidth/this.textElements.length;
+    }
+
     for (let i = 0; i < this.textElements.length; i++) {
       let tag = {};
       tag.offsetWidth = this.textElements[i].offsetWidth;
       tag.offsetHeight = this.textElements[i].offsetHeight;
+      tag.weighting = this.textElements[i].offsetWidth/avgOffsetWidth;
+      let boundingClientRec = this.textElements[i].getBoundingClientRect();
+      tag.x = boundingClientRec.left;
+      tag.y = boundingClientRec.top;
       this.tagList.push(tag);
     }
   }
 
-
-  positionObjects() {
-    let phi = 0;
-    let theta = 0;
-    let max = this.tagList.length + 1;
-    for (let i = 1; i < max; i++) {
-      phi = Math.acos(-1 + (2 * i + 1 )/max);
-      theta = Math.sqrt(max * Math.PI) * phi;
-
-      this.tagList[i -1].cx = this.radius * Math.cos(theta) * Math.sin(phi);
-      this.tagList[i -1].cy = this.radius * Math.sin(theta) * Math.sin(phi);
-      this.tagList[i -1].cz = this.radius * Math.cos(phi);
-    }
-
+  calculateMidPoint () {
+    this.centerX = this.container.offsetWidth/2;
+    this.centerY = this.container.offsetHeight/2;
   }
 
-  sinCos(a, b, c) {
-    const radiansToDegree = Math.PI / 180;
-    let sinA =  Math.sin(a * radiansToDegree);
-    let cosA =  Math.cos(a * radiansToDegree);
-    let sinB =  Math.sin(b * radiansToDegree);
-    let cosB =  Math.cos(b * radiansToDegree);
-    let sinC =  Math.sin(c * radiansToDegree);
-    let cosC =  Math.cos(c * radiansToDegree);
-    return { sinA, cosA, sinB, cosB, sinC, cosC };
+  calculateDistance(x1, y1, x2, y2) {
+    return Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
   }
 
-  rotationMatrix(a, b, c, i) {
-    let result = this.sinCos(a, b, c);
-    let rx1 = this.tagList[i].cx;
-    let ry1 = this.tagList[i].cy * result.cosA + this.tagList[i].cz * (-result.sinA);
-    let rz1 = this.tagList[i].cy * result.sinA + this.tagList[i].cz * result.cosA;
+  placeObjects () {
+    this.coordinates = [];
+    let randomX = 0;
+    let randomY = 0;
 
-    let rx2 = rx1 * result.cosB + rz1 * result.sinB;
-    let ry2 = ry1;
-    let rz2 = rx1 * (-result.sinB) + rz1 * result.cosB;
-
-    let rx3 = rx2 * result.cosC + ry2 * (-result.sinC);
-    let ry3 = rx2 * result.sinC + ry2 * result.cosC;
-    let rz3 = rz2;
-
-    let per = (this.depth) / (this.depth + rz3);
-    return { rx3, ry3, rz3, per };
-    }
-
-  update(a, b, c) {
-    if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01 && Math.abs(c) <= 0.01) {return}
-
-    for (let i = 0; i < this.tagList.length; i++) {
-      let vector3 = this.rotationMatrix(a, b, c, i);
-
-      this.tagList[i].cx = vector3.rx3;
-      this.tagList[i].cy = vector3.ry3;
-      this.tagList[i].cz = vector3.rz3;
-
-      this.tagList[i].x = vector3.rx3 * vector3.per;
-      this.tagList[i].y = vector3.ry3 * vector3.per;
-
-      this.tagList[i].scale = vector3.per;
-      this.tagList[i].alpha = vector3.per;
-      this.tagList[i].alpha = (this.tagList[i].alpha - 0.6) * (10/6);
+    while (this.coordinates.length < this.tagList.length) {
+      randomX = Math.random() * this.container.offsetWidth;
+      randomY = Math.random() * this.container.offsetHeight;
+      if (this.calculateDistance(this.centerX, this.centerY, randomX, randomY) < this.radius) {
+        this.coordinates.push({x: randomX, y: this.ellipticValue * randomY});
+      }
 
     }
-    this.doPosition();
+
+    this.checkDistance();
   }
 
-  doPosition() {
-    let l = this.divObject.offsetWidth / 2;
-    let t = this.divObject.offsetHeight / 2;
-    let ellipticValue = 0.25;
-    let xPlacement = 0;
-    let yPlacement = 0;
-    let newScale = 0;
-    let newAlpha = 0;
-    let newBlur = 0;
+    doPosition () {
+      for (let i = 0; i < this.tagList.length; i++) {
+        this.textElements[i].style.left = this.coordinates[i].x + 'px';
+        this.textElements[i].style.top = this.coordinates[i].y + 'px';
+      }
 
-    for (let i = 0; i < this.tagList.length; i++) {
-      xPlacement = (this.tagList[i].cx + l - this.tagList[i].offsetWidth / 2);
-      yPlacement = ellipticValue * (this.tagList[i].cy + t - this.tagList[i].offsetHeight / 2);
-      newScale = Math.ceil(this.tagList[i].scale * 100 )/100;
-      newAlpha = (this.tagList[i].alpha + 0.1) * 100;
-      newBlur = (1/(this.tagList[i].scale)**1.5);
-
-      this.textElements[i].style.transform = 'translate(' + xPlacement + 'px, ' + yPlacement + 'px ) scale(' + newScale + ')';
-      this.textElements[i].style.filter = 'alpha(opacity=' + newAlpha + ')';
-      this.textElements[i].style.filter =  'blur( ' + newBlur + 'px)';
-      this.textElements[i].style.opacity = this.tagList[i].alpha + 0.1;
     }
 
-  }
+    checkDistance () {
+      let randomX = 0;
+      let randomY = 0;
+      for (let i = 0; i < this.coordinates.length; i++) {
+        for (let j = 0; j < this.coordinates.length; j++) {
+          if (i !== j) {
+            if (this.calculateDistance(this.coordinates[i].x, this.coordinates[i].y, this.coordinates[j].x, this.coordinates[j].y) < this.distance) {
+              randomX = Math.random() * this.container.offsetWidth;
+              randomY = Math.random() * this.container.offsetHeight;
+              if (this.calculateDistance(this.centerX, this.centerY, randomX, randomY) < this.radius) {
+              this.coordinates[i].x = randomX;
+              this.coordinates[i].y = randomY;
+              }
+              this.checkDistance();
+            } else {
+              this.doPosition();
+            }
+          }
+        }
+      }
+    }
+
 }
 
 
