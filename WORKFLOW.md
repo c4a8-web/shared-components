@@ -89,6 +89,10 @@ TODO after figuring out the architecture with kanni
 
 # New Components
 
+## Configuration changes
+
+All configuration changes that are component based need to be done on all sites.
+
 TODO describe the process
 
 # Add variants
