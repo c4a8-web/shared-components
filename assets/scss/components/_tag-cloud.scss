@@ -1,42 +1,32 @@
 .tag-cloud {
-    background-color: var(--color-blue-dark);
-    color: var(--color-white);
-    --size: 5rem;
+  background-color: var(--color-blue-dark);
+  color: var(--color-white);
+  --size: 5rem;
 
-    .tag-cloud__header {
-        margin-top: var(--size);
-        margin-bottom: var(--size);
-        margin-left: var(--size);
-        h2 {
-          color: var(--color-white);
-          font-weight: 400;
+  .tag-cloud__header {
+    margin-top: var(--size);
+    margin-bottom: var(--size);
+    margin-left: var(--size);
+    h2 {
+      color: var(--color-white);
+      font-weight: 400;
+    }
+  }
+
+  .tag-cloud__content {
+    text-align: center;
+    .tag-cloud__container {
+      max-width: 1500px;
+      margin: auto;
+      li {
+        list-style: none;
       }
-    }
-
-    .tag-cloud__content {
-      display: flex;
-      justify-content: left;
-      margin-left: var(--size);
-      .tag-cloud__container {
-        position: relative;
-        height: 800px;
-        .tag-cloud__items {
-
-          a {
-            position: absolute;
-            top: 0;
-            left: 0;
-            padding: 3px 6px;
-            text-decoration: none;
-            color: var(--color-white) !important;
-
-            &:hover {
-              color: var(--color-blue-lighter) !important;
-            }
-          }
-        }
+      a {
+        text-decoration: none;
+        padding: 5px;
+      }
 
     }
-    }
+  }
 
 }

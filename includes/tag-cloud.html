@@ -18,11 +18,11 @@
     <div class="tag-cloud__content row">
       <!-- Add Div for responsive design?-->
       <div class="col-5 tag-cloud__container">
-        {% for item in tagCloudItems %}
-        <div class='row tag-cloud__items'>
-            <a href="{{item.link}}">{{ item.title }}</a>
-        </div>
-        {% endfor %}
+        <ul class='row tag-cloud__items'>
+          {% for item in tagCloudItems %}
+            <li><a href="{{item.link}}">{{ item.title }}</a></li>
+          {% endfor %}
+        </ul>
       </div>
     </div>
 </div>
