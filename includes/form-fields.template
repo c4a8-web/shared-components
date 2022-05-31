@@ -1,6 +1,16 @@
 {%- assign formField = include.field -%}
 {%- assign formFieldReplaceValue = include.replaceValue -%}
 
+{%- if formField.options.first -%}
+  {%- assign options = formField.options -%}
+{%- else -%}
+  {%- assign options = site.data[formField.options].list -%}
+{%- endif -%}
+
+<!-- Shared Form Fields Section -->
+
+{% comment %}
+
 {% unless formField.id == '_gotcha' %}
   {%- if formField.readonly -%}
     {%- assign readonly = 'readonly' -%}
@@ -41,7 +51,7 @@
   {% else %}
     {% assign formFieldValue = formField.value %}
   {% endif %}
-  <!-- Shared Form Fields Section -->
+
 
       <div class="js-form-message {% if formField.type != 'select' %}form-group{% endif %} {% if formField.type == 'hidden' %}d-none{% endif %} {{ groupClass }}">
         {% if formField.type == 'textarea' %}
@@ -96,5 +106,14 @@
   {%- if formField.rowEnd -%}
   </div>
   {%- endif -%}
-  <!-- End Shared Form Fields Section -->
-{% endunless %}
+  {% endunless %}
+
+{% endcomment %}
+
+<form-fields
+  :field="{{ formField | jsonify | escape }}"
+  :options="{{ options | jsonify | escape }}"
+  replace-value="{{ formFieldReplaceValue }}"
+/>
+
+<!-- End Shared Form Fields Section -->

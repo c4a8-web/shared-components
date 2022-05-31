@@ -1,78 +1,43 @@
-{% comment %}
-                                      NOTICE ! There is a static version of this file in static-templates.js so if you update this file update the static version as well ! NOTICE
-{% endcomment %}
 <!-- Shared Form Section -->
 {%- assign formForm = include.form -%}
 {%- assign formLight = include.light -%}
 {%- assign formAnalytics = include.analytics -%}
-{%- assign formSpace = include.space | default: 'space-top-2' -%}
-{%- assign formContainer = include.container | default: false -%}
-{%- assign formCustomValidation = include.customValidation | default: false -%}
-{%- assign formAjax = include.ajax | default: false -%}
+{%- assign formSpace = include.space -%}
+{%- assign formContainer = include.container -%}
+{%- assign formCustomValidation = include.customValidation -%}
+{%- assign formAjax = include.ajax -%}
 {%- assign formAdditionalFields = include.additionalFields -%}
 {%- assign formUncentered = formForm.uncentered -%}
 {%- assign formReplaceValue = include.replaceValue -%}
+{%- assign formOptions = "" | split: "" -%}
 
-{% if formLight %}
-  {% assign formClasses = 'is-light' %}
-{% else %}
-  {% assign formClasses = '' %}
+{% assign formOptionsText = "{" %}
+{% for field in formForm.fields %}
+  {% if field.type == 'select' and field.options %}
+    {% unless field.options.first %}
+      {%- assign options = site.data[field.options].list -%}
+      {% capture formOptionsText %}{{ formOptionsText }}"{{ field.options }}":{{ options | jsonify }},{% endcapture %}
+    {% endunless %}
+  {% endif %}
+{% endfor %}
+
+{% if formOptionsText.size > 2 %}
+  {% assign formOptionsLength = formOptionsText | size | minus: 1 %}
 {% endif %}
+{% assign formOptionsText = formOptionsText | slice: 0, formOptionsLength | append : '}' | escape %}
 
-<div class="form {{ formClasses }}
-            {% if formContainer %}container{% endif %}
-            {% if formCustomValidation %}form--custom-validation{% endif %}
-            {% if formAjax %}form--ajax{% endif %}
-">
-  <div class="form__row {% if formContainer %}row{% endif %}">
-    <div class="{% if formContainer %}col-md-11 col-lg-10{% endif %}">
-      {% if formForm.headline %}
-        <div class="container {{ formSpace }} headline-row">
-          <div class="row">
-            <div class="col-sm-12">
-              {% capture sublineClasses %}text-center {{ formForm.sublineClasses }}{% endcapture %}
-              {%
-                include headline.html
-                text=formForm.headline
-                level=formForm.level
-                classes="text-center"
-                id=formForm.id
-              %}
-              {% if formForm.subline %}
-                <p class="{{ sublineClasses }}">{{ formForm.subline }}</p>
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% endif %}
-      <form class="form__form js-validate mt-6" method="{{ formForm.method }}" action="{{ formForm.action }}">
-        {% for field in formForm.fields %}
-          {%
-            include form-fields.html
-            field=field
-          %}
-        {% endfor %}
-        {% for field in formAdditionalFields %}
-          {%
-            include form-fields.html
-            field=field
-            replaceValue=formReplaceValue
-          %}
-        {% endfor %}
-        <div class="form__submit mt-5 {% unless formUncentered %}justify-content-center{% endunless %}">
-          {%
-            include cta.html
-            text=formForm.ctaText
-            type="submit"
-            button=true
-            skin=formForm.cta.skin
-            width=formForm.cta.width
-            analytics=formAnalytics
-          %}
-        </div>
-        <input type="text" class="form__super-field" name="_gotcha">
-      </form>
-    </div>
-  </div>
-</div>
+<Formular
+  :form="{{ formForm | jsonify | escape }}"
+  light="{{ formLight }}"
+  analytics="{{ analytics }}"
+  space="{{ formSpace }}"
+  container="{{ formContainer }}"
+  custom-validation="{{ formCustomValidation }}"
+  ajax="{{ formAjax }}"
+  :additional-fields="{{ formAdditionalFields | jsonify | escape }}"
+  uncentered="{{ formUncentered }}"
+  replace-value="{{ formReplaceValue }}"
+  :options="{{ formOptionsText }}"
+></Formular>
+
 <!-- End Shared Form Section -->

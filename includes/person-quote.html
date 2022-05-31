@@ -10,11 +10,23 @@
       img=personQuoteImg
       cloudinary=true
       imgSrcSets=site.data.imgSrcSets.square
-    %}
-  </div>
-  <div class="person-quote__content">
-    <div class="person-quote__text">{{ personQuoteText }}</div>
-    <div class="person-quote__name">{{ personQuoteName }}</div>
-  </div>
+      %}
+    </div>
+    <div class="person-quote__content">
+      <div class="person-quote__text">{{ personQuoteText }}</div>
+      <div class="person-quote__name">{{ personQuoteName }}</div>
+    </div>
 </div>
+
+{% comment %}
+  this will not work right now because of the img component not working as a vue component right now
+
+<person-quote
+img="{{ personQuoteImg }}"
+text="{{ personQuoteText }}"
+name="{{ personQuoteName }}"
+srcSet="{{ site.data.imgSrcSets.square | jsonify | escape }}"
+/>
+{% endcomment %}
+
 <!-- End Shared Person Quote Section -->

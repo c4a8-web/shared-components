@@ -1,17 +1,5 @@
 <!-- Shared Form Checkboxes Section -->
 {%- assign formCheckboxField = include.field | default: field -%}
-{%- capture formCheckboxMsg -%}{%- if formCheckboxField.required -%}data-msg="{{ formCheckboxField.requiredMsg }}"{%- endif -%}{%- endcapture -%}
 
-<label class="form__label input-label" {{ formCheckboxMsg }}>{{ formCheckboxField.label }}</label>
-
-{% for checkbox in formCheckboxField.checkboxes %}
-  {%- capture formCheckboxId %}{{ formCheckboxField.id}}{{ checkbox.id }}{%- endcapture -%}
-  {%- capture formCheckboxGroup %}data-form-group="{{ formCheckboxField.id }}"{%- endcapture -%}
-    {%
-      include form-checkbox.html
-      group=formCheckboxGroup
-      checkbox=checkbox
-      id=formCheckboxId
-    %}
-{% endfor %}
+<form-checkboxes :field="{{ field  | jsonify | escape }}" />
 <!-- End Shared Form Checkboxes Section -->

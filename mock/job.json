@@ -9,5 +9,6 @@
   "team": null,
   "id": "fk0sjp7",
   "allows_remote": true,
-  "location": { "city": "Offenbach am Main", "state": "Hessen", "zipcode": "63071", "country": "Deutschland" }
+  "location": { "city": "Offenbach am Main", "state": "Hessen", "zipcode": "63071", "country": "Deutschland" },
+  "meta": { "total": 1, "limit": 20, "offset": 0 }
 }
