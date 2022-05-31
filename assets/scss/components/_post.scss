@@ -65,14 +65,14 @@ $post-content-width-lg: 80%;
     }
   }
 
-  img {
+  p > img {
     border-radius: 0;
     margin-top: 2.5rem;
     margin-bottom: 2.5rem;
   }
 
   @include media-breakpoint-up(lg) {
-    img {
+    p > img {
       margin-top: 3.5rem;
       margin-bottom: 3.5rem;
       left: 0;
@@ -86,7 +86,7 @@ $post-content-width-lg: 80%;
   }
 
   @include media-breakpoint-up(xl) {
-    img {
+    p > img {
       left: -#{$post-offset-spacing-xl};
       max-width: get-container-width($name: 'xl', $with-padding: true);
       // $right-offset-width: $post-offset-spacing-xl / 2
