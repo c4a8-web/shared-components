@@ -1,7 +1,7 @@
 $animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
 $transition-tween-t1: 0.2s ease-in-out;
 
-@mixin background-grow($color, $half: false) {
+@mixin background-grow($color, $spacing: 0, $half: false) {
   position: relative;
   z-index: 1;
 
@@ -9,7 +9,7 @@ $transition-tween-t1: 0.2s ease-in-out;
     position: absolute;
     content: '';
     display: block;
-    height: 100%;
+    height: calc(var(--type-default-line-height) * 1em + (2 * #{$spacing}));
     width: 0;
     left: 0;
     top: 0;

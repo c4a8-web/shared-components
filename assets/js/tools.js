@@ -161,6 +161,36 @@ class Tools {
   static getExtension(fileName) {
     return fileName.split('.').pop();
   }
+
+  static validateVueProps(component) {
+    const propsOptions = component?.$?.propsOptions[0];
+    const props = component?.$props;
+    const data = { props: {} };
+
+    Object.keys(props).map((prop) => {
+      let value = props[prop];
+
+      if (value === '') {
+        value = propsOptions[prop].default;
+      }
+
+      data.props[prop] = value;
+    });
+
+    return data;
+  }
+
+  static isTrue(value) {
+    return value === true || value === 'true';
+  }
+
+  static capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  static sleep(milliseconds) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
 }
 
 export default Tools;

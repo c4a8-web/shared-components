@@ -54,9 +54,8 @@ $color-blue-medium: #0072c6;
   --color-cyprus: #004144;
   --color-wax-flower: #ffbb9a;
   --color-manhatten: #f3b394;
-  --color-jacarta: #19122F;
+  --color-jacarta: #19122f;
   --color-wistful: #b2a7d2;
-  
 
   --color-white: #fff;
 
@@ -137,6 +136,8 @@ $color-blue-medium: #0072c6;
   --color-back-to-top-hover-foreground: var(--color-white);
 
   --color-background: var(--color-white);
+
+  --color-faq-border: var(--color-trout);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

@@ -34,6 +34,10 @@ body {
   }
 }
 
+body {
+  line-height: var(--type-default-line-height);
+}
+
 .other {
   font-family: 'Roboto', sans-serif;
   font-family: 'Roboto Condensed', sans-serif;
@@ -72,4 +76,21 @@ ul.dashed li:before {
 
 .text-shadow {
   text-shadow: 7px 5px 7px #ffffff;
+}
+
+#app {
+  .header-meta,
+  nav:not(.hs-menu-initialized),
+  main {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &[data-v-app] {
+    .header-meta,
+    main {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 }

@@ -11,6 +11,8 @@ class Form extends BaseComponent {
   constructor(root, options) {
     super(root, options);
 
+    if (!root) return;
+
     this.root = root;
 
     this.formSelector = '.form__form';

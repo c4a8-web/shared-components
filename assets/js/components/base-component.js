@@ -6,6 +6,8 @@ class BaseComponent {
   static namespacePrefix = 'baseComponents';
 
   constructor(root, options) {
+    if (!root) return;
+
     this.root = root;
     this.options = options;
 

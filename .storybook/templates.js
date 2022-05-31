@@ -10,6 +10,7 @@ import Posts from './data/posts';
 import Events from './data/events';
 import Authors from './data/authors';
 import Lang from './data/lang';
+import Options from './data/options';
 import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
@@ -23,6 +24,7 @@ const site = {
     contact: Contact,
     authors: Authors,
     lang: Lang,
+    options: Options,
   },
   posts: Posts,
   events: Events,

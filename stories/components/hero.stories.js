@@ -136,7 +136,8 @@ export const HeroTextImage = Template.bind({});
 HeroTextImage.args = {
   hero: {
     light: true,
-    overline: 'Karriere bei einem der führenden Microsoft Gold Partner',
+    overline:
+      'Karriere bei einem der führenden Microsoft Gold Partner. Lorem ipsum dolor sit two lines would need to fit.',
     headline: 'Komm zu uns. Finde deinen Platz.',
     subline: 'Entdecke all die guten Gründe, warum es sich lohnt, bei glueckkanja-gab zu arbeiten',
     fullscreen: {

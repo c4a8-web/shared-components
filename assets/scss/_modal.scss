@@ -116,3 +116,7 @@
     height: 100%;
   }
 }
+
+modal {
+  @include vue-loading;
+}
