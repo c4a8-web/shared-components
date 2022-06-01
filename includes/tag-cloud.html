@@ -3,26 +3,27 @@
 {%- assign tagCloudHeadline = include.headline -%}
 {%- assign tagCloudSubline = include.subline -%}
 
-<div class='container-fluid tag-cloud'>
-    <div class='row'>
-        <div class='col tag-cloud__header'>
-            {%
-                include headline.html
-                level=tagCloudLevel
-                text=tagCloudHeadline
-                classes="h2-font-size"
-            %}
-            <div class='w-lg-65'>{{ tagCloudSubline }}</div>
-        </div>
+<div class='tag-cloud container'>
+  <div class='row'>
+    <div class='col tag-cloud__header'>
+      {%
+          include headline.html
+          level=tagCloudLevel
+          text=tagCloudHeadline
+          classes="h2-font-size"
+      %}
+      <div class='w-lg-65'>{{ tagCloudSubline }}</div>
     </div>
-    <div class="tag-cloud__content row">
-      <!-- Add Div for responsive design?-->
-      <div class="col-5 tag-cloud__container">
-        <ul class='row tag-cloud__items'>
-          {% for item in tagCloudItems %}
-            <li><a href="{{item.link}}">{{ item.title }}</a></li>
-          {% endfor %}
-        </ul>
-      </div>
+  </div>
+  <div class="tag-cloud__content row">
+    <div class="tag-cloud__container">
+      <ul class='tag-cloud__items'>
+        {% for item in tagCloudItems %}
+          <li class="tag-cloud__item">
+            <a class="tag-cloud__item-link" href="{{ item.link }}">{{ item.title }}</a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
+  </div>
 </div>
