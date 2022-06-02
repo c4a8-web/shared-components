@@ -19,35 +19,37 @@ class TagCloud extends BaseComponent {
     this.ellipticValue = 0.5;
 
     this.weightingElement();
-    // this.fontSizeWeighting();
-
     this.positionElements();
   }
 
   positionElements() {
+    this.fontSizeWeighting();
+
     let columnStart = 2;
     let columnEnd = 3;
     let rowStart = 1;
     let rowEnd = 2;
 
-    const rowLength = 5;
+    const rowLength = 6;
 
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
       const weight = Math.ceil(current.weighting);
-      console.log('TagCloud ~ positionElements ~ weight', weight);
+      //console.log('TagCloud ~ positionElements ~ weight', weight);
 
       rowEnd = rowStart + 1;
       columnEnd = columnStart + weight;
 
-      // TODO check if the element will fit in that row and if not go to the next row;
-      // TODO check if row is full and switch to the next one permanently
+      if (columnEnd > rowLength) {
+        rowStart += 1;
+        columnStart = 1;
+        columnEnd = columnStart + weight;
+      }
 
       this.items[i].style = `grid-area: ${rowStart} / ${columnStart} / ${rowEnd} / ${columnEnd};`;
 
       columnStart += weight;
 
-      if (i === 1) return;
     }
   }
 
@@ -69,7 +71,6 @@ class TagCloud extends BaseComponent {
     let avgFontSize = 8;
     for (let i = 0; i < this.tagList.length; i++) {
       this.textElements[i].style.fontSize = this.tagList[i].weighting * 12 + avgFontSize + 'px';
-      console.log(this.textElements[i].style.fontSize);
     }
   }
 }
