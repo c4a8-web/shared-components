@@ -49,6 +49,9 @@ class TagCloud extends BaseComponent {
 
     const rowLength = 6;
 
+    let maxCol = 0;
+    let maxRow = 0;
+
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
       const weight = Math.ceil(current.weighting);
@@ -62,12 +65,35 @@ class TagCloud extends BaseComponent {
         columnStart = 1;
         columnEnd = columnStart + weight;
       }
+      //track how many rows and columns we have
+      if (rowStart > maxRow) {
+        maxRow = rowStart;
+      };
+
+      if (columnStart > maxCol) {
+        maxCol = columnStart;
+      };
+      //TODO: using maxRow and maxCol leave the edges empty
+
+      if (rowStart === 1 && columnStart === 1) {
+        rowStart = 2;
+      } else if (rowStart === 1 && columnStart === maxCol) {
+        rowStart = 2;
+      } else if (rowStart === maxRow && columnStart === 1) {
+        //columnStart -= 1;
+      } else if (rowStart === maxRow && columnStart === maxCol) {
+        //columnStart -= 1;
+      }
+
 
       this.items[i].style = `grid-area: ${rowStart} / ${columnStart} / ${rowEnd} / ${columnEnd};`;
 
       columnStart += weight;
 
     }
+    console.log('Max Columns: ', maxCol);
+    console.log('Max Rows: ', maxRow);
+
   }
 
   weightingElement() {
