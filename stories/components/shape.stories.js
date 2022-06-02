@@ -11,6 +11,6 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Shape = Template.bind({});
+export const SBlock = Template.bind({});
 
-Shape.args = {};
+SBlock.args = {};

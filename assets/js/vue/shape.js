@@ -5,7 +5,7 @@ export default {
       return ['shape', 'vue-component'];
     },
     shapeName() {
-      return 's-block';
+      return this.name ? this.name : 's-block';
     },
   },
   methods: {},

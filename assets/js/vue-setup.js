@@ -18,6 +18,7 @@ import JobList from './vue/job-list.js';
 import Modal from './vue/modal.js';
 // component is not ready yet
 // import PersonQuote from './vue/person-quote.js';
+import ShapeSquareCircle from './vue/shape-square-circle.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
@@ -58,6 +59,7 @@ const addApp = () => {
     JobListEntry,
     JobList,
     Modal,
+    ShapeSquareCircle,
     Shape,
     ArrowExternal,
     ArrowNarrow,
