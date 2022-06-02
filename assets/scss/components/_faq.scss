@@ -9,7 +9,7 @@
   details {
     margin: spacing(4) 0;
 
-    &[open] {
+    &[open]:not(.is-collapsing) {
       .faq__icon {
         transform: rotate(-180deg);
       }
@@ -41,6 +41,14 @@
 .faq__content {
   transition: height 0.5s $animation-transition;
   overflow: hidden;
+
+  &.v-leave-active {
+    transition-duration: 0.2s;
+  }
+
+  &.v-leave-to {
+    height: 0 !important;
+  }
 }
 
 .faq__text {

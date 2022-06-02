@@ -1,3 +1,5 @@
+import State from '../state.js';
+
 export default {
   tagName: 'faq',
   data() {
@@ -7,7 +9,9 @@ export default {
   },
   beforeMount() {
     this.entriesWithState = this.entries.map((entry, index) => {
+      entry.detailClasses = null;
       entry.isOpen = null;
+      entry.isDetailsOpen = null;
       entry.height = null;
       entry.id = `entry-${index}`;
 
@@ -28,15 +32,36 @@ export default {
   methods: {
     handleClick(entry) {
       entry.isOpen = entry.isOpen === null ? true : null;
+
+      if (entry.isOpen) entry.isDetailsOpen = true;
     },
-    enter(entry) {
+    getElementByRef(entry) {
       const ref = this.$refs[entry?.id];
 
-      if (!ref) return;
+      if (!ref || ref.length === 0) return;
 
-      const element = ref[0];
+      return ref[0];
+    },
+    afterLeave(entry) {
+      const element = this.getElementByRef(entry);
+
+      if (!element) return;
+
+      entry.isDetailsOpen = null;
+
+      element.style.removeProperty('display');
+      element.style.removeProperty('height');
+
+      entry.detailClasses = null;
+    },
+    enter(entry) {
+      const element = this.getElementByRef(entry);
+
+      if (!element) return;
+
       const height = element.offsetHeight;
 
+      element.style.removeProperty('height');
       element.style.height = 0;
       element.style.paddingTop = 0;
       element.style.paddingBottom = 0;
@@ -51,6 +76,19 @@ export default {
         element.style.removeProperty('margin-bottom');
       });
     },
+    leave(entry) {
+      const element = this.getElementByRef(entry);
+
+      if (!element) return;
+
+      const height = element.offsetHeight;
+
+      entry.detailClasses = State.IS_COLLAPSING;
+
+      setTimeout(() => {
+        element.style.height = `${height}px`;
+      });
+    },
   },
   props: {
     headline: Object,
@@ -61,8 +99,8 @@ export default {
       <div class="row">
         <div class="col-lg-8">
           <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" />
-          <details v-for="entry in entriesWithState" :open="entry.isOpen">
-            <summary @click.prevent="handleClick(entry)" :open="entry.isOpen">
+          <details v-for="entry in entriesWithState" :open="entry.isDetailsOpen" :class="entry.detailClasses">
+            <summary @click.prevent="handleClick(entry)" :open="entry.isDetailsOpen">
               <div class="faq__summary">{{ entry.summary }}</div>
               <div class="faq__icon-frame">
                 <div class="faq__icon">
@@ -70,8 +108,8 @@ export default {
                 </div>
               </div>
             </summary>
-            <Transition @enter="enter(entry)">
-              <div class="faq__content" v-if="entry.isOpen" :ref="entry.id">
+            <Transition @after-leave="afterLeave(entry)" @enter="enter(entry)" @before-leave="leave(entry)">
+              <div class="faq__content" v-show="entry.isOpen" :ref="entry.id">
                 <div class="faq__text" v-html="entry.text" ></div>
               </div>
             </Transition>
