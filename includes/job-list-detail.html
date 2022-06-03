@@ -33,12 +33,12 @@
   gender="{{ jobListDetailGender }}"
 >
   <template v-slot:person-quote>
-    {%
+    {% comment %}
       include person-quote.html
       img=jobListDetailPersonQuote.img
       text=jobListDetailPersonQuote.text
       name=jobListDetailPersonQuote.name
-    %}
+    {% endcomment %}
   </template>
   <template v-slot:google-maps>
     {%
