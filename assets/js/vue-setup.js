@@ -12,12 +12,12 @@ import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
+import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
 import Modal from './vue/modal.js';
-// component is not ready yet
-// import PersonQuote from './vue/person-quote.js';
+import PersonQuote from './vue/person-quote.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
@@ -55,6 +55,7 @@ const addApp = () => {
     Form,
     Headline,
     Icon,
+    VImg,
     JobListDetail,
     JobListEntry,
     JobList,
@@ -70,7 +71,7 @@ const addApp = () => {
     Rocket,
     Smile,
     SBlock,
-    // PersonQuote,
+    PersonQuote,
   ];
 
   components.forEach((component) => {

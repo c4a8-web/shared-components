@@ -53,6 +53,7 @@ export default {
       api: {},
       hasBack: false,
       entryData: {},
+      personQuote: null,
     };
   },
   methods: {
@@ -80,6 +81,8 @@ export default {
       }
     },
     loadJob() {
+      // TODO wait for all promises. right now it is working since vue is reactive so maybe we don't need that
+      this.loadLocalJobData();
       this.api
         ?.getOpening()
         .then((response) => response.json())
@@ -127,6 +130,24 @@ export default {
 
       this.stopLoading();
     },
+    loadLocalJobData() {
+      const jobId = this.api.getJobId() || this.jobId;
+      const url = `/assets/data/jobs/${jobId}.json`;
+
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.personQuote = data.personQuote;
+        })
+        .catch((error) => {
+          console.error('Job-list Local Job Data Error:', error);
+        });
+    },
   },
   props: {
     detailColor: String,
@@ -139,7 +160,7 @@ export default {
     ctaText: String,
     ctaButton: Boolean,
     form: Object,
-    personQuote: Object,
+    // personQuote: Object,
     googleMaps: Object,
     modalSuccess: Object,
   },
@@ -175,7 +196,7 @@ export default {
             <!-- job list detail can switch to profile based on url parameter -->
             <div class="job-list__detail-description page-detail__description richtext" v-html="entryData?.description"></div>
             <div v-if="personQuote" class="job-list__detail-quote">
-              <slot name="person-quote" />
+              <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
             </div>
             <div class="job-list__detail-maps">
               <slot name="google-maps" />
@@ -195,5 +216,3 @@ export default {
     </div>
   `,
 };
-
-// TODO change person quote slot to component after img is migrated <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
