@@ -42,8 +42,5 @@
 
 .tag-cloud__item {
   border: 1px solid red;
-  transition: transform 1s ease-in-out;
-  &:hover {
-    transform: scale(1.4);
-  }
+
 }
