@@ -7,20 +7,19 @@ class TagCloud extends BaseComponent {
     super(root, options);
 
     this.container = root.querySelector('.tag-cloud__container');
+    this.itemsContainer = root.querySelector('.tag-cloud__items');
     this.items = this.container?.querySelectorAll('.tag-cloud__item');
     this.textElements = this.container?.querySelectorAll('a');
-    this.radius = 150;
-    this.centerX = 0;
-    this.centerY = 0;
     this.tagList = [];
-    this.distance = 100;
 
-    this.coordinates = [];
-    this.ellipticValue = 0.5;
+    this.init();
+  }
 
+  init () {
     this.weightingElement();
     this.positionElements();
   }
+
 
   shuffle (array) {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -49,9 +48,6 @@ class TagCloud extends BaseComponent {
 
     const rowLength = 6;
 
-    let maxCol = 0;
-    let maxRow = 0;
-
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
       const weight = Math.ceil(current.weighting);
@@ -65,25 +61,22 @@ class TagCloud extends BaseComponent {
         columnStart = 1;
         columnEnd = columnStart + weight;
       }
-      //track how many rows and columns we have
-      if (rowStart > maxRow) {
-        maxRow = rowStart;
-      };
 
-      if (columnStart > maxCol) {
-        maxCol = columnStart;
-      };
-      //TODO: using maxRow and maxCol leave the edges empty
+      if (rowStart === 1 && columnEnd === rowLength) {
+        rowStart = 2;
+        columnStart = 1;
+        columnEnd = columnStart + weight;
+      } else if (rowStart === 1 && columnStart === 1) {
+        rowStart = 2;
+        columnStart = 2;
+        columnEnd = columnStart + weight;
+      } /*else if (rowStart === 4 && columnEnd === rowLength) {
+        rowStart = 1;
+        columnStart = 1;
+        columnEnd = columnStart + weight;
+      }*/
+      //same for bottom left and right cell
 
-      if (rowStart === 1 && columnStart === 1) {
-        rowStart = 2;
-      } else if (rowStart === 1 && columnStart === maxCol) {
-        rowStart = 2;
-      } else if (rowStart === maxRow && columnStart === 1) {
-        //columnStart -= 1;
-      } else if (rowStart === maxRow && columnStart === maxCol) {
-        //columnStart -= 1;
-      }
 
 
       this.items[i].style = `grid-area: ${rowStart} / ${columnStart} / ${rowEnd} / ${columnEnd};`;
@@ -91,11 +84,7 @@ class TagCloud extends BaseComponent {
       columnStart += weight;
 
     }
-    console.log('Max Columns: ', maxCol);
-    console.log('Max Rows: ', maxRow);
-
   }
-
   weightingElement() {
     let avgOffsetWidth = 0;
 
@@ -110,11 +99,16 @@ class TagCloud extends BaseComponent {
     }
   }
 
+
   fontSizeWeighting() {
     let avgFontSize = 8;
     for (let i = 0; i < this.tagList.length; i++) {
       this.textElements[i].style.fontSize = this.tagList[i].weighting * 12 + avgFontSize + 'px';
     }
+  }
+
+  update () {
+
   }
 }
 

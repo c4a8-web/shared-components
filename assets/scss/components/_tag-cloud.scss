@@ -15,6 +15,7 @@
 
   .tag-cloud__content {
     text-align: center;
+    justify-content: center;
     .tag-cloud__container {
       max-width: 1500px;
       margin: auto;
@@ -24,13 +25,15 @@
       a {
         text-decoration: none;
         padding: 5px;
-      }
+        color: var(--color-white) !important;
+        }
     }
   }
 }
 
 .tag-cloud__items {
   display: grid;
+  //place-items: center;
   grid-template-columns: repeat(5, 1fr);
   // grid-template-rows: repeat(5, 1fr);
   grid-column-gap: 0px;
@@ -38,5 +41,9 @@
 }
 
 .tag-cloud__item {
-  //border: 1px solid red;
+  border: 1px solid red;
+  transition: transform 1s ease-in-out;
+  &:hover {
+    transform: scale(1.4);
+  }
 }
