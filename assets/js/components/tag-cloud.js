@@ -24,6 +24,17 @@ class TagCloud extends BaseComponent {
   init () {
     this.weightingElement();
     this.positionElements();
+    this.setVariables();
+
+  }
+
+  setVariables() {
+    console.log(this.tagList);
+
+    for (let i = 0; i < this.tagList.length; i++) {
+      this.items[i].style.setProperty('--weight', this.tagList[i].weighting);
+      this.items[i].style.setProperty('--item-animation-delay', Math.ceil(this.tagList[i].weighting * 1) + 's');
+    }
   }
 
   positionElements () {
@@ -31,8 +42,8 @@ class TagCloud extends BaseComponent {
     let columnEnd = 2;
     let rowStart = 1;
     let rowEnd = 2;
-    let rowLength = Math.ceil(Math.sqrt(this.items.length + 4)) + 2;
-    let lastRow = rowLength - 2 ;
+    let rowLength = Math.ceil(Math.sqrt(this.items.length + 4)) + 3;
+    let lastRow = rowLength - 3 ;
 
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
@@ -46,7 +57,7 @@ class TagCloud extends BaseComponent {
         columnEnd = columnStart + weight;
       }
 
-      if (rowStart === 1 && columnEnd === rowLength) {
+      if (rowStart === 1 && columnEnd >= rowLength) {
         rowStart += 1;
         columnStart = 1;
         columnEnd = columnStart + weight;
@@ -63,8 +74,7 @@ class TagCloud extends BaseComponent {
         columnEnd = columnStart + weight;
       }
 
-      console.log('Row length: ' + rowLength);
-      if (rowStart >= lastRow && columnStart >= (rowLength - 1)) {
+      if (rowStart >= lastRow && columnStart >= (rowLength - 2)) {
         rowStart += 1;
         columnStart -= 1;
         columnEnd = columnStart + weight;

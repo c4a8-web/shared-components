@@ -1,3 +1,7 @@
+html {
+  --item-animation-delay: 0.5s;
+}
+
 .tag-cloud {
   background-color: var(--color-blue-dark);
   color: var(--color-white);
@@ -25,9 +29,25 @@
       a {
         text-decoration: none;
         padding: 5px;
+        font-size: 1.5rem;
         color: var(--color-white) !important;
-        }
+      }
     }
+  }
+}
+
+@keyframes billow {
+  0% {
+    transform: scale(1);
+    filter: blur(3px);
+  }
+  50% {
+    transform: scale(1.1);
+    filter: blur(0px);
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(3px);
   }
 }
 
@@ -41,6 +61,14 @@
 }
 
 .tag-cloud__item {
-  border: 1px solid red;
-
+  //border: 1px solid red;
+  animation-name: billow;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-delay: var(--item-animation-delay);
+  &:hover {
+    animation-play-state: paused;
+  }
 }
+
