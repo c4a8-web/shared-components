@@ -28,6 +28,7 @@ class TagCloud extends BaseComponent {
 
   }
 
+  //change
   setVariables() {
     let delay = 0;
 
@@ -37,6 +38,26 @@ class TagCloud extends BaseComponent {
     }
   }
 
+
+  /*applyValue (colStart, colEnd, rowStart, rowEnd) {
+    for (let i = 0; i < this.items.length; i++) {
+      const current = this.tagList[i];
+      const weight = Math.ceil(current.weighting);
+
+      rowEnd = rowStart + 1;
+      colEnd = colStart + weight;
+
+      this.tagList[i].rowLen = colEnd - colStart
+
+      colStart += weight;
+    }
+
+    console.log(this.tagList);
+  }*/
+
+
+
+  //slightly improve
   getRowLength (colStart, colEnd, rowStart, rowEnd) {
     let totalCols = 0;
 
@@ -64,10 +85,14 @@ class TagCloud extends BaseComponent {
     let rowEnd = 2;
 
     let totalCols = this.getRowLength(columnStart, columnEnd, rowStart, rowEnd);
+    //let test = this.applyValue(columnStart, columnEnd, rowStart, rowEnd);
     let coefficient = 1/2;
 
-    let rowLength = Math.ceil(Math.sqrt(totalCols)) + coefficient * Math.ceil(Math.sqrt(totalCols));
+    console.log('TotalCols: ', totalCols);
+    let rowLength = Math.floor(Math.sqrt(totalCols) + coefficient * Math.sqrt(totalCols));
     let colLength = Math.ceil(rowLength * coefficient);
+
+    console.log('Row and Col Length: ', rowLength, colLength);
 
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
@@ -75,6 +100,13 @@ class TagCloud extends BaseComponent {
 
       rowEnd = rowStart + 1;
       columnEnd = columnStart + weight;
+
+
+      if (columnEnd > rowLength) {
+        rowStart += 1;
+        columnStart = 1;
+        columnEnd = columnStart + weight;
+      }
 
       if (rowStart === 1 && columnStart === 1) {
         columnStart = 2;
@@ -86,21 +118,15 @@ class TagCloud extends BaseComponent {
         columnStart = 1;
         columnEnd = columnStart + weight;
       }
-
-      if (columnEnd > rowLength) {
-        rowStart += 1;
-        columnStart = 1;
-        columnEnd = columnStart + weight;
-      }
-
       if (rowStart >= colLength && columnStart == 1 ) {
         columnStart += 1;
         columnEnd = columnStart + weight;
       }
 
       if (rowStart >= colLength && columnEnd >= rowLength) {
+        colLength += 1;
         rowStart += 1;
-        columnStart -= 1 + weight;
+        columnStart = Math.ceil(colLength * coefficient);
         columnEnd = columnStart + weight;
       }
 
@@ -129,3 +155,10 @@ class TagCloud extends BaseComponent {
 }
 
 export default TagCloud;
+
+
+
+// Alternative
+
+// instead of grid ul, grid divs
+// we can justiyfy the grid
