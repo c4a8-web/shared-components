@@ -20,8 +20,11 @@ html {
   .tag-cloud__content {
     text-align: center;
     justify-content: center;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
     .tag-cloud__container {
       max-width: 1500px;
+      height: 2000px;
       margin: auto;
       li {
         list-style: none;
@@ -42,8 +45,9 @@ html {
     filter: blur(3px);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.5);
     filter: blur(0px);
+    margin: 15px;
   }
   100% {
     transform: scale(1);
@@ -56,19 +60,20 @@ html {
   //place-items: center;
   grid-template-columns: repeat(5, 1fr);
   // grid-template-rows: repeat(5, 1fr);
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
 }
 
 .tag-cloud__item {
-  //border: 1px solid red;
-  animation-name: billow;
-  animation-duration: 5s;
+  border: 1px solid red;
+  border-radius: 5px;
+  /*animation-name: billow;
+  animation-duration: 9s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
   animation-delay: var(--item-animation-delay);
+
   &:hover {
     animation-play-state: paused;
-  }
+
+  }*/
 }
 

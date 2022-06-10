@@ -1,3 +1,4 @@
+import { addons } from '@storybook/addon-essentials';
 import BaseComponent from './base-component.js';
 
 class TagCloud extends BaseComponent {
@@ -29,21 +30,36 @@ class TagCloud extends BaseComponent {
   }
 
   setVariables() {
-    console.log(this.tagList);
+    let delay = 0;
 
     for (let i = 0; i < this.tagList.length; i++) {
-      this.items[i].style.setProperty('--weight', this.tagList[i].weighting);
-      this.items[i].style.setProperty('--item-animation-delay', Math.ceil(this.tagList[i].weighting * 1) + 's');
+      delay = Math.random()*500;
+      this.items[i].style.setProperty('--item-animation-delay', this.tagList[i].weighting * delay + 'ms');
     }
   }
+
+  getRowLength () {
+    let containerOffset = this.container.offsetWidth;
+    let totalOffsetWidth = 0;
+    for (let i = 0; i < this.items.length; i++) {
+      // unweigthed total OffsetWidth
+      //totalOffsetWidth += this.tagList[i].offsetWidth;
+      // weighted total OffsetWidth
+      totalOffsetWidth += this.tagList[i].offsetWidth * Math.ceil(this.tagList[i].weighting);
+    }
+    console.log(Math.ceil(totalOffsetWidth/containerOffset));
+    return Math.ceil(totalOffsetWidth/containerOffset);
+  }
+
 
   positionElements () {
     let columnStart = 1;
     let columnEnd = 2;
     let rowStart = 1;
     let rowEnd = 2;
-    let rowLength = Math.ceil(Math.sqrt(this.items.length + 4)) + 3;
-    let lastRow = rowLength - 3 ;
+
+    let rowLength = this.getRowLength();
+    let colLength = Math.ceil(this.container.offsetWidth/100);
 
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
@@ -57,7 +73,7 @@ class TagCloud extends BaseComponent {
         columnEnd = columnStart + weight;
       }
 
-      if (rowStart === 1 && columnEnd >= rowLength) {
+      if (rowStart === 1 && columnEnd >= rowLength - 1) {
         rowStart += 1;
         columnStart = 1;
         columnEnd = columnStart + weight;
@@ -69,14 +85,14 @@ class TagCloud extends BaseComponent {
         columnEnd = columnStart + weight;
       }
 
-      if (rowStart >= lastRow && columnStart == 1 ) {
+      if (rowStart >= colLength && columnStart == 1 ) {
         columnStart += 1;
         columnEnd = columnStart + weight;
       }
 
-      if (rowStart >= lastRow && columnStart >= (rowLength - 2)) {
+      if (rowStart >= colLength && columnEnd >= rowLength) {
         rowStart += 1;
-        columnStart -= 1;
+        columnStart -= 1 + weight;
         columnEnd = columnStart + weight;
       }
 
@@ -87,6 +103,7 @@ class TagCloud extends BaseComponent {
     }
   }
 
+
   weightingElement() {
     let avgOffsetWidth = 0;
 
@@ -96,6 +113,7 @@ class TagCloud extends BaseComponent {
 
     for (let i = 0; i < this.textElements.length; i++) {
       let tag = {};
+      tag.offsetWidth = this.textElements[i].offsetWidth;
       tag.weighting = this.textElements[i].offsetWidth / avgOffsetWidth;
       this.tagList.push(tag);
     }
