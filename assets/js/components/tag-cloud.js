@@ -1,4 +1,3 @@
-import { addons } from '@storybook/addon-essentials';
 import BaseComponent from './base-component.js';
 
 class TagCloud extends BaseComponent {
@@ -33,22 +32,28 @@ class TagCloud extends BaseComponent {
     let delay = 0;
 
     for (let i = 0; i < this.tagList.length; i++) {
-      delay = Math.random()*500;
+      delay = Math.random() > 0.5 ?  Math.random()*5000 : Math.random()*1000;
       this.items[i].style.setProperty('--item-animation-delay', this.tagList[i].weighting * delay + 'ms');
     }
   }
 
-  getRowLength () {
-    let containerOffset = this.container.offsetWidth;
-    let totalOffsetWidth = 0;
+  getRowLength (colStart, colEnd, rowStart, rowEnd) {
+    let totalCols = 0;
+
     for (let i = 0; i < this.items.length; i++) {
-      // unweigthed total OffsetWidth
-      //totalOffsetWidth += this.tagList[i].offsetWidth;
-      // weighted total OffsetWidth
-      totalOffsetWidth += this.tagList[i].offsetWidth * Math.ceil(this.tagList[i].weighting);
+      const current = this.tagList[i];
+      const weight = Math.ceil(current.weighting);
+
+      rowEnd = rowStart + 1;
+      colEnd = colStart + weight;
+
+      if (colEnd > totalCols) {
+        totalCols = colEnd;
+      }
+
+      colStart += weight;
     }
-    console.log(Math.ceil(totalOffsetWidth/containerOffset));
-    return Math.ceil(totalOffsetWidth/containerOffset);
+    return totalCols;
   }
 
 
@@ -58,8 +63,11 @@ class TagCloud extends BaseComponent {
     let rowStart = 1;
     let rowEnd = 2;
 
-    let rowLength = this.getRowLength();
-    let colLength = Math.ceil(this.container.offsetWidth/100);
+    let totalCols = this.getRowLength(columnStart, columnEnd, rowStart, rowEnd);
+    let coefficient = 1/2;
+
+    let rowLength = Math.ceil(Math.sqrt(totalCols)) + coefficient * Math.ceil(Math.sqrt(totalCols));
+    let colLength = Math.ceil(rowLength * coefficient);
 
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
