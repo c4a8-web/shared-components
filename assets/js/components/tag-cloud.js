@@ -13,6 +13,9 @@ class TagCloud extends BaseComponent {
     //   this.itemsContainer.appendChild(this.itemsContainer.children[Math.random() * i | 0]);
     // }
 
+    this.itemsPerOuterRow = 3;
+    this.itemsPerInnerRow = 5;
+
     this.items = this.container?.querySelectorAll('.tag-cloud__item');
     this.textElements = this.container?.querySelectorAll('a');
     this.tagList = [];
@@ -45,8 +48,7 @@ class TagCloud extends BaseComponent {
   getList (rowLength) {
     rowLength = Math.ceil(rowLength);
 
-    const itemsPerOuterRow = 3;
-    const itemsPerInnerRow = 5;
+
     const list =  [];
 
     let rowsToExpand = [];
@@ -58,7 +60,7 @@ class TagCloud extends BaseComponent {
     for (let i = 0; i < this.tagList.length; i++) {
       let isFirstRow = (rowIndex === 0) ? true : false;
       let isLastRow = (rowIndex === rowLength - 1) ? true : false;
-      let itemsInRow = (isFirstRow || isLastRow) ? itemsPerOuterRow : itemsPerInnerRow;
+      let itemsInRow = (isFirstRow || isLastRow) ? this.itemsPerOuterRow : this.itemsPerInnerRow;
 
       const currentTagWeight = this.tagList[i].weighting;
 
@@ -66,7 +68,6 @@ class TagCloud extends BaseComponent {
 
       if (isRowFull) {
         if (itemsInRow !== weight) {
-          // rowsToExpand.push({rowIndex, weight});
           rowsToExpand.push(rowIndex);
         }
 
@@ -84,64 +85,49 @@ class TagCloud extends BaseComponent {
       weight += currentTagWeight;
     }
 
-
-    console.log('list', [...list]);
+    rows.push({rowIndex, weight});
 
     for (let i = 0; i < rowsToExpand.length; i++) {
       const currentIndex = rowsToExpand[i];
       const currentRow = rows[currentIndex];
 
-      this.expandRow(currentRow);
-      // const index = currentRow.rowIndex;
-      // const weight = currentRow.weight;
-
-      // const isFirstRow = (index === 0) ? true : false;
-      // const isLastRow = (index === rowLength - 1) ? true : false;
-      // const itemsInRow = (isFirstRow || isLastRow) ? itemsPerOuterRow : itemsPerInnerRow;
-
-      // const missingWeight = itemsInRow - weight;
-
-      // for(let j = 0; j < missingWeight; j++) {
-      //   list[index][j].weighting++;
-      // }
+      this.expandRow(currentRow, rowLength, list);
     }
 
     const lastRow = rowLength - 1;
 
     if (typeof list[lastRow] === 'undefined') {
       list[lastRow] = [];
-      let listArray = list[lastRow - 1];
+      const beforeLastRow = lastRow - 1;
+      let listObj = list[beforeLastRow];
 
-      console.log('listarray', listArray);
+      let biggest = 0;
+      let biggestIndex = 0;
+      for (let i = 0; i < listObj.length; i++) {
+        if (listObj[i].weighting > biggest) {
+          biggest = listObj[i].weighting;
+          biggestIndex = i;
+        }
+      }
+
+      const elementToMove = listObj[biggestIndex];
+
+      rows[beforeLastRow].weight -= elementToMove.weighting;
+      list[lastRow].push(elementToMove);
+      list[beforeLastRow].splice(biggestIndex, 1);
 
 
-      let weights = listArray.filter(item => item.weighting > 0);
-      console.log('weights: ', weights);
-      let maxWeightedElement = Math.max.apply(0, weights);
-      console.log(maxWeightedElement);
-
-      //a = list.pop()
-      //list[list.length -1 ].length.push(a)
-
+      this.expandRow(rows[beforeLastRow], rowLength, list);
     }
-
-    // list[list.length - 1].length === 0
-
-
-    // loope über list rows
-    // schaue welche nicht voll ist
-
-    console.log('list', list);
-
   }
 
-  expandRow(row) {
+  expandRow(row, rowLength, list) {
     const index = row.rowIndex;
     const weight = row.weight;
 
     const isFirstRow = (index === 0) ? true : false;
     const isLastRow = (index === rowLength - 1) ? true : false;
-    const itemsInRow = (isFirstRow || isLastRow) ? itemsPerOuterRow : itemsPerInnerRow;
+    const itemsInRow = (isFirstRow || isLastRow) ? this.itemsPerOuterRow : this.itemsPerInnerRow;
 
     const missingWeight = itemsInRow - weight;
 
