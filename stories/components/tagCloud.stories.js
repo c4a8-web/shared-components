@@ -39,6 +39,7 @@ TagCloud.args = {
           // {title: 'Teams', link: '#'},
           // {title: 'TestCase3', link: '#'},
           // {title: 'Autopilot', link: '#'},
-          {title: 'AbstractLongTestCase4', link: '#'}
+          {title: 'Azure', link: '#'}
+          // {title: 'AbstractLongTestCase4', link: '#'}
         ],
 };

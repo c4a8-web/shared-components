@@ -41,45 +41,115 @@ class TagCloud extends BaseComponent {
   }
 
 
-  /*applyValue (colStart, colEnd, rowStart, rowEnd) {
-    for (let i = 0; i < this.items.length; i++) {
-      const current = this.tagList[i];
-      const weight = Math.ceil(current.weighting);
-
-      rowEnd = rowStart + 1;
-      colEnd = colStart + weight;
-
-      this.tagList[i].rowLen = colEnd - colStart
-
-      colStart += weight;
-    }
-
-    console.log(this.tagList);
-  }*/
 
   getList (rowLength) {
-    let itemsArray = [];
-    for (let j = 0; j < rowLength; j++) {
-      itemsArray.push([]);
+    rowLength = Math.ceil(rowLength);
+
+    const itemsPerOuterRow = 3;
+    const itemsPerInnerRow = 5;
+    const list =  [];
+
+    let rowsToExpand = [];
+    let rows = [];
+    let rowIndex = 0;
+    let weight = 0;
+    let isRowFull = false;
+
+    for (let i = 0; i < this.tagList.length; i++) {
+      let isFirstRow = (rowIndex === 0) ? true : false;
+      let isLastRow = (rowIndex === rowLength - 1) ? true : false;
+      let itemsInRow = (isFirstRow || isLastRow) ? itemsPerOuterRow : itemsPerInnerRow;
+
+      const currentTagWeight = this.tagList[i].weighting;
+
+      isRowFull = itemsInRow < weight + currentTagWeight;
+
+      if (isRowFull) {
+        if (itemsInRow !== weight) {
+          // rowsToExpand.push({rowIndex, weight});
+          rowsToExpand.push(rowIndex);
+        }
+
+        rows.push({rowIndex, weight});
+
+        rowIndex++;
+      }
+
+      if (typeof list[rowIndex] !== 'object') {
+        list[rowIndex] = [];
+        weight = 0;
+      }
+
+      list[rowIndex].push(this.tagList[i]);
+      weight += currentTagWeight;
     }
 
-    for (let j = 0; j < rowLength; j++) {
-      let weight = 0;
-      for (let i = 0; i < this.tagList.length; i++) {
-        console.log('weight: ', weight);
-        if ((j == 0 && weight < 3) || (j == rowLength -1 && weight < 3)) {
-          itemsArray[j].push(this.tagList[i]);
-          weight += this.tagList[i].weighting;
-        } else if ((j != 0 || j != rowLength -1)) {
-          itemsArray[j].push(this.tagList[i]);
-          weight += this.tagList[i].weighting;
-        }
-      }
+
+    console.log('list', [...list]);
+
+    for (let i = 0; i < rowsToExpand.length; i++) {
+      const currentIndex = rowsToExpand[i];
+      const currentRow = rows[currentIndex];
+
+      this.expandRow(currentRow);
+      // const index = currentRow.rowIndex;
+      // const weight = currentRow.weight;
+
+      // const isFirstRow = (index === 0) ? true : false;
+      // const isLastRow = (index === rowLength - 1) ? true : false;
+      // const itemsInRow = (isFirstRow || isLastRow) ? itemsPerOuterRow : itemsPerInnerRow;
+
+      // const missingWeight = itemsInRow - weight;
+
+      // for(let j = 0; j < missingWeight; j++) {
+      //   list[index][j].weighting++;
+      // }
     }
-    console.log('Array: ', itemsArray)
+
+    const lastRow = rowLength - 1;
+
+    if (typeof list[lastRow] === 'undefined') {
+      list[lastRow] = [];
+      let listArray = list[lastRow - 1];
+
+      console.log('listarray', listArray);
+
+
+      let weights = listArray.filter(item => item.weighting > 0);
+      console.log('weights: ', weights);
+      let maxWeightedElement = Math.max.apply(0, weights);
+      console.log(maxWeightedElement);
+
+      //a = list.pop()
+      //list[list.length -1 ].length.push(a)
+
+    }
+
+    // list[list.length - 1].length === 0
+
+
+    // loope über list rows
+    // schaue welche nicht voll ist
+
+    console.log('list', list);
+
   }
 
-  //slightly improve
+  expandRow(row) {
+    const index = row.rowIndex;
+    const weight = row.weight;
+
+    const isFirstRow = (index === 0) ? true : false;
+    const isLastRow = (index === rowLength - 1) ? true : false;
+    const itemsInRow = (isFirstRow || isLastRow) ? itemsPerOuterRow : itemsPerInnerRow;
+
+    const missingWeight = itemsInRow - weight;
+
+    for(let i = 0; i < missingWeight; i++) {
+      list[index][i].weighting++;
+    }
+  }
+
   getRowLength () {
     let totalWeight = 0;
     const corners = 4;
