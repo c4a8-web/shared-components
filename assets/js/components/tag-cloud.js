@@ -9,9 +9,9 @@ class TagCloud extends BaseComponent {
     this.container = root.querySelector('.tag-cloud__container');
     this.itemsContainer = root.querySelector('.tag-cloud__items');
 
-    for (let i = this.itemsContainer.children.length - 1; i >= 0; i--) {
-      this.itemsContainer.appendChild(this.itemsContainer.children[Math.random() * i | 0]);
-    }
+    // for (let i = this.itemsContainer.children.length - 1; i >= 0; i--) {
+    //   this.itemsContainer.appendChild(this.itemsContainer.children[Math.random() * i | 0]);
+    // }
 
     this.items = this.container?.querySelectorAll('.tag-cloud__item');
     this.textElements = this.container?.querySelectorAll('a');
@@ -23,8 +23,10 @@ class TagCloud extends BaseComponent {
 
   init () {
     this.weightingElement();
-    this.positionElements();
-    this.setVariables();
+    this.getList(this.getRowLength());
+    //this.weightingElement();
+    //this.positionElements();
+    //this.setVariables();
 
   }
 
@@ -55,26 +57,41 @@ class TagCloud extends BaseComponent {
     console.log(this.tagList);
   }*/
 
+  getList (rowLength) {
+    let itemsArray = [];
+    for (let j = 0; j < rowLength; j++) {
+      itemsArray.push([]);
+    }
 
+    for (let j = 0; j < rowLength; j++) {
+      let weight = 0;
+      for (let i = 0; i < this.tagList.length; i++) {
+        console.log('weight: ', weight);
+        if ((j == 0 && weight < 3) || (j == rowLength -1 && weight < 3)) {
+          itemsArray[j].push(this.tagList[i]);
+          weight += this.tagList[i].weighting;
+        } else if ((j != 0 || j != rowLength -1)) {
+          itemsArray[j].push(this.tagList[i]);
+          weight += this.tagList[i].weighting;
+        }
+      }
+    }
+    console.log('Array: ', itemsArray)
+  }
 
   //slightly improve
-  getRowLength (colStart, colEnd, rowStart, rowEnd) {
-    let totalCols = 0;
+  getRowLength () {
+    let totalWeight = 0;
+    const corners = 4;
+    const columns = 5;
 
-    for (let i = 0; i < this.items.length; i++) {
-      const current = this.tagList[i];
-      const weight = Math.ceil(current.weighting);
-
-      rowEnd = rowStart + 1;
-      colEnd = colStart + weight;
-
-      if (colEnd > totalCols) {
-        totalCols = colEnd;
-      }
-
-      colStart += weight;
+    for (let i = 0; i < this.tagList.length; i++) {
+      totalWeight += this.tagList[i].weighting;
     }
-    return totalCols;
+
+    totalWeight += corners;
+
+    return totalWeight / columns;
   }
 
 
@@ -84,19 +101,15 @@ class TagCloud extends BaseComponent {
     let rowStart = 1;
     let rowEnd = 2;
 
-    let totalCols = this.getRowLength(columnStart, columnEnd, rowStart, rowEnd);
-    //let test = this.applyValue(columnStart, columnEnd, rowStart, rowEnd);
-    let coefficient = 1/2;
-
-    console.log('TotalCols: ', totalCols);
-    let rowLength = Math.floor(Math.sqrt(totalCols) + coefficient * Math.sqrt(totalCols));
-    let colLength = Math.ceil(rowLength * coefficient);
+    let rowLength = this.getRowLength();
+    let colLength = 5;
 
     console.log('Row and Col Length: ', rowLength, colLength);
+    console.log('taglist: ', this.tagList);
 
     for (let i = 0; i < this.items.length; i++) {
       const current = this.tagList[i];
-      const weight = Math.ceil(current.weighting);
+      const weight = current.weighting;
 
       rowEnd = rowStart + 1;
       columnEnd = columnStart + weight;
@@ -123,12 +136,12 @@ class TagCloud extends BaseComponent {
         columnEnd = columnStart + weight;
       }
 
-      if (rowStart >= colLength && columnEnd >= rowLength) {
+      /*if (rowStart >= colLength && columnEnd >= rowLength) {
         colLength += 1;
         rowStart += 1;
-        columnStart = Math.ceil(colLength * coefficient);
+        columnStart = colLength;
         columnEnd = columnStart + weight;
-      }
+      }*/
 
       this.items[i].style = `grid-area: ${rowStart} / ${columnStart} / ${rowEnd} / ${columnEnd};`;
 
@@ -148,7 +161,7 @@ class TagCloud extends BaseComponent {
     for (let i = 0; i < this.textElements.length; i++) {
       let tag = {};
       tag.offsetWidth = this.textElements[i].offsetWidth;
-      tag.weighting = this.textElements[i].offsetWidth / avgOffsetWidth;
+      tag.weighting = Math.ceil(this.textElements[i].offsetWidth / avgOffsetWidth);
       this.tagList.push(tag);
     }
   }
