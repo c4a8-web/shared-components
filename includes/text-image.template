@@ -75,19 +75,19 @@
                   {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
       >
         {% if textImageFloat %}
-          {% assign imgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
-          {% assign preset = textImageImagePreset | default: "textImageFloatingSmall" %}
+          {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
+          {% assign textImagePreset = textImageImagePreset | default: "textImageFloatingSmall" %}
         {% else %}
-          {% assign imgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
-          {% assign preset = textImageImagePreset | default: false %}
+          {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
+          {% assign textImagePreset = textImageImagePreset | default: false %}
         {% endif %}
 
         {%
           include img.html
           img=textImageImage
           cloudinary=textImageCloudinary
-          imgSrcSets=imgSrcSets
-          preset=preset
+          imgSrcSets=textImageImgSrcSets
+          preset=textImagePreset
           alt=textImageAlt
         %}
       </div>
