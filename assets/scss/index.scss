@@ -80,7 +80,7 @@ ul.dashed li:before {
 
 #app {
   .header-meta,
-  nav:not(.hs-menu-initialized),
+  header nav:not(.hs-menu-initialized),
   main {
     opacity: 0;
     pointer-events: none;
