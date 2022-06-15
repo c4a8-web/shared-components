@@ -77,8 +77,27 @@ export default {
         entry.isInvisible = false;
       });
     },
+    loadJobData() {
+      const url = `${this.api.jobDataUrl}jobs.json`;
+
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          this.jobData = data;
+        })
+        .catch((error) => {
+          console.error('Job-list Local Job Data Error:', error);
+        });
+    },
     loadJob(multiple) {
       const method = !multiple ? 'getOpening' : 'getAll';
+
+      this.promises.push(this.loadJobData());
 
       this.api[method]()
         .then((response) => response.json())
@@ -96,9 +115,6 @@ export default {
       Tools.sleep(this.sleepDelay).then(() => {
         let localData = data;
 
-        const gender = window.i18n?.translate('gender');
-        const orderedList = [];
-
         if (typeof localData.objects !== 'object') {
           const newObject = {
             objects: [localData],
@@ -112,37 +128,77 @@ export default {
 
         if (!this.data.meta) return this.loading.off();
 
-        let counter = 0;
+        Promise.all(this.promises)
+          .then(() => {
+            const orderedList = this.orderList(localData.objects);
 
-        for (let i = 0; i < localData.objects?.length; i++) {
-          const entry = localData.objects[i];
-          const { city } = entry?.location || {};
-          const { title, position_type, team } = entry;
-
-          const entryData = {
-            city,
-            title,
-            gender,
-            team,
-            positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
-            isInvisible: this.maxItems > 0 && counter > this.maxItems - 1 ? true : false,
-            id: i,
-          };
-
-          if (this.isAvailableEntry(entry)) {
-            orderedList[i] = entryData;
-            counter++;
-          }
-        }
-
-        this.entries = orderedList;
-
-        if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
-          this.showExpandButton();
-        }
-
-        this.stopLoading();
+            this.filterJobs(data, orderedList);
+          })
+          .catch((error) => {
+            console.error('Job-List Promises.all ~ error', error);
+          });
       });
+    },
+    filterJobs(data, orderedList) {
+      this.data.objects = orderedList;
+
+      const gender = window.i18n?.translate('gender');
+      const filteredList = [];
+
+      let counter = 0;
+
+      for (let i = 0; i < orderedList?.length; i++) {
+        const entry = orderedList[i];
+        const { city } = entry?.location || {};
+        const { title, position_type, team } = entry;
+
+        const entryData = {
+          city,
+          title,
+          gender,
+          team,
+          positionType: position_type !== '' ? window.i18n?.translate(position_type) : null,
+          isInvisible: this.maxItems > 0 && counter > this.maxItems - 1 ? true : false,
+          id: i,
+        };
+
+        if (this.isAvailableEntry(entry)) {
+          filteredList[i] = entryData;
+          counter++;
+        }
+      }
+
+      this.entries = filteredList;
+
+      if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
+        this.showExpandButton();
+      }
+
+      this.stopLoading();
+    },
+    orderList(list) {
+      const orderedList = [];
+      const unordedList = [];
+
+      for (let i = 0; i < list.length; i++) {
+        const entry = list[i];
+
+        if (!entry) continue;
+
+        const { id } = entry;
+
+        if (!id) continue;
+
+        const index = this.jobData?.order?.findIndex((item) => item === id);
+
+        if (index !== -1) {
+          orderedList[index] = entry;
+        } else {
+          unordedList.push(entry);
+        }
+      }
+
+      return [...orderedList, ...unordedList];
     },
     showExpandButton() {
       this.hasExpand = true;
@@ -216,6 +272,8 @@ export default {
       hasExpand: false,
       isExpandVisible: false,
       entries: [],
+      jobData: {},
+      promises: [],
     };
   },
   props: {

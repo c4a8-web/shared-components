@@ -145,7 +145,7 @@ export default {
           this.personQuote = data.personQuote;
         })
         .catch((error) => {
-          console.error('Job-list Local Job Data Error:', error);
+          console.error('Job-list-Detail Local Job Data Error:', error);
         });
     },
   },
