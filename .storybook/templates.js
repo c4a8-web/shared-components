@@ -11,6 +11,7 @@ import Events from './data/events';
 import Authors from './data/authors';
 import Lang from './data/lang';
 import Options from './data/options';
+import Testimonials from './data/testimonials';
 import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
@@ -28,6 +29,7 @@ const site = {
   },
   posts: Posts,
   events: Events,
+  testimonials: Testimonials,
   blog_image_path: 'blog/heads/',
   url: 'http://localhost:6006/?',
 };
