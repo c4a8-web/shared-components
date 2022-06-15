@@ -132,7 +132,7 @@ export default {
     },
     loadLocalJobData() {
       const jobId = this.api.getJobId() || this.jobId;
-      const url = `/assets/data/jobs/${jobId}.json`;
+      const url = `${this.api.jobDataUrl}${jobId}.json`;
 
       return fetch(url, {
         method: 'GET',

@@ -2,6 +2,7 @@ import Tools from './tools.js';
 
 class RecruiterBox {
   apiUrl = 'https://jsapi.recruiterbox.com/v1/';
+  jobDataUrl = '/assets/data/jobs/';
   openingsUrl = `${this.apiUrl}openings`;
 
   types = {
