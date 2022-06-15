@@ -76,12 +76,13 @@ ExternalSlides.args = {
   ],
 };
 
-export const FromCollection = Template.bind({});
+export const CollectionWithSpacing = Template.bind({});
 
-FromCollection.args = {
+CollectionWithSpacing.args = {
   headline: 'Lorem Ipsum dolor sit from collection',
   headlineLevel: 'h2',
   subline:
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata,',
   slides: site.testimonials,
+  spacing: 'space-top-3 space-bottom-3',
 };
