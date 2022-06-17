@@ -63,9 +63,9 @@ html {
 }
 
 .tag-cloud__item {
-  //border: 1px solid red;
-  //border-radius: 5px;
-  animation-name: billow;
+  border: 1px solid red;
+  border-radius: 5px;
+  /*animation-name: billow;
   animation-duration: 9s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
@@ -74,6 +74,6 @@ html {
   &:hover {
     animation-play-state: paused;
 
-  }
+  }*/
 }
 

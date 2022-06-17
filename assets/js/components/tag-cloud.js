@@ -27,31 +27,32 @@ class TagCloud extends BaseComponent {
   init () {
     this.weightingElement();
     this.positionElements();
-    this.setVariables();
-    //this.animateGroupElements();
+    //this.setVariables();
+    this.animateGroupElements();
+
   }
 
-  setVariables() {
-    let delay = 0;
-
-    for (let i = 0; i < this.tagList.length; i++) {
-      delay = Math.random() > 0.5 ?  Math.random()*5000 : Math.random()*1000;
-      this.items[i].style.setProperty('--item-animation-delay', this.tagList[i].weighting * delay + 'ms');
-    }
+  getGroupSize (size) {
+    return Math.ceil(this.tagList.length / size);
   }
 
-  /*animateGroupElements() {
+  animateGroupElements() {
     const maxValue = 1;
-    const minValue = 0.7;
-    let step = 0.1;
-    let groupSize = 3;
+    const minValue = 0.2;
+    const step = 0.001;
+    let groupSize = this.getGroupSize(3);
 
     for (let i = 0; i < this.tagList.length; i++) {
       const current = this.tagList[i];
       const standardValue = current.standardValue;
       let maxReached = (standardValue >= maxValue) ? true : false;
       let minReached = (standardValue <= minValue) ? true : false;
-      step = (maxReached || minReached) ? -0.1 : 0.1;
+
+      if (maxReached) {
+        step = -step;
+      } else if (minReached) {
+        step = step;
+      }
 
       standardValue = (i % groupSize === 0) ? standardValue + step : standardValue - step;
 
@@ -61,14 +62,24 @@ class TagCloud extends BaseComponent {
     window.requestAnimationFrame(this.animateGroupElements.bind(this));
   }
 
+  blurCalculation (standardValue, exponent) {
+    return 1/Math.pow(standardValue, exponent);
+  }
+
   placeGroups () {
     console.log(this.tagList);
     for (let i = 0; i < this.tagList.length; i++) {
-      const current = this.tagList[i];
-      const standardValue = current.standardValue;
-      this.items[i].style.transform = 'scale( ' + standardValue + ')';
+      const currentItem = this.items[i];
+      const standardValue = this.tagList[i].standardValue;
+      console.log(standardValue);
+
+      const blurValue = this.blurCalculation(standardValue, 2);
+
+
+      currentItem.style.transform = 'scale( ' + standardValue + ')';
+      currentItem.style.filter = 'blur(' + blurValue + 'px)';
     }
-  }*/
+  }
 
 
 
