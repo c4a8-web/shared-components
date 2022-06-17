@@ -19,7 +19,7 @@ html {
 
   .tag-cloud__content {
     text-align: center;
-    //justify-content: center;
+    justify-content: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
     .tag-cloud__container {
@@ -63,9 +63,9 @@ html {
 }
 
 .tag-cloud__item {
+  /*animation-name: billow;
   border: 1px solid red;
   border-radius: 5px;
-  /*animation-name: billow;
   animation-duration: 9s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;

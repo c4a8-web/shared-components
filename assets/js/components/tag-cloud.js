@@ -27,7 +27,6 @@ class TagCloud extends BaseComponent {
   init () {
     this.weightingElement();
     this.positionElements();
-    //this.setVariables();
     this.animateGroupElements();
 
   }
@@ -38,26 +37,31 @@ class TagCloud extends BaseComponent {
 
   animateGroupElements() {
     const maxValue = 1;
-    const minValue = 0.2;
-    const step = 0.001;
-    let groupSize = this.getGroupSize(3);
+    const minValue = 0.5;
+    let step = 0.001;
+    let size = 3;
+    let groupSize = this.getGroupSize(size);
 
     for (let i = 0; i < this.tagList.length; i++) {
+      let bias = Math.random()* 2;
       const current = this.tagList[i];
       const standardValue = current.standardValue;
+
       let maxReached = (standardValue >= maxValue) ? true : false;
       let minReached = (standardValue <= minValue) ? true : false;
 
-      if (maxReached) {
+
+      // Idee: Zum anfangswert gehen und von dort wieder eine neue Gruppe aussuchen
+      // und die dann skalieren
+      if (maxReached || minReached) {
         step = -step;
-      } else if (minReached) {
-        step = step;
       }
 
-      standardValue = (i % groupSize === 0) ? standardValue + step : standardValue - step;
+      standardValue = (i % groupSize === 0) ? standardValue + step * bias : standardValue - step * bias;
 
       this.tagList[i].standardValue = standardValue;
     }
+
     this.placeGroups();
     window.requestAnimationFrame(this.animateGroupElements.bind(this));
   }
@@ -67,17 +71,17 @@ class TagCloud extends BaseComponent {
   }
 
   placeGroups () {
-    console.log(this.tagList);
     for (let i = 0; i < this.tagList.length; i++) {
       const currentItem = this.items[i];
       const standardValue = this.tagList[i].standardValue;
       console.log(standardValue);
 
-      const blurValue = this.blurCalculation(standardValue, 2);
+      const blurValue = this.blurCalculation(standardValue, 3);
 
 
       currentItem.style.transform = 'scale( ' + standardValue + ')';
       currentItem.style.filter = 'blur(' + blurValue + 'px)';
+      console.log(this.tagList);
     }
   }
 
