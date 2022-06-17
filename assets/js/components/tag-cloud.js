@@ -129,11 +129,20 @@ class TagCloud extends BaseComponent {
     const isLastRow = (index === rowLength - 1) ? true : false;
     const itemsInRow = (isFirstRow || isLastRow) ? this.itemsPerOuterRow : this.itemsPerInnerRow;
 
-    const missingWeight = itemsInRow - weight;
+    let missingWeight = itemsInRow - weight;
+    let i = 0;
 
-    for(let i = 0; i < missingWeight; i++) {
+    while (missingWeight != 0) {
       list[index][i].weighting++;
+      missingWeight--;
+      if (list[index][i+1] !== 'undefined'){
+        i++;
+      }
     }
+
+    /*for(let i = 0; i < missingWeight; i++) {
+      list[index][i].weighting++;
+    }*/
   }
 
   getRowLength () {
@@ -145,7 +154,6 @@ class TagCloud extends BaseComponent {
       totalWeight += this.tagList[i].weighting;
     }
     totalWeight += corners;
-    console.log(totalWeight/columns);
 
     return totalWeight / columns;
   }
@@ -204,16 +212,22 @@ class TagCloud extends BaseComponent {
 
 
   weightingElement() {
+    // varies depending on the window size (change)
     let avgOffsetWidth = 0;
+    let avgTextLength = 0;
 
     for (let j = 0; j < this.textElements.length; j++) {
-      avgOffsetWidth += this.textElements[j].offsetWidth / this.textElements.length;
+      //avgOffsetWidth += this.textElements[j].offsetWidth / this.textElements.length;
+      avgTextLength += this.textElements[j].innerHTML.length / this.textElements.length;
     }
+
+
 
     for (let i = 0; i < this.textElements.length; i++) {
       let tag = {};
       tag.offsetWidth = this.textElements[i].offsetWidth;
-      tag.weighting = Math.ceil(this.textElements[i].offsetWidth / avgOffsetWidth);
+      //tag.weighting = Math.ceil(this.textElements[i].offsetWidth / avgOffsetWidth);
+      tag.weighting = Math.ceil(this.textElements[i].innerHTML.length / avgTextLength);
       this.tagList.push(tag);
     }
   }
