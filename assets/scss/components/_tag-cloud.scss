@@ -19,7 +19,7 @@ html {
 
   .tag-cloud__content {
     text-align: center;
-    justify-content: center;
+    //justify-content: center;
     margin-top: 2rem;
     margin-bottom: 2rem;
     .tag-cloud__container {
@@ -41,16 +41,16 @@ html {
 
 @keyframes billow {
   0% {
-    transform: scale(1);
+    transform: scale(0.8);
     filter: blur(3px);
   }
   50% {
-    transform: scale(1.2);
+    transform: scale(1);
     filter: blur(0px);
-    margin: 2rem;
+    //margin: 2rem;
   }
   100% {
-    transform: scale(1);
+    transform: scale(0.8);
     filter: blur(3px);
   }
 }
@@ -63,9 +63,9 @@ html {
 }
 
 .tag-cloud__item {
-  border: 1px solid red;
-  border-radius: 5px;
-  /*animation-name: billow;
+  //border: 1px solid red;
+  //border-radius: 5px;
+  animation-name: billow;
   animation-duration: 9s;
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
@@ -74,6 +74,6 @@ html {
   &:hover {
     animation-play-state: paused;
 
-  }*/
+  }
 }
 
