@@ -155,18 +155,19 @@ class TagCloud extends BaseComponent {
 
     let lastRow = this.rowLength - 1;
     let beforeLastRow = lastRow - 1;
-    console.log(list);
-
 
     //Abfrage falls es mehr gewichte in der letzten Zeile gibt
-    let weightLimitExceeded = rows[lastRow].weight > this.itemsPerOuterRow;
     let lastRowExists = typeof list[lastRow] !== 'undefined';
+    console.log(list);
 
-    if (lastRowExists && weightLimitExceeded) {
+    if (lastRowExists && rows[lastRow].weight > this.itemsPerOuterRow) {
       beforeLastRow = lastRow;
       lastRow = lastRow + 1;
-      //this.rowLength = lastRow + 1;
+      rows.push({ rowIndex: lastRow, weight: 0 });
+      this.rowLength = lastRow + 1;
     }
+
+    console.log(list[lastRow]);
 
     if (!lastRowExists) {
       list[lastRow] = [];
@@ -199,7 +200,6 @@ class TagCloud extends BaseComponent {
       this.expandRow(rows[beforeLastRow], list);
       this.expandRow(rows[lastRow], list);
     }
-
     return list;
   }
 
@@ -213,6 +213,7 @@ class TagCloud extends BaseComponent {
     let missingWeight = itemsInRow - weight;
 
     for (let i = 0; i < missingWeight; i++) {
+      console.log(index, i);
       const element = list[index][i];
 
       if (!element) {
@@ -223,6 +224,8 @@ class TagCloud extends BaseComponent {
       element.weighting++;
     }
 
+    //update row.weight EdgeCase row gets called one time more than needed
+    row.weight = itemsInRow;
     this.rowLength = this.getRowLength();
   }
 
