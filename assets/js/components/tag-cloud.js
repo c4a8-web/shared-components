@@ -24,11 +24,10 @@ class TagCloud extends BaseComponent {
     this.init();
   }
 
-  init () {
+  init() {
     this.weightingElement();
     this.positionElements();
     //this.animateGroupElements();
-
   }
 
   /*getGroupSize (size) {
@@ -106,11 +105,8 @@ class TagCloud extends BaseComponent {
     }
   }*/
 
-
-
-  getList (rowLength) {
-    rowLength = Math.ceil(rowLength);
-    const list =  [];
+  getList() {
+    const list = [];
 
     let rowsToExpand = [];
     let rows = [];
@@ -119,9 +115,9 @@ class TagCloud extends BaseComponent {
     let isRowFull = false;
 
     for (let i = 0; i < this.tagList.length; i++) {
-      let isFirstRow = (rowIndex === 0) ? true : false;
-      let isLastRow = (rowIndex === rowLength - 1) ? true : false;
-      let itemsInRow = (isFirstRow || isLastRow) ? this.itemsPerOuterRow : this.itemsPerInnerRow;
+      let isFirstRow = rowIndex === 0 ? true : false;
+      let isLastRow = rowIndex === this.rowLength - 1 ? true : false;
+      let itemsInRow = isFirstRow || isLastRow ? this.itemsPerOuterRow : this.itemsPerInnerRow;
 
       const currentTagWeight = this.tagList[i].weighting;
 
@@ -132,7 +128,7 @@ class TagCloud extends BaseComponent {
           rowsToExpand.push(rowIndex);
         }
 
-        rows.push({rowIndex, weight});
+        rows.push({ rowIndex, weight });
 
         rowIndex++;
       }
@@ -142,26 +138,26 @@ class TagCloud extends BaseComponent {
         weight = 0;
       }
 
-
       list[rowIndex].push(this.tagList[i]);
       weight += currentTagWeight;
     }
 
-    rows.push({rowIndex, weight});
+    this.rowLength = list.length;
+
+    rows.push({ rowIndex, weight });
 
     for (let i = 0; i < rowsToExpand.length; i++) {
       const currentIndex = rowsToExpand[i];
       const currentRow = rows[currentIndex];
 
-      this.expandRow(currentRow, rowLength, list);
+      this.expandRow(currentRow, list);
     }
 
     const lastRow = this.rowLength - 1;
-    console.log(this.rowLength);
+    const beforeLastRow = lastRow - 1;
 
     if (typeof list[lastRow] === 'undefined') {
       list[lastRow] = [];
-      const beforeLastRow = lastRow - 1;
 
       let listObj = list[beforeLastRow];
       let biggest = 0;
@@ -177,36 +173,48 @@ class TagCloud extends BaseComponent {
       const elementToMove = listObj[biggestIndex];
 
       rows[beforeLastRow].weight -= elementToMove.weighting;
+
       list[lastRow].push(elementToMove);
       list[beforeLastRow].splice(biggestIndex, 1);
 
-      this.expandRow(rows[beforeLastRow], this.rowLength, list);
+      this.expandRow(rows[beforeLastRow], list);
 
       //Todo if weight of last Element isnt full expand last row
       //Todo Edge case more rows than rowLength estimated
-      //this.expandRow(rows[lastRow], rowLength, list);
+      //this.expandRow(rows[lastRow], list);
+    } else {
+      this.expandRow(rows[beforeLastRow], list);
+      this.expandRow(rows[lastRow], list);
     }
+
     return list;
   }
 
-  expandRow(row, rowLength, list) {
+  expandRow(row, list) {
     const index = row.rowIndex;
     const weight = row.weight;
 
-    const isFirstRow = (index === 0) ? true : false;
-    const isLastRow = (index === rowLength - 1) ? true : false;
-    const itemsInRow = (isFirstRow || isLastRow) ? this.itemsPerOuterRow : this.itemsPerInnerRow;
+    const isFirstRow = index === 0 ? true : false;
+    const isLastRow = index === this.rowLength - 1 ? true : false;
+    const itemsInRow = isFirstRow || isLastRow ? this.itemsPerOuterRow : this.itemsPerInnerRow;
 
     let missingWeight = itemsInRow - weight;
 
-    for(let i = 0; i < missingWeight; i++) {
-      list[index][i].weighting++;
+    for (let i = 0; i < missingWeight; i++) {
+      const element = list[index][i];
+
+      if (!element) {
+        list[index][i - 1].weighting++;
+        continue;
+      }
+
+      element.weighting++;
     }
 
-    this.rowLength = Math.ceil(this.getRowLength());
+    this.rowLength = this.getRowLength();
   }
 
-  getRowLength () {
+  getRowLength() {
     let totalWeight = 0;
     const corners = 4;
     const columns = 5;
@@ -216,11 +224,10 @@ class TagCloud extends BaseComponent {
     }
     totalWeight += corners;
 
-    return totalWeight / columns;
+    return Math.ceil(totalWeight / columns);
   }
 
-
-  positionElements () {
+  positionElements() {
     let columnStart = 1;
     let columnEnd = 2;
     let rowStart = 1;
@@ -230,14 +237,13 @@ class TagCloud extends BaseComponent {
 
     this.rowLength = this.getRowLength();
     let elementPerRow = 0;
-    let array = this.getList(this.rowLength);
+    let array = this.getList();
     let currentElement = 0;
 
     for (let i = 0; i < array.length; i++) {
-      let isFirstRow = (i === 0) ? true : false;
-      let isLastRow = (i === array.length - 1) ? true : false;
-      let eitherFirstOrLastRow = (isFirstRow || isLastRow) ? true : false;
-
+      let isFirstRow = i === 0 ? true : false;
+      let isLastRow = i === array.length - 1 ? true : false;
+      let eitherFirstOrLastRow = isFirstRow || isLastRow ? true : false;
 
       columnStart = 1;
       columnEnd = 2;
@@ -249,7 +255,7 @@ class TagCloud extends BaseComponent {
       while (elementPerRow > currentElementsPerRow) {
         const current = this.tagList[currentElement];
         const weight = current.weighting;
-        let emptyRow = (currentElementsPerRow === 0) ? true : false;
+        let emptyRow = currentElementsPerRow === 0 ? true : false;
 
         rowStart = i + 1;
         rowEnd = rowStart + 1;
@@ -270,7 +276,6 @@ class TagCloud extends BaseComponent {
       }
     }
   }
-
 
   weightingElement() {
     // varies depending on the window size (change)
