@@ -24,7 +24,7 @@ html {
     margin-bottom: 2rem;
     .tag-cloud__container {
       max-width: 1500px;
-      height: 2000px;
+      height: 500px;
       margin: auto;
       li {
         list-style: none;
@@ -39,6 +39,7 @@ html {
   }
 }
 
+/*
 @keyframes billow {
   0% {
     transform: scale(0.8);
@@ -55,6 +56,22 @@ html {
   }
 }
 
+@keyframes reversebillow {
+  0% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  50% {
+    transform: scale(0.8);
+    filter: blur(3px);
+    //margin: 2rem;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+}*/
+
 .tag-cloud__items {
   display: grid;
   //place-items: center;
@@ -62,13 +79,14 @@ html {
   // grid-template-rows: repeat(5, 1fr);
 }
 
+
 .tag-cloud__item {
-  /*animation-name: billow;
+  //animation-name: billow;
   border: 1px solid red;
   border-radius: 5px;
-  animation-duration: 9s;
+  /*animation-duration: 9s;
   animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: linear;
   animation-delay: var(--item-animation-delay);
 
   &:hover {
@@ -76,4 +94,20 @@ html {
 
   }*/
 }
+
+/*
+.tag-cloud__item:nth-of-type(even) {
+  animation-name: reversebillow;
+  //border: 1px solid red;
+  //border-radius: 5px;
+  animation-duration: 9s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: var(--item-animation-delay);
+
+  &:hover {
+    animation-play-state: paused;
+
+  }
+}*/
 

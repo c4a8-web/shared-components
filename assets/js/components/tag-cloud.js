@@ -27,11 +27,11 @@ class TagCloud extends BaseComponent {
   init () {
     this.weightingElement();
     this.positionElements();
-    this.animateGroupElements();
+    //this.animateGroupElements();
 
   }
 
-  getGroupSize (size) {
+  /*getGroupSize (size) {
     return Math.ceil(this.tagList.length / size);
   }
 
@@ -49,7 +49,7 @@ class TagCloud extends BaseComponent {
       let upperBorder = currentValue > maxValue
       let lowerBorder = currentValue < minValue
       let aboveStart = currentValue > 0.8;
-      let belowStart = currentValue < 0.8
+      let belowStart = currentValue < 0.8;
 
       if (upperBorder && !backToStart) {
         step = -0.001;
@@ -60,8 +60,9 @@ class TagCloud extends BaseComponent {
         step = 0.001;
         backToStart = true;
         break;
+      }
 
-      } else if (backToStart && aboveStart) {
+      if (backToStart && aboveStart) {
         step = -0.001;
         break;
 
@@ -74,7 +75,8 @@ class TagCloud extends BaseComponent {
     let i = 0;
 
     while (!borderReached && i < this.tagList.length) {
-      let bias = Math.random() * 2;
+      //let bias = Math.random() * 2;
+      let bias = 1;
       let currentValue = this.tagList[i].standardValue;
       let newValue = 0;
 
@@ -102,7 +104,7 @@ class TagCloud extends BaseComponent {
       currentItem.style.transform = 'scale( ' + standardValue + ')';
       currentItem.style.filter = 'blur(' + blurValue + 'px)';
     }
-  }
+  }*/
 
 
 
@@ -182,6 +184,7 @@ class TagCloud extends BaseComponent {
       //Todo Edge case more rows than rowLength estimated
       //this.expandRow(rows[lastRow], rowLength, list);
     }
+    console.log(list);
     return list;
   }
 
