@@ -153,10 +153,22 @@ class TagCloud extends BaseComponent {
       this.expandRow(currentRow, list);
     }
 
-    const lastRow = this.rowLength - 1;
-    const beforeLastRow = lastRow - 1;
+    let lastRow = this.rowLength - 1;
+    let beforeLastRow = lastRow - 1;
+    console.log(list);
 
-    if (typeof list[lastRow] === 'undefined') {
+
+    //Abfrage falls es mehr gewichte in der letzten Zeile gibt
+    let weightLimitExceeded = rows[lastRow].weight > this.itemsPerOuterRow;
+    let lastRowExists = typeof list[lastRow] !== 'undefined';
+
+    if (lastRowExists && weightLimitExceeded) {
+      beforeLastRow = lastRow;
+      lastRow = lastRow + 1;
+      //this.rowLength = lastRow + 1;
+    }
+
+    if (!lastRowExists) {
       list[lastRow] = [];
 
       let listObj = list[beforeLastRow];
@@ -179,9 +191,10 @@ class TagCloud extends BaseComponent {
 
       this.expandRow(rows[beforeLastRow], list);
 
-      //Todo if weight of last Element isnt full expand last row
-      //Todo Edge case more rows than rowLength estimated
-      //this.expandRow(rows[lastRow], list);
+      //falls die letzte Zeile fehlt und noch aufgefüllt werden muss
+      rows.push({ rowIndex: lastRow, weight: elementToMove.weighting });
+      this.expandRow(rows[lastRow], list);
+
     } else {
       this.expandRow(rows[beforeLastRow], list);
       this.expandRow(rows[lastRow], list);
@@ -193,7 +206,6 @@ class TagCloud extends BaseComponent {
   expandRow(row, list) {
     const index = row.rowIndex;
     const weight = row.weight;
-
     const isFirstRow = index === 0 ? true : false;
     const isLastRow = index === this.rowLength - 1 ? true : false;
     const itemsInRow = isFirstRow || isLastRow ? this.itemsPerOuterRow : this.itemsPerInnerRow;
@@ -253,8 +265,8 @@ class TagCloud extends BaseComponent {
       currentElementsPerRow = 0;
 
       while (elementPerRow > currentElementsPerRow) {
-        const current = this.tagList[currentElement];
-        const weight = current.weighting;
+        //Orientiert sich nicht mehr an der TagList
+        const weight = array[i][currentElementsPerRow].weighting;
         let emptyRow = currentElementsPerRow === 0 ? true : false;
 
         rowStart = i + 1;
@@ -262,9 +274,11 @@ class TagCloud extends BaseComponent {
         columnEnd = columnStart + weight;
 
         if (eitherFirstOrLastRow) {
+          //
           if (emptyRow) {
             columnStart += 1;
           }
+
           columnEnd = columnStart + weight;
         }
 
@@ -278,7 +292,6 @@ class TagCloud extends BaseComponent {
   }
 
   weightingElement() {
-    // varies depending on the window size (change)
     let avgOffsetWidth = 0;
 
     for (let j = 0; j < this.textElements.length; j++) {
