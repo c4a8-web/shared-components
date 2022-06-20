@@ -38,28 +38,51 @@ class TagCloud extends BaseComponent {
   animateGroupElements() {
     const maxValue = 1;
     const minValue = 0.5;
-    let step = 0.001;
     let size = 3;
     let groupSize = this.getGroupSize(size);
+    let borderReached = false;
+    let step = 0.001;
+    let backToStart = false;
 
     for (let i = 0; i < this.tagList.length; i++) {
-      let bias = Math.random()* 2;
-      const current = this.tagList[i];
-      const standardValue = current.standardValue;
+      const currentValue = this.tagList[i].standardValue;
+      let upperBorder = currentValue > maxValue
+      let lowerBorder = currentValue < minValue
+      let aboveStart = currentValue > 0.8;
+      let belowStart = currentValue < 0.8
 
-      let maxReached = (standardValue >= maxValue) ? true : false;
-      let minReached = (standardValue <= minValue) ? true : false;
+      if (upperBorder && !backToStart) {
+        step = -0.001;
+        backToStart = true;
+        break;
 
+      } else if (lowerBorder && !backToStart) {
+        step = 0.001;
+        backToStart = true;
+        break;
 
-      // Idee: Zum anfangswert gehen und von dort wieder eine neue Gruppe aussuchen
-      // und die dann skalieren
-      if (maxReached || minReached) {
-        step = -step;
+      } else if (backToStart && aboveStart) {
+        step = -0.001;
+        break;
+
+      } else if (backToStart && belowStart) {
+        step = 0.001;
+        break;
       }
+    }
 
-      standardValue = (i % groupSize === 0) ? standardValue + step * bias : standardValue - step * bias;
+    let i = 0;
 
-      this.tagList[i].standardValue = standardValue;
+    while (!borderReached && i < this.tagList.length) {
+      let bias = Math.random() * 2;
+      let currentValue = this.tagList[i].standardValue;
+      let newValue = 0;
+
+      newValue = (i % groupSize === 0) ? currentValue + step * bias : currentValue - step * bias;
+
+      this.tagList[i].standardValue = newValue;
+      i++;
+
     }
 
     this.placeGroups();
@@ -74,14 +97,10 @@ class TagCloud extends BaseComponent {
     for (let i = 0; i < this.tagList.length; i++) {
       const currentItem = this.items[i];
       const standardValue = this.tagList[i].standardValue;
-      console.log(standardValue);
-
-      const blurValue = this.blurCalculation(standardValue, 3);
-
+      const blurValue = this.blurCalculation(standardValue, 2.8);
 
       currentItem.style.transform = 'scale( ' + standardValue + ')';
       currentItem.style.filter = 'blur(' + blurValue + 'px)';
-      console.log(this.tagList);
     }
   }
 
