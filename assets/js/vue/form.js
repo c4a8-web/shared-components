@@ -50,6 +50,8 @@ export default {
         } else {
           tempBlock.push(field);
 
+          if (blocks[index]) return;
+
           blocks[index] = tempBlock;
 
           tempBlock = [];
