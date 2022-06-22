@@ -8,11 +8,10 @@ export default {
   props: {
     options: Array,
     field: Object,
-    label: String,
     id: String,
   },
   template: `
-    <label class="input-label" :for="id">{{label}}</label>
+    <label class="input-label" :for="id">{{field.label}}</label>
     <select class="form-control custom-select text-muted" :name="id" :required="required">
       <option value>{{field.placeholder}}</option>
       <template v-for="option in options">
