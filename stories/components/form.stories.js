@@ -11,6 +11,7 @@ export default {
 
 const baseArgs = {
   container: true,
+  analytics: 'AW-1060776844/Uj_0CL3wgMgDEIzX6PkD',
   form: {
     headline: 'Headline Form',
     subline: 'Subline lorem ipsum dolor sit',
