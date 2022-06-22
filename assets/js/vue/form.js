@@ -102,9 +102,7 @@ export default {
             <div class="row">
               <div class="col-sm-12">
                 <headline :text="form.headline" :level="form.level" :id="form.id" classes="text-center" />
-                <p :class="sublineClassList">
-                  {{form.subline}}
-                </p>
+                <p :class="sublineClassList" v-html="form.subline"></p>
               </div>
             </div>
           </div>
