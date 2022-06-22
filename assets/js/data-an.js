@@ -16,8 +16,20 @@ class Analytics {
     this.bindEvents();
   }
 
+  isInForm() {
+    return this.form ? true : false;
+  }
+
   bindEvents() {
-    this.form?.addEventListener('submit', this.handleSubmit.bind(this));
+    if (this.isInForm()) {
+      this.form?.addEventListener('submit', this.handleSubmit.bind(this));
+    } else {
+      this.root.addEventListener('click', this.handleClick.bind(this));
+    }
+  }
+
+  handleClick() {
+    this.track(undefined, () => {});
   }
 
   handleSubmit(e) {
