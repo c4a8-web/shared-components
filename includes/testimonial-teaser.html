@@ -19,7 +19,14 @@
       </div>
     </div>
     <div class="testimonial-teaser__content">
-      <div class="testimonial-teaser__name font-size-4 bold">{{ testimonialTeaserName | replace: ' ', '<br/>' }}</div>
+      <div class="testimonial-teaser__name font-size-4 bold">
+        <div class="testimonial-teaser__name-background">
+          {{ testimonialTeaserName | replace: ' ', '</div><br/><div class="testimonial-teaser__name-background">' }}
+          <div class="testimonial-teaser__name-icon">
+            <icon icon='arrow' classes="testimonial-teaser__icon" size="large" />
+          </div>
+        </div>
+      </div>
       <div class="testimonial-teaser__title font-size-1">{{ testimonialTeaserTitle }}</div>
     </div>
   </div>

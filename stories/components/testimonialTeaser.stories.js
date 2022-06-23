@@ -11,11 +11,23 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const TestimonialTeaser = Template.bind({});
+export const TwoLines = Template.bind({});
 
-TestimonialTeaser.args = {
+TwoLines.args = {
   href: 'javascript:void(0)',
   name: 'Matti Puolitaival',
+  title: 'Senior Consultant Azure',
+  img: {
+    img: 'people/testimonials/matti-puolitaival.png',
+    alt: 'lorem ipsum',
+  },
+};
+
+export const OneLine = Template.bind({});
+
+OneLine.args = {
+  href: 'javascript:void(0)',
+  name: 'Matti',
   title: 'Senior Consultant Azure',
   img: {
     img: 'people/testimonials/matti-puolitaival.png',
