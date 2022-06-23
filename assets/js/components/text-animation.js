@@ -34,10 +34,10 @@ class TextAnimation extends BaseComponent {
     this.timeout = null;
     this.letterDelay = 120;
     this.sizeBasedDelay = this.letterDelay;
-    this.minDelay = 2500;
+    this.minDelay = 800;
     this.currentDelay = 0;
     this.lastDelay = 0;
-    this.delayOffset = 2600;
+    this.delayOffset = 2200;
     this.sublineDelay = 1150;
     this.buttonDelay = 800;
     this.step = 0;
@@ -51,10 +51,12 @@ class TextAnimation extends BaseComponent {
     switch (value) {
       case 6:
         this.sizeBasedDelay = this.letterDelay / 1.8;
+        this.sizeBasedOffset = this.delayOffset;
         break;
       case 7:
       default:
         this.sizeBasedDelay = this.letterDelay / 10;
+        this.sizeBasedOffset = this.minDelay;
         break;
     }
   }
@@ -75,7 +77,7 @@ class TextAnimation extends BaseComponent {
     this.currentSubline = this.currentSequenceStep?.subline || '';
     this.currentDelay =
       this.currentText.length * this.sizeBasedDelay +
-      this.delayOffset +
+      this.sizeBasedOffset +
       (this.currentSubline.length > 0 ? this.sublineDelay : 0);
 
     if (this.currentDelay < this.minDelay) this.currentDelay = this.minDelay;
