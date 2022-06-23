@@ -50,7 +50,12 @@ class TagCloud extends BaseComponent {
 
   getCornerPosition() {
     let weight = 0;
-    let index = 0;
+    let secondIndex = 0;
+
+
+    let lastElementsWeight = 0;
+    let thirdIndex = 0;
+
 
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
@@ -59,10 +64,23 @@ class TagCloud extends BaseComponent {
 
       if (weight > this.itemsPerOuterRow + 1) continue;
 
-      index = i + 1;
+      secondIndex = i + 1;
     }
 
-    return index;
+    for (let i = this.items.length-1; i > 0; i--) {
+      const item = this.items[i];
+
+      lastElementsWeight += item.weighting;
+
+      if (lastElementsWeight > 3) continue;
+      thirdIndex = i+1;
+
+      console.log('hier ist das gewicht: ', lastElementsWeight);
+      console.log(this.items);
+      console.log(thirdIndex, i);
+    }
+
+    return {secondIndex, thirdIndex};
   }
 
   addCorners() {
@@ -73,13 +91,20 @@ class TagCloud extends BaseComponent {
 
     // TODO figure out how to get the position. maybe at the correct end or one before an item that overflows
     // const secondCornerPosition = 3;
-    const secondCornerPosition = this.getCornerPosition();
+    const cornerPosition = this.getCornerPosition();
 
-    this.items.splice(secondCornerPosition, 0, corner);
+    this.items.splice(cornerPosition.secondIndex, 0, corner);
+    this.items.splice(cornerPosition.thirdIndex, 0, corner);
   }
 
   getRandomCoordinate() {
-    return this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
+    const value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
+    //Reduce distance between big y or x Value to a big negative y or x Value, else it results in speed ups
+
+    /* const tempVal = value;
+    let finalValue = Math.random() > 0.5 ? -1 * value : value;
+    return (finalValue < 0 && tempVal > 0) ? finalValue + tempVal/2 : finalValue;*/
+    return Math.random() > 0.5 ? -1 * value : value;
   }
 
   getRandomBlur() {
@@ -110,12 +135,17 @@ class TagCloud extends BaseComponent {
         link.style.setProperty('--blurry-delay', `${this.getRandomStart()}ms`);
 
         // TODO create random points more compact ?
+        //x-Values
         link.style.setProperty('--blurry-x1', `${this.getRandomCoordinate()}px`);
-        link.style.setProperty('--blurry-y1', `${this.getRandomCoordinate()}px`);
         link.style.setProperty('--blurry-x2', `${this.getRandomCoordinate()}px`);
-        link.style.setProperty('--blurry-y2', `${this.getRandomCoordinate()}px`);
         link.style.setProperty('--blurry-x3', `${this.getRandomCoordinate()}px`);
+
+        //y-Values
+        link.style.setProperty('--blurry-y1', `${this.getRandomCoordinate()}px`);
+        link.style.setProperty('--blurry-y2', `${this.getRandomCoordinate()}px`);
         link.style.setProperty('--blurry-y3', `${this.getRandomCoordinate()}px`);
+
+        //Blur-Values
         link.style.setProperty('--blurry-blur', `${this.getRandomBlur()}px`);
         link.innerText = item.title;
         link.classList.add('tag-cloud__item-link');
