@@ -101,6 +101,8 @@ export default {
       const { id, name } = bigCircleData();
       const smallCircle = smallCircleData();
 
+      // TODO make just a big list of steps one by one
+
       return {
         id,
         ref: `#${id}`,
@@ -134,6 +136,10 @@ export default {
           {
             begin: `${bigCircle.name}.end+0.1s`,
             name: name + '2',
+          },
+          {
+            begin: `${bigCircle.name}.end+0.8s`,
+            name: name + '3',
           },
         ],
       };
@@ -185,8 +191,10 @@ export default {
             from="0"
             to="${bigCircleRadius}"
             :begin="bigCircle.step[1].begin"
-            dur="${bigCircleDuration}"
+            dur="0.6s"
             fill="freeze"
+            keyTimes="0; 0.35; 0.70; 0.85; 1"
+            values="0;${bigCircleRadius / 1.1};${bigCircleRadius / 1.15};${bigCircleRadius / 1.1};${bigCircleRadius}"
           />
         </circle>
         <circle :fill="rectColor" aafill="#ff0000" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
@@ -215,6 +223,22 @@ export default {
             :begin="smallCircle.step[1].begin"
             dur="0.2s"
             fill="freeze"
+          />
+          <animate
+            :id="smallCircle.step[2].name"
+            :href="smallCircle.ref"
+            attributeName="r"
+            from="0"
+            to="${smallCircleRadius}"
+            :begin="smallCircle.step[2].begin"
+            dur="0.6s"
+            fill="freeze"
+            keyTimes="0; 0.35; 0.70; 0.85; 1"
+            values="0;${smallCircleRadius / 1.1};${smallCircleRadius / 1.15};${
+    smallCircleRadius / 1.1
+  };${smallCircleRadius}"
+            ddcalcMode="spline"
+            aaakeySplines="0.68 1 0.68 1"
           />
         </circle>
       </g>
