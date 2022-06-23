@@ -37,7 +37,7 @@ class TextAnimation extends BaseComponent {
     this.minDelay = 800;
     this.currentDelay = 0;
     this.lastDelay = 0;
-    this.delayOffset = 2200;
+    this.delayOffset = 1600;
     this.sublineDelay = 1150;
     this.buttonDelay = 800;
     this.step = 0;
