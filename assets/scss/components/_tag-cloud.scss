@@ -56,7 +56,7 @@ html {
     font-size: 1rem;
   }
   @media only screen and (min-width: 576px) and (max-width: 768px) {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
   }
   @media only screen and (min-width: 768px) and (max-width: 992px) {
     font-size: 1.4rem;
@@ -87,10 +87,10 @@ html {
       font-size: 1.1rem;
     }
     @media only screen and (min-width: 768px) and (max-width: 992px) {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
     @media only screen and (min-width: 992px) and (max-width: 1200px) {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
     }
     @media only screen and (min-width: 1200px) {
       font-size: $font-size-5;
@@ -100,7 +100,7 @@ html {
   &[data-weight] {
     + [data-weight='0'] {
       flex-shrink: 0;
-      border-color: green;
+      //border-color: green;
 
       + [data-weight] {
         //border-color: yellow;
@@ -109,8 +109,9 @@ html {
   }
 }
 
-.tag-cloud__item-link {
+.tag-cloud__item-link{
   animation: 8.5s var(--blurry-delay) linear blurry-orbit infinite;
+  animation-fill-mode: both;
   transform: translate(var(--blurry-x1), var(--blurry-y1));
   display: inline-block;
 
