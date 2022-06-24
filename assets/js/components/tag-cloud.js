@@ -8,6 +8,7 @@ class TagCloud extends BaseComponent {
 
     this.container = root.querySelector('.tag-cloud__container');
     this.itemsContainer = root.querySelector('.tag-cloud__items');
+    this.textElements = this.itemsContainer;
 
     // for (let i = this.itemsContainer.children.length - 1; i >= 0; i--) {
     //   this.itemsContainer.appendChild(this.itemsContainer.children[Math.random() * i | 0]);
@@ -17,9 +18,10 @@ class TagCloud extends BaseComponent {
     // this.itemsPerInnerRow = 5;
 
     this.items = this.itemsContainer?.dataset.items ? JSON.parse(this.itemsContainer?.dataset.items) : [];
-    console.log(this.itemsContainer.dataset);
+    console.log(this.itemsContainer.dataset.items);
 
     this.maxCoordinate = 40; // TODO maybe connect to the padding property to make sure it doesn't get out of bounce ?
+
     //this.maxCoordinate = [];
     this.minCoordinate = 10;
     this.minBlur = 2;
@@ -27,10 +29,6 @@ class TagCloud extends BaseComponent {
     this.maxDelay = 70;
     this.minDelay = 550;
     this.maxWeight = 3;
-
-
-    this.mouseOverItem = false;
-    this.mousePosition = {x: 0, y: 0};
 
     this.init();
   }
@@ -99,12 +97,17 @@ class TagCloud extends BaseComponent {
     this.items.splice(cornerPosition.thirdIndex, 0, corner);
   }
 
-  getRandomCoordinate(index) {
-    const slowThreshhold = 2;
-    //travel limit idea
+  getRandomCoordinate(item) {
+    const slowThreshold = 1.2;
     //let value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate[index]);
     let value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
-    return Math.random() > 0.5 ? -1 * value : value;
+    let tempValue = value;
+    let sign = Math.random() > 0.5 ? -1 * value : value;
+    if (sign < 0 ) {
+      value = sign + tempValue/slowThreshold;
+    }
+
+    return value;
   }
 
   getRandomBlur() {
@@ -122,7 +125,6 @@ class TagCloud extends BaseComponent {
   appendItems() {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
-      const index = i;
       const newElement = document.createElement('li');
 
       newElement.classList.add('tag-cloud__item');
@@ -137,14 +139,14 @@ class TagCloud extends BaseComponent {
 
         // TODO create random points more compact ?
         //x-Values
-        link.style.setProperty('--blurry-x1', `${this.getRandomCoordinate(index)}px`);
-        link.style.setProperty('--blurry-x2', `${this.getRandomCoordinate(index)}px`);
-        link.style.setProperty('--blurry-x3', `${this.getRandomCoordinate(index)}px`);
+        link.style.setProperty('--blurry-x1', `${this.getRandomCoordinate(item)}px`);
+        link.style.setProperty('--blurry-x2', `${this.getRandomCoordinate(item)}px`);
+        link.style.setProperty('--blurry-x3', `${this.getRandomCoordinate(item)}px`);
 
         //y-Values
-        link.style.setProperty('--blurry-y1', `${this.getRandomCoordinate(index)}px`);
-        link.style.setProperty('--blurry-y2', `${this.getRandomCoordinate(index)}px`);
-        link.style.setProperty('--blurry-y3', `${this.getRandomCoordinate(index)}px`);
+        link.style.setProperty('--blurry-y1', `${this.getRandomCoordinate(item)}px`);
+        link.style.setProperty('--blurry-y2', `${this.getRandomCoordinate(item)}px`);
+        link.style.setProperty('--blurry-y3', `${this.getRandomCoordinate(item)}px`);
 
         //Blur-Values
         link.style.setProperty('--blurry-blur', `${this.getRandomBlur()}px`);

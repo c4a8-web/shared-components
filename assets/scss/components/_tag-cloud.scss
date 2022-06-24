@@ -49,11 +49,24 @@ html {
 }
 
 .tag-cloud__item {
-  border: 1px solid red;
+  //border: 1px solid red;
 
   padding: spacing(4);
-
-  font-size: $font-size-5;
+  @media only screen and (max-width: 576px) {
+    font-size: 1rem;
+  }
+  @media only screen and (min-width: 576px) and (max-width: 768px) {
+    font-size: 1.1rem;
+  }
+  @media only screen and (min-width: 768px) and (max-width: 992px) {
+    font-size: 1.4rem;
+  }
+  @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    font-size: 1.6rem;
+  }
+  @media only screen and (min-width: 1200px) {
+    font-size: $font-size-5;
+  }
   flex: 1 0 20%;
 
   &[data-weight='0'] {
@@ -67,7 +80,21 @@ html {
 
   &[data-weight='3'] {
     flex: 1 1 auto;
-    font-size: $font-size-4;
+    @media only screen and (max-width: 576px) {
+      font-size: 1rem;
+    }
+    @media only screen and (min-width: 576px) and (max-width: 768px) {
+      font-size: 1.1rem;
+    }
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
+      font-size: 1.4rem;
+    }
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+      font-size: 1.6rem;
+    }
+    @media only screen and (min-width: 1200px) {
+      font-size: $font-size-5;
+    }
   }
 
   &[data-weight] {
@@ -76,7 +103,7 @@ html {
       border-color: green;
 
       + [data-weight] {
-        border-color: yellow;
+        //border-color: yellow;
       }
     }
   }
