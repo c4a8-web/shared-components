@@ -39,73 +39,20 @@ html {
   }
 }
 
-/*
-@keyframes billow {
-  0% {
-    transform: scale(0.8);
-    filter: blur(3px);
-  }
-  50% {
-    transform: scale(1);
-    filter: blur(0px);
-    //margin: 2rem;
-  }
-  100% {
-    transform: scale(0.8);
-    filter: blur(3px);
-  }
-}
-
-@keyframes reversebillow {
-  0% {
-    transform: scale(1);
-    filter: blur(0px);
-  }
-  50% {
-    transform: scale(0.8);
-    filter: blur(3px);
-    //margin: 2rem;
-  }
-  100% {
-    transform: scale(1);
-    filter: blur(0px);
-  }
-}*/
-
 .tag-cloud__items {
-  // display: grid;
-  // grid-template-columns: repeat(5, 1fr);
-
-  //place-items: center;
-  // grid-template-rows: repeat(5, 1fr);
 
   display: flex;
+  width: 90%;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
 }
 
 .tag-cloud__item {
-  // @include h4;
-
-  //animation-name: billow;
   border: 1px solid red;
-  border-radius: 5px;
-  // flex: 1 0 auto;
+
   padding: spacing(4);
 
-  // animation: blurry-orbit 3.5s $animation-transition infinite;
-  // animation-direction: alternate;
-
-  /*animation-duration: 9s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-delay: var(--item-animation-delay);
-
-  &:hover {
-    animation-play-state: paused;
-
-  }*/
   font-size: $font-size-5;
   flex: 1 0 20%;
 
@@ -135,24 +82,13 @@ html {
   }
 }
 
-/*
-.tag-cloud__item:nth-of-type(even) {
-  animation-name: reversebillow;
-  //border: 1px solid red;
-  //border-radius: 5px;
-  animation-duration: 9s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-delay: var(--item-animation-delay);
-
-  &:hover {
-    animation-play-state: paused;
-
-  }
-}*/
-
 .tag-cloud__item-link {
   animation: 8.5s var(--blurry-delay) linear blurry-orbit infinite;
   transform: translate(var(--blurry-x1), var(--blurry-y1));
   display: inline-block;
+
+  &:hover {
+    animation-play-state: paused;
+    filter: unset !important;
+  }
 }
