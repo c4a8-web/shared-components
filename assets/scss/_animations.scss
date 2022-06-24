@@ -161,10 +161,10 @@ $transition-tween-t1: 0.2s ease-in-out;
     transform: translate(var(--blurry-x1), var(--blurry-y1));
   }
   20% {
-    filter: blur(var(--blurry-blur));
     transform: translate(var(--blurry-x2), var(--blurry-y2));
   }
   70% {
+    filter: blur(var(--blurry-blur));
     transform: translate(var(--blurry-x3), var(--blurry-y3));
   }
   100% {

@@ -65,7 +65,7 @@ html {
     font-size: 1.6rem;
   }
   @media only screen and (min-width: 1200px) {
-    font-size: $font-size-5;
+    font-size: $font-size-4;
   }
   flex: 1 0 20%;
 
@@ -109,9 +109,22 @@ html {
   }
 }
 
-.tag-cloud__item-link{
+.tag-cloud__item-link:nth-child(even){
   animation: 8.5s var(--blurry-delay) linear blurry-orbit infinite;
   animation-fill-mode: both;
+  transform: translate(var(--blurry-x1), var(--blurry-y1));
+  display: inline-block;
+
+  &:hover {
+    animation-play-state: paused;
+    filter: unset !important;
+  }
+}
+
+.tag-cloud__item-link:nth-child(odd){
+  animation: 8.5s var(--blurry-delay) linear blurry-orbit infinite;
+  animation-fill-mode: both;
+  animation-direction: reverse;
   transform: translate(var(--blurry-x1), var(--blurry-y1));
   display: inline-block;
 
