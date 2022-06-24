@@ -53,16 +53,16 @@ html {
 
   padding: spacing(4);
   @media only screen and (max-width: 576px) {
-    font-size: 1rem;
+    font-size: 0.7rem;
   }
   @media only screen and (min-width: 576px) and (max-width: 768px) {
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   @media only screen and (min-width: 768px) and (max-width: 992px) {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
   @media only screen and (min-width: 992px) and (max-width: 1200px) {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
   }
   @media only screen and (min-width: 1200px) {
     font-size: $font-size-4;
@@ -84,13 +84,13 @@ html {
       font-size: 1rem;
     }
     @media only screen and (min-width: 576px) and (max-width: 768px) {
-      font-size: 1.1rem;
-    }
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
       font-size: 1.3rem;
     }
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+    @media only screen and (min-width: 768px) and (max-width: 992px) {
       font-size: 1.5rem;
+    }
+    @media only screen and (min-width: 992px) and (max-width: 1200px) {
+      font-size: 1.8rem;
     }
     @media only screen and (min-width: 1200px) {
       font-size: $font-size-5;
