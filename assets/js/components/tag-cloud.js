@@ -1,4 +1,5 @@
 import BaseComponent from './base-component.js';
+import Animate from '../animate.js';
 
 class TagCloud extends BaseComponent {
   static rootSelector = '.tag-cloud';
@@ -8,6 +9,7 @@ class TagCloud extends BaseComponent {
 
     this.container = root.querySelector('.tag-cloud__container');
     this.itemsContainer = root.querySelector('.tag-cloud__items');
+    this.itemLinkClass = 'tag-cloud__item-link';
 
     this.itemsPerOuterRow = 3;
     // this.itemsPerInnerRow = 5;
@@ -23,7 +25,9 @@ class TagCloud extends BaseComponent {
     this.maxDelay = 70;
     this.minDelay = 550;
     this.maxWeight = 3;
+    this.isMouseOut = true;
 
+    this.animate = new Animate();
 
     this.init();
   }
@@ -34,11 +38,46 @@ class TagCloud extends BaseComponent {
   // Animation
   // Breakpoints/Slides
 
-
   init() {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    this.itemsContainer.querySelectorAll(`.${this.itemLinkClass}`).forEach((item) => {
+      item.addEventListener('mouseover', (e) => {
+        this.handleMouseOver(e?.currentTarget);
+      });
+    });
+
+    this.itemsContainer.querySelectorAll(`.${this.itemLinkClass}`).forEach((item) => {
+      item.addEventListener('mouseout', (e) => {
+        this.handleMouseOut(e?.currentTarget);
+      });
+    });
+  }
+
+  handleMouseOut(element) {
+    window.cancelAnimationFrame(this.animate.requestId);
+    element.style.setProperty('filter', null);
+  }
+
+  handleMouseOver(element) {
+    const style = window.getComputedStyle(element);
+    const blur = style?.filter.replace('blur(', '').replace('px)', '');
+    const duration = 900;
+
+    this.animate.start({
+      duration,
+      timing: Animate.easing.easeInOutCubic,
+      draw: (progress) => {
+        const newBlur = blur - blur * progress;
+
+        element.style.setProperty('filter', `blur(${newBlur}px)`, 'important');
+      },
+    });
   }
 
   weightingElements() {
@@ -62,10 +101,8 @@ class TagCloud extends BaseComponent {
     let weight = 0;
     let secondIndex = 0;
 
-
     let lastElementsWeight = 0;
     let thirdIndex = 0;
-
 
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
@@ -77,16 +114,16 @@ class TagCloud extends BaseComponent {
       secondIndex = i + 1;
     }
 
-    for (let i = this.items.length-1; i > 0; i--) {
+    for (let i = this.items.length - 1; i > 0; i--) {
       const item = this.items[i];
 
       lastElementsWeight += item.weighting;
 
       if (lastElementsWeight > 3) continue;
-      thirdIndex = i+1;
+      thirdIndex = i + 1;
     }
 
-    return {secondIndex, thirdIndex};
+    return { secondIndex, thirdIndex };
   }
 
   addCorners() {
@@ -104,15 +141,15 @@ class TagCloud extends BaseComponent {
 
   getRandomCoordinate() {
     const slowThreshold = 1.1;
-    const speedLimit = 5;
+    const speedLimit = 2;
     let value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
     let tempValue = value;
     let sign = Math.random() > 0.5 ? -1 * value : value;
-    if (sign < 0 ) {
-      value = sign + tempValue/slowThreshold;
+    if (sign < 0) {
+      value = sign + tempValue / slowThreshold;
     }
 
-    return value/speedLimit;
+    return value / speedLimit;
   }
   getRandomBlur() {
     return this.getRandomNumberBetween(this.minBlur, this.maxBlur);
@@ -139,7 +176,7 @@ class TagCloud extends BaseComponent {
         const link = document.createElement('a');
 
         link.setAttribute('href', item.link);
-        let isEven = (i % groupSize === 0) ? true : false;
+        let isEven = i % groupSize === 0 ? true : false;
         const groupIdentifier = isEven ? 2 : 1;
         link.setAttribute('groupIdentifier', groupIdentifier);
 
@@ -160,7 +197,7 @@ class TagCloud extends BaseComponent {
         link.style.setProperty('--blurry-blur', `${this.getRandomBlur()}px`);
 
         link.innerText = item.title;
-        link.classList.add('tag-cloud__item-link');
+        link.classList.add(this.itemLinkClass);
 
         newElement.appendChild(link);
       }
@@ -168,7 +205,6 @@ class TagCloud extends BaseComponent {
       this.itemsContainer.appendChild(newElement);
     }
   }
-
 }
 
 export default TagCloud;
