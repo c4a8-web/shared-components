@@ -1,40 +1,38 @@
-html {
-  --item-animation-delay: 0.5s;
+//TODO:
+//Colors from colors
+//breakpoints using mixins
+//use variables for fontsizes
+
+.tag-cloud__header {
+  --size: 2rem;
+  margin: var(--size);
+  h2 {
+    color: var(--color-copy-light);
+    font-weight: 400;
+  }
+}
+
+.tag-cloud__content {
+  text-align: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tag-cloud__container {
+  margin: auto;
+  li {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    padding: 5px;
+    color: var(--color-copy-light) !important;
+  }
 }
 
 .tag-cloud {
   background-color: var(--color-blue-dark);
-  color: var(--color-white);
-  --size: 2rem;
-
-  .tag-cloud__header {
-    margin: var(--size);
-    h2 {
-      color: var(--color-white);
-      font-weight: 400;
-    }
-  }
-
-  .tag-cloud__content {
-    text-align: center;
-    justify-content: center;
-    margin-top: 1rem;
-    margin-bottom: 2rem;
-    .tag-cloud__container {
-      // max-width: 1500px;
-      // height: 500px;
-      margin: auto;
-      li {
-        list-style: none;
-      }
-      a {
-        text-decoration: none;
-        padding: 5px;
-        // font-size: 1.5rem;
-        color: var(--color-white) !important;
-      }
-    }
-  }
 }
 
 .tag-cloud__items {
@@ -46,9 +44,23 @@ html {
 }
 
 .tag-cloud__item {
-  //border: 1px solid red;
+  @include media-breakpoint-down(md) {
+    width: 1000px;
+    height: 25%;
+    padding: spacing(3);
+    flex: 1 0 10%;
+    font-size: $font-size-3;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: $font-size-4;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: $font-size-5;
+  }
 
   padding: spacing(4);
+  flex: 1 0 20%;
+  /*
   @media only screen and (max-width: 576px) {
     font-size: 0.7rem;
   }
@@ -64,8 +76,7 @@ html {
   @media only screen and (min-width: 1200px) {
     font-size: $font-size-4;
   }
-  flex: 1 0 20%;
-
+  */
   &[data-weight='0'] {
     flex-grow: 0;
     flex-basis: 15%;
@@ -77,19 +88,18 @@ html {
 
   &[data-weight='3'] {
     flex: 1 1 auto;
-    @media only screen and (max-width: 576px) {
-      font-size: 1rem;
+
+    @include media-breakpoint-down(md) {
+      width: 1000px;
+      height: 25%;
+      font-size: $font-size-3;
     }
-    @media only screen and (min-width: 576px) and (max-width: 768px) {
-      font-size: 1.3rem;
+
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-4;
     }
-    @media only screen and (min-width: 768px) and (max-width: 992px) {
-      font-size: 1.5rem;
-    }
-    @media only screen and (min-width: 992px) and (max-width: 1200px) {
-      font-size: 1.8rem;
-    }
-    @media only screen and (min-width: 1200px) {
+
+    @include media-breakpoint-up(xl) {
       font-size: $font-size-5;
     }
   }
@@ -97,33 +107,25 @@ html {
   &[data-weight] {
     + [data-weight='0'] {
       flex-shrink: 0;
-      //border-color: green;
-
-      + [data-weight] {
-        //border-color: yellow;
-      }
     }
   }
 }
 
 .tag-cloud__item-link {
+  animation: 12.5s 0s ease-in-out blurry-orbit infinite;
+  animation-fill-mode: both;
+  transform: translate(var(--blurry-x1), var(--blurry-y1));
+  display: inline-block;
+
   &[groupidentifier='1'] {
-    animation: 12.5s 25ms ease-in-out blurry-orbit infinite;
-    animation-fill-mode: both;
     animation-direction: alternate-reverse;
-    transform: translate(var(--blurry-x1), var(--blurry-y1));
-    display: inline-block;
   }
+
   &[groupidentifier='2'] {
-    animation: 12.5s 25ms ease-in-out blurry-orbit infinite;
-    animation-fill-mode: both;
     animation-direction: alternate;
-    transform: translate(var(--blurry-x1), var(--blurry-y1));
-    display: inline-block;
   }
 
   &:hover {
     animation-play-state: paused;
-    // transition: filter 2s ease-in-out;
   }
 }

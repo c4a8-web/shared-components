@@ -29,12 +29,11 @@ class TagCloud extends BaseComponent {
 
     this.animate = new Animate();
 
+
     this.init();
   }
 
   //TODO:
-
-  // Speed reduce
   // Animation
   // Breakpoints/Slides
 
@@ -151,6 +150,7 @@ class TagCloud extends BaseComponent {
 
     return value / speedLimit;
   }
+
   getRandomBlur() {
     return this.getRandomNumberBetween(this.minBlur, this.maxBlur);
   }
