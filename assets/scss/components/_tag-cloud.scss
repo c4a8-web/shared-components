@@ -5,12 +5,10 @@ html {
 .tag-cloud {
   background-color: var(--color-blue-dark);
   color: var(--color-white);
-  --size: 5rem;
+  --size: 2rem;
 
   .tag-cloud__header {
-    margin-top: var(--size);
-    margin-bottom: var(--size);
-    margin-left: var(--size);
+    margin: var(--size);
     h2 {
       color: var(--color-white);
       font-weight: 400;
@@ -20,7 +18,7 @@ html {
   .tag-cloud__content {
     text-align: center;
     justify-content: center;
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-bottom: 2rem;
     .tag-cloud__container {
       // max-width: 1500px;
@@ -109,11 +107,20 @@ html {
   }
 }
 
-.tag-cloud__item-link:nth-child(even){
-  animation: 8.5s var(--blurry-delay) linear blurry-orbit infinite;
-  animation-fill-mode: both;
-  transform: translate(var(--blurry-x1), var(--blurry-y1));
-  display: inline-block;
+.tag-cloud__item-link{
+  &[groupidentifier='1'] {
+    animation: 8.5s 25ms ease-in-out blurry-orbit infinite;
+    animation-fill-mode: both;
+    transform: translate(var(--blurry-x1), var(--blurry-y1));
+    display: inline-block;
+  }
+  &[groupidentifier='2'] {
+    animation: 8.5s 25ms ease-in-out blurry-orbit infinite;
+    animation-fill-mode: both;
+    animation-direction: reverse;
+    transform: translate(var(--blurry-x1), var(--blurry-y1));
+    display: inline-block;
+  }
 
   &:hover {
     animation-play-state: paused;
@@ -121,15 +128,3 @@ html {
   }
 }
 
-.tag-cloud__item-link:nth-child(odd){
-  animation: 8.5s var(--blurry-delay) linear blurry-orbit infinite;
-  animation-fill-mode: both;
-  animation-direction: reverse;
-  transform: translate(var(--blurry-x1), var(--blurry-y1));
-  display: inline-block;
-
-  &:hover {
-    animation-play-state: paused;
-    filter: unset !important;
-  }
-}

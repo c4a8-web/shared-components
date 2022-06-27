@@ -24,6 +24,7 @@ class TagCloud extends BaseComponent {
     this.minDelay = 550;
     this.maxWeight = 3;
 
+
     this.init();
   }
 
@@ -106,18 +107,6 @@ class TagCloud extends BaseComponent {
 
     return value/speedLimit;
   }
-
-  /*getRandomBlur(index) {
-    const groupSize = 2;
-    const bias = Math.random();
-
-    if (index % groupSize === 0){
-      return 3*4*bias;
-    }
-
-    return 3*3*bias;
-  }*/
-
   getRandomBlur() {
     return this.getRandomNumberBetween(this.minBlur, this.maxBlur);
   }
@@ -126,17 +115,6 @@ class TagCloud extends BaseComponent {
     return this.getRandomNumberBetween(this.minDelay, this.maxDelay);
   }
 
-  /*getBlurStart(index) {
-    const groupSize = 2;
-    const nums = 500;
-    const bias = Math.random();
-
-    if (index % groupSize === 0) {
-      return nums * bias;
-    }
-    return nums*2*bias;
-  }*/
-
   getRandomNumberBetween(start, end) {
     return Math.floor(Math.random() * (end - start + 1)) + start;
   }
@@ -144,6 +122,7 @@ class TagCloud extends BaseComponent {
   appendItems() {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
+      const groupSize = 2;
       const newElement = document.createElement('li');
 
       newElement.classList.add('tag-cloud__item');
@@ -153,9 +132,12 @@ class TagCloud extends BaseComponent {
         const link = document.createElement('a');
 
         link.setAttribute('href', item.link);
-
+        let isEven = (i % groupSize === 0) ? true : false;
+        const groupIdentifier = isEven ? 2 : 1;
+        link.setAttribute('groupIdentifier', groupIdentifier);
 
         // TODO create random points more compact ?
+
         //x-Values
         link.style.setProperty('--blurry-x1', `${this.getRandomCoordinate()}px`);
         link.style.setProperty('--blurry-x2', `${this.getRandomCoordinate()}px`);
