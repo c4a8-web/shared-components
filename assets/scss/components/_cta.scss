@@ -175,6 +175,8 @@
 
   .cta {
     color: var(--color-primary);
+    -webkit-appearance: none;
+    appearance: none;
 
     &:not(.btn):not(.custom):not(.nav-link) {
       &.is-light {
