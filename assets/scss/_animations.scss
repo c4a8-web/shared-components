@@ -168,7 +168,7 @@ $transition-tween-t1: 0.2s ease-in-out;
     transform: translate(var(--blurry-x3), var(--blurry-y3));
   }
   100% {
-    //filter: blur(var(--blurry-blur));
+    filter: blur(var(--blurry-blur));
     transform: translate(var(--blurry-x1), var(--blurry-y1));
   }
 }

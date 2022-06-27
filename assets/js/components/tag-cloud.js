@@ -28,6 +28,13 @@ class TagCloud extends BaseComponent {
     this.init();
   }
 
+  //TODO:
+
+  // Speed reduce
+  // Animation
+  // Breakpoints/Slides
+
+
   init() {
     this.weightingElements();
     this.addCorners();
@@ -97,7 +104,7 @@ class TagCloud extends BaseComponent {
 
   getRandomCoordinate() {
     const slowThreshold = 1.1;
-    const speedLimit = 2;
+    const speedLimit = 5;
     let value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
     let tempValue = value;
     let sign = Math.random() > 0.5 ? -1 * value : value;

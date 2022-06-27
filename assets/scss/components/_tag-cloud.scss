@@ -111,13 +111,14 @@ html {
   &[groupidentifier='1'] {
     animation: 8.5s 25ms ease-in-out blurry-orbit infinite;
     animation-fill-mode: both;
+    animation-direction: alternate-reverse;
     transform: translate(var(--blurry-x1), var(--blurry-y1));
     display: inline-block;
   }
   &[groupidentifier='2'] {
     animation: 8.5s 25ms ease-in-out blurry-orbit infinite;
     animation-fill-mode: both;
-    animation-direction: reverse;
+    animation-direction: alternate;
     transform: translate(var(--blurry-x1), var(--blurry-y1));
     display: inline-block;
   }
