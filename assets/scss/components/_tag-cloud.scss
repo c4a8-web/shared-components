@@ -9,6 +9,7 @@ html {
 .tag-cloud__header {
   --size: 2rem;
   margin: var(--size);
+  color: var(--color-copy-light);
   h2 {
     color: var(--color-copy-light);
     font-weight: 400;
@@ -50,7 +51,7 @@ html {
 .tag-cloud__item {
 
   @include media-breakpoint-down(md) {
-    width: 1000px;
+    width: 1500px;
     height: 25%;
     padding: spacing(3);
     flex: 1 0 10%;
@@ -94,7 +95,7 @@ html {
   &[data-weight='3'] {
     flex: 1 1 auto;
     @include media-breakpoint-down(md) {
-      width: 1000px;
+      width: 1500px;
       height: 25%;
       font-size: $font-size-3;
     }
