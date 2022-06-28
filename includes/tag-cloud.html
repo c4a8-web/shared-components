@@ -16,6 +16,17 @@
     </div>
   </div>
   <div class="tag-cloud__content row">
+    <!--<div class="tag-cloud__slider js-slick-carousel"
+      data-hs-slick-carousel-options='{
+        "dots": true,
+        "slidesToShow": 3,
+        "centerMode": true,
+
+        "responsive": [{
+          "breakpoint": 576,
+          "settings": "unslick"
+        }]
+      }'>-->
     <div class="tag-cloud__container">
       <ul class="tag-cloud__items" data-items='{{ tagCloudItems | jsonify }}'>
         {% comment %}
@@ -27,5 +38,6 @@
         {% endcomment %}
       </ul>
     </div>
+    <!--</div>-->
   </div>
 </div>
