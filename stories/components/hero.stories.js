@@ -193,3 +193,28 @@ HeroTextImageStudy.args = {
     bgColor: 'var(--color-hero-study-background)',
   },
 };
+
+export const HeroTextShape = Template.bind({});
+
+HeroTextShape.args = {
+  hero: {
+    overline: 'Wir schaffen die optimale Arbeitsumgebung',
+    headline: 'Consulting Services',
+    subline:
+      'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+    background: {
+      shape: {
+        name: 's-block',
+        shapes: [
+          {},
+          {},
+          {},
+          {
+            backgroundColor: '#673ab7',
+          },
+        ],
+      },
+      alt: 'Security Consulting',
+    },
+  },
+};
