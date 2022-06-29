@@ -13,4 +13,40 @@ const Template = (args) => createComponent(args, component);
 
 export const SBlock = Template.bind({});
 
-SBlock.args = {};
+SBlock.args = {
+  shapes: [
+    {},
+    {},
+    {},
+    {
+      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+    },
+  ],
+};
+
+export const SBlockTheme = Template.bind({});
+
+SBlockTheme.args = {
+  shapes: [
+    {
+      backgroundColor: 'var(--color-primary)',
+      foregroundColor: 'var(--color-white)',
+      thirdColor: '#ff0000',
+    },
+    {
+      backgroundColor: 'var(--color-primary)',
+      foregroundColor: 'var(--color-white)',
+      thirdColor: '#ff0000',
+    },
+    {
+      backgroundColor: 'var(--color-primary)',
+      foregroundColor: 'var(--color-white)',
+      thirdColor: '#ff0000',
+    },
+    {
+      backgroundColor: 'var(--color-primary)',
+      foregroundColor: 'var(--color-white)',
+      thirdColor: '#ff0000',
+    },
+  ],
+};

@@ -11,11 +11,12 @@ export default {
   methods: {},
   props: {
     name: String,
+    shapes: Array,
   },
   template: `
     <div :class="classList">
       <div class="shape__container">
-        <component :is="shapeName" />
+        <component :is="shapeName" :shapes="shapes" ></component>
       </div>
     </div>`,
 };
