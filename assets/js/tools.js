@@ -191,6 +191,23 @@ class Tools {
   static sleep(milliseconds) {
     return new Promise((resolve) => setTimeout(resolve, milliseconds));
   }
+
+  static randomRange(from, to) {
+    return Math.floor(Math.random() * (to - from + 1) + from);
+  }
+
+  static uuid() {
+    const randomData = Date.now().toString(16) + Math.random().toString(4) + '0'.repeat(16);
+    const random = Tools.randomRange(0, 8);
+    const randomSecond = Tools.randomRange(0, 16);
+
+    return (
+      'u' +
+      [randomData.substring(random, random + 8), randomData.substring(randomSecond, randomSecond + 4)]
+        .join('-')
+        .replace('.', '9')
+    );
+  }
 }
 
 export default Tools;
