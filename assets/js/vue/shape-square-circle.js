@@ -1,9 +1,5 @@
-const circlePathStart =
-  'm 201.44 355.68 c 85.57 0 155 -69.44 155 -155.08 s -69.37 -155.08 -155 -155.08 s -155 69.43 -155 155.08 s 69.37 155.08 155 155.08 z m 0 -229.32 a 74.24 74.24 0 1 1 -74.17 74.24 a 74.21 74.21 0 0 1 74.17 -74.24 z';
-const circlePathEnd =
-  'm 201.44 355.68 c 85.57 0 155 -69.44 155 -155.08 s -69.37 -155.08 -155 -155.08 s -155 69.43 -155 155.08 s 69.37 155.08 155 155.08 z m 0 -310 a 155 155 0 1 1 -155 155 a 155 155 0 0 1 155 -155 z';
-const circleSecondStepPathStart =
-  'm 201.44 355.68 c 0 0 0 0 0 -155 s 0 0 0 0 s 0 0 0 0 s 0 0 0 0 z m 0 -310 a 155 155 0 1 1 -155 155 a 155 155 0 0 1 155 -155 z';
+import Tools from '../tools.js';
+
 // const defaultCircleStart = '8s'
 const defaultCircleStart = '1s';
 const defaultStart = '1s';
@@ -27,7 +23,7 @@ const tagName = 'shape-square-circle';
 // do this then wait then do this then do that
 
 const smallCircleData = () => {
-  const id = tagName + '__small-circle';
+  const id = '__small-circle';
   const name = id + '-anim';
 
   return {
@@ -37,7 +33,7 @@ const smallCircleData = () => {
 };
 
 const bigCircleData = () => {
-  const id = tagName + '__big-circle';
+  const id = '__big-circle';
   const name = id + '-anim';
 
   return {
@@ -49,32 +45,23 @@ const bigCircleData = () => {
 export default {
   tagName: tagName,
   computed: {
+    tagNameId() {
+      return `${Tools.uuid()}${tagName}`;
+    },
     classList() {
       return ['shape-square-circle', 'vue-component'];
     },
     begin() {
       return this.start ? this.start : defaultStart;
     },
-    // circleStart() {
-    //   return this.start ? this.start : defaultCircleStart;
-    // },
     rectColor() {
       return this.backgroundColor ? this.backgroundColor : '#673ab7';
     },
     pathColor() {
       return this.circleColor ? this.circleColor : '#fcd116';
     },
-    // animationFirstStepName() {
-    //   return tagName + '__anim';
-    // },
-    // animationSecondStepName() {
-    //   return this.animationFirstStepName + '--reverse';
-    // },
-    // id() {
-    //   return tagName + '-id';
-    // },
     bigCircleId() {
-      return tagName + '__big-circle-id';
+      return this.tagNameId + '__big-circle-id';
     },
     bigCircleReference() {
       return '#' + this.bigCircleId;
@@ -86,7 +73,7 @@ export default {
       return this.bigCircleId + '-anim';
     },
     smallCircleId() {
-      return tagName + '__small-circle-id';
+      return this.tagNameId + '__small-circle-id';
     },
     smallCircleReference() {
       return '#' + this.smallCircleId;
@@ -101,66 +88,90 @@ export default {
       const { id, name } = bigCircleData();
       const smallCircle = smallCircleData();
 
-      // TODO make just a big list of steps one by one
+      const tagNameId = `${this.tagNameId}${id}`;
+      const tagNameName = `${this.tagNameId}${name}`;
 
       return {
-        id,
-        ref: `#${id}`,
+        id: tagNameId,
+        ref: `#${tagNameId}`,
         step: [
           {
-            begin: `${smallCircle.name}.end+0.01s`,
-            name,
+            begin: `${this.tagNameId}${smallCircle.name}.end+0.01s`,
+            name: tagNameName,
           },
           {
-            begin: `${smallCircle.name}2.end+0.01s`,
-            name: name + '2',
+            begin: `${this.tagNameId}${smallCircle.name}2.end+0.01s`,
+            name: tagNameName + '2',
           },
         ],
       };
     },
     smallCircle() {
-      // const id = tagName + '__small-circle';
-      // const name = id + '-anim';
-
       const { id, name } = smallCircleData();
       const bigCircle = bigCircleData();
 
+      const tagNameId = `${this.tagNameId}${id}`;
+      const tagNameName = `${this.tagNameId}${name}`;
+
       return {
-        id,
-        ref: `#${id}`,
+        id: tagNameId,
+        ref: `#${tagNameId}`,
         step: [
           {
-            begin: `${this.begin};${bigCircle.name}2.end+20s`,
-            name,
+            begin: `${this.begin};${this.tagNameId}${bigCircle.name}2.end+20s`,
+            name: tagNameName,
           },
           {
-            begin: `${bigCircle.name}.end+0.1s`,
-            name: name + '2',
+            begin: `${this.tagNameId}${bigCircle.name}.end+0.1s`,
+            name: tagNameName + '2',
           },
           {
-            begin: `${bigCircle.name}.end+0.8s`,
-            name: name + '3',
+            begin: `${this.tagNameId}${bigCircle.name}.end+0.8s`,
+            name: tagNameName + '3',
           },
         ],
       };
     },
-    // idReference() {
-    //   return '#' + this.id;
-    // },
-    // firstStepBegin() {
-    //   return `${this.circleStart};${this.animationSecondStepName}.end+${firstStepWait}`;
-    // },
-    // secondStepBegin() {
-    //   return `${this.animationFirstStepName}.end+${secondStepWait}`;
-    // },
     width() {
       return 400;
     },
     height() {
       return this.width;
     },
+    clipPathId() {
+      return `${this.tagNameId}__clip-path`;
+    },
+    clipPathUrl() {
+      return `clip-path: url(#${this.clipPathId})`;
+    },
   },
-  methods: {},
+  methods: {
+    sequence() {
+      // TODO use sequence instead of seperated steps
+
+      return {
+        smallCircle: {
+          tagNameId,
+          ref: `#${tagNameId}`,
+          step: [
+            {
+              begin: `${this.begin};${this.tagNameId}${bigCircle.name}2.end+20s`,
+              name: tagNameName,
+            },
+            {
+              begin: `${this.tagNameId}${bigCircle.name}.end+0.1s`,
+              name: tagNameName + '2',
+            },
+            {
+              begin: `${this.tagNameId}${bigCircle.name}.end+0.8s`,
+              name: tagNameName + '3',
+            },
+          ],
+        },
+        bigCircle: {},
+      };
+    },
+  },
   props: {
     backgroundColor: String,
     circleColor: String,
@@ -168,10 +179,10 @@ export default {
   },
   template: `
     <g :class="classList">
-      <clipPath id="${tagName}__clip-path">
+      <clipPath :id="clipPathId">
         <rect x="0" y="0" :width="width" :height="height" />
       </clipPath>
-      <g style="clip-path: url(#${tagName}__clip-path);">
+      <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
         <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}">
           <animate
