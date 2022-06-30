@@ -1,10 +1,11 @@
 import { ADDON_ID, TOOL_ID, PARAM_KEY, HTML_DOWNLOAD_EVENTS, DEFAULT_FILE_TYPE } from './constants';
 import { Tool } from './Tool';
 import { FILE_LIST, LOCALIZATION_ALL_LANG } from './defaults';
-// import { addStyles, addBaseClass } from "./helper";
+import { downloadHtml } from './helper';
 
 const currentLanguage = 'en';
-const LOCALIZATION = LOCALIZATION_ALL_LANG[currentLanguage];
+const LOCALIZATION =
+  LOCALIZATION_ALL_LANG && LOCALIZATION_ALL_LANG[currentLanguage] ? LOCALIZATION_ALL_LANG[currentLanguage] : {};
 
 export {
   ADDON_ID,
@@ -15,6 +16,5 @@ export {
   Tool,
   FILE_LIST,
   LOCALIZATION,
-  // addStyles,
-  // addBaseClass,
+  downloadHtml,
 };

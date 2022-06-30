@@ -11,7 +11,7 @@ import { Styles } from './themeImports';
 import { STORY_RENDERED } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { EVENTS, DEFAULT_THEME, addStyles, addBaseClass } from './themes/src/themes';
-// import { HTML_DOWNLOAD_EVENTS } from './html-download/src/exports';
+import { HTML_DOWNLOAD_EVENTS, downloadHtml } from './html-download/src/exports';
 
 let currentTheme = DEFAULT_THEME;
 
@@ -51,6 +51,10 @@ channel.on(STORY_RENDERED, () => {
   vueForceUpdate();
   Interim();
   removeModal();
+});
+
+channel.on(HTML_DOWNLOAD_EVENTS.CHANGE, (e) => {
+  downloadHtml(e);
 });
 
 export const parameters = {

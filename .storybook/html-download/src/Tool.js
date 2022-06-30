@@ -6,18 +6,20 @@ import { TOOL_ID, ADDON_ID, PARAM_KEY, HTML_DOWNLOAD_EVENTS, FILE_LIST, LOCALIZA
 const defaultFile = {
   id: 'reset',
   title: 'reset',
-  type: 'svg',
+  type: 'reset',
 };
 
 const baseFile = [defaultFile];
 
 const toList = (items) => [
   ...baseFile,
-  ...Object.entries(items).map(([id, { name, ...rest }]) => ({
-    ...rest,
-    id,
-    title: name,
-  })),
+  ...Object.entries(items).map(([id, { name, ...rest }]) => {
+    return {
+      ...rest,
+      id,
+      title: name,
+    };
+  }),
 ];
 
 const toLinks = (list, active, set, state, api, close) => {
@@ -25,21 +27,14 @@ const toLinks = (list, active, set, state, api, close) => {
     .map((i) => {
       switch (i.id) {
         case defaultFile.id: {
-          if (active.id === i.id) {
-            console.log('active');
-
-            return null;
-          }
+          return null;
         }
         default: {
-          console.log('default');
-
           return {
             ...i,
             onClick: () => {
               api.getChannel().emit(HTML_DOWNLOAD_EVENTS.CHANGE, i.type);
 
-              console.log('.map ~ state', state);
               set({ ...state, selected: i.id });
               close();
             },
