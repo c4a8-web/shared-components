@@ -203,18 +203,8 @@ HeroTextShape.args = {
     subline:
       'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
     background: {
-      shape: {
-        name: 's-block',
-        shapes: [
-          {},
-          {},
-          {},
-          {
-            backgroundColor: '#673ab7',
-          },
-        ],
-      },
-      alt: 'Security Consulting',
+      img: getAssetPath('svg/shapes/s-block.svg'),
+      alt: 'Shape',
     },
   },
 };
