@@ -1,14 +1,22 @@
 const arrowPathStart = 'M0.6 796.88v-396l200.59 198-200.59 198zM0 796.88v-396l200.6 198L0 796.88z';
 const arrowPathEnd = 'M200.6 796.88v-396l200.59 198-200.59 198zM0 796.88v-396l200.6 198L0 796.88z';
 
+const tagName = 's-block';
+
 export default {
-  tagName: 's-block',
+  tagName: tagName,
   computed: {
+    name() {
+      return tagName;
+    },
     shapeCircle() {
       return this.getShapeData(0);
     },
     pyramid() {
       return this.getShapeData(3);
+    },
+    classList() {
+      return ['s-block', 'vue-component'];
     },
   },
   methods: {
@@ -26,8 +34,7 @@ export default {
     shapes: Array,
   },
   template: `
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 801.86 1197.37" width="801.86" height="1197.37" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999">
-
+    <svg :class="classList" :data-name="name" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 801.86 1197.37" width="801.86" height="1197.37" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999">
       <path fill="#f8842c" d="M0 400.88h401.19v396H0z"/>
       <path id="s-block-arrows" fill="#fcd116" d="${arrowPathStart}" >
         <animate id="s-block-arrows-anim" href="#s-block-arrows" attributeName="d" values="
@@ -61,8 +68,6 @@ export default {
         :background-color="shapeCircle?.backgroundColor"
         :circle-color="shapeCircle?.foregroundColor"
       ></shape-square-circle>
-
-
     </svg>
   `,
 };
