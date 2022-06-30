@@ -51,13 +51,7 @@
 {%- if heroTextImageHero.background -%}
   {%- capture heroClasses -%}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{%- endcapture -%}
   {%- capture heroImage -%}
-    {% if heroTextImageHero.background.shape %}
-      {%
-        include shape.html
-        name=heroTextImageHero.background.shape.name
-        shapes=heroTextImageHero.background.shape.shapes
-      %}
-    {% else %}
+    {% if heroTextImageHero.background.img %}
       {%
         include img.html
         img=heroTextImageHero.background.img
