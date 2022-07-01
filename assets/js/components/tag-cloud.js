@@ -19,7 +19,6 @@ class TagCloud extends BaseComponent {
 
     this.maxCoordinate = 40; // TODO maybe connect to the padding property to make sure it doesn't get out of bounce ?
 
-    //this.maxCoordinate = [];
     this.minCoordinate = 10;
     this.minBlur = 2;
     this.maxBlur = 10;
@@ -38,8 +37,8 @@ class TagCloud extends BaseComponent {
     this.init();
   }
 
-  //TODO:
-  // Animation
+  //Todo:
+
   // Breakpoints/Slides
 
   init() {
@@ -170,10 +169,14 @@ class TagCloud extends BaseComponent {
   }
 
   getScroller() {
+    //Needs to be called at Breakpoint md
+    //and stopped outside of Breakpoint md
     let scroll = this.slider.scrollLeft;
     const step = 10;
-    const border = this.slider.scrollLeft === this.tempValueScroll
-    const borderReached = border ? true : false;
+
+    //find border in a different way bcs the Abs diff will never be 0.
+    const border = this.slider.scrollWidth;
+    const borderReached = border <= this.slider.scrollLeft ? true : false;
     const beginningReached = this.slider.scrollLeft === 0 ? true : false;
 
     if (borderReached){
@@ -184,7 +187,6 @@ class TagCloud extends BaseComponent {
 
     this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step
     this.tempValueScroll = this.slider.scrollLeft;
-    console.log(this.slider.scrollLeft);
   }
 
   appendItems() {
