@@ -16,28 +16,35 @@
     </div>
   </div>
   <div class="tag-cloud__content row">
-    <!--<div class="tag-cloud__slider js-slick-carousel"
-      data-hs-slick-carousel-options='{
-        "dots": true,
-        "slidesToShow": 3,
-        "centerMode": true,
+    <div class="tag-cloud__slider js-slick-carousel" data-hs-slick-carousel-options='{
+      "dots": true,
+      "dotsClass": "slick-pagination is-default mt-8 mb-n6",
+      "centerMode": true,
+      "slidesToShow": 1,
+      "slidesToScroll": 1,
+      "variableWidth": true
+    }'>
+    <!--
+      "responsive": [{
+      "breakpoint": 992,
+      "settings": "unslick"
+    }, {
+      "breakpoint": 554,
+      "settings": "unslick"
+    }] -->
 
-        "responsive": [{
-          "breakpoint": 576,
-          "settings": "unslick"
-        }]
-      }'>-->
-    <div class="tag-cloud__container">
-      <ul class="tag-cloud__items" data-items='{{ tagCloudItems | jsonify }}'>
-        {% comment %}
-        {% for item in tagCloudItems %}
-          <li class="tag-cloud__item">
-            <a class="tag-cloud__item-link" href="{{ item.link }}">{{ item.title }}</a>
-          </li>
-        {% endfor %}
-        {% endcomment %}
-      </ul>
-    </div>
-    <!--</div>-->
+      <div class="tag-cloud__slider_placeholder"> </div>
+      <div class="tag-cloud__container">
+        <ul class="tag-cloud__items" data-items='{{ tagCloudItems | jsonify }}'>
+          {% comment %}
+          {% for item in tagCloudItems %}
+            <li class="tag-cloud__item">
+              <a class="tag-cloud__item-link" href="{{ item.link }}">{{ item.title }}</a>
+            </li>
+          {% endfor %}
+          {% endcomment %}
+        </ul>
+      </div>
+      <div class="tag-cloud__slider_placeholder"> </div>
   </div>
 </div>

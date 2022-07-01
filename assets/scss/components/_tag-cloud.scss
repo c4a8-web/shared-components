@@ -45,16 +45,24 @@
 }
 
 .tag-cloud__slider {
-  color: var(--color-copy-light);
-  width: 200vw;
+  /*display: flex;
+  overflow-x: auto;*/
+
+  //background-color: red;
+  width: 150vw;
+}
+
+.tag-cloud__slider_placeholder {
+  width: 10px !important;
 }
 
 .tag-cloud__item {
+  --mobile-width: 50vw;
+
   @include media-breakpoint-down(md) {
-    width: 200vw;
-    height: 25%;
+    width: var(--mobile-width);
     padding: spacing(3);
-    flex: 1 0 10%;
+    flex: 1 0 5%;
     font-size: $font-size-2;
   }
   @include media-breakpoint-up(lg) {
@@ -79,8 +87,7 @@
     flex: 1 1 auto;
 
     @include media-breakpoint-down(md) {
-      width: 200vw;
-      height: 25%;
+      width: var(--mobile-width);
       font-size: $font-size-3;
     }
 
