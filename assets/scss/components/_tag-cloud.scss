@@ -42,21 +42,13 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  @include media-breakpoint-down(md){
-    animation: 50s 0s linear automated-scrolling infinite;
-    animation-fill-mode: both;
-    animation-direction: alternate;
-  }
 }
 
 .tag-cloud__slider {
   display: flex;
   overflow-x: auto;
-
-  //background-color: red;
-  justify-content: center;
-
   width: 150vw;
+
 }
 
 .tag-cloud__slider_placeholder {
@@ -130,16 +122,5 @@
 
   &:hover {
     animation-play-state: paused;
-  }
-}
-
-
-@keyframes automated-scrolling {
-  0% {
-    transform: translate(-30%);
-  }
-
-  100% {
-    transform: translate(30%);
   }
 }

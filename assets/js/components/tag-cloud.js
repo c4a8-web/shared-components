@@ -10,6 +10,7 @@ class TagCloud extends BaseComponent {
     this.container = root.querySelector('.tag-cloud__container');
     this.itemsContainer = root.querySelector('.tag-cloud__items');
     this.itemLinkClass = 'tag-cloud__item-link';
+    this.slider = root.querySelector('.tag-cloud__slider');
 
     this.itemsPerOuterRow = 3;
     // this.itemsPerInnerRow = 5;
@@ -27,7 +28,8 @@ class TagCloud extends BaseComponent {
     this.maxWeight = 3;
     this.isMouseOut = true;
 
-    this.position = 0;
+    this.scrollMoving = false;
+    this.tempValueScroll = -1;
 
 
     this.animate = new Animate();
@@ -44,6 +46,7 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
+    this.getScroller();
     this.bindEvents();
   }
 
@@ -167,7 +170,21 @@ class TagCloud extends BaseComponent {
   }
 
   getScroller() {
-    window.scrollTo(this.position, 0);
+    let scroll = this.slider.scrollLeft;
+    const step = 10;
+    const border = this.slider.scrollLeft === this.tempValueScroll
+    const borderReached = border ? true : false;
+    const beginningReached = this.slider.scrollLeft === 0 ? true : false;
+
+    if (borderReached){
+      this.scrollMoving = true;
+    } else if (beginningReached) {
+      this.scrollMoving = false;
+    }
+
+    this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step
+    this.tempValueScroll = this.slider.scrollLeft;
+    console.log(this.slider.scrollLeft);
   }
 
   appendItems() {
