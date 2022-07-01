@@ -16,39 +16,8 @@
     </div>
   </div>
   <div class="tag-cloud__content row">
-    <div class="tag-cloud__slider js-slick-carousel" data-hs-slick-carousel-options='{
-      "dots": true,
-      "dotsClass": "slick-pagination is-default mt-8 mb-n6",
-      "centerMode": true,
-      "slidesToShow": 1,
-      "slidesToScroll": 1,
-      "variableWidth": true,
+    <div class="tag-cloud__slider ">
 
-      "responsive": [{
-        "breakpoint": 4000,
-        "settings": "unslick"
-      }, {
-        "breakpoint": 1200,
-        "settings": "unslick"
-      }, {
-        "breakpoint": 992,
-        "settings": {
-          "slidesToShow": 1,
-          "slidesToScroll": 1,
-          "variableWidth": true
-        }
-      }, {
-        "breakpoint": 576,
-        "settings": {
-          "slidesToShow": 1,
-          "slidesToScroll": 1,
-          "variableWidth": true
-        }
-      }]
-    }'>
-
-
-      <div class="tag-cloud__slider_placeholder"> </div>
       <div class="tag-cloud__container">
         <ul class="tag-cloud__items" data-items='{{ tagCloudItems | jsonify }}'>
           {% comment %}
@@ -60,6 +29,6 @@
           {% endcomment %}
         </ul>
       </div>
-      <div class="tag-cloud__slider_placeholder"> </div>
+
   </div>
 </div>

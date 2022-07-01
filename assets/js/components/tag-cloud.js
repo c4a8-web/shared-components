@@ -27,6 +27,9 @@ class TagCloud extends BaseComponent {
     this.maxWeight = 3;
     this.isMouseOut = true;
 
+    this.position = 0;
+
+
     this.animate = new Animate();
 
 
@@ -161,6 +164,10 @@ class TagCloud extends BaseComponent {
 
   getRandomNumberBetween(start, end) {
     return Math.floor(Math.random() * (end - start + 1)) + start;
+  }
+
+  getScroller() {
+    window.scrollTo(this.position, 0);
   }
 
   appendItems() {
