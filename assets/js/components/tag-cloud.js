@@ -189,6 +189,11 @@ class TagCloud extends BaseComponent {
     window.requestAnimationFrame(this.getScroller.bind(this));
   }
 
+  isBelowBreakpoint(){
+    const breakpoint = Tools.getBreakpoint();
+    return window.innerWidth < breakpoint;
+  }
+
   addScrollAnimation() {
     const elementToScroll = this.slider;
     const endPosition = this.slider.scrollWidth - this.slider.clientWidth;
@@ -197,11 +202,10 @@ class TagCloud extends BaseComponent {
     console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
     console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
 
-    const duration = 4000;
+    const duration = 40000;
+    let reverse = false;
 
-    // this.loopAnimation(duration, Animate.easing.easeInOutCubic, () => {
-
-    // })
+    this.loopAnimation(elementToScroll, endPosition, duration, Animate.easing.linear, reverse);
   }
 
   loopAnimation(from, to, duration, timing, draw, reverse) {
@@ -211,10 +215,14 @@ class TagCloud extends BaseComponent {
       draw: (progress) => {
         console.log('TagCloud ~ loopAnimation ~ progress', progress);
 
-        const step = reverse ? to * progress : from * progress;
-        // if we are at the end of the animation restart the animation
+        if (progress >= 0.5) {
+          reverse = true;
+        } else if ( progress == 1) {
+          reverse = false;
+        }
 
-        // this.slider.scrollLeft += to * progress
+        const step = reverse ? 2*to - (2*to* progress) : 2*to * progress;
+        this.slider.scrollLeft = step;
       },
     });
   }
