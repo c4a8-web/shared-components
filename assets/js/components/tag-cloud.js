@@ -29,6 +29,7 @@ class TagCloud extends BaseComponent {
 
     this.scrollMoving = false;
     this.tempValueScroll = -1;
+    this.borderReached = false;
 
 
     this.animate = new Animate();
@@ -169,25 +170,28 @@ class TagCloud extends BaseComponent {
   }
 
   getScroller() {
-    //Needs to be called at Breakpoint md
-    //and stopped outside of Breakpoint md
     let scroll = this.slider.scrollLeft;
-    const step = 100;
+    const step = 1;
 
-    //find border in a different way bcs the Abs diff will never be 0.
-    const border = this.slider.scrollWidth;
-    const borderReached = border <= this.slider.scrollLeft ? true : false;
-    const beginningReached = this.slider.scrollLeft === 0 ? true : false;
+    const beginningReached = scroll === 0 ? true : false;
 
-    if (borderReached){
+    if (this.borderReached){
       this.scrollMoving = true;
     } else if (beginningReached) {
       this.scrollMoving = false;
     }
 
     this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step
+    const repeating = this.slider.scrollLeft === this.tempValueScroll ? true : false;
+
+    if ((repeating) && (!beginningReached)) {
+      this.borderReached = true;
+    } else {
+      this.borderReached = false;
+    }
+
     this.tempValueScroll = this.slider.scrollLeft;
-    window.requestAnimationFrame(this.getScroller);
+    window.requestAnimationFrame(this.getScroller.bind(this));
   }
 
   appendItems() {
