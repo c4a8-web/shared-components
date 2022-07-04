@@ -8,7 +8,6 @@ class TabList extends BaseComponent {
     super(root, options);
 
     this.tabSelector = '.tab-list__tab';
-
     this.bindEvents();
   }
 

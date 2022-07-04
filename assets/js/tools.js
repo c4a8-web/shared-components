@@ -208,6 +208,12 @@ class Tools {
         .replace('.', '9')
     );
   }
+
+  static getBreakpoint() {
+    const styles = getComputedStyle(document.body);
+
+    return styles.getPropertyValue('--breakpoint').trim();
+  }
 }
 
 export default Tools;

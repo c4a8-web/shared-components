@@ -1,0 +1,138 @@
+//TODO:
+//Colors from colors
+//breakpoints using mixins
+//use variables for fontsizes
+.tag-cloud {
+  background-color: var(--color-blue-dark);
+}
+
+.tag-cloud__container {
+  margin: auto;
+  li {
+    list-style: none;
+  }
+  a {
+    text-decoration: none;
+    padding: 5px;
+    color: var(--color-copy-light) !important;
+  }
+}
+
+.tag-cloud__header {
+  --size: 2rem;
+  margin: var(--size);
+  color: var(--color-copy-light);
+  h2 {
+    color: var(--color-copy-light);
+    font-weight: 400 !important;
+  }
+}
+
+.tag-cloud__content {
+  text-align: center;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tag-cloud__slider {
+  display: flex;
+  overflow-x: auto;
+  width: 150vw;
+
+  &::-webkit-scrollbar {
+    //check for other browsers
+    display: none;
+    background: transparent;
+  }
+}
+
+.tag-cloud__slider_placeholder {
+  width: 10px !important;
+}
+
+.tag-cloud__items {
+  display: flex;
+  width: 90%;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.tag-cloud__item {
+  --mobile-width: 200vw;
+
+  @include media-breakpoint-down(md) {
+    width: var(--mobile-width);
+    padding: spacing(3);
+    flex: 1 0 5%;
+    font-size: $font-size-2;
+  }
+  @include media-breakpoint-up(lg) {
+    font-size: $font-size-3;
+  }
+  @include media-breakpoint-up(xl) {
+    font-size: $font-size-4;
+  }
+
+  padding: spacing(4);
+  flex: 1 0 20%;
+  &[data-weight='0'] {
+    flex-grow: 0;
+    flex-basis: 15%;
+  }
+
+  &[data-weight='2'] {
+    flex: 1 1 40%;
+  }
+
+  &[data-weight='3'] {
+    flex: 1 1 auto;
+
+    @include media-breakpoint-down(md) {
+      width: var(--mobile-width);
+      font-size: $font-size-3;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-4;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $font-size-5;
+    }
+  }
+
+  &[data-weight] {
+    + [data-weight='0'] {
+      flex-shrink: 0;
+    }
+  }
+}
+
+.tag-cloud__item-link {
+  animation: 12.5s 0s ease-in-out blurry-orbit infinite;
+  animation-fill-mode: both;
+  transform: translate(var(--blurry-x1), var(--blurry-y1));
+  display: inline-block;
+
+  &[groupidentifier='1'] {
+    animation-direction: alternate-reverse;
+  }
+
+  &[groupidentifier='2'] {
+    animation-direction: alternate;
+  }
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+img {
+  width: 100%;
+  text-align: left;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
