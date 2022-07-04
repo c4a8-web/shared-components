@@ -28,10 +28,6 @@ class TagCloud extends BaseComponent {
     this.maxWeight = 3;
     this.isMouseOut = true;
 
-    this.scrollMoving = false;
-    this.tempValueScroll = -1;
-    this.borderReached = false;
-
     this.animate = new Animate();
 
     console.log('breakpoint', Tools.getBreakpoint());
@@ -46,7 +42,6 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    // this.getScroller();
     this.addScrollAnimation();
     this.bindEvents();
   }
@@ -170,59 +165,38 @@ class TagCloud extends BaseComponent {
     return Math.floor(Math.random() * (end - start + 1)) + start;
   }
 
-  getScroller() {
-    const scroll = this.slider.scrollLeft;
-    const step = 1;
-    const beginningReached = scroll === 0 ? true : false;
-
-    if (this.borderReached) {
-      this.scrollMoving = true;
-    } else if (beginningReached) {
-      this.scrollMoving = false;
-    }
-
-    this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step;
-    const repeating = this.slider.scrollLeft === this.tempValueScroll ? true : false;
-    this.borderReached = repeating && !beginningReached ? true : false;
-
-    this.tempValueScroll = this.slider.scrollLeft;
-    window.requestAnimationFrame(this.getScroller.bind(this));
-  }
-
   isBelowBreakpoint(){
     const breakpoint = Tools.getBreakpoint();
     return window.innerWidth < breakpoint;
   }
 
   addScrollAnimation() {
-    const elementToScroll = this.slider;
+    const elementToScroll = 0;
     const endPosition = this.slider.scrollWidth - this.slider.clientWidth;
-    console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
+    const duration = 20000;
+    let reverse = false;
 
+    console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
     console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
     console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
 
-    const duration = 40000;
-    let reverse = false;
 
     this.loopAnimation(elementToScroll, endPosition, duration, Animate.easing.linear, reverse);
   }
 
-  loopAnimation(from, to, duration, timing, draw, reverse) {
+  loopAnimation(from, to, duration, timing, reverse) {
+    const isEnd = 1;
+    let step = 0;
     this.animate.start({
       duration: duration,
       timing: timing,
       draw: (progress) => {
-        console.log('TagCloud ~ loopAnimation ~ progress', progress);
-
-        if (progress >= 0.5) {
-          reverse = true;
-        } else if ( progress == 1) {
-          reverse = false;
-        }
-
-        const step = reverse ? 2*to - (2*to* progress) : 2*to * progress;
+        step = !reverse ? (to - from) * progress : from + (to - from) * (1 - progress);
         this.slider.scrollLeft = step;
+
+        if (progress === isEnd) {
+          this.loopAnimation(from, to, duration, timing, !reverse);
+        }
       },
     });
   }
