@@ -58,6 +58,63 @@ class TagCloud extends BaseComponent {
         this.handleMouseOut(e?.currentTarget);
       });
     });
+
+    this.slider.addEventListener('touchstart', () => {
+      this.handleTouchStart();
+    })
+
+    this.slider.addEventListener('touchend', () => {
+      this.handleTouchEnd();
+    })
+  }
+
+  handleTouchStart() {
+    this.animate.pause();
+    this.gotDragged = true;
+  }
+
+  handleTouchEnd () {
+    const currentPosition = this.slider.scrollLeft;
+    const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
+    const lowerBorder = 0;
+    const distanceToUpperBorder = Math.abs(upperBorder - currentPosition);
+    const distanceToLowerBorder = Math.abs(lowerBorder - currentPosition);
+    let reverse = false;
+    const duration = 2000;
+    const timing = Animate.easing.linear;
+    let step = 0;
+    const isEnd = 1;
+
+    if (distanceToUpperBorder < distanceToLowerBorder) {
+      reverse = true;
+      this.animate.start({
+        duration: duration,
+        timing: timing,
+        draw: (progress) => {
+          step = currentPosition + (upperBorder - currentPosition) * (1 - progress);
+          this.slider.scrollLeft = step;
+
+          if (progress === isEnd) {
+            this.loopAnimation(lowerBorder, upperBorder, duration, timing, reverse);
+          }
+        },
+      });
+    } else if (distanceToUpperBorder > distanceToLowerBorder) {
+      reverse = false;
+      this.animate.start({
+        duration: duration,
+        timing: timing,
+        draw: (progress) => {
+          step = currentPosition + (lowerBorder - currentPosition) * (progress);
+          this.slider.scrollLeft = step;
+
+          if (progress === isEnd) {
+            this.loopAnimation(lowerBorder, upperBorder, duration, timing, reverse);
+          }
+        },
+      });
+    }
+
   }
 
   handleMouseOut(element) {

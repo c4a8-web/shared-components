@@ -23,6 +23,10 @@ class Animate {
     });
   }
 
+  pause() {
+    cancelAnimationFrame(this.requestId);
+  }
+
   static easing = {
     linear(timeFraction) {
       return timeFraction;

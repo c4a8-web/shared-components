@@ -33,6 +33,12 @@
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
+  &img {
+    width: 100%;
+    text-align: left;
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .tag-cloud__slider {
@@ -130,9 +136,3 @@
   }
 }
 
-img {
-  width: 100%;
-  text-align: left;
-  margin-left: 1rem;
-  margin-bottom: 1rem;
-}
