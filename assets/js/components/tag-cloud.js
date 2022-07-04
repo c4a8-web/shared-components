@@ -31,9 +31,7 @@ class TagCloud extends BaseComponent {
     this.tempValueScroll = -1;
     this.borderReached = false;
 
-
     this.animate = new Animate();
-
 
     this.init();
   }
@@ -46,7 +44,8 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    this.getScroller();
+    // this.getScroller();
+    this.addScrollAnimation();
     this.bindEvents();
   }
 
@@ -174,18 +173,48 @@ class TagCloud extends BaseComponent {
     const step = 1;
     const beginningReached = scroll === 0 ? true : false;
 
-    if (this.borderReached){
+    if (this.borderReached) {
       this.scrollMoving = true;
     } else if (beginningReached) {
       this.scrollMoving = false;
     }
 
-    this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step
+    this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step;
     const repeating = this.slider.scrollLeft === this.tempValueScroll ? true : false;
     this.borderReached = repeating && !beginningReached ? true : false;
 
     this.tempValueScroll = this.slider.scrollLeft;
     window.requestAnimationFrame(this.getScroller.bind(this));
+  }
+
+  addScrollAnimation() {
+    const elementToScroll = this.slider;
+    const endPosition = this.slider.scrollWidth - this.slider.clientWidth;
+    console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
+
+    console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
+    console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
+
+    const duration = 4000;
+
+    // this.loopAnimation(duration, Animate.easing.easeInOutCubic, () => {
+
+    // })
+  }
+
+  loopAnimation(from, to, duration, timing, draw, reverse) {
+    this.animate.start({
+      duration: duration,
+      timing: timing,
+      draw: (progress) => {
+        console.log('TagCloud ~ loopAnimation ~ progress', progress);
+
+        const step = reverse ? to * progress : from * progress;
+        // if we are at the end of the animation restart the animation
+
+        // this.slider.scrollLeft += to * progress
+      },
+    });
   }
 
   appendItems() {
