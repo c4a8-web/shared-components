@@ -161,6 +161,12 @@ class Tools {
   static getExtension(fileName) {
     return fileName.split('.').pop();
   }
+
+  static getBreakpoint() {
+    const styles = getComputedStyle(document.body);
+
+    return styles.getPropertyValue('--breakpoint').trim();
+  }
 }
 
 export default Tools;

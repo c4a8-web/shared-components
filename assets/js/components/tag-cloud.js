@@ -1,5 +1,6 @@
 import BaseComponent from './base-component.js';
 import Animate from '../animate.js';
+import Tools from '../tools.js';
 
 class TagCloud extends BaseComponent {
   static rootSelector = '.tag-cloud';
@@ -33,6 +34,7 @@ class TagCloud extends BaseComponent {
 
     this.animate = new Animate();
 
+    console.log('breakpoint', Tools.getBreakpoint());
     this.init();
   }
 
