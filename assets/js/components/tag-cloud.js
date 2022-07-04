@@ -42,7 +42,7 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    this.addScrollAnimation();
+    // this.addScrollAnimation();
     this.bindEvents();
   }
 
@@ -165,7 +165,7 @@ class TagCloud extends BaseComponent {
     return Math.floor(Math.random() * (end - start + 1)) + start;
   }
 
-  isBelowBreakpoint(){
+  isBelowBreakpoint() {
     const breakpoint = Tools.getBreakpoint();
     return window.innerWidth < breakpoint;
   }
@@ -176,10 +176,9 @@ class TagCloud extends BaseComponent {
     const duration = 20000;
     let reverse = false;
 
-    console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
-    console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
-    console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
-
+    // console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
+    // console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
+    // console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
 
     this.loopAnimation(elementToScroll, endPosition, duration, Animate.easing.linear, reverse);
   }
