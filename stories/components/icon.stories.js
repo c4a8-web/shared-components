@@ -15,6 +15,7 @@ export const Arrow = Template.bind({});
 
 Arrow.args = {
   icon: 'arrow',
+  // size: 4444,
 };
 
 export const ArrowLeft = Template.bind({});

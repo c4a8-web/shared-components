@@ -163,7 +163,7 @@
 }
 
 .hero-text-image__overline {
-  @include background-grow(var(--color-yellow));
+  @include background-grow($color: var(--color-yellow), $spacing: spacing(1));
 
   display: inline-block;
   margin-bottom: spacing(2);

@@ -1,6 +1,10 @@
 .card {
   &:not(.card--large) {
-    max-width: unquote('min(480px, 100vw)');
+    max-width: unquote('min(480px, 100%)');
+
+    @include media-breakpoint-up(md) {
+      max-width: unquote('min(480px, 100vw)');
+    }
   }
 
   &.card--event {
@@ -12,6 +16,12 @@
   .ie-curved-x,
   .ie-curved-y {
     display: none;
+  }
+
+  .card-img-top {
+    img {
+      width: 100%;
+    }
   }
 
   .card-img {

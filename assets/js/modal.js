@@ -3,7 +3,6 @@ import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
 import RecruiterBox from './recruiter-box.js';
 import Tools from './tools.js';
-// import { initComponentList } from './index.js';
 
 class Modal {
   static rootSelector = '.modal';
@@ -150,14 +149,14 @@ class Modal {
   }
 
   static open(element) {
-    if (window.$) {
+    if (element && window.$) {
       // TODO replace with custom event trigger ?
       $(element).modal('show');
     }
   }
 
   static close(element) {
-    if (window.$) {
+    if (element && window.$) {
       $(element).modal('hide');
 
       Modal.resetModal(element);

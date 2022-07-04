@@ -1,6 +1,3 @@
-{% comment %}
-                                      NOTICE ! There is a static version of this file in static-templates.js so if you update this file update the static version as well ! NOTICE
-{% endcomment %}
 <!-- Shared Modal Section -->
 {%- assign modalForm = include.form -%}
 {%- assign modalSuccess = include.success -%}
@@ -9,33 +6,21 @@
 {%- assign modalApiUrl = include.apiUrl -%}
 {%- assign modalJobId = include.jobId -%}
 
-<div class="modal fade" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)"
-  {% if modalClientName %}data-client-name="{{ modalClientName }}" {% endif %}
-  {% if modalApiUrl %}data-api-url="{{ modalApiUrl }}" {% endif %}
-  {% if modalJobId %}data-job-id="{{ modalJobId }}" {% endif %}
+<modal
+    client-name="{{ modalClientName }}"
+    api-url="{{ modalApiUrl }}"
+    job-id="{{ modalJobId }}"
 >
-  <div class="modal-dialog modal-xl">
-    <div class="modal__content">
-      <div class="modal__header">
-        <div class="modal__close">
-          {%
-            include icon.html
-            icon='close'
-            hover=true
-            circle=true
-          %}
-        </div>
-      </div>
-      <div class="modal__body">
-        {% if modalApplication %}
-          {%
-            include modal-application.html
-            form=modalForm
-            success=modalSuccess
-          %}
-        {% endif %}
-      </div>
-    </div>
-  </div>
-</div>
+  {% if modalApplication %}
+
+    {% comment %}
+      TODO check if this part is static. i think it is so no need for a vue component
+    {% endcomment %}
+    {%
+      include modal-application.html
+      form=modalForm
+      success=modalSuccess
+    %}
+  {% endif %}
+</modal>
 <!-- End Shared Modal Section -->

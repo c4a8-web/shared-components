@@ -16,8 +16,6 @@ class PageDetail extends BaseComponent {
 
     this.loadingDelay = 300;
 
-    this.templates = window.Templates;
-
     this.init();
   }
 
@@ -25,6 +23,8 @@ class PageDetail extends BaseComponent {
     // TODO check why referrer is empty on staging. propably due to content security policy
 
     if (document.referrer.indexOf(document.location.host) !== -1) {
+      if (this.isVueComponent()) return;
+
       this.root.classList.add(this.hasBackClass);
     }
   }
@@ -35,8 +35,14 @@ class PageDetail extends BaseComponent {
     this.stopLoading();
   }
 
+  isVueComponent() {
+    return this.root.classList.contains('vue-component');
+  }
+
   stopLoading() {
     setTimeout(() => {
+      if (this.isVueComponent()) return;
+
       this.root.classList.remove(State.LOADING);
     }, this.loadingDelay);
   }

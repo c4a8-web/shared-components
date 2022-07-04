@@ -3,7 +3,7 @@
 {%- assign ctaListClasses = include.classes -%}
 
 {% for cta in ctaListList %}
-  <div class="{% if ctaListClasses %}{{ ctaListClasses }}{% else %}d-inline-block mr-3 mb-2{% endif %}">
+  <div class="{% if ctaListClasses %}{{ ctaListClasses }}{% else %}cta-list d-inline-block mr-3 mb-2{% endif %}">
     {%
       include cta.html
       text=cta.ctaText
@@ -14,6 +14,8 @@
       link=cta.link
       skin=cta.skin
       grow=cta.grow
+      external=cta.external
+      analytics=cta.analytics
     %}
   </div>
 {% endfor %}

@@ -19,6 +19,7 @@ $color-blue-medium: #0072c6;
   --color-blue-medium: #{$color-blue-medium};
   --color-blue-light: #5cbbff;
   --color-blue-lighter: #77c6ff;
+  --color-blue-jeans: #24a1fa;
   --color-conifer: #acd653;
   --color-green: #acd653;
   --color-frost: #edf5db;
@@ -54,9 +55,8 @@ $color-blue-medium: #0072c6;
   --color-cyprus: #004144;
   --color-wax-flower: #ffbb9a;
   --color-manhatten: #f3b394;
-  --color-jacarta: #19122F;
+  --color-jacarta: #19122f;
   --color-wistful: #b2a7d2;
-  
 
   --color-white: #fff;
 
@@ -116,7 +116,7 @@ $color-blue-medium: #0072c6;
 
   --color-fab-background: var(--color-yellow);
 
-  --color-testimonials: var(--color-primary);
+  --color-testimonials: var(--color-blue-jeans);
 
   --color-event-teaser-timing: var(--color-manatee);
   --color-event-teaser-timing-highlight: var(--color-orange);
@@ -137,6 +137,8 @@ $color-blue-medium: #0072c6;
   --color-back-to-top-hover-foreground: var(--color-white);
 
   --color-background: var(--color-white);
+
+  --color-faq-border: var(--color-trout);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);
