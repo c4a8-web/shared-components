@@ -170,9 +170,8 @@ class TagCloud extends BaseComponent {
   }
 
   getScroller() {
-    let scroll = this.slider.scrollLeft;
+    const scroll = this.slider.scrollLeft;
     const step = 1;
-
     const beginningReached = scroll === 0 ? true : false;
 
     if (this.borderReached){
@@ -183,12 +182,7 @@ class TagCloud extends BaseComponent {
 
     this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step
     const repeating = this.slider.scrollLeft === this.tempValueScroll ? true : false;
-
-    if ((repeating) && (!beginningReached)) {
-      this.borderReached = true;
-    } else {
-      this.borderReached = false;
-    }
+    this.borderReached = repeating && !beginningReached ? true : false;
 
     this.tempValueScroll = this.slider.scrollLeft;
     window.requestAnimationFrame(this.getScroller.bind(this));

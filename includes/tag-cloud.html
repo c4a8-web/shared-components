@@ -21,12 +21,16 @@
         <ul class="tag-cloud__items" data-items='{{ tagCloudItems | jsonify }}'>
           {% comment %}
           {% for item in tagCloudItems %}
-            <li class="tag-cloud__item">
-              <a class="tag-cloud__item-link" href="{{ item.link }}">{{ item.title }}</a>
-            </li>
+          <li class="tag-cloud__item">
+            <a class="tag-cloud__item-link" href="{{ item.link }}">{{ item.title }}</a>
+          </li>
           {% endfor %}
           {% endcomment %}
         </ul>
       </div>
+    </div>
+
+    <img src="#" alt="Arrow"></img>
+
   </div>
 </div>
