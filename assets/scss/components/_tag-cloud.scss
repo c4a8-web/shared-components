@@ -49,6 +49,12 @@
   overflow-x: auto;
   width: 150vw;
 
+  &::-webkit-scrollbar {
+    //check for other browsers
+    display: none;
+    background: transparent;
+  }
+
 }
 
 .tag-cloud__slider_placeholder {

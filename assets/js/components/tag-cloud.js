@@ -172,7 +172,7 @@ class TagCloud extends BaseComponent {
     //Needs to be called at Breakpoint md
     //and stopped outside of Breakpoint md
     let scroll = this.slider.scrollLeft;
-    const step = 10;
+    const step = 100;
 
     //find border in a different way bcs the Abs diff will never be 0.
     const border = this.slider.scrollWidth;
@@ -187,6 +187,7 @@ class TagCloud extends BaseComponent {
 
     this.slider.scrollLeft = this.scrollMoving ? scroll - step : scroll + step
     this.tempValueScroll = this.slider.scrollLeft;
+    window.requestAnimationFrame(this.getScroller);
   }
 
   appendItems() {
