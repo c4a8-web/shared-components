@@ -2,7 +2,7 @@
   {%- assign testimonialsSliderHeadline = include.json.headline -%}
   {%- assign testimonialsSliderHeadlineLevel = include.json.headlineLevel -%}
   {%- assign testimonialsSliderSubline = include.json.subline -%}
-  {%- assign testimonialsSliderSlides = include.json.slides -%}
+  {%- assign testimonialsSliderSlides = include.slides | include.json.slides -%}
 {%- else -%}
   {%- assign testimonialsSliderHeadline = include.headline -%}
   {%- assign testimonialsSliderHeadlineLevel = include.headlineLevel -%}
@@ -10,8 +10,11 @@
   {%- assign testimonialsSliderSlides = include.slides -%}
 {%- endif -%}
 
+{%- assign testimonialsSliderSpacing = include.spacing | default: 'space-bottom-3' -%}
+{%- assign testimonialsSliderSlides = testimonialsSliderSlides | sort: 'uid' -%}
+
 <!-- Shared Testimonial Slider Section -->
-<div class="testimonials-slider container space-bottom-3">
+<div class="testimonials-slider container {{ testimonialsSliderSpacing }}">
   <div class="testimonials-slider__header row">
     <div class="col-lg-12">
       {%
@@ -56,13 +59,15 @@
         }'
       >
         {% for testimonial in testimonialsSliderSlides %}
-          {%
-            include testimonial-teaser.html
-            href=testimonial.href
-            name=testimonial.name
-            title=testimonial.title
-            img=testimonial.img
-          %}
+          {% unless testimonial.hidden %}
+            {%
+              include testimonial-teaser.html
+              href=testimonial.url
+              name=testimonial.name
+              title=testimonial.title
+              img=testimonial.sliderImg
+            %}
+          {% endunless %}
         {% endfor %}
       </div>
     </div>

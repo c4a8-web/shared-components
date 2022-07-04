@@ -136,7 +136,8 @@ export const HeroTextImage = Template.bind({});
 HeroTextImage.args = {
   hero: {
     light: true,
-    overline: 'Karriere bei einem der führenden Microsoft Gold Partner',
+    overline:
+      'Karriere bei einem der führenden Microsoft Gold Partner. Lorem ipsum dolor sit two lines would need to fit.',
     headline: 'Komm zu uns. Finde deinen Platz.',
     subline: 'Entdecke all die guten Gründe, warum es sich lohnt, bei glueckkanja-gab zu arbeiten',
     fullscreen: {
@@ -190,5 +191,20 @@ HeroTextImageStudy.args = {
       spacing: 'space-top-lg-4',
     },
     bgColor: 'var(--color-hero-study-background)',
+  },
+};
+
+export const HeroTextShape = Template.bind({});
+
+HeroTextShape.args = {
+  hero: {
+    overline: 'Wir schaffen die optimale Arbeitsumgebung',
+    headline: 'Consulting Services',
+    subline:
+      'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+    background: {
+      img: getAssetPath('svg/shapes/s-block.svg'),
+      alt: 'Shape',
+    },
   },
 };

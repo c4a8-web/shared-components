@@ -103,8 +103,33 @@ $slick-arrow-offset: 2;
     display: flex;
   }
 
+  .slick-list {
+    width: calc(100% + #{$grid-gutter-width});
+
+    .slick-track {
+      left: calc((-#{$grid-gutter-width} - 1px) / 2);
+    }
+
+    @include media-breakpoint-up(sm) {
+      width: calc(100% + 400px);
+
+      .slick-track {
+        left: -#{$grid-gutter-width};
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      width: 100%;
+
+      .slick-track {
+        left: 0;
+      }
+    }
+  }
+
   .slick-slide {
     margin: 0 10px 0 0;
+    height: auto;
 
     @include media-breakpoint-up(lg) {
       margin: 0;

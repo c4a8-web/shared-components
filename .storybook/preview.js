@@ -11,6 +11,7 @@ import { Styles } from './themeImports';
 import { STORY_RENDERED } from '@storybook/core-events';
 import addons from '@storybook/addons';
 import { EVENTS, DEFAULT_THEME, addStyles, addBaseClass } from './themes/src/themes';
+import { HTML_DOWNLOAD_EVENTS, downloadHtml } from './html-download/src/exports';
 
 let currentTheme = DEFAULT_THEME;
 
@@ -33,6 +34,12 @@ const removeModal = function () {
   }
 };
 
+function vueForceUpdate() {
+  const customEvent = new CustomEvent('VUE_FORCE_UPDATE', {});
+
+  document.dispatchEvent(customEvent);
+}
+
 channel.on(EVENTS.CHANGE, (theme) => {
   loadTheme(theme);
   Interim();
@@ -41,8 +48,13 @@ channel.on(EVENTS.CHANGE, (theme) => {
 
 channel.on(STORY_RENDERED, () => {
   loadTheme(currentTheme);
+  vueForceUpdate();
   Interim();
   removeModal();
+});
+
+channel.on(HTML_DOWNLOAD_EVENTS.CHANGE, (e) => {
+  downloadHtml(e);
 });
 
 export const parameters = {
@@ -51,6 +63,11 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
+    },
+  },
+  options: {
+    storySort: {
+      order: ['Components', 'Pages', 'Context', 'Docs'],
     },
   },
 };

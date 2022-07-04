@@ -1,4 +1,5 @@
 import i18n from './i18n/index.js';
+import VueSetup from './vue-setup.js';
 
 const handleLoadingError = function (error) {
   console.error('There was an issue loading a component. It might be blocked my an Adblock Script.', error);
@@ -12,7 +13,6 @@ const Form = import('./components/form.js')
 
 import Events from './events.js';
 import State from './state.js';
-import Templates from './templates.js';
 import Tools from './tools.js';
 
 let componentLoaadingList;
@@ -50,16 +50,6 @@ const componentList = [
     .catch(handleLoadingError),
   Form,
   import('./components/google-maps.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./components/job-list-detail.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./components/job-list.js')
     .then((module) => {
       return module.default;
     })
@@ -106,6 +96,12 @@ const refreshAnimateNumber = function (parent) {
   });
 };
 
+const loadThemeComponents = function () {
+  const customEvent = new CustomEvent('SHARED_COMPONENTS_READY', {});
+
+  document.dispatchEvent(customEvent);
+};
+
 const initComponentList = function (element) {
   for (let i = 0; i < componentLoaadingList.length; i++) {
     const component = componentLoaadingList[i];
@@ -118,13 +114,10 @@ const initComponentList = function (element) {
   document.addEventListener(Events.REFRESH_ANIMATE_NUMBERS, captureRefreshAnimateNumber);
 
   refreshAnimateNumber(document);
+  loadThemeComponents();
 };
 
-const initSharedComponents = function () {
-  window.Templates = new Templates();
-
-  window.i18n = new i18n();
-
+const loadComponents = function () {
   Promise.all(componentList).then((data) => {
     componentLoaadingList = data;
 
@@ -132,8 +125,18 @@ const initSharedComponents = function () {
   });
 };
 
+const initSharedComponents = function () {
+  window.i18n = new i18n();
+
+  VueSetup();
+};
+
 document.addEventListener('DOMContentLoaded', (e) => {
   initSharedComponents();
+});
+
+document.addEventListener('VUE_IS_MOUNTED', (e) => {
+  loadComponents();
 });
 
 export { Form, initSharedComponents, initComponentList, State };

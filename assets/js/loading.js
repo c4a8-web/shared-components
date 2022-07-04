@@ -2,7 +2,7 @@ import Tools from './tools.js';
 import State from './state.js';
 
 class Loading {
-  constructor(root) {
+  constructor(root, callback) {
     this.root = root;
     this.maxShapes = 3;
     this.loadingClass = 'loading';
@@ -28,7 +28,7 @@ class Loading {
     this.intervals = [];
     this.hasShapes = false;
 
-    this.init();
+    this.init(callback);
   }
 
   getRandomColor(runs) {
@@ -116,16 +116,20 @@ class Loading {
     );
   }
 
-  init() {
+  init(callback) {
+    if (callback && typeof callback === 'function') return callback();
+
     this.root.classList.add(this.loadingClass);
   }
 
-  on() {
+  on(ignoreRoot) {
     if (!this.hasShapes) {
       this.hasShapes = true;
 
       this.createShapes();
     }
+
+    if (ignoreRoot === true) return;
 
     this.root.classList.add(State.LOADING);
   }
@@ -136,12 +140,14 @@ class Loading {
     });
   }
 
-  off(force) {
+  off(force, ignoreRoot) {
     if (force) {
       this.clear();
     } else {
       setTimeout(() => {
         this.clear();
+
+        if (ignoreRoot === true) return;
 
         this.root.classList.remove(State.LOADING);
       }, 100);

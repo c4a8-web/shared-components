@@ -162,6 +162,53 @@ class Tools {
     return fileName.split('.').pop();
   }
 
+  static validateVueProps(component) {
+    const propsOptions = component?.$?.propsOptions[0];
+    const props = component?.$props;
+    const data = { props: {} };
+
+    Object.keys(props).map((prop) => {
+      let value = props[prop];
+
+      if (value === '') {
+        value = propsOptions[prop].default;
+      }
+
+      data.props[prop] = value;
+    });
+
+    return data;
+  }
+
+  static isTrue(value) {
+    return value === true || value === 'true';
+  }
+
+  static capitalize(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+  static sleep(milliseconds) {
+    return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  }
+
+  static randomRange(from, to) {
+    return Math.floor(Math.random() * (to - from + 1) + from);
+  }
+
+  static uuid() {
+    const randomData = Date.now().toString(16) + Math.random().toString(4) + '0'.repeat(16);
+    const random = Tools.randomRange(0, 8);
+    const randomSecond = Tools.randomRange(0, 16);
+
+    return (
+      'u' +
+      [randomData.substring(random, random + 8), randomData.substring(randomSecond, randomSecond + 4)]
+        .join('-')
+        .replace('.', '9')
+    );
+  }
+
   static getBreakpoint() {
     const styles = getComputedStyle(document.body);
 

@@ -56,7 +56,6 @@ export const PrimaryButtonCutoff = Template.bind({});
 
 PrimaryButtonCutoff.args = {
   text: 'Primary Button Cutoff',
-  href: 'javascript:void(0)',
   skin: 'primary is-cutoff',
   button: true,
 };

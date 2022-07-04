@@ -304,6 +304,10 @@
   pointer-events: none;
 }
 
+@mixin vue-loading {
+  display: none;
+}
+
 @mixin img-to-color($color: #000, $opacity: 1) {
   $r: red($color) / 255;
   $g: green($color) / 255;

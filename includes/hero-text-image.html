@@ -50,8 +50,21 @@
 
 {%- if heroTextImageHero.background -%}
   {%- capture heroClasses -%}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{%- endcapture -%}
+  {%- capture heroImage -%}
+    {% if heroTextImageHero.background.img %}
+      {%
+        include img.html
+        img=heroTextImageHero.background.img
+        alt=heroTextImageHero.background.alt
+        class=heroClasses
+        cloudinary=heroTextImageBackgroundCloudinary
+        imgSrcSets=heroTextImageSrcSet
+      %}
+    {% endif %}
+  {% endcapture -%}
 {%- else -%}
   {%- assign heroClasses = "" -%}
+  {%- assign heroImage = "" -%}
 {%- endif -%}
 
 {%- if heroTextImageVariant == '' and heroTextImagePattern -%}
@@ -76,14 +89,7 @@
     <div class="row justify-content-lg-between align-items-lg-center pt-lg-5 position-relative">
       {% if heroTextImageHero.background %}
         <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
-          {%
-            include img.html
-            img=heroTextImageHero.background.img
-            alt=heroTextImageHero.background.alt
-            class=heroClasses
-            cloudinary=heroTextImageBackgroundCloudinary
-            imgSrcSets=heroTextImageSrcSet
-          %}
+          {{ heroImage }}
         </div>
       {% endif %}
       <div class="hero-text-image__wrapper col-lg-8">
@@ -127,18 +133,11 @@
       </div>
     </div>
   </div>
-  {%- if heroTextImageHero.background and heroTextImageHero.background.img -%}
+  {%- if heroTextImageHero.background -%}
     <div class="hero-text-image__background container position-absolute z-index-2 space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
       <div class="row">
         <div class="hero-text-image__background-wrapper col-sm-12">
-          {%
-            include img.html
-            img=heroTextImageHero.background.img
-            alt=heroTextImageHero.background.alt
-            cloudinary=heroTextImageBackgroundCloudinary
-            class=heroClasses
-            imgSrcSets=heroTextImageSrcSet
-          %}
+          {{ heroImage }}
         </div>
       </div>
     </div>

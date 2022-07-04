@@ -1,0 +1,10 @@
+<!-- Shared Shape Section -->
+{%- assign shapeName = include.name -%}
+{%- assign shapeShapes = include.shapes -%}
+
+<shape
+      name="{{ shapeName }}"
+      :shapes="{{ shapeShapes | jsonify | escape }}"
+>
+</shape>
+<!-- End Shared Shape Section -->

@@ -109,21 +109,18 @@ $job-list-detail-transition-3-delay: 1.8s;
 
 .job-list__detail {
   &.is-loading {
-    @include media-breakpoint-up(lg) {
-      &::before {
-        width: 0;
-      }
+    &::before {
+      width: 0;
+    }
 
-      .job-list__detail-animation-1,
-      .job-list__detail-animation-2,
-      // .job-list__detail-animation-3,
-      .cta,
-      .job-list__detail-gender,
-      .job-list__detail-headline {
-        opacity: 0;
-        transition: none;
-        pointer-events: none;
-      }
+    .job-list__detail-animation-1,
+    .job-list__detail-animation-2,
+    .cta,
+    .job-list__detail-gender,
+    .job-list__detail-headline {
+      opacity: 0;
+      transition: none;
+      pointer-events: none;
     }
   }
 
@@ -133,25 +130,11 @@ $job-list-detail-transition-3-delay: 1.8s;
 
     color: var(--color-job-list-detail-copy);
     word-break: break-word;
-
-    // @include media-breakpoint-up(lg) {
-    //   transition: opacity 0.4s $job-list-detail-transition-1-delay $animation-transition;
-    // }
   }
 
-  // .job-list__detail-animation-2,
-  // .cta,
   .job-list__detail-gender {
-    @include media-breakpoint-up(lg) {
-      transition: opacity 0.6s $job-list-detail-transition-2-delay $animation-transition;
-    }
+    transition: opacity 0.6s $job-list-detail-transition-2-delay $animation-transition;
   }
-
-  // .job-list__detail-animation-3 {
-  //   @include media-breakpoint-up(lg) {
-  //     transition: opacity 0.6s $job-list-detail-transition-2-delay $animation-transition;
-  //   }
-  // }
 }
 
 .job-list__detail-start {
@@ -168,4 +151,9 @@ $job-list-detail-transition-3-delay: 1.8s;
 
 .job-list__detail-maps {
   margin-top: spacing(22);
+}
+
+job-list-detail {
+  min-height: 100vh;
+  display: block;
 }

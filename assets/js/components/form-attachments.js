@@ -20,7 +20,7 @@ class FormAttachments extends BaseComponent {
     this.error = this.root.querySelector(this.errorSelector);
     this.base64 = this.root.querySelector(FormAttachments.base64Selector);
 
-    this.isRequired = this.file.required;
+    this.isRequired = this.file?.required;
     this.requiredMsg = this.error?.innerText;
 
     this.bindEvents();

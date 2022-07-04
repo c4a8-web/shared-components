@@ -11,10 +11,7 @@
 
   &.link {
     svg {
-      animation: moveRightLeft;
-      animation-duration: 0.4s;
-      animation-fill-mode: forwards;
-      animation-timing-function: $animation-transition;
+      @include move-right-left;
       stroke: var(--color-svg-icon--hover);
     }
   }
@@ -178,6 +175,8 @@
 
   .cta {
     color: var(--color-primary);
+    -webkit-appearance: none;
+    appearance: none;
 
     &:not(.btn):not(.custom):not(.nav-link) {
       &.is-light {
@@ -260,4 +259,8 @@
       }
     }
   }
+}
+
+cta {
+  @include vue-loading;
 }

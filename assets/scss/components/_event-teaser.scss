@@ -394,6 +394,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     height: 100%;
     width: auto;
     transform-origin: top right;
+    image-rendering: -webkit-optimize-contrast;
   }
 }
 

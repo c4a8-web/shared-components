@@ -59,13 +59,13 @@
     &:nth-child(2n) {
       .testimonial-teaser__wrapper {
         margin-top: spacing(22);
-        margin-left: spacing(6);
         margin-right: spacing(6);
       }
     }
 
     .testimonial-teaser__wrapper {
       margin-right: 1px;
+      margin-left: spacing(7);
     }
   }
 

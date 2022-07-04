@@ -1,7 +1,8 @@
 # List
 
-- webcasts und blogs zusammen über tags in blog-recent
 - Vue Proof of Concept
+- gotcha hidden field erstmal nicht hidden dann im js dann ausblendenl
+- how to create a story variant ?
 - fully migrade
 
   - card.html
@@ -29,3 +30,4 @@
 - aside in eine komponente umziehen. so dass man beliebig viele texte als paragraph übergeben kann und 1 bild für das aside element als html tag ohne klasse
 - text für varianten erstellen nochmal anpassen between includes and html noch klarer erklären
 - try out the mix-blend-mode: difference on the detail pages
+- patch package https://www.npmjs.com/package/patch-package for vue js

@@ -12,6 +12,7 @@ const State = {
   EXPANDED: 'is-expanded',
   OFF_SCREEN: 'is-off-screen',
   COLLAPSED: 'is-collapsed',
+  IS_COLLAPSING: 'is-collapsing',
   SHOW: 'show',
   FADE: 'fade',
   INITIALIZED: 'is-initialized',

@@ -39,6 +39,14 @@ h4.args = {
   text: 'Headline Level 4',
 };
 
+export const h1WithH4Style = Template.bind({});
+
+h1WithH4Style.args = {
+  level: 'h1',
+  text: 'Headline Level 1 with H4 Style',
+  classes: 'h4-font-size',
+};
+
 // export const h5 = Template.bind({});
 
 // h5.args = {
