@@ -8,9 +8,11 @@
 
 .tag-cloud__container {
   margin: auto;
+
   li {
     list-style: none;
   }
+
   a {
     text-decoration: none;
     padding: 5px;
@@ -22,6 +24,7 @@
   --size: 2rem;
   margin: var(--size);
   color: var(--color-copy-light);
+
   h2 {
     color: var(--color-copy-light);
     font-weight: 400 !important;
@@ -33,7 +36,9 @@
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  &img {
+
+  img {
+    display: none;
     width: 100%;
     text-align: left;
     margin-left: 1rem;
@@ -65,25 +70,11 @@
   justify-content: center;
 }
 
-
 .tag-cloud__item {
   --mobile-width: 200vw;
-
-  @include media-breakpoint-down(md) {
-    width: var(--mobile-width);
-    padding: spacing(3);
-    flex: 1 0 5%;
-    font-size: $font-size-2;
-  }
-  @include media-breakpoint-up(lg) {
-    font-size: $font-size-3;
-  }
-  @include media-breakpoint-up(xl) {
-    font-size: $font-size-4;
-  }
-
   padding: spacing(4);
   flex: 1 0 20%;
+
   &[data-weight='0'] {
     flex-grow: 0;
     flex-basis: 15%;
@@ -115,6 +106,21 @@
       flex-shrink: 0;
     }
   }
+
+  @include media-breakpoint-down(md) {
+    width: var(--mobile-width);
+    padding: spacing(3);
+    flex: 1 0 5%;
+    font-size: $font-size-2;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: $font-size-3;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: $font-size-4;
+  }
 }
 
 .tag-cloud__item-link {
@@ -135,4 +141,3 @@
     animation-play-state: paused;
   }
 }
-

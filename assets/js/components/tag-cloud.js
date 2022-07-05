@@ -13,13 +13,10 @@ class TagCloud extends BaseComponent {
     this.itemLinkClass = 'tag-cloud__item-link';
     this.slider = root.querySelector('.tag-cloud__slider');
 
-    this.itemsPerOuterRow = 3;
-    // this.itemsPerInnerRow = 5;
-
     this.items = this.itemsContainer?.dataset.items ? JSON.parse(this.itemsContainer?.dataset.items) : [];
 
     this.maxCoordinate = 40; // TODO maybe connect to the padding property to make sure it doesn't get out of bounce ?
-
+    this.itemsPerOuterRow = 3;
     this.minCoordinate = 10;
     this.minBlur = 2;
     this.maxBlur = 10;
@@ -61,11 +58,11 @@ class TagCloud extends BaseComponent {
 
     this.slider.addEventListener('touchstart', () => {
       this.handleTouchStart();
-    })
+    });
 
     this.slider.addEventListener('touchend', () => {
       this.handleTouchEnd();
-    })
+    });
   }
 
   handleTouchStart() {
@@ -73,43 +70,40 @@ class TagCloud extends BaseComponent {
     this.gotDragged = true;
   }
 
-  handleTouchEnd () {
+  handleTouchEnd() {
     const currentPosition = this.slider.scrollLeft;
     console.log(currentPosition);
+
+    // TODO refactor border to position. i think border is misleading
     const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
     const lowerBorder = 0;
     const distanceToUpperBorder = Math.abs(upperBorder - currentPosition);
     const distanceToLowerBorder = Math.abs(lowerBorder - currentPosition);
-    let reverse = false;
     const duration = 20000;
     const timing = Animate.easing.linear;
     const distance = distanceToUpperBorder < distanceToLowerBorder ? true : false;
+    const startPosition = currentPosition;
+    const endPosition = distance ? lowerBorder : upperBorder;
+    const reverse = distance ? true : false;
 
-    if (distance) {
-      reverse = false;
-      this.moveTo(currentPosition, lowerBorder, duration, timing, reverse);
-    } else if (!distance) {
-      reverse = true;
-      this.moveTo(currentPosition, upperBorder, duration, timing, reverse);
-    }
-
+    this.moveTo(startPosition, endPosition, duration, timing, reverse);
   }
 
   moveTo(currentPosition, Border, duration, timing, reverse) {
     const borderDiff = Math.abs(Border - currentPosition);
     const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
     const lowerBorder = 0;
+
     this.animate.start({
       duration: duration,
       timing: timing,
       draw: (progress) => {
-        const stepX = !reverse ? currentPosition + borderDiff * progress : currentPosition - borderDiff * (progress);
+        const stepX = !reverse ? currentPosition + borderDiff * progress : currentPosition - borderDiff * progress;
         this.slider.scrollLeft = stepX;
 
         if (progress === 1) {
-          reverse = !reverse;
           //loop durch move ersetzten oder moveTo durch loop ersetzten
-          this.loopAnimation(lowerBorder, upperBorder, duration, timing, reverse);
+          this.loopAnimation(lowerBorder, upperBorder, duration, timing, !reverse);
         }
       },
     });
@@ -144,10 +138,6 @@ class TagCloud extends BaseComponent {
 
       const weight = Math.ceil(item.title.length / weightThreshold);
       this.items[i].weighting = weight > this.maxWeight ? this.maxWeight : weight;
-
-      /*const paddingOfElement = window.getComputedStyle(element, null).getPropertyValue('padding-top') * 2;
-      console.log(paddingOfElement);
-      this.maxCoordinate.push(paddingOfElement);*/
     }
   }
 
@@ -220,7 +210,7 @@ class TagCloud extends BaseComponent {
     return Math.floor(Math.random() * (end - start + 1)) + start;
   }
 
-  isBelowBreakpoint(){
+  isBelowBreakpoint() {
     const breakpoint = Tools.getBreakpoint();
     return window.innerWidth < breakpoint;
   }
@@ -229,12 +219,12 @@ class TagCloud extends BaseComponent {
     const elementToScroll = 0;
     const endPosition = this.slider.scrollWidth - this.slider.clientWidth;
     const duration = 20000;
+
     let reverse = false;
 
-    console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
-    console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
-    console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
-
+    // console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
+    // console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
+    // console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
 
     this.loopAnimation(elementToScroll, endPosition, duration, Animate.easing.linear, reverse);
   }
@@ -242,6 +232,7 @@ class TagCloud extends BaseComponent {
   loopAnimation(from, to, duration, timing, reverse) {
     const isEnd = 1;
     let step = 0;
+
     this.animate.start({
       duration: duration,
       timing: timing,
