@@ -26,6 +26,8 @@ class TagCloud extends BaseComponent {
     this.isMouseOut = true;
 
     this.animate = new Animate();
+    this.delay = 500;
+    this.duration = 20000;
 
     console.log('breakpoint', Tools.getBreakpoint());
     this.init();
@@ -61,7 +63,8 @@ class TagCloud extends BaseComponent {
     });
 
     this.slider.addEventListener('touchend', () => {
-      this.handleTouchEnd();
+
+      setTimeout(() => {this.handleTouchEnd();}, this.delay);
     });
   }
 
@@ -79,14 +82,13 @@ class TagCloud extends BaseComponent {
     const lowerBorder = 0;
     const distanceToUpperBorder = Math.abs(upperBorder - currentPosition);
     const distanceToLowerBorder = Math.abs(lowerBorder - currentPosition);
-    const duration = 20000;
     const timing = Animate.easing.linear;
     const distance = distanceToUpperBorder < distanceToLowerBorder ? true : false;
     const startPosition = currentPosition;
     const endPosition = distance ? lowerBorder : upperBorder;
     const reverse = distance ? true : false;
 
-    this.moveTo(startPosition, endPosition, duration, timing, reverse);
+    this.moveTo(startPosition, endPosition, this.duration, timing, reverse);
   }
 
   moveTo(currentPosition, Border, duration, timing, reverse) {
