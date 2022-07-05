@@ -78,34 +78,34 @@ class TagCloud extends BaseComponent {
     console.log(currentPosition);
 
     // TODO refactor border to position. i think border is misleading
-    const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
-    const lowerBorder = 0;
-    const distanceToUpperBorder = Math.abs(upperBorder - currentPosition);
-    const distanceToLowerBorder = Math.abs(lowerBorder - currentPosition);
+    const upperLimit = this.slider.scrollWidth - this.slider.clientWidth;
+    const lowerLimit = 0;
+    const distanceToUpperLimit = Math.abs(upperLimit - currentPosition);
+    const distanceToLowerLimit = Math.abs(lowerLimit - currentPosition);
     const timing = Animate.easing.linear;
-    const distance = distanceToUpperBorder < distanceToLowerBorder ? true : false;
+    const distance = distanceToUpperLimit < distanceToLowerLimit ? true : false;
     const startPosition = currentPosition;
-    const endPosition = distance ? lowerBorder : upperBorder;
+    const endPosition = distance ? lowerLimit : upperLimit;
     const reverse = distance ? true : false;
 
     this.moveTo(startPosition, endPosition, this.duration, timing, reverse);
   }
 
-  moveTo(currentPosition, Border, duration, timing, reverse) {
-    const borderDiff = Math.abs(Border - currentPosition);
-    const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
-    const lowerBorder = 0;
+  moveTo(currentPosition, limit, duration, timing, reverse) {
+    const limitDiff = Math.abs(limit - currentPosition);
+    const upperLimit = this.slider.scrollWidth - this.slider.clientWidth;
+    const lowerLimit = 0;
 
     this.animate.start({
       duration: duration,
       timing: timing,
       draw: (progress) => {
-        const stepX = !reverse ? currentPosition + borderDiff * progress : currentPosition - borderDiff * progress;
+        const stepX = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
         this.slider.scrollLeft = stepX;
 
         if (progress === 1) {
           //loop durch move ersetzten oder moveTo durch loop ersetzten
-          this.loopAnimation(lowerBorder, upperBorder, duration, timing, !reverse);
+          this.loopAnimation(lowerLimit, upperLimit, duration, timing, !reverse);
         }
       },
     });
