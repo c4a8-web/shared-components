@@ -75,46 +75,44 @@ class TagCloud extends BaseComponent {
 
   handleTouchEnd () {
     const currentPosition = this.slider.scrollLeft;
+    console.log(currentPosition);
     const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
     const lowerBorder = 0;
     const distanceToUpperBorder = Math.abs(upperBorder - currentPosition);
     const distanceToLowerBorder = Math.abs(lowerBorder - currentPosition);
     let reverse = false;
-    const duration = 2000;
+    const duration = 20000;
     const timing = Animate.easing.linear;
-    let step = 0;
-    const isEnd = 1;
+    const distance = distanceToUpperBorder < distanceToLowerBorder ? true : false;
 
-    if (distanceToUpperBorder < distanceToLowerBorder) {
-      reverse = true;
-      this.animate.start({
-        duration: duration,
-        timing: timing,
-        draw: (progress) => {
-          step = currentPosition + (upperBorder - currentPosition) * (1 - progress);
-          this.slider.scrollLeft = step;
-
-          if (progress === isEnd) {
-            this.loopAnimation(lowerBorder, upperBorder, duration, timing, reverse);
-          }
-        },
-      });
-    } else if (distanceToUpperBorder > distanceToLowerBorder) {
+    if (distance) {
       reverse = false;
-      this.animate.start({
-        duration: duration,
-        timing: timing,
-        draw: (progress) => {
-          step = currentPosition + (lowerBorder - currentPosition) * (progress);
-          this.slider.scrollLeft = step;
-
-          if (progress === isEnd) {
-            this.loopAnimation(lowerBorder, upperBorder, duration, timing, reverse);
-          }
-        },
-      });
+      this.moveTo(currentPosition, lowerBorder, duration, timing, reverse);
+    } else if (!distance) {
+      reverse = true;
+      this.moveTo(currentPosition, upperBorder, duration, timing, reverse);
     }
 
+  }
+
+  moveTo(currentPosition, Border, duration, timing, reverse) {
+    const borderDiff = Math.abs(Border - currentPosition);
+    const upperBorder = this.slider.scrollWidth - this.slider.clientWidth;
+    const lowerBorder = 0;
+    this.animate.start({
+      duration: duration,
+      timing: timing,
+      draw: (progress) => {
+        const stepX = !reverse ? currentPosition + borderDiff * progress : currentPosition - borderDiff * (progress);
+        this.slider.scrollLeft = stepX;
+
+        if (progress === 1) {
+          reverse = !reverse;
+          //loop durch move ersetzten oder moveTo durch loop ersetzten
+          this.loopAnimation(lowerBorder, upperBorder, duration, timing, reverse);
+        }
+      },
+    });
   }
 
   handleMouseOut(element) {
