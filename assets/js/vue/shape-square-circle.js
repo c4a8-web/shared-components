@@ -1,23 +1,14 @@
 import Tools from '../tools.js';
 
-// const defaultCircleStart = '8s'
-const defaultCircleStart = '1s';
 const defaultStart = '1s';
-const firstStepWait = '1s';
-// const firstStepDuration = '0.3s';
-const secondStepWait = '1s';
-// const secondStepDuration = '10.1s';
-
 const smallCircleRadius = 70;
 const smallCircleDuration = '0.8s';
 const smallCircleWait = '5s';
 
 const bigCircleRadius = 155;
-const bigCircleDuration = '0.8s';
 const bigCircleWait = '0.1s';
 
 const tagName = 'shape-square-circle';
-// const keySplines = '0.19 1 0.2 1';
 
 // TODO refactor for a single step sequence
 // do this then wait then do this then do that
@@ -144,32 +135,57 @@ export default {
     clipPathUrl() {
       return `clip-path: url(#${this.clipPathId})`;
     },
+    sequence() {
+      return this.getSequence();
+    },
   },
   methods: {
-    sequence() {
+    getStepName(step) {
+      return `${this.tagNameId}${step}`;
+    },
+    getSequence() {
       // TODO use sequence instead of seperated steps
 
-      return {
+      const sequence = {
         smallCircle: {
-          tagNameId,
-          ref: `#${tagNameId}`,
-          step: [
-            {
-              begin: `${this.begin};${this.tagNameId}${bigCircle.name}2.end+20s`,
-              name: tagNameName,
-            },
-            {
-              begin: `${this.tagNameId}${bigCircle.name}.end+0.1s`,
-              name: tagNameName + '2',
-            },
-            {
-              begin: `${this.tagNameId}${bigCircle.name}.end+0.8s`,
-              name: tagNameName + '3',
-            },
-          ],
+          name: 'smallCircle',
+          grow: {
+            ...this.getStepName('smallCircle'),
+          },
+          shrink: {},
+          reset: {},
         },
-        bigCircle: {},
+        bigCircle: {
+          name: 'bigCircle',
+          shrink: {},
+          reset: {},
+        },
       };
+      console.log('sequence ~ sequence', sequence);
+
+      // return {
+      //   smallCircle: {
+      //     tagNameId,
+      //     ref: `#${tagNameId}`,
+      //     step: [
+      //       {
+      //         begin: `${this.begin};${this.tagNameId}${bigCircle.name}2.end+20s`,
+      //         name: tagNameName,
+      //       },
+      //       {
+      //         begin: `${this.tagNameId}${bigCircle.name}.end+0.1s`,
+      //         name: tagNameName + '2',
+      //       },
+      //       {
+      //         begin: `${this.tagNameId}${bigCircle.name}.end+0.8s`,
+      //         name: tagNameName + '3',
+      //       },
+      //     ],
+      //   },
+      //   bigCircle: {},
+      // };
+
+      return sequence;
     },
   },
   props: {
@@ -184,7 +200,7 @@ export default {
       </clipPath>
       <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
-        <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}">
+        <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}" :test="sequence?.bigCircle?.name" >
           <animate
             :id="bigCircle.step[0].name"
             :href="bigCircle.ref"
@@ -208,14 +224,13 @@ export default {
             values="0;${bigCircleRadius / 1.1};${bigCircleRadius / 1.15};${bigCircleRadius / 1.1};${bigCircleRadius}"
           />
         </circle>
-        <circle :fill="rectColor" aafill="#ff0000" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
+        <circle :aafill="rectColor" fill="#ff0000" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
           <animate
             :id="smallCircle.step[0].name"
             :href="smallCircle.ref"
             attributeName="r"
             from="${smallCircleRadius}"
             :to="width"
-
             to="200"
             :begin="smallCircle.step[0].begin"
             dur="${smallCircleDuration}"
@@ -228,7 +243,7 @@ export default {
             aafrom="#ff0000"
             aato="#00ff00"
             aadur="2s"
-            attributeName="r"
+            aaattributeName="r"
             :from="width"
             to="0"
             :begin="smallCircle.step[1].begin"
