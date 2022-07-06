@@ -11,9 +11,6 @@ const bigCircleWait = '0.1s';
 
 const tagName = 'shape-square-circle';
 
-// TODO refactor for a single step sequence
-// do this then wait then do this then do that
-
 const smallCircleData = () => {
   const id = '__small-circle';
   const name = id + '-anim';
@@ -135,6 +132,8 @@ export default {
       return this.width;
     },
     clipPathId() {
+      // TODO refactor to shape elements tagnameid
+
       return `${this.tagNameId}__clip-path`;
     },
     clipPathUrl() {
@@ -179,45 +178,7 @@ export default {
         sequence[element.name] = element;
       });
 
-      // const sequence = {
-      //   smallCircle: {
-      //     name: 'smallCircle',
-      //     grow: {
-      //       ...this.getStepName('smallCircle'),
-      //     },
-      //     shrink: {},
-      //     reset: {},
-      //   },
-      //   bigCircle: {
-      //     name: 'bigCircle',
-      //     shrink: {},
-      //     reset: {},
-      //   },
-      // };
       console.log('sequence ~ sequence', sequence);
-
-      // return {
-      //   smallCircle: {
-      //     tagNameId,
-      //     ref: `#${tagNameId}`,
-      //     step: [
-      //       {
-      //         begin: `${this.begin};${this.tagNameId}${bigCircle.name}2.end+20s`,
-      //         name: tagNameName,
-      //       },
-      //       {
-      //         begin: `${this.tagNameId}${bigCircle.name}.end+0.1s`,
-      //         name: tagNameName + '2',
-      //       },
-      //       {
-      //         begin: `${this.tagNameId}${bigCircle.name}.end+0.8s`,
-      //         name: tagNameName + '3',
-      //       },
-      //     ],
-      //   },
-      //   bigCircle: {},
-      // };
-
       return sequence;
     },
   },
@@ -262,7 +223,7 @@ export default {
       </clipPath>
       <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
-        <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}" :test="sequence?.bigCircle?.id" >
+        <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}" :test="sequence?.bigCircle.id">
           <animate
             :id="bigCircle.step[0].name"
             :href="bigCircle.ref"
@@ -286,13 +247,14 @@ export default {
             values="0;${bigCircleRadius / 1.1};${bigCircleRadius / 1.15};${bigCircleRadius / 1.1};${bigCircleRadius}"
           />
         </circle>
-        <circle :fill="rectColor" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
+        <circle :fill="rectColor" aafill="#ff0000" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
           <animate
             :id="smallCircle.step[0].name"
             :href="smallCircle.ref"
             attributeName="r"
             from="${smallCircleRadius}"
             :to="width"
+
             to="200"
             :begin="smallCircle.step[0].begin"
             dur="${smallCircleDuration}"
@@ -301,7 +263,11 @@ export default {
           <animate
             :id="smallCircle.step[1].name"
             :href="smallCircle.ref"
-            aattributeName="r"
+            aaattributeName="fill"
+            aafrom="#ff0000"
+            aato="#00ff00"
+            aadur="2s"
+            attributeName="r"
             :from="width"
             to="0"
             :begin="smallCircle.step[1].begin"

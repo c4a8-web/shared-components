@@ -79,8 +79,6 @@ class ShapeElements {
   }
 
   getStepId(step) {
-    // TODO maybe the step should not be in here or the
-
     return `${this.tagNameId}__${step}`;
   }
 

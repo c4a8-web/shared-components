@@ -205,7 +205,7 @@ class Tools {
       'u' +
       [randomData.substring(random, random + 8), randomData.substring(randomSecond, randomSecond + 4)]
         .join('-')
-        .replace('.', '9')
+        .replaceAll('.', '9')
     );
   }
 
