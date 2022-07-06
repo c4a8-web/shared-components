@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '1s';
 const smallCircleRadius = 70;
@@ -80,7 +81,9 @@ export default {
       const smallCircle = smallCircleData();
 
       const tagNameId = `${this.tagNameId}${id}`;
+      console.log('bigCircle ~ tagNameId', tagNameId);
       const tagNameName = `${this.tagNameId}${name}`;
+      console.log('bigCircle ~ tagNameName', tagNameName);
 
       return {
         id: tagNameId,
@@ -102,7 +105,9 @@ export default {
       const bigCircle = bigCircleData();
 
       const tagNameId = `${this.tagNameId}${id}`;
+      console.log('smallCircle ~ tagNameId', tagNameId);
       const tagNameName = `${this.tagNameId}${name}`;
+      console.log('smallCircle ~ tagNameName', tagNameName);
 
       return {
         id: tagNameId,
@@ -136,7 +141,10 @@ export default {
       return `clip-path: url(#${this.clipPathId})`;
     },
     sequence() {
-      return this.getSequence();
+      if (!this.shapeElements)
+        this.shapeElements = new ShapeElements({ tagName, elements: this.elements, begin: this.begin });
+
+      return this.shapeElements?.getSequence();
     },
   },
   methods: {
@@ -146,21 +154,46 @@ export default {
     getSequence() {
       // TODO use sequence instead of seperated steps
 
-      const sequence = {
-        smallCircle: {
+      const elements = [
+        {
           name: 'smallCircle',
+          getName: function () {
+            return this.name;
+          },
           grow: {
-            ...this.getStepName('smallCircle'),
+            name: this.getStepName('smallCircle'),
           },
           shrink: {},
           reset: {},
         },
-        bigCircle: {
+        {
           name: 'bigCircle',
           shrink: {},
           reset: {},
         },
-      };
+      ];
+
+      const sequence = {};
+
+      elements.forEach((element) => {
+        sequence[element.name] = element;
+      });
+
+      // const sequence = {
+      //   smallCircle: {
+      //     name: 'smallCircle',
+      //     grow: {
+      //       ...this.getStepName('smallCircle'),
+      //     },
+      //     shrink: {},
+      //     reset: {},
+      //   },
+      //   bigCircle: {
+      //     name: 'bigCircle',
+      //     shrink: {},
+      //     reset: {},
+      //   },
+      // };
       console.log('sequence ~ sequence', sequence);
 
       // return {
@@ -188,6 +221,35 @@ export default {
       return sequence;
     },
   },
+  data() {
+    return {
+      // sequence: {},
+      elements: [
+        {
+          name: 'smallCircle',
+          grow: {
+            start: true,
+            waitFor: 'bigCircle.reset',
+            delay: '20s',
+          },
+          shrink: {
+            waitFor: 'bigCircle.shrink',
+            delay: '0.1s',
+          },
+          reset: {
+            waitFor: 'bigCircle.shrink',
+            delay: '0.8s',
+          },
+        },
+        {
+          name: 'bigCircle',
+          shrink: {},
+          reset: {},
+        },
+      ],
+      shapeElements: null,
+    };
+  },
   props: {
     backgroundColor: String,
     circleColor: String,
@@ -200,7 +262,7 @@ export default {
       </clipPath>
       <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
-        <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}" :test="sequence?.bigCircle?.name" >
+        <circle :fill="pathColor" :id="bigCircle.id" cx="200" cy="200" r="${bigCircleRadius}" :test="sequence?.bigCircle?.id" >
           <animate
             :id="bigCircle.step[0].name"
             :href="bigCircle.ref"
@@ -224,7 +286,7 @@ export default {
             values="0;${bigCircleRadius / 1.1};${bigCircleRadius / 1.15};${bigCircleRadius / 1.1};${bigCircleRadius}"
           />
         </circle>
-        <circle :aafill="rectColor" fill="#ff0000" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
+        <circle :fill="rectColor" :id="smallCircle.id" cx="200" cy="200" r="${smallCircleRadius}">
           <animate
             :id="smallCircle.step[0].name"
             :href="smallCircle.ref"
@@ -239,11 +301,7 @@ export default {
           <animate
             :id="smallCircle.step[1].name"
             :href="smallCircle.ref"
-            aaattributeName="fill"
-            aafrom="#ff0000"
-            aato="#00ff00"
-            aadur="2s"
-            aaattributeName="r"
+            aattributeName="r"
             :from="width"
             to="0"
             :begin="smallCircle.step[1].begin"
