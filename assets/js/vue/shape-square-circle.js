@@ -1,22 +1,15 @@
-import Tools from '../tools.js';
 import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '1s';
 const smallCircleRadius = 70;
 const smallCircleDuration = '0.8s';
-const smallCircleWait = '5s';
-
 const bigCircleRadius = 155;
-const bigCircleWait = '0.1s';
 
 const tagName = 'shape-square-circle';
 
 export default {
   tagName: tagName,
   computed: {
-    tagNameId() {
-      return `${Tools.uuid()}${tagName}`;
-    },
     classList() {
       return ['shape-square-circle', 'vue-component'];
     },
@@ -28,30 +21,6 @@ export default {
     },
     pathColor() {
       return this.circleColor ? this.circleColor : '#fcd116';
-    },
-    bigCircleId() {
-      return this.tagNameId + '__big-circle-id';
-    },
-    bigCircleReference() {
-      return '#' + this.bigCircleId;
-    },
-    bigCircleBegin() {
-      return `${this.smallCircleAnimationName}.end+${bigCircleWait}`;
-    },
-    bigCircleAnimationName() {
-      return this.bigCircleId + '-anim';
-    },
-    smallCircleId() {
-      return this.tagNameId + '__small-circle-id';
-    },
-    smallCircleReference() {
-      return '#' + this.smallCircleId;
-    },
-    smallCircleBegin() {
-      return `${this.begin};${this.bigCircleAnimationName}.end+${smallCircleWait}`;
-    },
-    smallCircleAnimationName() {
-      return this.smallCircleId + '-anim';
     },
     bigCircle() {
       return this.sequence.bigCircle;
