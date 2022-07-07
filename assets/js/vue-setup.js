@@ -18,6 +18,7 @@ import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
+import ShapeFastFordward from './vue/shape-fast-forward.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
@@ -60,6 +61,7 @@ const addApp = () => {
     JobListEntry,
     JobList,
     Modal,
+    ShapeFastFordward,
     ShapeSquareCircle,
     Shape,
     ArrowExternal,
@@ -79,11 +81,11 @@ const addApp = () => {
   });
 
   // TODO figure out how to get all of them
-  // const illegalTags = root.querySelectorAll('style');
+  const illegalTags = root.querySelectorAll('style');
 
-  // illegalTags.forEach((element) => {
-  //   document.body.appendChild(element);
-  // });
+  illegalTags.forEach((element) => {
+    document.body.appendChild(element);
+  });
 
   app.mount(root);
 
