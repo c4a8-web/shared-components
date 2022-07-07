@@ -36,25 +36,21 @@
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
-
-  img {
-    display: none;
-    width: 100%;
-    text-align: left;
-    margin-left: 1rem;
-    margin-bottom: 1rem;
-  }
+  overflow: hidden;
 }
 
 .tag-cloud__slider {
   display: flex;
-  overflow-x: auto;
+  overflow-x: scroll;
   width: 150vw;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
     //check for other browsers
     display: none;
     background: transparent;
+    width: 0;
   }
 }
 

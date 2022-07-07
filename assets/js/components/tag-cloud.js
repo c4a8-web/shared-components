@@ -28,8 +28,10 @@ class TagCloud extends BaseComponent {
     this.animate = new Animate();
     this.delay = 500;
     this.duration = 20000;
+    this.startPosition = 0;
+    this.endPosition = 0;
+    this.gotDragged = false;
 
-    console.log('breakpoint', Tools.getBreakpoint());
     this.init();
   }
 
@@ -41,7 +43,11 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    this.addScrollAnimation();
+
+    if (this.isBelowBreakpoint()) {
+      this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
+      this.addScrollAnimation();
+    }
     this.bindEvents();
   }
 
@@ -58,14 +64,16 @@ class TagCloud extends BaseComponent {
       });
     });
 
-    this.slider.addEventListener('touchstart', () => {
-      this.handleTouchStart();
-    });
+    if (this.isBelowBreakpoint()) {
+      this.slider.addEventListener('touchstart', () => {
+        clearTimeout(this.timeout);
+        this.handleTouchStart();
+      });
 
-    this.slider.addEventListener('touchend', () => {
-
-      setTimeout(() => {this.handleTouchEnd();}, this.delay);
-    });
+      this.slider.addEventListener('touchend', () => {
+        this.timeout = setTimeout(() => {this.handleTouchEnd();}, this.delay);
+      });
+    }
   }
 
   handleTouchStart() {
@@ -75,37 +83,39 @@ class TagCloud extends BaseComponent {
 
   handleTouchEnd() {
     const currentPosition = this.slider.scrollLeft;
-    console.log(currentPosition);
-
-    // TODO refactor border to position. i think border is misleading
-    const upperLimit = this.slider.scrollWidth - this.slider.clientWidth;
-    const lowerLimit = 0;
-    const distanceToUpperLimit = Math.abs(upperLimit - currentPosition);
-    const distanceToLowerLimit = Math.abs(lowerLimit - currentPosition);
+    const distanceToUpperLimit = Math.abs(this.endPosition - currentPosition);
+    const distanceToLowerLimit = Math.abs(this.startPosition - currentPosition);
     const timing = Animate.easing.linear;
     const distance = distanceToUpperLimit < distanceToLowerLimit ? true : false;
     const startPosition = currentPosition;
-    const endPosition = distance ? lowerLimit : upperLimit;
+    const endPosition = distance ? this.startPosition : this.endPosition;
     const reverse = distance ? true : false;
 
     this.moveTo(startPosition, endPosition, this.duration, timing, reverse);
   }
 
+  addScrollAnimation() {
+    let reverse = false;
+    this.moveTo(this.startPosition, this.endPosition, this.duration, Animate.easing.linear, reverse);
+  }
+
   moveTo(currentPosition, limit, duration, timing, reverse) {
     const limitDiff = Math.abs(limit - currentPosition);
-    const upperLimit = this.slider.scrollWidth - this.slider.clientWidth;
-    const lowerLimit = 0;
 
     this.animate.start({
       duration: duration,
       timing: timing,
       draw: (progress) => {
-        const stepX = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
-        this.slider.scrollLeft = stepX;
 
+        const stepAfterDrag = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
+
+        const stepBeforeDrag = !reverse ? limitDiff * progress : limitDiff * (1 - progress);
+
+        this.slider.scrollLeft = (this.gotDragged) ? stepAfterDrag : stepBeforeDrag;
         if (progress === 1) {
           //loop durch move ersetzten oder moveTo durch loop ersetzten
-          this.loopAnimation(lowerLimit, upperLimit, duration, timing, !reverse);
+          this.gotDragged = false;
+          this.moveTo(this.startPosition, this.endPosition, duration, timing, !reverse);
         }
       },
     });
@@ -213,41 +223,15 @@ class TagCloud extends BaseComponent {
   }
 
   isBelowBreakpoint() {
+    let breakpointForSmallDevices = ['xs', 'sm', 'md'];
     const breakpoint = Tools.getBreakpoint();
-    return window.innerWidth < breakpoint;
+    if (breakpointForSmallDevices.includes(breakpoint)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  addScrollAnimation() {
-    const elementToScroll = 0;
-    const endPosition = this.slider.scrollWidth - this.slider.clientWidth;
-    const duration = 20000;
-
-    let reverse = false;
-
-    // console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
-    // console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
-    // console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
-
-    this.loopAnimation(elementToScroll, endPosition, duration, Animate.easing.linear, reverse);
-  }
-
-  loopAnimation(from, to, duration, timing, reverse) {
-    const isEnd = 1;
-    let step = 0;
-
-    this.animate.start({
-      duration: duration,
-      timing: timing,
-      draw: (progress) => {
-        step = !reverse ? (to - from) * progress : from + (to - from) * (1 - progress);
-        this.slider.scrollLeft = step;
-
-        if (progress === isEnd) {
-          this.loopAnimation(from, to, duration, timing, !reverse);
-        }
-      },
-    });
-  }
 
   appendItems() {
     for (let i = 0; i < this.items.length; i++) {
