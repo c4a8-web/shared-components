@@ -13,13 +13,10 @@ class TagCloud extends BaseComponent {
     this.itemLinkClass = 'tag-cloud__item-link';
     this.slider = root.querySelector('.tag-cloud__slider');
 
-    this.itemsPerOuterRow = 3;
-    // this.itemsPerInnerRow = 5;
-
     this.items = this.itemsContainer?.dataset.items ? JSON.parse(this.itemsContainer?.dataset.items) : [];
 
     this.maxCoordinate = 40; // TODO maybe connect to the padding property to make sure it doesn't get out of bounce ?
-
+    this.itemsPerOuterRow = 3;
     this.minCoordinate = 10;
     this.minBlur = 2;
     this.maxBlur = 10;
@@ -29,8 +26,12 @@ class TagCloud extends BaseComponent {
     this.isMouseOut = true;
 
     this.animate = new Animate();
+    this.delay = 500;
+    this.duration = 20000;
+    this.startPosition = 0;
+    this.endPosition = 0;
+    this.gotDragged = false;
 
-    console.log('breakpoint', Tools.getBreakpoint());
     this.init();
   }
 
@@ -42,7 +43,11 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    // this.addScrollAnimation();
+
+    if (this.isBelowBreakpoint()) {
+      this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
+      this.addScrollAnimation();
+    }
     this.bindEvents();
   }
 
@@ -57,6 +62,62 @@ class TagCloud extends BaseComponent {
       item.addEventListener('mouseout', (e) => {
         this.handleMouseOut(e?.currentTarget);
       });
+    });
+
+    if (this.isBelowBreakpoint()) {
+      this.slider.addEventListener('touchstart', () => {
+        clearTimeout(this.timeout);
+        this.handleTouchStart();
+      });
+
+      this.slider.addEventListener('touchend', () => {
+        this.timeout = setTimeout(() => {this.handleTouchEnd();}, this.delay);
+      });
+    }
+  }
+
+  handleTouchStart() {
+    this.animate.pause();
+    this.gotDragged = true;
+  }
+
+  handleTouchEnd() {
+    const currentPosition = this.slider.scrollLeft;
+    const distanceToUpperLimit = Math.abs(this.endPosition - currentPosition);
+    const distanceToLowerLimit = Math.abs(this.startPosition - currentPosition);
+    const timing = Animate.easing.linear;
+    const distance = distanceToUpperLimit < distanceToLowerLimit ? true : false;
+    const startPosition = currentPosition;
+    const endPosition = distance ? this.startPosition : this.endPosition;
+    const reverse = distance ? true : false;
+
+    this.moveTo(startPosition, endPosition, this.duration, timing, reverse);
+  }
+
+  addScrollAnimation() {
+    let reverse = false;
+    this.moveTo(this.startPosition, this.endPosition, this.duration, Animate.easing.linear, reverse);
+  }
+
+  moveTo(currentPosition, limit, duration, timing, reverse) {
+    const limitDiff = Math.abs(limit - currentPosition);
+
+    this.animate.start({
+      duration: duration,
+      timing: timing,
+      draw: (progress) => {
+
+        const stepAfterDrag = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
+
+        const stepBeforeDrag = !reverse ? limitDiff * progress : limitDiff * (1 - progress);
+
+        this.slider.scrollLeft = (this.gotDragged) ? stepAfterDrag : stepBeforeDrag;
+        if (progress === 1) {
+          //loop durch move ersetzten oder moveTo durch loop ersetzten
+          this.gotDragged = false;
+          this.moveTo(this.startPosition, this.endPosition, duration, timing, !reverse);
+        }
+      },
     });
   }
 
@@ -89,10 +150,6 @@ class TagCloud extends BaseComponent {
 
       const weight = Math.ceil(item.title.length / weightThreshold);
       this.items[i].weighting = weight > this.maxWeight ? this.maxWeight : weight;
-
-      /*const paddingOfElement = window.getComputedStyle(element, null).getPropertyValue('padding-top') * 2;
-      console.log(paddingOfElement);
-      this.maxCoordinate.push(paddingOfElement);*/
     }
   }
 
@@ -166,39 +223,15 @@ class TagCloud extends BaseComponent {
   }
 
   isBelowBreakpoint() {
+    let breakpointForSmallDevices = ['xs', 'sm', 'md'];
     const breakpoint = Tools.getBreakpoint();
-    return window.innerWidth < breakpoint;
+    if (breakpointForSmallDevices.includes(breakpoint)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  addScrollAnimation() {
-    const elementToScroll = 0;
-    const endPosition = this.slider.scrollWidth - this.slider.clientWidth;
-    const duration = 20000;
-    let reverse = false;
-
-    // console.log('TagCloud ~ addScrollAnimation ~ endPosition', endPosition);
-    // console.log('TagCloud ~ getScroller ~ this.slider.scrollLeft', this.slider.scrollLeft);
-    // console.log('TagCloud ~ addScrollAnimation ~ this.slider', this.slider);
-
-    this.loopAnimation(elementToScroll, endPosition, duration, Animate.easing.linear, reverse);
-  }
-
-  loopAnimation(from, to, duration, timing, reverse) {
-    const isEnd = 1;
-    let step = 0;
-    this.animate.start({
-      duration: duration,
-      timing: timing,
-      draw: (progress) => {
-        step = !reverse ? (to - from) * progress : from + (to - from) * (1 - progress);
-        this.slider.scrollLeft = step;
-
-        if (progress === isEnd) {
-          this.loopAnimation(from, to, duration, timing, !reverse);
-        }
-      },
-    });
-  }
 
   appendItems() {
     for (let i = 0; i < this.items.length; i++) {
