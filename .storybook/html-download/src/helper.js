@@ -73,6 +73,9 @@ const downloadHtml = (e) => {
     const fileType = e;
     const element = root.querySelector('svg');
     const html = replaceCssProperties(element.outerHTML);
+
+    if (!element.dataset.name) return;
+
     const fileName = `${element.dataset.name}.${fileType}`;
 
     createFile(fileName, html);
