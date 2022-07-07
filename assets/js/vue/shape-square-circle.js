@@ -127,10 +127,10 @@ export default {
       </clipPath>
       <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
-        <circle :fill="pathColor" aafill="#ff0000" :id="bigCircle?.id" cx="200" cy="200" r="${bigCircleRadius}">
+        <circle :fill="pathColor" :id="bigCircle?.id" cx="200" cy="200" r="${bigCircleRadius}">
           <animate
             :id="bigCircle?.shrink?.id"
-            :href="bigCircle?.ref"
+            :href="bigCircle?.href"
             :begin="bigCircle?.shrink?.begin"
             attributeName="r"
             from="${bigCircleRadius}"
@@ -140,7 +140,7 @@ export default {
           />
           <animate
             :id="bigCircle?.reset?.id"
-            :href="bigCircle?.ref"
+            :href="bigCircle?.href"
             :begin="bigCircle?.reset?.begin"
             attributeName="r"
             from="0"
@@ -151,21 +151,20 @@ export default {
             values="0;${bigCircleRadius / 1.1};${bigCircleRadius / 1.15};${bigCircleRadius / 1.1};${bigCircleRadius}"
           />
         </circle>
-        <circle :fill="rectColor" aafill="#ff0000" :id="smallCircle?.id" cx="200" cy="200" r="${smallCircleRadius}">
+        <circle :fill="rectColor" :id="smallCircle?.id" cx="200" cy="200" r="${smallCircleRadius}">
           <animate
             :id="smallCircle?.grow?.id"
-            :href="smallCircle?.ref"
+            :href="smallCircle?.href"
             :begin="smallCircle?.grow?.begin"
             attributeName="r"
             from="${smallCircleRadius}"
             :to="width"
-            to="200"
             dur="${smallCircleDuration}"
             fill="freeze"
           />
           <animate
             :id="smallCircle?.shrink?.id"
-            :href="smallCircle?.ref"
+            :href="smallCircle?.href"
             :begin="smallCircle?.shrink?.begin"
             attributeName="r"
             :from="width"
@@ -175,7 +174,7 @@ export default {
           />
           <animate
             :id="smallCircle?.reset?.id"
-            :href="smallCircle?.ref"
+            :href="smallCircle?.href"
             :begin="smallCircle?.reset?.begin"
             attributeName="r"
             from="0"

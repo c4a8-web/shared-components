@@ -55,7 +55,7 @@ class ShapeElements {
       });
 
       element.id = this.getStepId(`${name.toLowerCase()}-id`);
-      element.ref = `#${element.id}`;
+      element.href = `#${element.id}`;
     });
 
     return sequence;
