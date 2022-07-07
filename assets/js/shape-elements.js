@@ -11,7 +11,6 @@ class ShapeElements {
   createStepNames(sequence) {
     this.elements.forEach((element) => {
       sequence[element.name] = element;
-      console.log('ShapeElements ~ this.elements.forEach ~ element', element);
 
       const keys = Object.keys(element);
 

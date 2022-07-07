@@ -78,9 +78,7 @@ export default {
       const smallCircle = smallCircleData();
 
       const tagNameId = `${this.tagNameId}${id}`;
-      console.log('bigCircle ~ tagNameId', tagNameId);
       const tagNameName = `${this.tagNameId}${name}`;
-      console.log('bigCircle ~ tagNameName', tagNameName);
 
       return {
         id: tagNameId,
@@ -102,9 +100,7 @@ export default {
       const bigCircle = bigCircleData();
 
       const tagNameId = `${this.tagNameId}${id}`;
-      console.log('smallCircle ~ tagNameId', tagNameId);
       const tagNameName = `${this.tagNameId}${name}`;
-      console.log('smallCircle ~ tagNameName', tagNameName);
 
       return {
         id: tagNameId,
@@ -132,59 +128,24 @@ export default {
       return this.width;
     },
     clipPathId() {
-      // TODO refactor to shape elements tagnameid
-
-      return `${this.tagNameId}__clip-path`;
+      return `${this.shapeElements?.getStepId('clip-path')}`;
     },
     clipPathUrl() {
       return `clip-path: url(#${this.clipPathId})`;
     },
     sequence() {
-      if (!this.shapeElements)
-        this.shapeElements = new ShapeElements({ tagName, elements: this.elements, begin: this.begin });
-
       return this.shapeElements?.getSequence();
     },
-  },
-  methods: {
-    getStepName(step) {
-      return `${this.tagNameId}${step}`;
-    },
-    getSequence() {
-      // TODO use sequence instead of seperated steps
 
-      const elements = [
-        {
-          name: 'smallCircle',
-          getName: function () {
-            return this.name;
-          },
-          grow: {
-            name: this.getStepName('smallCircle'),
-          },
-          shrink: {},
-          reset: {},
-        },
-        {
-          name: 'bigCircle',
-          shrink: {},
-          reset: {},
-        },
-      ];
+    shapeElements() {
+      if (!this.shapeElementsInstance)
+        this.shapeElementsInstance = new ShapeElements({ tagName, elements: this.elements, begin: this.begin });
 
-      const sequence = {};
-
-      elements.forEach((element) => {
-        sequence[element.name] = element;
-      });
-
-      console.log('sequence ~ sequence', sequence);
-      return sequence;
+      return this.shapeElementsInstance;
     },
   },
   data() {
     return {
-      // sequence: {},
       elements: [
         {
           name: 'smallCircle',
@@ -208,7 +169,7 @@ export default {
           reset: {},
         },
       ],
-      shapeElements: null,
+      shapeElementsInstance: null,
     };
   },
   props: {
@@ -254,7 +215,6 @@ export default {
             attributeName="r"
             from="${smallCircleRadius}"
             :to="width"
-
             to="200"
             :begin="smallCircle.step[0].begin"
             dur="${smallCircleDuration}"
@@ -263,10 +223,6 @@ export default {
           <animate
             :id="smallCircle.step[1].name"
             :href="smallCircle.ref"
-            aaattributeName="fill"
-            aafrom="#ff0000"
-            aato="#00ff00"
-            aadur="2s"
             attributeName="r"
             :from="width"
             to="0"
@@ -287,8 +243,6 @@ export default {
             values="0;${smallCircleRadius / 1.1};${smallCircleRadius / 1.15};${
     smallCircleRadius / 1.1
   };${smallCircleRadius}"
-            ddcalcMode="spline"
-            aaakeySplines="0.68 1 0.68 1"
           />
         </circle>
       </g>
