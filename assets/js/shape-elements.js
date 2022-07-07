@@ -10,7 +10,9 @@ class ShapeElements {
 
   createStepNames(sequence) {
     this.elements.forEach((element) => {
-      sequence[element.name] = element;
+      const name = element.name;
+
+      sequence[name] = element;
 
       const keys = Object.keys(element);
 
@@ -21,7 +23,7 @@ class ShapeElements {
 
         if (!step) return;
 
-        step.id = this.getStepId(key);
+        step.id = this.getStepId(`${name.toLowerCase()}-${key}`);
       });
     });
 
@@ -32,7 +34,9 @@ class ShapeElements {
     const sequence = this.createStepNames({});
 
     this.elements.forEach((element) => {
-      sequence[element.name] = element;
+      const name = element.name;
+
+      sequence[name] = element;
 
       const keys = Object.keys(element);
 
@@ -50,11 +54,10 @@ class ShapeElements {
         step.begin = `${this.begin};${step.begin}`;
       });
 
-      element.id = this.getStepId('id');
+      element.id = this.getStepId(`${name.toLowerCase()}-id`);
       element.ref = `#${element.id}`;
     });
 
-    console.log('ShapeElements ~ getSequence ~ sequence', sequence);
     return sequence;
   }
 
