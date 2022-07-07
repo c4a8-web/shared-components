@@ -9,8 +9,11 @@ export default {
     name() {
       return tagName;
     },
-    shapeCircle() {
+    shapeSquareCircle() {
       return this.getShapeData(0);
+    },
+    shapeFastForward() {
+      return this.getShapeData(2);
     },
     pyramid() {
       return this.getShapeData(3);
@@ -59,14 +62,21 @@ export default {
         />
       </path>
 
-      <path :fill="pyramid?.backgroundColor" d="M.18 796.88h400.84v400.49H.18z"/>
-      <path fill="#f8842c" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
-      <path fill="#fcd116" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
-      <path fill="#acd653" d="M801.86 401.19v395.9H401.02v-395.9z"/>
+      <path style="display:none" :fill="pyramid?.backgroundColor" d="M.18 796.88h400.84v400.49H.18z"/>
+      <path style="display:none" fill="#f8842c" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
+      <path style="display:none" fill="#fcd116" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
+      <path style="display:none" fill="#acd653" d="M801.86 401.19v395.9H401.02v-395.9z"/>
+
+
+      <shape-fast-forward
+        transform="translate(200 800)"
+        :background-color="shapeFastForward?.backgroundColor"
+        :circle-color="shapeFastForward?.foregroundColor"
+      ></shape-fast-forward>
       <shape-square-circle
         transform="translate(400 0)"
-        :background-color="shapeCircle?.backgroundColor"
-        :circle-color="shapeCircle?.foregroundColor"
+        :background-color="shapeSquareCircle?.backgroundColor"
+        :circle-color="shapeSquareCircle?.foregroundColor"
       ></shape-square-circle>
     </svg>
   `,
