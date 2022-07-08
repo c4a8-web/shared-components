@@ -33,7 +33,8 @@ class TagCloud extends BaseComponent {
     this.gotDragged = false;
 
     this.distance = 0;
-    this.distanceGotChanged = true;
+    this.firstTouch = true;
+    this.temporaryTouchPosition = 0;
 
     this.init();
   }
@@ -87,26 +88,23 @@ class TagCloud extends BaseComponent {
   }
 
   handleTouchMove() {
-    const windowSize = window.innerWidth;
     this.gotDragged = true;
     let event = event || window.event;
-
     const currentTouchPosition = event.touches[0].clientX;
 
-    if (this.distanceGotChanged) {
-      this.distance = Math.abs(currentTouchPosition - this.slider.scrollLeft);
-      this.distanceGotChanged = false;
+    if (this.firstTouch) {
+      this.temporaryTouchPosition = currentTouchPosition;
+      this.firstTouch = false;
     }
 
-    const lowerLimit = this.startPosition + this.distance;
-    const upperLimit = this.endPosition - this.distance;
+    const step = 1;
+    const diff = currentTouchPosition - this.temporaryTouchPosition;
 
-    this.slider.scrollLeft = upperLimit-currentTouchPosition;
-
-
-    console.log(currentTouchPosition, this.slider.scrollLeft);
-
-
+    if (diff > 0) {
+      this.slider.scrollLeft -= step;
+    } else if (diff < 0) {
+      this.slider.scrollLeft += step;
+    }
   }
 
   handleTouchEnd() {
