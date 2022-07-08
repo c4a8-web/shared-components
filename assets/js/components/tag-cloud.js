@@ -32,19 +32,18 @@ class TagCloud extends BaseComponent {
     this.endPosition = 0;
     this.gotDragged = false;
 
+    this.distance = 0;
+    this.distanceGotChanged = true;
+
     this.init();
   }
-
-  //Todo:
-
-  // Breakpoints/Slides
 
   init() {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
 
-    if (this.isBelowBreakpoint()) {
+    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.addScrollAnimation();
     }
@@ -64,11 +63,15 @@ class TagCloud extends BaseComponent {
       });
     });
 
-    if (this.isBelowBreakpoint()) {
+    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
       this.slider.addEventListener('touchstart', () => {
         clearTimeout(this.timeout);
         this.handleTouchStart();
       });
+
+      this.slider.addEventListener('touchmove', () => {
+        this.handleTouchMove();
+        });
 
       this.slider.addEventListener('touchend', () => {
         this.timeout = setTimeout(() => {this.handleTouchEnd();}, this.delay);
@@ -76,9 +79,34 @@ class TagCloud extends BaseComponent {
     }
   }
 
+  // handleEvents
+
   handleTouchStart() {
     this.animate.pause();
     this.gotDragged = true;
+  }
+
+  handleTouchMove() {
+    const windowSize = window.innerWidth;
+    this.gotDragged = true;
+    let event = event || window.event;
+
+    const currentTouchPosition = event.touches[0].clientX;
+
+    if (this.distanceGotChanged) {
+      this.distance = Math.abs(currentTouchPosition - this.slider.scrollLeft);
+      this.distanceGotChanged = false;
+    }
+
+    const lowerLimit = this.startPosition + this.distance;
+    const upperLimit = this.endPosition - this.distance;
+
+    this.slider.scrollLeft = upperLimit-currentTouchPosition;
+
+
+    console.log(currentTouchPosition, this.slider.scrollLeft);
+
+
   }
 
   handleTouchEnd() {
@@ -92,33 +120,6 @@ class TagCloud extends BaseComponent {
     const reverse = distance ? true : false;
 
     this.moveTo(startPosition, endPosition, this.duration, timing, reverse);
-  }
-
-  addScrollAnimation() {
-    let reverse = false;
-    this.moveTo(this.startPosition, this.endPosition, this.duration, Animate.easing.linear, reverse);
-  }
-
-  moveTo(currentPosition, limit, duration, timing, reverse) {
-    const limitDiff = Math.abs(limit - currentPosition);
-
-    this.animate.start({
-      duration: duration,
-      timing: timing,
-      draw: (progress) => {
-
-        const stepAfterDrag = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
-
-        const stepBeforeDrag = !reverse ? limitDiff * progress : limitDiff * (1 - progress);
-
-        this.slider.scrollLeft = (this.gotDragged) ? stepAfterDrag : stepBeforeDrag;
-        if (progress === 1) {
-          //loop durch move ersetzten oder moveTo durch loop ersetzten
-          this.gotDragged = false;
-          this.moveTo(this.startPosition, this.endPosition, duration, timing, !reverse);
-        }
-      },
-    });
   }
 
   handleMouseOut(element) {
@@ -142,6 +143,46 @@ class TagCloud extends BaseComponent {
     });
   }
 
+  // Init Scroll Animation ++ Scroll Animation
+
+  addScrollAnimation() {
+    let reverse = false;
+    this.moveTo(this.startPosition, this.endPosition, this.duration, Animate.easing.linear, reverse);
+  }
+
+  moveTo(currentPosition, limit, duration, timing, reverse) {
+    const limitDiff = Math.abs(limit - currentPosition);
+
+    this.animate.start({
+      duration: duration,
+      timing: timing,
+      draw: (progress) => {
+
+        const stepAfterDrag = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
+
+        const stepBeforeDrag = !reverse ? limitDiff * progress : limitDiff * (1 - progress);
+
+        this.slider.scrollLeft = (this.gotDragged) ? stepAfterDrag : stepBeforeDrag;
+        if (progress === 1) {
+          this.gotDragged = false;
+          this.moveTo(this.startPosition, this.endPosition, duration, timing, !reverse);
+        }
+      },
+    });
+  }
+
+  isBelowBreakpoint(breakpoint) {
+    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
+    const getBreakpoint = Tools.getBreakpoint();
+    let breakpointIndex = breakpointArray.indexOf(breakpoint);
+
+    if (breakpointArray.slice(0, breakpointIndex+1).includes(getBreakpoint)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   weightingElements() {
     const weightThreshold = 8;
 
@@ -154,7 +195,6 @@ class TagCloud extends BaseComponent {
   }
 
   getCornerPosition() {
-    //based on the fontsize the placement is accurrate that
 
     let weight = 0;
     let secondIndex = 0;
@@ -222,15 +262,6 @@ class TagCloud extends BaseComponent {
     return Math.floor(Math.random() * (end - start + 1)) + start;
   }
 
-  isBelowBreakpoint() {
-    let breakpointForSmallDevices = ['xs', 'sm', 'md'];
-    const breakpoint = Tools.getBreakpoint();
-    if (breakpointForSmallDevices.includes(breakpoint)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
 
 
   appendItems() {

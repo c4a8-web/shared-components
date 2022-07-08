@@ -1,7 +1,7 @@
-//TODO:
-//Colors from colors
-//breakpoints using mixins
-//use variables for fontsizes
+html, body {
+  overflow: hidden;
+}
+
 .tag-cloud {
   background-color: var(--color-blue-dark);
 }
@@ -41,9 +41,9 @@
 
 .tag-cloud__slider {
   display: flex;
-  overflow-x: scroll;
+  overflow: hidden;
   width: 150vw;
-  -ms-overflow-style: none;
+  /*-ms-overflow-style: none;
   scrollbar-width: none;
 
   &::-webkit-scrollbar {
@@ -51,11 +51,7 @@
     display: none;
     background: transparent;
     width: 0;
-  }
-}
-
-.tag-cloud__slider_placeholder {
-  width: 10px !important;
+  }*/
 }
 
 .tag-cloud__items {
