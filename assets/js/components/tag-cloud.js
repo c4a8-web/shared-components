@@ -44,7 +44,7 @@ class TagCloud extends BaseComponent {
     this.addCorners();
     this.appendItems();
 
-    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
+    if (this.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.addScrollAnimation();
     }
@@ -64,7 +64,7 @@ class TagCloud extends BaseComponent {
       });
     });
 
-    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
+    if (this.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
       this.slider.addEventListener('touchstart', () => {
         clearTimeout(this.timeout);
         this.handleTouchStart();
@@ -87,6 +87,12 @@ class TagCloud extends BaseComponent {
     this.gotDragged = true;
   }
 
+  removeHorizontalScrollbar() {
+    // remove scrollbar by limiting the height of what is visible
+    const height = this.slider.scrollHeight;
+    this.slider.style.height = `${height}px`;
+  }
+
   handleTouchMove() {
     this.gotDragged = true;
     let event = event || window.event;
@@ -97,7 +103,7 @@ class TagCloud extends BaseComponent {
       this.firstTouch = false;
     }
 
-    const step = 1;
+    const step = 2;
     const diff = currentTouchPosition - this.temporaryTouchPosition;
 
     if (diff > 0) {
