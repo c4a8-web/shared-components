@@ -78,48 +78,66 @@ class TagCloud extends BaseComponent {
 
     document.addEventListener('scroll', () => {
       if (this.hasScrollAnimation()) {
-        console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'hasScrollAnimation');
+        if (this.isInScrollAnimation) return;
 
+        console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'hasScrollAnimation');
         this.addScrollAnimation();
       } else {
         console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'pause');
 
-        this.animate.pause();
+        this.stopScrollAnimation();
       }
     });
 
-    if (this.hasScrollAnimation()) {
-      this.slider.addEventListener('touchstart', () => {
+    this.slider.addEventListener('touchstart', () => {
+      if (this.hasScrollAnimation()) {
         clearTimeout(this.timeout);
         this.handleTouchStart();
-      });
+      }
+    });
 
-      this.slider.addEventListener('touchend', () => {
+    this.slider.addEventListener('touchend', () => {
+      if (this.hasScrollAnimation()) {
         this.timeout = setTimeout(() => {
-          this.handleTouchEnd();
+          // this.handleTouchEnd();
+          this.addScrollAnimation();
         }, this.delay);
-      });
-    }
+      }
+    });
   }
 
-  // handleEvents
+  stopScrollAnimation() {
+    this.animate.pause();
+    this.isInScrollAnimation = false;
+  }
 
   handleTouchStart() {
-    this.animate.pause();
+    this.stopScrollAnimation();
     this.gotDragged = true;
   }
 
   handleTouchEnd() {
+    console.log('TagCloud ~ handleTouchEnd ~ handleTouchEnd', 'handleTouchEnd');
     const currentPosition = this.slider.scrollLeft;
+    console.log('TagCloud ~ handleTouchEnd ~ currentPosition', currentPosition);
     const distanceToUpperLimit = Math.abs(this.endPosition - currentPosition);
+    console.log('TagCloud ~ handleTouchEnd ~ this.endPosition', this.endPosition);
+    console.log('TagCloud ~ handleTouchEnd ~ distanceToUpperLimit', distanceToUpperLimit);
     const distanceToLowerLimit = Math.abs(this.startPosition - currentPosition);
+    console.log('TagCloud ~ handleTouchEnd ~ distanceToLowerLimit', distanceToLowerLimit);
     const timing = Animate.easing.linear;
     const distance = distanceToUpperLimit < distanceToLowerLimit ? true : false;
     const startPosition = currentPosition;
     const endPosition = distance ? this.startPosition : this.endPosition;
     const reverse = distance ? true : false;
+    console.log('TagCloud ~ handleTouchEnd ~ reverse', reverse);
+    console.log('TagCloud ~ handleTouchEnd ~ distance', distance);
     const scaleDiff = Math.abs(startPosition - endPosition) / Math.abs(this.startPosition - this.endPosition);
     const duration = this.duration * scaleDiff;
+    console.log('TagCloud ~ handleTouchEnd ~ duration', duration);
+
+    // console.log('TagCloud ~ handleTouchEnd ~ startPosition', startPosition);
+    // console.log('TagCloud ~ handleTouchEnd ~ endPosition', endPosition);
     this.moveTo(startPosition, endPosition, duration, timing, reverse);
   }
 
@@ -144,15 +162,11 @@ class TagCloud extends BaseComponent {
     });
   }
 
-  // Init Scroll Animation ++ Scroll Animation
-
   addScrollAnimation() {
-    let reverse = false;
+    this.isInScrollAnimation = true;
     this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
 
-    // this.startPosition
-
-    this.moveTo(this.startPosition, this.endPosition, this.duration, Animate.easing.linear, reverse);
+    this.handleTouchEnd();
   }
 
   moveTo(currentPosition, limit, duration, timing, reverse) {
@@ -163,10 +177,16 @@ class TagCloud extends BaseComponent {
       timing: timing,
       draw: (progress) => {
         const stepAfterDrag = reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
-
+        // console.log('TagCloud ~ moveTo ~ stepAfterDrag', stepAfterDrag);
         const stepBeforeDrag = reverse ? limitDiff * progress : limitDiff * (1 - progress);
+        // console.log('TagCloud ~ moveTo ~ stepBeforeDrag', stepBeforeDrag);
+        // console.log('TagCloud ~ moveTo ~ this.gotDragged', this.gotDragged);
 
         this.slider.scrollLeft = this.gotDragged ? stepAfterDrag : stepBeforeDrag;
+        // console.log(
+        //   'TagCloud ~ moveTo ~ this.slider.scrollLeft',
+        //   this.slider.scrollLeft + '##' + stepBeforeDrag + '##' + stepAfterDrag
+        // );
 
         if (progress === 1) {
           this.gotDragged = false;

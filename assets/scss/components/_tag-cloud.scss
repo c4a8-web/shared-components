@@ -17,8 +17,7 @@
 }
 
 .tag-cloud__header {
-  --size: 2rem;
-  margin: var(--size);
+  margin: spacing(8);
   color: var(--color-copy-light);
 
   h2 {
@@ -29,8 +28,8 @@
 .tag-cloud__content {
   text-align: center;
   justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: spacing(4);
+  padding-bottom: spacing(8);
   overflow-x: hidden;
 }
 
