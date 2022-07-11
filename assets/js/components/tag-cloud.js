@@ -26,15 +26,15 @@ class TagCloud extends BaseComponent {
     this.isMouseOut = true;
 
     this.animate = new Animate();
-    this.delay = 500;
+    this.delay = 1000;
     this.duration = 20000;
     this.startPosition = 0;
     this.endPosition = 0;
     this.gotDragged = false;
 
-    this.distance = 0;
     this.firstTouch = true;
     this.temporaryTouchPosition = 0;
+    this.temporaryDiff = 0;
 
     this.init();
   }
@@ -43,8 +43,7 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-
-    if (this.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
+    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.addScrollAnimation();
     }
@@ -64,7 +63,8 @@ class TagCloud extends BaseComponent {
       });
     });
 
-    if (this.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
+
+    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
       this.slider.addEventListener('touchstart', () => {
         clearTimeout(this.timeout);
         this.handleTouchStart();
@@ -95,22 +95,31 @@ class TagCloud extends BaseComponent {
 
   handleTouchMove() {
     this.gotDragged = true;
+    const windowWidth = window.innerWidth;
     let event = event || window.event;
     const currentTouchPosition = event.touches[0].clientX;
+    const isWithinBounds = currentTouchPosition >= 0 && currentTouchPosition <= windowWidth ? true : false;
+
 
     if (this.firstTouch) {
       this.temporaryTouchPosition = currentTouchPosition;
       this.firstTouch = false;
     }
 
-    const step = 2;
     const diff = currentTouchPosition - this.temporaryTouchPosition;
+    /*const scaleDiff = this.endPosition/windowWidth;
+    const step = Math.abs((diff * scaleDiff)/20);*/
+    const step = 4;
 
-    if (diff > 0) {
-      this.slider.scrollLeft -= step;
-    } else if (diff < 0) {
-      this.slider.scrollLeft += step;
+    if (isWithinBounds) {
+      if (diff > this.temporaryDiff) {
+        this.slider.scrollLeft -= step;
+      } else if (diff < this.temporaryDiff) {
+        this.slider.scrollLeft += step;
+      }
     }
+
+    this.temporaryDiff = diff;
   }
 
   handleTouchEnd() {
@@ -122,8 +131,10 @@ class TagCloud extends BaseComponent {
     const startPosition = currentPosition;
     const endPosition = distance ? this.startPosition : this.endPosition;
     const reverse = distance ? true : false;
+    const scaleDiff = Math.abs(startPosition - endPosition)/Math.abs(this.startPosition - this.endPosition)
+    const duration = this.duration * scaleDiff;
 
-    this.moveTo(startPosition, endPosition, this.duration, timing, reverse);
+    this.moveTo(startPosition, endPosition, duration, timing, reverse);
   }
 
   handleMouseOut(element) {

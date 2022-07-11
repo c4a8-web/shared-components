@@ -1,5 +1,5 @@
 html, body {
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .tag-cloud {
@@ -36,12 +36,12 @@ html, body {
   justify-content: center;
   margin-top: 1rem;
   margin-bottom: 2rem;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .tag-cloud__slider {
   display: flex;
-  overflow: hidden;
+  overflow-x: hidden;
   width: 150vw;
   /*-ms-overflow-style: none;
   scrollbar-width: none;
