@@ -15,7 +15,7 @@ class TagCloud extends BaseComponent {
 
     this.items = this.itemsContainer?.dataset.items ? JSON.parse(this.itemsContainer?.dataset.items) : [];
 
-    this.maxCoordinate = 40; // TODO maybe connect to the padding property to make sure it doesn't get out of bounce ?
+    this.maxCoordinate = 40;
     this.itemsPerOuterRow = 3;
     this.minCoordinate = 10;
     this.minBlur = 2;
@@ -43,7 +43,7 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
+    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.container)) {
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.addScrollAnimation();
     }
@@ -64,7 +64,7 @@ class TagCloud extends BaseComponent {
     });
 
 
-    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.slider)) {
+    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.container)) {
       this.slider.addEventListener('touchstart', () => {
         clearTimeout(this.timeout);
         this.handleTouchStart();
@@ -90,7 +90,7 @@ class TagCloud extends BaseComponent {
   removeHorizontalScrollbar() {
     // remove scrollbar by limiting the height of what is visible
     const height = this.slider.scrollHeight;
-    this.slider.style.height = `${height}px`;
+    this.slider.style.height = `${height-15}px`;
   }
 
   handleTouchMove() {
@@ -131,7 +131,7 @@ class TagCloud extends BaseComponent {
     const startPosition = currentPosition;
     const endPosition = distance ? this.startPosition : this.endPosition;
     const reverse = distance ? true : false;
-    const scaleDiff = Math.abs(startPosition - endPosition)/Math.abs(this.startPosition - this.endPosition)
+    const scaleDiff = Math.abs(startPosition - endPosition)/Math.abs(this.startPosition - this.endPosition);
     const duration = this.duration * scaleDiff;
 
     this.moveTo(startPosition, endPosition, duration, timing, reverse);
@@ -173,9 +173,9 @@ class TagCloud extends BaseComponent {
       timing: timing,
       draw: (progress) => {
 
-        const stepAfterDrag = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
+        const stepAfterDrag = reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
 
-        const stepBeforeDrag = !reverse ? limitDiff * progress : limitDiff * (1 - progress);
+        const stepBeforeDrag = reverse ? limitDiff * progress : limitDiff * (1 - progress);
 
         this.slider.scrollLeft = (this.gotDragged) ? stepAfterDrag : stepBeforeDrag;
         if (progress === 1) {
@@ -191,11 +191,7 @@ class TagCloud extends BaseComponent {
     const getBreakpoint = Tools.getBreakpoint();
     let breakpointIndex = breakpointArray.indexOf(breakpoint);
 
-    if (breakpointArray.slice(0, breakpointIndex+1).includes(getBreakpoint)) {
-      return true;
-    } else {
-      return false;
-    }
+    return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
   }
 
   weightingElements() {
@@ -245,7 +241,6 @@ class TagCloud extends BaseComponent {
     this.items.unshift(corner);
     this.items.push(corner);
 
-    // TODO figure out how to get the position. maybe at the correct end or one before an item that overflows
     const cornerPosition = this.getCornerPosition();
 
     this.items.splice(cornerPosition.secondIndex, 0, corner);
@@ -295,8 +290,6 @@ class TagCloud extends BaseComponent {
         let isEven = i % groupSize === 0 ? true : false;
         const groupIdentifier = isEven ? 2 : 1;
         link.setAttribute('groupIdentifier', groupIdentifier);
-
-        // TODO create random points more compact ?
 
         //x-Values
         link.style.setProperty('--blurry-x1', `${this.getRandomCoordinate()}px`);
