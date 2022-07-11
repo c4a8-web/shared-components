@@ -43,7 +43,7 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.container)) {
+    if (Tools.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.addScrollAnimation();
     }
@@ -64,7 +64,7 @@ class TagCloud extends BaseComponent {
     });
 
 
-    if (this.isBelowBreakpoint('md') && !Tools.isInViewport(this.container)) {
+    if (Tools.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
       this.slider.addEventListener('touchstart', () => {
         clearTimeout(this.timeout);
         this.handleTouchStart();
@@ -186,13 +186,7 @@ class TagCloud extends BaseComponent {
     });
   }
 
-  isBelowBreakpoint(breakpoint) {
-    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
-    const getBreakpoint = Tools.getBreakpoint();
-    let breakpointIndex = breakpointArray.indexOf(breakpoint);
 
-    return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
-  }
 
   weightingElements() {
     const weightThreshold = 8;

@@ -225,6 +225,14 @@ class Tools {
 
     return styles.getPropertyValue('--breakpoint').trim();
   }
+
+  static isBelowBreakpoint(breakpoint) {
+    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
+    const getBreakpoint = Tools.getBreakpoint();
+    let breakpointIndex = breakpointArray.indexOf(breakpoint);
+
+    return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
+  }
 }
 
 export default Tools;
