@@ -43,11 +43,14 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
-    if (Tools.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
-      this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
+    if (this.hasScrollAnimation()) {
       this.addScrollAnimation();
     }
     this.bindEvents();
+  }
+
+  hasScrollAnimation() {
+    return Tools.isBelowBreakpoint('md') && Tools.isInViewport(this.root);
   }
 
   bindEvents() {
@@ -63,16 +66,23 @@ class TagCloud extends BaseComponent {
       });
     });
 
+    window.addEventListener('resize', () => {
+      this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
+    });
 
-    if (Tools.isBelowBreakpoint('md') && Tools.isInViewport(this.slider)) {
+    document.addEventListener('scroll', () => {
+      if (this.hasScrollAnimation()) {
+        this.addScrollAnimation();
+      } else {
+        this.animate.pause();
+      }
+    });
+
+    if (this.hasScrollAnimation()) {
       this.slider.addEventListener('touchstart', () => {
         clearTimeout(this.timeout);
         this.handleTouchStart();
       });
-
-      this.slider.addEventListener('touchmove', () => {
-        this.handleTouchMove();
-        });
 
       this.slider.addEventListener('touchend', () => {
         this.timeout = setTimeout(() => {this.handleTouchEnd();}, this.delay);
@@ -87,41 +97,6 @@ class TagCloud extends BaseComponent {
     this.gotDragged = true;
   }
 
-  removeHorizontalScrollbar() {
-    // remove scrollbar by limiting the height of what is visible
-    const height = this.slider.scrollHeight;
-    this.slider.style.height = `${height-15}px`;
-  }
-
-  handleTouchMove() {
-    this.gotDragged = true;
-    const windowWidth = window.innerWidth;
-    let event = event || window.event;
-    const currentTouchPosition = event.touches[0].clientX;
-    const isWithinBounds = currentTouchPosition >= 0 && currentTouchPosition <= windowWidth ? true : false;
-
-
-    if (this.firstTouch) {
-      this.temporaryTouchPosition = currentTouchPosition;
-      this.firstTouch = false;
-    }
-
-    const diff = currentTouchPosition - this.temporaryTouchPosition;
-    /*const scaleDiff = this.endPosition/windowWidth;
-    const step = Math.abs((diff * scaleDiff)/20);*/
-    const step = 4;
-
-    if (isWithinBounds) {
-      if (diff > this.temporaryDiff) {
-        this.slider.scrollLeft -= step;
-      } else if (diff < this.temporaryDiff) {
-        this.slider.scrollLeft += step;
-      }
-    }
-
-    this.temporaryDiff = diff;
-  }
-
   handleTouchEnd() {
     const currentPosition = this.slider.scrollLeft;
     const distanceToUpperLimit = Math.abs(this.endPosition - currentPosition);
@@ -133,7 +108,6 @@ class TagCloud extends BaseComponent {
     const reverse = distance ? true : false;
     const scaleDiff = Math.abs(startPosition - endPosition)/Math.abs(this.startPosition - this.endPosition);
     const duration = this.duration * scaleDiff;
-
     this.moveTo(startPosition, endPosition, duration, timing, reverse);
   }
 
@@ -162,6 +136,7 @@ class TagCloud extends BaseComponent {
 
   addScrollAnimation() {
     let reverse = false;
+    this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
     this.moveTo(this.startPosition, this.endPosition, this.duration, Animate.easing.linear, reverse);
   }
 
@@ -178,6 +153,7 @@ class TagCloud extends BaseComponent {
         const stepBeforeDrag = reverse ? limitDiff * progress : limitDiff * (1 - progress);
 
         this.slider.scrollLeft = (this.gotDragged) ? stepAfterDrag : stepBeforeDrag;
+
         if (progress === 1) {
           this.gotDragged = false;
           this.moveTo(this.startPosition, this.endPosition, duration, timing, !reverse);
@@ -280,7 +256,7 @@ class TagCloud extends BaseComponent {
       if (item.title) {
         const link = document.createElement('a');
 
-        link.setAttribute('href', item.link);
+        //link.setAttribute('href', item.link);
         let isEven = i % groupSize === 0 ? true : false;
         const groupIdentifier = isEven ? 2 : 1;
         link.setAttribute('groupIdentifier', groupIdentifier);
