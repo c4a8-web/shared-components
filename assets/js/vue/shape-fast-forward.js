@@ -1,9 +1,8 @@
 import ShapeElements from '../shape-elements.js';
 
-const defaultStart = '7s';
-const smallCircleRadius = 70;
-const smallCircleDuration = '0.8s';
-const bigCircleRadius = 155;
+// const defaultStart = '7s';
+const defaultStart = '1s';
+const testDelay = '1s';
 
 const tagName = 'shape-fast-forward';
 
@@ -34,6 +33,7 @@ export default {
     overall() {
       return {
         keySpline: '0.19 1 0.2 1',
+        // keySpline: '0 0.25 0.5 1',
         dur: '0.7s',
       };
     },
@@ -78,8 +78,8 @@ export default {
           name: 'firstArrow',
           moveTo3: {
             start: true,
-            // waitFor: 'bigCircle.reset',
-            delay: '1s',
+            waitFor: 'firstArrow.moveTo3',
+            delay: testDelay,
           },
           moveTo4: {
             // waitFor: 'bigCircle.shrink',
@@ -95,12 +95,21 @@ export default {
           name: 'secondArrow',
           moveTo4: {
             start: true,
-            // waitFor: 'smallCircle.grow',
-            delay: '1s',
+            waitFor: 'secondArrow.moveTo4', // moveTo1
+            delay: testDelay,
+          },
+          shrink: {
+            start: true,
+            waitFor: 'secondArrow.moveTo4',
+            delay: '0.3s',
           },
           moveTo1: {
-            // waitFor: 'smallCircle.grow',
-            delay: '0.01s',
+            waitFor: 'secondArrow.shrink',
+            delay: '100.3s',
+          },
+          grow: {
+            waitFor: 'secondArrow.moveTo1',
+            delay: '102.2s',
           },
           moveT2: {
             // waitFor: 'smallCircle.grow',
@@ -115,8 +124,8 @@ export default {
           name: 'thirdArrow',
           moveTo2: {
             start: true,
-            // waitFor: 'smallCircle.grow',
-            delay: '1s',
+            waitFor: 'thirdArrow.moveTo2',
+            delay: testDelay,
           },
           moveTo3: {
             // waitFor: 'smallCircle.grow',
@@ -142,7 +151,7 @@ export default {
   },
   template: `
     <g :class="classList">
-      <clipPath :iddd="clipPathId">
+      <clipPath :id="clipPathId">
         <rect x="0" y="0" :width="width" :height="height" />
       </clipPath>
       <g :style="clipPathUrl">
@@ -162,7 +171,7 @@ export default {
             :keySplines="overall?.keySpline"
           />
         </polygon>
-        <polygon :aafill="pathColor" fill="#ff0000" :points="points?.secondArrow" :id="secondArrow?.id">
+        <polygon :fill="pathColor" aafill="#ff0000" :points="points?.secondArrow" :id="secondArrow?.id" aastyle="transform-origin: -200px 200px" style="transform-origin: 200px 200px">
           <animateTransform
             :id="secondArrow?.moveTo4?.id"
             :href="secondArrow?.href"
@@ -176,8 +185,51 @@ export default {
             keyTimes="0;1"
             :keySplines="overall?.keySpline"
           />
+          <animateTransform
+            :id="secondArrow?.shrink?.id"
+            :href="secondArrow?.href"
+            :begin="secondArrow?.shrink?.begin"
+            attributeName="transform"
+            additive="sum"
+            type="scale"
+            from="1 1"
+            to="0 0"
+            :dur="overall?.dur"
+            fill="freeze"
+            calcMode="spline"
+            keyTimes="0;1"
+            :keySplines="overall?.keySpline"
+          />
+          <animateTransform
+            :id="secondArrow?.grow?.id"
+            :href="secondArrow?.href"
+            :begin="secondArrow?.grow?.begin"
+            attributeName="transform"
+            aaadditive="sum"
+            type="scale"
+            from="0 0"
+            to="1 1"
+            :dur="overall?.dur"
+            fill="freeze"
+            calcMode="spline"
+            keyTimes="0;1"
+            :keySplines="overall?.keySpline"
+          />
+          <animateTransform
+            :id="secondArrow?.moveTo1?.id"
+            :href="secondArrow?.href"
+            :begin="secondArrow?.moveTo1?.begin"
+            attributeName="transform"
+            from="0"
+            to="-400"
+            :dur="overall?.dur"
+            fill="freeze"
+            calcMode="spline"
+            keyTimes="0;1"
+            :keySplines="overall?.keySpline"
+          />
         </polygon>
-        <polygon :aafill="pathColor" fill="#00ff00" :points="points?.thirdArrow" :id="thirdArrow?.id">
+        <polygon :fill="pathColor" aafill="#00ff00" :points="points?.thirdArrow" :id="thirdArrow?.id">
           <animateTransform
             :id="thirdArrow?.moveTo2?.id"
             :href="thirdArrow?.href"
