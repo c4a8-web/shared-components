@@ -62,11 +62,11 @@ class ShapeElements {
   }
 
   getStepBegin(sequence, step) {
-    const delay = `+${step.delay}`;
+    const delay = `${step.delay}`;
 
     if (!step.waitFor) return delay;
 
-    return `${this.getWaitForName(sequence, step.waitFor)}${delay}`;
+    return `${this.getWaitForName(sequence, step.waitFor)}+${delay}`;
   }
 
   getWaitForName(sequence, waitFor) {
