@@ -1,8 +1,8 @@
 import ShapeElements from '../shape-elements.js';
 
 // const defaultStart = '7s';
-const defaultStart = '0s';
-const testDelay = '2s';
+const defaultStart = '1s';
+const testDelay = '6s';
 
 const tagName = 'shape-fast-forward';
 
@@ -32,10 +32,10 @@ export default {
     },
     overall() {
       return {
-        keySpline: '0.19 1 0.2 1',
-        // keySpline: '0 0.35 0.85 1',
-        // keySpline: '0 0.25 0.5 1',
-        dur: '0.7s',
+        keySplines: '0.19 1 0.2 1',
+        // keySplines: '0 0.35 0.85 1',
+        // keySplines: '0 0.25 0.5 1',
+        dur: '6.7s',
       };
     },
     width() {
@@ -77,9 +77,46 @@ export default {
         thirdArrow: `${-halfWidth},0, ${-halfWidth},${height}, ${0},${halfWidth}`,
       };
     },
+    animationSteps() {},
   },
   data() {
     return {
+      animations: [
+        {
+          steps: [
+            {
+              name: 'moveTo3',
+              by: '200',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'hide',
+              from: '1',
+              to: '0',
+              dur: '0.01s',
+              attributeName: 'opacity',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'moveTo4',
+              by: '200',
+            },
+            {
+              name: 'shrink',
+              type: 'scale',
+              additive: true,
+              from: '1 1',
+              to: '0 0',
+            },
+          ],
+        },
+      ],
       elements: [
         {
           name: 'firstArrow',
@@ -90,7 +127,7 @@ export default {
           },
           moveTo4: {
             waitFor: 'firstArrow.moveTo3',
-            delay: testDelay,
+            delay: '2.05s',
           },
           shrink: {
             waitFor: 'firstArrow.moveTo3',
@@ -98,8 +135,8 @@ export default {
           },
           // moveTo1: {},
           reset: {
-            waitFor: 'firstArrow.shrink',
-            delay: '10.8s',
+            waitFor: 'firstArrow.moveTo4',
+            delay: testDelay,
           },
         },
         {
@@ -165,40 +202,97 @@ export default {
     start: String,
   },
   methods: {
-    getAnimationMoveTo4(elementName, stepName) {
-      // <g v-html="getAnimationMoveTo4('firstArrow', 'moveTo4')"></g>
+    getStepData(elementName, stepList) {
+      const element = this.sequence[elementName];
 
-      /**
+      if (!element) return;
 
-                <animateTransform
-            :id="secondArrow?.moveTo4?.id"
-            :href="secondArrow?.href"
-            :begin="secondArrow?.moveTo4?.begin"
-            attributeName="transform"
-            by="200"
-            :dur="overall?.dur"
-            calcMode="spline"
-            keyTimes="0;1"
-            :keySplines="overall?.keySpline"
-          />
+      const steps = [];
+
+      stepList.forEach((step) => {
+        const elementStepData = element[step?.name];
+
+        if (!elementStepData) return;
+
+        elementStepData.href = element.href;
+
+        if (!step.dur) step.dur = this.overall.dur;
+        if (!step.keySplines) step.keySplines = this.overall.keySplines;
+
+        const stepItem = { step, data: elementStepData };
+
+        steps.push(stepItem);
+      });
+
+      return steps;
+    },
+    getAnimation(elementName, stepName) {
+      const element = this[elementName];
+
+      if (!element) return;
+
+      const moveToStep = element[stepName];
+
+      let additionalStep;
+      let additionalData;
+
+      switch (stepName) {
+        case 'moveTo4':
+          additionalStep = element.shrink;
+          additionalData.type = 'scale';
+          additionalData.additive = true;
+          break;
+        default:
+          break;
+      }
+
+      if (!moveToStep) return;
+
+      let animation = '';
+      let attribute;
+
+      switch (stepName) {
+        default:
+        case 'moveTo4':
+          animationData.attribute = 'transform';
+          break;
+      }
+
+      animation = `
+        <animateTransform
+          id="${moveToStep?.id}"
+          href="${element?.href}"
+          begin="${moveToStep?.begin}"
+          attributeName="${animationData?.attribute}"
+          by="200"
+          fill="freeze"
+          dur="${overall?.dur}"
+          calcMode="spline"
+          keyTimes="0;1"
+          keySplines="${overall?.keySplines}"
+        />
+      `;
+
+      if (additionalStep) {
+        animation += `
           <animateTransform
-            :id="secondArrow?.shrink?.id"
-            :href="secondArrow?.href"
-            :begin="secondArrow?.shrink?.begin"
-            attributeName="transform"
-            additive="sum"
-            type="scale"
-            from="1 1"
-            to="0 0"
-            :dur="overall?.dur"
+            id="${additionalStep?.id}"
+            href="${element?.href}"
+            begin="${additionalStep?.begin}"
+            attributeName="${additionalData?.attribute}"
+            type="${additionalData?.type}"
+            ${additionalData?.additive ? 'additive="sum"' : ''}
+            ${additionalData?.from ? 'from="sum"' : ''}
             fill="freeze"
+            dur="${overall?.dur}"
             calcMode="spline"
             keyTimes="0;1"
-            :keySplines="overall?.keySpline"
+            keySplines="${overall?.keySplines}"
           />
-
-          */
-
+        `;
+      }
+    },
+    getAnimationMoveTo4(elementName, stepName) {
       const element = this[elementName];
 
       if (!element) return;
@@ -216,14 +310,14 @@ export default {
           href="${element?.href}"
           begin="${moveToStep?.begin}"
           attributeName="transform"
-          from="0"
-          to="200"
-          aaby="200"
+          aafrom="0"
+          aato="200"
+          by="200"
           fill="freeze"
           dur="${overall?.dur}"
           calcMode="spline"
           keyTimes="0;1"
-          keySplines="${overall?.keySpline}"
+          keySplines="${overall?.keySplines}"
         />
         <animateTransform
           id="${shrinkStep?.id}"
@@ -238,20 +332,42 @@ export default {
           fill="freeze"
           calcMode="spline"
           keyTimes="0;1"
-          keySplines="${overall?.keySpline}"
+          keySplines="${overall?.keySplines}"
         />
+        <shape-animation id="test" ></shape-animation>
       `;
     },
   },
   template: `
     <g :class="classList">
-      <clipPath :id="clipPathId">
+      <clipPath :iddd="clipPathId">
         <rect x="0" y="0" :width="width" :height="height" />
       </clipPath>
       <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
         <polygon :fill="pathColor" :points="points?.firstArrow" :id="firstArrow?.id" style="transform-origin: 200px 200px">
-          <animateTransform
+          <template v-for="animation in animations">
+            <template v-for="stepData in getStepData('firstArrow', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
+          </template>
+
+          <aaaanimateTransform
             :id="firstArrow?.moveTo3?.id"
             :href="firstArrow?.href"
             :begin="firstArrow?.moveTo3?.begin"
@@ -263,22 +379,33 @@ export default {
             fill="freeze"
             calcMode="spline"
             keyTimes="0;1"
-            :keySplines="overall?.keySpline"
+            :keySplines="overall?.keySplines"
           />
-          <g v-html="getAnimationMoveTo4('firstArrow', 'moveTo4')"></g>
         </polygon>
-        <polygon :fill="pathColor" aafill="#ff0000" :points="points?.secondArrow" :id="secondArrow?.id" style="transform-origin: 200px 200px">
-          <g v-html="getAnimationMoveTo4('secondArrow', 'moveTo4')"></g>
-          <animate
-            :id="secondArrow?.hide?.id"
-            :href="secondArrow?.href"
-            :begin="secondArrow?.hide?.begin"
-            attributeName="opacity"
-            from="1"
-            to="0"
-            dur="0.01s"
-            fill="freeze"
-          />
+        <polygon :aafill="pathColor" fill="#ff0000" :points="points?.secondArrow" :id="secondArrow?.id" style="transform-origin: 200px 200px; aadisplay: none;">
+          <template v-for="animation in animations">
+            <template v-for="stepData in getStepData('secondArrow', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
+          </template>
+
+
+
           <animateTransform
             :id="secondArrow?.moveTo1?.id"
             :href="secondArrow?.href"
@@ -290,7 +417,7 @@ export default {
             fill="freeze"
             calcMode="spline"
             keyTimes="0;1"
-            :keySplines="overall?.keySpline"
+            :keySplines="overall?.keySplines"
           />
           <animate
             :id="secondArrow?.show?.id"
@@ -313,7 +440,7 @@ export default {
             fill="freeze"
             calcMode="spline"
             keyTimes="0;1"
-            :keySplines="overall?.keySpline"
+            :keySplines="overall?.keySplines"
           />
           <animateTransform
             :id="secondArrow?.reset?.id"
@@ -326,10 +453,10 @@ export default {
             fill="freeze"
             calcMode="spline"
             keyTimes="0;1"
-            :keySplines="overall?.keySpline"
+            :keySplines="overall?.keySplines"
           />
         </polygon>
-        <polygon :fill="pathColor" aafill="#00ff00" :points="points?.thirdArrow" :id="thirdArrow?.id">
+        <polygon :aafill="pathColor" fill="#00ff00" :points="points?.thirdArrow" :id="thirdArrow?.id" style="display: none;">
           <animateTransform
             :id="thirdArrow?.moveTo2?.id"
             :href="thirdArrow?.href"
@@ -341,8 +468,30 @@ export default {
             fill="freeze"
             calcMode="spline"
             keyTimes="0;1"
-            :keySplines="overall?.keySpline"
+            :keySplines="overall?.keySplines"
           />
+
+
+          <template v-for="animation in animations">
+            <template v-for="stepData in getStepData('thirdArrow', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
+          </template>
         </polygon>
       </g>
     </g>`,
