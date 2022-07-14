@@ -1,9 +1,7 @@
 import ShapeElements from '../shape-elements.js';
 
-// const defaultStart = '7s';
 const defaultStart = '1s';
-// const animationDelay = '9.5';
-const animationDelay = '2';
+const animationDelay = '7';
 const animationStepDelay = '0.05';
 
 const tagName = 'shape-fast-forward';

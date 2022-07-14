@@ -34,7 +34,7 @@ SBlockTheme.args = {
       thirdColor: '#ff0000',
     },
     {
-      backgroundColor: 'var(--color-primary)',
+      backgroundColor: 'var(--color-primary-accent)',
       foregroundColor: 'var(--color-white)',
       thirdColor: '#ff0000',
     },
