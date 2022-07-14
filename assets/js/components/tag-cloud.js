@@ -45,11 +45,11 @@ class TagCloud extends BaseComponent {
     this.addCorners();
     this.appendItems();
     if (this.hasScrollAnimation()) {
-      console.log('TagCloud ~ init ~ hasScrollAnimation', 'hasScrollAnimation');
+      // console.log('TagCloud ~ init ~ hasScrollAnimation', 'hasScrollAnimation');
 
       this.addScrollAnimation();
     } else {
-      console.log('no init scroll');
+      // console.log('no init scroll');
     }
     this.bindEvents();
   }
@@ -72,7 +72,7 @@ class TagCloud extends BaseComponent {
     });
 
     window.addEventListener('resize', () => {
-      console.log('TagCloud ~ window.addEventListener ~ resize', 'resize');
+      // console.log('TagCloud ~ window.addEventListener ~ resize', 'resize');
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
     });
 
@@ -80,10 +80,10 @@ class TagCloud extends BaseComponent {
       if (this.hasScrollAnimation()) {
         if (this.isInScrollAnimation) return;
 
-        console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'hasScrollAnimation');
+        // console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'hasScrollAnimation');
         this.addScrollAnimation();
       } else {
-        console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'pause');
+        // console.log('TagCloud ~ document.addEventListener ~ hasScrollAnimation', 'pause');
 
         this.stopScrollAnimation();
       }
@@ -117,24 +117,24 @@ class TagCloud extends BaseComponent {
   }
 
   handleTouchEnd() {
-    console.log('TagCloud ~ handleTouchEnd ~ handleTouchEnd', 'handleTouchEnd');
+    // console.log('TagCloud ~ handleTouchEnd ~ handleTouchEnd', 'handleTouchEnd');
     const currentPosition = this.slider.scrollLeft;
-    console.log('TagCloud ~ handleTouchEnd ~ currentPosition', currentPosition);
+    // console.log('TagCloud ~ handleTouchEnd ~ currentPosition', currentPosition);
     const distanceToUpperLimit = Math.abs(this.endPosition - currentPosition);
-    console.log('TagCloud ~ handleTouchEnd ~ this.endPosition', this.endPosition);
-    console.log('TagCloud ~ handleTouchEnd ~ distanceToUpperLimit', distanceToUpperLimit);
+    // console.log('TagCloud ~ handleTouchEnd ~ this.endPosition', this.endPosition);
+    // console.log('TagCloud ~ handleTouchEnd ~ distanceToUpperLimit', distanceToUpperLimit);
     const distanceToLowerLimit = Math.abs(this.startPosition - currentPosition);
-    console.log('TagCloud ~ handleTouchEnd ~ distanceToLowerLimit', distanceToLowerLimit);
+    // console.log('TagCloud ~ handleTouchEnd ~ distanceToLowerLimit', distanceToLowerLimit);
     const timing = Animate.easing.linear;
     const distance = distanceToUpperLimit < distanceToLowerLimit ? true : false;
     const startPosition = currentPosition;
     const endPosition = distance ? this.startPosition : this.endPosition;
     const reverse = distance ? true : false;
-    console.log('TagCloud ~ handleTouchEnd ~ reverse', reverse);
-    console.log('TagCloud ~ handleTouchEnd ~ distance', distance);
+    // console.log('TagCloud ~ handleTouchEnd ~ reverse', reverse);
+    // console.log('TagCloud ~ handleTouchEnd ~ distance', distance);
     const scaleDiff = Math.abs(startPosition - endPosition) / Math.abs(this.startPosition - this.endPosition);
     const duration = this.duration * scaleDiff;
-    console.log('TagCloud ~ handleTouchEnd ~ duration', duration);
+    // console.log('TagCloud ~ handleTouchEnd ~ duration', duration);
 
     // console.log('TagCloud ~ handleTouchEnd ~ startPosition', startPosition);
     // console.log('TagCloud ~ handleTouchEnd ~ endPosition', endPosition);
