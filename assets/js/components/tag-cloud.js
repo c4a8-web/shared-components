@@ -27,7 +27,7 @@ class TagCloud extends BaseComponent {
 
     this.animate = new Animate();
     this.delay = 1000;
-    this.duration = 20000;
+    this.duration = 8000;
     this.startPosition = 0;
     this.endPosition = 0;
     this.gotDragged = false;
