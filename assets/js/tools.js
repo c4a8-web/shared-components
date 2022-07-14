@@ -5,15 +5,26 @@ class Tools {
     maximumFractionDigits: 0,
   });
 
-  static isInViewport(element) {
+  static intersection = (r1, r2) => {
+    const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
+    const yOverlap = Math.max(0, Math.min(r1.y + r1.height, r2.y + r2.height) - Math.max(r1.y, r2.y));
+    const overlapArea = xOverlap * yOverlap;
+
+    return overlapArea;
+  };
+
+  static isInViewportPercent(element, percent) {
     const rect = element.getBoundingClientRect();
 
-    return (
-      rect.top >= 0 &&
-      rect.left >= 0 &&
-      rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-      rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
+    const height = window.innerHeight || document.documentElement.clientHeight;
+    const width = window.innerWidth || document.documentElement.clientWidth;
+
+    const dimension = { x: rect.x, y: rect.y, width: rect.width, height: rect.height };
+    const viewport = { x: 0, y: 0, width, height };
+    const divsize = dimension.width * dimension.height;
+    const overlap = Tools.intersection(dimension, viewport);
+
+    return percent <= (overlap / divsize) * 100;
   }
 
   static scrollIntoView(element, smooth) {

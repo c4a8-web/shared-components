@@ -3,23 +3,26 @@
 {%- assign tagCloudHeadline = include.headline -%}
 {%- assign tagCloudSubline = include.subline -%}
 
-<div class='tag-cloud container'>
-  <div class='row'>
-    <div class='col tag-cloud__header'>
-      {%
-          include headline.html
-          level=tagCloudLevel
-          text=tagCloudHeadline
-          classes="h2-font-size"
-      %}
-      <div class='w-lg-65'>{{ tagCloudSubline }}</div>
+<div class="tag-cloud">
+  <div class="tag-cloud__intro container">
+    <div class="tag-cloud__row row">
+      <div class="tag-cloud__header col">
+        {%
+            include headline.html
+            level=tagCloudLevel
+            text=tagCloudHeadline
+            classes="tag-cloud__headline h2-font-size"
+        %}
+        <div class="tag-cloud__subline w-lg-65">{{ tagCloudSubline }}</div>
+      </div>
     </div>
   </div>
-  <div class="tag-cloud__content row">
-    <div class="tag-cloud__slider ">
-      <div class="tag-cloud__container">
-        <ul class="tag-cloud__items" data-items='{{ tagCloudItems | jsonify }}'>
-        </ul>
+  <div class="tag-cloud__container container-lg">
+    <div class="tag-cloud__content row">
+      <div class="tag-cloud__slider ">
+        <div class="tag-cloud__container">
+          <ul class="tag-cloud__items" data-items="{{ tagCloudItems | jsonify | escape }}"></ul>
+        </div>
       </div>
     </div>
   </div>

@@ -17,11 +17,10 @@
 }
 
 .tag-cloud__header {
-  --size: 2rem;
-  margin: var(--size);
+  margin: spacing(16) 0 spacing(12);
   color: var(--color-copy-light);
 
-  h2 {
+  .tag-cloud__headline {
     color: var(--color-copy-light);
   }
 }
@@ -29,15 +28,14 @@
 .tag-cloud__content {
   text-align: center;
   justify-content: center;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-top: spacing(4);
+  padding-bottom: spacing(8);
   overflow-x: hidden;
 }
 
 .tag-cloud__slider {
   display: flex;
   overflow-x: auto;
-  width: 150vw;
   -ms-overflow-style: none;
   scrollbar-width: none;
 
@@ -50,20 +48,30 @@
 
 .tag-cloud__items {
   display: flex;
-  width: 90%;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
+  width: 150vw;
+  padding: 0 spacing(4);
+
+  @include media-breakpoint-up(lg) {
+    width: 90%;
+    padding: 0;
+  }
 }
 
 .tag-cloud__item {
-  --mobile-width: 200vw;
   padding: spacing(4);
   flex: 1 0 20%;
 
   &[data-weight='0'] {
     flex-grow: 0;
     flex-basis: 15%;
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
   }
 
   &[data-weight='2'] {
@@ -72,14 +80,16 @@
 
   &[data-weight='3'] {
     flex: 1 1 auto;
+    width: 90vw;
+    font-size: $font-size-3;
 
-    @include media-breakpoint-down(md) {
-      width: var(--mobile-width);
-      font-size: $font-size-3;
+    @include media-breakpoint-up(sm) {
+      width: 75vw;
     }
 
     @include media-breakpoint-up(lg) {
       font-size: $font-size-4;
+      width: auto;
     }
 
     @include media-breakpoint-up(xl) {
@@ -94,9 +104,8 @@
   }
 
   @include media-breakpoint-down(md) {
-    width: var(--mobile-width);
     padding: spacing(3);
-    flex: 1 0 5%;
+    flex: 1 0 15%;
     font-size: $font-size-2;
   }
 
