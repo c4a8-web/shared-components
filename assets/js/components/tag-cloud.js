@@ -176,9 +176,9 @@ class TagCloud extends BaseComponent {
       duration: duration,
       timing: timing,
       draw: (progress) => {
-        const stepAfterDrag = reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
+        const stepAfterDrag = !reverse ? currentPosition + limitDiff * progress : currentPosition - limitDiff * progress;
         // console.log('TagCloud ~ moveTo ~ stepAfterDrag', stepAfterDrag);
-        const stepBeforeDrag = reverse ? limitDiff * progress : limitDiff * (1 - progress);
+        const stepBeforeDrag = !reverse ? limitDiff * progress : limitDiff * (1 - progress);
         // console.log('TagCloud ~ moveTo ~ stepBeforeDrag', stepBeforeDrag);
         // console.log('TagCloud ~ moveTo ~ this.gotDragged', this.gotDragged);
 
