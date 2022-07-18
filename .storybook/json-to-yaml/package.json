@@ -1,0 +1,23 @@
+{
+  "name": "storybook-json-to-yaml",
+  "version": "1.0.0",
+  "description": "JSON to YAML",
+  "main": "dist/preset.js",
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "*.js"
+  ],
+  "keywords": [
+    "storybook",
+    "addons"
+  ],
+  "author": "Listor",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel ./src --out-dir ./dist"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  }
+}
