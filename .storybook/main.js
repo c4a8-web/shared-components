@@ -8,6 +8,7 @@ module.exports = {
     '@storybook/addon-essentials',
     './themes/src/preset.js',
     './html-download/src/preset.js',
+    './json-to-yaml/src/preset.js',
   ],
   staticDirs: ['../static', { from: '../static', to: 'assets' }],
   webpackFinal: async (config) => {
