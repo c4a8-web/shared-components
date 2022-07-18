@@ -330,3 +330,7 @@
     </svg>\
     ##{$svg-filter-id}');
 }
+
+@mixin light-text-shadow {
+  text-shadow: 0 0 14px var(--color-white);
+}
