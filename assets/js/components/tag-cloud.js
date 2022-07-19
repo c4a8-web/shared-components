@@ -27,7 +27,7 @@ class TagCloud extends BaseComponent {
 
     this.animate = new Animate();
     this.delay = 1000;
-    this.velocity = 15;
+    this.velocity = 30;
     this.startPosition = 0;
     this.endPosition = 0;
     this.gotDragged = false;
@@ -152,7 +152,7 @@ class TagCloud extends BaseComponent {
   }
 
   setDuration() {
-    const distance = this.slider.scrollWidth;
+    const distance = this.slider.clientWidth;
     this.duration = this.velocity * distance;
     console.log(this.duration);
   }
