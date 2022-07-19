@@ -69,18 +69,13 @@ class TagCloud extends BaseComponent {
     });
 
     window.addEventListener('resize', () => {
+      this.handleScroll();
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.setDuration();
     });
 
     document.addEventListener('scroll', () => {
-      if (this.hasScrollAnimation()) {
-        if (this.isInScrollAnimation) return;
-
-        this.addScrollAnimation();
-      } else {
-        this.stopScrollAnimation();
-      }
+      this.handleScroll();
     });
 
     this.slider.addEventListener('touchstart', () => {
@@ -144,6 +139,16 @@ class TagCloud extends BaseComponent {
     });
   }
 
+  handleScroll() {
+    if (this.hasScrollAnimation()) {
+      if (this.isInScrollAnimation) return;
+
+      this.addScrollAnimation();
+    } else {
+      this.stopScrollAnimation();
+    }
+  }
+
   addScrollAnimation() {
     this.isInScrollAnimation = true;
     this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
@@ -154,7 +159,6 @@ class TagCloud extends BaseComponent {
   setDuration() {
     const distance = this.slider.clientWidth;
     this.duration = this.velocity * distance;
-    console.log(this.duration);
   }
 
   moveTo(currentPosition, limit, duration, timing, reverse) {
