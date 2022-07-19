@@ -10,6 +10,7 @@
 {%- assign cardEvent = include.event -%}
 {%- assign cardTarget = include.target -%}
 
+{% comment %}
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
 {%- endunless -%}
@@ -24,6 +25,7 @@
 {% else %}
   {% capture cardImgUrl %}{{ cardBlogTitlePic }}.jpg{% endcapture %}
 {% endif %}
+
 
 <article class="card {% if cardLarge %}card--large mb-11{% else %}h-100{% endif %} {% if cardEvent %}card--event{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
   {% if cardLarge %}
@@ -65,14 +67,12 @@
                 noLink=cardEvent
               %}
             </div>
-            {% comment %}
             <div class="avatar-group">
               <a class="avatar avatar-xs avatar-circle" href="javascript:;" data-toggle="tooltip" data-placement="top" title="{{ cardAuthor }}" data-original-title="{{ cardAuthor }}">
                 {{ cardAuthor }}
                 <img class="avatar-img" src="./assets/img/100x100/img4.jpg" alt="Image Description">
               </a>
             </div>
-            {% endcomment %}
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
               {{ cardDate | date: '%d.%m.%Y' }}
             </div>
@@ -114,7 +114,6 @@
             noLink=cardEvent
           %}
         </div>
-        {% comment %}
         <div class="avatar-group">
           <a class="avatar avatar-xs avatar-circle" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nataly Gaga">
             <img class="avatar-img" src="./assets/img/100x100/img1.jpg" alt="Image Description">
@@ -123,7 +122,6 @@
             <img class="avatar-img" src="./assets/img/100x100/img2.jpg" alt="Image Description">
           </a>
         </div>
-        {% endcomment %}
         <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
           {{ cardDate | date: '%d.%m.%Y' }}
         </div>
@@ -131,4 +129,11 @@
     </div>
   {% endif %}
 </article>
+
+{% endcomment %}
 <!-- End Shared Card Section -->
+
+
+<card
+  :large={{ cardLarge }}
+></card>

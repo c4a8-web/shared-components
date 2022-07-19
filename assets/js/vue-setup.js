@@ -2,6 +2,7 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+import Card from './vue/card.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
 import FormAttachments from './vue/form-attachments.js';
@@ -47,6 +48,7 @@ const addApp = () => {
   });
 
   const components = [
+    Card,
     Cta,
     Faq,
     FormAttachments,
