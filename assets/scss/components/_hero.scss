@@ -410,8 +410,9 @@
   h4,
   h5,
   h6 {
-    // TODO this needs to only apply on light backgrounds so maybe use .is-light as well?
-    // @include light-text-shadow;
+    &.is-light {
+      @include light-text-shadow;
+    }
   }
 }
 

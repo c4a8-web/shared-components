@@ -71,6 +71,19 @@
   {%- assign heroTextImageVariant = 'hero--pattern' -%}
 {%- endif -%}
 
+
+{% if heroTextImageHero.sublineClass contains 'is-light' or heroTextImageHero.headlineClass contains 'is-light' %}
+  {%- assign heroTextImageIsLight = true -%}
+{% else %}
+  {%- assign heroTextImageIsLight = false -%}
+{% endif %}
+
+{% if heroTextImageIsLight %}
+  {%- assign heroTextImageIsLightClass = 'is-light' -%}
+{% else %}
+  {%- assign heroTextImageIsLightClass = '' -%}
+{% endif %}
+
 <div class="hero-text-image is-component {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
     style="{% if heroTextImageHero.bgColor %}background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
@@ -110,8 +123,8 @@
           </span>
         {% endif %}
         {% unless heroTextImageHero.animation %}
-          <h1 class="hero-text-image__headline {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
-          <p class="hero-text-image__subline {{ hero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+          <h1 class="hero-text-image__headline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
+          <p class="hero-text-image__subline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         {% endunless %}
 
         {% if heroTextImageHero.img %}
