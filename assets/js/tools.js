@@ -244,6 +244,10 @@ class Tools {
 
     return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
   }
+
+  getYoutubeThumbnail(videoId) {
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  }
 }
 
 export default Tools;
