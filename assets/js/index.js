@@ -2,7 +2,7 @@ import i18n from './i18n/index.js';
 import VueSetup from './vue-setup.js';
 
 const handleLoadingError = function (error) {
-  console.error('There was an issue loading a component. It might be blocked my an Adblock Script.', error);
+  console.error('There was an issue loading a component. It might be blocked by an Adblock Script.', error);
 };
 
 const Form = import('./components/form.js')
@@ -15,9 +15,14 @@ import Events from './events.js';
 import State from './state.js';
 import Tools from './tools.js';
 
-let componentLoaadingList;
+let componentLoadingList;
 
 const componentList = [
+  import('./anchor.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./data-an.js')
     .then((module) => {
       return module.default;
@@ -103,8 +108,8 @@ const loadThemeComponents = function () {
 };
 
 const initComponentList = function (element) {
-  for (let i = 0; i < componentLoaadingList.length; i++) {
-    const component = componentLoaadingList[i];
+  for (let i = 0; i < componentLoadingList.length; i++) {
+    const component = componentLoadingList[i];
 
     if (component && component.init) {
       component.init(element);
@@ -119,7 +124,7 @@ const initComponentList = function (element) {
 
 const loadComponents = function () {
   Promise.all(componentList).then((data) => {
-    componentLoaadingList = data;
+    componentLoadingList = data;
 
     initComponentList();
   });
