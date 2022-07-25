@@ -28,7 +28,7 @@ class Anchor {
 
   handleTargetClick() {
     if (this.target && this.hasProductStage()) {
-      this.target.click();
+      this.handleAfterClick(this.target, true);
     }
   }
 
@@ -37,11 +37,14 @@ class Anchor {
     const href = currentLink?.getAttribute('href');
     const target = document.querySelector(`a[href="${href}"][data-toggle]`);
 
-    if(target) {
-      Tools.scrollIntoView(target);
+    this.handleAfterClick(target);
+  }
 
+  handleAfterClick(target, smooth) {
+    if (!target) return;
+
+      Tools.scrollIntoView(target, smooth);
       target.click();
-    }
   }
 
   getHash() {
