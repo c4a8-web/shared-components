@@ -22,6 +22,8 @@
 
 html,
 body {
+  --scroll-top: 80px;
+
   font-family: var(--font-family);
   color: var(--color-copy);
   overflow-x: hidden;
@@ -32,6 +34,10 @@ body {
       --container-width-no-padding: #{get-container-width($name: $breakpoint, $with-padding: false)};
       --breakpoint: #{$breakpoint};
     }
+  }
+
+  @include media-breakpoint-up('md') {
+    --scroll-top: 100px;
   }
 }
 
@@ -92,6 +98,17 @@ ul.dashed li:before {
     main {
       opacity: 1;
       pointer-events: auto;
+    }
+  }
+}
+
+strong[id] {
+  &:target {
+    &::before {
+      content: '';
+      display: block;
+      height: var(--scroll-top);
+      margin: calc(-1 * (var(--scroll-top))) 0 0;
     }
   }
 }
