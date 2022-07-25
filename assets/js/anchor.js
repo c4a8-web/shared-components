@@ -11,7 +11,6 @@ class Anchor {
     this.productStageSelector = '.product-stage';
     this.target = document.querySelector(this.targetSelector);
     this.links = document.querySelectorAll('a[href^="#"]:not([data-toggle])');
-    console.log("Anchor ~ constructor ~ this.links", this.links);
 
     this.handleTargetClick();
     this.bindEvents();
@@ -39,8 +38,6 @@ class Anchor {
     const target = document.querySelector(`a[href="${href}"][data-toggle]`);
 
     if(target) {
-      e.preventDefault();
-
       Tools.scrollIntoView(target);
 
       target.click();
