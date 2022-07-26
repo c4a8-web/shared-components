@@ -10,21 +10,21 @@
 {%- assign cardEvent = include.event -%}
 {%- assign cardTarget = include.target -%}
 
-{% comment %}
 {%- unless cardDate -%}
-  {%- assign cardDate = include.moment -%}
+{%- assign cardDate = include.moment -%}
 {%- endunless -%}
 
 {%- if cardWebcast -%}
-  {%- assign cardEvent = true -%}
+{%- assign cardEvent = true -%}
 {%- endif -%}
 
 <!-- Shared Card Section -->
 {% if cardBlogTitlePic contains '.jpg' or cardBlogTitlePic contains '.webp' or cardBlogTitlePic contains '.png' %}
-  {% assign cardImgUrl = cardBlogTitlePic %}
+{% assign cardImgUrl = cardBlogTitlePic %}
 {% else %}
-  {% capture cardImgUrl %}{{ cardBlogTitlePic }}.jpg{% endcapture %}
+{% capture cardImgUrl %}{{ cardBlogTitlePic }}.jpg{% endcapture %}
 {% endif %}
+{% comment %}
 
 
 <article class="card {% if cardLarge %}card--large mb-11{% else %}h-100{% endif %} {% if cardEvent %}card--event{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">
@@ -136,4 +136,13 @@
 
 <card
   :large={{ cardLarge }}
+  blog-title-pic="{{ cardBlogTitlePic }}"
+  url="{{ cardUrl }}"
+  target="{{ cardTarget }}"
+  title="{{ cardTitle }}"
+  excerpt="{{ cardExcerpt }}"
+  event="{{ cardEvent }}"
+  author="{{ cardAuthor }}"
+  date="{{ cardDate }}"
+
 ></card>

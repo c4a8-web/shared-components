@@ -245,9 +245,25 @@ class Tools {
     return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
   }
 
-  getYoutubeThumbnail(videoId) {
-    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  static getYoutubeThumbnail(videoURL) {
+    const id = videoURL.match('[\\?&]v=([^&#]*)');
+    if (videoURL === null || id === null) {
+      return '';
+    }
+    return `https://img.youtube.com/vi/${id[1]}/maxresdefault.jpg`;
   }
+
+  static truncateWords(string, number){
+    const splitted = string.split(' ');
+    const truncated = splitted.slice(0, number).join(' ');
+
+    return splitted.length > number ? truncated + ' ...' : truncated;
+  }
+
+  static stripHtml(string) {
+    return string.replace(new RegExp(/<.*?>/g), "");
+  }
+
 }
 
 export default Tools;

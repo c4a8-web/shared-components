@@ -13,7 +13,6 @@ export default {
     classList() {
       return [
         'authors',
-        `${Tools.isTrue(this.authors) === true ? '' : ''}`
         `${Tools.isTrue(this.noLink) === true ? 'authors authors--no-link' : 'authors'}`,
         'vue-component',
       ];
@@ -32,25 +31,16 @@ export default {
     }
   },
   props: {
-    authors: {
-      default: null,
-    },
-    noLink: {
-      default: null,
-    },
+    authorsList: Array,
+    noLink: Boolean,
+    authorData: Object,
   },
   template: `
-    <template v-if="authors">
-      Test
-      <span class="classList">
-      	<template v-if="noLink">
-          test
-        </template>
-        <template v-for="author in authors">
-          <a :href="author.url" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">{{author}}</span>
-          </a>
-        </template>
+    <template v-if="authorsList">
+      <span :class="classList" v-for="author in authorsList">
+        <a href="authorData[author].permalink " class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
+        <span itemprop="name">{{author}}</span>
+        </a>
       </span>
 
     </template>
