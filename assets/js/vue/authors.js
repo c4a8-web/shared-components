@@ -3,12 +3,6 @@ import Tools from '../tools.js';
 export default {
   tagName: 'authors',
 
-  data() {
-    return {
-      authors: [],
-    };
-  },
-
   computed: {
     classList() {
       return [
@@ -20,29 +14,37 @@ export default {
   },
 
   methods: {
+    lastElement(array) {
+      return array[array.length - 1];
+    },
+
+    authorsSeperator(array, element) {
+      return this.lastElement(array) === element;
+    },
+
     setSeperator() {
-      if (noLink) {
-        let authorsSeperator = '&';
-        return authorsSeperator;
-      } else {
-        let authorsSeperator = ',';
-        return authorsSeperator;
-      }
+      return this.noLink ? ' & ' : ', ';
     }
   },
   props: {
     authorsList: Array,
     noLink: Boolean,
-    authorData: Object,
   },
   template: `
     <template v-if="authorsList">
       <span :class="classList" v-for="author in authorsList">
-        <a href="authorData[author].permalink " class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
-        <span itemprop="name">{{author}}</span>
-        </a>
+        <template v-if="!noLink">
+          <a href="{{ site.data.authors[author].permalink }}" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{{author}}</span>
+          </a>
+        </template>
+        <template v-else>
+          <span itemprop="name">{{author}}</span>
+        </template>
+        <template v-if="!authorsSeperator(authorsList, author)">
+          {{setSeperator()}}
+        </template>
       </span>
-
     </template>
   `,
 };

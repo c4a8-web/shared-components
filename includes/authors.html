@@ -3,12 +3,13 @@
 {%- assign authorsAuthors = include.authors -%}
 {%- assign authorsNoLink = include.noLink -%}
 
+{% comment %}
 {% if authorsNoLink %}
   {%- assign authorsSeperator = '&' -%}
 {% else %}
   {%- assign authorsSeperator = ',' -%}
 {%- endif -%}
-{% comment %}
+
 {% if authorsAuthors %}
   <!-- Shared Authors Section -->
     <span class="authors {% if authorsNoLink %}authors--no-link{% endif %}">
@@ -34,5 +35,4 @@
 <authors
   :authors-list="{{ authorsAuthors | jsonify | escape }}"
   :no-link={{ authorsNoLink }}
-  authorData="{{ site.data.authors }}"
 ></authors>
