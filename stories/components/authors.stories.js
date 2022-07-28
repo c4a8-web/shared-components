@@ -15,7 +15,6 @@ export const WithLink = Template.bind({});
 
 WithLink.args = {
   authors: ['Author Name', 'Second Author'],
-  noLink: false,
 };
 
 export const WithoutLink = Template.bind({});

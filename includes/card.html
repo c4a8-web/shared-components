@@ -18,13 +18,13 @@
 {%- assign cardEvent = true -%}
 {%- endif -%}
 
+{% comment %}
 <!-- Shared Card Section -->
 {% if cardBlogTitlePic contains '.jpg' or cardBlogTitlePic contains '.webp' or cardBlogTitlePic contains '.png' %}
 {% assign cardImgUrl = cardBlogTitlePic %}
 {% else %}
 {% capture cardImgUrl %}{{ cardBlogTitlePic }}.jpg{% endcapture %}
 {% endif %}
-{% comment %}
 
 
 <article class="card {% if cardLarge %}card--large mb-11{% else %}h-100{% endif %} {% if cardEvent %}card--event{% endif %}" itemscope itemtype="http://schema.org/BlogPosting">

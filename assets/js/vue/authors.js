@@ -11,15 +11,16 @@ export default {
         'vue-component',
       ];
     },
+
+    nolinkClass() {
+      return Tools.isTrue(this.noLink) ? true : false
+    }
   },
 
   methods: {
-    lastElement(array) {
-      return array[array.length - 1];
-    },
 
     authorsSeperator(array, element) {
-      return this.lastElement(array) === element;
+      return array[array.length - 1] === element;
     },
 
     setSeperator() {
@@ -28,12 +29,15 @@ export default {
   },
   props: {
     authorsList: Array,
-    noLink: Boolean,
+
+    noLink: {
+      default: null,
+    },
   },
   template: `
     <template v-if="authorsList">
       <span :class="classList" v-for="author in authorsList">
-        <template v-if="!noLink">
+        <template v-if="!nolinkClass">
           <a href="{{ site.data.authors[author].permalink }}" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{{author}}</span>
           </a>

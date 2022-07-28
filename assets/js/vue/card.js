@@ -48,8 +48,12 @@ export default {
     },
 
     getCardAuthors(authors) {
+      let authorsArray = [];
       const splitted = authors.split(',');
-      return [splitted[0], splitted[1]];
+      for (let i = 0; i < splitted.length; i++) {
+        authorsArray.push(splitted[i]);
+      }
+      return authorsArray;
     },
 
     formatDate(date) {
@@ -108,7 +112,7 @@ export default {
                 </div>
                 <div class="avatar-group">
                   <a class="avatar avatar-xs avatar-circle" href="javascript:;" data-toggle="tooltip" data-placement="top" title="author" data-original-title="author">
-
+                    {{ }}
                     <img class="avatar-img" src="./assets/img/100x100/img4.jpg" alt="Image Description">
                   </a>
                 </div>
@@ -133,7 +137,7 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline level="h4"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
+          <headline :level="h4"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
           <p> {{ truncatedExcerpt }} </p>
         </div>
 
