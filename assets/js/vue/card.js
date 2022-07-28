@@ -20,7 +20,7 @@ export default {
     },
 
     mediaClass() {
-      return `${Tools.isTrue(this.event) === true ? 'media align-items mt-auto' : 'align-items mt-auto'}`;
+      return `${Tools.isTrue(this.event) === true ? 'align-items mt-auto' : 'media align-items mt-auto'}`;
     },
 
     targetClass() {
@@ -33,6 +33,10 @@ export default {
 
     cardDate() {
       return this.formatDate(this.date);
+    },
+
+    webCastClass() {
+      return Tools.isTrue(this.webcast) === true ? 'align-items mt-auto' : 'media align-items mt-auto';
     }
     },
 
@@ -61,17 +65,11 @@ export default {
       const year = splitted[0];
       const month = splitted[1];
       const day = splitted[2];
-      return `${day}-${month}-${year}`;
+      return `${day}.${month}.${year}`;
     }
   },
 
   props: {
-    large: {
-      default: null,
-    },
-    event: {
-      default: null,
-    },
 
     blogTitlePic: String,
     url: String,
@@ -80,8 +78,19 @@ export default {
     excerpt: String,
     author: Array,
     date: String,
+    large: {
+      default: null,
+    },
+    event: {
+      default: null,
+    },
+    webCast: {
+      default: null,
+    }
 
   },
+
+
   template: `
     <article :class="classList">
       <template v-if="large">
@@ -110,12 +119,6 @@ export default {
                 <div class="card__author">
                   <authors :authorsList="getCardAuthors(author)" :noLink="event"  > </authors>
                 </div>
-                <div class="avatar-group">
-                  <a class="avatar avatar-xs avatar-circle" href="javascript:;" data-toggle="tooltip" data-placement="top" title="author" data-original-title="author">
-                    {{ }}
-                    <img class="avatar-img" src="./assets/img/100x100/img4.jpg" alt="Image Description">
-                  </a>
-                </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   {{ cardDate }}
                 </div>
@@ -137,22 +140,14 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline :level="h4"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
+          <headline level="h3"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
           <p> {{ truncatedExcerpt }} </p>
         </div>
 
         <div class="card-footer border-0 pt-0">
-          <div :class="mediaClass">
+          <div :class="webCastClass">
             <div class="card__author">
               <authors :authorsList="getCardAuthors(author)" :noLink="event"  > </authors>
-            </div>
-            <div class="avatar-group">
-              <a class="avatar avatar-xs avatar-circle" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nataly Gaga">
-                <img class="avatar-img" src="./assets/img/100x100/img1.jpg" alt="Image Description">
-              </a>
-              <a class="avatar avatar-xs avatar-circle" href="#" data-toggle="tooltip" data-placement="top" title="" data-original-title="Emily Milda">
-                <img class="avatar_-img src="./assets/img/100x100/img2.jpg" alt="Image Description">
-              </a>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
               {{ cardDate }}
