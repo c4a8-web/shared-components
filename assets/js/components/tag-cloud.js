@@ -27,8 +27,7 @@ class TagCloud extends BaseComponent {
 
     this.animate = new Animate();
     this.delay = 1000;
-    this.baseDuration = 8000;
-    this.duration = this.baseDuration;
+    this.velocity = 30;
     this.startPosition = 0;
     this.endPosition = 0;
     this.gotDragged = false;
@@ -46,6 +45,7 @@ class TagCloud extends BaseComponent {
     this.addCorners();
     this.appendItems();
     if (this.hasScrollAnimation()) {
+      this.setDuration();
       this.addScrollAnimation();
     }
     this.bindEvents();
@@ -69,18 +69,13 @@ class TagCloud extends BaseComponent {
     });
 
     window.addEventListener('resize', () => {
+      this.handleScroll();
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
-      this.duration = this.baseDuration * (this.slider.clientWidth / this.slider.scrollWidth);
+      this.setDuration();
     });
 
     document.addEventListener('scroll', () => {
-      if (this.hasScrollAnimation()) {
-        if (this.isInScrollAnimation) return;
-
-        this.addScrollAnimation();
-      } else {
-        this.stopScrollAnimation();
-      }
+      this.handleScroll();
     });
 
     this.slider.addEventListener('touchstart', () => {
@@ -144,11 +139,26 @@ class TagCloud extends BaseComponent {
     });
   }
 
+  handleScroll() {
+    if (this.hasScrollAnimation()) {
+      if (this.isInScrollAnimation) return;
+
+      this.addScrollAnimation();
+    } else {
+      this.stopScrollAnimation();
+    }
+  }
+
   addScrollAnimation() {
     this.isInScrollAnimation = true;
     this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
 
     this.handleTouchEnd();
+  }
+
+  setDuration() {
+    const distance = this.slider.clientWidth;
+    this.duration = this.velocity * distance;
   }
 
   moveTo(currentPosition, limit, duration, timing, reverse) {

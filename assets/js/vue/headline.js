@@ -20,8 +20,15 @@ export default {
   },
   template: `
     <component :is='tag'
-               :class="classList"
-               v-html="text"
+              :class="classList"
+              v-html="text"
+              v-if="text"
     >
+    </component>
+    <component :is='tag'
+              :class="classList"
+              v-else
+    >
+      <slot></slot>
     </component>`,
 };

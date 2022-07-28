@@ -36,8 +36,24 @@ export default {
         backgroundColor: shape.backgroundColor ? shape.backgroundColor : null,
         foregroundColor: shape.foregroundColor ? shape.foregroundColor : null,
         thirdColor: shape.thirdColor ? shape.thirdColor : null,
+        component: shape.component ? shape.component : this.defaultComponent(id),
       };
     },
+    defaultComponent(id) {
+      // TODO component :is="component"
+
+      switch (id) {
+        default:
+        case 0:
+          return 'square-square-circle';
+        case 1:
+          return 'rect';
+        case 2:
+          return 'shape-fast-forward';
+        case 3:
+          return 'shape-pyramid';
+      }
+    }
   },
   props: {
     shapes: Array,
