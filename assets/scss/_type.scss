@@ -27,7 +27,7 @@ $font-style-map: (
   } @else {
     font-size: $h2-font-size-sm #{$important-string};
     font-weight: lighter;
-    line-height: 1.2em;
+    line-height: $h2-line-height;
   }
 }
 
@@ -76,7 +76,7 @@ $font-style-map: (
   }
 
   font-size: $font-size-1 #{$important-string};
-  line-height: 1.6 #{$important-string};
+  line-height: #{$default-line-height} #{$important-string};
 }
 
 @mixin font-size-2($breakpoint: false, $important: false) {
@@ -100,10 +100,10 @@ $font-style-map: (
     font-size: $font-size-4 #{$important-string};
   } @else if $breakpoint == 'lg' {
     font-size: $font-size-3 #{$important-string};
-    line-height: 2.5rem #{$important-string};
+    line-height: $font-size-4-line-height-lg #{$important-string};
   } @else {
     font-size: $font-size-3 #{$important-string};
-    line-height: 2rem #{$important-string};
+    line-height: $font-size-4-line-height #{$important-string};
   }
 }
 
@@ -234,7 +234,7 @@ $font-style-map: (
   h1,
   .h1-font-size {
     font-size: $h1-font-size-sm;
-    line-height: 1.1em;
+    line-height: $h1-line-height;
 
     @include media-breakpoint-up(lg) {
       font-size: $h1-font-size-lg;
@@ -377,7 +377,7 @@ $font-style-map: (
   %font-size-3,
   .font-size-3 {
     font-size: $font-size-2;
-    line-height: 2.5rem;
+    line-height: $font-size-3-line-height;
 
     @include media-breakpoint-up(lg) {
       font-size: $font-size-2;
@@ -441,5 +441,5 @@ $font-style-map: (
 }
 
 :root {
-  --type-default-line-height: 1.6;
+  --type-default-line-height: #{$default-line-height};
 }
