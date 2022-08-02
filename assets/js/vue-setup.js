@@ -3,6 +3,7 @@
 import './lib/vue/vue.global.prod.js';
 
 import Authors from './vue/authors.js';
+import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
@@ -50,6 +51,7 @@ const addApp = () => {
 
   const components = [
     Authors,
+    BlogRecent,
     Card,
     Cta,
     Faq,

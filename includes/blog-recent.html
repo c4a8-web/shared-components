@@ -63,6 +63,8 @@
   {% assign posts = posts | where_exp: "item", tagExpression %}
 {% endif %}
 
+{% comment %}
+
 {% if posts.size > 0 -%}
   <!-- Shared Blog Recent Section -->
   <div class="blog-recent {{ skin }} {% unless hideContainer %}mt-10{% endunless %}">
@@ -184,3 +186,16 @@
   </div>
   <!-- End Shared Blog Recent Section -->
 {% endif %}
+{% endcomment %}
+
+<blog-recent
+  slider="{{ slider }}"
+  post-size="{{ posts.size }}"
+  hide-container="{{ blogRecentHideContainer }}"
+  bg-color="{{ blogRecentBgColor }}"
+  recent-headline="{{ blogRecentHeadline }}"
+  posts="{{ posts }}"
+  recent-limit="{{ blogRecentLimit }}"
+  img-url="{{ site.blog_image_path }}{{ post.blogtitlepic }}"
+
+></blog-recent>
