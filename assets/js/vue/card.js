@@ -13,7 +13,7 @@ export default {
     classList() {
       return [
         'card',
-        `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
+        `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'card h-100'}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -33,11 +33,8 @@ export default {
 
     cardDate() {
       return this.formatDate(this.date);
-    },
-
-    webCastClass() {
-      return Tools.isTrue(this.webcast) === true ? 'align-items mt-auto' : 'media align-items mt-auto';
     }
+
     },
 
 
@@ -78,6 +75,7 @@ export default {
     excerpt: String,
     author: Array,
     date: String,
+
     large: {
       default: null,
     },
@@ -92,7 +90,7 @@ export default {
 
 
   template: `
-    <article :class="classList">
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting">
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
@@ -145,7 +143,7 @@ export default {
         </div>
 
         <div class="card-footer border-0 pt-0">
-          <div :class="webCastClass">
+          <div :class="mediaClass">
             <div class="card__author">
               <authors :authorsList="getCardAuthors(author)" :noLink="event"  > </authors>
             </div>

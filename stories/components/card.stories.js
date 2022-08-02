@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const BlogPost = Template.bind({});
 
 BlogPost.args = {
-  large: false,
+  //large: false,
   url: 'javascript:void(0);',
   layout: 'post',
   title: 'Can Microsoft Teams call 911?',
