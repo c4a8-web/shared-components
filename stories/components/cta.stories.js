@@ -77,6 +77,16 @@ PrimaryButton.args = {
   button: true,
 };
 
+export const PrimaryButtonDownload = Template.bind({});
+
+PrimaryButtonDownload.args = {
+  text: 'Primary Button',
+  href: 'javascript:void(0)',
+  skin: 'primary',
+  button: true,
+  download: true,
+};
+
 export const PrimaryButtonExternal = Template.bind({});
 
 PrimaryButtonExternal.args = {

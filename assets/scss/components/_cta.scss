@@ -9,6 +9,15 @@
     }
   }
 
+  &.cta--download {
+    .icon svg {
+      animation: ctaDownload;
+      animation-duration: 0.4s;
+      animation-fill-mode: forwards;
+      animation-timing-function: $animation-transition;
+    }
+  }
+
   &.link {
     svg {
       @include move-right-left;
@@ -69,6 +78,7 @@
   position: relative;
   border-radius: 0;
 
+  &.cta--download,
   &.cta--external {
     &::after,
     &.btn {
@@ -85,6 +95,14 @@
       transform: translateY(-50%);
       right: spacing(4);
       z-index: 2;
+    }
+  }
+
+  &.cta--download {
+    .icon {
+      transform: translateY(-50%) rotate(135deg);
+      width: 14px;
+      height: 14px;
     }
   }
 
@@ -263,4 +281,18 @@
 
 cta {
   @include vue-loading;
+}
+
+@keyframes ctaDownload {
+  0% {
+    transform: translateX(0%);
+  }
+
+  30% {
+    transform: translateX(20%) translateY(-10%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
 }
