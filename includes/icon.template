@@ -9,14 +9,6 @@
 {%- assign iconAnimation = include.animation -%}
 {%- assign iconClasses = include.classes -%}
 
-{%- capture rotation -%}
-  {% if iconDirection == 'left' %}180deg{% else %}0deg{% endif %}
-{%- endcapture -%}
-
-{%- capture iconInnerSize -%}
-  {% if iconSize == 'small' %}18px{% elsif iconSize == 'large' %}48px{% elsif iconSize == 'xl' %}120px{% elsif iconSize == 'xxl' %}200px{% else %}28px{% endif %}
-{%- endcapture -%}
-
 <icon
       icon="{{ iconIcon }}"
       color="{{ iconColor }}"

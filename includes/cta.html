@@ -11,22 +11,9 @@
 {% assign ctaAlternativeHref = include.alternativeHref %}
 {% assign ctaType = include.type %}
 {% assign ctaTrigger = include.trigger %}
-{%- assign ctaExternal = include.external -%}
-
-{% capture ctaIconBox %}
-  {% if ctaLink or ctaExternal %}
-    {% if ctaLink %}
-      {% assign ctaIcon = 'arrow' %}
-    {% else %}
-      {% assign ctaIcon = 'arrow-external' %}
-      {% assign ctaTarget = '_blank' %}
-    {% endif %}
-    {%
-      include icon.html
-      icon=ctaIcon
-    %}
-  {% endif %}
-{% endcapture %}
+{% assign ctaExternal = include.external %}
+{% assign ctaIcon = include.icon %}
+{% assign ctaDownload = include.download %}
 
 <cta
       text="{{ ctaText }}"
@@ -42,7 +29,8 @@
       type="{{ ctaType }}"
       trigger="{{ ctaTrigger }}"
       external="{{ ctaExternal }}"
+      icon="{{ ctaIcon }}"
+      download="{{ ctaDownload }}"
 >
-  {{ ctaIconBox }}
 </cta>
 <!-- End Shared Cta Section -->
