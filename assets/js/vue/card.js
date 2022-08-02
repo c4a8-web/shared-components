@@ -5,7 +5,7 @@ export default {
 
   data() {
     return {
-      wordsToTruncate: 40,
+      wordsToTruncate: 20,
     };
   },
 
@@ -13,14 +13,14 @@ export default {
     classList() {
       return [
         'card',
-        `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'card h-100'}`,
+        `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
     },
 
     mediaClass() {
-      return `${Tools.isTrue(this.event) === true ? 'align-items mt-auto' : 'media align-items mt-auto'}`;
+      return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
 
     targetClass() {
@@ -34,10 +34,7 @@ export default {
     cardDate() {
       return this.formatDate(this.date);
     }
-
-    },
-
-
+  },
 
   methods: {
     hasJpgOrWeb(blogTitlePic) {

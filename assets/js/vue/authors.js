@@ -19,8 +19,14 @@ export default {
       return array[array.length - 1] === element;
     },
 
+    authorStart(array, element) {
+      if (array[0] === element) {
+        return 'Mit ';
+      }
+    },
+
     setSeperator() {
-      return this.noLink ? ' & ' : ', ';
+      return this.noLink ? ' & ' : ' , ';
     }
   },
   props: {
@@ -39,7 +45,7 @@ export default {
           </a>
         </template>
         <template v-else>
-          <span itemprop="name">{{author}}</span>
+          <span itemprop="name">{{ authorStart(authorsList, author) }} {{author}}</span>
         </template>
         <template v-if="!authorsSeperator(authorsList, author)">
           {{setSeperator()}}
