@@ -16,7 +16,8 @@ export default {
     blogRecentContainerClass() {
       return [
         'blog-recent__container',
-        this.containerClass,
+        `${Tools.isTrue(this.slider) === true ? 'js-slick-carousel' : 'row mb-3'}`,
+        'vue-component',
       ];
     },
 
@@ -26,6 +27,10 @@ export default {
 
     recentHeadlineClass() {
       return `${Tools.isTrue(this.recentHeadline) === true ? true : false}`;
+    },
+
+    recentCtaClass() {
+      return `${Tools.isTrue(this.recentCta) === true ? true : false}`;
     },
 
     skinClass() {
@@ -75,10 +80,13 @@ export default {
     imgUrl: {
       default: null,
     },
+
+    recentCta: {
+      default: null,
+    },
   },
 
   template: `
-
     <template v-if="postSize > 0">
       <div :class="classList">
         <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
@@ -136,12 +144,16 @@ export default {
             }]
           }'
         >
-        <template v-for="post in posts">
-          {{ post.blogtitlepic }}
+        <template v-for="(post, index) in posts">
+          <div :class="itemClass" v-if="index <= recentLimit">
+            {{ imgUrl }}{{ post.title }}{{ index }}
+            <card title="post.title" blog-title-pic="{{imgUrl}}">
+          </div>
         </template>
       </div>
-      {{ hideContainer}}
-
+          <div class="blog-recent__cta-row row col-lg-12" v-if="recentCtaClass">
+            <cta :text="recentCta.text" :button="true" :skin="recentCta.skin" :width="recentCta.width" :href="recentCta.href">
+          </div>
       </div>
 
 

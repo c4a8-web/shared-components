@@ -188,6 +188,7 @@
 {% endif %}
 {% endcomment %}
 
+
 <blog-recent
   slider="{{ slider }}"
   post-size="{{ posts.size }}"
@@ -196,6 +197,8 @@
   recent-headline="{{ blogRecentHeadline }}"
   posts="{{ posts }}"
   recent-limit="{{ blogRecentLimit }}"
-  img-url="{{ site.blog_image_path }}{{ post.blogtitlepic }}"
+  img-url="{{ site.blog_image_path }}"
+  recent-cta="{{ blogRecentCta }}"
+  post-title="{{ postTitle }}"
 
 ></blog-recent>
