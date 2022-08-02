@@ -48,7 +48,7 @@ export default {
       }
     },
 
-    getCardAuthors(authors) {
+    setAuthorsArray(authors) {
       let authorsArray = [];
       const splitted = authors.split(',');
       for (let i = 0; i < splitted.length; i++) {
@@ -115,7 +115,7 @@ export default {
               <p> {{ truncatedExcerpt }} </p>
               <div :class="mediaClass">
                 <div class="card__author">
-                  <authors :authorsList="getCardAuthors(author)" :noLink="event"  > </authors>
+                  <authors :authorsList="setAuthorsArray(author)" :noLink="event"  > </authors>
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   {{ cardDate }}
@@ -138,14 +138,14 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline level="h3"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
+          <headline level="h4"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
           <p> {{ truncatedExcerpt }} </p>
         </div>
 
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
             <div class="card__author">
-              <authors :authorsList="getCardAuthors(author)" :noLink="event"  > </authors>
+              <authors :authorsList="setAuthorsArray(author)" :noLink="event"  > </authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
               {{ cardDate }}
