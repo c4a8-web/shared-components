@@ -409,7 +409,7 @@ $font-style-map: (
   %font-size-6,
   .font-size-6 {
     font-size: 4rem;
-    line-height: 1.1em;
+    line-height: $font-size-6-line-height;
 
     @include media-breakpoint-up(lg) {
       font-size: 5rem;
@@ -424,12 +424,12 @@ $font-style-map: (
   %font-size-7,
   .font-size-7 {
     font-size: $font-size-7-sm;
-    line-height: 8rem;
+    line-height: $font-size-7-line-height;
     margin-left: -5px;
 
     @include media-breakpoint-up(lg) {
       font-size: $font-size-7;
-      line-height: 12rem;
+      line-height: $font-size-7-line-height-lg;
       margin-left: -15px;
     }
   }

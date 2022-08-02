@@ -24,13 +24,17 @@ $font-size-4-line-height: 2rem;
 $font-size-4-line-height-lg: 2.5rem;
 
 $font-size-5: 3rem;
+$font-size-5-line-height: $default-line-height;
 
 $font-size-6: 6rem;
 $font-size-6-sm: 4rem;
 $font-size-6-lg: 5rem;
+$font-size-6-line-height: 1.1em;
 
 $font-size-7: 9.76563rem * 1.25;
 $font-size-7-sm: 9.76563rem;
+$font-size-7-line-height: 8rem;
+$font-size-7-line-height-lg: 12rem;
 
 $h1-font-size: $font-size-base * 5;
 $h1-font-size-sm: $h1-font-size / 1.8;
