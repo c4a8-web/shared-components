@@ -18,6 +18,7 @@ import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
+import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
@@ -62,6 +63,7 @@ const addApp = () => {
     JobListEntry,
     JobList,
     Modal,
+    Search,
     ShapeAnimation,
     ShapeFastFordward,
     ShapeSquareCircle,
