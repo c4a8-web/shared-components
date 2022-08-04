@@ -197,5 +197,5 @@
   posts="{{ posts | jsonify | escape  }}"
   recent-limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"
-  recent-cta="{{ blogRecentCta }}"
+  recent-cta="{{ blogRecentCta | jsonify | escape}}"
 ></blog-recent>
