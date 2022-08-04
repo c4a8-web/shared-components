@@ -8,7 +8,7 @@ export default {
       return [
         'blog-recent',
         `${Tools.isTrue(this.slider) === true ? 'has-slider': ''}`,
-        `${Tools.isTrue(this.hideContainer) === true ? 'mt-10' : ''}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
         'vue-component',
       ];
     },
@@ -48,19 +48,11 @@ export default {
 
   methods: {
     imgUrlExist(post) {
-      if (post.blogtitlepic) {
-        return this.imgUrl + post.blogtitlepic;
-      } else {
-        return false
-      }
+      return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
     }
   },
 
   props: {
-    postSize: {
-      default: null,
-    },
-
     hideContainer: {
       default: null,
     },
@@ -90,13 +82,13 @@ export default {
   },
 
   template: `
-    <template v-if="postSize > 0">
+    <template v-if="postClass.length > 0">
       <div :class="classList">
        <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
       <div class="container" v-if="hideContainerClass">
         <div class="row" v-if="recentHeadlineClass">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-            <headline level="h2" :text="recentHeadline">
+            <headline level="h3" :text="recentHeadline">
           </div>
         </div>
         <div :class="blogRecentContainerClass"
@@ -105,7 +97,7 @@ export default {
             "slidesToScroll": 3,
             "prevArrow": "<span class=\"slick__arrow-left rounded-circle\"></span>",
             "nextArrow": "<span class=\"slick__arrow-right rounded-circle\"></span>",
-            "dots": {% if posts.size > 3 %}true{% else %}false{% endif %},
+            "dots": {% if postClass.length > 3 %}true{% else %}false{% endif %},
             "centerMode": false,
             "dotsClass": "slick-pagination is-default",
             "responsive": [{
@@ -122,7 +114,7 @@ export default {
                 "centerPadding": "30px",
                 "slidesToShow": 2,
                 "slidesToScroll": 2,
-                "dots": {% if posts.size > 2 %}true{% else %}false{% endif %}
+                "dots": v-if="postClass.length > 2",
                 }
               }, {
               "breakpoint": 768,
@@ -132,7 +124,7 @@ export default {
                 "centerPadding": "30px",
                 "slidesToShow": 1,
                 "slidesToScroll": 1,
-                "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
+                "dots": v-if="postClass.length > 1",
                 }
               }, {
                 "breakpoint": 576,
@@ -142,7 +134,7 @@ export default {
                   "centerPadding": "20px",
                   "slidesToShow": 1,
                   "slidesToScroll": 1,
-                  "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
+                  "dots": v-if="postClass.length > 1",
               }
             }]
           }'
@@ -159,7 +151,7 @@ export default {
         </template>
       </div>
           <div class="blog-recent__cta-row row col-lg-12" v-if="recentCtaClass">
-            <cta :text="recentCta.text" :button="true" :skin="recentCta.skin" :width="recentCta.width" :href="recentCta.href">
+            <cta :text="recentCta.text" :button="true" :skin="recentCta.skin" :width="recentCta.width" :href="recentCta.href" :external="recentCta.external" >
           </div>
       </div>
 
