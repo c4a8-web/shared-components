@@ -14,6 +14,7 @@
   {%- assign blogRecentEvents = true -%}
 {%- endif -%}
 
+<!--take over to vue-->
 {%- if blogRecentSlider -%}
   {%- assign skin = 'has-slider' -%}
   {%- assign containerClasses = 'js-slick-carousel' -%}
@@ -26,6 +27,7 @@
   {%- assign hideContainer = include.hideContainer | default: false -%}
 {%- endif -%}
 
+<!-- posts ? -->
 {%- if blogRecentEvents -%}
   {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
 
@@ -195,10 +197,8 @@
   hide-container="{{ blogRecentHideContainer }}"
   bg-color="{{ blogRecentBgColor }}"
   recent-headline="{{ blogRecentHeadline }}"
-  posts="{{ posts }}"
+  posts="{{ posts | jsonify | escape  }}"
   recent-limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"
   recent-cta="{{ blogRecentCta }}"
-  post-title="{{ postTitle }}"
-
 ></blog-recent>

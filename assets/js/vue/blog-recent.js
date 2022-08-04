@@ -37,19 +37,23 @@ export default {
       return `${Tools.isTrue(this.slider) === true ? 'has-slider': ''}`;
     },
 
-    containerClass() {
-      return `${Tools.isTrue(this.slider) === true ? 'js-slick-carousel' : 'row mb-3'}`;
-    },
-
     itemClass() {
       return `${Tools.isTrue(this.slider) === true ? 'mb-6 mb-lg-0 blog-recent__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'}`;
     },
 
-
+    postClass() {
+      return JSON.parse(this.posts);
+    },
   },
 
   methods: {
-
+    imgUrlExist(post) {
+      if (post.blogtitlepic) {
+        return this.imgUrl + post.blogtitlepic;
+      } else {
+        return false
+      }
+    }
   },
 
   props: {
@@ -66,9 +70,8 @@ export default {
 
     bgColor: String,
 
-    posts: {
-      default: null,
-    },
+    posts: String,
+
     recentLimit: {
       default: null,
     },
@@ -89,7 +92,7 @@ export default {
   template: `
     <template v-if="postSize > 0">
       <div :class="classList">
-        <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
+       <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
       <div class="container" v-if="hideContainerClass">
         <div class="row" v-if="recentHeadlineClass">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
@@ -144,10 +147,14 @@ export default {
             }]
           }'
         >
-        <template v-for="(post, index) in posts">
+        <template v-for="(post, index) in postClass">
           <div :class="itemClass" v-if="index <= recentLimit">
-            {{ imgUrl }}{{ post.title }}{{ index }}
-            <card title="post.title" blog-title-pic="{{imgUrl}}">
+            <template v-if="post.layout == 'post'">
+              <card :title="post.title" :blog-title-pic="imgUrlExist(post)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
+            </template>
+            <template v-else>
+              <card :title="post.title" :blog-title-pic="imgUrlExist(post)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
+            </template>
           </div>
         </template>
       </div>
