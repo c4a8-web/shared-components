@@ -80,22 +80,55 @@ const formatter = new Intl.NumberFormat('en-EN', {
   maximumFractionDigits: 2,
 });
 
+const getTypeFaceLevel = (typeFace) => {
+  const typeFaceSegments = typeFace.split('-');
+
+  return typeFaceSegments[0] === 'font' ? 'font-size-' + typeFaceSegments[2] : typeFaceSegments[0];
+};
+
 const generateDocs = function (typeFace, breakpoints) {
   if (!breakpoints) return;
 
   let docs = '';
-  let aboveBreakpointLabel = breakpoints.length > 1 ? 'Above Breakpoint' : 'All Breakpoints';
+  let aboveBreakpointLabel = breakpoints.length > 1 ? 'Above (lg) Breakpoint' : 'All Breakpoints';
+  let lastBreakpointInStyles = false;
+
+  const typeFaceLevel = getTypeFaceLevel(typeFace);
 
   breakpoints.forEach(function (breakpoint) {
     const typeFaceKey = `${typeFace}${breakpoint ? '-' + breakpoint : ''}`;
     const typeFaceValue = styles[typeFaceKey];
+    const typeFaceLineHeightKey = `${typeFaceLevel}-line-height`;
+    const typeFaceLineHeightKeyBreakpoint = lastBreakpointInStyles
+      ? `${typeFaceLineHeightKey}-${lastBreakpointInStyles}`
+      : `${typeFaceLineHeightKey}-${breakpoint}`;
+
+    let typeFaceLineHeight;
+
+    if (styles[typeFaceLineHeightKeyBreakpoint]) {
+      typeFaceLineHeight = styles[typeFaceLineHeightKeyBreakpoint];
+      lastBreakpointInStyles = breakpoint;
+    } else {
+      typeFaceLineHeight = styles[typeFaceLineHeightKey];
+    }
 
     if (!typeFaceValue) return;
 
     const pxValue = typeFaceValue.replace('rem', '') * baseFontSize;
-    const formattedValue = formatter.format(pxValue);
 
-    docs += `${breakpoint ? 'Breakpoint (' + breakpoint + ')' : aboveBreakpointLabel}: ${formattedValue}px<br/>`;
+    let pxValueLineHeight;
+
+    if (typeFaceLineHeight && typeFaceLineHeight.indexOf('rem') !== -1) {
+      pxValueLineHeight = typeFaceLineHeight.replace('rem', '') * baseFontSize;
+    } else if (typeFaceLineHeight) {
+      pxValueLineHeight = typeFaceLineHeight.replace('em', '') * pxValue;
+    }
+
+    const formattedValue = `<div class="typgraphy__tooltip-details">font-size: ${formatter.format(pxValue)}px`;
+    const lineHeight = `${typeFaceLineHeight ? '<br/>line-height: ' + formatter.format(pxValueLineHeight) + 'px' : ''}`;
+    const details = `${formattedValue}${lineHeight}`;
+
+    docs += `${breakpoint ? 'Breakpoint (' + breakpoint + ')' : aboveBreakpointLabel}: ${details}</div>`;
   });
 
   if (docs === '') return null;

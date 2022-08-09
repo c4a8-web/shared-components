@@ -4,8 +4,16 @@ export default {
     tag() {
       return this.button ? 'button' : 'a';
     },
+    hasIcon() {
+      return this.link || this.external || this.icon || this.download;
+    },
     classList() {
-      return `${this.baseClass} ${this.innerSkin} vue-component`;
+      return [
+        `${this.baseClass} ${this.innerSkin}`,
+        `${this.download ? 'cta--download' : ''}`,
+        `${this.external ? 'cta--external' : ''}`,
+        'vue-component',
+      ];
     },
     innerSkin() {
       if (this.link) {
@@ -30,11 +38,25 @@ export default {
         baseClass += ' btn ' + this.innerWidth;
       }
 
-      if (this.external) {
-        baseClass += ' cta--external';
+      return baseClass;
+    },
+    iconName() {
+      let iconName;
+
+      if (this.icon) {
+        iconName = this.icon;
+      } else if (this.link) {
+        iconName = 'arrow';
+      } else if (this.external) {
+        iconName = 'arrow-external';
+      } else if (this.download) {
+        iconName = 'arrow-external';
       }
 
-      return baseClass;
+      return iconName;
+    },
+    targetValue() {
+      return this.external ? '_blank' : this.target;
     },
   },
   props: {
@@ -59,6 +81,10 @@ export default {
       default: null,
     },
     trigger: String,
+    icon: String,
+    download: {
+      default: null,
+    },
   },
   template: `
     <component :is='tag' role="button"
@@ -67,11 +93,11 @@ export default {
                :href="href ? href : null"
                :data-analytics="analytics ? analytics : null"
                :type="type ? type : null"
-               :target="target ? target : null"
+               :target="targetValue ? targetValue : null"
                :data-alternative-href="alternativeHref ? alternativeHref : null"
                :data-trigger="trigger ? trigger : null"
     >
       {{ text }}
-      <slot></slot>
+      <icon :icon="iconName" v-if="hasIcon" size=" " />
     </component>`,
 };
