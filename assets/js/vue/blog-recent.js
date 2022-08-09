@@ -82,9 +82,7 @@ export default {
   },
   methods: {
     imgUrlExist(post, ctalink) {
-      if (ctalink != 'javascript:void(0)') {
-        console.log(ctalink);
-        console.log(Tools.getYoutubeThumbnail(ctalink));
+      if (ctalink) {
         return Tools.getYoutubeThumbnail(ctalink);
       } else {
         return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
@@ -131,7 +129,6 @@ export default {
                 <card :title="post.title" :blog-title-pic="imgUrlExist(post, ctaParse.href)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
               </template>
               <template v-else>
-                {{ imgUrlExist(post, ctaParse.href) }}
                 <card :title="post.title" :blog-title-pic="imgUrlExist(post, ctaParse.href)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
               </template>
             </div>
