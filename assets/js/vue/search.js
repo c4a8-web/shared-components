@@ -1,5 +1,8 @@
-// TODO fix js issue
-// import * as Lunr from '../lib/lunr.min.js';
+import('../lib/lunr.min.js').then((module) => {
+  if (!module.default) return;
+
+  window.lunr = module.default;
+});
 
 export default {
   tagName: 'search',
@@ -51,6 +54,9 @@ export default {
     },
     initSearchEngine() {
       const store = this.store;
+      const Lunr = window.lunr;
+
+      if (!Lunr) return;
 
       this.searchEngine = Lunr(function () {
         this.ref('title');
