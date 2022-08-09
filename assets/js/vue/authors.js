@@ -2,7 +2,6 @@ import Tools from '../tools.js';
 
 export default {
   tagName: 'authors',
-
   computed: {
     classList() {
       return [
@@ -10,37 +9,39 @@ export default {
         `${Tools.isTrue(this.noLink) === true ? 'authors authors--no-link' : 'authors'}`,
         'vue-component',
       ];
+    },
+    seperator() {
+      return this.noLink ? ' & ' : ' , ';
     }
   },
 
   methods: {
-
     authorsSeperator(array, element) {
       return array[array.length - 1] === element;
     },
-
     authorStart(array, element) {
       if (array[0] === element) {
-        return 'Mit ';
+        return this.dataLang.withAuthor;
       }
     },
 
-    setSeperator() {
-      return this.noLink ? ' & ' : ' , ';
-    }
   },
   props: {
     authorsList: Array,
-
     noLink: {
       default: null,
     },
+    dataLang: {
+      default: 'de',
+    },
+    dataAuthors: Array,
   },
   template: `
     <template v-if="authorsList">
       <span :class="classList" v-for="author in authorsList">
         <template v-if="!noLink">
-          <a href="{{ site.data.authors[author].permalink }}" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
+
+          <a href="dataAuthors[author].permalink" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{{author}}</span>
           </a>
         </template>
@@ -48,7 +49,7 @@ export default {
           <span itemprop="name">{{ authorStart(authorsList, author) }} {{author}}</span>
         </template>
         <template v-if="!authorsSeperator(authorsList, author)">
-          {{setSeperator()}}
+          {{ seperator }}
         </template>
       </span>
     </template>

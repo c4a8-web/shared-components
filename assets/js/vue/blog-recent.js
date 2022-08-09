@@ -2,7 +2,6 @@ import Tools from '../tools.js';
 
 export default {
   tagName: 'blog-recent',
-
   computed: {
     classList() {
       return [
@@ -12,7 +11,6 @@ export default {
         'vue-component',
       ];
     },
-
     blogRecentContainerClass() {
       return [
         'blog-recent__container',
@@ -20,24 +18,18 @@ export default {
         'vue-component',
       ];
     },
-
     skinClass() {
       return `${Tools.isTrue(this.slider) === true ? 'has-slider': ''}`;
     },
-
     itemClass() {
       return `${Tools.isTrue(this.slider) === true ? 'mb-6 mb-lg-0 blog-recent__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'}`;
     },
-
     postsArray() {
       return JSON.parse(this.posts);
     },
-
     ctaParse() {
       return JSON.parse(this.recentCta);
     },
-
-
     carouselOptions() {
       const obj = {
         "slidesToShow": 3,
@@ -85,48 +77,43 @@ export default {
           }
         }]
       }
-
       return JSON.stringify(obj);
     }
   },
-
   methods: {
-    imgUrlExist(post) {
-      return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
+    imgUrlExist(post, ctalink) {
+      if (ctalink != 'javascript:void(0)') {
+        console.log(ctalink);
+        console.log(Tools.getYoutubeThumbnail(ctalink));
+        return Tools.getYoutubeThumbnail(ctalink);
+      } else {
+        return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
+      }
     },
-
     getValue(value) {
       return `${Tools.isTrue(value) === true ? true : false}`;
     }
   },
-
   props: {
     hideContainer: {
       default: null,
     },
     recentHeadline: String,
-
     bgColor: String,
-
     posts: String,
-
     recentLimit: {
       default: null,
     },
-
     slider: {
       default: null,
     },
-
     imgUrl: {
       default: null,
     },
-
     recentCta: {
       default: null,
     },
   },
-
   template: `
     <template v-if="postsArray.length > 0">
       <div :class="classList">
@@ -141,22 +128,20 @@ export default {
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= recentLimit">
               <template v-if="post.layout == 'post'">
-                <card :title="post.title" :blog-title-pic="imgUrlExist(post)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
+                <card :title="post.title" :blog-title-pic="imgUrlExist(post, ctaParse.href)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
               </template>
               <template v-else>
-                <card :title="post.title" :blog-title-pic="imgUrlExist(post)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
+                {{ imgUrlExist(post, ctaParse.href) }}
+                <card :title="post.title" :blog-title-pic="imgUrlExist(post, ctaParse.href)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
               </template>
             </div>
           </template>
         </div>
         <div class="blog-recent__cta-row row col-lg-12" v-if="recentCta">
-          <cta :text="ctaParse.text" :button="ctaParse.button" :width="ctaParse.width" :href="ctaParse.href" :external="ctaParse.external">
+          <cta :text="ctaParse.text" :button="ctaParse.button" :width="ctaParse.width" :href="ctaParse.href" :external="ctaParse.external" />
         </div>
       </div>
-
       </div>
-
-
     </template>
   `,
 }

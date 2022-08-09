@@ -33,6 +33,8 @@
 {% endcomment %}
 
 <authors
+  :data-authors="{{ site.data.authors | jsonify | escape }}"
+  :data-lang="{{ site.data.lang[lang] | jsonify | escape }}"
   :authors-list="{{ authorsAuthors | jsonify | escape }}"
   no-link="{{ authorsNoLink }}"
 ></authors>
