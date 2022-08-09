@@ -1,4 +1,5 @@
-import * as Lunr from '../lib/lunr.min.js';
+// TODO fix js issue
+// import * as Lunr from '../lib/lunr.min.js';
 
 export default {
   tagName: 'search',
