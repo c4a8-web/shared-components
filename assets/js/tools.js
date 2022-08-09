@@ -246,11 +246,15 @@ class Tools {
   }
 
   static getYoutubeThumbnail(videoURL) {
-    const id = videoURL.match('[\\?&]v=([^&#]*)');
-    if (videoURL === null || id === null) {
-      return '';
+    let videoId;
+    let regExp1 = videoURL.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/);
+    let regExp2 = videoURL.match(/youtu\.be\/(.{11})/);
+    if (regExp1) {
+      videoId = regExp1[2];
+    } else if (regExp2) {
+      videoId = regExp2[1];
     }
-    return `https://img.youtube.com/vi/${id[1]}/maxresdefault.jpg`;
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   }
 
   static truncateWords(string, number){

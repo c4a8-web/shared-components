@@ -82,9 +82,10 @@ export default {
   },
   methods: {
     imgUrlExist(post, ctalink) {
-      if (ctalink) {
+      if (/youtube/.test(ctalink)) {
         return Tools.getYoutubeThumbnail(ctalink);
       } else {
+        console.log('test');
         return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
       }
     },
