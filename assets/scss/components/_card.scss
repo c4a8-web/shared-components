@@ -1,4 +1,9 @@
 .card {
+  &:hover {
+    cursor: pointer;
+    @include shadow('medium-light');
+  }
+
   &:not(.card--large) {
     max-width: unquote('min(480px, 100%)');
 
@@ -20,6 +25,7 @@
 
   .card-img-top {
     img {
+      @include aspect-ratio(16, 9);
       width: 100%;
     }
   }

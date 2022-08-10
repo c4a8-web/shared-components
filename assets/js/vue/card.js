@@ -82,7 +82,7 @@ export default {
     youtubeUrl: String,
   },
   template: `
-    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting">
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" onclick="this.querySelector('a').click()" >
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
