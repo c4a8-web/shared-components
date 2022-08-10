@@ -29,7 +29,7 @@ Events.args = {
   events: true,
   cta: {
     text: 'Primary Button',
-    href: 'https://www.youtube.com/watch?v=cKOegEuCcfw',
+    href: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
     skin: 'primary',
     button: true,
     external: true,
@@ -46,7 +46,7 @@ EventsReversed.args = {
   events: true,
   cta: {
     text: 'Primary Button',
-    href: 'https://www.youtube.com/watch?v=cKOegEuCcfw',
+    href: 'https://www.youtube.com/watch?v=zidlD8YZNL8',
     skin: 'primary',
     button: true,
     external: true,

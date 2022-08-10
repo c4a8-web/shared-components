@@ -88,6 +88,12 @@ export default {
         return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
       }
     },
+    target(post) {
+      return post.layout === 'post' ? 'false' : '_blank';
+    },
+    event(post) {
+      return post.layout === 'post' ? 'false' : 'true';
+    },
     getValue(value) {
       return `${Tools.isTrue(value) === true ? true : false}`;
     }
@@ -119,18 +125,13 @@ export default {
       <div class="container" v-if="getValue(this.hideContainer)">
         <div class="row" v-if="getValue(this.recentHeadline)">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-            <headline level="h2" :text="recentHeadline">
+            <headline level="h3" :text="recentHeadline" classes="h2-font-size" >
           </div>
         </div>
         <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= recentLimit">
-              <template v-if="post.layout == 'post'">
-              <card :title="post.title" :blog-title-pic="ctaParse.href" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
-              </template>
-              <template v-else>
-                <card :title="post.title" :blog-title-pic="ctaParse.href" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
-              </template>
+              <card :title="post.title" :blog-title-pic="post.blogtitlepic" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)">
             </div>
           </template>
         </div>

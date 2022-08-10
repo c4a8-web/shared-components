@@ -1,6 +1,7 @@
 const Events = [
   {
     url: 'javascript:void(0);',
+    youtubeUrl: 'https://www.youtube.com/watch?v=DnkRfpd6cBw',
     layout: 'event',
     title: 'EVENT Audiocodes Devices Review',
     date: '2022-06-17',
@@ -14,6 +15,7 @@ const Events = [
   },
   {
     url: 'javascript:void(0);',
+    youtubeUrl: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
     layout: 'event',
     title: 'EVENT Externe Emails besser erkennen',
     date: '2022-06-10',
@@ -27,6 +29,7 @@ const Events = [
   },
   {
     url: 'javascript:void(0);',
+    youtubeUrl: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
     layout: 'event',
     title: 'EVENT Can Microsoft Teams call 911?',
     date: '2021-05-11',
@@ -40,6 +43,7 @@ const Events = [
   },
   {
     url: 'javascript:void(0);',
+    youtubeUrl: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
     layout: 'event',
     title: 'EVENT Audiocodes Devices Review',
     date: '2021-06-17',
@@ -53,6 +57,7 @@ const Events = [
   },
   {
     url: 'javascript:void(0);',
+    youtubeUrl: 'https://www.youtube.com/watch?v=DnkRfpd6cBw',
     layout: 'event',
     title: 'EVENT Externe Emails besser erkennen',
     date: '2021-06-10',
@@ -66,6 +71,7 @@ const Events = [
   },
   {
     url: 'javascript:void(0);',
+    youtubeUrl: 'https://www.youtube.com/watch?v=DnkRfpd6cBw',
     layout: 'event',
     title: 'EVENT Can Microsoft Teams call 911?',
     date: '2021-05-11',

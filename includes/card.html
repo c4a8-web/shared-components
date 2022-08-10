@@ -9,6 +9,7 @@
 {%- assign cardWebcast = include.webcast -%}
 {%- assign cardEvent = include.event -%}
 {%- assign cardTarget = include.target -%}
+{%- assign cardYoutubeUrl = include.youtubeurl -%}
 
 {%- unless cardDate -%}
 {%- assign cardDate = include.moment -%}
@@ -145,5 +146,6 @@
   author="{{ cardAuthor }}"
   date="{{ cardDate }}"
   web-cast="{{ cardWebcast }}"
+  youtube-url="{{ cardYoutubeUrl }}"
 
 ></card>

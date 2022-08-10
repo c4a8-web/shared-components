@@ -29,8 +29,8 @@ export default {
       return this.formatDate(this.date);
     },
     hasExtension() {
-      if (/youtube/.test(this.blogTitlePic)) {
-        return Tools.getYoutubeThumbnail(this.blogTitlePic);
+      if (this.youtubeUrl) {
+        return Tools.getYoutubeThumbnail(this.youtubeUrl);
       } else {
         if (/^.+\.(jpg|webp|png)/.test(this.blogTitlePic)) {
           return this.blogTitlePic;
@@ -40,11 +40,7 @@ export default {
       }
     },
     hasBlogTitlePic() {
-      if (/youtube/.test(this.blogTitlePic)) {
-        return false;
-      } else {
-        return true;
-      }
+      return this.youtubeUrl ? false : true;
     },
   },
   methods: {
@@ -80,7 +76,8 @@ export default {
     },
     webCast: {
       default: null,
-    }
+    },
+    youtubeUrl: String,
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting">

@@ -19,7 +19,7 @@ export default {
   },
   props: {
     img: String,
-    cloudinary: String,
+    cloudinary: Boolean,
   },
   template: `
     <img :src="source" >
