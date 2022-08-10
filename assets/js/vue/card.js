@@ -20,7 +20,7 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     targetClass() {
-      return this.target === "" ? null : this.target;
+      return this.target === '' ? null : this.target;
     },
     truncatedExcerpt() {
       return Tools.truncateWords(Tools.stripHtml(this.excerpt), this.wordsToTruncate);
@@ -47,6 +47,7 @@ export default {
     setAuthorsArray(authors) {
       let authorsArray = [];
       const splitted = authors.split(',');
+
       for (let i = 0; i < splitted.length; i++) {
         authorsArray.push(splitted[i]);
       }
@@ -57,6 +58,7 @@ export default {
       const year = splitted[0];
       const month = splitted[1];
       const day = splitted[2];
+
       return `${day}.${month}.${year}`;
     },
   },
@@ -102,7 +104,7 @@ export default {
           <div class="col-lg-4">
             <div class="card-body d-flex flex-column h-100 p-4 p-lg-5">
               <headline level="h3"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
-              <p> {{ truncatedExcerpt }} </p>
+              <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author">
                   <authors :authorsList="setAuthorsArray(author)" :noLink="event"  > </authors>
@@ -129,7 +131,7 @@ export default {
 
         <div class="card-body">
           <headline level="h4"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
-          <p> {{ truncatedExcerpt }} </p>
+          <p>{{ truncatedExcerpt }}</p>
         </div>
 
         <div class="card-footer border-0 pt-0">
