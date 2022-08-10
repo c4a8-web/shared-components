@@ -88,13 +88,6 @@ export default {
     },
   },
   methods: {
-    imgUrlExist(post, ctalink) {
-      if (/youtube/.test(ctalink)) {
-        return Tools.getYoutubeThumbnail(ctalink);
-      } else {
-        return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
-      }
-    },
     target(post) {
       return post.layout === 'post' ? 'false' : '_blank';
     },
@@ -103,6 +96,9 @@ export default {
     },
     getValue(value) {
       return `${Tools.isTrue(value) === true ? true : false}`;
+    },
+    blogTitleUrl(post) {
+      return this.imgUrl + post.blogtitlepic;
     },
   },
   props: {
@@ -138,7 +134,7 @@ export default {
         <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= limit">
-              <card :title="post.title" :blog-title-pic="post.blogtitlepic" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)">
+              <card :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)">
             </div>
           </template>
         </div>
