@@ -51,7 +51,7 @@ Webcast.args = {
   moment: '2022-02-16',
   author: ['Nadine Kern', 'Next Author'],
   webcast: true,
-  blogtitlepic: `${site.blog_image_path}head-emergency-calls`,
+  blogtitlepic: 'https://www.youtube.com/watch?v=cKOegEuCcfw',
   socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
   url: 'javascript:void(0);',
   tags: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],

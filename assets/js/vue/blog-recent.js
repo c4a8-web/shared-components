@@ -85,7 +85,6 @@ export default {
       if (/youtube/.test(ctalink)) {
         return Tools.getYoutubeThumbnail(ctalink);
       } else {
-        console.log('test');
         return post.blogtitlepic ? this.imgUrl + post.blogtitlepic : false;
       }
     },
@@ -127,10 +126,10 @@ export default {
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= recentLimit">
               <template v-if="post.layout == 'post'">
-                <card :title="post.title" :blog-title-pic="imgUrlExist(post, ctaParse.href)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
+              <card :title="post.title" :blog-title-pic="ctaParse.href" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="false" :event="false">
               </template>
               <template v-else>
-                <card :title="post.title" :blog-title-pic="imgUrlExist(post, ctaParse.href)" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
+                <card :title="post.title" :blog-title-pic="ctaParse.href" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="'_blank'" :event="true">
               </template>
             </div>
           </template>

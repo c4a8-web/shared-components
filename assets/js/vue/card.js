@@ -29,10 +29,14 @@ export default {
       return this.formatDate(this.date);
     },
     hasExtension() {
-      if (/^.+\.(jpg|webp|png)/.test(this.blogTitlePic)) {
-        return this.blogTitlePic;
+      if (/youtube/.test(this.blogTitlePic)) {
+        return Tools.getYoutubeThumbnail(this.blogTitlePic);
       } else {
-        return this.blogTitlePic + '.jpg';
+        if (/^.+\.(jpg|webp|png)/.test(this.blogTitlePic)) {
+          return this.blogTitlePic;
+        } else {
+          return this.blogTitlePic + '.jpg';
+        }
       }
     },
     hasBlogTitlePic() {
