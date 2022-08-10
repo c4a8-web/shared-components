@@ -63,138 +63,32 @@
   {% assign posts = posts | where_exp: "item", tagExpression %}
 {% endif %}
 
-{% comment %}
 
-{% if posts.size > 0 -%}
-  <!-- Shared Blog Recent Section -->
-  <div class="blog-recent {{ skin }} {% unless hideContainer %}mt-10{% endunless %}">
-    {% if skin != '' %}
-    <div class="blog-recent__bg" style="background-color:{{ blogRecentBgColor }}"></div>
-    {% endif %}
-  {% unless hideContainer %}
-  <div class="container">
-  {% endunless %}
-      {% if blogRecentHeadline %}
-        <div class="row">
-          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-            {% assign level = blogRecentHeadlineLevel | default: "h3" %}
-            {%
-              include headline.html
-              level=level
-              text=blogRecentHeadline
-              classes="h2-font-size"
-            %}
-          </div>
-        </div>
-      {% endif %}
-      <div class="blog-recent__container {{ containerClasses }}"
-        data-hs-slick-carousel-options='{
-          "slidesToShow": 3,
-          "slidesToScroll": 3,
-          "prevArrow": "<span class=\"slick__arrow-left rounded-circle\"></span>",
-          "nextArrow": "<span class=\"slick__arrow-right rounded-circle\"></span>",
-          "dots": {% if posts.size > 3 %}true{% else %}false{% endif %},
-          "centerMode": false,
-          "dotsClass": "slick-pagination is-default",
-          "responsive": [{
-            "breakpoint": 1200,
-              "settings": {
-                "slidesToShow": 3,
-                "slidesToScroll": 3
-              }
-            }, {
-            "breakpoint": 992,
-            "settings": {
-              "centerMode": true,
-              "infinite": true,
-              "centerPadding": "30px",
-              "slidesToShow": 2,
-              "slidesToScroll": 2,
-              "dots": {% if posts.size > 2 %}true{% else %}false{% endif %}
-              }
-            }, {
-            "breakpoint": 768,
-            "settings": {
-              "centerMode": true,
-              "infinite": false,
-              "centerPadding": "30px",
-              "slidesToShow": 1,
-              "slidesToScroll": 1,
-              "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
-              }
-            }, {
-              "breakpoint": 576,
-              "settings": {
-                "centerMode": true,
-                "infinite": false,
-                "centerPadding": "20px",
-                "slidesToShow": 1,
-                "slidesToScroll": 1,
-                "dots": {% if posts.size > 1 %}true{% else %}false{% endif %}
-            }
-          }]
-        }'
-      >
-        {% for post in posts %}
-          {% if forloop.index <= blogRecentLimit %}
-            <div class="{{ itemClasses }}">
-              {% if post.blogtitlepic %}
-                {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
-              {% else %}
-                {% assign imgUrl = false %}
-              {% endif %}
-              {% if post.layout == 'post' %}
-                {% assign cardEvent = false %}
-                {% assign cardTarget = false %}
-                {% assign cardUrl = post.url %}
-              {% else %}
-                {% assign cardEvent = true %}
-                {% assign cardUrl = post.cta.href %}
-                {% assign cardTarget = '_blank' %}
-              {% endif %}
-
-              {%
-                include card.html
-                title=post.title
-                blogtitlepic=imgUrl
-                excerpt=post.excerpt
-                date=post.date
-                url=cardUrl
-                author=post.author
-                event=cardEvent
-                target=cardTarget
-              %}
-            </div>
-          {% endif %}
-        {% endfor %}
-      </div>
-      {% if blogRecentCta %}
-        <div class="blog-recent__cta-row row col-lg-12">
-          {%
-            include cta.html
-            text=blogRecentCta.text
-            href=blogRecentCta.href
-            skin=blogRecentCta.skin
-            width=blogRecentCta.width
-            external=blogRecentCta.external
-          %}
-        </div>
-      {% endif %}
-  {% unless hideContainer %}
-    </div>
-  {% endunless %}
-  </div>
-  <!-- End Shared Blog Recent Section -->
-{% endif %}
-{% endcomment %}
-
+{%- capture postsString -%}[
+    {%- for post in posts -%}
+      {
+        "url": "{{ post.url }}",
+        "youtubeUrl": "{{ post.youtubeUrl }}",
+        "layout": "{{ post.layout }}",
+        "title": "{{ post.title }}",
+        "date": "{{ post.date }}",
+        "author": {{ post.author | jsonify }},
+        "categories": {{ post.categories | jsonify }},
+        "tags": {{ post.tags | jsonify }},
+        "blogtitlepic": "{{ post.blogtitlepic }}",
+        "socialimg": "{{ post.socialimg }}",
+        "excerpt": "{{ post.excerpt }}"
+      }{% unless forloop.last %},{% endunless -%}
+    {% endfor %}
+  ]
+{%- endcapture %}
 
 <blog-recent
   slider="{{ blogRecentSlider }}"
   hide-container="{{ blogRecentHideContainer }}"
   bg-color="{{ blogRecentBgColor }}"
   headline="{{ blogRecentHeadline }}"
-  posts="{{ posts | jsonify | escape  }}"
+  :posts="{{ postsString | jsonify | escape }}"
   limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"
   cta="{{ blogRecentCta | jsonify | escape}}"

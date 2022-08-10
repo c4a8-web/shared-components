@@ -45,15 +45,19 @@ export default {
   },
   methods: {
     setAuthorsArray(authors) {
-      let authorsArray = [];
-      const splitted = authors.split(',');
+      if (typeof authors === 'object' && authors.length > 0) return authors;
 
-      for (let i = 0; i < splitted.length; i++) {
+      let authorsArray = [];
+      const splitted = authors?.split(',');
+
+      for (let i = 0; i < splitted?.length; i++) {
         authorsArray.push(splitted[i]);
       }
       return authorsArray;
     },
     formatDate(date) {
+      if (!date) return;
+
       const splitted = date.split('-');
       const year = splitted[0];
       const month = splitted[1];

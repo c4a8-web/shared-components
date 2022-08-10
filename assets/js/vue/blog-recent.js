@@ -27,7 +27,7 @@ export default {
       }`;
     },
     postsArray() {
-      return this.posts ? JSON.parse(this.posts) : {};
+      return this.posts ? JSON.parse(this.posts) : [];
     },
     ctaParse() {
       return this.cta ? JSON.parse(this.cta) : {};
@@ -139,7 +139,7 @@ export default {
           </template>
         </div>
         <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
-          <cta :text="ctaParse.text" :button="ctaParse.button" :width="ctaParse.width" :href="ctaParse.href" :external="ctaParse.external" />
+          <cta :text="ctaParse?.text" :button="ctaParse?.button" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
         </div>
       </div>
       </div>
