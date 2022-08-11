@@ -143,9 +143,10 @@
   title="{{ cardTitle }}"
   excerpt="{{ cardExcerpt }}"
   event="{{ cardEvent }}"
-  author="{{ cardAuthor }}"
+  :author="{{ cardAuthor | jsonify | escape }}"
   date="{{ cardDate }}"
   web-cast="{{ cardWebcast }}"
   youtube-url="{{ cardYoutubeUrl }}"
+  :data-authors="{{ site.data.authors | jsonify | escape }}"
 
 ></card>

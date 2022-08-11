@@ -18,7 +18,7 @@ BlogPost.args = {
   layout: 'post',
   title: 'Can Microsoft Teams call 911?',
   date: '2021-05-11',
-  author: ['Christian Kordel', 'Next Author'],
+  author: ['Alexander Rudolph', 'Next Author'],
   categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
   tags: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
   blogtitlepic: `${site.blog_image_path}head-emergency-calls`,

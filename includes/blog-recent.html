@@ -92,4 +92,5 @@
   limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"
   cta="{{ blogRecentCta | jsonify | escape}}"
+  :data-authors="{{ site.data.authors | jsonify | escape }}"
 ></blog-recent>

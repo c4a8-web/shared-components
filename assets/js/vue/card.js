@@ -44,17 +44,6 @@ export default {
     },
   },
   methods: {
-    setAuthorsArray(authors) {
-      if (typeof authors === 'object' && authors.length > 0) return authors;
-
-      let authorsArray = [];
-      const splitted = authors?.split(',');
-
-      for (let i = 0; i < splitted?.length; i++) {
-        authorsArray.push(splitted[i]);
-      }
-      return authorsArray;
-    },
     formatDate(date) {
       if (!date) return;
 
@@ -63,8 +52,18 @@ export default {
       const year = formatedDate[0];
       const month = formatedDate[1];
       const day = formatedDate[2];
+
       return `${day}.${month}.${year}`;
     },
+    authorList(author) {
+      if (typeof author === 'object' && author.length > 0) return author;
+      if (typeof author === 'string') return [author];
+    },
+    handleClick(e) {
+      const title = this.$refs['title'];
+
+      title.click();
+    }
   },
   props: {
     blogTitlePic: String,
@@ -84,9 +83,10 @@ export default {
       default: null,
     },
     youtubeUrl: String,
+    dataAuthors: Object,
   },
   template: `
-    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" onclick="this.querySelector('a').click()" >
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick" >
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
@@ -107,11 +107,11 @@ export default {
 
           <div class="col-lg-4">
             <div class="card-body d-flex flex-column h-100 p-4 p-lg-5">
-              <headline level="h3"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
+              <headline level="h3"><a class="text-inherit" ref="title" :href="url" :target="targetClass">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author">
-                  <authors :authorsList="setAuthorsArray(author)" :noLink="event"  > </authors>
+                  <authors :authorsList="authorList(author)" :noLink="event" :dataAuthors="dataAuthors"></authors>
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   {{ cardDate }}
@@ -134,14 +134,14 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline level="h4"><a class="text-inherit" href="url" :target="targetClass">{{ title }}</a></headline>
+          <headline level="h4"><a ref="title" class="text-inherit" :href="url" :target="targetClass">{{ title }}</a></headline>
           <p>{{ truncatedExcerpt }}</p>
         </div>
 
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
             <div class="card__author">
-              <authors :authorsList="setAuthorsArray(author)" :noLink="event"> </authors>
+              <authors :authorsList="authorList(author)" :noLink="event" :dataAuthors="dataAuthors"></authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
               {{ cardDate }}

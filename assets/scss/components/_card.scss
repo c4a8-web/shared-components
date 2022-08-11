@@ -24,8 +24,8 @@
   }
 
   .card-img-top {
+    @include aspect-ratio(16, 9);
     img {
-      @include aspect-ratio(16, 9);
       width: 100%;
     }
   }

@@ -12,7 +12,7 @@ export default {
     },
     seperator() {
       return this.noLink ? ' & ' : ' , ';
-    }
+    },
   },
 
   methods: {
@@ -24,6 +24,9 @@ export default {
         return this.dataLang.withAuthor;
       }
     },
+    authorLink(author) {
+      return this.dataAuthors.hasOwnProperty(author) ? this.dataAuthors[author].permalink : '';
+    },
 
   },
   props: {
@@ -34,14 +37,15 @@ export default {
     dataLang: {
       default: 'de',
     },
-    dataAuthors: Array,
+    dataAuthors: {
+      default: null,
+    }
   },
   template: `
     <template v-if="authorsList">
       <span :class="classList" v-for="author in authorsList">
         <template v-if="!noLink">
-
-          <a href="dataAuthors[author].permalink" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a :href="authorLink(author)" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{{author}}</span>
           </a>
         </template>
