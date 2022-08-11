@@ -58,11 +58,11 @@ export default {
     formatDate(date) {
       if (!date) return;
 
-      const splitted = date.split('-');
-      const year = splitted[0];
-      const month = splitted[1];
-      const day = splitted[2];
-
+      const splitted = date.split(' ');
+      const formatedDate = splitted[0].split('-');
+      const year = formatedDate[0];
+      const month = formatedDate[1];
+      const day = formatedDate[2];
       return `${day}.${month}.${year}`;
     },
   },

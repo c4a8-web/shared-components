@@ -89,10 +89,10 @@ export default {
   },
   methods: {
     target(post) {
-      return post.layout === 'post' ? 'false' : '_blank';
+      return post.layout === 'post' ? false : '_blank';
     },
     event(post) {
-      return post.layout === 'post' ? 'false' : 'true';
+      return post.layout === 'post' ? false : true;
     },
     getValue(value) {
       return `${Tools.isTrue(value) === true ? true : false}`;
