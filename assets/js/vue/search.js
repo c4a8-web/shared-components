@@ -33,7 +33,7 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          this.store = data?.results;
+          this.store = data;
 
           this.handleSearch();
         })
@@ -54,6 +54,7 @@ export default {
     },
     initSearchEngine() {
       const store = this.store;
+      const { results, weights } = store;
       const Lunr = window.lunr;
 
       if (!Lunr) return;
@@ -63,7 +64,7 @@ export default {
         this.field('content');
         this.field('url');
 
-        store?.forEach(function (element) {
+        results?.forEach(function (element) {
           this.add(element);
         }, this);
       });
