@@ -1,8 +1,16 @@
-import('../lib/lunr.min.js').then((module) => {
-  if (!module.default) return;
+const loadLunr = async () => {
+  await import('../lib/lunr.min.js').then((module) => {
+    if (module.default) {
+      window.lunr = module.default;
+    }
+  });
+};
 
-  window.lunr = module.default;
-});
+// TODO figure out how to load language file
+
+// loadLunr().then(() => {
+//   import('../lib/lunr.stemmer.support.min.js').then((stemmer) => stemmer.default(lunr));
+// });
 
 export default {
   tagName: 'search',
@@ -46,23 +54,27 @@ export default {
         this.initSearchEngine();
       }
 
-      const searchTerm = this.$refs.search.value;
+      const searchTerm = `${this.$refs.search.value}*`;
 
       if (!searchTerm) return; // TODO add an error
 
       this.results = this.searchEngine.search(searchTerm);
+      console.log('handleSearch ~ this.results', this.results);
     },
     initSearchEngine() {
       const store = this.store;
       const { results, weights } = store;
+      const weightsData = Object.keys(weights);
       const Lunr = window.lunr;
 
       if (!Lunr) return;
 
       this.searchEngine = Lunr(function () {
         this.ref('title');
-        this.field('content');
-        this.field('url');
+
+        weightsData.forEach((weightData) => {
+          this.field(weightData, { boost: weights[weightData] });
+        });
 
         results?.forEach(function (element) {
           this.add(element);
@@ -73,6 +85,7 @@ export default {
   props: {
     placeholder: String,
     endpoint: String,
+    language: String,
   },
   template: `
     <div :class="classList">

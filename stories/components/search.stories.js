@@ -11,8 +11,14 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Search = Template.bind({});
+export const Default = Template.bind({});
 
-Search.args = {
+Default.args = {
   endpoint: 'mock/search.json',
+};
+
+export const ScoreTest = Template.bind({});
+
+ScoreTest.args = {
+  endpoint: 'mock/searchScoreTest.json',
 };
