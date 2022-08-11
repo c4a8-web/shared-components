@@ -1,0 +1,49 @@
+{%- assign searchDataResults = include.results -%}
+{%- assign searchDataSearchFields = include.searchFields -%}
+{%- comment -%}
+  The result of this component should be valid JSON
+{%- endcomment -%}
+{
+  "weights": {
+    {% for field in searchDataSearchFields -%}
+      {%- assign fieldWeight = field.weight | default: 1 -%}
+      {%- if fieldWeight -%}
+        "{{ field.name }}": {{ fieldWeight }}
+        {% unless forloop.last %},{% endunless -%}
+      {%- endif -%}
+    {% endfor %}
+  },
+  "results": [
+    {%- for result in searchDataResults -%}
+      {%- assign resultUrlSplit = result.url | split: "/" -%}
+      {%- assign resultType = resultUrlSplit[1] -%}
+      {%- assign resultUrlSegment = resultUrlSplit[2] -%}
+
+      {%- unless resultType == '404' or resultType == 'assets' or resultUrlSegment contains 'page' or resultType contains '.xml' or resultType contains '.json' -%}
+        {%- capture resultString -%}
+          {
+            "type": "{{ resultType }}",
+          {% for field in searchDataSearchFields -%}
+            {%- assign fieldName = field.name -%}
+
+            {%- if result[fieldName] and result[fieldName].size > 0 -%}
+              {%- if fieldName == "url" -%}
+                "{{ fieldName }}": "{{ result[fieldName] | relative_url }}"
+              {%- elsif fieldName == "tags" or fieldName == "categories" -%}
+                "{{ fieldName }}": {{ result[fieldName] | jsonify }}
+              {%- else -%}
+                {%- capture fieldValue -%}
+                  {{ result[fieldName] | strip_html | escape | strip_newlines | normalize_whitespace | replace: "\S", "" | replace: "\A", "" | replace: "\F", "" | replace: "\D", "" | replace: "\*", "" }}
+                {%- endcapture -%}
+                "{{ fieldName }}": "{{ fieldValue }}"
+              {%- endif -%}
+              {% unless forloop.last %},{% endunless -%}
+            {%- endif -%}
+          {%- endfor -%}
+          }{% unless forloop.last %},{% endunless -%}
+        {%- endcapture -%}
+      {%- endunless -%}
+      {{ resultString }}
+    {%- endfor -%}
+  ]
+}
