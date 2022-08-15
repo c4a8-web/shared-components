@@ -1,16 +1,4 @@
-const loadLunr = async () => {
-  await import('../lib/lunr.min.js').then((module) => {
-    if (module.default) {
-      window.lunr = module.default;
-    }
-  });
-};
-
-// TODO figure out how to load language file
-
-// loadLunr().then(() => {
-//   import('../lib/lunr.stemmer.support.min.js').then((stemmer) => stemmer.default(lunr));
-// });
+import Fuse from '../lib/fuse.esm.min.js';
 
 export default {
   tagName: 'search',
@@ -18,12 +6,16 @@ export default {
     classList() {
       return ['search', `${this.expanded ? 'search--expanded' : ''}`, 'vue-component'];
     },
+    limitedResults() {
+      return this.results?.slice(0, this.maxResults);
+    },
   },
   data() {
     return {
       search: null,
       store: null,
       results: null,
+      maxResults: 15,
     };
   },
   methods: {
@@ -54,7 +46,7 @@ export default {
         this.initSearchEngine();
       }
 
-      const searchTerm = `${this.$refs.search.value}*`;
+      const searchTerm = `${this.$refs.search.value}`;
 
       if (!searchTerm) return; // TODO add an error
 
@@ -64,22 +56,20 @@ export default {
     initSearchEngine() {
       const store = this.store;
       const { results, weights } = store;
-      const weightsData = Object.keys(weights);
-      const Lunr = window.lunr;
 
-      if (!Lunr) return;
+      if (!Fuse) return;
 
-      this.searchEngine = Lunr(function () {
-        this.ref('title');
+      const options = {
+        includeScore: true,
+        ignoreLocation: true,
+        findAllMatches: true,
+        includeMatches: true,
+        // ignoreFieldNorm: true, // discuss this param with caro
+        threshold: 0.2,
+        keys: weights,
+      };
 
-        weightsData.forEach((weightData) => {
-          this.field(weightData, { boost: weights[weightData] });
-        });
-
-        results?.forEach(function (element) {
-          this.add(element);
-        }, this);
-      });
+      this.searchEngine = new Fuse(results, options);
     },
   },
   props: {
@@ -90,7 +80,14 @@ export default {
   template: `
     <div :class="classList">
       <input ref="search" type="search" @keypress.enter="handleEnter" />
-      <div v-for="result in results">{{ result }}</div>
+      <div v-for="result in limitedResults">
+        <div class="">
+          <div>title: {{ result.item.title }}</div>
+          <div>excerpt: {{ result.item.excerpt }}</div>
+          <div>score: {{ result.score }}</div>
+        </div>
+        <br/><br/>
+      </div>
     </div>
   `,
 };

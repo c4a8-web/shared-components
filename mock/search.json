@@ -1,13 +1,13 @@
 {
-  "weights": {
-    "title": 2,
-    "excerpt": 2,
-    "categories": 1,
-    "tags": 1,
-    "url": 1,
-    "date": 1,
-    "content": 1
-  },
+  "weights": [
+    { "name": "title", "weight": 2 },
+    { "name": "excerpt", "weight": 2 },
+    { "name": "categories", "weight": 1 },
+    { "name": "tags", "weight": 1 },
+    { "name": "url", "weight": 1 },
+    { "name": "date", "weight": 1 },
+    { "name": "content", "weight": 1 }
+  ],
   "results": [
     {
       "type": "de",
