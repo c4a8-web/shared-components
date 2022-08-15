@@ -4,15 +4,18 @@
   The result of this component should be valid JSON
 {%- endcomment -%}
 {
-  "weights": {
-    {% for field in searchDataSearchFields -%}
-      {%- assign fieldWeight = field.weight | default: 1 -%}
-      {%- if fieldWeight -%}
-        "{{ field.name }}": {{ fieldWeight }}
-        {% unless forloop.last %},{% endunless -%}
-      {%- endif -%}
-    {% endfor %}
-  },
+  "weights": [
+    {%- for field in searchDataSearchFields -%}
+      {
+        {%- assign fieldWeight = field.weight | default: 1 -%}
+        {%- if fieldWeight -%}
+          "name": "{{ field.name }}",
+          "weight": {{ fieldWeight }}
+          {%- endif -%}
+      }
+      {%- unless forloop.last %},{% endunless -%}
+    {%- endfor -%}
+  ],
   "results": [
     {%- for result in searchDataResults -%}
       {%- assign resultUrlSplit = result.url | split: "/" -%}
