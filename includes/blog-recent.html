@@ -4,15 +4,17 @@
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
 {%- assign blogRecentLimit = include.limit | default: 3 -%}
+{%- assign blogRecentLimitCaseStudies = include.limitCaseStudies | default: blogRecentLimit -%}
 {%- assign blogRecentLimitEvents = include.limitEvents | default: blogRecentLimit -%}
 {%- assign blogRecentBgColor = include.bgColor | default: 'var(--color-blue-light)' -%}
 {%- assign blogRecentEvents = include.events -%}
 {%- assign blogRecentCombine = include.combine -%}
 {%- assign blogRecentCta = include.cta -%}
-{%- assign blogRecentCaseStudy = include.caseStudies -%}
+{%- assign blogRecentCaseStudies = include.caseStudies -%}
 
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
+  {%- assign blogRecentCaseStudies = true -%}
 {%- endif -%}
 
 {%- if blogRecentSlider -%}
@@ -38,14 +40,14 @@
   {% assign events = events | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitEvents %}
 {%- endif -%}
 
-{%- if blogRecentCaseStudy -%}
+{%- if blogRecentCaseStudies -%}
   {% assign caseStudies = site.casestudies | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
+
 {%- endif -%}
 
 {%- if blogRecentCombine -%}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
-  {% assign posts = posts | concat: events %}
-  {% assign posts = posts | concat: caseStudies %}
+  {% assign posts = posts | concat: events | concat: caseStudies %}
   {% assign posts = posts | sort: 'date' %}
 
   {% unless blogRecentReversed %}
@@ -80,7 +82,7 @@
           "title": "{{ post.title }}",
           "date": "{{ post.date }}",
           "blogtitlepic": "{{ post.hero.background.img }}",
-          "excerpt": "{{ post.hero.background.subline }}",
+          "excerpt": "{{ post.hero.background.subline | strip_html }}"
         }{% unless forloop.last %},{% endunless -%}
       {%- else -%}
         {
@@ -90,18 +92,16 @@
           "title": "{{ post.title }}",
           "date": "{{ post.date }}",
           "author": {{ post.author | jsonify }},
+          "blogtitlepic": "{{ post.blogtitlepic }}",
           "categories": {{ post.categories | jsonify }},
           "tags": {{ post.tags | jsonify }},
-          "excerpt": "{{ post.excerpt }}",
+          "excerpt": "{{ post.excerpt }}"
         }{% unless forloop.last %},{% endunless -%}
       {%- endif -%}
     {% endfor %}
   ]
 {%- endcapture %}
-
 <blog-recent
-  case-studies="{{ blogRecentCaseStudy }}"
-  :case-study-data="{{ caseStudies | jsonify | escape }}"
   slider="{{ blogRecentSlider }}"
   hide-container="{{ blogRecentHideContainer }}"
   bg-color="{{ blogRecentBgColor }}"

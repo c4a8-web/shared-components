@@ -57,6 +57,7 @@ export const CaseStudies = Template.bind({});
 
 CaseStudies.args = {
   limit: 21,
+  limitCaseStudies: 3,
   headline: 'lorem ipsum headline',
   slider: true,
   caseStudies: true,
@@ -70,6 +71,5 @@ Combined.args = {
   limitEvents: 2,
   headline: 'lorem ipsum headline',
   slider: true,
-  caseStudies: true,
   combine: true,
 };

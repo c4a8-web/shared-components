@@ -111,9 +111,6 @@ export default {
     dataAuthors: Object,
     headline: String,
     posts: String,
-    caseStudies: {
-      default: null,
-    },
     combined: {
       default: null,
     },
@@ -134,7 +131,6 @@ export default {
     },
   },
   template: `
-    {{ postsArray }}
     <template v-if="postsArray.length > 0">
       <div :class="classList">
        <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
