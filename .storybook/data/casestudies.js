@@ -7,8 +7,9 @@ const CaseStudies = [
     hero: {
       background: {
         img: '/casestudies/casestudy-dekra-v2.png',
-        subline: '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC) <span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)'
-      }
+      },
+      subline:
+        '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC) <span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)',
     },
   },
   {
@@ -19,8 +20,8 @@ const CaseStudies = [
     hero: {
       background: {
         img: '/casestudies/casestudy-dekra-v2.png',
-        subline: 'lorem ipsum lumus lusum elusum'
-      }
+      },
+      subline: 'lorem ipsum lumus lusum elusum',
     },
   },
   {
@@ -31,8 +32,8 @@ const CaseStudies = [
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
-        subline: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem quisquam.'
-      }
+      },
+      subline: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem quisquam.',
     },
   },
   {
@@ -43,8 +44,9 @@ const CaseStudies = [
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
-        subline: '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC) <span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)'
-      }
+      },
+      subline:
+        '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC) <span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)',
     },
   },
   {
@@ -55,8 +57,8 @@ const CaseStudies = [
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
-        subline: 'lorem ipsum lumus lusum elusum'
-      }
+      },
+      subline: 'lorem ipsum lumus lusum elusum',
     },
   },
   {
@@ -67,8 +69,8 @@ const CaseStudies = [
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
-        subline: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem quisquam.'
-      }
+      },
+      subline: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem quisquam.',
     },
   },
 ];
