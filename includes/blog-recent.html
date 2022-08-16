@@ -45,6 +45,7 @@
 {%- if blogRecentCombine -%}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
   {% assign posts = posts | concat: events %}
+  {% assign posts = posts | concat: caseStudies %}
   {% assign posts = posts | sort: 'date' %}
 
   {% unless blogRecentReversed %}
@@ -53,6 +54,8 @@
 {%- else -%}
   {% if blogRecentEvents %}
     {% assign posts = events %}
+  {% elsif blogRecentCaseStudy %}
+    {% assign posts = caseStudies %}
   {% else %}
     {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
   {% endif %}
@@ -71,19 +74,27 @@
 
 {%- capture postsString -%}[
     {%- for post in posts -%}
-      {
-        "url": "{{ post.url }}",
-        "youtubeUrl": "{{ post.youtubeUrl }}",
-        "layout": "{{ post.layout }}",
-        "title": "{{ post.title }}",
-        "date": "{{ post.date }}",
-        "author": {{ post.author | jsonify }},
-        "categories": {{ post.categories | jsonify }},
-        "tags": {{ post.tags | jsonify }},
-        "blogtitlepic": "{{ post.blogtitlepic }}",
-        "socialimg": "{{ post.socialimg }}",
-        "excerpt": "{{ post.excerpt }}"
-      }{% unless forloop.last %},{% endunless -%}
+      {%- if post.layout == 'casestudies' -%}
+        {
+          "layout": "{{ post.layout }}",
+          "title": "{{ post.title }}",
+          "date": "{{ post.date }}",
+          "blogtitlepic": "{{ post.hero.background.img }}",
+          "excerpt": "{{ post.hero.background.subline }}",
+        }{% unless forloop.last %},{% endunless -%}
+      {%- else -%}
+        {
+          "url": "{{ post.url }}",
+          "youtubeUrl": "{{ post.youtubeUrl }}",
+          "layout": "{{ post.layout }}",
+          "title": "{{ post.title }}",
+          "date": "{{ post.date }}",
+          "author": {{ post.author | jsonify }},
+          "categories": {{ post.categories | jsonify }},
+          "tags": {{ post.tags | jsonify }},
+          "excerpt": "{{ post.excerpt }}",
+        }{% unless forloop.last %},{% endunless -%}
+      {%- endif -%}
     {% endfor %}
   ]
 {%- endcapture %}
@@ -100,5 +111,4 @@
   img-url="{{ site.blog_image_path }}"
   cta="{{ blogRecentCta | jsonify | escape}}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
-  combined="{{ blogRecentCombine }}"
 ></blog-recent>

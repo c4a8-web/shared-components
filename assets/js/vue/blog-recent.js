@@ -27,14 +27,8 @@ export default {
       }`;
     },
     postsArray() {
-      const postArray = this.posts ? JSON.parse(this.posts) : [];
-      if (Tools.isTrue(this.caseStudies) === true && Tools.isTrue(this.combined) !== true) {
-        return this.caseStudyData;
-      } else if (Tools.isTrue(this.combined) === true) {
-        return this.caseStudyData.concat(postArray);
-      } else {
-        return postArray;
-      }
+      console.log(this.posts);
+      return this.posts ? JSON.parse(this.posts) : [];
     },
     ctaParse() {
       return this.cta ? JSON.parse(this.cta) : {};
@@ -108,10 +102,7 @@ export default {
       return `${Tools.isTrue(value) === true ? true : false}`;
     },
     blogTitleUrl(post) {
-      return post.layout === 'casestudies' ? post.hero.background.img : this.imgUrl + post.blogtitlepic;
-    },
-    excerpt(post) {
-      return post.layout === 'casestudies' ? post.hero.background.subline : post.excerpt;
+      return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
     },
   },
   props: {
@@ -143,6 +134,7 @@ export default {
     },
   },
   template: `
+    {{ postsArray }}
     <template v-if="postsArray.length > 0">
       <div :class="classList">
        <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
@@ -155,7 +147,7 @@ export default {
         <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= limit">
-              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="excerpt(post)" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
+              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
             </div>
           </template>
         </div>
