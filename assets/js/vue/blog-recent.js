@@ -27,7 +27,6 @@ export default {
       }`;
     },
     postsArray() {
-      console.log(this.posts);
       return this.posts ? JSON.parse(this.posts) : [];
     },
     ctaParse() {

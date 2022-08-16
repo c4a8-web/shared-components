@@ -73,16 +73,16 @@
   {% assign posts = posts | where_exp: "item", tagExpression %}
 {% endif %}
 
-
 {%- capture postsString -%}[
     {%- for post in posts -%}
       {%- if post.layout == 'casestudies' -%}
         {
+          "url": "{{ post.url }}",
           "layout": "{{ post.layout }}",
           "title": "{{ post.title }}",
           "date": "{{ post.date }}",
           "blogtitlepic": "{{ post.hero.background.img }}",
-          "excerpt": "{{ post.hero.background.subline | strip_html }}"
+          "excerpt": "{{ post.hero.subline | strip_html | strip_newlines | escape }}"
         }{% unless forloop.last %},{% endunless -%}
       {%- else -%}
         {
@@ -93,14 +93,13 @@
           "date": "{{ post.date }}",
           "author": {{ post.author | jsonify }},
           "blogtitlepic": "{{ post.blogtitlepic }}",
-          "categories": {{ post.categories | jsonify }},
-          "tags": {{ post.tags | jsonify }},
-          "excerpt": "{{ post.excerpt }}"
+          "excerpt": "{{ post.excerpt | strip_html | strip_newlines | escape }}"
         }{% unless forloop.last %},{% endunless -%}
       {%- endif -%}
     {% endfor %}
   ]
 {%- endcapture %}
+
 <blog-recent
   slider="{{ blogRecentSlider }}"
   hide-container="{{ blogRecentHideContainer }}"
