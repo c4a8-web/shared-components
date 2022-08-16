@@ -2,14 +2,74 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @DEKRA',
-    date: '',
-    author: '',
-    categories: '',
-    tags: '',
-    blogtitlepic: '/casestudies/casesstudy-dekra-v2.png',
-    socialimg: '/casestudies/casesstudy-dekra-v2.png',
-    excerpt: '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)'
+    title: 'Azure @ DEKRA',
+    date: '2020-01-01',
+    hero: {
+      background: {
+        img: '/casestudies/casesstudy-dekra-v2.png',
+        subline: '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC) <span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)'
+      }
+    },
+  },
+  {
+    url: 'javascript:void(0);',
+    layout: 'casestudies',
+    title: 'Azure @ lokal',
+    date: '2020-04-04',
+    hero: {
+      background: {
+        img: '/casestudies/casesstudy-dekra-v2.png',
+        subline: 'lorem ipsum lumus lusum elusum'
+      }
+    },
+  },
+  {
+    url: 'javascript:void(0);',
+    layout: 'casestudies',
+    title: 'Azure @ lorem ipsum',
+    date: '2020-07-07',
+    hero: {
+      background: {
+        img: 'casestudies/casesstudy-dekra-v2.png',
+        subline: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem quisquam.'
+      }
+    },
+  },
+  {
+    url: 'javascript:void(0);',
+    layout: 'casestudies',
+    title: 'Azure @ DEKRA',
+    date: '2020-01-01',
+    hero: {
+      background: {
+        img: 'casestudies/casesstudy-dekra-v2.png',
+        subline: '<span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC) <span class="highlight">Effiziente Umsetzung</span> der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)'
+      }
+    },
+  },
+  {
+    url: 'javascript:void(0);',
+    layout: 'casestudies',
+    title: 'Azure @ lokal',
+    date: '2020-04-04',
+    hero: {
+      background: {
+        img: 'casestudies/casesstudy-dekra-v2.png',
+        subline: 'lorem ipsum lumus lusum elusum'
+      }
+    },
+  },
+  {
+    url: 'javascript:void(0);',
+    layout: 'casestudies',
+    title: 'Azure @ lorem ipsum',
+    date: '2020-07-07',
+    hero: {
+      background: {
+        img: 'casestudies/casesstudy-dekra-v2.png',
+        subline: 'lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quidem quisquam.'
+      }
+    },
   },
 ];
 

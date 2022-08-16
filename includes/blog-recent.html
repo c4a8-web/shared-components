@@ -9,6 +9,7 @@
 {%- assign blogRecentEvents = include.events -%}
 {%- assign blogRecentCombine = include.combine -%}
 {%- assign blogRecentCta = include.cta -%}
+{%- assign blogRecentCaseStudy = include.caseStudies -%}
 
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
@@ -35,6 +36,10 @@
 
   {% assign events = events | where_exp:"item","item.webcast == true" %}
   {% assign events = events | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitEvents %}
+{%- endif -%}
+
+{%- if blogRecentCaseStudy -%}
+  {% assign caseStudies = site.casestudies | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
 {%- endif -%}
 
 {%- if blogRecentCombine -%}
@@ -84,6 +89,8 @@
 {%- endcapture %}
 
 <blog-recent
+  case-studies="{{ blogRecentCaseStudy }}"
+  :case-study-data="{{ caseStudies | jsonify | escape }}"
   slider="{{ blogRecentSlider }}"
   hide-container="{{ blogRecentHideContainer }}"
   bg-color="{{ blogRecentBgColor }}"
@@ -93,4 +100,5 @@
   img-url="{{ site.blog_image_path }}"
   cta="{{ blogRecentCta | jsonify | escape}}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
+  combined="{{ blogRecentCombine }}"
 ></blog-recent>

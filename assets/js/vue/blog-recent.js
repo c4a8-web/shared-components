@@ -27,10 +27,20 @@ export default {
       }`;
     },
     postsArray() {
-      return this.posts ? JSON.parse(this.posts) : [];
+      const postArray = this.posts ? JSON.parse(this.posts) : [];
+      if (Tools.isTrue(this.caseStudies) === true && Tools.isTrue(this.combined) !== true) {
+        return this.caseStudyData;
+      } else if (Tools.isTrue(this.combined) === true) {
+        return this.caseStudyData.concat(postArray);
+      } else {
+        return postArray;
+      }
     },
     ctaParse() {
       return this.cta ? JSON.parse(this.cta) : {};
+    },
+    caseStudies() {
+      return Tools.isTrue(this.caseStudies) === true ? true : false;
     },
     carouselOptions() {
       const obj = {
@@ -98,7 +108,10 @@ export default {
       return `${Tools.isTrue(value) === true ? true : false}`;
     },
     blogTitleUrl(post) {
-      return this.imgUrl + post.blogtitlepic;
+      return post.layout === 'casestudies' ? this.imgUrl + post.hero.background.img : this.imgUrl + post.blogtitlepic;
+    },
+    excerpt(post) {
+      return post.layout === 'casestudies' ? post.hero.background.subline : post.excerpt;
     },
   },
   props: {
@@ -121,6 +134,13 @@ export default {
       default: null,
     },
     dataAuthors: Object,
+    caseStudies: {
+      default: null,
+    },
+    caseStudyData: Object,
+    combined: {
+      default: null,
+    },
   },
   template: `
     <template v-if="postsArray.length > 0">
@@ -135,7 +155,7 @@ export default {
         <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= limit">
-              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
+              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="excerpt(post)" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
             </div>
           </template>
         </div>

@@ -53,6 +53,15 @@ EventsReversed.args = {
   },
 };
 
+export const CaseStudies = Template.bind({});
+
+CaseStudies.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  slider: true,
+  caseStudies: true,
+};
+
 export const Combined = Template.bind({});
 
 Combined.args = {
@@ -61,5 +70,6 @@ Combined.args = {
   limitEvents: 2,
   headline: 'lorem ipsum headline',
   slider: true,
+  caseStudies: true,
   combine: true,
 };
