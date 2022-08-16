@@ -56,14 +56,16 @@ export default {
       return `${day}.${month}.${year}`;
     },
     authorList(author) {
-      if (typeof author === 'object' && author.length > 0) return author;
-      if (typeof author === 'string') return [author];
+      if (author && typeof author === 'object' && author.length > 0) return author;
+      if (author && typeof author === 'string') return [author];
+
+      return author;
     },
     handleClick(e) {
       const title = this.$refs['title'];
 
       title.click();
-    }
+    },
   },
   props: {
     blogTitlePic: String,
