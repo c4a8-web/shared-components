@@ -108,37 +108,37 @@ export default {
       return `${Tools.isTrue(value) === true ? true : false}`;
     },
     blogTitleUrl(post) {
-      return post.layout === 'casestudies' ? this.imgUrl + post.hero.background.img : this.imgUrl + post.blogtitlepic;
+      return post.layout === 'casestudies' ? post.hero.background.img : this.imgUrl + post.blogtitlepic;
     },
     excerpt(post) {
       return post.layout === 'casestudies' ? post.hero.background.subline : post.excerpt;
     },
   },
   props: {
-    hideContainer: {
-      default: null,
-    },
-    headline: String,
     bgColor: String,
+    caseStudyData: Object,
+    dataAuthors: Object,
+    headline: String,
     posts: String,
-    limit: {
+    caseStudies: {
       default: null,
     },
-    slider: {
-      default: null,
-    },
-    imgUrl: {
+    combined: {
       default: null,
     },
     cta: {
       default: null,
     },
-    dataAuthors: Object,
-    caseStudies: {
+    hideContainer: {
       default: null,
     },
-    caseStudyData: Object,
-    combined: {
+    imgUrl: {
+      default: null,
+    },
+    limit: {
+      default: null,
+    },
+    slider: {
       default: null,
     },
   },
