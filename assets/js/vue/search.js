@@ -1,5 +1,4 @@
-// TODO fix js issue
-// import * as Lunr from '../lib/lunr.min.js';
+import Fuse from '../lib/fuse.esm.min.js';
 
 export default {
   tagName: 'search',
@@ -7,12 +6,16 @@ export default {
     classList() {
       return ['search', `${this.expanded ? 'search--expanded' : ''}`, 'vue-component'];
     },
+    limitedResults() {
+      return this.results?.slice(0, this.maxResults);
+    },
   },
   data() {
     return {
       search: null,
       store: null,
       results: null,
+      maxResults: 15,
     };
   },
   methods: {
@@ -30,7 +33,7 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          this.store = data?.results;
+          this.store = data;
 
           this.handleSearch();
         })
@@ -43,34 +46,48 @@ export default {
         this.initSearchEngine();
       }
 
-      const searchTerm = this.$refs.search.value;
+      const searchTerm = `${this.$refs.search.value}`;
 
       if (!searchTerm) return; // TODO add an error
 
       this.results = this.searchEngine.search(searchTerm);
+      console.log('handleSearch ~ this.results', this.results);
     },
     initSearchEngine() {
       const store = this.store;
+      const { results, weights } = store;
 
-      this.searchEngine = Lunr(function () {
-        this.ref('title');
-        this.field('content');
-        this.field('url');
+      if (!Fuse) return;
 
-        store?.forEach(function (element) {
-          this.add(element);
-        }, this);
-      });
+      const options = {
+        includeScore: true,
+        ignoreLocation: true,
+        findAllMatches: true,
+        includeMatches: true,
+        // ignoreFieldNorm: true, // discuss this param with caro
+        threshold: 0.2,
+        keys: weights,
+      };
+
+      this.searchEngine = new Fuse(results, options);
     },
   },
   props: {
     placeholder: String,
     endpoint: String,
+    language: String,
   },
   template: `
     <div :class="classList">
       <input ref="search" type="search" @keypress.enter="handleEnter" />
-      <div v-for="result in results">{{ result }}</div>
+      <div v-for="result in limitedResults">
+        <div class="">
+          <div>title: {{ result.item.title }}</div>
+          <div>excerpt: {{ result.item.excerpt }}</div>
+          <div>score: {{ result.score }}</div>
+        </div>
+        <br/><br/>
+      </div>
     </div>
   `,
 };
