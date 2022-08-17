@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     target(post) {
-      return post.layout === 'post' ? '_self' : '_blank';
+      return post.layout === 'post' || 'casestudies' ? '_self' : '_blank';
     },
     event(post) {
       return post.layout === 'post' ? false : true;
@@ -106,13 +106,9 @@ export default {
   },
   props: {
     bgColor: String,
-    caseStudyData: Object,
     dataAuthors: Object,
     headline: String,
     posts: String,
-    combined: {
-      default: null,
-    },
     cta: {
       default: null,
     },
@@ -147,7 +143,7 @@ export default {
           </template>
         </div>
         <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
-          <cta :text="ctaParse?.text" :button="ctaParse?.button" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
+          <cta :text="ctaParse?.text" :button="ctaParse?.button" :target="ctaParse?.target" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
         </div>
       </div>
       </div>

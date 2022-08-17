@@ -3,34 +3,6 @@
 {%- assign authorsAuthors = include.authors -%}
 {%- assign authorsNoLink = include.noLink -%}
 
-{% comment %}
-{% if authorsNoLink %}
-  {%- assign authorsSeperator = '&' -%}
-{% else %}
-  {%- assign authorsSeperator = ',' -%}
-{%- endif -%}
-
-{% if authorsAuthors %}
-  <!-- Shared Authors Section -->
-    <span class="authors {% if authorsNoLink %}authors--no-link{% endif %}">
-      {% if authorsNoLink %}
-        {{ site.data.lang[lang].withAuthor }}
-      {% endif %}
-      {% for author in authorsAuthors %}
-        {%- assign authorData = site.data.authors[author] -%}
-        {% unless authorsNoLink %}
-          <a href="{{ authorData.permalink }}" class="post-teaser__author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        {% endunless %}
-          <span itemprop="name">{{ author }}</span>
-        {% unless authorsNoLink %}
-          </a>
-        {% endunless %}
-        {% unless forloop.last %}{{ authorsSeperator }}{% endunless %}
-      {% endfor %}
-    </span>
-  <!-- End Shared Authors Section -->
-{% endif %}
-{% endcomment %}
 
 <authors
   :data-authors="{{ site.data.authors | jsonify | escape }}"

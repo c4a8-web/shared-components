@@ -43,6 +43,11 @@
 {%- if blogRecentCaseStudies -%}
   {% assign caseStudies = site.casestudies | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
 
+  {% unless blogRecentReversed %}
+    {% assign caseStudies = caseStudies | reverse %}
+  {% endunless %}
+
+  {% assign caseStudies = caseStudies | where_exp:"item","item.hideInRecent != true" | slice: 0, blogRecentLimitCaseStudies %}
 {%- endif -%}
 
 {%- if blogRecentCombine -%}
