@@ -56,7 +56,7 @@ export const CaseStudies = Template.bind({});
 
 CaseStudies.args = {
   limit: 21,
-  limitCaseStudies: 3,
+  limitCaseStudies: 4,
   headline: 'lorem ipsum headline',
   slider: true,
   caseStudies: true,
