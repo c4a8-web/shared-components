@@ -97,15 +97,15 @@ export default {
     event(post) {
       return post.layout === 'post' ? false : true;
     },
-    getValue(value) {
-      return `${Tools.isTrue(value) === true ? true : false}`;
+    isTrue(value) {
+      return Tools.isTrue(value);
     },
     blogTitleUrl(post) {
       return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
     },
     showButton(target) {
       return target === '_blank' ? true : false;
-    }
+    },
   },
   props: {
     bgColor: String,
@@ -131,24 +131,24 @@ export default {
   template: `
     <template v-if="postsArray.length > 0">
       <div :class="classList">
-       <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
-      <div class="container" v-if="getValue(this.hideContainer)">
-        <div class="row" v-if="getValue(this.headline)">
-          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-            <headline level="h3" :text="headline" classes="h2-font-size" >
+        <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
+        <div class="container" v-if="isTrue(!hideContainer)">
+          <div class="row" v-if="headline">
+            <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
+              <headline level="h3" :text="headline" classes="h2-font-size" >
+            </div>
+          </div>
+          <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
+            <template v-for="(post, index) in postsArray">
+              <div :class="itemClass" v-if="index <= limit">
+                <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target" :event="event(post)" :dataAuthors="dataAuthors">
+              </div>
+            </template>
+          </div>
+          <div class="blog-recent__cta-row row col-lg-12" v-if="showButton(target)">
+            <cta :text="ctaParse?.text" :button="ctaParse?.button" :target="ctaParse?.target" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
           </div>
         </div>
-        <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
-          <template v-for="(post, index) in postsArray">
-            <div :class="itemClass" v-if="index <= limit">
-              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target" :event="event(post)" :dataAuthors="dataAuthors">
-            </div>
-          </template>
-        </div>
-        <div class="blog-recent__cta-row row col-lg-12" v-if="showButton(target)">
-          <cta :text="ctaParse?.text" :button="ctaParse?.button" :target="ctaParse?.target" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
-        </div>
-      </div>
       </div>
     </template>
   `,
