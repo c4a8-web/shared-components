@@ -92,7 +92,7 @@ export default {
   },
   methods: {
     target(post) {
-      return post.layout === 'post' ? false : '_blank';
+      return post.layout === 'post' ? '_self' : '_blank';
     },
     event(post) {
       return post.layout === 'post' ? false : true;

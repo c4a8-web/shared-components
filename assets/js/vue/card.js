@@ -19,9 +19,6 @@ export default {
     mediaClass() {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
-    targetClass() {
-      return this.target === '' ? null : this.target;
-    },
     truncatedExcerpt() {
       return Tools.truncateWords(Tools.stripHtml(this.excerpt), this.wordsToTruncate);
     },
@@ -109,7 +106,7 @@ export default {
 
           <div class="col-lg-4">
             <div class="card-body d-flex flex-column h-100 p-4 p-lg-5">
-              <headline level="h3"><a class="text-inherit" ref="title" :href="url" :target="targetClass">{{ title }}</a></headline>
+              <headline level="h3"><a class="text-inherit" ref="title" :href="url" :target=target>{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author">
@@ -136,7 +133,7 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline level="h4"><a ref="title" class="text-inherit" :href="url" :target="targetClass">{{ title }}</a></headline>
+          <headline level="h4"><a ref="title" class="text-inherit" :href="url" :target=target>{{ title }}</a></headline>
           <p>{{ truncatedExcerpt }}</p>
         </div>
 
