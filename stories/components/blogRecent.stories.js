@@ -16,7 +16,7 @@ export const BlogRecent = Template.bind({});
 BlogRecent.args = {
   limit: 21,
   headline: 'lorem ipsum headline',
-  slider: true,
+  slider: false,
 };
 
 export const Events = Template.bind({});
