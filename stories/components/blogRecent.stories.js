@@ -14,7 +14,6 @@ const Template = (args) => createComponent(args, component);
 export const BlogRecent = Template.bind({});
 
 BlogRecent.args = {
-  // tag=page.tags
   limit: 21,
   headline: 'lorem ipsum headline',
   slider: true,
@@ -66,7 +65,6 @@ CaseStudies.args = {
 export const Combined = Template.bind({});
 
 Combined.args = {
-  // tag=page.tags
   limit: 21,
   limitEvents: 2,
   headline: 'lorem ipsum headline',

@@ -61,7 +61,7 @@
 {%- else -%}
   {% if blogRecentEvents %}
     {% assign posts = events %}
-  {% elsif blogRecentCaseStudy %}
+  {% elsif blogRecentCaseStudies %}
     {% assign posts = caseStudies %}
   {% else %}
     {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}

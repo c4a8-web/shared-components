@@ -2,7 +2,7 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @ DEKRA',
+    title: 'Casestudy Azure @ DEKRA',
     date: '2020-01-01',
     hero: {
       background: {
@@ -15,7 +15,7 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @ lokal',
+    title: 'Casestudy Azure @ lokal',
     date: '2020-04-04',
     hero: {
       background: {
@@ -27,7 +27,7 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @ lorem ipsum',
+    title: 'Casestudy Azure @ lorem ipsum',
     date: '2020-07-07',
     hero: {
       background: {
@@ -39,7 +39,7 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @ DEKRA',
+    title: 'Casestudy Azure @ DEKRA',
     date: '2020-01-01',
     hero: {
       background: {
@@ -52,7 +52,7 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @ lokal',
+    title: 'Casestudy Azure @ lokal',
     date: '2020-04-04',
     hero: {
       background: {
@@ -64,7 +64,7 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Azure @ lorem ipsum',
+    title: 'Casestudy Azure @ lorem ipsum',
     date: '2020-07-07',
     hero: {
       background: {
