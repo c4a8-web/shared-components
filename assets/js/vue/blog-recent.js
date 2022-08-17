@@ -103,9 +103,9 @@ export default {
     blogTitleUrl(post) {
       return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
     },
-    showButton(target) {
-      return target === '_blank' ? true : false;
-    },
+    showButton(cta) {
+      return cta !== 'null' && cta !== 'undefined' ? true : false;
+    }
   },
   props: {
     bgColor: String,
