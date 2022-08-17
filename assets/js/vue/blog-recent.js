@@ -35,6 +35,9 @@ export default {
     caseStudies() {
       return Tools.isTrue(this.caseStudies) === true ? true : false;
     },
+    target() {
+      return this.ctaParse && this.ctaParse.external ? '_blank' : '_self';
+    },
     carouselOptions() {
       const obj = {
         slidesToShow: 3,
@@ -91,9 +94,6 @@ export default {
     },
   },
   methods: {
-    target(post) {
-      return post.layout === 'post' || 'casestudies' ? '_self' : '_blank';
-    },
     event(post) {
       return post.layout === 'post' ? false : true;
     },
@@ -103,6 +103,9 @@ export default {
     blogTitleUrl(post) {
       return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
     },
+    showButton(target) {
+      return target === '_blank' ? true : false;
+    }
   },
   props: {
     bgColor: String,
@@ -138,11 +141,11 @@ export default {
         <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= limit">
-              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
+              <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target" :event="event(post)" :dataAuthors="dataAuthors">
             </div>
           </template>
         </div>
-        <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
+        <div class="blog-recent__cta-row row col-lg-12" v-if="showButton(target)">
           <cta :text="ctaParse?.text" :button="ctaParse?.button" :target="ctaParse?.target" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
         </div>
       </div>
