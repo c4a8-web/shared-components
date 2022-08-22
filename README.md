@@ -211,7 +211,7 @@ You also need to update the type of your `app.js` Script in the `scripts.html` f
 <script
   type="module"
   charset="UTF-8"
-  src="{{site.baseurl}}/assets/js/app.js"
+  src="{{ site.baseurl }}/assets/js/app.js"
   id="appjs"
 ></script>
 ```

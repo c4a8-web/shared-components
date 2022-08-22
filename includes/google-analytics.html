@@ -48,12 +48,15 @@
     (window, "{{ site.google_analytics_key }}", { anonymizeIp: true, colorDepth: true, characterSet: true, screenSize: true, language: true });
 </script>
 
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_tag_id }}" ></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', '{{ site.google_analytics_tag_id }}');
-</script>
+{% if site.google_analytics_tag_id %}
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics_tag_id }}" ></script>
+  <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', '{{ site.google_analytics_tag_id }}');
+  </script>
+{% endif %}
 
 <!-- End Google Analytics -->
