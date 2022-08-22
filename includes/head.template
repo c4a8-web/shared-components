@@ -1,0 +1,105 @@
+<!-- Shared Head Section -->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Language" content="{% if page.lang %}{{ page.lang }}{% else %}{{ site.lang }}{% endif %}">
+  <meta name="Content-Type" value="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
+
+  {% if jekyll.environment == "production" or jekyll.environment == "staging" %}
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src {% for src in site.content-security.frame-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; img-src data: https: {% for src in site.content-security.img-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; script-src 'self' 'unsafe-eval' 'unsafe-inline' {% for src in site.content-security.script-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; style-src https: 'unsafe-inline'; font-src 'self' {% for src in site.content-security.font-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; base-uri 'self'; media-src 'self'; connect-src 'self' {% for src in site.content-security.connect-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %};form-action 'self' {% for src in site.content-security.form-action %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; object-src 'none';">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000;">
+  {% else %}
+    <!-- NON-PRODUCTIVE CODE -->
+    <meta name="robots" content="noindex, nofollow">
+  {% endif %}
+
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//front.trustedroot.net">
+  <link rel="dns-prefetch" href="//res.cloudinary.com">
+  <link rel="dns-prefetch" href="//ssl.google-analytics.com">
+
+  <!-- Plain Description -->
+  <title>{{ site.title | escape }}{% if page.title %} | {{ page.title | escape }}{% endif %}</title>
+  <meta name="title" content="{{ site.title | escape }}{% if page.title %} | {{ page.title | escape }}{% endif %}">
+  <meta name="keywords" content="{{ site.keywords }}, {{ page.keywords }}">
+  <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
+  <meta name="author" content="{{ site.author.name }}">
+  {% if site.webmaster.verification_code %}
+    <meta name="google-site-verification" content="{{ site.webmaster.verification_code }}">
+  {% endif %}
+  <link rel="canonical" href="{{ page.url | replace:'index.html','' | replace:'.html','' | prepend: site.url }}">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}">
+  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
+  <meta property="og:image" content="https://res.cloudinary.com/c4a8/image/upload/{{ page.socialimg }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:locale" content="{% if page.lang %}{{ page.lang }}{% else %}{{ site.lang }}{% endif %}">
+  <meta property="article:author" content="{{ site.twitter.username }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="{% if page.fulltitle %}{{ page.fulltitle}}{% else %}{{ page.title}} | {{ site.title }} {% endif %}">
+  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
+  <meta name="twitter:image" content="https://res.cloudinary.com/c4a8/image/upload/{{ page.socialimg }}">
+  <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:creator" content="{{ site.twitter.username }}">
+  <meta name="twitter:site" content="{{ site.twitter.username }}">
+
+  <!-- Font -->
+  {% unless site.font.has-lato %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" media="print" onload="this.media='all'">
+  {% else %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" media="print" onload="this.media='all'">
+  {% endunless %}
+
+  {%- if page.scripts.slick or page.layout == 'post' or page.scripts.team or page.layout == 'casestudies' -%}
+    {%- assign loadSlick = true -%}
+  {%- else -%}
+    {%- assign loadSlick = false -%}
+  {%- endif -%}
+
+  {%- if page.scripts.lightbox or page.layout == 'post' page.layout == 'casestudies' -%}
+    {%- assign loadLightbox = true -%}
+  {%- else -%}
+    {%- assign loadLightbox = false -%}
+  {%- endif -%}
+
+  <!-- CSS Implementing Plugins -->
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/fontawesome/css/all.min.css">
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css">
+  {% if loadSlick %}
+    <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/slick-carousel/slick/slick.css">
+  {% endif %}
+  {% if loadLightbox %}
+    <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
+  {% endif %}
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/dzsparallaxer/dzsparallaxer.css">
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/hs-unfold/dist/hs-unfold.min.css">
+  {% if page.scripts.cubeportfolio %}
+    <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/cubeportfolio/css/cubeportfolio.min.css">
+  {% endif %}
+  {% if page.scripts.google-map %}
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/leaflet/dist/leaflet.css">
+  {% endif %}
+  {% if page.scripts.videobg %}
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/hs-video-bg/dist/hs-video-bg.min.css">
+  {% endif %}
+  {% if page.scripts.rangeSlider %}
+    <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/ion-range-slider/ion.rangeSlider.min.css">
+  {% endif %}
+  <!-- CSS Front Template -->
+  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/css/theme.min.css">
+
+  <!-- CSS -->
+  <link type="text/css" rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
+
+</head>
+<!-- End Shared Head Section -->
