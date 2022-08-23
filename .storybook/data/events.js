@@ -14,10 +14,10 @@ const Events = [
       'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
   },
   {
-    url: 'javascript:void(0);',
+    url: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
     youtubeUrl: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
     layout: 'event',
-    title: 'EVENT Externe Emails besser erkennen',
+    title: 'EVENT Externe Emails besser erkennen (Mit Link)',
     date: '2022-06-10',
     author: 'Thorsten Kunzi',
     categories: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],

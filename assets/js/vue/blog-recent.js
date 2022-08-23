@@ -19,8 +19,6 @@ export default {
       ];
     },
     hiddenContainer() {
-      console.log('hier: ', this.slider);
-      console.log('hidecontainer: ', this.hideContainer)
       return Tools.isTrue(this.slider) === false ? Tools.isTrue(this.hideContainer) : false;
     },
     skinClass() {
