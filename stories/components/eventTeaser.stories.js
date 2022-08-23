@@ -41,7 +41,6 @@ EventTeaserWebcast.args = {
     text: 'Jetzt anmelden',
     href: 'https://www.google.com',
     skin: 'primary',
-    button: true,
     external: true,
   },
   variant: 6,
@@ -74,7 +73,6 @@ EventTeaserFullWidth.args = {
     text: 'Jetzt anmelden',
     href: 'javascript:void(0)',
     skin: 'primary',
-    button: true,
   },
   variant: 12,
 };
@@ -113,7 +111,6 @@ EventTeaserCustomShapes.args = {
     text: 'Jetzt anmelden',
     href: 'javascript:void(0)',
     skin: 'primary',
-    button: true,
   },
   variant: 6,
 };
@@ -156,7 +153,6 @@ EventTeaser.args = {
     text: 'Schulungen anfragen',
     href: 'javascript:void(0)',
     skin: 'secondary is-light',
-    button: true,
   },
   variant: 8,
 };
