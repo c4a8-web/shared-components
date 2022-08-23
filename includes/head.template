@@ -21,7 +21,7 @@
   <link rel="dns-prefetch" href="//ssl.google-analytics.com">
 
   <!-- Plain Description -->
-  <title>{{ site.title | escape }}{% if page.title %} | {{ page.title | escape }}{% endif %}</title>
+  <title>{{ site.title | escape }}{% if page.title %} | {{ page.title | strip_html | escape }}{% endif %}</title>
   <meta name="title" content="{{ site.title | escape }}{% if page.title %} | {{ page.title | escape }}{% endif %}">
   <meta name="keywords" content="{{ site.keywords }}, {{ page.keywords }}">
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">

@@ -85,7 +85,7 @@
         {
           "url": "{{ post.url }}",
           "layout": "{{ post.layout }}",
-          "title": "{{ post.title }}",
+          "title": "{{ post.title | strip_html }}",
           "date": "{{ post.date }}",
           "blogtitlepic": "{{ post.hero.background.img }}",
           "excerpt": "{{ post.hero.subline | strip_html | strip_newlines | escape }}"
@@ -101,7 +101,7 @@
           "url": "{{ blogRecentPostUrl }}",
           "youtubeUrl": "{{ post.youtubeUrl }}",
           "layout": "{{ post.layout }}",
-          "title": "{{ post.title }}",
+          "title": "{{ post.title | strip_html }}",
           "date": "{{ post.date }}",
           "author": {{ post.author | jsonify }},
           "blogtitlepic": "{{ post.blogtitlepic }}",
