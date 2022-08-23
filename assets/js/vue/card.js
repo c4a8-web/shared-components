@@ -106,7 +106,7 @@ export default {
 
           <div class="col-lg-4">
             <div class="card-body d-flex flex-column h-100 p-4 p-lg-5">
-              <headline level="h3"><a class="text-inherit" ref="title" :href="url" :target=target>{{ title }}</a></headline>
+              <headline level="h3"><a class="text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author">
@@ -133,7 +133,7 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline level="h4"><a ref="title" class="text-inherit" :href="url" :target=target>{{ title }}</a></headline>
+          <headline level="h4"><a ref="title" class="text-inherit" :href="url" :target="target">{{ title }}</a></headline>
           <p>{{ truncatedExcerpt }}</p>
         </div>
 

@@ -11,6 +11,7 @@
 {%- assign blogRecentCombine = include.combine -%}
 {%- assign blogRecentCta = include.cta -%}
 {%- assign blogRecentCaseStudies = include.caseStudies -%}
+{%- assign blogRecentHideContainer = include.hideContainer -%}
 
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
@@ -91,7 +92,13 @@
         }{% unless forloop.last %},{% endunless -%}
       {%- else -%}
         {
-          "url": "{{ post.url }}",
+          {% if post.layout == 'events' %}
+            {% assign blogRecentPostUrl = post.cta.href %}
+          {% else %}
+            {% assign blogRecentPostUrl = post.url %}
+          {% endif %}
+
+          "url": "{{ blogRecentPostUrl }}",
           "youtubeUrl": "{{ post.youtubeUrl }}",
           "layout": "{{ post.layout }}",
           "title": "{{ post.title }}",
