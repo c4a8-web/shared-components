@@ -19,7 +19,7 @@ export default {
       ];
     },
     hiddenContainer() {
-      return Tools.isTrue(this.slider);
+      return Tools.isTrue(this.slider) === false ? Tools.isTrue(this.hideContainer) : false;
     },
     skinClass() {
       return `${Tools.isTrue(this.slider) === true ? 'has-slider' : ''}`;
@@ -33,7 +33,7 @@ export default {
       return this.posts ? JSON.parse(this.posts) : [];
     },
     ctaParse() {
-      return this.cta ? JSON.parse(this.cta) : {};
+      return this.cta ? JSON.parse(this.cta) : null;
     },
     caseStudies() {
       return Tools.isTrue(this.caseStudies) === true ? true : false;
@@ -132,7 +132,7 @@ export default {
     <template v-if="postsArray.length > 0">
       <div :class="classList">
         <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
-          <wrapper :visible="hiddenContainer" :wraps="row" :class="'container'">
+          <wrapper :hideContainer="hiddenContainer">
             <div class="row" v-if="headline">
               <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
                 <headline level="h3" :text="headline" classes="h2-font-size" >

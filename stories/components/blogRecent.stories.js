@@ -16,7 +16,7 @@ export const BlogRecent = Template.bind({});
 BlogRecent.args = {
   limit: 21,
   headline: 'lorem ipsum headline',
-  slider: false,
+  slider: true,
 };
 
 export const Events = Template.bind({});
@@ -61,6 +61,15 @@ CaseStudies.args = {
   slider: true,
   caseStudies: true,
 };
+
+export const HideContainer = Template.bind({});
+
+HideContainer.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  slider: false,
+  hideContainer: true,
+}
 
 export const Combined = Template.bind({});
 
