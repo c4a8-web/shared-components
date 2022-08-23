@@ -89,7 +89,7 @@ require 'fileutils'
 module SharedComponents
   class Generator < Jekyll::Generator
     def generate(site)
-      asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map}'
+      asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map,css,woff,woff2,ttf,eot}'
       temp_path = "_temp/"
       base_partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
       partials_path = temp_path + site.config['shared_components_path'] + '/includes/**/*.{template}'
