@@ -244,6 +244,35 @@ class Tools {
 
     return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
   }
+
+  static getYoutubeThumbnail(videoURL) {
+    let videoId;
+    let regExp1 = videoURL.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/);
+    let regExp2 = videoURL.match(/youtu\.be\/(.{11})/);
+
+    if (regExp1) {
+      videoId = regExp1[2];
+    } else if (regExp2) {
+      videoId = regExp2[1];
+    }
+
+    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  }
+
+  static truncateWords(string, number) {
+    if (!string) return;
+
+    const splitted = string.split(' ');
+    const truncated = splitted.slice(0, number).join(' ');
+
+    return splitted.length > number ? truncated + ' ...' : truncated;
+  }
+
+  static stripHtml(string) {
+    if (!string) return;
+
+    return string.replace(new RegExp(/<.*?>/g), '');
+  }
 }
 
 export default Tools;

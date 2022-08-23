@@ -8,6 +8,7 @@ import Products from './data/products';
 import Contact from './data/contact';
 import Posts from './data/posts';
 import Events from './data/events';
+import CaseStudies from './data/casestudies';
 import Authors from './data/authors';
 import Lang from './data/lang';
 import Options from './data/options';
@@ -29,6 +30,7 @@ const site = {
   },
   posts: Posts,
   events: Events,
+  casestudies: CaseStudies,
   testimonials: Testimonials,
   blog_image_path: 'blog/heads/',
   url: 'http://localhost:6006/?',

@@ -23,3 +23,12 @@ WithoutLink.args = {
   authors: ['Author Name', 'Second Author'],
   noLink: true,
 };
+
+export const SingleName = Template.bind({});
+
+SingleName.args = {
+  authors: 'Author',
+  noLink: true,
+}
+
+

@@ -2,6 +2,9 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+import Authors from './vue/authors.js';
+import BlogRecent from './vue/blog-recent.js';
+import Card from './vue/card.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
 import FormAttachments from './vue/form-attachments.js';
@@ -32,6 +35,7 @@ import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
+import Wrapper from './vue/wrapper.js'
 
 let root = document.querySelector('#app');
 let app;
@@ -48,6 +52,9 @@ const addApp = () => {
   });
 
   const components = [
+    Authors,
+    BlogRecent,
+    Card,
     Cta,
     Faq,
     FormAttachments,
@@ -78,6 +85,7 @@ const addApp = () => {
     Smile,
     SBlock,
     PersonQuote,
+    Wrapper,
   ];
 
   components.forEach((component) => {

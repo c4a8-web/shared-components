@@ -14,7 +14,6 @@ const Template = (args) => createComponent(args, component);
 export const BlogRecent = Template.bind({});
 
 BlogRecent.args = {
-  // tag=page.tags
   limit: 21,
   headline: 'lorem ipsum headline',
   slider: true,
@@ -29,7 +28,7 @@ Events.args = {
   events: true,
   cta: {
     text: 'Primary Button',
-    href: 'javascript:void(0)',
+    href: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
     skin: 'primary',
     button: true,
     external: true,
@@ -46,17 +45,35 @@ EventsReversed.args = {
   events: true,
   cta: {
     text: 'Primary Button',
-    href: 'javascript:void(0)',
+    href: 'https://www.youtube.com/watch?v=zidlD8YZNL8',
     skin: 'primary',
     button: true,
     external: true,
   },
 };
 
+export const CaseStudies = Template.bind({});
+
+CaseStudies.args = {
+  limit: 21,
+  limitCaseStudies: 4,
+  headline: 'lorem ipsum headline',
+  slider: true,
+  caseStudies: true,
+};
+
+export const HideContainer = Template.bind({});
+
+HideContainer.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  slider: false,
+  hideContainer: true,
+}
+
 export const Combined = Template.bind({});
 
 Combined.args = {
-  // tag=page.tags
   limit: 21,
   limitEvents: 2,
   headline: 'lorem ipsum headline',
