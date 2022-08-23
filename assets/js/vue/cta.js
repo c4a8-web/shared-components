@@ -2,7 +2,8 @@ export default {
   tagName: 'cta',
   computed: {
     tag() {
-      return this.button ? 'button' : 'a';
+      return this.href || this.alternativeHref || this.target ? 'a' : 'button';
+      // return this.button ? 'button' : 'a';
     },
     hasIcon() {
       return this.link || this.external || this.icon || this.download;
