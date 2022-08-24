@@ -164,8 +164,8 @@ To include the Styles of the `shared-components` you need to add this to your si
 
 $shared-components: false;
 $font-familys: (
-  'lato': false,
-  'miriam': true,
+  "lato": false,
+  "miriam": true,
 );
 
 
