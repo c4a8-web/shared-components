@@ -163,11 +163,16 @@ To include the Styles of the `shared-components` you need to add this to your si
 }
 
 $shared-components: false;
+$font-familys: (
+  'lato': false,
+  'miriam': true,
+);
+
 
 @import "../../_includes/shared-components/assets/scss/index";
 ```
 
-This will load the basic styles. At the end of that site.scss you need to load the colors of the site you want. For `Radiusaas` it would be:
+This will load the basic styles. And you can specifiy which font-family you want to load. At the end of that site.scss you need to load the colors of the site you want. For `Radiusaas` it would be:
 
 ```
 @import "../../_includes/shared-components/assets/scss/themes/radiusaas";
