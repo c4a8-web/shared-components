@@ -1,20 +1,20 @@
-{%- assign videoInner = include.video -%}
+{%- assign videoInnerVideo = include.video -%}
 {%- assign videoInnerVariant = include.variant -%}
 
 {% assign cta = props.cta %}
 
-{% capture videoId %}video-id__{{ videoInner.id }}{% endcapture %}
+{% capture videoId %}video-id__{{ videoInnerVideo.id }}{% endcapture %}
 {% capture videoFrameId %}{{ videoId }}-frame{% endcapture %}
 {% capture videoLevel %}{{ include.level | default: "h4" }}{% endcapture %}
 
-{% if videoInner.id %}
+{% if videoInnerVideo.id %}
   {%- assign videoHasVideo = true -%}
 {% else %}
   {%- assign videoHasVideo = false -%}
 {% endif %}
 
 <video-inner
-  video-inner="{{ videoInner | jsonify | escape }}"
-  video-inner-variant="{{ videoInnerVariant }}"
-  video-level="{{ videoLevel }}"
+  video="{{ videoInnerVideo | jsonify | escape }}"
+  variant="{{ videoInnerVariant }}"
+  level="{{ videoLevel }}"
 ></video-inner>

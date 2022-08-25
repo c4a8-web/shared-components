@@ -13,7 +13,7 @@ const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   clientName: 'glueckkanja',
-  jobId: 'fk034tm',
+  jobId: 'fk0stpa',
   apiUrl: 'mock/job.json',
   base: {
     ctaText: 'Jetzt bewerben',
@@ -138,7 +138,6 @@ const baseArgs = {
     text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
   },
 };
-
 export const De = Template.bind({});
 
 De.args = {
@@ -150,4 +149,11 @@ export const En = Template.bind({});
 En.args = {
   ...baseArgs,
   apiUrl: 'mock/jobEn.json',
+};
+
+export const WithVideo = Template.bind({});
+
+WithVideo.args = {
+  ...baseArgs,
+  jobId: 'videoInner',
 };
