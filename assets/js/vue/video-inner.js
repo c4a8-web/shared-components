@@ -73,6 +73,14 @@ export default {
     },
     dataCaption() {
       return this.videoParsed.headline;
+    },
+    imgClass() {
+      return [
+        'img-fluid',
+        `${this.videoParsed.large ? 'video--large' : '' }`,
+        `${this.videoParsed.lightbox ? '' : 'video-player-preview'}`,
+        'vue-component'
+      ]
     }
   },
   methods: {},
@@ -81,14 +89,14 @@ export default {
     videoInnerVariant: String,
     videoLevel: {
       default: 'h4',
-    }
+    },
   },
   template: `
     <div :class="videoClass" :onclick="onClick">
       <div :id="videoId" :class="videoPlayerClass">
         <template v-if="videoParsed.lightbox">
           <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
-            <div class="img-fluid :style="{'width': 100%}">
+            <div :class="imgClass" >
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
             </div>
             <span class="media-viewer-container">
@@ -99,7 +107,7 @@ export default {
           </a>
         </template>
         <template v-else>
-          <div class="img-fluid video-player-preview">
+          <div :class="imgClass">
             <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
           </div>
           <template v-if="videoParsed.id">

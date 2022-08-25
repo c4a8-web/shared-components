@@ -15,11 +15,14 @@
 }
 
 .video {
-  .img-fluid {
+  .video--large {
     img {
       width: 100%;
+      //object-fit: fill;
     }
   }
+
+
   &.video--post {
     img {
       left: 0;

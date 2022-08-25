@@ -40,13 +40,12 @@ VideoInnerPost.args = {
   },
 };
 
-export const VideoInnerLightbox = Template.bind({});
+export const VideoInnerLarge = Template.bind({});
 
-VideoInnerLightbox.args = {
+VideoInnerLarge.args = {
   variant: 'post',
   video: {
-    ctaText: "Test",
-    lightbox: true,
+    large: true,
     thumb: 'thumbs/video-thumb-haniel.jpg',
     alt: 'Video Casestudy Franz Haniel',
     id: 'hV97zDTlDko',
