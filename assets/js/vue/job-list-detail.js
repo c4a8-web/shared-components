@@ -32,6 +32,9 @@ export default {
     baseData() {
       return this.base ? JSON.parse(this.base) : {};
     },
+    videoData() {
+      return this.video ? JSON.parse(this.video) : {};
+    }
   },
   mounted() {
     this.loading = new Loading(this.$refs['job-list-detail'], () => {
@@ -195,9 +198,14 @@ export default {
           <div class="job-list__detail-content page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
             <!-- job list detail can switch to profile based on url parameter -->
             <div class="job-list__detail-description page-detail__description richtext" v-html="entryData?.description"></div>
-            <div v-if="personQuote" class="job-list__detail-quote">
-              <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
-            </div>
+            <template v-if="videoData">
+              <video-inner :videoInner="video" :videoInnerVariant="reversed">
+            </template>
+            <template v-else>
+              <div v-if="personQuote" class="job-list__detail-quote">
+                <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
+              </div>
+            </template>
             <div class="job-list__detail-maps">
               <slot name="google-maps" />
             </div>

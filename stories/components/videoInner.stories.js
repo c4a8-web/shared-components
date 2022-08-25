@@ -40,10 +40,11 @@ VideoInnerPost.args = {
   },
 };
 
-export const VideoInnerLarge = Template.bind({});
 
-VideoInnerLarge.args = {
-  variant: 'post',
+export const VideoReversed = Template.bind({});
+
+VideoReversed.args = {
+  variant: 'reversed',
   video: {
     large: true,
     thumb: 'thumbs/video-thumb-haniel.jpg',
@@ -54,5 +55,5 @@ VideoInnerLarge.args = {
     logoAlt: 'Franz Haniel',
     text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
   },
-};
+}
 
