@@ -36,6 +36,7 @@ import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
 import Wrapper from './vue/wrapper.js'
+import VideoInner from './vue/video-inner.js'
 
 let root = document.querySelector('#app');
 let app;
@@ -86,6 +87,7 @@ const addApp = () => {
     SBlock,
     PersonQuote,
     Wrapper,
+    VideoInner,
   ];
 
   components.forEach((component) => {
