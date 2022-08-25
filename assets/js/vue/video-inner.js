@@ -5,7 +5,7 @@ export default {
       return [
         'video',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
-        'd-flex flex-column h-100 space-bottom-1 space-bottom-1 space-bottom-lg-0',
+        'd-flex flex-column h-100 space-bottom-1 space-bottom-lg-0',
         `${this.videoInnerVariant ? 'video--' + this.videoInnerVariant : ''}`,
         'vue-component'
       ];
@@ -88,7 +88,7 @@ export default {
       <div :id="videoId" :class="videoPlayerClass">
         <template v-if="videoParsed.lightbox">
           <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
-            <div class="img-fluid>
+            <div class="img-fluid :style="{'width': 100%}">
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
             </div>
             <span class="media-viewer-container">
@@ -109,7 +109,7 @@ export default {
               </span>
             </a>
           </template>
-          <div class="embed-responsive embed-repsonsive-16by9">
+          <div class="embed-responsive embed-responsive-16by9">
             <div :id="videoFrameId"></div>
           </div>
         </template>
