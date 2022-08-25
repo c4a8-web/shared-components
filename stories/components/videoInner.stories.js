@@ -46,7 +46,7 @@ VideoInnerLightbox.args = {
   variant: 'post',
   video: {
     ctaText: "Test",
-    lightbox: "Test2",
+    lightbox: true,
     thumb: 'thumbs/video-thumb-haniel.jpg',
     alt: 'Video Casestudy Franz Haniel',
     id: 'hV97zDTlDko',

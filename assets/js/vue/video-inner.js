@@ -5,13 +5,31 @@ export default {
       return [
         'video',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
-        'd-flex flex-column h-100 space-bottom-1 space-bottom-lg-0',
+        'd-flex flex-column h-100 space-bottom-1 space-bottom-1 space-bottom-lg-0',
         `${this.videoInnerVariant ? 'video--' + this.videoInnerVariant : ''}`,
         'vue-component'
       ];
     },
+    videoPlayerClass() {
+      return [
+        'video__player',
+        `${!this.videoInnerVariant ? 'bg-dark' : ''}`,
+        `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
+        'vue-component'
+      ]
+    },
+    videoContentClass() {
+      return [
+        'video__content',
+        `${this.videoParsed.ctaText ? 'hover__parent' : 'flex-grow-1 py-4 px-3 p-lg-5'}`,
+        'vue-component'
+      ]
+    },
     videoParsed() {
       return JSON.parse(this.videoInner);
+    },
+    onClickVideoContent() {
+      return this.videoParsed.ctaText ? `this.querySelector('a').click()` : '';
     },
     onClick() {
       return this.videoParsed.ctaText && this.videoParsed.id ? `this.querySelector('a').click()` : '';
@@ -19,15 +37,10 @@ export default {
     videoId() {
       return 'video-id__' + this.videoParsed.id;
     },
-    videoPlayerClass() {
-      return [
-        'video__player',
-        `${!this.videoInnerVariant ? 'bg-dark' : ''}`,
-        `${!this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
-        'vue-component'
-      ]
+    videoFrameId() {
+      return this.videoId + "-frame";
     },
-    dataOptions() {
+    dataOptionsLightBox() {
       const obj = {
         "selector": "#" + `${this.videoParsed.id}` + " .js-fancybox",
         "speed": 700,
@@ -43,6 +56,18 @@ export default {
       }
       return JSON.stringify(obj);
     },
+    dataOptionsRegular() {
+      const obj = {
+        "videoId": this.videoParsed.id,
+        "parentSelector": "#" + this.videoId,
+        "targetSelector": "#" + this.videoFrameId,
+        "isAutoplay": true,
+        "classMap": {
+          "toggle": "video-player-played"
+        }
+      }
+      return JSON.stringify(obj);
+    },
     dataSrc() {
       return "//www.youtube-nocookie.com/" + this.videoParsed.id;
     },
@@ -54,18 +79,70 @@ export default {
   props: {
     videoInner: Object,
     videoInnerVariant: String,
+    videoLevel: {
+      default: 'h4',
+    }
   },
-  // ctaText gibt es nicht nachfragen
   template: `
-    {{ videoInnerVariant }}
     <div :class="videoClass" :onclick="onClick">
-      Test
       <div :id="videoId" :class="videoPlayerClass">
-        <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" v-if="videoParsed.lightbox" :data-hs-fancybox-options="dataOptions" :data-src="dataSrc" :data-caption="dataCaption">
-          <div class="img-fluid>
+        <template v-if="videoParsed.lightbox">
+          <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
+            <div class="img-fluid>
+              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
+            </div>
+            <span class="media-viewer-container">
+              <span class="video-player-icon">
+                <i class="fas fa-play"></i>
+              </span>
+            </span>
+          </a>
+        </template>
+        <template v-else>
+          <div class="img-fluid video-player-preview">
+            <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
           </div>
-        </a>
+          <template v-if="videoParsed.id">
+            <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular">
+              <span class="video-player-icon video__player-icon">
+                <i class="fas fa-play"></i>
+              </span>
+            </a>
+          </template>
+          <div class="embed-responsive embed-repsonsive-16by9">
+            <div :id="videoFrameId"></div>
+          </div>
+        </template>
       </div>
+      <template v-if="videoParsed.headline">
+
+        <div :class="videoContentClass" :onclick="onClickVideoContent">
+          <div class="row no-gutters d-flex flex-wrap">
+            <template v-if="videoParsed.logo">
+              <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
+                <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt">
+              </div>
+              <div class="col-lg-7 order-lg-1">
+                <headline :level="videoLevel" :text="videoParsed.headline" :classes="h4-font-size">
+              </div>
+            </template>
+            <template v-else>
+              <div class="col-lg-12 order-lg-1">
+                <headline :level="videoLevel" :text="videoParsed.headline" :classes="h4-font-size">
+              </div>
+            </template>
+            <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3">
+              {{ videoParsed.text }}
+            </div>
+            <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
+              {{ videoParsed.date }}
+            </div>
+          </div>
+          <div class="pt-4 pt-lg-6 pb-6" v-if="videoParsed.ctaText">
+            <cta :text="videoParsed?.ctaText" :href="videoParsed?.ctaHref" :link="videoParsed?.link" :target="videoParsed?.target" :type="videoParsed?.type">
+          </div>
+        </div>
+      </template>
     </div>
     `,
 };
