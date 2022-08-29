@@ -30,10 +30,7 @@ class Tools {
   static scrollIntoView(element, smooth) {
     if (element) {
       const header = document.querySelector('header');
-
-      if (header === null) return;
-
-      const headerOffset = header.offsetHeight + 40;
+      const headerOffset = header?.offsetHeight + 40;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - headerOffset + window.scrollY;
 
