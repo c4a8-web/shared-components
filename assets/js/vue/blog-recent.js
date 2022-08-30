@@ -6,7 +6,7 @@ export default {
     classList() {
       return [
         'blog-recent',
-        `${Tools.isTrue(this.slider) === true ? 'has-slider' : ''}`,
+        `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
         'vue-component',
       ];
@@ -132,23 +132,23 @@ export default {
     <template v-if="postsArray.length > 0">
       <div :class="classList">
         <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
-          <wrapper :hideContainer="hiddenContainer">
-            <div class="row" v-if="headline">
-              <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-                <headline level="h3" :text="headline" classes="h2-font-size" >
+        <wrapper :hideContainer="hiddenContainer">
+          <div class="row" v-if="headline">
+            <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
+              <headline level="h3" :text="headline" classes="h2-font-size" >
+            </div>
+          </div>
+          <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
+            <template v-for="(post, index) in postsArray">
+              <div :class="itemClass" v-if="index <= limit">
+                <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target" :event="event(post)" :dataAuthors="dataAuthors">
               </div>
-            </div>
-            <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
-              <template v-for="(post, index) in postsArray">
-                <div :class="itemClass" v-if="index <= limit">
-                  <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target" :event="event(post)" :dataAuthors="dataAuthors">
-                </div>
-              </template>
-            </div>
-            <div class="blog-recent__cta-row row col-lg-12" v-if="ctaParse">
-              <cta :text="ctaParse?.text" :button="ctaParse?.button" :target="ctaParse?.target" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
-            </div>
-        </div>
+            </template>
+          </div>
+          <div class="blog-recent__cta-row row col-lg-12" v-if="ctaParse">
+            <cta :text="ctaParse?.text" :button="ctaParse?.button" :target="ctaParse?.target" :width="ctaParse?.width" :href="ctaParse?.href" :external="ctaParse?.external" />
+          </div>
+        </wrapper>
       </div>
     </template>
   `,
