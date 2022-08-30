@@ -69,7 +69,7 @@ HideContainer.args = {
   headline: 'lorem ipsum headline',
   slider: false,
   hideContainer: true,
-}
+};
 
 export const Combined = Template.bind({});
 

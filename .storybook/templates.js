@@ -136,6 +136,8 @@ export const createTemplate = function async(include, template, path = 'includes
 
   // add map of jekyll filter
   engine.filters.impls.jsonify = engine.filters?.impls?.json;
+  // TODO figure out how to make where_exp compatible to where
+  // engine.filters.impls.where_exp = engine.filters?.impls?.where;
 
   const wrapper = document.createElement('div');
   const tpl = engine.parse(fixComponent(template));
