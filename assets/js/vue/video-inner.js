@@ -9,7 +9,7 @@ export default {
         `${this.variant !== 'reversed' ? 'h-100' : ''}`,
         'space-bottom-1 space-bottom-lg-0',
         `${this.variant ? 'video--' + this.variant : ''}`,
-        'vue-component'
+        'vue-component',
       ];
     },
     videoPlayerClass() {
@@ -17,16 +17,16 @@ export default {
         'video__player',
         `${!this.variant ? 'bg-dark' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
-        'vue-component'
-      ]
+        'vue-component',
+      ];
     },
     videoContentClass() {
       const padding = !this.isReversed() ? 'py-4 px-3 p-lg-5' : 'pb-4';
       return [
-        `${!this.isReversed() ? 'video__content' : '' }`,
+        `${!this.isReversed() ? 'video__content' : ''}`,
         `${this.videoParsed.ctaText ? 'hover__parent' : 'flex-grow-1 ' + padding}`,
-        'vue-component'
-      ]
+        'vue-component',
+      ];
     },
     videoParsed() {
       return typeof this.video !== 'object' ? JSON.parse(this.video) : this.video;
@@ -41,54 +41,54 @@ export default {
       return 'video-id__' + this.videoParsed.id;
     },
     videoFrameId() {
-      return this.videoId + "-frame";
+      return this.videoId + '-frame';
     },
     dataOptionsLightBox() {
       const obj = {
-        "selector": "#" + `${this.videoParsed.id}` + " .js-fancybox",
-        "speed": 700,
-        "buttons": ["fullscreen", "close"],
-        "media": {
-          "youtube": {
-            "url": "//www.youtube-nocookie.com/embed/$4",
-            "params": {
-              "autoplay": 1
-            }
-          }
-        }
-      }
+        selector: '#' + `${this.videoId}` + ' .js-fancybox',
+        speed: 700,
+        buttons: ['fullscreen', 'close'],
+        media: {
+          youtube: {
+            url: '//www.youtube-nocookie.com/embed/$4',
+            params: {
+              autoplay: 1,
+            },
+          },
+        },
+      };
       return JSON.stringify(obj);
     },
     dataOptionsRegular() {
       const obj = {
-        "videoId": this.videoParsed.id,
-        "parentSelector": "#" + this.videoId,
-        "targetSelector": "#" + this.videoFrameId,
-        "isAutoplay": true,
-        "classMap": {
-          "toggle": "video-player-played"
-        }
-      }
+        videoId: this.videoParsed.id,
+        parentSelector: '#' + this.videoId,
+        targetSelector: '#' + this.videoFrameId,
+        isAutoplay: true,
+        classMap: {
+          toggle: 'video-player-played',
+        },
+      };
       return JSON.stringify(obj);
     },
     dataSrc() {
-      return "//www.youtube-nocookie.com/" + this.videoParsed.id;
+      return '//www.youtube-nocookie.com/' + this.videoParsed.id;
     },
     dataCaption() {
       return this.videoParsed.headline;
     },
   },
   mounted() {
-    //console.log('test: ', this.$refs['video-player'])
-    //new HSVideoPlayer(this.$refs['video-player']).init();
-    $(this.$refs['video-player']).each(function () {
-      new HSVideoPlayer($(this)).init();
-    });
+    $?.HSCore?.components?.HSFancyBox?.init($(this.$refs['lightbox']));
+
+    if (!window.HSVideoPlayer) return;
+
+    new HSVideoPlayer($(this.$refs['video-player'])).init();
   },
   methods: {
-    isReversed(){
+    isReversed() {
       return this.variant === 'reversed';
-    }
+    },
   },
   props: {
     video: Object,
@@ -130,7 +130,7 @@ export default {
         <div :class="videoClass" :onclick="onClick">
           <div :id="videoId" :class="videoPlayerClass">
             <template v-if="videoParsed.lightbox">
-              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
+              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox">
                 <div class="img-fluid" >
                   <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
                 </div>
@@ -165,7 +165,7 @@ export default {
         <div :class="videoClass" :onclick="onClick">
           <div :id="videoId" :class="videoPlayerClass">
             <template v-if="videoParsed.lightbox">
-              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="fancybox">
+              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox">
                 <div class="img-fluid" >
                   <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
                 </div>
@@ -181,7 +181,7 @@ export default {
                 <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
               </div>
               <template v-if="videoParsed.id" >
-                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular">
+                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="video-player">
                   <span class="video-player-icon video__player-icon">
                     <i class="fas fa-play"></i>
                   </span>
