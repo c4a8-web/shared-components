@@ -6,8 +6,35 @@ import { TOOL_ID, ADDON_ID, JSON_TO_YAML_EVENTS, LOCALIZATION } from './exports'
 let hasEventListener = false;
 let storyData = '';
 
+const unsecuredCopyToClipboard = (text) => {
+  // fallback for localhost
+
+  const textArea = document.createElement('textarea');
+  textArea.value = text;
+
+  document.body.appendChild(textArea);
+
+  textArea.focus();
+  textArea.select();
+  try {
+    document.execCommand('copy');
+  } catch (err) {
+    console.error('Unable to copy to clipboard', err);
+  }
+
+  document.body.removeChild(textArea);
+};
+
+const copyToClipboard = (content) => {
+  if (window.isSecureContext && navigator.clipboard) {
+    navigator.clipboard.writeText(content);
+  } else {
+    unsecuredCopyToClipboard(content);
+  }
+};
+
 const onClick = function (setState, state) {
-  navigator.clipboard.writeText(storyData);
+  copyToClipboard(storyData);
 
   const delay = 2000;
 
