@@ -5,7 +5,9 @@ export default {
       return [
         'video',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
-        'd-flex flex-column h-100 space-bottom-1 space-bottom-lg-0',
+        'd-flex flex-column',
+        `${this.variant !== 'reversed' ? 'h-100' : ''}`,
+        'space-bottom-1 space-bottom-lg-0',
         `${this.variant ? 'video--' + this.variant : ''}`,
         'vue-component'
       ];
