@@ -47,7 +47,7 @@ BlogPostLarge.args = {
 export const Webcast = Template.bind({});
 
 Webcast.args = {
-  youtubeurl: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
+  youtubeUrl: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
   title: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   moment: '2022-02-16',
   author: ['Nadine Kern', 'Next Author'],
