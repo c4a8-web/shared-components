@@ -42,17 +42,17 @@ export default {
         dur: duration,
       };
     },
-    width() {
-      return 400;
+    internalWidth() {
+      return this.width ? this.width : 400;
     },
-    height() {
-      return this.width;
+    internalHeight() {
+      return this.internalWidth;
     },
     halfWidth() {
-      return this.width / 2;
+      return this.internalWidth / 2;
     },
     halfHeight() {
-      return this.height / 2;
+      return this.internalHeight / 2;
     },
     clipPathId() {
       return `${this.shapeElements?.getStepId('clip-path')}`;
@@ -70,9 +70,9 @@ export default {
       return this.shapeElementsInstance;
     },
     points() {
-      const width = this.width;
+      const width = this.internalWidth;
       const halfWidth = this.halfWidth;
-      const height = this.height;
+      const height = this.internalHeight;
       const heightHalf = this.halfHeight;
 
       return {
@@ -83,6 +83,8 @@ export default {
     },
   },
   data() {
+    // TODO connect these numbers to innerWidth so 400 and 200 are relative
+
     return {
       animations: [
         {
@@ -268,6 +270,7 @@ export default {
     foregroundColor: String,
     thirdColor: String,
     start: String,
+    width: String,
   },
   methods: {
     getStepData(elementName, stepList) {
@@ -308,10 +311,10 @@ export default {
   template: `
     <g :class="classList">
       <clipPath :id="clipPathId">
-        <rect x="0" y="0" :width="width" :height="height" />
+        <rect x="0" y="0" :width="internalWidth" :height="internalHeight" />
       </clipPath>
       <g :style="clipPathUrl">
-        <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
+        <rect :fill="rectColor" :width="internalWidth" :height="internalHeight" x="0" y="0" />
         <polygon :fill="pathColor" :points="points?.firstArrow" :id="firstArrow?.id" style="transform-origin: 0px 200px;">
           <template v-for="animation in animations">
             <template v-for="stepData in getStepData('firstArrow', animation?.steps)">

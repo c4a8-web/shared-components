@@ -35,7 +35,8 @@ import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
-import Wrapper from './vue/wrapper.js'
+import Square from './vue/shapes/square.js';
+import Wrapper from './vue/wrapper.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -84,6 +85,7 @@ const addApp = () => {
     Rocket,
     Smile,
     SBlock,
+    Square,
     PersonQuote,
     Wrapper,
   ];

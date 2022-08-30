@@ -11,6 +11,33 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
+export const ShapeFastForward = Template.bind({});
+
+ShapeFastForward.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-fast-forward',
+      backgroundColor: 'var(--color-primary-accent)',
+      foregroundColor: 'var(--color-primary-accent-light)',
+      thirdColor: 'var(--color-secondary)',
+    },
+  ],
+};
+
+export const ShapeSquareCircle = Template.bind({});
+
+ShapeSquareCircle.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-square-circle',
+      backgroundColor: 'var(--color-primary-accent)',
+      circleColor: 'var(--color-secondary)',
+    },
+  ],
+};
+
 export const SBlock = Template.bind({});
 
 SBlock.args = {
