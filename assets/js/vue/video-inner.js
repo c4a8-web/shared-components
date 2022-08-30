@@ -21,9 +21,10 @@ export default {
       ]
     },
     videoContentClass() {
+      const padding = !this.isReversed() ? 'py-4 px-3 p-lg-5' : 'pb-4';
       return [
-        `${this.variant !== 'reversed' ? 'video__content' : '' }`,
-        `${this.videoParsed.ctaText ? 'hover__parent' : 'flex-grow-1 py-4 px-3 p-lg-5'}`,
+        `${!this.isReversed() ? 'video__content' : '' }`,
+        `${this.videoParsed.ctaText ? 'hover__parent' : 'flex-grow-1 ' + padding}`,
         'vue-component'
       ]
     },
@@ -75,9 +76,16 @@ export default {
     },
     dataCaption() {
       return this.videoParsed.headline;
+    },
+    mounted() {
+      console.log(this.$refs);
     }
   },
-  methods: {},
+  methods: {
+    isReversed(){
+      return this.variant === 'reversed';
+    }
+  },
   props: {
     video: Object,
     variant: String,
@@ -86,8 +94,7 @@ export default {
     },
   },
   template: `
-    <div :class="videoClass" :onclick="onClick">
-      <template v-if="variant == 'reversed'">
+      <template v-if="variant == 'reversed'" >
         <template v-if="videoParsed.headline">
           <div :class="videoContentClass" :onclick="onClickVideoContent">
             <div class="row no-gutters d-flex flex-wrap">
@@ -116,99 +123,101 @@ export default {
             </div>
           </div>
         </template>
-        <div :id="videoId" :class="videoPlayerClass">
-          <template v-if="videoParsed.lightbox">
-            <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
-              <div class="img-fluid" >
-                <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
-              </div>
-              <span class="media-viewer-container">
-                <span class="video-player-icon">
-                  <i class="fas fa-play"></i>
-                </span>
-              </span>
-            </a>
-          </template>
-          <template v-else>
-            <div class="img-fluid video-player-preview">
-              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
-            </div>
-            <template v-if="videoParsed.id">
-              <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular">
-                <span class="video-player-icon video__player-icon">
-                  <i class="fas fa-play"></i>
+        <div :class="videoClass" :onclick="onClick">
+          <div :id="videoId" :class="videoPlayerClass">
+            <template v-if="videoParsed.lightbox">
+              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
+                <div class="img-fluid" >
+                  <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
+                </div>
+                <span class="media-viewer-container">
+                  <span class="video-player-icon">
+                    <i class="fas fa-play"></i>
+                  </span>
                 </span>
               </a>
             </template>
-            <div class="embed-responsive embed-responsive-16by9">
-              <div :id="videoFrameId"></div>
-            </div>
-          </template>
+            <template v-else>
+              <div class="img-fluid video-player-preview">
+                <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
+              </div>
+              <template v-if="videoParsed.id" >
+                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="js-inline-video-player">
+                  <span class="video-player-icon video__player-icon">
+                    <i class="fas fa-play"></i>
+                  </span>
+                </a>
+              </template>
+              <div class="embed-responsive embed-responsive-16by9">
+                <div :id="videoFrameId"></div>
+              </div>
+            </template>
+          </div>
         </div>
-
 
 
       </template>
       <template v-else>
-        <div :id="videoId" :class="videoPlayerClass">
-          <template v-if="videoParsed.lightbox">
-            <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
-              <div class="img-fluid" >
-                <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
-              </div>
-              <span class="media-viewer-container">
-                <span class="video-player-icon">
-                  <i class="fas fa-play"></i>
-                </span>
-              </span>
-            </a>
-          </template>
-          <template v-else>
-            <div class="img-fluid video-player-preview">
-              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
-            </div>
-            <template v-if="videoParsed.id">
-              <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular">
-                <span class="video-player-icon video__player-icon">
-                  <i class="fas fa-play"></i>
+        <div :class="videoClass" :onclick="onClick">
+          <div :id="videoId" :class="videoPlayerClass">
+            <template v-if="videoParsed.lightbox">
+              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption">
+                <div class="img-fluid" >
+                  <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
+                </div>
+                <span class="media-viewer-container">
+                  <span class="video-player-icon">
+                    <i class="fas fa-play"></i>
+                  </span>
                 </span>
               </a>
             </template>
-            <div class="embed-responsive embed-responsive-16by9">
-              <div :id="videoFrameId"></div>
+            <template v-else>
+              <div class="img-fluid video-player-preview">
+                <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
+              </div>
+              <template v-if="videoParsed.id" >
+                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="js-inline-video-player" >
+                  <span class="video-player-icon video__player-icon">
+                    <i class="fas fa-play"></i>
+                  </span>
+                </a>
+              </template>
+              <div class="embed-responsive embed-responsive-16by9">
+                <div :id="videoFrameId"></div>
+              </div>
+            </template>
+          </div>
+          <template v-if="videoParsed.headline">
+
+            <div :class="videoContentClass" :onclick="onClickVideoContent">
+              <div class="row no-gutters d-flex flex-wrap">
+                <template v-if="videoParsed.logo">
+                  <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
+                    <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt">
+                  </div>
+                  <div class="col-lg-7 order-lg-1">
+                    <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
+                  </div>
+                </template>
+                <template v-else>
+                  <div class="col-lg-12 order-lg-1">
+                    <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
+                  </div>
+                </template>
+                <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3">
+                  {{ videoParsed.text }}
+                </div>
+                <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
+                  {{ videoParsed.date }}
+                </div>
+              </div>
+              <div class="pt-4 pt-lg-6 pb-6" v-if="videoParsed.ctaText">
+                <cta :text="videoParsed?.ctaText" :href="videoParsed?.ctaHref" :link="videoParsed?.link" :target="videoParsed?.target" :type="videoParsed?.type">
+              </div>
             </div>
           </template>
         </div>
-        <template v-if="videoParsed.headline">
-
-          <div :class="videoContentClass" :onclick="onClickVideoContent">
-            <div class="row no-gutters d-flex flex-wrap">
-              <template v-if="videoParsed.logo">
-                <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
-                  <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt">
-                </div>
-                <div class="col-lg-7 order-lg-1">
-                  <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
-                </div>
-              </template>
-              <template v-else>
-                <div class="col-lg-12 order-lg-1">
-                  <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
-                </div>
-              </template>
-              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3">
-                {{ videoParsed.text }}
-              </div>
-              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
-                {{ videoParsed.date }}
-              </div>
-            </div>
-            <div class="pt-4 pt-lg-6 pb-6" v-if="videoParsed.ctaText">
-              <cta :text="videoParsed?.ctaText" :href="videoParsed?.ctaHref" :link="videoParsed?.link" :target="videoParsed?.target" :type="videoParsed?.type">
-            </div>
-          </div>
-        </template>
       </template>
-    </div>
     `,
 };
