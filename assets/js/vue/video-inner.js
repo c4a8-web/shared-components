@@ -16,6 +16,7 @@ export default {
       return [
         'video__player',
         `${!this.variant ? 'bg-dark' : ''}`,
+        `${this.isPlayed ? 'video-player-played' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
         'vue-component',
       ];
@@ -32,10 +33,10 @@ export default {
       return typeof this.video !== 'object' ? JSON.parse(this.video) : this.video;
     },
     onClickVideoContent() {
-      return this.videoParsed.ctaText ? `this.querySelector('a').click()` : '';
+      return this.videoParsed.ctaText ? `this.querySelector('a').click()` : null;
     },
     onClick() {
-      return this.videoParsed.ctaText && this.videoParsed.id ? `this.querySelector('a').click()` : '';
+      return this.videoParsed.ctaText && this.videoParsed.id ? `this.querySelector('a').click()` : null;
     },
     videoId() {
       return 'video-id__' + this.videoParsed.id;
@@ -65,9 +66,6 @@ export default {
         parentSelector: '#' + this.videoId,
         targetSelector: '#' + this.videoFrameId,
         isAutoplay: true,
-        classMap: {
-          toggle: 'video-player-played',
-        },
       };
       return JSON.stringify(obj);
     },
@@ -89,6 +87,14 @@ export default {
     isReversed() {
       return this.variant === 'reversed';
     },
+    handleButtonClick() {
+      this.isPlayed = true;
+    },
+  },
+  data() {
+    return {
+      isPlayed: false,
+    };
   },
   props: {
     video: Object,
@@ -98,7 +104,6 @@ export default {
     },
   },
   template: `
-    {{ videoParsed }}
       <template v-if="isReversed()" >
         <template v-if="videoParsed.headline">
           <div :class="videoContentClass" :onclick="onClickVideoContent">
@@ -131,7 +136,7 @@ export default {
         <div :class="videoClass" :onclick="onClick">
           <div :class="videoPlayerClass" :id="videoId">
             <template v-if="videoParsed.lightbox">
-              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox">
+              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox" :onclick="handleButtonClick">
                 <div class="img-fluid" >
                   <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
                 </div>
@@ -147,7 +152,7 @@ export default {
                 <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
               </div>
               <template v-if="videoParsed.id" >
-                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="video-player">
+                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="video-player" :onclick="handleButtonClick">
                   <span class="video-player-icon video__player-icon">
                     <i class="fas fa-play"></i>
                   </span>
@@ -166,7 +171,7 @@ export default {
         <div :class="videoClass" :onclick="onClick">
           <div :class="videoPlayerClass" :id="videoId" >
             <template v-if="videoParsed.lightbox">
-              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox">
+              <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox" :onclick="handleButtonClick">
                 <div class="img-fluid" >
                   <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
                 </div>
@@ -182,7 +187,7 @@ export default {
                 <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
               </div>
               <template v-if="videoParsed.id" >
-                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="video-player">
+                <a class="js-inline-video-player video__player-btn video-player-btn video-player-centered" href="javascript:;" :data-hs-video-player-options="dataOptionsRegular" ref="video-player" :onclick="handleButtonClick">
                   <span class="video-player-icon video__player-icon">
                     <i class="fas fa-play"></i>
                   </span>
