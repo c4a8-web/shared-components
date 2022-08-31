@@ -25,7 +25,8 @@ export default {
       const padding = !this.isReversed() ? 'py-4 px-3 p-lg-5' : 'pb-4';
       return [
         'video__content',
-        `${this.videoParsed.ctaText ? 'hover__parent' : 'flex-grow-1 ' + padding}`,
+        `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
+        `flex-grow-1 ${padding}`,
         'vue-component',
       ];
     },
