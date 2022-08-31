@@ -24,6 +24,7 @@ import PersonQuote from './vue/person-quote.js';
 import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
+import ShapeHalfSquare from './vue/shape-square-square.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
@@ -74,6 +75,7 @@ const addApp = () => {
     Search,
     ShapeAnimation,
     ShapeFastFordward,
+    ShapeHalfSquare,
     ShapeSquareCircle,
     Shape,
     ArrowExternal,
