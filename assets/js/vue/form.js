@@ -38,15 +38,19 @@ export default {
       let tempBlock = [];
 
       this.form.fields.forEach((field) => {
-        if (field.rowStart) {
-          blocks[index] = tempBlock;
+        if (field.rowStart || field.rowEnd) {
+          if (field.rowStart) {
+            blocks[index] = tempBlock;
 
-          tempBlock.push(field);
-        } else if (field.rowEnd) {
-          tempBlock.push(field);
+            tempBlock.push(field);
+          }
 
-          tempBlock = [];
-          index++;
+          if (field.rowEnd) {
+            tempBlock.push(field);
+
+            tempBlock = [];
+            index++;
+          }
         } else {
           tempBlock.push(field);
 
@@ -68,6 +72,9 @@ export default {
     },
     getBlockClassList(block) {
       return ['row mx-n3', `${block?.rowClass ? block.rowClass : ''}`];
+    },
+    getFieldClassList(field) {
+      return ['px-3', `${field.col ? 'col-md-' + field.col : ''}`];
     },
   },
   props: {
@@ -111,7 +118,7 @@ export default {
           <form class="form__form js-validate mt-6" :method="method" :action="form.action">
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 1">
-                <div :class="['px-3', 'col-md-' + field.col]" v-for="field in block">
+                <div :class="getFieldClassList(field)" v-for="field in block">
                   <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" />
                 </div>
               </div>
