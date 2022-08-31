@@ -20,10 +20,22 @@
       width: 100%;
     }
   }
+
   &.video--post {
     img {
       left: 0;
       max-width: inherit;
+    }
+  }
+
+  &.video--reversed {
+    .video__player {
+      order: 2;
+    }
+
+    .video__content {
+      background-color: transparent;
+      order: 1;
     }
   }
 }
