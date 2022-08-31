@@ -46,11 +46,10 @@ export default {
       return this.videoId + '-frame';
     },
     dataOptionsLightBox() {
-      const obj = {
-        selector: '#' + `${this.videoId}` + ' .js-fancybox',
+      const options = {
+        selector: '#' + `${this.videoId}` + ' .js-video-button',
         speed: 700,
         buttons: ['fullScreen', 'close'],
-        afterClose: this.handleClose.bind(this),
         media: {
           youtube: {
             url: '//www.youtube-nocookie.com/embed/$4',
@@ -60,16 +59,18 @@ export default {
           },
         },
       };
-      return JSON.stringify(obj);
+
+      return JSON.stringify(options);
     },
     dataOptionsRegular() {
-      const obj = {
+      const options = {
         videoId: this.videoParsed.id,
         parentSelector: '#' + this.videoId,
         targetSelector: '#' + this.videoFrameId,
         isAutoplay: true,
       };
-      return JSON.stringify(obj);
+
+      return JSON.stringify(options);
     },
     dataSrc() {
       return '//www.youtube-nocookie.com/' + this.videoParsed.id;
@@ -91,31 +92,10 @@ export default {
     },
     handleButtonClick() {
       this.isPlayed = true;
-      const selector = '#' + `${this.videoId}` + ' .js-fancybox'
-      const options =
-      {
-        speed: 700,
-        buttons: ['fullScreen', 'close'],
-        media: {
-          youtube: {
-            url: '//www.youtube-nocookie.com/embed/$4',
-            params: {
-              autoplay: 1,
-            },
-          },
-        },
-      }
-      $.fancybox({
-        href: selector,
-        afterClose: this.handleClose.bind(this),
-      }),
-      console.log('here')
-      return $fancybox.open(selector, options)
     },
-
     handleClose() {
       this.isPlayed = false;
-    }
+    },
   },
   data() {
     return {
@@ -133,7 +113,7 @@ export default {
     <div :class="videoClass" :onclick="onClick">
       <div :class="videoPlayerClass" :id="videoId">
         <template v-if="videoParsed.lightbox">
-          <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox" :onclick="handleButtonClick">
+          <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox">
             <div class="img-fluid" >
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
             </div>
