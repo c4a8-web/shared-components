@@ -50,6 +50,7 @@ export default {
         selector: '#' + `${this.videoId}` + ' .js-fancybox',
         speed: 700,
         buttons: ['fullScreen', 'close'],
+        afterClose: this.handleClose.bind(this),
         media: {
           youtube: {
             url: '//www.youtube-nocookie.com/embed/$4',
@@ -90,7 +91,31 @@ export default {
     },
     handleButtonClick() {
       this.isPlayed = true;
+      const selector = '#' + `${this.videoId}` + ' .js-fancybox'
+      const options =
+      {
+        speed: 700,
+        buttons: ['fullScreen', 'close'],
+        media: {
+          youtube: {
+            url: '//www.youtube-nocookie.com/embed/$4',
+            params: {
+              autoplay: 1,
+            },
+          },
+        },
+      }
+      $.fancybox({
+        href: selector,
+        afterClose: this.handleClose.bind(this),
+      }),
+      console.log('here')
+      return $fancybox.open(selector, options)
     },
+
+    handleClose() {
+      this.isPlayed = false;
+    }
   },
   data() {
     return {
@@ -108,7 +133,7 @@ export default {
     <div :class="videoClass" :onclick="onClick">
       <div :class="videoPlayerClass" :id="videoId">
         <template v-if="videoParsed.lightbox">
-          <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox" :onclick="handleButtonClick">
+          <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox" :onclick="handleButtonClick">
             <div class="img-fluid" >
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
             </div>
