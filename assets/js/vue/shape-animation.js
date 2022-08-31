@@ -2,7 +2,7 @@ export default {
   tagName: 'shape-animation',
   computed: {
     tag() {
-      return this.isAnimate ? 'animate' : 'animateTransform';
+      return this.isAnimate ? 'animate' : this.isMotion ? 'animateMotion' : 'animateTransform';
     },
     isAnimate() {
       let result = false;
@@ -40,8 +40,11 @@ export default {
     calcMode: String,
     keyTimes: String,
     keySplines: String,
+    keyPoints: String,
     type: String,
     additive: Boolean,
+    isMotion: Boolean,
+    path: String,
   },
   template: `
     <component :is="tag"
@@ -57,6 +60,8 @@ export default {
       :calcMode="calcMode ? calcMode : defaultCalcMode"
       :keyTimes="keyTimes ? keyTimes : defaultKeyTimes"
       :keySplines="effectiveKeySplines"
+      :keyPoints="keyPoints"
+      :path="path"
       :type="type"
       :additive="additive ? 'sum': null"
     />
