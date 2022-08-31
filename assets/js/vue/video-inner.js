@@ -47,7 +47,7 @@ export default {
       const obj = {
         selector: '#' + `${this.videoId}` + ' .js-fancybox',
         speed: 700,
-        buttons: ['fullscreen', 'close'],
+        buttons: ['fullScreen', 'close'],
         media: {
           youtube: {
             url: '//www.youtube-nocookie.com/embed/$4',
@@ -98,7 +98,8 @@ export default {
     },
   },
   template: `
-      <template v-if="variant == 'reversed'" >
+    {{ videoParsed }}
+      <template v-if="isReversed()" >
         <template v-if="videoParsed.headline">
           <div :class="videoContentClass" :onclick="onClickVideoContent">
             <div class="row no-gutters d-flex flex-wrap">
@@ -128,7 +129,7 @@ export default {
           </div>
         </template>
         <div :class="videoClass" :onclick="onClick">
-          <div :id="videoId" :class="videoPlayerClass">
+          <div :class="videoPlayerClass" :id="videoId">
             <template v-if="videoParsed.lightbox">
               <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox">
                 <div class="img-fluid" >
@@ -163,7 +164,7 @@ export default {
       </template>
       <template v-else>
         <div :class="videoClass" :onclick="onClick">
-          <div :id="videoId" :class="videoPlayerClass">
+          <div :class="videoPlayerClass" :id="videoId" >
             <template v-if="videoParsed.lightbox">
               <a class="js-fancybox media-viewer video-player-btn" href="javascript:;" :data-hs-fancybox-options="dataOptionsLightBox" :data-src="dataSrc" :data-caption="dataCaption" ref="lightbox">
                 <div class="img-fluid" >
