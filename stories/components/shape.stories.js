@@ -38,6 +38,20 @@ ShapeSquareCircle.args = {
   ],
 };
 
+export const ShapeHalfSquare = Template.bind({});
+
+ShapeHalfSquare.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-half-square',
+      backgroundColor: 'var(--color-primary-accent)',
+      foregroundColor: 'var(--color-secondary)',
+      thirdColor: '#ff0000',
+    },
+  ],
+};
+
 export const SBlock = Template.bind({});
 
 SBlock.args = {
