@@ -1,7 +1,7 @@
 import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
-const animationDelay = '0';
+const animationDelay = '0s';
 const animationStepDelay = '0.05';
 
 const tagName = 'shape-half-square';
@@ -9,23 +9,23 @@ const tagName = 'shape-half-square';
 export default {
   tagName: tagName,
   computed: {
-    classList() {
-      return ['shape-square-forward', 'vue-component'];
-    },
-    begin() {
-      return this.start ? this.start : defaultStart;
-    },
+    // classList() {
+    //   return ['shape-square-forward', 'vue-component'];
+    // },
+    // begin() {
+    //   return this.start ? this.start : defaultStart;
+    // },
     backgroundSquareColor() {
-      return this.backgroundColor ? this.backgroundColor : '#f8842c';
+      return this.backgroundColor ? this.backgroundColor : '#5cbbff';
     },
     firstSquareColor() {
       return this.firstColor ? this.firstColor : '#fcd116';
     },
     secondSquareColor() {
-      return this.secondColor ? this.secondColor : '#fcd116';
+      return this.secondColor ? this.secondColor : '#ffffff';
     },
     thirdSquareColor() {
-      return this.thirdColor ? this.thirdColor : '#fcd116';
+      return this.thirdColor ? this.thirdColor : '#0072c6';
     },
     firstSquare() {
       return this.sequence.firstSquare;
@@ -66,22 +66,32 @@ export default {
 
       return this.shapeElementsInstance;
     },
-    points() {
-      const width = this.width;
-      const halfWidth = this.halfWidth;
-      const height = this.height;
-      const heightHalf = this.halfHeight;
-
-      return {
-        firstSquare: `0,0 0,${height} ${heightHalf},${halfWidth}`,
-        secondSquare: `${halfWidth},0, ${halfWidth},${height}, ${width},${heightHalf}`,
-        thirdSquare: `${-halfWidth},0, ${-halfWidth},${height}, ${0},${halfWidth}`,
-      };
-    },
   },
   data() {
     return {
       animations: [
+        {
+          steps: [
+            {
+              name: 'motion',
+              attributeName: 'motion',
+              motion: true,
+              dur: '30s',
+              begin: '0s',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'transform',
+              from: '-200 -200',
+              to: '-200 -200',
+              dur: '30s',
+              type: 'scale',
+            },
+          ],
+        },
         {
           steps: [
             {
@@ -97,116 +107,60 @@ export default {
         {
           steps: [
             {
-              name: 'scale',
-              from: '0.5',
-              to: '1',
-              dur: '0.01s',
-              attributeName: 'opacity',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'motion',
-              to: '-200',
-              from: '-400',
+              name: 'motion2',
+              attributeName: 'motion2',
               motion: true,
+              dur: '30s',
             },
           ],
         },
-        // {
-        //   steps: [
-        //     {
-        //       name: 'reset',
-        //       by: '200',
-        //     },
-        //   ],
-        // },
       ],
       elements: [
         {
           name: 'firstSquare',
           moveTo1: {
-            start: true,
-            // waitFor: 'firstSquare.reset',
-            delay: animationDelay,
+            delay: 0,
+            values: '-200 -200;-200 -200',
           },
-          scale: {
-            waitFor: 'firstSquare.moveTo3',
-            delay: animationDelay,
+          transform: {
+            delay: 0,
+            values: '0.505 1;0.505 1',
+            additive: true,
           },
           motion: {
-            keyPoints: '0;0.34;0.81;1;1',
+            delay: 0,
             path: 'M504 200 C470.17,200 383.17,200 301,200 C218.83,200 78,200 11,200 C-56,200 -82.33,200 -101,200 C-101,200 -101,200 -101,200',
+            keyPoints: '0;0.34;0.81;1;1',
+            keyTimes: '0;0.0177778;0.0344444;0.0544444;1',
+            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
           },
         },
         {
           name: 'secondSquare',
-          moveTo4: {
-            start: true,
-            waitFor: 'secondSquare.reset',
-            delay: animationDelay,
-            from: '0',
-            to: '200',
-          },
-          hide: {
-            waitFor: 'secondSquare',
-            delay: animationStepDelay,
+          motion2: {
+            delay: 0,
+            keyTimes: '0;0.0177778;0.0344444;0.0544444;1',
+            path: 'M805 200 C771.17,200 684.17,200 602,200 C519.83,200 379,200 312,200 C245,200 218.67,200 200,200 C200,200 200,200 200,200 ',
+            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+            keyPoints: '0;0.34;0.81;1;1',
           },
           moveTo1: {
-            waitFor: 'secondSquare.hide',
-            delay: animationStepDelay,
-          },
-          show: {
-            waitFor: 'secondSquare.moveTo1',
-            delay: animationStepDelay,
-          },
-          moveTo2: {
-            waitFor: 'secondSquare.show',
-            delay: animationDelay - animationStepDelay * 3.5,
-          },
-          reset: {
-            waitFor: 'secondSquare.moveTo2',
-            delay: animationDelay,
+            delay: 0,
+            values: '-200 -200;-200 -200',
           },
         },
         {
           name: 'thirdSquare',
-          moveTo2: {
-            start: true,
-            waitFor: 'thirdSquare.show',
-            delay: animationDelay - animationStepDelay * 3.5,
-            from: '0',
-            to: '200',
+          moveTo1: {
+            delay: 0,
+            values: '-200 -200;-200 -200',
           },
-          moveTo3: {
-            waitFor: 'thirdSquare.moveTo2',
-            delay: animationDelay,
-          },
-          shrink: {
-            waitFor: 'thirdSquare.moveTo3',
-            delay: animationDelay,
-          },
-          moveTo4: {
-            waitFor: 'thirdSquare.moveTo3',
-            from: '0',
-            to: '200',
-            additive: true,
-            delay: animationDelay,
-          },
-          hide: {
-            waitFor: 'thirdSquare.moveTo4',
-            delay: animationStepDelay,
-          },
-          reset: {
-            waitFor: 'thirdSquare.hide',
-            delay: animationStepDelay,
-            dur: '0.01s',
-          },
-          show: {
-            waitFor: 'thirdSquare.reset',
-            delay: animationStepDelay,
+          motion2: {
+            delay: 0,
+            keyTimes: '0;0.0333333;0.0544444;1',
+            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+            path: 'M602 200 C602,200 602,200 602,200 C568.33,200 433.67,200 400,200 C400,200 400,200 400,200',
+            keyPoints: '0;0;1;1',
           },
         },
       ],
@@ -215,8 +169,9 @@ export default {
   },
   props: {
     backgroundColor: String,
-    foregroundColor: String,
+    firstColor: String,
     secondColor: String,
+    thirdColor: String,
     start: String,
   },
   methods: {
@@ -229,7 +184,6 @@ export default {
 
       stepList.forEach((step) => {
         const newStep = { ...step };
-
         const elementStepData = element[newStep?.name];
 
         if (!elementStepData) return;
@@ -244,9 +198,11 @@ export default {
         if (elementStepData.additive) newStep.additive = elementStepData.additive;
         if (elementStepData.dur) newStep.dur = elementStepData.dur;
         if (elementStepData.motion) newStep.motion = elementStepData.motion;
+        if (elementStepData.keyTimes) newStep.keyTimes = elementStepData.keyTimes;
 
         if (!newStep.dur) newStep.dur = this.overall.dur;
-        if (!newStep.keySplines) newStep.keySplines = this.overall.keySplines;
+        if (!newStep.keySplines)
+          newStep.keySplines = elementStepData.keySplines ? elementStepData.keySplines : this.overall.keySplines;
 
         const stepItem = { step: newStep, data: elementStepData };
 
@@ -262,7 +218,7 @@ export default {
         <rect x="0" y="0" :width="width" :height="height" />
       </clipPath>
       <g :style="clipPathUrl">
-        <g id="first">
+        <g id="squares" >
           <template v-for="animation in animations">
             <template v-for="stepData in getStepData('firstSquare', animation?.steps)">
               <shape-animation
@@ -280,6 +236,51 @@ export default {
                 :to="stepData?.step?.to"
                 :by="stepData?.step?.by"
                 :keyPoints="stepData?.data?.keyPoints"
+                :values="stepData?.data?.values"
+                :path="stepData?.data?.path"
+                :isMotion="stepData?.step?.motion"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
+            <template v-for="stepData in getStepData('secondSquare', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :keyPoints="stepData?.data?.keyPoints"
+                :values="stepData?.data?.values"
+                :path="stepData?.data?.path"
+                :isMotion="stepData?.step?.motion"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
+            <template v-for="stepData in getStepData('thirdSquare', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :keyPoints="stepData?.data?.keyPoints"
+                :values="stepData?.data?.values"
                 :path="stepData?.data?.path"
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
@@ -289,13 +290,12 @@ export default {
 
 
 
+
           <shape-animation
             :id="firstSquare?.reset?.id"
             :href="firstSquare?.href"
             :begin="firstSquare?.reset?.begin"
             attributeName="transform"
-            from="-200"
-            to="0"
             :dur="overall?.dur"
             fill="freeze"
             calcMode="spline"
@@ -305,47 +305,19 @@ export default {
         </g>
 
 
-      <defs>
-        <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#firstSquare" fill="freeze"
-          keyTimes="0;0.0177778;0.0344444;0.0544444;1"
-          path="M504 200 C470.17,200 383.17,200 301,200 C218.83,200 78,200 11,200 C-56,200 -82.33,200 -101,200 C-101,200 -101,200 -101,200 "
-          keyPoints="0;0.34;0.81;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0"
-          calcMode="spline" />
-        <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#firstSquare" fill="freeze"
-          attributeName="transform" from="-200 -200" to="-200 -200" type="scale" additive="sum" keyTimes="0;1"
-          values="0.505 1;0.505 1" keySplines="0 0 1 1" calcMode="spline" />
-        <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#firstSquare" fill="freeze"
-          attributeName="transform" from="-200 -200" to="-200 -200" type="translate" additive="sum" keyTimes="0;1"
-          values="-200 -200;-200 -200" keySplines="0 0 1 1" calcMode="spline" />
-        <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#secondSquare" fill="freeze"
-          keyTimes="0;0.0177778;0.0344444;0.0544444;1"
-          path="M805 200 C771.17,200 684.17,200 602,200 C519.83,200 379,200 312,200 C245,200 218.67,200 200,200 C200,200 200,200 200,200 "
-          keyPoints="0;0.34;0.81;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0"
-          calcMode="spline" />
-        <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#secondSquare" fill="freeze"
-          attributeName="transform" from="-200 -200" to="-200 -200" type="translate" additive="sum" keyTimes="0;1"
-          values="-200 -200;-200 -200" keySplines="0 0 1 1" calcMode="spline" />
-        <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#thirdSquare" fill="freeze"
-          keyTimes="0;0.0333333;0.0544444;1"
-          path="M602 200 C602,200 602,200 602,200 C568.33,200 433.67,200 400,200 C400,200 400,200 400,200 "
-          keyPoints="0;0;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0" calcMode="spline" />
-        <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s" xlink:href="#thirdSquare" fill="freeze"
-          attributeName="transform" from="-200 -200" to="-200 -200" type="translate" additive="sum" keyTimes="0;1"
-          values="-200 -200;-200 -200" keySplines="0 0 1 1" calcMode="spline" />
-        <animate attributeType="XML" attributeName="opacity" dur="30s" from="0" to="1" xlink:href="#time_group" />
-      </defs>
 
-      <g id="staticSquare">
-        <rect fill="#5cbbff" width="400" height="400" />
+
+      <g :id="staticSquare">
+        <rect :fill="backgroundSquareColor" width="400" height="400" />
       </g>
-      <g id="firstSquare" :testid="firstSquare?.href" >
-        <rect fill="#fcd116" width="400" height="400" />
+      <g :id="firstSquare?.id" >
+        <rect :fill="firstSquareColor" width="400" height="400" />
       </g>
-      <g id="secondSquare">
-        <rect fill="#ffffff" width="400" height="400" />
+      <g :id="secondSquare?.id">
+        <rect :fill="secondSquareColor" width="400" height="400" />
       </g>
-      <g id="thirdSquare">
-        <rect fill="#0072c6" width="400" height="400" />
+      <g :id="thirdSquare?.id">
+        <rect :fill="thirdSquareColor" width="400" height="400" />
       </g>
     </g>`,
 };
