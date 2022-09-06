@@ -10,10 +10,13 @@
 <div class="people-square {% if peopleSquareAbsolute %}people-square--absolute{% endif %}">
   <div class="people-square__grid" style="grid-template-columns: repeat({{ peopleSquareWidth }}, 1fr); grid-template-rows: repeat({{ peopleSquareHeight }}, 1fr);--people-square-size: {{ peopleSquareSize }};">
     {% for element in peopleSquareGrid %}
-      <div class="people-square__element"
+      {% if element.start == element.end and element.colend %}
+        {%- assign flatElement = true -%}
+      {% endif %}
+      <div class="{% if flatElement %} people-square__extended__element {% else %} people-square__element {% endif %}"
             style="{% if element.start and element.end %}
             grid-row-start: {{ element.start }};grid-row-end: {{ element.end | plus: 1 }};
-            grid-column-start: {{ peopleSquareCounter | plus: 1 }};grid-column-end: {{ 4 }}{% endif %}">
+            grid-column-start: {{ peopleSquareCounter | plus: 1 }};grid-column-end: {{ element.colend }}{% endif %}">
         {% if element.img %}
           {%
             include img.html
