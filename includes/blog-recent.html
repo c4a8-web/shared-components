@@ -18,18 +18,6 @@
   {%- assign blogRecentCaseStudies = true -%}
 {%- endif -%}
 
-{%- if blogRecentSlider -%}
-  {%- assign skin = 'has-slider' -%}
-  {%- assign containerClasses = 'js-slick-carousel' -%}
-  {%- assign itemClasses = 'mb-6 mb-lg-0 blog-recent__slide' -%}
-  {%- assign hideContainer = false -%}
-{%- else -%}
-  {%- assign skin = '' -%}
-  {%- assign containerClasses = 'row mb-3' -%}
-  {%- assign itemClasses = 'col-sm-6 col-lg-4 mb-3 mb-sm-8' -%}
-  {%- assign hideContainer = include.hideContainer | default: false -%}
-{%- endif -%}
-
 {%- if blogRecentEvents -%}
   {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
 
@@ -85,7 +73,7 @@
         {
           "url": "{{ post.url }}",
           "layout": "{{ post.layout }}",
-          "title": "{{ post.title }}",
+          "title": "{{ post.title | strip_html }}",
           "date": "{{ post.date }}",
           "blogtitlepic": "{{ post.hero.background.img }}",
           "excerpt": "{{ post.hero.subline | strip_html | strip_newlines | escape }}"
@@ -101,7 +89,7 @@
           "url": "{{ blogRecentPostUrl }}",
           "youtubeUrl": "{{ post.youtubeUrl }}",
           "layout": "{{ post.layout }}",
-          "title": "{{ post.title }}",
+          "title": "{{ post.title | strip_html }}",
           "date": "{{ post.date }}",
           "author": {{ post.author | jsonify }},
           "blogtitlepic": "{{ post.blogtitlepic }}",

@@ -30,10 +30,7 @@ class Tools {
   static scrollIntoView(element, smooth) {
     if (element) {
       const header = document.querySelector('header');
-
-      if (header === null) return;
-
-      const headerOffset = header.offsetHeight + 40;
+      const headerOffset = header?.offsetHeight + 40;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - headerOffset + window.scrollY;
 
@@ -247,8 +244,8 @@ class Tools {
 
   static getYoutubeThumbnail(videoURL) {
     let videoId;
-    let regExp1 = videoURL.match(/youtube\.com.*(\?v=|\/embed\/)(.{11})/);
-    let regExp2 = videoURL.match(/youtu\.be\/(.{11})/);
+    const regExp1 = videoURL.match(/youtube\.com.*(\?v=|vi=)(.{11})/);
+    const regExp2 = videoURL.match(/youtu\.be\/(.{11})/);
 
     if (regExp1) {
       videoId = regExp1[2];
