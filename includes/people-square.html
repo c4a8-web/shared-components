@@ -15,7 +15,7 @@
       {% else %}
         {%- assign colstart = peopleSquareCounter | plus: 1 -%}
       {% endif %}
-      <div class="{% if element.flat %} people-square__extended__element {% else %} people-square__element {% endif %}"
+      <div class="{% if element.flat %} people-square__element__extended {% else %} people-square__element {% endif %}"
             style="{% if element.start and element.end %}
             grid-row-start: {{ element.start }};grid-row-end: {{ element.end | plus: 1 }};
             grid-column-start: {{ colstart }};grid-column-end: {{ element.colend }}{% endif %}">
