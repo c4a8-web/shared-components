@@ -39,6 +39,9 @@ export default {
     hasBlogTitlePic() {
       return this.youtubeUrl ? false : true;
     },
+    hasNoLink() {
+      return Tools.isTrue(this.webCast) ? true : false
+    }
   },
   methods: {
     formatDate(date) {
@@ -110,7 +113,7 @@ export default {
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author">
-                  <authors :authorsList="authorList(author)" :noLink="event" :dataAuthors="dataAuthors"></authors>
+                  <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
                   {{ cardDate }}
@@ -140,7 +143,7 @@ export default {
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
             <div class="card__author">
-              <authors :authorsList="authorList(author)" :noLink="event" :dataAuthors="dataAuthors"></authors>
+              <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
               {{ cardDate }}
