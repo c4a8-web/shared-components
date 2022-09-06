@@ -1,0 +1,17 @@
+{
+  "personQuote": {
+    "img": "career/remote-working.png",
+    "text": "Lorem ipsum dolor sit am Mock",
+    "name": "Lorem ipsum"
+  },
+  "videoInner": {
+    "video": {
+      "thumb": "thumbs/video-thumb-haniel.jpg",
+      "alt": "Video Casestudy Franz Haniel",
+      "id": "hV97zDTlDko",
+      "headline": "Franz Haniel verlässt sich auf glueckkanja-gab",
+      "text": "Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird."
+    }
+
+  }
+}
