@@ -109,6 +109,8 @@ ThreeByThreeWithOneByTwoImg.args = {
       img: {
         src: getAssetPath('img/image-placeholder-1.jpg'),
       },
+      start: 1,
+      end: 2,
     },
     {
       shape: {
@@ -119,8 +121,10 @@ ThreeByThreeWithOneByTwoImg.args = {
       img: {
         src: getAssetPath('img/image-placeholder-2.jpg'),
       },
-      start: 2,
-      end: 2,
+      flat: true,
+      start: 3,
+      end: 3,
+      colstart: 1,
       colend: 3,
     },
     {
@@ -173,7 +177,8 @@ ThreeByThreeWithTwoByTwoImg.args = {
       },
       start: 1,
       end: 2,
-      colend: 3,
+      colstart: 2,
+      colend: 4,
     },
     {
       color: 'var(--color-primary-accent)',
