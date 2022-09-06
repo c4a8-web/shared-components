@@ -23,7 +23,7 @@
   grid-row-gap: 0px;
 }
 
-.people-square__element {
+[class^="people-square__element"] {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -31,13 +31,23 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
+.people-square__element {
   img,
   picture {
     position: absolute;
     max-height: max-content;
     max-width: max-content;
     height: 100%;
+  }
+}
+
+.people-square__element__extended {
+  img, picture {
+    position: absolute;
+    width: 100%;
+    height: auto;
   }
 }
 

@@ -93,3 +93,112 @@ TwoByTwo.args = {
     },
   ],
 };
+
+export const ThreeByThreeWithOneByTwoImg = Template.bind({});
+
+ThreeByThreeWithOneByTwoImg.args = {
+  grid: [
+    {
+      number: 410,
+      text: 'Kunden',
+      shape: {
+        src: getAssetPath('svg/shapes/shape-career-3.svg'),
+      },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-1.jpg'),
+      },
+      start: 1,
+      end: 2,
+    },
+    {
+      shape: {
+        src: getAssetPath('svg/shapes/shape-career-2.svg'),
+      },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-2.jpg'),
+      },
+      flat: true,
+      start: 3,
+      end: 3,
+      colstart: 1,
+      colend: 3,
+    },
+    {
+      color: 'var(--color-primary-accent)',
+      number: 140,
+      text: 'Mitarbeiter',
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-3.jpg'),
+      },
+    },
+    {
+      shape: {
+        src: getAssetPath('svg/shapes/shape-career-4.svg'),
+      },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-4.jpg'),
+      },
+    },
+  ],
+}
+
+export const ThreeByThreeWithTwoByTwoImg = Template.bind({});
+
+ThreeByThreeWithTwoByTwoImg.args = {
+  grid: [
+    {
+      number: 410,
+      text: 'Kunden',
+      shape: {
+        src: getAssetPath('svg/shapes/shape-career-3.svg'),
+      },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-1.jpg'),
+      },
+    },
+    {
+      shape: {
+        src: getAssetPath('svg/shapes/shape-career-2.svg'),
+      },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-2.jpg'),
+      },
+      start: 1,
+      end: 2,
+      colstart: 2,
+      colend: 4,
+    },
+    {
+      color: 'var(--color-primary-accent)',
+      number: 140,
+      text: 'Mitarbeiter',
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-3.jpg'),
+      },
+    },
+    {
+      shape: {
+        src: getAssetPath('svg/shapes/shape-career-4.svg'),
+      },
+    },
+    {
+      img: {
+        src: getAssetPath('img/image-placeholder-4.jpg'),
+      },
+    },
+  ],
+}
