@@ -63,8 +63,13 @@ export default {
     },
     handleClick(e) {
       const title = this.$refs['title'];
-
-      title.click();
+      const author = this.$refs['author'];
+      const authorLink = author.querySelector('a');
+      const authorsNodelist = document.getElementsByClassName('authors');
+      const hover = Array.from(e.path);
+      const authorArray = Array.from(authorsNodelist);
+      const intersect = hover.filter(element => authorArray.includes(element))
+      Array.isArray(intersect) && intersect.length ? authorLink.click() : title.click();
     },
   },
   props: {
@@ -142,7 +147,7 @@ export default {
 
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
-            <div class="card__author">
+            <div class="card__author" ref="author">
               <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
