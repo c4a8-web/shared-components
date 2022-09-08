@@ -304,20 +304,18 @@ export default {
           ></shape-animation>
         </g>
 
-
-
-
-      <g :id="staticSquare">
-        <rect :fill="backgroundSquareColor" width="400" height="400" />
-      </g>
-      <g :id="firstSquare?.id" >
-        <rect :fill="firstSquareColor" width="400" height="400" />
-      </g>
-      <g :id="secondSquare?.id">
-        <rect :fill="secondSquareColor" width="400" height="400" />
-      </g>
-      <g :id="thirdSquare?.id">
-        <rect :fill="thirdSquareColor" width="400" height="400" />
+        <g :id="staticSquare">
+          <rect :fill="backgroundSquareColor" width="400" height="400" />
+        </g>
+        <g :id="firstSquare?.id" >
+          <rect :fill="firstSquareColor" width="400" height="400" />
+        </g>
+        <g :id="secondSquare?.id">
+          <rect :fill="secondSquareColor" width="400" height="400" />
+        </g>
+        <g :id="thirdSquare?.id">
+          <rect :fill="thirdSquareColor" width="400" height="400" />
+        </g>
       </g>
     </g>`,
 };
