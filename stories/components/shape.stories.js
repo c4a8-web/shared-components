@@ -25,6 +25,23 @@ ShapeFastForward.args = {
   ],
 };
 
+export const ShapeCircleWithinSquare = Template.bind({});
+
+ShapeCircleWithinSquare.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-circle-within-square',
+      firstColor: 'var(--color-orange)',
+      secondColor: 'var(--color-white)',
+      thirdColor: 'var(--color-white)',
+      fourthColor: 'var(--color-gigas)',
+      fifthColor: 'var(--color-gigas)',
+      sixthColor: 'var(--color-orange)',
+    },
+  ],
+};
+
 export const ShapeSquareCircle = Template.bind({});
 
 ShapeSquareCircle.args = {
