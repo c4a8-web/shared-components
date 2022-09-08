@@ -427,79 +427,29 @@ export default {
 
 
 
-  <defs>
-    <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-upper-left-first" fill="freeze" keyTimes="0;0.0333333;1"
-      path="M98.85 -100.42 C98.85,-67.33 98.85,65 98.85,98.08 C98.85,98.08 98.85,98.08 98.85,98.08 " keyPoints="0;1;1"
-      keySplines="0.167 0.167 0.833 0.833;0 0 0 0" calcMode="spline" />
-    <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-upper-left-first" fill="freeze" attributeName="transform" from="100.146 99.916" to="100.146 99.916"
-      type="translate" additive="sum" keyTimes="0;1" values="100.146 99.916;100.146 99.916" keySplines="0 0 1 1"
-      calcMode="spline" />
-    <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-bottom-right-first" fill="freeze" keyTimes="0;0.0333333;1"
-      path="M298.15 495.67 C298.15,462.5 298.15,329.83 298.15,296.67 C298.15,296.67 298.15,296.67 298.15,296.67 "
-      keyPoints="0;1;1" keySplines="0.167 0.167 0.833 0.833;0 0 0 0" calcMode="spline" />
-    <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-bottom-right-first" fill="freeze" attributeName="transform" from="100.146 99.916" to="100.146 99.916"
-      type="translate" additive="sum" keyTimes="0;1" values="100.146 99.916;100.146 99.916" keySplines="0 0 1 1"
-      calcMode="spline" />
-    <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-bottom-right-second" fill="freeze" keyTimes="0;0.0333333;0.0666667;1"
-      path="M298.15 496.67 C298.15,496.67 298.15,496.67 298.15,496.67 C298.15,463.33 298.15,330 298.15,296.67 C298.15,296.67 298.15,296.67 298.15,296.67 "
-      keyPoints="0;0;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0" calcMode="spline" />
-    <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-bottom-right-second" fill="freeze" attributeName="transform" from="100.146 99.916" to="100.146 99.916"
-      type="translate" additive="sum" keyTimes="0;1" values="100.146 99.916;100.146 99.916" keySplines="0 0 1 1"
-      calcMode="spline" />
-    <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-upper-left-second" fill="freeze" keyTimes="0;0.0333333;0.0666667;1"
-      path="M98.85 -101.92 C98.85,-101.92 98.85,-101.92 98.85,-101.92 C98.85,-68.58 98.85,64.75 98.85,98.08 C98.85,98.08 98.85,98.08 98.85,98.08 "
-      keyPoints="0;0;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0" calcMode="spline" />
-    <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-upper-left-second" fill="freeze" attributeName="transform" from="100.146 99.916" to="100.146 99.916"
-      type="translate" additive="sum" keyTimes="0;1" values="100.146 99.916;100.146 99.916" keySplines="0 0 1 1"
-      calcMode="spline" />
-    <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-upper-right" fill="freeze" keyTimes="0;0.0333333;0.0666667;1"
-      path="M498.15 98.67 C498.15,98.67 498.15,98.67 498.15,98.67 C464.81,98.67 331.48,98.67 298.15,98.67 C298.15,98.67 298.15,98.67 298.15,98.67 "
-      keyPoints="0;0;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0" calcMode="spline" />
-    <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-upper-right" fill="freeze" attributeName="transform" from="100.146 99.916" to="100.146 99.916"
-      type="translate" additive="sum" keyTimes="0;1" values="100.146 99.916;100.146 99.916" keySplines="0 0 1 1"
-      calcMode="spline" />
-    <animateMotion repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-bottom-left" fill="freeze" keyTimes="0;0.0333333;0.0666667;1"
-      path="M-106.15 296.79 C-106.15,296.79 -106.15,296.79 -106.15,296.79 C-71.81,296.79 65.52,296.79 99.85,296.79 C99.85,296.79 99.85,296.79 99.85,296.79 "
-      keyPoints="0;0;1;1" keySplines="0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0" calcMode="spline" />
-    <animateTransform repeatCount="indefinite" dur="30.03003s" begin="0s"
-      xlink:href="#square-bottom-left" fill="freeze" attributeName="transform" from="100.146 99.916" to="100.146 99.916"
-      type="translate" additive="sum" keyTimes="0;1" values="100.146 99.916;100.146 99.916" keySplines="0 0 1 1"
-      calcMode="spline" />
-  </defs>
 
-    <g id="square-upper-left-first">
-      <path fill="#5cbbff"
+    <g :id="squareUpperLeftFirst?.id">
+      <path :fill="firstColor"
         d=" M-0.29 -199 C-0.29,-199 -0.29,-0.83 -0.29,-0.83 C-0.29,-0.83 -200,-0.83 -200,-0.83 C-200,-0.83 -200,-199 -200,-199 C-200,-199 -0.29,-199 -0.29,-199z " />
     </g>
-    <g id="square-bottom-right-first">
-      <path fill="#5cbbff"
+    <g :id="squareBottomRightFirst?.id">
+      <path :fill="secondColor"
         d=" M-0.29 -199 C-0.29,-199 -0.29,-0.83 -0.29,-0.83 C-0.29,-0.83 -200,-0.83 -200,-0.83 C-200,-0.83 -200,-199 -200,-199 C-200,-199 -0.29,-199 -0.29,-199z " />
     </g>
-    <g id="square-upper-left-second">
-      <path fill="#f8842c"
+    <g :id="squareUpperLeftSecond?.id">
+      <path :fill="thirdColor"
         d=" M-0.29 -199 C-0.29,-199 -0.29,-0.83 -0.29,-0.83 C-0.29,-0.83 -200,-0.83 -200,-0.83 C-200,-0.83 -200,-199 -200,-199 C-200,-199 -0.29,-199 -0.29,-199z " />
     </g>
-    <g id="square-bottom-right-second">
-      <path fill="#f8842c"
+    <g :id="squareBottomRightSecond?.id">
+      <path :fill="fourthColor"
         d=" M-0.29 -199 C-0.29,-199 -0.29,-0.83 -0.29,-0.83 C-0.29,-0.83 -200,-0.83 -200,-0.83 C-200,-0.83 -200,-199 -200,-199 C-200,-199 -0.29,-199 -0.29,-199z " />
     </g>
-    <g id="square-upper-right">
-      <path fill="#543b9c"
+    <g :id="squareUpperRight?.id">
+      <path :fill="fifthColor"
         d=" M-0.29 -199 C-0.29,-199 -0.29,-0.83 -0.29,-0.83 C-0.29,-0.83 -200,-0.83 -200,-0.83 C-200,-0.83 -200,-199 -200,-199 C-200,-199 -0.29,-199 -0.29,-199z " />
     </g>
-    <g id="square-bottom-left">
-      <path fill="#543b9c"
+    <g :id="squareBottomLeft?.id">
+      <path :fill="sixthColor"
         d=" M-0.29 -199 C-0.29,-199 -0.29,-0.83 -0.29,-0.83 C-0.29,-0.83 -200,-0.83 -200,-0.83 C-200,-0.83 -200,-199 -200,-199 C-200,-199 -0.29,-199 -0.29,-199z " />
     </g>`,
 };

@@ -45,6 +45,7 @@ export default {
     additive: Boolean,
     isMotion: Boolean,
     path: String,
+    values: String,
   },
   template: `
     <component :is="tag"
@@ -62,6 +63,7 @@ export default {
       :keySplines="effectiveKeySplines"
       :keyPoints="keyPoints"
       :path="path"
+      :values="values"
       :type="type"
       :additive="additive ? 'sum': null"
     />

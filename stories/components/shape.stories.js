@@ -45,9 +45,59 @@ ShapeHalfSquare.args = {
   shapes: [
     {
       name: 'shape-half-square',
-      backgroundColor: 'var(--color-primary-accent)',
-      foregroundColor: 'var(--color-secondary)',
-      thirdColor: '#ff0000',
+      backgroundColor: 'var(--color-blue-light)',
+      firstColor: 'var(--color-page-detail-shape)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+    },
+  ],
+};
+
+export const ShapeFourSquares = Template.bind({});
+
+ShapeFourSquares.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-four-squares',
+      firstColor: 'var(--color-blue-light)',
+      secondColor: 'var(--color-blue-light)',
+      thirdColor: 'var(--color-orange)',
+      fourthColor: 'var(--color-orange)',
+      fifthColor: 'var(--color-gigas)',
+      sixthColor: 'var(--color-gigas)',
+    },
+  ],
+};
+
+export const TrianglesToCenter = Template.bind({});
+
+TrianglesToCenter.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'triangles-to-center',
+      firstColor: 'var(--color-green-blue)',
+      secondColor: 'var(--color-white)',
+      thirdColor: 'var(--color-yellow)',
+      fourthColor: 'var(--color-green-blue)',
+      fifthColor: 'var(--color-yellow)',
+      sixthColor: 'var(--color-green-blue)',
+      seventhColor: 'var(--color-green-blue)',
+      eighthColor: 'var(--color-white)',
+    },
+  ],
+};
+
+export const ShapeMovingEye = Template.bind({});
+
+ShapeMovingEye.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-moving-eye',
+      squareColor: 'var(--color-green-blue)',
+      eyeColor: 'var(--color-yellow)',
     },
   ],
 };

@@ -16,6 +16,7 @@ export default {
       return this.start ? this.start : defaultStart;
     },
     rectColor() {
+      // TODO: Check the hardcoded hex value. Use css variable instead?
       return this.backgroundColor ? this.backgroundColor : '#f8842c';
     },
     pathColor() {

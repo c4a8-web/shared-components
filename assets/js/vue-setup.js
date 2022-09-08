@@ -25,7 +25,10 @@ import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
 import ShapeHalfSquare from './vue/shape-half-square.js';
+import ShapeMovingEye from './vue/shape-moving-eye.js';
+import ShapeFourSquares from './vue/shape-four-squares.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
+import TrianglesToCenter from './vue/triangles-to-center.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
@@ -76,7 +79,10 @@ const addApp = () => {
     ShapeAnimation,
     ShapeFastFordward,
     ShapeHalfSquare,
+    ShapeFourSquares,
     ShapeSquareCircle,
+    ShapeMovingEye,
+    TrianglesToCenter,
     Shape,
     ArrowExternal,
     ArrowNarrow,
