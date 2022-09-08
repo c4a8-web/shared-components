@@ -28,6 +28,7 @@ import ShapeFastFordward from './vue/shape-fast-forward.js';
 import ShapeHalfSquare from './vue/shape-half-square.js';
 import ShapeMovingEye from './vue/shape-moving-eye.js';
 import ShapeFourSquares from './vue/shape-four-squares.js';
+import ShapeFourTriangles from './vue/shape-four-triangles.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import TrianglesToCenter from './vue/triangles-to-center.js';
 import Shape from './vue/shape.js';
@@ -82,6 +83,7 @@ const addApp = () => {
     ShapeFastFordward,
     ShapeHalfSquare,
     ShapeFourSquares,
+    ShapeFourTriangles,
     ShapeSquareCircle,
     ShapeMovingEye,
     TrianglesToCenter,

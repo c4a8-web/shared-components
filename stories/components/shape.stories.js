@@ -87,6 +87,21 @@ ShapeFourSquares.args = {
   ],
 };
 
+export const ShapeFourTriangles = Template.bind({});
+
+ShapeFourTriangles.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-four-triangles',
+      firstColor: 'var(--color-orange)',
+      secondColor: 'var(--color-yellow)',
+      thirdColor: 'var(--color-orange)',
+      fourthColor: 'var(--color-yellow)',
+    },
+  ],
+};
+
 export const TrianglesToCenter = Template.bind({});
 
 TrianglesToCenter.args = {
