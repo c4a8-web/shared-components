@@ -38,6 +38,7 @@ import SBlock from './vue/shapes/s-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
 import VideoInner from './vue/video-inner.js'
+import MarkdownAside from './vue/markdown-aside.js'
 
 let root = document.querySelector('#app');
 let app;
@@ -90,6 +91,7 @@ const addApp = () => {
     PersonQuote,
     Wrapper,
     VideoInner,
+    MarkdownAside,
   ];
 
   components.forEach((component) => {

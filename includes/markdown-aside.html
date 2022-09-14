@@ -1,0 +1,19 @@
+{% assign markdownImage = include.image %}
+{% assign markdownText = include.text %}
+
+<markdown-aside>
+  <p>{{ markdownText | strip_html | escape }}</p>
+  <img src="{{ markdownImage }}"/>
+</markdown-aside>
+<markdown-aside>
+  <img src="{{ markdownImage }}"/>
+  <img src="{{ markdownImage }}" />
+</markdown-aside>
+<markdown-aside>
+  <p>{{ markdownText | strip_html | escape }}</p>
+  <p>{{ markdownText | strip_html | escape }}</p>
+</markdown-aside>
+<markdown-aside>
+  <img src="{{ markdownImage }}"/>
+  <p>{{ markdownText | strip_html | escape }}</p>
+</markdown-aside>

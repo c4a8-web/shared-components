@@ -1,0 +1,10 @@
+.markdown {
+  display: flex;
+  flex: 1 1 0px;
+  text-align: justify;
+  margin: 2em;
+  gap: 2em;
+  & img {
+    width: 50%;
+  }
+}
