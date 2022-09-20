@@ -14,8 +14,8 @@ export default {
       return this.noLink ? ' & ' : ' , ';
     },
     authorArray() {
-      return (typeof this.authorsList === 'object') ? this.authorsList : [this.authorsList];
-    }
+      return typeof this.authorsList === 'object' ? this.authorsList : [this.authorsList];
+    },
   },
 
   methods: {
@@ -30,7 +30,6 @@ export default {
     authorLink(author) {
       return this.dataAuthors.hasOwnProperty(author) ? this.dataAuthors[author].permalink : '';
     },
-
   },
   props: {
     authorsList: Array,
@@ -42,13 +41,13 @@ export default {
     },
     dataAuthors: {
       default: null,
-    }
+    },
   },
   template: `
     <template v-if="authorArray">
       <span :class="classList" v-for="author in authorArray">
         <template v-if="!noLink">
-          <a :href="authorLink(author)" class="post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <a :href="authorLink(author)" class="authors__link post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{{author}}</span>
           </a>
         </template>
