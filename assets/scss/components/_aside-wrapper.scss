@@ -1,5 +1,14 @@
 .aside__wrapper {
   display: flex;
-  flex: 1 1 0px;
+  text-align: justify;
   gap: 2em;
+  margin-bottom: 2em;
+}
+
+.left__side {
+  flex: 1;
+}
+
+.right__side {
+  flex: 1;
 }
