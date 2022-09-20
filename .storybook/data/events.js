@@ -5,7 +5,7 @@ const Events = [
     layout: 'event',
     title: 'EVENT Audiocodes Devices Review',
     date: '2022-06-17',
-    author: 'Jan Petersen',
+    author: ['Jan Petersen', 'Thorsten Kunzi'],
     categories: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
     tags: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
     blogtitlepic: 'head-audiocodes-review',
