@@ -2,6 +2,6 @@
 {% assign markdownText = include.text %}
 
 <aside-wrapper>
-  <template #content>{{ markdownText | strip_html | escape }}</template>
-  <template #aside><img src='{{ markdownImage }}'/></template>
+  <template v-slot:content>{{ markdownText | strip_html | escape }}</template>
+  <template v-slot:aside><img src='{{ markdownImage }}'/></template>
 </aside-wrapper>
