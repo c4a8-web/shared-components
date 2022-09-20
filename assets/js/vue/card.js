@@ -40,8 +40,8 @@ export default {
       return this.youtubeUrl ? false : true;
     },
     hasNoLink() {
-      return Tools.isTrue(this.webCast) ? true : false
-    }
+      return Tools.isTrue(this.webCast) ? true : false;
+    },
   },
   methods: {
     formatDate(date) {
@@ -63,12 +63,15 @@ export default {
     },
     handleClick(e) {
       const title = this.$refs['title'];
-      const authorsNodelist = document.getElementsByClassName('authors');
-      const hover = Array.from(e.path);
-      const authorArray = Array.from(authorsNodelist);
-      const intersect = hover.filter(element => authorArray.includes(element));
+      const target = e.target;
 
-      Array.isArray(intersect) && intersect.length ? intersect[0].firstChild.click() : title.click();
+      if (target.classList.contains('card__title')) return;
+
+      if (!target.parentElement.classList.contains('authors__link')) {
+        e.stopImmediatePropagation();
+
+        title.click();
+      }
     },
   },
   props: {
@@ -113,7 +116,7 @@ export default {
 
           <div class="col-lg-4">
             <div class="card-body d-flex flex-column h-100 p-4 p-lg-5">
-              <headline level="h3"><a class="text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
+              <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author">
@@ -140,7 +143,7 @@ export default {
         </div>
 
         <div class="card-body">
-          <headline level="h4"><a ref="title" class="text-inherit" :href="url" :target="target">{{ title }}</a></headline>
+          <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ title }}</a></headline>
           <p>{{ truncatedExcerpt }}</p>
         </div>
 
