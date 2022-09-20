@@ -11,57 +11,6 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const ThreeByThree = Template.bind({});
-
-ThreeByThree.args = {
-  grid: [
-    {
-      number: 410,
-      text: 'Kunden',
-      shape: {
-        src: getAssetPath('svg/shapes/shape-career-3.svg'),
-      },
-    },
-    {
-      img: {
-        src: getAssetPath('img/image-placeholder-1.jpg'),
-      },
-      start: 1,
-      end: 2,
-    },
-    {
-      shape: {
-        src: getAssetPath('svg/shapes/shape-career-2.svg'),
-      },
-    },
-    {
-      img: {
-        src: getAssetPath('img/image-placeholder-2.jpg'),
-      },
-    },
-    {
-      color: 'var(--color-primary-accent)',
-      number: 140,
-      text: 'Mitarbeiter',
-    },
-    {
-      img: {
-        src: getAssetPath('img/image-placeholder-3.jpg'),
-      },
-    },
-    {
-      shape: {
-        src: getAssetPath('svg/shapes/shape-career-4.svg'),
-      },
-    },
-    {
-      img: {
-        src: getAssetPath('img/image-placeholder-4.jpg'),
-      },
-    },
-  ],
-};
-
 export const TwoByTwo = Template.bind({});
 
 TwoByTwo.args = {
@@ -94,9 +43,9 @@ TwoByTwo.args = {
   ],
 };
 
-export const ThreeByThreeWithOneByTwoImg = Template.bind({});
+export const ThreeByThree = Template.bind({});
 
-ThreeByThreeWithOneByTwoImg.args = {
+ThreeByThree.args = {
   grid: [
     {
       number: 410,
@@ -109,8 +58,8 @@ ThreeByThreeWithOneByTwoImg.args = {
       img: {
         src: getAssetPath('img/image-placeholder-1.jpg'),
       },
-      start: 1,
-      end: 2,
+      rowStart: 1,
+      rowEnd: 2,
     },
     {
       shape: {
@@ -121,11 +70,10 @@ ThreeByThreeWithOneByTwoImg.args = {
       img: {
         src: getAssetPath('img/image-placeholder-2.jpg'),
       },
-      flat: true,
-      start: 3,
-      end: 3,
-      colstart: 1,
-      colend: 3,
+      rowStart: 3,
+      rowEnd: 3,
+      colStart: 1,
+      colEnd: 2,
     },
     {
       color: 'var(--color-primary-accent)',
@@ -148,11 +96,16 @@ ThreeByThreeWithOneByTwoImg.args = {
       },
     },
   ],
-}
+};
 
-export const ThreeByThreeWithTwoByTwoImg = Template.bind({});
 
-ThreeByThreeWithTwoByTwoImg.args = {
+
+export const FourByFour = Template.bind({});
+
+FourByFour.args = {
+  absolute: true,
+  width: 4,
+  height: 4,
   grid: [
     {
       number: 410,
@@ -175,10 +128,10 @@ ThreeByThreeWithTwoByTwoImg.args = {
       img: {
         src: getAssetPath('img/image-placeholder-2.jpg'),
       },
-      start: 1,
-      end: 2,
-      colstart: 2,
-      colend: 4,
+      rowStart: 1,
+      rowEnd: 2,
+      colStart: 2,
+      colEnd: 3,
     },
     {
       color: 'var(--color-primary-accent)',
@@ -189,6 +142,10 @@ ThreeByThreeWithTwoByTwoImg.args = {
       img: {
         src: getAssetPath('img/image-placeholder-3.jpg'),
       },
+      rowStart: 4,
+      rowEnd: 4,
+      colStart: 1,
+      colEnd: 2,
     },
     {
       shape: {
@@ -197,8 +154,17 @@ ThreeByThreeWithTwoByTwoImg.args = {
     },
     {
       img: {
+        src: getAssetPath('img/image-placeholder-1.jpg'),
+      },
+    },
+    {
+      img: {
         src: getAssetPath('img/image-placeholder-4.jpg'),
       },
+      rowStart: 3,
+      rowEnd: 4,
+      colStart: 3,
+      colEnd: 4,
     },
   ],
 }

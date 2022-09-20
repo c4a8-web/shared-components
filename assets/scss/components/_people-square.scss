@@ -23,7 +23,8 @@
   grid-row-gap: 0px;
 }
 
-[class^="people-square__element"] {
+.people-square__element,
+.people-square__element--extended {
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -43,7 +44,7 @@
   }
 }
 
-.people-square__element__extended {
+.people-square__element--extended {
   img, picture {
     position: absolute;
     width: 100%;
