@@ -10,15 +10,24 @@
 <div class="people-square {% if peopleSquareAbsolute %}people-square--absolute{% endif %}">
   <div class="people-square__grid" style="grid-template-columns: repeat({{ peopleSquareWidth }}, 1fr); grid-template-rows: repeat({{ peopleSquareHeight }}, 1fr);--people-square-size: {{ peopleSquareSize }};">
     {% for element in peopleSquareGrid %}
-      {% if element.colstart %}
-        {%- assign colstart = element.colstart -%}
+      {% if element.colStart or element.colEnd %}
+        {% assign colStart = element.colStart %}
+        {% assign colEnd = element.colEnd | plus: 1 %}
       {% else %}
-        {%- assign colstart = peopleSquareCounter | plus: 1 -%}
+        {%- assign colStart = peopleSquareCounter | plus: 1 -%}
+        {% assign colEnd = colStart %}
       {% endif %}
-      <div class="{% if element.flat %} people-square__element__extended {% else %} people-square__element {% endif %}"
-            style="{% if element.start and element.end %}
-            grid-row-start: {{ element.start }};grid-row-end: {{ element.end | plus: 1 }};
-            grid-column-start: {{ colstart }};grid-column-end: {{ element.colend }}{% endif %}">
+
+      {% if element.rowStart == element.rowEnd and element.rowStart != null %}
+        {% assign extendedClass = 'people-square__element--extended' %}
+      {% else %}
+        {% assign extendedClass = 'people-square__element' %}
+      {% endif %}
+
+      <div class="{{ extendedClass }}"
+            style="{% if element.rowStart and element.rowEnd %}
+            grid-row-start: {{ element.rowStart }};grid-row-end: {{ element.rowEnd | plus: 1 }};
+            grid-column-start: {{ colStart }};grid-column-end: {{ colEnd }}{% endif %}">
         {% if element.img %}
           {%
             include img.html
