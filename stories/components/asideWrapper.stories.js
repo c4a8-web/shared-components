@@ -1,8 +1,8 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesmarkdownasidehtml as component } from '../../.storybook/generatedIncludes';
+import { includesasidewrapperhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Markdown Aside',
+  title: 'Aside Wrapper',
 });
 
 export default {

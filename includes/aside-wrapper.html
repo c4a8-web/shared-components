@@ -1,0 +1,7 @@
+{% assign markdownImage = include.image %}
+{% assign markdownText = include.text %}
+
+<aside-wrapper>
+  <template #content>{{ markdownText | strip_html | escape }}</template>
+  <template #aside><img src='{{ markdownImage }}'/></template>
+</aside-wrapper>
