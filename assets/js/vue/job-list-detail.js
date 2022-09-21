@@ -143,8 +143,9 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
+          if (data.videoInner) return (this.videoInner = data.videoInner);
+
           this.personQuote = data.personQuote;
-          this.videoInner = data.videoInner;
         })
         .catch((error) => {
           console.error('Job-list-Detail Local Job Data Error:', error);
@@ -162,7 +163,6 @@ export default {
     ctaText: String,
     ctaButton: Boolean,
     form: Object,
-    // personQuote: Object,
     googleMaps: Object,
     modalSuccess: Object,
   },
@@ -185,7 +185,7 @@ export default {
                 <icon icon='arrow' direction='left' hover=true circle=true />
               </div>
               <headline :text="entryData?.title" :level="headlineLevelValue" :classes="headlineClassList" />
-              <span class="job-list__detail-gender">{{entryData?.gender}}</span>
+              <span class="job-list__detail-gender">{{ entryData?.gender }}</span>
               <div class="job-list__detail-share">
                 <!-- TODO share bar -->
               </div>
@@ -197,14 +197,11 @@ export default {
           <div class="job-list__detail-content page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
             <!-- job list detail can switch to profile based on url parameter -->
             <div class="job-list__detail-description page-detail__description richtext" v-html="entryData?.description"></div>
-            <template v-if="videoInner">
-              <video-inner variant="reversed" :video="videoInner.video"></video-inner>
-            </template>
-            <template v-else>
-              <div v-if="personQuote" class="job-list__detail-quote">
-                <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
-              </div>
-            </template>
+            <video-inner variant="reversed" :video="videoInner.video" v-if="videoInner"></video-inner>
+
+            <div v-if="personQuote" class="job-list__detail-quote">
+              <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
+            </div>
 
             <div class="job-list__detail-maps">
               <slot name="google-maps" />

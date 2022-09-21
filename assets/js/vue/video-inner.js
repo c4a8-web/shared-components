@@ -82,7 +82,7 @@ export default {
   mounted() {
     $?.HSCore?.components?.HSFancyBox?.init($(this.$refs['lightbox']));
 
-    if (!window.HSVideoPlayer) return;
+    if (!window.HSVideoPlayer) return console.error('HSVideoPlayer not found');
 
     new HSVideoPlayer($(this.$refs['video-player'])).init();
   },
