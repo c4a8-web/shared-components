@@ -1,0 +1,18 @@
+.aside__wrapper {
+  display: flex;
+  @include media-breakpoint-down(xl) {
+    flex-direction: row;
+  }
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+  }
+  width: 100%;
+  gap: 2em;
+  margin-bottom: 2em;
+  .left__side {
+    flex: 1 1 60%;
+  }
+  .right__side {
+    flex: 1 1 40%;
+  }
+}
