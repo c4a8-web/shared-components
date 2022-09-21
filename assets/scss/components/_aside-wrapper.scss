@@ -1,55 +1,23 @@
 .aside__wrapper {
   display: flex;
-  margin-bottom: 2rem;
+  gap: spacing(14);
+
   @include media-breakpoint-down(xl) {
     flex-direction: row;
   }
   @include media-breakpoint-down(md) {
     flex-direction: column;
   }
-  gap: spacing(14);
   .left__side {
+    margin-top: spacing(12);
     flex: 1 1 60%;
   }
   .right__side {
+    margin-top: spacing(12);
     flex: 1 1 40%;
-    right: 0;
-
     img {
       width: 100%;
-      //margin-bottom: spacing(6);
+      margin-bottom: 3rem;
     }
   }
 }
-
-/*
-    &.has-aside {
-          @include media-breakpoint-up(lg) {
-            width: 60%;
-          }
-        }
-
-    &.is-aside {
-      @include media-breakpoint-up(lg) {
-        width: 40%;
-        position: absolute;
-        padding-left: spacing(14);
-        right: 0;
-        transform: translateY(-100%);
-        margin-bottom: 0;
-
-        img {
-          max-width: inherit;
-          left: 0;
-          width: 100%;
-          margin-bottom: spacing(6);
-          margin-top: 0;
-        }
-      }
-
-      @include media-breakpoint-up(xl) {
-        img {
-          width: calc(100% + #{$richtext-offset-spacing-xl});
-        }
-      }
-    }*/
