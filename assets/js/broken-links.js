@@ -6,6 +6,8 @@ var linksChecked = 0;
 // for each link load the page and select the body and create a new document for it and get the links on the pages again
 // until the array is empty and every link got checked
 
+// TODO check if link is internal or external
+
 class BrokenLinks {
   constructor(rootUrl) {
     this.rootUrl = rootUrl;
@@ -34,10 +36,12 @@ class BrokenLinks {
 
   getUrl(url) {
     return new Promise((resolve) => {
+      const external = this.isExternal(url);
+
       fetch(url, this.options)
         // .then((response) => response.text())
         .then((response) => {
-          this.handleResponse(response);
+          this.handleResponse(response, external);
 
           resolve();
         })
@@ -49,30 +53,49 @@ class BrokenLinks {
     });
   }
 
-  async handleResponse(response) {
+  isExternal(url) {
+    const origin = document.location.origin;
+    const regex = new RegExp(`^(${origin})?`);
+
+    return url.match(regex) ? false : true;
+  }
+
+  async handleResponse(response, external) {
     const { url } = response;
 
     if (this.links[url]) return;
 
-    response.text().then((text) => {
-      this.links[url] = text;
+    if (external) {
+      this.links[url] = external;
 
       this.checkLinks();
-    });
+    } else {
+      response.text().then((html) => {
+        this.links[url] = {
+          html,
+        };
+
+        this.checkLinks();
+      });
+    }
   }
 
-  checkLinks() {
+  async checkLinks() {
     const linkKeys = Object.keys(this.links);
+    console.log('BrokenLinks ~ checkLinks ~ this.links', this.links);
 
     for (let i = 0; i < linkKeys.length; i++) {
       const key = linkKeys[i];
-      const linkHtml = this.links[key];
+      const link = this.links[key];
+
+      if (!link.html) continue;
 
       const parser = new DOMParser();
-      const site = parser.parseFromString(linkHtml, 'text/html');
-      console.log('BrokenLinks ~ checkLinks ~ site', site);
+      const site = parser.parseFromString(link.html, 'text/html');
 
-      this.getLinksOnSite(site);
+      this.links[key].html = 'parsed';
+
+      await this.getLinksOnSite(site, key);
     }
   }
 
@@ -87,13 +110,34 @@ class BrokenLinks {
     console.log('BrokenLinks ~ handleError ~ error', error);
   }
 
-  getLinksOnSite(site) {
+  async getLinksOnSite(site, url) {
     const links = site.querySelectorAll('a[href]');
-    console.log('BrokenLinks ~ getLinksOnSite ~ links', links);
+
+    for (var i = 0; i < links.length; i++) {
+      const link = links[i];
+      const linkUrl = this.getAbsoluteUrl(link, url);
+
+      if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
+        await this.getUrl(linkUrl);
+      }
+    }
+  }
+
+  getAbsoluteUrl(link, siteUrl) {
+    const href = link.getAttribute('href');
+    const isAbsolute = href.indexOf('/') !== -1;
+
+    return isAbsolute ? link.href : `${siteUrl}${href}`;
+  }
+
+  isValidLink(url) {
+    const regex = /^(http(s)?:\/\/)?[\w.-]+(:\d+)?(\/[\w\.-]*)*$/g;
+
+    return url.match(regex) ? true : false;
   }
 }
 
-new BrokenLinks('http://localhost:4000');
+// TODO bug when the path is not absolute modern-workplace/microsoft-endpoint-manager/ -> de/modern-workplace/microsoft-endpoint-manager/
 
 /*
 links.forEach(function (link) {
