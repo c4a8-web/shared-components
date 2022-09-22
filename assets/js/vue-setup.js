@@ -23,8 +23,15 @@ import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
 import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
+import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
+import ShapeHalfSquare from './vue/shape-half-square.js';
+import ShapeMovingEye from './vue/shape-moving-eye.js';
+import ShapeSemiCircle from './vue/shape-semi-circle.js';
+import ShapeFourSquares from './vue/shape-four-squares.js';
+import ShapeFourTriangles from './vue/shape-four-triangles.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
+import TrianglesToCenter from './vue/triangles-to-center.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
@@ -35,6 +42,7 @@ import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
+import TBlock from './vue/shapes/t-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
 import VideoInner from './vue/video-inner.js'
@@ -75,8 +83,15 @@ const addApp = () => {
     Modal,
     Search,
     ShapeAnimation,
+    ShapeCircleWithinSquare,
     ShapeFastFordward,
+    ShapeHalfSquare,
+    ShapeFourSquares,
+    ShapeFourTriangles,
     ShapeSquareCircle,
+    ShapeMovingEye,
+    ShapeSemiCircle,
+    TrianglesToCenter,
     Shape,
     ArrowExternal,
     ArrowNarrow,
@@ -87,6 +102,7 @@ const addApp = () => {
     Rocket,
     Smile,
     SBlock,
+    TBlock,
     Square,
     PersonQuote,
     Wrapper,
