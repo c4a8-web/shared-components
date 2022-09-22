@@ -50,7 +50,7 @@ export default {
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '1.3s';
+      const duration = '3s';
 
       return {
         keySplines: '0 0 1 1',
@@ -88,7 +88,7 @@ export default {
               name: 'motion',
               attributeName: 'motion',
               motion: true,
-              dur: '30s',
+              dur: '',
               begin: '0s',
             },
           ],
@@ -97,10 +97,38 @@ export default {
           steps: [
             {
               name: 'transform',
+              dur: '',
               from: '0 0',
               to: '1 1',
-              dur: '30s',
               type: 'scale',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'hide',
+              // from: '1',
+              // to: '0',
+              dur: '0.01s',
+              // attributeName: 'opacity',
+              from: '1 1',
+              to: '0 0',
+              type: 'scale',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'show',
+              // from: '0',
+              // to: '1',
+              // dur: '0.01s',
+              // attributeName: 'opacity',
+              // from: '-200 200',
+              // to: '200 200',
+              // type: 'transform',
             },
           ],
         },
@@ -110,50 +138,74 @@ export default {
           name: 'firstCircle',
           transform: {
             delay: 0,
-            values: '0 0;1 1;1 -1.00479;1 -1.00479',
-            keyTimes: '0;0.0344444;0.0666667;1',
+            values: '0 0;1 1;1 -1;1 -1',
+            keyTimes: '0;0.344444;0.666667;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             additive: true,
+            start: true,
+            // waitFor: 'secondSquare.motion',
           },
         },
         {
           name: 'secondSquare',
           motion: {
-            delay: 0,
-            keyTimes: '0;0.0633333;0.0722222;1',
-            path: 'M598.76 198.43 C598.76,198.43 598.76,198.43 598.76,198.43 C532.09,198.43 265.43,198.43 198.76,198.43 C198.76,198.43 198.76,198.43 198.76,198.43',
+            delay: '-3',
+            keyTimes: '0;0.633333;0.722222;1',
+            path: 'M 800 400 C 800 400 800 400 800 400 C 800 400 400 400 400 400 C 400 400 400 400 400 400',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             keyPoints: '0;0;1;1',
+            // additive: true,
+            waitFor: 'firstCircle.transform',
           },
         },
         {
           name: 'secondCircle',
           transform: {
-            delay: 0,
-            values: '0 0;0 0;1 1;1 -1.00479;1 -1.00479',
-            keyTimes: '0;0.0633333;0.0977778;0.13;1',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+            delay: '-0.99',
+            values: '0 0;1 1;1 -1;1 -1',
+            keyTimes: '0;0.344444;0.666667;1',
+            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             additive: true,
+            waitFor: 'secondSquare.motion',
+          },
+          show: {
+            delay: '-1',
+            dur: '0.01s',
+            from: '0 0',
+            to: '0 400',
+            additive: true,
+            waitFor: 'secondSquare.motion',
           },
         },
         {
           name: 'thirdSquare',
           motion: {
-            delay: 0,
-            keyTimes: '0;0.13;0.1388889;1',
+            delay: '-3',
+            keyTimes: '0;0.633333;0.722222;1',
+            path: 'M 800 400 C 800 400 800 400 800 400 C 800 400 400 400 400 400 C 400 400 400 400 400 400',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            path: 'M598.76 198.43 C598.76,198.43 598.76,198.43 598.76,198.43 C532.09,198.43 265.43,198.43 198.76,198.43 C198.76,198.43 198.76,198.43 198.76,198.43',
             keyPoints: '0;0;1;1',
+            // additive: true,
+            waitFor: 'secondCircle.transform',
           },
         },
         {
           name: 'thirdCircle',
           transform: {
-            delay: 0,
-            values: '0 0;0 0;1 1;1 -1.00479;1 -1.00479',
-            keyTimes: '0;0.1388889;0.1733333;0.2055556;1',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+            delay: '-0.95',
+            values: '0 0;1 1;1 -1;1 -1',
+            keyTimes: '0;0.344444;0.666667;1',
+            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             additive: true,
+            waitFor: 'thirdSquare.motion',
+          },
+          show: {
+            delay: '-0.96',
+            dur: '0.01s',
+            from: '0 0',
+            to: '0 400',
+            additive: true,
+            waitFor: 'thirdSquare.motion',
           },
         },
       ],
@@ -194,7 +246,6 @@ export default {
         if (elementStepData.dur) newStep.dur = elementStepData.dur;
         if (elementStepData.motion) newStep.motion = elementStepData.motion;
         if (elementStepData.keyTimes) newStep.keyTimes = elementStepData.keyTimes;
-
         if (!newStep.dur) newStep.dur = this.overall.dur;
         if (!newStep.keySplines)
           newStep.keySplines = elementStepData.keySplines ? elementStepData.keySplines : this.overall.keySplines;
@@ -341,27 +392,27 @@ export default {
         </g>
 
         <g>
-          <g :id="firstSquareStatic" transform=" translate(198.762, 198.43) translate(0, 0)">
+          <g dstyle="display:none" :id="firstSquareStatic" transform=" translate(200, 200) translate(0, 0)">
             <path :fill="firstSquareStaticColor"
-              d=" M200.48 -200 C200.48,-200 200.48,199.14 200.48,199.14 C200.48,199.14 -200,199.14 -200,199.14 C-200,199.14 -200,-200 -200,-200 C-200,-200 200.48,-200 200.48,-200z " />
+              d=" M200 -200 C200,-200 200,200 200,200 C200,200 -200,200 -200,200 C-200,200 -200,-200 -200,-200 C-200,-200 200,-200 200,-200 " />
           </g>
-          <g :id="firstCircle?.id" transform=" translate(199, 198) rotate(990)">
+          <g dstyle="display:none" :id="firstCircle?.id" transform=" translate(200, 200) rotate(990)">
             <path :fill="firstCircleColor"
               d=" M-1 -153.15 C81.32,-153.15 148.15,-86.32 148.15,-4 C148.15,78.32 81.32,145.15 -1,145.15 C-83.32,145.15 -150.15,78.32 -150.15,-4 C-150.15,-86.32 -83.32,-153.15 -1,-153.15z " />
           </g>
-          <g :id="secondSquare?.id">
+          <g dstyle="display:none" :id="secondSquare?.id">
             <path :fill="secondSquareColor"
-              d=" M200.48 -200 C200.48,-200 200.48,199.14 200.48,199.14 C200.48,199.14 -200,199.14 -200,199.14 C-200,199.14 -200,-200 -200,-200 C-200,-200 200.48,-200 200.48,-200z " />
+              d="M 0 -400 C 0 -400 0 0 0 0 C 0 0 -400 0 -400 0 C -400 0 -400 -400 -400 -400 C -400 -400 0 -400 0 -400" />
           </g>
-          <g :id="secondCircle?.id" transform=" translate(199, 198) rotate(990)">
+          <g dstyle="display:none" :id="secondCircle?.id" transform=" translate(-200, 200) rotate(990)">
             <path :fill="secondCircleColor"
               d=" M-1 -153.15 C81.32,-153.15 148.15,-86.32 148.15,-4 C148.15,78.32 81.32,145.15 -1,145.15 C-83.32,145.15 -150.15,78.32 -150.15,-4 C-150.15,-86.32 -83.32,-153.15 -1,-153.15z " />
           </g>
-          <g :id="thirdSquare?.id">
+          <g dstyle="display:none" :id="thirdSquare?.id">
             <path :fill="thirdSquareColor"
-              d=" M200.48 -200 C200.48,-200 200.48,199.14 200.48,199.14 C200.48,199.14 -200,199.14 -200,199.14 C-200,199.14 -200,-200 -200,-200 C-200,-200 200.48,-200 200.48,-200z " />
+              d="M 0 -400 C 0 -400 0 0 0 0 C 0 0 -400 0 -400 0 C -400 0 -400 -400 -400 -400 C -400 -400 0 -400 0 -400" />
           </g>
-          <g :id="thirdCircle?.id" transform=" translate(199, 198) rotate(990)">
+          <g dstyle="display:none" :id="thirdCircle?.id" transform="translate(-200, 200) rotate(990)">
             <path :fill="thirdCircleColor"
               d=" M-1 -153.15 C81.32,-153.15 148.15,-86.32 148.15,-4 C148.15,78.32 81.32,145.15 -1,145.15 C-83.32,145.15 -150.15,78.32 -150.15,-4 C-150.15,-86.32 -83.32,-153.15 -1,-153.15z " />
           </g>
