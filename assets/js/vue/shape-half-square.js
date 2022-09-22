@@ -38,7 +38,7 @@ export default {
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '1.3s';
+      const duration = '3s';
 
       return {
         keySplines: '0 0 1 1',
@@ -76,7 +76,7 @@ export default {
               name: 'motion',
               attributeName: 'motion',
               motion: true,
-              dur: '30s',
+              dur: '',
               begin: '0s',
             },
           ],
@@ -87,7 +87,7 @@ export default {
               name: 'transform',
               from: '-200 -200',
               to: '-200 -200',
-              dur: '30s',
+              dur: '',
               type: 'scale',
             },
           ],
@@ -98,19 +98,9 @@ export default {
               name: 'moveTo1',
               from: '-200 -200',
               to: '-200 -200',
-              dur: '30s',
+              dur: '',
               type: 'translate',
               additive: true,
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'motion2',
-              attributeName: 'motion2',
-              motion: true,
-              dur: '30s',
             },
           ],
         },
@@ -131,15 +121,15 @@ export default {
             delay: 0,
             path: 'M504 200 C470.17,200 383.17,200 301,200 C218.83,200 78,200 11,200 C-56,200 -82.33,200 -101,200 C-101,200 -101,200 -101,200',
             keyPoints: '0;0.34;0.81;1;1',
-            keyTimes: '0;0.0177778;0.0344444;0.0544444;1',
+            keyTimes: '0;0.177778;0.344444;0.544444;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
           },
         },
         {
           name: 'secondSquare',
-          motion2: {
+          motion: {
             delay: 0,
-            keyTimes: '0;0.0177778;0.0344444;0.0544444;1',
+            keyTimes: '0;0.177778;0.344444;0.544444;1',
             path: 'M805 200 C771.17,200 684.17,200 602,200 C519.83,200 379,200 312,200 C245,200 218.67,200 200,200 C200,200 200,200 200,200 ',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             keyPoints: '0;0.34;0.81;1;1',
@@ -155,9 +145,9 @@ export default {
             delay: 0,
             values: '-200 -200;-200 -200',
           },
-          motion2: {
+          motion: {
             delay: 0,
-            keyTimes: '0;0.0333333;0.0544444;1',
+            keyTimes: '0;0.333333;0.544444;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             path: 'M602 200 C602,200 602,200 602,200 C568.33,200 433.67,200 400,200 C400,200 400,200 400,200',
             keyPoints: '0;0;1;1',

@@ -15,10 +15,10 @@ export default {
     // begin() {
     //   return this.start ? this.start : defaultStart;
     // },
-    squareColor() {
+    rectangleColor() {
       return this.squareColor ? this.squareColor : '#5cbbff';
     },
-    eyeColor() {
+    circleColor() {
       return this.eyeColor ? this.eyeColor : '#fcd116';
     },
     upperSquare() {
@@ -32,7 +32,7 @@ export default {
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '1.3s';
+      const duration = '30s';
 
       return {
         keySplines: '0 0 1 1',
@@ -70,7 +70,7 @@ export default {
               name: 'motion',
               attributeName: 'motion',
               motion: true,
-              dur: '30s',
+              dur: '',
               begin: '0s',
             },
           ],
@@ -81,7 +81,7 @@ export default {
               name: 'transform',
               from: '1.3 1.01',
               to: '1.3 1.01',
-              dur: '30s',
+              dur: '',
               type: 'scale',
             },
           ],
@@ -267,15 +267,15 @@ export default {
         </g>
 
         <g :id="eyeCircle?.id">
-          <path :fill="eyeColor"
+          <path :fill="circleColor"
             d=" M-135.63 -128.87 C-32.47,-128.87 51.29,-45.11 51.29,58.05 C51.29,161.22 -32.47,244.98 -135.63,244.98 C-238.8,244.98 -322.56,161.22 -322.56,58.05 C-322.56,-45.11 -238.8,-128.87 -135.63,-128.87z " />
         </g>
         <g :id="upperSquare?.id" transform=" translate(199, 198)">
-          <path :fill="squareColor"
+          <path :fill="rectangleColor"
             d=" M154.3 -399 C154.3,-399 -176.42,-399 -176.42,-399 C-176.42,-399 -198,-1 -198,-1 C-198,-1 -172.13,-152.23 -3,-151 C168.15,-150.24 198,4 198,4 C198,4 154.3,-399 154.3,-399z " />
         </g>
         <g :id="bottomSquare?.id" transform=" translate(199.01, 199) rotate(180)">
-          <path :fill="squareColor"
+          <path :fill="rectangleColor"
             d=" M199 -197 C199,-197 152.6,-447 152.6,-447 C152.6,-447 -153.36,-445 -153.36,-445 C-153.36,-445 -198,-197 -198,-197 C-198,-197 -198,-1 -198,-1 C-198,-1 -172.13,-152.23 -3,-151 C168.15,-150.24 198,4 198,4 C198,4 199,-197 199,-197z " />
         </g>
       </g>

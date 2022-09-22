@@ -53,7 +53,7 @@ export default {
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '1.3s';
+      const duration = '3s';
 
       return {
         keySplines: '0 0 1 1',
@@ -91,7 +91,7 @@ export default {
               name: 'motion',
               attributeName: 'motion',
               motion: true,
-              dur: '30s',
+              dur: '',
               begin: '0s',
             },
           ],
@@ -100,9 +100,9 @@ export default {
           steps: [
             {
               name: 'transform',
-              from: '0.9925700000000001 1',
-              to: '0.9925700000000001 1',
-              dur: '30s',
+              from: '1 1',
+              to: '1 1',
+              dur: '',
               type: 'scale',
             },
           ],
@@ -113,7 +113,7 @@ export default {
               name: 'moveTo1',
               from: '90',
               to: '90',
-              dur: '30s',
+              dur: '',
               type: 'rotate',
               additive: true,
             },
@@ -125,16 +125,16 @@ export default {
           name: 'triangleUpper',
           transform: {
             delay: 0,
-            values: '0.9925700000000001 1;0.9925700000000001 1',
+            values: '1 1;1 1',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             additive: true,
           },
           motion: {
             delay: 0,
-            path: 'M199 -5.5 C199,29 199,167 199,201.5 C199,201.5 199,201.5 199,201.5',
+            path: 'M200 -0 C200,200 200,200 200,200 C200,200 200,200 200,200',
             keyPoints: '0;1;1',
-            keyTimes: '0;0.0344444;1',
+            keyTimes: '0;0.344444;1',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
           },
         },
@@ -142,15 +142,15 @@ export default {
           name: 'triangleRight',
           transform: {
             delay: 0,
-            values: '0.9925700000000001 1;0.9925700000000001 1',
+            values: '1 1;1 1',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             additive: true,
           },
           motion: {
             delay: 0,
-            keyTimes: '0;0.0344444;1',
-            path: 'M398 198.5 C364.67,198.5 231.33,198.5 198,198.5 C198,198.5 198,198.5 198,198.5',
+            keyTimes: '0;0.344444;1',
+            path: 'M400 200 C400,200 200,200 200,200 C200,200 200,200 200,200',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
             keyPoints: '0;1;1',
           },
@@ -172,14 +172,14 @@ export default {
           },
           motion: {
             delay: 0,
-            keyTimes: '0;0.0344444;1',
+            keyTimes: '0;0.344444;1',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
-            path: 'M1.5 199 C34.83,199 168.17,199 201.5,199 C201.5,199 201.5,199 201.5,199',
+            path: 'M0 200 C200,200 200,200 200,200 C200,200 200,200 200,200',
             keyPoints: '0;1;1',
           },
           transform: {
             delay: 0,
-            values: '0.9925700000000001 1;0.9925700000000001 1',
+            values: '1 1;1 1',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             additive: true,
@@ -197,14 +197,14 @@ export default {
           },
           motion: {
             delay: 0,
-            keyTimes: '0;0.0344444;1',
+            keyTimes: '0;0.344444;1',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
-            path: 'M201 395 C201,361.83 201,229.17 201,196 C201,196 201,196 201,196',
+            path: 'M200 400 C200,400 200,200 200,200 C200,200 200,200 200,200',
             keyPoints: '0;1;1',
           },
           transform: {
             delay: 0,
-            values: '0.9925700000000001 1;0.9925700000000001 1',
+            values: '1 1;1 1',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             additive: true,
@@ -378,37 +378,37 @@ export default {
         </g>
 
 
-        <g :id="triangleUpperStatic" transform=" translate(199, 201.693) ">
+        <g :id="triangleUpperStatic" transform=" translate(200, 200) ">
           <path :fill="firstColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleUpper?.id">
           <path :fill="secondColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
-        <g :id="triangleRightStatic" transform=" translate(198, 198.5) rotate(90) ">
+        <g :id="triangleRightStatic" transform=" translate(200, 200) rotate(90) ">
           <path :fill="thirdColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleRight?.id">
           <path :fill="fourthColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
-        <g :id="triangleLeftStatic" transform=" translate(201.5, 199) rotate(270) ">
+        <g :id="triangleLeftStatic" transform=" translate(200, 200) rotate(270) ">
           <path :fill="fifthColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleLeft?.id">
           <path :fill="sixthColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
-        <g :id="triangleBottomStatic" transform=" translate(201, 196) rotate(180) ">
+        <g :id="triangleBottomStatic" transform=" translate(200, 200) rotate(180) ">
           <path :fill="seventhColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleBottom?.id">
           <path :fill="eighthColor"
-            d=" M202 -202 C202,-202 -200,-202 -200,-202 C-200,-202 1,-1 1,-1 C1,-1 202,-202 202,-202z " />
+            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
       </g>
     </g>`,
