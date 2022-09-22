@@ -27,6 +27,7 @@ import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
 import ShapeHalfSquare from './vue/shape-half-square.js';
 import ShapeMovingEye from './vue/shape-moving-eye.js';
+import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeFourSquares from './vue/shape-four-squares.js';
 import ShapeFourTriangles from './vue/shape-four-triangles.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
@@ -41,6 +42,7 @@ import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
+import TBlock from './vue/shapes/t-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
 
@@ -86,6 +88,7 @@ const addApp = () => {
     ShapeFourTriangles,
     ShapeSquareCircle,
     ShapeMovingEye,
+    ShapeSemiCircle,
     TrianglesToCenter,
     Shape,
     ArrowExternal,
@@ -97,6 +100,7 @@ const addApp = () => {
     Rocket,
     Smile,
     SBlock,
+    TBlock,
     Square,
     PersonQuote,
     Wrapper,

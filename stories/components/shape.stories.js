@@ -95,9 +95,9 @@ ShapeFourTriangles.args = {
     {
       name: 'shape-four-triangles',
       firstColor: 'var(--color-orange)',
-      secondColor: 'var(--color-yellow)',
+      secondColor: 'var(--color-secondary)',
       thirdColor: 'var(--color-orange)',
-      fourthColor: 'var(--color-yellow)',
+      fourthColor: 'var(--color-secondary)',
     },
   ],
 };
@@ -130,6 +130,19 @@ ShapeMovingEye.args = {
       name: 'shape-moving-eye',
       squareColor: 'var(--color-green-blue)',
       eyeColor: 'var(--color-yellow)',
+    },
+  ],
+};
+
+export const ShapeSemiCircle = Template.bind({});
+
+ShapeSemiCircle.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-semi-circle',
+      squareColor: 'var(--color-green-blue)',
+      circleColor: 'var(--color-yellow)',
     },
   ],
 };
@@ -170,6 +183,20 @@ SBlockTheme.args = {
       backgroundColor: 'var(--color-primary)',
       foregroundColor: 'var(--color-white)',
       thirdColor: '#ff0000',
+    },
+  ],
+};
+
+export const TBlock = Template.bind({});
+
+TBlock.args = {
+  name: 't-block',
+  shapes: [
+    {},
+    {},
+    {},
+    {
+      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
     },
   ],
 };
