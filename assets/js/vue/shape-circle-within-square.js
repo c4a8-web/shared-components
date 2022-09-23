@@ -1,7 +1,7 @@
 import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
-const animationDelay = '0s';
+const animationDelay = '1s';
 const animationStepDelay = '0.05';
 
 const tagName = 'shape-circle-within-square';
@@ -12,9 +12,9 @@ export default {
     // classList() {
     //   return ['shape-square-forward', 'vue-component'];
     // },
-    // begin() {
-    //   return this.start ? this.start : defaultStart;
-    // },
+    begin() {
+      return this.start ? this.start : defaultStart;
+    },
     firstSquareStaticColor() {
       return this.firstColor ? this.firstColor : '#fcd116';
     },
@@ -137,13 +137,19 @@ export default {
         {
           name: 'firstCircle',
           transform: {
-            delay: 0,
+            delay: 1,
             values: '0 0;1 1;1 -1;1 -1',
             keyTimes: '0;0.344444;0.666667;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             additive: true,
+            // dur: '20s',
             start: true,
-            // waitFor: 'secondSquare.motion',
+            waitFor: 'thirdCircle.reset',
+          },
+          reset: {
+            waitFor: 'firstCircle.transform',
+            delay: animationStepDelay,
+            dur: '0.01s',
           },
         },
         {
@@ -156,6 +162,11 @@ export default {
             keyPoints: '0;0;1;1',
             // additive: true,
             waitFor: 'firstCircle.transform',
+          },
+          reset: {
+            waitFor: 'secondCircle.transform',
+            delay: animationStepDelay,
+            dur: '0.01s',
           },
         },
         {
@@ -176,6 +187,11 @@ export default {
             additive: true,
             waitFor: 'secondSquare.motion',
           },
+          reset: {
+            waitFor: 'secondCircle.transform',
+            delay: animationStepDelay,
+            dur: '0.01s',
+          },
         },
         {
           name: 'thirdSquare',
@@ -187,6 +203,11 @@ export default {
             keyPoints: '0;0;1;1',
             // additive: true,
             waitFor: 'secondCircle.transform',
+          },
+          reset: {
+            waitFor: 'thirdCircle.transform',
+            delay: animationStepDelay,
+            dur: '0.01s',
           },
         },
         {
@@ -206,6 +227,11 @@ export default {
             to: '0 400',
             additive: true,
             waitFor: 'thirdSquare.motion',
+          },
+          reset: {
+            waitFor: 'thirdCircle.transform',
+            delay: animationStepDelay,
+            dur: '0.01s',
           },
         },
       ],
@@ -287,6 +313,19 @@ export default {
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
+              <shape-animation
+                :id="firstCircle?.reset?.id"
+                :href="firstCircle?.href"
+                :begin="firstCircle?.reset?.begin"
+                attributeName="transform"
+                from="1 1"
+                to="0 0"
+                :dur="firstCircle?.reset?.dur"
+                fill="freeze"
+                calcMode="paced"
+                additive="true"
+                type="scale"
+            ></shape-animation>
             </template>
             <template v-for="stepData in getStepData('secondSquare', animation?.steps)">
               <shape-animation
@@ -309,6 +348,20 @@ export default {
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
+              <shape-animation
+                :id="secondSquare?.reset?.id"
+                :href="secondSquare?.href"
+                :begin="secondSquare?.reset?.begin"
+                attributeName="transform"
+                type="translate"
+                calcMode="paced"
+                from="0 0"
+                to="0 0"
+                :dur="secondSquare?.reset?.dur"
+                fill="freeze"
+                calcMode="spline"
+                additive="true"
+            ></shape-animation>
             </template>
             <template v-for="stepData in getStepData('secondCircle', animation?.steps)">
               <shape-animation
@@ -331,6 +384,21 @@ export default {
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
+              <shape-animation
+                :id="secondCircle?.reset?.id"
+                :href="secondCircle?.href"
+                :begin="secondCircle?.reset?.begin"
+                attributeName="transform"
+                from="1 1"
+                to="0 0"
+                :dur="secondCircle?.reset?.dur"
+                fill="freeze"
+                calcMode="spline"
+                keyTimes="0;1"
+                additive="true"
+                type="scale"
+                :keySplines="overall?.keySplines"
+            ></shape-animation>
             </template>
             <template v-for="stepData in getStepData('thirdSquare', animation?.steps)">
               <shape-animation
@@ -353,6 +421,20 @@ export default {
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
+              <shape-animation
+                :id="thirdSquare?.reset?.id"
+                :href="thirdSquare?.href"
+                :begin="thirdSquare?.reset?.begin"
+                attributeName="transform"
+                type="translate"
+                calcMode="paced"
+                from="0 0"
+                to="0 0"
+                :dur="secondSquare?.reset?.dur"
+                fill="freeze"
+                calcMode="spline"
+                additive="true"
+             ></shape-animation>
             </template>
             <template v-for="stepData in getStepData('thirdCircle', animation?.steps)">
               <shape-animation
@@ -375,24 +457,30 @@ export default {
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
+              <shape-animation
+                :id="thirdCircle?.reset?.id"
+                :href="thirdCircle?.href"
+                :begin="thirdCircle?.reset?.begin"
+                attributeName="transform"
+                from="1 1"
+                to="0 0"
+                :dur="thirdCircle?.reset?.dur"
+                fill="freeze"
+                calcMode="spline"
+                keyTimes="0;1"
+                additive="true"
+                type="scale"
+                :keySplines="overall?.keySplines"
+            ></shape-animation>
             </template>
-             </template>
 
-          <shape-animation
-            :id="firstSquare?.reset?.id"
-            :href="firstSquare?.href"
-            :begin="firstSquare?.reset?.begin"
-            attributeName="transform"
-            :dur="overall?.dur"
-            fill="freeze"
-            calcMode="spline"
-            keyTimes="0;1"
-            :keySplines="overall?.keySplines"
-          ></shape-animation>
+          </template>
+
+
         </g>
 
         <g>
-          <g dstyle="display:none" :id="firstSquareStatic" transform=" translate(200, 200) translate(0, 0)">
+          <g dstyle="display:none" transform=" translate(200, 200) translate(0, 0)">
             <path :fill="firstSquareStaticColor"
               d=" M200 -200 C200,-200 200,200 200,200 C200,200 -200,200 -200,200 C-200,200 -200,-200 -200,-200 C-200,-200 200,-200 200,-200 " />
           </g>
