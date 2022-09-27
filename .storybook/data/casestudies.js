@@ -15,13 +15,20 @@ const CaseStudies = [
   {
     url: 'javascript:void(0);',
     layout: 'casestudies',
-    title: 'Casestudy Azure @ lokal',
+    title: 'Casestudy Azure with CTA Link',
     date: '2020-04-04',
     hero: {
       background: {
         img: '/casestudies/casestudy-dekra-v2.png',
       },
       subline: 'lorem ipsum lumus lusum elusum',
+    },
+    cta: {
+      text: 'Jetzt anmelden',
+      href: 'https://www.google.com',
+      skin: 'primary',
+      button: true,
+      external: true,
     },
   },
   {
