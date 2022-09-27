@@ -1,13 +1,15 @@
 export default {
   tagName: 'aside-wrapper',
+  methods: {
+  },
   props: {
   },
   template: `
-<div class="aside__wrapper vue-component">
-  <div class="left__side">
+<div class="aside-wrapper vue-component">
+  <div class="aside-wrapper__content">
     <slot name='content'></slot>
   </div>
-  <aside class="right__side">
+  <aside class="aside-wrapper__aside">
     <slot name='aside'></slot>
   </aside>
 </div>
