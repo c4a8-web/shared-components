@@ -19,12 +19,12 @@
       {% endif %}
 
       {% if element.rowStart == element.rowEnd and element.rowStart != null %}
-        {% assign extendedClass = 'people-square__element--extended' %}
+        {% assign extendedClass = '--extended' %}
       {% else %}
-        {% assign extendedClass = 'people-square__element' %}
+        {% assign extendedClass = '' %}
       {% endif %}
 
-      <div class="{{ extendedClass }}"
+      <div class="people-square__element{{ extendedClass }}"
             style="{% if element.rowStart and element.rowEnd %}
             grid-row-start: {{ element.rowStart }};grid-row-end: {{ element.rowEnd | plus: 1 }};
             grid-column-start: {{ colStart }};grid-column-end: {{ colEnd }}{% endif %}">
