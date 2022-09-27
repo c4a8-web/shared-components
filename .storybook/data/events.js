@@ -1,6 +1,6 @@
 const Events = [
   {
-    url: 'javascript:void(0);',
+    url: 'javascript:void(0);' /* url is not overwriteable in yaml */,
     youtubeUrl: 'https://www.youtube.com/watch?v=DnkRfpd6cBw',
     layout: 'event',
     title: 'EVENT Audiocodes Devices Review',
@@ -14,11 +14,58 @@ const Events = [
       'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
   },
   {
-    url: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
+    excerpt: '',
+    blogtitlepic: 'head-azure-security-webcast',
+    date: '2022-06-17',
+    layout: 'event',
+    url: 'javascript:void(0)',
+    title: 'Webcast with CTA Link',
+    headline: 'Webcast with CTA Link',
+    content:
+      'Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was',
+    moment: '2022-06-18',
+    time: '14-15 Uhr',
+    shapes: [
+      {
+        color: 'var(--color-green-blue)',
+      },
+      {
+        color: 'var(--color-yellow)',
+      },
+    ],
+    webcast: true,
+    author: ['Nadine Kern', 'Jan Petersen'],
+    image: {
+      img: '/demo/authors-demo.png',
+      alt: 'lorem ipsum',
+    },
+    badge: {
+      text: 'Neuer Webcast',
+      icon: '',
+    },
+    cta: {
+      text: 'Jetzt anmelden',
+      href: 'https://www.google.com',
+      skin: 'primary',
+      button: true,
+      external: true,
+    },
+  },
+  {
+    url: 'javascript:void(0);',
+    cta: {
+      text: 'Jetzt anmelden',
+      href: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
+      skin: 'primary',
+      button: true,
+      external: true,
+    },
     youtubeUrl: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
     layout: 'event',
     title: 'EVENT Externe Emails besser erkennen (Mit Link)',
+    webcast: true,
     date: '2022-06-10',
+    moment: '2022-06-11',
     author: 'Thorsten Kunzi',
     categories: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
     tags: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
