@@ -44,11 +44,11 @@ EventsReversed.args = {
   slider: true,
   events: true,
   cta: {
-    text: 'Primary Button',
-    href: 'https://www.youtube.com/watch?v=zidlD8YZNL8',
+    text: 'Primary Button Internal',
+    href: 'javascript:void(0)',
     skin: 'primary',
     button: true,
-    external: true,
+    external: false,
   },
 };
 
