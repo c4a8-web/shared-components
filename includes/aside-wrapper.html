@@ -1,19 +1,7 @@
-{% assign markdownImage = include.image %}
-{% assign markdownText = include.text %}
+{% assign markdownAside = include.aside %}
+{% assign markdownContent = include.content %}
 
 <aside-wrapper>
-  <template v-slot:content>{{ markdownText | strip_html | escape }}</template>
-  <template v-slot:aside><img src='{{ markdownImage }}'/></template>
-</aside-wrapper>
-<aside-wrapper>
-  <template v-slot:content>{{ markdownText | strip_html | escape }}</template>
-  <template v-slot:aside>{{ markdownText | strip_html | escape }}</template>
-</aside-wrapper>
-<aside-wrapper>
-  <template v-slot:content><img src='{{ markdownImage }}'/></template>
-  <template v-slot:aside>{{ markdownText | strip_html | escape }}</template>
-</aside-wrapper>
-<aside-wrapper>
-  <template v-slot:content><img src='{{ markdownImage }}'/></template>
-  <template v-slot:aside><img src='{{ markdownImage }}'/></template>
+  <template v-slot:content>{{ markdownContent }}</template>
+  <template v-slot:aside>{{ markdownAside }}</template>
 </aside-wrapper>
