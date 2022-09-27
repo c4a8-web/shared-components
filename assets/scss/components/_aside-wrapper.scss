@@ -1,4 +1,4 @@
-.aside__wrapper {
+.aside-wrapper {
   display: flex;
   gap: spacing(14);
 
@@ -8,11 +8,11 @@
   @include media-breakpoint-down(md) {
     flex-direction: column;
   }
-  .left__side {
+  .aside-wrapper__content {
     margin-top: spacing(12);
     flex: 1 1 60%;
   }
-  .right__side {
+  .aside-wrapper__aside {
     margin-top: spacing(12);
     flex: 1 1 40%;
     img {
