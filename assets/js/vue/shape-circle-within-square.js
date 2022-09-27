@@ -1,6 +1,6 @@
 import ShapeElements from '../shape-elements.js';
 
-const defaultStart = '0s';
+const defaultStart = '3s';
 const animationDelay = '1s';
 const animationStepDelay = '0.05';
 
@@ -122,10 +122,10 @@ export default {
           steps: [
             {
               name: 'show',
-              // from: '0',
-              // to: '1',
+              from: '0',
+              to: '1',
               // dur: '0.01s',
-              // attributeName: 'opacity',
+              attributeName: 'opacity',
               // from: '-200 200',
               // to: '200 200',
               // type: 'transform',
@@ -137,18 +137,28 @@ export default {
         {
           name: 'firstCircle',
           transform: {
-            delay: '0.1',
+            delay: '2s',
             values: '0 0;1 1;1 -1;1 -1',
             keyTimes: '0;0.344444;0.666667;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            additive: true,
+            // additive: true,
             // dur: '20s',
             start: true,
-            waitFor: 'thirdCircle.reset',
+            waitFor: 'firstCircle.reset',
           },
+          // show: {
+          //   delay: '0.01',
+          //   dur: '2s',
+          //   // from: '0 0',
+          //   // to: '0 0',
+          //   additive: true,
+          //   start: true,
+          //   waitFor: 'thirdCircle.reset',
+          // },
           reset: {
             waitFor: 'firstCircle.transform',
             delay: animationStepDelay,
+            // start: true,
             dur: '0.01s',
           },
         },
@@ -157,82 +167,82 @@ export default {
           motion: {
             delay: '-3',
             keyTimes: '0;0.633333;0.722222;1',
-            path: 'M 800 400 C 800 400 800 400 800 400 C 800 400 400 400 400 400 C 400 400 400 400 400 400',
+            path: 'M 800 400 C 800 400 800 400 800 400 C 800 400 400 400 400 400',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             keyPoints: '0;0;1;1',
             // additive: true,
             waitFor: 'firstCircle.transform',
           },
           reset: {
-            waitFor: 'secondCircle.transform',
+            waitFor: 'secondSquare.motion',
             delay: animationStepDelay,
             dur: '0.01s',
           },
         },
         {
           name: 'secondCircle',
-          transform: {
-            delay: '-0.99',
-            values: '0 0;1 1;1 -1;1 -1',
-            keyTimes: '0;0.344444;0.666667;1',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            additive: true,
-            waitFor: 'secondSquare.motion',
-          },
-          show: {
-            delay: '-1',
-            dur: '0.01s',
-            from: '0 0',
-            to: '0 400',
-            additive: true,
-            waitFor: 'secondSquare.motion',
-          },
-          reset: {
-            waitFor: 'secondCircle.transform',
-            delay: animationStepDelay,
-            dur: '0.01s',
-          },
+          // transform: {
+          //   delay: '-0.99',
+          //   values: '0 0;1 1;1 -1;1 -1',
+          //   keyTimes: '0;0.344444;0.666667;1',
+          //   keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+          //   additive: true,
+          //   waitFor: 'secondSquare.motion',
+          // },
+          // show: {
+          //   delay: '-1',
+          //   dur: '0.01s',
+          //   from: '0 0',
+          //   to: '0 400',
+          //   additive: true,
+          //   waitFor: 'secondSquare.motion',
+          // },
+          // reset: {
+          //   waitFor: 'secondCircle.transform',
+          //   delay: animationStepDelay,
+          //   dur: '0.01s',
+          // },
         },
         {
           name: 'thirdSquare',
-          motion: {
-            delay: '-3',
-            keyTimes: '0;0.633333;0.722222;1',
-            path: 'M 800 400 C 800 400 800 400 800 400 C 800 400 400 400 400 400 C 400 400 400 400 400 400',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            keyPoints: '0;0;1;1',
-            // additive: true,
-            waitFor: 'secondCircle.transform',
-          },
-          reset: {
-            waitFor: 'thirdCircle.transform',
-            delay: animationStepDelay,
-            dur: '0.01s',
-          },
+          // motion: {
+          //   delay: '-3',
+          //   keyTimes: '0;0.633333;0.722222;1',
+          //   path: 'M 800 400 C 800 400 800 400 800 400 C 800 400 400 400 400 400 C 400 400 400 400 400 400',
+          //   keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+          //   keyPoints: '0;0;1;1',
+          //   // additive: true,
+          //   waitFor: 'secondCircle.transform',
+          // },
+          // reset: {
+          //   waitFor: 'thirdCircle.transform',
+          //   delay: animationStepDelay,
+          //   dur: '0.01s',
+          // },
         },
         {
           name: 'thirdCircle',
-          transform: {
-            delay: '-0.95',
-            values: '0 0;1 1;1 -1;1 -1',
-            keyTimes: '0;0.344444;0.666667;1',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            additive: true,
-            waitFor: 'thirdSquare.motion',
-          },
-          show: {
-            delay: '-0.96',
-            dur: '0.01s',
-            from: '0 0',
-            to: '0 400',
-            additive: true,
-            waitFor: 'thirdSquare.motion',
-          },
-          reset: {
-            waitFor: 'thirdCircle.transform',
-            delay: animationStepDelay,
-            dur: '5s',
-          },
+          // transform: {
+          //   delay: '-0.95',
+          //   values: '0 0;1 1;1 -1;1 -1',
+          //   keyTimes: '0;0.344444;0.666667;1',
+          //   keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+          //   additive: true,
+          //   waitFor: 'thirdSquare.motion',
+          // },
+          // show: {
+          //   delay: '-0.96',
+          //   dur: '0.01s',
+          //   from: '0 0',
+          //   to: '0 400',
+          //   additive: true,
+          //   waitFor: 'thirdSquare.motion',
+          // },
+          // reset: {
+          //   waitFor: 'thirdCircle.transform',
+          //   delay: animationStepDelay,
+          //   dur: '0.01s',
+          // },
         },
       ],
       shapeElementsInstance: null,
@@ -409,52 +419,37 @@ export default {
             :href="firstCircle?.href"
             :begin="firstCircle?.reset?.begin"
             attributeName="transform"
+            type="scale"
             from="1 1"
             to="0 0"
             :dur="firstCircle?.reset?.dur"
             fill="freeze"
             calcMode="paced"
-            additive="true"
-            type="scale"
-          ></shape-animation>
+            values="1 -1;1 -1;1 1;0 0"
+             ></shape-animation>
 
           <shape-animation
-            :id="thirdSquare?.reset?.id"
-            :href="thirdSquare?.href"
-            :begin="thirdSquare?.reset?.begin"
+            :id="secondSquare?.reset?.id"
+            :href="secondSquare?.href"
+            :begin="secondSquare?.reset?.begin"
             attributeName="transform"
             type="translate"
             calcMode="paced"
             from="0 0"
-            to="0 0"
+            to="400 0"
             :dur="secondSquare?.reset?.dur"
+            dur="5s"
             fill="freeze"
             calcMode="spline"
-            additive="true"
-          ></shape-animation>
-
-          <shape-animation
-            :id="thirdCircle?.reset?.id"
-            :href="thirdCircle?.href"
-            :begin="thirdCircle?.reset?.begin"
-            attributeName="transform"
-            from="1 1"
-            to="0 0"
-            :dur="thirdCircle?.reset?.dur"
-            fill="freeze"
-            calcMode="spline"
-            keyTimes="0;1"
-            additive="true"
-            type="scale"
-            :keySplines="overall?.keySplines"
+            ddadditive="true"
           ></shape-animation>
 
           <shape-animation
             :id="secondCircle?.reset?.id"
             :href="secondCircle?.href"
             :begin="secondCircle?.reset?.begin"
-            attributeName="transform"
-            from="1 1"
+            attributeName="show"
+            from="0 400"
             to="0 0"
             :dur="secondCircle?.reset?.dur"
             fill="freeze"
@@ -466,18 +461,34 @@ export default {
           ></shape-animation>
 
           <shape-animation
-            :id="secondSquare?.reset?.id"
-            :href="secondSquare?.href"
-            :begin="secondSquare?.reset?.begin"
+            :id="thirdSquare?.reset?.id"
+            :href="thirdSquare?.href"
+            :begin="thirdSquare?.reset?.begin"
             attributeName="transform"
             type="translate"
             calcMode="paced"
             from="0 0"
             to="0 0"
-            :dur="secondSquare?.reset?.dur"
+            :dur="thirdSquare?.reset?.dur"
             fill="freeze"
             calcMode="spline"
             additive="true"
+          ></shape-animation>
+
+          <shape-animation
+            :id="thirdCircle?.reset?.id"
+            :href="thirdCircle?.href"
+            :begin="thirdCircle?.reset?.begin"
+            attributeName="show"
+            from="0 400"
+            to="0 0"
+            :dur="thirdCircle?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            keyTimes="0;1"
+            additive="true"
+            type="scale"
+            :keySplines="overall?.keySplines"
           ></shape-animation>
 
         </g>
@@ -487,13 +498,13 @@ export default {
             <path :fill="firstSquareStaticColor"
               d=" M 400 0 C 400 0 400 400 400 400 C 402 400 0 400 0 400 C 0 400 0 0 0 0 C 0 0 396 -5 400 0 " />
           </g>
-          <g dstyle="display:none" :id="firstCircle?.id" transform=" translate(200, 200) rotate(990)">
-            <path :fill="firstCircleColor"
+          <g ddstyle="opacity: 0" transform="translate(200, 200) rotate(990) ">
+            <path :id="firstCircle?.id" transform="scale(0, 0)" :fill="firstCircleColor"
               d=" M-1 -153.15 C81.32,-153.15 148.15,-86.32 148.15,-4 C148.15,78.32 81.32,145.15 -1,145.15 C-83.32,145.15 -150.15,78.32 -150.15,-4 C-150.15,-86.32 -83.32,-153.15 -1,-153.15z " />
           </g>
-          <g dstyle="display:none" :id="secondSquare?.id">
-            <path :fill="secondSquareColor"
-              d="M 0 -400 C 0 -400 0 0 0 0 C 0 0 -400 0 -400 0 C -400 0 -400 -400 -400 -400 C -400 -400 0 -400 0 -400" />
+          <g dstyle="display:none">
+            <path :id="secondSquare?.id" :fill="secondSquareColor"
+              d="M 800 0 C 800 0 800 400 800 400 C 800 400 400 400 400 400 C 400 400 400 0 400 0 C 400 0 800 0 800 0" />
           </g>
           <g dstyle="display:none" :id="secondCircle?.id" transform=" translate(-200, 200) rotate(990)">
             <path :fill="secondCircleColor"
