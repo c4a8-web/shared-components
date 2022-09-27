@@ -38,9 +38,6 @@ export default {
     caseStudies() {
       return Tools.isTrue(this.caseStudies) === true ? true : false;
     },
-    target() {
-      return this.ctaParse && this.ctaParse.external ? '_blank' : '_self';
-    },
     carouselOptions() {
       const obj = {
         slidesToShow: 3,
@@ -106,6 +103,9 @@ export default {
     blogTitleUrl(post) {
       return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
     },
+    target(post) {
+      return post.external ? '_blank' : '_self';
+    },
   },
   props: {
     bgColor: String,
@@ -141,7 +141,7 @@ export default {
           <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
             <template v-for="(post, index) in postsArray">
               <div :class="itemClass" v-if="index <= limit">
-                <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target" :event="event(post)" :dataAuthors="dataAuthors">
+                <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
               </div>
             </template>
           </div>
