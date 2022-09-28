@@ -42,7 +42,7 @@
 {%- if blogRecentCombine -%}
   {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
   {% assign posts = posts | concat: events | concat: caseStudies %}
-  {% assign posts = posts | sort: 'date' %}
+  {% assign posts = posts | sort: 'moment' %}
 
   {% unless blogRecentReversed %}
     {% assign posts = posts | reverse %}
@@ -77,12 +77,18 @@
         {% assign blogRecentPostExternal = false %}
       {% endif %}
 
+      {% if post.moment %}
+        {% assign blogRecentPostDate = post.moment %}
+      {% else %}
+        {% assign blogRecentPostDate = post.date %}
+      {% endif %}
+
       {%- if post.layout == 'casestudies' -%}
         {
           "url": "{{ blogRecentPostUrl }}",
           "layout": "{{ post.layout }}",
           "title": "{{ post.title | strip_html }}",
-          "date": "{{ post.date }}",
+          "date": "{{ blogRecentPostDate }}",
           "blogtitlepic": "{{ post.hero.background.img }}",
           "external": {{ blogRecentPostExternal }},
           "excerpt": "{{ post.hero.subline | strip_html | strip_newlines | escape }}"
@@ -93,7 +99,7 @@
           "youtubeUrl": "{{ post.youtubeUrl }}",
           "layout": "{{ post.layout }}",
           "title": "{{ post.title | strip_html }}",
-          "date": "{{ post.date }}",
+          "date": "{{ blogRecentPostDate }}",
           "author": {{ post.author | jsonify }},
           "blogtitlepic": "{{ post.blogtitlepic }}",
           "external": {{ blogRecentPostExternal }},
