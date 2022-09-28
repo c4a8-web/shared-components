@@ -5,6 +5,10 @@ const handleLoadingError = function (error) {
   console.error('There was an issue loading a component. It might be blocked by an Adblock Script.', error);
 };
 
+const handleAdBlockerError = function (error) {
+  console.error('TODO handle adBlockError', error);
+};
+
 const Form = import('./components/form.js')
   .then((module) => {
     return module.default;
@@ -18,6 +22,11 @@ import Tools from './tools.js';
 let componentLoadingList;
 
 const componentList = [
+  import('./analytics.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleAdBlockerError),
   import('./anchor.js')
     .then((module) => {
       return module.default;
