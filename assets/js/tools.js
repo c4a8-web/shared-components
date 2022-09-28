@@ -270,6 +270,13 @@ class Tools {
 
     return string.replace(new RegExp(/<.*?>/g), '');
   }
+
+  static getAssetPath(path) {
+    const storybookPath = '/shared-components';
+    const isStorybook = document.location.pathname.indexOf(storybookPath) !== -1;
+
+    return isStorybook ? `${storybookPath}${path}` : path;
+  }
 }
 
 export default Tools;
