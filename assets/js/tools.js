@@ -271,6 +271,10 @@ class Tools {
     return string.replace(new RegExp(/<.*?>/g), '');
   }
 
+  static isGermanDate(date) {
+    return date.match(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/) ? true : false;
+  }
+
   static getAssetPath(path) {
     const storybookPath = '/shared-components';
     const isStorybook = document.location.pathname.indexOf(storybookPath) !== -1;

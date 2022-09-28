@@ -47,6 +47,8 @@ export default {
     formatDate(date) {
       if (!date) return;
 
+      if (Tools.isGermanDate(date)) return date;
+
       const splitted = date.split(' ');
       const formatedDate = splitted[0].split('-');
       const year = formatedDate[0];

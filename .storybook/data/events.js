@@ -65,7 +65,7 @@ const Events = [
     title: 'EVENT Externe Emails besser erkennen (Mit Link)',
     webcast: true,
     date: '2022-06-10',
-    moment: '2022-06-11',
+    moment: '12.06.2022' /* error case */,
     author: 'Thorsten Kunzi',
     categories: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
     tags: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
