@@ -51,14 +51,19 @@ class Analytics {
     Analytics.track(this.code, callback, url);
   }
 
+  static isGALoaded() {
+    return dataLayer.filter(item => item.event === 'gtm.dom').length > 0;
+  }
+
   static track(code, callback, url) {
-    if (window.gtag && code) {
+    if (window.gtag && code && Analytics.isGALoaded()) {
       window.gtag('event', 'conversion', {
         send_to: code,
         event_callback: callback,
       });
+
     } else {
-      console.error('GTag not found');
+      console.error('GTag not found or Collect not loaded');
       callback();
     }
   }
