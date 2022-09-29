@@ -19,6 +19,7 @@ const State = {
   LOADING: 'is-loading',
   HIDE_LOADING: 'hide-loading',
   END: 'is-end',
+  MODAL_OPEN: 'modal--open',
 };
 
 export default State;

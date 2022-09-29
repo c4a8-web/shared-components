@@ -2,6 +2,8 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+import AdBlockInfo from './vue/ad-block-info.js';
+import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
@@ -44,9 +46,8 @@ import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
 import TBlock from './vue/shapes/t-block.js';
 import Square from './vue/shapes/square.js';
+import VideoInner from './vue/video-inner.js';
 import Wrapper from './vue/wrapper.js';
-import VideoInner from './vue/video-inner.js'
-import AsideWrapper from './vue/aside-wrapper.js'
 
 let root = document.querySelector('#app');
 let app;
@@ -63,6 +64,8 @@ const addApp = () => {
   });
 
   const components = [
+    AdBlockInfo,
+    AsideWrapper,
     Authors,
     BlogRecent,
     Card,
@@ -105,9 +108,8 @@ const addApp = () => {
     TBlock,
     Square,
     PersonQuote,
-    Wrapper,
     VideoInner,
-    AsideWrapper,
+    Wrapper,
   ];
 
   components.forEach((component) => {
