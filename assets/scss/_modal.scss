@@ -117,6 +117,10 @@
   }
 }
 
+.modal--open {
+  overflow: hidden;
+}
+
 modal {
   @include vue-loading;
 }
