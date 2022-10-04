@@ -13,6 +13,7 @@ import FormCheckboxes from './vue/form-checkboxes.js';
 import FormFields from './vue/form-fields.js';
 import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
+import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
 import VImg from './vue/img.js';
@@ -45,8 +46,8 @@ import SBlock from './vue/shapes/s-block.js';
 import TBlock from './vue/shapes/t-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
-import VideoInner from './vue/video-inner.js'
-import AsideWrapper from './vue/aside-wrapper.js'
+import VideoInner from './vue/video-inner.js';
+import AsideWrapper from './vue/aside-wrapper.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -74,6 +75,7 @@ const addApp = () => {
     FormFields,
     FormSelect,
     Form,
+    Header,
     Headline,
     Icon,
     VImg,
