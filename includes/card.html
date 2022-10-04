@@ -1,3 +1,4 @@
+<!-- Shared Card Section -->
 {%- assign cardExcerpt = include.excerpt | default: '' -%}
 {%- assign cardBlogTitlePic = include.blogtitlepic -%}
 {%- assign cardUrl = include.url -%}
@@ -19,9 +20,6 @@
 {%- assign cardEvent = true -%}
 {%- endif -%}
 
-<!-- End Shared Card Section -->
-
-
 <card
   large="{{ cardLarge }}"
   blog-title-pic="{{ cardBlogTitlePic }}"
@@ -37,3 +35,4 @@
   :data-authors="{{ site.data.authors | jsonify | escape }}"
 
 ></card>
+<!-- End Shared Card Section -->
