@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesheaderhtml as component } from '../../.storybook/generatedIncludes';
+import headerTemplate from '!!raw-loader!./header.html';
 
 const options = getTitle({
   title: 'Header',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, headerTemplate);
 
 export const Header = Template.bind({});
 

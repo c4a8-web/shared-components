@@ -5,10 +5,15 @@ export default {
       return ['', 'vue-component'];
     },
   },
-  props: {},
+  props: {
+    home: Object,
+    navigation: Object,
+  },
   template: `
     <header>
-      header
+      <div class="header__logo">
+        <v-img :img="home?.img" :cloudinary="true" />
+      </div>
     </header>
   `,
 };

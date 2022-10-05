@@ -3,6 +3,7 @@ import { Liquid } from 'liquidjs';
 import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
 // TODO implement an autoloader of the data folder
+import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
 import Contact from './data/contact';
@@ -27,6 +28,7 @@ const site = {
     authors: Authors,
     lang: Lang,
     options: Options,
+    header: Header,
   },
   posts: Posts,
   events: Events,
