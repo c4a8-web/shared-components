@@ -12,15 +12,14 @@
 {%- assign cardYoutubeUrl = include.youtubeUrl -%}
 
 {%- unless cardDate -%}
-{%- assign cardDate = include.moment -%}
+  {%- assign cardDate = include.moment -%}
 {%- endunless -%}
 
 {%- if cardWebcast -%}
-{%- assign cardEvent = true -%}
+  {%- assign cardEvent = true -%}
 {%- endif -%}
 
 <!-- End Shared Card Section -->
-
 
 <card
   large="{{ cardLarge }}"

@@ -3,7 +3,7 @@ const CaseStudies = [
     url: 'javascript:void(0);',
     layout: 'casestudies',
     title: 'Casestudy Azure @ DEKRA',
-    date: '2020-01-01',
+    moment: '2020-01-01',
     hero: {
       background: {
         img: '/casestudies/casestudy-dekra-v2.png',
@@ -16,7 +16,7 @@ const CaseStudies = [
     url: 'javascript:void(0);',
     layout: 'casestudies',
     title: 'Casestudy Azure with CTA Link',
-    date: '2020-04-04',
+    moment: '2020-04-04',
     hero: {
       background: {
         img: '/casestudies/casestudy-dekra-v2.png',
@@ -35,7 +35,7 @@ const CaseStudies = [
     url: 'javascript:void(0);',
     layout: 'casestudies',
     title: 'Casestudy Azure @ lorem ipsum',
-    date: '2020-07-07',
+    moment: '2020-07-07',
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
@@ -47,7 +47,7 @@ const CaseStudies = [
     url: 'javascript:void(0);',
     layout: 'casestudies',
     title: 'Casestudy Azure @ DEKRA',
-    date: '2020-01-01',
+    moment: '2020-01-01',
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
@@ -60,7 +60,7 @@ const CaseStudies = [
     url: 'javascript:void(0);',
     layout: 'casestudies',
     title: 'Casestudy Azure @ lokal',
-    date: '2020-04-04',
+    moment: '2020-04-04',
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
@@ -72,7 +72,7 @@ const CaseStudies = [
     url: 'javascript:void(0);',
     layout: 'casestudies',
     title: 'Casestudy Azure @ lorem ipsum',
-    date: '2020-07-07',
+    moment: '2020-07-07',
     hero: {
       background: {
         img: 'casestudies/casestudy-dekra-v2.png',
