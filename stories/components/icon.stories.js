@@ -85,3 +85,10 @@ ComputerShield.args = {
   icon: 'computer-shield',
   size: 'large',
 };
+
+export const Menu = Template.bind({});
+
+Menu.args = {
+  icon: 'menu',
+  size: 'large',
+};
