@@ -2,6 +2,7 @@ export default {
   tagName: 'menu',
   computed: {
     effectiveKeySplines() {
+      // return null;
       return '0.19 1 0.2 1';
     },
     style() {
@@ -55,23 +56,21 @@ export default {
     },
   },
   updated() {
-    console.log('change');
-    if (this.closed) {
-      // this.keyPoints = '0;1';
-    } else {
-      // this.keyPoints = '1;0';
-    }
-    this.animateLines();
+    this.animateLines(this.closed);
   },
   methods: {
-    animateLines() {
-      this.$refs['line1'].querySelectorAll('animate').forEach((animation) => {
-        animation.beginElement();
+    animateLines(mode) {
+      const animations = [];
+
+      this.$refs['svg'].querySelectorAll('animate').forEach((animation) => {
+        if (mode && !animation.classList.contains('closed')) {
+          animations.push(animation);
+        } else if (!mode && animation.classList.contains('closed')) {
+          animations.push(animation);
+        }
       });
-      this.$refs['line2'].querySelectorAll('animate').forEach((animation) => {
-        animation.beginElement();
-      });
-      this.$refs['line3'].querySelectorAll('animate').forEach((animation) => {
+
+      animations.forEach((animation) => {
         animation.beginElement();
       });
     },
@@ -85,26 +84,34 @@ export default {
     return {
       duration: '0.75s',
       begin: 'indefinite',
-      keyTimes: null,
-      keyPoints: '0;1',
+      keyTimes: '0;1',
     };
   },
   template: `
-    <svg v-bind="settings" :style="style" width="46" height="33" viewBox="0 0 46 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg v-bind="settings" :style="style" width="46" height="33" viewBox="0 0 46 33" fill="none" xmlns="http://www.w3.org/2000/svg" ref="svg" >
       <line id="line1" :x1="lineData.line1.from.x1" :x2="lineData.line1.from.x2" :y1="lineData.line1.from.y1" :y2="lineData.line1.from.y2" stroke-width="3" stroke-linecap="round" ref="line1" >
-        <animate attributeName="x1" :begin="begin" :dur="duration" :from="lineData.line1.from.x1" :to="lineData.line1.to.x1" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
-        <animate attributeName="x2" :begin="begin" :dur="duration" :from="lineData.line1.from.x2" :to="lineData.line1.to.x2" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
-        <animate attributeName="y1" :begin="begin" :dur="duration" :from="lineData.line1.from.y1" :to="lineData.line1.to.y1" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
-        <animate attributeName="y2" :begin="begin" :dur="duration" :from="lineData.line1.from.y2" :to="lineData.line1.to.y2" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="x1" :begin="begin" :dur="duration" :from="lineData.line1.from.x1" :to="lineData.line1.to.x1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="x2" :begin="begin" :dur="duration" :from="lineData.line1.from.x2" :to="lineData.line1.to.x2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="y1" :begin="begin" :dur="duration" :from="lineData.line1.from.y1" :to="lineData.line1.to.y1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="y2" :begin="begin" :dur="duration" :from="lineData.line1.from.y2" :to="lineData.line1.to.y2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="x1" :begin="begin" :dur="duration" :from="lineData.line1.to.x1" :to="lineData.line1.from.x1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="x2" :begin="begin" :dur="duration" :from="lineData.line1.to.x2" :to="lineData.line1.from.x2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="y1" :begin="begin" :dur="duration" :from="lineData.line1.to.y1" :to="lineData.line1.from.y1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="y2" :begin="begin" :dur="duration" :from="lineData.line1.to.y2" :to="lineData.line1.from.y2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
       </line>
       <line style="transition: all linear 10.7s" id="line2" :x1="lineData.line2.from.x1" :x2="lineData.line2.from.x2" :y1="lineData.line2.from.y1" :y2="lineData.line2.from.y2" stroke-width="3" stroke-linecap="round" ref="line2" >
-        <animate attributeName="x1" :begin="begin" :dur="duration" :from="lineData.line2.from.x1" :to="lineData.line2.to.x1" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
-        <animate attributeName="x2" :begin="begin" :dur="duration" :from="lineData.line2.from.x2" :to="lineData.line2.to.x2" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
-        <animate attributeName="y1" :begin="begin" :dur="duration" :from="lineData.line2.from.y1" :to="lineData.line2.to.y1" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
-        <animate attributeName="y2" :begin="begin" :dur="duration" :from="lineData.line2.from.y2" :to="lineData.line2.to.y2" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="x1" :begin="begin" :dur="duration" :from="lineData.line2.from.x1" :to="lineData.line2.to.x1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="x2" :begin="begin" :dur="duration" :from="lineData.line2.from.x2" :to="lineData.line2.to.x2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="y1" :begin="begin" :dur="duration" :from="lineData.line2.from.y1" :to="lineData.line2.to.y1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="y2" :begin="begin" :dur="duration" :from="lineData.line2.from.y2" :to="lineData.line2.to.y2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="x1" :begin="begin" :dur="duration" :from="lineData.line2.to.x1" :to="lineData.line2.from.x1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="x2" :begin="begin" :dur="duration" :from="lineData.line2.to.x2" :to="lineData.line2.from.x2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="y1" :begin="begin" :dur="duration" :from="lineData.line2.to.y1" :to="lineData.line2.from.y1" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="y2" :begin="begin" :dur="duration" :from="lineData.line2.to.y2" :to="lineData.line2.from.y2" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
       </line>
       <line style="transition: all linear 0.05s" id="line3" :x1="lineData.line3.from.x1" :x2="lineData.line3.from.x2" :y1="lineData.line3.from.y1" :y2="lineData.line3.from.y2" stroke-width="3" stroke-linecap="round" ref="line3" >
-        <animate attributeName="stroke-width" :begin="begin" dur="0.01s" from="3" to="0" fill="freeze" calcMode="spline" :keyPoints="keyPoints" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate attributeName="stroke-width" :begin="begin" dur="0.01s" from="3" to="0" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
+        <animate class="closed" attributeName="stroke-width" :begin="begin" dur="0.01s" to="3" from="0" fill="freeze" calcMode="spline" :keyTimes="keyTimes" :keySplines="effectiveKeySplines" />
       </line>
     </svg>
   `,
