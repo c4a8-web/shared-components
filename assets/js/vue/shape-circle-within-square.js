@@ -109,34 +109,6 @@ export default {
             },
           ],
         },
-        {
-          steps: [
-            {
-              name: 'hide',
-              // from: '1',
-              // to: '0',
-              dur: '0.01s',
-              // attributeName: 'opacity',
-              from: '1 1',
-              to: '0 0',
-              type: 'scale',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'show',
-              from: '0',
-              to: '1',
-              // dur: '0.01s',
-              attributeName: 'opacity',
-              // from: '-200 200',
-              // to: '200 200',
-              // type: 'transform',
-            },
-          ],
-        },
       ],
       elements: [
         {
@@ -162,7 +134,6 @@ export default {
             waitFor: 'firstCircle.transform',
           },
           reset: {
-            // delay: '-5',
             waitFor: 'thirdSquare.transform2',
             delay: animationStepDelay,
             dur: '0.01s',
@@ -180,7 +151,6 @@ export default {
           reset: {
             waitFor: 'thirdSquare.transform2',
             delay: animationStepDelay,
-            // start: true,
             dur: '0.01s',
           },
         },
@@ -191,7 +161,6 @@ export default {
             waitFor: 'secondCircle.transform',
           },
           reset: {
-            // delay: '0.01s',
             waitFor: 'fourthSquare.transform2',
             delay: animationStepDelay,
             dur: '0.01s',
