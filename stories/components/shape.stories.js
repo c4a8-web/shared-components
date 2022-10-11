@@ -70,6 +70,21 @@ ShapeHalfSquare.args = {
   ],
 };
 
+export const ShapeHalfSquareCopy = Template.bind({});
+
+ShapeHalfSquareCopy.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-half-square',
+      backgroundColor: 'var(--color-blue-light)',
+      firstColor: 'var(--color-page-detail-shape)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+    },
+  ],
+};
+
 export const ShapeFourSquares = Template.bind({});
 
 ShapeFourSquares.args = {
@@ -151,9 +166,11 @@ export const SBlock = Template.bind({});
 
 SBlock.args = {
   shapes: [
+    {
+      name: 'shape-square-circle',
+    },
     {},
-    {},
-    {},
+    { name: 'shape-fast-forward' },
     {
       backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
     },
@@ -165,9 +182,9 @@ export const SBlockTheme = Template.bind({});
 SBlockTheme.args = {
   shapes: [
     {
+      name: 'shape-square-circle',
       backgroundColor: 'var(--color-primary)',
-      foregroundColor: 'var(--color-white)',
-      thirdColor: '#ff0000',
+      circleColor: 'var(--color-white)',
     },
     {
       backgroundColor: 'var(--color-primary-accent)',
@@ -175,6 +192,7 @@ SBlockTheme.args = {
       thirdColor: '#ff0000',
     },
     {
+      name: 'shape-fast-forward',
       backgroundColor: 'var(--color-secondary)',
       foregroundColor: 'var(--color-white)',
       thirdColor: 'var(--color-primary-accent)',
@@ -192,9 +210,23 @@ export const TBlock = Template.bind({});
 TBlock.args = {
   name: 't-block',
   shapes: [
-    {},
-    {},
-    {},
+    {
+      name: 'shape-moving-eye',
+      squareColor: 'var(--color-green-blue)',
+      eyeColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-semi-circle',
+      squareColor: 'var(--color-green-blue)',
+      circleColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-half-square',
+      backgroundColor: 'var(--color-blue-light)',
+      firstColor: 'var(--color-page-detail-shape)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+    },
     {
       backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
     },
