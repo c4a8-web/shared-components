@@ -3,3 +3,56 @@
     @include z-index;
   }
 }
+
+.header {
+  $header-expand-breakpoint: 'lg';
+
+  display: flex;
+
+  .header__menu {
+    .icon {
+      width: spacing(8);
+      height: spacing(8);
+    }
+  }
+
+  nav {
+    display: none;
+  }
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    .header__menu {
+      display: none;
+    }
+
+    nav {
+      display: block;
+    }
+  }
+}
+
+.header__logo {
+  flex: 0 1 auto;
+
+  img {
+    width: #{'min(80%, 40vw)'};
+    height: auto;
+  }
+}
+
+.header__col {
+  --header-vertical-spacing: #{spacing(5)};
+
+  padding-top: var(--header-vertical-spacing);
+  padding-bottom: var(--header-vertical-spacing);
+  display: flex;
+  place-items: center;
+  justify-content: space-between;
+}
+
+.header__menu {
+  flex: 0 1 auto;
+  display: flex;
+  place-items: center;
+  // width: spacing(2);
+}

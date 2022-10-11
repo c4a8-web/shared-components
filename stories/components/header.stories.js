@@ -14,3 +14,9 @@ const Template = (args) => createComponent(args, headerTemplate);
 export const Header = Template.bind({});
 
 Header.args = {};
+
+export const HeaderLight = Template.bind({});
+
+HeaderLight.args = {
+  light: true,
+};

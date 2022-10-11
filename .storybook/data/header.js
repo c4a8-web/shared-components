@@ -1,15 +1,18 @@
 const Header = {
   home: {
     name: 'home',
-    img: '/logos/gkgab-Logo-white-vektor.svg',
+    imgLight: '/logos/gkgab-Logo-white-vektor.svg',
+    img: '/logos/gkgab-Logo-vektor.svg',
     de: {
       title: 'Home DE',
       url: '/',
       alias: '/',
+      alt: 'alt text DE',
     },
     en: {
       title: 'Home EN',
       url: '/en/',
+      alt: 'alt text EN',
     },
   },
   navigation: [

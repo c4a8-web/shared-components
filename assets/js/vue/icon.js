@@ -87,10 +87,13 @@ export default {
     classes: {
       default: '',
     },
+    closed: {
+      default: null,
+    },
   },
   template: `
     <span :class="classList" :style="parentStyle">
-      <component :is="icon" v-bind="settings" :color="props.color" />
+      <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" />
     </span>
     `,
 };

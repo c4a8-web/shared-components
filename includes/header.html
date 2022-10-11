@@ -1,9 +1,11 @@
 <!-- Shared Header Section -->
 {%- assign headerHome = site.data.header.home -%}
 {%- assign headerNavigation = site.data.header.navigation -%}
+{%- assign headerLight = include.light -%}
 
 <v-header
   :home="{{ headerHome | jsonify | escape }}"
   :navigation="{{ headerNavigation | jsonify | escape }}"
+  :light="{{ headerLight }}"
 ></v-header>
 <!-- End Shared Header Section -->
