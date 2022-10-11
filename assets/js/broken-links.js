@@ -35,11 +35,12 @@ class BrokenLinks {
   }
 
   getUrl(url) {
+    if (this.links[url]) return;
+
     return new Promise((resolve) => {
       const external = this.isExternal(url);
 
       fetch(url, this.options)
-        // .then((response) => response.text())
         .then((response) => {
           this.handleResponse(response, external);
 
@@ -82,7 +83,6 @@ class BrokenLinks {
 
   async checkLinks() {
     const linkKeys = Object.keys(this.links);
-    console.log('BrokenLinks ~ checkLinks ~ this.links', this.links);
 
     for (let i = 0; i < linkKeys.length; i++) {
       const key = linkKeys[i];
@@ -106,14 +106,12 @@ class BrokenLinks {
       url,
       error,
     });
-
-    console.log('BrokenLinks ~ handleError ~ error', error);
   }
 
   async getLinksOnSite(site, url) {
     const links = site.querySelectorAll('a[href]');
-
     for (var i = 0; i < links.length; i++) {
+      links[i].href = this.normalizeLink(links[i].href)
       const link = links[i];
       const linkUrl = this.getAbsoluteUrl(link, url);
 
@@ -121,6 +119,12 @@ class BrokenLinks {
         await this.getUrl(linkUrl);
       }
     }
+  }
+
+  normalizeLink(link) {
+    link = link.endsWith('.html') ? link.slice(0, -5) : link;
+    link = link.endsWith('/') ? link.slice(0, -1) : link;
+    return link
   }
 
   getAbsoluteUrl(link, siteUrl) {
