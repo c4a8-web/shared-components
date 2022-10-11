@@ -6,13 +6,13 @@ export default {
     name() {
       return tagName;
     },
-    shapeSquareCircle() {
+    firstShape() {
       return this.getShapeData(0);
     },
-    shapeRect() {
+    secondShape() {
       return this.getShapeData(1);
     },
-    shapeFastForward() {
+    thirdShape() {
       return this.getShapeData(2);
     },
     pyramid() {
@@ -29,10 +29,28 @@ export default {
     },
   },
   methods: {
+    allProps(shape) {
+      const props = {};
+
+      for (const prop of Object.keys(shape)) {
+        props[prop] = shape[prop];
+        console.log('prop', prop);
+        console.log('value', shape[prop]);
+      }
+
+      return props;
+    },
+
+    getShapeDataNew(id) {
+      const shape = (this.shapes && this.shapes[id]) ?? {};
+
+      return this.allProps(shape);
+    },
     getShapeData(id) {
       const shape = (this.shapes && this.shapes[id]) ?? {};
 
       return {
+        name: shape.name,
         backgroundColor: shape.backgroundColor ? shape.backgroundColor : null,
         foregroundColor: shape.foregroundColor ? shape.foregroundColor : null,
         thirdColor: shape.thirdColor ? shape.thirdColor : null,
@@ -45,13 +63,13 @@ export default {
       switch (id) {
         default:
         case 0:
-          return 'square-half-square';
+          return 'shape-moving-eye';
         case 1:
           return 'rect';
         case 2:
-          return 'shape-moving-eye';
+          return 'shape-semi-circle';
         case 3:
-          return 'shape-pyramid';
+          return 'shape-half-square';
       }
     },
   },
@@ -68,21 +86,23 @@ export default {
         <path fill="#ffffff" d="m 800 600 l -200 -200 H 600 V 600 z"/>
       </g>
 
+      <component
+        transform="translate(400 800)"
+        :is="firstShape?.name"
+        v-bind="getShapeDataNew(0)">
+      </component>
 
-      <shape-moving-eye
-        eye-color="var(--color-yellow)"
-        square-color="var(--color-gigas)"
-        transform="translate(400 800)">
-      </shape-moving-eye>
+      <component
+        transform="translate(0 400)"
+        :is="secondShape?.name"
+        v-bind="getShapeDataNew(1)">
+      </component>
 
-      <shape-semi-circle
-        transform="translate(0 400)">
-      </shape-semi-circle>
-
-
-      <shape-half-square
-        transform="translate(400 0)">
-      </shape-half-square>
+      <component
+        transform="translate(400 0)"
+        :is="thirdShape?.name"
+        v-bind="getShapeDataNew(2)">
+      </component>
     </svg>
   `,
 };
