@@ -2,7 +2,6 @@ export default {
   tagName: 'menu',
   computed: {
     effectiveKeySplines() {
-      // return null;
       return '0.19 1 0.2 1';
     },
     style() {
@@ -82,7 +81,7 @@ export default {
   },
   data() {
     return {
-      duration: '0.75s',
+      duration: '0.55s',
       begin: 'indefinite',
       keyTimes: '0;1',
     };
