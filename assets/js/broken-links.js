@@ -12,9 +12,9 @@ class BrokenLinks {
   constructor(rootUrl) {
     this.rootUrl = rootUrl;
     this.errors = [];
-    this.links = {
-      visited: [],
-    };
+    this.links = {};
+    this.prevLink = {};
+    this.errorPrevLink = {};
     this.options = {
       // method: 'HEAD',
       mode: 'cors',
@@ -23,55 +23,38 @@ class BrokenLinks {
     };
 
     this.start();
-    console.log(this.links);
   }
 
   async start() {
     await this.getUrl(this.rootUrl);
-    this.links.visited.push(this.rootUrl);
+
+    this.showErrors();
+    console.log(this.prevLink);
   }
 
-  getUrl(url) {
-    if (this.links[url]) return;
+  showErrors() {
+    //console.debug('errors', this.errors);
+  }
+
+  getUrl(url, previousUrl) {
+    //if (this.links[url]) return;
+    this.prevLink[url] = "Previous Url: " + previousUrl;
 
     return new Promise((resolve) => {
-      //const external = this.isExternal(url);
+      const external = this.isExternal(url);
 
       fetch(url, this.options)
         .then((response) => {
-          if (!this.links.visited.includes(response.url)){
-            this.links.visited.push(response.url);
-            response.text().then((text) => {
-              this.checkLinks(text)
-            } );
-          }
+          this.handleResponse(response, external);
 
           resolve();
         })
         .catch((error) => {
-          //this.handleError({ url, error });
+          this.handleError({ url, error, previousUrl });
 
           resolve();
         });
     });
-  }
-
-  async checkLinks(text) {
-    let matches = [];
-    let match;
-    let regex = /href="(.*?)"/g;
-    while (match = regex.exec(text)) {
-      matches.push(match[1])
-    }
-
-    for (let i = 0; i < matches.length; i++) {
-      const site = matches[i];
-      const val = this.isExternal(site);
-
-      if (!val && !this.links.visited.includes(site)) {
-        this.getUrl(site);
-      }
-    }
   }
 
   isExternal(url) {
@@ -80,13 +63,26 @@ class BrokenLinks {
 
     return url.match(regex) ? false : true;
   }
-  /*
-  showErrors() {
-    console.debug('errors', this.errors);
+
+  async handleResponse(response, external) {
+    const { url } = response;
+
+    if (this.links[url]) return;
+
+    if (external) {
+      this.links[url] = external;
+
+      this.checkLinks();
+    } else {
+      response.text().then((html) => {
+        this.links[url] = {
+          html,
+        };
+
+        this.checkLinks();
+      });
+    }
   }
-
-
-
 
   async checkLinks() {
     const linkKeys = Object.keys(this.links);
@@ -107,11 +103,13 @@ class BrokenLinks {
   }
 
   handleError(data) {
-    const { url, error } = data;
-
+    const { url, error, previousUrl } = data;
+    //console.log(error);
+    //this.errorPrevLink[url] = previousUrl;
     this.errors.push({
       url,
       error,
+      previousUrl
     });
   }
 
@@ -123,7 +121,7 @@ class BrokenLinks {
       const linkUrl = this.getAbsoluteUrl(link, url);
 
       if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
-        await this.getUrl(linkUrl);
+        await this.getUrl(linkUrl, url);
       }
     }
   }
@@ -145,7 +143,7 @@ class BrokenLinks {
     const regex = /^(http(s)?:\/\/)?[\w.-]+(:\d+)?(\/[\w\.-]*)*$/g;
 
     return url.match(regex) ? true : false;
-  }*/
+  }
 }
 
 // TODO bug when the path is not absolute modern-workplace/microsoft-endpoint-manager/ -> de/modern-workplace/microsoft-endpoint-manager/
