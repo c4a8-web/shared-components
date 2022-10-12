@@ -1,0 +1,22 @@
+{% assign introText = include.introText %}
+{% assign headline = include.headline %}
+{% assign copy = include.copy %}
+{% assign headline = include.headline %}
+<!-- Intro Text Section -->
+{% if headline %}
+<div class="container">
+    {%
+        include headline-row.html
+        text=headline
+        centered=true
+    %}
+</div>
+{% endif %}
+<figure class="{{ include.spacing }}">
+<div class="intro-text container space-lg-2">
+  <p class="intro-text__copy font-size-4 text-lh-lg">
+    {{ copy }}
+  </p>
+</div>
+</figure>
+<!-- End Intro Text Section -->

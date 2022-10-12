@@ -1,0 +1,9 @@
+.intro-text {
+  .highlight {
+      @include text-highlight;
+  }
+
+  .text-lh-lg {
+      line-height: 1.8;
+  }
+}
