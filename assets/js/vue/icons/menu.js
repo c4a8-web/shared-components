@@ -57,20 +57,25 @@ export default {
   updated() {
     this.animateLines(this.closed);
   },
+  mounted() {
+    this.animateLines(this.closed, true);
+  },
   methods: {
-    animateLines(mode) {
+    animateLines(mode, start) {
       const animations = [];
 
       this.$refs['svg'].querySelectorAll('animate').forEach((animation) => {
-        if (mode && !animation.classList.contains('closed')) {
+        if (!mode && !animation.classList.contains('closed')) {
           animations.push(animation);
-        } else if (!mode && animation.classList.contains('closed')) {
+        } else if (mode && animation.classList.contains('closed')) {
           animations.push(animation);
         }
       });
 
+      const animationFunction = start ? 'beginElementAt' : 'beginElement';
+
       animations.forEach((animation) => {
-        animation.beginElement();
+        animation[animationFunction](1000);
       });
     },
   },
