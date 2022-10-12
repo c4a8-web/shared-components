@@ -37,15 +37,24 @@ class BrokenLinks {
   }
 
   getUrl(url, previousUrl) {
+    if (url === 'http://localhost:4000/broken-links') {
+      console.log('BREAK IT 1');
+      console.log(previousUrl);
+    }
+
     //if (this.links[url]) return;
-    this.prevLink[url] = "Previous Url: " + previousUrl;
+    this.prevLink[url] = 'Previous Url: ' + previousUrl;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
 
+      if (url === 'http://localhost:4000/broken-links') {
+        console.log('BREAK IT 2');
+      }
+
       fetch(url, this.options)
         .then((response) => {
-          this.handleResponse(response, external);
+          this.handleResponse(response, external, url);
 
           resolve();
         })
@@ -64,8 +73,14 @@ class BrokenLinks {
     return url.match(regex) ? false : true;
   }
 
-  async handleResponse(response, external) {
+  async handleResponse(response, external, test) {
     const { url } = response;
+
+    if (url === 'http://localhost:4000/broken-links/') {
+      console.log('BREAK IT');
+      console.log(response);
+      console.log('test', test);
+    }
 
     if (this.links[url]) return;
 
@@ -104,21 +119,27 @@ class BrokenLinks {
 
   handleError(data) {
     const { url, error, previousUrl } = data;
-    //console.log(error);
-    //this.errorPrevLink[url] = previousUrl;
+
     this.errors.push({
       url,
       error,
-      previousUrl
+      previousUrl,
     });
   }
 
   async getLinksOnSite(site, url) {
     const links = site.querySelectorAll('a[href]');
+
     for (var i = 0; i < links.length; i++) {
-      links[i].href = this.normalizeLink(links[i].href)
+      links[i].href = this.normalizeLink(links[i].href);
+
       const link = links[i];
       const linkUrl = this.getAbsoluteUrl(link, url);
+
+      if (linkUrl === 'http://localhost:4000/broken-links') {
+        console.log('BREAK IT 3');
+        console.log('link', link);
+      }
 
       if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
         await this.getUrl(linkUrl, url);
@@ -129,7 +150,8 @@ class BrokenLinks {
   normalizeLink(link) {
     link = link.endsWith('.html') ? link.slice(0, -5) : link;
     link = link.endsWith('/') ? link.slice(0, -1) : link;
-    return link
+
+    return link;
   }
 
   getAbsoluteUrl(link, siteUrl) {
