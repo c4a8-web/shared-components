@@ -62,7 +62,7 @@ export default {
             <nav>
               <ul class="header__list">
                 <li class="header__item" v-for="item in navigation">
-                  <a class="header__link" href="" v-on:mouseover="handleMouseOver" v-on:mouseout="handleMouseOut">
+                  <a class="header__link" href="" v-on:mouseover="handleMouseOver" v-on:mouseout="handleMouseOut" v-if="item.languages">
                     {{ item.languages[lang]?.title }}
                   </a>
                   <ul class="header__list header__list--expanded" v-if="item.children">

@@ -89,14 +89,15 @@ ul.dashed li:before {
 
 #app {
   .header-meta,
-  header nav:not(.hs-menu-initialized),
+  // header nav:not(.hs-menu-initialized),
+  // header,
   main {
     opacity: 0;
     pointer-events: none;
   }
 
   &[data-v-app] {
-    .header-meta,
+    // .header-meta,
     main {
       opacity: 1;
       pointer-events: auto;
