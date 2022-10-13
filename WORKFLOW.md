@@ -162,7 +162,7 @@ After that you can use the variable `getCollectionData` and pass the values in t
   ctaHref=getCollectionData.url
   thumb=getCollectionData.hero.background.img
   alt=getCollectionData.hero.background.alt
-  logo=serviceOverview.logo.img
-  logoAlt=serviceOverview.logo.alt
+  logo=getCollectionData.serviceOverview.logo.img
+  logoAlt=getCollectionData.serviceOverview.logo.alt
 %}
 ```
