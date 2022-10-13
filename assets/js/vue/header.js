@@ -35,8 +35,6 @@ export default {
       ref.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
-      // return;
-
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
@@ -57,9 +55,50 @@ export default {
     getHref(item) {
       return item.children ? 'javascript:void(0);' : item.languages[this.lang].url;
     },
-    // switchLang() {
-    //   const lang = this.lang === 'de' ? 'en' : this.defaultLang;
-    // },
+    getNextLanguage() {
+      const languages = this.home.languages;
+
+      if (!languages) return;
+
+      const keys = Object.keys(languages);
+
+      if (!keys.length) return;
+
+      const nextLang = keys.filter((lang) => lang !== this.lang);
+
+      if (!nextLang.length) return;
+
+      return nextLang[0];
+    },
+    handleLanguageSwitch() {
+      const nextLang = this.getNextLanguage();
+      const nextUrl = this.getNextUrl(nextLang);
+      const gotoUrl = nextUrl ? nextUrl : this.home.languages[nextLang].url;
+
+      document.location.href = gotoUrl;
+    },
+    getCurrentPath() {
+      const currentPath = document.location.pathname;
+
+      return currentPath;
+    },
+    getNextUrl(lang) {
+      const currentPath = this.getCurrentPath();
+
+      const matcher = (obj) => {
+        return obj.url === currentPath;
+      };
+
+      const callback = (_, parent) => {
+        return parent;
+      };
+
+      const parent = Tools.findRecursive(this.navigation, matcher, callback);
+
+      if (!parent) return;
+
+      return parent[lang]?.url;
+    },
   },
   props: {
     home: Object,
@@ -104,6 +143,10 @@ export default {
                 </li>
               </ul>
             </nav>
+            <div class="header__search"></div>
+            <div class="header__language-switch" v-on:click="handleLanguageSwitch">
+              {{ getNextLanguage() }}
+            </div>
           </div>
         </div>
       </div>
@@ -119,7 +162,9 @@ export default {
                     </figcaption>
                     <ul class="header__flyout-list" v-for="subChild in child.children">
                       <li class="" v-if="subChild.languages">
-                        {{ subChild.languages[lang].title }}
+                        <a :href="subChild.languages[lang].url">
+                          {{ subChild.languages[lang].title }}
+                        </a>
                       </li>
                     </ul>
                   </figure>

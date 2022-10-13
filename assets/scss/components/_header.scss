@@ -57,8 +57,13 @@ $header-border-size: 1px;
       display: none;
     }
 
-    nav {
+    .header__link,
+    nav,
+    .header__language-switch {
       display: block;
+    }
+
+    nav {
       position: relative;
       width: auto;
       left: auto;
@@ -82,7 +87,6 @@ $header-border-size: 1px;
       width: auto;
       border: 0;
       padding: var(--header-vertical-spacing) spacing(4);
-      display: block;
     }
 
     .header__link-content {
@@ -188,4 +192,15 @@ $header-border-size: 1px;
 .header__flyout-list {
   list-style-type: none;
   padding: 0;
+}
+
+.header__language-switch {
+  text-transform: uppercase;
+  cursor: pointer;
+  padding: var(--header-vertical-spacing) spacing(4);
+  display: none;
+}
+
+.header__search {
+  display: none;
 }

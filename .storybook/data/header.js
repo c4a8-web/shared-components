@@ -3,16 +3,18 @@ const Header = {
     name: 'home',
     imgLight: '/logos/gkgab-Logo-white-vektor.svg',
     img: '/logos/gkgab-Logo-vektor.svg',
-    de: {
-      title: 'Home DE',
-      url: '/',
-      alias: '/',
-      alt: 'alt text DE',
-    },
-    en: {
-      title: 'Home EN',
-      url: '/en/',
-      alt: 'alt text EN',
+    languages: {
+      de: {
+        title: 'Home DE',
+        url: '',
+        alias: '/',
+        alt: 'alt text DE',
+      },
+      en: {
+        title: 'Home EN',
+        url: '',
+        alt: 'alt text EN',
+      },
     },
   },
   navigation: [
@@ -52,15 +54,15 @@ const Header = {
               },
             },
             {
-              name: 'lorem1',
+              name: 'consulting-services',
               languages: {
                 de: {
-                  title: 'lorem ipsum',
-                  url: 'javascript:void(0);',
+                  title: 'Consulting Services DE',
+                  url: '/de/modern-workplace/consulting-services/',
                 },
                 en: {
-                  title: 'dolor sit',
-                  url: 'javascript:void(0);',
+                  title: 'Consulting Services EN',
+                  url: '/en/modern-workplace/consulting-services/',
                 },
               },
             },
