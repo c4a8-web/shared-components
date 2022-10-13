@@ -3,7 +3,7 @@
 {%- assign teaserCtaType = include.type -%}
 {%- assign teaserCtaLink = include.link -%}
 {%- assign teaserCtaTarget = include.target -%}
-{%- assign teaserCtaExternal = include.external -%}
+{%- assign teaserCtaExternal = include.ctaExternal -%}
 {%- assign teaserThumb = include.thumb -%}
 {%- assign teaserAlt = include.alt -%}
 {%- assign teaserId = include.id -%}
@@ -23,7 +23,7 @@
 {% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
 
 <!-- Shared Teaser Section -->
-<div class="teaser {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="javascript:document.location.href='{{ teaserCtaHref }}'" {% endif %}>
+<div class="teaser {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
   <div class="container">
     <div class="row">
       <div class="teaser__row col">
