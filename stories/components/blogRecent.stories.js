@@ -19,6 +19,17 @@ BlogRecent.args = {
   slider: true,
 };
 
+export const BlogRecentHeadline = Template.bind({});
+
+BlogRecentHeadline.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  level: 'h2',
+  headlineClasses: 'text-white',
+  slider: true,
+  bgColor: 'var(--color-gigas)',
+};
+
 export const Events = Template.bind({});
 
 Events.args = {
