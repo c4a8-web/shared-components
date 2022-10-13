@@ -281,6 +281,33 @@ class Tools {
 
     return isStorybook ? `${storybookPath}${path}` : path;
   }
+
+  static findRecursive(obj, matcher, callback) {
+    let found = false;
+    let result;
+
+    function finder(obj, matcher, parentObj, callback) {
+      if (found) return;
+
+      if (matcher(obj)) {
+        found = true;
+
+        result = callback(obj, parentObj);
+
+        return;
+      }
+
+      for (let key in obj) {
+        if (typeof obj[key] === 'object') {
+          finder(obj[key], matcher, obj, callback);
+        }
+      }
+    }
+
+    finder(obj, matcher, obj, callback);
+
+    return result;
+  }
 }
 
 export default Tools;
