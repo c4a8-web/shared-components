@@ -3,6 +3,7 @@
 {%- assign teaserCtaType = include.type -%}
 {%- assign teaserCtaLink = include.link -%}
 {%- assign teaserCtaTarget = include.target -%}
+{%- assign teaserCtaExternal = include.external -%}
 {%- assign teaserThumb = include.thumb -%}
 {%- assign teaserAlt = include.alt -%}
 {%- assign teaserId = include.id -%}
@@ -61,6 +62,7 @@
             target=teaserCtaTarget
             type=teaserCtaType
             width="w-100 w-md-auto"
+            external=teaserCtaExternal
           %}
         </div>
       </div>
