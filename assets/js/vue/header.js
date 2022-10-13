@@ -13,8 +13,14 @@ export default {
         'vue-component',
       ];
     },
+    homeObj() {
+      return this.home?.languages[this.lowerLang];
+    },
     logoImg() {
       return Tools.isTrue(this.light) ? this.home.imgLight : this.home.img;
+    },
+    lowerLang() {
+      return this.lang.toLowerCase();
     },
   },
   methods: {
@@ -53,7 +59,7 @@ export default {
       return ref;
     },
     getHref(item) {
-      return item.children ? 'javascript:void(0);' : item.languages[this.lang].url;
+      return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang].url;
     },
     getNextLanguage() {
       const languages = this.home.languages;
@@ -64,7 +70,7 @@ export default {
 
       if (!keys.length) return;
 
-      const nextLang = keys.filter((lang) => lang !== this.lang);
+      const nextLang = keys.filter((lang) => lang !== this.lowerLang);
 
       if (!nextLang.length) return;
 
@@ -73,7 +79,7 @@ export default {
     handleLanguageSwitch() {
       const nextLang = this.getNextLanguage();
       const nextUrl = this.getNextUrl(nextLang);
-      const gotoUrl = nextUrl ? nextUrl : this.home.languages[nextLang].url;
+      const gotoUrl = nextUrl ? nextUrl : this.home.languages[nextLang]?.url;
 
       document.location.href = gotoUrl;
     },
@@ -122,7 +128,9 @@ export default {
         <div class="row">
           <div class="header__col col">
             <div class="header__logo">
-              <v-img :img="logoImg" :cloudinary="true" />
+              <a :href="homeObj.url">
+                <v-img :img="logoImg" :cloudinary="true" />
+              </a>
             </div>
             <div class="header__menu" v-on:click="handleClick">
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
@@ -131,12 +139,12 @@ export default {
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
                   <a class="header__link" :href="getHref(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
-                    <span class="header__link-content">{{ item.languages[lang]?.title }}</span>
+                    <span class="header__link-content">{{ item.languages[lowerLang]?.title }}</span>
                   </a>
                   <ul class="header__list header__list--expanded" v-if="item.children">
                     <li class="header__item" v-for="child in item.children">
                       <a class="header__link" href="" v-if="child.languages">
-                        <span class="header__link-content">{{ child.languages[lang]?.title }}</span>
+                        <span class="header__link-content">{{ child.languages[lowerLang]?.title }}</span>
                       </a>
                     </li>
                   </ul>
@@ -158,12 +166,12 @@ export default {
                 <div class="header__flyout-items" v-if="item.children">
                   <figure class="header__flyout-block" v-for="child in item.children">
                     <figcaption class="header__flyout-title" v-if="child.languages">
-                      {{ child.languages[lang]?.title }}
+                      {{ child.languages[lowerLang]?.title }}
                     </figcaption>
                     <ul class="header__flyout-list" v-for="subChild in child.children">
                       <li class="" v-if="subChild.languages">
-                        <a :href="subChild.languages[lang].url">
-                          {{ subChild.languages[lang].title }}
+                        <a :href="subChild.languages[lowerLang].url">
+                          {{ subChild.languages[lowerLang].title }}
                         </a>
                       </li>
                     </ul>
