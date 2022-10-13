@@ -109,6 +109,7 @@ export default {
   props: {
     home: Object,
     navigation: Object,
+    meta: Object,
     light: {
       default: null,
     },
@@ -150,6 +151,16 @@ export default {
                   </ul>
                 </li>
               </ul>
+              <ul class="header__meta-list" v-if="meta">
+                <li class="" v-for="item in meta">
+                  <a class="header__link" :href="item.languages[lowerLang]?.url">
+                    {{ item.languages[lowerLang]?.title }}
+                  </a>
+                </li>
+              </ul>
+              <div class="header__language-switch" v-on:click="handleLanguageSwitch">
+                {{ getNextLanguage() }}
+              </div>
             </nav>
             <div class="header__search"></div>
             <div class="header__language-switch" v-on:click="handleLanguageSwitch">
