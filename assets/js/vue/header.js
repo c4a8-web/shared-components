@@ -21,12 +21,41 @@ export default {
     handleClick() {
       this.closed = !this.closed;
     },
-    handleMouseOver() {
+    handleMouseOver(item, index) {
+      if (!item.children) return;
+
       this.hover = true;
-      console.log('mouse over');
+
+      const ref = this.getFlyoutRef(index);
+
+      if (!ref) return;
+
+      this.flyoutIndex = index;
+
+      ref.classList.add(State.EXPANDED);
     },
-    handleMouseOut() {
+    handleMouseOut(event) {
+      // return;
+
+      if (event.relatedTarget?.closest('.header__flyout')) return;
+
       this.hover = false;
+
+      const ref = this.getFlyoutRef(this.flyoutIndex);
+
+      if (!ref) return;
+
+      ref.classList.remove(State.EXPANDED);
+    },
+    getFlyoutRef(refName) {
+      const ref = this.$refs['flyout'][refName];
+
+      if (!ref) return;
+
+      return ref;
+    },
+    getHref(item) {
+      return item.children ? 'javascript:void(0);' : item.languages[this.lang].url;
     },
     // switchLang() {
     //   const lang = this.lang === 'de' ? 'en' : this.defaultLang;
@@ -45,7 +74,7 @@ export default {
       defaultLang: 'de',
       closed: true,
       hover: false,
-      flyoutContent: null,
+      flyoutIndex: null,
     };
   },
   template: `
@@ -59,16 +88,16 @@ export default {
             <div class="header__menu" v-on:click="handleClick">
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
             </div>
-            <nav>
+            <nav v-on:mouseout="handleMouseOut">
               <ul class="header__list">
-                <li class="header__item" v-for="item in navigation">
-                  <a class="header__link" href="" v-on:mouseover="handleMouseOver" v-on:mouseout="handleMouseOut" v-if="item.languages">
-                    {{ item.languages[lang]?.title }}
+                <li class="header__item" v-for="(item, index) in navigation">
+                  <a class="header__link" :href="getHref(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
+                    <span class="header__link-content">{{ item.languages[lang]?.title }}</span>
                   </a>
                   <ul class="header__list header__list--expanded" v-if="item.children">
                     <li class="header__item" v-for="child in item.children">
                       <a class="header__link" href="" v-if="child.languages">
-                        {{ child.languages[lang]?.title }}
+                        <span class="header__link-content">{{ child.languages[lang]?.title }}</span>
                       </a>
                     </li>
                   </ul>
@@ -78,12 +107,24 @@ export default {
           </div>
         </div>
       </div>
-      <div class="header__flyout">
+      <div class="header__flyout" v-on:mouseout="handleMouseOut">
         <div class="container">
           <div class="row">
             <div class="col">
-              FLYOUT CONTENT
-              <div v-html="flyoutContent"></div>
+              <div class="header__flyout-content" v-for="(item, index) in navigation" ref="flyout">
+                <div class="header__flyout-items" v-if="item.children">
+                  <figure class="header__flyout-block" v-for="child in item.children">
+                    <figcaption class="header__flyout-title" v-if="child.languages">
+                      {{ child.languages[lang]?.title }}
+                    </figcaption>
+                    <ul class="header__flyout-list" v-for="subChild in child.children">
+                      <li class="" v-if="subChild.languages">
+                        {{ subChild.languages[lang].title }}
+                      </li>
+                    </ul>
+                  </figure>
+                </div>
+              </div>
             </div>
           </div>
         </div>

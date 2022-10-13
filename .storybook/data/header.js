@@ -21,12 +21,9 @@ const Header = {
       languages: {
         de: {
           title: 'Kompetenzen',
-          // url: '/',
-          // alias: '/',
         },
         en: {
           title: 'Competences',
-          // url: '/en/',
         },
       },
       children: [
@@ -43,6 +40,16 @@ const Header = {
           children: [
             {
               name: 'clear-spend-go-card',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+              },
             },
             {
               name: 'lorem1',
@@ -85,6 +92,97 @@ const Header = {
             },
           ],
         },
+        {
+          name: 'azure',
+          languages: {
+            de: {
+              title: 'Azure / Cloud DE',
+            },
+            en: {
+              title: 'Azure / Cloud EN',
+            },
+          },
+          children: [
+            {
+              name: 'clear-spend-go-card',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem1',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem2',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 2',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem3',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem4',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 4',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 4',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem5',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 5',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 5',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+          ],
+        },
       ],
     },
     {
@@ -92,12 +190,9 @@ const Header = {
       languages: {
         de: {
           title: 'Services',
-          // url: '/',
-          // alias: '/',
         },
         en: {
           title: 'Services',
-          // url: '/en/',
         },
       },
       children: [
@@ -240,12 +335,11 @@ const Header = {
       languages: {
         de: {
           title: 'Cases',
-          // url: '/',
-          // alias: '/',
+          url: '/cases-de/',
         },
         en: {
           title: 'Cases',
-          // url: '/en/',
+          url: '/cases-en/',
         },
       },
     },
@@ -402,12 +496,39 @@ const Header = {
       languages: {
         de: {
           title: 'Produkte',
-          // url: '/',
-          // alias: '/',
+          url: '/products-de/',
         },
         en: {
           title: 'Products',
-          // url: '/en/',
+          url: '/products-en/',
+        },
+      },
+    },
+  ],
+  meta: [
+    {
+      name: 'karriere',
+      languages: {
+        de: {
+          title: 'Karriere',
+          url: '/de/karriere',
+        },
+        en: {
+          title: 'Career',
+          url: '/en/career',
+        },
+      },
+    },
+    {
+      name: 'lorem999',
+      languages: {
+        de: {
+          title: 'lorem ipsum blog',
+          url: '/blog/',
+        },
+        en: {
+          title: 'lorem ipsum blog',
+          url: '/blog/index-en/',
         },
       },
     },
