@@ -1,8 +1,8 @@
 import ShapeElements from '../shape-elements.js';
 
-const defaultStart = '0s';
-const animationDelay = '0s';
-const animationStepDelay = '0.05';
+const defaultStart = '0.3s';
+const animationDelay = '7';
+const animationStepDelay = '0.2';
 
 const tagName = 'shape-half-square';
 
@@ -12,9 +12,9 @@ export default {
     // classList() {
     //   return ['shape-square-forward', 'vue-component'];
     // },
-    // begin() {
-    //   return this.start ? this.start : defaultStart;
-    // },
+    begin() {
+      return this.start ? this.start : defaultStart;
+    },
     backgroundSquareColor() {
       return this.backgroundColor ? this.backgroundColor : '#5cbbff';
     },
@@ -27,6 +27,9 @@ export default {
     thirdSquareColor() {
       return this.thirdColor ? this.thirdColor : '#0072c6';
     },
+    squareGroup() {
+      return this.sequence.squareGroup;
+    },
     firstSquare() {
       return this.sequence.firstSquare;
     },
@@ -36,9 +39,12 @@ export default {
     thirdSquare() {
       return this.sequence.thirdSquare;
     },
+    fourthSquare() {
+      return this.sequence.fourthSquare;
+    },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '3s';
+      const duration = '0.8s';
 
       return {
         keySplines: '0 0 1 1',
@@ -73,84 +79,110 @@ export default {
         {
           steps: [
             {
-              name: 'motion',
-              attributeName: 'motion',
-              motion: true,
-              dur: '',
-              begin: '0s',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'transform',
-              from: '-200 -200',
-              to: '-200 -200',
-              dur: '',
-              type: 'scale',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'moveTo1',
-              from: '-200 -200',
-              to: '-200 -200',
+              name: 'transform1',
+              from: '400',
+              to: '200',
               dur: '',
               type: 'translate',
-              additive: true,
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'transform2',
+              from: '200',
+              to: '-80',
+              dur: '',
+              type: 'translate',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'transform3',
+              from: '-80',
+              to: '-200',
+              dur: '',
+              type: 'translate',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'transform4',
+              from: '0',
+              to: '-400',
+              dur: '',
+              type: 'translate',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'animate',
+              animate: true,
+              attributeName: 'width',
+              from: '300',
+              to: '200',
+              dur: '',
+              type: 'animate',
             },
           ],
         },
       ],
       elements: [
         {
-          name: 'firstSquare',
-          moveTo1: {
-            delay: 0,
-            values: '-200 -200;-200 -200',
+          name: 'squareGroup',
+          transform1: {
+            delay: animationStepDelay,
+            start: true,
+            waitFor: 'fourthSquare.reset',
+            keySplines: '0.2, 0.8, 0.7, 1',
           },
-          transform: {
-            delay: 0,
-            values: '0.505 1;0.505 1',
-            additive: true,
+          transform2: {
+            delay: animationStepDelay,
+            waitFor: 'squareGroup.transform1',
+            keySplines: '0.2, 0.7, 0.8, 1',
           },
-          motion: {
-            delay: 0,
-            path: 'M504 200 C470.17,200 383.17,200 301,200 C218.83,200 78,200 11,200 C-56,200 -82.33,200 -101,200 C-101,200 -101,200 -101,200',
-            keyPoints: '0;0.34;0.81;1;1',
-            keyTimes: '0;0.177778;0.344444;0.544444;1',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+          transform3: {
+            delay: animationStepDelay,
+            waitFor: 'squareGroup.transform2',
+            keySplines: '0.2, 0.7, 0.8, 1',
+          },
+          reset: {
+            waitFor: 'fourthSquare.transform4',
+            delay: animationStepDelay,
+            dur: '0.01s',
           },
         },
         {
           name: 'secondSquare',
-          motion: {
-            delay: 0,
-            keyTimes: '0;0.177778;0.344444;0.544444;1',
-            path: 'M805 200 C771.17,200 684.17,200 602,200 C519.83,200 379,200 312,200 C245,200 218.67,200 200,200 C200,200 200,200 200,200 ',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            keyPoints: '0;0.34;0.81;1;1',
+          animate: {
+            delay: animationStepDelay,
+            waitFor: 'squareGroup.transform2',
+            keySplines: '0.2, 0.8, 0.7, 1',
           },
-          moveTo1: {
-            delay: 0,
-            values: '-200 -200;-200 -200',
+          reset: {
+            waitFor: 'fourthSquare.transform4',
+            delay: animationStepDelay,
+            dur: '0.01s',
           },
         },
         {
-          name: 'thirdSquare',
-          moveTo1: {
-            delay: 0,
-            values: '-200 -200;-200 -200',
+          name: 'fourthSquare',
+          transform4: {
+            delay: animationDelay,
+            waitFor: 'squareGroup.transform3',
+            keySplines: '0.2, 0.8, 0.7, 1',
           },
-          motion: {
-            delay: 0,
-            keyTimes: '0;0.333333;0.544444;1',
-            keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            path: 'M602 200 C602,200 602,200 602,200 C568.33,200 433.67,200 400,200 C400,200 400,200 400,200',
-            keyPoints: '0;0;1;1',
+          reset: {
+            waitFor: 'fourthSquare.transform4',
+            delay: animationStepDelay,
+            dur: '0.1s',
           },
         },
       ],
@@ -188,6 +220,7 @@ export default {
         if (elementStepData.additive) newStep.additive = elementStepData.additive;
         if (elementStepData.dur) newStep.dur = elementStepData.dur;
         if (elementStepData.motion) newStep.motion = elementStepData.motion;
+        if (elementStepData.animate) newStep.animate = elementStepData.animate;
         if (elementStepData.keyTimes) newStep.keyTimes = elementStepData.keyTimes;
 
         if (!newStep.dur) newStep.dur = this.overall.dur;
@@ -210,6 +243,29 @@ export default {
       <g :style="clipPathUrl">
         <g id="squares" >
           <template v-for="animation in animations">
+            <template v-for="stepData in getStepData('squareGroup', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :keyPoints="stepData?.data?.keyPoints"
+                :values="stepData?.data?.values"
+                :path="stepData?.data?.path"
+                :isMotion="stepData?.step?.motion"
+                :isAnimate="stepData?.step?.animate"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
             <template v-for="stepData in getStepData('firstSquare', animation?.steps)">
               <shape-animation
                 :id="stepData?.data?.id"
@@ -229,6 +285,7 @@ export default {
                 :values="stepData?.data?.values"
                 :path="stepData?.data?.path"
                 :isMotion="stepData?.step?.motion"
+                :isAnimate="stepData?.step?.animate"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
             </template>
@@ -251,6 +308,7 @@ export default {
                 :values="stepData?.data?.values"
                 :path="stepData?.data?.path"
                 :isMotion="stepData?.step?.motion"
+                :isAnimate="stepData?.step?.animate"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
             </template>
@@ -273,39 +331,94 @@ export default {
                 :values="stepData?.data?.values"
                 :path="stepData?.data?.path"
                 :isMotion="stepData?.step?.motion"
+                :isAnimate="stepData?.step?.animate"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
+            </template>
+            <template v-for="stepData in getStepData('fourthSquare', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :keyPoints="stepData?.data?.keyPoints"
+                :values="stepData?.data?.values"
+                :path="stepData?.data?.path"
+                :isMotion="stepData?.step?.motion"
+                :isAnimate="stepData?.step?.animate"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
             </template>
           </template>
 
-
-
-
           <shape-animation
-            :id="firstSquare?.reset?.id"
-            :href="firstSquare?.href"
-            :begin="firstSquare?.reset?.begin"
+            :id="squareGroup?.reset?.id"
+            :href="squareGroup?.href"
+            :begin="squareGroup?.reset?.begin"
             attributeName="transform"
-            :dur="overall?.dur"
+            type="translate"
+            calcMode="paced"
+            from="-400"
+            to="400"
+            :dur="squareGroup?.reset?.dur"
             fill="freeze"
             calcMode="spline"
-            keyTimes="0;1"
-            :keySplines="overall?.keySplines"
           ></shape-animation>
+
+          <shape-animation
+            :id="secondSquare?.reset?.id"
+            :href="secondSquare?.href"
+            :begin="secondSquare?.reset?.begin"
+            attributeName="width"
+            type="animate"
+            calcMode="paced"
+            from="200"
+            to="300"
+            :dur="secondSquare?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            :isAnimate
+          ></shape-animation>
+
+          <shape-animation
+            :id="fourthSquare?.reset?.id"
+            :href="fourthSquare?.href"
+            :begin="fourthSquare?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="-400"
+            to="0"
+            :dur="fourthSquare?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+          ></shape-animation>
+
         </g>
+
 
         <g :id="staticSquare">
           <rect :fill="backgroundSquareColor" width="400" height="400" />
         </g>
-        <g :id="firstSquare?.id" >
-          <rect :fill="firstSquareColor" width="400" height="400" />
+
+        <g transform="translate(400, 0)" :id="squareGroup?.id" >
+          <g ><rect :id="firstSquare?.id" :fill="firstSquareColor" width="200" height="400"  /></g>
+          <g transform="translate(400, 0)" ><rect :fill="thirdSquareColor" width="200" height="400" /></g>
+          <g transform="translate(200, 0)" ><rect :id="secondSquare?.id" :fill="secondSquareColor" width="300" height="400"/></g>
+
         </g>
-        <g :id="secondSquare?.id">
-          <rect :fill="secondSquareColor" width="400" height="400" />
-        </g>
-        <g :id="thirdSquare?.id">
-          <rect :fill="thirdSquareColor" width="400" height="400" />
-        </g>
+          <g transform="translate(400, 0)" ><rect :id="fourthSquare?.id" :fill="backgroundSquareColor" width="400" height="400"/></g>
+
+
       </g>
     </g>`,
 };
