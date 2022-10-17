@@ -24,8 +24,11 @@ export default {
     },
   },
   methods: {
-    handleClick() {
+    handleCloseClick() {
       this.closed = !this.closed;
+    },
+    handleClick(item) {
+      console.log('item', item);
     },
     handleMouseOver(item, index) {
       if (!item.children) return;
@@ -133,13 +136,13 @@ export default {
                 <v-img :img="logoImg" :cloudinary="true" />
               </a>
             </div>
-            <div class="header__menu" v-on:click="handleClick">
+            <div class="header__menu" v-on:click="handleCloseClick">
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
             </div>
             <nav v-on:mouseout="handleMouseOut">
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
-                  <a class="header__link" :href="getHref(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
+                  <a class="header__link" :href="getHref(item)" v-on:click="handleClick(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
                     <span class="header__link-content">{{ item.languages[lowerLang]?.title }}</span>
                   </a>
                   <ul class="header__list header__list--expanded" v-if="item.children">

@@ -20,3 +20,9 @@ export const HeaderLight = Template.bind({});
 HeaderLight.args = {
   light: true,
 };
+
+export const HeaderEN = Template.bind({});
+
+HeaderEN.args = {
+  lang: 'en',
+};

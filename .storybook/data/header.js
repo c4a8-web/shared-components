@@ -1,3 +1,14 @@
+const getStoryLink = function (story) {
+  switch (story) {
+    case 'header--en':
+      return 'iframe.html?id=components-header--header-en&args=&viewMode=story';
+      break;
+    default:
+      return 'iframe.html?id=components-header--header&args=&viewMode=story';
+      break;
+  }
+};
+
 const Header = {
   home: {
     name: 'home',
@@ -6,13 +17,13 @@ const Header = {
     languages: {
       de: {
         title: 'Home DE',
-        url: '',
+        url: getStoryLink(),
         alias: '/',
         alt: 'alt text DE',
       },
       en: {
         title: 'Home EN',
-        url: '',
+        url: getStoryLink('header--en'),
         alt: 'alt text EN',
       },
     },
