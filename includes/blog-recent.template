@@ -4,6 +4,8 @@
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
 {%- assign blogRecentHeadlineClasses = include.headlineClasses -%}
+{%- assign blogRecentSubline = include.subline -%}
+{%- assign blogRecentSublineClasses = include.sublineClasses -%}
 {%- assign blogRecentLimit = include.limit | default: 3 -%}
 {%- assign blogRecentLimitCaseStudies = include.limitCaseStudies | default: blogRecentLimit -%}
 {%- assign blogRecentLimitEvents = include.limitEvents | default: blogRecentLimit -%}
@@ -118,6 +120,8 @@
   headline="{{ blogRecentHeadline }}"
   headline-level="{{ blogRecentHeadlineLevel }}"
   headline-classes="{{ blogRecentHeadlineClasses }}"
+  subline="{{ blogRecentSubline }}"
+  subline-classes="{{ blogRecentSublineClasses }}"
   :posts="{{ postsString | jsonify | escape }}"
   limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"
