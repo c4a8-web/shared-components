@@ -19,6 +19,15 @@ BlogRecent.args = {
   slider: true,
 };
 
+export const BlogRecentSubline = Template.bind({});
+
+BlogRecentSubline.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  subline: 'lorem ipsum subline lorem ipsum lorem ipsum lorem ipsum',
+  slider: true,
+};
+
 export const BlogRecentHeadline = Template.bind({});
 
 BlogRecentHeadline.args = {

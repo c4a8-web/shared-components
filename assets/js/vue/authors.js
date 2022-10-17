@@ -11,7 +11,7 @@ export default {
       ];
     },
     seperator() {
-      return this.noLink ? ' & ' : ' , ';
+      return this.noLink ? ' & ' : ', ';
     },
     authorArray() {
       return typeof this.authorsList === 'object' ? this.authorsList : [this.authorsList];
