@@ -1,0 +1,19 @@
+{%- assign checkCardsSlider = include.slider -%}
+{%- assign checkCardsHeadline = include.headline -%}
+{%- assign checkCardsHeadlineLevel = include.level -%}
+{%- assign checkCardsHeadlineClasses = include.headlineClases -%}
+{%- assign checkCardsSubline = include.subline -%}
+{%- assign checkCardsSublineClasses = include.sublineClasses -%}
+
+
+{% assign checkCards = site.check | where_exp:"item", "item.lang == page.lang" %}
+
+{{ checkCards }}
+<check-card
+  slider="{{ checkCardsSlider }}"
+  subline="{{ checkCardsSubline }}"
+  subline-classes="{{ checkCardsSublineClasses }}"
+  headline="{{ checkCardsHeadline }}"
+  headline-level="{{ checkCardsHeadlineLevel }}"
+  headline-classes="{{ checkCardsHeadlineClasses }}"
+></check-card>
