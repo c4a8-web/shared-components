@@ -98,6 +98,10 @@
     }
   }
 
+  &.cta--reversed {
+    flex-direction: row-reverse;
+  }
+
   &.cta--download {
     .icon {
       transform: translateY(-50%) rotate(135deg);
