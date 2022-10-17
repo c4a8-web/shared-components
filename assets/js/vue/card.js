@@ -153,26 +153,16 @@ export default {
           </figure>
         </div>
 
-        <div class="card-body">
+        <div class="card-body richtext">
           <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
-          <template v-for="points in subPointsArray">
-            <div class="d-flex position-relative w-100 mb-4" >
-              <div class="w-20 d-flex justify-content-center">
-                <div class="card-body--hyphen position-absolute"></div>
-              </div>
-              <div class="w-80">{{points}}</div>
-            </div>
-          </template>
+          <ul class="text-black" >
+            <template v-for="points in subPointsArray">
+              <li class="mb-4"><span>{{points}}</span></li>
+            </template>
+          </ul>
 
-          <!--
-            <ul class="card__subpoints" >
-              <template v-for="points in subPointsArray">
-                <li class="mb-4 text-reset" ><span class="card-text">{{points}}</span></li>
-              </template>
-            </ul>
-          -->
         </div>
 
       </template>

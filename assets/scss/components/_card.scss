@@ -12,10 +12,6 @@
     }
   }
 
-  ul {
-    list-style-type: square;
-  }
-
   &.card--event {
     .card__author {
       text-align: right;
@@ -59,13 +55,6 @@
   .card-footer,
   .card-body {
     background-color: var(--color-card-background);
-  }
-  .card-body--hyphen {
-    //top: 10%;
-    width: 10%;
-    height: 2%;
-    margin-top: 0.8rem;
-    background-color: var(--color-blue-light);
   }
   /*.card__subpoints li::marker{
     font-size: 5rem;
