@@ -1,15 +1,24 @@
 .contact {
   --color-contact-person: var(--color-yellow);
+  --color-contact-quote-person: var(--color-green-blue);
   --color-detail-highlight: var(--color-orange);
   --color-contact-background: var(--color-primary);
+  --color-contact-quote-background: var(--color-gigas);
   --contact-spacing-collapsed: #{spacing(3)};
 
   &.contact--has-shape {
     --color-contact-person: var(--color-primary);
   }
 
-  &:not(.contact--has-shape):not(.is-collapsed) {
+  &:not(.contact--has-shape):not(.is-collapsed):not(.contact--quote) {
     background-color: var(--color-contact-background);
+  }
+  &:not(.contact--has-shape):not(.is-collapsed) {
+    background-color: var(--color-contact-quote-background);
+  }
+
+  & .contact--quote {
+    color: white;
   }
 
   &:not(.is-collapsed) {
@@ -116,8 +125,16 @@
 }
 
 .contact__person {
-  background-color: var(--color-contact-person);
+  &:not(.contact--quote){
+    background-color: var(--color-contact-person);
+  }
+  background-color: var(--color-contact-quote-person);
   height: 100%;
+}
+
+.contact__position{
+  left: 45%;
+  top: -5.5%;
 }
 
 .contact__details {
