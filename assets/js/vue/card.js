@@ -42,6 +42,9 @@ export default {
     hasNoLink() {
       return Tools.isTrue(this.webCast) ? true : false;
     },
+    subPointsArray() {
+      return this.subPoints ? JSON.parse(this.subPoints) : [];
+    }
   },
   methods: {
     formatDate(date) {
@@ -85,6 +88,12 @@ export default {
     author: Array,
     date: String,
     large: {
+      default: null,
+    },
+    long: {
+      default: null,
+    },
+    subPoints: {
       default: null,
     },
     event: {
@@ -134,6 +143,39 @@ export default {
         </div>
       </template>
 
+      <template v-else-if="long">
+        <div class="card-img-top position-relative card__image--long" v-if="blogTitlePic">
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+              <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+            </svg>
+          </figure>
+        </div>
+
+        <div class="card-body">
+          <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
+          <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
+
+          <template v-for="points in subPointsArray">
+            <div class="d-flex position-relative w-100 mb-4" >
+              <div class="w-20 d-flex justify-content-center">
+                <div class="card-body--hyphen position-absolute"></div>
+              </div>
+              <div class="w-80">{{points}}</div>
+            </div>
+          </template>
+
+          <!--
+            <ul class="card__subpoints" >
+              <template v-for="points in subPointsArray">
+                <li class="mb-4 text-reset" ><span class="card-text">{{points}}</span></li>
+              </template>
+            </ul>
+          -->
+        </div>
+
+      </template>
       <template v-else>
         <div class="card-img-top position-relative" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
