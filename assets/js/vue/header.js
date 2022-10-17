@@ -155,10 +155,13 @@ export default {
                 </li>
               </ul>
               <ul class="header__meta-list" v-if="meta">
-                <li class="" v-for="item in meta">
-                  <a class="header__link" :href="item.languages[lowerLang]?.url">
-                    {{ item.languages[lowerLang]?.title }}
-                  </a>
+                <li class="header__meta-list-item" v-for="item in meta">
+                  <cta
+                    :href="item.languages[lowerLang]?.url"
+                    :text="item.languages[lowerLang]?.title"
+                    link=true
+                    reversed=true
+                  />
                 </li>
               </ul>
               <div class="header__language-switch" v-on:click="handleLanguageSwitch">
