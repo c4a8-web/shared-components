@@ -98,6 +98,9 @@ export default {
     headlineClassesValue() {
       return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
     },
+    sublineClassesValue() {
+      return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
+    },
   },
   methods: {
     event(post) {
@@ -119,6 +122,8 @@ export default {
     headline: String,
     headlineLevel: String,
     headlineClasses: String,
+    subline: String,
+    sublineClasses: String,
     posts: String,
     cta: {
       default: null,
@@ -143,7 +148,8 @@ export default {
         <wrapper :hideContainer="hiddenContainer">
           <div class="row" v-if="headline">
             <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-              <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" >
+              <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+              <span v-if="subline" :class="sublineClassesValue" >{{ subline }}</span>
             </div>
           </div>
           <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
