@@ -43,6 +43,7 @@ import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
 import TBlock from './vue/shapes/t-block.js';
+import LBlock from './vue/shapes/l-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
 
@@ -101,6 +102,7 @@ const addApp = () => {
     Smile,
     SBlock,
     TBlock,
+    LBlock,
     Square,
     PersonQuote,
     Wrapper,
