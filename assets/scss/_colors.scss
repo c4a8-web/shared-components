@@ -57,6 +57,7 @@ $color-blue-medium: #0072c6;
   --color-manhatten: #f3b394;
   --color-jacarta: #19122f;
   --color-wistful: #b2a7d2;
+  --color-polar: #f6f9fd;
 
   --color-white: #fff;
 
@@ -145,6 +146,7 @@ $color-blue-medium: #0072c6;
 
   --color-header-background: var(--color-white);
   --color-header-border: var(--color-black);
+  --color-header-contact-background: var(--color-polar);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

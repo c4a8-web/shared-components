@@ -117,6 +117,7 @@ export default {
       default: null,
     },
     lang: String,
+    contact: Object,
   },
   data() {
     return {
@@ -140,6 +141,7 @@ export default {
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
             </div>
             <nav v-on:mouseout="handleMouseOut">
+              <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
                   <a class="header__link" :href="getHref(item)" v-on:click="handleClick(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
@@ -161,14 +163,27 @@ export default {
                     :text="item.languages[lowerLang]?.title"
                     link=true
                     reversed=true
+                    monochrome=true
                   />
                 </li>
               </ul>
+              <div class="header__contact header__contact--mobile">
+                <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url">
+                  <div class="header__contact-text">
+                    <icon
+                      icon="phone-mail"
+                      size="medium"
+                    />
+                    <span class="header__contact-title">
+                      {{ contact.languages[lowerLang]?.title }}
+                    </span>
+                  </div>
+                </a>
+              </div>
               <div class="header__language-switch" v-on:click="handleLanguageSwitch">
                 {{ getNextLanguage() }}
               </div>
             </nav>
-            <div class="header__search"></div>
             <div class="header__language-switch" v-on:click="handleLanguageSwitch">
               {{ getNextLanguage() }}
             </div>
@@ -186,10 +201,14 @@ export default {
                       {{ child.languages[lowerLang]?.title }}
                     </figcaption>
                     <ul class="header__flyout-list" v-for="subChild in child.children">
-                      <li class="" v-if="subChild.languages">
-                        <a :href="subChild.languages[lowerLang].url">
-                          {{ subChild.languages[lowerLang].title }}
-                        </a>
+                      <li class="header__flyout-item" v-if="subChild.languages">
+                        <cta
+                          :href="subChild.languages[lowerLang].url"
+                          :text="subChild.languages[lowerLang].title"
+                          link=true
+                          reversed=true
+                          monochrome=true
+                        />
                       </li>
                     </ul>
                   </figure>

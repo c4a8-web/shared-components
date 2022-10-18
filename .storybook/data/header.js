@@ -546,6 +546,18 @@ const Header = {
       },
     },
   ],
+  contact: {
+    languages: {
+      de: {
+        title: 'Kontakt Lorem DE',
+        url: getStoryLink(),
+      },
+      en: {
+        title: 'Contact Lorem EN',
+        url: getStoryLink('header--en'),
+      },
+    },
+  },
 };
 
 export default Header;
