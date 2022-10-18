@@ -98,6 +98,16 @@ $slick-arrow-offset: 2;
     }
   }
 
+  .slick--default {
+    .slick-list {
+      width: 100% !important;
+
+      .slick-track {
+        left: 0 !important;
+      }
+    }
+  }
+
   .slick-track,
   .slick-list {
     display: flex;
