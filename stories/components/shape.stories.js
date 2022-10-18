@@ -160,6 +160,8 @@ SBlock.args = {
     {},
     {
       backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+      foregroundColor: 'var(--color-orange)',
+      thirdColor: 'var(--color-yellow)',
     },
   ],
 };
@@ -215,7 +217,9 @@ TBlock.args = {
       thirdColor: 'var(--color-primary-accent)',
     },
     {
-      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+      backgroundColor: 'var(--color-yellow)',
+      leftTriangleColor: 'var(--color-orange)',
+      rightTriangleColor: 'var(--color-white)',
     },
   ],
 };
@@ -243,7 +247,9 @@ LBlock.args = {
       thirdColor: 'var(--color-primary-accent)',
     },
     {
-      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+      backgroundColor: 'var(--color-yellow)',
+      leftTriangleColor: 'var(--color-orange)',
+      rightTriangleColor: 'var(--color-white)',
     },
   ],
 };
