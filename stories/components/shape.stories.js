@@ -70,21 +70,6 @@ ShapeHalfSquare.args = {
   ],
 };
 
-export const ShapeHalfSquareCopy = Template.bind({});
-
-ShapeHalfSquareCopy.args = {
-  name: 'square',
-  shapes: [
-    {
-      name: 'shape-half-square',
-      backgroundColor: 'var(--color-blue-light)',
-      firstColor: 'var(--color-page-detail-shape)',
-      secondColor: 'var(--color-background)',
-      thirdColor: 'var(--color-primary-accent)',
-    },
-  ],
-};
-
 export const ShapeFourSquares = Template.bind({});
 
 ShapeFourSquares.args = {
@@ -169,8 +154,10 @@ SBlock.args = {
     {
       name: 'shape-square-circle',
     },
+    {
+      name: 'shape-fast-forward',
+    },
     {},
-    { name: 'shape-fast-forward' },
     {
       backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
     },
@@ -187,15 +174,15 @@ SBlockTheme.args = {
       circleColor: 'var(--color-white)',
     },
     {
-      backgroundColor: 'var(--color-primary-accent)',
-      foregroundColor: 'var(--color-white)',
-      thirdColor: '#ff0000',
-    },
-    {
       name: 'shape-fast-forward',
       backgroundColor: 'var(--color-secondary)',
       foregroundColor: 'var(--color-white)',
       thirdColor: 'var(--color-primary-accent)',
+    },
+    {
+      backgroundColor: 'var(--color-primary-accent)',
+      foregroundColor: 'var(--color-white)',
+      thirdColor: '#ff0000',
     },
     {
       backgroundColor: 'var(--color-primary)',
@@ -223,7 +210,35 @@ TBlock.args = {
     {
       name: 'shape-half-square',
       backgroundColor: 'var(--color-blue-light)',
-      firstColor: 'var(--color-page-detail-shape)',
+      firstColor: 'var(--color-secondary)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+    },
+    {
+      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+    },
+  ],
+};
+
+export const LBlock = Template.bind({});
+
+LBlock.args = {
+  name: 'l-block',
+  shapes: [
+    {
+      name: 'shape-moving-eye',
+      squareColor: 'var(--color-green-blue)',
+      eyeColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-semi-circle',
+      squareColor: 'var(--color-green-blue)',
+      circleColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-half-square',
+      backgroundColor: 'var(--color-blue-light)',
+      firstColor: 'var(--color-secondary)',
       secondColor: 'var(--color-background)',
       thirdColor: 'var(--color-primary-accent)',
     },
