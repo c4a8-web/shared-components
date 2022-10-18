@@ -104,6 +104,14 @@
     &.link {
       svg {
         margin: 0 spacing(3) 0 0;
+        width: spacing(4);
+        height: spacing(4);
+
+        @include media-breakpoint-up(lg) {
+          margin-right: spacing(4);
+          width: spacing(5);
+          height: spacing(5);
+        }
       }
     }
   }
