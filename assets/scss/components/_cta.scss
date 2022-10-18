@@ -206,6 +206,10 @@
     -webkit-appearance: none;
     appearance: none;
 
+    &.cta--monochrome {
+      color: var(--color-copy);
+    }
+
     &:not(.btn):not(.custom):not(.nav-link) {
       &.is-light {
         @include cta-no-btn-is-light;

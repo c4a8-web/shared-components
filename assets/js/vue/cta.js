@@ -15,6 +15,7 @@ export default {
         `${this.download ? 'cta--download' : ''}`,
         `${this.external ? 'cta--external' : ''}`,
         `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
+        `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
         'vue-component',
       ];
     },
@@ -89,6 +90,9 @@ export default {
       default: null,
     },
     reversed: {
+      default: null,
+    },
+    monochrome: {
       default: null,
     },
   },
