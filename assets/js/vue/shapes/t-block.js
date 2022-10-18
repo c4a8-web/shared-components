@@ -15,7 +15,7 @@ export default {
     thirdShape() {
       return this.getShapeData(2);
     },
-    pyramid() {
+    fourthShape() {
       return this.getShapeData(3);
     },
     classList() {
@@ -78,13 +78,6 @@ export default {
   },
   template: `
     <svg :class="classList" :data-name="name" viewBox="0 0 800 1200" width="800" height="1200">
-      <g>
-        <path fill="#fcd116" d="M 400 800 h 400 v -400 H 400 z"/>
-        <path fill="#f8842c" d="M 600 800 H 400 L 600 600 l 0 200 z"/>
-        <path fill="#ffffff" d="m 800 800 l -200 -200 H 600 V 800 z"/>
-        <path fill="#f8842c" d="m 400 600 l 200 -200 H 600 V 600 z"/>
-        <path fill="#ffffff" d="m 800 600 l -200 -200 H 600 V 600 z"/>
-      </g>
 
       <component
         transform="translate(400 800)"
@@ -103,6 +96,21 @@ export default {
         :is="thirdShape?.name"
         v-bind="getShapeDataNew(2)">
       </component>
+
+      <component
+        v-if="fourthShape.name"
+        transform="translate(400 400)"
+        :is="fourthShape?.name"
+        v-bind="getShapeDataNew(3)">
+      </component>
+      <g v-else >
+        <path fill="#fcd116" d="M 400 800 h 400 v -400 H 400 z"/>
+        <path fill="#f8842c" d="M 600 800 H 400 L 600 600 l 0 200 z"/>
+        <path fill="#ffffff" d="m 800 800 l -200 -200 H 600 V 800 z"/>
+        <path fill="#f8842c" d="m 400 600 l 200 -200 H 600 V 600 z"/>
+        <path fill="#ffffff" d="m 800 600 l -200 -200 H 600 V 600 z"/>
+      </g>
+
     </svg>
   `,
 };
