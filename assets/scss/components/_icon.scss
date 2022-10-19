@@ -4,13 +4,16 @@
   svg {
     margin-bottom: 0;
 
-    // height: 500px;
-    // width: 500px;
-
     path,
     line,
     polyline {
       transition: d $animation-transition 0.7s, stroke-width ease-in 0.3s, transform $animation-transition 0.7s;
+    }
+  }
+
+  &.icon--expand {
+    svg {
+      transition: transform $animation-transition 0.4s;
     }
   }
 
