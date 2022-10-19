@@ -16,7 +16,7 @@ export default {
     //   return this.start ? this.start : defaultStart;
     // },
     rectangleColor() {
-      return this.squareColor ? this.squareColor : '#5cbbff';
+      return this.backgroundColor ? this.backgroundColor : '#5cbbff';
     },
     circleColor() {
       return this.eyeColor ? this.eyeColor : '#fcd116';
@@ -135,7 +135,7 @@ export default {
     };
   },
   props: {
-    squareColor: String,
+    backroundColor: String,
     eyeColor: String,
     start: String,
   },

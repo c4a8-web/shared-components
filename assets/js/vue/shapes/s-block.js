@@ -6,6 +6,18 @@ export default {
     name() {
       return tagName;
     },
+    squareColor() {
+      return this.backgroundColor ? this.backgroundColor : '#acd653';
+    },
+    secondSquareColor() {
+      return this.backgroundColor ? this.backgroundColor : '#673ab7';
+    },
+    triangleColor() {
+      return this.firstColor ? this.firstColor : '#f8842c';
+    },
+    secondTriangleColor() {
+      return this.secondColor ? this.secondColor : '#fcd116';
+    },
     firstShape() {
       return this.getShapeData(0);
     },
@@ -73,6 +85,9 @@ export default {
   },
   props: {
     shapes: Array,
+    backgroundColor: String,
+    firstColor: String,
+    secondColor: String,
   },
   template: `
     <svg :class="classList" :data-name="name" viewBox="0 0 801.86 1197.37" width="801.86" height="1197.37" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999">
@@ -95,7 +110,7 @@ export default {
         :is="thirdShape?.name"
         v-bind="thirdShape">
       </component>
-      <rect v-else x="400" y="400" :width="shapeWidth" :height="shapeHeight" :fill="shapeRect?.backgroundColor ? shapeRect?.backgroundColor : '#acd653'" />
+      <rect v-else x="400" y="400" :width="shapeWidth" :height="shapeHeight" :fill="squareColor" />
 
       <component
         v-if="fourthShape.name"
@@ -104,9 +119,9 @@ export default {
         v-bind="fourthShape">
       </component>
       <g v-else >
-        <path :fill="fourthShape?.backgroundColor" d="M.18 796.88h400.84v400.49H.18z"/>
-        <path :fill="fourthShape?.foregroundColor" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
-        <path :fill="fourthShape?.thirdColor" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
+        <path :fill="secondSquareColor" d="M.18 796.88h400.84v400.49H.18z"/>
+        <path :fill="triangleColor" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
+        <path :fill="secondTriangleColor" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
       </g>
 
     </svg>

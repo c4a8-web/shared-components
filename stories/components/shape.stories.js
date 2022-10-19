@@ -158,11 +158,7 @@ SBlock.args = {
       name: 'shape-fast-forward',
     },
     {},
-    {
-      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
-      foregroundColor: 'var(--color-orange)',
-      thirdColor: 'var(--color-yellow)',
-    },
+    {},
   ],
 };
 
@@ -217,9 +213,11 @@ TBlock.args = {
       thirdColor: 'var(--color-primary-accent)',
     },
     {
-      backgroundColor: 'var(--color-yellow)',
-      leftTriangleColor: 'var(--color-orange)',
-      rightTriangleColor: 'var(--color-white)',
+      name: 'shape-half-square',
+      firstColor: 'var(--color-secondary)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+      backgroundColor: '#ff0000',
     },
   ],
 };
