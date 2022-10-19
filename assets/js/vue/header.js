@@ -144,7 +144,7 @@ export default {
               <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
-                  <a class="header__link" :href="getHref(item)" v-on:click="handleClick(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
+                  <a class="header__link custom" :href="getHref(item)" v-on:click="handleClick(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
                     <span class="header__link-content">{{ item.languages[lowerLang]?.title }}</span>
                   </a>
                   <ul class="header__list header__list--expanded" v-if="item.children">
@@ -156,32 +156,34 @@ export default {
                   </ul>
                 </li>
               </ul>
-              <ul class="header__meta-list" v-if="meta">
-                <li class="header__meta-list-item" v-for="item in meta">
-                  <cta
-                    :href="item.languages[lowerLang]?.url"
-                    :text="item.languages[lowerLang]?.title"
-                    link=true
-                    reversed=true
-                    monochrome=true
-                  />
-                </li>
-              </ul>
-              <div class="header__contact header__contact--mobile">
-                <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url">
-                  <div class="header__contact-text">
-                    <icon
-                      icon="phone-mail"
-                      size="medium"
+              <div class="header__footer">
+                <ul class="header__meta-list" v-if="meta">
+                  <li class="header__meta-list-item" v-for="item in meta">
+                    <cta
+                      :href="item.languages[lowerLang]?.url"
+                      :text="item.languages[lowerLang]?.title"
+                      link=true
+                      reversed=true
+                      monochrome=true
                     />
-                    <span class="header__contact-title">
-                      {{ contact.languages[lowerLang]?.title }}
-                    </span>
-                  </div>
-                </a>
-              </div>
-              <div class="header__language-switch" v-on:click="handleLanguageSwitch">
-                {{ getNextLanguage() }}
+                  </li>
+                </ul>
+                <div class="header__contact header__contact--mobile" v-if="contact">
+                  <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url">
+                    <div class="header__contact-text">
+                      <icon
+                        icon="phone-mail"
+                        size="medium"
+                      />
+                      <span class="header__contact-title">
+                        {{ contact.languages[lowerLang]?.title }}
+                      </span>
+                    </div>
+                  </a>
+                </div>
+                <div class="header__language-switch" v-on:click="handleLanguageSwitch">
+                  {{ getNextLanguage() }}
+                </div>
               </div>
             </nav>
             <div class="header__language-switch" v-on:click="handleLanguageSwitch">
