@@ -211,6 +211,14 @@ const Header = {
       children: [
         {
           name: 'lorem ipsum 1',
+          languages: {
+            de: {
+              title: 'lorem ipsum 1 DE',
+            },
+            en: {
+              title: 'lorem ipsum 1 EN',
+            },
+          },
           children: [
             {
               name: 'lorem1',
@@ -255,6 +263,14 @@ const Header = {
         },
         {
           name: 'lorem ipsum 2',
+          languages: {
+            de: {
+              title: 'lorem ipsum 2 DE',
+            },
+            en: {
+              title: 'lorem ipsum 2 EN',
+            },
+          },
           children: [
             {
               name: 'lorem1',
@@ -299,6 +315,14 @@ const Header = {
         },
         {
           name: 'lorem ipsum 3',
+          languages: {
+            de: {
+              title: 'lorem ipsum 3 DE',
+            },
+            en: {
+              title: 'lorem ipsum 3 EN',
+            },
+          },
           children: [
             {
               name: 'lorem1',
@@ -361,17 +385,22 @@ const Header = {
       languages: {
         de: {
           title: 'Unternehmen',
-          // url: '/',
-          // alias: '/',
         },
         en: {
           title: 'Company',
-          // url: '/en/',
         },
       },
       children: [
         {
           name: 'lorem ipsum 1',
+          languages: {
+            de: {
+              title: 'lorem ipsum 1 DE',
+            },
+            en: {
+              title: 'lorem ipsum 1 EN',
+            },
+          },
           children: [
             {
               name: 'lorem1',
@@ -416,6 +445,14 @@ const Header = {
         },
         {
           name: 'lorem ipsum 2',
+          languages: {
+            de: {
+              title: 'lorem ipsum 2 DE',
+            },
+            en: {
+              title: 'lorem ipsum 2 EN',
+            },
+          },
           children: [
             {
               name: 'lorem1',
@@ -460,6 +497,14 @@ const Header = {
         },
         {
           name: 'lorem ipsum 3',
+          languages: {
+            de: {
+              title: 'lorem ipsum 3 DE',
+            },
+            en: {
+              title: 'lorem ipsum 3 EN',
+            },
+          },
           children: [
             {
               name: 'lorem1',

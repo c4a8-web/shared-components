@@ -30,23 +30,35 @@ export default {
     handleClick(item) {
       console.log('item', item);
     },
-    handleMouseOver(item, index) {
+    handleMouseOver(item, index, event) {
       if (!item.children) return;
 
       this.hover = true;
 
-      const ref = this.getFlyoutRef(index);
+      const link = this.getLinkRef(index);
 
-      if (!ref) return;
+      if (!link) return;
+
+      link.classList.add(State.EXPANDED);
+
+      const flyout = this.getFlyoutRef(index);
+
+      if (!flyout) return;
 
       this.flyoutIndex = index;
 
-      ref.classList.add(State.EXPANDED);
+      flyout.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
+
+      const link = this.getLinkRef(this.flyoutIndex);
+
+      if (!link) return;
+
+      link.classList.remove(State.EXPANDED);
 
       const ref = this.getFlyoutRef(this.flyoutIndex);
 
@@ -55,7 +67,13 @@ export default {
       ref.classList.remove(State.EXPANDED);
     },
     getFlyoutRef(refName) {
-      const ref = this.$refs['flyout'][refName];
+      return this.getRef('flyout', refName);
+    },
+    getLinkRef(refName) {
+      return this.getRef('link', refName);
+    },
+    getRef(name, refName) {
+      const ref = this.$refs[name][refName];
 
       if (!ref) return;
 
@@ -144,12 +162,15 @@ export default {
               <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
-                  <a class="header__link custom" :href="getHref(item)" v-on:click="handleClick(item)" v-on:mouseover="handleMouseOver(item, index)" v-if="item.languages">
-                    <span class="header__link-content">{{ item.languages[lowerLang]?.title }}</span>
+                  <a class="header__link custom" :href="getHref(item)" v-on:click="handleClick(item)" v-if="item.languages" ref="link">
+                    <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
+                      {{ item.languages[lowerLang]?.title }}
+                      <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
+                    </div>
                   </a>
                   <ul class="header__list header__list--expanded" v-if="item.children">
                     <li class="header__item" v-for="child in item.children">
-                      <a class="header__link" href="" v-if="child.languages">
+                      <a class="header__link custom" href="" v-if="child.languages">
                         <span class="header__link-content">{{ child.languages[lowerLang]?.title }}</span>
                       </a>
                     </li>

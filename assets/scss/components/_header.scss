@@ -5,6 +5,15 @@ $header-border-size: 1px;
   .header {
     @include z-index;
   }
+
+  .header__link-content {
+    .icon {
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        width: spacing(3);
+        height: spacing(3);
+      }
+    }
+  }
 }
 
 .header {
@@ -28,10 +37,10 @@ $header-border-size: 1px;
     }
   }
 
-  &.is-hovering {
+  &:not(.is-hovering) {
     @include media-breakpoint-up($header-expand-breakpoint) {
       .header__flyout {
-        display: flex;
+        @include is-invisible;
       }
     }
   }
@@ -92,6 +101,7 @@ $header-border-size: 1px;
 
     .header__col {
       padding: 0;
+      justify-content: left;
     }
 
     .header__link {
@@ -102,6 +112,7 @@ $header-border-size: 1px;
 
     .header__link-content {
       width: auto;
+      pointer-events: all;
     }
   }
 }
@@ -110,7 +121,7 @@ $header-border-size: 1px;
   flex: 0 1 auto;
 
   img {
-    width: #{'min(80%, 36vw)'};
+    width: #{'min(60%, 36vw)'};
     height: auto;
   }
 }
@@ -118,9 +129,13 @@ $header-border-size: 1px;
 .header__col {
   display: flex;
   place-items: center;
-  justify-content: space-between;
   padding-top: var(--header-vertical-spacing);
   padding-bottom: var(--header-vertical-spacing);
+  justify-content: space-between;
+
+  > .header__language-switch {
+    margin-left: auto;
+  }
 }
 
 .header__menu {
@@ -147,11 +162,24 @@ $header-border-size: 1px;
   border-bottom: $header-border-size solid var(--color-header-border);
   padding: var(--header-vertical-spacing) $grid-gutter-half-width;
   place-content: center;
+
+  &.is-expanded {
+    .icon {
+      --icon-rotation: 180deg !important;
+    }
+  }
 }
 
 .header__link-content {
-  display: inline-block;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  pointer-events: none;
+
+  .icon {
+    margin-left: spacing(2);
+  }
 
   @include media-breakpoint-up(sm) {
     width: var(--container-width);
@@ -163,7 +191,6 @@ $header-border-size: 1px;
 }
 
 .header__flyout {
-  display: none;
   position: absolute;
   bottom: -#{$header-border-size};
   left: 0;
@@ -173,10 +200,14 @@ $header-border-size: 1px;
 }
 
 .header__flyout-content {
-  display: none;
+  &:not(.is-expanded) {
+    > * {
+      @include is-invisible;
+    }
+  }
 
-  &.is-expanded {
-    display: block;
+  > * {
+    transition: margin-top $animation-transition 0.5s, opacity $animation-transition 0.9s;
   }
 }
 
@@ -213,7 +244,7 @@ $header-border-size: 1px;
 .header__language-switch {
   cursor: pointer;
   text-transform: uppercase;
-  padding: var(--header-vertical-spacing) spacing(4);
+  padding: var(--header-vertical-spacing) 0 var(--header-vertical-spacing) spacing(4);
   display: none;
 }
 
