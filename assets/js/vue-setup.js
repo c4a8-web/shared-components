@@ -39,6 +39,7 @@ import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
+import Expand from './vue/icons/expand.js';
 import Menu from './vue/icons/menu.js';
 import PhoneMail from './vue/icons/phone-mail.js';
 import Rocket from './vue/icons/rocket.js';
@@ -101,6 +102,7 @@ const addApp = () => {
     Arrow,
     Close,
     ComputerShield,
+    Expand,
     Menu,
     PhoneMail,
     Rocket,

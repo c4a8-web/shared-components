@@ -92,3 +92,10 @@ Menu.args = {
   icon: 'menu',
   size: 'large',
 };
+
+export const Expand = Template.bind({});
+
+Expand.args = {
+  icon: 'expand',
+  size: 'large',
+};
