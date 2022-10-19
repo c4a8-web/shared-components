@@ -31,9 +31,11 @@ $header-border-size: 1px;
   &.header--light {
   }
 
-  &.is-expanded {
+  &:not(.is-expanded) {
     nav {
-      display: block;
+      @include media-breakpoint-down(md) {
+        @include is-invisible;
+      }
     }
   }
 
@@ -53,7 +55,6 @@ $header-border-size: 1px;
   }
 
   nav {
-    display: none;
     background-color: var(--color-header-background);
     position: absolute;
     bottom: -#{$header-border-size};
@@ -61,6 +62,9 @@ $header-border-size: 1px;
     transform: translateY(100%) translateX(-50%);
     width: 100vw;
     box-shadow: $header-section-box-shadow;
+    transition: height 0.2s ease-out;
+    overflow: hidden;
+    will-change: height;
 
     .header__language-switch {
       display: block;
@@ -89,6 +93,7 @@ $header-border-size: 1px;
       transform: translateY(0);
       background-color: transparent;
       box-shadow: none;
+      overflow: auto;
     }
 
     .header__list {
@@ -107,12 +112,13 @@ $header-border-size: 1px;
     .header__link {
       width: auto;
       border: 0;
-      padding: var(--header-vertical-spacing) spacing(4);
+      padding: 0;
     }
 
     .header__link-content {
       width: auto;
       pointer-events: all;
+      padding: var(--header-vertical-spacing) spacing(4);
     }
   }
 }
