@@ -219,6 +219,12 @@ export default {
             <div class="col">
               <div class="header__flyout-content" v-for="(item, index) in navigation" ref="flyout">
                 <div class="header__flyout-items" v-if="item.children">
+                  <figure class="header__flyout-block">
+                    <figcaption class="header__flyout-caption">
+                      {{ item.languages[lowerLang]?.title }}
+                    </figcaption>
+                  </figure>
+
                   <figure class="header__flyout-block" v-for="child in item.children">
                     <figcaption class="header__flyout-title" v-if="child.languages">
                       {{ child.languages[lowerLang]?.title }}

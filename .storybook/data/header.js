@@ -34,9 +34,11 @@ const Header = {
       languages: {
         de: {
           title: 'Kompetenzen',
+          description: 'ClearSpend makes spend control and expense management easier, because every dollar counts. DE',
         },
         en: {
           title: 'Competences',
+          description: 'ClearSpend makes spend control and expense management easier, because every dollar counts. EN',
         },
       },
       children: [

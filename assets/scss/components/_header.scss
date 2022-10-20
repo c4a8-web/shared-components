@@ -207,11 +207,14 @@ $header-border-size: 1px;
     left: $grid-gutter-half-width;
     background-color: var(--color-header-active);
     z-index: 10;
+    pointer-events: none;
   }
 
   &.is-expanded {
     &::after {
-      display: block;
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        display: block;
+      }
     }
 
     .icon {
@@ -221,7 +224,9 @@ $header-border-size: 1px;
 
   &:hover {
     &::after {
-      display: block;
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        display: block;
+      }
     }
   }
 }
@@ -266,18 +271,20 @@ $header-border-size: 1px;
 }
 
 .header__flyout-items {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   margin-top: spacing(16);
   margin-bottom: spacing(27);
+  width: 100%;
+  gap: spacing(18);
 }
 
 .header__flyout-item {
   padding: spacing(2) 0;
 }
 
-.header__flyout-block {
-  margin-right: spacing(20);
-  width: 23%;
+.header__flyout-caption {
+  @include font-size-4;
 }
 
 .header__flyout-title {
