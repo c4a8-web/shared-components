@@ -15,11 +15,11 @@ export default {
     // begin() {
     //   return this.start ? this.start : defaultStart;
     // },
-    rectangleColor() {
-      return this.backgroundColor ? this.backgroundColor : '#5cbbff';
+    squareColor() {
+      return this.backgroundColor ? this.backgroundColor : 'var(--color-green-blue)';
     },
     circleColor() {
-      return this.eyeColor ? this.eyeColor : '#fcd116';
+      return this.firstColor ? this.firstColor : '#9116fc';
     },
     upperSquare() {
       return this.sequence.upperSquare;
@@ -135,8 +135,8 @@ export default {
     };
   },
   props: {
-    backroundColor: String,
-    eyeColor: String,
+    backgroundColor: String,
+    firstColor: String,
     start: String,
   },
   methods: {
@@ -271,11 +271,11 @@ export default {
             d=" M-135.63 -128.87 C-32.47,-128.87 51.29,-45.11 51.29,58.05 C51.29,161.22 -32.47,244.98 -135.63,244.98 C-238.8,244.98 -322.56,161.22 -322.56,58.05 C-322.56,-45.11 -238.8,-128.87 -135.63,-128.87z " />
         </g>
         <g :id="upperSquare?.id" transform=" translate(199, 198)">
-          <path :fill="rectangleColor"
+          <path :fill="squareColor"
             d=" M154.3 -399 C154.3,-399 -176.42,-399 -176.42,-399 C-176.42,-399 -198,-1 -198,-1 C-198,-1 -172.13,-152.23 -3,-151 C168.15,-150.24 198,4 198,4 C198,4 154.3,-399 154.3,-399z " />
         </g>
         <g :id="bottomSquare?.id" transform=" translate(199.01, 199) rotate(180)">
-          <path :fill="rectangleColor"
+          <path :fill="squareColor"
             d=" M199 -197 C199,-197 152.6,-447 152.6,-447 C152.6,-447 -153.36,-445 -153.36,-445 C-153.36,-445 -198,-197 -198,-197 C-198,-197 -198,-1 -198,-1 C-198,-1 -172.13,-152.23 -3,-151 C168.15,-150.24 198,4 198,4 C198,4 199,-197 199,-197z " />
         </g>
       </g>

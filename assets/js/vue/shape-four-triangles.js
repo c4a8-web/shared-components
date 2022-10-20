@@ -22,10 +22,10 @@ export default {
       return this.secondColor ? this.secondColor : '#ffffff';
     },
     triangleUpperRightColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.firstColor ? this.firstColor : '#0072c6';
     },
     triangleBottomRightColor() {
-      return this.fourthColor ? this.fourthColor : '#0072c6';
+      return this.secondColor ? this.secondColor : '#0072c6';
     },
     triangleBottomLeft() {
       return this.sequence.triangleBottomLeft;
@@ -220,8 +220,6 @@ export default {
   props: {
     firstColor: String,
     secondColor: String,
-    thirdColor: String,
-    fourthColor: String,
     start: String,
   },
   methods: {

@@ -20,10 +20,10 @@ export default {
       return this.backgroundColor ? this.backgroundColor : '#f8842c';
     },
     pathColor() {
-      return this.foregroundColor ? this.foregroundColor : '#fcd116';
+      return this.firstColor ? this.firstColor : '#fcd116';
     },
     secondArrowColor() {
-      return this.thirdColor ? this.thirdColor : '#fcd116';
+      return this.secondColor ? this.secondColor : '#fcd116';
     },
     firstArrow() {
       return this.sequence.firstArrow;
@@ -268,8 +268,8 @@ export default {
   },
   props: {
     backgroundColor: String,
-    foregroundColor: String,
-    thirdColor: String,
+    firstColor: String,
+    secondColor: String,
     start: String,
     width: String,
   },

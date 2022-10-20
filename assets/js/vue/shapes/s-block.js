@@ -6,17 +6,17 @@ export default {
     name() {
       return tagName;
     },
-    squareColor() {
-      return this.backgroundColor ? this.backgroundColor : '#acd653';
+    secondShapeBackgroundColor() {
+      return this.secondShape.backgroundColor ? this.secondShape.backgroundColor : '#fcd116';
     },
-    secondSquareColor() {
-      return this.backgroundColor ? this.backgroundColor : '#673ab7';
+    fourthShapeBackgroundColor() {
+      return this.fourthShape.backgroundColor ? this.fourthShape.backgroundColor : '#fcd116';
     },
-    triangleColor() {
-      return this.firstColor ? this.firstColor : '#f8842c';
+    fourthShapeFirstColor() {
+      return this.fourthShape.firstColor ? this.fourthShape.firstColor : '#f8842c';
     },
-    secondTriangleColor() {
-      return this.secondColor ? this.secondColor : '#fcd116';
+    fourthShapeSecondColor() {
+      return this.fourthShape.secondColor ? this.fourthShape.secondColor : '#fff';
     },
     firstShape() {
       return this.getShapeData(0);
@@ -75,9 +75,9 @@ export default {
         case 0:
           return 'square-square-circle';
         case 1:
-          return 'shape-fast-forward';
-        case 2:
           return 'rect';
+        case 2:
+          return 'shape-fast-forward';
         case 3:
           return 'shape-pyramid';
       }
@@ -99,18 +99,18 @@ export default {
       </component>
 
       <component
-        transform="translate(0 400)"
+        v-if="secondShape.name"
+        transform="translate(400 400)"
         :is="secondShape?.name"
         v-bind="secondShape">
       </component>
+      <rect v-else x="400" y="400" :width="shapeWidth" :height="shapeHeight" :fill="secondShapeBackgroundColor" />
 
       <component
-        v-if="thirdShape.name"
-        transform="translate(400 400)"
+        transform="translate(0 400)"
         :is="thirdShape?.name"
         v-bind="thirdShape">
       </component>
-      <rect v-else x="400" y="400" :width="shapeWidth" :height="shapeHeight" :fill="squareColor" />
 
       <component
         v-if="fourthShape.name"
@@ -119,9 +119,9 @@ export default {
         v-bind="fourthShape">
       </component>
       <g v-else >
-        <path :fill="secondSquareColor" d="M.18 796.88h400.84v400.49H.18z"/>
-        <path :fill="triangleColor" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
-        <path :fill="secondTriangleColor" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
+        <path :fill="fourthShapeBackgroundColor" d="M.18 796.88h400.84v400.49H.18z"/>
+        <path :fill="fourthShapeFirstColor" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
+        <path :fill="fourthShapeSecondColor" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
       </g>
 
     </svg>

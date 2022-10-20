@@ -22,16 +22,16 @@ export default {
       return this.secondColor ? this.secondColor : '#ffffff';
     },
     secondSquareColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.secondColor ? this.secondColor : '#0072c6';
     },
     secondCircleColor() {
-      return this.fourthColor ? this.fourthColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : '#0072c6';
     },
     thirdSquareColor() {
-      return this.fifthColor ? this.fifthColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : '#0072c6';
     },
     thirdCircleColor() {
-      return this.sixthColor ? this.sixthColor : '#0072c6';
+      return this.firstColor ? this.firstColor : '#0072c6';
     },
     firstCircle() {
       return this.sequence.firstCircle;
@@ -201,9 +201,6 @@ export default {
     firstColor: String,
     secondColor: String,
     thirdColor: String,
-    fourthColor: String,
-    fifthColor: String,
-    sixthColor: String,
     start: String,
   },
   methods: {
@@ -476,27 +473,27 @@ export default {
             <rect :fill="firstSquareStaticColor"
               width="400" height="400" />
           </g>
-          <g dstyle="display:none" transform="translate(200, 200) rotate(990) ">
+          <g transform="translate(200, 200) rotate(990) ">
             <circle :id="firstCircle?.id" transform="scale(0, 0)" :fill="firstCircleColor"
               r="150" />
           </g>
-         <g transform="translate(400, 0)" dstyle="display:none" :id="secondSquare?.id">
+         <g transform="translate(400, 0)" :id="secondSquare?.id">
             <rect :fill="secondSquareColor"
               width="400" height="400" />
           </g>
-          <g sstyle="display:none" transform="translate(200, 200) rotate(990) ">
+          <g transform="translate(200, 200) rotate(990) ">
             <circle :id="secondCircle?.id" transform="scale(0, 0)" :fill="secondCircleColor"
               r="150" />
           </g>
-          <g transform="translate(400, 0)" dstyle="display:none" :id="thirdSquare?.id">
+          <g transform="translate(400, 0)" :id="thirdSquare?.id">
             <rect :fill="thirdSquareColor"
               width="400" height="400" />
           </g>
-            <g dstyle="display:none" transform="translate(200, 200) rotate(990) ">
+            <g transform="translate(200, 200) rotate(990) ">
             <circle :id="thirdCircle?.id" transform="scale(0, 0)" :fill="thirdCircleColor"
               r="150" />
           </g>
-          <g transform="translate(400, 0)" dstyle="display:none" :id="fourthSquare?.id">
+          <g transform="translate(400, 0)" :id="fourthSquare?.id">
             <rect :fill="firstSquareStaticColor"
               width="400" height="400" />
           </g>

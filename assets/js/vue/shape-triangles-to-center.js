@@ -4,7 +4,7 @@ const defaultStart = '0s';
 const animationDelay = '0s';
 const animationStepDelay = '0.05';
 
-const tagName = 'triangles-to-center';
+const tagName = 'shape-triangles-to-center';
 
 export default {
   tagName: tagName,
@@ -25,19 +25,19 @@ export default {
       return this.thirdColor ? this.thirdColor : '#ffffff';
     },
     triangleRightColor() {
-      return this.fourthColor ? this.fourthColor : '#0072c6';
+      return this.firstColor ? this.firstColor : '#0072c6';
     },
     triangleLeftStaticColor() {
-      return this.fifthColor ? this.fifthColor : '#5cbbff';
+      return this.thirdColor ? this.thirdColor : '#5cbbff';
     },
     triangleLeftColor() {
-      return this.sixthColor ? this.sixthColor : '#fcd116';
+      return this.firstColor ? this.firstColor : '#fcd116';
     },
     triangleBottomStaticColor() {
-      return this.seventhColor ? this.seventhColor : '#ffffff';
+      return this.firstColor ? this.firstColor : '#ffffff';
     },
     triangleBottomColor() {
-      return this.eighthColor ? this.eighthColor : '#0072c6';
+      return this.secondColor ? this.secondColor : '#0072c6';
     },
     triangleUpper() {
       return this.sequence.triangleUpper;
@@ -218,11 +218,6 @@ export default {
     firstColor: String,
     secondColor: String,
     thirdColor: String,
-    fourthColor: String,
-    fifthColor: String,
-    sixthColor: String,
-    seventhColor: String,
-    eighthColor: String,
     start: String,
   },
   methods: {
@@ -379,35 +374,35 @@ export default {
 
 
         <g :id="triangleUpperStatic" transform=" translate(200, 200) ">
-          <path :fill="firstColor"
+          <path :fill="triangleUpperStaticColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleUpper?.id">
-          <path :fill="secondColor"
+          <path :fill="triangleUpperColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleRightStatic" transform=" translate(200, 200) rotate(90) ">
-          <path :fill="thirdColor"
+          <path :fill="triangleRightStaticColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleRight?.id">
-          <path :fill="fourthColor"
+          <path :fill="triangleRightColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleLeftStatic" transform=" translate(200, 200) rotate(270) ">
-          <path :fill="fifthColor"
+          <path :fill="triangleLeftStaticColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleLeft?.id">
-          <path :fill="sixthColor"
+          <path :fill="triangleLeftColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleBottomStatic" transform=" translate(200, 200) rotate(180) ">
-          <path :fill="seventhColor"
+          <path :fill="triangleBottomStaticColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
         <g :id="triangleBottom?.id">
-          <path :fill="eighthColor"
+          <path :fill="triangleBottomColor"
             d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
         </g>
       </g>

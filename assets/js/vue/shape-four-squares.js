@@ -15,23 +15,23 @@ export default {
     // begin() {
     //   return this.start ? this.start : defaultStart;
     // },
-    squareUpperLeftFirst() {
+    squareUpperLeftFirstColor() {
       return this.firstColor ? this.firstColor : '#fcd116';
     },
-    squareBottomRightFirst() {
-      return this.secondColor ? this.secondColor : '#ffffff';
+    squareBottomRightFirstColor() {
+      return this.firstColor ? this.firstColor : '#ffffff';
     },
-    squareUpperLeftSecond() {
+    squareUpperLeftSecondColor() {
+      return this.secondColor ? this.secondColor : '#0072c6';
+    },
+    squareBottomRightSecondColor() {
+      return this.secondColor ? this.secondColor : '#0072c6';
+    },
+    squareUpperRightColor() {
       return this.thirdColor ? this.thirdColor : '#0072c6';
     },
-    squareBottomRightSecond() {
-      return this.fourthColor ? this.fourthColor : '#0072c6';
-    },
-    squareUpperRight() {
-      return this.fifthColor ? this.fifthColor : '#0072c6';
-    },
-    squareBottomLeft() {
-      return this.sixthColor ? this.sixthColor : '#0072c6';
+    squareBottomLeftColor() {
+      return this.thirdColor ? this.thirdColor : '#0072c6';
     },
     squareUpperLeftFirst() {
       return this.sequence.squareUpperLeftFirst;
@@ -223,9 +223,6 @@ export default {
     firstColor: String,
     secondColor: String,
     thirdColor: String,
-    fourthColor: String,
-    fifthColor: String,
-    sixthColor: String,
     start: String,
   },
   methods: {
@@ -422,27 +419,27 @@ export default {
         </g>
 
         <g :id="squareUpperLeftFirst?.id">
-          <path :fill="firstColor"
+          <path :fill="squareUpperLeftFirstColor"
             d=" M-0.15 -200 C-0.15,-200 -0.15,-0.15 -0.15,-0.15 C-0.15,-0.15 -200,-0.15 -200,-0.15 C-200,-0.15 -200,-200 -200,-200 C-200,-200 -0.15,-200 -0.15,-200z " />
         </g>
         <g :id="squareBottomRightFirst?.id">
-          <path :fill="secondColor"
+          <path :fill="squareBottomRightFirstColor"
             d=" M-0.15 -200 C-0.15,-200 -0.15,-0.15 -0.15,-0.15 C-0.15,-0.15 -200,-0.15 -200,-0.15 C-200,-0.15 -200,-200 -200,-200 C-200,-200 -0.15,-200 -0.15,-200z " />
         </g>
         <g :id="squareUpperLeftSecond?.id">
-          <path :fill="thirdColor"
+          <path :fill="squareUpperLeftSecondColor"
             d=" M-0.15 -200 C-0.15,-200 -0.15,-0.15 -0.15,-0.15 C-0.15,-0.15 -200,-0.15 -200,-0.15 C-200,-0.15 -200,-200 -200,-200 C-200,-200 -0.15,-200 -0.15,-200z " />
         </g>
         <g :id="squareBottomRightSecond?.id">
-          <path :fill="fourthColor"
+          <path :fill="squareBottomRightSecondColor"
             d=" M-0.15 -200 C-0.15,-200 -0.15,-0.15 -0.15,-0.15 C-0.15,-0.15 -200,-0.15 -200,-0.15 C-200,-0.15 -200,-200 -200,-200 C-200,-200 -0.15,-200 -0.15,-200z " />
         </g>
         <g :id="squareUpperRight?.id">
-          <path :fill="fifthColor"
+          <path :fill="squareUpperRightColor"
             d=" M-0.15 -200 C-0.15,-200 -0.15,-0.15 -0.15,-0.15 C-0.15,-0.15 -200,-0.15 -200,-0.15 C-200,-0.15 -200,-200 -200,-200 C-200,-200 -0.15,-200 -0.15,-200z " />
         </g>
         <g :id="squareBottomLeft?.id">
-          <path :fill="sixthColor"
+          <path :fill="squareBottomLeftColor"
             d=" M-0.15 -200 C-0.15,-200 -0.15,-0.15 -0.15,-0.15 C-0.15,-0.15 -200,-0.15 -200,-0.15 C-200,-0.15 -200,-200 -200,-200 C-200,-200 -0.15,-200 -0.15,-200z " />
         </g>
       </g>
