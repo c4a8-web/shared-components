@@ -93,7 +93,7 @@ $header-border-size: 1px;
       transform: translateY(0);
       background-color: transparent;
       box-shadow: none;
-      overflow: auto;
+      overflow: visible;
     }
 
     .header__list {
@@ -163,15 +163,38 @@ $header-border-size: 1px;
 }
 
 .header__link {
+  position: relative;
   width: 100%;
   display: flex;
   border-bottom: $header-border-size solid var(--color-header-border);
   padding: var(--header-vertical-spacing) $grid-gutter-half-width;
   place-content: center;
 
+  &::after {
+    display: none;
+    content: '';
+    position: absolute;
+    bottom: 1px;
+    height: 3px;
+    width: calc(100% - 2 * #{$grid-gutter-half-width});
+    left: $grid-gutter-half-width;
+    background-color: var(--color-header-active);
+    z-index: 10;
+  }
+
   &.is-expanded {
+    &::after {
+      display: block;
+    }
+
     .icon {
       --icon-rotation: 180deg !important;
+    }
+  }
+
+  &:hover {
+    &::after {
+      display: block;
     }
   }
 }
