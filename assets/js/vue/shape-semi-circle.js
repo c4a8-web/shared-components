@@ -15,11 +15,11 @@ export default {
     // begin() {
     //   return this.start ? this.start : defaultStart;
     // },
-    firstColor() {
-      return this.squareColor ? this.squareColor : '#5cbbff';
+    squareColor() {
+      return this.backgroundColor ? this.backgroundColor : '#5cbbff';
     },
-    secondColor() {
-      return this.circleColor ? this.circleColor : '#fcd116';
+    circleColor() {
+      return this.firstColor ? this.firstColor : '#fcd116';
     },
     semiCircle() {
       return this.sequence.semiCircle;
@@ -104,8 +104,8 @@ export default {
     };
   },
   props: {
-    squareColor: String,
-    circleColor: String,
+    backgroundColor: String,
+    firstColor: String,
     start: String,
   },
   methods: {
@@ -208,12 +208,12 @@ export default {
 
   <g>
      <g id="static-square" transform=" translate(201, 200) translate(0, 0)">
-      <path fill="#008187" fill-opacity="1" fill-rule="nonzero"
+      <path :fill="squareColor" fill-opacity="1" fill-rule="nonzero"
         d=" M199 -201 C199,-201 199,201.26 199,201.26 C199,201.26 -201.17,201.26 -201.17,201.26 C-201.17,201.26 -201.17,-201 -201.17,-201 C-201.17,-201 199,-201 199,-201z " />
     </g>
     <g transform=" translate(200, 200) translate(0, 0)">
       <g id="semiCircle">
-        <path fill="#acd653" fill-opacity="1" fill-rule="nonzero"
+        <path :fill="circleColor" fill-opacity="1" fill-rule="nonzero"
           d=" M0 -198.32 C109.45,-198.32 198.32,-109.45 198.32,0 C198.32,109.45 109.45,198.32 0,198.32 C-109.45,198.32 -198.32,109.45 -198.32,0 C-198.32,-109.45 -109.45,-198.32 0,-198.32z " />
       </g>
     </g>

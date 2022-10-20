@@ -31,7 +31,7 @@ import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeFourSquares from './vue/shape-four-squares.js';
 import ShapeFourTriangles from './vue/shape-four-triangles.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
-import TrianglesToCenter from './vue/triangles-to-center.js';
+import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
@@ -43,6 +43,7 @@ import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
 import TBlock from './vue/shapes/t-block.js';
+import LBlock from './vue/shapes/l-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
 import VideoInner from './vue/video-inner.js'
@@ -91,7 +92,7 @@ const addApp = () => {
     ShapeSquareCircle,
     ShapeMovingEye,
     ShapeSemiCircle,
-    TrianglesToCenter,
+    ShapeTrianglesToCenter,
     Shape,
     ArrowExternal,
     ArrowNarrow,
@@ -103,6 +104,7 @@ const addApp = () => {
     Smile,
     SBlock,
     TBlock,
+    LBlock,
     Square,
     PersonQuote,
     Wrapper,

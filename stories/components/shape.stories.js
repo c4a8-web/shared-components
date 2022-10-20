@@ -19,8 +19,8 @@ ShapeFastForward.args = {
     {
       name: 'shape-fast-forward',
       backgroundColor: 'var(--color-primary-accent)',
-      foregroundColor: 'var(--color-primary-accent-light)',
-      thirdColor: 'var(--color-secondary)',
+      firstColor: 'var(--color-primary-accent-light)',
+      secondColor: 'var(--color-secondary)',
     },
   ],
 };
@@ -34,10 +34,7 @@ ShapeCircleWithinSquare.args = {
       name: 'shape-circle-within-square',
       firstColor: 'var(--color-orange)',
       secondColor: 'var(--color-white)',
-      thirdColor: 'var(--color-white)',
-      fourthColor: 'var(--color-gigas)',
-      fifthColor: 'var(--color-gigas)',
-      sixthColor: 'var(--color-orange)',
+      thirdColor: 'var(--color-gigas)',
     },
   ],
 };
@@ -50,7 +47,7 @@ ShapeSquareCircle.args = {
     {
       name: 'shape-square-circle',
       backgroundColor: 'var(--color-primary-accent)',
-      circleColor: 'var(--color-secondary)',
+      firstColor: 'var(--color-secondary)',
     },
   ],
 };
@@ -78,11 +75,8 @@ ShapeFourSquares.args = {
     {
       name: 'shape-four-squares',
       firstColor: 'var(--color-blue-light)',
-      secondColor: 'var(--color-blue-light)',
-      thirdColor: 'var(--color-orange)',
-      fourthColor: 'var(--color-orange)',
-      fifthColor: 'var(--color-gigas)',
-      sixthColor: 'var(--color-gigas)',
+      secondColor: 'var(--color-orange)',
+      thirdColor: 'var(--color-gigas)',
     },
   ],
 };
@@ -96,27 +90,20 @@ ShapeFourTriangles.args = {
       name: 'shape-four-triangles',
       firstColor: 'var(--color-orange)',
       secondColor: 'var(--color-secondary)',
-      thirdColor: 'var(--color-orange)',
-      fourthColor: 'var(--color-secondary)',
     },
   ],
 };
 
-export const TrianglesToCenter = Template.bind({});
+export const ShapeTrianglesToCenter = Template.bind({});
 
-TrianglesToCenter.args = {
+ShapeTrianglesToCenter.args = {
   name: 'square',
   shapes: [
     {
-      name: 'triangles-to-center',
+      name: 'shape-triangles-to-center',
       firstColor: 'var(--color-green-blue)',
       secondColor: 'var(--color-white)',
       thirdColor: 'var(--color-yellow)',
-      fourthColor: 'var(--color-green-blue)',
-      fifthColor: 'var(--color-yellow)',
-      sixthColor: 'var(--color-green-blue)',
-      seventhColor: 'var(--color-green-blue)',
-      eighthColor: 'var(--color-white)',
     },
   ],
 };
@@ -128,8 +115,8 @@ ShapeMovingEye.args = {
   shapes: [
     {
       name: 'shape-moving-eye',
-      squareColor: 'var(--color-green-blue)',
-      eyeColor: 'var(--color-yellow)',
+      backgroundColor: 'var(--color-green-blue)',
+      firstColor: 'var(--color-yellow)',
     },
   ],
 };
@@ -141,8 +128,8 @@ ShapeSemiCircle.args = {
   shapes: [
     {
       name: 'shape-semi-circle',
-      squareColor: 'var(--color-green-blue)',
-      circleColor: 'var(--color-yellow)',
+      backgroundColor: 'var(--color-green-blue)',
+      firstColor: 'var(--color-yellow)',
     },
   ],
 };
@@ -151,11 +138,19 @@ export const SBlock = Template.bind({});
 
 SBlock.args = {
   shapes: [
-    {},
-    {},
-    {},
     {
-      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+      name: 'shape-square-circle',
+    },
+    {
+      backgroundColor: '#b7e349',
+    },
+    {
+      name: 'shape-fast-forward',
+    },
+    {
+      backgroundColor: 'var(--color-yellow)',
+      firstColor: 'var(--color-white)',
+      secondColor: 'var(--color-orange)',
     },
   ],
 };
@@ -165,24 +160,23 @@ export const SBlockTheme = Template.bind({});
 SBlockTheme.args = {
   shapes: [
     {
+      name: 'shape-square-circle',
       backgroundColor: 'var(--color-primary)',
-      foregroundColor: 'var(--color-white)',
-      thirdColor: '#ff0000',
+      firstColor: 'var(--color-white)',
     },
     {
+      backgroundColor: '#92e3f0',
+    },
+    {
+      name: 'shape-fast-forward',
       backgroundColor: 'var(--color-primary-accent)',
-      foregroundColor: 'var(--color-white)',
-      thirdColor: '#ff0000',
-    },
-    {
-      backgroundColor: 'var(--color-secondary)',
-      foregroundColor: 'var(--color-white)',
-      thirdColor: 'var(--color-primary-accent)',
+      firstColor: 'var(--color-primary-accent-light)',
+      secondColor: 'var(--color-secondary)',
     },
     {
       backgroundColor: 'var(--color-primary)',
-      foregroundColor: 'var(--color-white)',
-      thirdColor: '#ff0000',
+      firstColor: 'var(--color-white)',
+      secondColor: 'var(--color-yellow)',
     },
   ],
 };
@@ -192,11 +186,56 @@ export const TBlock = Template.bind({});
 TBlock.args = {
   name: 't-block',
   shapes: [
-    {},
-    {},
-    {},
     {
-      backgroundColor: '#673ab7', // TODO this will be the default in the pyramid shape
+      name: 'shape-moving-eye',
+      firstColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-half-square',
+      backgroundColor: 'var(--color-blue-light)',
+      firstColor: 'var(--color-page-detail-shape)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+    },
+    {
+      name: 'shape-semi-circle',
+      backgroundColor: 'var(--color-green-blue)',
+      firstColor: 'var(--color-yellow)',
+    },
+    {
+      backgroundColor: '#9f67c7',
+      firstColor: '#ebe663',
+      secondColor: '#4ed950',
+    },
+  ],
+};
+
+export const LBlock = Template.bind({});
+
+LBlock.args = {
+  name: 'l-block',
+  shapes: [
+    {
+      name: 'shape-moving-eye',
+      squareColor: 'var(--color-green-blue)',
+      eyeColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-semi-circle',
+      squareColor: 'var(--color-green-blue)',
+      circleColor: 'var(--color-yellow)',
+    },
+    {
+      name: 'shape-half-square',
+      backgroundColor: 'var(--color-blue-light)',
+      firstColor: 'var(--color-secondary)',
+      secondColor: 'var(--color-background)',
+      thirdColor: 'var(--color-primary-accent)',
+    },
+    {
+      backgroundColor: 'var(--color-yellow)',
+      leftTriangleColor: 'var(--color-orange)',
+      rightTriangleColor: 'var(--color-white)',
     },
   ],
 };
