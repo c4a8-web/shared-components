@@ -58,11 +58,11 @@ const Header = {
               languages: {
                 de: {
                   title: 'lorem ipsum',
-                  url: 'javascript:void(0);',
+                  url: getStoryLink(),
                 },
                 en: {
                   title: 'dolor sit',
-                  url: 'javascript:void(0);',
+                  url: getStoryLink('header--en'),
                 },
               },
             },

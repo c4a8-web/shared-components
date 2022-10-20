@@ -132,16 +132,16 @@ $header-border-size: 1px;
 }
 
 .header__logo {
-  flex: 0 0 auto;
-  min-width: 240px;
+  flex: 0 1 auto;
 
   img {
     width: #{'min(60%, 36vw)'};
+    min-width: 130px;
     height: auto;
-  }
 
-  @include media-breakpoint-up($header-expand-breakpoint) {
-    min-width: 300px;
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      min-width: 180px;
+    }
   }
 }
 
@@ -409,5 +409,23 @@ $header-border-size: 1px;
     background-color: var(--color-header-border);
     left: 50%;
     transform: translateX(-50%);
+  }
+}
+
+.header__flyout-description {
+  margin-top: spacing(9);
+}
+
+.header__flyout-block {
+  .header__link {
+    margin-top: spacing(11);
+    display: flex;
+    justify-content: flex-start;
+
+    &:hover {
+      &::after {
+        display: none;
+      }
+    }
   }
 }

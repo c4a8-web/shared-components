@@ -147,7 +147,7 @@ export default {
   },
   template: `
     <header :class="classList">
-      <div class="header__container container">
+      <div class="header__container container-xxl">
         <div class="row">
           <div class="header__col col">
             <div class="header__logo">
@@ -223,8 +223,17 @@ export default {
                     <figcaption class="header__flyout-caption">
                       {{ item.languages[lowerLang]?.title }}
                     </figcaption>
+                    <div class="header__flyout-description font-size-1 thin" v-html="item.languages[lowerLang]?.description"></div>
+                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url">
+                      <icon
+                        icon="phone-mail"
+                        size="medium"
+                      />
+                      <span class="header__contact-title">
+                        {{ contact.languages[lowerLang]?.title }}
+                      </span>
+                    </a>
                   </figure>
-
                   <figure class="header__flyout-block" v-for="child in item.children">
                     <figcaption class="header__flyout-title" v-if="child.languages">
                       {{ child.languages[lowerLang]?.title }}
