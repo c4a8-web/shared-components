@@ -26,14 +26,6 @@ export default {
   methods: {
     handleCloseClick() {
       this.closed = !this.closed;
-
-      const nav = this.$refs['nav'];
-
-      if (!this.closed) {
-        nav.style.height = `${nav.scrollHeight}px`;
-      } else {
-        nav.style.height = '';
-      }
     },
     handleClick(item) {
       console.log('item', item);
@@ -166,7 +158,7 @@ export default {
             <div class="header__menu" v-on:click="handleCloseClick">
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
             </div>
-            <nav v-on:mouseout="handleMouseOut" ref="nav">
+            <nav v-on:mouseout="handleMouseOut">
               <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
