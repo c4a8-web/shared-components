@@ -5,6 +5,7 @@ import './lib/vue/vue.global.prod.js';
 import Authors from './vue/authors.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
+import CheckCard from './vue/check-card.js'
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
 import FormAttachments from './vue/form-attachments.js';
@@ -68,6 +69,7 @@ const addApp = () => {
     BlogRecent,
     Card,
     Cta,
+    CheckCard,
     Faq,
     FormAttachments,
     FormCheckbox,
