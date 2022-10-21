@@ -20,6 +20,7 @@ import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
+import LinkList from './vue/link-list.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
 import Search from './vue/search.js';
@@ -84,6 +85,7 @@ const addApp = () => {
     JobListDetail,
     JobListEntry,
     JobList,
+    LinkList,
     Modal,
     Search,
     ShapeAnimation,

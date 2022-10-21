@@ -168,13 +168,22 @@ export default {
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
                     </div>
                   </a>
-                  <ul class="header__list header__list--expanded" v-if="item.children">
-                    <li class="header__item" v-for="child in item.children">
+                  <ul class="header__list header__list--expanded" v-if="item.disabled">
+                    <li class="header__item" v-for="child in item.children.children">
                       <a class="header__link custom" href="" v-if="child.languages">
-                        <span class="header__link-content">{{ child.languages[lowerLang]?.title }}</span>
+                        #####<span class="header__link-content">{{ child.languages[lowerLang]?.title }}</span>
                       </a>
                     </li>
                   </ul>
+
+                  <link-list
+                    :list="item.children"
+                    :lang="lowerLang"
+                  />
+
+
+
+
                 </li>
               </ul>
               <div class="header__footer">
