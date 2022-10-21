@@ -21,11 +21,11 @@ import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
   cloudinary: Cloudinary,
-  checks: Checks,
   data: {
     imgSrcSets: ImgSrcSets,
     products: Products,
     contact: Contact,
+    checks: Checks,
     authors: Authors,
     lang: Lang,
     options: Options,
