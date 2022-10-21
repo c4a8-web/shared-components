@@ -391,6 +391,11 @@
     margin-bottom: spacing(8);
   }
 }
+.hero-text-image__video {
+  z-index: 5;
+  width: 100%;
+  height: auto;
+}
 
 .hero-text-image__subline {
   display: inline;
