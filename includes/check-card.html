@@ -6,10 +6,10 @@
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
 
 
-{% assign checkCards = site.check | where_exp:"item", "item.lang == page.lang" %}
+{% assign checkCards = site.checks | where_exp:"item", "item.lang == page.lang" %}
 
-{{ checkCards }}
 <check-card
+  :checks="{{ checkCards | jsonify | escape }}"
   slider="{{ checkCardsSlider }}"
   subline="{{ checkCardsSubline }}"
   subline-classes="{{ checkCardsSublineClasses }}"

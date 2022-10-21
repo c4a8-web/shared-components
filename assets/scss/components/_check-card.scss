@@ -5,3 +5,15 @@
     width: 100%;
   }
 }
+
+.check-card__slide {
+  padding: 0;
+
+  @include media-breakpoint-up(sm) {
+    padding: 0 spacing($blog-recent-spacing-sm);
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 spacing($blog-recent-spacing-lg);
+  }
+}

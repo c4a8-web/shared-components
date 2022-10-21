@@ -12,6 +12,7 @@ export default {
       return [
         'card',
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
+        `${Tools.isTrue(this.long) === true ? 'mr-0 no-gutters' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -42,9 +43,6 @@ export default {
     hasNoLink() {
       return Tools.isTrue(this.webCast) ? true : false;
     },
-    subPointsArray() {
-      return this.subPoints ? JSON.parse(this.subPoints) : [];
-    }
   },
   methods: {
     formatDate(date) {
@@ -65,6 +63,10 @@ export default {
       if (author && typeof author === 'string') return [author];
 
       return author;
+    },
+    subPointsList(subpoints) {
+      if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
+      if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
     },
     handleClick(e) {
       const title = this.$refs['title'];
@@ -106,7 +108,7 @@ export default {
     dataAuthors: Object,
   },
   template: `
-    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick" >
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick"  >
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
@@ -144,7 +146,7 @@ export default {
       </template>
 
       <template v-else-if="long">
-        <div class="card-img-top position-relative card__image--long" v-if="blogTitlePic">
+        <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
@@ -158,7 +160,7 @@ export default {
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
           <ul class="text-black" >
-            <template v-for="points in subPointsArray">
+            <template v-for="points in subPointsList(subPoints)">
               <li class="mb-4"><span>{{points}}</span></li>
             </template>
           </ul>

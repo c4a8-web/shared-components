@@ -27,25 +27,25 @@ export default {
     },
     itemClass() {
       return `${
-        Tools.isTrue(this.slider) === true ? 'mb-6 mb-lg-0 blog-recent__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'
+        Tools.isTrue(this.slider) === true ? 'mb-6 mb-lg-0 check-card__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'
       }`;
     },
   },
   carouselOptions() {
     const obj = {
-      slidesToShow: 3,
-      slidesToScroll: 3,
+      slidesToShow: 2,
+      slidesToScroll: 2,
       prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
       nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
-      dots: this.postsArray.length > 3 ? true : false,
+      dots: this.checks.length > 2 ? true : false,
       centerMode: false,
       dotsClass: 'slick-pagination is-default',
       responsive: [
         {
           breakpoint: 1200,
           settings: {
-            slidesToShow: 3,
-            slidesToScroll: 3,
+            slidesToShow: 2,
+            slidesToScroll: 2,
           },
         },
         {
@@ -56,7 +56,7 @@ export default {
             centerPadding: '30px',
             slidesToShow: 2,
             slidesToScroll: 2,
-            dots: this.postsArray.length > 2 ? true : false,
+            dots: this.checks.length > 2 ? true : false,
           },
         },
         {
@@ -67,7 +67,7 @@ export default {
             centerPadding: '30px',
             slidesToShow: 1,
             slidesToScroll: 1,
-            dots: this.postsArray.length > 1 ? true : false,
+            dots: this.checks.length > 1 ? true : false,
           },
         },
         {
@@ -78,7 +78,7 @@ export default {
             centerPadding: '20px',
             slidesToShow: 1,
             slidesToScroll: 1,
-            dots: this.postsArray.length > 1 ? true : false,
+            dots: this.checks.length > 1 ? true : false,
           },
         },
       ],
@@ -96,7 +96,7 @@ export default {
     headlineClasses: String,
     subline: String,
     sublineClasses: String,
-    check: {
+    checks: {
       default: null,
     }
   },
@@ -109,9 +109,9 @@ export default {
       </div>
     </div>
     <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
-      <template v-for="(check, index) in checkArray">
-        <div :class="itemClass" v-if="index <= limit">
-          <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :subpoints="check.subpoints" />
+      <template v-for="(check, index) in checks">
+        <div :class="itemClass" v-if="index <= 1">
+          <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :long="check.long" />
         </div>
       </template>
     </div>

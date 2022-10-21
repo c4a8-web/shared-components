@@ -6,6 +6,7 @@ import { hrefTo } from './tools';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
 import Contact from './data/contact';
+import Checks from './data/checks'
 import Posts from './data/posts';
 import Events from './data/events';
 import CaseStudies from './data/casestudies';
@@ -20,6 +21,7 @@ import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
   cloudinary: Cloudinary,
+  checks: Checks,
   data: {
     imgSrcSets: ImgSrcSets,
     products: Products,
