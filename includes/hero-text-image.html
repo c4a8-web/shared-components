@@ -2,7 +2,7 @@
 {%- assign heroTextImageHero = page.hero | default: include.hero | default: hero -%}
 {%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
 {%- assign heroTextImagePattern = heroTextImageHero.pattern | default: false -%}
-{%- assign heroTextVideo = false -%}
+{%- assign heroTextVideo = heroTextImageHero.video | default: false -%}
 
 
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
@@ -14,15 +14,17 @@
 {%- else if heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
-{%- else if heroTextImageVariant == 'hero--security' -%}
-  {% assign heroTextVideo = true %}
-  {% assign heroContainerPosition = "justify-content-lg-center" %}
-  {% assign heroSublineStyling = "" %}
+
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
 {%- endif -%}
 
+{%- if heroTextImageVariant == 'hero--security' -%}
+  {% assign heroTextImageCtaTop = true %}
+  {% assign heroContainerPosition = "justify-content-lg-center" %}
+  {% assign heroSublineStyling = "" %}
+{% endif %}
 {%- if heroTextImageHero.cta -%}
   {%- capture heroTextImageCta -%}
     <div class="hero-text-image__cta-wrapper">
@@ -129,8 +131,8 @@
         {% endif %}
 
         {% if heroTextImageHero.video %}
-          <video class="hero-text-image__video justify-content-lg-center">
-            <source src="{{ heroTextImageHero.videoLocation }}" type="video/mp4">
+          <video class="hero-text-image__video justify-content-lg-center" autoplay loop>
+            <source src="{{ heroTextImageHero.videoLocation }}">
           </video>
         {% endif %}
 
