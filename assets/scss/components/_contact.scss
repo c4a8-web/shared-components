@@ -19,35 +19,34 @@
 
   & .contact--quote {
     color: white;
+    overflow: clip;
+
 
     .contact__icon {
       width: 100%;
       height: auto;
+      padding: spacing(10);
     }
-    .contact__image--quote {
-      float: right;
-      width: 7rem;
-      height: 7rem;
+    .contact__image-quote {
       border-radius: 100%;
       overflow: hidden;
+      float: right;
+      clear: both;
+      width: spacing(30);
+      max-width: 200px;
+      margin-top: 15rem;
+      height: spacing(30);
       display: flex;
-      justify-content: center;
-      margin: 2rem;
+      shape-outside: circle(50%);
       img {
-        float: right;
         clear: both;
       }
     }
     .contact__quote {
-      line-height: 2rem;
-      font-size: 1.2rem;
+      line-height: spacing(10);
+      font-size: spacing(5);
       font-weight: 200;
-    }
-    .contact__image--quote::before {
-      content: '';
-      display: block;
-      float: right;
-      height: 6rem;
+      width: 100%;
     }
   }
 
@@ -81,7 +80,7 @@
     }
   }
 
-  &.is-collapsed {
+  &.is-collapsed{
     max-width: 500px;
     overflow: hidden;
     transition: height 0.7s $animation-transition;
