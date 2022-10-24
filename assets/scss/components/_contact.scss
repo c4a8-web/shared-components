@@ -27,6 +27,7 @@
       height: auto;
       padding: spacing(10);
     }
+
     .contact__image-quote {
       border-radius: 100%;
       overflow: hidden;
@@ -34,7 +35,7 @@
       clear: both;
       width: spacing(30);
       max-width: 200px;
-      margin-top: 15rem;
+      margin-top: spacing(50);
       height: spacing(30);
       display: flex;
       shape-outside: circle(50%);
@@ -45,7 +46,6 @@
     .contact__quote {
       line-height: spacing(10);
       font-size: spacing(5);
-      font-weight: 200;
       width: 100%;
     }
   }
@@ -165,9 +165,35 @@
 }
 
 .contact__position{
-  left: 45%;
-  top: -5.5%;
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    left: 45%;
+    top: -5.5%;
+  }
+  //display: none;
 }
+
+.contact__detail--quote {
+  @include media-breakpoint-down(md) {
+    display: none;
+  }
+  @include media-breakpoint-up(md) {
+    padding-top: spacing(130);
+    padding-left: spacing(20);
+    //color: white;
+    span {
+      font-size: spacing(7);
+    }
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  }
+}
+
 
 .contact__details {
   &::before {

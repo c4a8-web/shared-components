@@ -216,7 +216,7 @@ HeroTextVideo.args = {
   hero: {
     variant: 'hero--security',
     video: true,
-    videoLocation: "assets/video/herobg.mp4",
+    videoLocation: "assets/video/new_webm_file.webm",
     subline: 'Schützen Sie Ihre IT jetzt gegen Angriffe von außen: mit unserem professionellen Security Check!',
     light: true,
     sublineClass: 'text-center',

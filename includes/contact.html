@@ -54,9 +54,11 @@
 
 {%- if contactQuote -%}
     {%- assign contactQuoteClass = ' position-relative contact--quote text-light' -%}
-    {%- assign contactBoxQuoteClass = ' position-absolute contact__position' -%}
+    {%- assign contactBoxQuoteClass = ' contact__position' -%}
     {%- assign contactVersionColor = ' contact--quote' -%}
+    {%- assign contactInfo = 'contact__detail--quote col-6 order-2' -%}
 {%- endif -%}
+
 <div class="contact {{ contactVariantClass }} {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %}mt-8 mt-lg-10{% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2{% endunless %} {% if contactQuote %} {{ contactQuoteClass }}{% endif %}">
   <div class="{{ contactContainerClass }}">
     <div class="{{ contactRowClass }}">
@@ -87,6 +89,22 @@
         </div>
         {% endif %}
       </div>
+      {% if contactQuote %}
+        <div class="{{ contactInfo }}">
+          <span>{{ contactInfos.person.detailsHeader }}</span>
+          {% for detail in contactDetails %}
+            <div class="contact__detail w-100 px-5 d-flex align-items-center {% unless forloop.last %}mb-3 mb-lg-4{% endunless %}">
+              <a href="{{ detail.href }}" class="custom"><span class="streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>{{ detail.text }}</a>
+              {% if detail.notes %}
+                <div class="contact__notes">
+                  <span class="contact__notes-spacing streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>
+                  {{ detail.notes }}
+                </div>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
       <div class="contact__box {{ contactBoxClass }} {{ contactBoxQuoteClass }}">
         <div class="contact__person pb-11 {% if contactQuote %} container {% endif %} {{ contactVersionColor }}">
 
@@ -107,7 +125,7 @@
                 alt=contact.person.alt
               %}
             </div>
-            <span class="d-block p-3 contact__quote">{{contact.person.quote}}</span>
+            <span class="d-block p-3 contact__quote font-weight-light">{{contact.person.quote}}</span>
             <div class="d-flex flex-column p-3">
               <span class="">{{contact.person.quotee}}</span>
               <span class="font-weight-light">{{contact.person.quoteeTitle}}</span>
