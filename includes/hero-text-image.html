@@ -131,8 +131,11 @@
         {% endif %}
 
         {% if heroTextImageHero.video %}
-          <video class="hero-text-image__video justify-content-lg-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-            <source src="{{ heroTextImageHero.videoLocation }}">
+          <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+            <source src="{{ heroTextImageHero.videoLocationDesktop }}">
+          </video>
+          <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+            <source src="{{ heroTextImageHero.videoLocationMobile }}">
           </video>
         {% endif %}
 
