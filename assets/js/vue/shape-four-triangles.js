@@ -16,16 +16,16 @@ export default {
     //   return this.start ? this.start : defaultStart;
     // },
     triangleBottomLeftColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
     triangleUpperLeftColor() {
-      return this.secondColor ? this.secondColor : '#ffffff';
+      return this.secondColor ? this.secondColor : 'var(--color-secondary)';
     },
     triangleUpperRightColor() {
-      return this.firstColor ? this.firstColor : '#0072c6';
+      return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
     triangleBottomRightColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+      return this.secondColor ? this.secondColor : 'var(--color-secondary)';
     },
     triangleBottomLeft() {
       return this.sequence.triangleBottomLeft;

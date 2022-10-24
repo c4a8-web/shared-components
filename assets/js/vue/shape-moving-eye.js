@@ -19,7 +19,7 @@ export default {
       return this.backgroundColor ? this.backgroundColor : 'var(--color-green-blue)';
     },
     circleColor() {
-      return this.firstColor ? this.firstColor : '#9116fc';
+      return this.firstColor ? this.firstColor : 'var(--color-yellow)';
     },
     upperSquare() {
       return this.sequence.upperSquare;

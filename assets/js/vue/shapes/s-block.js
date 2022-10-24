@@ -7,16 +7,16 @@ export default {
       return tagName;
     },
     secondShapeBackgroundColor() {
-      return this.secondShape.backgroundColor ? this.secondShape.backgroundColor : '#fcd116';
+      return this.sbackgroundColor ? this.secondShape.backgroundColor : 'var(--color-primary-accent-light)';
     },
     fourthShapeBackgroundColor() {
-      return this.fourthShape.backgroundColor ? this.fourthShape.backgroundColor : '#fcd116';
+      return this.fourthShape.backgroundColor ? this.fourthShape.backgroundColor : 'var(--color-primary-accent-light)';
     },
     fourthShapeFirstColor() {
-      return this.fourthShape.firstColor ? this.fourthShape.firstColor : '#f8842c';
+      return this.fourthShape.firstColor ? this.fourthShape.firstColor : 'var(--color-primary-accent)';
     },
     fourthShapeSecondColor() {
-      return this.fourthShape.secondColor ? this.fourthShape.secondColor : '#fff';
+      return this.fourthShape.secondColor ? this.fourthShape.secondColor : 'var(--color-secondary)';
     },
     firstShape() {
       return this.getShapeData(0);
@@ -90,7 +90,7 @@ export default {
     secondColor: String,
   },
   template: `
-    <svg :class="classList" :data-name="name" viewBox="0 0 801.86 1197.37" width="801.86" height="1197.37" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999">
+    <svg :class="classList" :data-name="name" viewBox="0 0 800 1200" width="800" height="1200" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999">
 
       <component
         transform="translate(400 0)"
@@ -119,9 +119,9 @@ export default {
         v-bind="fourthShape">
       </component>
       <g v-else >
-        <path :fill="fourthShapeBackgroundColor" d="M.18 796.88h400.84v400.49H.18z"/>
-        <path :fill="fourthShapeFirstColor" d="M401.02 1197.37H.18L200.6 997.12l200.42 200.25z"/>
-        <path :fill="fourthShapeSecondColor" d="m200.6 997.12 200.42 200.25H200.6V997.12z"/>
+        <path :fill="fourthShapeBackgroundColor" d="M.18 800h400v400H.18z"/>
+        <path :fill="fourthShapeFirstColor" d="M400 1200H.18L200 1000l200 200z"/>
+        <path :fill="fourthShapeSecondColor" d="m200 1000 200 200H200V1000z"/>
       </g>
 
     </svg>

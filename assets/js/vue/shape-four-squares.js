@@ -16,22 +16,22 @@ export default {
     //   return this.start ? this.start : defaultStart;
     // },
     squareUpperLeftFirstColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-blue-light)';
     },
     squareBottomRightFirstColor() {
-      return this.firstColor ? this.firstColor : '#ffffff';
+      return this.firstColor ? this.firstColor : 'var(--color-blue-light)';
     },
     squareUpperLeftSecondColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+      return this.secondColor ? this.secondColor : 'var(--color-orange)';
     },
     squareBottomRightSecondColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+      return this.secondColor ? this.secondColor : 'var(--color-orange)';
     },
     squareUpperRightColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-gigas)';
     },
     squareBottomLeftColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-gigas)';
     },
     squareUpperLeftFirst() {
       return this.sequence.squareUpperLeftFirst;

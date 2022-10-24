@@ -16,28 +16,28 @@ export default {
     //   return this.start ? this.start : defaultStart;
     // },
     triangleUpperStaticColor() {
-      return this.firstColor ? this.firstColor : '#5cbbff';
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
     },
     triangleUpperColor() {
-      return this.secondColor ? this.secondColor : '#fcd116';
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
     triangleRightStaticColor() {
-      return this.thirdColor ? this.thirdColor : '#ffffff';
+      return this.thirdColor ? this.thirdColor : 'var(--color-yellow)';
     },
     triangleRightColor() {
-      return this.firstColor ? this.firstColor : '#0072c6';
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
     },
     triangleLeftStaticColor() {
-      return this.thirdColor ? this.thirdColor : '#5cbbff';
+      return this.thirdColor ? this.thirdColor : 'var(--color-yellow)';
     },
     triangleLeftColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
     },
     triangleBottomStaticColor() {
-      return this.firstColor ? this.firstColor : '#ffffff';
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
     },
     triangleBottomColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
     triangleUpper() {
       return this.sequence.triangleUpper;

@@ -16,22 +16,22 @@ export default {
       return this.start ? this.start : defaultStart;
     },
     firstSquareStaticColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
     firstCircleColor() {
-      return this.secondColor ? this.secondColor : '#ffffff';
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
     secondSquareColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
     secondCircleColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-gigas)';
     },
     thirdSquareColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-gigas)';
     },
     thirdCircleColor() {
-      return this.firstColor ? this.firstColor : '#0072c6';
+      return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
     firstCircle() {
       return this.sequence.firstCircle;

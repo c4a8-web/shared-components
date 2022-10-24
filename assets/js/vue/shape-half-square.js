@@ -16,16 +16,16 @@ export default {
       return this.start ? this.start : defaultStart;
     },
     backgroundSquareColor() {
-      return this.backgroundColor ? this.backgroundColor : '#5cbbff';
+      return this.backgroundColor ? this.backgroundColor : 'var(--color-blue-light)';
     },
     firstSquareColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-page-detail-shape)';
     },
     secondSquareColor() {
-      return this.secondColor ? this.secondColor : '#ffffff';
+      return this.secondColor ? this.secondColor : 'var(--color-background)';
     },
     thirdSquareColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-primary-accent)';
     },
     squareGroup() {
       return this.sequence.squareGroup;

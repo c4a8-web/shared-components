@@ -17,10 +17,10 @@ export default {
       return this.start ? this.start : defaultStart;
     },
     rectColor() {
-      return this.backgroundColor ? this.backgroundColor : '#673ab7';
+      return this.backgroundColor ? this.backgroundColor : 'var(--color-primary-accent)';
     },
     circleColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-secondary)';
     },
     bigCircle() {
       return this.sequence.bigCircle;
