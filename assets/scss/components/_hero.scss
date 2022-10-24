@@ -406,6 +406,22 @@
   }
 }
 
+.hero-video__animation {
+  opacity: 0;
+  animation: 2.5s linear 4s 1 video__subline__animation;
+  animation-fill-mode: forwards;
+}
+
+@keyframes video__subline__animation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 .hero-text-image__wrapper {
   position: relative;
 

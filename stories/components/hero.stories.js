@@ -219,7 +219,7 @@ HeroTextVideo.args = {
     videoLocation: "assets/video/new_webm_file.webm",
     subline: 'Schützen Sie Ihre IT jetzt gegen Angriffe von außen: mit unserem professionellen Security Check!',
     light: true,
-    sublineClass: 'text-center',
+    sublineClass: 'hero-video__animation text-center',
     cta: {
       text: 'Jetzt anmelden',
       href: '/#checks',
