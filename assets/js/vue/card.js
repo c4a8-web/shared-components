@@ -132,7 +132,7 @@ export default {
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
-                <div class="card__author">
+                <div class="card__author" v-if="author">
                   <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
@@ -185,7 +185,7 @@ export default {
 
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
-            <div class="card__author">
+            <div class="card__author" v-if="author">
               <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">

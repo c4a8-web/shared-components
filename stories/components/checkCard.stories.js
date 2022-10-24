@@ -14,9 +14,9 @@ const Template = (args) => createComponent(args, component);
 export const CheckCard = Template.bind({});
 
 CheckCard.args = {
-  slider: true,
   headline: 'Wir checken jetzt ihre IT-Sicherheit on Premises und in der Cloud',
   level: 'h2',
   headlineClasses: 'text-black',
-  subline: "In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung"
-}
+  subline:
+    "In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
+};
