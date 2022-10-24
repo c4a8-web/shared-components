@@ -1,0 +1,31 @@
+.link-list {
+  --link-list-border-size: 1px;
+}
+
+.link-list__title {
+  text-transform: uppercase;
+  padding-bottom: spacing(5);
+  margin-bottom: spacing(5);
+  border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
+}
+
+.link-list__list {
+  // flex-wrap: nowrap;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+
+  // State Hidden
+  // &.link-list--expanded {
+  //   display: none;
+  // }
+}
+
+.link-list__item {
+  flex: 1 0 100%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

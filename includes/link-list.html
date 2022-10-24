@@ -1,0 +1,9 @@
+<!-- Shared Link List Section -->
+{%- assign linkListList = include.list -%}
+{%- assign linkListLang = include.lang | default: 'de' -%}
+
+<link-list
+  lang="{{ linkListLang }}"
+  :list="{{ linkListList | jsonify | escape }}"
+></link-list>
+<!-- End Shared Link List Section -->

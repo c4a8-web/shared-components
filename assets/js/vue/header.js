@@ -126,6 +126,9 @@ export default {
 
       return parent[lang]?.url;
     },
+    isLinkListVisible(item) {
+      return State.HIDDEN;
+    },
   },
   props: {
     home: Object,
@@ -168,7 +171,10 @@ export default {
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
                     </div>
                   </a>
-                  <ul class="header__list header__list--expanded" v-if="item.disabled">
+
+
+
+                  <ul style="display: none"; remove-me remove-me class="header__list header__list--expanded" v-if="item.disabled">
                     <li class="header__item" v-for="child in item.children.children">
                       <a class="header__link custom" href="" v-if="child.languages">
                         #####<span class="header__link-content">{{ child.languages[lowerLang]?.title }}</span>
@@ -176,12 +182,13 @@ export default {
                     </li>
                   </ul>
 
+
                   <link-list
-                    :list="item.children"
+                    :list="list"
                     :lang="lowerLang"
+                    :classes="isLinkListVisible(item)"
+                    v-for="list in item.children" v-if="item.children"
                   />
-
-
 
 
                 </li>

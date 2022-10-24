@@ -2,20 +2,21 @@ export default {
   tagName: 'link-list',
   computed: {
     classList() {
-      return ['link-list xxxheader__flyout-block', 'vue-component'];
+      return ['link-list xxxheader__flyout-block', this.classes, 'vue-component'];
     },
   },
   props: {
     list: Object,
     lang: String,
+    classes: String,
   },
   template: `
-    <figure :class="classList" v-for="child in list" v-if="list">
-      <figcaption class="xxxheader__flyout-title" v-if="child.languages">
-        {{ child.languages[lang]?.title }}
+    <figure :class="classList" v-if="list">
+      <figcaption class="link-list__title xxxheader__flyout-title" v-if="list.languages">
+        {{ list.languages[lang]?.title }}
       </figcaption>
-      <ul class="xxxheader__list header__list--expanded" v-for="subChild in child.children">
-        <li class="xxxheader__flyout-item" v-if="subChild.languages">
+      <ul class="link-list__list xxxheader__list header__list--expanded" v-for="subChild in list.children">
+        <li class="link-list__item xxxheader__flyout-item" v-if="subChild.languages">
           <cta
             :href="subChild.languages[lang].url"
             :text="subChild.languages[lang].title"
