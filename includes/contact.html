@@ -53,7 +53,7 @@
 {%- endif -%}
 
 {%- if contactQuote -%}
-    {%- assign contactQuoteClass = ' position-relative contact--quote' -%}
+    {%- assign contactQuoteClass = ' position-relative contact--quote text-light' -%}
     {%- assign contactBoxQuoteClass = ' position-absolute contact__position' -%}
     {%- assign contactVersionColor = ' contact--quote' -%}
 {%- endif -%}
@@ -88,15 +88,34 @@
       </div>
       <div class="contact__box {{ contactBoxClass }} {{ contactBoxQuoteClass }}">
         <div class="contact__person pb-11 {{ contactVersionColor }}">
-          <div class="contact__image p-2">
-            {%
-              include img.html
-              img=contact.person.image
-              cloudinary=contact.person.cloudinary
-              alt=contact.person.alt
-            %}
-          </div>
-          {% unless contactQuote %}
+
+          {% if contactQuote %}
+            <div class="contact__icon p-2">
+              {%
+                include icon.html
+                icon=contact.person.icon
+                circle=false
+                hover=true
+              %}
+            </div>
+            <span class="d-block p-5 contact__quote">{{contact.person.quote}}</span>
+            <div class="contact__image--quote">
+              {%
+                include img.html
+                img=contact.person.image
+                cloudinary=contact.person.cloudinary
+                alt=contact.person.alt
+              %}
+            </div>
+          {% else %}
+            <div class="contact__image p-2">
+              {%
+                include img.html
+                img=contact.person.image
+                cloudinary=contact.person.cloudinary
+                alt=contact.person.alt
+              %}
+            </div>
             <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
               <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
                 {% for detail in contactDetails %}
@@ -119,7 +138,7 @@
                 {% endif %}
               </div>
             </div>
-          {% endunless %}
+          {% endif %}
         </div>
       </div>
     </div>

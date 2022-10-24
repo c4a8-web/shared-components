@@ -12,7 +12,7 @@ export default {
     checkCardsContainerClass() {
       return [
         'check-card__container',
-        `${Tools.isTrue(this.slider) === true ? 'js-slick-carousel' : 'row mb-3'}`,
+        `${Tools.isTrue(this.slider) === true ? 'js-slick-carousel justify-content-lg-center' : 'row mb-3'}`,
         'vue-component'
       ]
     },
@@ -27,7 +27,7 @@ export default {
     },
     itemClass() {
       return `${
-        Tools.isTrue(this.slider) === true ? 'mb-6 mb-lg-0 check-card__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'
+        Tools.isTrue(this.slider) === true ? ' check-card__slide' : 'col-sm-6 col-lg-4'
       }`;
     },
   },
@@ -102,18 +102,20 @@ export default {
   },
   template: `
   <div :class="classList">
-    <div class="row" v-if="headline">
-      <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-        <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-        <span v-if="subline" :class="sublineClassesValue"> {{ subline }}</span>
-      </div>
-    </div>
-    <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
-      <template v-for="(check, index) in checks">
-        <div :class="itemClass" v-if="index <= 1">
-          <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :long="check.long" />
+    <div class="container">
+      <div class="row" v-if="headline">
+        <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
+          <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+          <span v-if="subline" :class="sublineClassesValue"> {{ subline }}</span>
         </div>
-      </template>
+      </div>
+      <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
+        <template v-for="(check, index) in checks">
+          <div :class="itemClass" v-if="index <= 1">
+            <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :long="check.long" />
+          </div>
+        </template>
+      </div>
     </div>
   </div>
   `,
