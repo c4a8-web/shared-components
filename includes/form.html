@@ -10,6 +10,7 @@
 {%- assign formUncentered = formForm.uncentered -%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
+{%- assign formTextStyling = include.textStyle | default: false -%}
 
 {% assign formOptionsText = "{" %}
 {% for field in formForm.fields %}
@@ -38,6 +39,7 @@
   uncentered="{{ formUncentered }}"
   replace-value="{{ formReplaceValue }}"
   :options="{{ formOptionsText }}"
+  text-style="{{ formTextStyling }}"
 ></Formular>
 
 <!-- End Shared Form Section -->

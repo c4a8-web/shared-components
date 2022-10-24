@@ -131,7 +131,7 @@
         {% endif %}
 
         {% if heroTextImageHero.video %}
-          <video class="hero-text-image__video justify-content-lg-center" autoplay loop>
+          <video class="hero-text-image__video justify-content-lg-center" autoplay loop muted disablePictureInPicture controlsList="nodownload">
             <source src="{{ heroTextImageHero.videoLocation }}">
           </video>
         {% endif %}

@@ -74,6 +74,7 @@
             include form.html
             form=contact.form
             ajax=contactAjax
+            textStyle=contact.textStyling
           %}
         {% endif %}
 
@@ -87,10 +88,10 @@
         {% endif %}
       </div>
       <div class="contact__box {{ contactBoxClass }} {{ contactBoxQuoteClass }}">
-        <div class="contact__person pb-11 {{ contactVersionColor }}">
+        <div class="contact__person pb-11 {% if contactQuote %} container {% endif %} {{ contactVersionColor }}">
 
           {% if contactQuote %}
-            <div class="contact__icon p-2">
+            <div class="contact__icon p-5">
               {%
                 include icon.html
                 icon=contact.person.icon
@@ -98,8 +99,7 @@
                 hover=true
               %}
             </div>
-            <span class="d-block p-5 contact__quote">{{contact.person.quote}}</span>
-            <div class="contact__image--quote">
+            <div class="contact__image-quote">
               {%
                 include img.html
                 img=contact.person.image
@@ -107,8 +107,13 @@
                 alt=contact.person.alt
               %}
             </div>
+            <span class="d-block p-3 contact__quote">{{contact.person.quote}}</span>
+            <div class="d-flex flex-column p-3">
+              <span class="">{{contact.person.quotee}}</span>
+              <span class="font-weight-light">{{contact.person.quoteeTitle}}</span>
+            </div>
           {% else %}
-            <div class="contact__image p-2">
+            <div class="contact__image">
               {%
                 include img.html
                 img=contact.person.image

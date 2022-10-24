@@ -145,12 +145,15 @@ WithQuote.args = {
   infos: {
     headline: 'Jetzt Gesprächstermin vereinbaren',
     level: 'h2',
+    textStyling: 'text-light',
     person: {
       image: '/people/people-sophie-luna.jpg',
       icon: 'computer-shield',
       cloudinary: true,
       alt: 'Quotation Svg/Picture Platzhalter',
       name: 'Platzhalter',
+      quotee: 'Jan Geisbauer',
+      quoteeTitle: 'Cyber Security Lead',
       quote: "Bei den meisten unserer Emergency-Einsätze stellen wir immer wieder fest, dass die IT nicht gut genug auf Angriffe vorbereitet war. Ein pro-aktiver Security Check ist deshalb eine effiziente Investition in mehr Sicherheit zur Reduzierung der Ausfallzeiten."
     },
     form: {
