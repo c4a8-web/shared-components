@@ -5,7 +5,7 @@ import './lib/vue/vue.global.prod.js';
 import Authors from './vue/authors.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
-import CheckCard from './vue/check-card.js'
+import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
 import FormAttachments from './vue/form-attachments.js';
@@ -40,6 +40,7 @@ import Arrow from './vue/icons/arrow.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import PhoneMail from './vue/icons/phone-mail.js';
+import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
@@ -47,8 +48,8 @@ import TBlock from './vue/shapes/t-block.js';
 import LBlock from './vue/shapes/l-block.js';
 import Square from './vue/shapes/square.js';
 import Wrapper from './vue/wrapper.js';
-import VideoInner from './vue/video-inner.js'
-import AsideWrapper from './vue/aside-wrapper.js'
+import VideoInner from './vue/video-inner.js';
+import AsideWrapper from './vue/aside-wrapper.js';
 
 let root = document.querySelector('#app');
 let app;
@@ -102,6 +103,7 @@ const addApp = () => {
     Close,
     ComputerShield,
     PhoneMail,
+    Quotes,
     Rocket,
     Smile,
     SBlock,
