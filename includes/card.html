@@ -10,6 +10,8 @@
 {%- assign cardEvent = include.event -%}
 {%- assign cardTarget = include.target -%}
 {%- assign cardYoutubeUrl = include.youtubeUrl -%}
+{%- assign cardLong = include.long -%}
+{%- assign cardSubPoints = include.subpoints -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -23,6 +25,8 @@
 
 <card
   large="{{ cardLarge }}"
+  long="{{ cardLong }}"
+  sub-points="{{ cardSubPoints | jsonify | escape }}"
   blog-title-pic="{{ cardBlogTitlePic }}"
   url="{{ cardUrl }}"
   target="{{ cardTarget }}"
