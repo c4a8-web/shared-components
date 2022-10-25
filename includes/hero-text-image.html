@@ -111,12 +111,27 @@
     </div>
   {% endif %}
   <div class="container z-index-4">
-    <div class="row {{ heroContainerPosition }} align-items-lg-center pt-lg-5 position-relative">
+    <div class="hero-text-image__row row {{ heroContainerPosition }} align-items-lg-center pt-lg-5 position-relative">
       {% if heroTextImageHero.background %}
         <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
           {{ heroImage }}
         </div>
       {% endif %}
+
+      {% if heroTextImageHero.video %}
+        <div style="display:none" class="hero-text-image__video col-lg-10">
+          {% comment %}
+            TODO rename to BEM
+          {% endcomment %}
+          <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+            <source src="{{ heroTextImageHero.videoLocationDesktop }}">
+          </video>
+          <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+            <source src="{{ heroTextImageHero.videoLocationMobile }}">
+          </video>
+        </div>
+      {% endif %}
+
       <div class="hero-text-image__wrapper col-lg-8 w-100">
         {% if heroTextImageHero.back %}
           <div class="hero-text-image__back back">
@@ -131,15 +146,17 @@
         {% endif %}
 
         {% if heroTextImageHero.video %}
-          {% comment %}
-            TODO rename to BEM
-          {% endcomment %}
-          <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-            <source src="{{ heroTextImageHero.videoLocationDesktop }}">
-          </video>
-          <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-            <source src="{{ heroTextImageHero.videoLocationMobile }}">
-          </video>
+          <div class="hero-text-image__video">
+            {% comment %}
+              TODO rename to BEM
+            {% endcomment %}
+            <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+              <source src="{{ heroTextImageHero.videoLocationDesktop }}">
+            </video>
+            <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+              <source src="{{ heroTextImageHero.videoLocationMobile }}">
+            </video>
+          </div>
         {% endif %}
 
         {% if heroTextImageHero.overline %}
