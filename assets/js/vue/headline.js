@@ -10,7 +10,7 @@ export default {
           ? this.classes
           : `${this.classes ? this.classes : ''} ${this.tag}-font-size`;
 
-      return `${classes} vue-component`;
+      return `${classes} headline vue-component`;
     },
   },
   props: {

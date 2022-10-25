@@ -12,6 +12,7 @@ export default {
       return [
         'card',
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
+        `${Tools.isTrue(this.long) === true ? 'mr-0 no-gutters' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -63,6 +64,10 @@ export default {
 
       return author;
     },
+    subPointsList(subpoints) {
+      if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
+      if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
+    },
     handleClick(e) {
       const title = this.$refs['title'];
       const target = e.target;
@@ -87,6 +92,12 @@ export default {
     large: {
       default: null,
     },
+    long: {
+      default: null,
+    },
+    subPoints: {
+      default: null,
+    },
     event: {
       default: null,
     },
@@ -97,7 +108,7 @@ export default {
     dataAuthors: Object,
   },
   template: `
-    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick" >
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick"  >
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
@@ -121,7 +132,7 @@ export default {
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
-                <div class="card__author">
+                <div class="card__author" v-if="author">
                   <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
@@ -134,6 +145,29 @@ export default {
         </div>
       </template>
 
+      <template v-else-if="long">
+        <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
+            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
+              <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
+            </svg>
+          </figure>
+        </div>
+
+        <div class="card-body richtext">
+          <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
+          <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
+
+          <ul class="text-black" >
+            <template v-for="points in subPointsList(subPoints)">
+              <li class="mb-4"><span>{{points}}</span></li>
+            </template>
+          </ul>
+
+        </div>
+
+      </template>
       <template v-else>
         <div class="card-img-top position-relative" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
@@ -151,7 +185,7 @@ export default {
 
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
-            <div class="card__author">
+            <div class="card__author" v-if="author">
               <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">

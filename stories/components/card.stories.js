@@ -44,6 +44,20 @@ BlogPostLarge.args = {
     '<strong>Test123</strong> In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
 };
 
+
+export const CardLong = Template.bind({});
+
+CardLong.args = {
+  long: true,
+  url: 'javascript:void(0);',
+  layout: 'post',
+  title: 'glueckkanja-gab Quick-Check',
+  blogtitlepic: `${site.blog_image_path}head-emergency-calls`,
+  socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
+  excerpt: 'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mirosoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
+  subpoints: ['Bei glueckkanja-gab sitzt du nicht nur direkt an der Mirosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat', 'Dir stehen bei glueckkanja-gab viele Türen offen und', 'Auch wenn du heute nicht so weit bist']
+};
+
 export const Webcast = Template.bind({});
 
 Webcast.args = {

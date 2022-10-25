@@ -180,7 +180,7 @@ export const HeroTextImageStudy = Template.bind({});
 
 HeroTextImageStudy.args = {
   hero: {
-    variant: 'hero--study',
+    variant: 'hero--study', // TODO refactor to a more generic name
     back: true,
     headline: 'Pöppelmann Case',
     subline:
@@ -206,5 +206,25 @@ HeroTextShape.args = {
       img: getAssetPath('svg/shapes/s-block.svg'),
       alt: 'Shape',
     },
+  },
+};
+
+export const HeroTextVideo = Template.bind({});
+
+HeroTextVideo.args = {
+  hero: {
+    variant: 'hero--security', // TODO refactor to hero--video
+    video: true,
+    videoLocationDesktop: 'assets/video/hero-security-desktop.webm',
+    videoLocationMobile: 'assets/video/hero-security-mobile.webm',
+    subline: 'Schützen Sie Ihre IT jetzt gegen Angriffe von außen: mit unserem professionellen Security Check!',
+    light: true,
+    sublineClass: 'hero-video__animation text-center',
+    cta: {
+      text: 'Jetzt anmelden',
+      href: '/#checks',
+      skin: 'primary',
+    },
+    bgColor: 'var(--color-gigas)',
   },
 };

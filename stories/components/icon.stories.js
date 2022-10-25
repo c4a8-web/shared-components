@@ -85,3 +85,10 @@ ComputerShield.args = {
   icon: 'computer-shield',
   size: 'large',
 };
+
+export const Quotes = Template.bind({});
+
+Quotes.args = {
+  icon: 'quotes',
+  size: 'large',
+};
