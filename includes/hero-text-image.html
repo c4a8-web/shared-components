@@ -118,20 +118,6 @@
         </div>
       {% endif %}
 
-      {% if heroTextImageHero.video %}
-        <div style="display:none" class="hero-text-image__video col-lg-10">
-          {% comment %}
-            TODO rename to BEM
-          {% endcomment %}
-          <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-            <source src="{{ heroTextImageHero.videoLocationDesktop }}">
-          </video>
-          <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-            <source src="{{ heroTextImageHero.videoLocationMobile }}">
-          </video>
-        </div>
-      {% endif %}
-
       <div class="hero-text-image__wrapper col-lg-8 w-100">
         {% if heroTextImageHero.back %}
           <div class="hero-text-image__back back">
