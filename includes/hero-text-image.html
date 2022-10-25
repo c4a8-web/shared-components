@@ -131,6 +131,9 @@
         {% endif %}
 
         {% if heroTextImageHero.video %}
+          {% comment %}
+            TODO rename to BEM
+          {% endcomment %}
           <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
             <source src="{{ heroTextImageHero.videoLocationDesktop }}">
           </video>

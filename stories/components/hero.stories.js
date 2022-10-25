@@ -209,23 +209,22 @@ HeroTextShape.args = {
   },
 };
 
-
 export const HeroTextVideo = Template.bind({});
 
 HeroTextVideo.args = {
   hero: {
-    variant: 'hero--security',
+    variant: 'hero--security', // TODO refactor to hero--video
     video: true,
-    videoLocationDesktop: "assets/video/herodesktop.webm",
-    videoLocationMobile: "assets/video/heromobile.mp4",
+    videoLocationDesktop: 'assets/video/hero-security-desktop.webm',
+    videoLocationMobile: 'assets/video/heromobile.mp4',
     subline: 'Schützen Sie Ihre IT jetzt gegen Angriffe von außen: mit unserem professionellen Security Check!',
     light: true,
     sublineClass: 'hero-video__animation text-center',
     cta: {
       text: 'Jetzt anmelden',
       href: '/#checks',
-      skin: 'primary'
+      skin: 'primary',
     },
-    bgColor: 'var(--color-gigas)'
-  }
-}
+    bgColor: 'var(--color-gigas)',
+  },
+};
