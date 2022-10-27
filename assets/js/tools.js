@@ -235,7 +235,7 @@ class Tools {
   }
 
   static isBelowBreakpoint(breakpoint) {
-    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
+    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
     const getBreakpoint = Tools.getBreakpoint();
     let breakpointIndex = breakpointArray.indexOf(breakpoint);
 
