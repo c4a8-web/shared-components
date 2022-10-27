@@ -41,6 +41,10 @@
     {%- assign contactVariantClass = 'contact--quote' -%}
 {%- endif -%}
 
+{% if contact.flush %}
+  {%- assign contactUncentered = true -%}
+{% endif %}
+
 {%- if contactCollapsed -%}
   {%- assign contactVariantClass = contactVariantClass | append: 'is-collapsed' -%}
   {%- assign contactOffsetClass = '' -%}
@@ -74,6 +78,8 @@
             form=contact.form
             ajax=contactAjax
             textStyle=contact.textStyling
+            formFlush=contact.flush
+            formUncentered=contactUncentered
           %}
         {% endif %}
 

@@ -26,7 +26,7 @@ export default {
       return ['text-center', `${this.form.sublineClasses ? this.form.sublineClasses : ''}`];
     },
     formClassList() {
-      return ['form__submit mt-5', `${this.uncentered ? '' : 'justify-content-center'}`];
+      return ['form__submit mt-5', `${this.uncentered ? '' : 'justify-content-center'}`, `${this.flush ? this.flush : ''}`]; // replace uncentered with flush?
     },
     method() {
       return this.form.method ? this.form.method : 'post';
@@ -107,9 +107,13 @@ export default {
     options: Object,
     textStyle: {
       default: null,
+    },
+    flush: {
+      default: null,
     }
   },
   template: `
+    {{ uncentered }}Test123
     <div :class="classList">
       <div :class="rowClassList">
         <div :class="wrapperClassList">

@@ -146,6 +146,7 @@ WithQuote.args = {
     headline: 'Jetzt Gesprächstermin vereinbaren',
     level: 'h2',
     textStyling: 'text-light',
+    flush: "justify-content-end", // right flush
     person: {
       image: '/people/people-sophie-luna.jpg',
       mail: 'sales@glueckkanja-gab.com',
