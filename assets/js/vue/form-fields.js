@@ -1,3 +1,5 @@
+import Tools from '../tools.js';
+
 export default {
   tagName: 'form-fields',
   computed: {
@@ -34,19 +36,14 @@ export default {
         : this.field.value;
     },
     labelClass() {
-      return [
-        `${Tools.isTrue(this.customValidation) === true ? 'input-label' : 'input-label'}`,
-      ]
+      return [`${Tools.isTrue(this.customValidation) === true ? 'input-label' : 'input-label'}`];
     },
     textStyleClass() {
       return this.textStyle ? this.textStyle : '';
     },
     inputLabelClass() {
-      return [
-        "input-label",
-        this.textStyle ? this.textStyle : ''
-      ]
-    }
+      return ['input-label', this.textStyle ? this.textStyle : ''];
+    },
   },
   methods: {
     getRequiredMsg(element) {
@@ -61,7 +58,7 @@ export default {
     },
     textStyle: {
       default: null,
-    }
+    },
   },
   template: `
     <template v-if="field.id !== '_gotcha'">

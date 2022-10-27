@@ -12,7 +12,7 @@ export default {
       return [
         'card',
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
-        `${Tools.isTrue(this.long) === true ? 'mr-0 no-gutters' : ''}`,
+        `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];

@@ -1,3 +1,6 @@
+$check-card-spacing-sm: 2;
+$check-card-spacing-lg: 8;
+
 .check-card {
   position: relative;
   overflow: hidden;
@@ -11,10 +14,10 @@
   padding: 0;
 
   @include media-breakpoint-up(sm) {
-    padding: 0 spacing($blog-recent-spacing-sm);
+    padding: 0 spacing($check-card-spacing-sm);
   }
 
   @include media-breakpoint-up(lg) {
-    padding: 0 spacing($blog-recent-spacing-lg);
+    padding: 0 spacing($check-card-spacing-lg);
   }
 }
