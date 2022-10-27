@@ -68,6 +68,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./components/hero-text-image.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./components/tab-list.js')
     .then((module) => {
       return module.default;
