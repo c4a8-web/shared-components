@@ -1,7 +1,7 @@
 <!-- Intro Text Section -->
 {%- assign introTextCopy = include.copy -%}
 {%- assign introTextHeadline = include.headline -%}
-{%- assign introTextCopyClasses = include.copyClasses | default: 'font-size-4' -%}
+{%- assign introTextCopyClasses = include.copyClasses | default: 'font-size-4 text-lh-lg' -%}
 {%- assign introTextSpacing = include.spacing -%}
 
 <figure class="{{ introTextSpacing }}">
@@ -18,7 +18,7 @@
     {% endif %}
     <div class="row">
       <div class="col">
-        <p class="intro-text__copy {{ introTextCopyClasses }} text-lh-lg">
+        <p class="intro-text__copy {{ introTextCopyClasses }}">
           {{ introTextCopy }}
         </p>
       </div>
