@@ -113,7 +113,6 @@ export default {
     }
   },
   template: `
-    {{ uncentered }}Test123
     <div :class="classList">
       <div :class="rowClassList">
         <div :class="wrapperClassList">
