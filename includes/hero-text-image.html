@@ -28,7 +28,6 @@
 {%- if heroTextImageHero.cta -%}
   {%- capture heroTextImageCta -%}
     <div class="hero-text-image__cta-wrapper">
-      {{Test}}
       {%
         include cta.html
         text=heroTextImageHero.cta.text
@@ -134,14 +133,17 @@
         {% if heroTextImageHero.video %}
           <div class="hero-text-image__video">
             {% comment %}
-              TODO rename to BEM
+              TODO REMOVE me in template and scss
+              <video class="hero-text-video--desktop justify-content-center" controls autoplay muted disablePictureInPicture controlsList="nodownload">
+                <source src="{{ heroTextImageHero.videoLocationDesktop }}">
+              </video>
+              <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+                <source src="{{ heroTextImageHero.videoLocationMobile }}">
+              </video>
             {% endcomment %}
-            <video class="hero-text-video--desktop justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-              <source src="{{ heroTextImageHero.videoLocationDesktop }}">
-            </video>
-            <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
-              <source src="{{ heroTextImageHero.videoLocationMobile }}">
-            </video>
+            {%
+              include letter-switcher.html
+            %}
           </div>
         {% endif %}
 
