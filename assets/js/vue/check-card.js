@@ -93,8 +93,8 @@ export default {
     <div :class="classList">
       <div class="container">
         <div class="row" v-if="headline">
-          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
-            <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
+            <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
             <span v-if="subline" :class="sublineClassesValue"> {{ subline }}</span>
           </div>
         </div>

@@ -11,6 +11,14 @@
       max-width: unquote('min(480px, 100vw)');
     }
   }
+  &.card--long {
+    @include media-breakpoint-up(md) {
+      max-width: 100%;
+    }
+    @include media-breakpoint-up(xs) {
+      max-width: unquote('min(480px, 100%)');
+    }
+  }
 
   &.card--event {
     .card__author {

@@ -11,6 +11,7 @@
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
 {%- assign formTextStyling = include.textStyle | default: false -%}
+{%- assign formFlush = include.flush | default: false -%}
 
 {% assign formOptionsText = "{" %}
 {% for field in formForm.fields %}
@@ -40,6 +41,7 @@
   replace-value="{{ formReplaceValue }}"
   :options="{{ formOptionsText }}"
   text-style="{{ formTextStyling }}"
+  flush="{{ formFlush }}"
 ></Formular>
 
 <!-- End Shared Form Section -->
