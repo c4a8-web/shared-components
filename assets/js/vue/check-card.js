@@ -17,7 +17,7 @@ export default {
       return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
     },
     sublineClassesValue() {
-      return `check-card__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
+      return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     itemClass() {
       return 'check-card__slide';
@@ -95,7 +95,7 @@ export default {
         <div class="row" v-if="headline">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
             <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-            <span v-if="subline" :class="sublineClassesValue"> {{ subline }}</span>
+            <div v-if="subline" :class="sublineClassesValue"> {{ subline }}</div>
           </div>
         </div>
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
