@@ -23,6 +23,7 @@ import JobList from './vue/job-list.js';
 import LetterSwitcher from './vue/letter-switcher.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
+import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
@@ -87,6 +88,7 @@ const addApp = () => {
     JobList,
     LetterSwitcher,
     Modal,
+    ScrollArrow,
     Search,
     ShapeAnimation,
     ShapeCircleWithinSquare,
