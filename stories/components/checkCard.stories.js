@@ -19,4 +19,7 @@ CheckCard.args = {
   headlineClasses: 'text-black',
   subline:
     "In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
+  symbol: {
+    icon: "arrow",
+  }
 };

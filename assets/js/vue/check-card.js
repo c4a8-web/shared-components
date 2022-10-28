@@ -88,6 +88,9 @@ export default {
     checks: {
       default: null,
     },
+    symbol: {
+      default: null,
+    }
   },
   template: `
     <div :class="classList">
@@ -104,6 +107,9 @@ export default {
               <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" long=true />
             </div>
           </template>
+        </div>
+        <div class="mt-10">
+          <scroll-arrow :symbol="symbol" />
         </div>
       </div>
     </div>

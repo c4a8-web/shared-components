@@ -15,7 +15,7 @@ export const ScrollArrow = Template.bind({});
 
 ScrollArrow.args = {
   symbol: {
-    icon: "rocket",
+    icon: "arrow",
     size: "xl",
     alt: "downpointing-arrow",
     cloudinary: false,
