@@ -4,6 +4,7 @@
 {%- assign contactAjax = include.ajax -%}
 {%- assign contactQuote = include.quote | default: false -%}
 
+
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}
 {%- else -%}
@@ -42,7 +43,7 @@
 {%- endif -%}
 
 {% if contact.flush %}
-  {%- assign contactUncentered = true -%}
+  {%- assign contactUncentered = 'true' -%}
 {% endif %}
 
 {%- if contactCollapsed -%}
@@ -78,7 +79,7 @@
             form=contact.form
             ajax=contactAjax
             textStyle=contact.textStyling
-            formFlush=contact.flush
+            flush=contact.flush
             formUncentered=contactUncentered
           %}
         {% endif %}
