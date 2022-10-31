@@ -1,21 +1,22 @@
-$check-card-spacing-sm: 2;
+$check-card-spacing-md: 4;
 $check-card-spacing-lg: 8;
 
 .check-card {
   position: relative;
   overflow: hidden;
-  margin-bottom: 14rem;
-  .check-card__container {
-    width: 100%;
+  margin-bottom: spacing(20);
+}
+
+.check-card__container {
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 spacing($size: $check-card-spacing-md, $negative: true);
   }
 }
 
 .check-card__slide {
   padding: 0;
-
-  @include media-breakpoint-up(sm) {
-    padding: 0 spacing($check-card-spacing-sm);
-  }
 
   @include media-breakpoint-up(lg) {
     padding: 0 spacing($check-card-spacing-lg);

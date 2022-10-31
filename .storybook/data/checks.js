@@ -4,7 +4,7 @@ const Checks = [
     title: 'glueckkanja-gab Quick-Check',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
-    picture: '/blog/heads/head-emergency-calls.jpg',
+    picture: '/blog/pics/check-detailed.png',
     subpoints: [
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mircrosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
       'Dir stehen bei glueckkanja-gab viele Türen offen und',
@@ -16,7 +16,7 @@ const Checks = [
     title: 'glueckkanja-gab Detailed-Check',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
-    picture: '/blog/heads/head-emergency-calls.jpg',
+    picture: '/blog/pics/check-quick.png',
     subpoints: [
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mircrosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
       'Dir stehen bei glueckkanja-gab viele Türen offen und',

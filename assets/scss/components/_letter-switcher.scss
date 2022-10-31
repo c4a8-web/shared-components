@@ -18,6 +18,14 @@
       opacity: 1;
     }
   }
+
+  @media (min-width: 475px) {
+    margin-bottom: 0;
+  }
+
+  @include media-breakpoint-up(md) {
+    margin-bottom: spacing(10);
+  }
 }
 
 .letter-switcher__animation {
@@ -25,8 +33,12 @@
   display: inline-block;
   opacity: 0;
   overflow: hidden;
-  letter-spacing: 10px;
+  letter-spacing: 5px;
   color: var(--color-letter-switcher-copy);
+
+  @include media-breakpoint-up(md) {
+    letter-spacing: 10px;
+  }
 }
 
 .letter-switcher__overline,
@@ -38,11 +50,19 @@
   display: inline-flex;
   flex-wrap: wrap;
   overflow: hidden;
-  width: 60px;
+  width: 30px;
   position: relative;
   bottom: -100%;
   transform: translateY(-100%);
   text-align: center;
+
+  @include media-breakpoint-up(md) {
+    width: 40px;
+  }
+
+  @include media-breakpoint-up(lg) {
+    width: 60px;
+  }
 }
 
 .letter-switcher__letter {
@@ -96,12 +116,16 @@
     position: absolute;
     content: '';
     display: block;
-    height: 40%;
+    height: spacing(6);
     left: -#{spacing(2)};
     background-color: var(--color-letter-switcher-underline);
     z-index: -1;
-    bottom: 0;
+    bottom: 5%;
     transition-duration: 1.2s;
+
+    @include media-breakpoint-up(sm) {
+      height: 40%;
+    }
   }
 
   &.is-collapsed {
@@ -114,6 +138,13 @@
 .letter-switcher__spacer,
 .letter-switcher__container {
   position: relative;
+}
+
+.letter-switcher__container-animation {
+  @include media-breakpoint-down(sm) {
+    overflow: hidden;
+    height: 40%;
+  }
 }
 
 @keyframes letter-switch {

@@ -1,4 +1,5 @@
 import State from '../state.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'letter-switcher',
@@ -9,15 +10,33 @@ export default {
       overline: '',
       endDelay: 3400,
       startDelay: 900,
+      isLower: null,
     };
   },
   computed: {
     classList() {
       return ['letter-switch', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
     },
+    fontSize() {
+      return this.isLower ? 'font-size-5' : 'font-size-6 bold';
+    },
+    letterSwitchEndClassList() {
+      return ['letter-switcher__end-animation', this.fontSize];
+    },
+    letterSwitchAnimationClassList() {
+      return [
+        'letter-switcher__animation',
+        this.fontSize,
+        'd-flex justify-content-center',
+        `${this.isLower ? 'flex-column' : ''}`,
+      ];
+    },
   },
   mounted() {
     this.overline = this.overlineStart;
+    this.isLower = this.isLowerBreakpoint();
+
+    this.bindEvents();
 
     setTimeout(() => {
       this.setHeight();
@@ -25,14 +44,29 @@ export default {
     }, this.startDelay);
   },
   methods: {
+    bindEvents() {
+      window.addEventListener('resize', () => {
+        this.handleResize();
+      });
+    },
+    handleResize() {
+      this.isLower = this.isLowerBreakpoint();
+      this.setHeight();
+    },
+    isLowerBreakpoint() {
+      return Tools.isBelowBreakpoint('sm');
+    },
     setHeight() {
+      this.show = false;
+
       const animation = this.$refs['animation'];
 
       if (!animation) return;
 
       const letter = animation.querySelector('.letter-switcher__letter');
+      const newHeight = this.isLower ? letter.offsetHeight * 2 : letter.offsetHeight;
 
-      animation.style.height = letter.offsetHeight + 'px';
+      animation.style.height = newHeight + 'px';
 
       this.show = true;
     },
@@ -86,56 +120,61 @@ export default {
     <div :class="classList" ref="root">
       <div class="letter-switcher__overline font-size-5 light" ref="overline">{{ overline }}</div>
       <div class="letter-switcher__container">
-        <div class="letter-switcher__animation font-size-6 bold" ref="animation">
-          <span>S</span><div class="letter-switcher__group" ref="group">
-            <span class="letter-switcher__letter letter-switcher__letter-end">i</span>
-            <span class="letter-switcher__letter letter-switcher__middle">h</span>
-            <span class="letter-switcher__letter letter-switcher__middle">g</span>
-            <span class="letter-switcher__letter letter-switcher__middle">f</span>
-            <span class="letter-switcher__letter letter-switcher__middle">e</span>
-            <span class="letter-switcher__letter letter-switcher__middle">d</span>
-            <span class="letter-switcher__letter letter-switcher__middle">c</span>
-            <span class="letter-switcher__letter letter-switcher__middle">b</span>
-            <span class="letter-switcher__letter letter-switcher__middle">a</span>
-            <span class="letter-switcher__letter letter-switcher__default">_</span>
-          </div>cherhei<div class="letter-switcher__group" ref="group">
-            <span class="letter-switcher__letter letter-switcher__letter-end">t</span>
-            <span class="letter-switcher__letter letter-switcher__middle">s</span>
-            <span class="letter-switcher__letter letter-switcher__middle">r</span>
-            <span class="letter-switcher__letter letter-switcher__middle">q</span>
-            <span class="letter-switcher__letter letter-switcher__middle">p</span>
-            <span class="letter-switcher__letter letter-switcher__middle">o</span>
-            <span class="letter-switcher__letter letter-switcher__middle">n</span>
-            <span class="letter-switcher__letter letter-switcher__middle">m</span>
-            <span class="letter-switcher__letter letter-switcher__middle">l</span>
-            <span class="letter-switcher__letter letter-switcher__middle">k</span>
-            <span class="letter-switcher__letter letter-switcher__middle">j</span>
-            <span class="letter-switcher__letter letter-switcher__middle">i</span>
-            <span class="letter-switcher__letter letter-switcher__middle">h</span>
-            <span class="letter-switcher__letter letter-switcher__middle">g</span>
-            <span class="letter-switcher__letter letter-switcher__middle">f</span>
-            <span class="letter-switcher__letter letter-switcher__middle">e</span>
-            <span class="letter-switcher__letter letter-switcher__middle">d</span>
-            <span class="letter-switcher__letter letter-switcher__middle">c</span>
-            <span class="letter-switcher__letter letter-switcher__middle">b</span>
-            <span class="letter-switcher__letter letter-switcher__middle">a</span>
-            <span class="letter-switcher__letter letter-switcher__default">_</span>
-          </div>slüc<div class="letter-switcher__group" ref="group">
-            <span class="letter-switcher__letter letter-switcher__letter-end">k</span>
-            <span class="letter-switcher__letter letter-switcher__middle">j</span>
-            <span class="letter-switcher__letter letter-switcher__middle">i</span>
-            <span class="letter-switcher__letter letter-switcher__middle">h</span>
-            <span class="letter-switcher__letter letter-switcher__middle">g</span>
-            <span class="letter-switcher__letter letter-switcher__middle">f</span>
-            <span class="letter-switcher__letter letter-switcher__middle">e</span>
-            <span class="letter-switcher__letter letter-switcher__middle">d</span>
-            <span class="letter-switcher__letter letter-switcher__middle">c</span>
-            <span class="letter-switcher__letter letter-switcher__middle">b</span>
-            <span class="letter-switcher__letter letter-switcher__middle">a</span>
-            <span class="letter-switcher__letter letter-switcher__default">_</span>
-          </div>e!
+        <div :class="letterSwitchAnimationClassList" ref="animation">
+          <div class="letter-switcher__container-animation">
+            <span>S</span><div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">i</span>
+              <span class="letter-switcher__letter letter-switcher__middle">h</span>
+              <span class="letter-switcher__letter letter-switcher__middle">g</span>
+              <span class="letter-switcher__letter letter-switcher__middle">f</span>
+              <span class="letter-switcher__letter letter-switcher__middle">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>cherhei<div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">t</span>
+              <span class="letter-switcher__letter letter-switcher__middle">s</span>
+              <span class="letter-switcher__letter letter-switcher__middle">r</span>
+              <span class="letter-switcher__letter letter-switcher__middle">q</span>
+              <span class="letter-switcher__letter letter-switcher__middle">p</span>
+              <span class="letter-switcher__letter letter-switcher__middle">o</span>
+              <span class="letter-switcher__letter letter-switcher__middle">n</span>
+              <span class="letter-switcher__letter letter-switcher__middle">m</span>
+              <span class="letter-switcher__letter letter-switcher__middle">l</span>
+              <span class="letter-switcher__letter letter-switcher__middle">k</span>
+              <span class="letter-switcher__letter letter-switcher__middle">j</span>
+              <span class="letter-switcher__letter letter-switcher__middle">i</span>
+              <span class="letter-switcher__letter letter-switcher__middle">h</span>
+              <span class="letter-switcher__letter letter-switcher__middle">g</span>
+              <span class="letter-switcher__letter letter-switcher__middle">f</span>
+              <span class="letter-switcher__letter letter-switcher__middle">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>s<template v-if="isLower">-<br/></template>
+          </div>
+          <div class="letter-switcher__container-animation">
+          lüc<div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">k</span>
+              <span class="letter-switcher__letter letter-switcher__middle">j</span>
+              <span class="letter-switcher__letter letter-switcher__middle">i</span>
+              <span class="letter-switcher__letter letter-switcher__middle">h</span>
+              <span class="letter-switcher__letter letter-switcher__middle">g</span>
+              <span class="letter-switcher__letter letter-switcher__middle">f</span>
+              <span class="letter-switcher__letter letter-switcher__middle">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>e!
+          </div>
         </div>
-        <div class="letter-switcher__end-animation font-size-6 bold">
+        <div :class="letterSwitchEndClassList">
           <div class="letter-switcher__spacer">
             <div class="letter-switcher__end is-collapsed" ref="end" >{{ textEnd }}</div>
             <div class="letter-switcher__end-text" ref="end-text"></div>
@@ -143,5 +182,5 @@ export default {
         </div>
       </div>
     </div>
-    `,
+  `,
 };

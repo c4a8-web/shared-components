@@ -1,0 +1,21 @@
+.hover__parent:hover .scroll-arrow__button svg,
+.shared-components .scroll-arrow__button svg:hover {
+  animation: moveRightLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
+}
+
+.scroll-arrow {
+  margin-top: spacing(10);
+  margin-bottom: spacing(10);
+  position: relative;
+}
+
+.scroll-arrow__button {
+  transform: rotate(90deg);
+
+  svg {
+    cursor: pointer;
+  }
+}

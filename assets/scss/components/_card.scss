@@ -4,20 +4,16 @@
     @include shadow('medium-light');
   }
 
-  &:not(.card--large) {
+  &:not(.card--large):not(.card--long) {
     max-width: unquote('min(480px, 100%)');
 
     @include media-breakpoint-up(md) {
       max-width: unquote('min(480px, 100vw)');
     }
   }
+
   &.card--long {
-    @include media-breakpoint-up(md) {
-      max-width: 100%;
-    }
-    @include media-breakpoint-up(xs) {
-      max-width: unquote('min(480px, 100%)');
-    }
+    max-width: 100%;
   }
 
   &.card--event {
@@ -35,7 +31,7 @@
 
   .card-img-top {
     @include aspect-ratio(16, 9);
-    &:not(.card-img--long){
+    &:not(.card-img--long) {
       img {
         width: 100%;
         height: 100%;
@@ -43,8 +39,6 @@
       }
     }
     .card-img--long {
-      //width: 100%;
-      //height: 5rem;
       object-fit: cover;
     }
   }

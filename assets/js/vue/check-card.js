@@ -1,5 +1,3 @@
-import Tools from '../tools.js';
-
 // TODO rename component
 export default {
   tagName: 'check-card',
@@ -8,7 +6,7 @@ export default {
       return ['check-card vue-component'];
     },
     checkCardsContainerClass() {
-      return ['check-card__container js-slick-carousel'];
+      return ['check-card__container js-slick-carousel slick--single-list'];
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
@@ -17,7 +15,7 @@ export default {
       return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
     },
     sublineClassesValue() {
-      return `check-card__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
+      return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     itemClass() {
       return 'check-card__slide';
@@ -45,9 +43,9 @@ export default {
               centerMode: true,
               infinite: true,
               centerPadding: '30px',
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              dots: this.checks.length > 2 ? true : false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              dots: this.checks.length > 1 ? true : false,
             },
           },
           {
@@ -55,7 +53,7 @@ export default {
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '30px',
+              centerPadding: '20px',
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: this.checks.length > 1 ? true : false,
@@ -95,12 +93,12 @@ export default {
         <div class="row" v-if="headline">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
             <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-            <span v-if="subline" :class="sublineClassesValue"> {{ subline }}</span>
+            <div v-if="subline" :class="sublineClassesValue">{{ subline }}</div>
           </div>
         </div>
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
           <template v-for="(check, index) in checks">
-            <div :class="itemClass" v-if="index <= 1">
+            <div :class="itemClass">
               <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" long=true />
             </div>
           </template>

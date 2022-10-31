@@ -30,7 +30,7 @@ class Tools {
   static scrollIntoView(element, smooth) {
     if (element) {
       const header = document.querySelector('header');
-      const headerOffset = header?.offsetHeight + 40;
+      const headerOffset = header ? header?.offsetHeight + 40 : 0;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - headerOffset + window.scrollY;
 
@@ -235,7 +235,7 @@ class Tools {
   }
 
   static isBelowBreakpoint(breakpoint) {
-    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
+    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
     const getBreakpoint = Tools.getBreakpoint();
     let breakpointIndex = breakpointArray.indexOf(breakpoint);
 
