@@ -15,7 +15,6 @@ export default {
   },
   computed: {
     classList() {
-      //return ['letter-switch', `${this.show ? State.SHOW : ''}`, 'vue-component'];
       return ['letter-switch', `${this.show ? State.SHOW : ''}`, `${this.end ? State.END : ''}`, 'vue-component'];
     },
     fontSize() {
@@ -25,14 +24,13 @@ export default {
       return ['letter-switcher__end-animation', this.fontSize];
     },
     letterSwitchAnimationClassList() {
-      return ['letter-switcher__animation', this.fontSize, 'd-flex justify-content-center', `${ this.isLower ? 'flex-column' : ''}`];
+      return [
+        'letter-switcher__animation',
+        this.fontSize,
+        'd-flex justify-content-center',
+        `${this.isLower ? 'flex-column' : ''}`,
+      ];
     },
-    containerAnimationClassList(){
-      return `${this.isLower ? 'h-40 overflow-hidden' : ''}`
-    },
-    letterSwitchGroupMobileClassList(){
-      return ['letter-switcher__group', `${ this.isLower ? 'letter-switcher__group--mobile' : ''}`];
-    }
   },
   mounted() {
     this.overline = this.overlineStart;
@@ -66,7 +64,6 @@ export default {
       if (!animation) return;
 
       const letter = animation.querySelector('.letter-switcher__letter');
-
       const newHeight = this.isLower ? letter.offsetHeight * 2 : letter.offsetHeight;
 
       animation.style.height = newHeight + 'px';
@@ -124,7 +121,7 @@ export default {
       <div class="letter-switcher__overline font-size-5 light" ref="overline">{{ overline }}</div>
       <div class="letter-switcher__container">
         <div :class="letterSwitchAnimationClassList" ref="animation">
-          <div :class="containerAnimationClassList">
+          <div class="letter-switcher__container-animation">
             <span>S</span><div class="letter-switcher__group" ref="group">
               <span class="letter-switcher__letter letter-switcher__letter-end">i</span>
               <span class="letter-switcher__letter letter-switcher__middle">h</span>
@@ -160,8 +157,8 @@ export default {
               <span class="letter-switcher__letter letter-switcher__default">_</span>
             </div>s<template v-if="isLower">-<br/></template>
           </div>
-          <div :class="containerAnimationClassList">
-          lüc<div :class="letterSwitchGroupMobileClassList" ref="group">
+          <div class="letter-switcher__container-animation">
+          lüc<div class="letter-switcher__group" ref="group">
               <span class="letter-switcher__letter letter-switcher__letter-end">k</span>
               <span class="letter-switcher__letter letter-switcher__middle">j</span>
               <span class="letter-switcher__letter letter-switcher__middle">i</span>
@@ -185,5 +182,5 @@ export default {
         </div>
       </div>
     </div>
-    `,
+  `,
 };
