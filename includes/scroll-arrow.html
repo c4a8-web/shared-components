@@ -1,5 +1,7 @@
-{%- assign ScrollSymbol = include.symbol -%}
+<!-- Shared Scroll Arrow Section -->
+{%- assign scrollArrowTarget = include.target -%}
 
 <scroll-arrow
-  symbol="{{ ScrollSymbol | jsonify | escape}}"
+  target="{{ scrollArrowTarget }}"
 ></scroll-arrow>
+<!-- End Shared Scroll Arrow Section -->

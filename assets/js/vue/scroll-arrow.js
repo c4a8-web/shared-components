@@ -1,33 +1,28 @@
 export default {
   tagName: 'scroll-arrow',
-  computed: {
-    classList(){
-      return ['d-flex flex-column justify-content-center w-100 h-200 scroll-arrow', 'vue-component']
-    },
-    symbolValues(){
-      return typeof(this.symbol) !== "object" && this.symbol !== null ? JSON.parse(this.symbol) : "";
-    }
-  },
-  methods:{
-    handleClick(e){
-      const scrollValue = this.symbolValues.scrollValue;
-      const currentScrollY = window.scrollY;
-      const newScrollY = scrollValue + currentScrollY;
+  computed: {},
+  methods: {
+    handleClick() {
+      const target = document.querySelector(this.target);
 
-      window.scrollTo({
-        top: newScrollY,
+      if (!target) return;
+
+      target.scrollIntoView({
         behavior: 'smooth',
+        block: 'start',
       });
-    }
+    },
   },
   props: {
-    symbol: {
-      default: null,
-    },
+    target: String,
   },
   template: `
-  <div :class="classList">
-    <icon id="test" ref="arrow" :icon="symbolValues.icon" :onclick="handleClick"  />
-  </div>
+    <div class="scroll-arrow container vue-component">
+      <div class="row">
+        <div class="col d-flex flex-column justify-content-center">
+          <icon classes="scroll-arrow__button" size="xl" icon="arrow-narrow" :onclick="handleClick"  />
+        </div>
+      </div>
+    </div>
   `,
 };

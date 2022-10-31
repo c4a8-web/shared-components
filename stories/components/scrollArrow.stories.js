@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesscrollarrowhtml as component } from '../../.storybook/generatedIncludes';
+import scrollArrowTemplate from '!!raw-loader!./scrollArrow.html';
 
 const options = getTitle({
   title: 'Scroll Arrow',
@@ -9,16 +9,10 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, scrollArrowTemplate);
 
 export const ScrollArrow = Template.bind({});
 
 ScrollArrow.args = {
-  symbol: {
-    icon: "arrow",
-    size: "xl",
-    alt: "downpointing-arrow",
-    cloudinary: false,
-    scrollValue: 1000,
-  }
-}
+  target: '.contact',
+};

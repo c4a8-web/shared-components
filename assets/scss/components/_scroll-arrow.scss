@@ -1,10 +1,15 @@
-.scroll-arrow {
-  scroll-behavior: smooth;
-  margin-top: spacing(40);
+.hover__parent:hover .scroll-arrow__button,
+.shared-components .scroll-arrow__button:hover {
+  // @include move-right-left;
 }
 
-.scroll-arrow__test {
-  background-color: green;
-  width: 100%;
-  height: 1500px;
+.scroll-arrow {
+  margin-top: spacing(10);
+  margin-bottom: spacing(10);
+  position: relative;
+}
+
+.scroll-arrow__button {
+  cursor: pointer;
+  transform: rotate(90deg);
 }
