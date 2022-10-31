@@ -1,0 +1,7 @@
+<!-- Shared Scroll Arrow Section -->
+{%- assign scrollArrowTarget = include.target -%}
+
+<scroll-arrow
+  target="{{ scrollArrowTarget }}"
+></scroll-arrow>
+<!-- End Shared Scroll Arrow Section -->

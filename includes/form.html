@@ -7,7 +7,7 @@
 {%- assign formCustomValidation = include.customValidation -%}
 {%- assign formAjax = include.ajax -%}
 {%- assign formAdditionalFields = include.additionalFields -%}
-{%- assign formUncentered = formForm.uncentered -%}
+{%- assign formUncentered = formForm.uncentered |default: false -%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
 {%- assign formTextStyling = include.textStyle | default: false -%}
