@@ -71,6 +71,17 @@ $transition-tween-t1: 0.2s ease-in-out;
     transform: translateX(0%);
   }
 }
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0) rotate(90deg);
+  }
+  50% {
+    transform:translateY(20%) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
 
 @keyframes moveTopRight {
   0% {

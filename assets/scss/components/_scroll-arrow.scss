@@ -1,6 +1,7 @@
 .hover__parent:hover .scroll-arrow__button,
 .shared-components .scroll-arrow__button:hover {
   // @include move-right-left;
+  animation: moveUpDown 1s;
 }
 
 .scroll-arrow {
@@ -12,18 +13,4 @@
 .scroll-arrow__button {
   cursor: pointer;
   transform: rotate(90deg);
-  &:hover {
-    animation: arrow__animation 2s infinite;
-  }
-}
-
-@keyframes arrow__animation {
-  0%, 100% {
-    transform: translate(0) rotate(90deg);
-    color: var(--color-black);
-  }
-  50% {
-    transform: translate(0, 2rem) rotate(90deg);
-    color: var(--color-black-70);
-  }
 }
