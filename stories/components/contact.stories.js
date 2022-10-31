@@ -148,7 +148,7 @@ WithQuote.args = {
     textStyling: 'text-light',
     flush: "justify-content-end", // right flush
     person: {
-      image: '/people/people-sophie-luna.jpg',
+      image: '/people/people-jan-geisbauer-csoc.jpg',
       mail: 'sales@glueckkanja-gab.com',
       number: '+49694005520',
       cloudinary: true,
