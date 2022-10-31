@@ -1,5 +1,3 @@
-import Tools from '../tools.js';
-
 // TODO rename component
 export default {
   tagName: 'check-card',
@@ -8,7 +6,7 @@ export default {
       return ['check-card vue-component'];
     },
     checkCardsContainerClass() {
-      return ['check-card__container js-slick-carousel'];
+      return ['check-card__container js-slick-carousel slick--single-list'];
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
@@ -55,7 +53,7 @@ export default {
             settings: {
               centerMode: true,
               infinite: false,
-              centerPadding: '30px',
+              centerPadding: '20px',
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: this.checks.length > 1 ? true : false,
@@ -88,9 +86,6 @@ export default {
     checks: {
       default: null,
     },
-    symbol: {
-      default: null,
-    }
   },
   template: `
     <div :class="classList">
@@ -98,18 +93,15 @@ export default {
         <div class="row" v-if="headline">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
             <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-            <div v-if="subline" :class="sublineClassesValue"> {{ subline }}</div>
+            <div v-if="subline" :class="sublineClassesValue">{{ subline }}</div>
           </div>
         </div>
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
           <template v-for="(check, index) in checks">
-            <div :class="itemClass" v-if="index <= 1">
+            <div :class="itemClass">
               <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" long=true />
             </div>
           </template>
-        </div>
-        <div class="mt-10">
-          <scroll-arrow :symbol="symbol" />
         </div>
       </div>
     </div>

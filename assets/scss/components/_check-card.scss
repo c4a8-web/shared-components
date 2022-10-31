@@ -1,4 +1,3 @@
-$check-card-spacing-sm: 2;
 $check-card-spacing-md: 4;
 $check-card-spacing-lg: 8;
 
@@ -6,21 +5,18 @@ $check-card-spacing-lg: 8;
   position: relative;
   overflow: hidden;
   margin-bottom: spacing(35);
-  .check-card__container {
-    width: 100%;
+}
+
+.check-card__container {
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 spacing($size: $check-card-spacing-md, $negative: true);
   }
 }
 
 .check-card__slide {
   padding: 0;
-
-  @include media-breakpoint-up(sm) {
-    padding: 0 spacing($check-card-spacing-sm);
-  }
-
-  @include media-breakpoint-up(md){
-    padding: 0 spacing($check-card-spacing-md);
-  }
 
   @include media-breakpoint-up(lg) {
     padding: 0 spacing($check-card-spacing-lg);

@@ -4,7 +4,6 @@
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
-{%- assign checkCardsSymbol = include.symbol -%}
 
 <check-card
   :checks="{{ checkCards | jsonify | escape }}"
@@ -13,5 +12,4 @@
   headline="{{ checkCardsHeadline }}"
   headline-level="{{ checkCardsHeadlineLevel }}"
   headline-classes="{{ checkCardsHeadlineClasses }}"
-  symbol="{{ checkCardsSymbol | jsonify | escape }}"
 ></check-card>
