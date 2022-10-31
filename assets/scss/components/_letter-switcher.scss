@@ -1,5 +1,6 @@
 .letter-switch {
   text-align: center;
+  margin-bottom: spacing(10);
 
   &.show {
     .letter-switcher__overline,
@@ -16,6 +17,10 @@
     .letter-switcher__end-animation {
       opacity: 1;
     }
+  }
+
+  @media (min-width: 475px) {
+    margin-bottom: 0;
   }
 
   @include media-breakpoint-up(md) {
