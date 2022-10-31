@@ -17,5 +17,10 @@
 
   svg {
     cursor: pointer;
+    color: var(--color-scroll-arrow);
+
+    > * {
+      stroke-width: 1px;
+    }
   }
 }

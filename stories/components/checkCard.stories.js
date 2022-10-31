@@ -18,5 +18,5 @@ CheckCard.args = {
   level: 'h2',
   headlineClasses: 'text-black',
   subline:
-    '<strong>In Zusammenarbeit mit Microsoft </strong> sind verschiedene Video Casestudies im Rahmen useres 100% Cloud Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung',
+    "<strong>In Zusammenarbeit mit Microsoft sind verschiedene </strong>Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
 };
