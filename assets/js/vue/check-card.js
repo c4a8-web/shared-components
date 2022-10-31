@@ -45,9 +45,9 @@ export default {
               centerMode: true,
               infinite: true,
               centerPadding: '30px',
-              slidesToShow: 2,
-              slidesToScroll: 2,
-              dots: this.checks.length > 2 ? true : false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              dots: this.checks.length > 1 ? true : false,
             },
           },
           {
