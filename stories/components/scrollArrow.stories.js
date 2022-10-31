@@ -19,5 +19,6 @@ ScrollArrow.args = {
     size: "xl",
     alt: "downpointing-arrow",
     cloudinary: false,
+    scrollValue: 1000,
   }
 }

@@ -10,8 +10,7 @@ export default {
   },
   methods:{
     handleClick(e){
-      const scrollValue = 1000; //change the way it should be
-      //const test = this.$refs.arrow.scrollLeft; //this should be our currentScrollY position
+      const scrollValue = this.symbolValues.scrollValue;
       const currentScrollY = window.scrollY;
       const newScrollY = scrollValue + currentScrollY;
 
@@ -19,8 +18,6 @@ export default {
         top: newScrollY,
         behavior: 'smooth',
       });
-
-      //console.log(this.$refs.arrow);
     }
   },
   props: {
@@ -30,9 +27,7 @@ export default {
   },
   template: `
   <div :class="classList">
-    <!--<div class="scroll-arrow__test" >test</div>-->
-    <icon ref="arrow" :icon="symbolValues.icon" :onclick="handleClick"  />
-    <!--<div class="scroll-arrow__test" >test</div>-->
+    <icon id="test" ref="arrow" :icon="symbolValues.icon" :onclick="handleClick"  />
   </div>
   `,
 };
