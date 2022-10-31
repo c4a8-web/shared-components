@@ -1,7 +1,7 @@
 .hover__parent:hover .scroll-arrow__button,
 .shared-components .scroll-arrow__button:hover {
   // @include move-right-left;
-  animation: moveUpDown 1s;
+  animation: moveUpDown 0.5s;
 }
 
 .scroll-arrow {
