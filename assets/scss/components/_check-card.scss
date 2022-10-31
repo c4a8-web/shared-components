@@ -5,7 +5,7 @@ $check-card-spacing-lg: 8;
 .check-card {
   position: relative;
   overflow: hidden;
-  margin-bottom: 14rem;
+  margin-bottom: spacing(35);
   .check-card__container {
     width: 100%;
   }
