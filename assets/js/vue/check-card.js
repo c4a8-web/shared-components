@@ -93,7 +93,7 @@ export default {
         <div class="row" v-if="headline">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
             <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-            <div v-if="subline" :class="sublineClassesValue">{{ subline }}</div>
+            <div v-if="subline" :class="sublineClassesValue" v-html="subline"></div>
           </div>
         </div>
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
