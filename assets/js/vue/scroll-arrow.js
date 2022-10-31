@@ -1,3 +1,5 @@
+import Tools from '../tools.js';
+
 export default {
   tagName: 'scroll-arrow',
   computed: {},
@@ -7,10 +9,7 @@ export default {
 
       if (!target) return;
 
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+      Tools.scrollIntoView(target, true);
     },
   },
   props: {
