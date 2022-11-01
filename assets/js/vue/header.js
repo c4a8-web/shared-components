@@ -230,7 +230,7 @@ export default {
         </div>
       </div>
       <div class="header__flyout" v-on:mouseout="handleMouseOut">
-        <div class="container">
+        <div class="container-xxl">
           <div class="row">
             <div class="col">
               <div class="header__flyout-content" v-for="(item, index) in navigation" ref="flyout">
