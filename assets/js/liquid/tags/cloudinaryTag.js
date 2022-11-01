@@ -60,6 +60,19 @@ const dummyDimensions = function (img, data) {
         height = 1200;
       }
       break;
+    case 'logos/msft-advanced-specialization-security.png':
+    case 'logos/msft-misa-mxdr.png':
+      width = 405;
+      height = 185;
+      break;
+    case 'logos/div-cyberwehr.png':
+      width = 800;
+      height = 365;
+      break;
+    case 'logos/isg-2021CyberSecurityRisingStar.png':
+      width = 715;
+      height = 308;
+      break;
     default:
       width = 800;
       height = 800;
