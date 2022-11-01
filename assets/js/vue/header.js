@@ -27,8 +27,15 @@ export default {
     handleCloseClick() {
       this.closed = !this.closed;
     },
-    handleClick(item) {
+    handleClick(item, index) {
       console.log('item', item);
+
+      const id = this.getId(item, index);
+
+      this.linkLists[id] = !this.linkLists[id];
+    },
+    getId(item, index) {
+      return `${item.name}_${index}`;
     },
     handleMouseOver(item, index, event) {
       if (!item.children) return;
@@ -126,8 +133,10 @@ export default {
 
       return parent[lang]?.url;
     },
-    isLinkListVisible(item) {
-      return State.HIDDEN;
+    isLinkListVisible(item, index) {
+      const id = this.getId(item, index);
+
+      return this.linkLists[id] ? '' : State.HIDDEN;
     },
   },
   props: {
@@ -146,6 +155,7 @@ export default {
       closed: true,
       hover: false,
       flyoutIndex: null,
+      linkLists: {},
     };
   },
   template: `
@@ -165,7 +175,7 @@ export default {
               <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
-                  <a class="header__link custom" :href="getHref(item)" v-on:click="handleClick(item)" v-if="item.languages" ref="link">
+                  <a class="header__link custom" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
                       {{ item.languages[lowerLang]?.title }}
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
@@ -186,7 +196,7 @@ export default {
                   <link-list
                     :list="list"
                     :lang="lowerLang"
-                    :classes="isLinkListVisible(item)"
+                    :classes="isLinkListVisible(item, index)"
                     v-for="list in item.children" v-if="item.children"
                   />
 
