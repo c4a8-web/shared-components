@@ -25,7 +25,7 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
-      return Tools.isTrue(this.long) === false
+      return Tools.isTrue(this.long) === true
         ? this.strippedExcerpt
         : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
     },
