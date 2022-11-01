@@ -14,6 +14,10 @@
 
   &.card--long {
     max-width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      max-width: unquote('min(580px, 100%)');
+    }
   }
 
   &.card--event {

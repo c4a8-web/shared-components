@@ -21,7 +21,12 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
-      return Tools.truncateWords(Tools.stripHtml(this.excerpt), this.wordsToTruncate);
+      return Tools.isTrue(this.long) === true
+        ? this.strippedExcerpt
+        : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
+    },
+    strippedExcerpt() {
+      return Tools.stripHtml(this.excerpt);
     },
     cardDate() {
       return this.formatDate(this.date);
