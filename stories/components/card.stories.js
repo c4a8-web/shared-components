@@ -48,6 +48,7 @@ export const CardLong = Template.bind({});
 
 CardLong.args = {
   long: true,
+  scope: 'Umfang: 1-2 Tage',
   layout: 'post',
   title: 'glueckkanja-gab Quick-Check',
   blogtitlepic: `${site.blog_image_path}head-emergency-calls`,

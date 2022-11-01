@@ -75,6 +75,11 @@
   }
 }
 
+.card__scope,
 .card__points {
   @include font-size-1;
+}
+
+.card__scope {
+  color: var(--color-card-highlight);
 }

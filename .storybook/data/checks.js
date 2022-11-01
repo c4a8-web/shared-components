@@ -1,6 +1,7 @@
 const Checks = [
   {
     url: '/',
+    scope: 'Umfang: 0,5 Tage',
     title: 'glueckkanja-gab Quick-Check',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
@@ -13,6 +14,7 @@ const Checks = [
   },
   {
     title: 'glueckkanja-gab Detailed-Check',
+    scope: 'Umfang: 2-3 Tage',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
     picture: '/blog/pics/check-quick.png',
@@ -25,6 +27,7 @@ const Checks = [
   },
   {
     title: 'glueckkanja-gab 3',
+    scope: 'Umfang: 5 Tage',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
     picture: '/blog/pics/check-quick.png',
