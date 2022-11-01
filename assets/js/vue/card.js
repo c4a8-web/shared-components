@@ -8,9 +8,13 @@ export default {
     };
   },
   computed: {
+    noLink() {
+      return this.url === undefined || this.url === '' ? true : false;
+    },
     classList() {
       return [
         'card',
+        `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
@@ -21,7 +25,7 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
-      return Tools.isTrue(this.long) === true
+      return Tools.isTrue(this.long) === false
         ? this.strippedExcerpt
         : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
     },
@@ -74,6 +78,8 @@ export default {
       if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
     },
     handleClick(e) {
+      if (this.noLink) return;
+
       const title = this.$refs['title'];
       const target = e.target;
 
@@ -164,14 +170,12 @@ export default {
           <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
-          <ul class="text-black" >
+          <ul class="card__points text-black">
             <template v-for="points in subPointsList(subPoints)">
-              <li class="mb-4"><span>{{points}}</span></li>
+              <li class="mb-4"><span>{{ points }}</span></li>
             </template>
           </ul>
-
         </div>
-
       </template>
       <template v-else>
         <div class="card-img-top position-relative" v-if="blogTitlePic">
