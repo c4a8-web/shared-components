@@ -32,6 +32,15 @@ export default {
   methods: {
     handleCloseClick() {
       this.closed = !this.closed;
+
+      if (this.closed) {
+        this.resetFlyouts();
+      }
+    },
+    resetFlyouts() {
+      Object.keys(this.linkLists).forEach((linkListKey) => {
+        this.linkLists[linkListKey] = false;
+      });
     },
     handleClick(item, index) {
       const id = this.getId(item, index);
@@ -137,15 +146,15 @@ export default {
 
       return parent[lang]?.url;
     },
-    isLinkListVisible(item, index) {
-      const id = this.getId(item, index);
-
-      return this.linkLists[id] ? '' : State.HIDDEN;
-    },
     isLinkListHidden(item, index) {
       const id = this.getId(item, index);
 
       return !this.linkLists[id] ? true : false;
+    },
+    headerLinkClasses(item, index) {
+      const isLinkListHidden = this.isLinkListHidden(item, index);
+
+      return ['header__link custom', isLinkListHidden ? '' : State.EXPANDED];
     },
   },
   props: {
@@ -184,7 +193,7 @@ export default {
               <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
-                  <a class="header__link custom" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item.languages" ref="link">
+                  <a :class="headerLinkClasses(item, index)" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
                       {{ item.languages[lowerLang]?.title }}
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />

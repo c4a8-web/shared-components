@@ -22,6 +22,15 @@ $header-border-size: 1px;
   position: fixed;
   display: flex;
   box-shadow: $header-section-box-shadow;
+  top: 0;
+  bottom: auto;
+
+  &.is-expanded {
+    nav {
+      overflow-y: auto;
+      max-height: 90vh;
+    }
+  }
 
   &:not(.header--light) {
     background-color: var(--color-header-background);
@@ -60,6 +69,7 @@ $header-border-size: 1px;
   nav {
     background-color: var(--color-header-background);
     position: absolute;
+    // position: relative;
     bottom: -#{$header-border-size};
     left: 50%;
     transform: translateY(100%) translateX(-50%);
