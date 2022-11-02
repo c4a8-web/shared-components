@@ -15,7 +15,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   margin: 0;
-  padding: 0;
+  padding: 0 0 0 spacing(2);
 
   // State Hidden
   // &.link-list--expanded {
@@ -26,6 +26,6 @@
 .link-list__item {
   flex: 1 0 100%;
   list-style-type: none;
-  padding: 0;
   margin: 0;
+  padding: spacing(2) 0;
 }
