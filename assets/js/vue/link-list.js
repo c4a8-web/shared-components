@@ -54,7 +54,7 @@ export default {
   },
   template: `
     <figure :class="classList" v-if="list" ref="root">
-      <figcaption class="link-list__title" v-if="list.languages">
+      <figcaption class="link-list__title" v-if="list?.languages">
         {{ list.languages[lang]?.title }}
       </figcaption>
       <ul class="link-list__list header__list--expanded">
