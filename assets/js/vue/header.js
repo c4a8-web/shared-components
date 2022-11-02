@@ -34,8 +34,6 @@ export default {
       this.closed = !this.closed;
     },
     handleClick(item, index) {
-      console.log('item', item);
-
       const id = this.getId(item, index);
 
       this.linkLists[id] = !this.linkLists[id];
@@ -144,6 +142,11 @@ export default {
 
       return this.linkLists[id] ? '' : State.HIDDEN;
     },
+    isLinkListHidden(item, index) {
+      const id = this.getId(item, index);
+
+      return !this.linkLists[id] ? true : false;
+    },
   },
   props: {
     home: Object,
@@ -191,7 +194,7 @@ export default {
                   <link-list
                     :list="list"
                     :lang="lowerLang"
-                    :classes="isLinkListVisible(item, index)"
+                    :hidden="isLinkListHidden(item, index)"
                     v-for="list in item.children" v-if="item.children"
                   />
                 </li>

@@ -183,10 +183,6 @@ $header-border-size: 1px;
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-
-  &.header__list--expanded {
-    display: none;
-  }
 }
 
 .header__link {
