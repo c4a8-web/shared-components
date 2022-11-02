@@ -16,9 +16,6 @@ export default {
     homeObj() {
       return this.home?.languages[this.lowerLang];
     },
-    // logoImg() {
-    //   return Tools.isTrue(this.light) ? this.home.imgLight : this.home.img;
-    // },
     lowerLang() {
       return this.lang.toLowerCase();
     },
@@ -27,6 +24,11 @@ export default {
         ...this.meta,
         children: this.meta,
       };
+    },
+    spacerBgColor() {
+      const color = this.bgColor ? this.bgColor : 'var(--color-header-background)';
+
+      return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
   },
   methods: {
@@ -175,6 +177,7 @@ export default {
     },
     lang: String,
     contact: Object,
+    bgColor: String,
   },
   data() {
     return {
@@ -186,6 +189,7 @@ export default {
     };
   },
   template: `
+    <div class="header__spacer" :style="spacerBgColor"></div>
     <header :class="classList">
       <div class="header__container container-xxl">
         <div class="row">

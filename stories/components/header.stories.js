@@ -19,6 +19,7 @@ export const HeaderLight = Template.bind({});
 
 HeaderLight.args = {
   light: true,
+  bgColor: 'var(--color-blue-dark)',
 };
 
 export const HeaderEN = Template.bind({});
