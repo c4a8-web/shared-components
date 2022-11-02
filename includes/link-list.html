@@ -1,0 +1,13 @@
+<!-- Shared Link List Section -->
+{%- assign linkListList = include.list -%}
+{%- assign linkListLang = include.lang | default: 'de' -%}
+{%- assign linkListClasses = include.classes -%}
+{%- assign linkListHidden = include.hidden -%}
+
+<link-list
+  lang="{{ linkListLang }}"
+  :list="{{ linkListList | jsonify | escape }}"
+  classes="{{ linkListClasses }}"
+  hidden="{{ linkListHidden }}"
+></link-list>
+<!-- End Shared Link List Section -->

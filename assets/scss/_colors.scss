@@ -34,6 +34,7 @@ $color-blue-medium: #0072c6;
   --color-porcelain: #f3f5f6;
   --color-bon-jour: #e5e2e2;
   --color-deep-sea: #008774;
+  --color-mint-green: #80f785;
   --color-midnight: #011e33;
   --color-regent-grey: #808e99;
   --color-geyser: #d1d9dd;
@@ -58,6 +59,7 @@ $color-blue-medium: #0072c6;
   --color-jacarta: #19122f;
   --color-wistful: #b2a7d2;
   --color-lochmara: #007ac8;
+  --color-polar: #f6f9fd;
 
   --color-white: #fff;
 
@@ -150,6 +152,13 @@ $color-blue-medium: #0072c6;
   --color-letter-switcher-underline: var(--color-orange);
 
   --color-scroll-arrow: var(--color-orange);
+
+  --color-header-background: var(--color-white);
+  --color-header-border: var(--color-black);
+  --color-header-contact-background: var(--color-polar);
+  --color-header-active: var(--color-mint-green);
+
+  --color-link-list-border: var(--color-header-border);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

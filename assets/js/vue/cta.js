@@ -1,9 +1,10 @@
+import Tools from '../tools.js';
+
 export default {
   tagName: 'cta',
   computed: {
     tag() {
       return this.href || this.alternativeHref || this.target ? 'a' : 'button';
-      // return this.button ? 'button' : 'a';
     },
     hasIcon() {
       return this.link || this.external || this.icon || this.download;
@@ -13,12 +14,14 @@ export default {
         `${this.baseClass} ${this.innerSkin}`,
         `${this.download ? 'cta--download' : ''}`,
         `${this.external ? 'cta--external' : ''}`,
+        `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
+        `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
         'vue-component',
       ];
     },
     innerSkin() {
       if (this.link) {
-        return this.skin;
+        return this.skin ? this.skin : '';
       } else {
         return this.skin ? `btn-${this.skin}` : 'btn-primary';
       }
@@ -84,6 +87,12 @@ export default {
     trigger: String,
     icon: String,
     download: {
+      default: null,
+    },
+    reversed: {
+      default: null,
+    },
+    monochrome: {
       default: null,
     },
   },

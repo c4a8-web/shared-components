@@ -98,6 +98,24 @@
     }
   }
 
+  &.cta--reversed {
+    flex-direction: row-reverse;
+
+    &.link {
+      svg {
+        margin: 0 spacing(3) 0 0;
+        width: spacing(4);
+        height: spacing(4);
+
+        @include media-breakpoint-up(lg) {
+          margin-right: spacing(4);
+          width: spacing(5);
+          height: spacing(5);
+        }
+      }
+    }
+  }
+
   &.cta--download {
     .icon {
       transform: translateY(-50%) rotate(135deg);
@@ -137,7 +155,7 @@
     }
 
     svg {
-      margin: 0 0 0 10px;
+      margin: 0 0 0 spacing(3);
       stroke: var(--color-primary);
     }
   }
@@ -195,6 +213,10 @@
     color: var(--color-primary);
     -webkit-appearance: none;
     appearance: none;
+
+    &.cta--monochrome {
+      color: var(--color-copy);
+    }
 
     &:not(.btn):not(.custom):not(.nav-link) {
       &.is-light {

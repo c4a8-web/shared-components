@@ -104,7 +104,7 @@ export default {
               <div class="faq__summary">{{ entry.summary }}</div>
               <div class="faq__icon-frame">
                 <div class="faq__icon">
-                  <icon icon="arrow-narrow" direction="clockwise" size="small">
+                  <icon icon="arrow-narrow" direction="clockwise" size="small" />
                 </div>
               </div>
             </summary>

@@ -122,3 +122,21 @@ PrimaryLink.argTypes = {
     table: { disable: true },
   },
 };
+
+export const PrimaryLinkMonochrome = Template.bind({});
+
+PrimaryLinkMonochrome.args = {
+  text: 'Primary Link',
+  href: 'javascript:void(0)',
+  link: true,
+  monochrome: true,
+};
+
+export const PrimaryLinkReversed = Template.bind({});
+
+PrimaryLinkReversed.args = {
+  text: 'Primary Link',
+  href: 'javascript:void(0)',
+  link: true,
+  reversed: true,
+};

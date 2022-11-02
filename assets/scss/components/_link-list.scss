@@ -1,0 +1,42 @@
+.link-list {
+  --link-list-border-size: 1px;
+
+  transition: height 0.4s $animation-transition, opacity 0.5s 0.15s $animation-transition;
+
+  &.link-list--in-transition,
+  &.link-list--hidden {
+    @include is-invisible;
+
+    width: 0;
+  }
+
+  &.link-list--in-transition {
+    width: auto;
+  }
+}
+
+.link-list__title {
+  text-transform: uppercase;
+  padding-bottom: spacing(5);
+  margin-bottom: spacing(5);
+  border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
+
+  + .link-list__list {
+    padding: 0 0 0 spacing(2);
+  }
+}
+
+.link-list__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.link-list__item {
+  flex: 1 0 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: spacing(2) 0;
+}

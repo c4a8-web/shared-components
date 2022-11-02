@@ -14,6 +14,8 @@
 {% assign ctaExternal = include.external %}
 {% assign ctaIcon = include.icon %}
 {% assign ctaDownload = include.download %}
+{% assign ctaReversed = include.reversed | default: false %}
+{% assign ctaMonochrome = include.monochrome | default: false %}
 
 <cta
       text="{{ ctaText }}"
@@ -31,6 +33,8 @@
       external="{{ ctaExternal }}"
       icon="{{ ctaIcon }}"
       download="{{ ctaDownload }}"
+      :reversed={{ ctaReversed }}
+      :monochrome={{ ctaMonochrome }}
 >
 </cta>
 <!-- End Shared Cta Section -->

@@ -14,6 +14,7 @@ import FormCheckboxes from './vue/form-checkboxes.js';
 import FormFields from './vue/form-fields.js';
 import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
+import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
 import VImg from './vue/img.js';
@@ -21,6 +22,7 @@ import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
 import LetterSwitcher from './vue/letter-switcher.js';
+import LinkList from './vue/link-list.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
@@ -41,6 +43,8 @@ import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
+import Expand from './vue/icons/expand.js';
+import Menu from './vue/icons/menu.js';
 import PhoneMail from './vue/icons/phone-mail.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
@@ -80,6 +84,7 @@ const addApp = () => {
     FormFields,
     FormSelect,
     Form,
+    Header,
     Headline,
     Icon,
     VImg,
@@ -87,6 +92,7 @@ const addApp = () => {
     JobListEntry,
     JobList,
     LetterSwitcher,
+    LinkList,
     Modal,
     ScrollArrow,
     Search,
@@ -106,6 +112,8 @@ const addApp = () => {
     Arrow,
     Close,
     ComputerShield,
+    Expand,
+    Menu,
     PhoneMail,
     Quotes,
     Rocket,
