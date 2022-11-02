@@ -16,9 +16,9 @@ export default {
     homeObj() {
       return this.home?.languages[this.lowerLang];
     },
-    logoImg() {
-      return Tools.isTrue(this.light) ? this.home.imgLight : this.home.img;
-    },
+    // logoImg() {
+    //   return Tools.isTrue(this.light) ? this.home.imgLight : this.home.img;
+    // },
     lowerLang() {
       return this.lang.toLowerCase();
     },
@@ -50,7 +50,7 @@ export default {
     getId(item, index) {
       return `${item.name}_${index}`;
     },
-    handleMouseOver(item, index, event) {
+    handleMouseOver(item, index) {
       if (!item.children) return;
 
       this.hover = true;
@@ -131,9 +131,18 @@ export default {
     },
     getNextUrl(lang) {
       const currentPath = this.getCurrentPath();
+      const lastCharacter = '/';
 
       const matcher = (obj) => {
-        return obj.url === currentPath;
+        if (!obj.title) return;
+
+        let url = obj.url;
+
+        if (url && url[url?.length - 1] !== lastCharacter) {
+          url = url + lastCharacter;
+        }
+
+        return url === currentPath;
       };
 
       const callback = (_, parent) => {
@@ -183,7 +192,8 @@ export default {
           <div class="header__col col">
             <div class="header__logo">
               <a :href="homeObj.url">
-                <v-img :img="logoImg" :cloudinary="true" />
+                <v-img :img="home.imgLight" class="header__logo-light" :cloudinary="true" />
+                <v-img :img="home.img" class="header__logo-default" :cloudinary="true" />
               </a>
             </div>
             <div class="header__menu" v-on:click="handleCloseClick">
@@ -193,7 +203,7 @@ export default {
               <div class="header__search"></div>
               <ul class="header__list">
                 <li class="header__item" v-for="(item, index) in navigation">
-                  <a :class="headerLinkClasses(item, index)" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item.languages" ref="link">
+                  <a :class="headerLinkClasses(item, index)" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
                       {{ item.languages[lowerLang]?.title }}
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
@@ -218,7 +228,7 @@ export default {
                 />
 
                 <div class="header__contact header__contact--mobile" v-if="contact">
-                  <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url">
+                  <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url" v-if="contact?.languages">
                     <div class="header__contact-text">
                       <icon
                         icon="phone-mail"
@@ -252,7 +262,7 @@ export default {
                       {{ item.languages[lowerLang]?.title }}
                     </figcaption>
                     <div class="header__flyout-description font-size-1 thin" v-html="item.languages[lowerLang]?.description"></div>
-                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url">
+                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url" v-if="contact?.languages">
                       <icon
                         icon="phone-mail"
                         size="medium"
@@ -263,11 +273,11 @@ export default {
                     </a>
                   </figure>
 
-
                   <link-list
                     :list="list"
                     :lang="lowerLang"
-                    v-for="list in item.children" v-if="item.children"
+                    v-for="list in item.children"
+                    v-if="item.children"
                   />
                 </div>
               </div>
