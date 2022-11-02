@@ -1,0 +1,19 @@
+<!-- Shared Header Section -->
+{%- assign headerHome = include.home | default: site.data.header.home -%}
+{%- assign headerNavigation = include.navigation | default: site.data.header.navigation -%}
+{%- assign headerMeta = include.meta | default: site.data.header.meta -%}
+{%- assign headerLight = include.light -%}
+{%- assign headerLang = include.lang | default: 'de' -%}
+{%- assign headerContact = include.contact | default: site.data.header.contact -%}
+{%- assign headerBgColor = include.bgColor -%}
+
+<v-header
+  :home="{{ headerHome | jsonify | escape }}"
+  :navigation="{{ headerNavigation | jsonify | escape }}"
+  :meta="{{ headerMeta | jsonify | escape }}"
+  :light="{{ headerLight }}"
+  lang="{{ headerLang }}"
+  :contact="{{ headerContact | jsonify | escape }}"
+  bg-color="{{ headerBgColor }}"
+></v-header>
+<!-- End Shared Header Section -->
