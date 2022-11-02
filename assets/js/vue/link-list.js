@@ -1,17 +1,59 @@
+import Tools from '../tools.js';
+
 export default {
   tagName: 'link-list',
   computed: {
     classList() {
-      return ['link-list', this.classes, 'vue-component'];
+      return [
+        'link-list',
+        `${this.isHidden ? 'link-list--hidden' : ''}`,
+        `${this.inTransition ? 'link-list--in-transition' : ''}`,
+        this.classes,
+        'vue-component',
+      ];
+    },
+    isHidden() {
+      return Tools.isTrue(this.hidden) === true;
+    },
+  },
+  watch: {
+    hidden(oldValue, _) {
+      if (!oldValue) {
+        this.inTransition = true;
+      }
+    },
+  },
+  updated() {
+    this.updateHeight();
+
+    this.inTransition = false;
+  },
+  methods: {
+    updateHeight() {
+      const root = this.$refs['root'];
+
+      if (!root) return;
+
+      const newHeight = this.isHidden ? '' : root.scrollHeight + 'px';
+
+      root.style.height = newHeight;
     },
   },
   props: {
     list: Object,
     lang: String,
     classes: String,
+    hidden: {
+      default: null,
+    },
+  },
+  data() {
+    return {
+      inTransition: false,
+    };
   },
   template: `
-    <figure :class="classList" v-if="list">
+    <figure :class="classList" v-if="list" ref="root">
       <figcaption class="link-list__title" v-if="list.languages">
         {{ list.languages[lang]?.title }}
       </figcaption>

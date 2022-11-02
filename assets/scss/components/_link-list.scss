@@ -1,5 +1,18 @@
 .link-list {
   --link-list-border-size: 1px;
+
+  transition: height 0.4s $animation-transition, opacity 0.5s 0.15s $animation-transition;
+
+  &.link-list--in-transition,
+  &.link-list--hidden {
+    @include is-invisible;
+
+    width: 0;
+  }
+
+  &.link-list--in-transition {
+    width: auto;
+  }
 }
 
 .link-list__title {
@@ -19,11 +32,6 @@
   flex-wrap: wrap;
   margin: 0;
   padding: 0;
-
-  // State Hidden
-  // &.link-list--expanded {
-  //   display: none;
-  // }
 }
 
 .link-list__item {
