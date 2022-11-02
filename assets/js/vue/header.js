@@ -7,6 +7,7 @@ export default {
     classList() {
       return [
         'header',
+        this.isScrolled ? State.IS_SCROLLED : '',
         Tools.isTrue(this.light) ? 'header--light' : '',
         Tools.isTrue(this.hover) ? State.HOVERING : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
@@ -31,7 +32,16 @@ export default {
       return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
   },
+  mounted() {
+    this.bindEvents();
+  },
   methods: {
+    bindEvents() {
+      window.addEventListener('scroll', this.handleScroll.bind(this));
+    },
+    handleScroll() {
+      this.isScrolled = window.scrollY > this.scrollThreshold;
+    },
     handleCloseClick() {
       this.closed = !this.closed;
 
@@ -186,6 +196,8 @@ export default {
       hover: false,
       flyoutIndex: null,
       linkLists: {},
+      scrollThreshold: 10,
+      isScrolled: false,
     };
   },
   template: `

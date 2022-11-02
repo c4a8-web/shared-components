@@ -33,7 +33,7 @@ $header-border-size: 1px;
     }
   }
 
-  &:not(:hover).header--light {
+  &:not(:hover):not(.is-scrolled).header--light {
     --color-header-background: transparent;
     --color-header-border: transparent;
 
