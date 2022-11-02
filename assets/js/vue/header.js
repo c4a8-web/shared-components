@@ -204,6 +204,7 @@ export default {
                     :list="list"
                     :lang="lowerLang"
                     :hidden="isLinkListHidden(item, index)"
+                    classes="header__link-list"
                     v-for="list in item.children" v-if="item.children"
                   />
                 </li>

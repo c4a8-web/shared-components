@@ -390,3 +390,12 @@ $header-border-size: 1px;
     }
   }
 }
+
+.header__link-list {
+  margin: spacing(10) $grid-gutter-half-width spacing(2);
+  width: 70%;
+
+  &:last-of-type {
+    margin-bottom: spacing(6);
+  }
+}
