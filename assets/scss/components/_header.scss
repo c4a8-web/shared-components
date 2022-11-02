@@ -275,19 +275,8 @@ $header-border-size: 1px;
   gap: spacing(18);
 }
 
-.header__flyout-item {
-  padding: spacing(2) 0;
-}
-
 .header__flyout-caption {
   @include font-size-4;
-}
-
-.header__flyout-title {
-  text-transform: uppercase;
-  padding-bottom: spacing(5);
-  margin-bottom: spacing(5);
-  border-bottom: $header-border-size solid var(--color-header-border);
 }
 
 .header__item,
@@ -316,14 +305,6 @@ $header-border-size: 1px;
   .header__link {
     border: 0;
   }
-}
-
-.header__meta-list-item {
-  padding: spacing(1) 0;
-}
-
-.header__flyout-list {
-  padding-left: spacing(2);
 }
 
 .header__contact {

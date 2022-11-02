@@ -22,6 +22,12 @@ export default {
     lowerLang() {
       return this.lang.toLowerCase();
     },
+    metaList() {
+      return {
+        ...this.meta,
+        children: this.meta,
+      };
+    },
   },
   methods: {
     handleCloseClick() {
@@ -182,39 +188,22 @@ export default {
                     </div>
                   </a>
 
-
-
-                  <ul style="display: none"; remove-me remove-me class="header__list header__list--expanded" v-if="item.disabled">
-                    <li class="header__item" v-for="child in item.children.children">
-                      <a class="header__link custom" href="" v-if="child.languages">
-                        #####<span class="header__link-content">{{ child.languages[lowerLang]?.title }}</span>
-                      </a>
-                    </li>
-                  </ul>
-
-
                   <link-list
                     :list="list"
                     :lang="lowerLang"
                     :classes="isLinkListVisible(item, index)"
                     v-for="list in item.children" v-if="item.children"
                   />
-
-
                 </li>
               </ul>
               <div class="header__footer">
-                <ul class="header__meta-list" v-if="meta">
-                  <li class="header__meta-list-item" v-for="item in meta">
-                    <cta
-                      :href="item.languages[lowerLang]?.url"
-                      :text="item.languages[lowerLang]?.title"
-                      link=true
-                      reversed=true
-                      monochrome=true
-                    />
-                  </li>
-                </ul>
+                <link-list
+                  :list="metaList"
+                  :lang="lowerLang"
+                  classes="header__meta-list"
+                  v-if="meta"
+                />
+
                 <div class="header__contact header__contact--mobile" v-if="contact">
                   <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url">
                     <div class="header__contact-text">
@@ -260,22 +249,13 @@ export default {
                       </span>
                     </a>
                   </figure>
-                  <figure class="header__flyout-block" v-for="child in item.children">
-                    <figcaption class="header__flyout-title" v-if="child.languages">
-                      {{ child.languages[lowerLang]?.title }}
-                    </figcaption>
-                    <ul class="header__flyout-list" v-for="subChild in child.children">
-                      <li class="header__flyout-item" v-if="subChild.languages">
-                        <cta
-                          :href="subChild.languages[lowerLang].url"
-                          :text="subChild.languages[lowerLang].title"
-                          link=true
-                          reversed=true
-                          monochrome=true
-                        />
-                      </li>
-                    </ul>
-                  </figure>
+
+
+                  <link-list
+                    :list="list"
+                    :lang="lowerLang"
+                    v-for="list in item.children" v-if="item.children"
+                  />
                 </div>
               </div>
             </div>
