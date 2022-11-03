@@ -22,11 +22,11 @@ export default {
     },
     carouselOptions() {
       const obj = {
-        slidesToShow: 2,
-        slidesToScroll: 2,
+        slidesToShow: 3,
+        slidesToScroll: 3,
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
-        dots: this.checks.length > 2 ? true : false,
+        dots: this.checks.length > 3 ? true : false,
         centerMode: false,
         dotsClass: 'slick-pagination is-default',
         responsive: [
@@ -35,6 +35,7 @@ export default {
             settings: {
               slidesToShow: 2,
               slidesToScroll: 2,
+              dots: this.checks.length > 2 ? true : false,
             },
           },
           {
@@ -42,7 +43,7 @@ export default {
             settings: {
               centerMode: true,
               infinite: true,
-              centerPadding: '30px',
+              centerPadding: '20px',
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: this.checks.length > 1 ? true : false,
@@ -99,7 +100,7 @@ export default {
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
           <template v-for="(check, index) in checks">
             <div :class="itemClass">
-              <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" long=true />
+              <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" long=true />
             </div>
           </template>
         </div>

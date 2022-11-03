@@ -1,5 +1,3 @@
-import Tools from '../tools.js';
-
 export default {
   tagName: 'form-fields',
   computed: {
@@ -35,15 +33,6 @@ export default {
         ? this.replaceValue
         : this.field.value;
     },
-    labelClass() {
-      return [`${Tools.isTrue(this.customValidation) === true ? 'input-label' : 'input-label'}`];
-    },
-    textStyleClass() {
-      return this.textStyle ? this.textStyle : '';
-    },
-    inputLabelClass() {
-      return ['input-label', this.textStyle ? this.textStyle : ''];
-    },
   },
   methods: {
     getRequiredMsg(element) {
@@ -56,15 +45,12 @@ export default {
     replaceValue: {
       default: null,
     },
-    textStyle: {
-      default: null,
-    },
   },
   template: `
     <template v-if="field.id !== '_gotcha'">
       <div :class="classList">
         <template v-if="field.type === 'textarea'">
-          <label :class="labelClass" :for="field.id">{{ field.label }}</label>
+          <label class="input-label" :for="field.id">{{ field.label }}</label>
           <textarea class="form-control form-textarea" :id="field.id" :name="field.id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
         </template>
         <template v-else-if="field.type ==='checkbox'">
@@ -91,7 +77,7 @@ export default {
           <form-select :field="field" :options="options" />
         </template>
         <template v-else-if="field.type">
-          <label :class="inputLabelClass" :for="field.id">{{ field.label }}</label>
+          <label class="input-label" :for="field.id">{{ field.label }}</label>
           <input :type="field.type" :id="field.id" :name="field.id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
         </template>
       </div>

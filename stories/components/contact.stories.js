@@ -145,8 +145,6 @@ WithQuote.args = {
   infos: {
     headline: 'Jetzt Gesprächstermin vereinbaren',
     level: 'h2',
-    textStyling: 'text-light',
-    flush: "justify-content-end", // right flush
     person: {
       image: '/people/people-jan-geisbauer-csoc.jpg',
       mail: 'sales@glueckkanja-gab.com',

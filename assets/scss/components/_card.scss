@@ -1,7 +1,8 @@
 .card {
-  &:hover {
-    cursor: pointer;
+  &:not(.card--no-link):hover {
     @include shadow('medium-light');
+
+    cursor: pointer;
   }
 
   &:not(.card--large):not(.card--long) {
@@ -14,6 +15,10 @@
 
   &.card--long {
     max-width: 100%;
+
+    @include media-breakpoint-up(lg) {
+      max-width: unquote('min(580px, 100%)');
+    }
   }
 
   &.card--event {
@@ -21,9 +26,11 @@
       text-align: right;
     }
   }
+
   article {
     margin: 0;
   }
+
   .ie-curved-x,
   .ie-curved-y {
     display: none;
@@ -31,6 +38,7 @@
 
   .card-img-top {
     @include aspect-ratio(16, 9);
+
     &:not(.card-img--long) {
       img {
         width: 100%;
@@ -38,6 +46,7 @@
         object-fit: cover;
       }
     }
+
     .card-img--long {
       object-fit: cover;
     }
@@ -64,4 +73,13 @@
   h4 {
     line-height: 1.2em;
   }
+}
+
+.card__scope,
+.card__points {
+  @include font-size-1;
+}
+
+.card__scope {
+  color: var(--color-card-highlight);
 }

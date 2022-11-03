@@ -8,9 +8,13 @@ export default {
     };
   },
   computed: {
+    noLink() {
+      return this.url === undefined || this.url === '' ? true : false;
+    },
     classList() {
       return [
         'card',
+        `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
@@ -21,7 +25,12 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
-      return Tools.truncateWords(Tools.stripHtml(this.excerpt), this.wordsToTruncate);
+      return Tools.isTrue(this.long) === true
+        ? this.strippedExcerpt
+        : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
+    },
+    strippedExcerpt() {
+      return Tools.stripHtml(this.excerpt);
     },
     cardDate() {
       return this.formatDate(this.date);
@@ -69,6 +78,8 @@ export default {
       if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
     },
     handleClick(e) {
+      if (this.noLink) return;
+
       const title = this.$refs['title'];
       const target = e.target;
 
@@ -106,6 +117,7 @@ export default {
     },
     youtubeUrl: String,
     dataAuthors: Object,
+    scope: String,
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick"  >
@@ -148,25 +160,19 @@ export default {
       <template v-else-if="long">
         <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-          <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
-            <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
-              <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
-            </svg>
-          </figure>
         </div>
 
         <div class="card-body richtext">
+          <div class="card__scope" v-if="scope">{{ scope }}</div>
           <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
-          <ul class="text-black" >
+          <ul class="card__points text-black">
             <template v-for="points in subPointsList(subPoints)">
-              <li class="mb-4"><span>{{points}}</span></li>
+              <li class="mb-4"><span>{{ points }}</span></li>
             </template>
           </ul>
-
         </div>
-
       </template>
       <template v-else>
         <div class="card-img-top position-relative" v-if="blogTitlePic">

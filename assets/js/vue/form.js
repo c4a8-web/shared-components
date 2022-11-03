@@ -26,7 +26,7 @@ export default {
       return ['text-center', `${this.form.sublineClasses ? this.form.sublineClasses : ''}`];
     },
     formClassList() {
-      return ['form__submit mt-5', `${this.uncentered ? '' : 'justify-content-center'}`, `${this.flush ? this.flush : ''}`]; // replace uncentered with flush?
+      return ['form__submit mt-5', `${Tools.isTrue(this.uncentered) ? '' : 'justify-content-end'}`];
     },
     method() {
       return this.form.method ? this.form.method : 'post';
@@ -65,9 +65,6 @@ export default {
 
       return blocks;
     },
-    textStyleClass() {
-      return this.textStyle ? this.textStyle : '';
-    }
   },
   methods: {
     getOptions(field) {
@@ -105,12 +102,6 @@ export default {
       default: null,
     },
     options: Object,
-    textStyle: {
-      default: null,
-    },
-    flush: {
-      default: null,
-    }
   },
   template: `
     <div :class="classList">
@@ -128,11 +119,11 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 1">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :text-style="textStyleClass" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" />
                 </div>
               </div>
               <template v-else>
-                <form-fields :field='block[0]' :options="getOptions(block[0])" :replace-value="replaceValue" :text-style="textStyleClass" />
+                <form-fields :field='block[0]' :options="getOptions(block[0])" :replace-value="replaceValue" />
               </template>
             </template>
             <div :class="formClassList">
