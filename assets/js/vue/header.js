@@ -36,6 +36,9 @@ export default {
     this.bindEvents();
   },
   methods: {
+    isLowerBreakpoint() {
+      return Tools.isBelowBreakpoint('md');
+    },
     bindEvents() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
     },
@@ -55,6 +58,8 @@ export default {
       });
     },
     handleClick(item, index) {
+      if (!this.isLowerBreakpoint()) return;
+
       const id = this.getId(item, index);
 
       this.linkLists[id] = !this.linkLists[id];
@@ -150,7 +155,7 @@ export default {
 
         let url = obj.url;
 
-        if (url && url[url?.length - 1] !== lastCharacter) {
+        if (currentPath[currentPath?.length - 1] === lastCharacter && url && url[url?.length - 1] !== lastCharacter) {
           url = url + lastCharacter;
         }
 
