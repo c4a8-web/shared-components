@@ -28,7 +28,7 @@
 {% endif %}
 {% assign formOptionsText = formOptionsText | slice: 0, formOptionsLength | append : '}' | escape %}
 
-<Formular
+<formular
   :form="{{ formForm | jsonify | escape }}"
   light="{{ formLight }}"
   analytics="{{ formAnalytics }}"
@@ -42,6 +42,6 @@
   :options="{{ formOptionsText }}"
   text-style="{{ formTextStyling }}"
   flush="{{ formFlush }}"
-></Formular>
+></formular>
 
 <!-- End Shared Form Section -->
