@@ -4,23 +4,22 @@
 {%- assign contactAjax = include.ajax -%}
 {%- assign contactQuote = include.quote | default: false -%}
 
-
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}
 {%- else -%}
   {%- if page.contact == 'form-long' -%}
     {%- assign contact = site.data.contact.form-long  -%}
   {%- else -%}
-  {%- if page.contact == 'form-short' -%}
-    {%- assign contact = site.data.contact.form-short  -%}
-  {%- else -%}
-    {%- if page.lang == 'en' -%}
-      {%- assign contact = site.data.contact.infosEn -%}
+    {%- if page.contact == 'form-short' -%}
+      {%- assign contact = site.data.contact.form-short  -%}
     {%- else -%}
-      {%- assign contact = site.data.contact.infos -%}
+      {%- if page.lang == 'en' -%}
+        {%- assign contact = site.data.contact.infosEn -%}
+      {%- else -%}
+        {%- assign contact = site.data.contact.infos -%}
+      {%- endif -%}
     {%- endif -%}
   {%- endif -%}
-{%- endif -%}
 {%- endif -%}
 
 {%- assign contactDetails = contactInfos.person.details -%}
@@ -39,12 +38,8 @@
 {%- endif -%}
 
 {%- if contactQuote -%}
-    {%- assign contactVariantClass = 'contact--quote' -%}
+  {%- assign contactVariantClass = 'contact--quote' -%}
 {%- endif -%}
-
-{% if contact.flush %}
-  {%- assign contactUncentered = 'true' -%}
-{% endif %}
 
 {%- if contactCollapsed -%}
   {%- assign contactVariantClass = contactVariantClass | append: 'is-collapsed' -%}
@@ -78,19 +73,17 @@
             include form.html
             form=contact.form
             ajax=contactAjax
-            textStyle=contact.textStyling
-            flush=contact.flush
-            formUncentered=contactUncentered
+            uncentered='false'
           %}
         {% endif %}
 
         {% if contact.buttons %}
           <div class="pt-4 pt-lg-6 pb-6">
-          {%
-            include cta-list.html
-            list=contact.buttons
-          %}
-        </div>
+            {%
+              include cta-list.html
+              list=contact.buttons
+            %}
+          </div>
         {% endif %}
       </div>
 
@@ -130,26 +123,25 @@
               %}
             </div>
             <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
-              <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
-                {% for detail in contactDetails %}
-                  <div class="contact__detail w-100 px-5 d-flex align-items-center {% unless forloop.last %}mb-3 mb-lg-4{% endunless %}">
-                    <a href="{{ detail.href }}" class="custom"><span class="streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>{{ detail.text }}</a>
-                    {% if detail.notes %}
-                      <div class="contact__notes">
-                        <span class="contact__notes-spacing streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>
-                        {{ detail.notes }}
-                      </div>
-                    {% endif %}
-                  </div>
-                {% endfor %}
+            <div class="contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap">
+              {% for detail in contactDetails %}
+                <div class="contact__detail w-100 px-5 d-flex align-items-center {% unless forloop.last %}mb-3 mb-lg-4{% endunless %}">
+                  <a href="{{ detail.href }}" class="custom"><span class="streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>{{ detail.text }}</a>
+                  {% if detail.notes %}
+                    <div class="contact__notes">
+                      <span class="contact__notes-spacing streamline-sm mr-4">{% if detail.icon == 'site/mail' %}{% siteicons "site/mail" %}{% else %}{% siteicons "site/phone" %}{% endif %}</span>
+                      {{ detail.notes }}
+                    </div>
+                  {% endif %}
+                </div>
+              {% endfor %}
 
-                {% if contact.person.number %}
-                  <div class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"><a href="tel:{{ contact.person.number }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/phone" %}</span>{{ contact.person.number }}</a></div>
-                {% endif %}
-                {% if contact.person.mail %}
-                  <div class="contact__mail w-100 px-5 d-flex align-items-center"><a href="mailto:{{ contact.person.mail }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/mail" %}</span>{{ contact.person.mail }}</a></div>
-                {% endif %}
-              </div>
+              {% if contact.person.number %}
+                <div class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"><a href="tel:{{ contact.person.number }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/phone" %}</span>{{ contact.person.number }}</a></div>
+              {% endif %}
+              {% if contact.person.mail %}
+                <div class="contact__mail w-100 px-5 d-flex align-items-center"><a href="mailto:{{ contact.person.mail }}" class="custom"><span class="streamline-sm mr-4">{% siteicons "site/mail" %}</span>{{ contact.person.mail }}</a></div>
+              {% endif %}
             </div>
           {% endif %}
         </div>
