@@ -7,11 +7,12 @@
 {%- assign formCustomValidation = include.customValidation -%}
 {%- assign formAjax = include.ajax -%}
 {%- assign formAdditionalFields = include.additionalFields -%}
-{%- assign formUncentered = formForm.uncentered |default: false -%}
+{% comment %}
+Refactor uncentered value and include the content migration of uncentered values
+{% endcomment %}
+{%- assign formUncentered = formForm.uncentered | default: include.uncentered | default: true -%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
-{%- assign formTextStyling = include.textStyle | default: false -%}
-{%- assign formFlush = include.flush | default: false -%}
 
 {% assign formOptionsText = "{" %}
 {% for field in formForm.fields %}
@@ -40,8 +41,6 @@
   uncentered="{{ formUncentered }}"
   replace-value="{{ formReplaceValue }}"
   :options="{{ formOptionsText }}"
-  text-style="{{ formTextStyling }}"
-  flush="{{ formFlush }}"
 ></Formular>
 
 <!-- End Shared Form Section -->

@@ -4,7 +4,6 @@
 {%- assign contactAjax = include.ajax -%}
 {%- assign contactQuote = include.quote | default: false -%}
 
-
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}
 {%- else -%}
@@ -42,10 +41,6 @@
     {%- assign contactVariantClass = 'contact--quote' -%}
 {%- endif -%}
 
-{% if contact.flush %}
-  {%- assign contactUncentered = 'true' -%}
-{% endif %}
-
 {%- if contactCollapsed -%}
   {%- assign contactVariantClass = contactVariantClass | append: 'is-collapsed' -%}
   {%- assign contactOffsetClass = '' -%}
@@ -78,9 +73,7 @@
             include form.html
             form=contact.form
             ajax=contactAjax
-            textStyle=contact.textStyling
-            flush=contact.flush
-            formUncentered=contactUncentered
+            uncentered='false'
           %}
         {% endif %}
 

@@ -102,7 +102,7 @@ input {
 
 label.input-label,
 .form__label {
-  //color: var(--color-midnight);
+  color: var(--color-midnight);
   opacity: 0.7;
 
   + .invalid-feedback {
