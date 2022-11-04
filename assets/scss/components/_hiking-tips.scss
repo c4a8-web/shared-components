@@ -1,0 +1,21 @@
+.hiking-tips {
+  margin-top: spacing(40);
+}
+
+.hiking-tips__contents {
+  margin-top: spacing(60);
+}
+
+.hiking-tips__subline {
+
+  @include media-breakpoint-up(lg) {
+    width: 55%;
+  }
+}
+
+.hiking-tips__content {
+  margin-top: 2rem;
+  @include media-breakpoint-up(xl){
+    margin-top: -10rem;
+  }
+}

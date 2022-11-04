@@ -1,8 +1,8 @@
 import { createComponent, getTitle, site } from '../../.storybook/templates';
-import { includestestimonialslonghtml as component } from '../../.storybook/generatedIncludes';
+import { includeshikingtipshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Testimonials Long',
+  title: 'Hiking Tips',
 });
 
 export default {
@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const TestimonialsLong = Template.bind({});
+export const hikingtips = Template.bind({});
 
-TestimonialsLong.args = {
+hikingtips.args = {
   headline: 'Lorem Ipsum dolor sit',
   headlineLevel: 'h2',
   subline:
