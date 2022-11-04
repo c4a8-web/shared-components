@@ -228,3 +228,20 @@ HeroTextVideo.args = {
     bgColor: 'var(--color-gigas)',
   },
 };
+
+export const HeroTextImageSafety = Template.bind({});
+
+HeroTextImageSafety.args = {
+  hero: {
+    variant: 'hero--safety', // TODO refactor to a more generic name
+    headline: 'Lorem Ipsum',
+    subline:
+      '<span class="highlight">Lorem ipsum dolor</span> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    background: {
+      img: '/casestudies/casestudy-demo.png',
+      alt: 'Img',
+      spacing: 'space-top-lg-4',
+    },
+    bgColor: 'var(--color-polar)',
+  },
+}

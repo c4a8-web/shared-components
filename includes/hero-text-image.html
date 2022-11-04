@@ -14,7 +14,9 @@
 {%- else if heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
-
+{%- else if heroTextImageVariant == 'hero--safety' -%}
+  {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = false -%}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
