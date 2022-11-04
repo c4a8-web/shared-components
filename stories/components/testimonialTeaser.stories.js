@@ -34,3 +34,20 @@ OneLine.args = {
     alt: 'lorem ipsum',
   },
 };
+
+export const CornerImg = Template.bind({});
+
+CornerImg.args = {
+  href: 'javascript:void(0)',
+  name: 'Matti Puolitaival',
+  title: 'Senior Consultant Azure',
+  cornerImg: {
+    img: 'people/testimonials/matti-puolitaival.png',
+    alt: 'map',
+    cloudinary: true,
+  },
+  img: {
+    img: 'people/testimonials/matti-puolitaival.png',
+    alt: 'lorem ipsum',
+  },
+};

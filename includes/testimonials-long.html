@@ -11,7 +11,7 @@
 {%- endif -%}
 {% assign even = false %}
 
-<div class="container">
+<div class="testimonials-long container">
   <div class="row">
     <div class="col-lg-12">
       {%
@@ -20,40 +20,43 @@
         level=testimonialsLongHeadlineLevel
       %}
       {% if testimonialsLongSubline %}
-        <div class="mt-4">{{ testimonialsLongSubline }}</div>
+        <div class="testimonials-long__subline mt-4">{{ testimonialsLongSubline }}</div>
       {% endif %}
     </div>
   </div>
+  <div class="testimonial-long__content">
+    {% for testimonial in  testimonialsLongContents %}
+      {% if even %}
+        <div class="row mt-3 mr-8 justify-content-end">
+          {% unless testimonial.hidden %}
+          {%
+            include testimonial-teaser.html
+            href=testimonial.url
+            name=testimonial.name
+            title=testimonial.title
+            img=testimonial.contentImg
+            cornerImg=testimonial.cornerImg
+          %}
+          {% endunless %}
 
-  {% for testimonial in  testimonialsLongContents %}
-    {% if even %}
-      <div class="row mt-5 justify-content-end">
-        {% unless testimonial.hidden %}
-        {%
-          include testimonial-teaser.html
-          href=testimonial.url
-          name=testimonial.name
-          title=testimonial.title
-          img=testimonial.contentImg
-        %}
-        {% endunless %}
-
-        {% assign even = false %}
-    </div>
-    {% else %}
-      <div class="row mt-5">
-        {% unless testimonial.hidden %}
-        {%
-          include testimonial-teaser.html
-          href=testimonial.url
-          name=testimonial.name
-          title=testimonial.title
-          img=testimonial.contentImg
-        %}
-        {% endunless %}
-
-        {% assign even = true %}
+          {% assign even = false %}
       </div>
-    {% endif %}
-  {% endfor %}
+      {% else %}
+        <div class="row mt-3 ml-8 justify-content-start">
+          {% unless testimonial.hidden %}
+          {%
+            include testimonial-teaser.html
+            href=testimonial.url
+            name=testimonial.name
+            title=testimonial.title
+            img=testimonial.contentImg
+            cornerImg=testimonial.cornerImg
+          %}
+          {% endunless %}
+
+          {% assign even = true %}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
 </div>

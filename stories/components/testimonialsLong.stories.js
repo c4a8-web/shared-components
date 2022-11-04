@@ -27,6 +27,11 @@ TestimonialsLong.args = {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
+      cornerImg: {
+        img: 'people/testimonials/matti-puolitaival.png',
+        alt: 'map',
+        cloudinary: true,
+      },
     },
     {
       url: 'javascript:void(0)',
@@ -35,6 +40,11 @@ TestimonialsLong.args = {
       contentImg: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
+      },
+      cornerImg: {
+        img: 'people/testimonials/matti-puolitaival.png',
+        alt: 'map',
+        cloudinary: true,
       },
     },
     {
@@ -45,6 +55,11 @@ TestimonialsLong.args = {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
+      cornerImg: {
+        img: 'people/testimonials/matti-puolitaival.png',
+        alt: 'map',
+        cloudinary: true,
+      },
     },
     {
       url: 'javascript:void(0)',
@@ -53,6 +68,11 @@ TestimonialsLong.args = {
       contentImg: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
+      },
+      cornerImg: {
+        img: 'people/testimonials/matti-puolitaival.png',
+        alt: 'map',
+        cloudinary: true,
       },
     },
     {
@@ -63,6 +83,11 @@ TestimonialsLong.args = {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
+      cornerImg: {
+        img: 'people/testimonials/matti-puolitaival.png',
+        alt: 'map',
+        cloudinary: true,
+      },
     },
     {
       url: 'javascript:void(0)',
@@ -71,6 +96,11 @@ TestimonialsLong.args = {
       contentImg: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
+      },
+      cornerImg: {
+        img: 'people/testimonials/matti-puolitaival.png',
+        alt: 'map',
+        cloudinary: true,
       },
     },
   ],

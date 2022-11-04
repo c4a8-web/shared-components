@@ -1,0 +1,13 @@
+.testimonials-long {
+  margin-top: spacing(40);
+}
+
+.testimonial-long__content {
+  margin-top: spacing(30);
+}
+
+.testimonials-long__subline {
+  @include media-breakpoint-up(lg) {
+    width: 55%;
+  }
+}

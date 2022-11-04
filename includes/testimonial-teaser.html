@@ -3,11 +3,22 @@
 {%- assign testimonialTeaserTitle = include.title -%}
 {%- assign testimonialTeaserImg = include.img -%}
 {%- assign testimonialTeaserImgCloudinary = testimonialTeaserImg.cloudinary | default: true -%}
+{%- assign testimonialTeaserCornerImg = include.cornerImg | default: false -%}
 
 <!-- Shared Testimonial Teaser Section -->
 
 <a href="{{ testimonialTeaserHref }}" class="testimonial-teaser">
   <div class="testimonial-teaser__wrapper">
+    {% if testimonialTeaserCornerImg %}
+      <div class="testimonial-teaser__corner">
+        {%
+          include img.html
+          img=testimonialTeaserCornerImg.img
+          alt=testimonialTeaserCornerImg.alt
+          cloudinary=testimonialTeaserCornerImg.cloudinary
+        %}
+      </div>
+    {% endif %}
     <div class="testimonial-teaser__img">
       <div class="testimonial-teaser__img-wrapper">
         {%

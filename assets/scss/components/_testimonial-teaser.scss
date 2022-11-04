@@ -50,6 +50,17 @@
   }
 }
 
+.testimonial-teaser__corner {
+  position: absolute;
+  z-index: 2;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  img {
+    height: 20%;
+    width: 20%;
+  }
+}
+
 .testimonial-teaser__content {
   position: absolute;
   bottom: 0;
