@@ -1,0 +1,59 @@
+{%- if include.json -%}
+  {%- assign testimonialsLongHeadline = include.json.headline -%}
+  {%- assign testimonialsLongHeadlineLevel = include.json.headlineLevel -%}
+  {%- assign testimonialsLongSubline = include.json.subline -%}
+  {%- assign testimonialsLongContents = include.contents | include.json.contents -%}
+{%- else -%}
+  {%- assign testimonialsLongHeadline = include.headline -%}
+  {%- assign testimonialsLongHeadlineLevel = include.headlineLevel -%}
+  {%- assign testimonialsLongSubline = include.subline -%}
+  {%- assign testimonialsLongContents = include.contents -%}
+{%- endif -%}
+{% assign even = false %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      {%
+        include headline.html
+        text=testimonialsLongHeadline
+        level=testimonialsLongHeadlineLevel
+      %}
+      {% if testimonialsLongSubline %}
+        <div class="mt-4">{{ testimonialsLongSubline }}</div>
+      {% endif %}
+    </div>
+  </div>
+
+  {% for testimonial in  testimonialsLongContents %}
+    {% if even %}
+      <div class="row mt-5 justify-content-end">
+        {% unless testimonial.hidden %}
+        {%
+          include testimonial-teaser.html
+          href=testimonial.url
+          name=testimonial.name
+          title=testimonial.title
+          img=testimonial.contentImg
+        %}
+        {% endunless %}
+
+        {% assign even = false %}
+    </div>
+    {% else %}
+      <div class="row mt-5">
+        {% unless testimonial.hidden %}
+        {%
+          include testimonial-teaser.html
+          href=testimonial.url
+          name=testimonial.name
+          title=testimonial.title
+          img=testimonial.contentImg
+        %}
+        {% endunless %}
+
+        {% assign even = true %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</div>
