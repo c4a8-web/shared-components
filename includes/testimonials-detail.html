@@ -9,6 +9,12 @@
 {%- assign testimonialsDetailImage = include.image -%}
 {%- assign testimonialsDetailImageCloudinary = testimonialsDetailImage.cloudinary | default: true -%}
 {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
+{% assign testimonialsDetailSafety = include.safety | default: false %}
+
+
+{%- if testimonialsDetailSafety %}
+  {% assign testimonialsDetailInfo = testimonialsDetailSafety.facts %}
+{% endif %}
 
 <div class="testimonials-detail page-detail page-detail--image is-loading"
 style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
@@ -57,7 +63,39 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
       </div>
       <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
         <div class="page-detail__description richtext">
-          {{ testimonialsDetailDescription }}
+          {% if testimonialsDetailSafety %}
+            <div>
+              {%
+                include headline.html
+                text=testimonialsDetailSafety.headline
+                level=testimonialsDetailSafety.headlineLevel
+              %}
+            </div>
+            <div class="testimonials-detail__subline">
+              {{testimonialsDetailSafety.subline}}
+            </div>
+            <div class="testimonials-detail__copy mt-4">
+              {{testimonialsDetailSafety.copy}}
+            </div>
+            {% for info in testimonialsDetailInfo %}
+              <div class="mt-4">
+                {%
+                  include headline.html
+                  text=info.contentTitle
+                  level=info.contentTitleLevel
+                %}
+              </div>
+              <ul>
+                {% for content in info.content %}
+                  <li class="mb-2"><span>{{content}}</span></li>
+                {% endfor %}
+              </ul>
+              {% if info.img %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {{ testimonialsDetailDescription }}
+          {% endif %}
         </div>
       </div>
     </div>
