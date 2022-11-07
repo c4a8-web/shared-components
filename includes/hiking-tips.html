@@ -26,37 +26,25 @@
   </div>
   <div class="hiking-tips__contents">
     {% for testimonial in  hikingTipsContents %}
-      {% if even %}
-        <div class="hiking-tips__content row justify-content-end">
-          {% unless testimonial.hidden %}
-          {%
-            include testimonial-teaser.html
-            href=testimonial.url
-            name=testimonial.name
-            title=testimonial.title
-            img=testimonial.contentImg
-            cornerImg=testimonial.cornerImg
-          %}
-          {% endunless %}
-
-          {% assign even = false %}
-      </div>
+      {% if even == true %}
+        {% assign hikingTipsContentClass = " justify-content-end" %}
+        {% assign even = false %}
       {% else %}
-        <div class="hiking-tips__content row justify-content-start">
-          {% unless testimonial.hidden %}
-          {%
-            include testimonial-teaser.html
-            href=testimonial.url
-            name=testimonial.name
-            title=testimonial.title
-            img=testimonial.contentImg
-            cornerImg=testimonial.cornerImg
-          %}
-          {% endunless %}
-
-          {% assign even = true %}
-        </div>
+        {% assign hikingTipsContentClass = " justify-content-start" %}
+        {% assign even = true %}
       {% endif %}
+      <div class="hiking-tips__content row {{ hikingTipsContentClass }}">
+        {% unless testimonial.hidden %}
+        {%
+          include testimonial-teaser.html
+          href=testimonial.url
+          name=testimonial.name
+          title=testimonial.title
+          img=testimonial.contentImg
+          cornerImg=testimonial.cornerImg
+        %}
+        {% endunless %}
+      </div>
     {% endfor %}
   </div>
 </div>
