@@ -228,3 +228,18 @@ HeroTextVideo.args = {
     bgColor: 'var(--color-gigas)',
   },
 };
+
+export const HeroSmall = Template.bind({});
+
+HeroSmall.args = {
+  hero: {
+    variant: 'hero--small',
+    bgColor: 'var(--color-gigas)',
+    headline: 'Danke!',
+    light: true,
+    background: {
+      img: getAssetPath('svg/shapes/event-confirmation-message.svg'),
+      alt: 'Success Message',
+    },
+  },
+};

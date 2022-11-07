@@ -298,6 +298,26 @@
     }
   }
 
+  &.hero--small {
+    .hero-text-imge__img-spacer {
+      @include media-breakpoint-up(lg) {
+        min-height: 300px;
+
+        .is-svg {
+          max-height: 300px;
+        }
+      }
+    }
+
+    .hero-text-image__keyvisual {
+      @include media-breakpoint-up(lg) {
+        &.is-svg {
+          max-height: 300px;
+        }
+      }
+    }
+  }
+
   &.hero--study {
     overflow: hidden;
 
