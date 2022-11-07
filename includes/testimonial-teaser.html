@@ -6,11 +6,15 @@
 {%- assign testimonialTeaserCornerImg = include.cornerImg | default: false -%}
 
 <!-- Shared Testimonial Teaser Section -->
-
+{% if testimonialTeaserCornerImg.position == "left" %}
+  {%- assign testimonialTeaserCornerPosition = " testimonial-teaser__corner--left " -%}
+{% else %}
+  {%- assign testimonialTeaserCornerPosition = " testimonial-teaser__corner--right " -%}
+{% endif %}
 <a href="{{ testimonialTeaserHref }}" class="testimonial-teaser">
   <div class="testimonial-teaser__wrapper">
     {% if testimonialTeaserCornerImg %}
-      <div class="testimonial-teaser__corner">
+      <div class="testimonial-teaser__corner {{ testimonialTeaserCornerPosition }}">
         {%
           include img.html
           img=testimonialTeaserCornerImg.img

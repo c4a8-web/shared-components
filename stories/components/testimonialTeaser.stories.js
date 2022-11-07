@@ -45,6 +45,7 @@ CornerImg.args = {
     img: 'people/testimonials/matti-puolitaival.png',
     alt: 'map',
     cloudinary: true,
+    position: 'right',
   },
   img: {
     img: 'people/testimonials/matti-puolitaival.png',

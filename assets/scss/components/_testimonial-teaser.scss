@@ -52,12 +52,21 @@
 
 .testimonial-teaser__corner {
   position: absolute;
+  width: 100%;
   z-index: 2;
-  margin-left: 3rem;
+  //margin-left: 3rem;
   margin-top: 2rem;
+  &.testimonial-teaser__corner--left {
+    margin-left: 3rem;
+  }
+  &.testimonial-teaser__corner--right {
+    text-align: end;
+    margin-left: -2rem;
+  }
+
   img {
-    height: 20%;
-    width: 20%;
+    height: auto;
+    width: 100px;
   }
 }
 
