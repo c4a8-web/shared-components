@@ -14,6 +14,7 @@
 
 {%- if testimonialsDetailSafety %}
   {% assign testimonialsDetailInfo = testimonialsDetailSafety.facts %}
+  {% assign testimonialsDetailGoogleMap = testimonialsDetailSafety.googleMaps %}
 {% endif %}
 
 <div class="testimonials-detail page-detail page-detail--image is-loading"
@@ -87,12 +88,30 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
               </div>
               <ul>
                 {% for content in info.content %}
-                  <li class="mb-2"><span>{{content}}</span></li>
+                  <li class="mb-2"><span class="testimonials-detail__safety--text">{{content}}</span></li>
                 {% endfor %}
               </ul>
               {% if info.img %}
+                <div class="d-flex flex-row justify-content-between">
+                  {% for image in info.img %}
+                  <div class="mr-2">
+                    {%
+                      include img.html
+                      img=image
+                      cloudinary=info.cloudinary
+                    %}
+                  </div>
+                  {% endfor %}
+                </div>
               {% endif %}
             {% endfor %}
+          {%
+            include google-maps.html
+            headline=testimonialsDetailGoogleMap.headline
+            address=testimonialsDetailGoogleMap.address
+            coords=testimonialsDetailGoogleMap.coords
+            marker=testimonialsDetailGoogleMap.marker
+          %}
           {% else %}
             {{ testimonialsDetailDescription }}
           {% endif %}

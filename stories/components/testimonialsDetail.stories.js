@@ -67,13 +67,26 @@ TestimonialsDetailSafety.args = {
         contentTitle: "Unbedingt mitnehmen",
         contentTitleLevel: "h4",
         content: ["festes Schuhwerk", "Wanderstöcke", "Winddichte Kleidung", '"Hierabiera" (Stirnlampe)'],
-        img: '/people/testimonials/matti-puolitaival.png',
+        img: ['/people/testimonials/matti-puolitaival.png', '/people/testimonials/matti-puolitaival.png', '/people/testimonials/matti-puolitaival.png'],
+        cloudinary: true,
       },
       {
         contentTitle: "Tipp",
         contentTitleLevel: "h4",
         content: ["Zum Sonnenaufgang am Gipfel sein"]
       }
-    ]
+    ],
+    googleMaps: {
+      headline: {
+        text: 'Blablabla',
+        level: 'h3',
+      },
+      address: {
+        name: 'glueckkanja-gab AG',
+        street: 'Kaiserstraße 39',
+        postalCode: '63065',
+        city: 'Offenbach am Main',
+      },
+    },
   }
 }
