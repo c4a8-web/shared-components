@@ -8,15 +8,12 @@
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
 
-{%- if heroTextImageVariant == 'hero--career' -%}
+{%- if heroTextImageVariant == 'hero--career' or heroTextImageVariant == 'hero--safety' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = false %}
 {%- else if heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
-{%- else if heroTextImageVariant == 'hero--safety' -%}
-  {% assign heroTextImageCtaTop = false -%}
-  {% assign heroTextImageSrcSet = false -%}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
@@ -99,7 +96,7 @@
 
 <div class="hero-text-image is-component {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
-    style="{% if heroTextImageHero.bgColor %}background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
+    style="{% if heroTextImageHero.bgColor %}--color-hero-text-image-background: {{ heroTextImageHero.bgColor }};background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
 >
   {% if heroTextImageHero.fullscreen %}
     <div class="hero-text-image__fullscreen position-absolute">
@@ -179,7 +176,7 @@
     </div>
   </div>
   {%- if heroTextImageHero.background -%}
-    <div class="hero-text-image__background {{ heroTextImageVariant }} container position-absolute z-index-2 space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
+    <div class="hero-text-image__background container position-absolute z-index-2 space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
       <div class="row">
         <div class="hero-text-image__background-wrapper col-sm-12">
           {{ heroImage }}
