@@ -343,7 +343,7 @@
         bottom: -4rem;
       }
       &:not(.hero--study){
-        @include media-breakpoint-up(sm) {
+        @include media-breakpoint-up(xs) {
           top: auto;
           bottom: -4rem;
         }
