@@ -123,6 +123,24 @@ PrimaryLink.argTypes = {
   },
 };
 
+export const PrimaryLinkActive = Template.bind({});
+
+PrimaryLinkActive.args = {
+  text: 'Primary Link',
+  href: 'javascript:void(0)',
+  link: true,
+  active: true,
+};
+
+PrimaryLinkActive.argTypes = {
+  width: {
+    table: { disable: true },
+  },
+  skin: {
+    table: { disable: true },
+  },
+};
+
 export const PrimaryLinkMonochrome = Template.bind({});
 
 PrimaryLinkMonochrome.args = {

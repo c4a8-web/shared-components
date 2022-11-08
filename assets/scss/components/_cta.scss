@@ -159,6 +159,10 @@
       stroke: var(--color-primary);
     }
   }
+
+  &.active {
+    text-decoration: underline;
+  }
 }
 
 @mixin cta-no-btn-is-light {

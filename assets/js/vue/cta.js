@@ -1,3 +1,4 @@
+import State from '../state.js';
 import Tools from '../tools.js';
 
 export default {
@@ -16,6 +17,7 @@ export default {
         `${this.external ? 'cta--external' : ''}`,
         `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
         `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
+        `${this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : ''}`,
         'vue-component',
       ];
     },
@@ -93,6 +95,9 @@ export default {
       default: null,
     },
     monochrome: {
+      default: null,
+    },
+    active: {
       default: null,
     },
   },

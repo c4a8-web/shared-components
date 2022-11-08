@@ -31,8 +31,14 @@ export default {
 
       return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
+    activeNavigation() {
+      this.setActiveLinks();
+
+      return this.navigation;
+    },
   },
   mounted() {
+    // this.setActiveLinks();
     this.bindEvents();
   },
   methods: {
@@ -136,8 +142,8 @@ export default {
     },
     handleLanguageSwitch() {
       const nextLang = this.getNextLanguage();
-      const nextUrl = this.getNextUrl(nextLang);
-      const gotoUrl = nextUrl ? nextUrl : this.home.languages[nextLang]?.url;
+      const activeUrl = this.getActiveUrlByLang(nextLang);
+      const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
       document.location.href = gotoUrl;
     },
@@ -146,7 +152,7 @@ export default {
 
       return currentPath;
     },
-    getNextUrl(lang) {
+    getActiveUrlByLang(lang, update) {
       const currentPath = this.getCurrentPath();
       const lastCharacter = '/';
 
@@ -159,7 +165,13 @@ export default {
           url = url + lastCharacter;
         }
 
-        return url === currentPath;
+        const condition = url === currentPath;
+
+        if (update && condition) {
+          obj.active = true;
+        }
+
+        return condition;
       };
 
       const callback = (_, parent) => {
@@ -171,6 +183,18 @@ export default {
       if (!parent) return;
 
       return parent[lang]?.url;
+    },
+    setActiveLinks() {
+      const activeLink = this.findActiveLink();
+    },
+    findActiveLink() {
+      const url = this.getActiveUrlByLang(this.lowerLang, true);
+
+      console.log(this.navigation);
+      console.log('findActiveLink ~ url', url);
+    },
+    headerItemClasses(item) {
+      return ['header__item', State.ACTIVE];
     },
     isLinkListHidden(item, index) {
       const id = this.getId(item, index);
@@ -223,7 +247,7 @@ export default {
             <nav v-on:mouseout="handleMouseOut">
               <div class="header__search"></div>
               <ul class="header__list">
-                <li class="header__item" v-for="(item, index) in navigation">
+                <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
                   <a :class="headerLinkClasses(item, index)" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
                       {{ item.languages[lowerLang]?.title }}
@@ -276,7 +300,7 @@ export default {
         <div class="container-xxl">
           <div class="row">
             <div class="col">
-              <div class="header__flyout-content" v-for="(item, index) in navigation" ref="flyout">
+              <div class="header__flyout-content" v-for="(item, index) in activeNavigation" ref="flyout">
                 <div class="header__flyout-items" v-if="item.children">
                   <figure class="header__flyout-block">
                     <figcaption class="header__flyout-caption">

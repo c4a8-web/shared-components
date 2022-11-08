@@ -62,6 +62,7 @@ export default {
           <cta
             :href="subChild.languages[lang].url"
             :text="subChild.languages[lang].title"
+            :active="subChild.languages[lang].active"
             link=true
             reversed=true
             monochrome=true
