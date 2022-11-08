@@ -6,11 +6,16 @@ $header-border-size: 1px;
     @include z-index;
   }
 
-  .header__link-content {
-    .icon {
-      @include media-breakpoint-up($header-expand-breakpoint) {
-        width: spacing(3);
-        height: spacing(3);
+  .header {
+    &.vue-component {
+      // TODO remove after migration to one header is done
+      .header__link-content {
+        .icon {
+          @include media-breakpoint-up($header-expand-breakpoint) {
+            width: spacing(3);
+            height: spacing(3);
+          }
+        }
       }
     }
   }
@@ -19,137 +24,140 @@ $header-border-size: 1px;
 .header {
   --header-vertical-spacing: #{spacing(5)};
 
-  position: fixed;
-  display: flex;
-  box-shadow: $header-section-box-shadow;
-  top: 0;
-  bottom: auto;
-  background-color: var(--color-header-background);
-
-  &.is-expanded {
-    nav {
-      overflow-y: auto;
-      max-height: 90vh;
-    }
-  }
-
-  &:not(:hover):not(.is-scrolled).header--light {
-    --color-header-background: transparent;
-    --color-header-border: transparent;
-
-    box-shadow: none;
-    color: var(--color-copy-light);
-
-    .header__link {
-      color: inherit;
-    }
-
-    .header__logo-light {
-      display: block;
-    }
-
-    .header__logo-default {
-      display: none;
-    }
-  }
-
-  &:not(.is-expanded) {
-    nav {
-      @include media-breakpoint-down(md) {
-        @include is-invisible;
-
-        transform: translateY(-100%) translateX(-50%);
-      }
-    }
-  }
-
-  &:not(.is-hovering) {
-    @include media-breakpoint-up($header-expand-breakpoint) {
-      .header__flyout {
-        @include is-invisible;
-
-        transform: translateY(-100%);
-      }
-    }
-  }
-
-  .header__menu {
-    .icon {
-      width: spacing(8);
-      height: spacing(8);
-    }
-  }
-
-  nav {
-    background-color: var(--color-header-background);
-    position: absolute;
-    bottom: -#{$header-border-size};
-    left: 50%;
-    transform: translateY(100%) translateX(-50%);
-    width: 100vw;
+  &.vue-component {
+    // TODO remove after migration to one header is done
+    position: fixed;
+    display: flex;
     box-shadow: $header-section-box-shadow;
-    transition: transform $animation-transition 0.5s;
-    overflow: hidden;
-    z-index: -1;
+    top: 0;
+    bottom: auto;
+    background-color: var(--color-header-background);
 
-    .header__language-switch {
-      display: block;
-    }
-  }
-
-  @include media-breakpoint-up($header-expand-breakpoint) {
-    .header__contact.header__contact--mobile,
-    nav .header__language-switch,
-    .header__meta-list,
-    .header__menu,
-    .header__footer {
-      display: none;
+    &.is-expanded {
+      nav {
+        overflow-y: auto;
+        max-height: 90vh;
+      }
     }
 
-    .header__link,
-    nav,
-    .header__language-switch {
-      display: block;
-    }
+    &:not(:hover):not(.is-scrolled).header--light {
+      --color-header-background: transparent;
+      --color-header-border: transparent;
 
-    nav {
-      position: relative;
-      width: auto;
-      left: auto;
-      transform: translateY(0);
-      background-color: transparent;
       box-shadow: none;
-      overflow: visible;
-      z-index: 1;
-    }
+      color: var(--color-copy-light);
 
-    .header__list {
-      flex-wrap: nowrap;
-    }
+      .header__link {
+        color: inherit;
+      }
 
-    .header__item {
-      flex: 0 0 auto;
-    }
+      .header__logo-light {
+        display: block;
+      }
 
-    .header__col {
-      padding: 0;
-      justify-content: left;
-
-      &::after {
+      .header__logo-default {
         display: none;
       }
     }
 
-    .header__link {
-      width: auto;
-      border: 0;
-      padding: 0;
+    &:not(.is-expanded) {
+      nav {
+        @include media-breakpoint-down(md) {
+          @include is-invisible;
+
+          transform: translateY(-100%) translateX(-50%);
+        }
+      }
     }
 
-    .header__link-content {
-      width: auto;
-      pointer-events: all;
-      padding: var(--header-vertical-spacing) spacing(4);
+    &:not(.is-hovering) {
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        .header__flyout {
+          @include is-invisible;
+
+          transform: translateY(-100%);
+        }
+      }
+    }
+
+    .header__menu {
+      .icon {
+        width: spacing(8);
+        height: spacing(8);
+      }
+    }
+
+    nav {
+      background-color: var(--color-header-background);
+      position: absolute;
+      bottom: -#{$header-border-size};
+      left: 50%;
+      transform: translateY(100%) translateX(-50%);
+      width: 100vw;
+      box-shadow: $header-section-box-shadow;
+      transition: transform $animation-transition 0.5s;
+      overflow: hidden;
+      z-index: -1;
+
+      .header__language-switch {
+        display: block;
+      }
+    }
+
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      .header__contact.header__contact--mobile,
+      nav .header__language-switch,
+      .header__meta-list,
+      .header__menu,
+      .header__footer {
+        display: none;
+      }
+
+      .header__link,
+      nav,
+      .header__language-switch {
+        display: block;
+      }
+
+      nav {
+        position: relative;
+        width: auto;
+        left: auto;
+        transform: translateY(0);
+        background-color: transparent;
+        box-shadow: none;
+        overflow: visible;
+        z-index: 1;
+      }
+
+      .header__list {
+        flex-wrap: nowrap;
+      }
+
+      .header__item {
+        flex: 0 0 auto;
+      }
+
+      .header__col {
+        padding: 0;
+        justify-content: left;
+
+        &::after {
+          display: none;
+        }
+      }
+
+      .header__link {
+        width: auto;
+        border: 0;
+        padding: 0;
+      }
+
+      .header__link-content {
+        width: auto;
+        pointer-events: all;
+        padding: var(--header-vertical-spacing) spacing(4);
+      }
     }
   }
 }
