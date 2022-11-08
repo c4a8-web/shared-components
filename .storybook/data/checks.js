@@ -5,7 +5,7 @@ const Checks = [
     title: 'glueckkanja-gab Quick-Check',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
-    picture: '/blog/pics/check-detailed.png',
+    picture: 'blog/pics/img-quick-check.png',
     subpoints: [
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mircrosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
       'Dir stehen bei glueckkanja-gab viele Türen offen und',
@@ -17,7 +17,7 @@ const Checks = [
     scope: 'Umfang: 2-3 Tage',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
-    picture: '/blog/pics/check-quick.png',
+    picture: 'blog/pics/img-detailed-check.png',
     subpoints: [
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mircrosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
       'Dir stehen bei glueckkanja-gab viele Türen offen und',
@@ -30,7 +30,7 @@ const Checks = [
     scope: 'Umfang: 5 Tage',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise',
-    picture: '/blog/pics/check-quick.png',
+    picture: 'blog/pics/img-detailed-check.png',
     subpoints: [
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mircrosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
       'Dir stehen bei glueckkanja-gab viele Türen offen und',
