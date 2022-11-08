@@ -43,9 +43,7 @@ export default {
             blocks[index] = tempBlock;
 
             tempBlock.push(field);
-          }
-
-          if (field.rowEnd) {
+          } else if (field.rowEnd) {
             tempBlock.push(field);
 
             tempBlock = [];
