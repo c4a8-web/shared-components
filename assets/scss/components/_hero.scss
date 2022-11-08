@@ -543,6 +543,8 @@
 }
 
 .hero-text-image__video {
+  margin-top: spacing($size: 18, $negative: true);
+
   @include media-breakpoint-up(lg) {
     margin: 0 spacing($size: 34, $negative: true);
   }
