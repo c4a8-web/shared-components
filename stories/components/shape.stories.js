@@ -75,8 +75,9 @@ ShapeFourSquares.args = {
     {
       name: 'shape-four-squares',
       firstColor: 'var(--color-blue-light)',
-      secondColor: 'var(--color-orange)',
-      thirdColor: 'var(--color-gigas)',
+      secondColor: 'var(--color-white)',
+      thirdColor: 'var(--color-orange)',
+      fourthColor: 'var(--color-gigas)',
     },
   ],
 };
