@@ -235,13 +235,14 @@ HeroTextImageSafety.args = {
   hero: {
     variant: 'hero--safety', // TODO refactor to a more generic name
     headline: 'Lorem Ipsum',
+    light: true,
     subline:
-      '<span class="highlight">Lorem ipsum dolor</span> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
     background: {
       img: '/casestudies/casestudy-demo.png',
       alt: 'Img',
       spacing: 'space-top-lg-4',
     },
-    bgColor: 'var(--color-polar)',
+    bgColor: 'var(--color-blue-dark)',
   },
 }
