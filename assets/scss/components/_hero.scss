@@ -191,7 +191,7 @@
     }
 
     @include media-breakpoint-up(lg) {
-      //left: 50%;
+      left: 50%;
       transform: translateX(-50%);
     }
   }
