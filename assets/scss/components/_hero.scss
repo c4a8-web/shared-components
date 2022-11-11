@@ -340,19 +340,20 @@
         align-items: flex-end;
       }
     }
+    &:not(.hero--study) {
+      .hero-text-image__background {
+        top: auto;
+        bottom: -4rem;
 
-    .hero-text-image__background:not(.hero--security) {
-      top: auto;
-      bottom: -4rem;
-
-      @include media-breakpoint-up(lg) {
-        width: 50%;
-        padding-left: 0;
-        height: 100%;
-        left: 50%;
-        right: auto;
-        display: flex;
-        align-items: flex-end;
+        @include media-breakpoint-up(lg) {
+          width: 50%;
+          padding-left: 0;
+          height: 100%;
+          left: 50%;
+          right: auto;
+          display: flex;
+          align-items: flex-end;
+        }
       }
     }
 
