@@ -27,12 +27,8 @@ hikingtips.args = {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
-      cornerImg: {
-        img: 'people/testimonials/matti-puolitaival.png',
-        alt: 'map',
-        cloudinary: true,
-        position: 'left',
-      },
+      bgColor: 'var(--color-blue-dark)',
+      bgColorHover: 'var(--color-black)'
     },
     {
       url: 'javascript:void(0)',
@@ -42,6 +38,8 @@ hikingtips.args = {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
+      bgColor: 'var(--color-blue-dark)',
+      bgColorHover: 'var(--color-black)',
       cornerImg: {
         img: 'people/testimonials/matti-puolitaival.png',
         alt: 'map',
@@ -95,6 +93,8 @@ hikingtips.args = {
       url: 'javascript:void(0)',
       name: '6Matti Puolitaival',
       title: 'Senior Consultant Azure',
+      bgColor: 'var(--color-blue-dark)',
+      bgColorHover: 'var(--color-black)',
       contentImg: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
