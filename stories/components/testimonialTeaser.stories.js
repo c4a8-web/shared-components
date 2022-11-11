@@ -41,6 +41,8 @@ CornerImg.args = {
   href: 'javascript:void(0)',
   name: 'Matti Puolitaival',
   title: 'Senior Consultant Azure',
+  bgColor: 'var(--color-blue-dark)',
+  bgColorHover: 'var(--color-black)',
   cornerImg: {
     img: 'people/testimonials/matti-puolitaival.png',
     alt: 'map',

@@ -4,6 +4,8 @@
 {%- assign testimonialTeaserImg = include.img -%}
 {%- assign testimonialTeaserImgCloudinary = testimonialTeaserImg.cloudinary | default: true -%}
 {%- assign testimonialTeaserCornerImg = include.cornerImg | default: false -%}
+{%- assign testimonialTeaserBG = include.bgColor | default: 'var(--color-primary)' -%}
+{%- assign testimonialTeaserBGHover = include.bgColorHover | default: 'var(--color-blue-medium)' -%}
 
 <!-- Shared Testimonial Teaser Section -->
 {% if testimonialTeaserCornerImg.position == "left" %}
@@ -11,7 +13,12 @@
 {% else %}
   {%- assign testimonialTeaserCornerPosition = " testimonial-teaser__corner--right " -%}
 {% endif %}
-<a href="{{ testimonialTeaserHref }}" class="testimonial-teaser">
+{% if testimonialTeaserBG %}
+  {%- assign testimonialTeaserBGColor = "--color-testimonial-teaser-background: " | append: testimonialTeaserBG %}
+  {%- assign testimonialTeaserHoverColor = "--color-testimonial-teaser-background-hover: " | append: testimonialTeaserBGHover -%}
+  {%- assign testimonialTeaserBGStyling = testimonialTeaserBGColor | append: "; " | append: testimonialTeaserHoverColor -%}
+{% endif %}
+<a href="{{ testimonialTeaserHref }}" class="testimonial-teaser" style="{% if testimonialTeaserBG %} {{ testimonialTeaserBGStyling }} {% endif %}">
   <div class="testimonial-teaser__wrapper">
     {% if testimonialTeaserCornerImg %}
       <div class="testimonial-teaser__corner {{ testimonialTeaserCornerPosition }}">
@@ -20,7 +27,7 @@
           img=testimonialTeaserCornerImg.img
           alt=testimonialTeaserCornerImg.alt
           cloudinary=testimonialTeaserCornerImg.cloudinary
-        %}
+        %}}
       </div>
     {% endif %}
     <div class="testimonial-teaser__img">
