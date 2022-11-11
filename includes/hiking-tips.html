@@ -27,10 +27,10 @@
   <div class="hiking-tips__contents">
     {% for testimonial in  hikingTipsContents %}
       {% if even == true %}
-        {% assign hikingTipsContentClass = " justify-content-end" %}
+        {% assign hikingTipsContentClass = " hiking-tips__content--right justify-content-end" %}
         {% assign even = false %}
       {% else %}
-        {% assign hikingTipsContentClass = " justify-content-start" %}
+        {% assign hikingTipsContentClass = "  hiking-tips__content--left justify-content-start" %}
         {% assign even = true %}
       {% endif %}
       <div class="hiking-tips__content row {{ hikingTipsContentClass }}">

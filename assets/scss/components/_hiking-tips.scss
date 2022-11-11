@@ -18,4 +18,20 @@
   @include media-breakpoint-up(xl){
     margin-top: -10rem;
   }
+  &.hiking-tips__content--left {
+    img {
+      height: 500px;
+      width: 400px;
+      max-width: 100%;
+      object-fit: cover;
+    }
+  }
+  &.hiking-tips__content--right {
+    img {
+      @include aspect-ratio(1, 1);
+      height: 400px;
+      width: 400px;
+      object-fit: cover;
+    }
+  }
 }
