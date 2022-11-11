@@ -191,7 +191,7 @@
     }
 
     @include media-breakpoint-up(lg) {
-      left: 50%;
+      //left: 50%;
       transform: translateX(-50%);
     }
   }
@@ -326,12 +326,27 @@
       line-height: 1.2em;
     }
 
-    .hero-text-image__background {
+    .hero-text-image__background:not(.hero--safety) {
       top: auto;
       bottom: -4rem;
 
       @include media-breakpoint-up(lg) {
         width: 100vw;
+        padding-left: 0;
+        height: 100%;
+        left: 50%;
+        right: auto;
+        display: flex;
+        align-items: flex-end;
+      }
+    }
+
+    .hero-text-image__background:not(.hero--security) {
+      top: auto;
+      bottom: -4rem;
+
+      @include media-breakpoint-up(lg) {
+        width: 50%;
         padding-left: 0;
         height: 100%;
         left: 50%;

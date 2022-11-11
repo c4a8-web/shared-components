@@ -8,9 +8,13 @@
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
 
-{%- if heroTextImageVariant == 'hero--career' or heroTextImageVariant == 'hero--safety' -%}
+{%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = false %}
+{%- else if heroTextImageVariant == 'hero--safety' -%}
+  {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = false %}
+  {% assign heroContainerPosition = "justify-content-lg-between pb-10 " %}
 {%- else if heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
@@ -111,9 +115,11 @@
   <div class="container z-index-4">
     <div class="hero-text-image__row row {{ heroContainerPosition }} align-items-lg-center pt-lg-5 position-relative">
       {% if heroTextImageHero.background %}
-        <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
-          {{ heroImage }}
-        </div>
+        {% if heroTextImageVariant != 'hero--safety' %}
+          <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
+            {{ heroImage }}
+          </div>
+        {% endif %}
       {% endif %}
 
       <div class="hero-text-image__wrapper col-lg-8 w-100">
