@@ -3,7 +3,7 @@
 }
 
 .hiking-tips__contents {
-  margin-top: spacing(60);
+  margin-top: spacing(30);
 }
 
 .hiking-tips__subline {
@@ -14,24 +14,41 @@
 }
 
 .hiking-tips__content {
+  justify-content: center;
   margin-top: 2rem;
+  img {
+    @include aspect-ratio(1, 1);
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  @include media-breakpoint-up(lg){
+    margin-top: -7rem;
+  }
   @include media-breakpoint-up(xl){
     margin-top: -10rem;
   }
   &.hiking-tips__content--left {
-    img {
-      height: 500px;
-      width: 400px;
-      max-width: 100%;
-      object-fit: cover;
+    @include media-breakpoint-up(md) {
+      justify-content: start;
+      img {
+        height: 500px;
+        width: 400px;
+        max-width: 100%;
+        object-fit: cover;
+      }
     }
   }
   &.hiking-tips__content--right {
-    img {
-      @include aspect-ratio(1, 1);
-      height: 400px;
-      width: 400px;
-      object-fit: cover;
+    @include media-breakpoint-up(md) {
+      justify-content: end;
+      img {
+        @include aspect-ratio(4, 3);
+        height: 400px;
+        width: 600px;
+        object-fit: cover;
+      }
     }
   }
 }
