@@ -1,0 +1,61 @@
+{%- if include.json -%}
+  {%- assign testimonialListHeadline = include.json.headline -%}
+  {%- assign testimonialListHeadlineLevel = include.json.headlineLevel -%}
+  {%- assign testimonialListSubline = include.json.subline -%}
+  {%- assign testimonialListContents = include.contents | include.json.contents -%}
+  {%- assign testimonialBgColor = include.json.bgColor -%}
+  {%- assign testimonialBgColorHover = include.json.bgColorHover -%}
+{%- else -%}
+  {%- assign testimonialListHeadline = include.headline -%}
+  {%- assign testimonialListHeadlineLevel = include.headlineLevel -%}
+  {%- assign testimonialListSubline = include.subline -%}
+  {%- assign testimonialListContents = include.contents -%}
+  {%- assign testimonialBgColor = include.bgColor -%}
+  {%- assign testimonialBgColorHover = include.bgColorHover -%}
+{%- endif -%}
+{% assign testimonialListEven = false %}
+
+<!-- vue commponent -->
+<testimonial-list
+  testimonials="{{ testimonialListContents | jsonify | escape }}"
+  bgColor="{{ testimonialBgColor }}"
+  bgColorHover="{{ testimonialBgColorHover }}"
+>
+
+  {% for testimonial in  testimonialListContents %}
+    {% assign testimonialRemainder = forloop.index | modulo: 2 %}
+    {% assign testimonialWideValue1 = forloop.index | modulo: 4 %}
+    {% assign testimonialWideValue2 = forloop.index | minus: 1 | modulo: 4 %}
+
+    {% if testimonialWideValue1 == 0 or testimonialWideValue2 == 0 %}
+      {% assign testimonialWideContentClass = "testimonial-list__content--wide" %}
+    {% else %}
+      {% assign testimonialWideContentClass = "testimonial-list__content--rectangle" %}
+    {% endif %}
+
+    {% if testimonialRemainder != 0 %}
+      <div class="testimonial-list__content-block row" >
+    {% endif %}
+
+    <div class="testimonial-list__content {{ testimonialWideContentClass }} col-lg">
+      {% unless testimonial.hidden %}
+      {%
+        include testimonial-teaser.html
+        href=testimonial.url
+        name=testimonial.name
+        title=testimonial.title
+        img=testimonial.contentImg
+        cornerImg=testimonial.cornerImg
+        bgColor=testimonialBgColor
+        bgColorHover=testimonialBgColorHover
+      %}
+      {% endunless %}
+    </div>
+
+    {% if testimonialRemainder == 0 %}
+      </div>
+    {% endif %}
+  {% endfor %}
+</testimonial-list>
+
+

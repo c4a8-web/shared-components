@@ -1,8 +1,8 @@
 import { createComponent, getTitle, site } from '../../.storybook/templates';
-import { includeshikingtipshtml as component } from '../../.storybook/generatedIncludes';
+import { includestestimoniallisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Hiking Tips',
+  title: 'Testimonial List',
 });
 
 export default {
@@ -11,13 +11,11 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const hikingtips = Template.bind({});
+export const testimoniallist = Template.bind({});
 
-hikingtips.args = {
-  headline: 'Lorem Ipsum dolor sit',
-  headlineLevel: 'h2',
-  subline:
-    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata,',
+testimoniallist.args = {
+  bgColor: 'var(--color-blue-dark)',
+  bgColorHover: 'var(--color-black)',
   contents: [
     {
       url: 'javascript:void(0)',
@@ -27,8 +25,7 @@ hikingtips.args = {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
-      bgColor: 'var(--color-blue-dark)',
-      bgColorHover: 'var(--color-black)'
+
     },
     {
       url: 'javascript:void(0)',
@@ -37,14 +34,6 @@ hikingtips.args = {
       contentImg: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
-      },
-      bgColor: 'var(--color-blue-dark)',
-      bgColorHover: 'var(--color-black)',
-      cornerImg: {
-        img: 'people/testimonials/matti-puolitaival.png',
-        alt: 'map',
-        cloudinary: true,
-        position: 'left',
       },
     },
     {
@@ -55,11 +44,6 @@ hikingtips.args = {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
-      cornerImg: {
-        img: 'people/testimonials/matti-puolitaival.png',
-        alt: 'map',
-        cloudinary: true,
-      },
     },
     {
       url: 'javascript:void(0)',
@@ -69,11 +53,6 @@ hikingtips.args = {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
-      cornerImg: {
-        img: 'people/testimonials/matti-puolitaival.png',
-        alt: 'map',
-        cloudinary: true,
-      },
     },
     {
       url: 'javascript:void(0)',
@@ -82,11 +61,6 @@ hikingtips.args = {
       contentImg: {
         img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
-      },
-      cornerImg: {
-        img: 'people/testimonials/matti-puolitaival.png',
-        alt: 'map',
-        cloudinary: true,
       },
     },
     {
@@ -98,11 +72,6 @@ hikingtips.args = {
       contentImg: {
         img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
-      },
-      cornerImg: {
-        img: 'people/testimonials/matti-puolitaival.png',
-        alt: 'map',
-        cloudinary: true,
       },
     },
   ],

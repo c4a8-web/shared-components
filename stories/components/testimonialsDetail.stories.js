@@ -78,7 +78,7 @@ TestimonialsDetailSafety.args = {
     ],
     googleMaps: {
       headline: {
-        text: 'Blablabla',
+        text: 'Siehe hier die Location',
         level: 'h3',
       },
       address: {
