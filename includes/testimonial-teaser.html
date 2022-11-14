@@ -6,8 +6,18 @@
 {%- assign testimonialTeaserCornerImg = include.cornerImg | default: false -%}
 {%- assign testimonialTeaserBG = include.bgColor | default: 'var(--color-primary)' -%}
 {%- assign testimonialTeaserBGHover = include.bgColorHover | default: 'var(--color-blue-medium)' -%}
+{%- assign testimonialTeaserAspectRatio = include.aspectRatio | default: false -%}
 
 <!-- Shared Testimonial Teaser Section -->
+{% assign testimonialTeaserAspectRatioSize = testimonialTeaserAspectRatio | split: "," | size %}
+{% if testimonialTeaserAspectRatio and testimonialTeaserAspectRatioSize == 2 %}
+  {% assign testimonialTeaserAspectRatioWidth = testimonialTeaserAspectRatio | split: "," | first %}
+  {% assign testimonialTeaserAspectRatioHeight = testimonialTeaserAspectRatio | split: "," | last %}
+  {% assign testimonialTeaserAspectRatioStylingWidth = "--width-testimonial-teaser-aspect-ratio: " | append: testimonialTeaserAspectRatioWidth %}
+  {% assign testimonialTeaserAspectRatioStylingHeight = "--height-testimonial-teaser-aspect-ratio: " | append: testimonialTeaserAspectRatioHeight %}
+  {% assign testimonialTeaserAspectRatioStyling = testimonialTeaserAspectRatioStylingWidth | append: "; " | append: testimonialTeaserAspectRatioStylingHeight %}
+{% endif %}
+
 {% if testimonialTeaserCornerImg.position == "left" %}
   {%- assign testimonialTeaserCornerPosition = " testimonial-teaser__corner--left " -%}
 {% else %}
@@ -16,9 +26,9 @@
 {% if testimonialTeaserBG %}
   {%- assign testimonialTeaserBGColor = "--color-testimonial-teaser-background: " | append: testimonialTeaserBG %}
   {%- assign testimonialTeaserHoverColor = "--color-testimonial-teaser-background-hover: " | append: testimonialTeaserBGHover -%}
-  {%- assign testimonialTeaserBGStyling = testimonialTeaserBGColor | append: "; " | append: testimonialTeaserHoverColor -%}
+  {%- assign testimonialTeaserBGStyling = testimonialTeaserBGColor | append: "; " | append: testimonialTeaserHoverColor | append: "; width: 100%;" -%}
 {% endif %}
-<a href="{{ testimonialTeaserHref }}" class="testimonial-teaser" style="{% if testimonialTeaserBG %} {{ testimonialTeaserBGStyling }} {% endif %}">
+<a href="{{ testimonialTeaserHref }}" class="testimonial-teaser" style="{% if testimonialTeaserBG %} {{ testimonialTeaserBGStyling }} {% endif %} {% if testimonialTeaserAspectRatioStyling %}; {{ testimonialTeaserAspectRatioStyling }} {% endif %}">
   <div class="testimonial-teaser__wrapper">
     {% if testimonialTeaserCornerImg %}
       <div class="testimonial-teaser__corner {{ testimonialTeaserCornerPosition }}">
@@ -31,7 +41,7 @@
       </div>
     {% endif %}
     <div class="testimonial-teaser__img">
-      <div class="testimonial-teaser__img-wrapper">
+      <div class="testimonial-teaser__img-wrapper {% if testimonialTeaserAspectRatioStyling %} testimonial-teaser_img-wrapper--aspect-ratio {% endif %}">
         {%
           include img.html
           img=testimonialTeaserImg.img

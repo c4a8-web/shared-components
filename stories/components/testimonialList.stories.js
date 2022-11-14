@@ -22,7 +22,7 @@ testimoniallist.args = {
       name: '1Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       contentImg: {
-        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
 
@@ -32,7 +32,7 @@ testimoniallist.args = {
       name: '2Matti Puolitaival',
       title: 'Senior Consultant Azure',
       contentImg: {
-        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -41,7 +41,7 @@ testimoniallist.args = {
       name: '3Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       contentImg: {
-        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -50,7 +50,7 @@ testimoniallist.args = {
       name: '4Matti Puolitaival',
       title: 'Senior Consultant Azure',
       contentImg: {
-        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -59,7 +59,7 @@ testimoniallist.args = {
       name: '5Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       contentImg: {
-        img: 'w_1000,ar_4:3,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },
@@ -70,7 +70,7 @@ testimoniallist.args = {
       bgColor: 'var(--color-blue-dark)',
       bgColorHover: 'var(--color-black)',
       contentImg: {
-        img: 'w_1000,ar_1:1,c_fill,g_auto/v1643880379/people/testimonials/matti-puolitaival.png',
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
     },

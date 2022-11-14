@@ -11,9 +11,7 @@ export default {
   props: {
     testimonials: {
       default: null,
-    },
-    bgColor: String,
-    bgColorHover: String,
+    }
   },
   template: `
   <div :class="classList">

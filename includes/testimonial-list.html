@@ -18,8 +18,6 @@
 <!-- vue commponent -->
 <testimonial-list
   testimonials="{{ testimonialListContents | jsonify | escape }}"
-  bgColor="{{ testimonialBgColor }}"
-  bgColorHover="{{ testimonialBgColorHover }}"
 >
 
   {% for testimonial in  testimonialListContents %}
@@ -28,9 +26,9 @@
     {% assign testimonialWideValue2 = forloop.index | minus: 1 | modulo: 4 %}
 
     {% if testimonialWideValue1 == 0 or testimonialWideValue2 == 0 %}
-      {% assign testimonialWideContentClass = "testimonial-list__content--wide" %}
+      {% assign testimonialWideContentClass = "16, 9" %}
     {% else %}
-      {% assign testimonialWideContentClass = "testimonial-list__content--rectangle" %}
+      {% assign testimonialWideContentClass = "4, 3" %}
     {% endif %}
 
     {% if testimonialRemainder != 0 %}
@@ -39,16 +37,17 @@
 
     <div class="testimonial-list__content {{ testimonialWideContentClass }} col-lg">
       {% unless testimonial.hidden %}
-      {%
-        include testimonial-teaser.html
-        href=testimonial.url
-        name=testimonial.name
-        title=testimonial.title
-        img=testimonial.contentImg
-        cornerImg=testimonial.cornerImg
-        bgColor=testimonialBgColor
-        bgColorHover=testimonialBgColorHover
-      %}
+        {%
+          include testimonial-teaser.html
+          href=testimonial.url
+          name=testimonial.name
+          title=testimonial.title
+          img=testimonial.contentImg
+          cornerImg=testimonial.cornerImg
+          bgColor=testimonialBgColor
+          bgColorHover=testimonialBgColorHover
+          aspectRatio=testimonialWideContentClass
+        %}
       {% endunless %}
     </div>
 
