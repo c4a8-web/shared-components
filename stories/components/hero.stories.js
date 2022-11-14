@@ -233,6 +233,7 @@ export const HeroTextImageSafety = Template.bind({});
 
 HeroTextImageSafety.args = {
   hero: {
+    // pattern: true,
     variant: 'hero--safety', // TODO refactor to a more generic name
     headline: 'Lorem Ipsum',
     light: true,
@@ -241,9 +242,9 @@ HeroTextImageSafety.args = {
     background: {
       img: getAssetPath('img/xmas-website-hero.png'),
       alt: 'Img',
-      spacing: 'space-top-lg-4',
+      spacing: 'space-top-lg-2',
       cloudinary: false,
     },
     bgColor: 'var(--color-blue-dark)',
   },
-}
+};
