@@ -239,9 +239,10 @@ HeroTextImageSafety.args = {
     subline:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
     background: {
-      img: '/casestudies/casestudy-demo.png',
+      img: getAssetPath('img/xmas-website-hero.png'),
       alt: 'Img',
       spacing: 'space-top-lg-4',
+      cloudinary: false,
     },
     bgColor: 'var(--color-blue-dark)',
   },
