@@ -113,7 +113,10 @@ $header-border-size: 1px;
         display: none;
       }
 
-      .header__link,
+      .header__link {
+        display: flex;
+      }
+
       nav,
       .header__language-switch {
         display: block;
