@@ -27,3 +27,72 @@ export const HeaderEN = Template.bind({});
 HeaderEN.args = {
   lang: 'en',
 };
+
+export const HeaderProduct = Template.bind({});
+
+HeaderProduct.args = {
+  product: true,
+  button: {},
+  home: {
+    name: 'home',
+    imgLight: '/logos/gkgab-Logo-white-vektor.svg',
+    img: '/logos/gkgab-Logo-vektor.svg',
+    languages: {
+      de: {
+        title: 'Home DE',
+        url: '',
+        alias: '/',
+        alt: 'alt text DE',
+      },
+      en: {
+        title: 'Home EN',
+        url: '',
+        alt: 'alt text EN',
+      },
+    },
+  },
+  navigation: [
+    {
+      name: 'home',
+      languages: {
+        de: {
+          title: 'Home',
+          url: '',
+        },
+        en: {
+          title: 'Home EN',
+          url: '',
+        },
+      },
+    },
+    {
+      name: 'pricing',
+      languages: {
+        de: {
+          title: 'Pricing',
+          url: '',
+          active: true,
+        },
+        en: {
+          title: 'Pricing EN',
+          url: '',
+          active: true,
+        },
+      },
+    },
+    {
+      name: 'partner',
+      languages: {
+        de: {
+          title: 'Partner',
+          url: '',
+        },
+        en: {
+          title: 'Partner EN',
+          url: '',
+        },
+      },
+    },
+  ],
+  meta: [],
+};

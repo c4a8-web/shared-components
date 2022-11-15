@@ -205,9 +205,11 @@ const Header = {
       languages: {
         de: {
           title: 'Services',
+          active: true,
         },
         en: {
           title: 'Services',
+          active: true,
         },
       },
       children: [

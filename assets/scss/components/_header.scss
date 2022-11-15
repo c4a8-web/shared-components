@@ -33,6 +33,18 @@ $header-border-size: 1px;
     bottom: auto;
     background-color: var(--color-header-background);
 
+    &.header--product {
+      .header__item {
+        @include link-active;
+
+        &.active {
+          .header__link::after {
+            display: none;
+          }
+        }
+      }
+    }
+
     &.is-expanded {
       nav {
         overflow-y: auto;

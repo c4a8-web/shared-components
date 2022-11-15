@@ -10,6 +10,7 @@ export default {
         this.isScrolled ? State.IS_SCROLLED : '',
         Tools.isTrue(this.light) ? 'header--light' : '',
         Tools.isTrue(this.hover) ? State.HOVERING : '',
+        Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         'vue-component',
       ];
@@ -219,6 +220,12 @@ export default {
     lang: String,
     contact: Object,
     bgColor: String,
+    product: {
+      default: null,
+    },
+    button: {
+      default: null,
+    },
   },
   data() {
     return {
@@ -292,6 +299,9 @@ export default {
                 </div>
               </div>
             </nav>
+            <div class="header__button" v-if="button">
+              CTA YEAH
+            </div>
             <div class="header__language-switch" v-on:click="handleLanguageSwitch">
               {{ getNextLanguage() }}
             </div>
