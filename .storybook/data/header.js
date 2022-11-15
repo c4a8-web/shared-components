@@ -228,10 +228,12 @@ const Header = {
                 de: {
                   title: 'lorem ipsum',
                   url: 'javascript:void(0);',
+                  active: true,
                 },
                 en: {
                   title: 'dolor sit',
                   url: 'javascript:void(0);',
+                  active: true,
                 },
               },
             },

@@ -112,7 +112,7 @@ export default {
                :data-alternative-href="alternativeHref ? alternativeHref : null"
                :data-trigger="trigger ? trigger : null"
     >
-      {{ text }}
+      <span class="cta__text">{{ text }}</span>
       <icon :icon="iconName" v-if="hasIcon" size=" " />
     </component>`,
 };

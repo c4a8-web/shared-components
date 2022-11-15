@@ -38,7 +38,6 @@ export default {
     },
   },
   mounted() {
-    // this.setActiveLinks();
     this.bindEvents();
   },
   methods: {
@@ -156,7 +155,7 @@ export default {
       const currentPath = this.getCurrentPath();
       const lastCharacter = '/';
 
-      const matcher = (obj) => {
+      const matcher = (obj, parentKey) => {
         if (!obj.title) return;
 
         let url = obj.url;
@@ -169,6 +168,10 @@ export default {
 
         if (update && condition) {
           obj.active = true;
+
+          const parentLink = this.getParentLink(parentKey);
+
+          if (parentLink) parentLink.active = true;
         }
 
         return condition;
@@ -184,17 +187,16 @@ export default {
 
       return parent[lang]?.url;
     },
-    setActiveLinks() {
-      const activeLink = this.findActiveLink();
-    },
-    findActiveLink() {
-      const url = this.getActiveUrlByLang(this.lowerLang, true);
+    getParentLink(key) {
+      const navi = this.navigation[key];
 
-      console.log(this.navigation);
-      console.log('findActiveLink ~ url', url);
+      return navi.languages[this.lowerLang];
+    },
+    setActiveLinks() {
+      this.getActiveUrlByLang(this.lowerLang, true);
     },
     headerItemClasses(item) {
-      return ['header__item', State.ACTIVE];
+      return ['header__item', item.languages[this.lowerLang]?.active ? State.ACTIVE : ''];
     },
     isLinkListHidden(item, index) {
       const id = this.getId(item, index);

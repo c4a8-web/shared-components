@@ -75,6 +75,8 @@
 }
 
 .cta {
+  --cta-active-size: 3px;
+
   position: relative;
   border-radius: 0;
 
@@ -158,10 +160,6 @@
       margin: 0 0 0 spacing(3);
       stroke: var(--color-primary);
     }
-  }
-
-  &.active {
-    text-decoration: underline;
   }
 }
 
@@ -302,6 +300,28 @@
         }
       }
     }
+
+    &.active {
+      .cta__text {
+        &::after {
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.cta__text {
+  position: relative;
+
+  &::after {
+    display: none;
+    content: '';
+    position: absolute;
+    bottom: calc(-1 * (var(--cta-active-size)));
+    width: 100%;
+    height: var(--cta-active-size);
+    background-color: var(--color-active);
   }
 }
 

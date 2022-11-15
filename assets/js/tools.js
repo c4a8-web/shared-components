@@ -285,11 +285,13 @@ class Tools {
   static findRecursive(obj, matcher, callback) {
     let found = false;
     let result;
+    let currentKey;
+    let baseObj;
 
     function finder(obj, matcher, parentObj, callback) {
       if (found) return;
 
-      if (matcher(obj)) {
+      if (matcher(obj, currentKey)) {
         found = true;
 
         result = callback(obj, parentObj);
@@ -299,10 +301,16 @@ class Tools {
 
       for (let key in obj) {
         if (typeof obj[key] === 'object') {
+          if (obj === baseObj) {
+            currentKey = key;
+          }
+
           finder(obj[key], matcher, obj, callback);
         }
       }
     }
+
+    baseObj = obj;
 
     finder(obj, matcher, obj, callback);
 

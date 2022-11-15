@@ -279,6 +279,13 @@ $header-border-size: 1px;
 
 .header__item {
   flex: 1 0 100%;
+
+  &.active {
+    .header__link:not(:hover)::after {
+      display: block;
+      background-color: var(--color-active);
+    }
+  }
 }
 
 .header__flyout {
