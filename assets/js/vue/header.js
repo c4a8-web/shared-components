@@ -61,6 +61,8 @@ export default {
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
+
+      this.setCtaClasses();
     },
     handleCloseClick() {
       this.closed = !this.closed;
@@ -85,17 +87,23 @@ export default {
       return `${item.name}_${index}`;
     },
     handleHeaderMouseOver() {
-      if (!this.isLight) return;
+      this.hoverHeader = true;
 
-      this.ctaClassList = false;
+      this.setCtaClasses();
     },
     handleHeaderMouseOut() {
+      this.hoverHeader = false;
+
       this.setCtaClasses();
     },
     setCtaClasses() {
       if (!this.isLight) return;
 
-      this.ctaClassList = 'is-light-lg';
+      if (this.hoverHeader || this.isScrolled) {
+        this.ctaClassList = false;
+      } else {
+        this.ctaClassList = 'is-light-lg';
+      }
     },
     handleMouseOver(item, index) {
       if (!item.children) return;
@@ -256,6 +264,7 @@ export default {
       defaultLang: 'de',
       closed: true,
       hover: false,
+      headerHover: false,
       flyoutIndex: null,
       linkLists: {},
       scrollThreshold: 10,
