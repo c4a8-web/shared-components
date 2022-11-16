@@ -28,9 +28,7 @@ HeaderEN.args = {
   lang: 'en',
 };
 
-export const HeaderProduct = Template.bind({});
-
-HeaderProduct.args = {
+const productArgs = {
   lang: 'en',
   product: true,
   button: {
@@ -40,7 +38,7 @@ HeaderProduct.args = {
   },
   home: {
     name: 'home',
-    imgLight: '/logos/radius-logo-green.svg',
+    imgLight: '/logos/radius-logo-white.svg',
     img: '/logos/radius-logo-green.svg',
     languages: {
       en: {
@@ -95,4 +93,17 @@ HeaderProduct.args = {
   ],
   meta: ' ',
   contact: ' ',
+};
+
+export const HeaderProduct = Template.bind({});
+
+HeaderProduct.args = {
+  ...productArgs,
+};
+
+export const HeaderProductLight = Template.bind({});
+
+HeaderProductLight.args = {
+  light: true,
+  ...productArgs,
 };

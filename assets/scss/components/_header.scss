@@ -34,6 +34,17 @@ $header-border-size: 1px;
     background-color: var(--color-header-background);
 
     &.header--product {
+      box-shadow: none;
+
+      &.is-scrolled,
+      &:hover {
+        box-shadow: $header-section-box-shadow;
+      }
+
+      &:not(:hover):not(.is-scrolled) {
+        --color-header-background: transparent;
+      }
+
       .header__item {
         &:hover {
           .header__link {

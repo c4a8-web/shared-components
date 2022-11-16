@@ -15,6 +15,12 @@ export default {
         'vue-component',
       ];
     },
+    headerContainerClassList() {
+      return ['header__container', this.containerClass];
+    },
+    containerClass() {
+      return Tools.isTrue(this.product) ? 'container' : 'container-xxl';
+    },
     homeObj() {
       return this.home?.languages[this.lowerLang];
     },
@@ -241,7 +247,7 @@ export default {
   template: `
     <div class="header__spacer" :style="spacerBgColor"></div>
     <header :class="classList">
-      <div class="header__container container-xxl">
+      <div :class="headerContainerClassList">
         <div class="row">
           <div class="header__col col">
             <div class="header__logo">
@@ -314,7 +320,7 @@ export default {
         </div>
       </div>
       <div class="header__flyout" v-on:mouseout="handleMouseOut">
-        <div class="container-xxl">
+        <div :class="containerClass">
           <div class="row">
             <div class="col">
               <div class="header__flyout-content" v-for="(item, index) in activeNavigation" ref="flyout">
