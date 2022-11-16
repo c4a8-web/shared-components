@@ -13,6 +13,7 @@ export default {
     classList() {
       return [
         `${this.baseClass} ${this.innerSkin}`,
+        `${this.classes ? this.classes : ''}`,
         `${this.download ? 'cta--download' : ''}`,
         `${this.external ? 'cta--external' : ''}`,
         `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
@@ -99,6 +100,9 @@ export default {
     },
     active: {
       default: null,
+    },
+    classes: {
+      default: '',
     },
   },
   template: `

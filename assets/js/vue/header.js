@@ -8,7 +8,7 @@ export default {
       return [
         'header',
         this.isScrolled ? State.IS_SCROLLED : '',
-        Tools.isTrue(this.light) ? 'header--light' : '',
+        this.isLight ? 'header--light' : '',
         Tools.isTrue(this.hover) ? State.HOVERING : '',
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
@@ -43,9 +43,14 @@ export default {
 
       return this.navigation;
     },
+    isLight() {
+      return Tools.isTrue(this.light) === true;
+    },
   },
   mounted() {
     this.bindEvents();
+
+    this.setCtaClasses();
   },
   methods: {
     isLowerBreakpoint() {
@@ -78,6 +83,19 @@ export default {
     },
     getId(item, index) {
       return `${item.name}_${index}`;
+    },
+    handleHeaderMouseOver() {
+      if (!this.isLight) return;
+
+      this.ctaClassList = false;
+    },
+    handleHeaderMouseOut() {
+      this.setCtaClasses();
+    },
+    setCtaClasses() {
+      if (!this.isLight) return;
+
+      this.ctaClassList = 'is-light-lg';
     },
     handleMouseOver(item, index) {
       if (!item.children) return;
@@ -242,11 +260,12 @@ export default {
       linkLists: {},
       scrollThreshold: 10,
       isScrolled: false,
+      ctaClassList: false,
     };
   },
   template: `
     <div class="header__spacer" :style="spacerBgColor"></div>
-    <header :class="classList">
+    <header :class="classList" v-on:mouseover="handleHeaderMouseOver" v-on:mouseout="handleHeaderMouseOut">
       <div :class="headerContainerClassList">
         <div class="header__row row">
           <div class="header__col col">
@@ -311,6 +330,7 @@ export default {
                 :href="button.href"
                 :target="button.target"
                 :skin="button.skin"
+                :classes="ctaClassList"
               />
             </div>
             <div class="header__language-switch" v-on:click="handleLanguageSwitch">
