@@ -62,12 +62,6 @@ $header-border-size: 1px;
 
         &.active {
           .header__link {
-            font-weight: bold;
-
-            &::before {
-              width: 0;
-            }
-
             &::after {
               display: none;
             }
