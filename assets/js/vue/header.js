@@ -253,7 +253,7 @@ export default {
             <div class="header__menu" v-on:click="handleCloseClick">
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
             </div>
-            <nav v-on:mouseout="handleMouseOut">
+            <nav class="header__nav" v-on:mouseout="handleMouseOut">
               <div class="header__search"></div>
               <ul class="header__list">
                 <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
@@ -300,7 +300,12 @@ export default {
               </div>
             </nav>
             <div class="header__button" v-if="button">
-              CTA YEAH
+              <cta
+                :text="button.text"
+                :href="button.href"
+                :target="button.target"
+                :skin="button.skin"
+              />
             </div>
             <div class="header__language-switch" v-on:click="handleLanguageSwitch">
               {{ getNextLanguage() }}

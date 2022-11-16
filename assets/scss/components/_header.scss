@@ -8,7 +8,7 @@ $header-border-size: 1px;
 
   .header {
     &.vue-component {
-      // TODO remove after migration to one header is done
+      // TODO remove wrapping rule after migration to one header is done
       .header__link-content {
         .icon {
           @include media-breakpoint-up($header-expand-breakpoint) {
@@ -25,7 +25,7 @@ $header-border-size: 1px;
   --header-vertical-spacing: #{spacing(5)};
 
   &.vue-component {
-    // TODO remove after migration to one header is done
+    // TODO remove wrapping rule after migration to one header is done
     position: fixed;
     display: flex;
     box-shadow: $header-section-box-shadow;
@@ -35,13 +35,70 @@ $header-border-size: 1px;
 
     &.header--product {
       .header__item {
-        @include link-active;
+        &:hover {
+          .header__link {
+            font-weight: bold;
 
-        &.active {
-          .header__link::after {
-            display: none;
+            &::before {
+              width: 0;
+            }
+
+            &::after {
+              display: none;
+            }
           }
         }
+
+        &.active {
+          .header__link {
+            font-weight: bold;
+
+            &::before {
+              width: 0;
+            }
+
+            &::after {
+              display: none;
+            }
+          }
+        }
+
+        @include media-breakpoint-up($header-expand-breakpoint) {
+          @include link-active;
+        }
+      }
+
+      .header__link {
+        position: relative;
+        border-bottom: 0;
+        padding-top: spacing(2);
+        padding-bottom: spacing(2);
+
+        &::before {
+          content: '';
+          display: block;
+          position: relative;
+          bottom: 0;
+          width: 1px;
+          height: 100%;
+          opacity: 0;
+        }
+      }
+
+      .header__nav {
+        @include media-breakpoint-up($header-expand-breakpoint) {
+          margin-left: spacing(26);
+        }
+      }
+
+      .header__container {
+        &::after {
+          display: none;
+        }
+      }
+
+      nav {
+        bottom: 0;
       }
     }
 
@@ -129,6 +186,7 @@ $header-border-size: 1px;
         display: flex;
       }
 
+      .header__button,
       nav,
       .header__language-switch {
         display: block;
@@ -464,4 +522,9 @@ $header-border-size: 1px;
   @include media-breakpoint-up($header-expand-breakpoint) {
     display: none;
   }
+}
+
+.header__button {
+  margin-left: spacing(4);
+  display: none;
 }

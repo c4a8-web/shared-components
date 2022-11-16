@@ -31,19 +31,18 @@ HeaderEN.args = {
 export const HeaderProduct = Template.bind({});
 
 HeaderProduct.args = {
+  lang: 'en',
   product: true,
-  button: {},
+  button: {
+    text: 'Start now',
+    href: '/start-now/',
+    skin: 'primary is-cutoff',
+  },
   home: {
     name: 'home',
-    imgLight: '/logos/gkgab-Logo-white-vektor.svg',
-    img: '/logos/gkgab-Logo-vektor.svg',
+    imgLight: '/logos/radius-logo-green.svg',
+    img: '/logos/radius-logo-green.svg',
     languages: {
-      de: {
-        title: 'Home DE',
-        url: '',
-        alias: '/',
-        alt: 'alt text DE',
-      },
       en: {
         title: 'Home EN',
         url: '',
@@ -94,5 +93,6 @@ HeaderProduct.args = {
       },
     },
   ],
-  meta: [],
+  meta: ' ',
+  contact: ' ',
 };
