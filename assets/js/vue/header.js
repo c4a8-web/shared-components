@@ -248,7 +248,7 @@ export default {
     <div class="header__spacer" :style="spacerBgColor"></div>
     <header :class="classList">
       <div :class="headerContainerClassList">
-        <div class="row">
+        <div class="header__row row">
           <div class="header__col col">
             <div class="header__logo">
               <a :href="homeObj.url">

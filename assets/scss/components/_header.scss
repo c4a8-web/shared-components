@@ -108,6 +108,13 @@ $header-border-size: 1px;
         }
       }
 
+      .header__row {
+        padding-left: $header-floating-inner-padding-x;
+        padding-right: $header-floating-inner-padding-x;
+
+        margin: 0 spacing($size: 4, $negative: true);
+      }
+
       nav {
         bottom: 0;
       }
