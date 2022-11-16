@@ -46,6 +46,9 @@ export default {
     isLight() {
       return Tools.isTrue(this.light) === true;
     },
+    hasLangSwitch() {
+      this.home?.languages.length > 1;
+    },
   },
   mounted() {
     this.bindEvents();
@@ -156,6 +159,11 @@ export default {
     },
     getHref(item) {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang].url;
+    },
+    getTarget(item) {
+      const target = item.languages[this.lowerLang].target;
+
+      return target ? target : null;
     },
     getNextLanguage() {
       const languages = this.home.languages;
@@ -291,7 +299,7 @@ export default {
               <div class="header__search"></div>
               <ul class="header__list">
                 <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
-                  <a :class="headerLinkClasses(item, index)" :href="getHref(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
+                  <a :class="headerLinkClasses(item, index)" :href="getHref(item)" :target="getTarget(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
                       {{ item.languages[lowerLang]?.title }}
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
@@ -328,7 +336,16 @@ export default {
                     </div>
                   </a>
                 </div>
-                <div class="header__language-switch" v-on:click="handleLanguageSwitch">
+                <div class="header__button" v-if="button">
+                  <cta
+                    :text="button.text"
+                    :href="button.href"
+                    :target="button.target"
+                    :skin="button.skin"
+                    :classes="ctaClassList"
+                  />
+                </div>
+                <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
                   {{ getNextLanguage() }}
                 </div>
               </div>
@@ -342,7 +359,7 @@ export default {
                 :classes="ctaClassList"
               />
             </div>
-            <div class="header__language-switch" v-on:click="handleLanguageSwitch">
+            <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
               {{ getNextLanguage() }}
             </div>
           </div>

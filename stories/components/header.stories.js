@@ -65,11 +65,6 @@ const productArgs = {
     {
       name: 'pricing',
       languages: {
-        de: {
-          title: 'Pricing',
-          url: '',
-          active: true,
-        },
         en: {
           title: 'Pricing EN',
           url: '',
@@ -80,13 +75,19 @@ const productArgs = {
     {
       name: 'partner',
       languages: {
-        de: {
-          title: 'Partner',
-          url: '',
-        },
         en: {
           title: 'Partner EN',
           url: '',
+        },
+      },
+    },
+    {
+      name: 'docs',
+      languages: {
+        en: {
+          title: 'Docs',
+          url: 'https://docs.radiusaas.com/',
+          target: '_blank',
         },
       },
     },
