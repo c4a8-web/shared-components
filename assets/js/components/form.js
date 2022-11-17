@@ -61,7 +61,7 @@ class Form extends BaseComponent {
 
     if (!form) return;
 
-    const input = form.querySelector(`input[name="${name}"]`);
+    const input = form.querySelector(`input[name="${name}"],textarea[name="${name}"]`);
 
     if (!input) return;
 
