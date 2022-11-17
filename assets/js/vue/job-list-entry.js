@@ -22,7 +22,7 @@ export default {
   template: `
     <div :class="classList" :data-id="id">
       <div class="job-list__entry-header">
-        <template v-if="team && team !== ''"> {{team}} / </template><template v-if="positionType && positionType !== ''"> {{positionType}} </template>
+        <template v-if="team && team !== ''"> {{team}} </template>
       </div>
       <div class="job-list__entry-content">
         <div class="job-list__entry-title">
