@@ -196,7 +196,7 @@ export default {
           </div>
           <div class="job-list__detail-content page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
             <!-- job list detail can switch to profile based on url parameter -->
-            <div class="job-list__detail-description page-detail__description richtext" v-html="entryData?.description"></div>
+            <div class="job-list__detail-description page-detail__description has-no-border richtext" v-html="entryData?.description"></div>
             <video-inner variant="reversed" :video="videoInner.video" v-if="videoInner"></video-inner>
 
             <div v-if="personQuote" class="job-list__detail-quote">
@@ -206,7 +206,7 @@ export default {
             <!-- <div class="job-list__detail-maps">
               <slot name="google-maps" />
             </div> -->
-            
+
           </div>
         </div>
       </div>
