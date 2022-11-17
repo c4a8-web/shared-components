@@ -49,6 +49,12 @@ export default {
     hasLangSwitch() {
       this.home?.languages.length > 1;
     },
+    hasContact() {
+      return this.contact && this.contact.length > 2;
+    },
+    hasMeta() {
+      return this.meta && this.meta.length > 2;
+    },
   },
   mounted() {
     this.bindEvents();
@@ -320,10 +326,10 @@ export default {
                   :list="metaList"
                   :lang="lowerLang"
                   classes="header__meta-list"
-                  v-if="meta"
+                  v-if="hasMeta"
                 />
 
-                <div class="header__contact header__contact--mobile" v-if="contact">
+                <div class="header__contact header__contact--mobile" v-if="hasContact">
                   <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url" v-if="contact?.languages">
                     <div class="header__contact-text">
                       <icon

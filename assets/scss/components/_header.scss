@@ -41,7 +41,7 @@ $header-border-size: 1px;
         box-shadow: $header-section-box-shadow;
       }
 
-      &:not(:hover):not(.is-scrolled) {
+      &:not(:hover):not(.is-scrolled):not(.is-expanded) {
         --color-header-background: transparent;
       }
 
@@ -62,6 +62,8 @@ $header-border-size: 1px;
 
         &.active {
           .header__link {
+            font-weight: bold;
+
             &::after {
               display: none;
             }
@@ -70,6 +72,12 @@ $header-border-size: 1px;
 
         @include media-breakpoint-up($header-expand-breakpoint) {
           @include link-active;
+
+          &.active {
+            .header__link {
+              font-weight: normal;
+            }
+          }
         }
       }
 
@@ -479,6 +487,7 @@ $header-border-size: 1px;
     display: block;
     margin-left: 0;
     margin-bottom: spacing(6);
+    margin-top: spacing(6);
   }
 }
 
