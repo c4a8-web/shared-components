@@ -186,7 +186,7 @@ $header-border-size: 1px;
       bottom: -#{$header-border-size};
       left: 50%;
       transform: translateY(100%) translateX(-50%);
-      width: 100vw;
+      width: calc(100vw + 1px);
       box-shadow: $header-section-box-shadow;
       transition: transform $animation-transition 0.5s;
       overflow: hidden;
