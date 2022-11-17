@@ -202,10 +202,11 @@ export default {
             <div v-if="personQuote" class="job-list__detail-quote">
               <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
             </div>
-
-            <div class="job-list__detail-maps">
+            
+            <!-- <div class="job-list__detail-maps">
               <slot name="google-maps" />
-            </div>
+            </div> -->
+            
           </div>
         </div>
       </div>
