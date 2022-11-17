@@ -47,7 +47,7 @@ export default {
       return Tools.isTrue(this.light) === true;
     },
     hasLangSwitch() {
-      this.home?.languages.length > 1;
+      return Object.keys(this.home?.languages).length > 1;
     },
     hasContact() {
       return this.contact && this.contact.length > 2;
