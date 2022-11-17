@@ -1,5 +1,4 @@
 import BaseComponent from './base-component.js';
-import Form from './form.js';
 import State from '../state.js';
 import Events from '../events.js';
 
