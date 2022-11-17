@@ -18,7 +18,11 @@ class Form extends BaseComponent {
     this.formSelector = '.form__form';
     this.gotchaSelector = '.form__super-field';
     this.attachmentSelector = 'input[type="file"][required]';
+    this.subjectSelector = 'input[name="_subject"]';
+    this.companySelector = 'input[id="company"]';
     this.form = root.querySelector(this.formSelector);
+    this.subject = root.querySelector(this.subjectSelector);
+    this.company = root.querySelector(this.companySelector);
 
     this.groups = {};
     this.minLengthOther = 1;
@@ -29,6 +33,8 @@ class Form extends BaseComponent {
 
     if (!this.options?.noEvents) {
       this.bindEvents();
+    } else if (this.form && this.subject && this.company) {
+      this.addSubjectListener();
     }
   }
 
@@ -45,6 +51,10 @@ class Form extends BaseComponent {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
       this.form.addEventListener('reset', this.handleReset.bind(this));
     }
+  }
+
+  addSubjectListener() {
+    this.form.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
   handleReset() {
@@ -71,9 +81,17 @@ class Form extends BaseComponent {
     }
   }
 
+  updateSubject() {
+    if (!this.subject || !this.company) return;
+
+    this.subject.value = this.subject.value + ': ' + this.company.value;
+  }
+
   submit(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
+
+    this.updateSubject();
 
     if (this.customSubmit) {
       this.customSubmit(e);
