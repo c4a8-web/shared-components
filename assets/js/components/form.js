@@ -31,11 +31,41 @@ class Form extends BaseComponent {
     this.updateGotcha();
     this.addValidation();
 
+    if (this.form && this.subject && this.hasUrlParameter()) {
+      this.prefillFormValues();
+    }
+
     if (!this.options?.noEvents) {
       this.bindEvents();
     } else if (this.form && this.subject && this.company) {
       this.addSubjectListener();
     }
+  }
+
+  hasUrlParameter() {
+    if (window.location.search === '') return;
+
+    return true;
+  }
+
+  prefillFormValues() {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    for (const [key, value] of searchParams.entries()) {
+      this.prefillFormValue(key, value);
+    }
+  }
+
+  prefillFormValue(name, value) {
+    const form = this.form;
+
+    if (!form) return;
+
+    const input = form.querySelector(`input[name="${name}"]`);
+
+    if (!input) return;
+
+    input.value = value;
   }
 
   hasCustomValidation() {
