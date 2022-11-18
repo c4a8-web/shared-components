@@ -118,6 +118,8 @@
         {% if heroTextImageVariant != 'aaaahero--safety' %}
           <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
             {{ heroImage }}
+            <br/>
+            <p class="hero-text-image__img-spacer-subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
           </div>
         {% endif %}
       {% endif %}
@@ -159,7 +161,10 @@
         {% endif %}
         {% unless heroTextImageHero.animation %}
           <h1 class="hero-text-image__headline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
-          <p class="{{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+          {% if heroTextImageHero.underline %}
+            <p class="hero-text-image__underline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.overlineClass }} ">{{ heroTextImageHero.underline }}</p>
+          {% endif %}
+          <p class="hero-text-image__subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         {% endunless %}
 
         {% if heroTextImageHero.img %}
