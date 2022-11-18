@@ -27,20 +27,22 @@
     {% assign testimonialWideValue2 = forloop.index | minus: 1 | modulo: 4 %}
 
     {% if testimonialWideValue1 == 0 or testimonialWideValue2 == 0 %}
-      {% assign testimonialWideContentClass = "16, 9" %}
+      {% assign testimonialAspectRatio = "16, 9" %}
+      {% assign testimonialAspectRatioClass = "testimonial-teaser__16-9" %}
     {% else %}
-      {% assign testimonialWideContentClass = "4, 3" %}
+      {% assign testimonialAspectRatio = "4, 3" %}
+      {% assign testimonialAspectRatioClass = "testimonial-teaser__4-3" %}
+      {% assign testimonialPositionClass = "testimonial-list__content--square" %}
     {% endif %}
 
     {% if testimonialRemainder != 0 %}
 
       {% if testimonialListEven != 0 and forloop.index == testimonialListSize  %}
-        {% assign testimonialWideContentClass = "4, 3" %}
-        {% assign testimonialPositionClass = "d-flex justify-content-lg-start" %}
+        {% assign testimonialAspectRatio = "4, 3" %}
+        {% assign testimonialPositionClass = "d-flex justify-content-lg-start" | append: testimonialPositionClass %}
       {% endif %}
       <div class="testimonial-list__content-block row" >
     {% endif %}
-    <!--3 checks größe der Liste mit Element und ob Element ungerade ist -->
 
 
     <div class="testimonial-list__content col-lg-6 {{ testimonialPositionClass }}">
@@ -54,7 +56,8 @@
           cornerImg=testimonial.cornerImg
           bgColor=testimonialBgColor
           bgColorHover=testimonialBgColorHover
-          aspectRatio=testimonialWideContentClass
+          aspectRatio=testimonialAspectRatio
+          aspectRatioClass=testimonialAspectRatioClass
         %}
       {% endunless %}
     </div>
