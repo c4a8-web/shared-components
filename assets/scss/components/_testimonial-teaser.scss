@@ -40,7 +40,12 @@
 }
 
 .testimonial-teaser_img-wrapper--aspect-ratio{
-  @include aspect-ratio(var(--width-testimonial-teaser-aspect-ratio), var(--height-testimonial-teaser-aspect-ratio));
+  @include media-breakpoint-up(xs) {
+    @include aspect-ratio(16, 9);
+  }
+  @include media-breakpoint-up(lg) {
+    @include aspect-ratio(var(--width-testimonial-teaser-aspect-ratio), var(--height-testimonial-teaser-aspect-ratio));
+  }
   height: 100%;
   width: 100%;
 }

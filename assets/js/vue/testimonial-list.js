@@ -15,7 +15,7 @@ export default {
   },
   template: `
   <div :class="classList">
-    <div class="testimonial-list__contents container">
+    <div class="testimonial-list__contents container-lg">
       <slot></slot>
     </div>
   </div>

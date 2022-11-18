@@ -6,14 +6,6 @@
   margin-top: spacing(30);
 }
 
-.testimonial-list__content--wide{
-
-}
-
-.testimonial-list__content--rectangle{
-
-}
-
 .testimonial-list__content-block {
   @include media-breakpoint-up(lg) {
     margin-bottom: spacing(15);
@@ -21,6 +13,9 @@
 }
 
 .testimonial-list__content {
+  display: flex;
   justify-content: center;
-
+  @include media-breakpoint-down(md) {
+    margin-bottom: spacing(10);
+  }
 }
