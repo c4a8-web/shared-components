@@ -29,6 +29,16 @@ testimoniallist.args = {
     },
     {
       url: 'javascript:void(0)',
+      name: '1Nadine Kern',
+      title: 'Consultant, Cloud Security Architect',
+      contentImg: {
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
+        alt: 'lorem ipsum',
+      },
+
+    },
+    {
+      url: 'javascript:void(0)',
       name: '2Matti Puolitaival',
       title: 'Senior Consultant Azure',
       contentImg: {
