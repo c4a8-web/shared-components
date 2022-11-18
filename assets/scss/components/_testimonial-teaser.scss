@@ -95,7 +95,10 @@
 }
 .testimonial-teaser__16-9 {
  .testimonial-teaser__content {
-    bottom: 25%;
+    bottom: 5%;
+    @include media-breakpoint-up(lg) {
+      bottom: 25%;
+    }
  }
 }
 
