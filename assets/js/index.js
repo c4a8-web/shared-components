@@ -83,6 +83,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./components/testimonial-list.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./components/text-animation.js')
     .then((module) => {
       return module.default;
