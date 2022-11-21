@@ -29,6 +29,16 @@
   {%- assign testimonialTeaserHoverColor = "--color-testimonial-teaser-background-hover: " | append: testimonialTeaserBGHover -%}
   {%- assign testimonialTeaserBGStyling = testimonialTeaserBGColor | append: "; " | append: testimonialTeaserHoverColor | append: "; width: 100%;" -%}
 {% endif %}
+
+
+{% if testimonialTeaserAspectRatioClass == "testimonial-teaser--4-3" %}
+  {%- assign testimonialTeaserSrcSet = site.data.imgSrcSets.testimonial4by3 -%}
+{% elsif testimonialTeaserAspectRatioClass == "testimonial-teaser--16-9" %}
+  {%- assign testimonialTeaserSrcSet = site.data.imgSrcSets.testimonialTeaser16by9 -%}
+{% else %}
+  {%- assign testimonialTeaserSrcSet = false -%}
+{% endif %}
+
 <a href="{{ testimonialTeaserHref }}" class="testimonial-teaser {{ testimonialTeaserAspectRatioClass }}" style="{% if testimonialTeaserBG %} {{ testimonialTeaserBGStyling }} {% endif %} {% if testimonialTeaserAspectRatioStyling %}; {{ testimonialTeaserAspectRatioStyling }} {% endif %}">
   <div class="testimonial-teaser__wrapper">
     {% if testimonialTeaserCornerImg %}
@@ -48,6 +58,7 @@
           img=testimonialTeaserImg.img
           alt=testimonialTeaserImg.alt
           cloudinary=testimonialTeaserImgCloudinary
+          imgSrcSets=testimonialTeaserSrcSet
         %}
       </div>
     </div>
