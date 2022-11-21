@@ -307,7 +307,8 @@ export default {
                 <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
                   <a :class="headerLinkClasses(item, index)" :href="getHref(item)" :target="getTarget(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
-                      {{ item.languages[lowerLang]?.title }}
+                      <span class="header__link-text">{{ item.languages[lowerLang]?.title }}</span>
+                      <span class="header__link-text-spacer">{{ item.languages[lowerLang]?.title }}</span>
                       <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
                     </div>
                   </a>

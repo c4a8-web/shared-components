@@ -48,12 +48,6 @@ $header-border-size: 1px;
       .header__item {
         &:hover {
           .header__link {
-            font-weight: bold;
-
-            &::before {
-              width: 0;
-            }
-
             &::after {
               display: none;
             }
@@ -62,8 +56,6 @@ $header-border-size: 1px;
 
         &.active {
           .header__link {
-            font-weight: bold;
-
             &::after {
               display: none;
             }
@@ -72,12 +64,6 @@ $header-border-size: 1px;
 
         @include media-breakpoint-up($header-expand-breakpoint) {
           @include link-active;
-
-          &.active {
-            .header__link {
-              font-weight: normal;
-            }
-          }
         }
       }
 
@@ -86,16 +72,6 @@ $header-border-size: 1px;
         border-bottom: 0;
         padding-top: spacing(2);
         padding-bottom: spacing(2);
-
-        &::before {
-          content: '';
-          display: block;
-          position: relative;
-          bottom: 0;
-          width: 1px;
-          height: 100%;
-          opacity: 0;
-        }
       }
 
       .header__nav {
@@ -194,6 +170,14 @@ $header-border-size: 1px;
 
       .header__language-switch {
         display: block;
+      }
+
+      .header__item {
+        &:hover {
+          .header__link-text {
+            font-weight: bold;
+          }
+        }
       }
     }
 
@@ -376,8 +360,10 @@ $header-border-size: 1px;
 
   &.active {
     .header__link:not(:hover)::after {
-      display: block;
-      background-color: var(--color-active);
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        display: block;
+        background-color: var(--color-active);
+      }
     }
   }
 }
@@ -558,4 +544,14 @@ $header-border-size: 1px;
 .header__button {
   margin-left: spacing(4);
   display: none;
+}
+
+.header__link-text-spacer {
+  pointer-events: none;
+  font-weight: bold;
+  opacity: 0;
+}
+
+.header__link-text {
+  position: absolute;
 }

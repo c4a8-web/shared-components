@@ -21,7 +21,12 @@
   &.link {
     svg {
       @include move-right-left;
+
       stroke: var(--color-svg-icon--hover);
+    }
+
+    .cta__text {
+      font-weight: bold;
     }
   }
 
@@ -302,10 +307,10 @@
     }
 
     &.active {
+      color: var(--color-active);
+
       .cta__text {
-        &::after {
-          display: block;
-        }
+        // font-weight: bold;
       }
     }
   }
@@ -313,16 +318,6 @@
 
 .cta__text {
   position: relative;
-
-  &::after {
-    display: none;
-    content: '';
-    position: absolute;
-    bottom: calc(-1 * (var(--cta-active-size)));
-    width: 100%;
-    height: var(--cta-active-size);
-    background-color: var(--color-active);
-  }
 }
 
 cta {
