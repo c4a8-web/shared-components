@@ -438,7 +438,7 @@
   }
 
   &.hero--safety {
-    @include media-breakpoint-down(md) {
+    // @include media-breakpoint-down(md) {
       background: linear-gradient(
         180deg,
         var(--color-hero-text-image-background) 0%,
@@ -446,7 +446,7 @@
         rgba(0, 0, 0, 0) 86%
       );
       background-color: inherit !important;
-    }
+    // }
 
     .hero-text-image__underline {
       font-size: $font-size-4;
