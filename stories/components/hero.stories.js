@@ -235,15 +235,16 @@ HeroTextImageSafety.args = {
   hero: {
     // pattern: true,
     variant: 'hero--safety', // TODO refactor to a more generic name
-    headline: 'Lorem Ipsum',
+    headline: 'Safety',
+    level: 'h5',
     light: true,
-    underline: 'safety under the clouds',
+    underline: 'under & in the cloud(s)',
     subline:
       'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
     background: {
       img: getAssetPath('img/xmas-website-hero.png'),
       alt: 'Img',
-      spacing: 'hero-text-imge__img-top-spacing', //space-top-lg-5 is not large enough
+      //spacing: //space-top-lg-5 is not large enough
       cloudinary: false,
     },
     bgColor: 'var(--color-blue-dark)',
