@@ -76,6 +76,10 @@ $link-list-breakpoint: 'lg';
   + .link-list__list {
     padding: 0 0 0 spacing(2);
   }
+
+  @include media-breakpoint-up($link-list-breakpoint) {
+    cursor: auto;
+  }
 }
 
 .link-list__list {

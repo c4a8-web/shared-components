@@ -56,6 +56,14 @@ export default {
       if (!this.isExpandable()) return;
 
       this.isExpanded = !this.isExpanded;
+
+      const root = this.$refs['root'];
+
+      if (!root || this.isExpanded) return;
+
+      root.style.height = '';
+
+      // TODO trigger event to close other link-list with the same parent
     },
   },
   props: {
