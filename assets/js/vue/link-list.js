@@ -55,7 +55,6 @@ export default {
     handleClick() {
       if (!this.isExpandable()) return;
 
-      console.log('click');
       this.isExpanded = !this.isExpanded;
     },
   },
