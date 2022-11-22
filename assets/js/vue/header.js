@@ -67,6 +67,8 @@ export default {
     },
     bindEvents() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
+
+      // TODO add mutation observer for link lists
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;

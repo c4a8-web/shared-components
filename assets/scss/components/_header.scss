@@ -305,7 +305,6 @@ $header-border-size: 1px;
   position: relative;
   width: 100%;
   display: flex;
-  border-bottom: $header-border-size solid var(--color-header-border);
   padding: var(--header-vertical-spacing) $grid-gutter-half-width;
   place-content: center;
 
@@ -323,6 +322,9 @@ $header-border-size: 1px;
   }
 
   &.is-expanded {
+    border-bottom-width: 0;
+    padding-bottom: 0;
+
     &::after {
       @include media-breakpoint-up($header-expand-breakpoint) {
         display: block;
@@ -331,6 +333,11 @@ $header-border-size: 1px;
 
     .icon {
       --icon-rotation: 180deg !important;
+    }
+
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      border-bottom-width: 1px;
+      padding-bottom: var(--header-vertical-spacing);
     }
   }
 
@@ -357,14 +364,25 @@ $header-border-size: 1px;
 
 .header__item {
   flex: 1 0 100%;
+  border-bottom: $header-border-size solid var(--color-header-border);
 
   &.active {
-    .header__link:not(:hover)::after {
+    .header__link {
+      color: var(--color-active);
+
       @include media-breakpoint-up($header-expand-breakpoint) {
-        display: block;
-        background-color: var(--color-active);
+        color: inherit;
+
+        &:not(:hover)::after {
+          display: block;
+          background-color: var(--color-active);
+        }
       }
     }
+  }
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    border-bottom: 0;
   }
 }
 
@@ -514,11 +532,15 @@ $header-border-size: 1px;
 }
 
 .header__link-list {
-  margin: spacing(10) $grid-gutter-half-width spacing(2);
-  width: 70%;
+  margin: spacing(6) $grid-gutter-half-width spacing(2);
 
-  &:last-of-type {
-    margin-bottom: spacing(6);
+  &:first-of-type {
+    margin-top: spacing(10);
+  }
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    margin-top: spacing(10);
+    width: 70%;
   }
 }
 
@@ -554,4 +576,12 @@ $header-border-size: 1px;
 
 .header__link-text {
   position: absolute;
+}
+
+.header__link-icon {
+  margin-right: spacing(2);
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    margin-right: 0;
+  }
 }
