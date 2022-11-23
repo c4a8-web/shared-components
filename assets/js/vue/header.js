@@ -63,6 +63,9 @@ export default {
     this.setCtaClasses();
   },
   methods: {
+    showFlyoutBlock(children) {
+      return children.length > this.maxLinkListsInFlyout ? false : true;
+    },
     isLowerBreakpoint() {
       return Tools.isBelowBreakpoint('md');
     },
@@ -304,6 +307,7 @@ export default {
       scrollThreshold: 10,
       isScrolled: false,
       ctaClassList: false,
+      maxLinkListsInFlyout: 3,
     };
   },
   template: `
@@ -398,7 +402,7 @@ export default {
             <div class="col">
               <div class="header__flyout-content" v-for="(item, index) in activeNavigation" ref="flyout">
                 <div class="header__flyout-items" v-if="item.children">
-                  <figure class="header__flyout-block">
+                  <figure class="header__flyout-block" v-if="showFlyoutBlock(item.children)">
                     <figcaption class="header__flyout-caption">
                       {{ item.languages[lowerLang]?.title }}
                     </figcaption>
