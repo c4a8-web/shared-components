@@ -1,5 +1,6 @@
 import Tools from '../tools.js';
 import State from '../state.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'v-header',
@@ -91,6 +92,25 @@ export default {
       const id = this.getId(item, index);
 
       this.linkLists[id] = !this.linkLists[id];
+
+      this.closeAllSiblings(id);
+      this.closeAllChildren();
+    },
+    closeAllSiblings(id) {
+      const keys = Object.keys(this.linkLists);
+
+      keys.forEach((key) => {
+        if (key !== id) {
+          this.linkLists[key] = false;
+        }
+      });
+    },
+    closeAllChildren() {
+      const customEvent = new CustomEvent(Events.CHILD_HAS_UPDATE, {
+        detail: {},
+      });
+
+      this.$refs['list'].dispatchEvent(customEvent);
     },
     getId(item, index) {
       return `${item.name}_${index}`;
@@ -303,7 +323,7 @@ export default {
             </div>
             <nav class="header__nav" v-on:mouseout="handleMouseOut">
               <div class="header__search"></div>
-              <ul class="header__list">
+              <ul class="header__list" ref="list">
                 <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
                   <a :class="headerLinkClasses(item, index)" :href="getHref(item)" :target="getTarget(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">

@@ -1,5 +1,6 @@
 import Tools from '../tools.js';
 import State from '../state.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'link-list',
@@ -36,7 +37,22 @@ export default {
 
     this.inTransition = false;
   },
+  mounted() {
+    this.bindEvents();
+  },
   methods: {
+    bindEvents() {
+      this.parentOfParent = this.$refs['root'].parentNode.parentNode;
+
+      this.parentOfParent.addEventListener(Events.CHILD_HAS_UPDATE, this.handleUpdate.bind(this));
+    },
+    handleUpdate(event) {
+      const eventRoot = event.detail.root;
+
+      if (this.isExpanded && this.$refs['root'] !== eventRoot) {
+        this.handleClick();
+      }
+    },
     isLowerBreakpoint() {
       return Tools.isBelowBreakpoint('md');
     },
@@ -52,18 +68,26 @@ export default {
 
       root.style.height = newHeight;
     },
-    handleClick() {
+    handleClick(event) {
       if (!this.isExpandable()) return;
 
       this.isExpanded = !this.isExpanded;
 
       const root = this.$refs['root'];
 
+      if (event) {
+        const customEvent = new CustomEvent(Events.CHILD_HAS_UPDATE, {
+          detail: {
+            root,
+          },
+        });
+
+        this.parentOfParent.dispatchEvent(customEvent);
+      }
+
       if (!root || this.isExpanded) return;
 
       root.style.height = '';
-
-      // TODO trigger event to close other link-list with the same parent
     },
   },
   props: {
@@ -78,6 +102,7 @@ export default {
     return {
       inTransition: false,
       isExpanded: false,
+      parentOfParent: null,
     };
   },
   template: `
