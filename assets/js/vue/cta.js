@@ -1,3 +1,4 @@
+import State from '../state.js';
 import Tools from '../tools.js';
 
 export default {
@@ -12,10 +13,12 @@ export default {
     classList() {
       return [
         `${this.baseClass} ${this.innerSkin}`,
+        `${this.classes ? this.classes : ''}`,
         `${this.download ? 'cta--download' : ''}`,
         `${this.external ? 'cta--external' : ''}`,
         `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
         `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
+        `${this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : ''}`,
         'vue-component',
       ];
     },
@@ -95,6 +98,12 @@ export default {
     monochrome: {
       default: null,
     },
+    active: {
+      default: null,
+    },
+    classes: {
+      default: '',
+    },
   },
   template: `
     <component :is='tag' role="button"
@@ -107,7 +116,7 @@ export default {
                :data-alternative-href="alternativeHref ? alternativeHref : null"
                :data-trigger="trigger ? trigger : null"
     >
-      {{ text }}
+      <span class="cta__text">{{ text }}</span>
       <icon :icon="iconName" v-if="hasIcon" size=" " />
     </component>`,
 };

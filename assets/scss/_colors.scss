@@ -68,6 +68,8 @@ $color-blue-medium: #0072c6;
   --color-copy-light: var(--color-white);
   --color-copy-lowlight: var(--color-black-30);
 
+  --color-active: var(--color-primary);
+
   // rules that default to everything
 
   --color-service-overview-border: var(--color-black-30);
@@ -157,7 +159,7 @@ $color-blue-medium: #0072c6;
   --color-header-background: var(--color-white);
   --color-header-border: var(--color-black);
   --color-header-contact-background: var(--color-polar);
-  --color-header-active: var(--color-mint-green);
+  --color-header-active: var(--color-active);
 
   --color-link-list-border: var(--color-header-border);
 }

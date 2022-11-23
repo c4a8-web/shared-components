@@ -44,6 +44,7 @@ LinkList.args = {
           de: {
             title: 'Consulting Services DE',
             url: '/de/modern-workplace/consulting-services/',
+            active: true,
           },
           en: {
             title: 'Consulting Services EN',

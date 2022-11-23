@@ -21,7 +21,12 @@
   &.link {
     svg {
       @include move-right-left;
+
       stroke: var(--color-svg-icon--hover);
+    }
+
+    .cta__text {
+      font-weight: bold;
     }
   }
 
@@ -75,6 +80,8 @@
 }
 
 .cta {
+  --cta-active-size: 3px;
+
   position: relative;
   border-radius: 0;
 
@@ -298,7 +305,19 @@
         }
       }
     }
+
+    &.active {
+      color: var(--color-active);
+
+      .cta__text {
+        // font-weight: bold;
+      }
+    }
   }
+}
+
+.cta__text {
+  position: relative;
 }
 
 cta {
