@@ -30,18 +30,72 @@ const Header = {
   },
   navigation: [
     {
-      name: 'competences',
+      name: 'portfolio',
       languages: {
         de: {
-          title: 'Kompetenzen',
-          description: 'ClearSpend makes spend control and expense management easier, because every dollar counts. DE',
+          title: 'Portfolio',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam DE',
         },
         en: {
-          title: 'Competences',
-          description: 'ClearSpend makes spend control and expense management easier, because every dollar counts. EN',
+          title: 'Portfolio',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam EN',
         },
       },
       children: [
+        {
+          name: 'managed-services',
+          languages: {
+            de: {
+              title: 'Managed Services',
+            },
+            en: {
+              title: 'Managed Services',
+            },
+          },
+          children: [
+            {
+              name: 'managed-workplace',
+              languages: {
+                de: {
+                  title: 'Managed Workplace',
+                  url: getStoryLink(),
+                },
+                en: {
+                  title: 'Managed Workplace',
+                  url: getStoryLink('header--en'),
+                },
+              },
+            },
+            {
+              name: 'managed-azure',
+              languages: {
+                de: {
+                  title: 'Managed Azure',
+                  url: getStoryLink(),
+                },
+                en: {
+                  title: 'Managed Azure',
+                  url: getStoryLink('header--en'),
+                },
+              },
+            },
+            {
+              name: 'managed-security',
+              languages: {
+                de: {
+                  title: 'Managed Security',
+                  url: getStoryLink(),
+                },
+                en: {
+                  title: 'Managed Security',
+                  url: getStoryLink('header--en'),
+                },
+              },
+            },
+          ],
+        },
         {
           name: 'modern-workplace',
           languages: {
@@ -192,6 +246,58 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 5',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+          ],
+        },
+        {
+          name: 'lorem ipsum 1',
+          languages: {
+            de: {
+              title: 'lorem ipsum 1 DE',
+            },
+            en: {
+              title: 'lorem ipsum 1 EN',
+            },
+          },
+          children: [
+            {
+              name: 'lorem11',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem12',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 2',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem13',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 3',
                   url: 'javascript:void(0);',
                 },
               },
