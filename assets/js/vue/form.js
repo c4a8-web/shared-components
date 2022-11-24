@@ -43,6 +43,11 @@ export default {
             blocks[index] = tempBlock;
 
             tempBlock.push(field);
+
+            if (field.rowEnd) {
+              tempBlock = [];
+              index++;
+            }
           } else if (field.rowEnd) {
             tempBlock.push(field);
 
@@ -72,7 +77,7 @@ export default {
       return ['row mx-n3', `${block?.rowClass ? block.rowClass : ''}`];
     },
     getFieldClassList(field) {
-      return ['px-3', `${field.col ? 'col-md-' + field.col : ''}`];
+      return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
   },
   props: {
@@ -115,14 +120,11 @@ export default {
           </div>
           <form class="form__form js-validate mt-6" :method="method" :action="form.action">
             <template v-for="block in preparedBlocks">
-              <div :class="getBlockClassList(block[0])" v-if="block.length > 1">
+              <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
                   <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" />
                 </div>
               </div>
-              <template v-else>
-                <form-fields :field='block[0]' :options="getOptions(block[0])" :replace-value="replaceValue" />
-              </template>
             </template>
             <div :class="formClassList">
               <cta :text="form.ctaText" type="submit" :button="true" :skin="form.cta.skin" :width="form.cta.width" :analytics="analytics" />
