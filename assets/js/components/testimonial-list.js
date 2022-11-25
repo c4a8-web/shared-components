@@ -1,4 +1,4 @@
-import BaseComponent from "./base-component";
+import BaseComponent from "./base-component.js";
 import State from '../state.js';
 import Tools from '../tools.js';
 
@@ -13,7 +13,6 @@ class TestimonialList extends BaseComponent {
   }
 
   handleScrollEvent(){
-    console.log(State.HIDDEN);
     this.testimonials.forEach((testimonial) => {
       if (Tools.isInViewportPercent(testimonial, 30)) {
         testimonial.classList.add(State.SHOW);
@@ -23,6 +22,7 @@ class TestimonialList extends BaseComponent {
 
   start(){
     document.addEventListener('scroll', this.handleScrollEvent.bind(this));
+    document.addEventListener('mousemove', this.handleScrollEvent.bind(this));
   }
 }
 

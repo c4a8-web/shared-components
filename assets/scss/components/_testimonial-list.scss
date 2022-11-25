@@ -25,9 +25,7 @@
   &.show {
     visibility: visible;
     animation: slideIn 2s forwards;
-
   }
-
   &:not(.show) {
     visibility:  hidden;
   }
