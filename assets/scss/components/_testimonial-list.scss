@@ -7,13 +7,14 @@
 }
 
 .testimonial-list__content-block {
+  // align-items: center;
   @include media-breakpoint-up(lg) {
     margin-bottom: spacing(15);
   }
 }
 
 .testimonial-list__content--square {
-  margin-top: spacing(-10);
+  // margin-top: spacing(-10);
 }
 
 .testimonial-list__content {
