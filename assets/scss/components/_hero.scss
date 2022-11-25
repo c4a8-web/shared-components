@@ -453,6 +453,7 @@
     .hero-text-image__underline {
       @include media-breakpoint-up(xs) {
         font-size: $font-size-4;
+        line-height: spacing(8);
       }
       @include media-breakpoint-up(md) {
         font-size: $font-size-5;
