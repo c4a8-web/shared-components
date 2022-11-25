@@ -20,9 +20,15 @@ class TestimonialList extends BaseComponent {
     })
   }
 
+
+
   // in case we start in the middle of the component and scroll isnt triggered
   currentlyInViewPort(){
-    this.handleScrollEvent();
+    this.testimonials.forEach((testimonial) => {
+      if (Tools.isInViewportPercent(testimonial, 5)) {
+        testimonial.classList.add(State.SHOW);
+      }
+    })
   }
 
   start(){
