@@ -1,20 +1,22 @@
 <!-- Shared Testimonials Detail Section -->
-{%- assign testimonialsDetailColor = include.detailColor | default: '--color-testimonials' -%}
+{%- assign testimonialsDetailColor = include.image.detailColor | default: '--color-testimonials' -%}
 {%- assign testimonialsDetailTitle = include.title -%}
 {%- assign testimonialsDetailName = include.name | replace: ' ', '<br/>' -%}
 {%- assign testimonialsDetailLocation = include.location -%}
+{%- assign testimonialsDetailLight = include.image.light | default: false -%}
 {%- assign testimonialsDetailHeadlineLevel = include.headlineLevel -%}
 {%- assign testimonialsDetailHeadlineClasses = include.headlineClasses | default: 'h2-font-size bold' -%}
 {%- assign testimonialsDetailDescription = include.description -%}
 {%- assign testimonialsDetailImage = include.image -%}
 {%- assign testimonialsDetailImageCloudinary = testimonialsDetailImage.cloudinary | default: true -%}
 {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
-{% assign testimonialsDetailSafety = include.safety | default: false %}
 
-
-{%- if testimonialsDetailSafety %}
-  {% assign testimonialsDetailInfo = testimonialsDetailSafety.facts %}
-  {% assign testimonialsDetailGoogleMap = testimonialsDetailSafety.googleMaps %}
+{% if testimonialsDetailLight %}
+  {% assign testimonialsDetailTextColor = "text-light" %}
+  {% assign testimonialsDetailCtaColor = "var(--color-white)" %}
+{% else %}
+  {% assign testimonialsDetialTextColor = "" %}
+  {% assign testimonialsDetailCtaColor = "" %}
 {% endif %}
 
 <div class="testimonials-detail page-detail page-detail--image is-loading"
@@ -40,17 +42,18 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
               direction="left"
               hover=true
               circle=true
+              color=testimonialsDetailCtaColor
             %}
           </div>
           {%- assign headlineLevel = testimonialsDetailHeadlineLevel | default: 'h1' -%}
-          {%- capture headlineClasses -%}page-detail__headline {{ testimonialsDetailHeadlineClasses }}{%- endcapture -%}
+          {%- capture headlineClasses -%}page-detail__headline {{ testimonialsDetailHeadlineClasses }} {{ testimonialsDetailTextColor }}{%- endcapture -%}
           {%
             include headline.html
             text=testimonialsDetailName
             level=headlineLevel
             classes=headlineClasses
           %}
-          <span class="page-detail__subline">{{ testimonialsDetailSubline }}</span>
+          <span class="page-detail__subline {{ testimonialsDetailTextColor }}">{{ testimonialsDetailSubline }}</span>
           <div class="page-detail__img page-detail__animation-3">
             {%
               include img.html
@@ -64,57 +67,7 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
       </div>
       <div class="page-detail__content page-detail__animation-3 col-md-11 offset-lg-1 col-lg-6">
         <div class="page-detail__description richtext">
-          {% if testimonialsDetailSafety %}
-            <div>
-              {%
-                include headline.html
-                text=testimonialsDetailSafety.headline
-                level=testimonialsDetailSafety.headlineLevel
-              %}
-            </div>
-            <div class="testimonials-detail__subline">
-              {{testimonialsDetailSafety.subline}}
-            </div>
-            <div class="testimonials-detail__copy mt-4">
-              {{testimonialsDetailSafety.copy}}
-            </div>
-            {% for info in testimonialsDetailInfo %}
-              <div class="mt-4">
-                {%
-                  include headline.html
-                  text=info.contentTitle
-                  level=info.contentTitleLevel
-                %}
-              </div>
-              <ul>
-                {% for content in info.content %}
-                  <li class="mb-2"><span class="testimonials-detail__safety--text">{{content}}</span></li>
-                {% endfor %}
-              </ul>
-              {% if info.img %}
-                <div class="d-flex flex-row justify-content-between">
-                  {% for image in info.img %}
-                  <div class="mr-2">
-                    {%
-                      include img.html
-                      img=image
-                      cloudinary=info.cloudinary
-                    %}
-                  </div>
-                  {% endfor %}
-                </div>
-              {% endif %}
-            {% endfor %}
-          {%
-            include google-maps.html
-            headline=testimonialsDetailGoogleMap.headline
-            address=testimonialsDetailGoogleMap.address
-            coords=testimonialsDetailGoogleMap.coords
-            marker=testimonialsDetailGoogleMap.marker
-          %}
-          {% else %}
-            {{ testimonialsDetailDescription }}
-          {% endif %}
+          {{ testimonialsDetailDescription }}
         </div>
       </div>
     </div>

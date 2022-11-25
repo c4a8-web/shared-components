@@ -28,6 +28,23 @@ TestimonialsDetail.args = {
   },
 };
 
+export const TestimonialsDetailColor = Template.bind({});
+
+TestimonialsDetailColor.args = {
+  name: 'Matti Puolitaival',
+  title: 'Senior Consultant Azure',
+  location: 'Finnland',
+  description:
+    '<p>Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.</p> ',
+  ...baseArgs,
+  image: {
+    detailColor: 'green',
+    img: 'people/testimonials/matti-puolitaival.png',
+    alt: 'lorem ipsum',
+  },
+};
+
+
 export const TestimonialsDetailSafety = Template.bind({});
 
 TestimonialsDetailSafety.args = {
