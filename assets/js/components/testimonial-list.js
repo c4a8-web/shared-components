@@ -20,9 +20,14 @@ class TestimonialList extends BaseComponent {
     })
   }
 
+  // in case we start in the middle of the component and scroll isnt triggered
+  currentlyInViewPort(){
+    this.handleScrollEvent();
+  }
+
   start(){
+    this.currentlyInViewPort();
     document.addEventListener('scroll', this.handleScrollEvent.bind(this));
-    document.addEventListener('mousemove', this.handleScrollEvent.bind(this));
   }
 }
 
