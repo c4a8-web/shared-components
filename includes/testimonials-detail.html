@@ -9,7 +9,17 @@
 {%- assign testimonialsDetailDescription = include.description -%}
 {%- assign testimonialsDetailImage = include.image -%}
 {%- assign testimonialsDetailImageCloudinary = testimonialsDetailImage.cloudinary | default: true -%}
-{%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
+{% if testimonialsDetailLocation %}
+  {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
+{% else %}
+  {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }}{%- endcapture -%}
+{% endif %}
+
+{% if testimonialDetailHasTeaserText == true %}
+  {% assign testimonialDetailHasTeaser = "" %}
+{% else %}
+  {% assign testimonialDetailHasTeaser = "testimonials-detail-no-text-teaser" %}
+{% endif %}
 
 {% if testimonialsDetailLight %}
   {% assign testimonialsDetailTextColor = "text-light" %}
