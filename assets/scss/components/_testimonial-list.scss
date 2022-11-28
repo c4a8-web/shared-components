@@ -16,13 +16,16 @@
 .testimonial-list__content {
   display: flex;
   justify-content: center;
+
   @include media-breakpoint-down(md) {
     margin-bottom: spacing(10);
   }
+
   &.show {
     visibility: visible;
     animation: slideIn 2s forwards;
   }
+
   &:not(.show) {
     visibility:  hidden;
   }

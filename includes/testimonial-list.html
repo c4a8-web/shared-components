@@ -21,6 +21,7 @@
 >
   {% assign testimonialListSize = testimonialListContents | size %}
   {% assign testimonialListEven = testimonialListSize | modulo: 2 %}
+
   {% for testimonial in  testimonialListContents %}
     {% assign testimonialRemainder = forloop.index | modulo: 2 %}
     {% assign testimonialWideValue1 = forloop.index | modulo: 4 %}
@@ -36,14 +37,12 @@
     {% endif %}
 
     {% if testimonialRemainder != 0 %}
-
       {% if testimonialListEven != 0 and forloop.index == testimonialListSize  %}
         {% assign testimonialAspectRatio = "4, 3" %}
         {% assign testimonialPositionClass = "d-flex justify-content-lg-start" | append: testimonialPositionClass %}
       {% endif %}
       <div class="testimonial-list__content-block row" >
     {% endif %}
-
 
     <div class="testimonial-list__content col-lg-6 {{ testimonialPositionClass }}">
       {% unless testimonial.hidden %}

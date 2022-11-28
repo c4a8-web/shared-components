@@ -12,12 +12,7 @@
   max-width: unquote('min(500px, 100vw)');
   display: inline-block;
 
-  //--color-testimonial-teaser-background: var(--color-primary);
-  //--color-testimonial-teaser-background-hover: var(--color-blue-medium);
   --color-testimonial-teaser-foreground: var(--color-white);
-  //--width-testimonial-teaser-aspect-ratio: w;
-  //--height-testimonial-teaser-aspect-ratio: h;
-
 
   &:hover {
     img {
@@ -43,9 +38,11 @@
   @include media-breakpoint-up(xs) {
     @include aspect-ratio(16, 9);
   }
+
   @include media-breakpoint-up(lg) {
     @include aspect-ratio(var(--width-testimonial-teaser-aspect-ratio), var(--height-testimonial-teaser-aspect-ratio));
   }
+
   height: 100%;
   width: 100%;
 }
@@ -68,11 +65,12 @@
   position: absolute;
   width: 100%;
   z-index: 2;
-  //margin-left: 3rem;
   margin-top: 1.5rem;
+
   &.testimonial-teaser__corner--left {
     margin-left: 3rem;
   }
+
   &.testimonial-teaser__corner--right {
     text-align: end;
     margin-left: -2rem;
@@ -80,9 +78,11 @@
 
   img {
     height: auto;
+
     @include media-breakpoint-up(xs) {
       width: 60px;
     }
+
     @include media-breakpoint-up(md){
       width: 100px;
     }
@@ -96,6 +96,7 @@
 .testimonial-teaser--16-9 {
  .testimonial-teaser__content {
     bottom: 5%;
+
     @include media-breakpoint-up(lg) {
       bottom: 25%;
     }
