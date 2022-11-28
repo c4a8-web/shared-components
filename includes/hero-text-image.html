@@ -115,13 +115,11 @@
   <div class="container z-index-4">
     <div class="hero-text-image__row row {{ heroContainerPosition }} align-items-lg-center pt-lg-5 position-relative">
       {% if heroTextImageHero.background %}
-        {% if heroTextImageVariant != 'aaaahero--safety' %}
-          <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
-            {{ heroImage }}
-            <br/>
-            <p class="hero-text-image__img-spacer-subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
-          </div>
-        {% endif %}
+        <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
+          {{ heroImage }}
+          <br/>
+          <p class="hero-text-image__img-spacer-subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+        </div>
       {% endif %}
 
       <div class="hero-text-image__wrapper col-lg-8 w-100">

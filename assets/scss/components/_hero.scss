@@ -339,23 +339,6 @@
       }
     }
 
-    &:not(.hero--study) {
-      // .hero-text-image__background {
-      //   top: auto;
-      //   bottom: -4rem;
-
-      //   @include media-breakpoint-up(lg) {
-      //     width: 50%;
-      //     padding-left: 0;
-      //     height: 50%;
-      //     left: 50%;
-      //     right: auto;
-      //     display: flex;
-      //     align-items: flex-end;
-      //   }
-      // }
-    }
-
     .hero-text-image__subline {
       @include font-size-2;
 
@@ -389,7 +372,7 @@
       &:not(.hero--safety)::after {
         top: 0;
         background-color: var(--color-background);
-        width: calc((100vw - var(--container-width)) / 2 + (var(--container-width) / 12 * 2.5));
+        width: get-full-column-width($container: "lg", $columns: 3);
       }
 
       &:not(.hero--study)::after {
@@ -451,19 +434,12 @@
     }
 
     .hero-text-image__underline {
-      @include media-breakpoint-up(xs) {
-        font-size: $font-size-4;
-        line-height: spacing(8);
-      }
-      @include media-breakpoint-up(md) {
-        font-size: $font-size-5;
-        line-height: spacing(15);
-      }
+      @include font-style($style: 'font-size-4', $weight: 'bold', $line: 'wide');
     }
 
     .hero-text-image__background {
       top: auto;
-      bottom: -1rem;
+      bottom: spacing(-4);
       @include media-breakpoint-down(md) {
         display: none;
       }
@@ -479,9 +455,7 @@
     }
 
     .hero-text-image__subline {
-      @include media-breakpoint-up(xs) {
-        display: none;
-      }
+      display: none;
       @include media-breakpoint-up(lg) {
         display: block;
       }
@@ -515,7 +489,6 @@
       @include media-breakpoint-up(xs) {
         max-width: 150%;
         text-align: center;
-        //width: 100%;
       }
     }
   }
