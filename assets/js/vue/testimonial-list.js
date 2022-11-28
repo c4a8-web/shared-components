@@ -3,9 +3,6 @@ export default {
   computed: {
     classList() {
       return ['testimonial-list vue-component'];
-    },
-    testimonialsParsed() {
-      return typeof(this.testimonials) !== 'object' ? JSON.parse(this.testimonials) : this.testimonials;
     }
   },
   props: {
