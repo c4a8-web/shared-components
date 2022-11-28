@@ -16,3 +16,11 @@ export const ScrollArrow = Template.bind({});
 ScrollArrow.args = {
   target: '.contact',
 };
+
+export const ScrollArrowSpacing = Template.bind({});
+
+ScrollArrowSpacing.args = {
+  target: '.contact',
+  scrollSpacing: "10",
+};
+

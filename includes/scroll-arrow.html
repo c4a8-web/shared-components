@@ -1,7 +1,10 @@
 <!-- Shared Scroll Arrow Section -->
 {%- assign scrollArrowTarget = include.target -%}
+{%- assign scrollArrowSpacing = include.scrollArrowSpacing -%}
+
 
 <scroll-arrow
   target="{{ scrollArrowTarget }}"
+  arrow-spacing="{{ scrollArrowSpacing }}"
 ></scroll-arrow>
 <!-- End Shared Scroll Arrow Section -->
