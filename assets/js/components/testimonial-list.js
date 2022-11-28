@@ -9,23 +9,22 @@ class TestimonialList extends BaseComponent {
     super(root, options);
     this.testimonialContainer = root.querySelector(".testimonial-list__contents");
     this.testimonials = root.querySelectorAll(".testimonial-list__content");
+    this.viewPortPercentageAtScroll = 30;
+    this.viewPortPercentageAtLoad = 5;
     this.start();
   }
 
   handleScrollEvent(){
     this.testimonials.forEach((testimonial) => {
-      if (Tools.isInViewportPercent(testimonial, 30)) {
+      if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtScroll)) {
         testimonial.classList.add(State.SHOW);
       }
     })
   }
 
-
-
-  // in case we start in the middle of the component and scroll isnt triggered
   currentlyInViewPort(){
     this.testimonials.forEach((testimonial) => {
-      if (Tools.isInViewportPercent(testimonial, 5)) {
+      if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtLoad)) {
         testimonial.classList.add(State.SHOW);
       }
     })
