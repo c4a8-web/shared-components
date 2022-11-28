@@ -52,7 +52,7 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
             %}
           </div>
           {%- assign headlineLevel = testimonialsDetailHeadlineLevel | default: 'h1' -%}
-          {%- capture headlineClasses -%} {{ testimonialsDetailHeadlineClass }} {%- endcapture -%}
+          {%- capture headlineClasses -%} {{ testimonialsDetailHeadlineClass }} {{ testimonialsDetailHeadlineClasses }} {%- endcapture -%}
           {%
             include headline.html
             text=testimonialsDetailName
