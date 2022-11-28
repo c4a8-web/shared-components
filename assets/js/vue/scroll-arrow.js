@@ -7,10 +7,13 @@ export default {
       return [
         'scroll-arrow',
         'container',
-        `${this.arrowSpacing ? 'mt-lg-0 mt-n'+this.arrowSpacing : ''}`,
+        `${this.spacing ? this.spacingValue : ''}`,
         'vue-component',
       ]
     },
+    spacingValue(){
+      return "mt-lg-0 mt-n" + this.spacing;
+    }
   },
   methods: {
     handleClick() {
@@ -23,7 +26,7 @@ export default {
   },
   props: {
     target: String,
-    arrowSpacing: {
+    spacing: {
       default: null,
     }
   },
