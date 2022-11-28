@@ -15,19 +15,16 @@
   {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }}{%- endcapture -%}
 {% endif %}
 
-{% if testimonialDetailHasTeaserText == true %}
-  {% assign testimonialDetailHasTeaser = "" %}
+{% if testimonialsDetailLight %}
+  {%- assign testimonialsDetailHeadlineClass = "testimonials-detail__headline" -%}
+  {%- assign testimonialsDetailSublineClass = "testimonials-detail__subline" -%}
+  {%- assign testimonialsDetailCtaClass = "testimonials-detail__cta" -%}
 {% else %}
-  {% assign testimonialDetailHasTeaser = "testimonials-detail-no-text-teaser" %}
+  {%- assign testimonialsDetailHeadlineClass = "page-detail__headline" -%}
+  {%- assign testimonialsDetailSublineClass = "page-detail__subline" -%}
+  {%- assign testimonialsDetailCtaClass = "" -%}
 {% endif %}
 
-{% if testimonialsDetailLight %}
-  {% assign testimonialsDetailTextColor = "text-light" %}
-  {% assign testimonialsDetailCtaColor = "var(--color-white)" %}
-{% else %}
-  {% assign testimonialsDetialTextColor = "" %}
-  {% assign testimonialsDetailCtaColor = "" %}
-{% endif %}
 
 <div class="testimonials-detail page-detail page-detail--image is-loading"
 style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
@@ -45,25 +42,24 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
             "stickyOffsetBottom": 20
           }'
         >
-          <div class="page-detail__back page-detail__animation-3 back back--animated">
+          <div class="page-detail__back page-detail__animation-3 back back--animated {{ testimonialsDetailCtaClass }}">
             {%
               include icon.html
               icon='arrow'
               direction="left"
               hover=true
               circle=true
-              color=testimonialsDetailCtaColor
             %}
           </div>
           {%- assign headlineLevel = testimonialsDetailHeadlineLevel | default: 'h1' -%}
-          {%- capture headlineClasses -%}page-detail__headline {{ testimonialsDetailHeadlineClasses }} {{ testimonialsDetailTextColor }}{%- endcapture -%}
+          {%- capture headlineClasses -%} {{ testimonialsDetailHeadlineClass }} {%- endcapture -%}
           {%
             include headline.html
             text=testimonialsDetailName
             level=headlineLevel
             classes=headlineClasses
           %}
-          <span class="page-detail__subline {{ testimonialsDetailTextColor }}">{{ testimonialsDetailSubline }}</span>
+          <span class="{{ testimonialsDetailSublineClass }}">{{ testimonialsDetailSubline }}</span>
           <div class="page-detail__img page-detail__animation-3">
             {%
               include img.html
