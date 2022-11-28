@@ -462,15 +462,14 @@
     }
 
     .hero-text-image__img-spacer-subline {
+      display: block;
+      text-align: left;
+      order: 3;
+      padding: spacing(5);
+      padding-bottom: spacing(50);
+
       @include media-breakpoint-up(lg) {
         display: none;
-      }
-      @include media-breakpoint-up(xs) {
-        display: block;
-        text-align: left;
-        order: 3;
-        padding: spacing(5);
-        padding-bottom: spacing(50);
       }
     }
 
