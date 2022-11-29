@@ -1,8 +1,8 @@
 import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
-const animationDelay = '0s';
-const animationStepDelay = '0.05';
+const animationDelay = '1s';
+const animationStepDelay = '2s';
 
 const tagName = 'shape-four-triangles';
 
@@ -41,7 +41,7 @@ export default {
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '1.3s';
+      const duration = '4s';
 
       return {
         keySplines: '0 0 1 1',
@@ -79,16 +79,15 @@ export default {
               name: 'motion',
               attributeName: 'motion',
               motion: true,
-              dur: '30s',
-              begin: '0s',
+              dur: '',
             },
           ],
         },
         {
           steps: [
             {
-              name: 'transform',
-              dur: '30s',
+              name: 'transformRotate',
+              dur: '',
               type: 'rotate',
             },
           ],
@@ -97,7 +96,7 @@ export default {
           steps: [
             {
               name: 'moveTo1',
-              dur: '30s',
+              dur: '',
               type: 'translate',
               additive: true,
             },
@@ -118,18 +117,23 @@ export default {
           motion: {
             path: 'M200 400 C200,400 200,200 200,200 C200,200 200,200 200,200',
             keyPoints: '0;1;1',
-            keyTimes: '0;0.0333333;1',
+            keyTimes: '0;0.333333;1',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
             delay: '0s',
           },
-          transform: {
+          transformRotate: {
             delay: 0,
             from: '450',
             to: '360',
             values: '450;450;360;360',
-            keyTimes: '0;0.0333333;0.0666667;1',
+            keyTimes: '0;0.333333;0.666667;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             additive: true,
+          },
+          reset: {
+            waitFor: 'triangleBottomLeft.transformRotate',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
         {
@@ -144,19 +148,24 @@ export default {
           },
           motion: {
             delay: 0,
-            keyTimes: '0;0.0666667;0.1;1',
+            keyTimes: '0;0.666667;0.95;1',
             path: 'M200 200 C200,200 200,200 200,200 C200,200 400,200 400,200 C400,200 400,200 400,200',
             keySplines: '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
             keyPoints: '0;0;1;1',
           },
-          transform: {
+          transformRotate: {
             delay: 0,
             from: '450',
             to: '360',
             values: '450;450;360;360',
-            keyTimes: '0;0.0333333;0.0666667;1',
+            keyTimes: '0;0.333333;0.666667;1',
             keySplines: '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
             additive: true,
+          },
+          reset: {
+            waitFor: 'triangleUpperLeft.transformRotate',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
         {
@@ -171,19 +180,24 @@ export default {
           },
           motion: {
             delay: 0,
-            keyTimes: '0;0.0522222;0.0855556;1',
+            keyTimes: '0;0.522222;0.855556;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             path: 'M300 100 C300,100 300,100 300,100 C300,100 100,100 100,100 C100,100 100,100 100,100',
             keyPoints: '0;0;1;1',
           },
-          transform: {
-            delay: 0,
-            from: '450',
-            to: '450',
-            values: '450;450',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            additive: true,
+          // transformRotate: {
+          //   delay: 0,
+          //   from: '450',
+          //   to: '450',
+          //   values: '450;450',
+          //   keyTimes: '0;1',
+          //   keySplines: '0 0 1 1',
+          //   additive: true,
+          // },
+          reset: {
+            waitFor: 'triangleUpperRight.moveTo1',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
         {
@@ -198,12 +212,12 @@ export default {
           },
           motion: {
             delay: 0,
-            keyTimes: '0;0.0333333;1',
+            keyTimes: '0;0.333333;1',
             keySplines: '0.167 0.167 0.833 0.833;0 0 0 0',
             path: 'M300 300 C300,300 300,100 300,100 C300,100 300,100 300,100',
             keyPoints: '0;1;1',
           },
-          transform: {
+          transformRotate: {
             delay: 0,
             from: '450',
             to: '450',
@@ -359,32 +373,66 @@ export default {
           </template>
 
           <shape-animation
-            :id="firstSquare?.reset?.id"
-            :href="firstSquare?.href"
-            :begin="firstSquare?.reset?.begin"
+            :id="triangleBottomLeft?.reset?.id"
+            :ddhref="triangleBottomLeft?.href"
+            :begin="triangleBottomLeft?.reset?.begin"
             attributeName="transform"
-            :dur="overall?.dur"
+            type="translate"
+            calcMode="paced"
+            from="-200 0"
+            to="-600 0"
+            :dur="triangleBottomLeft?.reset?.dur"
             fill="freeze"
             calcMode="spline"
-            keyTimes="0;1"
-            :keySplines="overall?.keySplines"
           ></shape-animation>
+
+          <shape-animation
+            :id="triangleUpperLeft?.reset?.id"
+            :ddhref="triangleUpperLeft?.href"
+            :begin="triangleUpperLeft?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="-200 0"
+            to="-600 0"
+            :dur="triangleUpperLeft?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+          ></shape-animation>
+
+          <shape-animation
+            :id="triangleUpperRight?.reset?.id"
+            :href="triangleUpperRight?.href"
+            :begin="triangleUpperRight?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="-100 -100"
+            to="100 -100"
+            fdrom="200 0 0"
+            tdo="100 0 0"
+            :dur="triangleUpperRight?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            ddtransform-origin="top"
+          ></shape-animation>
+
         </g>
 
         <g :id="triangleBottomLeft?.id">
-          <path :fill="triangleBottomLeftColor"
+          <path fill="#A9903D"
             d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>
-        <g :id="triangleUpperLeft?.id">
-          <path :fill="triangleUpperLeftColor"
+        <g :id="triangleUpperLeft?.id" ddstyle="transform-origin: top">
+          <path fill="#71A93D"
             d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>
         <g :id="triangleUpperRight?.id">
-          <path :fill="triangleUpperRightColor"
-            d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
+          <path fill="#3DA999"
+            d=" M 0 200 C 0 200 200 200 200 200 C 200 200 200 0 200 0 C 200 0 200 0 200 0 z " />
         </g>
         <g :id="triangleBottomRight?.id">
-          <path :fill="triangleBottomRightColor"
+          <path fill="#3D5AA9"
             d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>
       </g>

@@ -47,6 +47,7 @@ export default {
     isAnimate: Boolean,
     path: String,
     values: String,
+    transformOrigin: String,
   },
   template: `
     <component :is="tag"
@@ -67,6 +68,7 @@ export default {
       :values="values"
       :type="type"
       :additive="additive ? 'sum': null"
+      :transform-origin="transformOrigin"
     />
   `,
 };

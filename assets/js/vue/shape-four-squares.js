@@ -255,54 +255,6 @@ export default {
             dur: '1s',
           },
         },
-        // {
-        //   name: 'squareUpperLeftReset',
-        //   moveTo1: {
-        //     delay: animationDelay,
-        //     waitFor: 'squareUpperLeftSecond.moveTo1',
-        //   },
-        //   reset: {
-        //     waitFor: 'squareUpperLeftReset.moveTo1',
-        //     delay: animationStepDelay,
-        //     dur: '0.01s',
-        //   },
-        // },
-        // {
-        //   name: 'squareUpperRightReset',
-        //   moveTo2: {
-        //     delay: animationDelay,
-        //     waitFor: 'squareUpperRightSecond.moveTo2',
-        //   },
-        //   reset: {
-        //     waitFor: 'squareUpperRightReset.moveTo2',
-        //     delay: animationStepDelay,
-        //     dur: '0.01s',
-        //   },
-        // },
-        // {
-        //   name: 'squareBottomLeftReset',
-        //   moveTo3: {
-        //     delay: animationDelay,
-        //     waitFor: 'squareBottomLeftSecond.moveTo3',
-        //   },
-        //   reset: {
-        //     waitFor: 'squareBottomLeftReset.moveTo3',
-        //     delay: animationStepDelay,
-        //     dur: '0.01s',
-        //   },
-        // },
-        // {
-        //   name: 'squareBottomRightReset',
-        //   moveTo4: {
-        //     delay: animationDelay,
-        //     waitFor: 'squareBottomRightSecond.moveTo4',
-        //   },
-        //   reset: {
-        //     waitFor: 'squareBottomRightReset.moveTo4',
-        //     delay: animationStepDelay,
-        //     dur: '0.01s',
-        //   },
-        // },
       ],
       shapeElementsInstance: null,
     };

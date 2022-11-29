@@ -394,7 +394,7 @@ export default {
             fill="freeze"
             calcMode="paced"
             values="1 -1;1 -1;1 1;0 0"
-             ></shape-animation>
+          ></shape-animation>
 
           <shape-animation
             :id="secondSquare?.reset?.id"

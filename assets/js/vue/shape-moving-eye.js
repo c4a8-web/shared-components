@@ -2,7 +2,7 @@ import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
 const animationDelay = '0s';
-const animationStepDelay = '0.05';
+const animationStepDelay = '0.05s';
 
 const tagName = 'shape-moving-eye';
 
@@ -102,7 +102,7 @@ export default {
           reset: {
             waitFor: 'eyeCircle.motion',
             delay: animationDelay,
-            dur: '0.01s',
+            dur: animationStepDelay,
           },
         },
         {
@@ -120,7 +120,7 @@ export default {
           reset: {
             waitFor: 'eyeCircle.motion',
             delay: animationDelay,
-            dur: '0.01s',
+            dur: animationStepDelay,
           },
         },
         {
@@ -138,7 +138,7 @@ export default {
           reset: {
             waitFor: 'eyeCircle.motion',
             delay: animationDelay,
-            dur: '0.01s',
+            dur: animationStepDelay,
           },
         },
       ],
