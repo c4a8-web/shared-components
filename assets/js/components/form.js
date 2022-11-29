@@ -37,9 +37,13 @@ class Form extends BaseComponent {
 
     if (!this.options?.noEvents) {
       this.bindEvents();
-    } else if (this.form && this.subject && this.company) {
+    } else if (this.isCompanyForm()) {
       this.addSubjectListener();
     }
+  }
+
+  isCompanyForm() {
+    return this.form && this.subject && this.company;
   }
 
   hasUrlParameter() {
@@ -77,7 +81,7 @@ class Form extends BaseComponent {
   }
 
   bindEvents() {
-    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit()) {
+    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
       this.form.addEventListener('reset', this.handleReset.bind(this));
     }
