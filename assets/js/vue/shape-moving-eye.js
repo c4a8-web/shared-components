@@ -12,9 +12,9 @@ export default {
     // classList() {
     //   return ['shape-square-forward', 'vue-component'];
     // },
-    // begin() {
-    //   return this.start ? this.start : defaultStart;
-    // },
+    begin() {
+      return this.start ? this.start : defaultStart;
+    },
     squareColor() {
       return this.backgroundColor ? this.backgroundColor : 'var(--color-green-blue)';
     },
@@ -32,7 +32,7 @@ export default {
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
-      const duration = '30s';
+      const duration = '20s';
 
       return {
         keySplines: '0 0 1 1',
@@ -71,7 +71,6 @@ export default {
               attributeName: 'motion',
               motion: true,
               dur: '',
-              begin: '0s',
             },
           ],
         },
@@ -91,43 +90,55 @@ export default {
         {
           name: 'upperSquare',
           transform: {
+            start: true,
             delay: 0,
             values: '1.3 1.01;1.3 1.01;1.29756 0.5;1.3 1.01015;1.3 1.01;1.3 0.5;1.3 1.01;1.3 1.01;1.3 1.01',
             keyTimes: '0;0.0133333;0.0511111;0.0833333;0.1166667;0.1522222;0.1855555;0.2144444;1',
             keySplines:
               '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
             additive: true,
+            waitFor: 'eyeCircle.reset',
+          },
+          reset: {
+            waitFor: 'eyeCircle.motion',
+            delay: animationDelay,
+            dur: '0.01s',
           },
         },
         {
           name: 'bottomSquare',
           transform: {
+            start: true,
             delay: 0,
             values: '1.3 1.01;1.3 1.01;1.29756 0.5;1.3 1.01015;1.3 1.01;1.3 0.5;1.3 1.01;1.3 1.01;1.3 1.01',
             keyTimes: '0;0.0133333;0.0511111;0.0833333;0.1166667;0.1522222;0.1855555;0.2144444;1',
             keySplines:
               '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
             additive: true,
+            waitFor: 'eyeCircle.reset',
+          },
+          reset: {
+            waitFor: 'eyeCircle.motion',
+            delay: animationDelay,
+            dur: '0.01s',
           },
         },
         {
           name: 'eyeCircle',
-          transform: {
-            delay: 0,
-            from: '0.47346 0.47346',
-            to: '0.47346 0.47346',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            values: '0.47346 0.47346;0.47346 0.47346',
-            additive: true,
-          },
           motion: {
+            start: true,
             delay: 0,
             keyTimes: '0;0.0133333;0.0511111;0.0833333;0.1166667;0.1522222;0.1855555;0.2144444;1',
             keySplines:
               '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0.333 0 0.667 1;0.167 0.167 0.833 0.833;0.333 0 0.667 1;0.167 0.167 0.833 0.833;0.167 0.167 0.667 1;0 0 0 0',
-            path: 'M263 168 C263,168 263,168 263,168 C237.37,167.88 109.22,167.28 109.22,167.28 C109.22,167.28 212.54,167.88 263,168 C283.68,168.05 239.48,168.01 263,168 C296.88,167.99 397.34,168 412,168 C436.83,168 287.83,168 263,168 C238.17,168 263,168.17 263,168 C263,168 263,168 263,168',
+            path: 'M 263 168 C 263 168 263 168 263 168 C 237 167 109 167 109 167 C 109 167 212 167 263 168 C 283 168 239 168 263 168 C 296 167 397 168 412 168 C 436 168 287 168 263 168 C 238 168 263 168 263 168 C 263 168 263 168 263 168',
             keyPoints: '0;0;0.23;0.47;0.51;0.73;0.97;1;1',
+            waitFor: 'eyeCircle.reset',
+          },
+          reset: {
+            waitFor: 'eyeCircle.motion',
+            delay: animationDelay,
+            dur: '0.01s',
           },
         },
       ],
@@ -254,29 +265,63 @@ export default {
           </template>
 
           <shape-animation
-            :id="firstSquare?.reset?.id"
-            :href="firstSquare?.href"
-            :begin="firstSquare?.reset?.begin"
+            :id="upperSquare?.reset?.id"
+            :href="upperSquare?.href"
+            :begin="upperSquare?.reset?.begin"
             attributeName="transform"
-            :dur="overall?.dur"
+            type="scale"
+            from="1.3 1.01"
+            to="1.3 1.01"
+            :dur="upperSquare?.reset?.dur"
             fill="freeze"
             calcMode="spline"
-            keyTimes="0;1"
-            :keySplines="overall?.keySplines"
+            additive="true"
+            keyTimes="0;0.0133333;0.0511111;0.0833333;0.1166667;0.1522222;0.1855555;0.2144444;1"
+            values="1.3 1.01;1.3 1.01;1.29756 0.5;1.3 1.01015;1.3 1.01;1.3 0.5;1.3 1.01;1.3 1.01;1.3 1.01"
           ></shape-animation>
+
+          <shape-animation
+            :id="bottomSquare?.reset?.id"
+            :href="bottomSquare?.href"
+            :begin="bottomSquare?.reset?.begin"
+            attributeName="transform"
+            type="scale"
+            from="1.3 1.01"
+            to="1.3 1.01"
+            :dur="bottomSquare?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            additive="true"
+            keyTimes="0;0.0133333;0.0511111;0.0833333;0.1166667;0.1522222;0.1855555;0.2144444;1"
+            values="1.3 1.01;1.3 1.01;1.29756 0.5;1.3 1.01015;1.3 1.01;1.3 0.5;1.3 1.01;1.3 1.01;1.3 1.01"
+          ></shape-animation>
+
+          <shape-animation
+            :id="eyeCircle?.reset?.id"
+            :href="eyeCircle?.href"
+            :begin="eyeCircle?.reset?.begin"
+            attributeName="motion"
+            from="1.3 1.01"
+            to="1.3 1.01"
+            :dur="eyeCircle?.reset?.dur"
+            fill="freeze"
+            calcMode="paced"
+          ></shape-animation>
+
         </g>
 
-        <g :id="eyeCircle?.id">
-          <path :fill="circleColor"
-            d=" M-135.63 -128.87 C-32.47,-128.87 51.29,-45.11 51.29,58.05 C51.29,161.22 -32.47,244.98 -135.63,244.98 C-238.8,244.98 -322.56,161.22 -322.56,58.05 C-322.56,-45.11 -238.8,-128.87 -135.63,-128.87z " />
+        <g :id="eyeCircle?.id" transform="translate(-62, 32)">
+          <circle :fill="circleColor" r="90" />
         </g>
-        <g :id="upperSquare?.id" transform=" translate(199, 198)">
+
+        <g :id="upperSquare?.id" transform=" translate(200, 200)">
           <path :fill="squareColor"
-            d=" M154.3 -399 C154.3,-399 -176.42,-399 -176.42,-399 C-176.42,-399 -198,-1 -198,-1 C-198,-1 -172.13,-152.23 -3,-151 C168.15,-150.24 198,4 198,4 C198,4 154.3,-399 154.3,-399z " />
+            d=" M 150 -400 C 150 -400 -175 -400 -175 -400 C -175 -400 -200 0 -200 0 C -200 0 -175 -150 0 -150 C 175 -150 200 0 200 0 C 200 0 150 -400 150 -400 z " />
         </g>
-        <g :id="bottomSquare?.id" transform=" translate(199.01, 199) rotate(180)">
+
+        <g :id="bottomSquare?.id" transform=" translate(200, 200) rotate(180)">
           <path :fill="squareColor"
-            d=" M199 -197 C199,-197 152.6,-447 152.6,-447 C152.6,-447 -153.36,-445 -153.36,-445 C-153.36,-445 -198,-197 -198,-197 C-198,-197 -198,-1 -198,-1 C-198,-1 -172.13,-152.23 -3,-151 C168.15,-150.24 198,4 198,4 C198,4 199,-197 199,-197z " />
+            d=" M 200 -200 C 200 -200 150 -450 150 -450 C 150 -450 -150 -450 -150 -450 C -150 -450 -200 -200 -200 -200 C -200 -200 -200 0 -200 0 C -200 0 -170 -150 0 -150 C 170 -150 200 0 200 0 C 200 0 200 -200 200 -200 z " />
         </g>
       </g>
     </g>`,
