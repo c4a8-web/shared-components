@@ -27,21 +27,14 @@
 
     .testimonials__entry-text {
       @include media-breakpoint-up(lg) {
-        // @include aspect-ratio(400, 160);
-        // @include aspect-ratio(400, 260);
-
-        overflow: hidden;
-
         &.font-size-3 {
+          // TODO check can't we use an existing font?
           font-size: 1rem;
           line-height: 1.5rem;
         }
       }
 
       @include media-breakpoint-up(xl) {
-        // @include aspect-ratio(400, 160);
-        // @include aspect-ratio(400, 260);
-
         &.font-size-3 {
           font-size: 1.1rem;
           line-height: 1.8rem;
@@ -55,6 +48,18 @@
         }
       }
     }
+
+    .testimonials__entry-quote-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .testimonials__entry-infos {
+      display: flex;
+      flex-wrap: wrap;
+      place-content: flex-end;
+      margin-top: auto;
+    }
   }
 
   .slick-arrow {
@@ -64,7 +69,7 @@
     &:not(.slick-disabled) {
       &:hover {
         background-color: transparent;
-        border-color: white;
+        border-color: var(--color-white);
         border: 1px solid var(--color-white);
       }
     }
@@ -73,6 +78,8 @@
   .slick-initialized {
     .testimonials__entry {
       &.slick-slide {
+        padding-left: 1px;
+
         @include media-breakpoint-up(lg) {
           display: flex;
         }
@@ -118,6 +125,11 @@
 
 .testimonials__entry-name {
   color: var(--color-yellow);
+  flex: 1 0 100%;
+}
+
+.testimonials__entry-company {
+  flex: 1 0 100%;
 }
 
 .testimonials__headline {
@@ -184,7 +196,7 @@
 
 .testimonials__entry-infos {
   @include media-breakpoint-up(lg) {
-    padding-bottom: 3rem;
+    padding-bottom: spacing(12);
 
     .font-size-2 {
       font-size: 1.1rem;
@@ -247,7 +259,9 @@
 }
 
 .testimonials__entry-quote-wrapper {
-  padding-bottom: spacing(16);
+  @include media-breakpoint-up(lg) {
+    padding-bottom: spacing(16);
+  }
 }
 
 .testimonials__entry-text-wrapper {
