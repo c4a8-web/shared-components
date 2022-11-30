@@ -3,7 +3,7 @@ import State from '../state.js';
 import Tools from '../tools.js';
 
 class TestimonialList extends BaseComponent {
-  static rootSelector = ".testimonial-list";
+  static rootSelector = '.testimonial-list';
 
   constructor(root, options) {
     super(root, options);
@@ -11,27 +11,31 @@ class TestimonialList extends BaseComponent {
     this.testimonials = root.querySelectorAll('.testimonial-list__content');
     this.viewPortPercentageAtScroll = 30;
     this.viewPortPercentageAtLoad = 5;
+
     this.start();
   }
 
-  handleScrollEvent(){
-    this.testimonials.forEach((testimonial) => {
+  handleScrollEvent() {
+    this.hiddenTestimonials = root.querySelectorAll(`.testimonial-list__content:not(.${State.SHOW})`);
+
+    this.hiddenTestimonials.forEach((testimonial) => {
       if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtScroll)) {
         testimonial.classList.add(State.SHOW);
       }
-    })
+    });
   }
 
-  currentlyInViewPort(){
+  currentlyInViewPort() {
     this.testimonials.forEach((testimonial) => {
       if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtLoad)) {
         testimonial.classList.add(State.SHOW);
       }
-    })
+    });
   }
 
-  start(){
+  start() {
     this.currentlyInViewPort();
+
     document.addEventListener('scroll', this.handleScrollEvent.bind(this));
   }
 }
