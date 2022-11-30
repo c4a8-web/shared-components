@@ -8,13 +8,11 @@
 }
 
 .testimonial-teaser {
+  --color-testimonial-teaser-foreground: var(--color-white);
+
   position: relative;
   max-width: unquote('min(500px, 100vw)');
   display: inline-block;
-
-  --color-testimonial-teaser-background: var(--color-primary);
-  --color-testimonial-teaser-background-hover: var(--color-blue-medium);
-  --color-testimonial-teaser-foreground: var(--color-white);
 
   &:hover {
     img {
@@ -34,6 +32,38 @@
       }
     }
   }
+
+  &.testimonial-teaser--aspect-ratio {
+    .testimonial-teaser__img-wrapper {
+      @include aspect-ratio(16, 9);
+
+      height: 100%;
+      width: 100%;
+
+      @include media-breakpoint-up(lg) {
+        @include aspect-ratio(
+          var(--width-testimonial-teaser-aspect-ratio),
+          var(--height-testimonial-teaser-aspect-ratio)
+        );
+      }
+    }
+  }
+
+  &.testimonial-teaser--16x9 {
+    .testimonial-teaser__content {
+      bottom: 5%;
+
+      @include media-breakpoint-up(lg) {
+        bottom: 25%;
+      }
+    }
+  }
+
+  &.testimonial-teaser--4x3 {
+    .testimonial-teaser__content {
+      bottom: 5%;
+    }
+  }
 }
 
 .testimonial-teaser__img-wrapper {
@@ -47,6 +77,31 @@
   img {
     transition: transform 0.7s $animation-transition;
     will-change: transform;
+  }
+}
+
+.testimonial-teaser__corner {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  margin-top: 1.5rem;
+
+  &.testimonial-teaser__corner--left {
+    margin-left: 3rem;
+  }
+
+  &.testimonial-teaser__corner--right {
+    text-align: end;
+    margin-left: -2rem;
+  }
+
+  img {
+    height: auto;
+    width: 60px;
+
+    @include media-breakpoint-up(md) {
+      width: 100px;
+    }
   }
 }
 
@@ -99,6 +154,7 @@
   display: inline-flex;
   position: relative;
 
+  // TODO refactor this selector because it is very fragile
   + br + .testimonial-teaser__name-background {
     padding-top: 0;
   }

@@ -11,6 +11,14 @@ $page-detail-subline-background-color: $white-30;
   &::before {
     z-index: -1;
   }
+
+  &.page-detail--light {
+    .page-detail__back,
+    .page-detail__headline,
+    .page-detail__subline {
+      color: var(--color-white);
+    }
+  }
 }
 
 .page-detail__content {

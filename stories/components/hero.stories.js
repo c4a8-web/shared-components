@@ -243,3 +243,23 @@ HeroSmall.args = {
     },
   },
 };
+
+export const HeroTextImageSafety = Template.bind({});
+
+HeroTextImageSafety.args = {
+  hero: {
+    variant: 'hero--safety', // TODO refactor to a more generic name
+    headline: 'Safety',
+    level: 'h5',
+    light: true,
+    underline: 'under & in the cloud(s)',
+    subline:
+      'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+    background: {
+      img: getAssetPath('img/xmas-website-hero.png'),
+      alt: 'Img',
+      cloudinary: false,
+    },
+    bgColor: 'var(--color-blue-dark)',
+  },
+};
