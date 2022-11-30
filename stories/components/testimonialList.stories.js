@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const testimoniallist = Template.bind({});
+export const testimonialList = Template.bind({});
 
-testimoniallist.args = {
+testimonialList.args = {
   bgColor: 'var(--color-blue-dark)',
   bgColorHover: 'var(--color-black)',
   contents: [
@@ -25,30 +25,10 @@ testimoniallist.args = {
         img: 'v1643880379/people/testimonials/matti-puolitaival.png',
         alt: 'lorem ipsum',
       },
-
     },
     {
       url: 'javascript:void(0)',
-      name: '1Nadine Kern',
-      title: 'Consultant, Cloud Security Architect',
-      contentImg: {
-        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
-        alt: 'lorem ipsum',
-      },
-
-    },
-    {
-      url: 'javascript:void(0)',
-      name: '2Matti Puolitaival',
-      title: 'Senior Consultant Azure',
-      contentImg: {
-        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
-        alt: 'lorem ipsum',
-      },
-    },
-    {
-      url: 'javascript:void(0)',
-      name: '3Nadine Kern',
+      name: '2Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       contentImg: {
         img: 'v1643880379/people/testimonials/matti-puolitaival.png',
@@ -57,7 +37,7 @@ testimoniallist.args = {
     },
     {
       url: 'javascript:void(0)',
-      name: '4Matti Puolitaival',
+      name: '3Matti Puolitaival',
       title: 'Senior Consultant Azure',
       contentImg: {
         img: 'v1643880379/people/testimonials/matti-puolitaival.png',
@@ -66,7 +46,25 @@ testimoniallist.args = {
     },
     {
       url: 'javascript:void(0)',
-      name: '5Nadine Kern',
+      name: '4Nadine Kern',
+      title: 'Consultant, Cloud Security Architect',
+      contentImg: {
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
+        alt: 'lorem ipsum',
+      },
+    },
+    {
+      url: 'javascript:void(0)',
+      name: '5Matti Puolitaival',
+      title: 'Senior Consultant Azure',
+      contentImg: {
+        img: 'v1643880379/people/testimonials/matti-puolitaival.png',
+        alt: 'lorem ipsum',
+      },
+    },
+    {
+      url: 'javascript:void(0)',
+      name: '6Nadine Kern',
       title: 'Consultant, Cloud Security Architect',
       contentImg: {
         img: 'v1643880379/people/testimonials/matti-puolitaival.png',
