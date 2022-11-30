@@ -3,29 +3,20 @@
 {%- assign testimonialsDetailTitle = include.title -%}
 {%- assign testimonialsDetailName = include.name | replace: ' ', '<br/>' -%}
 {%- assign testimonialsDetailLocation = include.location -%}
-{%- assign testimonialsDetailLight = include.image.light | default: false -%}
+{%- assign testimonialsDetailLight = include.light | default: false -%}
 {%- assign testimonialsDetailHeadlineLevel = include.headlineLevel -%}
 {%- assign testimonialsDetailHeadlineClasses = include.headlineClasses | default: 'h2-font-size bold' -%}
 {%- assign testimonialsDetailDescription = include.description -%}
 {%- assign testimonialsDetailImage = include.image -%}
 {%- assign testimonialsDetailImageCloudinary = testimonialsDetailImage.cloudinary | default: true -%}
+
 {% if testimonialsDetailLocation %}
   {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }} | {{ testimonialsDetailLocation }}{%- endcapture -%}
 {% else %}
   {%- capture testimonialsDetailSubline -%}{{ testimonialsDetailTitle }}{%- endcapture -%}
 {% endif %}
 
-{% if testimonialsDetailLight %}
-  {%- assign testimonialsDetailHeadlineClass = "testimonials-detail__headline" -%}
-  {%- assign testimonialsDetailSublineClass = "testimonials-detail__subline" -%}
-  {%- assign testimonialsDetailCtaClass = "testimonials-detail__cta" -%}
-{% else %}
-  {%- assign testimonialsDetailHeadlineClass = "page-detail__headline" -%}
-  {%- assign testimonialsDetailSublineClass = "page-detail__subline" -%}
-  {%- assign testimonialsDetailCtaClass = "" -%}
-{% endif %}
-
-<div class="testimonials-detail page-detail page-detail--image is-loading"
+<div class="testimonials-detail page-detail page-detail--image is-loading {% if testimonialsDetailLight %}page-detail--light{% endif %}"
 style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
 >
   <div class="page-detail__container container">
@@ -41,7 +32,7 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
             "stickyOffsetBottom": 20
           }'
         >
-          <div class="page-detail__back page-detail__animation-3 back back--animated {{ testimonialsDetailCtaClass }}">
+          <div class="testimonials-detail__cta page-detail__back page-detail__animation-3 back back--animated">
             {%
               include icon.html
               icon='arrow'
@@ -51,14 +42,14 @@ style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hov
             %}
           </div>
           {%- assign headlineLevel = testimonialsDetailHeadlineLevel | default: 'h1' -%}
-          {%- capture headlineClasses -%} {{ testimonialsDetailHeadlineClass }} {{ testimonialsDetailHeadlineClasses }} {%- endcapture -%}
+          {%- capture headlineClasses -%}testimonials-detail__headline page-detail__headline {{ testimonialsDetailHeadlineClasses }} {%- endcapture -%}
           {%
             include headline.html
             text=testimonialsDetailName
             level=headlineLevel
             classes=headlineClasses
           %}
-          <span class="{{ testimonialsDetailSublineClass }}">{{ testimonialsDetailSubline }}</span>
+          <span class="testimonials-detail__subline page-detail__subline">{{ testimonialsDetailSubline }}</span>
           <div class="page-detail__img page-detail__animation-3">
             {%
               include img.html
