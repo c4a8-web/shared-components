@@ -2,13 +2,18 @@ import BaseComponent from './base-component.js';
 import State from '../state.js';
 import Tools from '../tools.js';
 
+// TODO move to vue component
+
 class TestimonialList extends BaseComponent {
   static rootSelector = '.testimonial-list';
 
   constructor(root, options) {
     super(root, options);
-    this.testimonialContainer = root.querySelector('.testimonial-list__contents');
-    this.testimonials = root.querySelectorAll('.testimonial-list__content');
+
+    this.root = root;
+
+    this.testimonialContainer = this.root.querySelector('.testimonial-list__contents');
+    this.testimonials = this.root.querySelectorAll('.testimonial-list__content');
     this.viewPortPercentageAtScroll = 30;
     this.viewPortPercentageAtLoad = 5;
 
@@ -16,7 +21,7 @@ class TestimonialList extends BaseComponent {
   }
 
   handleScrollEvent() {
-    this.hiddenTestimonials = root.querySelectorAll(`.testimonial-list__content:not(.${State.SHOW})`);
+    this.hiddenTestimonials = this.root.querySelectorAll(`.testimonial-list__content:not(.${State.SHOW})`);
 
     this.hiddenTestimonials.forEach((testimonial) => {
       if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtScroll)) {
