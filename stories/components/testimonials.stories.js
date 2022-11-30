@@ -2,7 +2,7 @@ import { createComponent, getTitle } from '../../.storybook/templates';
 import { includestestimonialshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Testimonials',
+  title: 'Quotes',
 });
 
 export default {
@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const Long = Template.bind({});
 
 Long.args = {
-  testimonials: {
+  quotes: {
     headline: 'Das sagen unsere Kunden',
     level: 'h3',
     items: [
@@ -56,7 +56,7 @@ Long.args = {
 export const Short = Template.bind({});
 
 Short.args = {
-  testimonials: {
+  quotes: {
     headline: 'Das sagen unsere Kunden',
     level: 'h3',
     items: [
@@ -81,7 +81,7 @@ Short.args = {
 export const NoImage = Template.bind({});
 
 NoImage.args = {
-  testimonials: {
+  quotes: {
     items: [
       {
         text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
