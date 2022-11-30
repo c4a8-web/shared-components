@@ -1,5 +1,5 @@
 <!-- Shared Testimonials Detail Section -->
-{%- assign testimonialsDetailColor = include.image.detailColor | default: '--color-testimonials' -%}
+{%- assign testimonialsDetailColor = include.detailColor | default: '--color-testimonials' -%}
 {%- assign testimonialsDetailTitle = include.title -%}
 {%- assign testimonialsDetailName = include.name | replace: ' ', '<br/>' -%}
 {%- assign testimonialsDetailLocation = include.location -%}
@@ -24,7 +24,6 @@
   {%- assign testimonialsDetailSublineClass = "page-detail__subline" -%}
   {%- assign testimonialsDetailCtaClass = "" -%}
 {% endif %}
-
 
 <div class="testimonials-detail page-detail page-detail--image is-loading"
 style="--page-detail-color: var({{ testimonialsDetailColor }}); --color-icon-hover-color: var(--page-detail-color)"
