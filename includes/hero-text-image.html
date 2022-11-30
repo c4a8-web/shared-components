@@ -11,10 +11,13 @@
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = false %}
+{%- else if heroTextImageVariant == 'hero--safety' -%}
+  {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = false %}
+  {% assign heroContainerPosition = "justify-content-lg-between pb-10 " %}
 {%- else if heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
-
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
@@ -97,7 +100,7 @@
 
 <div class="hero-text-image is-component {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
-    style="{% if heroTextImageHero.bgColor %}background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
+    style="{% if heroTextImageHero.bgColor %}--color-hero-text-image-background: {{ heroTextImageHero.bgColor }};background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
 >
   {% if heroTextImageHero.fullscreen %}
     <div class="hero-text-image__fullscreen position-absolute">
@@ -114,6 +117,8 @@
       {% if heroTextImageHero.background %}
         <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
           {{ heroImage }}
+          <br/>
+          <p class="hero-text-image__img-spacer-subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         </div>
       {% endif %}
 
@@ -154,7 +159,10 @@
         {% endif %}
         {% unless heroTextImageHero.animation %}
           <h1 class="hero-text-image__headline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
-          <p class="{{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+          {% if heroTextImageHero.underline %}
+            <p class="hero-text-image__underline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.underlineClass }} ">{{ heroTextImageHero.underline }}</p>
+          {% endif %}
+          <p class="hero-text-image__subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         {% endunless %}
 
         {% if heroTextImageHero.img %}
