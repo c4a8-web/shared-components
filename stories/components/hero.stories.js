@@ -233,7 +233,6 @@ export const HeroTextImageSafety = Template.bind({});
 
 HeroTextImageSafety.args = {
   hero: {
-    // pattern: true,
     variant: 'hero--safety', // TODO refactor to a more generic name
     headline: 'Safety',
     level: 'h5',
@@ -244,7 +243,6 @@ HeroTextImageSafety.args = {
     background: {
       img: getAssetPath('img/xmas-website-hero.png'),
       alt: 'Img',
-      //spacing: //space-top-lg-5 is not large enough
       cloudinary: false,
     },
     bgColor: 'var(--color-blue-dark)',
