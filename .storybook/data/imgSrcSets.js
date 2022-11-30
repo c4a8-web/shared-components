@@ -18,33 +18,33 @@ const ImgSrcSets = {
       },
     ],
   },
-  testimonialTeaser16by9: {
+  testimonialTeaser16x9: {
     srcSets: [
       {
-        params: 'c_fill,g_face,h_450,w_600,x_0,y_0/',
+        params: 'c_fill,g_face,h_281,w_500,x_0,y_0/',
         media: '(max-width: 576px)',
       },
       {
-        params: 'c_fill,g_face,h_300,w_400,x_0,y_0/',
+        params: 'c_fill,g_face,h_225,w_400,x_0,y_0/',
         media: '(max-width: 765px)',
       },
       {
-        params: 'c_fill,g_face,h_600,w_800,x_0,y_0/',
+        params: 'c_fill,g_face,h_388,w_600,x_0,y_0/',
         media: '(max-width: 1200px)',
       },
       {
-        params: 'c_fill,g_face,h_600,w_800,x_0,y_0/',
+        params: 'c_fill,g_face,h_450,w_800,x_0,y_0/',
       },
     ],
   },
-  testimonialTeaser4by3: {
+  testimonialTeaser4xx3: {
     srcSets: [
       {
-        params: 'c_fill,g_face,h_450,w_600,x_0,y_0/',
+        params: 'c_fill,g_face,h_281,w_500,x_0,y_0/',
         media: '(max-width: 576px)',
       },
       {
-        params: 'c_fill,g_face,h_300,w_400,x_0,y_0/',
+        params: 'c_fill,g_face,h_225,w_400,x_0,y_0/',
         media: '(max-width: 765px)',
       },
       {
