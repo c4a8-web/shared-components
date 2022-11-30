@@ -21,6 +21,5 @@ export const ScrollArrowSpacing = Template.bind({});
 
 ScrollArrowSpacing.args = {
   target: '.contact',
-  spacing: "10",
+  spacing: 'mt-n10',
 };
-

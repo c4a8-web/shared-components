@@ -3,17 +3,12 @@ import Tools from '../tools.js';
 export default {
   tagName: 'scroll-arrow',
   computed: {
-    classList(){
-      return [
-        'scroll-arrow',
-        'container',
-        `${this.spacing ? this.spacingValue : ''}`,
-        'vue-component',
-      ]
+    classList() {
+      return ['scroll-arrow', 'container', this.spacingValue, 'vue-component'];
     },
-    spacingValue(){
-      return "mt-lg-0 mt-n" + this.spacing;
-    }
+    spacingValue() {
+      return this.spacing ? `mt-lg-0 ${this.spacing}` : '';
+    },
   },
   methods: {
     handleClick() {
@@ -28,7 +23,7 @@ export default {
     target: String,
     spacing: {
       default: null,
-    }
+    },
   },
   template: `
     <div :class="classList">
