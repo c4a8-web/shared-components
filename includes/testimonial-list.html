@@ -1,50 +1,35 @@
-{%- if include.json -%}
-  {%- assign testimonialListHeadline = include.json.headline -%}
-  {%- assign testimonialListHeadlineLevel = include.json.headlineLevel -%}
-  {%- assign testimonialListSubline = include.json.subline -%}
-  {%- assign testimonialListContents = include.contents | include.json.contents -%}
-  {%- assign testimonialBgColor = include.json.bgColor -%}
-  {%- assign testimonialBgColorHover = include.json.bgColorHover -%}
-{%- else -%}
-  {%- assign testimonialListHeadline = include.headline -%}
-  {%- assign testimonialListHeadlineLevel = include.headlineLevel -%}
-  {%- assign testimonialListSubline = include.subline -%}
-  {%- assign testimonialListContents = include.contents -%}
-  {%- assign testimonialBgColor = include.bgColor -%}
-  {%- assign testimonialBgColorHover = include.bgColorHover -%}
-{%- endif -%}
-{% assign testimonialListEven = false %}
+{%- assign testimonialListHeadline = include.headline -%}
+{%- assign testimonialListHeadlineLevel = include.headlineLevel -%}
+{%- assign testimonialListSubline = include.subline -%}
+{%- assign testimonialListContents = include.contents -%}
+{%- assign testimonialBgColor = include.bgColor -%}
+{%- assign testimonialBgColorHover = include.bgColorHover -%}
 
-<!-- vue commponent -->
-<testimonial-list
-  testimonials="{{ testimonialListContents | jsonify | escape }}"
->
+{%- assign testimonialListEven = false -%}
+
+<testimonial-list>
   {% assign testimonialListSize = testimonialListContents | size %}
   {% assign testimonialListEven = testimonialListSize | modulo: 2 %}
 
-  {% for testimonial in  testimonialListContents %}
+  {% for testimonial in testimonialListContents %}
     {% assign testimonialRemainder = forloop.index | modulo: 2 %}
     {% assign testimonialWideValue1 = forloop.index | modulo: 4 %}
     {% assign testimonialWideValue2 = forloop.index | minus: 1 | modulo: 4 %}
 
     {% if testimonialWideValue1 == 0 or testimonialWideValue2 == 0 %}
-      {% assign testimonialAspectRatio = "16, 9" %}
-      {% assign testimonialAspectRatioClass = "testimonial-teaser--16-9" %}
+      {% assign testimonialAspectRatio = "16x9" %}
     {% else %}
-      {% assign testimonialAspectRatio = "4, 3" %}
-      {% assign testimonialAspectRatioClass = "testimonial-teaser--4-3" %}
-      {% assign testimonialPositionClass = "testimonial-list__content--square" %}
+      {% assign testimonialAspectRatio = "4x3" %}
     {% endif %}
 
     {% if testimonialRemainder != 0 %}
       {% if testimonialListEven != 0 and forloop.index == testimonialListSize  %}
-        {% assign testimonialAspectRatio = "4, 3" %}
-        {% assign testimonialPositionClass = "d-flex justify-content-lg-start" | append: testimonialPositionClass %}
+        {% assign testimonialAspectRatio = "4x3" %}
       {% endif %}
       <div class="testimonial-list__content-block row" >
     {% endif %}
 
-    <div class="testimonial-list__content col-lg-6 {{ testimonialPositionClass }}">
+    <div class="testimonial-list__content col-lg-6">
       {% unless testimonial.hidden %}
         {%
           include testimonial-teaser.html
@@ -56,7 +41,6 @@
           bgColor=testimonialBgColor
           bgColorHover=testimonialBgColorHover
           aspectRatio=testimonialAspectRatio
-          aspectRatioClass=testimonialAspectRatioClass
         %}
       {% endunless %}
     </div>
@@ -66,5 +50,3 @@
     {% endif %}
   {% endfor %}
 </testimonial-list>
-
-

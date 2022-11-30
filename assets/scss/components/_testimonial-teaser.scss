@@ -8,11 +8,11 @@
 }
 
 .testimonial-teaser {
+  --color-testimonial-teaser-foreground: var(--color-white);
+
   position: relative;
   max-width: unquote('min(500px, 100vw)');
   display: inline-block;
-
-  --color-testimonial-teaser-foreground: var(--color-white);
 
   &:hover {
     img {
@@ -32,19 +32,38 @@
       }
     }
   }
-}
 
-.testimonial-teaser_img-wrapper--aspect-ratio{
-  @include media-breakpoint-up(xs) {
-    @include aspect-ratio(16, 9);
+  &.testimonial-teaser--aspect-ratio {
+    .testimonial-teaser__img-wrapper {
+      @include aspect-ratio(16, 9);
+
+      height: 100%;
+      width: 100%;
+
+      @include media-breakpoint-up(lg) {
+        @include aspect-ratio(
+          var(--width-testimonial-teaser-aspect-ratio),
+          var(--height-testimonial-teaser-aspect-ratio)
+        );
+      }
+    }
   }
 
-  @include media-breakpoint-up(lg) {
-    @include aspect-ratio(var(--width-testimonial-teaser-aspect-ratio), var(--height-testimonial-teaser-aspect-ratio));
+  &.testimonial-teaser--16x9 {
+    .testimonial-teaser__content {
+      bottom: 5%;
+
+      @include media-breakpoint-up(lg) {
+        bottom: 25%;
+      }
+    }
   }
 
-  height: 100%;
-  width: 100%;
+  &.testimonial-teaser--4x3 {
+    .testimonial-teaser__content {
+      bottom: 5%;
+    }
+  }
 }
 
 .testimonial-teaser__img-wrapper {
@@ -78,12 +97,9 @@
 
   img {
     height: auto;
+    width: 60px;
 
-    @include media-breakpoint-up(xs) {
-      width: 60px;
-    }
-
-    @include media-breakpoint-up(md){
+    @include media-breakpoint-up(md) {
       width: 100px;
     }
   }
@@ -92,21 +108,6 @@
 .testimonial-teaser__content {
   position: absolute;
   bottom: 0;
-}
-.testimonial-teaser--16-9 {
- .testimonial-teaser__content {
-    bottom: 5%;
-
-    @include media-breakpoint-up(lg) {
-      bottom: 25%;
-    }
- }
-}
-
-.testimonial-teaser--4-3 {
-  .testimonial-teaser__content {
-    bottom: 5%;
-  }
 }
 
 .testimonial-teaser__name,
@@ -153,6 +154,7 @@
   display: inline-flex;
   position: relative;
 
+  // TODO refactor this selector because it is very fragile
   + br + .testimonial-teaser__name-background {
     padding-top: 0;
   }

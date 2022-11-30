@@ -35,6 +35,19 @@ OneLine.args = {
   },
 };
 
+export const FourByThree = Template.bind({});
+
+FourByThree.args = {
+  aspectRatio: '16x9',
+  href: 'javascript:void(0)',
+  name: 'Matti',
+  title: 'Senior Consultant Azure',
+  img: {
+    img: 'people/testimonials/matti-puolitaival.png',
+    alt: 'lorem ipsum',
+  },
+};
+
 export const CornerImg = Template.bind({});
 
 CornerImg.args = {
