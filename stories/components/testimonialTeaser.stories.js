@@ -38,7 +38,7 @@ OneLine.args = {
 export const FourByThree = Template.bind({});
 
 FourByThree.args = {
-  aspectRatio: '16x9',
+  aspectRatio: '4x3',
   href: 'javascript:void(0)',
   name: 'Matti',
   title: 'Senior Consultant Azure',
