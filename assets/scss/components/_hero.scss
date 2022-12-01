@@ -421,14 +421,6 @@
   }
 
   &.hero--safety {
-    background: linear-gradient(
-      180deg,
-      var(--color-hero-text-image-background) 0%,
-      var(--color-hero-text-image-background) 86%,
-      rgba(0, 0, 0, 0) 86%
-    );
-    background-color: inherit !important;
-
     .hero-text-image__headline {
       line-height: spacing(4);
 
@@ -477,16 +469,9 @@
       text-align: left;
       order: 3;
       padding: spacing(5);
-      padding-bottom: spacing(50);
 
       @include media-breakpoint-up(lg) {
         display: none;
-      }
-    }
-
-    @include media-breakpoint-down(md) {
-      .container:not(.animation) {
-        margin-bottom: 0;
       }
     }
 
@@ -499,6 +484,22 @@
         width: 50%;
         max-width: 150%;
       }
+    }
+
+    @include media-breakpoint-down(md) {
+      .container:not(.animation) {
+        margin-bottom: 0;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      background: linear-gradient(
+        180deg,
+        var(--color-hero-text-image-background) 0%,
+        var(--color-hero-text-image-background) 86%,
+        rgba(0, 0, 0, 0) 86%
+      );
+      background-color: inherit !important;
     }
   }
 
