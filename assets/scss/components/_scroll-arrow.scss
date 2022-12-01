@@ -7,10 +7,22 @@
 }
 
 .scroll-arrow {
+  @include z-index;
+
   margin-top: spacing(10);
   margin-bottom: spacing(10);
   position: relative;
   overflow: hidden;
+
+  .icon svg {
+    width: spacing(20);
+    height: spacing(20);
+
+    @include media-breakpoint-up(lg) {
+      width: spacing(30);
+      height: spacing(30);
+    }
+  }
 }
 
 .scroll-arrow__button {

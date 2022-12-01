@@ -7,7 +7,7 @@ export default {
       return ['scroll-arrow', 'container', this.spacingValue, 'vue-component'];
     },
     spacingValue() {
-      return this.spacing ? `mt-lg-0 ${this.spacing}` : '';
+      return this.spacing ? `${this.spacing}` : '';
     },
   },
   methods: {

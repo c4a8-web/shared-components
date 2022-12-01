@@ -392,7 +392,7 @@
       &:not(.hero--safety)::after {
         top: 0;
         background-color: var(--color-background);
-        width: get-full-column-width($container: "lg", $columns: 3);
+        width: get-full-column-width($container: 'lg', $columns: 3);
       }
 
       &:not(.hero--study)::after {
@@ -441,29 +441,31 @@
   }
 
   &.hero--safety {
-    background: linear-gradient(
-      180deg,
-      var(--color-hero-text-image-background) 0%,
-      var(--color-hero-text-image-background) 86%,
-      rgba(0, 0, 0, 0) 86%
-    );
-    background-color: inherit !important;
-
     .hero-text-image__headline {
       line-height: spacing(4);
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: spacing(10);
+      }
     }
 
     .hero-text-image__underline {
       @include font-style($style: 'font-size-4', $weight: 'bold', $line: 'wide');
+
+      @include media-breakpoint-up(lg) {
+        margin-bottom: spacing(12);
+      }
     }
 
     .hero-text-image__background {
       top: auto;
-      bottom: spacing(-4);
+      bottom: 0;
+
       @include media-breakpoint-down(md) {
         display: none;
       }
     }
+
     .hero-text-imge__img-spacer {
       @include media-breakpoint-down(md) {
         display: flex;
@@ -476,6 +478,7 @@
 
     .hero-text-image__subline {
       display: none;
+
       @include media-breakpoint-up(lg) {
         display: block;
       }
@@ -486,13 +489,22 @@
       text-align: left;
       order: 3;
       padding: spacing(5);
-      padding-bottom: spacing(50);
 
       @include media-breakpoint-up(lg) {
         display: none;
       }
     }
 
+    .hero-text-image__background-wrapper img,
+    .hero-text-imge__img-spacer img {
+      max-width: 90%;
+      text-align: center;
+
+      @include media-breakpoint-up(md) {
+        width: 50%;
+        max-width: 150%;
+      }
+    }
 
     @include media-breakpoint-down(md) {
       .container:not(.animation) {
@@ -500,15 +512,14 @@
       }
     }
 
-    .hero-text-image__background-wrapper img,
-    .hero-text-imge__img-spacer img {
-      @include media-breakpoint-up(md) {
-        width: 50%;
-      }
-      @include media-breakpoint-up(xs) {
-        max-width: 150%;
-        text-align: center;
-      }
+    @include media-breakpoint-up(lg) {
+      background: linear-gradient(
+        180deg,
+        var(--color-hero-text-image-background) 0%,
+        var(--color-hero-text-image-background) 86%,
+        rgba(0, 0, 0, 0) 86%
+      );
+      background-color: inherit !important;
     }
   }
 
