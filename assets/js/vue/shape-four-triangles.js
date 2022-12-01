@@ -115,20 +115,19 @@ export default {
             values: '-200 0;-200 0',
           },
           motion: {
+            delay: 0,
             path: 'M200 400 C200,400 200,200 200,200 C200,200 200,200 200,200',
             keyPoints: '0;1;1',
             keyTimes: '0;0.333333;1',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
-            delay: '0s',
           },
           transformRotate: {
             delay: 0,
-            from: '450',
-            to: '360',
-            values: '450;450;360;360',
+            from: '90',
+            to: '0',
+            values: '90;90;0;0',
             keyTimes: '0;0.333333;0.666667;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
-            additive: true,
           },
           reset: {
             waitFor: 'triangleBottomLeft.transformRotate',
@@ -155,12 +154,11 @@ export default {
           },
           transformRotate: {
             delay: 0,
-            from: '450',
-            to: '360',
-            values: '450;450;360;360',
+            from: '90',
+            to: '0',
+            values: '90;90;0;0',
             keyTimes: '0;0.333333;0.666667;1',
             keySplines: '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
-            additive: true,
           },
           reset: {
             waitFor: 'triangleUpperLeft.transformRotate',
@@ -185,15 +183,6 @@ export default {
             path: 'M300 100 C300,100 300,100 300,100 C300,100 100,100 100,100 C100,100 100,100 100,100',
             keyPoints: '0;0;1;1',
           },
-          // transformRotate: {
-          //   delay: 0,
-          //   from: '450',
-          //   to: '450',
-          //   values: '450;450',
-          //   keyTimes: '0;1',
-          //   keySplines: '0 0 1 1',
-          //   additive: true,
-          // },
           reset: {
             waitFor: 'triangleUpperRight.moveTo1',
             delay: animationDelay,
@@ -217,14 +206,10 @@ export default {
             path: 'M300 300 C300,300 300,100 300,100 C300,100 300,100 300,100',
             keyPoints: '0;1;1',
           },
-          transformRotate: {
-            delay: 0,
-            from: '450',
-            to: '450',
-            values: '450;450',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            additive: true,
+          reset: {
+            waitFor: 'triangleBottomRight.moveTo1',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
       ],
@@ -374,16 +359,18 @@ export default {
 
           <shape-animation
             :id="triangleBottomLeft?.reset?.id"
-            :ddhref="triangleBottomLeft?.href"
+            :sshref="triangleBottomLeft?.href"
             :begin="triangleBottomLeft?.reset?.begin"
             attributeName="transform"
-            type="translate"
+            type="rotate"
             calcMode="paced"
-            from="-200 0"
-            to="-600 0"
+            from="-270"
+            to="-180"
+            dby="-90"
             :dur="triangleBottomLeft?.reset?.dur"
             fill="freeze"
             calcMode="spline"
+            transform-origin="0 90"
           ></shape-animation>
 
           <shape-animation
@@ -402,26 +389,36 @@ export default {
 
           <shape-animation
             :id="triangleUpperRight?.reset?.id"
-            :href="triangleUpperRight?.href"
+            :aahref="triangleUpperRight?.href"
             :begin="triangleUpperRight?.reset?.begin"
             attributeName="transform"
             type="translate"
             calcMode="paced"
             from="-100 -100"
             to="100 -100"
-            fdrom="200 0 0"
-            tdo="100 0 0"
             :dur="triangleUpperRight?.reset?.dur"
             fill="freeze"
             calcMode="spline"
-            ddtransform-origin="top"
+          ></shape-animation>
+
+          <shape-animation
+            :id="triangleBottomRight?.reset?.id"
+            :aahref="triangleBottomRight?.href"
+            :begin="triangleBottomRight?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="-100 -100"
+            to="-100 100"
+            :dur="triangleBottomRight?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
           ></shape-animation>
 
         </g>
 
         <g :id="triangleBottomLeft?.id">
-          <path fill="#A9903D"
-            d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
+            <polygon height="200" width="200" points="200,0 200,200 0,200" fill="#A9903D" />
         </g>
         <g :id="triangleUpperLeft?.id" ddstyle="transform-origin: top">
           <path fill="#71A93D"
@@ -433,7 +430,7 @@ export default {
         </g>
         <g :id="triangleBottomRight?.id">
           <path fill="#3D5AA9"
-            d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
+            d=" M 0 200 C 0 200 200 200 200 200 C 200 200 200 0 200 0 C 200 0 200 0 200 0 z " />
         </g>
       </g>
     </g>`,
