@@ -68,7 +68,6 @@ export default {
       :values="values"
       :type="type"
       :additive="additive ? 'sum': null"
-      :transform-origin="transformOrigin"
     />
   `,
 };

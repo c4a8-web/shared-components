@@ -91,6 +91,7 @@ ShapeFourTriangles.args = {
       name: 'shape-four-triangles',
       firstColor: 'var(--color-orange)',
       secondColor: 'var(--color-secondary)',
+      thirdColor: 'var(--color-white)',
     },
   ],
 };

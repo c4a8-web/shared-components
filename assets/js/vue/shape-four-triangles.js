@@ -2,7 +2,8 @@ import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
 const animationDelay = '1s';
-const animationStepDelay = '2s';
+const animationResetDelay = '0.01s';
+const animationResetDuration = '0.01s';
 
 const tagName = 'shape-four-triangles';
 
@@ -12,9 +13,9 @@ export default {
     // classList() {
     //   return ['shape-square-forward', 'vue-component'];
     // },
-    // begin() {
-    //   return this.start ? this.start : defaultStart;
-    // },
+    begin() {
+      return this.start ? this.start : defaultStart;
+    },
     triangleBottomLeftColor() {
       return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
@@ -27,6 +28,9 @@ export default {
     triangleBottomRightColor() {
       return this.secondColor ? this.secondColor : 'var(--color-secondary)';
     },
+    squareColor() {
+      return this.thirdColor ? this.thirdColor : 'var(--color-white)';
+    },
     triangleBottomLeft() {
       return this.sequence.triangleBottomLeft;
     },
@@ -38,6 +42,9 @@ export default {
     },
     triangleBottomRight() {
       return this.sequence.triangleBottomRight;
+    },
+    square() {
+      return this.sequence.square;
     },
     overall() {
       // const duration = `${animationDelay - 0.3}s`;
@@ -107,109 +114,144 @@ export default {
         {
           name: 'triangleBottomLeft',
           moveTo1: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             from: '-200 0',
             to: '-200 0',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             values: '-200 0;-200 0',
+            waitFor: 'triangleBottomLeft.reset',
           },
           motion: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             path: 'M200 400 C200,400 200,200 200,200 C200,200 200,200 200,200',
             keyPoints: '0;1;1',
             keyTimes: '0;0.333333;1',
             keySplines: '0.333 0 0.667 1;0 0 0 0',
+            waitFor: 'triangleBottomLeft.reset',
           },
           transformRotate: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             from: '90',
             to: '0',
             values: '90;90;0;0',
             keyTimes: '0;0.333333;0.666667;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
+            waitFor: 'triangleBottomLeft.reset',
           },
           reset: {
-            waitFor: 'triangleBottomLeft.transformRotate',
-            delay: animationDelay,
-            dur: animationStepDelay,
+            waitFor: 'square.moveTo1',
+            delay: animationResetDelay,
+            dur: animationResetDuration,
           },
         },
         {
           name: 'triangleUpperLeft',
           moveTo1: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             from: '-200 0',
             to: '-200 0',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             values: '-200 0;-200 0',
+            waitFor: 'triangleUpperLeft.reset',
           },
           motion: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             keyTimes: '0;0.666667;0.95;1',
             path: 'M200 200 C200,200 200,200 200,200 C200,200 400,200 400,200 C400,200 400,200 400,200',
             keySplines: '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
             keyPoints: '0;0;1;1',
+            waitFor: 'triangleUpperLeft.reset',
           },
           transformRotate: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             from: '90',
             to: '0',
             values: '90;90;0;0',
             keyTimes: '0;0.333333;0.666667;1',
             keySplines: '0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0',
+            waitFor: 'triangleUpperLeft.reset',
           },
           reset: {
-            waitFor: 'triangleUpperLeft.transformRotate',
-            delay: animationDelay,
-            dur: animationStepDelay,
+            waitFor: 'square.moveTo1',
+            delay: animationResetDelay,
+            dur: animationResetDuration,
           },
         },
         {
           name: 'triangleUpperRight',
           moveTo1: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             from: '-100 -100',
             to: '-100 -100',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             values: '-100 -100;-100 -100',
+            waitFor: 'triangleUpperRight.reset',
           },
           motion: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             keyTimes: '0;0.522222;0.855556;1',
             keySplines: '0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0',
             path: 'M300 100 C300,100 300,100 300,100 C300,100 100,100 100,100 C100,100 100,100 100,100',
             keyPoints: '0;0;1;1',
+            waitFor: 'triangleUpperRight.reset',
           },
           reset: {
-            waitFor: 'triangleUpperRight.moveTo1',
-            delay: animationDelay,
-            dur: animationStepDelay,
+            waitFor: 'square.moveTo1',
+            delay: animationResetDelay,
+            dur: animationResetDuration,
           },
         },
         {
           name: 'triangleBottomRight',
           moveTo1: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             from: '-100 -100',
             to: '-100 -100',
             keyTimes: '0;1',
             keySplines: '0 0 1 1',
             values: '-100 -100;-100 -100',
+            waitFor: 'triangleBottomRight.reset',
           },
           motion: {
-            delay: 0,
+            start: true,
+            delay: animationDelay,
             keyTimes: '0;0.333333;1',
             keySplines: '0.167 0.167 0.833 0.833;0 0 0 0',
             path: 'M300 300 C300,300 300,100 300,100 C300,100 300,100 300,100',
             keyPoints: '0;1;1',
+            waitFor: 'triangleBottomRight.reset',
           },
           reset: {
+            waitFor: 'square.moveTo1',
+            delay: animationResetDelay,
+            dur: animationResetDuration,
+          },
+        },
+        {
+          name: 'square',
+          moveTo1: {
+            delay: '14s',
+            dur: '0.5s',
+            from: '0 0',
+            to: '-400 0',
             waitFor: 'triangleBottomRight.moveTo1',
-            delay: animationDelay,
-            dur: animationStepDelay,
+          },
+          reset: {
+            waitFor: 'square.moveTo1',
+            delay: '1s',
+            dur: '0.5s',
           },
         },
       ],
@@ -219,6 +261,7 @@ export default {
   props: {
     firstColor: String,
     secondColor: String,
+    thirdColor: String,
     start: String,
   },
   methods: {
@@ -354,63 +397,64 @@ export default {
                 :isMotion="stepData?.step?.motion"
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
+            <template v-for="stepData in getStepData('square', animation?.steps)">
+              <shape-animation
+                :id="stepData?.data?.id"
+                :href="stepData?.data?.href"
+                :begin="stepData?.data?.begin"
+                :fill="stepData?.step?.fill"
+                :dur="stepData?.step?.dur"
+                :calcMode="stepData?.step?.calcMode"
+                :keyTimes="stepData?.step?.keyTimes"
+                :keySplines="stepData?.step?.keySplines"
+                :type="stepData?.step?.type"
+                :additive="stepData?.step?.additive"
+                :from="stepData?.step?.from"
+                :to="stepData?.step?.to"
+                :by="stepData?.step?.by"
+                :keyPoints="stepData?.data?.keyPoints"
+                :values="stepData?.data?.values"
+                :path="stepData?.data?.path"
+                :isMotion="stepData?.step?.motion"
+                :attributeName="stepData?.step?.attributeName"
+              ></shape-animation>
             </template>
           </template>
 
           <shape-animation
             :id="triangleBottomLeft?.reset?.id"
-            :sshref="triangleBottomLeft?.href"
             :begin="triangleBottomLeft?.reset?.begin"
-            attributeName="transform"
-            type="rotate"
-            calcMode="paced"
-            from="-270"
-            to="-180"
-            dby="-90"
             :dur="triangleBottomLeft?.reset?.dur"
-            fill="freeze"
-            calcMode="spline"
-            transform-origin="0 90"
           ></shape-animation>
 
           <shape-animation
             :id="triangleUpperLeft?.reset?.id"
-            :ddhref="triangleUpperLeft?.href"
             :begin="triangleUpperLeft?.reset?.begin"
-            attributeName="transform"
-            type="translate"
-            calcMode="paced"
-            from="-200 0"
-            to="-600 0"
             :dur="triangleUpperLeft?.reset?.dur"
-            fill="freeze"
-            calcMode="spline"
           ></shape-animation>
 
           <shape-animation
             :id="triangleUpperRight?.reset?.id"
-            :aahref="triangleUpperRight?.href"
             :begin="triangleUpperRight?.reset?.begin"
-            attributeName="transform"
-            type="translate"
-            calcMode="paced"
-            from="-100 -100"
-            to="100 -100"
             :dur="triangleUpperRight?.reset?.dur"
-            fill="freeze"
-            calcMode="spline"
           ></shape-animation>
 
           <shape-animation
             :id="triangleBottomRight?.reset?.id"
-            :aahref="triangleBottomRight?.href"
             :begin="triangleBottomRight?.reset?.begin"
+            :dur="triangleBottomRight?.reset?.dur"
+          ></shape-animation>
+
+          <shape-animation
+            :id="square?.reset?.id"
+            :href="square?.href"
+            :begin="square?.reset?.begin"
             attributeName="transform"
             type="translate"
             calcMode="paced"
-            from="-100 -100"
-            to="-100 100"
-            :dur="triangleBottomRight?.reset?.dur"
+            from="0 0"
+            to="400 0"
+            :dur="square?.reset?.dur"
             fill="freeze"
             calcMode="spline"
           ></shape-animation>
@@ -418,19 +462,24 @@ export default {
         </g>
 
         <g :id="triangleBottomLeft?.id">
-            <polygon height="200" width="200" points="200,0 200,200 0,200" fill="#A9903D" />
+          <path :fill="triangleBottomLeftColor"
+            d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>
         <g :id="triangleUpperLeft?.id" ddstyle="transform-origin: top">
-          <path fill="#71A93D"
+          <path :fill="triangleUpperLeftColor"
             d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>
         <g :id="triangleUpperRight?.id">
-          <path fill="#3DA999"
+          <path :fill="triangleUpperRightColor"
             d=" M 0 200 C 0 200 200 200 200 200 C 200 200 200 0 200 0 C 200 0 200 0 200 0 z " />
         </g>
         <g :id="triangleBottomRight?.id">
-          <path fill="#3D5AA9"
+          <path :fill="triangleBottomRightColor"
             d=" M 0 200 C 0 200 200 200 200 200 C 200 200 200 0 200 0 C 200 0 200 0 200 0 z " />
+        </g>
+        <g :id="square?.id" transform="translate(400, 0)">
+          <rect :fill="squareColor"
+            width="400" height="400" />
         </g>
       </g>
     </g>`,
