@@ -37,20 +37,10 @@ class BrokenLinks {
   }
 
   getUrl(url, previousUrl) {
-    if (url === 'http://localhost:4000/broken-links') {
-      console.log('BREAK IT 1');
-      console.log(previousUrl);
-    }
-
-    //if (this.links[url]) return;
     this.prevLink[url] = 'Previous Url: ' + previousUrl;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
-
-      if (url === 'http://localhost:4000/broken-links') {
-        console.log('BREAK IT 2');
-      }
 
       fetch(url, this.options)
         .then((response) => {
@@ -75,12 +65,6 @@ class BrokenLinks {
 
   async handleResponse(response, external, test) {
     const { url } = response;
-
-    if (url === 'http://localhost:4000/broken-links/') {
-      console.log('BREAK IT');
-      console.log(response);
-      console.log('test', test);
-    }
 
     if (this.links[url]) return;
 
@@ -128,20 +112,17 @@ class BrokenLinks {
   }
 
   async getLinksOnSite(site, url) {
-    const links = site.querySelectorAll('a[href]');
-
+    const links = site.querySelectorAll('header a[href]');
+    // der href im footer -> index.html schickt uns wieder zurück auf localhost:4000/broken-links
     for (var i = 0; i < links.length; i++) {
       links[i].href = this.normalizeLink(links[i].href);
 
       const link = links[i];
       const linkUrl = this.getAbsoluteUrl(link, url);
 
-      if (linkUrl === 'http://localhost:4000/broken-links') {
-        console.log('BREAK IT 3');
-        console.log('link', link);
-      }
+      const valUrl = linkUrl.endsWith('index.html') ? false : true;
 
-      if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
+      if (this.isValidLink(linkUrl) && !this.links[linkUrl] && valUrl) {
         await this.getUrl(linkUrl, url);
       }
     }
@@ -167,63 +148,3 @@ class BrokenLinks {
     return url.match(regex) ? true : false;
   }
 }
-
-// TODO bug when the path is not absolute modern-workplace/microsoft-endpoint-manager/ -> de/modern-workplace/microsoft-endpoint-manager/
-
-/*
-links.forEach(function (link) {
-  var reportLine = { url: link.getAttribute('href'), status: 0, redirectedTo: '', message: '', element: link };
-  linkReport.push(reportLine);
-
-  console.log('HEAD ' + reportLine.url);
-
-  fetch(reportLine.url, {
-    method: 'HEAD',
-    mode: 'cors',
-    //mode: 'no-cors',
-    redirect: 'follow',
-  })
-    .then(function (response) {
-      linksChecked++;
-      reportLine.status = response.status;
-      reportLine.message =
-        response.statusText +
-        ' | ' +
-        response.type +
-        ' | ' +
-        (response.message || '') +
-        ' | ' +
-        JSON.stringify(response.headers);
-      if (response.redirected) {
-        reportLine.redirectedTo = response.url;
-      }
-      console.table(response);
-    })
-    .catch(function (error) {
-      reportLine.message = error;
-      console.table(error);
-      linksChecked++;
-    });
-});
-
-function imgreport(links) {
-  links.forEach(function (link) {
-    if (link.status == 0) {
-      // trigger error messages with status
-      // to the console for status of 0
-      var img = new Image();
-      img.src = link.url;
-    }
-  });
-}
-
-var finishReport = setInterval(function () {
-  if (linksChecked >= linkReport.length) {
-    console.table(linkReport);
-    imgreport(linkReport);
-    clearInterval(finishReport);
-  }
-}, 3000);
-
-
-*/
