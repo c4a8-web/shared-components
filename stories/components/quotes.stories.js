@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includestestimonialshtml as component } from '../../.storybook/generatedIncludes';
+import { includesquoteshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Quotes',
