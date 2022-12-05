@@ -57,7 +57,6 @@
     .quotes__entry-infos {
       display: flex;
       flex-wrap: wrap;
-      place-content: flex-end;
       margin-top: auto;
     }
   }
@@ -174,7 +173,7 @@
 
 .quotes__arrow-right {
   background-image: assets('../../assets/svg/right.svg');
-  right: 1rem;
+  right: spacing(4);
 
   @include media-breakpoint-up(lg) {
     right: 0;
@@ -187,16 +186,17 @@
   }
 
   background-image: assets('../../assets/svg/left.svg');
-  right: 5rem;
+  right: spacing(20);
 
   @include media-breakpoint-up(lg) {
-    right: 3.5rem;
+    right: spacing(14);
   }
 }
 
 .quotes__entry-infos {
   @include media-breakpoint-up(lg) {
     padding-bottom: spacing(12);
+    width: 85%;
 
     .font-size-2 {
       font-size: 1.1rem;
