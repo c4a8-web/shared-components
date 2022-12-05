@@ -35,6 +35,21 @@ OneLine.args = {
   },
 };
 
+export const titleMaxLength = Template.bind({});
+
+titleMaxLength.args = {
+  titleTruncate: 40,
+  aspectRatio: '4x3',
+  href: 'javascript:void(0)',
+  name: 'Matti',
+  title:
+    'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua',
+  img: {
+    img: 'people/testimonials/matti-puolitaival.png',
+    alt: 'lorem ipsum',
+  },
+};
+
 export const FourByThree = Template.bind({});
 
 FourByThree.args = {
