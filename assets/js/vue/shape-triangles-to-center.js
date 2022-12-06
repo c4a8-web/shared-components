@@ -9,9 +9,6 @@ const tagName = 'shape-triangles-to-center';
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
     begin() {
       return this.start ? this.start : defaultStart;
     },
@@ -52,7 +49,6 @@ export default {
       return this.sequence.triangleRightFirst;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '1s';
 
       return {

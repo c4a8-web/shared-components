@@ -10,9 +10,6 @@ const tagName = 'shape-four-triangles';
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
     begin() {
       return this.start ? this.start : defaultStart;
     },
@@ -47,7 +44,6 @@ export default {
       return this.sequence.square;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '4s';
 
       return {
