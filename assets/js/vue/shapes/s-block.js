@@ -56,20 +56,7 @@ export default {
 
       return this.allProps(shape);
     },
-    // getShapeData(id) {
-    //   const shape = (this.shapes && this.shapes[id]) ?? {};
-
-    //   return {
-    //     name: shape.name,
-    //     backgroundColor: shape.backgroundColor ? shape.backgroundColor : null,
-    //     foregroundColor: shape.foregroundColor ? shape.foregroundColor : null,
-    //     thirdColor: shape.thirdColor ? shape.thirdColor : null,
-    //     component: shape.component ? shape.component : this.defaultComponent(id),
-    //   };
-    // },
     defaultComponent(id) {
-      // TODO component :is="component"
-
       switch (id) {
         default:
         case 0:
@@ -123,7 +110,6 @@ export default {
         <path :fill="fourthShapeFirstColor" d="M400 1200H.18L200 1000l200 200z"/>
         <path :fill="fourthShapeSecondColor" d="m200 1000 200 200H200V1000z"/>
       </g>
-
     </svg>
   `,
 };
