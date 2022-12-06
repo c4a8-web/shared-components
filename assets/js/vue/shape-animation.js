@@ -47,7 +47,6 @@ export default {
     isAnimate: Boolean,
     path: String,
     values: String,
-    transformOrigin: String,
   },
   template: `
     <component :is="tag"

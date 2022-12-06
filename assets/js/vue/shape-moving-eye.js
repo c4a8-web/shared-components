@@ -9,9 +9,6 @@ const tagName = 'shape-moving-eye';
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
     begin() {
       return this.start ? this.start : defaultStart;
     },
@@ -31,7 +28,6 @@ export default {
       return this.sequence.eyeCircle;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '20s';
 
       return {
@@ -165,9 +161,6 @@ export default {
         if (!elementStepData) return;
 
         elementStepData.href = element.href;
-
-        // TODO overwrite property in step with elementStepData if it exists
-
         if (elementStepData.by) newStep.by = elementStepData.by;
         if (elementStepData.from) newStep.from = elementStepData.from;
         if (elementStepData.to) newStep.to = elementStepData.to;
@@ -175,7 +168,6 @@ export default {
         if (elementStepData.dur) newStep.dur = elementStepData.dur;
         if (elementStepData.motion) newStep.motion = elementStepData.motion;
         if (elementStepData.keyTimes) newStep.keyTimes = elementStepData.keyTimes;
-
         if (!newStep.dur) newStep.dur = this.overall.dur;
         if (!newStep.keySplines)
           newStep.keySplines = elementStepData.keySplines ? elementStepData.keySplines : this.overall.keySplines;

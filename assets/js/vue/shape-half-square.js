@@ -9,9 +9,6 @@ const tagName = 'shape-half-square';
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
     begin() {
       return this.start ? this.start : defaultStart;
     },
@@ -43,7 +40,6 @@ export default {
       return this.sequence.fourthSquare;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '0.8s';
 
       return {
@@ -211,9 +207,6 @@ export default {
         if (!elementStepData) return;
 
         elementStepData.href = element.href;
-
-        // TODO overwrite property in step with elementStepData if it exists
-
         if (elementStepData.by) newStep.by = elementStepData.by;
         if (elementStepData.from) newStep.from = elementStepData.from;
         if (elementStepData.to) newStep.to = elementStepData.to;

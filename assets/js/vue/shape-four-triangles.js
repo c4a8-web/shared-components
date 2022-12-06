@@ -465,7 +465,7 @@ export default {
           <path :fill="triangleBottomLeftColor"
             d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>
-        <g :id="triangleUpperLeft?.id" ddstyle="transform-origin: top">
+        <g :id="triangleUpperLeft?.id">
           <path :fill="triangleUpperLeftColor"
             d=" M0 0 C0,0 200,200 200,200 C200,200 200,0 200,0 C200,0 0,0 0,0z " />
         </g>

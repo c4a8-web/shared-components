@@ -34,7 +34,6 @@ export default {
       return this.sequence.thirdArrow;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '1.3s';
 
       return {
