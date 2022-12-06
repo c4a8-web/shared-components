@@ -117,24 +117,19 @@
   align-items: center;
   color: var(--color-testimonial-teaser-foreground);
   z-index: 1;
-
-  &.testimonial-teaser__title--desktop {
-    display: none;
-    @include media-breakpoint-up(md) {
-      display: block;
-    }
-  }
-
-  &.testimonial-teaser__title--mobile {
-    display: block;
-    @include media-breakpoint-up(md) {
-      display: none;
-    }
-  }
 }
 
 .testimonial-teaser__title {
   padding: spacing(2);
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
 }
 
 .testimonial-teaser__name-background,

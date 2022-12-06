@@ -8,8 +8,6 @@
 {%- assign testimonialTeaserBgColorHover = include.bgColorHover | default: 'var(--color-blue-medium)' -%}
 {%- assign testimonialTeaserAspectRatio = include.aspectRatio | default: false -%}
 
-{%- assign testimonialTeaserTitleSliceStart = 0 -%}
-{%- assign testimonialTeaserTitleTruncate = 30 -%}
 {%- assign testimonialTeaserAspectRatioMinParams = 2 -%}
 {%- assign testimonialTeaserSplitCharacter = 'x' -%}
 
@@ -77,8 +75,7 @@
           </div>
         </div>
       </div>
-      <div class="testimonial-teaser__title testimonial-teaser__title--desktop font-size-1">{{ testimonialTeaserTitle }}</div>
-      <div class="testimonial-teaser__title testimonial-teaser__title--mobile font-size-1">{% if testimonialTeaserTitleTruncate %} {{ testimonialTeaserTitle | slice: testimonialTeaserTitleSliceStart, testimonialTeaserTitleTruncate }} . . . {% else %} {{ testimonialTeaserTitle }}{% endif %}</div>
+      <div class="testimonial-teaser__title font-size-1">{{ testimonialTeaserTitle }}</div>
     </div>
   </div>
 </a>
