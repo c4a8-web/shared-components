@@ -9,23 +9,20 @@ const tagName = 'shape-half-square';
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
     begin() {
       return this.start ? this.start : defaultStart;
     },
     backgroundSquareColor() {
-      return this.backgroundColor ? this.backgroundColor : '#5cbbff';
+      return this.backgroundColor ? this.backgroundColor : 'var(--color-blue-light)';
     },
     firstSquareColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-page-detail-shape)';
     },
     secondSquareColor() {
-      return this.secondColor ? this.secondColor : '#ffffff';
+      return this.secondColor ? this.secondColor : 'var(--color-background)';
     },
     thirdSquareColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-primary-accent)';
     },
     squareGroup() {
       return this.sequence.squareGroup;
@@ -43,7 +40,6 @@ export default {
       return this.sequence.fourthSquare;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '0.8s';
 
       return {
@@ -211,9 +207,6 @@ export default {
         if (!elementStepData) return;
 
         elementStepData.href = element.href;
-
-        // TODO overwrite property in step with elementStepData if it exists
-
         if (elementStepData.by) newStep.by = elementStepData.by;
         if (elementStepData.from) newStep.from = elementStepData.from;
         if (elementStepData.to) newStep.to = elementStepData.to;

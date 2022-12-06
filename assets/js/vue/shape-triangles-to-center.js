@@ -1,59 +1,55 @@
 import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
-const animationDelay = '0s';
-const animationStepDelay = '0.05';
+const animationDelay = '6s';
+const animationStepDelay = '1s';
 
 const tagName = 'shape-triangles-to-center';
 
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
-    // begin() {
-    //   return this.start ? this.start : defaultStart;
-    // },
+    begin() {
+      return this.start ? this.start : defaultStart;
+    },
     triangleUpperStaticColor() {
-      return this.firstColor ? this.firstColor : '#5cbbff';
-    },
-    triangleUpperColor() {
-      return this.secondColor ? this.secondColor : '#fcd116';
-    },
-    triangleRightStaticColor() {
-      return this.thirdColor ? this.thirdColor : '#ffffff';
-    },
-    triangleRightColor() {
-      return this.firstColor ? this.firstColor : '#0072c6';
-    },
-    triangleLeftStaticColor() {
-      return this.thirdColor ? this.thirdColor : '#5cbbff';
-    },
-    triangleLeftColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
     },
     triangleBottomStaticColor() {
-      return this.firstColor ? this.firstColor : '#ffffff';
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
     },
-    triangleBottomColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+    triangleLeftStaticColor() {
+      return this.thirdColor ? this.thirdColor : 'var(--color-yellow)';
     },
-    triangleUpper() {
-      return this.sequence.triangleUpper;
+    triangleRightStaticColor() {
+      return this.thirdColor ? this.thirdColor : 'var(--color-yellow)';
     },
-    triangleRight() {
-      return this.sequence.triangleRight;
+    triangleUpperFirstColor() {
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
-    triangleLeft() {
-      return this.sequence.triangleLeft;
+    triangleBottomFirstColor() {
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
-    triangleBottom() {
-      return this.sequence.triangleBottom;
+    triangleLeftFirstColor() {
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
+    },
+    triangleRightFirstColor() {
+      return this.firstColor ? this.firstColor : 'var(--color-green-blue)';
+    },
+    triangleUpperFirst() {
+      return this.sequence.triangleUpperFirst;
+    },
+    triangleBottomFirst() {
+      return this.sequence.triangleBottomFirst;
+    },
+    triangleLeftFirst() {
+      return this.sequence.triangleLeftFirst;
+    },
+    triangleRightFirst() {
+      return this.sequence.triangleRightFirst;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
-      const duration = '3s';
+      const duration = '1s';
 
       return {
         keySplines: '0 0 1 1',
@@ -88,126 +84,99 @@ export default {
         {
           steps: [
             {
-              name: 'motion',
-              attributeName: 'motion',
-              motion: true,
-              dur: '',
-              begin: '0s',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'transform',
-              from: '1 1',
-              to: '1 1',
-              dur: '',
-              type: 'scale',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
               name: 'moveTo1',
-              from: '90',
-              to: '90',
+              from: '0 -200',
+              to: '0 0',
               dur: '',
-              type: 'rotate',
-              additive: true,
+              type: 'translate',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'moveTo2',
+              from: '0 400',
+              to: '0 200',
+              dur: '',
+              type: 'translate',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'moveTo3',
+              from: '-200 0',
+              to: '0 0',
+              dur: '',
+              type: 'translate',
+            },
+          ],
+        },
+        {
+          steps: [
+            {
+              name: 'moveTo4',
+              from: '400 0',
+              to: '200 0',
+              dur: '',
+              type: 'translate',
             },
           ],
         },
       ],
       elements: [
         {
-          name: 'triangleUpper',
-          transform: {
-            delay: 0,
-            values: '1 1;1 1',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            additive: true,
+          name: 'triangleUpperFirst',
+          moveTo1: {
+            delay: animationStepDelay,
+            start: true,
+            waitFor: 'triangleUpperFirst.reset',
           },
-          motion: {
-            delay: 0,
-            path: 'M200 -0 C200,200 200,200 200,200 C200,200 200,200 200,200',
-            keyPoints: '0;1;1',
-            keyTimes: '0;0.344444;1',
-            keySplines: '0.333 0 0.667 1;0 0 0 0',
+          reset: {
+            waitFor: 'triangleUpperFirst.moveTo1',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
         {
-          name: 'triangleRight',
-          transform: {
-            delay: 0,
-            values: '1 1;1 1',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            additive: true,
+          name: 'triangleBottomFirst',
+          moveTo2: {
+            delay: animationStepDelay,
+            start: true,
+            waitFor: 'triangleBottomFirst.reset',
           },
-          motion: {
-            delay: 0,
-            keyTimes: '0;0.344444;1',
-            path: 'M400 200 C400,200 200,200 200,200 C200,200 200,200 200,200',
-            keySplines: '0.333 0 0.667 1;0 0 0 0',
-            keyPoints: '0;1;1',
-          },
-          moveTo1: {
-            delay: 0,
-            values: '90;90',
-            keySplines: '0 0 1 1',
+          reset: {
+            waitFor: 'triangleBottomFirst.moveTo2',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
         {
-          name: 'triangleLeft',
-          moveTo1: {
-            delay: 0,
-            from: '270',
-            to: '270',
-            values: '270;270',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
+          name: 'triangleLeftFirst',
+          moveTo3: {
+            delay: animationStepDelay,
+            start: true,
+            waitFor: 'triangleLeftFirst.reset',
           },
-          motion: {
-            delay: 0,
-            keyTimes: '0;0.344444;1',
-            keySplines: '0.333 0 0.667 1;0 0 0 0',
-            path: 'M0 200 C200,200 200,200 200,200 C200,200 200,200 200,200',
-            keyPoints: '0;1;1',
-          },
-          transform: {
-            delay: 0,
-            values: '1 1;1 1',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            additive: true,
+          reset: {
+            waitFor: 'triangleLeftFirst.moveTo3',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
         {
-          name: 'triangleBottom',
-          moveTo1: {
-            delay: 0,
-            from: '180',
-            to: '180',
-            values: '180;180',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
+          name: 'triangleRightFirst',
+          moveTo4: {
+            delay: animationStepDelay,
+            start: true,
+            waitFor: 'triangleRightFirst.reset',
           },
-          motion: {
-            delay: 0,
-            keyTimes: '0;0.344444;1',
-            keySplines: '0.333 0 0.667 1;0 0 0 0',
-            path: 'M200 400 C200,400 200,200 200,200 C200,200 200,200 200,200',
-            keyPoints: '0;1;1',
-          },
-          transform: {
-            delay: 0,
-            values: '1 1;1 1',
-            keyTimes: '0;1',
-            keySplines: '0 0 1 1',
-            additive: true,
+          reset: {
+            waitFor: 'triangleRightFirst.moveTo4',
+            delay: animationDelay,
+            dur: animationStepDelay,
           },
         },
       ],
@@ -266,7 +235,7 @@ export default {
       <g :style="clipPathUrl">
         <g id="squares" >
           <template v-for="animation in animations">
-            <template v-for="stepData in getStepData('triangleUpper', animation?.steps)">
+            <template v-for="stepData in getStepData('triangleUpperFirst', animation?.steps)">
               <shape-animation
                 :id="stepData?.data?.id"
                 :href="stepData?.data?.href"
@@ -288,7 +257,7 @@ export default {
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
             </template>
-            <template v-for="stepData in getStepData('triangleRight', animation?.steps)">
+            <template v-for="stepData in getStepData('triangleBottomFirst', animation?.steps)">
               <shape-animation
                 :id="stepData?.data?.id"
                 :href="stepData?.data?.href"
@@ -310,7 +279,7 @@ export default {
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
             </template>
-            <template v-for="stepData in getStepData('triangleLeft', animation?.steps)">
+            <template v-for="stepData in getStepData('triangleLeftFirst', animation?.steps)">
               <shape-animation
                 :id="stepData?.data?.id"
                 :href="stepData?.data?.href"
@@ -332,7 +301,7 @@ export default {
                 :attributeName="stepData?.step?.attributeName"
               ></shape-animation>
             </template>
-            <template v-for="stepData in getStepData('triangleBottom', animation?.steps)">
+            <template v-for="stepData in getStepData('triangleRightFirst', animation?.steps)">
               <shape-animation
                 :id="stepData?.data?.id"
                 :href="stepData?.data?.href"
@@ -356,55 +325,90 @@ export default {
             </template>
           </template>
 
-
-
-
           <shape-animation
-            :id="firstSquare?.reset?.id"
-            :href="firstSquare?.href"
-            :begin="firstSquare?.reset?.begin"
+            :id="triangleUpperFirst?.reset?.id"
+            :href="triangleUpperFirst?.href"
+            :begin="triangleUpperFirst?.reset?.begin"
             attributeName="transform"
-            :dur="overall?.dur"
+            type="translate"
+            calcMode="paced"
+            from="0 0"
+            to="0 -200"
+            :dur="triangleUpperFirst?.reset?.dur"
             fill="freeze"
             calcMode="spline"
-            keyTimes="0;1"
-            :keySplines="overall?.keySplines"
-          ></shape-animation>
+            ></shape-animation>
+
+          <shape-animation
+            :id="triangleBottomFirst?.reset?.id"
+            :href="triangleBottomFirst?.href"
+            :begin="triangleBottomFirst?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="0 200"
+            to="0 400"
+            :dur="triangleBottomFirst?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            ></shape-animation>
+
+          <shape-animation
+            :id="triangleLeftFirst?.reset?.id"
+            :href="triangleLeftFirst?.href"
+            :begin="triangleLeftFirst?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="0 0"
+            to="-200 0"
+            :dur="triangleLeftFirst?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            ></shape-animation>
+
+          <shape-animation
+            :id="triangleRightFirst?.reset?.id"
+            :href="triangleRightFirst?.href"
+            :begin="triangleRightFirst?.reset?.begin"
+            attributeName="transform"
+            type="translate"
+            calcMode="paced"
+            from="200 0"
+            to="400 0"
+            :dur="triangleRightFirst?.reset?.dur"
+            fill="freeze"
+            calcMode="spline"
+            ></shape-animation>
         </g>
 
 
-        <g :id="triangleUpperStatic" transform=" translate(200, 200) ">
-          <path :fill="triangleUpperStaticColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleUpperFirstStatic" transform=" translate(0, 0)">
+          <polygon height="200" width="400" points="200,200 400,0 0,0" :fill="triangleUpperStaticColor" />
         </g>
-        <g :id="triangleUpper?.id">
-          <path :fill="triangleUpperColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleBottomStatic" transform=" translate(0, 200)">
+          <polygon height="200" width="400" points="200,0 400,200 0,200" :fill="triangleBottomStaticColor" />
         </g>
-        <g :id="triangleRightStatic" transform=" translate(200, 200) rotate(90) ">
-          <path :fill="triangleRightStaticColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleLeftStatic" transform=" translate(0, 0)">
+          <polygon height="400" width="200" points="0,400 200,200 0,0" :fill="triangleLeftStaticColor" />
         </g>
-        <g :id="triangleRight?.id">
-          <path :fill="triangleRightColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleRightStatic" transform=" translate(200, 0)">
+          <polygon height="400" width="200" points="200,400 0,200 200,0" :fill="triangleRightStaticColor" />
         </g>
-        <g :id="triangleLeftStatic" transform=" translate(200, 200) rotate(270) ">
-          <path :fill="triangleLeftStaticColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+
+        <g :id="triangleUpperFirst?.id" transform=" translate(0, -200)">
+          <polygon height="200" width="400" points="200,200 400,0 0,0" :fill="triangleUpperFirstColor" />
         </g>
-        <g :id="triangleLeft?.id">
-          <path :fill="triangleLeftColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleBottomFirst?.id" transform=" translate(0, 400)">
+          <polygon height="200" width="400" points="200,0 400,200 0,200" :fill="triangleBottomFirstColor" />
         </g>
-        <g :id="triangleBottomStatic" transform=" translate(200, 200) rotate(180) ">
-          <path :fill="triangleBottomStaticColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleLeftFirst?.id" transform=" translate(-200, 0)">
+          <polygon height="400" width="200" points="0,400 200,200 0,0" :fill="triangleLeftFirstColor" />
         </g>
-        <g :id="triangleBottom?.id">
-          <path :fill="triangleBottomColor"
-            d=" M200 -200 C200,-200 -200,-200 -200,-200 C-200,-200 0,-0 0,-0 C0,-0 200,-200 200,-200z " />
+        <g :id="triangleRightFirst?.id" transform=" translate(400, 0)">
+          <polygon height="400" width="200" points="200,400 0,200 200,0" :fill="triangleRightFirstColor" />
         </g>
+
       </g>
     </g>`,
 };

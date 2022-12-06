@@ -75,8 +75,9 @@ ShapeFourSquares.args = {
     {
       name: 'shape-four-squares',
       firstColor: 'var(--color-blue-light)',
-      secondColor: 'var(--color-orange)',
-      thirdColor: 'var(--color-gigas)',
+      secondColor: 'var(--color-white)',
+      thirdColor: 'var(--color-orange)',
+      fourthColor: 'var(--color-gigas)',
     },
   ],
 };
@@ -90,6 +91,7 @@ ShapeFourTriangles.args = {
       name: 'shape-four-triangles',
       firstColor: 'var(--color-orange)',
       secondColor: 'var(--color-secondary)',
+      thirdColor: 'var(--color-white)',
     },
   ],
 };
@@ -142,15 +144,15 @@ SBlock.args = {
       name: 'shape-square-circle',
     },
     {
-      backgroundColor: '#b7e349',
+      backgroundColor: 'var(--color-secondary)',
     },
     {
       name: 'shape-fast-forward',
     },
     {
-      backgroundColor: 'var(--color-yellow)',
-      firstColor: 'var(--color-white)',
-      secondColor: 'var(--color-orange)',
+      backgroundColor: 'var(--color-primary-accent-light)',
+      firstColor: 'var(--color-primary-accent)',
+      secondColor: 'var(--color-secondary)',
     },
   ],
 };
@@ -165,7 +167,7 @@ SBlockTheme.args = {
       firstColor: 'var(--color-white)',
     },
     {
-      backgroundColor: '#92e3f0',
+      backgroundColor: 'var(--color-secondary)',
     },
     {
       name: 'shape-fast-forward',
@@ -187,10 +189,6 @@ TBlock.args = {
   name: 't-block',
   shapes: [
     {
-      name: 'shape-moving-eye',
-      firstColor: 'var(--color-yellow)',
-    },
-    {
       name: 'shape-half-square',
       backgroundColor: 'var(--color-blue-light)',
       firstColor: 'var(--color-page-detail-shape)',
@@ -198,14 +196,19 @@ TBlock.args = {
       thirdColor: 'var(--color-primary-accent)',
     },
     {
+      backgroundColor: 'var(--color-page-detail-shape)',
+      firstColor: 'var(--color-orange)',
+      secondColor: 'var(--color-background)',
+    },
+    {
       name: 'shape-semi-circle',
       backgroundColor: 'var(--color-green-blue)',
       firstColor: 'var(--color-yellow)',
     },
     {
-      backgroundColor: '#9f67c7',
-      firstColor: '#ebe663',
-      secondColor: '#4ed950',
+      name: 'shape-moving-eye',
+      backgroundColor: 'var(--color-gigas)',
+      firstColor: 'var(--color-yellow)',
     },
   ],
 };
@@ -217,13 +220,13 @@ LBlock.args = {
   shapes: [
     {
       name: 'shape-moving-eye',
-      squareColor: 'var(--color-green-blue)',
-      eyeColor: 'var(--color-yellow)',
+      backgroundColor: 'var(--color-gigas)',
+      firstColor: 'var(--color-yellow)',
     },
     {
-      name: 'shape-semi-circle',
-      squareColor: 'var(--color-green-blue)',
-      circleColor: 'var(--color-yellow)',
+      backgrounddColor: 'var(--color-yellow)',
+      firstColor: 'var(--color-orange)',
+      secondColor: 'var(--color-white)',
     },
     {
       name: 'shape-half-square',
@@ -233,9 +236,9 @@ LBlock.args = {
       thirdColor: 'var(--color-primary-accent)',
     },
     {
-      backgroundColor: 'var(--color-yellow)',
-      leftTriangleColor: 'var(--color-orange)',
-      rightTriangleColor: 'var(--color-white)',
+      name: 'shape-semi-circle',
+      squareColor: 'var(--color-green-blue)',
+      circleColor: 'var(--color-yellow)',
     },
   ],
 };

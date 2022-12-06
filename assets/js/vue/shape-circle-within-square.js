@@ -9,29 +9,26 @@ const tagName = 'shape-circle-within-square';
 export default {
   tagName: tagName,
   computed: {
-    // classList() {
-    //   return ['shape-square-forward', 'vue-component'];
-    // },
     begin() {
       return this.start ? this.start : defaultStart;
     },
     firstSquareStaticColor() {
-      return this.firstColor ? this.firstColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
     firstCircleColor() {
-      return this.secondColor ? this.secondColor : '#ffffff';
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
     secondSquareColor() {
-      return this.secondColor ? this.secondColor : '#0072c6';
+      return this.secondColor ? this.secondColor : 'var(--color-white)';
     },
     secondCircleColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-gigas)';
     },
     thirdSquareColor() {
-      return this.thirdColor ? this.thirdColor : '#0072c6';
+      return this.thirdColor ? this.thirdColor : 'var(--color-gigas)';
     },
     thirdCircleColor() {
-      return this.firstColor ? this.firstColor : '#0072c6';
+      return this.firstColor ? this.firstColor : 'var(--color-orange)';
     },
     firstCircle() {
       return this.sequence.firstCircle;
@@ -52,9 +49,7 @@ export default {
       return this.sequence.fourthSquare;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '1.8s';
-
       return {
         keySplines: '0 0 1 1',
         dur: duration,
@@ -89,11 +84,9 @@ export default {
           steps: [
             {
               name: 'transform2',
-              // delay: '',
               from: '400 0',
               to: '0 0',
               dur: '0.3s',
-              // begin: '0s',
               type: 'translate',
             },
           ],
@@ -218,9 +211,6 @@ export default {
         if (!elementStepData) return;
 
         elementStepData.href = element.href;
-
-        // TODO overwrite property in step with elementStepData if it exists
-
         if (elementStepData.by) newStep.by = elementStepData.by;
         if (elementStepData.from) newStep.from = elementStepData.from;
         if (elementStepData.to) newStep.to = elementStepData.to;
@@ -394,7 +384,7 @@ export default {
             fill="freeze"
             calcMode="paced"
             values="1 -1;1 -1;1 1;0 0"
-             ></shape-animation>
+          ></shape-animation>
 
           <shape-animation
             :id="secondSquare?.reset?.id"

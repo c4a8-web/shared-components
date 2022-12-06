@@ -6,14 +6,14 @@ export default {
     name() {
       return tagName;
     },
-    fourthShapeBackgroundColor() {
-      return this.fourthShape.backgroundColor ? this.fourthShape.backgroundColor : '#fcd116';
+    secondShapeBackgroundColor() {
+      return this.secondShape.backgroundColor ? this.secondShape.backgroundColor : 'var(--color-page-detail-shape)';
     },
-    fourthShapeFirstColor() {
-      return this.fourthShape.firstColor ? this.fourthShape.firstColor : '#f8842c';
+    secondShapeFirstColor() {
+      return this.secondShape.firstColor ? this.secondShape.firstColor : 'var(--color-orange)';
     },
-    fourthShapeSecondColor() {
-      return this.fourthShape.secondColor ? this.fourthShape.secondColor : '#fff';
+    secondShapeSecondColor() {
+      return this.secondShape.secondColor ? this.secondShape.secondColor : 'var(--color-background)';
     },
     firstShape() {
       return this.getShapeData(0);
@@ -53,20 +53,7 @@ export default {
 
       return this.allProps(shape);
     },
-    // getShapeData(id) {
-    //   const shape = (this.shapes && this.shapes[id]) ?? {};
-
-    //   return {
-    //     name: shape.name,
-    //     backgroundColor: shape.backgroundColor ? shape.backgroundColor : null,
-    //     foregroundColor: shape.foregroundColor ? shape.foregroundColor : null,
-    //     thirdColor: shape.thirdColor ? shape.thirdColor : null,
-    //     component: shape.component ? shape.component : this.defaultComponent(id),
-    //   };
-    // },
     defaultComponent(id) {
-      // TODO component :is="component"
-
       switch (id) {
         default:
         case 0:
@@ -95,10 +82,19 @@ export default {
       </component>
 
       <component
+        v-if="secondShape.name"
         transform="translate(400 400)"
         :is="secondShape?.name"
         v-bind="secondShape">
       </component>
+
+      <g v-else transform="translate(0 0)">
+        <path :fill="secondShapeBackgroundColor" d="M 400 800 h 400 v -400 H 400 z"/>
+        <path :fill="secondShapeFirstColor" d="M 600 800 H 400 L 600 600 l 0 200 z"/>
+        <path :fill="secondShapeSecondColor" d="m 800 800 l -200 -200 H 600 V 800 z"/>
+        <path :fill="secondShapeFirstColor" d="m 400 600 l 200 -200 H 600 V 600 z"/>
+        <path :fill="secondShapeSecondColor" d="m 800 600 l -200 -200 H 600 V 600 z"/>
+      </g>
 
       <component
         transform="translate(0 400)"
@@ -107,19 +103,10 @@ export default {
       </component>
 
       <component
-        v-if="fourthShape.name"
         transform="translate(400 800)"
         :is="fourthShape?.name"
         v-bind="fourthShape">
       </component>
-      <g v-else transform="translate(0 400)">
-        <path :fill="fourthShapeBackgroundColor" d="M 400 800 h 400 v -400 H 400 z"/>
-        <path :fill="fourthShapeFirstColor" d="M 600 800 H 400 L 600 600 l 0 200 z"/>
-        <path :fill="fourthShapeSecondColor" d="m 800 800 l -200 -200 H 600 V 800 z"/>
-        <path :fill="fourthShapeFirstColor" d="m 400 600 l 200 -200 H 600 V 600 z"/>
-        <path :fill="fourthShapeSecondColor" d="m 800 600 l -200 -200 H 600 V 600 z"/>
-      </g>
-
     </svg>
   `,
 };
