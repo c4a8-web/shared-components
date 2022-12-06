@@ -121,6 +121,15 @@
 
 .testimonial-teaser__title {
   padding: spacing(2);
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
 }
 
 .testimonial-teaser__name-background,
