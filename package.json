@@ -14,10 +14,10 @@
   "devDependencies": {
     "@babel/core": "^7.15.8",
     "@babel/preset-react": "^7.16.0",
-    "@storybook/addon-actions": "^6.4.0",
-    "@storybook/addon-essentials": "^6.4.0",
-    "@storybook/addon-links": "^6.4.0",
-    "@storybook/html": "^6.4.0",
+    "@storybook/addon-actions": "^6.5.14",
+    "@storybook/addon-essentials": "^6.5.14",
+    "@storybook/addon-links": "^6.5.14",
+    "@storybook/html": "^6.5.14",
     "babel-loader": "^8.2.2"
   },
   "dependencies": {
