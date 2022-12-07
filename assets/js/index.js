@@ -1,12 +1,20 @@
 import i18n from './i18n/index.js';
 import VueSetup from './vue-setup.js';
 
+import Events from './events.js';
+import State from './state.js';
+import Tools from './tools.js';
+
 const handleLoadingError = function (error) {
   console.error('There was an issue loading a component. It might be blocked by an Adblock Script.', error);
 };
 
 const handleAdBlockerError = function (error) {
-  console.error('TODO handle adBlockError', error);
+  console.error('This issue is propably caused by an AdBlocker', error);
+
+  const customEvent = new CustomEvent(Events.AD_BLOCK_INFO, {});
+
+  document.dispatchEvent(customEvent);
 };
 
 const Form = import('./components/form.js')
@@ -14,10 +22,6 @@ const Form = import('./components/form.js')
     return module.default;
   })
   .catch(handleLoadingError);
-
-import Events from './events.js';
-import State from './state.js';
-import Tools from './tools.js';
 
 let componentLoadingList;
 
