@@ -28,6 +28,14 @@
       height: 100%;
     }
   }
+
+  &.modal--slim {
+    .modal__close {
+      width: spacing(10);
+      height: spacing(10);
+      margin-right: spacing($size: 10, $negative: true);
+    }
+  }
 }
 
 .modal__header {

@@ -24,6 +24,9 @@ export default {
     slimMode() {
       return Tools.isTrue(this.slim);
     },
+    size() {
+      return this.slim ? 'small' : null;
+    },
   },
   mounted() {
     this.bindEvents();
@@ -87,7 +90,7 @@ export default {
         <div class="modal__content">
           <div class="modal__header">
             <div class="modal__close">
-              <icon icon="close" :hover="true" :circle="true" />
+              <icon icon="close" :hover="true" :circle="true" :size="size" />
             </div>
           </div>
           <div class="modal__body">

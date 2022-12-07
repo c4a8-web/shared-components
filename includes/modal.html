@@ -27,7 +27,13 @@
       success=modalSuccess
     %}
   {% elsif modalContent %}
-    {{ modalContent }}
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          {{ modalContent }}
+        </div>
+      </div>
+    </div>
   {% endif %}
 </modal>
 <!-- End Shared Modal Section -->
