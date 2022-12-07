@@ -21,12 +21,12 @@ export default {
 
     if (!Tools.isTrue(this.show)) return;
 
-    if (this.isDisabled()) return;
-
     this.openModal();
   },
   methods: {
     bindEvents() {
+      if (this.isDisabled()) return;
+
       document.addEventListener(Events.AD_BLOCK_INFO, () => {
         this.openModal();
       });
