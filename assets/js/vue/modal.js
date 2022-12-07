@@ -1,3 +1,4 @@
+import Modal from '../modal.js';
 import Tools from '../tools.js';
 import State from '../state.js';
 
@@ -5,7 +6,7 @@ export default {
   tagName: 'modal',
   computed: {
     classList() {
-      return ['modal fade', 'vue-component'];
+      return ['modal fade', `${this.slimMode ? 'modal--slim' : ''}`, 'vue-component'];
     },
     dialogClassList() {
       return ['modal-dialog', `${this.slimMode ? 'modal-lg' : 'modal-xl'}`];
@@ -26,6 +27,10 @@ export default {
   },
   mounted() {
     this.bindEvents();
+
+    if (this.show !== true) return;
+
+    this.openModal();
   },
   unmounted() {
     this.observer.disconnect();
@@ -51,6 +56,13 @@ export default {
     handleMutation() {
       this.setModalMode(this.isModalOpen());
     },
+    openModal() {
+      const openDelay = 70;
+
+      setTimeout(() => {
+        Modal.open(this.$refs['modal']);
+      }, openDelay);
+    },
   },
   data() {
     return {
@@ -64,14 +76,17 @@ export default {
     slim: {
       default: null,
     },
+    show: {
+      default: null,
+    },
   },
   template: `
     <div :class="classList" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)" ref="modal"
-          v-bind="settings" >
+          v-bind="settings">
       <div :class="dialogClassList">
         <div class="modal__content">
           <div class="modal__header">
-            <div class="modal__close" v-if="!slim">
+            <div class="modal__close">
               <icon icon="close" :hover="true" :circle="true" />
             </div>
           </div>
