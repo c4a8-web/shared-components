@@ -10,10 +10,18 @@ export default {
       default: null,
     },
   },
+  data() {
+    return {
+      disableDelay: 24 * 60 * 60 * 1000,
+      storageKey: 'adBlockInfo',
+    };
+  },
   mounted() {
     this.bindEvents();
 
     if (!Tools.isTrue(this.show)) return;
+
+    if (this.isDisabled()) return;
 
     this.openModal();
   },
@@ -25,6 +33,18 @@ export default {
     },
     openModal() {
       Modal.open(this.$refs['modal-component']?.modal);
+
+      this.disableInfoByTime();
+    },
+    disableInfoByTime() {
+      const timeToDisable = Date.now() + this.disableDelay;
+
+      Tools.storageSave(this.storageKey, timeToDisable);
+    },
+    isDisabled() {
+      const storageValue = Tools.storageGet(this.storageKey);
+
+      return storageValue && storageValue > 0 && Date.now() <= storageValue;
     },
   },
   template: `
