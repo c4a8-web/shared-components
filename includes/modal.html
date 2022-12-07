@@ -5,11 +5,16 @@
 {%- assign modalClientName = include.clientName -%}
 {%- assign modalApiUrl = include.apiUrl -%}
 {%- assign modalJobId = include.jobId -%}
+{%- assign modalShow = include.show -%}
+{%- assign modalSlim = include.slim -%}
+{%- assign modalContent = include.content -%}
 
 <modal
     client-name="{{ modalClientName }}"
     api-url="{{ modalApiUrl }}"
     job-id="{{ modalJobId }}"
+    :show="{{ modalShow }}"
+    :slim="{{ modalSlim }}"
 >
   {% if modalApplication %}
 
@@ -21,6 +26,14 @@
       form=modalForm
       success=modalSuccess
     %}
+  {% elsif modalContent %}
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          {{ modalContent }}
+        </div>
+      </div>
+    </div>
   {% endif %}
 </modal>
 <!-- End Shared Modal Section -->

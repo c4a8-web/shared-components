@@ -1,0 +1,8 @@
+{%- assign adBlockInfoText = include.text -%}
+{%- assign adBlockInfoShow = include.show -%}
+
+<ad-block-info
+  text="{{ adBlockInfoText | escape }}"
+  :show="{{ adBlockInfoShow }}"
+>
+</ad-block-info>
