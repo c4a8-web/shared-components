@@ -4,6 +4,7 @@ class Tools {
     style: 'decimal',
     maximumFractionDigits: 0,
   });
+  static storagePrefix = '@gab_';
 
   static intersection = (r1, r2) => {
     const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
@@ -280,6 +281,14 @@ class Tools {
     const isStorybook = document.location.pathname.indexOf(storybookPath) !== -1;
 
     return isStorybook ? `${storybookPath}${path}` : path;
+  }
+
+  static storageSave(key, value) {
+    localStorage.setItem(Tools.storagePrefix + key, JSON.stringify(value));
+  }
+
+  static storageGet(key) {
+    return localStorage.getItem(Tools.storagePrefix + key);
   }
 }
 
