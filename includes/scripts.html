@@ -29,9 +29,6 @@
 {% if loadSlick %}
   <script src="/_includes/shared-components/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js"></script>
 {% endif %}
-{% if page.scripts.video %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-video-player/dist/hs-video-player.min.js"></script>
-{% endif %}
 {% if loadLightbox %}
   <script src="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
 {% endif %}
@@ -93,12 +90,6 @@
         var slickCarousel = $.HSCore.components.HSSlickCarousel.init($(this));
       });
     }
-    {% endif %}
-
-    {% if page.scripts.video %}
-    $('.js-inline-video-player').each(function () {
-      var videoPlayer = new HSVideoPlayer($(this)).init();
-    });
     {% endif %}
 
     {% if page.scripts.videobg %}
