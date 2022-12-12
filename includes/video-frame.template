@@ -14,7 +14,7 @@
 
 <!-- Shared Video Frame Section -->
 
-<div id="{{ videoFrameParentId }}"  class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
+<div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
   <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
     "videoId": "{{ videoFrameId }}",
     "parentSelector": "#{{ videoFrameParentId }}",
