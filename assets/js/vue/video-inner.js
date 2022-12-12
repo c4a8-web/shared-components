@@ -1,3 +1,5 @@
+import YoutubePlayer from '../youtube-player.js';
+
 export default {
   tagName: 'video-inner',
   computed: {
@@ -62,18 +64,22 @@ export default {
 
       return JSON.stringify(options);
     },
-    dataOptionsRegular() {
-      const options = {
+    options() {
+      return {
         videoId: this.videoParsed.id,
         parentSelector: '#' + this.videoId,
         targetSelector: '#' + this.videoFrameId,
         isAutoplay: true,
       };
-
-      return JSON.stringify(options);
+    },
+    dataOptionsRegular() {
+      return JSON.stringify(this.options);
     },
     dataSrc() {
       return '//www.youtube-nocookie.com/' + this.videoParsed.id;
+    },
+    embedSrc() {
+      return YoutubePlayer.getEmbedSrc(this.videoParsed.id, this.options.isAutoplay);
     },
     dataCaption() {
       return this.videoParsed.headline;
@@ -81,10 +87,6 @@ export default {
   },
   mounted() {
     $?.HSCore?.components?.HSFancyBox?.init($(this.$refs['lightbox']));
-
-    if (!window.HSVideoPlayer) return console.error('HSVideoPlayer not found');
-
-    new HSVideoPlayer($(this.$refs['video-player'])).init();
   },
   methods: {
     isReversed() {
@@ -136,7 +138,7 @@ export default {
             </a>
           </template>
           <div class="embed-responsive embed-responsive-16by9">
-            <div :id="videoFrameId"></div>
+            <iframe v-if="isPlayed" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" width="640" height="360" :src="embedSrc" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
           </div>
         </template>
       </div>
