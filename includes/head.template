@@ -56,7 +56,7 @@
     {%- assign loadSlick = false -%}
   {%- endif -%}
 
-  {%- if page.scripts.lightbox or page.layout == 'post' page.layout == 'casestudies' -%}
+  {%- if page.scripts.lightbox or page.layout == 'post' or page.layout == 'casestudies' or layout.scripts.lightbox -%}
     {%- assign loadLightbox = true -%}
   {%- else -%}
     {%- assign loadLightbox = false -%}
