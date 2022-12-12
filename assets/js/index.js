@@ -97,6 +97,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./components/video-frame.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./modal.js')
     .then((module) => {
       return module.default;
