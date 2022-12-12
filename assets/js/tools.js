@@ -254,7 +254,7 @@ class Tools {
       videoId = regExp2[1];
     }
 
-    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    return `https://i1.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
   }
 
   static truncateWords(string, number) {
