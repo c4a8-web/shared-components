@@ -325,6 +325,10 @@ class Tools {
   static storageGet(key) {
     return localStorage.getItem(Tools.storagePrefix + key);
   }
+
+  static getLang() {
+    return document.querySelector('html').getAttribute('lang') || 'en';
+  }
 }
 
 export default Tools;

@@ -11,11 +11,17 @@ export default {
 
 const Template = (args) => createComponent(args, adBlockInfoTemplate);
 
-export const AdBlockInfo = Template.bind({});
+export const CustomText = Template.bind({});
 
 // TODO find a way to just trigger this when adblock is enabled on
 
-AdBlockInfo.args = {
+CustomText.args = {
   show: true,
   text: '<h3>AdBlocker Info</h3>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.',
+};
+
+export const DefaultText = Template.bind({});
+
+DefaultText.args = {
+  show: true,
 };
