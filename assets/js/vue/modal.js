@@ -9,7 +9,11 @@ export default {
       return ['modal fade', `${this.slimMode ? 'modal--slim' : ''}`, 'vue-component'];
     },
     dialogClassList() {
-      return ['modal-dialog', `${this.slimMode ? 'modal-lg' : 'modal-xl'}`];
+      return [
+        'modal-dialog',
+        `${this.slimMode ? 'modal-lg' : 'modal-xl'}`,
+        `${this.center ? 'modal-dialog-centered' : ''}`,
+      ];
     },
     settings() {
       return {
@@ -80,6 +84,9 @@ export default {
       default: null,
     },
     show: {
+      default: null,
+    },
+    center: {
       default: null,
     },
   },
