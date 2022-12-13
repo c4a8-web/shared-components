@@ -1,5 +1,6 @@
 {%- assign formField = include.field -%}
 {%- assign formFieldReplaceValue = include.replaceValue -%}
+{%- assign formFieldTextLight = include.textLight | default: false -%}
 
 {%- if formField.options.first -%}
   {%- assign options = formField.options -%}
@@ -114,6 +115,7 @@
   :field="{{ formField | jsonify | escape }}"
   :options="{{ options | jsonify | escape }}"
   replace-value="{{ formFieldReplaceValue }}"
+  text-light="{{ formFieldTextLight }}"
 />
 
 <!-- End Shared Form Fields Section -->

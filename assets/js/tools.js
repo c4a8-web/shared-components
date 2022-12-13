@@ -4,6 +4,7 @@ class Tools {
     style: 'decimal',
     maximumFractionDigits: 0,
   });
+  static storagePrefix = '@gab_';
 
   static intersection = (r1, r2) => {
     const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
@@ -30,7 +31,7 @@ class Tools {
   static scrollIntoView(element, smooth) {
     if (element) {
       const header = document.querySelector('header');
-      const headerOffset = header?.offsetHeight + 40;
+      const headerOffset = header ? header?.offsetHeight + 40 : 0;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - headerOffset + window.scrollY;
 
@@ -235,7 +236,7 @@ class Tools {
   }
 
   static isBelowBreakpoint(breakpoint) {
-    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
+    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
     const getBreakpoint = Tools.getBreakpoint();
     let breakpointIndex = breakpointArray.indexOf(breakpoint);
 
@@ -253,7 +254,7 @@ class Tools {
       videoId = regExp2[1];
     }
 
-    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    return `https://i1.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
   }
 
   static truncateWords(string, number) {
@@ -315,6 +316,18 @@ class Tools {
     finder(obj, matcher, obj, callback);
 
     return result;
+  }
+
+  static storageSave(key, value) {
+    localStorage.setItem(Tools.storagePrefix + key, JSON.stringify(value));
+  }
+
+  static storageGet(key) {
+    return localStorage.getItem(Tools.storagePrefix + key);
+  }
+
+  static getLang() {
+    return document.querySelector('html').getAttribute('lang') || 'en';
   }
 }
 

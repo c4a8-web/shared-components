@@ -2,10 +2,19 @@
 {%- assign heroTextImageHero = page.hero | default: include.hero | default: hero -%}
 {%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
 {%- assign heroTextImagePattern = heroTextImageHero.pattern | default: false -%}
+{%- assign heroTextVideo = heroTextImageHero.video | default: false -%}
+
+
+{%- assign heroContainerPosition = "justify-content-lg-between" -%}
+{%- assign heroSublineStyling = "hero-text-image__subline" %}
 
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = false %}
+{%- else if heroTextImageVariant == 'hero--safety' -%}
+  {% assign heroTextImageCtaTop = false -%}
+  {% assign heroTextImageSrcSet = false %}
+  {% assign heroContainerPosition = "justify-content-lg-between pb-10 " %}
 {%- else if heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
@@ -14,6 +23,11 @@
   {% assign heroTextImageSrcSet = false %}
 {%- endif -%}
 
+{%- if heroTextImageVariant == 'hero--security' -%}
+  {% assign heroTextImageCtaTop = true %}
+  {% assign heroContainerPosition = "justify-content-lg-center" %}
+  {% assign heroSublineStyling = "" %}
+{% endif %}
 {%- if heroTextImageHero.cta -%}
   {%- capture heroTextImageCta -%}
     <div class="hero-text-image__cta-wrapper">
@@ -86,7 +100,7 @@
 
 <div class="hero-text-image is-component {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
-    style="{% if heroTextImageHero.bgColor %}background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
+    style="{% if heroTextImageHero.bgColor %}--color-hero-text-image-background: {{ heroTextImageHero.bgColor }};background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
 >
   {% if heroTextImageHero.fullscreen %}
     <div class="hero-text-image__fullscreen position-absolute">
@@ -99,13 +113,16 @@
     </div>
   {% endif %}
   <div class="container z-index-4">
-    <div class="row justify-content-lg-between align-items-lg-center pt-lg-5 position-relative">
+    <div class="hero-text-image__row row {{ heroContainerPosition }} align-items-lg-center pt-lg-5 position-relative">
       {% if heroTextImageHero.background %}
         <div class="hero-text-imge__img-spacer col-lg-12 {{ heroTextImageHero.background.spacing }}" >
           {{ heroImage }}
+          <br/>
+          <p class="hero-text-image__img-spacer-subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         </div>
       {% endif %}
-      <div class="hero-text-image__wrapper col-lg-8">
+
+      <div class="hero-text-image__wrapper col-lg-8 w-100">
         {% if heroTextImageHero.back %}
           <div class="hero-text-image__back back">
             {%
@@ -117,6 +134,24 @@
             %}
           </div>
         {% endif %}
+
+        {% if heroTextImageHero.video %}
+          <div class="hero-text-image__video">
+            {% comment %}
+              TODO REMOVE me in template and scss
+              <video class="hero-text-video--desktop justify-content-center" controls autoplay muted disablePictureInPicture controlsList="nodownload">
+                <source src="{{ heroTextImageHero.videoLocationDesktop }}">
+              </video>
+              <video class="hero-text-video--mobile justify-content-center" autoplay muted disablePictureInPicture controlsList="nodownload">
+                <source src="{{ heroTextImageHero.videoLocationMobile }}">
+              </video>
+            {% endcomment %}
+            {%
+              include letter-switcher.html
+            %}
+          </div>
+        {% endif %}
+
         {% if heroTextImageHero.overline %}
           <span class="hero-text-image__overline">
             {{ heroTextImageHero.overline }}
@@ -124,7 +159,10 @@
         {% endif %}
         {% unless heroTextImageHero.animation %}
           <h1 class="hero-text-image__headline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.headlineClass }}">{{ heroTextImageHero.headline }}</h1>
-          <p class="hero-text-image__subline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
+          {% if heroTextImageHero.underline %}
+            <p class="hero-text-image__underline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.underlineClass }} ">{{ heroTextImageHero.underline }}</p>
+          {% endif %}
+          <p class="hero-text-image__subline {{ heroSublineStyling }} {{ heroTextImageIsLightClass }} {{ heroTextImageHero.sublineClass }} lead">{{ heroTextImageHero.subline }}</p>
         {% endunless %}
 
         {% if heroTextImageHero.img %}
@@ -139,7 +177,7 @@
           </div>
         {% endif %}
         {% if heroTextImageHero.cta and heroTextImageCtaTop == true %}
-          <div class="pt-4">
+          <div class="pt-4 {% if heroTextImageHero.video == true %}hero-video__animation text-center justify-content-lg-center {% endif %}">
             {{ heroTextImageCta }}
           </div>
         {% endif %}

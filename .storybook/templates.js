@@ -7,6 +7,7 @@ import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
 import Contact from './data/contact';
+import Checks from './data/checks'
 import Posts from './data/posts';
 import Events from './data/events';
 import CaseStudies from './data/casestudies';
@@ -25,6 +26,7 @@ const site = {
     imgSrcSets: ImgSrcSets,
     products: Products,
     contact: Contact,
+    checks: Checks,
     authors: Authors,
     lang: Lang,
     options: Options,

@@ -32,24 +32,24 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 .people-square__element {
-  img, picture {
+  img,
+  picture {
     position: absolute;
     max-height: max-content;
     max-width: max-content;
     height: 100%;
   }
   &.people-square__element--extended {
-    img, picture {
+    img,
+    picture {
       width: 100%;
       height: auto;
     }
   }
 }
-
 
 .people-square__background {
   position: absolute;

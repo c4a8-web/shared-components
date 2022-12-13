@@ -18,7 +18,11 @@ class Form extends BaseComponent {
     this.formSelector = '.form__form';
     this.gotchaSelector = '.form__super-field';
     this.attachmentSelector = 'input[type="file"][required]';
+    this.subjectSelector = 'input[name="_subject"]';
+    this.companySelector = 'input[id="company"]';
     this.form = root.querySelector(this.formSelector);
+    this.subject = root.querySelector(this.subjectSelector);
+    this.company = root.querySelector(this.companySelector);
 
     this.groups = {};
     this.minLengthOther = 1;
@@ -27,9 +31,45 @@ class Form extends BaseComponent {
     this.updateGotcha();
     this.addValidation();
 
+    if (this.form && this.subject && this.hasUrlParameter()) {
+      this.prefillFormValues();
+    }
+
     if (!this.options?.noEvents) {
       this.bindEvents();
+    } else if (this.isCompanyForm()) {
+      this.addSubjectListener();
     }
+  }
+
+  isCompanyForm() {
+    return this.form && this.subject && this.company;
+  }
+
+  hasUrlParameter() {
+    if (window.location.search === '') return;
+
+    return true;
+  }
+
+  prefillFormValues() {
+    const searchParams = new URLSearchParams(window.location.search);
+
+    for (const [key, value] of searchParams.entries()) {
+      this.prefillFormValue(key, value);
+    }
+  }
+
+  prefillFormValue(name, value) {
+    const form = this.form;
+
+    if (!form) return;
+
+    const input = form.querySelector(`input[name="${name}"],textarea[name="${name}"]`);
+
+    if (!input) return;
+
+    input.value = value;
   }
 
   hasCustomValidation() {
@@ -41,10 +81,14 @@ class Form extends BaseComponent {
   }
 
   bindEvents() {
-    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit()) {
+    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) {
       this.form.addEventListener('submit', this.handleSubmit.bind(this));
       this.form.addEventListener('reset', this.handleReset.bind(this));
     }
+  }
+
+  addSubjectListener() {
+    this.form.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
   handleReset() {
@@ -71,9 +115,17 @@ class Form extends BaseComponent {
     }
   }
 
+  updateSubject() {
+    if (!this.subject || !this.company) return;
+
+    this.subject.value = this.subject.value + ': ' + this.company.value;
+  }
+
   submit(e) {
     e.stopImmediatePropagation();
     e.preventDefault();
+
+    this.updateSubject();
 
     if (this.customSubmit) {
       this.customSubmit(e);

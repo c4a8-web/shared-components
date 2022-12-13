@@ -28,6 +28,17 @@
       height: 100%;
     }
   }
+
+  &.modal--slim {
+    .modal__close {
+      width: spacing(10);
+      height: spacing(10);
+
+      @include media-breakpoint-up(lg) {
+        margin-right: spacing($size: 10, $negative: true);
+      }
+    }
+  }
 }
 
 .modal__header {
@@ -115,6 +126,10 @@
     width: 200px;
     height: 100%;
   }
+}
+
+.modal--open {
+  overflow: hidden;
 }
 
 modal {

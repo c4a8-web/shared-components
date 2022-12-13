@@ -131,7 +131,7 @@
     content: '';
     display: block;
     width: 100%;
-    padding-top: ($height / $width) * 100%;
+    padding-top: calc((#{$height} / #{$width}) * 100%);
   }
 
   > * {

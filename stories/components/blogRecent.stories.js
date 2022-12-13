@@ -19,6 +19,26 @@ BlogRecent.args = {
   slider: true,
 };
 
+export const BlogRecentSubline = Template.bind({});
+
+BlogRecentSubline.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  subline: 'lorem ipsum subline lorem ipsum lorem ipsum lorem ipsum',
+  slider: true,
+};
+
+export const BlogRecentHeadline = Template.bind({});
+
+BlogRecentHeadline.args = {
+  limit: 21,
+  headline: 'lorem ipsum headline',
+  level: 'h2',
+  headlineClasses: 'text-white',
+  slider: true,
+  bgColor: 'var(--color-gigas)',
+};
+
 export const Events = Template.bind({});
 
 Events.args = {
@@ -56,7 +76,7 @@ export const CaseStudies = Template.bind({});
 
 CaseStudies.args = {
   limit: 21,
-  limitCaseStudies: 4,
+  limitCaseStudies: 5,
   headline: 'lorem ipsum headline',
   slider: true,
   caseStudies: true,

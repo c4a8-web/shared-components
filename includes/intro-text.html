@@ -1,0 +1,28 @@
+<!-- Intro Text Section -->
+{%- assign introTextCopy = include.copy -%}
+{%- assign introTextVariant = include.variant -%}
+{%- assign introTextHeadline = include.headline -%}
+{%- assign introTextSpacing = include.spacing -%}
+
+<figure class="intro-text {{ introTextVariant }} {{ introTextSpacing }}">
+  <div class="container space-lg-2">
+    {% if introTextHeadline %}
+      <div class="row mb-9 mt-9">
+        <div class="col text-center">
+          {%
+            include headline.html
+            text=introTextHeadline
+          %}
+        </div>
+      </div>
+    {% endif %}
+    <div class="row">
+      <div class="col">
+        <p class="intro-text__copy">
+          {{ introTextCopy }}
+        </p>
+      </div>
+    </div>
+  </div>
+</figure>
+<!-- End Intro Text Section -->
