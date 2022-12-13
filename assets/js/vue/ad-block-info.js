@@ -58,6 +58,7 @@ export default {
       <modal
         ref="modal-component"
         slim=true
+        center=true
       >
         <div class="container">
           <div class="row">
