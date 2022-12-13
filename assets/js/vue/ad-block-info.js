@@ -1,6 +1,7 @@
 import Modal from '../modal.js';
 import Events from '../events.js';
 import Tools from '../tools.js';
+import Lang from '../lang.js';
 
 export default {
   tagName: 'ad-block-info',
@@ -8,6 +9,11 @@ export default {
     text: String,
     show: {
       default: null,
+    },
+  },
+  computed: {
+    textValue() {
+      return this.text.length > 0 ? this.text : Lang.adBlockInfo;
     },
   },
   data() {
@@ -48,14 +54,14 @@ export default {
     },
   },
   template: `
-    <div class="ad-block-info vue-component" v-if="text">
+    <div class="ad-block-info vue-component" v-if="textValue">
       <modal
         ref="modal-component"
         slim=true
       >
         <div class="container">
           <div class="row">
-            <div class="col" v-html="text"></div>
+            <div class="col" v-html="textValue"></div>
           </div>
         </div>
       </modal>
