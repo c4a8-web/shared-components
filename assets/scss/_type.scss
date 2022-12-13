@@ -107,6 +107,16 @@ $font-style-map: (
   }
 }
 
+@mixin font-size-5($breakpoint: false, $important: false) {
+  $important-string: '';
+
+  @if ($important) {
+    $important-string: ' !important';
+  }
+
+  font-size: $font-size-5 #{$important-string};
+}
+
 @mixin font-style($style, $weight: null, $line: null) {
   $map: $font-style-map;
   $selector: map-get($map, $style);
@@ -137,6 +147,18 @@ $font-style-map: (
     strong {
       font-weight: inherit;
     }
+  }
+}
+
+@mixin line-height($height: 'normal') {
+  @if $height == 'thin' {
+    line-height: 1.2em;
+  } @else if $height == 'wide' {
+    line-height: 1.7em;
+  } @else if $height == 'middle' {
+    line-height: 1.4em;
+  } @else {
+    line-height: var(--type-default-line-height);
   }
 }
 
@@ -222,11 +244,15 @@ $font-style-map: (
     }
 
     &.wide {
-      line-height: 1.7em;
+      @include line-height('wide');
+    }
+
+    &.middle {
+      @include line-height('middle');
     }
 
     &.thin {
-      line-height: 1.2em;
+      @include line-height('thin');
     }
   }
 
@@ -403,7 +429,7 @@ $font-style-map: (
 
   %font-size-5,
   .font-size-5 {
-    font-size: $font-size-5;
+    @include font-size-5;
   }
 
   %font-size-6,

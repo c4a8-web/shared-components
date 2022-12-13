@@ -44,6 +44,7 @@ export default {
     type: String,
     additive: Boolean,
     isMotion: Boolean,
+    isAnimate: Boolean,
     path: String,
     values: String,
   },

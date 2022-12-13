@@ -1,29 +1,29 @@
 {%- if page.scripts.slick -%}
-  <!-- Shared Testimonials Section -->
-  {% assign testimonials = include.testimonials %}
+  <!-- Shared Quotes Section -->
+  {% assign quotes = include.quotes %}
 
-  {%- if testimonials.items[0].img -%}
-    {%- assign testimonialsImage = true -%}
+  {%- if quotes.items[0].img -%}
+    {%- assign quotesImage = true -%}
   {% else %}
-    {%- assign testimonialsImage = false -%}
+    {%- assign quotesImage = false -%}
   {% endif %}
 
-  <div class="testimonials {% if testimonialsImage %}mb-lg-8{% else %}testimonials--no-image{% endif %} mt-8 mt-lg-10">
+  <div class="quotes {% if quotesImage %}mb-lg-8{% else %}quotes--no-image{% endif %} mt-8 mt-lg-10">
     <div class="container space-top-1 space-bottom-2 space-top-lg-2 space-bottom-lg-0">
-      <div class="testimonials__row row">
+      <div class="quotes__row row">
         <div class="col-lg-12 mb-4 mb-lg-6">
           {%
             include headline.html
-            level=testimonials.level
-            text=testimonials.headline
-            classes="h2-font-size testimonials__headline"
+            level=quotes.level
+            text=quotes.headline
+            classes="h2-font-size quotes__headline"
           %}
         </div>
-        <div class="col-sm-12 js-slick-carousel mb-lg-n8"
+        <div class="col-sm-12 slick--default js-slick-carousel mb-lg-n8"
           data-hs-slick-carousel-options='{
-            "prevArrow": "<span class=\"testimonials__arrow-left slick-arrow rounded-circle\"></span>",
-            "nextArrow": "<span class=\"testimonials__arrow-right slick-arrow rounded-circle\"></span>",
-            "dots": {% if testimonials.items.size > 1 %}true{% else %}false{% endif %},
+            "prevArrow": "<span class=\"quotes__arrow-left slick-arrow rounded-circle\"></span>",
+            "nextArrow": "<span class=\"quotes__arrow-right slick-arrow rounded-circle\"></span>",
+            "dots": {% if quotes.items.size > 1 %}true{% else %}false{% endif %},
             "dotsClass": "slick-pagination mt-8 mb-n6",
             "slidesToShow": 1,
             "centerMode": true,
@@ -41,24 +41,24 @@
             }]
           }'
         >
-          {% for item in testimonials.items %}
+          {% for item in quotes.items %}
             {% if forloop.index == 1 %}
               {%- assign active = true -%}
             {% else %}
               {%- assign active = false -%}
             {% endif %}
             {%
-              include testimonials-entry.html
+              include quotes-entry.html
               entry=item
               active=active
-              image=testimonialsImage
+              image=quotesImage
             %}
           {% endfor %}
         </div>
       </div>
     </div>
   </div>
-  <!-- End Shared Testimonials Section -->
+  <!-- End Shared quotes Section -->
 {%- else -%}
   {% include snippet-warning.html name='slick' %}
 {%- endif -%}

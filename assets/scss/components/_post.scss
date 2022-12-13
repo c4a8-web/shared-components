@@ -65,6 +65,7 @@ $post-content-width-lg: 80%;
     }
   }
 
+  .img__picture-wrapper img,
   .post__intro-img > img,
   p > img {
     border-radius: 0;
@@ -73,6 +74,7 @@ $post-content-width-lg: 80%;
   }
 
   @include media-breakpoint-up(lg) {
+    .img__picture-wrapper img,
     .post__intro-img > img,
     p > img {
       margin-top: 3.5rem;
@@ -88,11 +90,11 @@ $post-content-width-lg: 80%;
   }
 
   @include media-breakpoint-up(xl) {
+    .img__picture-wrapper img,
     .post__intro-img > img,
     p > img {
       left: -#{$post-offset-spacing-xl};
       max-width: get-container-width($name: 'xl', $with-padding: true);
-      // $right-offset-width: $post-offset-spacing-xl / 2;
     }
   }
 }

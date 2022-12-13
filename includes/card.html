@@ -1,3 +1,4 @@
+<!-- Shared Card Section -->
 {%- assign cardExcerpt = include.excerpt | default: '' -%}
 {%- assign cardBlogTitlePic = include.blogtitlepic -%}
 {%- assign cardUrl = include.url -%}
@@ -10,20 +11,22 @@
 {%- assign cardEvent = include.event -%}
 {%- assign cardTarget = include.target -%}
 {%- assign cardYoutubeUrl = include.youtubeUrl -%}
+{%- assign cardLong = include.long -%}
+{%- assign cardSubPoints = include.subpoints -%}
+{%- assign cardScope = include.scope -%}
 
 {%- unless cardDate -%}
-{%- assign cardDate = include.moment -%}
+  {%- assign cardDate = include.moment -%}
 {%- endunless -%}
 
 {%- if cardWebcast -%}
-{%- assign cardEvent = true -%}
+  {%- assign cardEvent = true -%}
 {%- endif -%}
-
-<!-- End Shared Card Section -->
-
 
 <card
   large="{{ cardLarge }}"
+  long="{{ cardLong }}"
+  sub-points="{{ cardSubPoints | jsonify | escape }}"
   blog-title-pic="{{ cardBlogTitlePic }}"
   url="{{ cardUrl }}"
   target="{{ cardTarget }}"
@@ -35,5 +38,7 @@
   web-cast="{{ cardWebcast }}"
   youtube-url="{{ cardYoutubeUrl }}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
+  scope="{{ cardScope }}"
 
 ></card>
+<!-- End Shared Card Section -->

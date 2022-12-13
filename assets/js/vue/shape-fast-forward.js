@@ -16,14 +16,13 @@ export default {
       return this.start ? this.start : defaultStart;
     },
     rectColor() {
-      // TODO: Check the hardcoded hex value. Use css variable instead?
-      return this.backgroundColor ? this.backgroundColor : '#f8842c';
+      return this.backgroundColor ? this.backgroundColor : 'var(--color-primary-accent)';
     },
     pathColor() {
-      return this.foregroundColor ? this.foregroundColor : '#fcd116';
+      return this.firstColor ? this.firstColor : 'var(--color-primary-accent-light)';
     },
     secondArrowColor() {
-      return this.thirdColor ? this.thirdColor : '#fcd116';
+      return this.secondColor ? this.secondColor : 'var(--color-secondary)';
     },
     firstArrow() {
       return this.sequence.firstArrow;
@@ -35,7 +34,6 @@ export default {
       return this.sequence.thirdArrow;
     },
     overall() {
-      // const duration = `${animationDelay - 0.3}s`;
       const duration = '1.3s';
 
       return {
@@ -268,8 +266,8 @@ export default {
   },
   props: {
     backgroundColor: String,
-    foregroundColor: String,
-    thirdColor: String,
+    firstColor: String,
+    secondColor: String,
     start: String,
     width: String,
   },

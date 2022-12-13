@@ -10,7 +10,7 @@
   {%- assign loadSlick = false -%}
 {%- endif -%}
 
-{%- if page.scripts.lightbox or page.layout == 'post' page.layout == 'casestudies' -%}
+{%- if page.scripts.lightbox or page.layout == 'post' or page.layout == 'casestudies' or layout.scripts.lightbox -%}
   {%- assign loadLightbox = true -%}
 {%- else -%}
   {%- assign loadLightbox = false -%}
@@ -28,9 +28,6 @@
 <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js"></script>
 {% if loadSlick %}
   <script src="/_includes/shared-components/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js"></script>
-{% endif %}
-{% if page.scripts.video %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-video-player/dist/hs-video-player.min.js"></script>
 {% endif %}
 {% if loadLightbox %}
   <script src="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
@@ -93,12 +90,6 @@
         var slickCarousel = $.HSCore.components.HSSlickCarousel.init($(this));
       });
     }
-    {% endif %}
-
-    {% if page.scripts.video %}
-    $('.js-inline-video-player').each(function () {
-      var videoPlayer = new HSVideoPlayer($(this)).init();
-    });
     {% endif %}
 
     {% if page.scripts.videobg %}

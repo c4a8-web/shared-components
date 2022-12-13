@@ -23,7 +23,7 @@ class SiteiconsTag {
   }
 
   render(context, emitter) {
-    return '';
+    return '<span style="display:none">I WILL ONLY BE RENDERED IN JEKYLL CONTEXT</span>';
     return `TODO implement ${this.name}Tag`;
   }
 }

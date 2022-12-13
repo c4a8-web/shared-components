@@ -34,6 +34,7 @@ $color-blue-medium: #0072c6;
   --color-porcelain: #f3f5f6;
   --color-bon-jour: #e5e2e2;
   --color-deep-sea: #008774;
+  --color-mint-green: #80f785;
   --color-midnight: #011e33;
   --color-regent-grey: #808e99;
   --color-geyser: #d1d9dd;
@@ -57,6 +58,8 @@ $color-blue-medium: #0072c6;
   --color-manhatten: #f3b394;
   --color-jacarta: #19122f;
   --color-wistful: #b2a7d2;
+  --color-lochmara: #007ac8;
+  --color-polar: #f6f9fd;
 
   --color-white: #fff;
 
@@ -64,6 +67,8 @@ $color-blue-medium: #0072c6;
   --color-copy: var(--color-blue-dark);
   --color-copy-light: var(--color-white);
   --color-copy-lowlight: var(--color-black-30);
+
+  --color-active: var(--color-primary);
 
   // rules that default to everything
 
@@ -131,6 +136,7 @@ $color-blue-medium: #0072c6;
   --color-badge-background: var(--color-orange);
 
   --color-card-background: var(--color-black-4);
+  --color-card-highlight: var(--color-orange);
 
   --color-back-to-top-border: var(--color-black-30);
   --color-back-to-top-hover-background: var(--color-blue-dark);
@@ -142,6 +148,20 @@ $color-blue-medium: #0072c6;
 
   --color-modal-error-title: var(--color-red);
   --color-modal-error-contact: var(--color-black);
+
+  --color-letter-switcher-highlight: var(--color-lochmara);
+  --color-letter-switcher-copy: var(--color-copy-light);
+  --color-letter-switcher-overline: var(--color-yellow);
+  --color-letter-switcher-underline: var(--color-orange);
+
+  --color-scroll-arrow: var(--color-orange);
+
+  --color-header-background: var(--color-white);
+  --color-header-border: var(--color-black);
+  --color-header-contact-background: var(--color-polar);
+  --color-header-active: var(--color-active);
+
+  --color-link-list-border: var(--color-header-border);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);

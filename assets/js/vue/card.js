@@ -8,10 +8,15 @@ export default {
     };
   },
   computed: {
+    noLink() {
+      return this.url === undefined || this.url === '' ? true : false;
+    },
     classList() {
       return [
         'card',
+        `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
+        `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -20,7 +25,12 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
-      return Tools.truncateWords(Tools.stripHtml(this.excerpt), this.wordsToTruncate);
+      return Tools.isTrue(this.long) === true
+        ? this.strippedExcerpt
+        : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
+    },
+    strippedExcerpt() {
+      return Tools.stripHtml(this.excerpt);
     },
     cardDate() {
       return this.formatDate(this.date);
@@ -63,7 +73,13 @@ export default {
 
       return author;
     },
+    subPointsList(subpoints) {
+      if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
+      if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
+    },
     handleClick(e) {
+      if (this.noLink) return;
+
       const title = this.$refs['title'];
       const target = e.target;
 
@@ -87,6 +103,12 @@ export default {
     large: {
       default: null,
     },
+    long: {
+      default: null,
+    },
+    subPoints: {
+      default: null,
+    },
     event: {
       default: null,
     },
@@ -95,9 +117,10 @@ export default {
     },
     youtubeUrl: String,
     dataAuthors: Object,
+    scope: String,
   },
   template: `
-    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick" >
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick"  >
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
@@ -121,7 +144,7 @@ export default {
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
-                <div class="card__author">
+                <div class="card__author" v-if="author">
                   <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
                 </div>
                 <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
@@ -134,6 +157,23 @@ export default {
         </div>
       </template>
 
+      <template v-else-if="long">
+        <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+        </div>
+
+        <div class="card-body richtext">
+          <div class="card__scope" v-if="scope">{{ scope }}</div>
+          <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
+          <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
+
+          <ul class="card__points text-black">
+            <template v-for="points in subPointsList(subPoints)">
+              <li class="mb-4"><span>{{ points }}</span></li>
+            </template>
+          </ul>
+        </div>
+      </template>
       <template v-else>
         <div class="card-img-top position-relative" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
@@ -151,7 +191,7 @@ export default {
 
         <div class="card-footer border-0 pt-0">
           <div :class="mediaClass">
-            <div class="card__author">
+            <div class="card__author" v-if="author">
               <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
             </div>
             <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">

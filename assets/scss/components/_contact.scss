@@ -1,15 +1,59 @@
 .contact {
   --color-contact-person: var(--color-yellow);
+  --color-contact-quote-person: var(--color-green-blue);
   --color-detail-highlight: var(--color-orange);
   --color-contact-background: var(--color-primary);
+  --color-contact-quote-background: var(--color-gigas);
   --contact-spacing-collapsed: #{spacing(3)};
+  --contact-copy-color: var(--color-copy);
+
+  color: var(--contact-copy-color);
+
+  .input-label,
+  .headline {
+    color: inherit;
+  }
 
   &.contact--has-shape {
     --color-contact-person: var(--color-primary);
   }
 
-  &:not(.contact--has-shape):not(.is-collapsed) {
+  &:not(.contact--has-shape):not(.is-collapsed):not(.contact--quote) {
     background-color: var(--color-contact-background);
+  }
+  &:not(.contact--has-shape):not(.is-collapsed) {
+    background-color: var(--color-contact-quote-background);
+  }
+
+  &.contact--quote {
+    --contact-copy-color: var(--color-copy-light);
+
+    .contact__icon {
+      width: 100%;
+      height: auto;
+      margin-bottom: spacing(5);
+
+      svg {
+        width: spacing(10);
+        height: spacing(10);
+      }
+    }
+
+    .contact__box {
+      margin-top: spacing(20);
+
+      @include media-breakpoint-up(lg) {
+        margin-top: spacing($size: 28, $negative: true);
+      }
+    }
+
+    .contact__person {
+      --color-contact-person: var(--color-contact-quote-person);
+
+      position: relative;
+      height: auto;
+      padding: spacing(12) spacing(8) spacing(12) spacing(11);
+    }
   }
 
   &:not(.is-collapsed) {
@@ -91,7 +135,7 @@
     }
 
     .contact__person {
-      padding-bottom: var(--contact-spacing-collapsed) !important;
+      padding-bottom: var(--contact-spacing-collapsed);
     }
   }
 
@@ -118,6 +162,27 @@
 .contact__person {
   background-color: var(--color-contact-person);
   height: 100%;
+  padding-bottom: spacing(20);
+}
+
+.contact__detail-quote {
+  margin-right: spacing(14);
+  margin-top: spacing(16);
+  margin-bottom: spacing(12);
+
+  .contact__detail-headline {
+    margin-bottom: spacing(8);
+  }
+
+  @include media-breakpoint-up(lg) {
+    margin-top: spacing(30);
+    margin-right: 0;
+    margin-bottom: spacing(16);
+  }
+
+  @include media-breakpoint-up(xl) {
+    margin-right: spacing(18);
+  }
 }
 
 .contact__details {
@@ -130,6 +195,13 @@
     background-color: var(--color-detail-highlight);
   }
 
+  .fas {
+    font-size: 1.5em;
+  }
+}
+
+.contact__detail,
+.contact__details {
   a,
   a:visited {
     color: inherit;
@@ -138,10 +210,36 @@
   a:hover {
     text-decoration: underline;
   }
+}
 
-  .fas {
-    font-size: 1.5em;
-  }
+.contact__person-quote {
+  position: relative;
+  overflow: clip;
+}
+
+.contact__image-quote {
+  float: right;
+  width: spacing(35);
+  height: spacing(35);
+  padding-left: spacing(5);
+  padding-bottom: spacing(5);
+  max-width: 200px;
+  position: relative;
+  pointer-events: none;
+}
+
+.contact__image-spacer {
+  border-radius: 100%;
+  overflow: hidden;
+  display: flex;
+  clear: both;
+  width: 100%;
+  height: 100%;
+}
+
+.contact__quote {
+  width: 100%;
+  margin-bottom: spacing(8);
 }
 
 .page-content {

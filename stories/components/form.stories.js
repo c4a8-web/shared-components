@@ -70,6 +70,14 @@ const baseArgs = {
         id: 'salary',
       },
       {
+        label: 'Sitze',
+        type: 'text',
+        col: 5,
+        rowStart: true,
+        rowEnd: true,
+        id: 'seats',
+      },
+      {
         label: 'Nachricht (optional)',
         type: 'textarea',
         id: 'message',

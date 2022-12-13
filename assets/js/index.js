@@ -72,6 +72,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./components/hero-text-image.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./components/tab-list.js')
     .then((module) => {
       return module.default;
@@ -82,7 +87,17 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./components/testimonial-list.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./components/text-animation.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
+  import('./components/video-frame.js')
     .then((module) => {
       return module.default;
     })

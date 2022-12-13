@@ -37,8 +37,8 @@ layout: default
             </div>
             <div class="col-md-5 align-self-end pr-lg-0">
               <div class="text-muted text-right font-size-1">
-                <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-                  {{ page.date | date: '%d.%m.%Y' }}
+                <time class="dt-published" datetime="{{ page.moment | date_to_xmlschema }}" itemprop="datePublished">
+                  {{ page.moment | date: '%d.%m.%Y' }}
                 </time>
               </div>
             </div>

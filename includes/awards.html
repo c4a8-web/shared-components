@@ -1,0 +1,72 @@
+<!-- Shared Awards Section -->
+{%- assign awardsAwards = include.awards -%}
+{%- assign awardsLevel = include.level | default: "h3" -%}
+{%- assign awardsVisualOnly = include.visualOnly | default: false -%}
+{%- assign awardsCols = include.cols | default: 3 -%}
+
+{% if awardsVisualOnly == true %}
+  {% assign awardsColsValue = 'col-lg-12 justify-content-center' %}
+{% elsif awardsVisualOnly == false %}
+  {% assign awardsColsValue = 'col-lg-6' %}
+{% endif %}
+
+{%- assign awardsMaxCols = 12 -%}
+{%- assign awardsCol = awardsMaxCols | divided_by: awardsCols -%}
+
+
+<div class="awards mt-8 mt-lg-10 space-bottom-2">
+  <div class="container">
+    <div class="row">
+      <div class="{{ awardsColsValue }}">
+        <div class="awards__header d-flex">
+          {%
+            include headline.html
+            level=awardsLevel
+            text=awardsAwards.headline
+            classes="h2-font-size"
+          %}
+        </div>
+        {% if awardsVisualOnly == false %}
+          <p class="my-2 font-size-2">
+            {{ awardsAwards.subline }}
+          </p>
+          <p class="mt-6 w-lg-75">
+            {{ awardsAwards.text }}
+          </p>
+        {% endif %}
+      </div>
+      {% if awardsVisualOnly == false %}
+        <div class="col-lg-6 pt-8">
+          {% for image in awardsAwards.images %}
+            <div class="mb-3 ml-lg-4 w-md-75">
+              {%
+                include img.html
+                img=image.image
+                alt=image.alt
+                cloudinary=true
+              %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    {% if awardsVisualOnly == true %}
+      <div class="row">
+        {% for image in awardsAwards.images %}
+          <div class="col-lg-{{ awardsCol }} pt-8">
+            <div class="mb-3 ml-1">
+              {%
+                include img.html
+                img=image.image
+                alt=image.alt
+                cloudinary=true
+              %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</div>
+<!-- End Shared Awards Section -->

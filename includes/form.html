@@ -7,7 +7,10 @@
 {%- assign formCustomValidation = include.customValidation -%}
 {%- assign formAjax = include.ajax -%}
 {%- assign formAdditionalFields = include.additionalFields -%}
-{%- assign formUncentered = formForm.uncentered -%}
+{% comment %}
+Refactor uncentered value and include the content migration of uncentered values
+{% endcomment %}
+{%- assign formUncentered = formForm.uncentered | default: include.uncentered | default: true -%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
 
@@ -26,7 +29,7 @@
 {% endif %}
 {% assign formOptionsText = formOptionsText | slice: 0, formOptionsLength | append : '}' | escape %}
 
-<Formular
+<formular
   :form="{{ formForm | jsonify | escape }}"
   light="{{ formLight }}"
   analytics="{{ formAnalytics }}"
@@ -38,6 +41,6 @@
   uncentered="{{ formUncentered }}"
   replace-value="{{ formReplaceValue }}"
   :options="{{ formOptionsText }}"
-></Formular>
+></formular>
 
 <!-- End Shared Form Section -->

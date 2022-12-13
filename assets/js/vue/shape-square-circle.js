@@ -17,10 +17,10 @@ export default {
       return this.start ? this.start : defaultStart;
     },
     rectColor() {
-      return this.backgroundColor ? this.backgroundColor : '#673ab7';
+      return this.backgroundColor ? this.backgroundColor : 'var(--color-primary-accent)';
     },
-    pathColor() {
-      return this.circleColor ? this.circleColor : '#fcd116';
+    circleColor() {
+      return this.firstColor ? this.firstColor : 'var(--color-secondary)';
     },
     bigCircle() {
       return this.sequence.bigCircle;
@@ -86,7 +86,7 @@ export default {
   },
   props: {
     backgroundColor: String,
-    circleColor: String,
+    firstColor: String,
     start: String,
   },
   template: `
@@ -96,7 +96,7 @@ export default {
       </clipPath>
       <g :style="clipPathUrl">
         <rect :fill="rectColor" :width="width" :height="height" x="0" y="0" />
-        <circle :fill="pathColor" :id="bigCircle?.id" cx="200" cy="200" r="${bigCircleRadius}">
+        <circle :fill="circleColor" :id="bigCircle?.id" cx="200" cy="200" r="${bigCircleRadius}">
           <animate
             :id="bigCircle?.shrink?.id"
             :href="bigCircle?.href"

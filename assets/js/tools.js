@@ -31,7 +31,7 @@ class Tools {
   static scrollIntoView(element, smooth) {
     if (element) {
       const header = document.querySelector('header');
-      const headerOffset = header?.offsetHeight + 40;
+      const headerOffset = header ? header?.offsetHeight + 40 : 0;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition - headerOffset + window.scrollY;
 
@@ -236,7 +236,7 @@ class Tools {
   }
 
   static isBelowBreakpoint(breakpoint) {
-    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl'];
+    let breakpointArray = ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'];
     const getBreakpoint = Tools.getBreakpoint();
     let breakpointIndex = breakpointArray.indexOf(breakpoint);
 
@@ -254,7 +254,7 @@ class Tools {
       videoId = regExp2[1];
     }
 
-    return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    return `https://i1.ytimg.com/vi/${videoId}/maxresdefault.jpg`;
   }
 
   static truncateWords(string, number) {
@@ -281,6 +281,41 @@ class Tools {
     const isStorybook = document.location.pathname.indexOf(storybookPath) !== -1;
 
     return isStorybook ? `${storybookPath}${path}` : path;
+  }
+
+  static findRecursive(obj, matcher, callback) {
+    let found = false;
+    let result;
+    let currentKey;
+    let baseObj;
+
+    function finder(obj, matcher, parentObj, callback) {
+      if (found) return;
+
+      if (matcher(obj, currentKey)) {
+        found = true;
+
+        result = callback(obj, parentObj);
+
+        return;
+      }
+
+      for (let key in obj) {
+        if (typeof obj[key] === 'object') {
+          if (obj === baseObj) {
+            currentKey = key;
+          }
+
+          finder(obj[key], matcher, obj, callback);
+        }
+      }
+    }
+
+    baseObj = obj;
+
+    finder(obj, matcher, obj, callback);
+
+    return result;
   }
 
   static storageSave(key, value) {

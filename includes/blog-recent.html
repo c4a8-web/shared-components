@@ -3,6 +3,9 @@
 {%- assign blogRecentTag = include.tag -%}
 {%- assign blogRecentHeadline = include.headline -%}
 {%- assign blogRecentHeadlineLevel = include.level -%}
+{%- assign blogRecentHeadlineClasses = include.headlineClasses -%}
+{%- assign blogRecentSubline = include.subline -%}
+{%- assign blogRecentSublineClasses = include.sublineClasses -%}
 {%- assign blogRecentLimit = include.limit | default: 3 -%}
 {%- assign blogRecentLimitCaseStudies = include.limitCaseStudies | default: blogRecentLimit -%}
 {%- assign blogRecentLimitEvents = include.limitEvents | default: blogRecentLimit -%}
@@ -19,7 +22,7 @@
 {%- endif -%}
 
 {%- if blogRecentEvents -%}
-  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
+  {% assign events = site.events | where_exp:"item","item.lang == page.lang" | sort: 'moment' %}
 
   {% unless blogRecentReversed %}
     {% assign events = events | reverse %}
@@ -30,7 +33,7 @@
 {%- endif -%}
 
 {%- if blogRecentCaseStudies -%}
-  {% assign caseStudies = site.casestudies | where_exp:"item","item.lang == page.lang" | sort: 'date' %}
+  {% assign caseStudies = site.casestudies | where_exp:"item","item.lang == page.lang" | sort: 'moment' %}
 
   {% unless blogRecentReversed %}
     {% assign caseStudies = caseStudies | reverse %}
@@ -115,6 +118,10 @@
   hide-container="{{ blogRecentHideContainer }}"
   bg-color="{{ blogRecentBgColor }}"
   headline="{{ blogRecentHeadline }}"
+  headline-level="{{ blogRecentHeadlineLevel }}"
+  headline-classes="{{ blogRecentHeadlineClasses }}"
+  subline="{{ blogRecentSubline }}"
+  subline-classes="{{ blogRecentSublineClasses }}"
   :posts="{{ postsString | jsonify | escape }}"
   limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"

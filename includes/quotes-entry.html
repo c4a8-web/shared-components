@@ -1,0 +1,34 @@
+{%- assign quotesEntry = include.entry -%}
+{%- assign quotesEntryImage = include.image -%}
+
+<!-- Shared Quotes Entry Section -->
+<div class="quotes__entry row no-gutters {% if include.active %}active{% endif %}">
+  {% if quotesEntryImage %}
+    <div class="quotes__entry-img-wrapper col-lg-5">
+      <div class="quotes__entry-img">
+        {%
+          include img.html
+          cloudinary=true
+          img=quotesEntry.img
+          alt=quotesEntry.alt
+        %}
+      </div>
+    </div>
+  {% endif %}
+  <div class="quotes__entry-quote-wrapper {% if quotesEntryImage %}col-lg-6 offset-lg-1 disabledpb-lg-0{% else %}col-lg-8{% endif %} position-relative {% unless quotesEntryImage %}mx-auto{% endunless %}">
+    <div class="quotes__entry-quote">&#x84;</div>
+    <div class="quotes__entry-text font-weight-light mt-3 font-size-2">
+      <div class="quotes__entry-text-wrapper">
+        {{ quotesEntry.text }}
+      </div>
+    </div>
+    <div class="quotes__entry-infos">
+      <div class="quotes__entry-name font-size-2">{{ quotesEntry.name }}</div>
+      {% if quotesEntry.position %}
+        <div class="quotes__entry-position">{{ quotesEntry.position }}</div>
+      {% endif %}
+      <div class="quotes__entry-company">{{ quotesEntry.company }}&nbsp;</div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Quotes Entry Section -->

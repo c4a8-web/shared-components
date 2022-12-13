@@ -1,0 +1,21 @@
+<div class="header__test-container">
+  {%
+    include header.html
+  %}
+
+  <div style="height: 300vh"></div>
+</div>
+<div class="header__test-container light">
+  <div style="height: 300vh"></div>
+</div>
+<style>
+  .header__test-container {
+    background-color: var(--color-blue-dark);
+    margin: -1rem;
+  }
+
+  .header__test-container.light {
+    background-color: var(--color-white);
+    margin: -1rem;
+  }
+</style>
