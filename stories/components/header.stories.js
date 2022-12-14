@@ -19,6 +19,7 @@ export const HeaderLight = Template.bind({});
 
 HeaderLight.args = {
   light: true,
+  blendMode: true,
   bgColor: 'var(--color-blue-dark)',
 };
 
@@ -106,5 +107,6 @@ export const HeaderProductLight = Template.bind({});
 
 HeaderProductLight.args = {
   light: true,
+  blendMode: true,
   ...productArgs,
 };

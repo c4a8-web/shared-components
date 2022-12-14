@@ -239,6 +239,14 @@ $header-border-size: 1px;
         pointer-events: all;
         padding: var(--header-vertical-spacing) spacing(4);
       }
+
+      &.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
+        mix-blend-mode: difference;
+
+        .header__link-text {
+          font-weight: 300;
+        }
+      }
     }
   }
 }

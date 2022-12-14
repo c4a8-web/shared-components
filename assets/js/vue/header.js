@@ -13,6 +13,7 @@ export default {
         Tools.isTrue(this.hover) ? State.HOVERING : '',
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
+        Tools.isTrue(this.blendMode) ? 'header--blending' : '',
         'vue-component',
       ];
     },
@@ -293,6 +294,9 @@ export default {
       default: null,
     },
     button: {
+      default: null,
+    },
+    blendMode: {
       default: null,
     },
   },
