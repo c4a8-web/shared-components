@@ -32,11 +32,12 @@ import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
-import ShapeHalfSquare from './vue/shape-half-square.js';
-import ShapeMovingEye from './vue/shape-moving-eye.js';
-import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeFourSquares from './vue/shape-four-squares.js';
 import ShapeFourTriangles from './vue/shape-four-triangles.js';
+import ShapeHalfSquare from './vue/shape-half-square.js';
+import ShapeMovingEye from './vue/shape-moving-eye.js';
+import ShapeSecurityEye from './vue/shape-security-eye.js';
+import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
@@ -103,12 +104,13 @@ const addApp = () => {
     ShapeAnimation,
     ShapeCircleWithinSquare,
     ShapeFastFordward,
-    ShapeHalfSquare,
     ShapeFourSquares,
     ShapeFourTriangles,
-    ShapeSquareCircle,
+    ShapeHalfSquare,
     ShapeMovingEye,
+    ShapeSecurityEye,
     ShapeSemiCircle,
+    ShapeSquareCircle,
     ShapeTrianglesToCenter,
     Shape,
     ArrowExternal,

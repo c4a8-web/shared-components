@@ -123,6 +123,19 @@ ShapeMovingEye.args = {
   ],
 };
 
+export const ShapeSecurityEye = Template.bind({});
+
+ShapeSecurityEye.args = {
+  name: 'square',
+  shapes: [
+    {
+      name: 'shape-security-eye',
+      backgroundColor: 'var(--color-green-blue)',
+      firstColor: 'var(--color-yellow)',
+    },
+  ],
+};
+
 export const ShapeSemiCircle = Template.bind({});
 
 ShapeSemiCircle.args = {
