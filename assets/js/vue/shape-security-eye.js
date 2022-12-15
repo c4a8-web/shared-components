@@ -22,13 +22,6 @@ export default {
         sonarDelay: `${duration - sonarDuration}`,
       };
     },
-    leftBottomSonarBegin() {
-      const start = '5.5';
-
-      // return `1s;leftBottomSonarStep1.end+1s`;
-
-      return `${start}s;leftBottomSonarStep1.end+${this.overall.sonarDelay}s`;
-    },
     internalWidth() {
       return this.width ? this.width : 400;
     },
@@ -69,11 +62,18 @@ export default {
   },
   methods: {
     leftUpperSonarBegin(step) {
-      let start = 8.3;
+      let start = 8.44;
 
       start = step ? start + step / 100 : start;
 
       return `${start}s;leftUpperSonarStep1.end+${this.overall.sonarDelay}s`;
+    },
+    leftBottomSonarBegin(step) {
+      let start = 5.5;
+
+      start = step ? start + step / 100 : start;
+
+      return `${start}s;leftBottomSonarStep1.end+${this.overall.sonarDelay}s`;
     },
   },
   template: `
@@ -363,7 +363,7 @@ export default {
             <animate
               id="leftBottomSonarStep1"
               dur="1s"
-              :begin="leftBottomSonarBegin"
+              :begin="leftBottomSonarBegin()"
               href="#leftBottomSonar"
               attributeName="opacity"
               keyTimes="0;0.1;0.5;0.6;1"
@@ -373,7 +373,7 @@ export default {
             <animate
               id="leftBottomSonarStep3"
               dur="1s"
-              :begin="leftBottomSonarBegin"
+              :begin="leftBottomSonarBegin(1)"
               href="#leftBottomSonarCircle"
               attributeName="stroke-width"
               from="80"
@@ -383,7 +383,7 @@ export default {
             <animateTransform
               id="leftBottomSonarStep2"
               dur="1s"
-              :begin="leftBottomSonarBegin"
+              :begin="leftBottomSonarBegin(2)"
               href="#leftBottomSonarCircle"
               attributeName="transform"
               from="0.01"
