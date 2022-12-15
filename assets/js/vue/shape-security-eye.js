@@ -1,8 +1,6 @@
 import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '1s';
-const animationDelay = '7';
-const animationStepDelay = '0.05';
 
 const tagName = 'shape-security-eye';
 
@@ -15,31 +13,21 @@ export default {
     begin() {
       return this.start ? this.start : defaultStart;
     },
-    rectColor() {
-      return this.backgroundColor ? this.backgroundColor : 'var(--color-primary-accent)';
-    },
-    pathColor() {
-      return this.firstColor ? this.firstColor : 'var(--color-primary-accent-light)';
-    },
-    secondArrowColor() {
-      return this.secondColor ? this.secondColor : 'var(--color-secondary)';
-    },
-    firstArrow() {
-      return this.sequence.firstArrow;
-    },
-    secondArrow() {
-      return this.sequence.secondArrow;
-    },
-    thirdArrow() {
-      return this.sequence.thirdArrow;
-    },
     overall() {
-      const duration = '1.3s';
+      const duration = 10;
+      const sonarDuration = 1;
 
       return {
-        keySplines: '0.19 1 0.2 1',
-        dur: duration,
+        dur: `${duration}s`,
+        sonarDelay: `${duration - sonarDuration}`,
       };
+    },
+    leftBottomSonarBegin() {
+      const start = '5.5';
+
+      // return `1s;leftBottomSonarStep1.end+1s`;
+
+      return `${start}s;leftBottomSonarStep1.end+${this.overall.sonarDelay}s`;
     },
     internalWidth() {
       return this.width ? this.width : 400;
@@ -68,201 +56,9 @@ export default {
 
       return this.shapeElementsInstance;
     },
-    points() {
-      const width = this.internalWidth;
-      const halfWidth = this.halfWidth;
-      const height = this.internalHeight;
-      const heightHalf = this.halfHeight;
-
-      return {
-        firstArrow: `0,0 0,${height} ${heightHalf},${halfWidth}`,
-        secondArrow: `${halfWidth},0, ${halfWidth},${height}, ${width},${heightHalf}`,
-        thirdArrow: `${-halfWidth},0, ${-halfWidth},${height}, ${0},${halfWidth}`,
-      };
-    },
   },
   data() {
-    // TODO connect these numbers to innerWidth so 400 and 200 are relative
-
-    return {
-      animations: [
-        {
-          steps: [
-            {
-              name: 'moveTo1',
-              from: '0',
-              to: '-400',
-              dur: '0.01s',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'show',
-              from: '0.5',
-              to: '1',
-              dur: '0.01s',
-              attributeName: 'opacity',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'moveTo2',
-              to: '-200',
-              from: '-400',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'moveTo3',
-              by: '200',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'hide',
-              from: '1',
-              to: '0.5',
-              dur: '0.01s',
-              attributeName: 'opacity',
-            },
-          ],
-        },
-        {
-          steps: [
-            {
-              name: 'moveTo4',
-            },
-            {
-              name: 'shrink',
-              type: 'scale',
-              additive: true,
-              from: '1 1',
-              to: '0.1 0.1',
-            },
-          ],
-        },
-      ],
-      elements: [
-        {
-          name: 'firstArrow',
-          moveTo3: {
-            start: true,
-            waitFor: 'firstArrow.reset',
-            delay: animationDelay,
-          },
-          shrink: {
-            waitFor: 'firstArrow.moveTo3',
-            delay: animationDelay,
-          },
-          moveTo4: {
-            waitFor: 'firstArrow.moveTo3',
-            from: '200',
-            to: '400',
-            delay: animationDelay,
-          },
-          hide: {
-            waitFor: 'firstArrow.moveTo4',
-            delay: animationStepDelay,
-          },
-          moveTo1: {
-            waitFor: 'firstArrow.hide',
-            delay: animationStepDelay,
-            from: '-400',
-            to: '-200',
-          },
-          show: {
-            waitFor: 'firstArrow.moveTo1',
-            delay: animationStepDelay,
-          },
-          reset: {
-            waitFor: 'firstArrow.show',
-            delay: animationDelay - animationStepDelay * 3.5,
-          },
-        },
-        {
-          name: 'secondArrow',
-          moveTo4: {
-            start: true,
-            waitFor: 'secondArrow.reset',
-            delay: animationDelay,
-            from: '0',
-            to: '200',
-          },
-          shrink: {
-            start: true,
-            waitFor: 'secondArrow.reset',
-            delay: animationDelay,
-          },
-          hide: {
-            waitFor: 'secondArrow.shrink',
-            delay: animationStepDelay,
-          },
-          moveTo1: {
-            waitFor: 'secondArrow.hide',
-            delay: animationStepDelay,
-          },
-          show: {
-            waitFor: 'secondArrow.moveTo1',
-            delay: animationStepDelay,
-          },
-          moveTo2: {
-            waitFor: 'secondArrow.show',
-            delay: animationDelay - animationStepDelay * 3.5,
-          },
-          reset: {
-            waitFor: 'secondArrow.moveTo2',
-            delay: animationDelay,
-          },
-        },
-        {
-          name: 'thirdArrow',
-          moveTo2: {
-            start: true,
-            waitFor: 'thirdArrow.show',
-            delay: animationDelay - animationStepDelay * 3.5,
-            from: '0',
-            to: '200',
-          },
-          moveTo3: {
-            waitFor: 'thirdArrow.moveTo2',
-            delay: animationDelay,
-          },
-          shrink: {
-            waitFor: 'thirdArrow.moveTo3',
-            delay: animationDelay,
-          },
-          moveTo4: {
-            waitFor: 'thirdArrow.moveTo3',
-            from: '0',
-            to: '200',
-            additive: true,
-            delay: animationDelay,
-          },
-          hide: {
-            waitFor: 'thirdArrow.moveTo4',
-            delay: animationStepDelay,
-          },
-          reset: {
-            waitFor: 'thirdArrow.hide',
-            delay: animationStepDelay,
-            dur: '0.01s',
-          },
-          show: {
-            waitFor: 'thirdArrow.reset',
-            delay: animationStepDelay,
-          },
-        },
-      ],
-      shapeElementsInstance: null,
-    };
+    return {};
   },
   props: {
     backgroundColor: String,
@@ -272,39 +68,12 @@ export default {
     width: String,
   },
   methods: {
-    getStepData(elementName, stepList) {
-      const element = this.sequence[elementName];
+    leftUpperSonarBegin(step) {
+      let start = 8.3;
 
-      if (!element) return;
+      start = step ? start + step / 100 : start;
 
-      const steps = [];
-
-      stepList.forEach((step) => {
-        const newStep = { ...step };
-
-        const elementStepData = element[newStep?.name];
-
-        if (!elementStepData) return;
-
-        elementStepData.href = element.href;
-
-        // TODO overwrite property in step with elementStepData if it exists
-
-        if (elementStepData.by) newStep.by = elementStepData.by;
-        if (elementStepData.from) newStep.from = elementStepData.from;
-        if (elementStepData.to) newStep.to = elementStepData.to;
-        if (elementStepData.additive) newStep.additive = elementStepData.additive;
-        if (elementStepData.dur) newStep.dur = elementStepData.dur;
-
-        if (!newStep.dur) newStep.dur = this.overall.dur;
-        if (!newStep.keySplines) newStep.keySplines = this.overall.keySplines;
-
-        const stepItem = { step: newStep, data: elementStepData };
-
-        steps.push(stepItem);
-      });
-
-      return steps;
+      return `${start}s;leftUpperSonarStep1.end+${this.overall.sonarDelay}s`;
     },
   },
   template: `
@@ -496,69 +265,42 @@ export default {
               d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
             />
           </g>
-          <g id="leftBottomSonar">
-            <g
-              id="_R_G_L_2_G"
-              transform=" translate(454, 629) scale(0.76375, 0.76375) translate(-108, 120)"
-            >
-              <path
-                id="_R_G_L_2_G_D_0_P_0"
-                fill="#ffffff"
-                fill-opacity="1"
-                fill-rule="nonzero"
-                d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
-              />
-              <path
-                id="_R_G_L_2_G_D_1_P_0"
-                stroke="#ffffff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                fill="none"
-                stroke-width="25"
-                stroke-opacity="1"
-                d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
-              />
+          <g id="leftUpperSonar" opacity="0">
+            <g transform="translate(434, 562)">
+              <circle id="leftUpperSonarCircle" cx="70" cy="-86" r="40" stroke="#ffffff" stroke-width="80" fill="none" style="transform-box:fill-box;transform-origin:center" />
             </g>
             <animate
-              repeatCount="indefinite"
-              dur="8.008008s"
-              begin="0s"
-              xlink:href="#leftBottomSonar"
-              fill="freeze"
+              id="leftUpperSonarStep1"
+              dur="1s"
+              :begin="leftUpperSonarBegin()"
+              href="#leftUpperSonar"
               attributeName="opacity"
-              from="0"
-              to="1"
-              keyTimes="0;0.6666667;0.6666671;1"
-              values="0;0;1;1"
-              keySplines="0 0 0 1;0 0 0 1;0 0 0 1"
-              calcMode="spline"
+              keyTimes="0;0.1;0.5;0.6;1"
+              values="0;0.3;0.5;0.6;0"
+              fill="freeze"
             />
-          </g>
-          <g id="_R_G_L_1_G_M">
-            <g
-              id="_R_G_L_1_G"
-              transform=" translate(502, 476) scale(0.76375, 0.76375) translate(-108, 120)"
-            >
-              <path
-                id="_R_G_L_1_G_D_0_P_0"
-                aafill="#ffffff"
-                fill="#ff0000"
-                fill-opacity="1"
-                fill-rule="nonzero"
-                d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
-              />
-              <path
-                id="_R_G_L_1_G_D_1_P_0"
-                aastroke="#ffffff"
-                stroke="#ff0000"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                fill="none"
-                stroke-width="25"
-                stroke-opacity="1"
-                d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
-              />
-            </g>
+            <animate
+              id="leftUpperSonarStep3"
+              dur="1s"
+              :begin="leftUpperSonarBegin(1)"
+              href="#leftUpperSonarCircle"
+              attributeName="stroke-width"
+              from="80"
+              to="5"
+              fill="freeze"
+            />
+            <animateTransform
+              id="leftUpperSonarStep2"
+              dur="1s"
+              :begin="leftUpperSonarBegin(2)"
+              href="#leftUpperSonarCircle"
+              attributeName="transform"
+              from="0.01"
+              to="0.6"
+              type="scale"
+              fill="freeze"
+              calcMode="paced"
+            />
           </g>
           <g id="rightBottomSonar">
             <g
@@ -587,7 +329,7 @@ export default {
               repeatCount="indefinite"
               dur="8.008008s"
               begin="0s"
-              xlink:href="#rightBottomSonar"
+              href="#rightBottomSonar"
               ddfill="freeze"
               attributeName="opacity"
               from="0"
@@ -611,6 +353,44 @@ export default {
               fill-opacity="1"
               fill-rule="nonzero"
               d=" M540 318.99 C418.03,318.99 319.17,417.95 319.17,540.02 C319.17,662.09 418.03,761.01 540,761.01 C661.97,761.01 760.83,662.05 760.83,539.98 C760.83,417.91 661.97,318.99 540,318.99z  M540.05 701.37 C447.56,701.45 373.17,623.67 378.9,529.91 C383.8,449.58 449.12,384.13 529.45,379.07 C623.2,373.15 701.13,447.4 701.21,539.9 C701.21,539.95 701.21,540 701.21,540.05 C701.23,629.08 629.08,701.27 540.05,701.32 C540.05,701.32 540.05,701.37 540.05,701.37z "
+            />
+          </g>
+
+          <g id="leftBottomSonar" opacity="0">
+            <g transform="translate(384, 708)">
+              <circle id="leftBottomSonarCircle" cx="70" cy="-86" r="40" stroke="#ffffff" stroke-width="80" fill="none" style="transform-box:fill-box;transform-origin:center" />
+            </g>
+            <animate
+              id="leftBottomSonarStep1"
+              dur="1s"
+              :begin="leftBottomSonarBegin"
+              href="#leftBottomSonar"
+              attributeName="opacity"
+              keyTimes="0;0.1;0.5;0.6;1"
+              values="0;0.3;0.5;0.6;0"
+              fill="freeze"
+            />
+            <animate
+              id="leftBottomSonarStep3"
+              dur="1s"
+              :begin="leftBottomSonarBegin"
+              href="#leftBottomSonarCircle"
+              attributeName="stroke-width"
+              from="80"
+              to="5"
+              fill="freeze"
+            />
+            <animateTransform
+              id="leftBottomSonarStep2"
+              dur="1s"
+              :begin="leftBottomSonarBegin"
+              href="#leftBottomSonarCircle"
+              attributeName="transform"
+              from="0.01"
+              to="0.6"
+              type="scale"
+              fill="freeze"
+              calcMode="paced"
             />
           </g>
         </g>
