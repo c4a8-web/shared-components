@@ -11,10 +11,12 @@ var linksChecked = 0;
 class BrokenLinks {
   constructor(rootUrl) {
     this.rootUrl = rootUrl;
-    this.errors = [];
-    this.links = {};
-    this.prevLink = {};
-    this.errorPrevLink = {};
+    // this.errors = [];
+    // this.links = {};
+    // this.prevLink = {};
+    // this.errorPrevLink = {};
+    this.brokenLinks = {};
+    this.visitedLink = {};
     this.options = {
       // method: 'HEAD',
       mode: 'cors',
@@ -22,18 +24,93 @@ class BrokenLinks {
       redirect: 'follow',
     };
 
-    this.start();
+    // this.start();
+    this.findLinks(this.rootUrl);
+    console.log(this.visitedLink);
+    console.log(this.brokenLinks);
   }
 
-  async start() {
-    await this.getUrl(this.rootUrl);
+  // async start() {
+  //   await this.getUrl(this.rootUrl);
 
-    this.showErrors();
-    console.log(this.prevLink);
+  //   // this.showErrors();
+  //   console.log(this.prevLink);
+  // }
+
+  // showErrors() {
+  //   //console.debug('errors', this.errors);
+  // }
+
+  async findLinks(url) {
+    // console.log('ENTERED URLs -> ', url);
+
+    if (!this.visitedLink[url]) {
+      this.visitedLink[url] = 1;
+    }
+
+    const response = await fetch(url);
+    const html = await response.text();
+    const temp = document.createElement('html');
+    temp.innerHTML = html;
+    const links = temp.querySelectorAll('a');
+
+    links.forEach((link) => {
+      let href = link.getAttribute('href');
+      // console.log('Other links -> ', href);
+      if (href == null || href.length <= 1 || this.visitedLink[href] || href.includes('index.html')) {
+        return;
+      }
+
+      if (this.isAbsoluteLink(href) == null) {
+        if (!href.includes('/')) return; // Some hrefs miss the backslash
+        href = this.getAbsoluteLink(href);
+      }
+
+      if (this.isValidLink(href) === false) return;
+
+      if (this.isExternal(href)) {
+        this.brokenLinks[href] = 'external';
+        return;
+      }
+
+      fetch(href, this.options)
+        .then((response) => {
+          if (response.status >= 400) {
+            // console.log('400 Error -> ', href);
+            this.brokenLinks[href] = 'broken';
+          }
+        })
+        .catch((error) => {
+          // console.log('OTHER Errors ->', href);
+          this.brokenLinks[href] = 'broken';
+        });
+
+      if (!this.visitedLink[href]) {
+        this.findLinks(href);
+      }
+    });
   }
 
-  showErrors() {
-    //console.debug('errors', this.errors);
+  isValidLink(url) {
+    const regex = /^(http(s)?:\/\/)?[\w.-]+(:\d+)?(\/[\w\.-]*)*$/g;
+
+    return url.match(regex) ? true : false;
+  }
+
+  isAbsoluteLink(href) {
+    return href.indexOf('http://') === 0 || href.indexOf('https://') === 0 ? href : null;
+  }
+
+  isExternal(url) {
+    const origin = document.location.origin;
+    // const regex = new RegExp(`^(${origin})?`);
+    return url.includes(origin) ? false : true;
+  }
+
+  getAbsoluteLink(href) {
+    var link = document.createElement('a');
+    link.href = href;
+    return link.href;
   }
 
   getUrl(url, previousUrl) {
@@ -56,95 +133,90 @@ class BrokenLinks {
     });
   }
 
-  isExternal(url) {
-    const origin = document.location.origin;
-    const regex = new RegExp(`^(${origin})?`);
+  // async handleResponse(response, external, url) {
+  //   const { url } = response;
 
-    return url.match(regex) ? false : true;
-  }
+  //   if (this.links[url]) return;
 
-  async handleResponse(response, external, test) {
-    const { url } = response;
+  //   if (external) {
+  //     this.links[url] = external;
 
-    if (this.links[url]) return;
+  //     this.checkLinks();
+  //   } else {
+  //     response.text().then((html) => {
+  //       this.links[url] = {
+  //         html,
+  //       };
 
-    if (external) {
-      this.links[url] = external;
+  //       this.checkLinks();
+  //     });
+  //   }
+  // }
 
-      this.checkLinks();
-    } else {
-      response.text().then((html) => {
-        this.links[url] = {
-          html,
-        };
+  // async checkLinks() {
+  //   const linkKeys = Object.keys(this.links);
 
-        this.checkLinks();
-      });
-    }
-  }
+  //   for (let i = 0; i < linkKeys.length; i++) {
+  //     const key = linkKeys[i];
+  //     const link = this.links[key];
 
-  async checkLinks() {
-    const linkKeys = Object.keys(this.links);
+  //     if (!link.html) continue;
 
-    for (let i = 0; i < linkKeys.length; i++) {
-      const key = linkKeys[i];
-      const link = this.links[key];
+  //     const parser = new DOMParser();
+  //     const site = parser.parseFromString(link.html, 'text/html');
 
-      if (!link.html) continue;
+  //     this.links[key].html = 'parsed';
 
-      const parser = new DOMParser();
-      const site = parser.parseFromString(link.html, 'text/html');
+  //     await this.getLinksOnSite(site, key);
+  //   }
+  // }
 
-      this.links[key].html = 'parsed';
+  // handleError(data) {
+  //   const { url, error, previousUrl } = data;
 
-      await this.getLinksOnSite(site, key);
-    }
-  }
+  //   this.errors.push({
+  //     url,
+  //     error,
+  //     previousUrl,
+  //   });
+  // }
 
-  handleError(data) {
-    const { url, error, previousUrl } = data;
+  // async getLinksOnSite(site, url) {
+  //   const links = site.querySelectorAll(':not(footer) a[href]');
+  //   // der href im footer -> index.html schickt uns wieder zurück auf localhost:4000/broken-links
+  //   for (var i = 0; i < links.length; i++) {
+  //     links[i].href = this.normalizeLink(links[i].href);
 
-    this.errors.push({
-      url,
-      error,
-      previousUrl,
-    });
-  }
+  //     if (links[i].href == null) {
+  //       return;
+  //     }
 
-  async getLinksOnSite(site, url) {
-    const links = site.querySelectorAll('header a[href]');
-    // der href im footer -> index.html schickt uns wieder zurück auf localhost:4000/broken-links
-    for (var i = 0; i < links.length; i++) {
-      links[i].href = this.normalizeLink(links[i].href);
+  //     const link = links[i];
+  //     if (links[i].href.includes('broken')) {
+  //       console.log('SITE ->', site);
+  //       console.log('LINK ->', link);
+  //     }
+  //     const linkUrl = this.getAbsoluteUrl(link, url);
 
-      const link = links[i];
-      const linkUrl = this.getAbsoluteUrl(link, url);
+  //     if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
+  //       await this.getUrl(linkUrl, url);
+  //     }
+  //   }
+  // }
 
-      const valUrl = linkUrl.endsWith('index.html') ? false : true;
+  // normalizeLink(link) {
+  //   link = link.endsWith('index.html') ? link.slice(0, -11) : link;
+  //   link = link.endsWith('.html') ? link.slice(0, -5) : link;
+  //   link = link.endsWith('/') ? link.slice(0, -1) : link;
+  //   link = link.includes('#') ? null : link;
 
-      if (this.isValidLink(linkUrl) && !this.links[linkUrl] && valUrl) {
-        await this.getUrl(linkUrl, url);
-      }
-    }
-  }
+  //   return link;
+  // }
 
-  normalizeLink(link) {
-    link = link.endsWith('.html') ? link.slice(0, -5) : link;
-    link = link.endsWith('/') ? link.slice(0, -1) : link;
+  // getAbsoluteUrl(link, siteUrl) {
+  //   const href = link.getAttribute('href');
+  //   const isAbsolute = href.indexOf('/') !== -1;
 
-    return link;
-  }
-
-  getAbsoluteUrl(link, siteUrl) {
-    const href = link.getAttribute('href');
-    const isAbsolute = href.indexOf('/') !== -1;
-
-    return isAbsolute ? link.href : `${siteUrl}${href}`;
-  }
-
-  isValidLink(url) {
-    const regex = /^(http(s)?:\/\/)?[\w.-]+(:\d+)?(\/[\w\.-]*)*$/g;
-
-    return url.match(regex) ? true : false;
-  }
+  //   return isAbsolute ? link.href : `${siteUrl}${href}`;
+  // }
 }
