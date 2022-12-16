@@ -14,6 +14,7 @@ class BrokenLinks {
     this.errors = [];
     this.brokenLinks = {};
     this.visitedLink = {};
+    this.prevLinks = {};
     this.options = {
       // method: 'HEAD',
       mode: 'cors',
@@ -22,7 +23,8 @@ class BrokenLinks {
     };
 
     this.findLinks(this.rootUrl);
-    console.log(this.errors);
+    console.log(this.prevLinks);
+    console.log(this.brokenLinks);
     this.showErrors();
   }
   showErrors() {
@@ -47,14 +49,16 @@ class BrokenLinks {
         return;
       }
 
-      currentLink = this.getAbsoluteLink(currentLink);
-      console.log('CURRENT LINK ->', currentLink);
-      if (this.isValidLink(currentLink) === false) return;
+      currentLink = this.getAbsoluteLink(currentLink, url);
 
       if (this.isExternal(currentLink)) {
         this.brokenLinks[currentLink] = 'external';
         return;
       }
+      // above filters invalid HREFS replace here with link
+
+      // currentLink = link.href;
+      if (this.isValidLink(currentLink) === false) return;
 
       fetch(currentLink, this.options)
         .then((response) => {
@@ -71,14 +75,19 @@ class BrokenLinks {
   }
 
   isInvalidHref(href) {
-    return href == null || href.length <= 1 || this.visitedLink[href] || href.includes('index.html');
+    return (
+      href == null || href.length <= 1 || this.visitedLink[href] || href.includes('index.html') || !href.includes('/')
+    );
   }
 
   handleResponse(data) {
     const { response, currentLink, previousLink } = data;
 
     if (response.status >= 300) {
+      // Both for Debugging Remove Afterwards
       this.brokenLinksk[currentLink] = 'broken';
+      this.prevLinks[currentLink] = previousLink;
+
       this.errors.push({
         currentLink: currentLink,
         response,
@@ -89,7 +98,10 @@ class BrokenLinks {
 
   handleError(data) {
     const { error, currentLink, url: previousLink } = data;
+
     this.brokenLinks[currentLink] = 'broken';
+    this.prevLinks[currentLink] = previousLink;
+
     this.errors.push({
       currentLink: currentLink,
       error,
@@ -112,11 +124,20 @@ class BrokenLinks {
     return url.includes(origin) ? false : true;
   }
 
-  getAbsoluteLink(href) {
+  getAbsoluteLink(href, previousUrl) {
     if (this.isAbsoluteLink(href) == null) {
-      if (!href.includes('/')) {
-        href = '/' + href;
-      } // Some hrefs miss the backslash
+      if (href.includes('../')) {
+        const splittedPrevLink = previousUrl.split('/');
+        const lengthToRemovePrevLink = splittedPrevLink.slice(-1)[0].length;
+        if (lengthToRemovePrevLink == 0) return previousUrl;
+
+        previousUrl = previousUrl.slice(0, -lengthToRemovePrevLink);
+        href = href.slice(3);
+
+        const joinedLink = previousUrl + href;
+        return joinedLink;
+      }
+      // Some hrefs miss the backslash
       var link = document.createElement('a');
       link.href = href;
       return link.href;
