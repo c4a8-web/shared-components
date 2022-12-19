@@ -2,6 +2,7 @@
 {%- assign videoFrameAlt = include.alt -%}
 {%- assign videoFrameId = include.id -%}
 {%- assign videoFramePreset = include.preset | default: 'default' -%}
+{%- assign videoFrameWrapper = include.wrap | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -13,7 +14,10 @@
 {% endif %}
 
 <!-- Shared Video Frame Section -->
-
+{% if videoFrameWrapper %}
+<div class="container">
+  <div class="row justify-content-center">
+{% endif %}
 <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
   <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
     "videoId": "{{ videoFrameId }}",
@@ -41,5 +45,9 @@
     %}
   </div>
 </div>
+{% if videoFrameWrapper %}
+  </div>
+  </div>
+{% endif %}
 
 <!-- End Shared Video Frame Section -->
