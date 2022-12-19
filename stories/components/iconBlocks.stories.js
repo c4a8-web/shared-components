@@ -16,6 +16,12 @@ export const CustomColumnCount = Template.bind({});
 CustomColumnCount.args = {
   columns: 2,
   iconBlocks: {
+    cta: {
+      text: 'Button',
+      href: 'javascript:void(0)',
+      skin: 'primary',
+      button: true,
+    },
     items: [
       {
         image: getAssetPath('svg/logos/logo-windows10.svg'),

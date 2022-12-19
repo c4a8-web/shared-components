@@ -1,0 +1,66 @@
+{% assign accordion = include.accordion %}
+{% assign headline = accordion.headline %}
+
+<!-- Accordion Section-->
+{% if accordion.headline %}
+<div class="container {{ include.spacing }}">
+  {%
+      include headline-row.html
+      text=headline
+      centered=true
+  %}
+</div>
+{% endif %}
+<section class="accordion container mt-6 mb-4 my-lg-8">
+  <div class="row position-relative">
+    <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
+    <div class="col-lg-6 position-static" id="{{ accordion.id }}">
+      {% for tab in accordion.tabs %}
+        {% capture tabHeadingId %}{{ accordion.id }}Heading{{ forloop.index }}{% endcapture %}
+        {% capture tabContentId %}{{ accordion.id }}Content{{ forloop.index }}{% endcapture %}
+        {% capture tabExpanded %}{% if tab.expanded %}true{% else %}false{% endif %}{% endcapture %}
+
+        <!-- Card -->
+        <div class="mb-3">
+          <div class="card-header card-collapse" id="{{ tabHeadingId }}">
+            <button type="button" class="btn btn-link btn-block card-btn d-flex justify-content-between p-3{% if tabExpanded == 'false' %} collapsed{% endif %}"
+                data-toggle="collapse"
+                data-target="#{{ tabContentId }}"
+                aria-expanded="{{ tabExpanded }}"
+                aria-controls="{{ tabContentId }}"
+            >
+              {{ tab.headline }}
+
+              <span class="card-btn-toggle">
+                <span class="card-btn-toggle-default">+</span>
+                <span class="card-btn-toggle-active">−</span>
+              </span>
+            </button>
+        </div>
+        <div id="{{ tabContentId }}" class="collapse position-static{% if tabExpanded == 'true' %} show{% endif %}" aria-labelledby="{{ tabHeadingId }}" data-parent="#{{ accordion.id }}">
+          <div class="card-body px-3">
+              <div class="mb-4 col-lg-6 accordion__floating-container">
+                {% if tab.image %}
+                  <div class="accordion__floating-image-wrapper drop-shadow">
+                    {% assign accordionTabImageCloudinary = tab.cloudinary | default: true %}
+                    {%
+                      include img.html
+                      img=tab.image
+                      alt=tab.alt
+                      lazy=true
+                      cloudinary=accordionTabImageCloudinary
+                    %}
+                  </div>
+                {% endif %}
+              </div>
+              <p class="accordion__text">
+                {{ tab.content }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- End Card -->
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -2,6 +2,8 @@
 {%- assign iconBlocksLevel = include.level | default: 'h3' -%}
 {%- assign iconBlocksClasses = include.classes | default: 'font-size-3 bold' -%}
 {%- assign iconBlocksColumns = include.columns | default: false -%}
+{%- assign iconBlockSize = include.size | default: false -%}
+{%- assign iconBlockCta = iconBlocks.cta | default: false -%}
 
 {%- if iconBlocksColumns -%}
   {%- assign iconBlocksMaxColNumber = 12 -%}
@@ -39,6 +41,17 @@
       </div>
       {% endfor %}
     </div>
+    {% if iconBlockCta %}
+    <div class="row justify-content-center mt-2">
+      {%
+        include cta.html
+        text=iconBlockCta.text
+        href=iconBlockCta.href
+        skin=iconBlockCta.skin
+        button=iconBlockCta.button
+      %}
+    </div>
+    {% endif %}
   </div>
 </div>
 <!-- End Shared Icon Blocks Section -->
