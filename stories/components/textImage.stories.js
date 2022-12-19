@@ -178,6 +178,25 @@ LeftFloating.args = {
   copy: 'We hear this question frequently: <strong>&quot;Why should I not log in to my WIFI by using my (Azure) Active Directory credentials?&quot; </strong><br /><br />We believe that users should use their (Azure) Active Directory credentials as little as possible. Working password-less is state of the art and prevents identity theft. This is why we use certificates for network authentication. While authenticating with certificates, no credentials are transferred. <br /><br />There is another benefit: device certificates are available for the operating system prior to user login. Therefore, network connections can be established before Windows user logon. <br /><br />And finally, it is not a big deal: Certificates and WIFI profiles can be deployed to clients easily. You just need a Certificate Authority (e.g. <a href="https://scepman.com/" target="_blank">SCEPman</a> – super-easy) and a device management system, like Microsoft Intune or JAMF.',
 };
 
+export const WithBadge = Template.bind({});
+
+WithBadge.args = {
+  badge: {
+    text: 'Badge Text',
+    icon: '',
+  },
+  href: '',
+  image: getAssetPath('svg/products/protection-shield.svg'),
+  imagePreset: 'textImageFloatingSmallSquare',
+  imageClasses: 'center',
+  headline: 'Why authenticate with certificates to access the network?',
+  level: 'h2',
+  spacing: 'space-bottom-2 space-bottom-lg-3',
+  left: true,
+  float: true,
+  copy: 'We hear this question frequently: <strong>&quot;Why should I not log in to my WIFI by using my (Azure) Active Directory credentials?&quot; </strong><br /><br />We believe that users should use their (Azure) Active Directory credentials as little as possible. Working password-less is state of the art and prevents identity theft. This is why we use certificates for network authentication. While authenticating with certificates, no credentials are transferred. <br /><br />There is another benefit: device certificates are available for the operating system prior to user login. Therefore, network connections can be established before Windows user logon. <br /><br />And finally, it is not a big deal: Certificates and WIFI profiles can be deployed to clients easily. You just need a Certificate Authority (e.g. <a href="https://scepman.com/" target="_blank">SCEPman</a> – super-easy) and a device management system, like Microsoft Intune or JAMF.',
+};
+
 export const LeftFloatingBg = Template.bind({});
 
 LeftFloatingBg.args = {
