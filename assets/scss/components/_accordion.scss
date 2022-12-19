@@ -1,0 +1,46 @@
+.accordion {
+  .btn-link {
+    &:not(.collapsed),
+    &:hover {
+      color: var(--color-primary);
+    }
+  }
+
+  .card-btn-toggle {
+    color: currentColor;
+  }
+}
+
+.accordion__floating-container {
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.accordion__floating-image-wrapper {
+  @include media-breakpoint-up(lg) {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+
+  img {
+    @include media-breakpoint-up(lg) {
+      opacity: 0;
+      display: block;
+      position: sticky;
+      top: 25vh;
+      left: 0;
+
+      .show & {
+        opacity: 1;
+        transition: opacity 250ms ease-in-out;
+      }
+    }
+  }
+}

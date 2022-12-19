@@ -2,6 +2,7 @@
 {%- assign iconBlocksLevel = include.level | default: 'h3' -%}
 {%- assign iconBlocksClasses = include.classes | default: 'font-size-3 bold' -%}
 {%- assign iconBlocksColumns = include.columns | default: false -%}
+{%- assign iconBlockSize = include.size | default: false -%}
 
 {%- if iconBlocksColumns -%}
   {%- assign iconBlocksMaxColNumber = 12 -%}
