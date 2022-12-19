@@ -11,17 +11,17 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const VideoFrame = Template.bind({});
+export const Default = Template.bind({});
 
-VideoFrame.args = {
+Default.args = {
   thumb: 'shared-components/teaser-dekra.png',
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
 };
 
-export const VideoFrameContainer = Template.bind({});
+export const Container = Template.bind({});
 
-VideoFrameContainer.args = {
+Container.args = {
   thumb: 'shared-components/teaser-dekra.png',
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
