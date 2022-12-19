@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const IconBlocksCustomColumnCount = Template.bind({});
+export const CustomColumnCount = Template.bind({});
 
-IconBlocksCustomColumnCount.args = {
+CustomColumnCount.args = {
   columns: 2,
   iconBlocks: {
     items: [
@@ -57,9 +57,9 @@ IconBlocksCustomColumnCount.args = {
   },
 };
 
-export const IconBlocks = Template.bind({});
+export const Default = Template.bind({});
 
-IconBlocks.args = {
+Default.args = {
   iconBlocks: {
     items: [
       {
