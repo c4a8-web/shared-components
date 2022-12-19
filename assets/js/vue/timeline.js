@@ -45,13 +45,19 @@ export default {
                 <div class="timeline__entry-container" v-for="entry in entries">
                   <div class="timeline__entry">
                     <div class="timeline__entry-inner">
-                      {{ entry }}
+                      <div class="timeline__entry-inner-text">
+                        {{ entry }}
+                      </div>
+                      <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line"></div>
                   <div class="timeline__entry-spacer">
                     <div class="timeline__entry-inner">
-                      {{ entry }}
+                      <div class="timeline__entry-inner-text">
+                        {{ entry }}
+                      </div>
+                      <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
                 </div>
