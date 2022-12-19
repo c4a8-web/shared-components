@@ -55,6 +55,7 @@ import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
 import TBlock from './vue/shapes/t-block.js';
 import TestimonialList from './vue/testimonial-list.js';
+import Timeline from './vue/timeline.js';
 import LBlock from './vue/shapes/l-block.js';
 import Square from './vue/shapes/square.js';
 import VideoInner from './vue/video-inner.js';
@@ -127,6 +128,7 @@ const addApp = () => {
     SBlock,
     TBlock,
     TestimonialList,
+    Timeline,
     LBlock,
     Square,
     PersonQuote,

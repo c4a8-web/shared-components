@@ -1,0 +1,14 @@
+<!-- Shared Timeline Section -->
+{%- assign timelineHeadline = include.headline -%}
+{%- assign timelineBgColor = include.bgColor -%}
+{%- assign timelineColor = include.color -%}
+{%- assign timelineEntries = include.entries -%}
+
+<timeline
+  :headline="{{ timelineHeadline | jsonify | escape  }}"
+  bg-color="{{ timelineBgColor }}"
+  color="{{ timelineColor }}"
+  :entries="{{ timelineEntries | jsonify | escape }}"
+>
+</timeline>
+<!-- End Shared Text Animation Section -->

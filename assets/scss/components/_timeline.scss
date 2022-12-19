@@ -1,0 +1,112 @@
+.timeline {
+  --color-timeline-line-color: rgba(255, 255, 255, 0.4);
+  --timeline-line-size: 8px;
+  --timeline-line-width-lg: 200px;
+
+  background-color: var(--color-timeline-background);
+  color: var(--color-timeline-color);
+
+  .timeline__headline {
+    color: inherit;
+  }
+}
+
+.timeline__row {
+  padding-top: spacing(10);
+  padding-bottom: spacing(14);
+}
+
+.timeline__content {
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  width: 100%;
+  overflow: hidden;
+}
+
+.timeline__line {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  transform: translateX(calc(-1 * (var(--timeline-line-width-lg) / 2)));
+}
+
+.timeline__line-start {
+  position: relative;
+  display: flex;
+  height: calc(2 * var(--timeline-line-size));
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: var(--timeline-line-size);
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 20%, var(--color-timeline-line-color) 100%);
+
+    @include media-breakpoint-up(lg) {
+      width: var(--timeline-line-width-lg);
+    }
+  }
+}
+
+.timeline__line-corner {
+  position: relative;
+  overflow: hidden;
+  width: calc(2 * var(--timeline-line-size));
+  height: calc(2 * var(--timeline-line-size));
+
+  span {
+    display: block;
+    border-radius: 50%;
+    border-color: var(--color-timeline-line-color);
+    border-width: var(--timeline-line-size);
+    border-style: solid;
+    height: calc(4 * var(--timeline-line-size));
+    width: calc(4 * var(--timeline-line-size));
+    position: absolute;
+    left: calc(-1 * calc(2 * var(--timeline-line-size)));
+  }
+}
+
+.timeline__entry-line {
+  background-color: var(--color-timeline-line-color);
+  width: var(--timeline-line-size);
+
+  @include media-breakpoint-up(lg) {
+    margin-left: calc(var(--timeline-line-width-lg) + calc(1 * var(--timeline-line-size)));
+  }
+}
+
+.timeline__entry-container {
+  display: flex;
+  width: 100%;
+
+  &:nth-child(2) {
+    .timeline__entry-inner {
+      margin-top: spacing(20);
+    }
+  }
+}
+
+.timeline__entry {
+  opacity: 0;
+  flex: 1 0 auto;
+  pointer-events: none;
+}
+
+.timeline__entry-spacer {
+  opacity: 0.4;
+  flex: 1 0 auto;
+}
+
+.timeline__entry-inner {
+  width: 50%;
+  display: inline-block;
+  border: 1px solid red;
+  padding: spacing(4);
+  margin: spacing(5) 0 spacing(6);
+}
