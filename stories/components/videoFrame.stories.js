@@ -19,11 +19,11 @@ VideoFrame.args = {
   id: 'ThxpyUOz2R8',
 };
 
-export const VideoFrameWrapped = Template.bind({});
+export const VideoFrameContainer = Template.bind({});
 
-VideoFrameWrapped.args = {
+VideoFrameContainer.args = {
   thumb: 'shared-components/teaser-dekra.png',
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
-  wrap: true,
+  container: true,
 };
