@@ -75,6 +75,20 @@ export default {
 
       return `${start}s;leftBottomSonarStep1.end+${this.overall.sonarDelay}s`;
     },
+    rightBottomSonarBegin(step) {
+      let start = 2.5;
+
+      start = step ? start + step / 100 : start;
+
+      return `${start}s;rightBottomSonarStep1.end+${this.overall.sonarDelay}s`;
+    },
+    rightUpperSonarBegin(step) {
+      let start = 0.2;
+
+      start = step ? start + step / 100 : start;
+
+      return `${start}s;rightUpperSonarStep1.end+${this.overall.sonarDelay}s`;
+    },
   },
   template: `
     <g :class="classList">
@@ -95,20 +109,6 @@ export default {
               <path d="M 128,128 L 48,0 L 188,0 z" stroke="none" fill="url(#sonar)"/>
             </mask>
 
-            <aaanimate
-              repeatCount="indefinite"
-              dur="8.008008s"
-              begin="0s"
-              xlink:href="#_R_G_L_1_G_M"
-              ddfill="freeze"
-              attributeName="opacity"
-              from="0"
-              to="1"
-              keyTimes="0;0.875;0.8750004;1"
-              values="0;0;1;1"
-              keySplines="0 0 0 0;0 0 0 0;0 0 0 0"
-              calcMode="spline"
-            />
           </defs>
           <g id="background">
             <rect fill="#543b9c" width="1080" height="1080" />
@@ -128,22 +128,7 @@ export default {
             />
           </g>
           <g
-            style="display:none"
-            id="_R_G_L_12_G"
-            transform=" translate(541, 540.5) scale(3.23, 3.23) translate(0, 0)"
-          >
-            <path
-              id="_R_G_L_12_G_D_0_P_0"
-              fill="#543b9c"
-              fill="#ff0000"
-              fill-opacity="1"
-              fill-rule="nonzero"
-              d=" M0 -50 C27.6,-50 50,-27.59 50,0 C50,27.6 27.6,50 0,50 C-27.59,50 -50,27.6 -50,0 C-50,-27.59 -27.59,-50 0,-50z "
-            />
-          </g>
-          <g
             id="irisRing1"
-            ddstyle="display:none"
             transform=" translate(540, 540.5) scale(0.47, 0.47) translate(0, 0)"
           >
             <path
@@ -224,45 +209,42 @@ export default {
               d=" M0 -50 C27.6,-50 50,-27.59 50,0 C50,27.6 27.6,50 0,50 C-27.59,50 -50,27.6 -50,0 C-50,-27.59 -27.59,-50 0,-50z "
             />
           </g>
-          <g
-            id="_R_G_L_5_G"
-            style="display: none"
-            transform=" translate(540, 540.5) scale(0.47, 0.47) translate(0, 0)"
-          >
-            <path
-              id="_R_G_L_5_G_D_0_P_0"
-              aastroke="#f8842c"
 
-              stroke="#999900"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              fill="none"
-              stroke-width="332"
-              stroke-opacity="1"
-              d=" M0 -176.5 C97.41,-176.5 176.5,-97.41 176.5,0 C176.5,97.41 97.41,176.5 0,176.5 C-97.41,176.5 -176.5,97.41 -176.5,0 C-176.5,-97.41 -97.41,-176.5 0,-176.5z "
+          <g id="rightUpperSonar" opacity="0">
+            <g transform="translate(570, 510)">
+              <circle id="rightUpperSonarCircle" cx="70" cy="-86" r="40" stroke="#ffffff" stroke-width="80" fill="none" style="transform-box:fill-box;transform-origin:center" />
+            </g>
+            <animate
+              id="rightUpperSonarStep1"
+              dur="1s"
+              :begin="rightUpperSonarBegin()"
+              href="#rightUpperSonar"
+              attributeName="opacity"
+              keyTimes="0;0.1;0.5;0.6;1"
+              values="0;0.3;0.5;0.6;0"
+              fill="freeze"
             />
-          </g>
-
-          <g id="_R_G_L_3_G" transform=" translate(648, 420) translate(-108, 120)">
-            <path
-              id="_R_G_L_3_G_D_0_P_0"
-              aafill="#ffffff"
-              fill="#777700"
-              fill-opacity="1"
-              fill-rule="nonzero"
-              d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
+            <animate
+              id="rightUpperSonarStep3"
+              dur="1s"
+              :begin="rightUpperSonarBegin(1)"
+              href="#rightUpperSonarCircle"
+              attributeName="stroke-width"
+              from="80"
+              to="5"
+              fill="freeze"
             />
-            <path
-              id="_R_G_L_3_G_D_1_P_0"
-              aastroke="#ffffff"
-
-              stroke="#aa00aa"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              fill="none"
-              stroke-width="25"
-              stroke-opacity="1"
-              d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
+            <animateTransform
+              id="rightUpperSonarStep2"
+              dur="1s"
+              :begin="rightUpperSonarBegin(2)"
+              href="#rightUpperSonarCircle"
+              attributeName="transform"
+              from="0.01"
+              to="0.6"
+              type="scale"
+              fill="freeze"
+              calcMode="paced"
             />
           </g>
           <g id="leftUpperSonar" opacity="0">
@@ -302,42 +284,41 @@ export default {
               calcMode="paced"
             />
           </g>
-          <g id="rightBottomSonar">
-            <g
-              id="_R_G_L_0_G"
-              transform=" translate(676, 620) scale(0.76375, 0.76375) translate(-108, 120)"
-            >
-              <path
-                id="_R_G_L_0_G_D_0_P_0"
-                fill="#ffffff"
-                fill-opacity="1"
-                fill-rule="nonzero"
-                d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
-              />
-              <path
-                id="_R_G_L_0_G_D_1_P_0"
-                stroke="#ffffff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                fill="none"
-                stroke-width="25"
-                stroke-opacity="1"
-                d=" M107.73 -149.63 C123.43,-149.63 136.17,-136.89 136.17,-121.19 C136.17,-105.49 123.43,-92.75 107.73,-92.75 C92.04,-92.75 79.29,-105.49 79.29,-121.19 C79.29,-136.89 92.04,-149.63 107.73,-149.63z "
-              />
+          <g id="rightBottomSonar" opacity="0">
+            <g transform="translate(590, 720)">
+              <circle id="rightBottomSonarCircle" cx="70" cy="-86" r="40" stroke="#ffffff" stroke-width="80" fill="none" style="transform-box:fill-box;transform-origin:center" />
             </g>
             <animate
-              repeatCount="indefinite"
-              dur="8.008008s"
-              begin="0s"
+              id="rightBottomSonarStep1"
+              dur="1s"
+              :begin="rightBottomSonarBegin()"
               href="#rightBottomSonar"
-              ddfill="freeze"
               attributeName="opacity"
-              from="0"
-              to="1"
-              keyTimes="0;0.3333333;0.3333337;1"
-              values="0;0;1;1"
-              keySplines="0 0 0 0;0 0 0 0;0 0 0 0"
-              calcMode="spline"
+              keyTimes="0;0.1;0.5;0.6;1"
+              values="0;0.3;0.5;0.6;0"
+              fill="freeze"
+            />
+            <animate
+              id="rightBottomSonarStep3"
+              dur="1s"
+              :begin="rightBottomSonarBegin(1)"
+              href="#rightBottomSonarCircle"
+              attributeName="stroke-width"
+              from="80"
+              to="5"
+              fill="freeze"
+            />
+            <animateTransform
+              id="rightBottomSonarStep2"
+              dur="1s"
+              :begin="rightBottomSonarBegin(2)"
+              href="#rightBottomSonarCircle"
+              attributeName="transform"
+              from="0.01"
+              to="0.6"
+              type="scale"
+              fill="freeze"
+              calcMode="paced"
             />
           </g>
 
