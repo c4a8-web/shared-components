@@ -15,29 +15,34 @@ class BrokenLinks {
     this.links = {};
     this.prevLink = {};
     this.options = {
-      // method: 'HEAD',
       mode: 'cors',
-      //mode: 'no-cors',
       redirect: 'follow',
     };
 
     this.start();
+    this.showErrors();
   }
 
   async start() {
     await this.getUrl(this.rootUrl);
-
-    this.showErrors();
-    console.log(this.prevLink);
-    console.log(this.errors);
   }
 
   showErrors() {
-    //console.debug('errors', this.errors);
+    let noDuplicates = [];
+    for (let i = 0; i < this.errors.length; i++) {
+      const brokenLink = this.errors[i].url;
+      if (!noDuplicates.includes(brokenLink)) {
+        noDuplicates.push(brokenLink);
+        console.log(noDuplicates);
+      } else {
+        this.errors.splice(i, 1);
+        console.log(this.errors);
+      }
+    }
+    // console.debug('errors', this.errors);
   }
 
   getUrl(url, previousUrl) {
-    //if (this.links[url]) return;
     this.prevLink[url] = 'Previous Url: ' + previousUrl;
 
     return new Promise((resolve) => {
@@ -45,7 +50,7 @@ class BrokenLinks {
 
       fetch(url, this.options)
         .then((response) => {
-          this.handleResponse(response, external, url);
+          this.handleResponse(response, external);
 
           resolve();
         })
@@ -68,8 +73,16 @@ class BrokenLinks {
     return url.match(regex) ? false : true;
   }
 
-  async handleResponse(response, external, test) {
+  async handleResponse(response, external) {
     const { url } = response;
+    if (response.status >= 400) {
+      const status = response.status;
+      this.errors.push({
+        url,
+        status,
+      });
+    }
+
     if (this.links[url]) return;
 
     if (external) {
@@ -85,6 +98,16 @@ class BrokenLinks {
         this.checkLinks();
       });
     }
+  }
+
+  handleError(data) {
+    const { url, error, previousUrl } = data;
+
+    this.errors.push({
+      url,
+      error,
+      previousUrl,
+    });
   }
 
   async checkLinks() {
@@ -105,16 +128,6 @@ class BrokenLinks {
     }
   }
 
-  handleError(data) {
-    const { url, error, previousUrl } = data;
-
-    this.errors.push({
-      url,
-      error,
-      previousUrl,
-    });
-  }
-
   async getLinksOnSite(site, url) {
     const links = site.querySelectorAll('a');
 
@@ -122,8 +135,6 @@ class BrokenLinks {
       const hrefAttr = links[i].getAttribute('href');
 
       if (this.isInvalidHref(hrefAttr) == false) {
-        // links[i].href = this.normalizeLink(links[i].href);
-
         const link = links[i];
         const linkUrl = this.getAbsoluteUrl(link, url);
 
@@ -133,14 +144,6 @@ class BrokenLinks {
       }
     }
   }
-
-  normalizeLink(link) {
-    link = link.endsWith('.html') ? link.slice(0, -5) : link;
-    link = link.endsWith('/') ? link.slice(0, -1) : link;
-
-    return link;
-  }
-
   getAbsoluteUrl(link, siteUrl) {
     const href = link.getAttribute('href');
     const isAbsolute = href.indexOf('/') !== -1;
