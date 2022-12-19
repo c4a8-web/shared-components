@@ -2,7 +2,7 @@
 {%- assign videoFrameAlt = include.alt -%}
 {%- assign videoFrameId = include.id -%}
 {%- assign videoFramePreset = include.preset | default: 'default' -%}
-{%- assign videoFrameWrapper = include.wrap | default: false -%}
+{%- assign videoFrameContainer = include.container | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -14,7 +14,7 @@
 {% endif %}
 
 <!-- Shared Video Frame Section -->
-{% if videoFrameWrapper %}
+{% if videoFrameContainer %}
 <div class="container">
   <div class="row justify-content-center">
 {% endif %}
@@ -45,7 +45,7 @@
     %}
   </div>
 </div>
-{% if videoFrameWrapper %}
+{% if videoFrameContainer %}
   </div>
   </div>
 {% endif %}
