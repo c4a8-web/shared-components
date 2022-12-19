@@ -12,9 +12,8 @@ class BrokenLinks {
   constructor(rootUrl) {
     this.rootUrl = rootUrl;
     this.errors = [];
-    this.brokenLinks = {};
-    this.visitedLink = {};
-    this.prevLinks = {};
+    this.links = {};
+    this.prevLink = {};
     this.options = {
       // method: 'HEAD',
       mode: 'cors',
@@ -22,127 +21,136 @@ class BrokenLinks {
       redirect: 'follow',
     };
 
-    this.findLinks(this.rootUrl);
-    console.log(this.prevLinks);
-    console.log(this.brokenLinks);
+    this.start();
+  }
+
+  async start() {
+    await this.getUrl(this.rootUrl);
+
     this.showErrors();
+    console.log(this.prevLink);
+    console.log(this.errors);
   }
+
   showErrors() {
-    console.debug('errors', this.errors);
+    //console.debug('errors', this.errors);
   }
 
-  async findLinks(url, prevUrl = null) {
-    if (!this.visitedLink[url]) {
-      this.visitedLink[url] = 1;
-    }
+  getUrl(url, previousUrl) {
+    //if (this.links[url]) return;
+    this.prevLink[url] = 'Previous Url: ' + previousUrl;
 
-    const response = await fetch(url);
-    const html = await response.text();
-    const temp = document.createElement('html');
-    temp.innerHTML = html;
-    const links = temp.querySelectorAll('a');
+    return new Promise((resolve) => {
+      const external = this.isExternal(url);
 
-    links.forEach((link) => {
-      let currentLink = link.getAttribute('href');
-
-      if (this.isInvalidHref(currentLink)) {
-        return;
-      }
-
-      currentLink = this.getAbsoluteLink(currentLink, url);
-
-      if (this.isExternal(currentLink)) {
-        this.brokenLinks[currentLink] = 'external';
-        return;
-      }
-      // above filters invalid HREFS replace here with link
-
-      // currentLink = link.href;
-      if (this.isValidLink(currentLink) === false) return;
-
-      fetch(currentLink, this.options)
+      fetch(url, this.options)
         .then((response) => {
-          this.handleResponse({ response, currentLink, url });
+          this.handleResponse(response, external, url);
+
+          resolve();
         })
         .catch((error) => {
-          this.handleError({ error, currentLink, url });
-        });
+          this.handleError({ url, error, previousUrl });
 
-      if (!this.visitedLink[currentLink]) {
-        this.findLinks(currentLink, url);
-      }
+          resolve();
+        });
     });
   }
 
   isInvalidHref(href) {
-    return (
-      href == null || href.length <= 1 || this.visitedLink[href] || href.includes('index.html') || !href.includes('/')
-    );
-  }
-
-  handleResponse(data) {
-    const { response, currentLink, previousLink } = data;
-
-    if (response.status >= 300) {
-      // Both for Debugging Remove Afterwards
-      this.brokenLinksk[currentLink] = 'broken';
-      this.prevLinks[currentLink] = previousLink;
-
-      this.errors.push({
-        currentLink: currentLink,
-        response,
-        previousLink: previousLink,
-      });
-    }
-  }
-
-  handleError(data) {
-    const { error, currentLink, url: previousLink } = data;
-
-    this.brokenLinks[currentLink] = 'broken';
-    this.prevLinks[currentLink] = previousLink;
-
-    this.errors.push({
-      currentLink: currentLink,
-      error,
-      previousLink: previousLink,
-    });
-  }
-
-  isValidLink(url) {
-    const regex = /^(http(s)?:\/\/)?[\w.-]+(:\d+)?(\/[\w\.-]*)*$/g;
-    return url.match(regex) ? true : false;
-  }
-
-  isAbsoluteLink(href) {
-    return href.indexOf('http://') === 0 || href.indexOf('https://') === 0 ? href : null;
+    return href == null || href.length <= 1 || href.includes('index.html') || !href.includes('/');
   }
 
   isExternal(url) {
     const origin = document.location.origin;
-    // const regex = new RegExp(`^(${origin})?`);
-    return url.includes(origin) ? false : true;
+    const regex = new RegExp(`^(${origin})?`);
+
+    return url.match(regex) ? false : true;
   }
 
-  getAbsoluteLink(href, previousUrl) {
-    if (this.isAbsoluteLink(href) == null) {
-      if (href.includes('../')) {
-        const splittedPrevLink = previousUrl.split('/');
-        const lengthToRemovePrevLink = splittedPrevLink.slice(-1)[0].length;
-        if (lengthToRemovePrevLink == 0) return previousUrl;
+  async handleResponse(response, external, test) {
+    const { url } = response;
+    if (this.links[url]) return;
 
-        previousUrl = previousUrl.slice(0, -lengthToRemovePrevLink);
-        href = href.slice(3);
+    if (external) {
+      this.links[url] = external;
 
-        const joinedLink = previousUrl + href;
-        return joinedLink;
-      }
-      // Some hrefs miss the backslash
-      var link = document.createElement('a');
-      link.href = href;
-      return link.href;
+      this.checkLinks();
     } else {
-      return href;
+      response.text().then((html) => {
+        this.links[url] = {
+          html,
+        };
+
+        this.checkLinks();
+      });
     }
+  }
+
+  async checkLinks() {
+    const linkKeys = Object.keys(this.links);
+
+    for (let i = 0; i < linkKeys.length; i++) {
+      const key = linkKeys[i];
+      const link = this.links[key];
+
+      if (!link.html) continue;
+
+      const parser = new DOMParser();
+      const site = parser.parseFromString(link.html, 'text/html');
+
+      this.links[key].html = 'parsed';
+
+      await this.getLinksOnSite(site, key);
+    }
+  }
+
+  handleError(data) {
+    const { url, error, previousUrl } = data;
+
+    this.errors.push({
+      url,
+      error,
+      previousUrl,
+    });
+  }
+
+  async getLinksOnSite(site, url) {
+    const links = site.querySelectorAll('a');
+
+    for (var i = 0; i < links.length; i++) {
+      const hrefAttr = links[i].getAttribute('href');
+
+      if (this.isInvalidHref(hrefAttr) == false) {
+        // links[i].href = this.normalizeLink(links[i].href);
+
+        const link = links[i];
+        const linkUrl = this.getAbsoluteUrl(link, url);
+
+        if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
+          await this.getUrl(linkUrl, url);
+        }
+      }
+    }
+  }
+
+  normalizeLink(link) {
+    link = link.endsWith('.html') ? link.slice(0, -5) : link;
+    link = link.endsWith('/') ? link.slice(0, -1) : link;
+
+    return link;
+  }
+
+  getAbsoluteUrl(link, siteUrl) {
+    const href = link.getAttribute('href');
+    const isAbsolute = href.indexOf('/') !== -1;
+
+    return isAbsolute ? link.href : `${siteUrl}${href}`;
+  }
+
+  isValidLink(url) {
+    const regex = /^(http(s)?:\/\/)?[\w.-]+(:\d+)?(\/[\w\.-]*)*$/g;
+
+    return url.match(regex) ? true : false;
   }
 }
