@@ -53,6 +53,18 @@
   }
 }
 
+.timeline__line-end {
+  position: relative;
+
+  &::after {
+    content: '';
+    display: block;
+    width: inherit;
+    height: spacing(30);
+    background: linear-gradient(to bottom, var(--color-timeline-line-color) 20%, rgba(255, 255, 255, 0) 100%);
+  }
+}
+
 .timeline__line-corner {
   position: relative;
   overflow: hidden;
@@ -74,10 +86,15 @@
 
 .timeline__entry-line {
   background-color: var(--color-timeline-line-color);
+}
+
+.timeline__entry-line,
+.timeline__line-end {
   width: var(--timeline-line-size);
+  flex-shrink: 0;
 
   @include media-breakpoint-up(lg) {
-    margin-left: calc(var(--timeline-line-width-lg) + calc(1 * var(--timeline-line-size)));
+    margin-left: calc(var(--timeline-line-width-lg) + calc(var(--timeline-line-size)));
   }
 }
 
@@ -90,23 +107,71 @@
       margin-top: spacing(20);
     }
   }
+
+  &:nth-child(even) {
+    .timeline__entry {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .timeline__entry-spacer {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
 }
 
 .timeline__entry {
+  position: relative;
   opacity: 0;
-  flex: 1 0 auto;
+  // flex: 1 0 auto;
   pointer-events: none;
+  display: flex;
+  justify-content: flex-end;
+  transform: translateX(calc(var(--timeline-line-width-lg) + calc(var(--timeline-line-size))));
+
+  .timeline__entry-inner-text {
+    text-align: right;
+  }
+
+  // .timeline__entry-inner {
+  //   &:after {
+  //     // position: absolute;
+  //     display: block;
+  //     content: '';
+  //     height: 2px;
+  //     width: spacing(16);
+  //     background-color: red;
+  //   }
+  // }
 }
 
+.timeline__entry-inner-line {
+  height: 2px;
+  width: spacing(16);
+  background-color: red;
+}
+
+.timeline__entry,
 .timeline__entry-spacer {
-  opacity: 0.4;
-  flex: 1 0 auto;
+  // flex: 1 0 auto;
+  width: calc(50% - 4px);
 }
 
 .timeline__entry-inner {
-  width: 50%;
-  display: inline-block;
-  border: 1px solid red;
+  // width: 70%;
+  width: 100%;
+  display: inline-flex;
+  margin: spacing(5) 0 spacing(8);
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.timeline__entry-inner-text {
+  border: 1px solid var(--color-timeline-line-color);
   padding: spacing(4);
-  margin: spacing(5) 0 spacing(6);
+  min-height: spacing(20);
+  display: flex;
+  align-items: center;
+  max-width: 50%;
 }
