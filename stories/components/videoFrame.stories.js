@@ -18,3 +18,12 @@ VideoFrame.args = {
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
 };
+
+export const VideoFrameWrapped = Template.bind({});
+
+VideoFrameWrapped.args = {
+  thumb: 'shared-components/teaser-dekra.png',
+  alt: 'Video Casestudy Uniper',
+  id: 'ThxpyUOz2R8',
+  wrap: true,
+};
