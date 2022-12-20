@@ -15,6 +15,7 @@
 {%- assign blogRecentCta = include.cta -%}
 {%- assign blogRecentCaseStudies = include.caseStudies -%}
 {%- assign blogRecentHideContainer = include.hideContainer -%}
+{%- assign blogRecentHelperClass = include.helperClass -%}
 
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
@@ -126,5 +127,6 @@
   limit="{{ blogRecentLimit }}"
   img-url="{{ site.blog_image_path }}"
   cta="{{ blogRecentCta | jsonify | escape}}"
+  helper-class="{{ blogRecentHelperClass }}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
 ></blog-recent>

@@ -6,6 +6,7 @@ export default {
     classList() {
       return [
         'blog-recent',
+        `${this.helperClass}`,
         `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
         'vue-component',
@@ -125,6 +126,7 @@ export default {
     subline: String,
     sublineClasses: String,
     posts: String,
+    helperClass: String,
     cta: {
       default: null,
     },
