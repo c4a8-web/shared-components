@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import State from '../state.js';
 
 export default {
   tagName: 'blog-recent',
@@ -13,7 +14,7 @@ export default {
       ];
     },
     hasBackground() {
-      return this.bgColor ? 'has-background' : '';
+      return this.bgColor ? State.HAS_BACKGROUND : '';
     },
     blogRecentContainerClass() {
       return [
