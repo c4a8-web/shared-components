@@ -73,7 +73,7 @@
 .video-frame__container {
   &.video-frame__container--spacing {
     @include media-breakpoint-up(md) {
-      margin-top: spacing(-50);
+      margin-top: spacing(50, true);
     }
   }
 }
