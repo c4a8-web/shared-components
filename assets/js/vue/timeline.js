@@ -2,7 +2,7 @@ export default {
   tagName: 'timeline',
   computed: {
     classList() {
-      return ['timeline', 'vue-component'];
+      return ['timeline', 'has-background', 'vue-component'];
     },
     copyColor() {
       return this.color ? this.color : 'var(--color-copy-light)';
