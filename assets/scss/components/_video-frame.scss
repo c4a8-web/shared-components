@@ -13,12 +13,26 @@
   &.video-frame--played {
     pointer-events: none;
 
+    .video-frame__corner-img {
+      display: none;
+    }
+
     .video-frame__player-icon {
       animation: scaleOut 0.4s ease-in-out forwards;
     }
 
     .video-frame__target {
       pointer-events: all;
+    }
+  }
+
+  &:not(.video-frame--played) {
+    .video-frame__corner-img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 25%;
+      height: auto;
     }
   }
 

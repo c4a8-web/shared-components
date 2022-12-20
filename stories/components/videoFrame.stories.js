@@ -27,3 +27,17 @@ Container.args = {
   id: 'ThxpyUOz2R8',
   container: true,
 };
+
+export const CornerImg = Template.bind({});
+
+CornerImg.args = {
+  thumb: 'shared-components/teaser-dekra.png',
+  alt: 'Video Casestudy Uniper',
+  id: 'ThxpyUOz2R8',
+  container: true,
+  corner: {
+    img: 'shared-components/teaser-dekra.png',
+    cloudinary: true,
+    alt: 'Video Casestudy Uniper',
+  },
+};

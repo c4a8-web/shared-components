@@ -3,6 +3,7 @@
 {%- assign videoFrameId = include.id -%}
 {%- assign videoFramePreset = include.preset | default: 'default' -%}
 {%- assign videoFrameContainer = include.container | default: false -%}
+{%- assign videoFrameCornerImg = include.corner | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -13,10 +14,14 @@
   {%- assign videoFrameHasVideo = false -%}
 {% endif %}
 
+{% if videoFrameCornerImg %}
+  {%- assign videoFrameCornerImgClass = 'position-relative' -%}
+{% endif %}
+
 <!-- Shared Video Frame Section -->
 {% if videoFrameContainer %}
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
 {% endif %}
     <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
       <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
@@ -36,6 +41,17 @@
             <i class="fas fa-play"></i>
           </span>
         </div>
+        {% if videoFrameCornerImg %}
+          <div class="video-frame__corner-img">
+            {%
+              include img.html
+              img=videoFrameCornerImg.img
+              cloudinary=videoFrameCornerImg.cloudinary
+              alt=videoFrameCornerImg.alt
+              preset=videoFramePreset
+            %}
+          </div>
+        {% endif %}
         {%
           include img.html
           img=videoFrameThumb
