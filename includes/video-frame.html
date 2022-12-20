@@ -4,6 +4,7 @@
 {%- assign videoFramePreset = include.preset | default: 'default' -%}
 {%- assign videoFrameContainer = include.container | default: false -%}
 {%- assign videoFrameCornerImg = include.corner | default: false -%}
+{%- assign videoFrameSpacingTop = include.spacingTop | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -20,7 +21,7 @@
 
 <!-- Shared Video Frame Section -->
 {% if videoFrameContainer %}
-<div class="container">
+<div class="container {% if videoFrameSpacingTop %} video-frame__spacing-top {% endif %}">
   <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
 {% endif %}
     <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">

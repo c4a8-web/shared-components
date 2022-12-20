@@ -61,3 +61,7 @@
   top: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
+
+.video-frame__spacing-top {
+  margin-top: spacing(-50);
+}
