@@ -21,10 +21,10 @@
 
 <!-- Shared Video Frame Section -->
 {% if videoFrameContainer %}
-<div class="container {% if videoFrameSpacingTop %} video-frame__spacing-top {% endif %}">
+<div class="container video-frame__container {% if videoFrameSpacingTop %} video-frame__container--spacing {% endif %}">
   <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
 {% endif %}
-    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
+    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %}">
       <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
         "videoId": "{{ videoFrameId }}",
         "parentSelector": "#{{ videoFrameParentId }}",

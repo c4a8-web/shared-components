@@ -41,6 +41,14 @@
       display: inline-block;
     }
   }
+
+  &.video-frame--container {
+    width: 100%;
+  }
+
+  img {
+    width: 100%;
+  }
 }
 
 .video-frame__player,
@@ -62,6 +70,8 @@
   transform: translateX(-50%) translateY(-50%);
 }
 
-.video-frame__spacing-top {
-  margin-top: spacing(-50);
+.video-frame__container {
+  &.video-frame__container--spacing {
+    margin-top: spacing(-50);
+  }
 }
