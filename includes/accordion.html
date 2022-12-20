@@ -1,14 +1,18 @@
 {% assign accordion = include.accordion %}
-{% assign headline = accordion.headline %}
+{% assign accordionHeadline = accordion.headline %}
+{% assign accordionSubline = accordion.subline | default: false %}
 
 <!-- Accordion Section-->
 {% if accordion.headline %}
 <div class="container {{ include.spacing }}">
   {%
       include headline-row.html
-      text=headline
+      text=accordionHeadline
       centered=true
   %}
+  {% if accordionSubline %}
+    <span>{{ accordionSubline }}</span>
+  {% endif %}
 </div>
 {% endif %}
 <section class="accordion container mt-6 mb-4 my-lg-8">
