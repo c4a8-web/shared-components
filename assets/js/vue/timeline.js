@@ -1,8 +1,10 @@
+import State from '../state.js';
+
 export default {
   tagName: 'timeline',
   computed: {
     classList() {
-      return ['timeline', 'has-background', 'vue-component'];
+      return ['timeline', this.isMounted ? State.READY : '', 'has-background', 'vue-component'];
     },
     copyColor() {
       return this.color ? this.color : 'var(--color-copy-light)';
@@ -17,7 +19,25 @@ export default {
       return `timeline__headline h3-font-size light ${this.headline?.classes ? this.headline.classes : ''}`;
     },
   },
-  methods: {},
+  mounted() {
+    this.startAnimation();
+  },
+  data() {
+    return {
+      isMounted: false,
+      startDelay: 500,
+    };
+  },
+  methods: {
+    startAnimation() {
+      setTimeout(() => {
+        this.isMounted = true;
+      }, this.startDelay);
+    },
+    getLinePosition(index) {
+      return `--timeline-line-position: ${index}`;
+    },
+  },
   props: {
     headline: Object,
     bgColor: {
@@ -42,7 +62,7 @@ export default {
                     <span></span>
                   </div>
                 </div>
-                <div class="timeline__entry-container" v-for="entry in entries">
+                <div class="timeline__entry-container" v-for="(entry, index) in entries">
                   <div class="timeline__entry">
                     <div class="timeline__entry-inner">
                       <div class="timeline__entry-inner-text">
@@ -51,7 +71,7 @@ export default {
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
-                  <div class="timeline__entry-line"></div>
+                  <div class="timeline__entry-line" :style="getLinePosition(index)"></div>
                   <div class="timeline__entry-spacer">
                     <div class="timeline__entry-inner">
                       <div class="timeline__entry-inner-text">
