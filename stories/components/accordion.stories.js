@@ -27,21 +27,18 @@ Accordion.args = {
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        expanded: true,
         image: '/products/radius/radius-wifi-lan-policy.gif',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        expanded: true,
         image: '/products/radius/radius-wifi-lan-policy.gif',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        expanded: true,
         image: '/products/radius/radius-wifi-lan-policy.gif',
         alt: 'WIFI and LAN policy creation',
       },
