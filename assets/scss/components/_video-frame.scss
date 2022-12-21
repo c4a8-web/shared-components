@@ -74,6 +74,7 @@
   &.video-frame__container--spacing {
     @include media-breakpoint-up(md) {
       margin-top: spacing($size: 50, $negative: true);
+      margin-bottom: spacing($size: 15);
     }
   }
 }
