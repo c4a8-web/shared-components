@@ -11,6 +11,15 @@
   }
 }
 
+.accordion__image {
+  &.accordion__image--mobile {
+    display: block;
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
+}
+
 .accordion__floating-container {
   width: 100%;
 
@@ -41,6 +50,12 @@
         opacity: 1;
         transition: opacity 250ms ease-in-out;
       }
+    }
+  }
+  &.accordion__image--mobile {
+    display: none;
+    @include media-breakpoint-up(md) {
+      display: block;
     }
   }
 }

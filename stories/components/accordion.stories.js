@@ -45,3 +45,41 @@ Accordion.args = {
     ],
   },
 };
+
+export const AccordionImage = Template.bind({});
+AccordionImage.args = {
+  accordion: {
+    image: '/products/radius/radius-wifi-lan-policy.gif',
+    alt: 'Products',
+    cloudinary: true,
+    headline: 'Features of the Admin Portal',
+    id: 'featureAccordion',
+    tabs: [
+      {
+        headline: 'WIFI and LAN policy creation',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        expanded: true,
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+    ],
+  },
+};
