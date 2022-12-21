@@ -9,6 +9,10 @@
   {%- assign iconBlocksMaxColNumber = 12 -%}
   {%- assign iconBlocksColumns = iconBlocksMaxColNumber | divided_by: iconBlocksColumns -%}
   {%- assign iconBlocksColumnsClass = 'col-md-' | append: iconBlocksColumns -%}
+  {% assign iconBlocksDivisibleByTwo = iconBlocksColumns | modulo: 2 %}
+  {%- if iconBlocksDivisibleByTwo -%}
+    {%- assign iconBlocksColumnsClass = 'col-6 ' | append: iconBlocksColumnsClass -%}
+  {%- endif -%}
 {%- else -%}
   {%- assign iconBlocksColumnsClass = 'col-md-4' -%}
 {%- endif -%}
