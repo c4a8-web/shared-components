@@ -1,4 +1,5 @@
 import State from '../state.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'timeline',
@@ -18,24 +19,47 @@ export default {
     headlineClasses() {
       return `timeline__headline h3-font-size light ${this.headline?.classes ? this.headline.classes : ''}`;
     },
+    lineEndStyle() {
+      return `--timeline-line-position: ${this.entries?.length}`;
+    },
   },
   mounted() {
-    this.startAnimation();
+    this.isInViewport();
+    this.bindEvents();
   },
   data() {
     return {
       isMounted: false,
       startDelay: 500,
+      isVisible: false,
+      percentageInViewport: 40,
     };
   },
   methods: {
+    bindEvents() {
+      document.addEventListener('scroll', this.handleScroll);
+    },
     startAnimation() {
       setTimeout(() => {
         this.isMounted = true;
       }, this.startDelay);
     },
-    getLinePosition(index) {
+    getEntryLineStyle(index) {
       return `--timeline-line-position: ${index}`;
+    },
+    handleScroll() {
+      this.isInViewport();
+    },
+    isInViewport() {
+      if (this.isVisible) return;
+
+      const root = this.$refs['root'];
+      const isInViewport = Tools.isInViewportPercent(root, this.percentageInViewport);
+      console.log('isInViewport ~ isInViewport', isInViewport);
+
+      if (!isInViewport) return;
+
+      this.startAnimation();
     },
   },
   props: {
@@ -49,7 +73,7 @@ export default {
     entries: Array,
   },
   template: `
-    <div :class="classList" :style="style">
+    <div :class="classList" :style="style" ref="root">
       <div class="container">
         <div class="timeline__row row">
           <div class="timeline__col col">
@@ -63,7 +87,7 @@ export default {
                   </div>
                 </div>
                 <div class="timeline__entry-container" v-for="(entry, index) in entries">
-                  <div class="timeline__entry">
+                  <div class="timeline__entry" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
                       <div class="timeline__entry-inner-text">
                         {{ entry }}
@@ -71,8 +95,8 @@ export default {
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
-                  <div class="timeline__entry-line" :style="getLinePosition(index)"></div>
-                  <div class="timeline__entry-spacer">
+                  <div class="timeline__entry-line" :style="getEntryLineStyle(index)"></div>
+                  <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
                       <div class="timeline__entry-inner-text">
                         {{ entry }}
@@ -81,7 +105,7 @@ export default {
                     </div>
                   </div>
                 </div>
-                <div class="timeline__line-end"></div>
+                <div class="timeline__line-end" :style="lineEndStyle"></div>
               </div>
             </div>
           </div>
