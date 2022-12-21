@@ -4,6 +4,7 @@
 {%- assign iconBlocksColumns = include.columns | default: false -%}
 {%- assign iconBlockSize = include.size | default: false -%}
 {%- assign iconBlockCta = iconBlocks.cta | default: false -%}
+{%- assign iconBlockHeadline = include.headline | default: false -%}
 
 {%- if iconBlocksColumns -%}
   {%- assign iconBlocksMaxColNumber = 12 -%}
@@ -20,6 +21,17 @@
 <!-- Shared Icon Blocks Section -->
 <div class="icon-blocks container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
   <div class="container space-2">
+    {% if iconBlockHeadline %}
+      <div class="row mt-5 mb-8 px-lg-3">
+        <div class="col">
+          {%
+            include headline.html
+            text=iconBlockHeadline
+            level=h3
+          %}
+        </div>
+      </div>
+    {% endif %}
     <div class="row">
       {% for item in iconBlocks.items %}
       <div class="{{ iconBlocksColumnsClass }} mb-5 mb-md-0">
