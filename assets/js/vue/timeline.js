@@ -55,7 +55,6 @@ export default {
 
       const root = this.$refs['root'];
       const isInViewport = Tools.isInViewportPercent(root, this.percentageInViewport);
-      console.log('isInViewport ~ isInViewport', isInViewport);
 
       if (!isInViewport) return;
 
