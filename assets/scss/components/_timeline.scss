@@ -66,6 +66,15 @@
       }
     }
   }
+
+  &:not(.is-expanded) {
+    // wenn element sichtbar dann blende es ein und
+    // height: 100vh;
+
+    // .timeline__content {
+    //   max-height: 70vh;
+    // }
+  }
 }
 
 .timeline__row {

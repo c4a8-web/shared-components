@@ -3,12 +3,14 @@
 {%- assign timelineBgColor = include.bgColor -%}
 {%- assign timelineColor = include.color -%}
 {%- assign timelineEntries = include.entries -%}
+{%- assign timelineExpanded = include.expanded -%}
 
 <timeline
   :headline="{{ timelineHeadline | jsonify | escape  }}"
   bg-color="{{ timelineBgColor }}"
   color="{{ timelineColor }}"
   :entries="{{ timelineEntries | jsonify | escape }}"
+  :expanded="{{ timelineExpanded }}"
 >
 </timeline>
 <!-- End Shared Text Animation Section -->

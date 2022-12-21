@@ -5,7 +5,13 @@ export default {
   tagName: 'timeline',
   computed: {
     classList() {
-      return ['timeline', this.isMounted ? State.READY : '', 'has-background', 'vue-component'];
+      return [
+        'timeline',
+        'has-background',
+        this.isMounted ? State.READY : '',
+        this.expanded ? State.EXPANDED : '',
+        'vue-component',
+      ];
     },
     copyColor() {
       return this.color ? this.color : 'var(--color-copy-light)';
@@ -24,8 +30,11 @@ export default {
     },
   },
   mounted() {
-    this.isInViewport();
     this.bindEvents();
+
+    if (!this.expanded) return;
+
+    this.isInViewport();
   },
   data() {
     return {
@@ -48,7 +57,14 @@ export default {
       return `--timeline-line-position: ${index}`;
     },
     handleScroll() {
-      this.isInViewport();
+      if (this.expanded) {
+        this.isInViewport();
+      } else {
+        this.updateAnimation();
+      }
+    },
+    updateAnimation() {
+      console.log('update scroll position of animation');
     },
     isInViewport() {
       if (this.isVisible) return;
@@ -70,6 +86,9 @@ export default {
       default: null,
     },
     entries: Array,
+    expanded: {
+      default: null,
+    },
   },
   template: `
     <div :class="classList" :style="style" ref="root">
