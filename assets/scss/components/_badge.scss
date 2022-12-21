@@ -26,6 +26,12 @@
       z-index: 0;
     }
   }
+
+  &.badge--uppercase {
+    .badge__text {
+      text-transform: uppercase;
+    }
+  }
 }
 
 .badge__text {
