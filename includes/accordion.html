@@ -1,34 +1,46 @@
 {% assign accordion = include.accordion %}
 {% assign accordionHeadline = accordion.headline %}
-{% assign accordionSubline = accordion.subline | default: false %}
-{% assign accordionImage = accordion.image | default: false %}
+{% assign accordionSubline = accordion.subline %}
+{% assign accordionImage = accordion.image %}
+{% assign accordionLeft = include.left %}
+
+{% if accordionImage %}
+  {% assign accordionVariant = 'accordion--has-image' %}
+{% else %}
+  {% assign accordionVariant = '' %}
+{% endif %}
+
+{% if accordionLeft %}
+  {% assign accordionHeadlineCentered = '' %}
+{% else %}
+  {% assign accordionHeadlineCentered = 'text-center' %}
+{% endif %}
 
 <!-- Accordion Section-->
 {% if accordion.headline %}
-<div class="container {{ include.spacing }}">
-  <div class="row">
-    {%
-      include headline.html
-      text=accordionHeadline
-    %}
-    {% if accordionSubline %}
-      <span>{{ accordionSubline }}</span>
-    {% endif %}
-  </div>
-  {% if accordionImage %}
-    {% assign accordionImageClass = 'accordion__image--mobile' %}
-    <div class="row accordion__image {{ accordionImageClass }}">
-      {%
-        include img.html
-        img=accordionImage
-        alt=accordion.alt
-        cloudinary=accordion.cloudinary
-      %}
+  <div class="accordion__container container {{ include.spacing }} {{ accordionVariant }}">
+    <div class="row">
+      <div class="col {{ accordionHeadlineCentered }}">
+        {%
+          include headline.html
+          text=accordionHeadline
+        %}
+        {% if accordionSubline %}
+          <div class="accordion__subline font-size-2">{{ accordionSubline }}</div>
+        {% endif %}
+      </div>
+      {% if accordionImage %}
+        <div class="row accordion__image">
+          {%
+            include img.html
+            img=accordionImage
+            alt=accordion.alt
+            cloudinary=accordion.cloudinary
+          %}
+        </div>
+      {% endif %}
     </div>
-  {% else %}
-    {% assign accordionImageClass = '' %}
-  {% endif %}
-</div>
+  </div>
 {% endif %}
 <section class="accordion container mt-6 mb-4 my-lg-8">
   <div class="row position-relative">
@@ -53,6 +65,7 @@
               <span class="card-btn-toggle">
                 <img class="card-btn-toggle-default" src="./svg/icons/icon-closed.svg"/>
                 <img class="card-btn-toggle-active" src="./svg/icons/icon-open.svg"/>
+                // TODO bitte icon componente benutzen
               </span>
             </button>
         </div>

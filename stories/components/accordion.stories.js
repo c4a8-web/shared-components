@@ -48,7 +48,9 @@ Accordion.args = {
 
 export const AccordionImage = Template.bind({});
 AccordionImage.args = {
+  left: true,
   accordion: {
+    subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
     image: '/products/radius/radius-wifi-lan-policy.gif',
     alt: 'Products',
     cloudinary: true,
