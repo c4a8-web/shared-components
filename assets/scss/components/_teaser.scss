@@ -3,11 +3,7 @@
   --color-teaser-background: var(--color-black-4);
 
   position: relative;
-  padding-bottom: spacing(10);
-
-  &.teaser--no-img {
-    padding-top: spacing(16);
-  }
+  padding: spacing(16) 0 spacing(10);
 
   &:not(.teaser--has-video) {
     cursor: pointer;
@@ -36,6 +32,7 @@
   }
 
   @include media-breakpoint-up(md) {
+    padding-top: 0;
     padding-bottom: spacing(16);
 
     &.teaser--no-img {

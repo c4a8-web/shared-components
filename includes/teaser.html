@@ -9,7 +9,7 @@
 {%- assign teaserId = include.id -%}
 {%- assign teaserHeadline = include.headline -%}
 {%- assign teaserOverline = include.overline -%}
-{%- assign teaserLogo = include.logo | default: false -%}
+{%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
 {%- assign teaserTextHtml = include.textHtml | default: false %}
@@ -21,6 +21,7 @@
 
 {% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
 {% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
+
 {% if teaserLogo %}
   {% assign teaserLogoClass = '' %}
 {% else %}
