@@ -4,11 +4,16 @@
 {%- assign iconBlocksColumns = include.columns | default: false -%}
 {%- assign iconBlockSize = include.size | default: false -%}
 {%- assign iconBlockCta = iconBlocks.cta | default: false -%}
+{%- assign iconBlockHeadline = include.headline | default: false -%}
 
 {%- if iconBlocksColumns -%}
   {%- assign iconBlocksMaxColNumber = 12 -%}
   {%- assign iconBlocksColumns = iconBlocksMaxColNumber | divided_by: iconBlocksColumns -%}
   {%- assign iconBlocksColumnsClass = 'col-md-' | append: iconBlocksColumns -%}
+  {% assign iconBlocksDivisibleByTwo = iconBlocksColumns | modulo: 2 %}
+  {%- if iconBlocksDivisibleByTwo -%}
+    {%- assign iconBlocksColumnsClass = 'col-6 ' | append: iconBlocksColumnsClass -%}
+  {%- endif -%}
 {%- else -%}
   {%- assign iconBlocksColumnsClass = 'col-md-4' -%}
 {%- endif -%}
@@ -16,6 +21,17 @@
 <!-- Shared Icon Blocks Section -->
 <div class="icon-blocks container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
   <div class="container space-2">
+    {% if iconBlockHeadline %}
+      <div class="row mt-5 mb-8 px-lg-3">
+        <div class="col">
+          {%
+            include headline.html
+            text=iconBlockHeadline
+            level=h3
+          %}
+        </div>
+      </div>
+    {% endif %}
     <div class="row">
       {% for item in iconBlocks.items %}
       <div class="{{ iconBlocksColumnsClass }} mb-5 mb-md-0">
@@ -42,7 +58,7 @@
       {% endfor %}
     </div>
     {% if iconBlockCta %}
-    <div class="row justify-content-center mt-2">
+    <div class="row justify-content-center mt-8">
       {%
         include cta.html
         text=iconBlockCta.text

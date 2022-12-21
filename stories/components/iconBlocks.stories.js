@@ -14,7 +14,8 @@ const Template = (args) => createComponent(args, component);
 export const CustomColumnCount = Template.bind({});
 
 CustomColumnCount.args = {
-  columns: 2,
+  columns: 4,
+  classes: 'h3-font-size',
   iconBlocks: {
     cta: {
       text: 'Button',

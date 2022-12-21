@@ -9,7 +9,7 @@
 {%- assign teaserId = include.id -%}
 {%- assign teaserHeadline = include.headline -%}
 {%- assign teaserOverline = include.overline -%}
-{%- assign teaserLogo = include.logo -%}
+{%- assign teaserLogo = include.logo | default: false -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
 {%- assign teaserTextHtml = include.textHtml | default: false %}
@@ -21,9 +21,14 @@
 
 {% capture teaserVideoId %}video-id__{{ teaserId }}{% endcapture %}
 {% capture teaserVideoFrameId %}{{ teaserVideoId }}-frame{% endcapture %}
+{% if teaserLogo %}
+  {% assign teaserLogoClass = '' %}
+{% else %}
+  {% assign teaserLogoClass = 'teaser--no-img' %}
+{% endif %}
 
 <!-- Shared Teaser Section -->
-<div class="teaser {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
+<div class="teaser {{ teaserLogoClass }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
   <div class="container">
     <div class="row">
       <div class="teaser__row col">
