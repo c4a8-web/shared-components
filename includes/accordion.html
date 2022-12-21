@@ -1,17 +1,32 @@
 {% assign accordion = include.accordion %}
 {% assign accordionHeadline = accordion.headline %}
 {% assign accordionSubline = accordion.subline | default: false %}
+{% assign accordionImage = accordion.image | default: false %}
 
 <!-- Accordion Section-->
 {% if accordion.headline %}
 <div class="container {{ include.spacing }}">
-  {%
-      include headline-row.html
+  <div class="row">
+    {%
+      include headline.html
       text=accordionHeadline
-      centered=true
-  %}
-  {% if accordionSubline %}
-    <span>{{ accordionSubline }}</span>
+    %}
+    {% if accordionSubline %}
+      <span>{{ accordionSubline }}</span>
+    {% endif %}
+  </div>
+  {% if accordionImage %}
+    {% assign accordionImageClass = 'accordion__image--mobile' %}
+    <div class="row accordion__image {{ accordionImageClass }}">
+      {%
+        include img.html
+        img=accordionImage
+        alt=accordion.alt
+        cloudinary=accordion.cloudinary
+      %}
+    </div>
+  {% else %}
+    {% assign accordionImageClass = '' %}
   {% endif %}
 </div>
 {% endif %}
@@ -45,7 +60,7 @@
           <div class="card-body px-3">
               <div class="mb-4 col-lg-6 accordion__floating-container">
                 {% if tab.image %}
-                  <div class="accordion__floating-image-wrapper drop-shadow">
+                  <div class="accordion__floating-image-wrapper {{ accordionImageClass }} drop-shadow">
                     {% assign accordionTabImageCloudinary = tab.cloudinary | default: true %}
                     {%
                       include img.html
