@@ -68,6 +68,32 @@
     }
   }
 
+  &:not(.is-expanded) {
+    .timeline__entry-container {
+      .timeline__entry-line {
+        &::after {
+          transition-duration: 0s;
+          transition-delay: 0s;
+        }
+      }
+    }
+
+    .timeline__line-corner,
+    .timeline__line-start {
+      &::after,
+      &::before {
+        // transition-duration: 0.6s;
+        transition-duration: 0s;
+        transition-delay: 0s;
+      }
+    }
+
+    .timeline__line-start {
+      opacity: 0;
+      transition: opacity 0.1s var(--timeline-animation-timing-function);
+    }
+  }
+
   &:not(.is-expanded).is-ready {
     .timeline__line-corner,
     .timeline__line-start {
@@ -76,8 +102,20 @@
       }
     }
 
+    .timeline__line-start {
+      opacity: 1;
+    }
+
     .timeline__entry-container {
       &.show {
+        // &:nth-child(2) {
+        //   .timeline__entry-line {
+        //     &::after {
+        //       transition-delay: 0.5s;
+        //     }
+        //   }
+        // }
+
         .timeline__entry,
         .timeline__entry-spacer {
           transition-delay: 0s;
@@ -87,9 +125,6 @@
         .timeline__entry-line {
           &::after {
             height: calc(var(--timeline-entry-container-percentage) * 1%);
-
-            transition-duration: 0s;
-            transition-delay: 0s;
             transition-timing-function: $animation-transition;
           }
         }
@@ -119,7 +154,6 @@
           @include media-breakpoint-up(lg) {
             &:nth-child(even) .timeline__entry,
             &:nth-child(odd) .timeline__entry-spacer {
-              // transition-delay: var(--timeline-animation-scroll-step-duration);
               opacity: 1;
               pointer-events: all;
             }
