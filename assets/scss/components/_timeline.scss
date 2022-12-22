@@ -80,22 +80,32 @@
       &.show {
         .timeline__entry-line {
           &::after {
-            height: 0;
-            transition-delay: calc(
-              var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration)
-            );
+            height: calc(var(--timeline-entry-container-percentage) * 1%);
+
+            transition-duration: 0s;
+            transition-delay: 0s;
+            // transition-delay: calc(
+            //   var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration)
+            // );
             transition-timing-function: $animation-transition;
-            transition-duration: var(--timeline-animation-scroll-step-duration);
+            // transition-duration: var(--timeline-animation-scroll-step-duration);
           }
         }
 
         + .timeline__line-end {
           &::before {
+            transition-delay: 0s;
+            transition-duration: 0s;
+          }
+        }
+
+        &.is-full + .timeline__line-end {
+          &::before {
             height: 0;
-            transition-delay: calc(
-              var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration) +
-                var(--timeline-animation-scroll-step-duration)
-            );
+            // transition-delay: calc(
+            //   var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration) +
+            //     var(--timeline-animation-scroll-step-duration)
+            // );
             transition-timing-function: $animation-transition;
             transition-duration: var(--timeline-animation-scroll-step-duration);
           }
@@ -108,10 +118,6 @@
             opacity: 1;
             pointer-events: all;
           }
-
-          // &:nth-child(2) .timeline__entry {
-          //   transition-delay: var(--timeline-animation-scroll-step-duration);
-          // }
         }
       }
     }
@@ -296,7 +302,7 @@
 
   &:nth-child(2) {
     .timeline__entry-inner {
-      margin-top: spacing(20);
+      margin-top: spacing(40);
     }
   }
 }
