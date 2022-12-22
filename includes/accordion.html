@@ -63,9 +63,16 @@
               {{ tab.headline }}
 
               <span class="card-btn-toggle">
-                <img class="card-btn-toggle-default" src="./svg/icons/icon-closed.svg"/>
-                <img class="card-btn-toggle-active" src="./svg/icons/icon-open.svg"/>
-                // TODO bitte icon componente benutzen
+                {%
+                  include icon.html
+                  icon='plus'
+                  classes='card-btn-toggle-default'
+                %}
+                {%
+                  include icon.html
+                  icon='minus'
+                  classes='card-btn-toggle-active'
+                %}
               </span>
             </button>
         </div>

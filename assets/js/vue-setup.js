@@ -44,6 +44,8 @@ import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
+import Plus from './vue/icons/plus.js';
+import Minus from './vue/icons/minus.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import Expand from './vue/icons/expand.js';
@@ -99,7 +101,9 @@ const addApp = () => {
     JobList,
     LetterSwitcher,
     LinkList,
+    Minus,
     Modal,
+    Plus,
     ScrollArrow,
     Search,
     ShapeAnimation,

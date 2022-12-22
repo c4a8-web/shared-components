@@ -6,6 +6,14 @@
     }
   }
 
+  .card-btn {
+    &:not(.collapsed) {
+      .card-btn-toggle-default {
+        display: none;
+      }
+    }
+  }
+
   .card-btn-toggle {
     color: currentColor;
   }
