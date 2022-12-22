@@ -31,17 +31,18 @@ export default {
   },
   mounted() {
     this.bindEvents();
-
-    if (!this.expanded) return;
-
-    this.isInViewport();
+    this.handleScroll();
   },
   data() {
     return {
+      lastIndex: null,
       isMounted: false,
       startDelay: 500,
       isVisible: false,
       percentageInViewport: 40,
+      minPercentage: -10,
+      maxPercentage: 100,
+      entryContainerStates: [],
     };
   },
   methods: {
@@ -64,7 +65,67 @@ export default {
       }
     },
     updateAnimation() {
-      console.log('update scroll position of animation');
+      const percentage = this.getScrollPercentage();
+
+      if (percentage <= this.minPercentage || percentage > this.maxPercentage) return;
+
+      if (!this.isMounted) {
+        this.startAnimation();
+      }
+
+      this.showEntryByPercent(percentage);
+    },
+    showEntryByPercent(percentage) {
+      const minIndex = 0;
+      const stepSize = this.maxPercentage / this.entries.length;
+
+      let index = Math.floor(percentage / stepSize);
+
+      if (index < minIndex) {
+        index = minIndex;
+      }
+
+      this.queueNextStep(index);
+    },
+    queueNextStep(index) {
+      this.entryContainerStates[index] = State.SHOW;
+
+      return;
+
+      if (!this.lastIndex) {
+        this.entryContainerStates[index] = State.SHOW;
+
+        this.lastIndex = index;
+        console.log('queueNextStep ~ this.lastIndex', this.lastIndex);
+      } else {
+        const lastElements = this.$refs['entry-line'];
+        console.log('queueNextStep ~ lastElements', lastElements);
+
+        if (!lastElements) return;
+
+        const lastElement = lastElements[this.lastIndex];
+        console.log('queueNextStep ~ lastElement', lastElement);
+
+        if (!lastElement) return;
+
+        console.log('queueNextStep ~ lastElement', lastElement);
+
+        // wait before next step
+        // this.entryContainerStates[index] = State.SHOW;
+      }
+    },
+    getEntryContainerClasses(index) {
+      return ['timeline__entry-container', this.entryContainerStates[index]];
+    },
+    getScrollPercentage() {
+      const root = this.$refs['root'];
+      const height = root.getBoundingClientRect().height;
+      const halfHeight = height / 2;
+      const elementTop = Tools.getScrollTop(root) - halfHeight;
+      const startPosition = window.scrollY - elementTop;
+      const endPosition = height;
+
+      return (startPosition * 100) / endPosition;
     },
     isInViewport() {
       if (this.isVisible) return;
@@ -104,7 +165,7 @@ export default {
                     <span></span>
                   </div>
                 </div>
-                <div class="timeline__entry-container" v-for="(entry, index) in entries">
+                <div :class="getEntryContainerClasses(index)" v-for="(entry, index) in entries">
                   <div class="timeline__entry" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
                       <div class="timeline__entry-inner-text">
@@ -113,7 +174,7 @@ export default {
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
-                  <div class="timeline__entry-line" :style="getEntryLineStyle(index)"></div>
+                  <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
                   <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
                       <div class="timeline__entry-inner-text">

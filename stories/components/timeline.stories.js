@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includestimelinehtml as component } from '../../.storybook/generatedIncludes';
+import timelineTemplate from '!!raw-loader!./timeline.html';
 
 const options = getTitle({
   title: 'Timeline',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, timelineTemplate);
 
 export const Default = Template.bind({});
 

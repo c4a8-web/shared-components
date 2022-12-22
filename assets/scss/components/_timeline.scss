@@ -9,6 +9,7 @@
   --timeline-animation-step-2-duration: 0.2s;
   --timeline-animation-step-3-duration: 0.45s;
   --timeline-animation-timing-function: linear;
+  --timeline-animation-scroll-step-duration: 0.9s;
 
   background-color: var(--color-timeline-background);
   color: var(--color-timeline-color);
@@ -18,7 +19,7 @@
     margin-bottom: spacing(8);
   }
 
-  &.is-ready {
+  &.is-ready.is-expanded {
     .timeline__line-corner,
     .timeline__line-start {
       &::after {
@@ -67,13 +68,53 @@
     }
   }
 
-  &:not(.is-expanded) {
-    // wenn element sichtbar dann blende es ein und
-    // height: 100vh;
+  &:not(.is-expanded).is-ready {
+    .timeline__line-corner,
+    .timeline__line-start {
+      &::after {
+        width: 0;
+      }
+    }
 
-    // .timeline__content {
-    //   max-height: 70vh;
-    // }
+    .timeline__entry-container {
+      &.show {
+        .timeline__entry-line {
+          &::after {
+            height: 0;
+            transition-delay: calc(
+              var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration)
+            );
+            transition-timing-function: $animation-transition;
+            transition-duration: var(--timeline-animation-scroll-step-duration);
+          }
+        }
+
+        + .timeline__line-end {
+          &::before {
+            height: 0;
+            transition-delay: calc(
+              var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration) +
+                var(--timeline-animation-scroll-step-duration)
+            );
+            transition-timing-function: $animation-transition;
+            transition-duration: var(--timeline-animation-scroll-step-duration);
+          }
+        }
+
+        @include media-breakpoint-up(lg) {
+          &:nth-child(even) .timeline__entry,
+          &:nth-child(odd) .timeline__entry-spacer {
+            transition-delay: var(--timeline-animation-scroll-step-duration);
+            opacity: 1;
+            pointer-events: all;
+          }
+
+          // &:nth-child(2) .timeline__entry {
+          //   transition-delay: var(--timeline-animation-scroll-step-duration);
+          // }
+        }
+      }
+    }
   }
 }
 
@@ -299,6 +340,7 @@
 .timeline__entry,
 .timeline__entry-spacer {
   opacity: 0;
+
   pointer-events: none;
   transition: opacity var(--timeline-animation-step-3-duration) var(--timeline-animation-timing-function)
     calc(
@@ -314,7 +356,7 @@
 .timeline__entry-inner {
   width: 100%;
   display: inline-flex;
-  margin: spacing(5) 0 spacing(8);
+  margin: spacing(5) 0 spacing(40);
   align-items: center;
   justify-content: flex-end;
 }

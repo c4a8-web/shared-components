@@ -28,15 +28,20 @@ class Tools {
     return percent <= (overlap / divsize) * 100;
   }
 
+  static getScrollTop(element) {
+    if (!element) return;
+
+    const header = document.querySelector('header');
+    const headerOffset = header ? header?.offsetHeight + 40 : 0;
+    const elementPosition = element.getBoundingClientRect().top;
+
+    return elementPosition - headerOffset + window.scrollY;
+  }
+
   static scrollIntoView(element, smooth) {
     if (element) {
-      const header = document.querySelector('header');
-      const headerOffset = header ? header?.offsetHeight + 40 : 0;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition - headerOffset + window.scrollY;
-
       window.scrollTo({
-        top: offsetPosition,
+        top: Tools.getScrollTop(element),
         behavior: smooth ? 'smooth' : 'auto',
       });
     }
