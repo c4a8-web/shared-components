@@ -90,7 +90,7 @@
 
     .timeline__line-start {
       opacity: 0;
-      transition: opacity 0.1s var(--timeline-animation-timing-function);
+      transition: opacity 0.3s var(--timeline-animation-timing-function);
     }
   }
 
@@ -104,6 +104,7 @@
 
     .timeline__line-start {
       opacity: 1;
+      transition-duration: 0s;
     }
 
     .timeline__entry-container {
@@ -125,7 +126,7 @@
         .timeline__entry-line {
           &::after {
             height: calc(var(--timeline-entry-container-percentage) * 1%);
-            transition-timing-function: $animation-transition;
+            // transition-timing-function: $animation-transition;
           }
         }
 
