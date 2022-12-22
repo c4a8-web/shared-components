@@ -78,17 +78,19 @@
 
     .timeline__entry-container {
       &.show {
+        .timeline__entry,
+        .timeline__entry-spacer {
+          transition-delay: 0s;
+          transition-duration: 0.3s;
+        }
+
         .timeline__entry-line {
           &::after {
             height: calc(var(--timeline-entry-container-percentage) * 1%);
 
             transition-duration: 0s;
             transition-delay: 0s;
-            // transition-delay: calc(
-            //   var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration)
-            // );
             transition-timing-function: $animation-transition;
-            // transition-duration: var(--timeline-animation-scroll-step-duration);
           }
         }
 
@@ -102,21 +104,32 @@
         &.is-full + .timeline__line-end {
           &::before {
             height: 0;
-            // transition-delay: calc(
-            //   var(--timeline-animation-step-1-duration) + var(--timeline-animation-step-2-duration) +
-            //     var(--timeline-animation-scroll-step-duration)
-            // );
             transition-timing-function: $animation-transition;
             transition-duration: var(--timeline-animation-scroll-step-duration);
           }
         }
 
-        @include media-breakpoint-up(lg) {
-          &:nth-child(even) .timeline__entry,
-          &:nth-child(odd) .timeline__entry-spacer {
-            transition-delay: var(--timeline-animation-scroll-step-duration);
+        &.is-full,
+        &.timeline__entry-container--visible {
+          .timeline__entry-spacer {
             opacity: 1;
             pointer-events: all;
+          }
+
+          @include media-breakpoint-up(lg) {
+            &:nth-child(even) .timeline__entry,
+            &:nth-child(odd) .timeline__entry-spacer {
+              // transition-delay: var(--timeline-animation-scroll-step-duration);
+              opacity: 1;
+              pointer-events: all;
+            }
+
+            &:nth-child(even) .timeline__entry-spacer {
+              transition-delay: 0s;
+              transition-duration: 0s;
+              opacity: 0;
+              pointer-events: none;
+            }
           }
         }
       }

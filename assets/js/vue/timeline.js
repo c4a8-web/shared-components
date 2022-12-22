@@ -40,8 +40,8 @@ export default {
       startDelay: 500,
       isVisible: false,
       percentageInViewport: 40,
-      // minPercentage: 0,
-      minPercentage: -10,
+      minPercentage: 0,
+      // minPercentage: -10,
       maxPercentage: 100,
       entryContainerStates: [],
       entryContainerStyles: [],
@@ -69,11 +69,8 @@ export default {
     updateAnimation() {
       const percentage = this.getScrollPercentage();
 
-      console.log('updateAnimation ~ percentage <= this.minPercentage', percentage <= this.minPercentage);
-      console.log('updateAnimation ~ percentage', percentage);
       if (percentage <= this.minPercentage) return this.setAnimationStart();
       if (percentage >= this.maxPercentage) return this.setAnimationEnd();
-      console.log('updateAnimation ~ percentage', percentage);
 
       if (!this.isReady) {
         this.startAnimation();
@@ -82,11 +79,9 @@ export default {
       this.showEntryByPercent(percentage);
     },
     setAnimationStart() {
-      console.log('start again');
       this.isReady = false;
     },
     setAnimationEnd() {
-      console.log('end again');
       const fullPercentage = 0;
 
       for (let i = 0; i < this.entries.length; i++) {
@@ -95,22 +90,20 @@ export default {
       }
     },
     showEntryByPercent(percentage) {
-      const minIndex = 0;
+      // const minIndex = 0;
       const stepSize = this.maxPercentage / this.entries.length;
 
-      let index = Math.floor(percentage / stepSize);
+      // let index = Math.floor(percentage / stepSize);
 
-      if (index < minIndex) {
-        index = minIndex;
-      }
+      // if (index < minIndex) {
+      //   index = minIndex;
+      // }
 
       for (let i = 0; i < this.entries.length; i++) {
-        this.updateNextStep(index, i, percentage, stepSize);
+        this.updateNextStep(i, percentage, stepSize);
       }
-
-      // this.queueNextStep(index);
     },
-    updateNextStep(currentIndex, index, percentage, stepSize) {
+    updateNextStep(index, percentage, stepSize) {
       this.entryContainerStates[index] = State.SHOW;
 
       const startPercentage = stepSize * index;
@@ -121,8 +114,13 @@ export default {
       if (percentage >= startPercentage && percentage <= endPercentage) {
         const end = stepSize;
         const localPercentage = percentage - startPercentage;
+        const showThreshold = 60;
 
         currentPercentage = 100 - Math.ceil((localPercentage * 100) / end);
+
+        if (currentPercentage < showThreshold) {
+          this.entryContainerStates[index] = [State.SHOW, 'timeline__entry-container--visible'];
+        }
       } else if (percentage > endPercentage) {
         currentPercentage = 0;
         this.entryContainerStates[index] = [State.SHOW, State.IS_FULL];
@@ -131,26 +129,6 @@ export default {
       }
 
       this.entryContainerStyles[index] = `${currentPercentage}`;
-    },
-    queueNextStep(index) {
-      if (this.lastIndex === null) {
-        this.entryContainerStates[index] = State.SHOW;
-
-        this.lastIndex = index;
-      } else {
-        const lastElements = this.$refs['entry-line'];
-
-        if (!lastElements) return;
-
-        const lastElement = lastElements[this.lastIndex];
-
-        if (!lastElement) return;
-
-        console.log('queueNextStep ~ lastElement', lastElement);
-
-        // wait before next step
-        // this.entryContainerStates[index] = State.SHOW;
-      }
     },
     getEntryContainerClasses(index) {
       return ['timeline__entry-container', this.entryContainerStates[index]];
@@ -163,10 +141,16 @@ export default {
     getScrollPercentage() {
       const root = this.$refs['root'];
       const height = root.getBoundingClientRect().height;
-      const halfHeight = height / 3;
-      const elementTop = Tools.getScrollTop(root) - halfHeight;
+      const heightOffset = window.innerHeight / 3;
+
+      let elementTop = Tools.getScrollTop(root) - heightOffset;
+
+      if (elementTop < 0) {
+        elementTop = 0;
+      }
+
       const startPosition = window.scrollY - elementTop;
-      const endPosition = height;
+      const endPosition = height - heightOffset;
 
       return (startPosition * 100) / endPosition;
     },
