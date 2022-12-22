@@ -106,3 +106,17 @@ Expand.args = {
   icon: 'expand',
   size: 'large',
 };
+
+export const Plus = Template.bind({});
+
+Plus.args = {
+  icon: 'plus',
+  size: 'large',
+};
+
+export const Minus = Template.bind({});
+
+Minus.args = {
+  icon: 'minus',
+  size: 'large',
+};
