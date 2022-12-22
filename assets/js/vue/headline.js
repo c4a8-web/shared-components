@@ -5,12 +5,14 @@ export default {
       return this.level ? this.level : 'h2';
     },
     classList() {
-      const classes =
-        this.classes && this.classes.indexOf('-font-size') !== -1
-          ? this.classes
-          : `${this.classes ? this.classes : ''} ${this.tag}-font-size`;
+      const classes = this.classes && this.hasFontSizeClass() ? this.classes : `${this.tag}-font-size`;
 
       return `${classes} headline vue-component`;
+    },
+  },
+  methods: {
+    hasFontSizeClass() {
+      return this.classes.indexOf('-font-size') !== -1 || this.classes.indexOf('font-size-') !== -1;
     },
   },
   props: {

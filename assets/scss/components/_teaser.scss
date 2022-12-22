@@ -32,7 +32,12 @@
   }
 
   @include media-breakpoint-up(md) {
-    padding: spacing(16) 0 spacing(16);
+    padding-top: 0;
+    padding-bottom: spacing(16);
+
+    &.teaser--no-img {
+      padding-top: spacing(16);
+    }
 
     .teaser__logo {
       grid-area: Header;

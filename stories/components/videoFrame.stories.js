@@ -11,10 +11,33 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const VideoFrame = Template.bind({});
+export const Default = Template.bind({});
 
-VideoFrame.args = {
+Default.args = {
   thumb: 'shared-components/teaser-dekra.png',
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
+};
+
+export const Container = Template.bind({});
+
+Container.args = {
+  thumb: 'shared-components/teaser-dekra.png',
+  alt: 'Video Casestudy Uniper',
+  id: 'ThxpyUOz2R8',
+  container: true,
+};
+
+export const CornerImg = Template.bind({});
+
+CornerImg.args = {
+  thumb: 'shared-components/teaser-dekra.png',
+  alt: 'Video Casestudy Uniper',
+  id: 'ThxpyUOz2R8',
+  container: true,
+  corner: {
+    img: 'shared-components/teaser-dekra.png',
+    cloudinary: true,
+    alt: 'Video Casestudy Uniper',
+  },
 };

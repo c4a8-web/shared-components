@@ -21,6 +21,8 @@ const State = {
   END: 'is-end',
   IS_SCROLLED: 'is-scrolled',
   MODAL_OPEN: 'modal--open',
+  HAS_BACKGROUND: 'has-background',
+  IS_FULL: 'is-full',
 };
 
 export default State;

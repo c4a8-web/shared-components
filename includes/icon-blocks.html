@@ -1,13 +1,40 @@
 {%- assign iconBlocks = include.iconBlocks -%}
 {%- assign iconBlocksLevel = include.level | default: 'h3' -%}
 {%- assign iconBlocksClasses = include.classes | default: 'font-size-3 bold' -%}
+{%- assign iconBlocksColumns = include.columns | default: false -%}
+{%- assign iconBlockSize = include.size | default: false -%}
+{%- assign iconBlockCta = iconBlocks.cta | default: false -%}
+{%- assign iconBlockHeadline = include.headline | default: false -%}
+
+{%- if iconBlocksColumns -%}
+  {%- assign iconBlocksMaxColNumber = 12 -%}
+  {%- assign iconBlocksColumns = iconBlocksMaxColNumber | divided_by: iconBlocksColumns -%}
+  {%- assign iconBlocksColumnsClass = 'col-md-' | append: iconBlocksColumns -%}
+  {% assign iconBlocksDivisibleByTwo = iconBlocksColumns | modulo: 2 %}
+  {%- if iconBlocksDivisibleByTwo -%}
+    {%- assign iconBlocksColumnsClass = 'col-6 ' | append: iconBlocksColumnsClass -%}
+  {%- endif -%}
+{%- else -%}
+  {%- assign iconBlocksColumnsClass = 'col-md-4' -%}
+{%- endif -%}
 
 <!-- Shared Icon Blocks Section -->
-<div class="icon-blocks container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
+<div class="icon-blocks mt-5 container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
   <div class="container space-2">
+    {% if iconBlockHeadline %}
+      <div class="row mt-5 mb-8 px-lg-3">
+        <div class="col">
+          {%
+            include headline.html
+            text=iconBlockHeadline
+            level=h3
+          %}
+        </div>
+      </div>
+    {% endif %}
     <div class="row">
       {% for item in iconBlocks.items %}
-      <div class="col-md-4 mb-5 mb-md-0">
+      <div class="{{ iconBlocksColumnsClass }} mb-5 mb-md-0">
         <!-- Shared Icon Blocks -->
         <div class="{% if item.copy == "" %}text-center{% endif %} px-lg-3">
           <figure class="max-w-15rem {% if item.copy == "" %}mx-auto{% endif %} mb-4">
@@ -30,6 +57,17 @@
       </div>
       {% endfor %}
     </div>
+    {% if iconBlockCta %}
+    <div class="row justify-content-center mt-8">
+      {%
+        include cta.html
+        text=iconBlockCta.text
+        href=iconBlockCta.href
+        skin=iconBlockCta.skin
+        button=iconBlockCta.button
+      %}
+    </div>
+    {% endif %}
   </div>
 </div>
 <!-- End Shared Icon Blocks Section -->

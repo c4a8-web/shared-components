@@ -32,17 +32,20 @@ import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
-import ShapeHalfSquare from './vue/shape-half-square.js';
-import ShapeMovingEye from './vue/shape-moving-eye.js';
-import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeFourSquares from './vue/shape-four-squares.js';
 import ShapeFourTriangles from './vue/shape-four-triangles.js';
+import ShapeHalfSquare from './vue/shape-half-square.js';
+import ShapeMovingEye from './vue/shape-moving-eye.js';
+import ShapeSecurityEye from './vue/shape-security-eye.js';
+import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
+import Plus from './vue/icons/plus.js';
+import Minus from './vue/icons/minus.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import Expand from './vue/icons/expand.js';
@@ -54,6 +57,7 @@ import Smile from './vue/icons/smile.js';
 import SBlock from './vue/shapes/s-block.js';
 import TBlock from './vue/shapes/t-block.js';
 import TestimonialList from './vue/testimonial-list.js';
+import Timeline from './vue/timeline.js';
 import LBlock from './vue/shapes/l-block.js';
 import Square from './vue/shapes/square.js';
 import VideoInner from './vue/video-inner.js';
@@ -97,18 +101,21 @@ const addApp = () => {
     JobList,
     LetterSwitcher,
     LinkList,
+    Minus,
     Modal,
+    Plus,
     ScrollArrow,
     Search,
     ShapeAnimation,
     ShapeCircleWithinSquare,
     ShapeFastFordward,
-    ShapeHalfSquare,
     ShapeFourSquares,
     ShapeFourTriangles,
-    ShapeSquareCircle,
+    ShapeHalfSquare,
     ShapeMovingEye,
+    ShapeSecurityEye,
     ShapeSemiCircle,
+    ShapeSquareCircle,
     ShapeTrianglesToCenter,
     Shape,
     ArrowExternal,
@@ -125,6 +132,7 @@ const addApp = () => {
     SBlock,
     TBlock,
     TestimonialList,
+    Timeline,
     LBlock,
     Square,
     PersonQuote,

@@ -4,16 +4,20 @@
   {%- assign badgeIcon = include.json.icon -%}
   {%- assign badgeColor = include.json.color | default: 'var(--color-badge-background)' -%}
   {%- assign badgeTextColor = include.json.textColor | default: 'var(--color-badge-icon)' -%}
+  {%- assign badgeUppercase = include.json.uppercase -%}
+  {%- assign badgeClasses = include.json.classes -%}
 {%- else -%}
   {%- assign badgeText = include.text -%}
   {%- assign badgeOverlapping = include.overlapping -%}
   {%- assign badgeIcon = include.icon -%}
   {%- assign badgeColor = include.color | default: 'var(--color-badge-background)' -%}
   {%- assign badgeTextColor = include.textColor | default: 'var(--color-badge-icon)' -%}
+  {%- assign badgeUppercase = include.uppercase -%}
+  {%- assign badgeClasses = include.classes -%}
 {%- endif -%}
 
 <!-- Shared Badge Section -->
-<div class="badge badge--normal font-size-1 normal {% if badgeOverlapping %}badge--overlapping{% endif %}" style="background-color: {{ badgeColor }}; color: {{ badgeTextColor }}">
+<div class="badge badge--normal font-size-1 normal {% if badgeOverlapping %}badge--overlapping{% endif %}{% if badgeUppercase %} badge--uppercase{% endif %} {{ badgeClasses }}" style="background-color: {{ badgeColor }}; color: {{ badgeTextColor }}">
   <div class="badge__text">{{ badgeText }}</div>
   {% if badgeIcon %}
     {% assign badgeIconName = badgeIcon | default: 'computer-shield' %}

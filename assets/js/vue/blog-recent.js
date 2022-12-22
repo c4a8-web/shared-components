@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import State from '../state.js';
 
 export default {
   tagName: 'blog-recent',
@@ -6,10 +7,14 @@ export default {
     classList() {
       return [
         'blog-recent',
+        `${this.hasBackground}`,
         `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
         'vue-component',
       ];
+    },
+    hasBackground() {
+      return this.bgColor ? State.HAS_BACKGROUND : '';
     },
     blogRecentContainerClass() {
       return [

@@ -34,3 +34,12 @@ Overlapping.args = {
   color: 'var(--color-sunglow)',
   overlapping: true,
 };
+
+export const Uppercase = Template.bind({});
+
+Uppercase.args = {
+  text: 'Training',
+  textColor: 'var(--color-black)',
+  color: 'var(--color-sunglow)',
+  uppercase: true,
+};
