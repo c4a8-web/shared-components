@@ -24,6 +24,8 @@
 {%- assign textImageCta = include.cta -%}
 {%- assign textImageModal = include.modal -%}
 {%- assign textImageHref = include.href -%}
+{%- assign textImageBadge = include.badge -%}
+
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageFirstColWidth -%}
@@ -47,6 +49,7 @@
             {% if textImageBackground %}background-image:url('{{ textImageBackground }}');{% endif %}">
   <div class="container">
     <div class="row {% if textImageLeft %}flex-row-reverse{% endif %}">
+
       {% if textImageFloat %}
         <div class="text-image__floating-col col-lg-{{ textImageFirstColWidth }} justify-content-end text-image__floating-img position-absolute top-0 right-0
                   {% if textImageFloat %}col-xl-{{ textImageFirstColWidthXl }}{% endif %}"
@@ -93,22 +96,34 @@
       </div>
       <div class="text-image__second-col col-lg-{{ textImageSecondColWidth }} pt-2 pt-lg-4
                   {% if textImageWhite %}text-white{% endif %}
-                  {{ textImageReduceSpacing }}
+                  {% if textImageReduceSpacing %}
+                    {{ textImageReduceSpacing }}
+                  {% endif %}
                   {% unless textImageReduceSpacing %}
                     {% if textImageLeft %}pr-lg-{% else %}pl-lg-{% endif %}{{ textImageSecondColWidth }}
                   {% endunless %}
                   {% if textImageFloat %}col-xl-{{ textImageSecondColWidthXl }}{% endif %}
                   {% unless textImageFloat %}{% if textImageLeft and textImageOffset %}offset-lg-1{% endif %}{% endunless %}"
       >
+        {% if textImageBadge %}
+          {%
+            include badge.html
+            text=textImageBadge.text
+            icon=textImageBadge.icon
+            uppercase=true
+            classes="text-image__badge"
+          %}
+        {% endif %}
+
         <span class="text-image__overline d-inline-block mb-2 font-size-2">
           {{ textImageOverline }}
         </span>
         <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4">
           {{ textImageHeadline }}
         </{{ textImageLevel }}>
-        <p class="{% if textImageCopyClasses %}{{ textImageCopyClasses }}{% endif %} {% if textImageCopyLight %}light{% endif %}">
+        <div class="{% if textImageCopyClasses %}{{ textImageCopyClasses }}{% endif %} {% if textImageCopyLight %}light{% endif %}">
           {{ textImageCopy }}
-        </p>
+        </div>
         {% if textImageList %}
           <div class="pt-4 pt-lg-6 pb-6">
             {%

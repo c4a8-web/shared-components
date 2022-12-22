@@ -2,6 +2,9 @@
 {%- assign videoFrameAlt = include.alt -%}
 {%- assign videoFrameId = include.id -%}
 {%- assign videoFramePreset = include.preset | default: 'default' -%}
+{%- assign videoFrameContainer = include.container | default: false -%}
+{%- assign videoFrameCornerImg = include.corner | default: false -%}
+{%- assign videoFrameSpacingTop = include.spacingTop | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -12,34 +15,55 @@
   {%- assign videoFrameHasVideo = false -%}
 {% endif %}
 
-<!-- Shared Video Frame Section -->
+{% if videoFrameCornerImg %}
+  {%- assign videoFrameCornerImgClass = 'position-relative' -%}
+{% endif %}
 
-<div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}">
-  <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
-    "videoId": "{{ videoFrameId }}",
-    "parentSelector": "#{{ videoFrameParentId }}",
-    "targetSelector": "#{{ videoFrameTargetId }}",
-    "isAutoplay": true,
-    "classMap": {
-      "toggle": "video-frame--played"
-    }
-  }'>
-    <div class="video-frame__target embed-responsive">
-      <div id="{{ videoFrameTargetId }}"></div>
+<!-- Shared Video Frame Section -->
+{% if videoFrameContainer %}
+<div class="container video-frame__container {% if videoFrameSpacingTop %} video-frame__container--spacing {% endif %}">
+  <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
+{% endif %}
+    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %}">
+      <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
+        "videoId": "{{ videoFrameId }}",
+        "parentSelector": "#{{ videoFrameParentId }}",
+        "targetSelector": "#{{ videoFrameTargetId }}",
+        "isAutoplay": true,
+        "classMap": {
+          "toggle": "video-frame--played"
+        }
+      }'>
+        <div class="video-frame__target embed-responsive">
+          <div id="{{ videoFrameTargetId }}"></div>
+        </div>
+        <div class="video-frame__play-wrapper">
+          <span class="video-frame__play video-player-icon video-frame__player-icon">
+            <i class="fas fa-play"></i>
+          </span>
+        </div>
+        {% if videoFrameCornerImg %}
+          <div class="video-frame__corner-img">
+            {%
+              include img.html
+              img=videoFrameCornerImg.img
+              cloudinary=videoFrameCornerImg.cloudinary
+              alt=videoFrameCornerImg.alt
+              preset=videoFramePreset
+            %}
+          </div>
+        {% endif %}
+        {%
+          include img.html
+          img=videoFrameThumb
+          cloudinary=true
+          alt=videoFrameAlt
+          preset=videoFramePreset
+        %}
+      </div>
     </div>
-    <div class="video-frame__play-wrapper">
-      <span class="video-frame__play video-player-icon video-frame__player-icon">
-        <i class="fas fa-play"></i>
-      </span>
-    </div>
-    {%
-      include img.html
-      img=videoFrameThumb
-      cloudinary=true
-      alt=videoFrameAlt
-      preset=videoFramePreset
-    %}
+{% if videoFrameContainer %}
   </div>
 </div>
-
+{% endif %}
 <!-- End Shared Video Frame Section -->
