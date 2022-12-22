@@ -47,6 +47,14 @@ h1WithH4Style.args = {
   classes: 'h4-font-size',
 };
 
+export const h1WithFontSize3Style = Template.bind({});
+
+h1WithFontSize3Style.args = {
+  level: 'h1',
+  text: 'Headline Level 1 with Font Size 3 Style',
+  classes: 'font-size-3',
+};
+
 // export const h5 = Template.bind({});
 
 // h5.args = {
