@@ -12,10 +12,21 @@
         display: none;
       }
     }
+
+    &.collapsed {
+      .card-btn-toggle-default {
+        display: inline-flex;
+      }
+    }
   }
 
   .card-btn-toggle {
     color: currentColor;
+  }
+
+  .accordion__icon-toggle.icon {
+    width: spacing(6);
+    height: spacing(6);
   }
 }
 
@@ -62,7 +73,6 @@
       opacity: 0;
       display: block;
       position: sticky;
-      // top: 25vh;
       left: 0;
 
       .show & {
@@ -78,7 +88,3 @@
     width: 100%;
   }
 }
-
-// .accordion__subline {
-//   width: 100%;
-// }
