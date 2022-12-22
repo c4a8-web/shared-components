@@ -452,17 +452,14 @@
 
     .hero-text-image__background {
       @include media-breakpoint-up(xl) {
-        margin-right: calc((100vw - var(--container-width) + #{spacing(12)}) / 2);
-      }
-      // @include media-breakpoint-up(xl) {
-      //   margin-right: spacing(12);
-      // }
-    }
-    @include media-breakpoint-up(xl) {
-      .hero-text-image__keyvisual.is-svg {
-        // width: 100%;
-        height: auto;
-        max-width: 1000px;
+        // margin-right: calc((100vw - var(--container-width) + #{spacing(12)}) / 2);
+        margin-right: spacing(12);
+
+        .hero-text-image__keyvisual.is-svg {
+          height: auto;
+          max-width: 666px;
+          width: 27vw;
+        }
       }
     }
 
