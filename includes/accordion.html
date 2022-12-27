@@ -3,6 +3,7 @@
 {% assign accordionSubline = accordion.subline %}
 {% assign accordionImage = accordion.image %}
 {% assign accordionLeft = include.left %}
+{% assign accordionShadowless = include.shadowless | default: false %}
 
 {% if accordionImage %}
   {% assign accordionVariant = 'accordion--has-image' %}
@@ -77,10 +78,10 @@
             </button>
         </div>
         <div id="{{ tabContentId }}" class="collapse position-static{% if tabExpanded == 'true' %} show{% endif %}" aria-labelledby="{{ tabHeadingId }}" data-parent="#{{ accordion.id }}">
-          <div class="card-body px-3">
+          <div class="richtext card-body px-3">
               <div class="mb-4 col-lg-6 accordion__floating-container">
                 {% if tab.image %}
-                  <div class="accordion__floating-image-wrapper {{ accordionImageClass }} drop-shadow">
+                  <div class="accordion__floating-image-wrapper {{ accordionImageClass }} {% unless accordionShadowless %} drop-shadow {% endunless %}">
                     {% assign accordionTabImageCloudinary = tab.cloudinary | default: true %}
                     {%
                       include img.html
