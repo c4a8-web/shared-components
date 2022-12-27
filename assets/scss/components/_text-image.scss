@@ -132,6 +132,21 @@
     }
   }
 
+  &.text-image__img--subline {
+    @include media-breakpoint-up(lg) {
+      display: none;
+    }
+  }
+
+  &.text-image__img--mobile {
+    img {
+      display: none;
+      @include media-breakpoint-up(lg) {
+        display: block;
+      }
+    }
+  }
+
   img {
     object-fit: contain;
     height: intrinsic;
