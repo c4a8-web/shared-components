@@ -48,6 +48,7 @@ Accordion.args = {
 
 export const AccordionImage = Template.bind({});
 AccordionImage.args = {
+  shadowless: true,
   left: true,
   accordion: {
     subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
