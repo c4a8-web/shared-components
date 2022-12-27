@@ -185,7 +185,7 @@
     </div>
   </div>
   {%- if heroTextImageHero.background -%}
-    <div class="hero-text-image__background container position-absolute z-index-2 space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
+    <div class="hero-text-image__background container position-absolute {% unless heroTextImageVariant == 'hero--image-content-grid' %} z-index-2 {% endunless %} space-bottom-2 right-0 top-0 {{ heroTextImageHero.background.spacing }}">
       <div class="row">
         <div class="hero-text-image__background-wrapper col-sm-12">
           {{ heroImage }}
