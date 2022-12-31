@@ -23,7 +23,7 @@ export default {
       return `--color-timeline-background: ${this.backgroundColor}; --color-timeline-color: ${this.copyColor};`;
     },
     headlineClasses() {
-      return `timeline__headline h3-font-size light ${this.headline?.classes ? this.headline.classes : ''}`;
+      return `timeline__headline h2-font-size light ${this.headline?.classes ? this.headline.classes : ''}`;
     },
     lineEndStyle() {
       return `--timeline-line-position: ${this.entries?.length}`;
