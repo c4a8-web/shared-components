@@ -17,6 +17,7 @@ export default {
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
+        `${Tools.isTrue(this.products) === true ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -106,6 +107,15 @@ export default {
     long: {
       default: null,
     },
+    products: {
+      default: null,
+    },
+    infos: {
+      default: null,
+    },
+    bg: {
+      default: null,
+    },
     subPoints: {
       default: null,
     },
@@ -152,10 +162,28 @@ export default {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </template>
+
+      <template v-else-if="products">
+        <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
+          <v-img :img="hasExtension" :imgSrcSets="imgSrcSets"/>
+          <headline level="h4" classes="text-light text-center">{{ title }}</headline>
+        </div>
+
+        <div class="card-body card-body--products">
+          <template v-for="info in subPointsList(infos)">
+            <headline level="h5" :text="info.title"/>
+            <template v-for="points in info.subpoints">
+              <div class="row mb-2">
+                <icon :icon="points.icon" v-if="points.icon" size=" " />
+                <span class="ml-2">{{ points.subpoint }}</span>
+              </div>
+            </template>
+          </template>
+        </div>
+     </template>
 
       <template v-else-if="long">
         <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">

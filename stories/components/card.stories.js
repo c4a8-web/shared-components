@@ -1,4 +1,4 @@
-import { createComponent, getTitle, site } from '../../.storybook/templates';
+import { createComponent, getTitle, getAssetPath, site } from '../../.storybook/templates';
 import { includescardhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -76,4 +76,45 @@ Webcast.args = {
   tags: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
   excerpt:
     'In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
+};
+
+export const Product = Template.bind({});
+
+Product.args = {
+  title: 'Unified Contact',
+  products: true,
+  blogtitlepic: getAssetPath('img/card-image-placeholder.png'),
+  infos: [
+    {
+      title: 'Tenant',
+      subpoints: [
+        {
+          icon: 'plus',
+          subpoint: 'Lorem Ipsum',
+        },
+        {
+          icon: 'plus',
+          subpoint: 'Lorem Ipsum',
+        },
+      ],
+    },
+    {
+      title: 'Contact',
+      subpoints: [
+        {
+          icon: 'minus',
+          subpoint: 'Lorem Ipsum 2',
+        },
+      ],
+    },
+    {
+      title: 'Other',
+      subpoints: [
+        {
+          icon: 'plus',
+          subpoint: 'Lorem Ipsum',
+        },
+      ],
+    },
+  ],
 };

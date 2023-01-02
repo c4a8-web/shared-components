@@ -50,6 +50,13 @@
     .card-img--long {
       object-fit: cover;
     }
+
+    &.card-img--products {
+      .headline {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
   }
 
   .card-img {
@@ -62,6 +69,14 @@
   .card-footer {
     &:last-child {
       border-radius: 0;
+    }
+  }
+
+  .card-body {
+    &.card-body--products {
+      .headline {
+        color: var(--color-regent-grey);
+      }
     }
   }
 
