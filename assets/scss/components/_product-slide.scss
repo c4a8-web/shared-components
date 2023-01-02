@@ -1,0 +1,25 @@
+$product-slide-spacing-md: 4;
+$product-slide-spacing-lg: 4;
+$product-slide-margin-lg: $product-slide-spacing-lg / 2;
+
+.product-slide {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: spacing(20);
+}
+
+.product-slide__container {
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 spacing($size: $product-slide-margin-lg, $negative: true);
+  }
+}
+
+.product-slide__slide {
+  padding: 0;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 spacing($product-slide-spacing-lg);
+  }
+}

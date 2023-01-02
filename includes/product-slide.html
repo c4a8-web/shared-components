@@ -1,0 +1,13 @@
+{%- assign productSlideSlider = include.slider -%}
+{%- assign productSlideHeadline = include.headline -%}
+{%- assign productSlideHeadlineLevel = include.level -%}
+{%- assign productSlideHeadlineClasses = include.headlineClasses -%}
+{%- assign productSlideProducts = include.products -%}
+
+<product-slide
+  slider="{{ productSlideSlider }}"
+  headline="{{ productSlideHeadline }}"
+  headline-level="{{ productSlideHeadlineLevel }}"
+  headline-classes="{{ productSlideHeadlineClasses }}"
+  products="{{ productSlideProducts | jsonify | escape }}"
+></product-slide>

@@ -27,6 +27,7 @@ import LetterSwitcher from './vue/letter-switcher.js';
 import LinkList from './vue/link-list.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
+import ProductSlide from './vue/product-slide.js';
 import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
 import ShapeAnimation from './vue/shape-animation.js';
@@ -104,6 +105,7 @@ const addApp = () => {
     Minus,
     Modal,
     Plus,
+    ProductSlide,
     ScrollArrow,
     Search,
     ShapeAnimation,
