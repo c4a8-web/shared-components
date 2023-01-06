@@ -93,9 +93,6 @@ export default {
     checks: {
       default: null,
     },
-    products: {
-      default: null,
-    },
   },
   template: `
     <div :class="classList">
