@@ -83,7 +83,7 @@ export const Product = Template.bind({});
 Product.args = {
   title: 'Unified Contact',
   products: true,
-  blogtitlepic: getAssetPath('img/card-image-placeholder.png'),
+  blogtitlepic: 'blog/pics/img-quick-check.png',
   infos: [
     {
       title: 'Tenant',
