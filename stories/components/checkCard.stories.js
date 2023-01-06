@@ -27,5 +27,5 @@ Products.args = {
   comparison: true,
   headline: 'Plan comparison',
   level: 'h2',
-  headlineClasses: 'bold text-black',
+  headlineClasses: 'bold text-black text-center',
 };

@@ -14,7 +14,7 @@ export default {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
     headlineClassesValue() {
-      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
+      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''} ${this.subline ? 'mb-10' : ''}`;
     },
     sublineClassesValue() {
       return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
@@ -98,13 +98,11 @@ export default {
     },
   },
   template: `
-    <template v-for="check in checks">
-    </template>
     <div :class="classList">
       <div class="container">
         <div class="row" v-if="headline">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
-            <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+            <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
             <div v-if="subline" :class="sublineClassesValue" v-html="subline"></div>
           </div>
         </div>
