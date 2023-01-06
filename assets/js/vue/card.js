@@ -174,7 +174,7 @@ export default {
 
         <div class="card-body card-body--products">
           <template v-for="info in subPointsList(infos)">
-            <headline level="h5" :text="info.title"/>
+            <headline level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
                 <icon class="col-2" :icon="points.icon" v-if="points.icon" size=" " />

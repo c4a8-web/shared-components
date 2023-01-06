@@ -1,8 +1,6 @@
 const UnifiedProducts = [
   {
     title: 'Unified Contact',
-    subline:
-      'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
     picture: 'blog/pics/img-quick-check.png',
     infos: [
       {
@@ -10,20 +8,24 @@ const UnifiedProducts = [
         subpoints: [
           {
             icon: 'plus',
-            subpoint: 'Lorem Ipsum',
-          },
-          {
-            icon: 'plus',
-            subpoint: 'Lorem Ipsum',
+            subpoint: 'Runs in your tenant (SaaS)',
           },
         ],
       },
       {
-        title: 'Contact',
+        title: 'Contact Sources',
         subpoints: [
           {
-            icon: 'minus',
-            subpoint: 'Lorem Ipsum 2',
+            icon: 'plus',
+            subpoint: 'Azure AD users & contacts',
+          },
+          {
+            icon: 'plus',
+            subpoint: 'Personal Exchange Online contacts',
+          },
+          {
+            icon: 'plus',
+            subpoint: 'SharePoint Online list',
           },
         ],
       },
@@ -32,37 +34,43 @@ const UnifiedProducts = [
         subpoints: [
           {
             icon: 'plus',
-            subpoint: 'Lorem Ipsum',
+            subpoint: 'Support service',
+          },
+          {
+            icon: 'plus',
+            subpoint: 'Favorite contacts list',
           },
         ],
       },
     ],
   },
   {
-    title: 'Unified Contact Lorem Ipsum Unified Contact Lorem Ipsum',
-    subline:
-      'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
+    title: 'Unified Contact free',
     picture: 'blog/pics/img-quick-check.png',
     infos: [
       {
         title: 'Tenant',
         subpoints: [
           {
-            icon: 'plus',
-            subpoint: 'Lorem Ipsum',
-          },
-          {
-            icon: 'plus',
-            subpoint: 'Lorem Ipsum',
+            icon: 'minus',
+            subpoint: 'Runs in your tenant (Azure App Service, our tenant)',
           },
         ],
       },
       {
-        title: 'Contact',
+        title: 'Contact Sources',
         subpoints: [
           {
+            icon: 'plus',
+            subpoint: 'Azure AD users & contacts',
+          },
+          {
+            icon: 'plus',
+            subpoint: 'Personal Exchange Online contacts',
+          },
+          {
             icon: 'minus',
-            subpoint: 'Lorem Ipsum 2',
+            subpoint: 'SharePoint Online list',
           },
         ],
       },
@@ -70,8 +78,12 @@ const UnifiedProducts = [
         title: 'Other',
         subpoints: [
           {
-            icon: 'plus',
-            subpoint: 'Lorem Ipsum',
+            icon: 'minus',
+            subpoint: 'Support service',
+          },
+          {
+            icon: 'minus',
+            subpoint: 'Favorite contacts list',
           },
         ],
       },
