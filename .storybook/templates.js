@@ -19,7 +19,7 @@ import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
 import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
-import UnifiedProducts from './data/unifiedproducts';
+import UnifiedProducts from './data/unifiedProducts';
 
 const site = {
   cloudinary: Cloudinary,
