@@ -1,3 +1,5 @@
+import Tools from '../tools.js';
+
 // TODO rename component
 export default {
   tagName: 'check-card',
@@ -19,6 +21,9 @@ export default {
     },
     itemClass() {
       return 'check-card__slide';
+    },
+    comparisonValue() {
+      return Tools.isTrue(this.comparison) === true;
     },
     carouselOptions() {
       const obj = {
@@ -79,6 +84,7 @@ export default {
   },
   methods: {},
   props: {
+    comparison: String,
     headline: String,
     headlineLevel: String,
     headlineClasses: String,
@@ -87,8 +93,13 @@ export default {
     checks: {
       default: null,
     },
+    products: {
+      default: null,
+    },
   },
   template: `
+    <template v-for="check in checks">
+    </template>
     <div :class="classList">
       <div class="container">
         <div class="row" v-if="headline">
@@ -100,7 +111,12 @@ export default {
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
           <template v-for="(check, index) in checks">
             <div :class="itemClass">
-              <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" long=true />
+              <template v-if="comparisonValue">
+                <card :products="true" :title="check.title" :blog-title-pic="check.picture" :infos="check.infos" />
+              </template>
+              <template v-else>
+                  <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" long=true />
+              </template>
             </div>
           </template>
         </div>

@@ -7,7 +7,7 @@ import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
 import Contact from './data/contact';
-import Checks from './data/checks'
+import Checks from './data/checks';
 import Posts from './data/posts';
 import Events from './data/events';
 import CaseStudies from './data/casestudies';
@@ -19,6 +19,7 @@ import Cloudinary from './config/cloudinary';
 import CloudinaryTag from '../assets/js/liquid/tags/cloudinaryTag';
 import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
 import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
+import UnifiedProducts from './data/unifiedproducts';
 
 const site = {
   cloudinary: Cloudinary,
@@ -31,6 +32,7 @@ const site = {
     lang: Lang,
     options: Options,
     header: Header,
+    unifiedProducts: UnifiedProducts,
   },
   posts: Posts,
   events: Events,

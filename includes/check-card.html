@@ -3,10 +3,17 @@
 {%- assign checkCardsHeadlineClasses = include.headlineClases -%}
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
+{%- assign checkComparison = include.comparison | default: false -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
+{% if checkComparison %}
+  {%- assign checkCards = include.unifiedProducts | default: site.data.unifiedProducts | where_exp:"item", "item.lang == page.lang" -%}
+{% endif %}
+
 <check-card
+  comparison="{{ checkComparison }}"
   :checks="{{ checkCards | jsonify | escape }}"
+  :products="{{ checkProducts | jsonify | escape }}"
   subline="{{ checkCardsSubline }}"
   subline-classes="{{ checkCardsSublineClasses }}"
   headline="{{ checkCardsHeadline }}"
