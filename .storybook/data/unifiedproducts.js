@@ -39,7 +39,7 @@ const UnifiedProducts = [
     ],
   },
   {
-    title: 'Unified Contact',
+    title: 'Unified Contact Lorem Ipsum Unified Contact Lorem Ipsum',
     subline:
       'Bei glueckkanja-gab sitzt du nicht nur direkt an der Microsoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
     picture: 'blog/pics/img-quick-check.png',

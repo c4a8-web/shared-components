@@ -169,7 +169,7 @@ export default {
       <template v-else-if="products">
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-          <headline level="h4" classes="text-light text-center">{{ title }}</headline>
+          <headline level="h4" classes="text-light text-center" :text="title"/>
         </div>
 
         <div class="card-body card-body--products">
@@ -177,8 +177,8 @@ export default {
             <headline level="h5" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
-                <icon :icon="points.icon" v-if="points.icon" size=" " />
-                <span class="ml-2">{{ points.subpoint }}</span>
+                <icon class="col-2" :icon="points.icon" v-if="points.icon" size=" " />
+                <span class="col-9">{{ points.subpoint }}</span>
               </div>
             </template>
           </template>

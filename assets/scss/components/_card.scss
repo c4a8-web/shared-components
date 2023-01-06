@@ -80,7 +80,8 @@
 
   .card-body {
     &.card-body--products {
-      margin-top: -9rem;
+      margin-top: spacing($size: 30, $negative: true);
+      padding-top: spacing($size: 15);
       z-index: 1;
       background: linear-gradient(
         6deg,
@@ -89,6 +90,11 @@
         rgba(255, 0, 0, 0) 85%,
         rgba(255, 0, 0, 0) 100%
       );
+
+      @include media-breakpoint-up(md) {
+        margin-top: spacing($size: 25, $negative: true);
+        padding-top: spacing($size: 15);
+      }
       .headline {
         color: var(--color-regent-grey);
       }
