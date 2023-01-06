@@ -52,17 +52,6 @@
     }
 
     &.card-img--products {
-      .card-img-cutoff {
-        background: linear-gradient(
-          10deg,
-          var(--color-card-background) 0%,
-          var(--color-card-background) 50%,
-          rgba(255, 0, 0, 0) 50%,
-          rgba(255, 0, 0, 0) 100%
-        );
-        z-index: 1;
-      }
-
       .headline {
         top: 50%;
         z-index: 1;
@@ -94,7 +83,7 @@
       margin-top: -9rem;
       z-index: 1;
       background: linear-gradient(
-        10deg,
+        6deg,
         var(--color-card-background) 0%,
         var(--color-card-background) 85%,
         rgba(255, 0, 0, 0) 85%,

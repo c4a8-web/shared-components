@@ -169,7 +169,6 @@ export default {
       <template v-else-if="products">
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-          <div class="card-img-cutoff" />
           <headline level="h4" classes="text-light text-center">{{ title }}</headline>
         </div>
 
