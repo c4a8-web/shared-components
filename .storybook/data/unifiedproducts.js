@@ -7,7 +7,7 @@ const UnifiedProducts = [
         title: 'Tenant',
         subpoints: [
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Runs in your tenant (SaaS)',
           },
         ],
@@ -16,15 +16,15 @@ const UnifiedProducts = [
         title: 'Contact Sources',
         subpoints: [
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Azure AD users & contacts',
           },
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Personal Exchange Online contacts',
           },
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'SharePoint Online list',
           },
         ],
@@ -33,56 +33,11 @@ const UnifiedProducts = [
         title: 'Other',
         subpoints: [
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Support service',
           },
           {
-            icon: 'plus',
-            subpoint: 'Favorite contacts list',
-          },
-        ],
-      },
-    ],
-  },
-  {
-    title: 'Unified Contact free',
-    picture: 'blog/pics/img-quick-check.png',
-    infos: [
-      {
-        title: 'Tenant',
-        subpoints: [
-          {
-            icon: 'minus',
-            subpoint: 'Runs in your tenant (Azure App Service, our tenant)',
-          },
-        ],
-      },
-      {
-        title: 'Contact Sources',
-        subpoints: [
-          {
-            icon: 'plus',
-            subpoint: 'Azure AD users & contacts',
-          },
-          {
-            icon: 'plus',
-            subpoint: 'Personal Exchange Online contacts',
-          },
-          {
-            icon: 'minus',
-            subpoint: 'SharePoint Online list',
-          },
-        ],
-      },
-      {
-        title: 'Other',
-        subpoints: [
-          {
-            icon: 'minus',
-            subpoint: 'Support service',
-          },
-          {
-            icon: 'minus',
+            icon: 'check-mar',
             subpoint: 'Favorite contacts list',
           },
         ],
@@ -97,7 +52,7 @@ const UnifiedProducts = [
         title: 'Tenant',
         subpoints: [
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Runs in your tenant (SaaS)',
           },
         ],
@@ -106,15 +61,15 @@ const UnifiedProducts = [
         title: 'Contact Sources',
         subpoints: [
           {
-            icon: 'plus',
+            icon: 'x-mark',
             subpoint: 'Azure AD users & contacts',
           },
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Personal Exchange Online contacts',
           },
           {
-            icon: 'plus',
+            icon: 'x-mark',
             subpoint: 'SharePoint Online list',
           },
         ],
@@ -123,11 +78,11 @@ const UnifiedProducts = [
         title: 'Other',
         subpoints: [
           {
-            icon: 'plus',
+            icon: 'check-mark',
             subpoint: 'Support service',
           },
           {
-            icon: 'plus',
+            icon: 'x-mark',
             subpoint: 'Favorite contacts list',
           },
         ],

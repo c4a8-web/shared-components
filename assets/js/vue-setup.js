@@ -8,6 +8,7 @@ import Authors from './vue/authors.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
+import CheckMark from './vue/icons/check-mark.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
 import FormAttachments from './vue/form-attachments.js';
@@ -60,6 +61,7 @@ import TestimonialList from './vue/testimonial-list.js';
 import Timeline from './vue/timeline.js';
 import LBlock from './vue/shapes/l-block.js';
 import Square from './vue/shapes/square.js';
+import XMark from './vue/icons/x-mark.js';
 import VideoInner from './vue/video-inner.js';
 import Wrapper from './vue/wrapper.js';
 
@@ -85,6 +87,7 @@ const addApp = () => {
     Card,
     Cta,
     CheckCard,
+    CheckMark,
     Faq,
     FormAttachments,
     FormCheckbox,
@@ -137,6 +140,7 @@ const addApp = () => {
     Square,
     PersonQuote,
     VideoInner,
+    XMark,
     Wrapper,
   ];
 
