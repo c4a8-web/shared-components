@@ -20,7 +20,7 @@ export default {
       return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     itemClass() {
-      return 'check-card__slide';
+      return `check-card__slide ${this.comparisonValue ? 'check-card__slide--comparison' : ''}`;
     },
     comparisonValue() {
       return Tools.isTrue(this.comparison) === true;
@@ -48,7 +48,7 @@ export default {
             settings: {
               centerMode: true,
               infinite: true,
-              centerPadding: '20px',
+              centerPadding: this.comparisonValue ? '37px' : '20px',
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: this.checks.length > 1 ? true : false,
