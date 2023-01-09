@@ -32,7 +32,7 @@
 {% if loadLightbox %}
   <script src="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
 {% endif %}
-{% if page.scripts.form %}
+{% if page.scripts.form or layout.scripts.form %}
   <script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
 {% endif %}
 {% if page.scripts.cubeportfolio %}
