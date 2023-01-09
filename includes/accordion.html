@@ -94,7 +94,7 @@
                 {% endif %}
               </div>
               <p class="accordion__text">
-                {{ tab.content }}
+                {{ tab.content | strip_newlines }}
               </p>
             </div>
           </div>
