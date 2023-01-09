@@ -43,7 +43,7 @@ class Form extends BaseComponent {
   }
 
   isCompanyForm() {
-    return this.form && this.subject && this.company;
+    return this.form && this.subject && this.company ? true : false;
   }
 
   hasUrlParameter() {
@@ -174,7 +174,15 @@ class Form extends BaseComponent {
     let result = false;
 
     if (window.$) {
-      result = $(this.form).validate().form();
+      const form = $(this.form);
+
+      if (typeof form.validate !== 'function') {
+        console.error('form.validate is not a function');
+
+        return true;
+      }
+
+      result = form.validate().form();
     }
 
     return result;
