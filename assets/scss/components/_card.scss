@@ -52,10 +52,32 @@
     }
 
     &.card-img--products {
-      .headline {
+      height: spacing(35);
+      .card-img-headline__container {
+        height: 50%;
+        position: absolute;
         top: 50%;
-        z-index: 1;
-        transform: translateY(-50%);
+
+        .headline {
+          margin-top: spacing($size: 2, $negative: true);
+          height: 50%;
+          word-break: break-all;
+          @include font-style($style: 'font-size-4', $line: 'wide');
+          @include media-breakpoint-up(lg) {
+            font-size: 15rem;
+          }
+        }
+
+        .card-img-cutoff {
+          height: 50%;
+          background: linear-gradient(
+            4deg,
+            var(--color-card-background) 0%,
+            var(--color-card-background) 50%,
+            rgba(255, 0, 0, 0) 51%,
+            rgba(255, 0, 0, 0) 100%
+          );
+        }
       }
     }
   }
@@ -80,21 +102,6 @@
 
   .card-body {
     &.card-body--products {
-      margin-top: spacing($size: 30, $negative: true);
-      padding-top: spacing($size: 25);
-      z-index: 1;
-      background: linear-gradient(
-        6deg,
-        var(--color-card-background) 0%,
-        var(--color-card-background) 85%,
-        rgba(255, 0, 0, 0) 85.2%,
-        rgba(255, 0, 0, 0) 100%
-      );
-
-      @include media-breakpoint-up(md) {
-        margin-top: spacing($size: 25, $negative: true);
-        padding-top: spacing($size: 15);
-      }
       .headline {
         color: var(--color-regent-grey);
         text-transform: uppercase;

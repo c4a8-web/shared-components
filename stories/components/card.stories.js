@@ -89,11 +89,11 @@ Product.args = {
       title: 'Tenant',
       subpoints: [
         {
-          icon: 'plus',
+          icon: 'check-mark',
           subpoint: 'Lorem Ipsum',
         },
         {
-          icon: 'plus',
+          icon: 'check-mark',
           subpoint: 'Lorem Ipsum',
         },
       ],
@@ -102,7 +102,7 @@ Product.args = {
       title: 'Contact',
       subpoints: [
         {
-          icon: 'minus',
+          icon: 'x-mark',
           subpoint: 'Lorem Ipsum 2',
         },
       ],
@@ -111,7 +111,7 @@ Product.args = {
       title: 'Other',
       subpoints: [
         {
-          icon: 'plus',
+          icon: 'check-mark',
           subpoint: 'Lorem Ipsum',
         },
       ],

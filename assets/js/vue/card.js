@@ -78,6 +78,9 @@ export default {
       if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
       if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
     },
+    headlineClassValue(index) {
+      return index !== 0 ? 'mt-5' : '';
+    },
     handleClick(e) {
       if (this.noLink) return;
 
@@ -169,16 +172,19 @@ export default {
       <template v-else-if="products">
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-          <headline level="h4" classes="text-light text-center" :text="title"/>
+          <div class="card-img-headline__container">
+            <headline level="h4" classes="text-light text-center" :text="title"/>
+            <div class="card-img-cutoff" />
+          </div>
         </div>
 
-        <div class="card-body card-body--products">
-          <template v-for="info in subPointsList(infos)">
-            <headline level="h6" :text="info.title"/>
+        <div class="card-body card-body--products mt-0 pt-0">
+          <template v-for="(info, index) in subPointsList(infos)">
+            <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
                 <icon class="col-2" :icon="points.icon" v-if="points.icon" size=" " />
-                <span class="col-9">{{ points.subpoint }}</span>
+                <span class="col-9 pt-3">{{ points.subpoint }}</span>
               </div>
             </template>
           </template>
