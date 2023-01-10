@@ -53,9 +53,9 @@
         {% capture tabExpanded %}{% if tab.expanded %}true{% else %}false{% endif %}{% endcapture %}
 
         <!-- Card -->
-        <div class="mb-3">
-          <div class="card-header card-collapse" id="{{ tabHeadingId }}">
-            <button type="button" class="btn btn-link btn-block card-btn d-flex justify-content-between p-3{% if tabExpanded == 'false' %} collapsed{% endif %}"
+        <div class="accordion__card">
+          <div class="accordion__card-header card-header card-collapse" id="{{ tabHeadingId }}">
+            <button type="button" class="accordion__btn btn btn-link btn-block card-btn d-flex justify-content-between{% if tabExpanded == 'false' %} collapsed{% endif %}"
                 data-toggle="collapse"
                 data-target="#{{ tabContentId }}"
                 aria-expanded="{{ tabExpanded }}"
@@ -78,7 +78,7 @@
             </button>
         </div>
         <div id="{{ tabContentId }}" class="collapse position-static{% if tabExpanded == 'true' %} show{% endif %}" aria-labelledby="{{ tabHeadingId }}" data-parent="#{{ accordion.id }}">
-          <div class="richtext card-body px-3">
+          <div class="accordion__richtext richtext richtext__small card-body">
               <div class="mb-4 col-lg-6 accordion__floating-container">
                 {% if tab.image %}
                   <div class="accordion__floating-image-wrapper {{ accordionImageClass }} {% unless accordionShadowless %} drop-shadow {% endunless %}">
@@ -93,9 +93,9 @@
                   </div>
                 {% endif %}
               </div>
-              <p class="accordion__text">
-                {{ tab.content | strip_newlines }}
-              </p>
+              <div class="accordion__text">
+                {{ tab.content }}
+              </div>
             </div>
           </div>
         </div>
@@ -104,3 +104,9 @@
     </div>
   </div>
 </section>
+
+<accordion
+  :accordion="{{ accordion | jsonify | escape }}"
+  shadowless="{{ accordionShadowless }}"
+>
+</accordion>

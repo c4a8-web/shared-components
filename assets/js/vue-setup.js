@@ -2,6 +2,7 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+import Accordion from './vue/accordion.js';
 import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
@@ -78,6 +79,7 @@ const addApp = () => {
   });
 
   const components = [
+    Accordion,
     AdBlockInfo,
     AsideWrapper,
     Authors,
