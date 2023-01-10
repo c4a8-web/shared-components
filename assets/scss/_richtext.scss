@@ -7,6 +7,10 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
 .richtext {
   @include font-style($style: 'font-size-2', $line: 'wide');
 
+  &.richtext__small {
+    @include font-style($style: 'font-size-1', $line: 'wide');
+  }
+
   > blockquote,
   > p {
     &:first-of-type {
