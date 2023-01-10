@@ -4,6 +4,7 @@
 {% assign accordionImage = accordion.image %}
 {% assign accordionLeft = include.left %}
 {% assign accordionShadowless = include.shadowless | default: false %}
+{% assign accordionSpacing = include.spacing %}
 
 {% if accordionImage %}
   {% assign accordionVariant = 'accordion--has-image' %}
@@ -108,5 +109,7 @@
 <accordion
   :accordion="{{ accordion | jsonify | escape }}"
   shadowless="{{ accordionShadowless }}"
+  spacing="{{ accordionSpacing }}"
+  left="{{ accordionLeft }}"
 >
 </accordion>

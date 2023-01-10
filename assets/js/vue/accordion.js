@@ -9,6 +9,12 @@ export default {
     imageWrapperClasses() {
       return ['accordion__floating-image-wrapper', Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow'];
     },
+    containerClasses() {
+      return ['accordion__container container', this.spacing, this.accordion.image ? 'accordion--has-image' : null];
+    },
+    columnClasses() {
+      return ['col', Tools.isTrue(this.left) ? null : 'text-center'];
+    },
   },
   methods: {
     getId(accordion, index, name) {
@@ -38,8 +44,25 @@ export default {
     shadowless: {
       default: null,
     },
+    left: {
+      default: null,
+    },
+    spacing: String,
   },
   template: `
+    <div :class="containerClasses" v-if="accordion.headline">
+      <div class="row">
+        <div :class="columnClasses">
+          <headline
+            :text="accordion.headline"
+          />
+          <div class="accordion__subline font-size-2" v-if="accordion.subline">{{ accordion.subline }}</div>
+        </div>
+        <div class="row accordion__image" v-if="accordion.image">
+          <v-img :img="accordion.image" :cloudinary="accordion.cloudinary" :alt="accordion.alt" />
+        </div>
+      </div>
+    </div>
     <section :class="classList">
       <div class="row position-relative">
         <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
