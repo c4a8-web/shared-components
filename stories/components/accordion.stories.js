@@ -11,9 +11,53 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Accordion = Template.bind({});
-Accordion.args = {
+export const Default = Template.bind({});
+
+Default.args = {
   accordion: {
+    headline: 'Features of the Admin Portal',
+    id: 'featureAccordion',
+    tabs: [
+      {
+        headline: 'WIFI and LAN policy creation 1',
+        content:
+          '<ul><li>Easy download of XML files to generate WIFI and LAN policies</li><li>lorem ipsum dolor sit</li></ul>',
+        expanded: true,
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation 2',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation 3',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation 4',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+    ],
+  },
+};
+
+export const Image = Template.bind({});
+
+Image.args = {
+  shadowless: false,
+  left: true,
+  accordion: {
+    subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    image: '/products/radius/radius-wifi-lan-policy.gif',
+    alt: 'Products',
+    cloudinary: true,
     headline: 'Features of the Admin Portal',
     id: 'featureAccordion',
     tabs: [
@@ -46,8 +90,9 @@ Accordion.args = {
   },
 };
 
-export const AccordionImage = Template.bind({});
-AccordionImage.args = {
+export const ImageShadowless = Template.bind({});
+
+ImageShadowless.args = {
   shadowless: true,
   left: true,
   accordion: {
