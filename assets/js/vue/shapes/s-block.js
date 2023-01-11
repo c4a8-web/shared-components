@@ -7,7 +7,7 @@ export default {
       return tagName;
     },
     secondShapeBackgroundColor() {
-      return this.sbackgroundColor ? this.secondShape.backgroundColor : 'var(--color-primary-accent-light)';
+      return this.secondShape.backgroundColor ? this.secondShape.backgroundColor : 'var(--color-primary-accent-light)';
     },
     fourthShapeBackgroundColor() {
       return this.fourthShape.backgroundColor ? this.fourthShape.backgroundColor : 'var(--color-primary-accent-light)';

@@ -157,7 +157,7 @@ SBlock.args = {
       name: 'shape-square-circle',
     },
     {
-      backgroundColor: 'var(--color-secondary)',
+      backgroundColor: 'var(--color-primary-accent-light)',
     },
     {
       name: 'shape-fast-forward',
