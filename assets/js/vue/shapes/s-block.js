@@ -77,7 +77,7 @@ export default {
     secondColor: String,
   },
   template: `
-    <svg :class="classList" :data-name="name" viewBox="0 0 800 1200" width="800" height="1200" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999">
+    <svg :class="classList" :data-name="name" viewBox="0 0 800 1200" width="800" height="1200" xml:space="preserve" version="1.1" xmlns:xlink="http://www.w3.org/1999" xmlns="http://www.w3.org/2000/svg">
 
       <component
         transform="translate(400 0)"
