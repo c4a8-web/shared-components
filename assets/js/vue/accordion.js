@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import State from '../state.js';
 
 export default {
   tagName: 'accordion',
@@ -13,11 +14,40 @@ export default {
         this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
+    fallbackImageClasses() {
+      return [
+        'accordion__fallback-image-wrapper',
+        Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow',
+        this.showFallbackImage ? State.SHOW : null,
+      ];
+    },
     columnClasses() {
       return ['col', Tools.isTrue(this.left) ? null : 'text-center'];
     },
   },
+  mounted() {
+    if (!this.accordion.tabs) return;
+
+    this.accordion.tabs.forEach((element) => {
+      this.states.push(element.expanded ? true : false);
+    });
+  },
   methods: {
+    handleClick(index) {
+      const lastState = this.states[index];
+
+      this.showFallbackImage = false;
+
+      this.states = this.states.map((_) => false);
+      this.states[index] = !lastState;
+
+      if (!this.allTabsClosed()) return;
+
+      this.showFallbackImage = true;
+    },
+    allTabsClosed() {
+      return this.states.filter((value) => value === true).length === 0;
+    },
     getId(accordion, index, name) {
       return `${name}${accordion.id}${index}`;
     },
@@ -36,9 +66,22 @@ export default {
     accordionId(accordion) {
       return `#${accordion.id}`;
     },
-    cloudinary(tab) {
-      return tab.cloudinary || true;
+    cloudinary(image) {
+      return image.cloudinary || true;
     },
+    getImage(tab) {
+      if (tab.image) return tab.image;
+
+      if (this.accordion.image) return this.accordion.image;
+
+      return null;
+    },
+  },
+  data() {
+    return {
+      showFallbackImage: false,
+      states: [],
+    };
   },
   props: {
     accordion: Object,
@@ -60,7 +103,7 @@ export default {
           <div class="accordion__subline font-size-2" v-if="accordion.subline">{{ accordion.subline }}</div>
         </div>
         <div class="row accordion__image" v-if="accordion.image">
-          <v-img :img="accordion.image" :cloudinary="accordion.cloudinary" :alt="accordion.alt" />
+          <v-img :img="accordion.image" :cloudinary="cloudinary(accordion)" :alt="accordion.alt" />
         </div>
       </div>
     </div>
@@ -68,6 +111,11 @@ export default {
       <div class="row position-relative">
         <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
         <div class="col-lg-6 position-static" :id="accordion.id">
+          <div class="accordion__fallback-container mb-4 col-lg-6" v-if="accordion.image">
+            <div :class="fallbackImageClasses">
+              <v-img :img="accordion.image" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" />
+            </div>
+          </div>
           <div class="accordion__card" v-for="(tab, index) in accordion.tabs">
             <div class="accordion__card-header card-header card-collapse" :id="getId(accordion, index, 'Heading')">
               <button type="button" :class="buttonClasses(tab)"
@@ -75,6 +123,7 @@ export default {
                   :data-target="getId(accordion, index, '#Content')"
                   :aria-expanded="isExpanded(tab)"
                   :aria-controls="getId(accordion, index, 'Content')"
+                  @click="handleClick(index)"
               >
                 {{ tab.headline }}
 
@@ -93,8 +142,8 @@ export default {
             <div :id="getId(accordion, index, 'Content')" :class="contentClasses(tab)" :aria-labelledby="getId(accordion, index, 'Heading')" :data-parent="accordionId(accordion)">
               <div class="accordion__richtext richtext richtext__small card-body">
                 <div class="mb-4 col-lg-6 accordion__floating-container">
-                  <div :class="imageWrapperClasses" v-if="tab.image">
-                    <v-img :img="tab.image" :cloudinary="cloudinary(tab)" lazy="true" :alt="tab.alt" />
+                  <div :class="imageWrapperClasses" v-if="getImage(tab)">
+                    <v-img :img="getImage(tab)" :cloudinary="cloudinary(tab)" lazy="true" :alt="tab.alt" />
                   </div>
                 </div>
                 <div class="accordion__text" v-html="tab.content"></div>

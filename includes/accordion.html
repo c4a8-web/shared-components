@@ -1,114 +1,8 @@
+<!-- Shared Accordion Section -->
 {% assign accordion = include.accordion %}
-{% assign accordionHeadline = accordion.headline %}
-{% assign accordionSubline = accordion.subline %}
-{% assign accordionImage = accordion.image %}
 {% assign accordionLeft = include.left %}
 {% assign accordionShadowless = include.shadowless | default: false %}
 {% assign accordionSpacing = include.spacing %}
-
-{% comment %}
-
-{% if accordionImage %}
-  {% assign accordionVariant = 'accordion--has-image' %}
-{% else %}
-  {% assign accordionVariant = '' %}
-{% endif %}
-
-{% if accordionLeft %}
-  {% assign accordionHeadlineCentered = '' %}
-{% else %}
-  {% assign accordionHeadlineCentered = 'text-center' %}
-{% endif %}
-
-<!-- Accordion Section-->
-{% if accordion.headline %}
-  <div class="accordion__container container {{ include.spacing }} {{ accordionVariant }}">
-    <div class="row">
-      <div class="col {{ accordionHeadlineCentered }}">
-        {%
-          include headline.html
-          text=accordionHeadline
-        %}
-        {% if accordionSubline %}
-          <div class="accordion__subline font-size-2">{{ accordionSubline }}</div>
-        {% endif %}
-      </div>
-      {% if accordionImage %}
-        <div class="row accordion__image">
-          {%
-            include img.html
-            img=accordionImage
-            alt=accordion.alt
-            cloudinary=accordion.cloudinary
-          %}
-        </div>
-      {% endif %}
-    </div>
-  </div>
-{% endif %}
-<section class="accordion container mt-6 mb-4 my-lg-8">
-  <div class="row position-relative">
-    <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
-    <div class="col-lg-6 position-static" id="{{ accordion.id }}">
-      {% for tab in accordion.tabs %}
-        {% capture tabHeadingId %}{{ accordion.id }}Heading{{ forloop.index }}{% endcapture %}
-        {% capture tabContentId %}{{ accordion.id }}Content{{ forloop.index }}{% endcapture %}
-        {% capture tabExpanded %}{% if tab.expanded %}true{% else %}false{% endif %}{% endcapture %}
-
-        <!-- Card -->
-        <div class="accordion__card">
-          <div class="accordion__card-header card-header card-collapse" id="{{ tabHeadingId }}">
-            <button type="button" class="accordion__btn btn btn-link btn-block card-btn d-flex justify-content-between{% if tabExpanded == 'false' %} collapsed{% endif %}"
-                data-toggle="collapse"
-                data-target="#{{ tabContentId }}"
-                aria-expanded="{{ tabExpanded }}"
-                aria-controls="{{ tabContentId }}"
-            >
-              {{ tab.headline }}
-
-              <span class="card-btn-toggle">
-                {%
-                  include icon.html
-                  icon='plus'
-                  classes='accordion__icon-toggle card-btn-toggle-default'
-                %}
-                {%
-                  include icon.html
-                  icon='minus'
-                  classes='accordion__icon-toggle card-btn-toggle-active'
-                %}
-              </span>
-            </button>
-        </div>
-        <div id="{{ tabContentId }}" class="collapse position-static{% if tabExpanded == 'true' %} show{% endif %}" aria-labelledby="{{ tabHeadingId }}" data-parent="#{{ accordion.id }}">
-          <div class="accordion__richtext richtext richtext__small card-body">
-              <div class="mb-4 col-lg-6 accordion__floating-container">
-                {% if tab.image %}
-                  <div class="accordion__floating-image-wrapper {{ accordionImageClass }} {% unless accordionShadowless %} drop-shadow {% endunless %}">
-                    {% assign accordionTabImageCloudinary = tab.cloudinary | default: true %}
-                    {%
-                      include img.html
-                      img=tab.image
-                      alt=tab.alt
-                      lazy=true
-                      cloudinary=accordionTabImageCloudinary
-                    %}
-                  </div>
-                {% endif %}
-              </div>
-              <div class="accordion__text">
-                {{ tab.content }}
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- End Card -->
-      {% endfor %}
-    </div>
-  </div>
-</section>
-
-{% endcomment %}
 
 <accordion
   :accordion="{{ accordion | jsonify | escape }}"
@@ -117,3 +11,4 @@
   left="{{ accordionLeft }}"
 >
 </accordion>
+<!-- End Shared Accordion Section -->

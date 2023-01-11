@@ -55,7 +55,7 @@ Image.args = {
   left: true,
   accordion: {
     subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image: '/products/radius/radius-wifi-lan-policy.gif',
+    image: 'security/CSOC-Services-Incident-Response.png',
     alt: 'Products',
     cloudinary: true,
     headline: 'Features of the Admin Portal',
@@ -75,9 +75,8 @@ Image.args = {
         alt: 'WIFI and LAN policy creation',
       },
       {
-        headline: 'WIFI and LAN policy creation',
+        headline: 'WIFI and LAN policy creation (default image)',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: '/products/radius/radius-wifi-lan-policy.gif',
         alt: 'WIFI and LAN policy creation',
       },
       {
