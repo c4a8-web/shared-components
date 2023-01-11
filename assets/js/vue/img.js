@@ -1,5 +1,6 @@
 // This is a very basic img component and doesn't have the logic that the ruby version has.
 // we need to build that logic to implement a somewhat same version of that component
+// https://github.com/nhoizey/jekyll-cloudinary/blob/master/lib/jekyll/cloudinary.rb
 import Tools from '../tools.js';
 import Presets from '../presets.js';
 
@@ -17,7 +18,7 @@ export default {
     },
     source() {
       if (Tools.isTrue(this.cloudinary)) {
-        return `${basePath}${this.img}`;
+        return `${basePath}${this.urlParams}${this.img}`;
       } else {
         return `${this.img}`;
       }
@@ -29,8 +30,6 @@ export default {
       if (!this.cloudinary) return;
 
       return;
-
-      return 'srcset';
     },
     sizes() {
       if (!this.cloudinary) return;
@@ -45,6 +44,9 @@ export default {
     height() {
       // TODO implement height calculation
     },
+    urlParams() {
+      return this.getUrlParams();
+    },
   },
   methods: {
     isGif() {
@@ -56,6 +58,19 @@ export default {
       const selectedPreset = Presets[this.preset];
 
       return selectedPreset ? selectedPreset : Presets['default'];
+    },
+    getPresetWidth(value) {
+      const width = value ? value : this.getPreset()?.fallback_max_width;
+
+      if (!width) return '';
+
+      return `,w_${width}`;
+    },
+    getUrlParams(value) {
+      if (this.isGif()) return '';
+
+      // TODO generate c_limit and stuff
+      return `c_limit,f_auto,q_auto,dpr_auto${this.getPresetWidth(value)}/`;
     },
   },
   props: {
