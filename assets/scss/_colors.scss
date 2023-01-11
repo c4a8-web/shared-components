@@ -72,17 +72,20 @@ $color-blue-medium: #0072c6;
 
   // rules that default to everything
 
-  --color-service-overview-border: var(--color-black-30);
+  --color-border-default: var(--color-black-30);
+  --color-border-light: var(--color-black-15);
+
+  --color-service-overview-border: var(--color-border-default);
 
   --color-services-border: var(--color-service-overview-border);
   --color-services-labels: var(--color-trout);
 
-  --color-page-detail-border: var(--color-black-30);
+  --color-page-detail-border: var(--color-border-default);
   --color-page-detail-copy: var(--color-black-85);
   --color-page-detail-shape: var(--color-yellow);
   --color-page-detail-details: var(--color-orange);
 
-  --color-job-list-border: var(--color-black-30);
+  --color-job-list-border: var(--color-border-default);
 
   --color-job-list-detail: var(--color-yellow);
   --color-job-list-detail-copy: var(--color-black-85);
@@ -99,7 +102,7 @@ $color-blue-medium: #0072c6;
   --color-form-error: var(--color-red);
   --color-form-success: var(--color-deep-sea);
   --color-form-border: var(--color-bon-jour);
-  --color-form-border-hover: var(--color-black-30);
+  --color-form-border-hover: var(--color-border-default);
 
   --color-google-maps-popup-background: var(--color-blue-dark);
 
@@ -111,7 +114,7 @@ $color-blue-medium: #0072c6;
 
   --color-step-list-highlight: var(--color-yellow);
   --color-step-list-highlight-copy: var(--color-copy);
-  --color-step-list-border: var(--color-black-15);
+  --color-step-list-border: var(--color-border-light);
 
   --color-career-background: var(--color-blue-dark);
 
@@ -138,7 +141,7 @@ $color-blue-medium: #0072c6;
   --color-card-background: var(--color-black-4);
   --color-card-highlight: var(--color-orange);
 
-  --color-back-to-top-border: var(--color-black-30);
+  --color-back-to-top-border: var(--color-border-default);
   --color-back-to-top-hover-background: var(--color-blue-dark);
   --color-back-to-top-hover-foreground: var(--color-white);
 
@@ -171,43 +174,6 @@ $color-copy: $color-blue-dark;
 // plain copies
 $gray-600: #8c98a4;
 
-// Override theme classes
-// .text-primary {
-//   color: var(--color-primary) !important;
-// }
-
-// .text-secondary {
-//   color: var(--color-secondary) !important;
-// }
-
-// .text-midnight {
-//   color: var(--color-midnight) !important;
-// }
-
-// .bg-primary {
-//   background-color: var(--color-primary) !important;
-// }
-
-// .bg-secondary {
-//   background-color: var(--color-secondary) !important;
-// }
-
-// .bg-white {
-//   background-color: var(--color-white);
-// }
-
 .bg-grey {
   background-color: var(--color-bg-grey);
 }
-
-// .bg-blue-medium {
-//   background-color: var(--color-blue-medium);
-// }
-
-// .bg-blue-light {
-//   background-color: var(--color-blue-light);
-// }
-
-// .bg-footer {
-//   background-color: var(--color-midnight);
-// }

@@ -41,6 +41,7 @@
     }
 
     + .accordion {
+      .accordion__fallback-container,
       .accordion__floating-container {
         display: none;
 
@@ -56,6 +57,7 @@
   margin-top: spacing(4);
 }
 
+.accordion__fallback-container,
 .accordion__floating-container {
   width: 100%;
 
@@ -67,6 +69,7 @@
   }
 }
 
+.accordion__fallback-image-wrapper,
 .accordion__floating-image-wrapper {
   img {
     @include media-breakpoint-up(lg) {
@@ -86,5 +89,31 @@
     position: relative;
     height: 100%;
     width: 100%;
+  }
+}
+
+.accordion__btn {
+  padding: spacing(4);
+}
+
+.accordion__card {
+  padding-bottom: spacing(4);
+}
+
+.accordion__richtext,
+.accordion__card-header {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.accordion__richtext {
+  padding: spacing(6) spacing(4) spacing(10);
+}
+
+.accordion__fallback-image-wrapper {
+  &.show {
+    img {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out;
+    }
   }
 }
