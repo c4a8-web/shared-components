@@ -3,14 +3,15 @@ import Tools from '../tools.js';
 export default {
   tagName: 'accordion',
   computed: {
-    classList() {
-      return ['accordion container mt-6 mb-4 my-lg-8', 'vue-component'];
-    },
     imageWrapperClasses() {
       return ['accordion__floating-image-wrapper', Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow'];
     },
     containerClasses() {
-      return ['accordion__container container', this.spacing, this.accordion.image ? 'accordion--has-image' : null];
+      return [
+        'accordion__container container vue-component',
+        this.spacing,
+        this.accordion.image ? 'accordion--has-image' : null,
+      ];
     },
     columnClasses() {
       return ['col', Tools.isTrue(this.left) ? null : 'text-center'];
@@ -63,7 +64,7 @@ export default {
         </div>
       </div>
     </div>
-    <section :class="classList">
+    <section class="accordion container mt-6 mb-4 my-lg-8 vue-component">
       <div class="row position-relative">
         <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
         <div class="col-lg-6 position-static" :id="accordion.id">

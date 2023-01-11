@@ -6,6 +6,8 @@
 {% assign accordionShadowless = include.shadowless | default: false %}
 {% assign accordionSpacing = include.spacing %}
 
+{% comment %}
+
 {% if accordionImage %}
   {% assign accordionVariant = 'accordion--has-image' %}
 {% else %}
@@ -105,6 +107,8 @@
     </div>
   </div>
 </section>
+
+{% endcomment %}
 
 <accordion
   :accordion="{{ accordion | jsonify | escape }}"
