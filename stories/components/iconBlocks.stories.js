@@ -49,7 +49,7 @@ CustomColumnCount.args = {
         copy: '',
       },
       {
-        image: 'svg/icons-large/icon-m365-apps.svg',
+        image: getAssetPath('svg/icons-large/icon-m365-apps.svg'),
         alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
         headline: 'Microsoft 365 Apps<br />for Enterprise',
         copy: '',
@@ -94,7 +94,7 @@ Default.args = {
         copy: '',
       },
       {
-        image: 'svg/icons-large/icon-m365-apps.svg',
+        image: getAssetPath('svg/icons-large/icon-m365-apps.svg'),
         alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
         headline: 'Microsoft 365 Apps<br />for Enterprise',
         copy: '',

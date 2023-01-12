@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
 import { includesproductblockshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -17,7 +17,7 @@ ProductBlocks.args = {
   productBlocks: {
     items: [
       {
-        image: 'svg/logos/gkgab-SCEPman.svg',
+        image: getAssetPath('svg/logos/gkgab-SCEPman.svg'),
         headline: '',
         copy: 'Erklären wer von Kauf über Azur Marketplace profitiert.  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         list: [
@@ -35,7 +35,7 @@ ProductBlocks.args = {
         ],
       },
       {
-        image: 'svg/logos/gkgab-RADIUSaaS.svg',
+        image: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
         headline: '',
         copy: 'Erklären wer von Kauf über Azur Marketplace profitiert.  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. wer von Kauf über Azur Marketplace profitiert.  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         list: [
