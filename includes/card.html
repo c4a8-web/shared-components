@@ -14,8 +14,7 @@
 {%- assign cardLong = include.long -%}
 {%- assign cardSubPoints = include.subpoints -%}
 {%- assign cardScope = include.scope -%}
-{%- assign cardProducts = include.products -%}
-{%- assign cardInfos = include.infos -%}
+{%- assign cardProduct = include.product -%}
 {%- assign cardHighlight = include.highlight -%}
 
 {%- unless cardDate -%}
@@ -43,7 +42,6 @@
   youtube-url="{{ cardYoutubeUrl }}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
   scope="{{ cardScope }}"
-  products="{{ cardProducts }}"
-  infos="{{ cardInfos | jsonify | escape }}"
+  product="{{ cardProduct | jsonify | escape }}"
 ></card>
 <!-- End Shared Card Section -->

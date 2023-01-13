@@ -2,7 +2,7 @@ const UnifiedProducts = [
   {
     title: 'Unified Contact',
     picture: 'products/unified-contacts/unified-contacts-products-header.png',
-    infos: [
+    product: [
       {
         title: 'Tenant',
         subpoints: [
@@ -48,7 +48,7 @@ const UnifiedProducts = [
     title: 'Unified Contact',
     highlight: 'Free',
     picture: 'products/unified-contacts/unified-contacts-products-header.png',
-    infos: [
+    product: [
       {
         title: 'Tenant',
         subpoints: [

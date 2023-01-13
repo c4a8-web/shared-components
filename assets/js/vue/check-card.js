@@ -107,7 +107,7 @@ export default {
           <template v-for="(check, index) in checks">
             <div :class="itemClass">
               <template v-if="comparisonValue">
-                <card :products="true" :title="check.title" :highlight="check.highlight" :blog-title-pic="check.picture" :infos="check.infos" />
+                <card :product="check.product" :title="check.title" :highlight="check.highlight" :blog-title-pic="check.picture"/>
               </template>
               <template v-else>
                   <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" long=true />

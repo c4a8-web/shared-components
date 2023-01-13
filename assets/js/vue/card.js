@@ -17,7 +17,7 @@ export default {
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
-        `${Tools.isTrue(this.products) === true ? 'card--products' : ''}`,
+        `${Tools.isTrue(this.product) === true ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -74,7 +74,7 @@ export default {
 
       return author;
     },
-    subPointsList(subpoints) {
+    productsList(subpoints) {
       if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
       if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
     },
@@ -111,10 +111,7 @@ export default {
     long: {
       default: null,
     },
-    products: {
-      default: null,
-    },
-    infos: {
+    product: {
       default: null,
     },
     bg: {
@@ -170,7 +167,7 @@ export default {
         </div>
       </template>
 
-      <template v-else-if="products">
+      <template v-else-if="product">
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <div class="card-img-headline__container">
@@ -187,7 +184,7 @@ export default {
         </div>
 
         <div class="card-body card-body--products mt-0 pt-0 z-index-2">
-          <template v-for="(info, index) in subPointsList(infos)">
+          <template v-for="(info, index) in productsList(product)">
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
@@ -210,7 +207,7 @@ export default {
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
           <ul class="card__points text-black">
-            <template v-for="points in subPointsList(subPoints)">
+            <template v-for="points in productsList(subPoints)">
               <li class="mb-4"><span>{{ points }}</span></li>
             </template>
           </ul>
