@@ -173,7 +173,7 @@ export default {
               <li class="mb-4"><span>{{ points }}</span></li>
             </template>
           </ul>
-          <span class="card-warning" v-if="footer">{{ footer }}</span>
+          <p class="card-warning" v-if="footer">{{ footer }}</p>
         </div>
       </template>
       <template v-else>
