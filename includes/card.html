@@ -14,6 +14,7 @@
 {%- assign cardLong = include.long -%}
 {%- assign cardSubPoints = include.subpoints -%}
 {%- assign cardScope = include.scope -%}
+{%- assign cardFooter = include.footer -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -26,6 +27,7 @@
 <card
   large="{{ cardLarge }}"
   long="{{ cardLong }}"
+  footer="{{ cardFooter }}"
   sub-points="{{ cardSubPoints | jsonify | escape }}"
   blog-title-pic="{{ cardBlogTitlePic }}"
   url="{{ cardUrl }}"

@@ -51,6 +51,7 @@ CardLong.args = {
   scope: 'Umfang: 1-2 Tage',
   layout: 'post',
   title: 'glueckkanja-gab Quick-Check',
+  footer: 'Lorem Ipsum',
   blogtitlepic: `${site.blog_image_path}head-emergency-calls`,
   socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
   excerpt:

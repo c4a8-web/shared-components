@@ -100,6 +100,7 @@ export default {
     excerpt: String,
     author: Array,
     date: String,
+    footer: String,
     large: {
       default: null,
     },
@@ -172,6 +173,7 @@ export default {
               <li class="mb-4"><span>{{ points }}</span></li>
             </template>
           </ul>
+          <span class="card-warning" v-if="footer">{{ footer }}</span>
         </div>
       </template>
       <template v-else>
