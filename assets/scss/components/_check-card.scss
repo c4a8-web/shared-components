@@ -19,10 +19,6 @@ $check-card-margin-lg: $check-card-spacing-lg / 2;
 .check-card__slide {
   padding: 0;
 
-  // &.check-card__slide--comparison.slick-active {
-  //   // width: 540px !important;
-  // }
-
   @include media-breakpoint-up(lg) {
     padding: 0 spacing($check-card-spacing-lg);
   }

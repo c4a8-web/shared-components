@@ -1,4 +1,4 @@
-import { createComponent, getTitle, getAssetPath, site } from '../../.storybook/templates';
+import { createComponent, getTitle, site } from '../../.storybook/templates';
 import { includescardhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
