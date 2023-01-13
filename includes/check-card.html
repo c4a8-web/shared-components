@@ -6,7 +6,7 @@
 {%- assign checkCardsComparison = include.comparison | default: false -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
-{% if checkCardComparison %}
+{% if checkCardsComparison %}
   {%- assign checkCards = include.unifiedProducts | default: site.data.unifiedProducts | where_exp:"item", "item.lang == page.lang" -%}
 {% endif %}
 
