@@ -178,7 +178,7 @@ export default {
           </div>
         </div>
 
-        <div class="card-body card-body--products mt-0 pt-0">
+        <div class="card-body card-body--products mt-0 pt-0 z-index-2">
           <template v-for="(info, index) in subPointsList(infos)">
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">

@@ -52,29 +52,30 @@
     }
 
     &.card-img--products {
-      height: spacing(35);
+      @include aspect-ratio(16, 8);
+
+      @include media-breakpoint-up(sm) {
+        @include aspect-ratio(16, 6);
+      }
       .card-img-headline__container {
-        height: 50%;
+        height: 100%;
         position: absolute;
-        top: 50%;
+        top: 0%;
 
         .headline {
-          margin-top: spacing($size: 2, $negative: true);
-          height: 50%;
-          word-break: break-all;
+          min-height: 70%;
+          padding: 0 spacing(10);
+          padding-top: spacing(5);
           @include font-style($style: 'font-size-4', $line: 'wide');
-          @include media-breakpoint-up(lg) {
-            font-size: 15rem;
-          }
         }
 
         .card-img-cutoff {
-          height: 50%;
+          height: 30%;
           background: linear-gradient(
             4deg,
             var(--color-card-background) 0%,
-            var(--color-card-background) 50%,
-            rgba(255, 0, 0, 0) 51%,
+            var(--color-card-background) 58%,
+            rgba(255, 0, 0, 0) 59%,
             rgba(255, 0, 0, 0) 100%
           );
         }

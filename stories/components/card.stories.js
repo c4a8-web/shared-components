@@ -81,9 +81,10 @@ Webcast.args = {
 export const Product = Template.bind({});
 
 Product.args = {
-  title: 'Unified Contact',
+  title: 'Unified Contact Free Lorem Ipsum Lorem',
   products: true,
-  blogtitlepic: 'blog/pics/img-quick-check.png',
+  blogtitlepic: 'products/unified-contacts/unified-contacts-products-header.png',
+
   infos: [
     {
       title: 'Tenant',
