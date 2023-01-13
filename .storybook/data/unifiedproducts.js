@@ -1,7 +1,7 @@
 const UnifiedProducts = [
   {
     title: 'Unified Contact',
-    picture: 'blog/pics/img-quick-check.png',
+    picture: 'products/unified-contacts/unified-contacts-products-header.png',
     infos: [
       {
         title: 'Tenant',
@@ -37,7 +37,7 @@ const UnifiedProducts = [
             subpoint: 'Support service',
           },
           {
-            icon: 'check-mar',
+            icon: 'check-mark',
             subpoint: 'Favorite contacts list',
           },
         ],
@@ -45,8 +45,9 @@ const UnifiedProducts = [
     ],
   },
   {
-    title: 'Unified Contact Semi',
-    picture: 'blog/pics/img-quick-check.png',
+    title: 'Unified Contact',
+    highlight: 'Free',
+    picture: 'products/unified-contacts/unified-contacts-products-header.png',
     infos: [
       {
         title: 'Tenant',
