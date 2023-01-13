@@ -174,11 +174,13 @@ export default {
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <div class="card-img-headline__container">
-            <headline level="h4" classes="text-light text-center">
-              {{ title }}
-              <template v-if="highlight">
-              <span class="card-img-headline__highlight">{{ highlight }}</span>
-              </template>
+            <headline level="h4" classes="text-light text-center d-flex justify-content align-items-center">
+              <p class="w-100 pt-4 mb-0 no-gutters">
+                {{ title }}
+                <template v-if="highlight">
+                  <span class="card-img-headline__highlight">{{ highlight }}</span>
+                </template>
+              </p>
             </headline>
             <div class="card-img-cutoff" />
           </div>
