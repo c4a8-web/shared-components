@@ -16,6 +16,7 @@
 {%- assign cardScope = include.scope -%}
 {%- assign cardProducts = include.products -%}
 {%- assign cardInfos = include.infos -%}
+{%- assign cardHighlight = include.highlight -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -33,6 +34,7 @@
   url="{{ cardUrl }}"
   target="{{ cardTarget }}"
   title="{{ cardTitle }}"
+  highlight="{{ cardHighlight }}"
   excerpt="{{ cardExcerpt | strip_html | strip_newlines | escape }}"
   event="{{ cardEvent }}"
   :author="{{ cardAuthor | jsonify | escape }}"

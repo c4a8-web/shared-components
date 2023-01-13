@@ -100,6 +100,7 @@ export default {
     blogTitlePic: String,
     url: String,
     title: String,
+    highlight: String,
     target: String,
     excerpt: String,
     author: Array,
@@ -173,7 +174,12 @@ export default {
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <div class="card-img-headline__container">
-            <headline level="h4" classes="text-light text-center" :text="title"/>
+            <headline level="h4" classes="text-light text-center">
+              {{ title }}
+              <template v-if="highlight">
+              <span class="card-img-headline__highlight">{{ highlight }}</span>
+              </template>
+            </headline>
             <div class="card-img-cutoff" />
           </div>
         </div>

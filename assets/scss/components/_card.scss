@@ -69,6 +69,10 @@
           @include font-style($style: 'font-size-4', $line: 'wide');
         }
 
+        .card-img-headline__highlight {
+          color: var(--color-cream-can);
+        }
+
         .card-img-cutoff {
           height: 30%;
           background: linear-gradient(
