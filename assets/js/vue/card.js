@@ -191,8 +191,8 @@ export default {
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
-                <icon class="col-2" :icon="points.icon" v-if="points.icon" size=" " />
-                <span class="col-9 pt-3">{{ points.subpoint }}</span>
+                <icon class="col-2 pr-0 pl-0" :icon="points.icon" v-if="points.icon" size=" " />
+                <span class="col-9 pt-3 pr-0 pl-0">{{ points.subpoint }}</span>
               </div>
             </template>
           </template>
