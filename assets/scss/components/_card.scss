@@ -52,11 +52,8 @@
     }
 
     &.card-img--products {
-      @include aspect-ratio(16, 8);
+      @include aspect-ratio(16, 6);
 
-      @include media-breakpoint-up(sm) {
-        @include aspect-ratio(16, 6);
-      }
       .card-img-headline__container {
         height: 100%;
         position: absolute;
@@ -64,9 +61,13 @@
 
         .headline {
           min-height: 70%;
-          padding: 0 spacing(10);
-          padding-top: spacing(5);
+          padding: spacing(5) spacing(5) 0;
+
           @include font-style($style: 'font-size-4', $line: 'wide');
+
+          @include media-breakpoint-up(md) {
+            padding: spacing(10) spacing(5) 0;
+          }
         }
 
         .card-img-headline__highlight {
@@ -78,8 +79,8 @@
           background: linear-gradient(
             4deg,
             var(--color-card-background) 0%,
-            var(--color-card-background) 58%,
-            rgba(255, 0, 0, 0) 59%,
+            var(--color-card-background) 55%,
+            rgba(255, 0, 0, 0) 56%,
             rgba(255, 0, 0, 0) 100%
           );
         }
