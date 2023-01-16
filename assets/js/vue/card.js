@@ -95,6 +95,9 @@ export default {
         title.click();
       }
     },
+    isIncluded(include) {
+      return Tools.isTrue(include);
+    },
   },
   props: {
     blogTitlePic: String,
@@ -172,8 +175,6 @@ export default {
       <template v-else-if="product">
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-
-
           <div class="card-img-headline__container">
             <template v-if="tag">
               <span class="card-img-tag"
@@ -195,8 +196,14 @@ export default {
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
-                <icon class="col-2 pr-0 pl-0" :icon="points.icon" v-if="points.icon" size=" " />
-                <span class="col-9 pt-2 pr-0 pl-0">{{ points.subpoint }}</span>
+                <template v-if="isIncluded(points.included)">
+                  <icon class="col-2 pr-0 pl-0" icon="check-mark" size=" " />
+                  <span class="col-9 pt-2 pr-0 pl-0">{{ points.subpoint }}</span>
+                </template>
+                <template v-else>
+                  <icon class="col-2 pr-0 pl-0" icon="x-mark" size=" " />
+                  <span class="col-9 pt-1 pr-0 pl-0">{{ points.subpoint }}</span>
+                </template>
               </div>
             </template>
           </template>
