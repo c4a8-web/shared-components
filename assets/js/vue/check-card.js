@@ -20,10 +20,10 @@ export default {
       return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     itemClass() {
-      return `check-card__slide ${this.comparisonValue ? 'check-card__slide--comparison' : ''}`;
+      return `check-card__slide`;
     },
     comparisonValue() {
-      return Tools.isTrue(this.comparison) === true;
+      return Tools.isTrue(this.comparison);
     },
     carouselOptions() {
       const obj = {
@@ -107,10 +107,10 @@ export default {
           <template v-for="(check, index) in checks">
             <div :class="itemClass">
               <template v-if="comparisonValue">
-                <card :product="check.product" :title="check.title" :highlight="check.highlight" :blog-title-pic="check.picture"/>
+                <card :product="check.product" :title="check.title" :tag="check.tag" :blog-title-pic="check.picture"/>
               </template>
               <template v-else>
-                  <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" long=true />
+                <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" long=true />
               </template>
             </div>
           </template>

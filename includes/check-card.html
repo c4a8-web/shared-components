@@ -7,9 +7,10 @@
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
 {% if checkCardsComparison %}
-  {%- assign checkCards = include.unifiedProducts | default: site.data.unifiedProducts | where_exp:"item", "item.lang == page.lang" -%}
+  {%- assign checkCards = checkCards | where: "product" -%}
+{% else %}
+  {%- assign checkCards = checkCards | where: "subpoints" -%}
 {% endif %}
-
 <check-card
   comparison="{{ checkCardsComparison }}"
   :checks="{{ checkCards | jsonify | escape }}"
