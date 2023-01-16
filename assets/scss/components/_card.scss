@@ -49,6 +49,13 @@
         }
       }
     }
+
+    .card-body {
+      .headline {
+        color: var(--color-regent-grey);
+        text-transform: uppercase;
+      }
+    }
   }
 
   article {
@@ -114,15 +121,6 @@
   .card-footer,
   .card-body {
     background-color: var(--color-card-background);
-  }
-
-  .card-body {
-    &.card-body--products {
-      .headline {
-        color: var(--color-regent-grey);
-        text-transform: uppercase;
-      }
-    }
   }
 
   h4 {
