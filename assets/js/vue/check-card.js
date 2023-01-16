@@ -25,6 +25,13 @@ export default {
     comparisonValue() {
       return Tools.isTrue(this.comparison);
     },
+    checksValue() {
+      const filterValue = this.comparisonValue ? 'product' : 'subpoints';
+      let checks = this.checks.filter((item) => {
+        return item[filterValue];
+      });
+      return checks;
+    },
     carouselOptions() {
       const obj = {
         slidesToShow: 3,
@@ -104,7 +111,7 @@ export default {
           </div>
         </div>
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
-          <template v-for="(check, index) in checks">
+          <template v-for="(check, index) in checksValue">
             <div :class="itemClass">
               <template v-if="comparisonValue">
                 <card :product="check.product" :title="check.title" :tag="check.tag" :blog-title-pic="check.picture"/>
