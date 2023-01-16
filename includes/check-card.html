@@ -4,10 +4,11 @@
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
 {%- assign checkCardsComparison = include.comparison | default: false -%}
+{%- assign checkCardsProducts = include.products -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
 <check-card
-  comparison="{{ checkCardsComparison }}"
+  :products="{{ checkCardsProducts | jsonify | escape }}"
   :checks="{{ checkCards | jsonify | escape }}"
   subline="{{ checkCardsSubline }}"
   subline-classes="{{ checkCardsSublineClasses }}"

@@ -24,8 +24,98 @@ CheckCard.args = {
 export const Products = Template.bind({});
 
 Products.args = {
-  comparison: true,
   headline: 'Plan comparison',
   level: 'h2',
   headlineClasses: 'bold text-black text-center',
+  products: [
+    {
+      title: 'Unified Contact',
+      picture: 'products/unified-contacts/unified-contacts-products-header.png',
+      product: [
+        {
+          title: 'Tenant',
+          subpoints: [
+            {
+              included: true,
+              subpoint: 'Runs in your tenant (SaaS)',
+            },
+          ],
+        },
+        {
+          title: 'Contact Sources',
+          subpoints: [
+            {
+              subpoint: 'Azure AD users & contacts',
+            },
+            {
+              included: true,
+              subpoint: 'Personal Exchange Online contacts',
+            },
+            {
+              subpoint: 'SharePoint Online list',
+            },
+          ],
+        },
+        {
+          title: 'Other',
+          subpoints: [
+            {
+              included: true,
+              subpoint: 'Support service',
+            },
+            {
+              subpoint: 'Favorite contacts list',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      title: 'Unified Contact',
+      tag: {
+        text: 'Free',
+        color: 'var(--color-black)',
+        bgColor: 'var(--color-cream-can)',
+      },
+      picture: 'products/unified-contacts/unified-contacts-products-header.png',
+      product: [
+        {
+          title: 'Tenant',
+          subpoints: [
+            {
+              included: true,
+              subpoint: 'Runs in your tenant (SaaS)',
+            },
+          ],
+        },
+        {
+          title: 'Contact Sources',
+          subpoints: [
+            {
+              subpoint: 'Azure AD users & contacts',
+            },
+            {
+              included: true,
+              subpoint: 'Personal Exchange Online contacts',
+            },
+            {
+              subpoint: 'SharePoint Online list',
+            },
+          ],
+        },
+        {
+          title: 'Other',
+          subpoints: [
+            {
+              included: true,
+              subpoint: 'Support service',
+            },
+            {
+              subpoint: 'Favorite contacts list',
+            },
+          ],
+        },
+      ],
+    },
+  ],
 };
