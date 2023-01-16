@@ -17,10 +17,13 @@ export default {
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
-        `${this.product?.length > 0 && typeof this.product === 'object' ? 'card--products' : ''}`,
+        `${this.productValue ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
+    },
+    productValue() {
+      return Tools.getJSON(this.product);
     },
     mediaClass() {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
@@ -70,14 +73,15 @@ export default {
     },
     authorList(author) {
       if (author && typeof author === 'object' && author.length > 0) return author;
+
       if (author && typeof author === 'string') return [author];
 
       return author;
     },
     subPointsList(subpoints) {
-      if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
-      if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
+      return Tools.getJSON(subpoints);
     },
+
     headlineClassValue(index) {
       return index !== 0 ? 'mt-5' : '';
     },
@@ -169,7 +173,7 @@ export default {
         </div>
       </template>
 
-      <template v-else-if="product">
+      <template v-else-if="productValue">
         <div class="card__img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <div class="card__img-headline-container">
@@ -189,7 +193,7 @@ export default {
         </div>
 
         <div class="card-body mt-0 pt-0 z-index-2">
-          <template v-for="(info, index) in subPointsList(product)">
+          <template v-for="(info, index) in subPointsList(productValue)">
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="card__check-mark-row">
