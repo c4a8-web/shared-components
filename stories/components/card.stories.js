@@ -94,11 +94,11 @@ Product.args = {
       subpoints: [
         {
           included: true,
-          subpoint: 'Lorem Ipsum',
+          subpoint: 'Lorem Ipsum 1',
         },
         {
           included: true,
-          subpoint: 'Lorem Ipsum',
+          subpoint: 'Lorem Ipsum 2',
         },
       ],
     },
@@ -106,7 +106,15 @@ Product.args = {
       title: 'Contact',
       subpoints: [
         {
-          subpoint: 'Lorem Ipsum 2',
+          included: true,
+          subpoint: 'Lorem Ipsum 1',
+        },
+        {
+          included: true,
+          subpoint: 'Lorem Ipsu 2m',
+        },
+        {
+          subpoint: 'Lorem Ipsum 3',
         },
       ],
     },
@@ -114,8 +122,10 @@ Product.args = {
       title: 'Other',
       subpoints: [
         {
-          included: true,
-          subpoint: 'Lorem Ipsum',
+          subpoint: 'Lorem Ipsum 1',
+        },
+        {
+          subpoint: 'Lorem Ipsum 2',
         },
       ],
     },

@@ -17,7 +17,7 @@ export default {
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
-        `${this.product.length > 0 ? 'card--products' : ''}`,
+        `${this.product?.length > 0 ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -97,13 +97,6 @@ export default {
     },
     isIncluded(include) {
       return Tools.isTrue(include) ? 'check-mark' : 'x-mark';
-    },
-    includeSpacing(include) {
-      return [
-        'card-body__spacing',
-        'col-9 pr-0 pl-0',
-        `${Tools.isTrue(include) ? 'card-body__spacing--included' : 'card-body__spacing--excluded'}`,
-      ];
     },
   },
   props: {
@@ -199,9 +192,9 @@ export default {
           <template v-for="(info, index) in subPointsList(product)">
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
-              <div class="row mb-2">
-                <icon class="col-2 pr-0 pl-0" :icon="isIncluded(points.included)" size="medium" />
-                <span :class="includeSpacing(points.included)">{{ points.subpoint }}</span>
+              <div class="card__check-mark-row">
+                <icon class="card__check-mark-icon" :icon="isIncluded(points.included)" size="medium" />
+                <span class="card__check-mark-point">{{ points.subpoint }}</span>
               </div>
             </template>
           </template>

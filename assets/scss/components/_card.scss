@@ -27,14 +27,6 @@
     }
   }
 
-  .card-body__spacing--included {
-    padding-top: spacing(2.1);
-  }
-
-  .card-body__spacing--excluded {
-    padding-top: spacing(0.4);
-  }
-
   &.card--products {
     .card__img-top {
       &::before {
@@ -143,4 +135,14 @@
 
 .card__scope {
   color: var(--color-card-highlight);
+}
+
+.card__check-mark-row {
+  display: flex;
+  margin-bottom: spacing(2);
+}
+
+.card__check-mark-icon {
+  padding-bottom: spacing(2);
+  margin-right: spacing(5);
 }
