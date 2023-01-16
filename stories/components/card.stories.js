@@ -83,7 +83,11 @@ export const Product = Template.bind({});
 Product.args = {
   title: 'Unified Contact',
   blogtitlepic: 'products/unified-contacts/unified-contacts-products-header.png',
-  highlight: 'Free',
+  tag: {
+    text: 'Free',
+    color: 'white',
+    bg: 'var(--color-cream-can)',
+  },
   product: [
     {
       title: 'Tenant',

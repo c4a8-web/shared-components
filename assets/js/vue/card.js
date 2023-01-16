@@ -100,11 +100,13 @@ export default {
     blogTitlePic: String,
     url: String,
     title: String,
-    highlight: String,
     target: String,
     excerpt: String,
     author: Array,
     date: String,
+    tag: {
+      default: null,
+    },
     large: {
       default: null,
     },
@@ -170,13 +172,18 @@ export default {
       <template v-else-if="product">
         <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+
+
           <div class="card-img-headline__container">
+            <template v-if="tag">
+              <span class="card-img-tag"
+              :style="{'background-color': tag.bg, 'color': tag.color }">
+                {{ tag.text }}
+              </span>
+            </template>
             <headline level="h4" classes="text-light text-center d-flex justify-content align-items-center">
-              <p class="w-100 pt-4 mb-0 no-gutters">
+              <p class="w-100 pt-5 mb-0 no-gutters">
                 {{ title }}
-                <template v-if="highlight">
-                  <span class="card-img-headline__highlight">{{ highlight }}</span>
-                </template>
               </p>
             </headline>
             <div class="card-img-cutoff" />
@@ -189,7 +196,7 @@ export default {
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
                 <icon class="col-2 pr-0 pl-0" :icon="points.icon" v-if="points.icon" size=" " />
-                <span class="col-9 pt-3 pr-0 pl-0">{{ points.subpoint }}</span>
+                <span class="col-9 pt-2 pr-0 pl-0">{{ points.subpoint }}</span>
               </div>
             </template>
           </template>
