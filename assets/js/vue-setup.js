@@ -2,6 +2,7 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+// Base Components
 import Accordion from './vue/accordion.js';
 import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
@@ -42,6 +43,12 @@ import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
+import VideoInner from './vue/video-inner.js';
+import TestimonialList from './vue/testimonial-list.js';
+import Timeline from './vue/timeline.js';
+import Wrapper from './vue/wrapper.js';
+
+// Icons
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
@@ -55,14 +62,12 @@ import PhoneMail from './vue/icons/phone-mail.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
-import SBlock from './vue/shapes/s-block.js';
-import TBlock from './vue/shapes/t-block.js';
-import TestimonialList from './vue/testimonial-list.js';
-import Timeline from './vue/timeline.js';
+
+// Shapes
 import LBlock from './vue/shapes/l-block.js';
+import SBlock from './vue/shapes/s-block.js';
 import Square from './vue/shapes/square.js';
-import VideoInner from './vue/video-inner.js';
-import Wrapper from './vue/wrapper.js';
+import TBlock from './vue/shapes/t-block.js';
 
 let root = document.querySelector('#app');
 let app;
