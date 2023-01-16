@@ -83,3 +83,7 @@
 .card__scope {
   color: var(--color-card-highlight);
 }
+
+.card-warning {
+  @include font-style($style: 'font-size-1', $line: 'wide');
+}
