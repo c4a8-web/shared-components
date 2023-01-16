@@ -17,7 +17,7 @@ export default {
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
-        `${Tools.isTrue(this.product) === true ? 'card--products' : ''}`,
+        `${this.product.length > 0 ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
@@ -74,7 +74,7 @@ export default {
 
       return author;
     },
-    productsList(subpoints) {
+    subPointsList(subpoints) {
       if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
       if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
     },
@@ -170,18 +170,16 @@ export default {
       </template>
 
       <template v-else-if="product">
-        <div class="card-img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
+        <div class="card__img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-
-
-          <div class="card-img-headline__container">
+          <div class="card__img-headline__container">
             <template v-if="tag">
-              <span class="card-img-tag"
-              :style="{'background-color': tag.bg, 'color': tag.color }">
+              <span class="card__img-tag"
+              :style="{'background-color': tag.bgColor, 'color': tag.color }">
                 {{ tag.text }}
               </span>
             </template>
-            <headline level="h4" classes="text-light text-center d-flex justify-content align-items-center">
+            <headline level="h4" classes="card__img-headline text-light text-center">
               <p class="w-100 pt-5 mb-0 no-gutters">
                 {{ title }}
               </p>
@@ -191,11 +189,11 @@ export default {
         </div>
 
         <div class="card-body card-body--products mt-0 pt-0 z-index-2">
-          <template v-for="(info, index) in productsList(product)">
+          <template v-for="(info, index) in subPointsList(product)">
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
-                <icon class="col-2 pr-0 pl-0" :icon="points.icon" v-if="points.icon" size=" " />
+                <icon class="col-2 pr-0 pl-0" :icon="points.icon" v-if="points.icon" size="medium" />
                 <span class="col-9 pt-2 pr-0 pl-0">{{ points.subpoint }}</span>
               </div>
             </template>
@@ -204,7 +202,7 @@ export default {
      </template>
 
       <template v-else-if="long">
-        <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">
+        <div class="card__img-top position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
         </div>
 
@@ -214,14 +212,14 @@ export default {
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
           <ul class="card__points text-black">
-            <template v-for="points in productsList(subPoints)">
+            <template v-for="points in subPointsList(subPoints)">
               <li class="mb-4"><span>{{ points }}</span></li>
             </template>
           </ul>
         </div>
       </template>
       <template v-else>
-        <div class="card-img-top position-relative" v-if="blogTitlePic">
+        <div class="card__img-top position-relative" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
