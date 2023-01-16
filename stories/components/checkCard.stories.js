@@ -27,7 +27,7 @@ Products.args = {
   headline: 'Plan comparison',
   level: 'h2',
   headlineClasses: 'bold text-black text-center',
-  products: [
+  checks: [
     {
       title: 'Unified Contact',
       picture: 'products/unified-contacts/unified-contacts-products-header.png',

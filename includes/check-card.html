@@ -3,11 +3,9 @@
 {%- assign checkCardsHeadlineClasses = include.headlineClasses -%}
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
-{%- assign checkCardsProducts = include.products -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
 <check-card
-  :products="{{ checkCardsProducts | jsonify | escape }}"
   :checks="{{ checkCards | jsonify | escape }}"
   subline="{{ checkCardsSubline }}"
   subline-classes="{{ checkCardsSublineClasses }}"
