@@ -203,7 +203,7 @@ export default {
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
-                <icon class="col-2 pr-0 pl-0" :icon="isIncluded(points.included)" size=" " />
+                <icon class="col-2 pr-0 pl-0" :icon="isIncluded(points.included)" size="medium" />
                 <span :class="includeSpacing(points.included)">{{ points.subpoint }}</span>
               </div>
             </template>
