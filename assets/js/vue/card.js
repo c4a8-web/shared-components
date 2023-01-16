@@ -96,7 +96,14 @@ export default {
       }
     },
     isIncluded(include) {
-      return Tools.isTrue(include);
+      return Tools.isTrue(include) ? 'check-mark' : 'x-mark';
+    },
+    includeSpacing(include) {
+      return [
+        'card-body__spacing',
+        'col-9 pr-0 pl-0',
+        `${Tools.isTrue(include) ? 'card-body__spacing--included' : 'card-body__spacing--excluded'}`,
+      ];
     },
   },
   props: {
@@ -196,14 +203,8 @@ export default {
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
-                <template v-if="isIncluded(points.included)">
-                  <icon class="col-2 pr-0 pl-0" icon="check-mark" size=" " />
-                  <span class="col-9 pt-2 pr-0 pl-0">{{ points.subpoint }}</span>
-                </template>
-                <template v-else>
-                  <icon class="col-2 pr-0 pl-0" icon="x-mark" size=" " />
-                  <span class="col-9 pt-1 pr-0 pl-0">{{ points.subpoint }}</span>
-                </template>
+                <icon class="col-2 pr-0 pl-0" :icon="isIncluded(points.included)" size=" " />
+                <span :class="includeSpacing(points.included)">{{ points.subpoint }}</span>
               </div>
             </template>
           </template>

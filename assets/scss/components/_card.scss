@@ -113,6 +113,16 @@
         color: var(--color-regent-grey);
         text-transform: uppercase;
       }
+
+      .card-body__spacing {
+        &.card-body__spacing--included {
+          padding-top: spacing(2.1);
+        }
+
+        &.card-body__spacing--excluded {
+          padding-top: spacing(0.4);
+        }
+      }
     }
   }
 
