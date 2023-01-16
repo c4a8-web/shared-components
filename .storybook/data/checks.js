@@ -87,8 +87,8 @@ const Checks = [
     title: 'Unified Contact',
     tag: {
       text: 'Free',
-      color: 'white',
-      bgColor: 'Black',
+      color: 'var(--color-black)',
+      bgColor: 'var(--color-cream-can)',
     },
     picture: 'products/unified-contacts/unified-contacts-products-header.png',
     product: [

@@ -334,6 +334,14 @@ class Tools {
   static getLang() {
     return document.querySelector('html').getAttribute('lang') || 'en';
   }
+
+  static getJSON(data) {
+    if (data && typeof data === 'object' && data.length > 0) return data;
+
+    if (data && typeof data === 'string') return JSON.parse(data);
+
+    return;
+  }
 }
 
 export default Tools;
