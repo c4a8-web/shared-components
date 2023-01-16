@@ -86,7 +86,7 @@ Product.args = {
   tag: {
     text: 'Free',
     color: 'white',
-    bg: 'var(--color-cream-can)',
+    bgColor: 'var(--color-cream-can)',
   },
   product: [
     {

@@ -21,16 +21,23 @@ export default {
     innerSize() {
       var innerSize;
 
-      if (this.props.size === 'small') {
-        innerSize = '18px';
-      } else if (this.props.size === 'large') {
-        innerSize = '48px';
-      } else if (this.props.size === 'xl') {
-        innerSize = '120px';
-      } else if (this.props.size === 'xxl') {
-        innerSize = '200px';
-      } else {
-        innerSize = '28px';
+      switch (this.props.size) {
+        case 'xxl':
+          innerSize = '200px';
+          break;
+        case 'xl':
+          innerSize = '120px';
+          break;
+        case 'medium':
+          innerSize = '28px';
+          break;
+        case 'small':
+          innerSize = '18px';
+          break;
+        default:
+        case 'large':
+          innerSize = '48px';
+          break;
       }
 
       return innerSize;
