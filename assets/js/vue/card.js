@@ -126,9 +126,6 @@ export default {
     product: {
       default: null,
     },
-    bg: {
-      default: null,
-    },
     subPoints: {
       default: null,
     },
