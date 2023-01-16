@@ -197,11 +197,11 @@ export default {
             <template v-for="points in info.subpoints">
               <div class="row mb-2">
                 <template v-if="isIncluded(points.included)">
-                  <icon class="col-2 pr-0 pl-0" icon="check-mark" size=" " />
+                  <icon class="col-2 pr-0 pl-0" icon="check-mark" size="medium" />
                   <span class="col-9 pt-2 pr-0 pl-0">{{ points.subpoint }}</span>
                 </template>
                 <template v-else>
-                  <icon class="col-2 pr-0 pl-0" icon="x-mark" size=" " />
+                  <icon class="col-2 pr-0 pl-0" icon="x-mark" size="medium" />
                   <span class="col-9 pt-1 pr-0 pl-0">{{ points.subpoint }}</span>
                 </template>
               </div>
