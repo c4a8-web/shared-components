@@ -175,7 +175,7 @@ export default {
       <template v-else-if="product">
         <div class="card__img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
-          <div class="card-img-headline__container">
+          <div class="card__img-headline-container">
             <template v-if="tag">
               <span class="card__img-tag"
               :style="{'background-color': tag.bgColor, 'color': tag.color }">
