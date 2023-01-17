@@ -150,6 +150,9 @@ export default {
       for (let i = 0; i < orderedList?.length; i++) {
         const entry = orderedList[i];
         const { city } = entry?.location || {};
+
+        if (!entry) continue;
+
         const { title, position_type, team } = entry;
 
         const entryData = {
