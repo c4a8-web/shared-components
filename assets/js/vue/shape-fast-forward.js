@@ -101,7 +101,7 @@ export default {
           steps: [
             {
               name: 'show',
-              from: '0.5',
+              from: '0.1',
               to: '1',
               dur: '0.01s',
               attributeName: 'opacity',
@@ -132,8 +132,8 @@ export default {
           steps: [
             {
               name: 'hide',
-              from: '1',
-              to: '0.5',
+              from: '0.6',
+              to: '0.1',
               dur: '0.01s',
               attributeName: 'opacity',
               animate: true,
@@ -214,6 +214,7 @@ export default {
           moveTo1: {
             waitFor: 'secondArrow.hide',
             delay: animationStepDelay,
+            dur: '0.001s',
           },
           show: {
             waitFor: 'secondArrow.moveTo1',
@@ -240,6 +241,8 @@ export default {
           moveTo3: {
             waitFor: 'thirdArrow.moveTo2',
             delay: animationDelay,
+            from: '200',
+            to: '400',
           },
           shrink: {
             waitFor: 'thirdArrow.moveTo3',
@@ -247,9 +250,8 @@ export default {
           },
           moveTo4: {
             waitFor: 'thirdArrow.moveTo3',
-            from: '0',
-            to: '200',
-            additive: true,
+            from: '400',
+            to: '600',
             delay: animationDelay,
           },
           hide: {
@@ -356,9 +358,10 @@ export default {
             calcMode="spline"
             keyTimes="0;1"
             :keySplines="overall?.keySplines"
+            type="translate"
           ></shape-animation>
         </polygon>
-        <polygon :fill="secondArrowColor" aafill="#ff0000" :points="points?.secondArrow" :id="secondArrow?.id" style="transform-origin: 200px 200px;">
+        <polygon :fill="secondArrowColor" :points="points?.secondArrow" :id="secondArrow?.id" style="transform-origin: 200px 200px;">
           <template v-for="animation in animations">
             <template v-for="stepData in getStepData('secondArrow', animation?.steps)">
               <shape-animation
@@ -388,14 +391,18 @@ export default {
             attributeName="transform"
             from="-200"
             to="0"
+            aafrom="200"
+            aato="400"
+            aaby="200"
             :dur="overall?.dur"
             fill="freeze"
             calcMode="spline"
             keyTimes="0;1"
             :keySplines="overall?.keySplines"
+            type="translate"
           ></shape-animation>
         </polygon>
-        <polygon :fill="pathColor" aafill="#00ff00" :points="points?.thirdArrow" :id="thirdArrow?.id" style="transform-origin: -200px 200px;">
+        <polygon :fill="pathColor" :points="points?.thirdArrow" :id="thirdArrow?.id" style="transform-origin: -200px 200px;">
           <template v-for="animation in animations">
             <template v-for="stepData in getStepData('thirdArrow', animation?.steps)">
               <shape-animation
@@ -430,6 +437,7 @@ export default {
             calcMode="spline"
             keyTimes="0;1"
             :keySplines="overall?.keySplines"
+            type="translate"
           ></shape-animation>
         </polygon>
       </g>
