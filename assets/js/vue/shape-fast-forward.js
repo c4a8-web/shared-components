@@ -93,6 +93,7 @@ export default {
               from: '0',
               to: '-400',
               dur: '0.01s',
+              type: 'translate',
             },
           ],
         },
@@ -104,6 +105,7 @@ export default {
               to: '1',
               dur: '0.01s',
               attributeName: 'opacity',
+              animate: true,
             },
           ],
         },
@@ -113,6 +115,7 @@ export default {
               name: 'moveTo2',
               to: '-200',
               from: '-400',
+              type: 'translate',
             },
           ],
         },
@@ -121,6 +124,7 @@ export default {
             {
               name: 'moveTo3',
               by: '200',
+              type: 'translate',
             },
           ],
         },
@@ -132,6 +136,7 @@ export default {
               to: '0.5',
               dur: '0.01s',
               attributeName: 'opacity',
+              animate: true,
             },
           ],
         },
@@ -139,6 +144,7 @@ export default {
           steps: [
             {
               name: 'moveTo4',
+              type: 'translate',
             },
             {
               name: 'shrink',
@@ -295,6 +301,7 @@ export default {
         if (elementStepData.to) newStep.to = elementStepData.to;
         if (elementStepData.additive) newStep.additive = elementStepData.additive;
         if (elementStepData.dur) newStep.dur = elementStepData.dur;
+        if (elementStepData.animate) newStep.animate = elementStepData.animate;
 
         if (!newStep.dur) newStep.dur = this.overall.dur;
         if (!newStep.keySplines) newStep.keySplines = this.overall.keySplines;
@@ -332,6 +339,7 @@ export default {
                 :to="stepData?.step?.to"
                 :by="stepData?.step?.by"
                 :attributeName="stepData?.step?.attributeName"
+                :isAnimate="stepData?.step?.animate"
               ></shape-animation>
             </template>
           </template>
@@ -368,6 +376,7 @@ export default {
                 :to="stepData?.step?.to"
                 :by="stepData?.step?.by"
                 :attributeName="stepData?.step?.attributeName"
+                :isAnimate="stepData?.step?.animate"
               ></shape-animation>
             </template>
           </template>
@@ -404,6 +413,7 @@ export default {
                 :to="stepData?.step?.to"
                 :by="stepData?.step?.by"
                 :attributeName="stepData?.step?.attributeName"
+                :isAnimate="stepData?.step?.animate"
               ></shape-animation>
             </template>
           </template>
