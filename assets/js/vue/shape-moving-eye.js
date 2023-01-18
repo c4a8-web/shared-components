@@ -2,7 +2,7 @@ import ShapeElements from '../shape-elements.js';
 
 const defaultStart = '0s';
 const animationDelay = '0s';
-const animationStepDelay = '0.05s';
+const animationStepDelay = '0.01s';
 
 const tagName = 'shape-moving-eye';
 
@@ -66,7 +66,6 @@ export default {
               name: 'motion',
               attributeName: 'motion',
               motion: true,
-              dur: '',
             },
           ],
         },
@@ -256,6 +255,7 @@ export default {
             </template>
           </template>
 
+
           <shape-animation
             :id="upperSquare?.reset?.id"
             :href="upperSquare?.href"
@@ -296,10 +296,10 @@ export default {
             from="1.3 1.01"
             to="1.3 1.01"
             :dur="eyeCircle?.reset?.dur"
+            isMotion=true
             fill="freeze"
             calcMode="paced"
           ></shape-animation>
-
         </g>
 
         <g :id="eyeCircle?.id" transform="translate(-62, 32)">
