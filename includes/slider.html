@@ -1,0 +1,14 @@
+{%- assign sliderContent = include.content -%}
+{%- assign sliderRecentHeadline = include.headline -%}
+{%- assign sliderRecentHeadlineLevel = include.level -%}
+{%- assign sliderRecentHeadlineClasses = include.headlineClasses -%}
+{%- assign sliderHideContainer = include.hideContainer -%}
+
+<slider
+  headline="{{ sliderRecentHeadline }}"
+  headline-level="{{ sliderRecentHeadlineLevel }}"
+  headline-classes="{{ sliderRecentHeadlineClasses }}"
+  hide-container="{{ sliderHideContainer }}"
+>
+  <template v-slot:content>{{ sliderContent }}</template>
+</slider>

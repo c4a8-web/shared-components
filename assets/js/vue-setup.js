@@ -43,6 +43,7 @@ import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
+import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import TestimonialList from './vue/testimonial-list.js';
 import Timeline from './vue/timeline.js';
@@ -125,6 +126,7 @@ const addApp = () => {
     ShapeSquareCircle,
     ShapeTrianglesToCenter,
     Shape,
+    Slider,
     ArrowExternal,
     ArrowNarrow,
     Arrow,
