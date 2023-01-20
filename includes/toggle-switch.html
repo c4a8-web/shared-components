@@ -6,9 +6,15 @@
 {% assign id = toggleSwitch.id | default: 'customToggleSwitch' %}
 {% assign targetSelector = toggleSwitch.targetSelector | default: '#pricingCount1, #pricingCount2, #pricingCount3' %}
 {% capture active %}{% if toggleSwitch.active or site.data.products.pricing.defaultPlan == 'annual'%}true{% else %}false{% endif %}{% endcapture %}
+{% assign toggleSwitchLimit = toggleSwitch.limit | default: false %}
+
+{% if toggleSwitchLimit %}
+  {% assign toggleSwitchLimitLeftClass = "toggle-switch--right" %}
+  {% assign toggleSwitchLimitRightClass = "toggle-switch--left" %}
+{% endif %}
 
 <div class="toggle-switch overflow-hidden d-flex justify-content-center align-items-center pt-6 mb-5">
-  <span class="font-size-1 text-muted">{{ textLeft }}</span>
+  <span class="font-size-1 text-muted {{ toggleSwitchLimitLeftClass }}">{{ textLeft }}</span>
   <label class="mx-2" for="{{ id }}">
     <input type="checkbox" class="js-toggle-switch toggle-switch-input" id="{{ id }}" {% if active == 'true' %}checked{% endif %}
           data-toggle-switch-options='{
@@ -18,7 +24,7 @@
       <span class="toggle-switch-indicator"></span>
     </span>
   </label>
-  <span class="font-size-1 position-relative text-muted">
+  <span class="font-size-1 position-relative text-muted {{ toggleSwitchLimitRightClass }}">
     {% if toggleSwitch.hint %}
       <div class="position-absolute row toggle-switch__hint">
         <svg class="pt-2"width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
