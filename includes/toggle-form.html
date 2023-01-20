@@ -1,25 +1,29 @@
 {% assign toggleFormToggleSwitch = include.toggleSwitch %}
 {% assign toggleForms = include.forms %}
 
-<div class="toggle-form">
-  {% if toggleSwitch %}
-    {%
-      include toggle-switch.html
-      toggleSwitch=toggleSwitch
-    %}
-  {% endif %}
-  {% for form in toggleForms %}
-    {% if forloop.index > 1 %}
-      {% assign toggleFormSwitchClass = 'toggle-switch__on' %}
-    {% else %}
-      {% assign toggleFormSwitchClass = 'toggle-switch__off' %}
-    {% endif %}
+<div class="toggle-form container">
+  <div class="row">
+    <div class="col">
+      {% if toggleSwitch %}
+        {%
+          include toggle-switch.html
+          toggleSwitch=toggleSwitch
+        %}
+      {% endif %}
+      {% for form in toggleForms %}
+        {% if forloop.index > 1 %}
+          {% assign toggleFormSwitchClass = 'toggle-switch__on' %}
+        {% else %}
+          {% assign toggleFormSwitchClass = 'toggle-switch__off' %}
+        {% endif %}
 
-    <div class="toggle-form__switch {{ toggleFormSwitchClass }}">
-      {%
-        include form.html
-        form=form
-      %}
+        <div class="toggle-form__switch {{ toggleFormSwitchClass }}">
+          {%
+            include form.html
+            form=form
+          %}
+        </div>
+      {% endfor %}
     </div>
- {% endfor %}
+  </div>
 </div>

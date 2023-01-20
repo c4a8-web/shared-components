@@ -14,18 +14,16 @@ const Template = (args) => createComponent(args, component);
 export const Default = Template.bind({});
 Default.args = {
   toggleSwitch: {
-    textLeft: 'Free',
-    textRight: 'Pro',
+    textLeft: 'Unified Contacts Free',
+    textRight: 'Unified Contacts Pro',
     id: 'formToggleSwitch',
     targetSelector: '.toggle-form__switch',
     targetSelectorClass: 'toggle-form__switch',
+    limit: true,
     hint: false,
   },
   forms: [
     {
-      headline: 'Free Edition',
-      subline:
-        'Are you interested to try a "beta" version of the Enterprise Edition? Fill out the form and we will contact you We d love to hear from you!',
       cta: {
         skin: 'primary',
         width: 'w-50',
@@ -59,17 +57,43 @@ Default.args = {
           id: 'lastname',
         },
         {
-          label: 'E-Mail Adresse',
-          type: 'email',
+          label: 'Straße und Hausnr. (optional)',
+          type: 'text',
           col: 12,
           rowStart: true,
-          required: true,
-          id: 'email',
+          id: 'postal',
         },
         {
-          label: 'Nachricht (optional)',
-          type: 'textarea',
-          id: 'message',
+          label: 'Postleitzahl',
+          type: 'text',
+          col: 6,
+          rowStart: true,
+          required: true,
+          id: 'postal',
+        },
+        {
+          label: 'Stadt',
+          type: 'text',
+          col: 6,
+          rowEnd: true,
+          required: true,
+          id: 'city',
+        },
+        {
+          label: 'Land (optional)',
+          type: 'select',
+          id: 'lorem',
+          col: 12,
+          rowStart: true,
+          rowClass: 'mb-4',
+          options: 'options',
+        },
+        {
+          label: 'E-Mail Adresse',
+          type: 'text',
+          col: 12,
+          rowStart: true,
+          id: 'country',
         },
         {
           type: 'hidden',
@@ -82,11 +106,15 @@ Default.args = {
           id: 'privacy',
           required: true,
         },
+        {
+          label: '<small>Newsletter</small>',
+          type: 'checkbox',
+          id: 'privacy',
+          required: true,
+        },
       ],
     },
     {
-      headline: 'Pro Form',
-      subline: 'Subline lorem ipsum dolor sit',
       cta: {
         skin: 'primary',
         width: 'w-50',
@@ -112,18 +140,18 @@ Default.args = {
           id: 'lastName',
         },
         {
-          label: 'E-Mail Adresse',
+          label: 'Straße und Hausnr. (optional)',
           type: 'email',
-          col: 6,
+          col: 12,
           rowStart: true,
           required: true,
           id: 'email',
         },
         {
-          label: 'Telefon',
+          label: 'Postleitzahl',
           type: 'text',
           col: 6,
-          rowEnd: true,
+          rowStart: true,
           required: true,
           id: 'phone',
         },
@@ -140,14 +168,6 @@ Default.args = {
           col: 6,
           rowEnd: true,
           id: 'salary',
-        },
-        {
-          label: 'Sitze',
-          type: 'text',
-          col: 5,
-          rowStart: true,
-          rowEnd: true,
-          id: 'seats',
         },
         {
           label: 'Nachricht (optional)',
