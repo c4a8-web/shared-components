@@ -29,6 +29,7 @@ Default.args = {
         width: 'w-50',
       },
       ctaText: 'Bewerbung absenden',
+      centered: true,
       method: 'post',
       action: '',
       fields: [
@@ -109,7 +110,7 @@ Default.args = {
         {
           label: '<small>Newsletter</small>',
           type: 'checkbox',
-          id: 'privacy',
+          id: 'news',
           required: true,
         },
       ],
@@ -119,6 +120,7 @@ Default.args = {
         skin: 'primary',
         width: 'w-50',
       },
+      centered: true,
       ctaText: 'Bewerbung absenden',
       method: 'post',
       action: '',
@@ -141,11 +143,11 @@ Default.args = {
         },
         {
           label: 'Straße und Hausnr. (optional)',
-          type: 'email',
+          type: 'text',
           col: 12,
           rowStart: true,
           required: true,
-          id: 'email',
+          id: 'address',
         },
         {
           label: 'Postleitzahl',
@@ -182,7 +184,7 @@ Default.args = {
           label:
             "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
           type: 'checkbox',
-          id: 'privacy',
+          id: 'private',
           required: true,
         },
       ],
