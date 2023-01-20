@@ -5,10 +5,12 @@ class ToggleSwitch extends BaseComponent {
   static rootSelector = '.js-toggle-switch';
   constructor(root, options) {
     super(root, options);
+
     this.targetSelector = '.js-toggle-switch';
     this.target = document.querySelector(this.targetSelector);
     this.duration = 400;
     this.parsePricingData = document.querySelector('[data-pricing]')?.dataset.pricing;
+
     this.init();
   }
 
@@ -17,10 +19,11 @@ class ToggleSwitch extends BaseComponent {
     const state = switchElement.checked;
     const options = JSON.parse(switchElement.dataset.toggleSwitchOptions);
     const selectorArray = options.targetSelector.split(',');
+    const pricingSwitch = selectorArray.some((x) => x.includes('pricing'));
 
     for (let i = 0; i < selectorArray.length; i++) {
       const targetSelector = selectorArray[i].replace(/\s/g, '');
-      this.switchData(targetSelector, state);
+      this.switchData(targetSelector, state, pricingSwitch);
     }
   }
 
@@ -57,14 +60,23 @@ class ToggleSwitch extends BaseComponent {
     });
   }
 
-  switchData(element, isAnnual) {
+  switchData(element, isAnnual, pricingSwitch) {
     const targetElement = document.querySelectorAll(element);
-    for (let i = 0; i < targetElement.length; i++) {
-      const currentTarget = targetElement[i];
-      const options = JSON.parse(currentTarget.dataset.toggleSwitchItemOptions);
-      const start = isAnnual ? options.monthly : options.annual;
-      const end = isAnnual ? options.annual : options.monthly;
-      this.switchAnimation(currentTarget, start, end);
+
+    if (pricingSwitch) {
+      for (let i = 0; i < targetElement.length; i++) {
+        const currentTarget = targetElement[i];
+        const options = JSON.parse(currentTarget.dataset.toggleSwitchItemOptions);
+        const start = isAnnual ? options.monthly : options.annual;
+        const end = isAnnual ? options.annual : options.monthly;
+        this.switchAnimation(currentTarget, start, end);
+      }
+    } else {
+      for (let i = 0; i < targetElement.length; i++) {
+        const currentTarget = targetElement[i];
+        const visible = currentTarget.className.includes('toggle-switch__on');
+        currentTarget.className = element.substring(1) + ' ' + (visible ? 'toggle-switch__off' : 'toggle-switch__on');
+      }
     }
   }
 
