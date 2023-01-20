@@ -60,22 +60,22 @@ class ToggleSwitch extends BaseComponent {
     });
   }
 
-  switchData(element, isAnnual, pricingSwitch) {
-    const targetElement = document.querySelectorAll(element);
+  switchData(element, state, pricingSwitch) {
+    const targetElements = document.querySelectorAll(element);
 
-    if (pricingSwitch) {
-      for (let i = 0; i < targetElement.length; i++) {
-        const currentTarget = targetElement[i];
+    for (let i = 0; i < targetElements.length; i++) {
+      const currentTarget = targetElements[i];
+
+      if (pricingSwitch) {
         const options = JSON.parse(currentTarget.dataset.toggleSwitchItemOptions);
-        const start = isAnnual ? options.monthly : options.annual;
-        const end = isAnnual ? options.annual : options.monthly;
+        const start = state ? options.monthly : options.annual;
+        const end = state ? options.annual : options.monthly;
         this.switchAnimation(currentTarget, start, end);
-      }
-    } else {
-      for (let i = 0; i < targetElement.length; i++) {
-        const currentTarget = targetElement[i];
+      } else {
         const visible = currentTarget.className.includes('toggle-switch__on');
-        currentTarget.className = element.substring(1) + ' ' + (visible ? 'toggle-switch__off' : 'toggle-switch__on');
+        const elementWithoutPoint = element.startsWith('.') ? element.substring(1) : element;
+        console.log(currentTarget.classList);
+        currentTarget.className = elementWithoutPoint + ' ' + (visible ? 'toggle-switch__off' : 'toggle-switch__on');
       }
     }
   }
