@@ -14,8 +14,8 @@ const Template = (args) => createComponent(args, component);
 export const Default = Template.bind({});
 Default.args = {
   toggleSwitch: {
-    textLeft: 'Unified Contacts Free',
-    textRight: 'Unified Contacts Pro',
+    textLeft: 'Unified Contacts <br/> Free',
+    textRight: 'Unified Contacts <br/> Pro',
     id: 'formToggleSwitch',
     targetSelector: '.toggle-form__switch',
     targetSelectorClass: 'toggle-form__switch',
