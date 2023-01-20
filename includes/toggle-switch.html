@@ -14,7 +14,7 @@
 {% endif %}
 
 <div class="toggle-switch overflow-hidden d-flex justify-content-center align-items-center pt-6 mb-5">
-  <span class="font-size-1 text-muted {{ toggleSwitchLimitLeftClass }}">{{ textLeft }}</span>
+  <span class="font-size-1 text-muted toggle-switch__text {{ toggleSwitchLimitLeftClass }}">{{ textLeft }}</span>
   <label class="mx-2" for="{{ id }}">
     <input type="checkbox" class="js-toggle-switch toggle-switch-input" id="{{ id }}" {% if active == 'true' %}checked{% endif %}
           data-toggle-switch-options='{
@@ -24,7 +24,7 @@
       <span class="toggle-switch-indicator"></span>
     </span>
   </label>
-  <span class="font-size-1 position-relative text-muted {{ toggleSwitchLimitRightClass }}">
+  <span class="font-size-1 position-relative text-muted toggle-switch__text {{ toggleSwitchLimitRightClass }}">
     {% if toggleSwitch.hint %}
       <div class="position-absolute row toggle-switch__hint">
         <svg class="pt-2"width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">

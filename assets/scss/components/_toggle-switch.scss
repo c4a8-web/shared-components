@@ -1,11 +1,21 @@
 .toggle-switch {
-  .toggle-switch--right {
-    width: 10%;
+  .toggle-switch__text--right {
+    width: 25%;
     text-align: right;
+    @include media-breakpoint-up(sm) {
+      width: 10%;
+    }
   }
 
-  .toggle-switch--left {
-    width: 10%;
+  .toggle-switch__text--left {
+    width: 25%;
     text-align: left;
+    @include media-breakpoint-up(sm) {
+      width: 10%;
+    }
   }
+}
+
+.toggle-switch__on {
+  display: none;
 }
