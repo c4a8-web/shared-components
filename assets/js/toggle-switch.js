@@ -75,9 +75,10 @@ class ToggleSwitch {
   }
 
   handleForms(currentTarget, element) {
-    const visible = currentTarget.className.includes('toggle-switch__on');
+    const visible = currentTarget.className.includes('toggle-form__switch--on');
     const elementWithoutPoint = element.startsWith('.') ? element.substring(1) : element;
-    currentTarget.className = elementWithoutPoint + ' ' + (visible ? 'toggle-switch__off' : 'toggle-switch__on');
+    currentTarget.className =
+      elementWithoutPoint + ' ' + (visible ? 'toggle-form__switch--off' : 'toggle-form__switch--on');
   }
 
   start() {
