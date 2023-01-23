@@ -11,7 +11,6 @@
 Refactor uncentered value and include the content migration of uncentered values
 {% endcomment %}
 {%- assign formUncentered = formForm.uncentered | default: include.uncentered | default: true -%}
-{%- assign formCentered = formForm.centered | default: include.centered | default: false -%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
 
@@ -41,7 +40,6 @@ Refactor uncentered value and include the content migration of uncentered values
   :additional-fields="{{ formAdditionalFields | jsonify | escape }}"
   uncentered="{{ formUncentered }}"
   replace-value="{{ formReplaceValue }}"
-  centered="{{ formCentered }}"
   :options="{{ formOptionsText }}"
 ></formular>
 
