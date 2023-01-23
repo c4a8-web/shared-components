@@ -27,9 +27,9 @@
       {% endif %}
       {% for form in toggleForms %}
         {% if forloop.index > 1 %}
-          {% assign toggleFormSwitchClass = 'toggle-form__switch--on' %}
-        {% else %}
           {% assign toggleFormSwitchClass = 'toggle-form__switch--off' %}
+        {% else %}
+          {% assign toggleFormSwitchClass = 'toggle-form__switch--on' %}
         {% endif %}
 
         <div class="toggle-form__switch {{ toggleFormSwitchClass }}">
