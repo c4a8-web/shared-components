@@ -13,6 +13,9 @@ const Template = (args) => createComponent(args, component);
 
 export const Default = Template.bind({});
 Default.args = {
+  headline: 'Try the Unified Search Experience',
+  subline:
+    'Lorem, Free Version easy zu installieren und direkt loslegen oder vollen Umfang und 30 Tage Trial. Evtl <a> dezenter Textlink </a> zu detaillierter Tabelle mit Unterschieden lorem.',
   toggleSwitch: {
     textLeft: 'Unified Contacts <br/> Free',
     textRight: 'Unified Contacts <br/> Pro',
@@ -26,7 +29,6 @@ Default.args = {
     {
       cta: {
         skin: 'primary',
-        width: 'w-50',
       },
       ctaText: 'Bewerbung absenden',
       centered: true,
@@ -86,7 +88,7 @@ Default.args = {
           id: 'lorem',
           col: 12,
           rowStart: true,
-          rowClass: 'mb-4',
+          rowClass: 'mb-10',
           options: 'options',
         },
         {
