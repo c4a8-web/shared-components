@@ -4,6 +4,7 @@
 {%- assign description = include.description -%}
 {%- assign bgColor = include.bgColor | default: 'var(--color-bg-grey)' -%}
 {%- assign toggleSwitch = include.toggleSwitch -%}
+{%- assign pricingDetailTargetSelector = toggleSwitch.targetSelectorClass | default: 'pricingSwitch'}
 {%- assign visibleTab = include.visibleTab -%}
 
 <section id="pricingDetails" class="pricing-details" style="background-color: {{ bgColor }};">
@@ -34,7 +35,7 @@
         {%
           include pricing-product.html
           product=product
-          targetSelectorClass=toggleSwitch.targetSelectorClass
+          targetSelectorClass=pricingDetailTargetSelector
           visibleTab=visibleTab
         %}
       {% endfor %}

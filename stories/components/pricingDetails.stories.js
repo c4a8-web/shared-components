@@ -11,7 +11,6 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-// TODO export when the js is in shared-components
 export const PricingDetails = Template.bind({});
 
 PricingDetails.args = {
@@ -26,7 +25,6 @@ PricingDetails.args = {
     },
     id: 'pricingToggleSwitch',
     targetSelector: '.pricingSwitch',
-    targetSelectorClass: 'pricingSwitch',
   },
   products: [
     {
