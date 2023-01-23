@@ -1,5 +1,5 @@
-import Animate from './animate.js';
-import BaseComponent from './components/base-component.js';
+import Animate from '../animate.js';
+import BaseComponent from './base-component.js';
 
 class ToggleSwitch extends BaseComponent {
   static rootSelector = '.toggle-switch';
