@@ -41,6 +41,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./toggle-switch.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./components/back.js')
     .then((module) => {
       return module.default;
@@ -93,11 +98,6 @@ const componentList = [
     })
     .catch(handleLoadingError),
   import('./components/text-animation.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./components/toggle-switch.js')
     .then((module) => {
       return module.default;
     })

@@ -1,17 +1,15 @@
-import Animate from '../animate.js';
-import BaseComponent from './base-component.js';
+import Animate from './animate.js';
 
-class ToggleSwitch extends BaseComponent {
+class ToggleSwitch {
   static rootSelector = '.toggle-switch';
-  constructor(root, options) {
-    super(root, options);
-
+  constructor(root) {
+    this.root = root;
     this.targetSelector = '.js-toggle-switch';
-    this.target = root.querySelector(this.targetSelector);
+    this.target = this.root.querySelector(this.targetSelector);
     this.duration = 400;
-    this.parsePricingData = root.querySelector('[data-pricing]')?.dataset.pricing;
+    this.parsePricingData = this.root.querySelector('[data-pricing]')?.dataset.pricing;
 
-    this.init();
+    this.start();
   }
 
   handleChange(e) {
@@ -82,8 +80,16 @@ class ToggleSwitch extends BaseComponent {
     currentTarget.className = elementWithoutPoint + ' ' + (visible ? 'toggle-switch__off' : 'toggle-switch__on');
   }
 
-  init() {
+  start() {
     this.target.addEventListener('change', this.handleChange.bind(this));
+  }
+
+  static init() {
+    this.instances = [];
+
+    [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
+      this.instances.push(new this(element));
+    });
   }
 }
 
