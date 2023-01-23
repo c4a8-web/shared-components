@@ -1,15 +1,15 @@
-import Animate from './animate';
-import BaseComponent from './components/base-component';
+import Animate from './animate.js';
+import BaseComponent from './components/base-component.js';
 
 class ToggleSwitch extends BaseComponent {
-  static rootSelector = '.js-toggle-switch';
+  static rootSelector = '.toggle-switch';
   constructor(root, options) {
     super(root, options);
 
     this.targetSelector = '.js-toggle-switch';
-    this.target = document.querySelector(this.targetSelector);
+    this.target = root.querySelector(this.targetSelector);
     this.duration = 400;
-    this.parsePricingData = document.querySelector('[data-pricing]')?.dataset.pricing;
+    this.parsePricingData = root.querySelector('[data-pricing]')?.dataset.pricing;
 
     this.init();
   }
