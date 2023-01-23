@@ -1,4 +1,5 @@
 import Animate from './animate.js';
+import State from './state.js';
 
 class ToggleSwitch {
   static rootSelector = '.toggle-switch';
@@ -75,10 +76,9 @@ class ToggleSwitch {
   }
 
   handleForms(currentTarget, element) {
-    const visible = currentTarget.className.includes('toggle-form__switch--off');
+    const visible = currentTarget.className.includes(State.HIDDEN);
     const elementWithoutPoint = element.startsWith('.') ? element.substring(1) : element;
-    currentTarget.className =
-      elementWithoutPoint + ' ' + (visible ? 'toggle-form__switch--on' : 'toggle-form__switch--off');
+    currentTarget.className = elementWithoutPoint + ' ' + (visible ? '' : State.HIDDEN);
   }
 
   start() {
