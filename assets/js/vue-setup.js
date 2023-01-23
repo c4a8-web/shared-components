@@ -42,6 +42,7 @@ import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
+import ArrowCurl from './vue/icons/arrow-curl.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
@@ -121,6 +122,7 @@ const addApp = () => {
     ShapeSquareCircle,
     ShapeTrianglesToCenter,
     Shape,
+    ArrowCurl,
     ArrowExternal,
     ArrowNarrow,
     Arrow,
