@@ -10,7 +10,6 @@
 
 {% if toggleSwitchLimit %}
   {% assign toggleSwitchLimitLeftClass = "toggle-switch__text--right" %}
-  {% assign toggleSwitchLimitRightClass = "toggle-switch__text--left" %}
 {% endif %}
 
 <div class="toggle-switch overflow-hidden d-flex justify-content-center align-items-center pt-6 mb-5">
@@ -24,7 +23,7 @@
       <span class="toggle-switch-indicator"></span>
     </span>
   </label>
-  <span class="font-size-1 position-relative text-muted toggle-switch__text {{ toggleSwitchLimitRightClass }}">
+  <span class="font-size-1 position-relative text-muted toggle-switch__text">
     {% if toggleSwitch.hint %}
       <div class="position-absolute row toggle-switch__hint">
         <svg class="pt-2"width="26" height="28" viewBox="0 0 26 28" fill="none" xmlns="http://www.w3.org/2000/svg">
