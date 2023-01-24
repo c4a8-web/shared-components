@@ -17,18 +17,18 @@ Slider.args = {
   content: `
               <div>
                 <div class="slider__item--desktop">
-                  <img src="${getAssetPath('img/slider-placeholder-2.png')}" />
+                  <img src="${getAssetPath('img/slider-placeholder-2.svg')}" />
                 </div>
                 <div class="slider__item--mobile">
-                  <img src="${getAssetPath('img/slider-placeholder-2-mobile.png')}" />
+                  <img src="${getAssetPath('img/slider-placeholder-2-mobile.svg')}" />
                 </div>
               </div>
               <div>
                 <div class="slider__item--desktop">
-                  <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
+                  <img src="${getAssetPath('img/slider-placeholder-1.svg')}" />
                 </div>
                 <div class="slider__item--mobile">
-                  <img src="${getAssetPath('img/slider-placeholder-1-mobile.png')}" />
+                  <img src="${getAssetPath('img/slider-placeholder-1-mobile.svg')}" />
                 </div>
               </div>
   `,

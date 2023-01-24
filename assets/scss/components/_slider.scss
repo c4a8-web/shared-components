@@ -20,6 +20,16 @@
     display: none;
   }
 
+  .slick-list {
+    @include media-breakpoint-up(sm) {
+      width: calc(100%);
+
+      .slick-track {
+        left: 0;
+      }
+    }
+  }
+
   @include media-breakpoint-up(lg) {
     .slider__item--desktop {
       display: block;

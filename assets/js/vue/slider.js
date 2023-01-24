@@ -23,22 +23,11 @@ export const defaultOptions = ({ length }) => {
         breakpoint: 992,
         settings: {
           centerMode: true,
-          infinite: true,
+          infinite: false,
           centerPadding: '30px',
           slidesToShow: 2,
           slidesToScroll: 2,
           dots: length > 2 ? true : false,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          centerMode: true,
-          infinite: false,
-          centerPadding: '30px',
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          dots: length > 1 ? true : false,
         },
       },
       {
@@ -79,16 +68,15 @@ export default {
       if (childrenLength === 0) return null;
 
       const options = defaultOptions({ length: childrenLength });
+      const slidesToShow = 1;
 
-      options.slidesToShow = options.slidesToScroll = 1;
+      options.slidesToShow = options.slidesToScroll = slidesToShow;
       options.dots = true;
 
-      console.log(options.responsive);
-
       options.responsive.forEach((breakpoint) => {
-        console.log('carouselOptions ~ breakpoint', breakpoint);
+        breakpoint.settings.dots = true;
+        breakpoint.settings.slidesToScroll = breakpoint.settings.slidesToShow = slidesToShow;
       });
-      // TODO set all breakpoints to the same slidesToScroll and show + dots
 
       return JSON.stringify(options);
     },
