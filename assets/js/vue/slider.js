@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import State from '../state.js';
 
 // TODO try to export this to the other components that use carousel options
 export const defaultOptions = ({ length }) => {
@@ -59,13 +60,18 @@ export default {
   tagName: 'slider',
   computed: {
     classList() {
-      return ['slider', `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`, 'vue-component'];
+      return [
+        'slider',
+        `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
+        `${this.backgroundClass}`,
+        'vue-component',
+      ];
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
     headlineClassesValue() {
-      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
+      return `slider__headline h3-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
     },
     carouselOptions() {
       const childrenLength = this.childrenLength;
@@ -87,10 +93,27 @@ export default {
     children() {
       return this.$slots.default();
     },
+    hideBackgroundValue() {
+      return Tools.isTrue(this.hideBackground);
+    },
+    backgroundClass() {
+      return this.hideBackgroundValue === false ? State.HAS_BACKGROUND : '';
+    },
+    backgroundColor() {
+      return this.bgColor ? this.bgColor : this.defaultBgColor;
+    },
+    style() {
+      if (this.hideBackgroundValue) return;
+
+      return {
+        'background-color': this.backgroundColor,
+      };
+    },
   },
   data() {
     return {
       options: '',
+      defaultBgColor: 'var(--color-bg-grey)',
     };
   },
   props: {
@@ -100,12 +123,23 @@ export default {
     hideContainer: {
       default: false,
     },
+    hideBackground: {
+      default: false,
+    },
+    bgColor: String,
   },
   template: `
     <div :class="classList">
-      <wrapper :hideContainer="hiddenContainer">
+      <div class="slider__bg" v-if="!hideBackgroundValue">
+        <figure class="svgshape" style="pointer-events: all; transform: translateY(2px);">
+          <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 10">
+            <polygon :fill="backgroundColor" points="0,10 100,10 100,0" />
+          </svg>
+        </figure>
+      </div>
+      <wrapper :hideContainer="hiddenContainer" classes="slider__wrapper" :style="style">
         <div class="row" v-if="headline">
-          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 text-center">
+          <div class="slider__header col-lg-12 col-md-10 mt-6 mt-lg-8 mb-6 mb-lg-8 text-center">
             <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
             <span v-if="subline" :class="sublineClassesValue" >{{ subline }}</span>
           </div>

@@ -19,5 +19,17 @@ Slider.args = {
               <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
   `,
   headline: 'Architecture Pro vs. Free',
-  level: 'h2',
+  headlineLevel: 'h3',
+};
+
+export const NoBackground = Template.bind({});
+
+NoBackground.args = {
+  content: `
+              <img src="${getAssetPath('img/slider-placeholder-2.png')}" />
+              <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
+  `,
+  headline: 'Architecture Pro vs. Free',
+  headlineLevel: 'h3',
+  hideBackground: true,
 };

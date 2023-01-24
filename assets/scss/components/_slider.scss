@@ -1,2 +1,35 @@
 .slider {
+  overflow: hidden;
+
+  &.has-background {
+    position: relative;
+    padding-bottom: spacing(14);
+    // padding-top: spacing(22);
+
+    .slider__bg,
+    .slider__wrapper {
+      &:before {
+        display: block;
+      }
+    }
+  }
+}
+
+.slider__bg {
+  // position: absolute;
+  // height: 200px;
+}
+
+// .slider__bg,
+.slider__wrapper {
+  &:before {
+    display: none;
+    content: '';
+    background-color: inherit;
+    position: absolute;
+    width: 100vw;
+    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }

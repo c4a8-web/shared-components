@@ -1,14 +1,18 @@
 {%- assign sliderContent = include.content -%}
 {%- assign sliderRecentHeadline = include.headline -%}
-{%- assign sliderRecentHeadlineLevel = include.level -%}
+{%- assign sliderRecentHeadlineLevel = include.headlineLevel -%}
 {%- assign sliderRecentHeadlineClasses = include.headlineClasses -%}
 {%- assign sliderHideContainer = include.hideContainer -%}
+{%- assign sliderHideBackground = include.hideBackground -%}
+{%- assign sliderBgColor = include.bgColor -%}
 
 <slider
   headline="{{ sliderRecentHeadline }}"
   headline-level="{{ sliderRecentHeadlineLevel }}"
   headline-classes="{{ sliderRecentHeadlineClasses }}"
   hide-container="{{ sliderHideContainer }}"
+  hide-background="{{ sliderHideBackground }}"
+  bg-color="{{ sliderBgColor }}"
 >
   {{ sliderContent }}
 </slider>
