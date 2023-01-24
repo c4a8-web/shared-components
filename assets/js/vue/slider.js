@@ -69,33 +69,30 @@ export default {
     },
     carouselOptions() {
       const childrenLength = this.childrenLength;
-      console.log('carouselOptions ~ children', childrenLength);
-      console.log(typeof 0);
-
-      console.log(0 === childrenLength);
 
       if (childrenLength === 0) return null;
-      console.log('carouselOptions ~ childrenLength', childrenLength);
 
-      const options = defaultOptions({ length: 2 });
+      const options = defaultOptions({ length: childrenLength });
 
       options.slidesToShow = options.slidesToScroll = 1;
+      options.dots = true;
+
+      console.log(options.responsive);
 
       return JSON.stringify(options);
     },
     childrenLength() {
-      return this.$slots['content'].length;
+      return this.children?.length || 0;
     },
-    // showContainer() {
-    //   return this.childrenLength > 0;
-    // },
+    children() {
+      return this.$slots['content']();
+    },
   },
   data() {
     return {
       options: '',
     };
   },
-  methods: {},
   props: {
     headline: String,
     headlineLevel: String,
@@ -103,13 +100,6 @@ export default {
     hideContainer: {
       default: false,
     },
-  },
-  updated() {
-    const children = this.$slots['content'].length;
-    console.log('mounted ~ children', children);
-    const options = defaultOptions({ length: children });
-    options.slidesToShow = options.slidesToScroll = 1;
-    this.options = JSON.stringify(options);
   },
   template: `
     <div :class="classList">
@@ -120,8 +110,8 @@ export default {
             <span v-if="subline" :class="sublineClassesValue" >{{ subline }}</span>
           </div>
         </div>
-        <div class="slider__container js-slick-carousel" :data-hs-slick-carousel-options="options" >
-          <slot name='content'></slot>
+        <div class="slider__container js-slick-carousel" :data-hs-slick-carousel-options="carouselOptions" >
+          <wrapper-slot-items :items="$slots?.content"></wrapper-slot-items>
         </div>
       </wrapper>
     </div>`,

@@ -48,6 +48,7 @@ import VideoInner from './vue/video-inner.js';
 import TestimonialList from './vue/testimonial-list.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
+import WrapperSlotItems from './vue/wrapper-slot-items.js';
 
 // Icons
 import ArrowExternal from './vue/icons/arrow-external.js';
@@ -75,6 +76,8 @@ let app;
 
 const addApp = () => {
   if (!root) return;
+
+  window.vueH = Vue.h;
 
   app = Vue.createApp({
     mounted() {
@@ -147,6 +150,7 @@ const addApp = () => {
     PersonQuote,
     VideoInner,
     Wrapper,
+    WrapperSlotItems,
   ];
 
   components.forEach((component) => {

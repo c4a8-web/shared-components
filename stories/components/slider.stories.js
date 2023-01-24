@@ -15,7 +15,7 @@ export const Slider = Template.bind({});
 
 Slider.args = {
   content: `
-              <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
+              <img src="${getAssetPath('img/slider-placeholder-2.png')}" />
               <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
   `,
   headline: 'Architecture Pro vs. Free',
