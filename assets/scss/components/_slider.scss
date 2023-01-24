@@ -3,24 +3,34 @@
 
   &.has-background {
     position: relative;
-    padding-bottom: spacing(14);
-    // padding-top: spacing(22);
+    padding-bottom: spacing(16);
 
-    .slider__bg,
     .slider__wrapper {
       &:before {
         display: block;
       }
     }
+
+    @include media-breakpoint-up(lg) {
+      padding-bottom: spacing(22);
+    }
+  }
+
+  .slider__item--desktop {
+    display: none;
+  }
+
+  @include media-breakpoint-up(lg) {
+    .slider__item--desktop {
+      display: block;
+    }
+
+    .slider__item--mobile {
+      display: none;
+    }
   }
 }
 
-.slider__bg {
-  // position: absolute;
-  // height: 200px;
-}
-
-// .slider__bg,
 .slider__wrapper {
   &:before {
     display: none;

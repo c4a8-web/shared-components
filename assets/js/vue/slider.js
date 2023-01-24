@@ -85,6 +85,11 @@ export default {
 
       console.log(options.responsive);
 
+      options.responsive.forEach((breakpoint) => {
+        console.log('carouselOptions ~ breakpoint', breakpoint);
+      });
+      // TODO set all breakpoints to the same slidesToScroll and show + dots
+
       return JSON.stringify(options);
     },
     childrenLength() {
@@ -133,7 +138,7 @@ export default {
       <div class="slider__bg" v-if="!hideBackgroundValue">
         <figure class="svgshape" style="pointer-events: all; transform: translateY(2px);">
           <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100 10">
-            <polygon :fill="backgroundColor" points="0,10 100,10 100,0" />
+            <polygon :fill="backgroundColor" points="-5,10 100,10 100,0" />
           </svg>
         </figure>
       </div>

@@ -15,8 +15,22 @@ export const Slider = Template.bind({});
 
 Slider.args = {
   content: `
-              <img src="${getAssetPath('img/slider-placeholder-2.png')}" />
-              <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
+              <div>
+                <div class="slider__item--desktop">
+                  <img src="${getAssetPath('img/slider-placeholder-2.png')}" />
+                </div>
+                <div class="slider__item--mobile">
+                  <img src="${getAssetPath('img/slider-placeholder-2-mobile.png')}" />
+                </div>
+              </div>
+              <div>
+                <div class="slider__item--desktop">
+                  <img src="${getAssetPath('img/slider-placeholder-1.png')}" />
+                </div>
+                <div class="slider__item--mobile">
+                  <img src="${getAssetPath('img/slider-placeholder-1-mobile.png')}" />
+                </div>
+              </div>
   `,
   headline: 'Architecture Pro vs. Free',
   headlineLevel: 'h3',
