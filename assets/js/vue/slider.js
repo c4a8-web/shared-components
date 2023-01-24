@@ -121,6 +121,7 @@ export default {
     },
     bgColor: String,
   },
+  // TODO move shape to a vue component and insert it here
   template: `
     <div :class="classList">
       <div class="slider__bg" v-if="!hideBackgroundValue">
