@@ -29,11 +29,7 @@ export default {
       return ['form__submit mt-5', `${this.positionValue}`];
     },
     positionValue() {
-      return this.uncentered !== ''
-        ? Tools.isTrue(this.uncentered)
-          ? 'justify-content-end'
-          : 'justify-content-center'
-        : '';
+      return this.form.ctaPosition ? this.form.ctaPosition : Tools.isTrue(this.uncentered) ? '' : 'justify-content-end';
     },
     method() {
       return this.form.method ? this.form.method : 'post';
