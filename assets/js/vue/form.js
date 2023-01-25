@@ -31,8 +31,8 @@ export default {
     positionValue() {
       return this.uncentered !== ''
         ? Tools.isTrue(this.uncentered)
-          ? 'justify-content-center'
-          : 'justify-content-end'
+          ? 'justify-content-end'
+          : 'justify-content-center'
         : '';
     },
     method() {
