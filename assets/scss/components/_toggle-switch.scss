@@ -1,9 +1,26 @@
 .toggle-switch {
+  cursor: default;
+
+  .toggle-switch-label,
+  .toggle-switch-input:checked + .toggle-switch-label {
+    background: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .toggle-switch-indicator {
+    background-color: var(--color-midnight);
+  }
   .toggle-switch__text {
     @include font-style($style: 'font-size-1', $line: 'thin');
   }
 
   .toggle-switch__text--right {
     text-align: right;
+  }
+
+  .toggle-switch__hint {
+    top: -150%;
+    left: 33%;
+    min-width: 140px;
   }
 }
