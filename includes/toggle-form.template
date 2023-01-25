@@ -1,0 +1,42 @@
+{% assign toggleFormHeadline = include.headline %}
+{% assign toggleFormSubline = include.subline %}
+{% assign toggleFormToggleSwitch = include.toggleSwitch %}
+{% assign toggleForms = include.forms %}
+
+<div class="toggle-form container">
+  <div class="row">
+    <div class="col text-center">
+      {% if toggleFormHeadline %}
+        {%
+          include headline.html
+          text=toggleFormHeadline
+        %}
+      {% endif %}
+      {% if toggleFormSubline %}
+        <span class="toggle-form__subline">{{ toggleFormSubline }}</span>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+      {% if toggleFormToggleSwitch %}
+        {%
+          include toggle-switch.html
+          toggleSwitch=toggleFormToggleSwitch
+        %}
+      {% endif %}
+      {% for form in toggleForms %}
+        {% unless forloop.first %}
+          {% assign toggleFormSwitchClass = 'd-none' %}
+        {% endunless %}
+
+        <div class="toggle-form__switch {{ toggleFormSwitchClass }}">
+          {%
+            include form.html
+            form=form
+          %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

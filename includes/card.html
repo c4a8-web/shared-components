@@ -15,6 +15,8 @@
 {%- assign cardSubPoints = include.subpoints -%}
 {%- assign cardScope = include.scope -%}
 {%- assign cardFooter = include.footer -%}
+{%- assign cardProduct = include.product -%}
+{%- assign cardTag = include.tag -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -33,6 +35,7 @@
   url="{{ cardUrl }}"
   target="{{ cardTarget }}"
   title="{{ cardTitle }}"
+  :tag="{{ cardTag | jsonify | escape }}"
   excerpt="{{ cardExcerpt | strip_html | strip_newlines | escape }}"
   event="{{ cardEvent }}"
   :author="{{ cardAuthor | jsonify | escape }}"
@@ -41,6 +44,6 @@
   youtube-url="{{ cardYoutubeUrl }}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
   scope="{{ cardScope }}"
-
+  product="{{ cardProduct | jsonify | escape }}"
 ></card>
 <!-- End Shared Card Section -->

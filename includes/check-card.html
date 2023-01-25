@@ -1,6 +1,6 @@
 {%- assign checkCardsHeadline = include.headline -%}
 {%- assign checkCardsHeadlineLevel = include.level -%}
-{%- assign checkCardsHeadlineClasses = include.headlineClases -%}
+{%- assign checkCardsHeadlineClasses = include.headlineClasses -%}
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
