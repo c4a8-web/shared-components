@@ -2,6 +2,7 @@
   .toggle-switch__text {
     @include font-style($style: 'font-size-1', $line: 'thin');
   }
+
   .toggle-switch__text--right {
     text-align: right;
   }
