@@ -14,20 +14,20 @@ const Template = (args) => createComponent(args, component);
 export const Slider = Template.bind({});
 
 const sliderPlaceholders = `
-  <div>
-    <div class="slider__item--desktop">
-      <img src="${getAssetPath('img/slider-placeholder-2.svg')}" />
+  <div class="image-list vue-component">
+    <div class="image-list__item is--desktop">
+      <img src="${getAssetPath('img/unified-contacts-pro-desk.svg')}" />
     </div>
-    <div class="slider__item--mobile">
-      <img src="${getAssetPath('img/slider-placeholder-2-mobile.svg')}" />
+    <div class="image-list__item is--mobile">
+      <img src="${getAssetPath('img/unified-contacts-pro-mob.svg')}" />
     </div>
   </div>
-  <div>
-    <div class="slider__item--desktop">
-      <img src="${getAssetPath('img/slider-placeholder-1.svg')}" />
+  <div class="image-list vue-component">
+    <div class="image-list__item is--desktop">
+      <img src="${getAssetPath('img/unified-contacts-free-desk.svg')}" />
     </div>
-    <div class="slider__item--mobile">
-      <img src="${getAssetPath('img/slider-placeholder-1-mobile.svg')}" />
+    <div class="image-list__item is--mobile">
+      <img src="${getAssetPath('img/unified-contacts-free-mob.svg')}" />
     </div>
   </div>
 `;

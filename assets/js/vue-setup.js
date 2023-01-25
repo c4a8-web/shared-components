@@ -21,6 +21,7 @@ import Form from './vue/form.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
+import ImageList from './vue/image-list.js';
 import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
@@ -106,6 +107,7 @@ const addApp = () => {
     Header,
     Headline,
     Icon,
+    ImageList,
     VImg,
     JobListDetail,
     JobListEntry,

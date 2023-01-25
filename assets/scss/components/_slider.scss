@@ -16,6 +16,7 @@
     }
   }
 
+  .is--desktop,
   .slider__item--desktop {
     display: none;
   }
@@ -31,10 +32,12 @@
   }
 
   @include media-breakpoint-up(lg) {
+    .is--desktop,
     .slider__item--desktop {
       display: block;
     }
 
+    .is--mobile,
     .slider__item--mobile {
       display: none;
     }
