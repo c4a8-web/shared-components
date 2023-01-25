@@ -19,10 +19,10 @@
   </div>
   <div class="row">
     <div class="col">
-      {% if toggleSwitch %}
+      {% if toggleFormToggleSwitch %}
         {%
           include toggle-switch.html
-          toggleSwitch=toggleSwitch
+          toggleSwitch=toggleFormToggleSwitch
         %}
       {% endif %}
       {% for form in toggleForms %}
