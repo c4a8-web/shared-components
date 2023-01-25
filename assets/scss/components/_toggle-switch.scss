@@ -8,7 +8,7 @@
   }
 
   .toggle-switch-indicator {
-    background-color: var(--color-midnight);
+    background-color: var(--color-toggle-switch-indicator);
   }
   .toggle-switch__text {
     @include font-style($style: 'font-size-1', $line: 'thin');
