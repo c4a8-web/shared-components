@@ -7,7 +7,7 @@ import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
 import Contact from './data/contact';
-import Checks from './data/checks'
+import Checks from './data/checks';
 import Posts from './data/posts';
 import Events from './data/events';
 import CaseStudies from './data/casestudies';
@@ -159,7 +159,7 @@ export const createComponent = function async(include, component) {
   return createTemplate(include, component);
 };
 
-const getTitle = ({ page, title, docs, context }) => {
+const getTitle = ({ page, title, docs, context, helper }) => {
   let type;
 
   if (page) {
@@ -168,6 +168,8 @@ const getTitle = ({ page, title, docs, context }) => {
     type = 'Docs';
   } else if (context) {
     type = 'Context';
+  } else if (helper) {
+    type = 'Helper';
   } else {
     type = 'Components';
   }

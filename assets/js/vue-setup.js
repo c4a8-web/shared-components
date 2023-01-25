@@ -21,6 +21,7 @@ import Form from './vue/form.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
+import ImageList from './vue/image-list.js';
 import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
@@ -43,10 +44,12 @@ import ShapeSemiCircle from './vue/shape-semi-circle.js';
 import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
+import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import TestimonialList from './vue/testimonial-list.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
+import WrapperSlotItems from './vue/wrapper-slot-items.js';
 
 // Icons
 import ArrowExternal from './vue/icons/arrow-external.js';
@@ -75,6 +78,8 @@ let app;
 const addApp = () => {
   if (!root) return;
 
+  window.vueH = Vue.h;
+
   app = Vue.createApp({
     mounted() {
       const customEvent = new CustomEvent('VUE_IS_MOUNTED', {});
@@ -102,6 +107,7 @@ const addApp = () => {
     Header,
     Headline,
     Icon,
+    ImageList,
     VImg,
     JobListDetail,
     JobListEntry,
@@ -125,6 +131,7 @@ const addApp = () => {
     ShapeSquareCircle,
     ShapeTrianglesToCenter,
     Shape,
+    Slider,
     ArrowExternal,
     ArrowNarrow,
     Arrow,
@@ -145,6 +152,7 @@ const addApp = () => {
     PersonQuote,
     VideoInner,
     Wrapper,
+    WrapperSlotItems,
   ];
 
   components.forEach((component) => {
