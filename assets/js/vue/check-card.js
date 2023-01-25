@@ -1,3 +1,5 @@
+import Tools from '../tools.js';
+
 // TODO rename component
 export default {
   tagName: 'check-card',
@@ -12,13 +14,16 @@ export default {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
     headlineClassesValue() {
-      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
+      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''} ${this.subline ? 'mb-10' : ''}`;
     },
     sublineClassesValue() {
       return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     itemClass() {
-      return 'check-card__slide';
+      return `check-card__slide`;
+    },
+    hasProducts() {
+      return this.checks[0]?.product;
     },
     carouselOptions() {
       const obj = {
@@ -43,7 +48,7 @@ export default {
             settings: {
               centerMode: true,
               infinite: true,
-              centerPadding: '20px',
+              centerPadding: this.hasProducts ? '37px' : '20px',
               slidesToShow: 1,
               slidesToScroll: 1,
               dots: this.checks.length > 1 ? true : false,
@@ -87,20 +92,28 @@ export default {
     checks: {
       default: null,
     },
+    products: {
+      default: null,
+    },
   },
   template: `
     <div :class="classList">
       <div class="container">
         <div class="row" v-if="headline">
           <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
-            <headline class="mb-10" :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+            <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
             <div v-if="subline" :class="sublineClassesValue" v-html="subline"></div>
           </div>
         </div>
         <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
           <template v-for="(check, index) in checks">
             <div :class="itemClass">
-              <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" :footer="check.footer" long=true />
+              <template v-if="hasProducts">
+                <card :product="check.product" :title="check.title" :tag="check.tag" :blog-title-pic="check.picture" />
+              </template>
+              <template v-else>
+                <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" :footer="check.footer" long=true />
+              </template>
             </div>
           </template>
         </div>

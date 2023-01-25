@@ -5,7 +5,10 @@ export default {
       return this.level ? this.level : 'h2';
     },
     classList() {
-      const classes = this.classes && this.hasFontSizeClass() ? this.classes : `${this.tag}-font-size`;
+      const classes =
+        this.classes && this.hasFontSizeClass()
+          ? this.classes
+          : `${this.tag}-font-size ${this.classes ? this.classes : ''}`;
 
       return `${classes} headline vue-component`;
     },

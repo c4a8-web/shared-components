@@ -120,3 +120,17 @@ Minus.args = {
   icon: 'minus',
   size: 'large',
 };
+
+export const CheckMark = Template.bind({});
+
+CheckMark.args = {
+  icon: 'check-mark',
+  size: 'large',
+};
+
+export const XMark = Template.bind({});
+
+XMark.args = {
+  icon: 'x-mark',
+  size: 'large',
+};

@@ -26,7 +26,10 @@ export default {
       return ['text-center', `${this.form.sublineClasses ? this.form.sublineClasses : ''}`];
     },
     formClassList() {
-      return ['form__submit mt-5', `${Tools.isTrue(this.uncentered) ? '' : 'justify-content-end'}`];
+      return ['form__submit mt-5', `${this.positionValue}`];
+    },
+    positionValue() {
+      return this.form.ctaPosition ? this.form.ctaPosition : Tools.isTrue(this.uncentered) ? '' : 'justify-content-end';
     },
     method() {
       return this.form.method ? this.form.method : 'post';

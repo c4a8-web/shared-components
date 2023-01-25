@@ -27,6 +27,37 @@
     }
   }
 
+  &.card--products {
+    .card__img-top {
+      &::before {
+        display: none;
+      }
+
+      .card__img-headline {
+        padding: spacing(4) spacing(5) spacing(6);
+      }
+
+      .card__img-headline-container {
+        height: 100%;
+        position: relative;
+        top: 0%;
+
+        .headline {
+          @include font-style($style: 'font-size-4', $line: 'wide');
+
+          min-height: 70%;
+        }
+      }
+    }
+
+    .card-body {
+      .headline {
+        color: var(--color-regent-grey);
+        text-transform: uppercase;
+      }
+    }
+  }
+
   article {
     margin: 0;
   }
@@ -36,7 +67,7 @@
     display: none;
   }
 
-  .card-img-top {
+  .card__img-top {
     @include aspect-ratio(16, 9);
 
     &:not(.card-img--long) {
@@ -57,6 +88,28 @@
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+  }
+
+  .card__img-tag {
+    @include font-style($style: 'font-size-3', $weight: 'bold');
+
+    display: inline-block;
+    position: absolute;
+    right: 13%;
+    line-height: 1em !important; // TODO there is an issue with font-style when this issue is fixed important can go away
+    padding: spacing(2) spacing(3);
+    text-transform: uppercase;
+  }
+
+  .card-img-cutoff {
+    height: spacing(12);
+    background: linear-gradient(
+      4deg,
+      var(--color-card-background) 0%,
+      var(--color-card-background) 55%,
+      rgba(255, 0, 0, 0) 56%,
+      rgba(255, 0, 0, 0) 100%
+    );
   }
 
   .card-footer {
@@ -86,4 +139,14 @@
 
 .card-warning {
   @include font-style($style: 'font-size-1', $line: 'wide');
+}
+
+.card__check-mark-row {
+  display: flex;
+  margin-bottom: spacing(2);
+}
+
+.card__check-mark-icon {
+  padding-bottom: spacing(2);
+  margin-right: spacing(5);
 }

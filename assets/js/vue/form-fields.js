@@ -3,8 +3,7 @@ export default {
   computed: {
     classList() {
       return [
-        'form-field js-form-message',
-        `${this.field.type !== 'select' ? 'form-group' : ''}`,
+        'form-field js-form-message form-group',
         `${this.field.type === 'hidden' ? 'd-none' : ''}`,
         this.groupClass,
         'vue-component',

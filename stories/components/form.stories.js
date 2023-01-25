@@ -12,6 +12,7 @@ export default {
 const baseArgs = {
   container: true,
   analytics: 'AW-1060776844/Uj_0CL3wgMgDEIzX6PkD',
+  uncentered: false,
   form: {
     headline: 'Headline Form',
     subline: 'Subline lorem ipsum dolor sit',
@@ -20,6 +21,7 @@ const baseArgs = {
       width: 'w-50',
     },
     ctaText: 'Bewerbung absenden',
+    ctaPosition: 'justify-content-center',
     method: 'post',
     action: '',
     fields: [
@@ -149,7 +151,6 @@ WithCheckboxes.args = {
         placeholder: 'Select country',
         col: 6,
         rowStart: true,
-        rowClass: 'mb-4',
         options: 'options',
       },
       {
@@ -179,7 +180,6 @@ WithCheckboxes.args = {
         placeholder: 'lorem ipsum',
         col: 6,
         rowStart: true,
-        rowClass: 'mb-4',
         options: 'options',
       },
       {

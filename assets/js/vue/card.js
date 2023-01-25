@@ -17,9 +17,13 @@ export default {
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
+        `${this.productValue ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
         'vue-component',
       ];
+    },
+    productValue() {
+      return Tools.getJSON(this.product);
     },
     mediaClass() {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
@@ -69,13 +73,17 @@ export default {
     },
     authorList(author) {
       if (author && typeof author === 'object' && author.length > 0) return author;
+
       if (author && typeof author === 'string') return [author];
 
       return author;
     },
     subPointsList(subpoints) {
-      if (subpoints && typeof subpoints === 'object' && subpoints.length > 0) return subpoints;
-      if (subpoints && typeof subpoints === 'string') return JSON.parse(subpoints);
+      return Tools.getJSON(subpoints);
+    },
+
+    headlineClassValue(index) {
+      return index !== 0 ? 'mt-5' : '';
     },
     handleClick(e) {
       if (this.noLink) return;
@@ -91,6 +99,9 @@ export default {
         title.click();
       }
     },
+    isIncluded(include) {
+      return Tools.isTrue(include) ? 'check-mark' : 'x-mark';
+    },
   },
   props: {
     blogTitlePic: String,
@@ -101,10 +112,16 @@ export default {
     author: Array,
     date: String,
     footer: String,
+    tag: {
+      default: null,
+    },
     large: {
       default: null,
     },
     long: {
+      default: null,
+    },
+    product: {
       default: null,
     },
     subPoints: {
@@ -153,13 +170,44 @@ export default {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </template>
 
+      <template v-else-if="productValue">
+        <div class="card__img-top card-img--products position-relative no-gutters" v-if="blogTitlePic">
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <div class="card__img-headline-container">
+            <template v-if="tag">
+              <span class="card__img-tag"
+              :style="{'background-color': tag.bgColor, 'color': tag.color }">
+                {{ tag.text }}
+              </span>
+            </template>
+            <headline level="h4" classes="card__img-headline text-light text-center">
+              <p class="w-100 pt-5 mb-0 no-gutters">
+                {{ title }}
+              </p>
+            </headline>
+            <div class="card-img-cutoff" />
+          </div>
+        </div>
+
+        <div class="card-body mt-0 pt-0 z-index-2">
+          <template v-for="(info, index) in subPointsList(productValue)">
+            <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
+            <template v-for="points in info.subpoints">
+              <div class="card__check-mark-row">
+                <icon class="card__check-mark-icon" :icon="isIncluded(points.included)" size="medium" />
+                <span class="card__check-mark-point">{{ points.subpoint }}</span>
+              </div>
+            </template>
+          </template>
+        </div>
+     </template>
+
       <template v-else-if="long">
-        <div class="card-img-top position-relative no-gutters" v-if="blogTitlePic">
+        <div class="card__img-top position-relative no-gutters" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
         </div>
 
@@ -177,7 +225,7 @@ export default {
         </div>
       </template>
       <template v-else>
-        <div class="card-img-top position-relative" v-if="blogTitlePic">
+        <div class="card__img-top position-relative" v-if="blogTitlePic">
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">

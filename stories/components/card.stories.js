@@ -79,3 +79,57 @@ Webcast.args = {
   excerpt:
     'In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
 };
+
+export const Product = Template.bind({});
+
+Product.args = {
+  title: 'Unified Contact',
+  blogtitlepic: 'products/unified-contacts/unified-contacts-products-header.png',
+  tag: {
+    text: 'Free',
+    color: 'white',
+    bgColor: 'var(--color-cream-can)',
+  },
+  product: [
+    {
+      title: 'Tenant',
+      subpoints: [
+        {
+          included: true,
+          subpoint: 'Lorem Ipsum 1',
+        },
+        {
+          included: true,
+          subpoint: 'Lorem Ipsum 2',
+        },
+      ],
+    },
+    {
+      title: 'Contact',
+      subpoints: [
+        {
+          included: true,
+          subpoint: 'Lorem Ipsum 1',
+        },
+        {
+          included: true,
+          subpoint: 'Lorem Ipsu 2m',
+        },
+        {
+          subpoint: 'Lorem Ipsum 3',
+        },
+      ],
+    },
+    {
+      title: 'Other',
+      subpoints: [
+        {
+          subpoint: 'Lorem Ipsum 1',
+        },
+        {
+          subpoint: 'Lorem Ipsum 2',
+        },
+      ],
+    },
+  ],
+};

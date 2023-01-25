@@ -10,7 +10,7 @@
 {% comment %}
 Refactor uncentered value and include the content migration of uncentered values
 {% endcomment %}
-{%- assign formUncentered = formForm.uncentered | default: include.uncentered | default: true -%}
+{%- assign formUncentered = formForm.uncentered | default: include.uncentered | default: ''-%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
 
