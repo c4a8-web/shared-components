@@ -2,11 +2,11 @@
   .btn-link {
     &:not(.collapsed),
     &:hover {
-      color: var(--color-primary);
+      color: var(--color-primary-accent);
     }
   }
 
-  .card-btn {
+  .accordion__btn {
     &:not(.collapsed) {
       .card-btn-toggle-default {
         display: none;
@@ -16,6 +16,10 @@
     &.collapsed {
       .card-btn-toggle-default {
         display: inline-flex;
+      }
+
+      .card-btn-toggle-active {
+        display: none;
       }
     }
   }
@@ -27,6 +31,13 @@
   .accordion__icon-toggle.icon {
     width: spacing(6);
     height: spacing(6);
+    overflow: hidden;
+  }
+
+  .card-collapse {
+    &:hover {
+      background-color: var(--color-accordion-hover-background);
+    }
   }
 }
 
@@ -94,10 +105,11 @@
 
 .accordion__btn {
   padding: spacing(4);
+  color: var(--color-copy);
 }
 
-.accordion__card {
-  padding-bottom: spacing(4);
+.accordion__card-header {
+  padding-top: spacing(1);
 }
 
 .accordion__richtext,

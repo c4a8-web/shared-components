@@ -56,7 +56,7 @@ export default {
     },
     buttonClasses(tab) {
       return [
-        'accordion__btn btn btn-link btn-block card-btn d-flex justify-content-between',
+        'accordion__btn btn btn-link btn-block d-flex justify-content-between',
         !tab.expanded ? 'collapsed' : null,
       ];
     },
@@ -117,7 +117,7 @@ export default {
             </div>
           </div>
           <div class="accordion__card" v-for="(tab, index) in accordion.tabs">
-            <div class="accordion__card-header card-header card-collapse" :id="getId(accordion, index, 'Heading')">
+            <div class="accordion__card-header card-collapse" :id="getId(accordion, index, 'Heading')">
               <button type="button" :class="buttonClasses(tab)"
                   data-toggle="collapse"
                   :data-target="getId(accordion, index, '#Content')"
