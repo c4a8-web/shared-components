@@ -4,7 +4,7 @@ export default {
     classList() {
       return [
         'form-field js-form-message',
-        `${this.field.type !== 'select' ? 'form-group' : ''}`,
+        `${this.field.type !== 'select' || this.selectSpacing ? 'form-group' : ''}`,
         `${this.field.type === 'hidden' ? 'd-none' : ''}`,
         this.groupClass,
         'vue-component',
@@ -18,6 +18,9 @@ export default {
       } else {
         return '';
       }
+    },
+    selectSpacing() {
+      return this.field.col > 6 && this.field.type === 'select';
     },
     readonly() {
       return this.field.readonly ? 'readonly' : null;
