@@ -149,7 +149,6 @@ WithCheckboxes.args = {
         placeholder: 'Select country',
         col: 6,
         rowStart: true,
-        rowClass: 'mb-4',
         options: 'options',
       },
       {
@@ -179,7 +178,6 @@ WithCheckboxes.args = {
         placeholder: 'lorem ipsum',
         col: 6,
         rowStart: true,
-        rowClass: 'mb-4',
         options: 'options',
       },
       {
