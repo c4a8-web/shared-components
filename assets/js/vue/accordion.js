@@ -18,7 +18,7 @@ export default {
       return [
         'accordion__fallback-image-wrapper',
         Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow',
-        this.showFallbackImage ? State.SHOW : null,
+        this.showOutsideImage ? State.SHOW : null,
       ];
     },
     columnClasses() {
@@ -28,25 +28,57 @@ export default {
   mounted() {
     if (!this.accordion.tabs) return;
 
+    this.selectFallbackImage();
+    this.changeOutsideImage();
+
     this.accordion.tabs.forEach((element) => {
       this.states.push(element.expanded ? true : false);
     });
   },
   methods: {
+    selectFallbackImage() {
+      if (!this.fallbackImage) {
+        this.fallbackImage = this.accordion.image || this.getActiveTab()?.image;
+      }
+    },
+    getActiveTab() {
+      const expandedTabs = this.accordion?.tabs.filter((item) => item.expanded);
+
+      return expandedTabs ? expandedTabs[0] : null;
+    },
     handleClick(index) {
       const lastState = this.states[index];
-
-      this.showFallbackImage = false;
 
       this.states = this.states.map((_) => false);
       this.states[index] = !lastState;
 
+      this.changeOutsideImage(index);
+
       if (!this.allTabsClosed()) return;
 
-      this.showFallbackImage = true;
+      this.changeToFallbackImage();
+    },
+    changeToFallbackImage() {
+      this.showOutsideImage = true;
+
+      this.accordion.image = this.fallbackImage;
+    },
+    changeOutsideImage(index) {
+      const tab = this.getTabByIndex(index);
+
+      this.showOutsideImage = true;
+      this.outsideImage = tab.image;
+    },
+    getTabByIndex(index) {
+      if (typeof index === 'undefined') return this.getActiveTab();
+
+      return this.accordion?.tabs[index];
     },
     allTabsClosed() {
       return this.states.filter((value) => value === true).length === 0;
+    },
+    getStateByIndex(index) {
+      return this.states[index];
     },
     getId(accordion, index, name) {
       return `${name}${accordion.id}${index}`;
@@ -62,6 +94,11 @@ export default {
     },
     contentClasses(tab) {
       return ['accordion__content collapse position-static', tab.expanded ? 'show' : null];
+    },
+    cardClasses(index) {
+      const state = this.getStateByIndex(index);
+
+      return ['accordion__card', state ? State.EXPANDED : null];
     },
     accordionId(accordion) {
       return `#${accordion.id}`;
@@ -79,8 +116,10 @@ export default {
   },
   data() {
     return {
-      showFallbackImage: false,
+      showOutsideImage: false,
+      outsideImage: false,
       states: [],
+      fallbackImage: false,
     };
   },
   props: {
@@ -111,12 +150,12 @@ export default {
       <div class="row position-relative">
         <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
         <div class="col-lg-6 position-static" :id="accordion.id">
-          <div class="accordion__fallback-container mb-4 col-lg-6" v-if="accordion.image">
+          <div class="accordion__fallback-container mb-4 col-lg-6" v-if="outsideImage">
             <div :class="fallbackImageClasses">
-              <v-img :img="accordion.image" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" />
+              <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" />
             </div>
           </div>
-          <div class="accordion__card" v-for="(tab, index) in accordion.tabs">
+          <div :class="cardClasses(index)"  v-for="(tab, index) in accordion.tabs">
             <div class="accordion__card-header card-collapse" :id="getId(accordion, index, 'Heading')">
               <button type="button" :class="buttonClasses(tab)"
                   data-toggle="collapse"

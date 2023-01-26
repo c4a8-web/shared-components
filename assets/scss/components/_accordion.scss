@@ -4,6 +4,10 @@
     &:hover {
       color: var(--color-primary-accent);
     }
+
+    &:not(.collapsed) {
+      border-bottom-color: transparent;
+    }
   }
 
   .accordion__btn {
@@ -54,11 +58,24 @@
     + .accordion {
       .accordion__fallback-container,
       .accordion__floating-container {
-        display: none;
-
         @include media-breakpoint-up(lg) {
           display: block;
         }
+      }
+
+      .accordion__floating-container {
+        display: none;
+        opacity: 0;
+      }
+    }
+  }
+
+  + .accordion {
+    .accordion__fallback-container {
+      display: none;
+
+      @include media-breakpoint-up(lg) {
+        display: block;
       }
     }
   }
@@ -66,6 +83,11 @@
 
 .accordion__image {
   margin-top: spacing(4);
+  display: none;
+}
+
+.accordion__fallback-container {
+  z-index: 1;
 }
 
 .accordion__fallback-container,
@@ -106,19 +128,38 @@
 .accordion__btn {
   padding: spacing(4);
   color: var(--color-copy);
+  border-bottom: 1px solid var(--color-border-light);
+  border-radius: 0;
+}
+
+.accordion__card {
+  &.is-expanded {
+    .collapsing {
+      .accordion__richtext {
+        opacity: 0.7;
+      }
+    }
+
+    .show {
+      .accordion__richtext {
+        opacity: 1;
+      }
+    }
+  }
 }
 
 .accordion__card-header {
   padding-top: spacing(1);
 }
 
-.accordion__richtext,
-.accordion__card-header {
-  border-bottom: 1px solid var(--color-border-light);
-}
-
 .accordion__richtext {
   padding: spacing(6) spacing(4) spacing(10);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.accordion__content {
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .accordion__fallback-image-wrapper {
