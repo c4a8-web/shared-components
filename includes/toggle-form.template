@@ -1,6 +1,7 @@
 {% assign toggleFormHeadline = include.headline %}
 {% assign toggleFormSubline = include.subline %}
 {% assign toggleFormToggleSwitch = include.toggleSwitch %}
+{% assign toggleFormLight = include.light %}
 {% assign toggleForms = include.forms %}
 
 <div class="toggle-form container">
@@ -34,6 +35,7 @@
           {%
             include form.html
             form=form
+            light=toggleFormLight
           %}
         </div>
       {% endfor %}
