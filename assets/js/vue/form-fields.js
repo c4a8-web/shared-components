@@ -67,7 +67,7 @@ export default {
           <form-radio :radio="field" />
         </template>
         <template v-else-if="field.radios">
-          <form-radios : field="field" />
+          <form-radios :field="field" />
         </template>
         <template v-else-if="field.type === 'file'">
           <form-attachments

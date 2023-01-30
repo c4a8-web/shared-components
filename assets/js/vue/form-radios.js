@@ -11,7 +11,7 @@ export default {
       return this.field.required ? this.field.requiredMsg : null;
     },
     groupId() {
-      return this.field?.radio[0].id;
+      return this.field?.radios[0].id;
     },
   },
   props: {
