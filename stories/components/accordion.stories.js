@@ -29,19 +29,19 @@ Default.args = {
       {
         headline: 'WIFI and LAN policy creation 2',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: 'security/CSOC-Services-Incident-Response.png',
+        image: 'security/CSOC-Services-Threat-Intelligence.png',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation 3',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: 'security/CSOC-Services-Incident-Response.png',
+        image: 'security/CSOC-Services-SOAR.png',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation 4',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: 'security/CSOC-Services-Incident-Response.png',
+        image: 'security/CSOC-Services-Analysis-Reporting.png',
         alt: 'WIFI and LAN policy creation',
       },
     ],
@@ -55,7 +55,7 @@ Image.args = {
   left: true,
   accordion: {
     subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
-    image: 'security/CSOC-Services-Incident-Response.png',
+    image: 'security/CSOC-Services-Default.png',
     alt: 'Products',
     cloudinary: true,
     headline: 'Features of the Admin Portal',
@@ -63,26 +63,28 @@ Image.args = {
     tabs: [
       {
         headline: 'WIFI and LAN policy creation',
-        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        content:
+          'Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies',
         expanded: true,
-        image: '/products/radius/radius-wifi-lan-policy.gif',
+        image: 'security/CSOC-Services-Incident-Response.png',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: '/products/radius/radius-wifi-lan-policy.gif',
+        image: 'security/CSOC-Services-Threat-Intelligence.png',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation (default image)',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: 'security/CSOC-Services-SOAR.png',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: '/products/radius/radius-wifi-lan-policy.gif',
+        image: 'security/CSOC-Services-Analysis-Reporting.png',
         alt: 'WIFI and LAN policy creation',
       },
     ],
@@ -112,13 +114,12 @@ ImageShadowless.args = {
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: '/products/radius/radius-wifi-lan-policy.gif',
+        image: '/products/radius/radius-logs.gif',
         alt: 'WIFI and LAN policy creation',
       },
       {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: '/products/radius/radius-wifi-lan-policy.gif',
         alt: 'WIFI and LAN policy creation',
       },
       {

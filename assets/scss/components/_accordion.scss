@@ -2,11 +2,15 @@
   .btn-link {
     &:not(.collapsed),
     &:hover {
-      color: var(--color-primary);
+      color: var(--color-primary-accent);
+    }
+
+    &:not(.collapsed) {
+      border-bottom-color: transparent;
     }
   }
 
-  .card-btn {
+  .accordion__btn {
     &:not(.collapsed) {
       .card-btn-toggle-default {
         display: none;
@@ -16,6 +20,10 @@
     &.collapsed {
       .card-btn-toggle-default {
         display: inline-flex;
+      }
+
+      .card-btn-toggle-active {
+        display: none;
       }
     }
   }
@@ -27,6 +35,13 @@
   .accordion__icon-toggle.icon {
     width: spacing(6);
     height: spacing(6);
+    overflow: hidden;
+  }
+
+  .card-collapse {
+    &:hover {
+      background-color: var(--color-accordion-hover-background);
+    }
   }
 }
 
@@ -43,11 +58,24 @@
     + .accordion {
       .accordion__fallback-container,
       .accordion__floating-container {
-        display: none;
-
         @include media-breakpoint-up(lg) {
           display: block;
         }
+      }
+
+      .accordion__floating-container {
+        display: none;
+        opacity: 0;
+      }
+    }
+  }
+
+  + .accordion {
+    .accordion__fallback-container {
+      display: none;
+
+      @include media-breakpoint-up(lg) {
+        display: block;
       }
     }
   }
@@ -55,6 +83,11 @@
 
 .accordion__image {
   margin-top: spacing(4);
+  display: none;
+}
+
+.accordion__fallback-container {
+  z-index: 1;
 }
 
 .accordion__fallback-container,
@@ -94,19 +127,39 @@
 
 .accordion__btn {
   padding: spacing(4);
+  color: var(--color-copy);
+  border-bottom: 1px solid var(--color-border-light);
+  border-radius: 0;
 }
 
 .accordion__card {
-  padding-bottom: spacing(4);
+  &.is-expanded {
+    .collapsing {
+      .accordion__richtext {
+        opacity: 0.7;
+      }
+    }
+
+    .show {
+      .accordion__richtext {
+        opacity: 1;
+      }
+    }
+  }
 }
 
-.accordion__richtext,
 .accordion__card-header {
-  border-bottom: 1px solid var(--color-border-light);
+  padding-top: spacing(1);
 }
 
 .accordion__richtext {
   padding: spacing(6) spacing(4) spacing(10);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.accordion__content {
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .accordion__fallback-image-wrapper {
