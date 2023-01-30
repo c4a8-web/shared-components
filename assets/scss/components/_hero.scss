@@ -248,6 +248,11 @@
       }
     }
 
+    .hero-text-image__background-wrapper img,
+    .hero-text-imge__img-spacer img {
+      max-width: unquote('min(760px, 100%)');
+    }
+
     .container {
       @include media-breakpoint-up(lg) {
         padding-bottom: spacing(8);
