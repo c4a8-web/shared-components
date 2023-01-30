@@ -3,7 +3,6 @@
 {%- assign contactCollapsed = include.collapsed -%}
 {%- assign contactAjax = include.ajax -%}
 {%- assign contactQuote = include.quote | default: false -%}
-{%- assign contactLight = contactInfos.light | default: false -%}
 
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}
@@ -22,6 +21,8 @@
     {%- endif -%}
   {%- endif -%}
 {%- endif -%}
+
+{%- assign contactLight = contact.light -%}
 
 {%- assign contactDetails = contactInfos.person.details -%}
 
