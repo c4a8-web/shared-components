@@ -6,6 +6,14 @@ $check-card-margin-lg: $check-card-spacing-lg / 2;
   position: relative;
   overflow: hidden;
   margin-bottom: spacing(20);
+
+  &.check-card--products {
+    .check-card__slide {
+      @include media-breakpoint-up(lg) {
+        padding: 0 spacing(8);
+      }
+    }
+  }
 }
 
 .check-card__container {
