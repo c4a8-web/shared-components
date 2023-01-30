@@ -16,6 +16,8 @@ import FormCheckbox from './vue/form-checkbox.js';
 import FormCheckboxes from './vue/form-checkboxes.js';
 import FormFields from './vue/form-fields.js';
 import FormSelect from './vue/form-select.js';
+import FormRadio from './vue/form-radio.js';
+import FormRadios from './vue/form-radios.js';
 import Form from './vue/form.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
@@ -95,6 +97,8 @@ const addApp = () => {
     FormCheckboxes,
     FormFields,
     FormSelect,
+    FormRadio,
+    FormRadios,
     Form,
     Header,
     Headline,

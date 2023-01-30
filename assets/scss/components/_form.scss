@@ -241,3 +241,22 @@ div.custom-control,
   margin: 0;
   transform: translateY(-100%);
 }
+.form__radio-control {
+  display: flex;
+  flex-direction: row;
+
+  input[type='radio'],
+  .form__radio {
+    width: $form-checkbox-size;
+    height: $form-checkbox-size;
+
+    &:checked {
+      background-color: green;
+    }
+  }
+
+  .form__radio-label {
+    margin: auto 0;
+    margin-left: spacing(4);
+  }
+}

@@ -63,6 +63,12 @@ export default {
         <template v-else-if="field.checkboxes">
           <form-checkboxes :field="field" />
         </template>
+        <template v-else-if="field.type === 'radio' ">
+          <form-radio :radio="field" />
+        </template>
+        <template v-else-if="field.radios">
+          <form-radios : field="field" />
+        </template>
         <template v-else-if="field.type === 'file'">
           <form-attachments
             :description="field.formAttachments?.description"

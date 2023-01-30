@@ -228,6 +228,29 @@ WithCheckboxes.args = {
         ],
       },
       {
+        label: 'Lorem Ipsum 2',
+        id: 'test',
+        required: true,
+        radios: [
+          {
+            id: 'not_1',
+            label: 'Not managed 1',
+          },
+          {
+            id: 'not_2',
+            label: 'Not managed 2',
+          },
+          {
+            id: 'not_3',
+            label: 'Not managed 3 ',
+          },
+          {
+            id: 'not_4',
+            label: 'Not managed 4',
+          },
+        ],
+      },
+      {
         type: 'hidden',
         id: '_gotcha',
       },
