@@ -109,7 +109,6 @@ label.input-label,
     margin-bottom: 0.5em;
   }
 }
-
 textarea.form-textarea,
 input[type=''].form-control,
 input[type='text'].form-control,
@@ -122,6 +121,23 @@ input[type='number'].form-control,
 
   &:hover {
     border-color: $form-border-hover-color;
+  }
+}
+
+.is-light {
+  textarea.form-textarea,
+  input[type=''].form-control,
+  input[type='text'].form-control,
+  input[type='email'].form-control,
+  input[type='phone'].form-control,
+  input[type='number'].form-control,
+  .form__input {
+    background-color: var(--color-white);
+    border-color: $form-background-color;
+
+    &:hover {
+      border-color: $form-border-hover-color;
+    }
   }
 }
 

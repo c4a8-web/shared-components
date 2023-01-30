@@ -13,7 +13,9 @@ const Template = (args) => createComponent(args, component);
 
 export const Expanded = Template.bind({});
 
-Expanded.args = {};
+Expanded.args = {
+  light: true,
+};
 
 export const Collapsed = Template.bind({});
 
