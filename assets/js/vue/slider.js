@@ -60,7 +60,7 @@ export default {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
     headlineClassesValue() {
-      return `slider__headline h3-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
+      return `slider__headline ${this.headlineClasses ? this.headlineClasses : 'h3-font-size'}`;
     },
     carouselOptions() {
       const childrenLength = this.childrenLength;
