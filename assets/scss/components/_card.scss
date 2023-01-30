@@ -5,7 +5,7 @@
     cursor: pointer;
   }
 
-  &:not(.card--large):not(.card--long) {
+  &:not(.card--large):not(.card--long):not(.card--products) {
     max-width: unquote('min(480px, 100%)');
 
     @include media-breakpoint-up(md) {
@@ -13,6 +13,7 @@
     }
   }
 
+  &.card--products,
   &.card--long {
     max-width: 100%;
 
