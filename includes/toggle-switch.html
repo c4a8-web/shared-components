@@ -29,9 +29,10 @@
         {%
           include icon.html
           icon="arrow-curl"
+          size="small"
         %}
-        <span class="badge-pill" style="background-color: {{ hint.bgColor | default: 'var(--color-secondary' }};">
-          <span class="toggle-switch__hint-text small" style="color: {{ hint.color | default: 'var(--color-white' }};">{{ hint.text }}</span>
+        <span class="badge-pill toggle-switch__hint-text" style="background-color: {{ hint.bgColor | default: 'var(--color-secondary' }};">
+          <span class="small" style="color: {{ hint.color | default: 'var(--color-white' }};">{{ hint.text }}</span>
         </span>
       </div>
     {% endif %}
