@@ -1,11 +1,11 @@
 <!-- Shared Toggle Switch Section -->
 {% assign toggleSwitch = include.toggleSwitch | default: 'Monthly' %}
-{% assign textLeft = toggleSwitch.textLeft | default: 'Monthly' %}
-{% assign textRight = toggleSwitch.textRight | default: 'Annual' %}
-{% assign hint = toggleSwitch.hint | default: 'Save up to 10%' %}
-{% assign id = toggleSwitch.id | default: 'customToggleSwitch' %}
-{% assign targetSelector = toggleSwitch.targetSelector | default: '#pricingCount1, #pricingCount2, #pricingCount3' %}
-{% capture active %}{% if toggleSwitch.active or site.data.products.pricing.defaultPlan == 'annual'%}true{% else %}false{% endif %}{% endcapture %}
+{% assign toggleSwitchTextLeft = toggleSwitch.textLeft | default: 'Monthly' %}
+{% assign toggleSwitchTextRight = toggleSwitch.textRight | default: 'Annual' %}
+{% assign toggleSwitchHint = toggleSwitch.hint | default: 'Save up to 10%' %}
+{% assign toggleSwitchId = toggleSwitch.id | default: 'customToggleSwitch' %}
+{% assign toggleSwitchTargetSelector = toggleSwitch.targetSelector | default: '#pricingCount1, #pricingCount2, #pricingCount3' %}
+{% capture toggleSwitchActive %}{% if toggleSwitch.active or site.data.products.pricing.defaultPlan == 'annual'%}true{% else %}false{% endif %}{% endcapture %}
 {% assign toggleSwitchLimit = toggleSwitch.limit | default: false %}
 
 {% if toggleSwitchLimit %}
@@ -13,30 +13,30 @@
 {% endif %}
 
 <div class="toggle-switch overflow-hidden d-flex justify-content-center align-items-center pt-6 mb-5">
-  <span class="font-size-1 text-muted toggle-switch__text {{ toggleSwitchLimitLeftClass }}">{{ textLeft }}</span>
-  <label class="mx-2" for="{{ id }}">
-    <input type="checkbox" class="js-toggle-switch toggle-switch-input" id="{{ id }}" {% if active == 'true' %}checked{% endif %}
+  <span class="font-size-1 text-muted toggle-switch__text {{ toggleSwitchLimitLeftClass }}">{{ toggleSwitchTextLeft }}</span>
+  <label class="mx-2" for="{{ toggleSwitchId }}">
+    <input type="checkbox" class="js-toggle-switch toggle-switch-input" id="{{ toggleSwitchId }}" {% if toggleSwitchActive == 'true' %}checked{% endif %}
           data-toggle-switch-options='{
-            "targetSelector": "{{ targetSelector }}"
+            "targetSelector": "{{ toggleSwitchTargetSelector }}"
           }'>
     <span class="toggle-switch-label">
       <span class="toggle-switch-indicator"></span>
     </span>
   </label>
   <span class="font-size-1 position-relative text-muted toggle-switch__text">
-    {% if toggleSwitch.hint %}
+    {% if toggleSwitchHint %}
       <div class="position-absolute row toggle-switch__hint">
         {%
           include icon.html
           icon="arrow-curl"
           size="small"
         %}
-        <span class="badge-pill toggle-switch__hint-text" style="background-color: {{ hint.bgColor | default: 'var(--color-secondary' }};">
-          <span class="small" style="color: {{ hint.color | default: 'var(--color-white' }};">{{ hint.text }}</span>
+        <span class="badge-pill toggle-switch__hint-text" style="background-color: {{ toggleSwitchHint.bgColor | default: 'var(--color-secondary' }};">
+          <span class="small" style="color: {{ toggleSwitchHint.color | default: 'var(--color-white' }};">{{ toggleSwitchHint.text }}</span>
         </span>
       </div>
     {% endif %}
-    {{ textRight }}
+    {{ toggleSwitchTextRight }}
   </span>
 </div>
 <!-- End Shared Toggle Switch Section -->
