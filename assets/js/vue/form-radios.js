@@ -19,8 +19,10 @@ export default {
   },
   template: `
     <label class="form__label input-label" :data-msg="message" >{{ field?.label }}</label>
-    <template v-for="radio in field?.radios">
-      <form-radio :radio="radio" :group="groupId" :id="field.id + radio.id" />
-    </template>
+    <div class="d-flex flex-wrap">
+      <template v-for="radio in field?.radios">
+        <form-radio class="pr-10" :radio="radio" :group="groupId" :name="groupId" :id="field.id + radio.id" />
+      </template>
+    </div>
   `,
 };
