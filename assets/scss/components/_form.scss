@@ -275,4 +275,9 @@ div.custom-control,
     margin: auto 0;
     margin-left: spacing(4);
   }
+
+  .form__radio,
+  .form__radio-label {
+    cursor: pointer;
+  }
 }
