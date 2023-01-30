@@ -22,6 +22,8 @@
   {%- endif -%}
 {%- endif -%}
 
+{%- assign contactLight = contact.light -%}
+
 {%- assign contactDetails = contactInfos.person.details -%}
 
 {%- if contact.svgShape -%}
@@ -39,6 +41,10 @@
 
 {%- if contactQuote -%}
   {%- assign contactVariantClass = 'contact--quote' -%}
+{%- endif -%}
+
+{%- if contactLight -%}
+    {%- assign contactLight = 'contact__person--light' -%}
 {%- endif -%}
 
 {%- if contactCollapsed -%}
@@ -88,7 +94,7 @@
       </div>
 
       <div class="contact__box {{ contactBoxClass }} {{ contactBoxQuoteClass }}">
-        <div class="contact__person">
+        <div class="contact__person {{ contactLight }}">
           {% if contactQuote %}
             <div class="contact__person-quote">
               <div class="contact__icon">

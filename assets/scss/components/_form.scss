@@ -6,6 +6,7 @@ $form-border-hover-color: var(--color-form-border-hover);
 $form-checkbox-size: 2em;
 $form-checkbox-spacing: 1em;
 $form-checkbox-offset: $form-checkbox-size + $form-checkbox-spacing;
+$form-radio-size: $form-checkbox-size;
 
 .shared-components {
   .custom-control-input,
@@ -116,12 +117,31 @@ input[type='text'].form-control,
 input[type='email'].form-control,
 input[type='phone'].form-control,
 input[type='number'].form-control,
+input[type='radio'],
 .form__input {
   background-color: $form-background-color;
   border-color: $form-background-color;
 
   &:hover {
     border-color: $form-border-hover-color;
+  }
+}
+
+.is-light {
+  textarea.form-textarea,
+  input[type=''].form-control,
+  input[type='text'].form-control,
+  input[type='email'].form-control,
+  input[type='phone'].form-control,
+  input[type='number'].form-control,
+  input[type='radio'],
+  .form__input {
+    background-color: var(--color-white);
+    border-color: $form-background-color;
+
+    &:hover {
+      border-color: $form-border-hover-color;
+    }
   }
 }
 
@@ -224,4 +244,35 @@ div.custom-control,
   padding: 0;
   margin: 0;
   transform: translateY(-100%);
+}
+
+.form__radio-control {
+  display: flex;
+  flex-direction: row;
+
+  input[type='radio'],
+  .form__radio {
+    appearance: none;
+    width: $form-radio-size;
+    height: $form-radio-size;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 50%;
+    border-color: var(--color-form-border);
+
+    &:checked {
+      background-color: $form-background-color;
+      border: 0.6em solid var(--color-primary);
+      box-shadow: 0 0 0 1px var(--color-form-border);
+    }
+
+    &:hover {
+      box-shadow: 0 0 0 1px $form-border-hover-color;
+    }
+  }
+
+  .form__radio-label {
+    margin: auto 0;
+    margin-left: spacing(4);
+  }
 }

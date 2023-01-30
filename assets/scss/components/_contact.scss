@@ -163,6 +163,10 @@
   background-color: var(--color-contact-person);
   height: 100%;
   padding-bottom: spacing(20);
+
+  &.contact__person--light {
+    color: var(--color-copy-light);
+  }
 }
 
 .contact__detail-quote {
