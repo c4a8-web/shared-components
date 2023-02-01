@@ -122,6 +122,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./absolute-scroller.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
 ];
 
 // TODO figure out why this does not work in storybook but works in jekyll
@@ -144,6 +149,7 @@ const componentList = [
 //   // './components/video-frame.js',
 //   // './modal.js',
 //   // './pages/detail.js',
+//   // './absolute-scroller.js',
 // ];
 
 // componentPathList.forEach((path) => {

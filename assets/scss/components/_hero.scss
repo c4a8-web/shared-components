@@ -32,6 +32,8 @@
 }
 
 .hero-text-image {
+  position: relative;
+
   &.has-content-img {
     .hero-text-imge__img-spacer {
       @include media-breakpoint-up(lg) {

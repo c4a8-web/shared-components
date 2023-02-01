@@ -1,0 +1,11 @@
+.is-absolute-scroller {
+  &[data-absolute-scroller] {
+    opacity: 0.5;
+    position: fixed;
+    z-index: -1;
+  }
+}
+
+.absolute-scroller__spacer {
+  position: relative;
+}
