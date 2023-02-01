@@ -4,5 +4,9 @@
     > img {
       max-width: 600px;
     }
+
+    .header__spacer {
+      margin-top: calc(-1rem + -1px);
+    }
   }
 }
