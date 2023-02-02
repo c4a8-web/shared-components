@@ -46,6 +46,40 @@ EventTeaserWebcast.args = {
   variant: 6,
 };
 
+export const EventTeaserBackground = Template.bind({});
+
+EventTeaserBackground.args = {
+  headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
+  content:
+    '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
+  moment: '16.02.2022',
+  time: '14-15 Uhr',
+  shapes: [
+    {
+      color: 'var(--color-green)',
+      height: 1,
+      width: 110,
+    },
+  ],
+  webcast: true,
+  author: ['Nadine Kern', 'Max Mustermann'],
+  image: {
+    img: '/demo/authors-demo.png',
+    alt: 'lorem ipsum',
+  },
+  badge: {
+    text: 'Neuer Webcast',
+    icon: '',
+  },
+  cta: {
+    text: 'Jetzt anmelden',
+    href: 'https://www.google.com',
+    skin: 'primary',
+    external: true,
+  },
+  variant: 6,
+};
+
 export const EventTeaserFullWidth = Template.bind({});
 
 EventTeaserFullWidth.args = {
