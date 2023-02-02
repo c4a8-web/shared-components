@@ -11,23 +11,22 @@
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = false %}
-{%- else if heroTextImageVariant == 'hero--safety' -%}
+{%- elsif heroTextImageVariant == 'hero--safety' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = false %}
   {% assign heroContainerPosition = "justify-content-lg-between pb-10 " %}
-{%- else if heroTextImageVariant == 'hero--study' -%}
+{%- elsif heroTextImageVariant == 'hero--study' -%}
   {% assign heroTextImageCtaTop = false -%}
   {% assign heroTextImageSrcSet = site.data.imgSrcSets.heroStudy %}
+{%- elsif heroTextImageVariant == 'hero--security' -%}
+  {% assign heroTextImageCtaTop = true %}
+  {% assign heroContainerPosition = "justify-content-lg-center" %}
+  {% assign heroSublineStyling = "" %}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
 {%- endif -%}
 
-{%- if heroTextImageVariant == 'hero--security' -%}
-  {% assign heroTextImageCtaTop = true %}
-  {% assign heroContainerPosition = "justify-content-lg-center" %}
-  {% assign heroSublineStyling = "" %}
-{% endif %}
 {%- if heroTextImageHero.cta -%}
   {%- capture heroTextImageCta -%}
     <div class="hero-text-image__cta-wrapper">
