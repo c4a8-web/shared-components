@@ -15,12 +15,12 @@ class BrokenLinks {
     this.links = {};
     this.prevLink = {};
     this.options = {
-      mode: 'cors',
+      mode: 'no-cors',
       redirect: 'follow',
     };
 
     this.start();
-    this.showErrors();
+    console.log(this.errors);
   }
 
   async start() {
@@ -39,11 +39,16 @@ class BrokenLinks {
         console.log(this.errors);
       }
     }
-    // console.debug('errors', this.errors);
+  }
+
+  removeDups(url) {
+    return this.errors.some((x) => x['url'] === url);
   }
 
   getUrl(url, previousUrl) {
     this.prevLink[url] = 'Previous Url: ' + previousUrl;
+
+    if (this.removeDups(url)) return;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
@@ -134,7 +139,7 @@ class BrokenLinks {
     for (var i = 0; i < links.length; i++) {
       const hrefAttr = links[i].getAttribute('href');
 
-      if (this.isInvalidHref(hrefAttr) == false) {
+      if (!this.isInvalidHref(hrefAttr)) {
         const link = links[i];
         const linkUrl = this.getAbsoluteUrl(link, url);
 
