@@ -41,14 +41,13 @@ class BrokenLinks {
     }
   }
 
-  removeDups(url) {
+  hasDuplicates(url) {
     return this.errors.some((x) => x['url'] === url);
   }
 
   getUrl(url, previousUrl) {
     this.prevLink[url] = 'Previous Url: ' + previousUrl;
-
-    if (this.removeDups(url)) return;
+    if (this.hasDuplicates(url)) return;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
@@ -106,7 +105,8 @@ class BrokenLinks {
   }
 
   handleError(data) {
-    const { url, error, previousUrl } = data;
+    let { url, error, previousUrl } = data;
+    error = error.status ? error : 'Invalid Link';
 
     this.errors.push({
       url,
