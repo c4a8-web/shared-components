@@ -23,6 +23,7 @@ const State = {
   MODAL_OPEN: 'modal--open',
   HAS_BACKGROUND: 'has-background',
   IS_FULL: 'is-full',
+  STICKY: 'is-sticky',
 };
 
 export default State;
