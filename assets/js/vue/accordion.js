@@ -167,14 +167,7 @@ export default {
                 {{ tab.headline }}
 
                 <span class="card-btn-toggle">
-                  <icon
-                    icon="plus"
-                    classes="accordion__icon-toggle card-btn-toggle-default"
-                  />
-                  <icon
-                    icon="minus"
-                    classes="accordion__icon-toggle card-btn-toggle-active"
-                  />
+                  <icon icon="plus-minus" class="accordion__icon-toggle" :closed="!states[index]" />
                 </span>
               </button>
             </div>

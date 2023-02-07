@@ -248,6 +248,11 @@
       }
     }
 
+    .hero-text-image__background-wrapper img,
+    .hero-text-imge__img-spacer img {
+      max-width: unquote('min(760px, 100%)');
+    }
+
     .container {
       @include media-breakpoint-up(lg) {
         padding-bottom: spacing(8);
@@ -689,6 +694,10 @@
       margin-top: spacing($size: 10, $negative: true);
     }
   }
+}
+
+.hero-text-image__img-spacer-subline {
+  display: none;
 }
 
 @keyframes hero-text-animation-hide-smiley {

@@ -10,13 +10,14 @@ import Authors from './vue/authors.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
-import CheckMark from './vue/icons/check-mark.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
 import FormAttachments from './vue/form-attachments.js';
 import FormCheckbox from './vue/form-checkbox.js';
 import FormCheckboxes from './vue/form-checkboxes.js';
 import FormFields from './vue/form-fields.js';
+import FormRadio from './vue/form-radio.js';
+import FormRadios from './vue/form-radios.js';
 import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
 import Header from './vue/header.js';
@@ -57,13 +58,15 @@ import ArrowCurl from './vue/icons/arrow-curl.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
-import Plus from './vue/icons/plus.js';
-import Minus from './vue/icons/minus.js';
+import CheckMark from './vue/icons/check-mark.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import Expand from './vue/icons/expand.js';
 import Menu from './vue/icons/menu.js';
+import Minus from './vue/icons/minus.js';
 import PhoneMail from './vue/icons/phone-mail.js';
+import PlusMinus from './vue/icons/plus-minus.js';
+import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
@@ -106,6 +109,8 @@ const addApp = () => {
     FormCheckbox,
     FormCheckboxes,
     FormFields,
+    FormRadio,
+    FormRadios,
     FormSelect,
     Form,
     Header,
@@ -118,7 +123,6 @@ const addApp = () => {
     JobList,
     LetterSwitcher,
     LinkList,
-    Minus,
     Modal,
     Plus,
     ScrollArrow,
@@ -144,6 +148,8 @@ const addApp = () => {
     ComputerShield,
     Expand,
     Menu,
+    PlusMinus,
+    Minus,
     PhoneMail,
     Quotes,
     Rocket,

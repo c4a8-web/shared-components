@@ -5,7 +5,7 @@ export default {
   tagName: 'check-card',
   computed: {
     classList() {
-      return ['check-card vue-component'];
+      return ['check-card vue-component', this.hasProducts ? 'check-card--products' : null];
     },
     checkCardsContainerClass() {
       return ['check-card__container js-slick-carousel slick--single-list'];
@@ -26,12 +26,14 @@ export default {
       return this.checks[0]?.product;
     },
     carouselOptions() {
+      const slidesToShowDesktop = this.hasProducts ? 2 : 3;
+
       const obj = {
-        slidesToShow: 3,
-        slidesToScroll: 3,
+        slidesToShow: slidesToShowDesktop,
+        slidesToScroll: slidesToShowDesktop,
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
-        dots: this.checks.length > 3 ? true : false,
+        dots: this.checks.length > slidesToShowDesktop ? true : false,
         centerMode: false,
         dotsClass: 'slick-pagination is-default',
         responsive: [

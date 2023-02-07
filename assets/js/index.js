@@ -82,6 +82,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./components/pricing-slider.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./components/tab-list.js')
     .then((module) => {
       return module.default;
@@ -118,6 +123,38 @@ const componentList = [
     })
     .catch(handleLoadingError),
 ];
+
+// TODO figure out why this does not work in storybook but works in jekyll
+// const componentPathList = [
+//   // './anchor.js',
+//   // './data-an.js',
+//   // './toggle-switch.js',
+//   // './components/back.js',
+//   // './components/back-to-top.js',
+//   // './components/contact.js',
+//   // './components/fab-button.js',
+//   // './components/form-attachments.js',
+//   // './components/google-maps.js',
+//   // './components/hero-text-image.js',
+//   // './components/pricing-slider.js',
+//   // './components/tab-list.js',
+//   // './components/tag-cloud.js',
+//   // './components/testimonial-list.js',
+//   // './components/text-animation.js',
+//   // './components/video-frame.js',
+//   // './modal.js',
+//   // './pages/detail.js',
+// ];
+
+// componentPathList.forEach((path) => {
+//   componentList.push(
+//     import(path)
+//       .then((module) => {
+//         return module.default;
+//       })
+//       .catch(handleLoadingError)
+//   );
+// });
 
 const captureRefreshAnimateNumber = function (event) {
   if (event.detail === null) return;

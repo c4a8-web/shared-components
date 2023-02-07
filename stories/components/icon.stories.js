@@ -134,3 +134,10 @@ XMark.args = {
   icon: 'x-mark',
   size: 'large',
 };
+
+export const PlusMinus = Template.bind({});
+
+PlusMinus.args = {
+  icon: 'plus-minus',
+  size: 'large',
+};
