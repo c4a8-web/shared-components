@@ -484,6 +484,7 @@
     }
 
     .hero-text-imge__img-spacer {
+      min-height: 0;
       @include media-breakpoint-down(md) {
         display: flex;
         flex-direction: column;
