@@ -10,9 +10,11 @@ class AbsoluteScroller {
     this.offsetTop = this.root.offsetTop;
     this.offsetBottom = this.root.offsetTop + this.root.offsetHeight;
 
-    this.setup();
+    this.firstChild = document.querySelector('main > *:first-child');
 
+    this.setup();
     this.bindEvents();
+    this.setStickyPosition();
   }
 
   bindEvents() {
@@ -23,53 +25,60 @@ class AbsoluteScroller {
     this.setStickyPosition();
   }
 
-  updateClipPath(position) {
-    const step = (this.offsetBottom - this.offsetTop) / 100;
-    const percentage = (position - this.offsetTop) / step;
-    console.log('AbsoluteScroller ~ updateClipPath ~ percentage', percentage);
+  updateClipPath(position, topValue) {
+    const offsetTop = this.spacer.offsetTop - topValue;
+    const offsetBottom = offsetTop + this.spacer.offsetHeight;
+
+    const step = (offsetBottom - offsetTop) / 100;
+    const percentage = (position - offsetTop) / step;
     const clipPath = 'inset(0 0 ' + percentage + '% 0)';
 
     this.root.style.clipPath = clipPath;
   }
 
+  isFirstChild(element) {
+    return this.firstChild === element;
+  }
+
   setStickyPosition() {
     const headerHeight = document.querySelector('header')?.offsetHeight || 0;
-    console.log('AbsoluteScroller ~ setStickyPosition ~ headerHeight', headerHeight);
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
 
-    if (scrollPosition > scrollThreshold - window.innerHeight) {
-      const topValue = viewPortOverflow > 0 ? -viewPortOverflow : headerHeight;
+    /* if (scrollPosition <= headerHeight) {
+      this.disableStickyness();
+    } else */ if (scrollPosition > scrollThreshold - window.innerHeight) {
+      const topValue = viewPortOverflow > 0 ? -viewPortOverflow : this.isFirstChild(this.root) ? 0 : headerHeight;
 
       this.root.classList.add(State.STICKY);
       this.root.style.top = topValue + 'px';
 
-      this.updateClipPath(scrollPosition);
+      this.updateClipPath(scrollPosition, topValue);
     } else {
-      this.root.classList.remove(State.STICKY);
-      this.root.style.top = '';
-      this.root.style.clipPath = '';
+      this.disableStickyness();
     }
   }
 
-  setup() {
-    // TODO figure out how this will work with multiple elements on the site
-    // TODO fix z-index can't click anything issue. maybe all elements will get a z-index of 5 and this will be at 4?
-    // TODO more than one element that can be sticky
-    // return;
+  disableStickyness() {
+    this.root.classList.remove(State.STICKY);
+    this.root.style.top = '';
+    this.root.style.clipPath = '';
+  }
 
-    const spacer = document.createElement('div');
+  setup() {
     const parent = this.root.parentNode;
+
+    this.spacer = document.createElement('div');
 
     if (!parent) return;
 
-    spacer.classList.add('absolute-scroller__spacer');
+    this.spacer.classList.add('absolute-scroller__spacer');
 
-    this.root.style.height = spacer.style.height = this.root.clientHeight + 'px';
-    this.root.style.width = spacer.style.width = this.root.clientWidth + 'px';
+    this.root.style.height = this.spacer.style.height = this.root.clientHeight + 'px';
+    this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
 
-    parent.insertBefore(spacer, this.root.nextSibling);
+    parent.insertBefore(this.spacer, this.root.nextSibling);
 
     this.root.dataset.absoluteScroller = true;
   }
