@@ -445,9 +445,20 @@
     }
   }
 
-  &.hero--image-content-grid {
-    overflow: hidden;
+  &.hero--image-content-grid-security {
+    .hero-text-imge__img-spacer {
+      min-height: auto;
+    }
 
+    .container {
+      @include media-breakpoint-up(lg) {
+        padding-bottom: spacing(18);
+      }
+    }
+  }
+
+  &.hero--image-content-grid,
+  &.hero--image-content-grid-security {
     .hero-text-image__background,
     .hero-text-image__headline + .hero-text-image__subline {
       display: none;
@@ -490,7 +501,6 @@
     }
 
     .hero-text-imge__img-spacer {
-      min-height: auto;
       @include media-breakpoint-down(md) {
         display: flex;
         flex-direction: column;
