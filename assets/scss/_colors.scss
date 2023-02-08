@@ -119,6 +119,7 @@ $color-blue-medium: #0072c6;
   --color-career-background: var(--color-blue-dark);
 
   --color-text-image-background: var(--color-career-background);
+  --color-text-image-overline-text: var(--color-blue-dark);
 
   --color-pricing-product-border: var(--color-manatee);
 
@@ -168,6 +169,7 @@ $color-blue-medium: #0072c6;
   --color-toggle-switch-indicator: var(--color-midnight);
 
   --color-accordion-hover-background: var(--color-black-4);
+  --color-table-mark: var(--color-yellow);
 }
 
 $white-30: rgba(255, 255, 255, 0.3);
