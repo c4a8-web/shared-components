@@ -455,6 +455,10 @@
       }
     }
 
+    .hero-text-image__headline {
+      color: var(--color-hero-text-image-headline);
+    }
+
     .hero-text-image__background {
       @include media-breakpoint-up(xl) {
         // margin-right: calc((100vw - var(--container-width) + #{spacing(12)}) / 2);
@@ -473,10 +477,10 @@
     }
 
     .hero-text-image__overline {
+      @include font-style($style: 'font-size-3', $weight: 'bold', $line: 'wide');
       margin-bottom: spacing(8);
       padding-right: spacing(2);
-      color: var(--color-blue-dark);
-      @include font-style($style: 'font-size-3', $weight: 'bold', $line: 'wide');
+      color: var(--color-text-image-overline-text);
 
       &::before {
         animation-name: growFull;
