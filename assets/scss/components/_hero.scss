@@ -446,6 +446,8 @@
   }
 
   &.hero--image-content-grid {
+    overflow: hidden;
+
     .hero-text-image__background,
     .hero-text-image__headline + .hero-text-image__subline {
       display: none;
@@ -480,7 +482,7 @@
       @include font-style($style: 'font-size-3', $weight: 'bold', $line: 'wide');
       margin-bottom: spacing(8);
       padding-right: spacing(2);
-      color: var(--color-text-image-overline-text);
+      color: var(--color-hero-image-content-grid-overline-text);
 
       &::before {
         animation-name: growFull;
