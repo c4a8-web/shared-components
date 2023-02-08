@@ -157,7 +157,9 @@
         {% endif %}
         {% unless heroTextImageHero.animation %}
           <h1 class="hero-text-image__headline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.headlineClass }}"
-          style="{% if heroTextImageHero.color %}color: var({{ heroTextImageHero.color }});{% endif %}"
+          {% if heroTextImageHero.color %}
+            style="color: var({{ heroTextImageHero.color }});"
+          {% endif %}
           >{{ heroTextImageHero.headline }}</h1>
           {% if heroTextImageHero.underline %}
             <p class="hero-text-image__underline {{ heroTextImageIsLightClass }} {{ heroTextImageHero.underlineClass }} ">{{ heroTextImageHero.underline }}</p>
