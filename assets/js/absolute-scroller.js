@@ -12,17 +12,25 @@ class AbsoluteScroller {
 
     this.firstChild = document.querySelector('main > *:first-child');
 
+    this.isUpdating = false;
+
     this.setup();
     this.bindEvents();
     this.setStickyPosition();
   }
+
+  // TODO handle resize for spacer
 
   bindEvents() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
   }
 
   handleScroll() {
-    this.setStickyPosition();
+    if (this.isUpdating) return;
+
+    this.isUpdating = true;
+
+    window.requestAnimationFrame(this.setStickyPosition.bind(this));
   }
 
   updateClipPath(position, topValue) {
@@ -34,6 +42,7 @@ class AbsoluteScroller {
     const clipPath = 'inset(0 0 ' + percentage + '% 0)';
 
     this.root.style.clipPath = clipPath;
+    this.isUpdating = false;
   }
 
   isFirstChild(element) {
@@ -46,9 +55,7 @@ class AbsoluteScroller {
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
 
-    /* if (scrollPosition <= headerHeight) {
-      this.disableStickyness();
-    } else */ if (scrollPosition > scrollThreshold - window.innerHeight) {
+    if (scrollPosition > scrollThreshold - window.innerHeight) {
       const topValue = viewPortOverflow > 0 ? -viewPortOverflow : this.isFirstChild(this.root) ? 0 : headerHeight;
 
       this.root.classList.add(State.STICKY);
@@ -64,6 +71,7 @@ class AbsoluteScroller {
     this.root.classList.remove(State.STICKY);
     this.root.style.top = '';
     this.root.style.clipPath = '';
+    this.isUpdating = false;
   }
 
   setup() {
