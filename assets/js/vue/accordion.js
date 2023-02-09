@@ -62,6 +62,7 @@ export default {
       this.showOutsideImage = true;
 
       this.accordion.image = this.fallbackImage;
+      this.outsideImage = this.fallbackImage;
     },
     changeOutsideImage(index) {
       const tab = this.getTabByIndex(index);
