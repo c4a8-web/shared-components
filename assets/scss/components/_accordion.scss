@@ -131,6 +131,10 @@
   color: var(--color-copy);
   border-bottom: 1px solid var(--color-border-light);
   border-radius: 0;
+
+  &.btn {
+    text-align: left;
+  }
 }
 
 .accordion__card {
