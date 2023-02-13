@@ -58,7 +58,6 @@ Image.args = {
     image: 'security/CSOC-Services-Default.png',
     alt: 'Products',
     cloudinary: true,
-    headline: 'Features of the Admin Portal',
     id: 'featureAccordion',
     tabs: [
       {
@@ -126,6 +125,47 @@ ImageShadowless.args = {
         headline: 'WIFI and LAN policy creation',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
         image: '/products/radius/radius-wifi-lan-policy.gif',
+        alt: 'WIFI and LAN policy creation',
+      },
+    ],
+  },
+};
+
+export const Collapsed = Template.bind({});
+
+Collapsed.args = {
+  shadowless: false,
+  left: true,
+  accordion: {
+    subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+    image: 'security/CSOC-Services-Default.png',
+    alt: 'Products',
+    cloudinary: true,
+    id: 'featureAccordion',
+    tabs: [
+      {
+        headline: 'WIFI and LAN policy creation',
+        content:
+          'Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies',
+        image: 'security/CSOC-Services-Incident-Response.png',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: 'security/CSOC-Services-Threat-Intelligence.png',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation (default image)',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: 'security/CSOC-Services-SOAR.png',
+        alt: 'WIFI and LAN policy creation',
+      },
+      {
+        headline: 'WIFI and LAN policy creation',
+        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        image: 'security/CSOC-Services-Analysis-Reporting.png',
         alt: 'WIFI and LAN policy creation',
       },
     ],
