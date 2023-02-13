@@ -69,7 +69,7 @@ Image.args = {
         alt: 'WIFI and LAN policy creation',
       },
       {
-        headline: 'WIFI and LAN policy creation',
+        headline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
         image: 'security/CSOC-Services-Threat-Intelligence.png',
         alt: 'WIFI and LAN policy creation',
