@@ -14,6 +14,12 @@ export default {
         this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
+    accordionClasses() {
+      return [
+        'accordion container mt-6 mb-4 my-lg-8 vue-component',
+        this.accordion.image ? 'accordion--has-image' : null,
+      ];
+    },
     fallbackImageClasses() {
       return [
         'accordion__fallback-image-wrapper',
@@ -29,13 +35,20 @@ export default {
     if (!this.accordion.tabs) return;
 
     this.selectFallbackImage();
-    this.changeOutsideImage();
+    if (this.isUpperBreakpoint()) {
+      this.changeOutsideImage();
+    } else {
+      this.outsideImage = this.fallbackImage;
+    }
 
     this.accordion.tabs.forEach((element) => {
       this.states.push(element.expanded ? true : false);
     });
   },
   methods: {
+    isUpperBreakpoint() {
+      return !Tools.isBelowBreakpoint('lg');
+    },
     selectFallbackImage() {
       if (!this.fallbackImage) {
         this.fallbackImage = this.accordion.image || this.getActiveTab()?.image;
@@ -52,7 +65,9 @@ export default {
       this.states = this.states.map((_) => false);
       this.states[index] = !lastState;
 
-      this.changeOutsideImage(index);
+      if (this.isUpperBreakpoint()) {
+        this.changeOutsideImage(index);
+      }
 
       if (!this.allTabsClosed()) return;
 
@@ -68,7 +83,7 @@ export default {
       const tab = this.getTabByIndex(index);
 
       this.showOutsideImage = true;
-      this.outsideImage = tab.image;
+      this.outsideImage = tab?.image || this.fallbackImage;
     },
     getTabByIndex(index) {
       if (typeof index === 'undefined') return this.getActiveTab();
@@ -147,7 +162,7 @@ export default {
         </div>
       </div>
     </div>
-    <section class="accordion container mt-6 mb-4 my-lg-8 vue-component">
+    <section :class="accordionClasses">
       <div class="row position-relative">
         <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
         <div class="col-lg-6 position-static" :id="accordion.id">
