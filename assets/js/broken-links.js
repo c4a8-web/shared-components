@@ -21,6 +21,7 @@ class BrokenLinks {
 
     this.start();
     console.log(this.errors);
+    console.log(this.prevLink);
   }
 
   async start() {
@@ -67,7 +68,11 @@ class BrokenLinks {
   }
 
   isInvalidHref(href) {
-    return href == null || href.length <= 1 || href.includes('index.html') || !href.includes('/');
+    return href == null || href.length <= 1 || !href.includes('/');
+  }
+
+  toValidURL(href, currentLink) {
+    return new URL(href, currentLink).href;
   }
 
   isExternal(url) {
@@ -106,7 +111,11 @@ class BrokenLinks {
 
   handleError(data) {
     let { url, error, previousUrl } = data;
-    error = error.status ? error : 'Invalid Link';
+    // Shutterstock returns Status < 400
+    if (url.includes('shutterstock')) {
+      console.log('link', url);
+      console.log('status', error);
+    }
 
     this.errors.push({
       url,
@@ -138,10 +147,9 @@ class BrokenLinks {
 
     for (var i = 0; i < links.length; i++) {
       const hrefAttr = links[i].getAttribute('href');
-
       if (!this.isInvalidHref(hrefAttr)) {
         const link = links[i];
-        const linkUrl = this.getAbsoluteUrl(link, url);
+        const linkUrl = this.toValidURL(hrefAttr, url);
 
         if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
           await this.getUrl(linkUrl, url);
