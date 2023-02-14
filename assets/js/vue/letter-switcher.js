@@ -27,7 +27,7 @@ export default {
       return [
         'letter-switcher__animation',
         this.fontSize,
-        'd-flex justify-content-center',
+        'justify-content-center',
         `${this.isLower ? 'flex-column' : ''}`,
       ];
     },
@@ -64,8 +64,6 @@ export default {
       if (!animation) return;
 
       const letter = animation.querySelector('.letter-switcher__letter');
-      // Replace with State later
-      letter.style.display = '';
       const newHeight = this.isLower ? letter.offsetHeight * 2 : letter.offsetHeight;
 
       animation.style.height = newHeight + 'px';
