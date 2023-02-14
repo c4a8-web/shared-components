@@ -7,6 +7,13 @@ class Anchor {
   constructor() {
     const hash = this.getHash();
 
+    this.idSelector = `[id="${hash.substring(1)}"]:not([role="tabpanel"])`;
+    this.idTarget = document.querySelector(this.idSelector);
+
+    if (this.idTarget) {
+      Tools.scrollIntoView(this.idTarget, true);
+    }
+
     this.targetSelector = `a[href^="${hash}"]`;
     this.productStageSelector = '.product-stage';
     this.target = document.querySelector(this.targetSelector);
@@ -23,11 +30,11 @@ class Anchor {
   bindEvents() {
     this.links?.forEach((link) => {
       link.addEventListener('click', this.handleClick.bind(this));
-    })
+    });
   }
 
   handleTargetClick() {
-    if (this.target && this.hasProductStage()) {
+    if (!this.idTarget && this.target && this.hasProductStage()) {
       this.handleAfterClick(this.target, true);
     }
   }
@@ -43,8 +50,8 @@ class Anchor {
   handleAfterClick(target, smooth) {
     if (!target) return;
 
-      Tools.scrollIntoView(target, smooth);
-      target.click();
+    Tools.scrollIntoView(target, smooth);
+    target.click();
   }
 
   getHash() {

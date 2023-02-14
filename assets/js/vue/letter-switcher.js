@@ -27,7 +27,7 @@ export default {
       return [
         'letter-switcher__animation',
         this.fontSize,
-        'd-flex justify-content-center',
+        'justify-content-center',
         `${this.isLower ? 'flex-column' : ''}`,
       ];
     },

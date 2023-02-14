@@ -32,11 +32,12 @@ $letter-switch-custom-breakpoint: 443px;
 
 .letter-switcher__animation {
   pointer-events: none;
-  display: inline-block;
   opacity: 0;
   overflow: hidden;
   letter-spacing: 5px;
   color: var(--color-letter-switcher-copy);
+  display: flex;
+  height: 0;
 
   @include media-breakpoint-up(md) {
     letter-spacing: 10px;
@@ -68,6 +69,7 @@ $letter-switch-custom-breakpoint: 443px;
 }
 
 .letter-switcher__letter {
+  // display: none;
   flex: 1 0 auto;
   padding: 10px 0;
 }
