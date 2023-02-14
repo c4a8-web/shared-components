@@ -141,6 +141,7 @@
   &.text-image__img--mobile {
     img {
       display: none;
+
       @include media-breakpoint-up(lg) {
         display: block;
       }
@@ -150,9 +151,15 @@
   img {
     object-fit: contain;
     height: intrinsic;
+    height: max-content;
 
     &.is-svg {
       padding: 1.5rem;
+    }
+
+    @include safari {
+      height: auto;
+      width: 100%;
     }
   }
 }
