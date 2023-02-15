@@ -1,13 +1,3 @@
-var links = document.querySelectorAll('a[href]');
-var linkReport = [];
-var linksChecked = 0;
-
-// put all internal links into an array
-// for each link load the page and select the body and create a new document for it and get the links on the pages again
-// until the array is empty and every link got checked
-
-// TODO check if link is internal or external
-
 class BrokenLinks {
   constructor(rootUrl) {
     this.rootUrl = rootUrl;
@@ -160,11 +150,6 @@ class BrokenLinks {
   handleError(data) {
     let { url, error, previousUrl } = data;
 
-    if (url.includes('shutterstock')) {
-      console.log('link', url);
-      console.log('status', error);
-    }
-
     this.errors.push({
       url,
       error,
@@ -203,12 +188,6 @@ class BrokenLinks {
         }
       }
     }
-  }
-  getAbsoluteUrl(link, siteUrl) {
-    const href = link.getAttribute('href');
-    const isAbsolute = href.indexOf('/') !== -1;
-
-    return isAbsolute ? link.href : `${siteUrl}${href}`;
   }
 
   isValidLink(url) {
