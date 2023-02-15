@@ -1,29 +1,15 @@
 .is-absolute-scroller {
   &[data-absolute-scroller] {
     will-change: clip-path;
-
-    // &.is-sticky {
-    //   + .absolute-scroller__spacer {
-    //     display: block;
-    //   }
-    // }
-
-    // &.is-off-screen {
-    //   + .absolute-scroller__spacer {
-    //     display: none;
-    //   }
-    // }
-
-    transition: opacity 1.5s ease-in-out;
+    transition: opacity 0.5s $animation-transition;
 
     &.is-off-screen {
-      opacity: 0.3;
+      opacity: 0;
     }
   }
 }
 
 .absolute-scroller__spacer {
-  // display: none;
   pointer-events: none;
   position: relative;
   opacity: 0;

@@ -66,35 +66,36 @@ class AbsoluteScroller {
 
     let percentage;
 
-    if (offsetBottom >= position) {
+    if (offsetBottom === offsetTop && offsetBottom - window.innerHeight > position) {
+      percentage = 0;
+    } else if (offsetBottom >= position) {
       const step = (offsetBottom - offsetTop) / 100;
 
       percentage = (position - offsetTop) / step;
 
+      // if (position > 0 && step === 0) percentage = this.maxPercentage;
       if (isNaN(percentage)) percentage = 0;
     } else {
-      percentage = 100;
+      percentage = this.maxPercentage;
     }
+
     return percentage;
   }
 
   isOutOfViewport(percentage) {
     return percentage >= this.maxPercentage;
-    // return percentage > this.maxPercentage;
   }
 
   setStickyPosition() {
+    console.group();
+
     const headerHeight = this.getHeaderHeight();
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
     const topValue = viewPortOverflow > 0 ? -viewPortOverflow : this.isFirstChild(this.root) ? 0 : headerHeight;
     const percentage = this.getPercentage(scrollPosition, topValue);
-
-    console.group();
-    console.log(this.root);
-    console.log('AbsoluteScroller ~ setStickyPosition ~ percentage', percentage);
-    console.groupEnd();
+    console.log('AbsoluteScroller ~ setStickyPosition ~ percentage', percentage + this.root.classList);
 
     if (!this.isOutOfViewport(percentage) && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
@@ -106,9 +107,14 @@ class AbsoluteScroller {
       this.root.classList.add(State.STICKY);
 
       this.updateClipPath(percentage);
+    } else if (percentage === 0) {
+      this.isUpdating = false;
+      this.root.classList.remove(State.OFF_SCREEN);
     } else {
       this.disableStickyness();
     }
+
+    console.groupEnd();
   }
 
   disableStickyness() {
