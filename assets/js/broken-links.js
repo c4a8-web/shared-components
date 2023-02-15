@@ -18,28 +18,56 @@ class BrokenLinks {
       mode: 'no-cors',
       redirect: 'follow',
     };
+    this.end = false;
+    this.duration = 3000;
 
+    this.container = document.getElementById('broken-links-table');
     this.start();
-    console.log(this.errors);
     console.log(this.prevLink);
   }
 
   async start() {
     await this.getUrl(this.rootUrl);
+    this.id = setInterval(() => {
+      this.handleIntervall();
+    }, this.duration);
   }
 
-  showErrors() {
-    let noDuplicates = [];
-    for (let i = 0; i < this.errors.length; i++) {
-      const brokenLink = this.errors[i].url;
-      if (!noDuplicates.includes(brokenLink)) {
-        noDuplicates.push(brokenLink);
-        console.log(noDuplicates);
-      } else {
-        this.errors.splice(i, 1);
-        console.log(this.errors);
+  handleIntervall() {
+    const reductionFactor = 2;
+    const lowerLimit = 300;
+    console.log('Running', this.duration, this.end);
+    if (this.end) {
+      if (this.duration < lowerLimit) {
+        this.displayResult();
+        console.log('Stopped', this.duration);
+        clearInterval(this.id);
       }
+      this.duration = Math.floor(this.duration / reductionFactor);
+    } else {
+      this.duration = 3000;
     }
+  }
+
+  displayResult() {
+    this.container.innerHTML = 'TEST 123';
+    const table = document.createElement('table');
+    this.container.appendChild(table);
+
+    for (let i = 0; i < this.errors.length; i++) {
+      const url = this.errors[i].url;
+      const prevUrl = this.prevLink[url];
+
+      const tableRow = table.insertRow(i);
+      const tableCellBrokenLink = tableRow.insertCell(0);
+      const tableCellPrevLink = tableRow.insertCell(1);
+
+      const brokenLinkText = document.createTextNode(url);
+      const previousLinkText = document.createTextNode(prevUrl);
+      tableCellBrokenLink.appendChild(brokenLinkText);
+      tableCellPrevLink.appendChild(previousLinkText);
+    }
+    console.log(this.container);
   }
 
   hasDuplicates(url) {
@@ -47,6 +75,8 @@ class BrokenLinks {
   }
 
   getUrl(url, previousUrl) {
+    this.end = false;
+
     this.prevLink[url] = 'Previous Url: ' + previousUrl;
     if (this.hasDuplicates(url)) return;
 
@@ -56,11 +86,13 @@ class BrokenLinks {
       fetch(url, this.options)
         .then((response) => {
           this.handleResponse(response, external);
+          this.end = true;
 
           resolve();
         })
         .catch((error) => {
           this.handleError({ url, error, previousUrl });
+          this.end = true;
 
           resolve();
         });
@@ -111,7 +143,7 @@ class BrokenLinks {
 
   handleError(data) {
     let { url, error, previousUrl } = data;
-    // Shutterstock returns Status < 400
+
     if (url.includes('shutterstock')) {
       console.log('link', url);
       console.log('status', error);
@@ -148,7 +180,6 @@ class BrokenLinks {
     for (var i = 0; i < links.length; i++) {
       const hrefAttr = links[i].getAttribute('href');
       if (!this.isInvalidHref(hrefAttr)) {
-        const link = links[i];
         const linkUrl = this.toValidURL(hrefAttr, url);
 
         if (this.isValidLink(linkUrl) && !this.links[linkUrl]) {
