@@ -21,9 +21,11 @@ class BrokenLinks {
     this.end = false;
     this.duration = 3000;
 
-    this.container = document.getElementById('broken-links-table');
+    setTimeout(() => {
+      clearInterval(this.id);
+    }, 600000);
+
     this.start();
-    console.log(this.prevLink);
   }
 
   async start() {
@@ -34,31 +36,46 @@ class BrokenLinks {
   }
 
   handleIntervall() {
-    const reductionFactor = 2;
-    const lowerLimit = 300;
-    console.log('Running', this.duration, this.end);
+    const reductionFactor = 1.5;
+    const lowerLimit = 500;
+    const upperLimit = this.duration;
+
     if (this.end) {
       if (this.duration < lowerLimit) {
         this.displayResult();
-        console.log('Stopped', this.duration);
         clearInterval(this.id);
       }
       this.duration = Math.floor(this.duration / reductionFactor);
     } else {
-      this.duration = 3000;
+      this.duration = upperLimit;
     }
   }
 
   displayResult() {
-    this.container.innerHTML = 'TEST 123';
+    const container = document.getElementById('broken-links-table');
+    if (!container) return console.error('No Container found');
+
     const table = document.createElement('table');
-    this.container.appendChild(table);
+    table.classList.add('table');
+    container.appendChild(table);
+
+    let head = table.createTHead();
+    let row = head.insertRow(0);
+    let leftCell = row.insertCell(0);
+    let rightCell = row.insertCell(1);
+
+    let leftCellText = 'Broken Links';
+    let rightCellText = 'Previous Links';
+    leftCell.innerHTML = leftCellText;
+    rightCell.innerHTML = rightCellText;
+
+    let body = table.createTBody();
 
     for (let i = 0; i < this.errors.length; i++) {
       const url = this.errors[i].url;
       const prevUrl = this.prevLink[url];
 
-      const tableRow = table.insertRow(i);
+      const tableRow = body.insertRow(i);
       const tableCellBrokenLink = tableRow.insertCell(0);
       const tableCellPrevLink = tableRow.insertCell(1);
 
@@ -67,7 +84,6 @@ class BrokenLinks {
       tableCellBrokenLink.appendChild(brokenLinkText);
       tableCellPrevLink.appendChild(previousLinkText);
     }
-    console.log(this.container);
   }
 
   hasDuplicates(url) {
@@ -77,7 +93,7 @@ class BrokenLinks {
   getUrl(url, previousUrl) {
     this.end = false;
 
-    this.prevLink[url] = 'Previous Url: ' + previousUrl;
+    this.prevLink[url] = previousUrl;
     if (this.hasDuplicates(url)) return;
 
     return new Promise((resolve) => {
