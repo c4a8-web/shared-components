@@ -60,11 +60,28 @@ class AbsoluteScroller {
     return this.firstChild === element;
   }
 
+  isSticky() {
+    this.root.classList.contains(State.STICKY);
+  }
+
   getPercentage(position, topValue) {
-    const offsetTop = this.spacer.offsetTop - topValue;
-    const offsetBottom = offsetTop + this.spacer.offsetHeight;
+    const elementOffsetTop = this.isSticky() ? this.spacer.offsetTop : this.root.offsetTop;
+    const elementOffsetHeight = this.isSticky() ? this.spacer.offsetHeight : this.root.offsetHeight;
+
+    const offsetTop = elementOffsetTop - topValue;
+    const offsetBottom = offsetTop + elementOffsetHeight;
 
     let percentage;
+
+    console.log('AbsoluteScroller ~ getPercentage ~ this.root.offsetHeight', this.root.offsetHeight);
+    console.log('AbsoluteScroller ~ getPercentage ~ this.root.clientHeight', this.root.clientHeight);
+    console.log('AbsoluteScroller ~ getPercentage ~ this.spacer.offsetHeight', this.spacer.offsetHeight);
+    console.log('AbsoluteScroller ~ getPercentage ~ this.spacer.clientHeight', this.spacer.clientHeight);
+    console.log('AbsoluteScroller ~ getPercentage ~ this.spacer.offsetTop', this.spacer.offsetTop);
+    console.log('AbsoluteScroller ~ getPercentage ~ topValue', topValue);
+    console.log('AbsoluteScroller ~ getPercentage ~ position', position);
+    console.log('AbsoluteScroller ~ getPercentage ~ offsetTop', offsetTop);
+    console.log('AbsoluteScroller ~ getPercentage ~ offsetBottom', offsetBottom);
 
     if (offsetBottom === offsetTop && offsetBottom - window.innerHeight > position) {
       percentage = 0;
@@ -72,6 +89,14 @@ class AbsoluteScroller {
       const step = (offsetBottom - offsetTop) / 100;
 
       percentage = (position - offsetTop) / step;
+
+      console.log('AbsoluteScroller ~ getPercentage ~ step', step);
+      if (!isFinite(percentage)) {
+        console.log(this.root);
+        console.log('####################################################################');
+
+        percentage = 0;
+      }
 
       // if (position > 0 && step === 0) percentage = this.maxPercentage;
       if (isNaN(percentage)) percentage = 0;
@@ -83,7 +108,7 @@ class AbsoluteScroller {
   }
 
   isOutOfViewport(percentage) {
-    return percentage >= this.maxPercentage;
+    return percentage >= this.maxPercentage || percentage < 0;
   }
 
   setStickyPosition() {
@@ -95,12 +120,27 @@ class AbsoluteScroller {
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
     const topValue = viewPortOverflow > 0 ? -viewPortOverflow : this.isFirstChild(this.root) ? 0 : headerHeight;
     const percentage = this.getPercentage(scrollPosition, topValue);
-    console.log('AbsoluteScroller ~ setStickyPosition ~ percentage', percentage + this.root.classList);
+    console.log('AbsoluteScroller ~ setStickyPosition ~ percentage', percentage + '##' + this.root.classList);
+
+    // return;
+    console.log(
+      'AbsoluteScroller ~ setStickyPosition ~ this.isOutOfViewport(percentage)',
+      !this.isOutOfViewport(percentage)
+    );
+    console.log('AbsoluteScroller ~ setStickyPosition ~ scrollPosition', scrollPosition);
+    console.log('AbsoluteScroller ~ setStickyPosition ~ scrollThreshold', scrollThreshold);
+    console.log('AbsoluteScroller ~ setStickyPosition ~ window.innerHeight', window.innerHeight);
+    console.log(
+      'AbsoluteScroller ~ setStickyPosition ~ scrollPosition > scrollThreshold - window.innerHeight',
+      scrollPosition > scrollThreshold - window.innerHeight
+    );
 
     if (!this.isOutOfViewport(percentage) && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
         this.spacer.style.height = this.root.clientHeight + 'px';
       }
+
+      console.log('WATTT');
 
       this.root.style.top = topValue + 'px';
       this.root.classList.remove(State.OFF_SCREEN);
@@ -108,9 +148,13 @@ class AbsoluteScroller {
 
       this.updateClipPath(percentage);
     } else if (percentage === 0) {
+      // !isFinite(percentage) ||
+      console.log('bin ich nicht hier??');
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
     } else {
+      console.log('etwa hier=??');
+
       this.disableStickyness();
     }
 

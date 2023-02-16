@@ -1,11 +1,11 @@
 .is-absolute-scroller {
   &[data-absolute-scroller] {
     will-change: clip-path;
-    transition: opacity 0.5s $animation-transition;
+    // transition: opacity 2.1s $animation-transition;
 
-    &.is-off-screen {
-      opacity: 0;
-    }
+    // &.is-off-screen {
+    //   opacity: 0;
+    // }
   }
 }
 
@@ -14,7 +14,7 @@
   position: relative;
   opacity: 0;
   overflow: hidden;
-  height: 0;
+  // height: 0;
 
   &::after {
     content: '';
