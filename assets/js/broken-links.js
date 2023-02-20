@@ -7,9 +7,10 @@ class BrokenLinks {
       mode: 'no-cors',
       redirect: 'follow',
     };
-    this.end = false;
+
+    this.hasEnded = false;
     this.duration = 3000;
-    this.callBackDuration = 600000;
+    this.fallbackDuration = 600000;
 
     document.addEventListener('VUE_IS_MOUNTED', (e) => {
       this.initialize();
@@ -17,52 +18,70 @@ class BrokenLinks {
   }
 
   initialize() {
-    this.rootUrl = window.location.origin;
+    this.rootUrl = window.location.origin + '/de/';
     this.input = document.getElementById('broken-links-text-input');
     this.button = document.getElementById('broken-links-submit-input');
     this.loader = document.getElementById('broken-links-loader');
     this.loader.classList.add('d-none');
 
     if (!this.input || !this.button || !this.loader) return console.error('No button or input!');
+
     this.input.setAttribute('value', this.rootUrl);
     this.button.addEventListener('click', this.handleClick.bind(this));
   }
 
+  startFallbackTimer() {
+    setTimeout(() => {
+      this.end();
+
+      console.error('Fallback timer expired!');
+    }, this.fallbackDuration);
+  }
+
   handleClick() {
     const url = this.input.value;
+
+    this.startFallbackTimer();
+
     this.loader.classList.remove('d-none');
     this.button.remove();
     this.input.remove();
-    this.startSearch(url);
 
-    setTimeout(() => {
-      clearInterval(this.id);
-    }, this.callBackDuration);
+    this.startSearch(url);
   }
 
   async startSearch(url) {
     await this.getUrl(url);
+
     this.id = setInterval(() => {
       this.handleIntervall();
     }, this.duration);
   }
 
+  end() {
+    clearInterval(this.id);
+    this.displayResult();
+  }
+
   handleIntervall() {
     const limit = 10000;
-    if (this.end) {
+
+    if (this.hasEnded) {
       setTimeout(() => {
-        clearInterval(this.id);
-        this.displayResult();
+        this.end();
       }, limit);
     }
   }
 
   displayResult() {
     const container = document.getElementById('broken-links-table');
+
     if (!container) return console.error('No Container found');
+
     this.loader.remove();
 
     const table = document.createElement('table');
+
     table.classList.add('table');
     container.appendChild(table);
 
@@ -73,6 +92,7 @@ class BrokenLinks {
 
     const leftCellText = 'Broken Links';
     const rightCellText = 'Previous Links';
+
     leftCell.innerHTML = leftCellText;
     rightCell.innerHTML = rightCellText;
 
@@ -98,9 +118,19 @@ class BrokenLinks {
   }
 
   getUrl(url, previousUrl) {
-    this.end = false;
+    this.hasEnded = false;
     this.prevLink[url] = previousUrl;
+
+    console.log('BrokenLinks ~ getUrl ~ url:', url);
     if (this.hasDuplicates(url) || this.links[url]) return;
+
+    if (url === 'https://www.linkedin.com/company/glueckkanja-gab') {
+      console.log('###################################################');
+      console.group();
+      console.log(this.errors);
+      console.log(this.links);
+      console.groupEnd();
+    }
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
@@ -108,13 +138,13 @@ class BrokenLinks {
       fetch(url, this.options)
         .then((response) => {
           this.handleResponse(response, external);
-          this.end = true;
+          this.hasEnded = true;
 
           resolve();
         })
         .catch((error) => {
           this.handleError({ url, error, previousUrl });
-          this.end = true;
+          this.hasEnded = true;
 
           resolve();
         });
@@ -143,10 +173,12 @@ class BrokenLinks {
 
     if (response.status >= 400) {
       const status = response.status;
+
       this.errors.push({
         url,
         status,
       });
+
       return;
     }
 
@@ -155,6 +187,7 @@ class BrokenLinks {
 
       this.checkLinks();
     } else {
+      console.log('maybe it breaks here??? url:', url);
       response.text().then((html) => {
         this.links[url] = {
           html,
@@ -198,6 +231,8 @@ class BrokenLinks {
 
     for (var i = 0; i < links.length; i++) {
       const hrefAttr = links[i].getAttribute('href');
+      // console.log('BrokenLinks ~ getLinksOnSite ~ hrefAttr:', hrefAttr);
+
       if (!this.isInvalidHref(hrefAttr)) {
         const linkUrl = this.toValidURL(hrefAttr, url);
 
