@@ -27,18 +27,12 @@ class BrokenLinks {
   }
 
   handleIntervall() {
-    const reductionFactor = 1.5;
-    const lowerLimit = 500;
-    const upperLimit = this.duration;
-
+    const limit = 10000;
     if (this.end) {
-      if (this.duration < lowerLimit) {
-        this.displayResult();
+      setTimeout(() => {
         clearInterval(this.id);
-      }
-      this.duration = Math.floor(this.duration / reductionFactor);
-    } else {
-      this.duration = upperLimit;
+        this.displayResult();
+      }, limit);
     }
   }
 
@@ -85,7 +79,6 @@ class BrokenLinks {
 
   getUrl(url, previousUrl) {
     this.end = false;
-
     this.prevLink[url] = previousUrl;
     if (this.hasDuplicates(url) || this.links[url]) return;
 
