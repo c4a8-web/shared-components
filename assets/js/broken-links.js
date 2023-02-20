@@ -23,10 +23,6 @@ class BrokenLinks {
     this.loader = document.getElementById('broken-links-loader');
     this.loader.classList.add('d-none');
 
-    setTimeout(() => {
-      clearInterval(this.id);
-    }, this.callBackDuration);
-
     if (!this.input || !this.button || !this.loader) return console.error('No button or input!');
     this.input.setAttribute('value', this.rootUrl);
     this.button.addEventListener('click', this.handleClick.bind(this));
@@ -38,6 +34,10 @@ class BrokenLinks {
     this.button.remove();
     this.input.remove();
     this.startSearch(url);
+
+    setTimeout(() => {
+      clearInterval(this.id);
+    }, this.callBackDuration);
   }
 
   async startSearch(url) {
