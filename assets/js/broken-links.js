@@ -1,6 +1,5 @@
 class BrokenLinks {
-  constructor(rootUrl) {
-    this.rootUrl = rootUrl;
+  constructor() {
     this.errors = [];
     this.links = {};
     this.prevLink = {};
@@ -12,15 +11,37 @@ class BrokenLinks {
     this.duration = 3000;
     this.callBackDuration = 600000;
 
+    document.addEventListener('VUE_IS_MOUNTED', (e) => {
+      this.initialize();
+    });
+  }
+
+  initialize() {
+    this.rootUrl = window.location.origin;
+    this.input = document.getElementById('broken-links-text-input');
+    this.button = document.getElementById('broken-links-submit-input');
+    this.loader = document.getElementById('broken-links-loader');
+    this.loader.classList.add('d-none');
+
     setTimeout(() => {
       clearInterval(this.id);
     }, this.callBackDuration);
 
-    this.start();
+    if (!this.input || !this.button || !this.loader) return console.error('No button or input!');
+    this.input.setAttribute('value', this.rootUrl);
+    this.button.addEventListener('click', this.handleClick.bind(this));
   }
 
-  async start() {
-    await this.getUrl(this.rootUrl);
+  handleClick() {
+    const url = this.input.value;
+    this.loader.classList.remove('d-none');
+    this.button.remove();
+    this.input.remove();
+    this.startSearch(url);
+  }
+
+  async startSearch(url) {
+    await this.getUrl(url);
     this.id = setInterval(() => {
       this.handleIntervall();
     }, this.duration);
@@ -37,10 +58,9 @@ class BrokenLinks {
   }
 
   displayResult() {
-    const loader = document.getElementById('broken-links-loader');
     const container = document.getElementById('broken-links-table');
-    if (!container || !loader) return console.error('No Container found');
-    loader.remove();
+    if (!container) return console.error('No Container found');
+    this.loader.remove();
 
     const table = document.createElement('table');
     table.classList.add('table');
