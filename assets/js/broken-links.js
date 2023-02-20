@@ -10,10 +10,11 @@ class BrokenLinks {
     };
     this.end = false;
     this.duration = 3000;
+    this.callBackDuration = 600000;
 
     setTimeout(() => {
       clearInterval(this.id);
-    }, 600000);
+    }, this.callBackDuration);
 
     this.start();
   }
@@ -42,24 +43,26 @@ class BrokenLinks {
   }
 
   displayResult() {
+    const loader = document.getElementById('broken-links-loader');
     const container = document.getElementById('broken-links-table');
-    if (!container) return console.error('No Container found');
+    if (!container || !loader) return console.error('No Container found');
+    loader.remove();
 
     const table = document.createElement('table');
     table.classList.add('table');
     container.appendChild(table);
 
-    let head = table.createTHead();
-    let row = head.insertRow(0);
-    let leftCell = row.insertCell(0);
-    let rightCell = row.insertCell(1);
+    const head = table.createTHead();
+    const row = head.insertRow(0);
+    const leftCell = row.insertCell(0);
+    const rightCell = row.insertCell(1);
 
-    let leftCellText = 'Broken Links';
-    let rightCellText = 'Previous Links';
+    const leftCellText = 'Broken Links';
+    const rightCellText = 'Previous Links';
     leftCell.innerHTML = leftCellText;
     rightCell.innerHTML = rightCellText;
 
-    let body = table.createTBody();
+    const body = table.createTBody();
 
     for (let i = 0; i < this.errors.length; i++) {
       const url = this.errors[i].url;
@@ -77,14 +80,14 @@ class BrokenLinks {
   }
 
   hasDuplicates(url) {
-    return this.errors.some((x) => x['url'] === url);
+    return this.errors.some((item) => item['url'] === url);
   }
 
   getUrl(url, previousUrl) {
     this.end = false;
 
     this.prevLink[url] = previousUrl;
-    if (this.hasDuplicates(url)) return;
+    if (this.hasDuplicates(url) || this.links[url]) return;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
@@ -122,15 +125,17 @@ class BrokenLinks {
 
   async handleResponse(response, external) {
     const { url } = response;
+
+    if (this.links[url]) return;
+
     if (response.status >= 400) {
       const status = response.status;
       this.errors.push({
         url,
         status,
       });
+      return;
     }
-
-    if (this.links[url]) return;
 
     if (external) {
       this.links[url] = external;
