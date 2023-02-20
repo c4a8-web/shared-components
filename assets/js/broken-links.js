@@ -2,15 +2,19 @@ class BrokenLinks {
   constructor() {
     this.errors = [];
     this.links = {};
+    this.fetchedLinks = {};
     this.prevLink = {};
     this.options = {
       mode: 'no-cors',
       redirect: 'follow',
     };
 
+    this.isEnded = false;
     this.hasEnded = false;
-    this.duration = 3000;
+    this.duration = 10000;
     this.fallbackDuration = 600000;
+
+    window.ende = this.end.bind(this);
 
     document.addEventListener('VUE_IS_MOUNTED', (e) => {
       this.initialize();
@@ -31,7 +35,7 @@ class BrokenLinks {
   }
 
   startFallbackTimer() {
-    setTimeout(() => {
+    this.fallbackTimeout = setTimeout(() => {
       this.end();
 
       console.error('Fallback timer expired!');
@@ -59,17 +63,25 @@ class BrokenLinks {
   }
 
   end() {
+    if (this.isEnded) return;
+
+    this.isEnded = true;
+
+    clearTimeout(this.fallbackTimeout);
     clearInterval(this.id);
+
     this.displayResult();
   }
 
   handleIntervall() {
-    const limit = 10000;
+    if (this.isEnded) return;
 
     if (this.hasEnded) {
       setTimeout(() => {
+        if (!this.hasEnded) return;
+
         this.end();
-      }, limit);
+      }, this.duration);
     }
   }
 
@@ -121,16 +133,9 @@ class BrokenLinks {
     this.hasEnded = false;
     this.prevLink[url] = previousUrl;
 
-    console.log('BrokenLinks ~ getUrl ~ url:', url);
-    if (this.hasDuplicates(url) || this.links[url]) return;
+    if (this.hasDuplicates(url) || this.links[url] || this.fetchedLinks[url]) return (this.hasEnded = true);
 
-    if (url === 'https://www.linkedin.com/company/glueckkanja-gab') {
-      console.log('###################################################');
-      console.group();
-      console.log(this.errors);
-      console.log(this.links);
-      console.groupEnd();
-    }
+    this.fetchedLinks[url] = true;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
@@ -160,10 +165,10 @@ class BrokenLinks {
   }
 
   isExternal(url) {
-    const origin = document.location.origin;
-    const regex = new RegExp(`^(${origin})?`);
+    const pageURL = new URL(window.location.href);
+    const linkURL = new URL(url);
 
-    return url.match(regex) ? false : true;
+    return linkURL.hostname !== pageURL.hostname;
   }
 
   async handleResponse(response, external) {
@@ -187,7 +192,10 @@ class BrokenLinks {
 
       this.checkLinks();
     } else {
-      console.log('maybe it breaks here??? url:', url);
+      if (url === '') {
+        console.log('WTF WTF WTF WTF WTF WTF WTF WTF WTF WTF WTF');
+      }
+
       response.text().then((html) => {
         this.links[url] = {
           html,
@@ -200,6 +208,8 @@ class BrokenLinks {
 
   handleError(data) {
     let { url, error, previousUrl } = data;
+
+    if (this.hasDuplicates(url) || this.links[url]) return;
 
     this.errors.push({
       url,
@@ -231,7 +241,6 @@ class BrokenLinks {
 
     for (var i = 0; i < links.length; i++) {
       const hrefAttr = links[i].getAttribute('href');
-      // console.log('BrokenLinks ~ getLinksOnSite ~ hrefAttr:', hrefAttr);
 
       if (!this.isInvalidHref(hrefAttr)) {
         const linkUrl = this.toValidURL(hrefAttr, url);
