@@ -1,6 +1,6 @@
 $event-teaser-default-spacing: 6;
-$event-teaser-transition-time: 1.3s;
-$event-teaser-hover-scale: 1.025;
+$event-teaser-transition-time: 1.3;
+$event-teaser-hover-scale: 0.25;
 $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
 .event-teaser {
@@ -17,14 +17,12 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     @include shadow('medium-light');
 
     .event-teaser__shapes {
-      transform: scale($event-teaser-hover-scale);
-      transition-duration: $event-teaser-transition-time;
+      @include hover-scale($event-teaser-hover-scale, $event-teaser-transition-time);
     }
 
     .event-teaser__image {
       img {
-        transform: scale($event-teaser-hover-scale);
-        transition-duration: $event-teaser-transition-time;
+        @include hover-scale($event-teaser-hover-scale, $event-teaser-transition-time);
       }
     }
   }

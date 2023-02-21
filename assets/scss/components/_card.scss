@@ -1,8 +1,14 @@
+$card-transition-time: 1.3;
+$card-hover-scale: 0.25;
+
 .card {
   &:not(.card--no-link):hover {
     @include shadow('medium-light');
-
     cursor: pointer;
+
+    img {
+      @include hover-scale($scale-factor: $card-hover-scale, $scale-duration: $card-transition-time);
+    }
   }
 
   &:not(.card--large):not(.card--long):not(.card--products) {
@@ -70,6 +76,7 @@
 
   .card__img-top {
     @include aspect-ratio(16, 9);
+    overflow: hidden;
 
     &:not(.card-img--long) {
       img {
