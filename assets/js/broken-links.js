@@ -192,10 +192,6 @@ class BrokenLinks {
 
       this.checkLinks();
     } else {
-      if (url === '') {
-        console.log('WTF WTF WTF WTF WTF WTF WTF WTF WTF WTF WTF');
-      }
-
       response.text().then((html) => {
         this.links[url] = {
           html,
