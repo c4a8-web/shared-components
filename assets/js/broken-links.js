@@ -1,48 +1,99 @@
 class BrokenLinks {
-  constructor(rootUrl) {
-    this.rootUrl = rootUrl;
+  constructor() {
     this.errors = [];
     this.links = {};
+    this.fetchedLinks = {};
     this.prevLink = {};
     this.options = {
       mode: 'no-cors',
       redirect: 'follow',
     };
-    this.end = false;
-    this.duration = 3000;
-    this.callBackDuration = 600000;
 
-    setTimeout(() => {
-      clearInterval(this.id);
-    }, this.callBackDuration);
+    this.isEnded = false;
+    this.hasEnded = false;
+    this.duration = 10000;
+    this.fallbackDuration = 600000;
 
-    this.start();
+    window.ende = this.end.bind(this);
+
+    document.addEventListener('VUE_IS_MOUNTED', (e) => {
+      this.initialize();
+    });
   }
 
-  async start() {
-    await this.getUrl(this.rootUrl);
+  initialize() {
+    this.rootUrl = window.location.origin + '/de/';
+    this.input = document.getElementById('broken-links-text-input');
+    this.button = document.getElementById('broken-links-submit-input');
+    this.loader = document.getElementById('broken-links-loader');
+    this.loader.classList.add('d-none');
+
+    if (!this.input || !this.button || !this.loader) return console.error('No button or input!');
+
+    this.input.setAttribute('value', this.rootUrl);
+    this.button.addEventListener('click', this.handleClick.bind(this));
+  }
+
+  startFallbackTimer() {
+    this.fallbackTimeout = setTimeout(() => {
+      this.end();
+
+      console.error('Fallback timer expired!');
+    }, this.fallbackDuration);
+  }
+
+  handleClick() {
+    const url = this.input.value;
+
+    this.startFallbackTimer();
+
+    this.loader.classList.remove('d-none');
+    this.button.remove();
+    this.input.remove();
+
+    this.startSearch(url);
+  }
+
+  async startSearch(url) {
+    await this.getUrl(url);
+
     this.id = setInterval(() => {
       this.handleIntervall();
     }, this.duration);
   }
 
+  end() {
+    if (this.isEnded) return;
+
+    this.isEnded = true;
+
+    clearTimeout(this.fallbackTimeout);
+    clearInterval(this.id);
+
+    this.displayResult();
+  }
+
   handleIntervall() {
-    const limit = 10000;
-    if (this.end) {
+    if (this.isEnded) return;
+
+    if (this.hasEnded) {
       setTimeout(() => {
-        clearInterval(this.id);
-        this.displayResult();
-      }, limit);
+        if (!this.hasEnded) return;
+
+        this.end();
+      }, this.duration);
     }
   }
 
   displayResult() {
-    const loader = document.getElementById('broken-links-loader');
     const container = document.getElementById('broken-links-table');
-    if (!container || !loader) return console.error('No Container found');
-    loader.remove();
+
+    if (!container) return console.error('No Container found');
+
+    this.loader.remove();
 
     const table = document.createElement('table');
+
     table.classList.add('table');
     container.appendChild(table);
 
@@ -53,6 +104,7 @@ class BrokenLinks {
 
     const leftCellText = 'Broken Links';
     const rightCellText = 'Previous Links';
+
     leftCell.innerHTML = leftCellText;
     rightCell.innerHTML = rightCellText;
 
@@ -78,9 +130,12 @@ class BrokenLinks {
   }
 
   getUrl(url, previousUrl) {
-    this.end = false;
+    this.hasEnded = false;
     this.prevLink[url] = previousUrl;
-    if (this.hasDuplicates(url) || this.links[url]) return;
+
+    if (this.hasDuplicates(url) || this.links[url] || this.fetchedLinks[url]) return (this.hasEnded = true);
+
+    this.fetchedLinks[url] = true;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
@@ -88,13 +143,13 @@ class BrokenLinks {
       fetch(url, this.options)
         .then((response) => {
           this.handleResponse(response, external);
-          this.end = true;
+          this.hasEnded = true;
 
           resolve();
         })
         .catch((error) => {
           this.handleError({ url, error, previousUrl });
-          this.end = true;
+          this.hasEnded = true;
 
           resolve();
         });
@@ -110,10 +165,10 @@ class BrokenLinks {
   }
 
   isExternal(url) {
-    const origin = document.location.origin;
-    const regex = new RegExp(`^(${origin})?`);
+    const pageURL = new URL(window.location.href);
+    const linkURL = new URL(url);
 
-    return url.match(regex) ? false : true;
+    return linkURL.hostname !== pageURL.hostname;
   }
 
   async handleResponse(response, external) {
@@ -123,10 +178,12 @@ class BrokenLinks {
 
     if (response.status >= 400) {
       const status = response.status;
+
       this.errors.push({
         url,
         status,
       });
+
       return;
     }
 
@@ -147,6 +204,8 @@ class BrokenLinks {
 
   handleError(data) {
     let { url, error, previousUrl } = data;
+
+    if (this.hasDuplicates(url) || this.links[url]) return;
 
     this.errors.push({
       url,
@@ -178,6 +237,7 @@ class BrokenLinks {
 
     for (var i = 0; i < links.length; i++) {
       const hrefAttr = links[i].getAttribute('href');
+
       if (!this.isInvalidHref(hrefAttr)) {
         const linkUrl = this.toValidURL(hrefAttr, url);
 
