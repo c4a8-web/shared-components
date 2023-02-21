@@ -334,3 +334,11 @@
 @mixin light-text-shadow {
   text-shadow: 0 0 14px var(--color-white);
 }
+
+@mixin hover-scale($scale-factor: 2, $scale-duration: 1.2, $scale-function: linear) {
+  $scale-factor: 1 + ($scale-factor/10);
+  $scale-duration: #{$scale-duration}s;
+
+  transform: scale($scale-factor);
+  transition: transform $scale-duration $scale-function;
+}
