@@ -21,9 +21,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     }
 
     .event-teaser__image {
-      img {
-        @include hover-scale($event-teaser-hover-scale, $event-teaser-transition-time);
-      }
+      @include hover-scale($event-teaser-hover-scale, $event-teaser-transition-time, $on-img: 'true');
     }
   }
 

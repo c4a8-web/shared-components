@@ -3,12 +3,13 @@ $card-hover-scale: 0.25;
 
 .card {
   &:not(.card--no-link):hover {
-    @include shadow('medium-light');
+    @include hover-scale(
+      $scale-factor: $card-hover-scale,
+      $scale-duration: $card-transition-time,
+      $on-img: 'true',
+      $drop-shadow: 'medium-light'
+    );
     cursor: pointer;
-
-    img {
-      @include hover-scale($scale-factor: $card-hover-scale, $scale-duration: $card-transition-time);
-    }
   }
 
   &:not(.card--large):not(.card--long):not(.card--products) {
