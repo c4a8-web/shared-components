@@ -335,10 +335,25 @@
   text-shadow: 0 0 14px var(--color-white);
 }
 
-@mixin hover-scale($scale-factor: 2, $scale-duration: 1.2, $scale-function: linear) {
+@mixin hover-scale($scale-factor: 2, $scale-duration: 1.2, $on-img: 'false', $drop-shadow: 'false') {
   $scale-factor: 1 + ($scale-factor/10);
   $scale-duration: #{$scale-duration}s;
 
-  transform: scale($scale-factor);
-  transition: transform $scale-duration $scale-function;
+  @if ($on-img != 'false') {
+    @if ($drop-shadow != 'false') {
+      @include shadow($drop-shadow);
+    }
+
+    img {
+      transform: scale($scale-factor);
+      transition: transform $scale-duration;
+    }
+  } @else {
+    @if ($drop-shadow != 'false') {
+      @include shadow($drop-shadow);
+    }
+
+    transform: scale($scale-factor);
+    transition: transform $scale-duration;
+  }
 }
