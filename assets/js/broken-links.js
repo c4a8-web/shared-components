@@ -1,6 +1,7 @@
 class BrokenLinks {
   constructor() {
     this.errors = [];
+    this.blockedLINKS = [];
     this.links = {};
     this.fetchedLinks = {};
     this.prevLink = {};
@@ -29,6 +30,7 @@ class BrokenLinks {
     this.loader.classList.add('d-none');
 
     if (!this.input || !this.button || !this.loader) return console.error('No button or input!');
+    console.log(this.blockedLINKS);
 
     this.input.setAttribute('value', this.rootUrl);
     this.button.addEventListener('click', this.handleClick.bind(this));
@@ -109,11 +111,17 @@ class BrokenLinks {
     rightCell.innerHTML = rightCellText;
 
     const body = table.createTBody();
-
-    for (let i = 0; i < this.errors.length; i++) {
+    let i = 0;
+    while (i < this.errors.length) {
+      console.log('INDEX->>', i);
+      console.log('URL->>', this.errors[i].url);
       const url = this.errors[i].url;
+      if (this.blockedLINKS.includes(url)) {
+        this.errors.splice(i, 1);
+        i = i != 0 ? i-- : i;
+        continue;
+      }
       const prevUrl = this.prevLink[url];
-
       const tableRow = body.insertRow(i);
       const tableCellBrokenLink = tableRow.insertCell(0);
       const tableCellPrevLink = tableRow.insertCell(1);
@@ -122,6 +130,7 @@ class BrokenLinks {
       const previousLinkText = document.createTextNode(prevUrl);
       tableCellBrokenLink.appendChild(brokenLinkText);
       tableCellPrevLink.appendChild(previousLinkText);
+      i++;
     }
   }
 
@@ -132,14 +141,12 @@ class BrokenLinks {
   getUrl(url, previousUrl) {
     this.hasEnded = false;
     this.prevLink[url] = previousUrl;
-
     if (this.hasDuplicates(url) || this.links[url] || this.fetchedLinks[url]) return (this.hasEnded = true);
 
     this.fetchedLinks[url] = true;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
-
       fetch(url, this.options)
         .then((response) => {
           this.handleResponse(response, external);
@@ -148,6 +155,7 @@ class BrokenLinks {
           resolve();
         })
         .catch((error) => {
+          this.handleCSP(url);
           this.handleError({ url, error, previousUrl });
           this.hasEnded = true;
 
@@ -202,10 +210,19 @@ class BrokenLinks {
     }
   }
 
-  handleError(data) {
+  handleCSP(url) {
+    if (this.blockedLINKS.includes(url)) return;
+
+    document.addEventListener('securitypolicyviolation', (e) => {
+      if (this.blockedLINKS.includes(e.blockedURI)) return;
+      this.blockedLINKS.push(e.blockedURI);
+    });
+  }
+
+  async handleError(data) {
     let { url, error, previousUrl } = data;
 
-    if (this.hasDuplicates(url) || this.links[url]) return;
+    if (this.hasDuplicates(url) || this.links[url] || this.blockedLINKS.includes(url)) return;
 
     this.errors.push({
       url,
