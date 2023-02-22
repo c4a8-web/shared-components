@@ -1,5 +1,6 @@
 import Tools from '../tools.js';
 import State from '../state.js';
+import StickyScroller from '../sticky-scroller.js';
 
 export default {
   tagName: 'blog-recent',
@@ -10,6 +11,7 @@ export default {
         `${this.hasBackground}`,
         `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
+        // `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
     },
@@ -143,6 +145,9 @@ export default {
       default: null,
     },
     slider: {
+      default: null,
+    },
+    sticky: {
       default: null,
     },
   },

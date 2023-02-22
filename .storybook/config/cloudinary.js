@@ -83,3 +83,5 @@ const Cloudinary = {
 };
 
 export default Cloudinary;
+
+// TODO check if this could be removed due to the preset.js in the project JS

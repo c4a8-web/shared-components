@@ -9,6 +9,7 @@ const dummyDimensions = function (img, data) {
     case 'thumbs/video-thumb-fuchs.jpg':
     case 'thumbs/video-thumb-uniper.jpg':
     case 'thumbs/video-thumb-haniel.jpg':
+    case 'shared-components/webcasts-test.jpg':
       width = 1280;
       height = 720;
       break;

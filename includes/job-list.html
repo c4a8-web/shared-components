@@ -1,17 +1,18 @@
 <!-- Shared Job List Section -->
-{% assign jobListClientName = include.clientName %}
-{% assign jobListMaxItems = include.maxItems %}
-{% assign jobListDetailUrl = include.detailUrl %}
-{% assign jobListJobId = include.jobId %}
-{% assign jobListTags = include.tags %}
-{% assign jobListLang = include.lang %}
-{% assign jobListTeam = include.team %}
-{% assign jobListApiUrl = include.apiUrl %}
-{% assign jobListHeadlineClasses = include.headlineClasses %}
-{% assign jobListHeadlineLevel = include.headlineLevel %}
-{% assign jobListHeadlineText = include.headlineText %}
-{% assign jobListSublineText = include.sublineText %}
-{% assign jobListExpandText = include.expandText %}
+{%- assign jobListClientName = include.clientName -%}
+{%- assign jobListMaxItems = include.maxItems -%}
+{%- assign jobListDetailUrl = include.detailUrl -%}
+{%- assign jobListJobId = include.jobId -%}
+{%- assign jobListTags = include.tags -%}
+{%- assign jobListLang = include.lang -%}
+{%- assign jobListTeam = include.team -%}
+{%- assign jobListApiUrl = include.apiUrl -%}
+{%- assign jobListHeadlineClasses = include.headlineClasses -%}
+{%- assign jobListHeadlineLevel = include.headlineLevel -%}
+{%- assign jobListHeadlineText = include.headlineText -%}
+{%- assign jobListSublineText = include.sublineText -%}
+{%- assign jobListExpandText = include.expandText -%}
+{%- assign jobListSticky = include.sticky -%}
 
 <job-list
   client-name="{{ jobListClientName }}"
@@ -27,6 +28,7 @@
   headline-text="{{ jobListHeadlineText }}"
   subline-text="{{ jobListSublineText }}"
   expand-text="{{ jobListExpandText }}"
+  :sticky="{{ jobListSticky }}"
 >
 </job-list>
 

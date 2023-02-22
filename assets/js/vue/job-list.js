@@ -2,6 +2,7 @@ import RecruiterBox from '../recruiter-box.js';
 import State from '../state.js';
 import Loading from '../loading.js';
 import Tools from '../tools.js';
+import StickyScroller from '../sticky-scroller.js';
 
 export default {
   tagName: 'job-list',
@@ -11,6 +12,7 @@ export default {
         'job-list container',
         `${this.hasLoading ? State.LOADING : ''}`,
         `${this.hasLoader ? 'loading' : ''}`,
+        // `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`, // TODO: reset dimensions after loading to work with sticky scroller
         'vue-component',
       ];
     },
@@ -293,6 +295,9 @@ export default {
     headlineText: String,
     expandText: String,
     sublineText: String,
+    sticky: {
+      default: null,
+    },
   },
   template: `
     <div

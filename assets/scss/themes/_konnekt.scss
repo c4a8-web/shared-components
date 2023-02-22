@@ -7,7 +7,7 @@
   --color-copy: var(--color-midnight);
   --color-primary: var(--color-blue-medium);
   --color-primary-accent: var(--color-midnight);
-  --color-primary-accent-light: #cce3f4;
+  --color-primary-accent-light: var(--color-link-water);
   --color-secondary: var(--color-summer-green);
   --color-secondary-accent: var(--color-edgewater);
   --color-copy-highlight: red;
@@ -28,5 +28,3 @@
   // fonts
   --font-family: 'Miriam Libre', sans-serif;
 }
-
-

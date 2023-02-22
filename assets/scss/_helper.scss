@@ -1,6 +1,11 @@
 .is-invisible {
   @include is-invisible;
 }
+
 .has-background + .has-background {
   margin-top: 0 !important;
+}
+
+.is-sticky {
+  position: fixed !important;
 }

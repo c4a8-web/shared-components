@@ -1,0 +1,27 @@
+.is-sticky-scroller {
+  &[data-sticky-scroller] {
+    will-change: clip-path;
+
+    // &.is-sticky {
+    //   width: 100%;
+    // }
+  }
+}
+
+.sticky-scroller__spacer {
+  pointer-events: none;
+  position: relative;
+  opacity: 0;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    display: block;
+    position: sticky;
+    width: 100%;
+    height: 100%;
+    top: 100%;
+    bottom: 0;
+    left: 0;
+  }
+}

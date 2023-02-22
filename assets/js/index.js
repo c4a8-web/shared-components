@@ -41,6 +41,11 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
+  import('./sticky-scroller.js') // needs to load early
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError),
   import('./toggle-switch.js')
     .then((module) => {
       return module.default;
@@ -128,6 +133,7 @@ const componentList = [
 // const componentPathList = [
 //   // './anchor.js',
 //   // './data-an.js',
+//   // './sticky-scroller.js',
 //   // './toggle-switch.js',
 //   // './components/back.js',
 //   // './components/back-to-top.js',
