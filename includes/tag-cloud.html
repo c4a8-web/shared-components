@@ -2,8 +2,9 @@
 {%- assign tagCloudLevel = include.level | default: "h2" -%}
 {%- assign tagCloudHeadline = include.headline -%}
 {%- assign tagCloudSubline = include.subline -%}
+{%- assign tagCloudSticky = include.sticky -%}
 
-<div class="tag-cloud">
+<div class="tag-cloud {% if tagCloudSticky %}disabledis-sticky-scroller {% endif %}">
   <div class="tag-cloud__intro container">
     <div class="tag-cloud__row row">
       <div class="tag-cloud__header col">

@@ -5,8 +5,12 @@
 {%- assign stepListSubline = include.subline | default: subline -%}
 {%- assign stepListList = include.list | default: list -%}
 {%- assign stepListVariant = include.variant -%}
+{%- assign stepListSticky = include.sticky -%}
 
-<div class="step-list {% if stepListVariant %}step-list--{{ stepListVariant }}{% endif %}" style="{% unless stepListVariant %}--step-list-background: {{ stepListBackground }};--step-list-color: {{ stepListColor }}{% endunless %}">
+<div class="step-list
+            {% if stepListSticky %}is-sticky-scroller {% endif %}
+            {% if stepListVariant %}step-list--{{ stepListVariant }}{% endif %}"
+            style="{% unless stepListVariant %}--step-list-background: {{ stepListBackground }};--step-list-color: {{ stepListColor }}{% endunless %}">
   <div class="container">
     {%- if stepListHeadline -%}
       <div class="row">

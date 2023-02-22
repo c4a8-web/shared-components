@@ -3,18 +3,20 @@
   {%- assign testimonialsSliderHeadlineLevel = include.json.headlineLevel -%}
   {%- assign testimonialsSliderSubline = include.json.subline -%}
   {%- assign testimonialsSliderSlides = include.slides | include.json.slides -%}
+  {%- assign testimonialsSliderSticky = include.sticky | include.json.sticky -%}
 {%- else -%}
   {%- assign testimonialsSliderHeadline = include.headline -%}
   {%- assign testimonialsSliderHeadlineLevel = include.headlineLevel -%}
   {%- assign testimonialsSliderSubline = include.subline -%}
   {%- assign testimonialsSliderSlides = include.slides -%}
+  {%- assign testimonialsSliderSticky = include.sticky -%}
 {%- endif -%}
 
 {%- assign testimonialsSliderSpacing = include.spacing | default: 'space-bottom-3' -%}
 {%- assign testimonialsSliderSlides = testimonialsSliderSlides | sort: 'uid' -%}
 
 <!-- Shared Testimonial Slider Section -->
-<div class="testimonials-slider container {{ testimonialsSliderSpacing }}">
+<div class="testimonials-slider container {{ testimonialsSliderSpacing }} {% if testimonialsSliderSticky %}disabledis-sticky-scroller{% endif %}">
   <div class="testimonials-slider__header row">
     <div class="col-lg-12">
       {%

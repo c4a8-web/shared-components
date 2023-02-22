@@ -2,7 +2,7 @@
 {%- assign heroTextImageHero = page.hero | default: include.hero | default: hero -%}
 {%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
 {%- assign heroTextImagePattern = heroTextImageHero.pattern | default: false -%}
-{%- assign heroTextVideo = heroTextImageHero.video | default: false -%}
+{%- assign heroTextImageSticky = heroTextImageHero.sticky -%}
 
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
@@ -24,6 +24,12 @@
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
+{%- endif -%}
+
+{%- if heroTextImageSticky  -%}
+  {% assign heroTextImageClasses = 'is-sticky-scroller' %}
+{%- else -%}
+  {% assign heroTextImageClasses = '' -%}
 {%- endif -%}
 
 {%- if heroTextImageHero.cta -%}
@@ -96,7 +102,9 @@
   {%- assign heroTextImageIsLightClass = '' -%}
 {% endif %}
 
-<div class="hero-text-image is-component {{ heroTextImageVariant }} {% if heroTextImageHero.img %}has-content-img{% endif %} position-relative bg-img-hero {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
+<div class="hero-text-image is-component bg-img-hero {{ heroTextImageClasses }} {{ heroTextImageVariant }}
+    {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
+    {% if heroTextImageHero.img %}has-content-img{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"
     style="{% if heroTextImageHero.bgColor %}--color-hero-text-image-background: {{ heroTextImageHero.bgColor }};background-color:{{ heroTextImageHero.bgColor }}{% endif %}"
 >
