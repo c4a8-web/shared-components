@@ -1,6 +1,7 @@
 import BaseComponent from './base-component.js';
 import Animate from '../animate.js';
 import Tools from '../tools.js';
+import Events from '../events.js';
 
 class TagCloud extends BaseComponent {
   static rootSelector = '.tag-cloud';
@@ -8,6 +9,7 @@ class TagCloud extends BaseComponent {
   constructor(root, options) {
     super(root, options);
 
+    this.root = root;
     this.container = root.querySelector('.tag-cloud__container');
     this.itemsContainer = root.querySelector('.tag-cloud__items');
     this.itemLinkClass = 'tag-cloud__item-link';
@@ -44,10 +46,14 @@ class TagCloud extends BaseComponent {
     this.weightingElements();
     this.addCorners();
     this.appendItems();
+
     if (this.hasScrollAnimation()) {
       this.setDuration();
       this.addScrollAnimation();
     }
+
+    document.dispatchEvent(new CustomEvent(Events.DIMENSIONS_CHANGED, { detail: this.root }));
+
     this.bindEvents();
   }
 
@@ -115,6 +121,7 @@ class TagCloud extends BaseComponent {
     const reverse = distance ? true : false;
     const scaleDiff = Math.abs(startPosition - endPosition) / Math.abs(this.startPosition - this.endPosition);
     const duration = this.duration * scaleDiff;
+
     this.moveTo(startPosition, endPosition, duration, timing, reverse);
   }
 
@@ -171,7 +178,6 @@ class TagCloud extends BaseComponent {
         const stepAfterDrag = reverse ? currentPosition - limitDiff * progress : currentPosition + limitDiff * progress;
         const stepBeforeDrag = reverse ? limitDiff * (1 - progress) : limitDiff * progress;
         this.slider.scrollLeft = this.gotDragged ? stepAfterDrag : stepBeforeDrag;
-
 
         if (progress === 1) {
           this.gotDragged = false;
@@ -239,6 +245,7 @@ class TagCloud extends BaseComponent {
     let value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
     let tempValue = value;
     let sign = Math.random() > 0.5 ? -1 * value : value;
+
     if (sign < 0) {
       value = sign + tempValue / slowThreshold;
     }
@@ -270,7 +277,6 @@ class TagCloud extends BaseComponent {
       if (item.title) {
         const link = document.createElement('a');
 
-        //link.setAttribute('href', item.link);
         let isEven = i % groupSize === 0 ? true : false;
         const groupIdentifier = isEven ? 2 : 1;
         link.setAttribute('groupIdentifier', groupIdentifier);

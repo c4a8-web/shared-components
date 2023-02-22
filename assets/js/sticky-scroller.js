@@ -1,4 +1,5 @@
 import State from './state.js';
+import Events from './events.js';
 
 class StickyScroller {
   static rootSelector = '.is-sticky-scroller';
@@ -27,6 +28,14 @@ class StickyScroller {
   bindEvents() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
     window.addEventListener('resize', this.handleResize.bind(this));
+
+    document.addEventListener(Events.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
+  }
+
+  handleDimensionsChanged(event) {
+    if (event.detail !== this.root) return;
+
+    this.handleResize();
   }
 
   handleResize() {
