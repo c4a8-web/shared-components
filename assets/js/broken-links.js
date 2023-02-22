@@ -114,6 +114,13 @@ class BrokenLinks {
     let index = 0;
     while (index < this.errors.length) {
       const url = this.errors[index].url;
+
+      const urlEnding = url.endsWith('/');
+      const prevExists = this.prevLink[url] === undefined;
+      const urlExtendedOrReduced = urlEnding ? url.slice(-1, 1) : url + '/';
+      const updatedUrl = prevExists ? urlExtendedOrReduced : url;
+      const prevUrl = this.prevLink[updatedUrl];
+
       const isIndexZero = index != 0;
 
       if (this.blockedLinks[url]) {
@@ -121,7 +128,7 @@ class BrokenLinks {
         index = isIndexZero ? index-- : index;
         continue;
       }
-      const prevUrl = this.prevLink[url];
+
       const tableRow = body.insertRow(index);
       const tableCellBrokenLink = tableRow.insertCell(0);
       const tableCellPrevLink = tableRow.insertCell(1);
