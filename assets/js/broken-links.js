@@ -1,6 +1,7 @@
 class BrokenLinks {
   constructor() {
     this.errors = [];
+    this.blockedLinks = {};
     this.links = {};
     this.fetchedLinks = {};
     this.prevLink = {};
@@ -32,6 +33,7 @@ class BrokenLinks {
 
     this.input.setAttribute('value', this.rootUrl);
     this.button.addEventListener('click', this.handleClick.bind(this));
+    document.addEventListener('securitypolicyviolation', this.handleContentSecurityPolicy.bind(this));
   }
 
   startFallbackTimer() {
@@ -109,12 +111,25 @@ class BrokenLinks {
     rightCell.innerHTML = rightCellText;
 
     const body = table.createTBody();
+    let index = 0;
+    while (index < this.errors.length) {
+      const url = this.errors[index].url;
 
-    for (let i = 0; i < this.errors.length; i++) {
-      const url = this.errors[i].url;
-      const prevUrl = this.prevLink[url];
+      const urlEnding = url.endsWith('/');
+      const prevExists = this.prevLink[url] === undefined;
+      const urlExtendedOrReduced = urlEnding ? url.slice(-1, 1) : url + '/';
+      const updatedUrl = prevExists ? urlExtendedOrReduced : url;
+      const prevUrl = this.prevLink[updatedUrl];
 
-      const tableRow = body.insertRow(i);
+      const isIndexZero = index != 0;
+
+      if (this.blockedLinks[url]) {
+        this.errors.splice(index, 1);
+        index = isIndexZero ? index-- : index;
+        continue;
+      }
+
+      const tableRow = body.insertRow(index);
       const tableCellBrokenLink = tableRow.insertCell(0);
       const tableCellPrevLink = tableRow.insertCell(1);
 
@@ -122,6 +137,7 @@ class BrokenLinks {
       const previousLinkText = document.createTextNode(prevUrl);
       tableCellBrokenLink.appendChild(brokenLinkText);
       tableCellPrevLink.appendChild(previousLinkText);
+      index++;
     }
   }
 
@@ -132,14 +148,12 @@ class BrokenLinks {
   getUrl(url, previousUrl) {
     this.hasEnded = false;
     this.prevLink[url] = previousUrl;
-
     if (this.hasDuplicates(url) || this.links[url] || this.fetchedLinks[url]) return (this.hasEnded = true);
 
     this.fetchedLinks[url] = true;
 
     return new Promise((resolve) => {
       const external = this.isExternal(url);
-
       fetch(url, this.options)
         .then((response) => {
           this.handleResponse(response, external);
@@ -202,10 +216,16 @@ class BrokenLinks {
     }
   }
 
+  handleContentSecurityPolicy(e) {
+    const blockedLink = e.blockedURI;
+    if (this.blockedLinks[blockedLink]) return;
+    this.blockedLinks[blockedLink] = 'blocked';
+  }
+
   handleError(data) {
     let { url, error, previousUrl } = data;
 
-    if (this.hasDuplicates(url) || this.links[url]) return;
+    if (this.hasDuplicates(url) || this.links[url] || this.blockedLinks[url]) return;
 
     this.errors.push({
       url,
