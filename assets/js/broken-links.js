@@ -114,12 +114,7 @@ class BrokenLinks {
     let index = 0;
     while (index < this.errors.length) {
       const url = this.errors[index].url;
-
-      const urlEnding = url.endsWith('/');
-      const prevExists = this.prevLink[url] === undefined;
-      const urlExtendedOrReduced = urlEnding ? url.slice(0, url.length - 1) : url + '/';
-      const updatedUrl = prevExists ? urlExtendedOrReduced : url;
-      const prevUrl = this.prevLink[updatedUrl];
+      const prevUrl = this.prevLink[url] || this.prevLink[url + '/'];
 
       const isIndexZero = index != 0;
 
