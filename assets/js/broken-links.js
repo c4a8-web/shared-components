@@ -1,7 +1,7 @@
 class BrokenLinks {
   constructor() {
     this.errors = [];
-    this.blockedLINKS = [];
+    this.blockedLinks = {};
     this.links = {};
     this.fetchedLinks = {};
     this.prevLink = {};
@@ -30,10 +30,10 @@ class BrokenLinks {
     this.loader.classList.add('d-none');
 
     if (!this.input || !this.button || !this.loader) return console.error('No button or input!');
-    console.log(this.blockedLINKS);
 
     this.input.setAttribute('value', this.rootUrl);
     this.button.addEventListener('click', this.handleClick.bind(this));
+    document.addEventListener('securitypolicyviolation', this.handleContentSecurityPolicy.bind(this));
   }
 
   startFallbackTimer() {
@@ -111,18 +111,18 @@ class BrokenLinks {
     rightCell.innerHTML = rightCellText;
 
     const body = table.createTBody();
-    let i = 0;
-    while (i < this.errors.length) {
-      console.log('INDEX->>', i);
-      console.log('URL->>', this.errors[i].url);
-      const url = this.errors[i].url;
-      if (this.blockedLINKS.includes(url)) {
-        this.errors.splice(i, 1);
-        i = i != 0 ? i-- : i;
+    let index = 0;
+    while (index < this.errors.length) {
+      const url = this.errors[index].url;
+      const isIndexZero = index != 0;
+
+      if (this.blockedLinks[url]) {
+        this.errors.splice(index, 1);
+        index = isIndexZero ? index-- : index;
         continue;
       }
       const prevUrl = this.prevLink[url];
-      const tableRow = body.insertRow(i);
+      const tableRow = body.insertRow(index);
       const tableCellBrokenLink = tableRow.insertCell(0);
       const tableCellPrevLink = tableRow.insertCell(1);
 
@@ -130,7 +130,7 @@ class BrokenLinks {
       const previousLinkText = document.createTextNode(prevUrl);
       tableCellBrokenLink.appendChild(brokenLinkText);
       tableCellPrevLink.appendChild(previousLinkText);
-      i++;
+      index++;
     }
   }
 
@@ -155,7 +155,6 @@ class BrokenLinks {
           resolve();
         })
         .catch((error) => {
-          this.handleCSP(url);
           this.handleError({ url, error, previousUrl });
           this.hasEnded = true;
 
@@ -210,19 +209,16 @@ class BrokenLinks {
     }
   }
 
-  handleCSP(url) {
-    if (this.blockedLINKS.includes(url)) return;
-
-    document.addEventListener('securitypolicyviolation', (e) => {
-      if (this.blockedLINKS.includes(e.blockedURI)) return;
-      this.blockedLINKS.push(e.blockedURI);
-    });
+  handleContentSecurityPolicy(e) {
+    const blockedLink = e.blockedURI;
+    if (this.blockedLinks[blockedLink]) return;
+    this.blockedLinks[blockedLink] = 'blocked';
   }
 
-  async handleError(data) {
+  handleError(data) {
     let { url, error, previousUrl } = data;
 
-    if (this.hasDuplicates(url) || this.links[url] || this.blockedLINKS.includes(url)) return;
+    if (this.hasDuplicates(url) || this.links[url] || this.blockedLinks[url]) return;
 
     this.errors.push({
       url,
