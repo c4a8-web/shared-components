@@ -115,7 +115,7 @@ class BrokenLinks {
 
     for (let i = 0; i < this.errors.length; i++) {
       const url = this.errors[i].url;
-      const prevUrl = this.prevLink[url] || this.prevLink[url + '/'];
+      const prevUrl = this.prevLink[url.slice(0, url.length - 1)] || this.prevLink[url] || this.prevLink[url + '/'];
 
       if (!this.blockedLinks[url]) {
         const tableRow = body.insertRow(blockIndex);
