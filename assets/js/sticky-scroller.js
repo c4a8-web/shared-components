@@ -30,6 +30,26 @@ class StickyScroller {
     window.addEventListener('resize', this.handleResize.bind(this));
 
     document.addEventListener(Events.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
+
+    // this.observer = new MutationObserver(this.handleMutation.bind(this));
+
+    // this.observer.observe(this.root, {
+    //   attributes: true,
+    //   childList: false,
+    //   characterData: false,
+    // });
+  }
+
+  handleMutation(mutations) {
+    // TODO check if element is changed or if it is initialized?
+    // TODO unset dimensions if element is off-screen or don't set them at all???
+
+    mutations.forEach((mutation) => {
+      console.log('StickyScroller ~ mutations.forEach ~ mutation:', mutation);
+      // if (mutation.type === 'childList') {
+      //   this.updateClipPath(this.maxPercentage);
+      // }
+    });
   }
 
   handleDimensionsChanged(event) {
@@ -135,6 +155,7 @@ class StickyScroller {
     if (!this.isOutOfViewport(percentage) && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
         this.spacer.style.height = this.root.clientHeight + 'px';
+        this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
       }
 
       this.root.style.top = topValue + 'px';
@@ -171,14 +192,15 @@ class StickyScroller {
 
     parent.insertBefore(this.spacer, this.root.nextSibling);
 
-    this.root.dataset.absoluteScroller = true;
+    this.root.dataset.stickyScroller = true;
 
     this.setPositions();
   }
 
   setDimensions() {
-    this.root.style.height = this.root.clientHeight + 'px';
-    this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
+    // this.root.style.height = this.root.clientHeight + 'px';
+    // this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
+    this.spacer.style.width = this.root.clientWidth + 'px';
   }
 
   resetElements() {

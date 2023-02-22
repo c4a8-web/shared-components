@@ -1,6 +1,10 @@
 .is-sticky-scroller {
   &[data-sticky-scroller] {
     will-change: clip-path;
+
+    // &.is-sticky {
+    //   width: 100%;
+    // }
   }
 }
 

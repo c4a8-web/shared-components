@@ -1,13 +1,14 @@
 {%- assign eventListList = include.list -%}
 {%- assign eventListOverlap = include.overlap -%}
 {%- assign eventListSettings = include.settings -%}
+{%- assign eventListSticky = include.sticky -%}
 
 {% comment %}
 TODO figure out what happens when the teaser is the last element so the variants are bigger than the list. add only the missing teaser after that
 {% endcomment %}
 
 <!-- Shared Event List Section -->
-<div class="event-list container {% if eventListOverlap %}event-list--overlap{% endif %}">
+<div class="event-list container {% if eventListOverlap %}event-list--overlap{% endif %} {% if eventListSticky %}disabledis-sticky-scroller{% endif %}">
   <div class="event-list__row row col-lg-12">
     {% assign eventListTeaserIndex = 0 %}
     {% for eventListTeaser in eventListList %}

@@ -15,6 +15,7 @@
 {%- assign blogRecentCta = include.cta -%}
 {%- assign blogRecentCaseStudies = include.caseStudies -%}
 {%- assign blogRecentHideContainer = include.hideContainer -%}
+{%- assign blogRecentSticky = include.sticky -%}
 
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
@@ -127,4 +128,5 @@
   img-url="{{ site.blog_image_path }}"
   cta="{{ blogRecentCta | jsonify | escape}}"
   :data-authors="{{ site.data.authors | jsonify | escape }}"
+  :sticky="{{ blogRecentSticky }}"
 ></blog-recent>

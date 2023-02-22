@@ -26,6 +26,7 @@
 {%- assign textImageModal = include.modal -%}
 {%- assign textImageHref = include.href -%}
 {%- assign textImageBadge = include.badge -%}
+{%- assign textImageSticky = include.sticky -%}
 
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
@@ -49,6 +50,7 @@
 
 <div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
+          {% if textImageSticky %}disabledis-sticky-scroller{% endif %}
           {% if textImageFloat %}text-image--float{% endif %}"
      style="{% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endif %}
             {% if textImageBackground %}background-image:url('{{ textImageBackground }}');{% endif %}">
