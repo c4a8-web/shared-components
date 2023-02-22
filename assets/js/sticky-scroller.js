@@ -24,8 +24,6 @@ class StickyScroller {
     this.setStickyPosition();
   }
 
-  // TODO test with new header
-
   bindEvents() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
     window.addEventListener('resize', this.handleResize.bind(this));
@@ -106,8 +104,6 @@ class StickyScroller {
       } else {
         percentage = (position - offsetTop) / step;
       }
-
-      // percentage = Math.round(percentage, 10);
     } else {
       percentage = this.maxPercentage;
     }
@@ -119,26 +115,13 @@ class StickyScroller {
     return percentage >= this.maxPercentage || percentage < 0;
   }
 
-  debug(text) {
-    document.querySelector('.debug').innerHTML = text;
-  }
-
   setStickyPosition() {
     const headerHeight = this.getHeaderHeight();
-    // console.log('AbsoluteScroller ~ setStickyPosition ~ headerHeight:', headerHeight);
-    // console.log('AbsoluteScroller ~ setStickyPosition ~ headerHeight:', headerHeight);
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
-    // const topValue = viewPortOverflow > 0 ? -viewPortOverflow : this.isFirstChild(this.root) ? 0 : headerHeight;
-    // const topValue = viewPortOverflow > 0 ? -viewPortOverflow : headerHeight;
-    // const topValue = viewPortOverflow > 0 ? -viewPortOverflow : 0;
-    const topValue = 0;
+    const topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
     const percentage = this.getPercentage(scrollPosition, topValue);
-    // console.log('AbsoluteScroller ~ setStickyPosition ~ percentage:', percentage);
-    // console.log('AbsoluteScroller ~ setStickyPosition ~ this.root:', this.root);
-
-    // return;
 
     if (!this.isOutOfViewport(percentage) && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
@@ -148,19 +131,12 @@ class StickyScroller {
       this.root.style.top = topValue + 'px';
       this.root.classList.remove(State.OFF_SCREEN);
       this.root.classList.add(State.STICKY);
-
-      this.debug('fixed ' + Math.round(percentage) + '#' + topValue + '#' + headerHeight + '##' + scrollPosition);
-
       this.updateClipPath(percentage);
     } else if (percentage === 0) {
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
-
-      this.debug('off screen');
     } else {
       this.disableStickyness();
-
-      this.debug('disabled');
     }
   }
 
