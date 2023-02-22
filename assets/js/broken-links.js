@@ -111,28 +111,23 @@ class BrokenLinks {
     rightCell.innerHTML = rightCellText;
 
     const body = table.createTBody();
-    let index = 0;
-    while (index < this.errors.length) {
-      const url = this.errors[index].url;
+    let blockIndex = 0;
+
+    for (let i = 0; i < this.errors.length; i++) {
+      const url = this.errors[i].url;
       const prevUrl = this.prevLink[url] || this.prevLink[url + '/'];
 
-      const isIndexZero = index != 0;
+      if (!this.blockedLinks[url]) {
+        const tableRow = body.insertRow(blockIndex);
+        const tableCellBrokenLink = tableRow.insertCell(0);
+        const tableCellPrevLink = tableRow.insertCell(1);
 
-      if (this.blockedLinks[url]) {
-        this.errors.splice(index, 1);
-        index = isIndexZero ? index-- : index;
-        continue;
+        const brokenLinkText = document.createTextNode(url);
+        const previousLinkText = document.createTextNode(prevUrl);
+        tableCellBrokenLink.appendChild(brokenLinkText);
+        tableCellPrevLink.appendChild(previousLinkText);
+        blockIndex++;
       }
-
-      const tableRow = body.insertRow(index);
-      const tableCellBrokenLink = tableRow.insertCell(0);
-      const tableCellPrevLink = tableRow.insertCell(1);
-
-      const brokenLinkText = document.createTextNode(url);
-      const previousLinkText = document.createTextNode(prevUrl);
-      tableCellBrokenLink.appendChild(brokenLinkText);
-      tableCellPrevLink.appendChild(previousLinkText);
-      index++;
     }
   }
 
