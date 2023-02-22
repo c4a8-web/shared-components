@@ -194,11 +194,11 @@ HeroTextImageStudy.args = {
   },
 };
 
-export const HeroTextShapeAbsolute = Template.bind({});
+export const HeroTextShapeSticky = Template.bind({});
 
-HeroTextShapeAbsolute.args = {
+HeroTextShapeSticky.args = {
   hero: {
-    absolute: true,
+    sticky: true,
     overline: 'Wir schaffen die optimale Arbeitsumgebung',
     headline: 'Consulting Services',
     subline:

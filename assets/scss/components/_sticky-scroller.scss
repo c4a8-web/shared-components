@@ -1,25 +1,19 @@
-.is-absolute-scroller {
-  &[data-absolute-scroller] {
+.is-sticky-scroller {
+  &[data-sticky-scroller] {
     will-change: clip-path;
-    // transition: opacity 2.1s $animation-transition;
-
-    // &.is-off-screen {
-    //   opacity: 0;
-    // }
   }
 }
 
-.absolute-scroller__spacer {
+.sticky-scroller__spacer {
   pointer-events: none;
   position: relative;
   opacity: 0;
   overflow: hidden;
-  // height: 0;
 
   &::after {
     content: '';
     display: block;
-    position: absolute;
+    position: sticky;
     width: 100%;
     height: 100%;
     top: 100%;

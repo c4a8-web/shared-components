@@ -2,7 +2,7 @@
 {%- assign heroTextImageHero = page.hero | default: include.hero | default: hero -%}
 {%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
 {%- assign heroTextImagePattern = heroTextImageHero.pattern | default: false -%}
-{%- assign heroTextImageAbsolute = heroTextImageHero.absolute -%}
+{%- assign heroTextImageSticky = heroTextImageHero.sticky -%}
 
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
@@ -22,8 +22,8 @@
   {% assign heroTextImageSrcSet = false %}
 {%- endif -%}
 
-{%- if heroTextImageAbsolute  -%}
-  {% assign heroTextImageClasses = 'is-absolute-scroller' %}
+{%- if heroTextImageSticky  -%}
+  {% assign heroTextImageClasses = 'is-sticky-scroller' %}
 {%- else -%}
   {% assign heroTextImageClasses = '' -%}
 {%- endif -%}

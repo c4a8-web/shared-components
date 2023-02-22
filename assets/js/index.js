@@ -122,7 +122,7 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
-  import('./absolute-scroller.js')
+  import('./sticky-scroller.js')
     .then((module) => {
       return module.default;
     })
@@ -149,7 +149,7 @@ const componentList = [
 //   // './components/video-frame.js',
 //   // './modal.js',
 //   // './pages/detail.js',
-//   // './absolute-scroller.js',
+//   // './sticky-scroller.js',
 // ];
 
 // componentPathList.forEach((path) => {
