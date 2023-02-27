@@ -89,6 +89,7 @@ export default {
     },
     trigger: String,
     icon: String,
+    size: String,
     download: {
       default: null,
     },
@@ -117,6 +118,6 @@ export default {
                :data-trigger="trigger ? trigger : null"
     >
       <span class="cta__text">{{ text }}</span>
-      <icon :icon="iconName" v-if="hasIcon" size=" " />
+      <icon :icon="iconName" v-if="hasIcon" :size="size" />
     </component>`,
 };
