@@ -335,7 +335,7 @@
   text-shadow: 0 0 14px var(--color-white);
 }
 
-@mixin hover-scale($scale-factor: 2, $scale-duration: 1.2, $on-img: 'false', $drop-shadow: 'false') {
+@mixin hover-scale($scale-factor: 2, $scale-duration: 1.2, $scale-delay: 0, $on-img: 'false', $drop-shadow: 'false') {
   $scale-factor: 1 + ($scale-factor/10);
   $scale-duration: #{$scale-duration}s;
 
@@ -347,9 +347,11 @@
     img {
       transform: scale($scale-factor);
       transition: transform $scale-duration;
+      transition-delay: $scale-delay;
     }
   } @else {
     transform: scale($scale-factor);
     transition: transform $scale-duration;
+    transition-delay: $scale-delay;
   }
 }
