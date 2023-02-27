@@ -1,6 +1,24 @@
+$cta-primary-svg-size: 7;
+
 .text-image {
   position: relative;
   background-repeat: no-repeat;
+
+  .link {
+    svg {
+      @include move-right-left;
+
+      stroke: var(--color-svg-icon--hover);
+      width: spacing($cta-primary-svg-size);
+      height: spacing($cta-primary-svg-size);
+
+      @include media-breakpoint-up(lg) {
+        margin-left: spacing(4);
+        width: spacing($cta-primary-svg-size);
+        height: spacing($cta-primary-svg-size);
+      }
+    }
+  }
 
   &.text-image--bg-color {
     + *[class*='mt-'] {
