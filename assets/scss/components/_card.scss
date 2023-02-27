@@ -1,14 +1,8 @@
-$card-transition-time: 1.3;
-$card-hover-scale: 0.25;
-
 .card {
   &:not(.card--no-link):hover {
-    @include hover-scale(
-      $scale-factor: $card-hover-scale,
-      $scale-duration: $card-transition-time,
-      $on-img: 'true',
-      $drop-shadow: 'medium-light'
-    );
+    @include shadow('medium-light');
+    @include hover-scale;
+
     cursor: pointer;
   }
 

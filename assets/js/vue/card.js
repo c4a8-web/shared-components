@@ -226,7 +226,7 @@ export default {
       </template>
       <template v-else>
         <div class="card__img-top position-relative" v-if="blogTitlePic">
-          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <v-img class="is-foreground" :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
           <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
               <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>

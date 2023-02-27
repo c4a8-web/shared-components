@@ -15,14 +15,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
   &:hover {
     @include shadow('medium-light');
-
-    .event-teaser__shapes {
-      @include hover-scale($event-teaser-hover-scale, $event-teaser-transition-time);
-    }
-
-    .event-teaser__image {
-      @include hover-scale($event-teaser-hover-scale, $event-teaser-transition-time, $on-img: 'true');
-    }
+    @include hover-scale;
   }
 
   &.event-teaser--training {
