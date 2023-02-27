@@ -114,10 +114,9 @@
           </div>
         {% endfor %}
       </div>
-      <div class="event-teaser__image">
+      <div class="event-teaser__image is-foreground">
         {%
           include img.html
-          class="is-foreground"
           img=eventTeaserImage.img
           alt=eventTeaserImage.alt
           cloudinary=true

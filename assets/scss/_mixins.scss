@@ -340,13 +340,16 @@
   $scale-duration: 1.3s;
   $scale-delay: 0.5s;
 
-  .is-foreground,
-  .is-background {
+  .is-foreground img,
+  .is-foreground svg,
+  .is-background img,
+  .is-background svg {
     transform: scale($scale-factor);
     transition: transform $scale-duration;
   }
 
-  .is-background {
+  .is-background img,
+  .is-background svg {
     transition-delay: $scale-delay;
   }
 }
