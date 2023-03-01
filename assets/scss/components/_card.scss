@@ -1,9 +1,12 @@
 .card {
-  &:not(.card--no-link):hover {
-    @include shadow('medium-light');
+  &:not(.card--no-link) {
     @include hover-scale;
 
-    cursor: pointer;
+    &:hover {
+      @include shadow('medium-light');
+
+      cursor: pointer;
+    }
   }
 
   &:not(.card--large):not(.card--long):not(.card--products) {

@@ -340,12 +340,26 @@
   $scale-duration: 1.3s;
   $scale-delay: 2s;
 
-  :is(.is-foreground, .is-background) :is(img, svg) {
-    transform: scale($scale-factor);
-    transition: transform $scale-duration;
+  .is-foreground :is(img, svg),
+  .is-background {
+    // transform: scale($scale-factor);
+    // transition: transform $scale-duration;
+
+    transition-property: transform;
+    transition-timing-function: $animation-transition;
+    transition-duration: $scale-duration;
   }
 
   .is-background :is(img, svg) {
     transition-delay: $scale-delay;
+    // opacity: 0.5;
+    // transition-delay: 10s;
+  }
+
+  &:hover {
+    .is-foreground :is(img, svg),
+    .is-background {
+      transform: scale($scale-factor);
+    }
   }
 }

@@ -3,6 +3,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
 .event-teaser {
   @include shadow('super-light');
+  @include hover-scale;
 
   position: relative;
   display: flex;
@@ -13,7 +14,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
   &:hover {
     @include shadow('medium-light');
-    @include hover-scale;
+    // @include hover-scale;
   }
 
   &.event-teaser--training {
@@ -454,12 +455,12 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   transform-origin: bottom right;
 }
 
-.event-teaser__shapes,
-.event-teaser__image img {
-  transition-property: transform;
-  transition-timing-function: $animation-transition;
-  transition-duration: 0.4s;
-}
+// .event-teaser__shapes,
+// .event-teaser__image img {
+//   transition-property: transform;
+//   transition-timing-function: $animation-transition;
+//   transition-duration: 0.4s;
+// }
 
 .event-teaser__price {
   padding-right: spacing(3);
