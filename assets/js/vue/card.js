@@ -142,7 +142,7 @@ export default {
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
-            <div class="position-relative overflow-hidden is-foreground">
+            <div class="card__img-top position-relative overflow-hidden is-foreground">
               <v-img :img ="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
               <figure class="d-none d-lg-block">
                 <svg class="ie-curved-x position-absolute top-0 right-0 bottom-0 mr-n1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100.1 1920" height="101%">
