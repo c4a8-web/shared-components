@@ -38,6 +38,15 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     list-style: none;
     margin-bottom: 0;
 
+    &.dashed {
+      li {
+        &::before {
+          margin-left: 0;
+          content: '';
+        }
+      }
+    }
+
     + * {
       margin-top: spacing(12);
     }
