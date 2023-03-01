@@ -338,25 +338,21 @@
 @mixin hover-scale {
   $scale-factor: 1.025;
   $scale-duration: 1.3s;
-  $scale-delay: 2s;
+  $scale-delay: 350ms;
 
   .is-foreground :is(img, svg),
   .is-background {
-    // transform: scale($scale-factor);
-    // transition: transform $scale-duration;
-
     transition-property: transform;
     transition-timing-function: $animation-transition;
     transition-duration: $scale-duration;
   }
 
-  .is-background :is(img, svg) {
+  .is-background {
     transition-delay: $scale-delay;
-    // opacity: 0.5;
-    // transition-delay: 10s;
   }
 
   &:hover {
+    @include shadow('medium-light');
     .is-foreground :is(img, svg),
     .is-background {
       transform: scale($scale-factor);

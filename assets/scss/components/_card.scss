@@ -3,8 +3,6 @@
     @include hover-scale;
 
     &:hover {
-      @include shadow('medium-light');
-
       cursor: pointer;
     }
   }

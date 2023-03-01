@@ -12,11 +12,6 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   cursor: pointer;
   transition: box-shadow 1.5s $animation-transition;
 
-  &:hover {
-    @include shadow('medium-light');
-    // @include hover-scale;
-  }
-
   &.event-teaser--training {
     .event-teaser__image {
       position: absolute;
