@@ -55,6 +55,10 @@
   {%- endif -%}
 {% endif %}
 
+{% unless eventTeaserShapes %}
+  {% assign eventTeaserImageFullWidth = 'event-teaser__image--full-width' %}
+{% endunless %}
+
 {%- assign eventTeaserHref = eventTeaserCta.href | default: eventTeaserUrl -%}
 
 <!-- Shared Event Teaser Section -->
@@ -114,7 +118,7 @@
           </div>
         {% endfor %}
       </div>
-      <div class="event-teaser__image">
+      <div class="event-teaser__image {{ eventTeaserImageFullWidth }}">
         {%
           include img.html
           img=eventTeaserImage.img

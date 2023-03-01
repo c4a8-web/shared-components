@@ -396,6 +396,14 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     transform-origin: top right;
     image-rendering: -webkit-optimize-contrast;
   }
+
+  &.event-teaser__image--full-width {
+    img {
+      width: 100%;
+      object-fit: cover;
+      transform-origin: center;
+    }
+  }
 }
 
 .event-teaser__foreground {
