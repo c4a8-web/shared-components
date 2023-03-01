@@ -338,7 +338,6 @@
 @mixin hover-scale {
   $scale-factor: 1.025;
   $scale-duration: 1.3s;
-  $scale-delay: 350ms;
 
   .is-foreground :is(img, svg),
   .is-background {
@@ -347,12 +346,9 @@
     transition-duration: $scale-duration;
   }
 
-  .is-background {
-    transition-delay: $scale-delay;
-  }
-
   &:hover {
     @include shadow('medium-light');
+
     .is-foreground :is(img, svg),
     .is-background {
       transform: scale($scale-factor);
