@@ -65,6 +65,9 @@ export default {
     targetValue() {
       return this.external ? '_blank' : this.target;
     },
+    sizeValue() {
+      return 'medium';
+    },
   },
   props: {
     href: {
@@ -89,7 +92,6 @@ export default {
     },
     trigger: String,
     icon: String,
-    size: String,
     download: {
       default: null,
     },
@@ -118,6 +120,6 @@ export default {
                :data-trigger="trigger ? trigger : null"
     >
       <span class="cta__text">{{ text }}</span>
-      <icon :icon="iconName" v-if="hasIcon" :size="size" />
+      <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
     </component>`,
 };

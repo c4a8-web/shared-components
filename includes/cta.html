@@ -13,7 +13,6 @@
 {% assign ctaTrigger = include.trigger %}
 {% assign ctaExternal = include.external %}
 {% assign ctaIcon = include.icon %}
-{% assign ctaIconSize = include.iconSize %}
 {% assign ctaDownload = include.download %}
 {% assign ctaReversed = include.reversed | default: false %}
 {% assign ctaMonochrome = include.monochrome | default: false %}
@@ -34,7 +33,6 @@
       trigger="{{ ctaTrigger }}"
       external="{{ ctaExternal }}"
       icon="{{ ctaIcon }}"
-      size="{{ ctaIconSize }}"
       download="{{ ctaDownload }}"
       :reversed={{ ctaReversed }}
       :monochrome={{ ctaMonochrome }}
