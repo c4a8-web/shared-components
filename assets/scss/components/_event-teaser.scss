@@ -1,33 +1,14 @@
 $event-teaser-default-spacing: 6;
-$event-teaser-transition-time: 1.3s;
-$event-teaser-hover-scale: 1.025;
 $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
 .event-teaser {
-  @include shadow('super-light');
+  @include hover-scale;
 
   position: relative;
   display: flex;
   flex-direction: column;
   background-color: var(--color-event-teaser-background);
   cursor: pointer;
-  transition: box-shadow 1.5s $animation-transition;
-
-  &:hover {
-    @include shadow('medium-light');
-
-    .event-teaser__shapes {
-      transform: scale($event-teaser-hover-scale);
-      transition-duration: $event-teaser-transition-time;
-    }
-
-    .event-teaser__image {
-      img {
-        transform: scale($event-teaser-hover-scale);
-        transition-duration: $event-teaser-transition-time;
-      }
-    }
-  }
 
   &.event-teaser--training {
     .event-teaser__image {
@@ -465,13 +446,6 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   width: 100%;
   height: 100%;
   transform-origin: bottom right;
-}
-
-.event-teaser__shapes,
-.event-teaser__image img {
-  transition-property: transform;
-  transition-timing-function: $animation-transition;
-  transition-duration: 0.4s;
 }
 
 .event-teaser__price {

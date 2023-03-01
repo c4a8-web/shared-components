@@ -1,8 +1,10 @@
 .card {
-  &:not(.card--no-link):hover {
-    @include shadow('medium-light');
+  &:not(.card--no-link) {
+    @include hover-scale;
 
-    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   &:not(.card--large):not(.card--long):not(.card--products) {
@@ -70,6 +72,7 @@
 
   .card__img-top {
     @include aspect-ratio(16, 9);
+    overflow: hidden;
 
     &:not(.card-img--long) {
       img {
