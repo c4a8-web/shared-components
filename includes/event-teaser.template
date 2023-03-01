@@ -68,7 +68,7 @@
 >
   <header class="event-teaser__header">
     <div class="event-teaser__background">
-      <div class="event-teaser__shapes">
+      <div class="event-teaser__shapes is-background">
         {% for eventTeaserShape in eventTeaserShapes %}
           {% if eventTeaserWebcast %}
             {% if eventTeaserShapes.size > 1 %}
@@ -114,7 +114,7 @@
           </div>
         {% endfor %}
       </div>
-      <div class="event-teaser__image">
+      <div class="event-teaser__image is-foreground">
         {%
           include img.html
           img=eventTeaserImage.img
