@@ -195,6 +195,12 @@ export default {
                   </div>
                 </div>
                 <div class="accordion__text" v-html="tab.content"></div>
+                <cta
+                  v-if="tab.cta"
+                  :text="tab.cta.text"
+                  :link="tab.cta.link"
+                  :href="tab.cta.href"
+                />
               </div>
             </div>
           </div>
