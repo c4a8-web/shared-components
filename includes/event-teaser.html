@@ -56,7 +56,6 @@
 {% endif %}
 
 {% unless eventTeaserShapes %}
-  {% assign eventTeaserImageFullWidth = 'event-teaser__image--full-width' %}
   {% assign eventTeaserImageFullWidth= 'event-teaser--image-full-width' %}
 {% endunless %}
 
@@ -119,7 +118,7 @@
           </div>
         {% endfor %}
       </div>
-      <div class="event-teaser__image {% if eventTeaserImageFullWidth %} event-teaser__image--full-width {% endif %}">
+      <div class="event-teaser__image">
         {%
           include img.html
           img=eventTeaserImage.img

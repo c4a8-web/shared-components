@@ -34,9 +34,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
       .img__picture-wrapper {
         max-width: none;
       }
-    }
-    .event-teaser__image--full-width {
-      @include aspect-ratio(16, 6);
+
       img {
         width: 100%;
         height: 100%;
