@@ -114,7 +114,7 @@ export default {
                 <card :product="check.product" :title="check.title" :tag="check.tag" :blog-title-pic="check.picture" />
               </template>
               <template v-else>
-                <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" :footer="check.footer" long=true />
+                <card :url="check.url" :title="check.title" :blog-title-pic="check.picture" :excerpt="check.subline" :sub-points="check.subpoints" :scope="check.scope" :footer="check.footer" :cta="check.cta" long=true />
               </template>
             </div>
           </template>
