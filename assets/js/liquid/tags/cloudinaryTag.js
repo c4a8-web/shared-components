@@ -75,8 +75,8 @@ const dummyDimensions = function (img, data) {
       height = 308;
       break;
     case 'events/microsoft-cloud-device-security-event.jpg':
-      width = 1000;
-      height = 500;
+      width = 1280;
+      height = 720;
       break;
     default:
       width = 800;

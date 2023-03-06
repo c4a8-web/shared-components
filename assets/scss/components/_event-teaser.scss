@@ -29,6 +29,14 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
     }
   }
 
+  &.event-teaser--image-full-width {
+    .event-teaser__image {
+      .img__picture-wrapper {
+        max-width: none;
+      }
+    }
+  }
+
   &.event-teaser--training {
     .event-teaser__image {
       position: absolute;
@@ -399,13 +407,12 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   }
 
   &.event-teaser__image--full-width {
-    picture {
-      @include aspect-ratio(16, 6);
-    }
+    @include aspect-ratio(16, 6);
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transform-origin: center;
     }
   }
 }
