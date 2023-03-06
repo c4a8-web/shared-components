@@ -61,6 +61,12 @@
     }
   }
 
+  .richtext {
+    p + .card__link {
+      margin-top: spacing(2);
+    }
+  }
+
   article {
     margin: 0;
   }
@@ -72,6 +78,7 @@
 
   .card__img-top {
     @include aspect-ratio(16, 9);
+
     overflow: hidden;
 
     &:not(.card-img--long) {
@@ -153,4 +160,9 @@
 .card__check-mark-icon {
   padding-bottom: spacing(2);
   margin-right: spacing(5);
+}
+
+.card__link {
+  display: flex;
+  justify-content: flex-end;
 }
