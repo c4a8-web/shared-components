@@ -6,6 +6,7 @@
 
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
+{%- assign heroTextImageBottomSpacing = heroTextImageHero.bottomSpacing | default: false -%}
 
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
@@ -103,6 +104,7 @@
 {% endif %}
 
 <div class="hero-text-image is-component bg-img-hero {{ heroTextImageClasses }} {{ heroTextImageVariant }}
+    {% if heroTextImageBottomSpacing %}hero-text-image--bottom-spacing{% endif %}
     {% if heroTextImageHero.fullscreen %}is-fullscreen{% endif %}
     {% if heroTextImageHero.img %}has-content-img{% endif %}
     {% if heroTextImageHero.light %}text-white{% endif %}"

@@ -66,6 +66,22 @@
     }
   }
 
+  &.hero-text-image--bottom-spacing {
+    .hero-text-image__wrapper {
+      @include media-breakpoint-up(xs) {
+        padding-bottom: spacing($size: 25);
+      }
+
+      @include media-breakpoint-up(md) {
+        padding-bottom: spacing($size: 25);
+      }
+
+      @include media-breakpoint-up(lg) {
+        padding-bottom: spacing($size: 70);
+      }
+    }
+  }
+
   .fab {
     bottom: 0;
     right: spacing(4);
