@@ -55,10 +55,14 @@
   {%- endif -%}
 {% endif %}
 
+{% unless eventTeaserShapes %}
+  {% assign eventTeaserImageFullWidth= 'event-teaser--image-full-width' %}
+{% endunless %}
+
 {%- assign eventTeaserHref = eventTeaserCta.href | default: eventTeaserUrl -%}
 
 <!-- Shared Event Teaser Section -->
-<article class="event-teaser hover__parent event-teaser--size-{{ eventTeaserVariant }}
+<article class="event-teaser hover__parent event-teaser--size-{{ eventTeaserVariant }} {{ eventTeaserImageFullWidth }}
               {% if eventTeaserWebcast %}event-teaser--webcast
               {% elsif eventTeaserTeaser %}event-teaser--teaser
               {% else %}event-teaser--training

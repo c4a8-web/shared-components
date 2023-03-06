@@ -10,6 +10,21 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   background-color: var(--color-event-teaser-background);
   cursor: pointer;
 
+  &.event-teaser--image-full-width {
+    .event-teaser__image {
+      .img__picture-wrapper {
+        max-width: none;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transform-origin: center;
+      }
+    }
+  }
+
   &.event-teaser--training {
     .event-teaser__image {
       position: absolute;
