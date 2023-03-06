@@ -92,7 +92,7 @@ EventTeaserImage.args = {
   webcast: true,
   author: ['Nadine Kern', 'Max Mustermann'],
   image: {
-    img: 'shared-components/webcasts-test.jpg',
+    img: 'events/microsoft-cloud-device-security-event.jpg',
     alt: 'lorem ipsum',
   },
   badge: {
