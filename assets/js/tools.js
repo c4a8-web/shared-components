@@ -336,7 +336,7 @@ class Tools {
   }
 
   static getJSON(data) {
-    if (data && typeof data === 'object' && data.length > 0) return data;
+    if (data && typeof data === 'object' && Object.keys(data)?.length > 0) return data;
 
     if (data && typeof data === 'string') return JSON.parse(data);
 

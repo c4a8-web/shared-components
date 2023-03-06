@@ -56,6 +56,15 @@ export default {
     hasNoLink() {
       return Tools.isTrue(this.webCast) ? true : false;
     },
+    ctaValue() {
+      const cta = Tools.getJSON(this.cta);
+
+      if (cta && cta.link === undefined) {
+        cta.link = true;
+      }
+
+      return cta;
+    },
   },
   methods: {
     formatDate(date) {
@@ -136,6 +145,9 @@ export default {
     youtubeUrl: String,
     dataAuthors: Object,
     scope: String,
+    cta: {
+      default: null,
+    },
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick"  >
@@ -158,7 +170,7 @@ export default {
           </div>
 
           <div class="col-lg-4">
-            <div class="card-body d-flex flex-column h-100 p-4 p-lg-5">
+            <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
@@ -193,7 +205,7 @@ export default {
           </div>
         </div>
 
-        <div class="card-body mt-0 pt-0 z-index-2">
+        <div class="card__body card-body mt-0 pt-0 z-index-2">
           <template v-for="(info, index) in subPointsList(productValue)">
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
@@ -211,7 +223,7 @@ export default {
           <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
         </div>
 
-        <div class="card-body richtext">
+        <div class="card__body card-body richtext">
           <div class="card__scope" v-if="scope">{{ scope }}</div>
           <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
@@ -222,6 +234,10 @@ export default {
             </template>
           </ul>
           <p class="card-warning" v-if="footer">{{ footer }}</p>
+
+          <div class="card__link" v-if="cta">
+            <cta v-bind="ctaValue" />
+          </div>
         </div>
       </template>
       <template v-else>
@@ -234,7 +250,7 @@ export default {
           </figure>
         </div>
 
-        <div class="card-body">
+        <div class="card__body card-body">
           <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ title }}</a></headline>
           <p>{{ truncatedExcerpt }}</p>
         </div>

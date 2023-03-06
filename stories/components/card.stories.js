@@ -62,6 +62,10 @@ CardLong.args = {
     'Dir stehen bei glueckkanja-gab viele Türen offen und',
     'Auch wenn du heute nicht so weit bist',
   ],
+  cta: {
+    text: 'Lorem ipsum',
+    href: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
+  },
 };
 
 export const Webcast = Template.bind({});
