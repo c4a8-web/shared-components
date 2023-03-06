@@ -171,7 +171,6 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
 .event-teaser--size-6 {
   grid-column: auto / span 12;
-  // max-width: 600px;
 
   .event-teaser__header {
     height: 270px;
