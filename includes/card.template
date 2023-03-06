@@ -17,6 +17,7 @@
 {%- assign cardFooter = include.footer -%}
 {%- assign cardProduct = include.product -%}
 {%- assign cardTag = include.tag -%}
+{%- assign cardCta = include.cta -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -45,5 +46,6 @@
   :data-authors="{{ site.data.authors | jsonify | escape }}"
   scope="{{ cardScope }}"
   product="{{ cardProduct | jsonify | escape }}"
+  cta="{{ cardCta | jsonify | escape }}"
 ></card>
 <!-- End Shared Card Section -->
