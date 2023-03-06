@@ -59,10 +59,8 @@ export default {
     ctaValue() {
       const cta = Tools.getJSON(this.cta);
 
-      if (cta) {
-        if (cta.link === undefined) {
-          cta.link = true;
-        }
+      if (cta && cta.link === undefined) {
+        cta.link = true;
       }
 
       return cta;
