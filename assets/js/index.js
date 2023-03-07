@@ -220,4 +220,16 @@ document.addEventListener('VUE_IS_MOUNTED', (e) => {
   loadComponents();
 });
 
+window.addEventListener('scroll', () => {
+  const customEvent = new CustomEvent(Events.SCROLL_UPDATE, {});
+
+  document.dispatchEvent(customEvent);
+});
+
+window.addEventListener('resize', () => {
+  const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
+
+  document.dispatchEvent(customEvent);
+});
+
 export { Form, initSharedComponents, initComponentList, State };
