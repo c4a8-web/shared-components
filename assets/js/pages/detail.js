@@ -1,5 +1,6 @@
 import BaseComponent from '../components/base-component.js';
 import State from '../state.js';
+import Events from '../events.js';
 
 class PageDetail extends BaseComponent {
   static rootSelector = '.page-detail';
@@ -12,7 +13,12 @@ class PageDetail extends BaseComponent {
     this.ctaSelector = '.page-detail__cta .cta';
     this.introSelector = '.page-detail__intro';
     this.descriptionSelector = '.page-detail__description';
+    this.shapeSelector = '.page-detail__shape';
+    this.introContentSelector = '.page-detail__intro-content';
     this.hasBackClass = 'page-detail--has-back';
+
+    this.shape = root.querySelector(this.shapeSelector);
+    this.introContent = root.querySelector(this.introContentSelector);
 
     this.loadingDelay = 300;
 
@@ -33,6 +39,14 @@ class PageDetail extends BaseComponent {
     this.showBackButton();
     this.bindEvents();
     this.stopLoading();
+    this.setStickyPosition();
+  }
+
+  // TODO check how to solve the overflow issue
+
+  setStickyPosition() {
+    // TODO calculate position based on viewport
+    this.stickyPosition = 140;
   }
 
   isVueComponent() {
@@ -54,6 +68,34 @@ class PageDetail extends BaseComponent {
 
   bindEvents() {
     this.queryElements();
+
+    document.addEventListener(Events.SCROLL_UPDATE, this.handleScroll.bind(this));
+    document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
+  }
+
+  handleScroll() {
+    // This is the mode when we hit sticky end position
+    // if (this.isSticky()) {
+    //   this.shape.style.top = -this.stickyPosition + window.scrollY + 'px';
+    // // } else {
+    // //   this.shape.style.top = '';
+    // }
+
+    if (this.isSticky()) {
+      this.shape.classList.add(State.STICKY);
+      this.shape.style.top = -this.stickyPosition + 'px';
+    } else {
+      this.shape.classList.remove(State.STICKY);
+      this.shape.style.top = '';
+    }
+  }
+
+  isSticky() {
+    return window.scrollY > this.stickyPosition;
+  }
+
+  handleResize() {
+    this.setStickyPosition();
   }
 }
 
