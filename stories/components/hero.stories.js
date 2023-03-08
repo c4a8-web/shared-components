@@ -264,3 +264,16 @@ HeroTextImageSafety.args = {
     bgColor: 'var(--color-blue-dark)',
   },
 };
+
+export const HeroText = Template.bind({});
+
+HeroText.args = {
+  hero: {
+    variant: 'hero--text',
+    headline: 'Wenn Sie wissen, worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
+    level: 'h5',
+    light: true,
+    overline: 'Preventive Service',
+    bgColor: 'var(--color-gigas)',
+  },
+};

@@ -278,6 +278,30 @@
     }
   }
 
+  &.hero--text {
+    .container {
+      max-width: none;
+      padding: 0 spacing(30);
+    }
+
+    .hero-text-image__overline {
+      @include font-style($style: 'font-size-5', $weight: 'light');
+      padding: 0 0 spacing(10) 0;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .hero-text-image__headline {
+      @include font-style($style: 'font-size-6', $line: 'thin', $weight: 'light');
+    }
+    .hero-text-image__wrapper {
+      flex: none;
+      max-width: none;
+    }
+  }
+
   &.hero--career {
     min-height: 100vh;
 
