@@ -249,7 +249,7 @@ class Tools {
   }
 
   static isUpperBreakpoint() {
-    return !Tools.isBelowBreakpoint('lg');
+    return !Tools.isBelowBreakpoint('md');
   }
 
   static getYoutubeThumbnail(videoURL) {

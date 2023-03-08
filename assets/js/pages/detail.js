@@ -1,12 +1,15 @@
 import BaseComponent from '../components/base-component.js';
 import State from '../state.js';
 import Events from '../events.js';
+import Tools from '../tools.js';
 
 class PageDetail extends BaseComponent {
   static rootSelector = '.page-detail';
 
   constructor(root, options) {
     super(root, options);
+
+    this.root = root;
 
     this.containerSelector = '.page-detail__container';
     this.headlineSelector = '.page-detail__headline';
@@ -15,10 +18,12 @@ class PageDetail extends BaseComponent {
     this.descriptionSelector = '.page-detail__description';
     this.shapeSelector = '.page-detail__shape';
     this.introContentSelector = '.page-detail__intro-content';
+    this.imgWrapperSelector = '.page-detail__img-wrapper';
     this.hasBackClass = 'page-detail--has-back';
 
     this.shape = root.querySelector(this.shapeSelector);
     this.introContent = root.querySelector(this.introContentSelector);
+    this.imageWrapper = root.querySelector(this.imgWrapperSelector);
 
     this.loadingDelay = 300;
 
@@ -40,13 +45,22 @@ class PageDetail extends BaseComponent {
     this.bindEvents();
     this.stopLoading();
     this.setStickyPosition();
+    this.setShapePosition();
   }
 
-  // TODO check how to solve the overflow issue
-
   setStickyPosition() {
-    // TODO calculate position based on viewport
-    this.stickyPosition = 140;
+    if (!Tools.isUpperBreakpoint()) return;
+
+    const introContentHeight = this.introContent.offsetHeight;
+    const imageWrapperHeight = this.imageWrapper.offsetHeight;
+
+    this.stickyPosition = introContentHeight - imageWrapperHeight;
+
+    console.log('PageDetail ~ setStickyPosition ~ this.stickyPosition:', this.stickyPosition);
+
+    // TODO fix the issue on below 1200px
+    // maybe add badge + details + headline height together
+    this.stickyPosition = 120;
   }
 
   isVueComponent() {
@@ -74,28 +88,41 @@ class PageDetail extends BaseComponent {
   }
 
   handleScroll() {
-    // This is the mode when we hit sticky end position
-    // if (this.isSticky()) {
-    //   this.shape.style.top = -this.stickyPosition + window.scrollY + 'px';
-    // // } else {
-    // //   this.shape.style.top = '';
-    // }
+    this.setShapePosition();
+  }
 
-    if (this.isSticky()) {
+  setShapePosition() {
+    if (!Tools.isUpperBreakpoint()) return this.resetShape();
+
+    if (this.isStickyEnd()) {
+      if (!this.shape.classList.contains(State.STICKY)) return;
+
+      this.shape.classList.remove(State.STICKY);
+      this.shape.style.top = -this.stickyPosition + window.scrollY + 'px';
+    } else if (this.isSticky()) {
       this.shape.classList.add(State.STICKY);
       this.shape.style.top = -this.stickyPosition + 'px';
     } else {
-      this.shape.classList.remove(State.STICKY);
-      this.shape.style.top = '';
+      this.resetShape();
     }
+  }
+
+  resetShape() {
+    this.shape.classList.remove(State.STICKY);
+    this.shape.style.top = '';
   }
 
   isSticky() {
     return window.scrollY > this.stickyPosition;
   }
 
+  isStickyEnd() {
+    return this.root.getBoundingClientRect().bottom <= window.innerHeight;
+  }
+
   handleResize() {
     this.setStickyPosition();
+    this.setShapePosition();
   }
 }
 
