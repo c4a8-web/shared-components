@@ -21,6 +21,50 @@
     }
   }
 
+  &.video--text {
+    @include media-breakpoint-up(lg) {
+      padding: 0 spacing(20);
+    }
+
+    .video__content {
+      background-color: transparent;
+    }
+    .headline {
+      @include font-style($style: 'font-size-2', $weight: 'light');
+
+      display: flex;
+      align-self: flex-end;
+      padding-top: spacing(7);
+      padding-right: 0;
+
+      @include media-breakpoint-up(lg) {
+        padding-right: spacing(6);
+        text-align: right;
+
+        &:before {
+          content: '';
+          width: 60%;
+        }
+      }
+    }
+  }
+
+  &.video--has-spacing {
+    @include media-breakpoint-up(xs) {
+      margin-top: spacing($size: 25, $negative: true);
+    }
+
+    @include media-breakpoint-up(md) {
+      margin-top: spacing($size: 15, $negative: true);
+    }
+    @include media-breakpoint-up(lg) {
+      margin-top: spacing($size: 30, $negative: true);
+    }
+    @include media-breakpoint-up(xl) {
+      margin-top: spacing($size: 35, $negative: true);
+    }
+  }
+
   &.video--post {
     img {
       left: 0;

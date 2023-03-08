@@ -71,3 +71,15 @@ VideoLightbox.args = {
     text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
   },
 };
+
+export const VideoInnerText = Template.bind({});
+
+VideoInnerText.args = {
+  variant: 'text',
+  video: {
+    headline: 'Wenn Sie wissen,worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
+    thumb: 'thumbs/video-thumb-haniel.jpg',
+    alt: 'Video Casestudy Franz Haniel',
+    id: 'hV97zDTlDko',
+  },
+};

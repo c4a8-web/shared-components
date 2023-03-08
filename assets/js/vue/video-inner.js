@@ -1,4 +1,5 @@
 import YoutubePlayer from '../youtube-player.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'video-inner',
@@ -7,7 +8,8 @@ export default {
       return [
         'video',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
-        'd-flex flex-column',
+        `${this.variant === 'text' ? 'row align-items-end' : 'd-flex flex-column'}`,
+        `${Tools.isTrue(this.spacingTop) ? 'video--has-spacing' : ''}`,
         `${!this.isReversed() ? 'h-100' : ''}`,
         'space-bottom-1 space-bottom-lg-0',
         `${this.variant ? 'video--' + this.variant : ''}`,
@@ -17,7 +19,7 @@ export default {
     videoPlayerClass() {
       return [
         'video__player',
-        `${!this.variant ? 'bg-dark' : ''}`,
+        `${this.variantValue}`,
         `${this.isPlayed ? 'video-player-played' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
         'vue-component',
@@ -28,9 +30,12 @@ export default {
       return [
         'video__content',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
-        `flex-grow-1 ${padding}`,
+        `${this.variant === 'text' ? 'col-lg-6 mb-lg-n4' : 'flex-grow-1 ' + padding}`,
         'vue-component',
       ];
+    },
+    variantValue() {
+      return !this.variant ? 'bg-dark' : this.variant === 'text' ? 'col-lg-6 order-lg-2' : '';
     },
     videoParsed() {
       return typeof this.video !== 'object' ? JSON.parse(this.video) : this.video;
@@ -107,6 +112,7 @@ export default {
   props: {
     video: Object,
     variant: String,
+    spacingTop: String,
     level: {
       default: 'h4',
     },
@@ -158,7 +164,7 @@ export default {
                 <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
               </div>
             </template>
-            <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3">
+            <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text">
               {{ videoParsed.text }}
             </div>
             <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">

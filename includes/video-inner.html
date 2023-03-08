@@ -1,4 +1,5 @@
 {%- assign videoInnerVideo = include.video -%}
+{%- assign videoInnerSpacingTop = include.spacingTop | default: false -%}
 {%- assign videoInnerVariant = include.variant -%}
 
 {% assign cta = props.cta %}
@@ -16,5 +17,6 @@
 <video-inner
   video="{{ videoInnerVideo | jsonify | escape }}"
   variant="{{ videoInnerVariant }}"
+  spacing-top="{{ videoInnerSpacingTop }}"
   level="{{ videoLevel }}"
 ></video-inner>
