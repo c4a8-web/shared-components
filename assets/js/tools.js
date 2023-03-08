@@ -248,6 +248,10 @@ class Tools {
     return breakpointIndex >= breakpointArray.indexOf(getBreakpoint);
   }
 
+  static isUpperBreakpoint() {
+    return !Tools.isBelowBreakpoint('lg');
+  }
+
   static getYoutubeThumbnail(videoURL) {
     let videoId;
     const regExp1 = videoURL.match(/youtube\.com.*(\?v=|vi=)(.{11})/);
