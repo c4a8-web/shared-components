@@ -29,6 +29,12 @@
 
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
+{%- if textImageCopyLight -%}
+  {% assign textImageLightText = 'text-light' %}
+{% else %}
+  {% assign textImageLightText = '' %}
+{% endif %}
+
 {%- if textImageFirstColWidth -%}
   {%- assign textImageFirstColWidthXl = textImageFirstColWidth -%}
 {%- else -%}
@@ -124,7 +130,7 @@
         <span class="text-image__overline d-inline-block mb-2 font-size-2">
           {{ textImageOverline }}
         </span>
-        <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4">
+        <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4 {{ textImageLightText }}">
           {{ textImageHeadline }}
         </{{ textImageLevel }}>
         {% if textImageSubline %}
@@ -140,7 +146,7 @@
             %}
           </div>
         {% endif %}
-        <div class="{% if textImageCopyClasses %}{{ textImageCopyClasses }}{% endif %} {% if textImageCopyLight %}text-light{% endif %}">
+        <div class="{% if textImageCopyClasses %}{{ textImageCopyClasses }}{% endif %} {{ textImageLightText }}">
           {{ textImageCopy }}
         </div>
         {% if textImageList %}
