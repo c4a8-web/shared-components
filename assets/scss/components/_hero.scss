@@ -69,15 +69,13 @@
   &.hero-text-image--bottom-spacing {
     .hero-text-image__wrapper {
       @include media-breakpoint-up(xs) {
-        padding-bottom: spacing($size: 25);
+        padding-bottom: spacing($size: 5);
       }
-
       @include media-breakpoint-up(md) {
-        padding-bottom: spacing($size: 25);
+        padding-bottom: spacing($size: 15);
       }
-
       @include media-breakpoint-up(lg) {
-        padding-bottom: spacing($size: 40);
+        padding-bottom: spacing($size: 33);
       }
     }
   }
