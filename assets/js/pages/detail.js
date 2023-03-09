@@ -18,14 +18,20 @@ class PageDetail extends BaseComponent {
     this.descriptionSelector = '.page-detail__description';
     this.shapeSelector = '.page-detail__shape';
     this.introContentSelector = '.page-detail__intro-content';
-    this.imgWrapperSelector = '.page-detail__img-wrapper';
+    this.badgeSelector = '.page-detail__badge';
+    this.detailsSelector = '.page-detail__details';
+
     this.hasBackClass = 'page-detail--has-back';
 
     this.shape = root.querySelector(this.shapeSelector);
-    this.introContent = root.querySelector(this.introContentSelector);
-    this.imageWrapper = root.querySelector(this.imgWrapperSelector);
+
+    if (this.hasShape()) {
+      this.introContent = root.querySelector(this.introContentSelector);
+      this.intro = root.querySelector(this.introSelector);
+    }
 
     this.loadingDelay = 300;
+    this.percentageInViewport = 1;
 
     this.init();
   }
@@ -48,19 +54,19 @@ class PageDetail extends BaseComponent {
     this.setShapePosition();
   }
 
+  hasShape() {
+    return this.shape ? true : false;
+  }
+
   setStickyPosition() {
-    if (!Tools.isUpperBreakpoint()) return;
+    if (!this.hasShape() || !this.isInViewport() || !Tools.isUpperBreakpoint()) return;
 
-    const introContentHeight = this.introContent.offsetHeight;
-    const imageWrapperHeight = this.imageWrapper.offsetHeight;
+    const heightOffset = Tools.isBelowBreakpoint('lg') ? 10 : -40;
+    const badgeHeight = this.introContent.querySelector(this.badgeSelector)?.offsetHeight || 0;
+    const detailsHeight = this.introContent.querySelector(this.detailsSelector)?.offsetHeight || 0;
+    const headlineHeight = this.introContent.querySelector(this.headlineSelector)?.offsetHeight || 0;
 
-    this.stickyPosition = introContentHeight - imageWrapperHeight;
-
-    console.log('PageDetail ~ setStickyPosition ~ this.stickyPosition:', this.stickyPosition);
-
-    // TODO fix the issue on below 1200px
-    // maybe add badge + details + headline height together
-    this.stickyPosition = 120;
+    this.stickyPosition = badgeHeight + detailsHeight + headlineHeight - heightOffset;
   }
 
   isVueComponent() {
@@ -92,13 +98,11 @@ class PageDetail extends BaseComponent {
   }
 
   setShapePosition() {
+    if (!this.hasShape() || !this.isInViewport()) return;
     if (!Tools.isUpperBreakpoint()) return this.resetShape();
 
-    if (this.isStickyEnd()) {
-      if (!this.shape.classList.contains(State.STICKY)) return;
-
-      this.shape.classList.remove(State.STICKY);
-      this.shape.style.top = -this.stickyPosition + window.scrollY + 'px';
+    if (this.isStickyShapeEnd()) {
+      this.handleStickyShapeEnd();
     } else if (this.isSticky()) {
       this.shape.classList.add(State.STICKY);
       this.shape.style.top = -this.stickyPosition + 'px';
@@ -107,17 +111,60 @@ class PageDetail extends BaseComponent {
     }
   }
 
+  handleStickyShapeEnd() {
+    if (this.isStickyEnd()) {
+      this.shape.classList.add(State.STICKY);
+
+      this.shape.style.top = -this.stickyPosition - this.getRelativePosition() + 'px';
+    }
+  }
+
+  getRelativePosition() {
+    const introTop = this.intro?.style.top.replace('px', '') || 0;
+
+    return introTop >= 0
+      ? this.getStickyOffsetTop() - Math.abs(introTop)
+      : this.getStickyOffsetTop() - parseFloat(introTop);
+  }
+
   resetShape() {
     this.shape.classList.remove(State.STICKY);
     this.shape.style.top = '';
+    this.isStickyEndReached = false;
   }
 
   isSticky() {
     return window.scrollY > this.stickyPosition;
   }
 
-  isStickyEnd() {
+  isStickyShapeEnd() {
     return this.root.getBoundingClientRect().bottom <= window.innerHeight;
+  }
+
+  getHsStickyBlockOptions() {
+    if (this.hsStickyBlockOptions) return this.hsStickyBlockOptions;
+
+    let hsStickyBlockOptions = this.intro?.dataset.hsStickyBlockOptions;
+
+    if (hsStickyBlockOptions) {
+      hsStickyBlockOptions = JSON.parse(hsStickyBlockOptions);
+    }
+
+    this.hsStickyBlockOptions = hsStickyBlockOptions;
+
+    return hsStickyBlockOptions;
+  }
+
+  getStickyOffsetTop() {
+    return this.getHsStickyBlockOptions()?.stickyOffsetTop || 0;
+  }
+
+  isStickyEnd() {
+    return this.intro?.style.top !== this.getStickyOffsetTop() + 'px';
+  }
+
+  isInViewport() {
+    return Tools.isInViewportPercent(this.root, this.percentageInViewport);
   }
 
   handleResize() {
