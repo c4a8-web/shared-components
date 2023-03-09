@@ -5,6 +5,8 @@ const Events = {
   CHILD_HAS_UPDATE: 'child-has-update',
   AD_BLOCK_INFO: 'ad-block-info',
   DIMENSIONS_CHANGED: 'dimensions-changed',
+  SCROLL_UPDATE: 'scroll-update',
+  WINDOW_RESIZE: 'window-resize',
 };
 
 export default Events;
