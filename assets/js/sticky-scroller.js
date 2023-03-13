@@ -27,8 +27,7 @@ class StickyScroller {
 
   bindEvents() {
     window.addEventListener('scroll', this.handleScroll.bind(this));
-    window.addEventListener('resize', this.handleResize.bind(this));
-
+    document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
     document.addEventListener(Events.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
 
     // this.observer = new MutationObserver(this.handleMutation.bind(this));
@@ -40,17 +39,17 @@ class StickyScroller {
     // });
   }
 
-  handleMutation(mutations) {
-    // TODO check if element is changed or if it is initialized?
-    // TODO unset dimensions if element is off-screen or don't set them at all???
+  // handleMutation(mutations) {
+  //   // TODO check if element is changed or if it is initialized?
+  //   // TODO unset dimensions if element is off-screen or don't set them at all???
 
-    mutations.forEach((mutation) => {
-      console.log('StickyScroller ~ mutations.forEach ~ mutation:', mutation);
-      // if (mutation.type === 'childList') {
-      //   this.updateClipPath(this.maxPercentage);
-      // }
-    });
-  }
+  //   mutations.forEach((mutation) => {
+  //     console.log('StickyScroller ~ mutations.forEach ~ mutation:', mutation);
+  //     // if (mutation.type === 'childList') {
+  //     //   this.updateClipPath(this.maxPercentage);
+  //     // }
+  //   });
+  // }
 
   handleDimensionsChanged(event) {
     if (event.detail !== this.root) return;
@@ -60,6 +59,12 @@ class StickyScroller {
 
   handleResize() {
     this.resetElements();
+
+    console.log('StickyScroller ~ handleResize');
+
+    // this.offsetTop = this.root.offsetTop;
+    // this.offsetBottom = this.root.offsetTop + this.root.offsetHeight;
+
     this.setDimensions();
     this.setPositions();
     this.setStickyPosition();
@@ -154,6 +159,23 @@ class StickyScroller {
     const topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
     const percentage = this.getPercentage(scrollPosition, topValue);
 
+    const condition =
+      this.root.classList.contains('text-image--bg-color') && this.isOutOfViewport(percentage) === false;
+
+    if (condition) {
+      console.group();
+      console.log(this.root.classList);
+      console.log(this.spacer);
+      console.log(
+        'StickyScroller ~ setStickyPosition ~ this.isOutOfViewport(percentage):',
+        this.isOutOfViewport(percentage)
+      );
+
+      this.inFirstCondtion = true;
+
+      console.groupEnd();
+    }
+
     if (!this.isOutOfViewport(percentage) && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
         this.spacer.style.height = this.root.clientHeight + 'px';
@@ -164,10 +186,33 @@ class StickyScroller {
       this.root.classList.remove(State.OFF_SCREEN);
       this.root.classList.add(State.STICKY);
       this.updateClipPath(percentage);
+
+      if (this.inFirstCondtion) {
+        console.group();
+        console.log('become sticky');
+
+        console.groupEnd();
+      }
     } else if (percentage === 0) {
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
+
+      if (this.inFirstCondtion) {
+        console.group();
+        console.log('still sticky');
+
+        console.groupEnd();
+      }
     } else {
+      if (this.inFirstCondtion) {
+        console.group();
+        console.log('disable stickyness');
+
+        console.groupEnd();
+
+        this.inFirstCondtion = false;
+      }
+
       this.disableStickyness();
     }
   }
