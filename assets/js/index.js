@@ -184,7 +184,7 @@ const handleBodyMutation = (mutations) => {
       lastBodyHeight = mutation.contentRect.height;
       once = true;
 
-      // triggerResizeEvent();
+      triggerResizeEvent();
 
       return;
     }
