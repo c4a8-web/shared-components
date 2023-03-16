@@ -12,7 +12,7 @@ export default {
         'job-list container',
         `${this.hasLoading ? State.LOADING : ''}`,
         `${this.hasLoader ? 'loading' : ''}`,
-        // `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`, // TODO: reset dimensions after loading to work with sticky scroller
+        `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
     },
