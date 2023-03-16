@@ -11,7 +11,7 @@ export default {
         `${this.hasBackground}`,
         `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
-        // `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
+        `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
     },

@@ -162,6 +162,41 @@ const componentList = [
 //   );
 // });
 
+let lastBodyHeight = document.body.clientHeight;
+
+const triggerResizeEvent = () => {
+  const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
+
+  document.dispatchEvent(customEvent);
+};
+
+const handleBodyMutation = (mutations) => {
+  const heightTolleranceRange = 3;
+  let once = false;
+
+  mutations.forEach((mutation) => {
+    if (once) return;
+
+    if (
+      mutation.contentRect.height > lastBodyHeight + heightTolleranceRange ||
+      mutation.contentRect.height < lastBodyHeight - heightTolleranceRange
+    ) {
+      lastBodyHeight = mutation.contentRect.height;
+      once = true;
+
+      triggerResizeEvent();
+
+      return;
+    }
+  });
+};
+
+const captureBodyMutation = () => {
+  const observer = new ResizeObserver(handleBodyMutation);
+
+  observer.observe(document.body);
+};
+
 const captureRefreshAnimateNumber = function (event) {
   if (event.detail === null) return;
 
@@ -218,6 +253,7 @@ document.addEventListener('DOMContentLoaded', (e) => {
 
 document.addEventListener('VUE_IS_MOUNTED', (e) => {
   loadComponents();
+  captureBodyMutation();
 });
 
 window.addEventListener('scroll', () => {
@@ -227,9 +263,7 @@ window.addEventListener('scroll', () => {
 });
 
 window.addEventListener('resize', () => {
-  const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
-
-  document.dispatchEvent(customEvent);
+  triggerResizeEvent();
 });
 
 export { Form, initSharedComponents, initComponentList, State };
