@@ -148,6 +148,8 @@ class StickyScroller {
         this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
         this.root.style.setProperty('margin-top', '0px', 'important');
         this.ignoreNextCall = true;
+        this.root.style.left = '50%';
+        this.root.style.transform = 'translateX(-50%)';
       }
 
       this.root.style.top = topValue + 'px';
@@ -177,6 +179,9 @@ class StickyScroller {
     this.root.style.width = '';
     this.root.style.marginTop = '';
     this.spacer.style.height = '';
+    this.root.style.left = '';
+    this.root.style.transform = '';
+
     this.isUpdating = false;
   }
 
