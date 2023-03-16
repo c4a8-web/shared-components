@@ -146,6 +146,7 @@ class StickyScroller {
         this.fixScrollPosition = window.scrollY;
         this.spacer.style.height = this.root.clientHeight + 'px';
         this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
+        this.root.style.setProperty('margin-top', '0px', 'important');
         this.ignoreNextCall = true;
       }
 
@@ -174,6 +175,7 @@ class StickyScroller {
     this.root.style.top = '';
     this.root.style.clipPath = '';
     this.root.style.width = '';
+    this.root.style.marginTop = '';
     this.spacer.style.height = '';
     this.isUpdating = false;
   }
