@@ -8,7 +8,7 @@
 {%- assign successStorySticky = include.sticky -%}
 
 <!-- Shared Success Story Section -->
-<div class="success-story mt-8 mt-lg-10 {% if successStorySticky %}disabledis-sticky-scroller{% endif %}">
+<div class="success-story mt-8 mt-lg-10 {% if successStorySticky %}is-sticky-scroller{% endif %}">
   <div class="success-story__bg" style="background-color:{{ successStory.bgColor }}"></div>
   <div class="container">
     <div class="row">
