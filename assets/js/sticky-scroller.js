@@ -9,11 +9,14 @@ class StickyScroller {
     this.root = root;
 
     this.setOffsets();
+    this.setMarginTop();
 
     this.firstChild = document.querySelector('main > *:first-child');
 
     this.isUpdating = false;
     this.maxPercentage = 100;
+    // this.percentageOffset = 0;
+    // this.maxPercentageWithOffset = this.maxPercentage + this.percentageOffset;
     this.lastPercentage = false;
 
     this.header = document.querySelector('header');
@@ -31,6 +34,12 @@ class StickyScroller {
     document.addEventListener(Events.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
   }
 
+  setMarginTop() {
+    const radix = 10;
+
+    this.marginTop = parseInt(window.getComputedStyle(this.root).marginTop.replace('px', ''), radix);
+  }
+
   handleDimensionsChanged(event) {
     if (event.detail !== this.root) return;
 
@@ -43,11 +52,34 @@ class StickyScroller {
   }
 
   handleResize() {
+    // this.resetElements();
+    // this.setOffsets();
+    // this.setDimensions();
+    // this.setPositions();
+
+    // if (this.ignoreNextResizeEvent) return (this.ignoreNextResizeEvent = false);
+
+    // this.setStickyPosition();
+
+    if (this.ignoreNextResizeEvent) return this.handleDimensions();
+
+    console.log('handleResize');
+
     this.resetElements();
     this.setOffsets();
     this.setDimensions();
     this.setPositions();
     this.setStickyPosition();
+  }
+
+  handleDimensions() {
+    this.ignoreNextResizeEvent = false;
+
+    console.log('no handleResize');
+
+    // this.setOffsets();
+    // this.setDimensions();
+    // this.setPositions();
   }
 
   handleScroll(e) {
@@ -111,19 +143,26 @@ class StickyScroller {
     const offsetTop = this.currentTopPosition - topValue + this.getMainOffsetTop();
     const offsetBottom = this.currentBottomPosition - topValue + this.getMainOffsetTop();
 
+    // const offsetTop = this.currentTopPosition + this.getMainOffsetTop();
+    // const offsetBottom = this.currentBottomPosition + this.getMainOffsetTop();
+
+    let localPosition = position;
     let percentage;
 
-    if (offsetBottom >= position) {
+    if (offsetBottom >= localPosition) {
+      // const element = this.isSticky() ? this.spacer : this.root;
+
       let step = this.root.offsetHeight / 100;
 
       if (offsetTop < 0) {
-        percentage = position / step;
+        percentage = localPosition / step;
       } else {
-        percentage = (position - offsetTop) / step;
+        percentage = (localPosition - offsetTop) / step;
       }
     } else {
       percentage = this.maxPercentage;
     }
+
     return percentage;
   }
 
@@ -136,18 +175,28 @@ class StickyScroller {
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
-    const topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
+
+    let topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
+
     const percentage = this.getPercentage(scrollPosition, topValue);
     const outOfViewport = this.isOutOfViewport(percentage);
 
+    topValue = topValue - this.marginTop;
+
     if (!outOfViewport && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
-        this.fixScrollPosition = window.scrollY;
-        this.spacer.style.height = this.root.clientHeight + 'px';
-        this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
-        this.root.style.setProperty('margin-top', '0px', 'important');
+        this.fixScrollPosition = true;
+        this.spacer.style.marginTop = this.marginTop + 'px';
+        this.spacer.style.height = this.height + 'px';
+        this.root.style.width = this.spacer.style.width = this.width + 'px';
+        this.root.style.height = this.height + 'px';
+        // this.root.style.setProperty('margin-top', '0px', 'important');
         this.root.style.left = '50%';
         this.root.style.transform = 'translateX(-50%)';
+
+        if (this.marginTop > 0) {
+          this.ignoreNextResizeEvent = true;
+        }
       }
 
       this.root.style.top = topValue + 'px';
@@ -156,17 +205,22 @@ class StickyScroller {
 
       this.updateClipPath(percentage);
 
-      if (this.fixScrollPosition) {
-        window.scrollTo(0, this.fixScrollPosition);
+      if (this.fixScrollPosition && this.lastScrollPosition) {
+        if (window.scrollY !== this.lastScrollPosition) {
+          window.scrollTo(0, this.lastScrollPosition);
+        }
 
         this.fixScrollPosition = false;
       }
     } else if (percentage === 0) {
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
+      // } else if (percentage > this.maxPercentageWithOffset || percentage < 0) {
     } else {
       this.disableStickyness();
     }
+
+    this.lastScrollPosition = window.scrollY;
   }
 
   disableStickyness() {
@@ -175,8 +229,10 @@ class StickyScroller {
     this.root.style.top = '';
     this.root.style.clipPath = '';
     this.root.style.width = '';
+    this.root.style.height = '';
     this.root.style.marginTop = '';
     this.spacer.style.height = '';
+    this.spacer.style.marginTop = '';
     this.root.style.left = '';
     this.root.style.transform = '';
 
@@ -202,7 +258,10 @@ class StickyScroller {
   }
 
   setDimensions() {
-    this.spacer.style.width = this.root.clientWidth + 'px';
+    this.width = this.root.clientWidth;
+    this.height = this.root.clientHeight;
+
+    this.spacer.style.width = this.width + 'px';
   }
 
   resetElements() {
