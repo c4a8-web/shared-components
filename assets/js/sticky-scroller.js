@@ -8,6 +8,7 @@ class StickyScroller {
   constructor(root) {
     this.root = root;
 
+    this.setCalcuationElement();
     this.setOffsets();
     this.setMarginTop();
 
@@ -61,7 +62,7 @@ class StickyScroller {
 
     // this.setStickyPosition();
 
-    if (this.ignoreNextResizeEvent) return this.handleDimensions();
+    // if (this.ignoreNextResizeEvent) return this.handleDimensions();
 
     console.log('handleResize');
 
@@ -72,15 +73,15 @@ class StickyScroller {
     this.setStickyPosition();
   }
 
-  handleDimensions() {
-    this.ignoreNextResizeEvent = false;
+  // handleDimensions() {
+  //   this.ignoreNextResizeEvent = false;
 
-    console.log('no handleResize');
+  //   console.log('no handleResize');
 
-    // this.setOffsets();
-    // this.setDimensions();
-    // this.setPositions();
-  }
+  //   // this.setOffsets();
+  //   // this.setDimensions();
+  //   // this.setPositions();
+  // }
 
   handleScroll(e) {
     if (this.isUpdating) return;
@@ -119,7 +120,7 @@ class StickyScroller {
   }
 
   isSticky() {
-    this.root.classList.contains(State.STICKY);
+    return this.root.classList.contains(State.STICKY);
   }
 
   setPositions() {
@@ -128,15 +129,29 @@ class StickyScroller {
   }
 
   setTopPosition() {
-    this.currentTopPosition = this.root.offsetTop;
+    this.currentTopPosition = this.calculationElement.offsetTop;
+    console.log(
+      '🚀 ~ file: sticky-scroller.js:133 ~ StickyScroller ~ setTopPosition ~ this.currentTopPosition:',
+      this.currentTopPosition
+    );
   }
 
   setBottomPosition() {
-    this.currentBottomPosition = this.root.offsetTop + this.root.offsetHeight;
+    this.currentBottomPosition = this.calculationElement.offsetTop + this.calculationElement.offsetHeight;
   }
 
   getMainOffsetTop() {
     return this.main?.offsetTop || 0;
+  }
+
+  setCalcuationElement() {
+    const sticky = this.isSticky();
+
+    // this.calculationElement = sticky ? this.spacer : this.root;
+    this.calculationElement = this.root;
+    // console.log('🚀 ~ file: sticky-scroller.js:147 ~ StickyScroller ~ setCalcuationElement ~ sticky:', sticky);
+
+    // console.log('🚀 this.calculationElement:', sticky ? 'spacer' : 'root');
   }
 
   getPercentage(position, topValue) {
@@ -150,9 +165,7 @@ class StickyScroller {
     let percentage;
 
     if (offsetBottom >= localPosition) {
-      // const element = this.isSticky() ? this.spacer : this.root;
-
-      let step = this.root.offsetHeight / 100;
+      let step = this.calculationElement.offsetHeight / 100;
 
       if (offsetTop < 0) {
         percentage = localPosition / step;
@@ -171,17 +184,27 @@ class StickyScroller {
   }
 
   setStickyPosition() {
+    this.setCalcuationElement();
+
     const headerHeight = this.getHeaderHeight();
     const scrollPosition = window.scrollY;
-    const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
-    const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
+    const viewPortOverflow = this.calculationElement.offsetHeight - window.innerHeight;
+    const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight; //  - this.marginTop
+    // console.log(
+    //   '🚀 ~ file: sticky-scroller.js:189 ~ StickyScroller ~ setStickyPosition ~ scrollThreshold:',
+    //   scrollThreshold
+    // );
 
     let topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
-
-    const percentage = this.getPercentage(scrollPosition, topValue);
-    const outOfViewport = this.isOutOfViewport(percentage);
+    // console.log('🚀 ~ file: sticky-scroller.js:180 ~ StickyScroller ~ setStickyPosition ~ topValue:', topValue);
 
     topValue = topValue - this.marginTop;
+
+    const percentage = this.getPercentage(scrollPosition, topValue);
+    console.log('🚀  percentage:', percentage);
+    const outOfViewport = this.isOutOfViewport(percentage);
+    console.log('🚀  outOfViewport:', outOfViewport);
+    // console.log('🚀  window.innerHeight:', scrollPosition > scrollThreshold - window.innerHeight);
 
     if (!outOfViewport && scrollPosition > scrollThreshold - window.innerHeight) {
       if (!this.spacer.style.height) {
@@ -195,7 +218,7 @@ class StickyScroller {
         this.root.style.transform = 'translateX(-50%)';
 
         if (this.marginTop > 0) {
-          this.ignoreNextResizeEvent = true;
+          // this.ignoreNextResizeEvent = true;
         }
       }
 
@@ -205,13 +228,13 @@ class StickyScroller {
 
       this.updateClipPath(percentage);
 
-      if (this.fixScrollPosition && this.lastScrollPosition) {
-        if (window.scrollY !== this.lastScrollPosition) {
-          window.scrollTo(0, this.lastScrollPosition);
-        }
+      // if (this.fixScrollPosition && this.lastScrollPosition) {
+      //   if (window.scrollY !== this.lastScrollPosition) {
+      //     window.scrollTo(0, this.lastScrollPosition);
+      //   }
 
-        this.fixScrollPosition = false;
-      }
+      //   this.fixScrollPosition = false;
+      // }
     } else if (percentage === 0) {
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
@@ -230,7 +253,7 @@ class StickyScroller {
     this.root.style.clipPath = '';
     this.root.style.width = '';
     this.root.style.height = '';
-    this.root.style.marginTop = '';
+    // this.root.style.marginTop = '';
     this.spacer.style.height = '';
     this.spacer.style.marginTop = '';
     this.root.style.left = '';
@@ -265,9 +288,13 @@ class StickyScroller {
   }
 
   resetElements() {
+    // this.root.style.top = '';
+
+    this.spacer.style.marginTop = '';
     this.root.style.height = this.root.style.width = this.spacer.style.width = this.spacer.style.height = '';
     this.root.style.clipPath = '';
     this.root.classList.remove(State.STICKY);
+    // this.root.classList.remove(State.OFF_SCREEN);
   }
 
   static init() {
