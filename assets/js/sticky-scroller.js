@@ -23,7 +23,7 @@ class StickyScroller {
 
     this.setup();
     this.bindEvents();
-    this.addDebugPositions();
+    // this.addDebugPositions();
     this.setStickyPosition();
   }
 
@@ -54,6 +54,8 @@ class StickyScroller {
   }
 
   updateDebugPositions() {
+    if (!this.topPosition || this.bottomPosition) return;
+
     this.topPosition.style.top = (this.calculatedOffsetTop || this.currentTopPosition) + 'px';
     this.bottomPosition.style.top = (this.calculatedOffsetBottom || this.currentBottomPosition) + 'px';
   }
