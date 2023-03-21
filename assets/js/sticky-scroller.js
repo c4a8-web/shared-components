@@ -8,7 +8,6 @@ class StickyScroller {
   constructor(root) {
     this.root = root;
 
-    this.setCalcuationElement();
     this.setOffsets();
     this.setMarginTop();
 
@@ -16,8 +15,6 @@ class StickyScroller {
 
     this.isUpdating = false;
     this.maxPercentage = 100;
-    // this.percentageOffset = 0;
-    // this.maxPercentageWithOffset = this.maxPercentage + this.percentageOffset;
     this.lastPercentage = false;
 
     this.header = document.querySelector('header');
@@ -58,10 +55,6 @@ class StickyScroller {
 
   updateDebugPositions() {
     this.topPosition.style.top = (this.calculatedOffsetTop || this.currentTopPosition) + 'px';
-    // console.log(
-    //   '🚀 ~ file: sticky-scroller.js:61 ~ StickyScroller ~ updateDebugPositions ~ this.calculatedOffsetTop:',
-    //   this.calculatedOffsetTop
-    // );
     this.bottomPosition.style.top = (this.calculatedOffsetBottom || this.currentBottomPosition) + 'px';
   }
 
@@ -83,8 +76,6 @@ class StickyScroller {
   }
 
   handleResize() {
-    // console.log('handleResize');
-
     this.resetElements();
     this.setOffsets();
     this.setDimensions();
@@ -138,41 +129,26 @@ class StickyScroller {
   }
 
   setTopPosition() {
-    this.currentTopPosition = this.calculationElement.offsetTop;
-    // console.log(
-    //   '🚀 ~ file: sticky-scroller.js:133 ~ StickyScroller ~ setTopPosition ~ this.currentTopPosition:',
-    //   this.currentTopPosition
-    // );
+    this.currentTopPosition = this.root.offsetTop;
   }
 
   setBottomPosition() {
-    this.currentBottomPosition = this.calculationElement.offsetTop + this.calculationElement.offsetHeight;
+    this.currentBottomPosition = this.root.offsetTop + this.root.offsetHeight;
   }
 
   getMainOffsetTop() {
     return this.main?.offsetTop || 0;
   }
 
-  setCalcuationElement() {
-    const sticky = this.isSticky();
-
-    // this.calculationElement = sticky ? this.spacer : this.root;
-    this.calculationElement = this.root;
-    // console.log('🚀 ~ file: sticky-scroller.js:147 ~ StickyScroller ~ setCalcuationElement ~ sticky:', sticky);
-
-    // console.log('🚀 this.calculationElement:', sticky ? 'spacer' : 'root');
-  }
-
   getPercentage(position, topValue) {
     this.calculatedOffsetTop = this.currentTopPosition - topValue - this.marginTop + this.getMainOffsetTop();
-    // console.log('🚀 this.marginTop:', this.marginTop);
     this.calculatedOffsetBottom = this.currentBottomPosition - topValue + this.getMainOffsetTop();
 
     let localPosition = position;
     let percentage;
 
     if (this.calculatedOffsetBottom >= localPosition) {
-      let step = this.calculationElement.offsetHeight / 100;
+      let step = this.root.offsetHeight / 100;
 
       if (this.calculatedOffsetTop < 0) {
         percentage = localPosition / step;
@@ -191,34 +167,18 @@ class StickyScroller {
   }
 
   setStickyPosition() {
-    this.setCalcuationElement();
-
-    // console.group();
-
     const headerHeight = this.getHeaderHeight();
-    // console.log('🚀 headerHeight:', headerHeight);
     const scrollPosition = window.scrollY;
-    const viewPortOverflow = this.calculationElement.offsetHeight - window.innerHeight;
-    // console.log('🚀 viewPortOverflow:', viewPortOverflow);
-    // console.log('🚀 offsetHeight:', this.calculationElement.offsetHeight);
-    // console.log('🚀 window.innerHeight:', window.innerHeight);
+    const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
-    // console.log('🚀 this.offsetBottom:', this.offsetBottom);
 
     let topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
 
-    // console.log('🚀 topValue:', topValue);
-
     topValue = topValue - this.marginTop;
 
-    // console.log('🚀 topValue:', topValue);
-
     const percentage = this.getPercentage(scrollPosition, topValue);
-    // console.log('🚀 percentage:', percentage);
     const outOfViewport = this.isOutOfViewport(percentage);
-    // console.log('🚀 outOfViewport:', outOfViewport);
     const isNotOverflowing = scrollPosition > scrollThreshold - window.innerHeight;
-    // console.log('🚀 isNotOverflowing:', isNotOverflowing);
 
     if (!outOfViewport && isNotOverflowing) {
       if (!this.spacer.style.height) {
@@ -242,10 +202,6 @@ class StickyScroller {
     } else {
       this.disableStickyness();
     }
-
-    this.lastScrollPosition = window.scrollY;
-
-    // console.groupEnd();
 
     this.updateDebugPositions();
   }
