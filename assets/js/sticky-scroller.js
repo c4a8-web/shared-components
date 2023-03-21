@@ -9,6 +9,7 @@ class StickyScroller {
     this.root = root;
 
     this.setOffsets();
+    this.setMarginTop();
 
     this.firstChild = document.querySelector('main > *:first-child');
 
@@ -22,6 +23,7 @@ class StickyScroller {
 
     this.setup();
     this.bindEvents();
+    // this.addDebugPositions();
     this.setStickyPosition();
   }
 
@@ -29,6 +31,39 @@ class StickyScroller {
     window.addEventListener('scroll', this.handleScroll.bind(this));
     document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
     document.addEventListener(Events.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
+  }
+
+  addDebugPositions() {
+    this.topPosition = document.createElement('div');
+    this.bottomPosition = document.createElement('div');
+
+    const main = document.querySelector('main');
+
+    main.appendChild(this.topPosition);
+    main.appendChild(this.bottomPosition);
+
+    this.bottomPosition.style.postion = this.topPosition.style.position = 'absolute';
+    this.bottomPosition.style.left = this.topPosition.style.left = 0;
+    this.bottomPosition.style.width = this.topPosition.style.width = '30px';
+    this.bottomPosition.style.height = this.topPosition.style.height = '2px';
+    this.bottomPosition.style.backgroundColor = this.topPosition.style.backgroundColor = 'rgba(255, 0, 0, 1)';
+    this.bottomPosition.style.zIndex = this.topPosition.style.zIndex = 1000;
+    this.bottomPosition.style.pointerEvents = this.topPosition.style.pointerEvents = 'none';
+
+    this.updateDebugPositions();
+  }
+
+  updateDebugPositions() {
+    if (!this.topPosition || this.bottomPosition) return;
+
+    this.topPosition.style.top = (this.calculatedOffsetTop || this.currentTopPosition) + 'px';
+    this.bottomPosition.style.top = (this.calculatedOffsetBottom || this.currentBottomPosition) + 'px';
+  }
+
+  setMarginTop() {
+    const radix = 10;
+
+    this.marginTop = parseInt(window.getComputedStyle(this.root).marginTop.replace('px', ''), radix);
   }
 
   handleDimensionsChanged(event) {
@@ -87,7 +122,7 @@ class StickyScroller {
   }
 
   isSticky() {
-    this.root.classList.contains(State.STICKY);
+    return this.root.classList.contains(State.STICKY);
   }
 
   setPositions() {
@@ -108,22 +143,24 @@ class StickyScroller {
   }
 
   getPercentage(position, topValue) {
-    const offsetTop = this.currentTopPosition - topValue + this.getMainOffsetTop();
-    const offsetBottom = this.currentBottomPosition - topValue + this.getMainOffsetTop();
+    this.calculatedOffsetTop = this.currentTopPosition - topValue - this.marginTop + this.getMainOffsetTop();
+    this.calculatedOffsetBottom = this.currentBottomPosition - topValue + this.getMainOffsetTop();
 
+    let localPosition = position;
     let percentage;
 
-    if (offsetBottom >= position) {
+    if (this.calculatedOffsetBottom >= localPosition) {
       let step = this.root.offsetHeight / 100;
 
-      if (offsetTop < 0) {
-        percentage = position / step;
+      if (this.calculatedOffsetTop < 0) {
+        percentage = localPosition / step;
       } else {
-        percentage = (position - offsetTop) / step;
+        percentage = (localPosition - this.calculatedOffsetTop) / step;
       }
     } else {
       percentage = this.maxPercentage;
     }
+
     return percentage;
   }
 
@@ -136,16 +173,22 @@ class StickyScroller {
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
-    const topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
+
+    let topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
+
+    topValue = topValue - this.marginTop;
+
     const percentage = this.getPercentage(scrollPosition, topValue);
     const outOfViewport = this.isOutOfViewport(percentage);
+    const isNotOverflowing = scrollPosition > scrollThreshold - window.innerHeight;
 
-    if (!outOfViewport && scrollPosition > scrollThreshold - window.innerHeight) {
+    if (!outOfViewport && isNotOverflowing) {
       if (!this.spacer.style.height) {
-        this.fixScrollPosition = window.scrollY;
-        this.spacer.style.height = this.root.clientHeight + 'px';
-        this.root.style.width = this.spacer.style.width = this.root.clientWidth + 'px';
-        this.root.style.setProperty('margin-top', '0px', 'important');
+        this.fixScrollPosition = true;
+        this.spacer.style.marginTop = this.marginTop + 'px';
+        this.spacer.style.height = this.height + 'px';
+        this.root.style.width = this.spacer.style.width = this.width + 'px';
+        this.root.style.height = this.height + 'px';
         this.root.style.left = '50%';
         this.root.style.transform = 'translateX(-50%)';
       }
@@ -155,18 +198,14 @@ class StickyScroller {
       this.root.classList.add(State.STICKY);
 
       this.updateClipPath(percentage);
-
-      if (this.fixScrollPosition) {
-        window.scrollTo(0, this.fixScrollPosition);
-
-        this.fixScrollPosition = false;
-      }
     } else if (percentage === 0) {
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
     } else {
       this.disableStickyness();
     }
+
+    this.updateDebugPositions();
   }
 
   disableStickyness() {
@@ -175,8 +214,9 @@ class StickyScroller {
     this.root.style.top = '';
     this.root.style.clipPath = '';
     this.root.style.width = '';
-    this.root.style.marginTop = '';
+    this.root.style.height = '';
     this.spacer.style.height = '';
+    this.spacer.style.marginTop = '';
     this.root.style.left = '';
     this.root.style.transform = '';
 
@@ -202,10 +242,15 @@ class StickyScroller {
   }
 
   setDimensions() {
-    this.spacer.style.width = this.root.clientWidth + 'px';
+    this.width = this.root.clientWidth;
+    this.height = this.root.clientHeight;
+
+    this.spacer.style.width = this.width + 'px';
   }
 
   resetElements() {
+    this.root.style.top = '';
+    this.spacer.style.marginTop = '';
     this.root.style.height = this.root.style.width = this.spacer.style.width = this.spacer.style.height = '';
     this.root.style.clipPath = '';
     this.root.classList.remove(State.STICKY);
