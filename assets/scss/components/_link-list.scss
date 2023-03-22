@@ -68,17 +68,13 @@ $link-list-breakpoint: 'lg';
 .link-list__title {
   padding-bottom: spacing(3);
   margin-bottom: spacing(4);
-  border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
   display: flex;
   justify-content: space-between;
   cursor: pointer;
 
-  + .link-list__list {
-    padding: 0 0 0 spacing(2);
-  }
-
   @include media-breakpoint-up($link-list-breakpoint) {
     cursor: auto;
+    border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
   }
 }
 

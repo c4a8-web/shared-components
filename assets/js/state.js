@@ -10,6 +10,7 @@ const State = {
   HIDDEN: 'd-none',
   INVISIBLE: 'is-invisible',
   EXPANDED: 'is-expanded',
+  EXPANDABLE: 'is-expandable',
   OFF_SCREEN: 'is-off-screen',
   COLLAPSED: 'is-collapsed',
   IS_COLLAPSING: 'is-collapsing',
