@@ -61,6 +61,7 @@ $color-blue-medium: #0072c6;
   --color-wistful: #b2a7d2;
   --color-lochmara: #007ac8;
   --color-polar: #f6f9fd;
+  --color-ghost: #cccdd2;
 
   --color-white: #fff;
 
@@ -166,7 +167,7 @@ $color-blue-medium: #0072c6;
   --color-header-contact-background: var(--color-polar);
   --color-header-active: var(--color-active);
 
-  --color-link-list-border: var(--color-header-border);
+  --color-link-list-border: var(--color-ghost);
   --color-toggle-switch-indicator: var(--color-midnight);
 
   --color-accordion-hover-background: var(--color-black-4);
