@@ -320,15 +320,7 @@ const Header = {
       },
       children: [
         {
-          name: 'lorem ipsum 1',
-          languages: {
-            de: {
-              title: 'lorem ipsum 1 DE',
-            },
-            en: {
-              title: 'lorem ipsum 1 EN',
-            },
-          },
+          name: 'lorem ipsum services 1',
           children: [
             {
               name: 'lorem1',
@@ -374,67 +366,7 @@ const Header = {
           ],
         },
         {
-          name: 'lorem ipsum 2',
-          languages: {
-            de: {
-              title: 'lorem ipsum 2 DE',
-            },
-            en: {
-              title: 'lorem ipsum 2 EN',
-            },
-          },
-          children: [
-            {
-              name: 'lorem1',
-              languages: {
-                de: {
-                  title: 'lorem ipsum',
-                  url: 'javascript:void(0);',
-                },
-                en: {
-                  title: 'dolor sit',
-                  url: 'javascript:void(0);',
-                },
-              },
-            },
-            {
-              name: 'lorem2',
-              languages: {
-                de: {
-                  title: 'lorem ipsum 2',
-                  url: 'javascript:void(0);',
-                },
-                en: {
-                  title: 'dolor sit 2',
-                  url: 'javascript:void(0);',
-                },
-              },
-            },
-            {
-              name: 'lorem3',
-              languages: {
-                de: {
-                  title: 'lorem ipsum 3',
-                  url: 'javascript:void(0);',
-                },
-                en: {
-                  title: 'dolor sit 3',
-                  url: 'javascript:void(0);',
-                },
-              },
-            },
-          ],
-        },
-        {
-          name: 'lorem ipsum 3',
-          languages: {
-            de: {
-              title: 'lorem ipsum 3 DE',
-            },
-            en: {
-              title: 'lorem ipsum 3 EN',
-            },
-          },
+          name: 'lorem ipsum services 2',
           children: [
             {
               name: 'lorem1',

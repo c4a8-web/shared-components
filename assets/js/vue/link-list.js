@@ -108,7 +108,7 @@ export default {
   },
   template: `
     <figure :class="classList" v-if="list" ref="root">
-      <figcaption class="link-list__title font-size-sm bold" v-if="list?.languages" v-on:click="handleClick">
+      <figcaption class="link-list__title font-size-8 bold" v-if="list?.languages" v-on:click="handleClick">
         {{ list.languages[lang]?.title }}
         <icon class="link-list__icon" icon="expand" size="small" />
       </figcaption>

@@ -75,6 +75,10 @@ const settings = {
     breakpoints: ['sm', 'lg', ''],
     variant: 'light',
   },
+  'font-size-8': {
+    breakpoints: ['sm', 'lg', 'xl'],
+    variant: 'bold',
+  },
 };
 
 const baseFontSize = 16;

@@ -1,5 +1,9 @@
 $default-line-height: 1.6;
 
+$font-size-12px: 0.75rem;
+$font-size-13px: 0.8125rem;
+$font-size-14px: 0.875rem;
+
 // TODO get rid of depdendency
 $font-size-base: 1rem;
 $font-size-sm: $font-size-base * 0.85;
@@ -35,6 +39,11 @@ $font-size-7: 9.76563rem * 1.25;
 $font-size-7-sm: 9.76563rem;
 $font-size-7-line-height: 8rem;
 $font-size-7-line-height-lg: 12rem;
+
+$font-size-8-sm: $font-size-14px;
+$font-size-8: $font-size-14px;
+$font-size-8-lg: $font-size-14px;
+$font-size-8-xl: $font-size-14px;
 
 $h1-font-size: $font-size-base * 5;
 $h1-font-size-sm: $h1-font-size / 1.8;

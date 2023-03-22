@@ -66,11 +66,16 @@ $link-list-breakpoint: 'lg';
 }
 
 .link-list__title {
+  color: var(--color-link-list-title);
   padding-bottom: spacing(3);
   margin-bottom: spacing(4);
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+
+  .link-list__icon {
+    color: var(--color-link-list-icon);
+  }
 
   @include media-breakpoint-up($link-list-breakpoint) {
     cursor: auto;
@@ -91,6 +96,12 @@ $link-list-breakpoint: 'lg';
   list-style-type: none;
   margin: 0;
   padding: spacing(2) 0;
+
+  @include media-breakpoint-down(md) {
+    .cta__text {
+      @include font-size-custom($sm: $font-size-13px);
+    }
+  }
 }
 
 .link-list__icon {

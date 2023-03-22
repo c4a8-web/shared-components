@@ -9,6 +9,10 @@ $header-border-size: 1px;
   .header {
     &.vue-component {
       // TODO remove wrapping rule after migration to one header is done
+      &.is-hovering {
+        transition-duration: 0s;
+      }
+
       .header__link-content {
         .icon {
           @include media-breakpoint-up($header-expand-breakpoint) {
@@ -159,7 +163,7 @@ $header-border-size: 1px;
     nav {
       background-color: var(--color-header-background);
       position: absolute;
-      bottom: -#{$header-border-size};
+      bottom: calc(-#{$header-border-size} + 1px);
       left: 50%;
       transform: translateY(100%) translateX(-50%);
       width: calc(100vw + 1px);
@@ -228,6 +232,12 @@ $header-border-size: 1px;
         }
       }
 
+      .header__flyout {
+        .col {
+          padding: 0;
+        }
+      }
+
       .header__link {
         width: auto;
         border: 0;
@@ -262,6 +272,10 @@ $header-border-size: 1px;
     @include media-breakpoint-up($header-expand-breakpoint) {
       min-width: 180px;
     }
+  }
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    flex: 0 1 25%;
   }
 }
 
@@ -426,8 +440,9 @@ $header-border-size: 1px;
 }
 
 .header__flyout-items {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  --header-flyout-item-width: calc(25% - #{spacing(18)} / 4 * 3);
+
+  display: flex;
   margin-top: spacing(16);
   margin-bottom: spacing(27);
   width: 100%;
@@ -435,6 +450,11 @@ $header-border-size: 1px;
 
   > * {
     transition: opacity 0.5s 0.15s $animation-transition, transform 0.4s 0.15s $animation-transition;
+    flex: 1 0 var(--header-flyout-item-width);
+  }
+
+  .header__flyout-block {
+    max-width: var(--header-flyout-item-width);
   }
 }
 
@@ -531,7 +551,7 @@ $header-border-size: 1px;
     bottom: 0px;
     width: 100vw;
     height: $header-border-size;
-    background-color: var(--color-header-border);
+    background-color: var(--color-header-container-border);
     left: 50%;
     transform: translateX(-50%);
   }
@@ -556,10 +576,25 @@ $header-border-size: 1px;
 }
 
 .header__link-list {
-  margin: spacing(6) $grid-gutter-half-width spacing(2);
+  margin: spacing(2) $grid-gutter-half-width spacing(2);
 
   &:first-of-type {
-    margin-top: spacing(10);
+    &.is-expandable {
+      margin-top: spacing(6);
+    }
+  }
+
+  &:not(.is-expandable) {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &:first-of-type {
+      margin-top: spacing(2);
+    }
+
+    &:last-of-type {
+      margin-bottom: spacing(2);
+    }
   }
 
   @include media-breakpoint-up($header-expand-breakpoint) {
