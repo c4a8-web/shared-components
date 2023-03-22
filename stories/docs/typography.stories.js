@@ -42,6 +42,10 @@ const settings = {
     breakpoints: ['sm', 'lg', ''],
   },
   'Copy Sizes': null,
+  'font-size-sm': {
+    breakpoints: [''],
+    variant: 'bold',
+  },
   'font-size-1': {
     breakpoints: [''],
     variant: 'bold',
