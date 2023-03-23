@@ -34,13 +34,9 @@ const Header = {
       languages: {
         de: {
           title: 'Portfolio',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam DE',
         },
         en: {
           title: 'Portfolio',
-          description:
-            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam EN',
         },
       },
       children: [
@@ -598,13 +594,119 @@ const Header = {
       languages: {
         de: {
           title: 'Produkte',
-          url: '/products-de/',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam DE',
         },
         en: {
           title: 'Products',
-          url: '/products-en/',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam EN',
         },
       },
+      children: [
+        {
+          name: 'lorem ipsum 1',
+          products: true,
+          children: [
+            {
+              name: 'realmjoin',
+              languages: {
+                de: {
+                  title: 'RealmJoin',
+                  subtitle: 'Cloudbasierte Softwareverteilung',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'RealmJoin',
+                  subtitle: 'Cloudbased Software distribution',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'scepman',
+              languages: {
+                de: {
+                  title: 'SCEPman',
+                  subtitle: 'Zertifikatsverteilung aus der Cloud',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'SCEPman',
+                  subtitle: 'Certificate distribution from the cloud',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'konnekt',
+              languages: {
+                de: {
+                  title: 'KONNEKT',
+                  subtitle: 'Arbeiten Sie lokal mit Ihren Office 365-Daten',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'KONNEKT',
+                  subtitle: 'Work with your local office 365 data',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+          ],
+        },
+        {
+          name: 'lorem ipsum 2',
+          products: true,
+          children: [
+            {
+              name: 'realmigrator',
+              languages: {
+                de: {
+                  title: 'RealMigrator',
+                  subtitle: 'Migrieren Sie alle Ihre Datenressourcen',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'RealMigrator',
+                  subtitle: 'Migrate your data from one server to another',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'radiusaas',
+              languages: {
+                de: {
+                  title: 'RADIUSaaS',
+                  subtitle: 'Authentifizierung für Ihr Netzwerk',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'RADIUSaaS',
+                  subtitle: 'Authentication for your network',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'unifiedcontacts',
+              languages: {
+                de: {
+                  title: 'Unified Contacts',
+                  subtitle: 'Finden Sie alle Ihre Kontakte in Microsoft Teams',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'Unified Contacts',
+                  subtitle: 'Find contacts in Microsoft Teams',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+          ],
+        },
+      ],
     },
   ],
   meta: [
