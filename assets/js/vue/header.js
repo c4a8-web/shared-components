@@ -158,7 +158,7 @@ export default {
       flyout.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
-      return;
+      // return;
 
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
@@ -343,13 +343,23 @@ export default {
                     </div>
                   </a>
 
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    :hidden="isLinkListHidden(item, index)"
-                    classes="header__link-list"
-                    v-for="list in item.children" v-if="item.children"
-                  />
+                  <template v-for="list in item.children">
+                    <link-list
+                      :list="list"
+                      :lang="lowerLang"
+                      :hidden="isLinkListHidden(item, index)"
+                      v-if="item.children && !list.products"
+                    />
+                    <div :hidden="isLinkListHidden(item, index)" class="header__product-list" v-else>
+                      <a :href="subChild.languages[lang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
+                        <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
+                        <div class="header__product-list-data">
+                          <div class="header__product-list-title font-size-8 bold">{{ subChild.languages[lang]?.title }}</div>
+                          <div class="header__product-list-subtitle">{{ subChild.languages[lang]?.subtitle }}</div>
+                        </div>
+                      </a>
+                    </div>
+                  </template>
                 </li>
               </ul>
               <div class="header__footer">
@@ -431,13 +441,13 @@ export default {
                       v-if="item.children && !list.products"
                     />
                     <div class="header__product-list" v-else>
-                      <div class="header__product-list-item" v-for="subChild in list.children">
+                      <a :href="subChild.languages[lang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
                         <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                         <div class="header__product-list-data">
-                          <div class="header__product-list-title">{{ subChild.languages[lang]?.title }}</div>
+                          <div class="header__product-list-title font-size-8 bold">{{ subChild.languages[lang]?.title }}</div>
                           <div class="header__product-list-subtitle">{{ subChild.languages[lang]?.subtitle }}</div>
                         </div>
-                      </div>
+                      </a>
                     </div>
                   </template>
                 </div>

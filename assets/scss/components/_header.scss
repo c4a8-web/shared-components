@@ -663,3 +663,35 @@ $header-border-size: 1px;
     margin-right: 0;
   }
 }
+
+.header__product-list-image {
+  max-width: spacing(12);
+  transition: transform 0.5s $animation-transition;
+}
+
+.header__product-list-subtitle {
+  @include font-size-custom($sm: $font-size-14px);
+
+  color: var(--color-header-product-subtitle);
+}
+
+.header__product-list-item {
+  display: flex;
+  margin-bottom: spacing(12);
+  color: var(--color-copy);
+
+  &:hover {
+    color: var(--color-copy-hover);
+
+    .header__product-list-image {
+      transform: scale(1.2);
+    }
+  }
+}
+
+.header__product-list-data {
+  margin-left: spacing(2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
