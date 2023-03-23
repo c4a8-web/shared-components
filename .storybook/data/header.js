@@ -610,6 +610,8 @@ const Header = {
           children: [
             {
               name: 'realmjoin',
+              img: 'products/realmjoin/realmjoin-nav-logo.svg',
+              target: '_blank',
               languages: {
                 de: {
                   title: 'RealmJoin',
@@ -625,6 +627,7 @@ const Header = {
             },
             {
               name: 'scepman',
+              img: 'products/scepman/scepman-nav-logo.svg',
               languages: {
                 de: {
                   title: 'SCEPman',
@@ -640,6 +643,7 @@ const Header = {
             },
             {
               name: 'konnekt',
+              img: 'products/konnekt/konnekt-nav-logo.svg',
               languages: {
                 de: {
                   title: 'KONNEKT',
@@ -661,6 +665,7 @@ const Header = {
           children: [
             {
               name: 'realmigrator',
+              img: 'products/realmigrator/realmigrator-nav-logo.svg',
               languages: {
                 de: {
                   title: 'RealMigrator',
@@ -676,6 +681,7 @@ const Header = {
             },
             {
               name: 'radiusaas',
+              img: 'products/radius/radius-nav-logo.svg',
               languages: {
                 de: {
                   title: 'RADIUSaaS',
@@ -691,6 +697,7 @@ const Header = {
             },
             {
               name: 'unifiedcontacts',
+              img: 'products/unified-contacts/unifiedcontact-nav-logo.svg',
               languages: {
                 de: {
                   title: 'Unified Contacts',
