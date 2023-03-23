@@ -158,6 +158,8 @@ export default {
       flyout.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
+      return;
+
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
@@ -422,12 +424,22 @@ export default {
                     </a>
                   </figure>
 
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    v-for="list in item.children"
-                    v-if="item.children"
-                  />
+                  <template v-for="list in item.children">
+                    <link-list
+                      :list="list"
+                      :lang="lowerLang"
+                      v-if="item.children && !list.products"
+                    />
+                    <div class="header__product-list" v-else>
+                      <div class="header__product-list-item" v-for="subChild in list.children">
+                        <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
+                        <div class="header__product-list-data">
+                          <div class="header__product-list-title">{{ subChild.languages[lang]?.title }}</div>
+                          <div class="header__product-list-subtitle">{{ subChild.languages[lang]?.subtitle }}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </template>
                 </div>
               </div>
             </div>

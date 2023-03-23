@@ -451,6 +451,7 @@ $header-border-size: 1px;
 
 .header__flyout-items {
   --header-flyout-item-width: calc(25% - #{spacing(18)} / 4 * 3);
+  --header-flyout-product-width: calc(33% - #{spacing(18)} / 4 * 2);
 
   display: flex;
   margin-top: spacing(16);
@@ -461,6 +462,10 @@ $header-border-size: 1px;
   > * {
     transition: opacity 0.5s 0.15s $animation-transition, transform 0.4s 0.15s $animation-transition;
     flex: 1 0 var(--header-flyout-item-width);
+
+    &.header__product-list {
+      flex: 1 0 var(--header-flyout-product-widt);
+    }
   }
 
   .header__flyout-block {
