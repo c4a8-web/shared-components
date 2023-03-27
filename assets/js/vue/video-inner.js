@@ -30,7 +30,7 @@ export default {
       return [
         'video__content',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
-        `${this.isVariantText ? 'col-md-6 mb-md-n4' : 'flex-grow-1 ' + padding}`,
+        `${this.isVariantText ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
         'vue-component',
       ];
     },
@@ -57,6 +57,9 @@ export default {
     },
     videoFrameId() {
       return this.videoId + '-frame';
+    },
+    headlineClasses() {
+      return this.isVariantText ? 'h4-font-size mb-0' : 'h4-font-size';
     },
     dataOptionsLightBox() {
       const options = {
@@ -163,12 +166,12 @@ export default {
                   <v-img :img="videoParsed.logo" :cloudinary="true" :alt="videoParsed.logoAlt">
                 </div>
                 <div class="col-lg-7 order-lg-1">
-                  <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
+                  <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses">
                 </div>
               </template>
               <template v-else>
                 <div class="col-lg-12 order-lg-1">
-                  <headline :level="level" :text="videoParsed.headline" :classes="h4-font-size">
+                  <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses">
                 </div>
               </template>
               <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text">

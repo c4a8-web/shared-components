@@ -23,7 +23,7 @@
 
   &.video--text {
     @include media-breakpoint-up(lg) {
-      padding: 0 spacing(24);
+      padding: 0;
     }
 
     .video__content {
@@ -40,6 +40,11 @@
       @include media-breakpoint-up(md) {
         padding-right: spacing(6);
         text-align: right;
+
+        &::before {
+          content: '';
+          width: 60%;
+        }
       }
     }
   }
