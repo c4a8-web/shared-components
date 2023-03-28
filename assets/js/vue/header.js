@@ -65,7 +65,7 @@ export default {
   },
   updated() {
     if (this.inUpdate) {
-      this.updateHeight();
+      this.updateProductListHeight();
 
       this.inUpdate = false;
       this.inTransition = false;
@@ -80,17 +80,30 @@ export default {
     },
     bindEvents() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
+
+      document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
+    },
+    handleResize() {
+      console.log('RESIZE');
+
+      this.reset();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
 
       this.setCtaClasses();
     },
+    reset() {
+      this.resetFlyouts();
+      this.updateProductListHeight();
+
+      this.closed = true;
+    },
     handleCloseClick() {
       this.closed = !this.closed;
 
       if (this.closed) {
-        this.resetFlyouts();
+        this.reset();
       }
     },
     resetFlyouts() {
@@ -299,7 +312,7 @@ export default {
 
       return [...classes, isLinkListHidden ? '' : State.EXPANDED];
     },
-    updateHeight() {
+    updateProductListHeight() {
       const productList = this.$refs['product-list'];
 
       if (!productList) return;
@@ -385,11 +398,11 @@ export default {
                       v-if="item.children && !list.products"
                     />
                     <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
-                      <a :href="subChild.languages[lang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
+                      <a :href="subChild?.languages[lowerLang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
                         <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                         <div class="header__product-list-data">
-                          <div class="header__product-list-title font-size-8 bold">{{ subChild.languages[lang]?.title }}</div>
-                          <div class="header__product-list-subtitle">{{ subChild.languages[lang]?.subtitle }}</div>
+                          <div class="header__product-list-title font-size-8 bold">{{ subChild?.languages[lowerLang]?.title }}</div>
+                          <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>
                         </div>
                       </a>
                     </div>
@@ -475,11 +488,11 @@ export default {
                       v-if="item.children && !list.products"
                     />
                     <div class="header__product-list is-expanded" v-else>
-                      <a :href="subChild.languages[lang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
+                      <a :href="subChild.languages[lowerLang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
                         <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                         <div class="header__product-list-data">
-                          <div class="header__product-list-title font-size-8 bold">{{ subChild.languages[lang]?.title }}</div>
-                          <div class="header__product-list-subtitle">{{ subChild.languages[lang]?.subtitle }}</div>
+                          <div class="header__product-list-title font-size-8 bold">{{ subChild.languages[lowerLang]?.title }}</div>
+                          <div class="header__product-list-subtitle">{{ subChild.languages[lowerLang]?.subtitle }}</div>
                         </div>
                       </a>
                     </div>
