@@ -10,8 +10,9 @@
   {% endif %}
 
   {% for textImage in textImageList %}
-    {% assign textImageEven = forloop.index | modulo: 2 %}
-    {% if textImageEven == 0 %}
+    {% assign textImageRemainder = forloop.index | modulo: 2 %}
+
+    {% if textImageRemainder == 0 %}
       {% assign textImageEven = true %}
     {% else %}
       {% assign textImageEven = false %}
@@ -26,5 +27,6 @@
       offset=true
       left=textImageEven
     %}
+
   {% endfor %}
 </div>
