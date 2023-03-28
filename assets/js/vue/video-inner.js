@@ -34,9 +34,6 @@ export default {
         'vue-component',
       ];
     },
-    wrapperClassValues() {
-      return 'row align-items-end no-gutters';
-    },
     variantValue() {
       return !this.variant ? 'bg-dark' : this.isVariantText ? 'col-md-6 order-md-2' : '';
     },
@@ -128,7 +125,7 @@ export default {
   },
   template: `
     <div :class="videoClass" :onclick="onClick">
-      <wrapper :classes="wrapperClassValues" :hideContainer="!isVariantText">
+      <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantText">
         <div :class="videoPlayerClass" :id="videoId">
           <template v-if="videoParsed.lightbox">
             <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox">
