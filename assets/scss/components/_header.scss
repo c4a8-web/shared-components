@@ -696,6 +696,7 @@ $header-border-size: 1px;
 .header__product-list-image {
   max-width: spacing(12);
   transition: transform 0.5s $animation-transition;
+  align-self: flex-start;
 }
 
 .header__product-list-subtitle {
@@ -714,6 +715,14 @@ $header-border-size: 1px;
 
     .header__product-list-image {
       transform: scale(1.2);
+    }
+  }
+
+  &:visited,
+  &:focus,
+  &:active {
+    .header__product-list-image {
+      transform: scale(1);
     }
   }
 }
