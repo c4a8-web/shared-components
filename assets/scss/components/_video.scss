@@ -21,7 +21,7 @@
     }
   }
 
-  &.video--text {
+  &.video--row {
     @include media-breakpoint-up(lg) {
       padding: 0;
     }

@@ -72,10 +72,10 @@ VideoLightbox.args = {
   },
 };
 
-export const VideoInnerText = Template.bind({});
+export const VideoRow = Template.bind({});
 
-VideoInnerText.args = {
-  variant: 'text',
+VideoRow.args = {
+  variant: 'row',
   video: {
     headline: 'Wenn Sie wissen,worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
     thumb: 'thumbs/video-thumb-haniel.jpg',

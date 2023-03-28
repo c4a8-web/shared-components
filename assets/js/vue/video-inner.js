@@ -8,7 +8,7 @@ export default {
       return [
         'video',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
-        `${this.isVariantText ? 'container' : 'd-flex flex-column'}`,
+        `${this.isVariantRow ? 'container' : 'd-flex flex-column'}`,
         `${Tools.isTrue(this.spacingTop) ? 'video--has-spacing' : ''}`,
         `${!this.isReversed() ? 'h-100' : ''}`,
         'space-bottom-1 space-bottom-lg-0',
@@ -30,15 +30,15 @@ export default {
       return [
         'video__content',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
-        `${this.isVariantText ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
+        `${this.isVariantRow ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
         'vue-component',
       ];
     },
     variantClasses() {
-      return !this.variant ? 'bg-dark' : this.isVariantText ? 'col-md-6 order-md-2' : '';
+      return !this.variant ? 'bg-dark' : this.isVariantRow ? 'col-md-6 order-md-2' : '';
     },
-    isVariantText() {
-      return this.variant === 'text';
+    isVariantRow() {
+      return this.variant === 'row';
     },
     videoParsed() {
       return typeof this.video !== 'object' ? JSON.parse(this.video) : this.video;
@@ -56,7 +56,7 @@ export default {
       return this.videoId + '-frame';
     },
     headlineClasses() {
-      return `h4-font-size ${this.isVariantText ? 'mb-0' : ''}`;
+      return `h4-font-size ${this.isVariantRow ? 'mb-0' : ''}`;
     },
     dataOptionsLightBox() {
       const options = {
@@ -125,7 +125,7 @@ export default {
   },
   template: `
     <div :class="videoClass" :onclick="onClick">
-      <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantText">
+      <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantRow">
         <div :class="videoPlayerClass" :id="videoId">
           <template v-if="videoParsed.lightbox">
             <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox">
