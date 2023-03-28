@@ -590,9 +590,12 @@ $header-border-size: 1px;
   }
 }
 
-.header__link-list {
+.header__link-list,
+.header__product-list {
   margin: spacing(2) $grid-gutter-half-width spacing(2);
+}
 
+.header__link-list {
   &:first-of-type {
     &.is-expandable {
       margin-top: spacing(6);
@@ -619,6 +622,29 @@ $header-border-size: 1px;
   @include media-breakpoint-up($header-expand-breakpoint) {
     margin-top: spacing(10);
     width: 70%;
+  }
+}
+
+.header__product-list {
+  transition: height 0.4s $animation-transition, opacity 0.5s 0.15s $animation-transition,
+    transform 0.4s 0.15s $animation-transition;
+
+  &:first-of-type {
+    margin-top: spacing(6);
+  }
+
+  &:not(.is-expanded),
+  &.in-transition {
+    @include is-invisible;
+
+    width: 0;
+  }
+
+  &.in-transition {
+    width: auto;
+  }
+
+  &.is-expanded {
   }
 }
 

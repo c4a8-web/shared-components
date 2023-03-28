@@ -63,6 +63,14 @@ export default {
 
     this.setCtaClasses();
   },
+  updated() {
+    if (this.inUpdate) {
+      this.updateHeight();
+
+      this.inUpdate = false;
+      this.inTransition = false;
+    }
+  },
   methods: {
     showFlyoutBlock(children) {
       return children.length > this.maxLinkListsInFlyout ? false : true;
@@ -96,6 +104,12 @@ export default {
       const id = this.getId(item, index);
 
       this.linkLists[id] = !this.linkLists[id];
+
+      if (this.linkLists[id]) {
+        this.inTransition = true;
+      }
+
+      this.inUpdate = true;
 
       this.closeAllSiblings(id);
       this.closeAllChildren();
@@ -277,9 +291,28 @@ export default {
       return !this.linkLists[id] ? true : false;
     },
     headerLinkClasses(item, index) {
+      return this.getListClasses(item, index, ['header__link custom']);
+    },
+    headerProductListClasses(item, index) {
+      return this.getListClasses(item, index, ['header__product-list', this.inTransition ? State.IN_TRANSITION : '']);
+    },
+    getListClasses(item, index, classes) {
       const isLinkListHidden = this.isLinkListHidden(item, index);
 
-      return ['header__link custom', isLinkListHidden ? '' : State.EXPANDED];
+      return [...classes, isLinkListHidden ? '' : State.EXPANDED];
+    },
+    updateHeight() {
+      const productList = this.$refs['product-list'];
+
+      if (!productList) return;
+
+      for (let i = 0; i < productList.length; i++) {
+        const list = productList[i];
+        const isExpanded = list.classList.contains(State.EXPANDED);
+        const newHeight = !isExpanded || list.style.height !== '' ? '' : list.scrollHeight + 'px';
+
+        list.style.height = newHeight;
+      }
     },
   },
   props: {
@@ -304,6 +337,8 @@ export default {
   },
   data() {
     return {
+      inUpdate: false,
+      inTransition: true,
       defaultLang: 'de',
       closed: true,
       hover: false,
@@ -348,9 +383,10 @@ export default {
                       :list="list"
                       :lang="lowerLang"
                       :hidden="isLinkListHidden(item, index)"
+                      classes="header__link-list"
                       v-if="item.children && !list.products"
                     />
-                    <div :hidden="isLinkListHidden(item, index)" class="header__product-list" v-else>
+                    <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
                       <a :href="subChild.languages[lang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
                         <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                         <div class="header__product-list-data">

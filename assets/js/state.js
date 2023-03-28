@@ -25,6 +25,7 @@ const State = {
   HAS_BACKGROUND: 'has-background',
   IS_FULL: 'is-full',
   STICKY: 'is-sticky',
+  IN_TRANSITION: 'in-transition',
 };
 
 export default State;
