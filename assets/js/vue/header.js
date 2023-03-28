@@ -52,10 +52,10 @@ export default {
       return Object.keys(this.home?.languages).length > 1;
     },
     hasContact() {
-      return this.contact && this.contact.length > 2;
+      return this.contact;
     },
     hasMeta() {
-      return this.meta && this.meta.length > 2;
+      return this.meta && this.meta.length > 0;
     },
   },
   mounted() {
