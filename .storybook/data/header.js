@@ -616,44 +616,46 @@ const Header = {
                 de: {
                   title: 'RealmJoin',
                   subtitle: 'Cloudbasierte Softwareverteilung',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.realmjoin.com/',
                 },
                 en: {
                   title: 'RealmJoin',
                   subtitle: 'Cloudbased Software distribution',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.realmjoin.com/',
                 },
               },
             },
             {
               name: 'scepman',
               img: 'products/scepman/scepman-nav-logo.svg',
+              target: '_blank',
               languages: {
                 de: {
                   title: 'SCEPman',
                   subtitle: 'Zertifikatsverteilung aus der Cloud',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.scepman.com/',
                 },
                 en: {
                   title: 'SCEPman',
                   subtitle: 'Certificate distribution from the cloud',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.scepman.com/',
                 },
               },
             },
             {
               name: 'konnekt',
               img: 'products/konnekt/konnekt-nav-logo.svg',
+              target: '_blank',
               languages: {
                 de: {
                   title: 'KONNEKT',
                   subtitle: 'Arbeiten Sie lokal mit Ihren Office 365-Daten',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.konnekt.io/',
                 },
                 en: {
                   title: 'KONNEKT',
                   subtitle: 'Work with your local office 365 data',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.konnekt.io/',
                 },
               },
             },
@@ -666,48 +668,51 @@ const Header = {
             {
               name: 'realmigrator',
               img: 'products/realmigrator/realmigrator-nav-logo.svg',
+              target: '_blank',
               languages: {
                 de: {
                   title: 'RealMigrator',
                   subtitle: 'Migrieren Sie alle Ihre Datenressourcen',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.realmigrator.com/',
                 },
                 en: {
                   title: 'RealMigrator',
                   subtitle: 'Migrate your data from one server to another',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.realmigrator.com/',
                 },
               },
             },
             {
               name: 'radiusaas',
               img: 'products/radius/radius-nav-logo.svg',
+              target: '_blank',
               languages: {
                 de: {
                   title: 'RADIUSaaS',
                   subtitle: 'Authentifizierung für Ihr Netzwerk',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.radius-as-a-service.com/',
                 },
                 en: {
                   title: 'RADIUSaaS',
                   subtitle: 'Authentication for your network',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.radius-as-a-service.com/',
                 },
               },
             },
             {
               name: 'unifiedcontacts',
               img: 'products/unified-contacts/unifiedcontact-nav-logo.svg',
+              target: '_blank',
               languages: {
                 de: {
                   title: 'Unified Contacts',
                   subtitle: 'Finden Sie alle Ihre Kontakte in Microsoft Teams',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.unified-contacts.com/',
                 },
                 en: {
                   title: 'Unified Contacts',
                   subtitle: 'Find contacts in Microsoft Teams',
-                  url: 'javascript:void(0);',
+                  url: 'https://www.unified-contacts.com/',
                 },
               },
             },
