@@ -68,9 +68,8 @@
 
   &.hero-text-image--bottom-spacing {
     .hero-text-image__wrapper {
-      @include media-breakpoint-up(xs) {
-        padding-bottom: spacing($size: 5);
-      }
+      padding-bottom: spacing($size: 5);
+
       @include media-breakpoint-up(md) {
         padding-bottom: spacing($size: 15);
       }
@@ -278,7 +277,7 @@
 
   &.hero--text {
     .container {
-      max-width: none;
+      max-width: 1200px;
 
       @include media-breakpoint-up(md) {
         padding: 0 spacing(18);
