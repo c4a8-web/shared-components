@@ -19,7 +19,7 @@ export default {
     videoPlayerClass() {
       return [
         'video__player',
-        `${this.variantValue}`,
+        `${this.variantClasses}`,
         `${this.isPlayed ? 'video-player-played' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
         'vue-component',
@@ -34,7 +34,7 @@ export default {
         'vue-component',
       ];
     },
-    variantValue() {
+    variantClasses() {
       return !this.variant ? 'bg-dark' : this.isVariantText ? 'col-md-6 order-md-2' : '';
     },
     isVariantText() {
@@ -56,7 +56,7 @@ export default {
       return this.videoId + '-frame';
     },
     headlineClasses() {
-      return this.isVariantText ? 'h4-font-size mb-0' : 'h4-font-size';
+      return `h4-font-size ${this.isVariantText ? 'mb-0' : ''}`;
     },
     dataOptionsLightBox() {
       const options = {
