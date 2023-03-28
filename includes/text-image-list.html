@@ -1,0 +1,30 @@
+{%- assign textImageList = include.textImages -%}
+{%- assign textImageListHeadline = include.headline -%}
+
+<div class="text-image-list mb-5">
+  {% if textImageListHeadline %}
+    {%
+      include headline-row.html
+      text=textImageListHeadline
+    %}
+  {% endif %}
+
+  {% for textImage in textImageList %}
+    {% assign textImageEven = forloop.index | modulo: 2 %}
+    {% if textImageEven == 0 %}
+      {% assign textImageEven = true %}
+    {% else %}
+      {% assign textImageEven = false %}
+    {% endif %}
+
+    {%
+      include text-image.html
+      image=textImage.image
+      alt=textImage.alt
+      headline=textImage.headline
+      copy=textImage.copy
+      offset=true
+      left=textImageEven
+    %}
+  {% endfor %}
+</div>
