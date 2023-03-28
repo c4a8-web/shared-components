@@ -172,8 +172,6 @@ export default {
       flyout.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
-      // return;
-
       if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
@@ -338,7 +336,7 @@ export default {
   data() {
     return {
       inUpdate: false,
-      inTransition: true,
+      inTransition: false,
       defaultLang: 'de',
       closed: true,
       hover: false,
@@ -476,7 +474,7 @@ export default {
                       :lang="lowerLang"
                       v-if="item.children && !list.products"
                     />
-                    <div class="header__product-list" v-else>
+                    <div class="header__product-list is-expanded" v-else>
                       <a :href="subChild.languages[lang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
                         <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                         <div class="header__product-list-data">

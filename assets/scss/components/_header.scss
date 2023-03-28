@@ -186,10 +186,12 @@ $header-border-size: 1px;
         display: block;
       }
 
-      .header__item {
-        &:hover {
-          .header__link-text {
-            font-weight: bold;
+      @include media-breakpoint-up($header-expand-breakpoint) {
+        .header__item {
+          &:hover {
+            .header__link-text {
+              font-weight: bold;
+            }
           }
         }
       }
@@ -401,6 +403,10 @@ $header-border-size: 1px;
   &.active {
     .header__link {
       color: var(--color-active);
+
+      .header__link-icon {
+        color: var(--color-copy);
+      }
 
       @include media-breakpoint-up($header-expand-breakpoint) {
         color: inherit;
@@ -642,9 +648,6 @@ $header-border-size: 1px;
 
   &.in-transition {
     width: auto;
-  }
-
-  &.is-expanded {
   }
 }
 
