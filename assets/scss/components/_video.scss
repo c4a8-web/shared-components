@@ -50,9 +50,8 @@
   }
 
   &.video--has-spacing {
-    @include media-breakpoint-up(xs) {
-      margin-top: spacing($size: 25, $negative: true);
-    }
+    margin-top: spacing($size: 25, $negative: true);
+
     @include media-breakpoint-up(md) {
       margin-top: spacing($size: 10, $negative: true);
     }
