@@ -41,9 +41,12 @@ $link-list-breakpoint: 'lg';
   &.is-expanded {
     .link-list__icon {
       --icon-rotation: 180deg !important;
+
+      color: var(--color-link-list-active);
     }
 
     .link-list__title {
+      color: var(--color-link-list-active);
       margin-bottom: 0;
 
       @include media-breakpoint-up($link-list-breakpoint) {
