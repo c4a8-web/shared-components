@@ -38,3 +38,49 @@ TextImageList.args = {
     },
   ],
 };
+
+export const Benefits = Template.bind({});
+
+Benefits.args = {
+  headline: 'Wo das Glück im Namen steckt.',
+  headlineColor: 'var(--color-white)',
+  bgColor: 'var(--color-career-background)',
+  textImages: [
+    {
+      image: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+      alt: 'hohe flexibilität',
+      headline: 'Hohe Flexibilität',
+      copy: 'dank frei planbarer Arbeitszeiten, garantiertem Homeoffice und technischem Equipment nach deinem Wunsch!',
+    },
+    {
+      image: getAssetPath('svg/icons/unifiedcontacts_feature_certificates.svg'),
+      alt: 'nachhaltige mobilität',
+      headline: 'Nachhaltige Mobilität',
+      copy: 'mit E-Firmenwagen oder Poolfahrzeug und Bike-Leasing!',
+    },
+    {
+      image: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+      alt: 'erfüllende aufgabe',
+      headline: 'Erfüllende Aufgabe',
+      copy: 'mit aufregenden Projekten!',
+    },
+    {
+      image: getAssetPath('svg/icons/unifiedcontacts_feature_contactsources.svg'),
+      alt: 'top standorte',
+      headline: 'Top Standorte',
+      copy: 'mit hochmodernen Offices in Deutschland, Finnland & Australien!',
+    },
+    {
+      image: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+      alt: 'attraktive vergütung',
+      headline: 'Attraktive Vergütung',
+      copy: 'plus Boni, Prämien und vielen Sonderleistungen wie Kostenübernahme für die Kinderbetreuung oder deinen privaten Internetanschluss!',
+    },
+    {
+      image: getAssetPath('svg/icons/unifiedcontacts_feature_platforms.svg'),
+      alt: 'wow events',
+      headline: 'Wow-Events',
+      copy: 'wie Mountainbike-Touren, jährliches Bootcamp, Grill&Chill und relaxtend Rooftop-Parties!',
+    },
+  ],
+};

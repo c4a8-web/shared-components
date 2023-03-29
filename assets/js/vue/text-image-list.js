@@ -5,10 +5,10 @@ export default {
       return ['text-image-list py-8', `${this.bgColor ? 'my-8' : ''}`, 'vue-component'];
     },
     colorStyling() {
-      const bgColor = this.bgColor
-        ? `--color-text-image-list-background: ${this.bgColor}; background-color: var(--color-text-image-list-background);`
+      const bgColor = this.bgColor ? `background-color:  ${this.bgColor};` : '';
+      const headlineColor = this.headlineColor
+        ? `--color-headlines: ${this.headlineColor}; color: ${this.headlineColor}`
         : '';
-      const headlineColor = this.headlineColor ? `--color-headlines: ${this.headlineColor}` : '';
       return [bgColor, headlineColor];
     },
   },
