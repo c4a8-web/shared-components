@@ -52,18 +52,39 @@ export default {
       return Object.keys(this.home?.languages).length > 1;
     },
     hasContact() {
-      return this.contact && this.contact.length > 2;
+      return this.contact;
     },
     hasMeta() {
-      return this.meta && this.meta.length > 2;
+      return this.meta && this.meta.length > 0;
     },
   },
   mounted() {
     this.bindEvents();
 
     this.setCtaClasses();
+    this.setLinkWidth();
+  },
+  updated() {
+    if (this.inUpdate) {
+      this.updateProductListHeight();
+
+      this.inUpdate = false;
+      this.inTransition = false;
+    }
   },
   methods: {
+    setLinkWidth() {
+      const links = this.$refs['link'];
+
+      if (!links) return;
+
+      for (let i = 0; i < links.length; i++) {
+        const link = links[i];
+        const textWidth = link.querySelector('.header__link-text-spacer')?.clientWidth;
+
+        link.style.setProperty('--header-link-text-width', textWidth + 'px');
+      }
+    },
     showFlyoutBlock(children) {
       return children.length > this.maxLinkListsInFlyout ? false : true;
     },
@@ -72,17 +93,29 @@ export default {
     },
     bindEvents() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
+
+      document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
+    },
+    handleResize() {
+      this.reset();
+      this.setLinkWidth();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
 
       this.setCtaClasses();
     },
+    reset() {
+      this.resetFlyouts();
+      this.updateProductListHeight();
+
+      this.closed = true;
+    },
     handleCloseClick() {
       this.closed = !this.closed;
 
       if (this.closed) {
-        this.resetFlyouts();
+        this.reset();
       }
     },
     resetFlyouts() {
@@ -96,6 +129,12 @@ export default {
       const id = this.getId(item, index);
 
       this.linkLists[id] = !this.linkLists[id];
+
+      if (this.linkLists[id]) {
+        this.inTransition = true;
+      }
+
+      this.inUpdate = true;
 
       this.closeAllSiblings(id);
       this.closeAllChildren();
@@ -275,9 +314,28 @@ export default {
       return !this.linkLists[id] ? true : false;
     },
     headerLinkClasses(item, index) {
+      return this.getListClasses(item, index, ['header__link custom']);
+    },
+    headerProductListClasses(item, index) {
+      return this.getListClasses(item, index, ['header__product-list', this.inTransition ? State.IN_TRANSITION : '']);
+    },
+    getListClasses(item, index, classes) {
       const isLinkListHidden = this.isLinkListHidden(item, index);
 
-      return ['header__link custom', isLinkListHidden ? '' : State.EXPANDED];
+      return [...classes, isLinkListHidden ? '' : State.EXPANDED];
+    },
+    updateProductListHeight() {
+      const productList = this.$refs['product-list'];
+
+      if (!productList) return;
+
+      for (let i = 0; i < productList.length; i++) {
+        const list = productList[i];
+        const isExpanded = list.classList.contains(State.EXPANDED);
+        const newHeight = !isExpanded || list.style.height !== '' ? '' : list.scrollHeight + 'px';
+
+        list.style.height = newHeight;
+      }
     },
   },
   props: {
@@ -302,6 +360,8 @@ export default {
   },
   data() {
     return {
+      inUpdate: false,
+      inTransition: false,
       defaultLang: 'de',
       closed: true,
       hover: false,
@@ -341,13 +401,24 @@ export default {
                     </div>
                   </a>
 
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    :hidden="isLinkListHidden(item, index)"
-                    classes="header__link-list"
-                    v-for="list in item.children" v-if="item.children"
-                  />
+                  <template v-for="list in item.children">
+                    <link-list
+                      :list="list"
+                      :lang="lowerLang"
+                      :hidden="isLinkListHidden(item, index)"
+                      classes="header__link-list"
+                      v-if="item.children && !list.products"
+                    />
+                    <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
+                      <a :href="subChild?.languages[lowerLang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
+                        <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
+                        <div class="header__product-list-data">
+                          <div class="header__product-list-title font-size-8 bold">{{ subChild?.languages[lowerLang]?.title }}</div>
+                          <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>
+                        </div>
+                      </a>
+                    </div>
+                  </template>
                 </li>
               </ul>
               <div class="header__footer">
@@ -422,12 +493,22 @@ export default {
                     </a>
                   </figure>
 
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    v-for="list in item.children"
-                    v-if="item.children"
-                  />
+                  <template v-for="list in item.children">
+                    <link-list
+                      :list="list"
+                      :lang="lowerLang"
+                      v-if="item.children && !list.products"
+                    />
+                    <div class="header__product-list is-expanded" v-else>
+                      <a :href="subChild.languages[lowerLang]?.url" :target="subChild.target" class="header__product-list-item custom" v-for="subChild in list.children">
+                        <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
+                        <div class="header__product-list-data">
+                          <div class="header__product-list-title font-size-8 bold">{{ subChild.languages[lowerLang]?.title }}</div>
+                          <div class="header__product-list-subtitle">{{ subChild.languages[lowerLang]?.subtitle }}</div>
+                        </div>
+                      </a>
+                    </div>
+                  </template>
                 </div>
               </div>
             </div>

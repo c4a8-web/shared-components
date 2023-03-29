@@ -41,9 +41,12 @@ $link-list-breakpoint: 'lg';
   &.is-expanded {
     .link-list__icon {
       --icon-rotation: 180deg !important;
+
+      color: var(--color-link-list-active);
     }
 
     .link-list__title {
+      color: var(--color-link-list-active);
       margin-bottom: 0;
 
       @include media-breakpoint-up($link-list-breakpoint) {
@@ -66,20 +69,20 @@ $link-list-breakpoint: 'lg';
 }
 
 .link-list__title {
-  text-transform: uppercase;
-  padding-bottom: spacing(5);
-  margin-bottom: spacing(5);
-  border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
+  color: var(--color-link-list-title);
+  padding-bottom: spacing(3);
+  margin-bottom: spacing(4);
   display: flex;
   justify-content: space-between;
   cursor: pointer;
 
-  + .link-list__list {
-    padding: 0 0 0 spacing(2);
+  .link-list__icon {
+    color: var(--color-link-list-icon);
   }
 
   @include media-breakpoint-up($link-list-breakpoint) {
     cursor: auto;
+    border-bottom: var(--link-list-border-size) solid var(--color-link-list-border);
   }
 }
 
@@ -96,6 +99,12 @@ $link-list-breakpoint: 'lg';
   list-style-type: none;
   margin: 0;
   padding: spacing(2) 0;
+
+  @include media-breakpoint-down(md) {
+    .cta__text {
+      @include font-size-custom($sm: $font-size-13px);
+    }
+  }
 }
 
 .link-list__icon {

@@ -61,6 +61,10 @@ $color-blue-medium: #0072c6;
   --color-wistful: #b2a7d2;
   --color-lochmara: #007ac8;
   --color-polar: #f6f9fd;
+  --color-ghost: #cccdd2;
+  --color-athens-gray: #e5e6e9;
+  --color-bombay: #b3b4bc;
+  --color-cornflower-blue: #666979;
 
   --color-white: #fff;
 
@@ -162,11 +166,17 @@ $color-blue-medium: #0072c6;
   --color-scroll-arrow: var(--color-orange);
 
   --color-header-background: var(--color-white);
-  --color-header-border: var(--color-black);
+  --color-header-border: var(--color-ghost);
+  --color-header-container-border: var(--color-athens-gray);
   --color-header-contact-background: var(--color-polar);
   --color-header-active: var(--color-active);
+  --color-header-product-subtitle: var(--color-cornflower-blue);
 
-  --color-link-list-border: var(--color-header-border);
+  --color-link-list-border: var(--color-ghost);
+  --color-link-list-icon: var(--color-bombay);
+  --color-link-list-title: var(--color-trout);
+  --color-link-list-active: var(--color-active);
+
   --color-toggle-switch-indicator: var(--color-midnight);
 
   --color-accordion-hover-background: var(--color-black-4);

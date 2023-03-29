@@ -9,6 +9,7 @@ export default {
       return [
         'link-list',
         `${this.isExpanded ? State.EXPANDED : ''}`,
+        `${this.isExpandable() ? State.EXPANDABLE : ''}`,
         `${this.hasActiveItem ? State.ACTIVE : ''}`,
         `${this.isHidden ? 'link-list--hidden' : ''}`,
         `${this.inTransition ? 'link-list--in-transition' : ''}`,
@@ -57,7 +58,7 @@ export default {
       return Tools.isBelowBreakpoint('md');
     },
     isExpandable() {
-      return this.isLowerBreakpoint() && this.list.languages[this.lang]?.title ? true : false;
+      return this.isLowerBreakpoint() && this.list.languages && this.list.languages[this.lang]?.title ? true : false;
     },
     updateHeight() {
       const root = this.$refs['root'];
@@ -107,7 +108,7 @@ export default {
   },
   template: `
     <figure :class="classList" v-if="list" ref="root">
-      <figcaption class="link-list__title" v-if="list?.languages" v-on:click="handleClick">
+      <figcaption class="link-list__title font-size-8 bold" v-if="list?.languages" v-on:click="handleClick">
         {{ list.languages[lang]?.title }}
         <icon class="link-list__icon" icon="expand" size="small" />
       </figcaption>

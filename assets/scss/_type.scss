@@ -7,6 +7,7 @@ $font-style-map: (
   'font-size-5': '%font-size-5',
   'font-size-6': '%font-size-6',
   'font-size-7': '%font-size-7',
+  'font-size-8': '%font-size-8',
   'h1-font-size': '%h1-font-size',
   'h2-font-size': '%h2-font-size',
   'h3-font-size': '%h3-font-size',
@@ -140,6 +141,24 @@ $font-style-map: (
   // }
 }
 
+@mixin font-size-custom($sm: false, $lg: false, $xl: false) {
+  @if ($sm) {
+    font-size: $sm;
+  }
+
+  @if ($lg) {
+    @include media-breakpoint-up(lg) {
+      font-size: $lg;
+    }
+  }
+
+  @if ($xl) {
+    @include media-breakpoint-up(xl) {
+      font-size: $xl;
+    }
+  }
+}
+
 @mixin font-mods($weight: 'light') {
   @if $weight == 'light' {
     font-weight: 100 !important;
@@ -210,6 +229,8 @@ $font-style-map: (
   %font-size-4,
   %font-size-5,
   %font-size-6,
+  %font-size-7,
+  %font-size-8,
   %h1-font-size,
   %h2-font-size,
   %h3-font-size,
@@ -225,6 +246,7 @@ $font-style-map: (
   .font-size-5,
   .font-size-6,
   .font-size-7,
+  .font-size-8,
   .h1-font-size,
   .h2-font-size,
   .h3-font-size,
@@ -458,6 +480,11 @@ $font-style-map: (
       line-height: $font-size-7-line-height-lg;
       margin-left: -15px;
     }
+  }
+
+  %font-size-8,
+  .font-size-8 {
+    @include font-size-custom($sm: $font-size-8-sm, $lg: $font-size-8-lg);
   }
 
   .is-error {
