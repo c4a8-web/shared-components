@@ -1,14 +1,17 @@
 {%- assign textImageList = include.textImages -%}
 {%- assign textImageListHeadline = include.headline -%}
+{%- assign textImageListHeadlineLevel = include.level | default: 'h2' -%}
+{%- assign textImageListHeadlineColor = include.headlineColor -%}
+{%- assign textImageListBgColor = include.bgColor | default: false -%}
 
-<div class="text-image-list">
-  {% if textImageListHeadline %}
-    {%
-      include headline-row.html
-      text=textImageListHeadline
-    %}
-  {% endif %}
+<text-image-list
+  headline="{{ textImageListHeadline }}"
+  spacing="{{ textImageListHeadlineSpacing }}"
+  bg-color="{{ textImageListBgColor }}"
+  headline-color="{{ textImageListHeadlineColor }}"
+>
 
+  {% assign textImageListSize = textImageList | size %}
   {% for textImage in textImageList %}
     {% assign textImageRemainder = forloop.index | modulo: 2 %}
 
@@ -29,4 +32,4 @@
     %}
 
   {% endfor %}
-</div>
+</text-image-list>

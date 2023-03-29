@@ -15,6 +15,8 @@ export const TextImageList = Template.bind({});
 
 TextImageList.args = {
   headline: 'Lorem Ipsum',
+  headlineColor: 'var(--color-white)',
+  bgColor: 'var(--color-orange)',
   textImages: [
     {
       image: getAssetPath('svg/icons/icon-consulting-services.svg'),
