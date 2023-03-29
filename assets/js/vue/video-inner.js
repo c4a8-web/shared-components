@@ -9,7 +9,7 @@ export default {
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
         `${this.isVariantRow ? 'container' : 'd-flex flex-column'}`,
         `${this.overlapping ? 'video--is-overlapping' : ''}`,
-        `${this.spacingTop}`,
+        `${this.spacing}`,
         `${!this.isReversed() ? 'h-100' : ''}`,
         `${this.variant ? 'video--' + this.variant : ''}`,
         'vue-component',
@@ -117,7 +117,9 @@ export default {
   props: {
     video: Object,
     variant: String,
-    spacingTop: String,
+    spacing: {
+      default: 'space-bottom-1 space-bottom-lg-0',
+    },
     overlapping: String,
     level: {
       default: 'h4',
