@@ -1,5 +1,4 @@
 import YoutubePlayer from '../youtube-player.js';
-import Tools from '../tools.js';
 
 export default {
   tagName: 'video-inner',
