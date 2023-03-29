@@ -62,6 +62,7 @@ export default {
     this.bindEvents();
 
     this.setCtaClasses();
+    this.setLinkWidth();
   },
   updated() {
     if (this.inUpdate) {
@@ -72,6 +73,18 @@ export default {
     }
   },
   methods: {
+    setLinkWidth() {
+      const links = this.$refs['link'];
+
+      if (!links) return;
+
+      for (let i = 0; i < links.length; i++) {
+        const link = links[i];
+        const textWidth = link.querySelector('.header__link-text-spacer')?.clientWidth;
+
+        link.style.setProperty('--header-link-text-width', textWidth + 'px');
+      }
+    },
     showFlyoutBlock(children) {
       return children.length > this.maxLinkListsInFlyout ? false : true;
     },
@@ -84,9 +97,8 @@ export default {
       document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
     },
     handleResize() {
-      console.log('RESIZE');
-
       this.reset();
+      this.setLinkWidth();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
