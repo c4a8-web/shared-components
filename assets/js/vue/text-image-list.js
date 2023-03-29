@@ -2,7 +2,7 @@ export default {
   tagName: 'text-image-list',
   computed: {
     classValue() {
-      return ['text-image-list py-8 vue-component', `${this.bgColor ? 'my-8' : ''}`];
+      return ['text-image-list py-8', `${this.bgColor ? 'my-8' : ''}`, 'vue-component'];
     },
     colorStyling() {
       const bgColor = this.bgColor
