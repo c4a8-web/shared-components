@@ -6,7 +6,6 @@
 
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
-{%- assign heroTextImageSpacing = heroTextImageHero.spacing | default: 'space-bottom-0' -%}
 
 {%- if heroTextImageVariant == 'hero--career' -%}
   {% assign heroTextImageCtaTop = false -%}
@@ -22,6 +21,8 @@
   {% assign heroTextImageCtaTop = true %}
   {% assign heroContainerPosition = "justify-content-lg-center" %}
   {% assign heroSublineStyling = "" %}
+{%- elsif heroTextImageVariant == 'hero--text' -%}
+  {%- assign heroTextImageSpacing = heroTextImageHero.spacing | default: 'space-bottom-0' -%}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
   {% assign heroTextImageSrcSet = false %}
