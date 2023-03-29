@@ -7,10 +7,11 @@
       img {
         &.is-svg {
           width: 90%;
-          max-width: 120px;
+          max-width: 190px;
 
           @include media-breakpoint-up(lg) {
             width: 60%;
+            max-width: 120px;
           }
         }
       }
