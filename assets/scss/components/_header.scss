@@ -37,6 +37,10 @@ $header-border-size: 1px;
     bottom: auto;
     background-color: var(--color-header-background);
 
+    &.is-scrolled {
+      transition: background-color 0.5s $animation-transition;
+    }
+
     &.header--product {
       box-shadow: none;
 
@@ -94,7 +98,6 @@ $header-border-size: 1px;
         @include media-breakpoint-up($header-expand-breakpoint) {
           padding-left: $header-floating-inner-padding-x;
           padding-right: $header-floating-inner-padding-x;
-
           margin: 0 spacing($size: 4, $negative: true);
         }
       }
@@ -121,6 +124,10 @@ $header-border-size: 1px;
 
         .header__link {
           color: inherit;
+
+          .icon {
+            color: inherit;
+          }
         }
 
         .header__logo-light {
@@ -605,7 +612,6 @@ $header-border-size: 1px;
 .header__container {
   position: relative;
   z-index: 10;
-  background-color: var(--color-header-background);
 
   &::after {
     content: '';
