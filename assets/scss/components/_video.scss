@@ -49,7 +49,7 @@
     }
   }
 
-  &.video--has-spacing {
+  &.video--is-overlapping {
     margin-top: spacing($size: 25, $negative: true);
 
     @include media-breakpoint-up(md) {

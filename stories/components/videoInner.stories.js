@@ -76,6 +76,7 @@ export const VideoRow = Template.bind({});
 
 VideoRow.args = {
   variant: 'row',
+  overlapping: true,
   video: {
     headline: 'Wenn Sie wissen,worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
     thumb: 'thumbs/video-thumb-haniel.jpg',

@@ -1,5 +1,6 @@
 {%- assign videoInnerVideo = include.video -%}
-{%- assign videoInnerSpacingTop = include.spacingTop | default: false -%}
+{%- assign videoInnerOverlapping = include.overlapping | default: false -%}
+{%- assign videoInnerSpacingTop = include.spacingTop | default: 'space-bottom-1 space-bottom-lg-0'-%}
 {%- assign videoInnerVariant = include.variant -%}
 
 {% assign cta = props.cta %}
@@ -19,4 +20,5 @@
   variant="{{ videoInnerVariant }}"
   spacing-top="{{ videoInnerSpacingTop }}"
   level="{{ videoLevel }}"
+  overlapping="{{ videoInnerOverlapping }}"
 ></video-inner>
