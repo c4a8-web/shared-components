@@ -263,18 +263,8 @@
   }
 
   &.hero--text {
-    .container {
-      @include media-breakpoint-up(md) {
-        padding: 0 spacing(18);
-      }
-    }
-
     .hero-text-image__overline {
-      @include font-style($style: 'font-size-3', $weight: 'light', $line: 'wide');
-      padding: 0 spacing(2);
-
       &::before {
-        animation-name: growFull;
         background-color: var(--color-hero-text-overline-text);
       }
     }
