@@ -23,6 +23,7 @@
             icon='close'
             circle=true
             hover=true
+            size='medium'
           %}
         </div>
         {% if fabButtonModal.contact %}
