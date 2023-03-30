@@ -20,7 +20,7 @@ export default {
     hasActiveItem() {
       const items = this.list.children;
 
-      return items.filter((item) => item.languages[this.lang].active === true).length > 0;
+      return items.filter((item) => item.languages[this.lang]?.active === true).length > 0;
     },
     isHidden() {
       return Tools.isTrue(this.hidden) === true;
@@ -115,13 +115,13 @@ export default {
       <ul class="link-list__list header__list--expanded">
         <li class="link-list__item" v-for="subChild in list.children">
           <cta
+            v-if="subChild.languages && subChild.languages[lang]"
             :href="subChild.languages[lang].url"
             :text="subChild.languages[lang].title"
             :active="subChild.languages[lang].active"
             link=true
             reversed=true
             monochrome=true
-            v-if="subChild.languages"
           />
         </li>
       </ul>
