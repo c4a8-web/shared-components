@@ -227,7 +227,7 @@ export default {
       return ref;
     },
     getHref(item) {
-      return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang].url;
+      return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
       const target = item.languages[this.lowerLang].target;
@@ -268,7 +268,7 @@ export default {
       const matcher = (obj, parentKey) => {
         if (!obj.title) return;
 
-        let url = obj.url;
+        let url = obj?.url;
 
         if (currentPath[currentPath?.length - 1] === lastCharacter && url && url[url?.length - 1] !== lastCharacter) {
           url = url + lastCharacter;
@@ -381,7 +381,7 @@ export default {
         <div class="header__row row">
           <div class="header__col col">
             <div class="header__logo">
-              <a :href="homeObj.url">
+              <a :href="homeObj?.url">
                 <v-img :img="home.imgLight" class="header__logo-light" :cloudinary="true" />
                 <v-img :img="home.img" class="header__logo-default" :cloudinary="true" />
               </a>
