@@ -6,12 +6,11 @@ $z-indexed-elements: (
   '.event-list',
   '.people-square.people-square--absolute',
   '.back-to-top',
-  '.fab-button',
-  '.shared-components.header'
+  '.fab-button'
 );
 
 $static-z-indexed-elements: (
-  '.something-fancy': 1000,
+  '.shared-components.header': 1001,
 );
 
 $z-index-map: $static-z-indexed-elements;
