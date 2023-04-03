@@ -474,6 +474,7 @@ $header-border-size: 1px;
   background-color: var(--color-header-background);
   transition: transform $animation-transition 0.5s, opacity $animation-transition 0.4s;
   z-index: 5;
+  box-shadow: $header-section-box-shadow;
 }
 
 .header__flyout-content {
