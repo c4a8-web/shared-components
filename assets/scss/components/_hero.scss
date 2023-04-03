@@ -262,6 +262,22 @@
     }
   }
 
+  &.hero--text {
+    .hero-text-image__overline {
+      &::before {
+        background-color: var(--color-hero-text-overline-text);
+      }
+    }
+
+    .hero-text-image__headline {
+      @include font-style($style: 'h2-font-size', $line: 'thin', $weight: 'light');
+    }
+    .hero-text-image__wrapper {
+      flex: none;
+      max-width: none;
+    }
+  }
+
   &.hero--career {
     min-height: 100vh;
 
