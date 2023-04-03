@@ -12,7 +12,7 @@
       img.is-svg {
         width: 90%;
         max-width: 120px;
-        padding: 1.5rem 0;
+        padding: spacing(6) 0;
         margin: 0;
       }
 
@@ -22,7 +22,7 @@
         img.is-svg {
           width: 60%;
           max-width: 100%;
-          padding: 1.5rem;
+          padding: spacing(6);
         }
       }
     }
@@ -48,7 +48,6 @@
     .text-image__second-col {
       display: flex;
       flex-direction: column;
-      // padding-top: 0;
 
       @include media-breakpoint-up(sm) {
         display: block;
@@ -89,7 +88,7 @@
 
   > div {
     &:nth-child(1n + 4).text-image {
-      padding-top: 0.5rem;
+      padding-top: spacing(2);
     }
   }
 }
