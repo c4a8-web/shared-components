@@ -15,8 +15,6 @@ export const TextImageList = Template.bind({});
 
 TextImageList.args = {
   headline: 'Lorem Ipsum',
-  headlineColor: 'var(--color-white)',
-  bgColor: 'var(--color-orange)',
   textImages: [
     {
       image: getAssetPath('svg/icons/icon-consulting-services.svg'),
@@ -35,6 +33,7 @@ TextImageList.args = {
       alt: 'Lorem Ipsum',
       headline: 'Expertise Lorem Ipsum 3',
       copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
+      spacing: 'space-bottom-2',
     },
   ],
 };
@@ -47,7 +46,7 @@ Benefits.args = {
   bgColor: 'var(--color-career-background)',
   textImages: [
     {
-      image: getAssetPath('svg/icons/unifiedcontacts_feature_contactcards.svg'),
+      image: getAssetPath('svg/icons/flexibilitaet.svg'),
       alt: 'hohe flexibilität',
       headline: 'Hohe Flexibilität',
       copy: 'dank frei planbarer Arbeitszeiten, garantiertem Homeoffice und technischem Equipment nach deinem Wunsch!',

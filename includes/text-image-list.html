@@ -13,6 +13,7 @@
   {% assign textImageListSize = textImageListItems | size %}
   {% for textImageListItem in textImageListItems %}
     {% assign textImageRemainder = forloop.index | modulo: 2 %}
+    {% assign textImageSpacing = textImageListItem.spacing | default: 'space-top-lg-2' %}
 
     {% if textImageRemainder == 0 %}
       {% assign textImageEven = true %}
@@ -28,6 +29,7 @@
       copy=textImageListItem.copy
       offset=true
       left=textImageEven
+      spacing=textImageSpacing
     %}
 
   {% endfor %}

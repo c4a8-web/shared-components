@@ -1,63 +1,95 @@
 .text-image-list {
-  margin-top: spacing(20);
-  margin-bottom: spacing(45);
-
   .text-image {
     .text-image__img {
-      img {
-        &.is-svg {
-          width: 90%;
-          max-width: 190px;
+      flex: 1 0 100%;
+      max-width: 100%;
 
-          @include media-breakpoint-up(lg) {
-            width: 60%;
-            max-width: 120px;
-          }
+      @include media-breakpoint-up(md) {
+        flex: 1 0 40%;
+        max-width: 40%;
+      }
+
+      img.is-svg {
+        width: 90%;
+        max-width: 120px;
+        padding: 1.5rem 0;
+        margin: 0;
+      }
+
+      @include media-breakpoint-up(lg) {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
+        img.is-svg {
+          width: 60%;
+          max-width: 100%;
+          padding: 1.5rem;
+        }
+      }
+    }
+
+    .flex-row-reverse {
+      flex-direction: row !important;
+
+      @include media-breakpoint-up(md) {
+        .text-image__first-col {
+          order: 1;
+          margin-top: 0;
+        }
+        .text-image_second-col {
+          order: 2;
         }
       }
 
-      @include media-breakpoint-up(sm) {
-        flex: 1 0 40%;
-        max-width: 40%;
-
-        img {
-          &.is-svg {
-            padding: 1.5rem 0;
-            margin: 0;
-          }
-        }
+      @include media-breakpoint-up(lg) {
+        flex-direction: row-reverse !important;
       }
     }
 
     .text-image__second-col {
       display: flex;
       flex-direction: column;
+      // padding-top: 0;
 
       @include media-breakpoint-up(sm) {
         display: block;
       }
     }
 
-    .flex-row-reverse {
-      flex-direction: row-reverse;
+    .row {
+      > div {
+        &:nth-child(2) {
+          flex: 0 1 100%;
+          max-width: 100%;
 
-      .text-image__first-col {
-        order: 1;
-        margin-top: 0;
-      }
+          @include media-breakpoint-up(md) {
+            flex: 0 1 60%;
+            max-width: 60%;
+            display: flex;
+            justify-content: center;
+          }
 
-      .text-image__second-col {
-        order: 2;
-        padding-top: 0;
+          @include media-breakpoint-up(lg) {
+            flex: 0 0 50%;
+            max-width: 50%;
+            display: block;
+          }
+          p {
+            display: none;
+          }
+        }
       }
     }
+  }
 
-    .row > div:nth-child(2) {
-      @include media-breakpoint-between(sm, md) {
-        flex: 0 1 60%;
-        max-width: 60%;
-        align-items: center;
-      }
+  .h4-font-size {
+    @include media-breakpoint-down(md) {
+      font-size: 1.1rem;
+    }
+  }
+
+  > div {
+    &:nth-child(1n + 4).text-image {
+      padding-top: 0.5rem;
     }
   }
 }
