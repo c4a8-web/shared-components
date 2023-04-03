@@ -178,9 +178,11 @@ class Tools {
   };
 
   static isOutsideOf(name, e) {
-    return !e.path.some(
-      (element) => element.className && element.className.includes && element.className.includes(name)
-    );
+    const path = e.composedPath ? e.composedPath() : e.path;
+
+    if (!path) return false;
+
+    return !path.some((element) => element.className && element.className.includes && element.className.includes(name));
   }
 
   static getExtension(fileName) {

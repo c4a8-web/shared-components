@@ -6,7 +6,6 @@ export default {
     },
     foregroundStroke() {
       return this.color ? this.color : '#FF0000';
-      jp;
     },
   },
   props: {
