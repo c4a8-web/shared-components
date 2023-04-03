@@ -291,7 +291,15 @@ export default {
         return parent;
       };
 
-      const parent = Tools.findRecursive(this.navigation, matcher, callback);
+      let parent = Tools.findRecursive(this.navigation, matcher, callback);
+
+      if (!parent) {
+        parent = Tools.findRecursive(this.meta, matcher, callback);
+      }
+
+      if (!parent) {
+        parent = Tools.findRecursive(this.contact, matcher, callback);
+      }
 
       if (!parent) return;
 
