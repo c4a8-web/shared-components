@@ -1,0 +1,36 @@
+{%- assign textImageListItems = include.textImages -%}
+{%- assign textImageListHeadline = include.headline -%}
+{%- assign textImageListHeadlineLevel = include.level | default: 'h2' -%}
+{%- assign textImageListHeadlineColor = include.headlineColor -%}
+{%- assign textImageListBgColor = include.bgColor | default: false -%}
+
+<text-image-list
+  headline="{{ textImageListHeadline }}"
+  bg-color="{{ textImageListBgColor }}"
+  headline-color="{{ textImageListHeadlineColor }}"
+>
+
+  {% assign textImageListSize = textImageListItems | size %}
+  {% for textImageListItem in textImageListItems %}
+    {% assign textImageRemainder = forloop.index | modulo: 2 %}
+    {% assign textImageSpacing = textImageListItem.spacing | default: 'space-top-lg-2' %}
+
+    {% if textImageRemainder == 0 %}
+      {% assign textImageEven = true %}
+    {% else %}
+      {% assign textImageEven = false %}
+    {% endif %}
+
+    {%
+      include text-image.html
+      image=textImageListItem.image
+      alt=textImageListItem.alt
+      headline=textImageListItem.headline
+      copy=textImageListItem.copy
+      offset=true
+      left=textImageEven
+      spacing=textImageSpacing
+    %}
+
+  {% endfor %}
+</text-image-list>
