@@ -20,6 +20,8 @@ export default {
     hasActiveItem() {
       const items = this.list.children;
 
+      if (!items) return;
+
       return items.filter((item) => item.languages[this.lang]?.active === true).length > 0;
     },
     isHidden() {
