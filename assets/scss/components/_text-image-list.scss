@@ -29,21 +29,15 @@
     }
 
     .flex-row-reverse {
-      flex-direction: row !important;
-
-      @include media-breakpoint-up(md) {
+      @include media-breakpoint-down(md) {
         .text-image__first-col {
           order: 1;
           margin-top: 0;
         }
 
-        .text-image_second-col {
+        .text-image__second-col {
           order: 2;
         }
-      }
-
-      @include media-breakpoint-up(lg) {
-        flex-direction: row-reverse !important;
       }
     }
 
