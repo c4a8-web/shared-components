@@ -4,16 +4,16 @@
       flex: 1 0 100%;
       max-width: 100%;
 
-      @include media-breakpoint-up(md) {
-        flex: 1 0 40%;
-        max-width: 40%;
-      }
-
       img.is-svg {
         width: 90%;
         max-width: 120px;
         padding: spacing(6) 0;
         margin: 0;
+      }
+
+      @include media-breakpoint-up(md) {
+        flex: 1 0 40%;
+        max-width: 40%;
       }
 
       @include media-breakpoint-up(lg) {
@@ -60,6 +60,10 @@
           flex: 0 1 100%;
           max-width: 100%;
 
+          p {
+            display: none;
+          }
+
           @include media-breakpoint-up(md) {
             flex: 0 1 60%;
             max-width: 60%;
@@ -71,9 +75,6 @@
             flex: 0 0 50%;
             max-width: 50%;
             display: block;
-          }
-          p {
-            display: none;
           }
         }
       }
