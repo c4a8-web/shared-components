@@ -1,10 +1,12 @@
 {%- assign textImageListItems = include.textImages -%}
+{%- assign textImageListClasses = include.classes -%}
 {%- assign textImageListHeadline = include.headline -%}
 {%- assign textImageListHeadlineLevel = include.level | default: 'h2' -%}
 {%- assign textImageListHeadlineColor = include.headlineColor -%}
 {%- assign textImageListBgColor = include.bgColor | default: false -%}
 
 <text-image-list
+  classes="{{ textImageListClasses }}"
   headline="{{ textImageListHeadline }}"
   bg-color="{{ textImageListBgColor }}"
   headline-color="{{ textImageListHeadlineColor }}"
