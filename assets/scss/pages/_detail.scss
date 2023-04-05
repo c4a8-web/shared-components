@@ -180,11 +180,11 @@ $page-detail-subline-background-color: $white-30;
     margin-bottom: spacing(4);
 
     @include media-breakpoint-up(lg) {
-      @include h3($breakpoint: 'lg');
+      @include h3-breakpoints($breakpoint: 'lg');
     }
 
     @include media-breakpoint-up(xl) {
-      @include h3($breakpoint: 'xl');
+      @include h3-breakpoints($breakpoint: 'xl');
     }
   }
 }
@@ -327,26 +327,12 @@ $page-detail-subline-background-color: $white-30;
 
 .page-detail__subline {
   &.page-detail__subline--overlapped {
-    @include font-size-1;
+    @include font-size-custom($sm: $font-size-1, $md: $font-size-2, $lg: $font-size-2, $xl: $font-size-2);
 
     position: absolute;
     left: 0;
     bottom: 0;
     width: 100%;
-
-    @include media-breakpoint-up(md) {
-      @include font-size-2($breakpoint: 'md');
-      // width: calc(
-      //   #{get-full-column-width($container: 'md', $columns: 11)} - (#{$page-detail-subline-left-spacing} + 53px)
-      // );
-    }
-
-    @include media-breakpoint-up(lg) {
-      @include font-size-2($breakpoint: 'lg');
-      // width: calc(
-      //   #{get-full-column-width($container: 'lg', $columns: 5)} - (#{$page-detail-subline-left-spacing} + 13px)
-      // );
-    }
   }
 }
 

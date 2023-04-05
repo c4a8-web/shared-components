@@ -108,11 +108,11 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
       margin-bottom: spacing(7);
 
       @include media-breakpoint-up(lg) {
-        @include h3($breakpoint: 'lg');
+        @include h3-breakpoints($breakpoint: 'lg');
       }
 
       @include media-breakpoint-up(xl) {
-        @include h3($breakpoint: 'xl');
+        @include h3-breakpoints($breakpoint: 'xl');
       }
     }
 
