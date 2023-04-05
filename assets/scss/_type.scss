@@ -15,11 +15,7 @@ $font-style-map: (
 );
 
 @mixin h2($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
+  $important-string: is-important($important);
 
   @if $breakpoint == 'xl' {
     font-size: $h2-font-size #{$important-string};
@@ -33,11 +29,7 @@ $font-style-map: (
 }
 
 @mixin h3($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
+  $important-string: is-important($important);
 
   @if $breakpoint == 'xl' {
     font-size: $h3-font-size #{$important-string};
@@ -50,52 +42,28 @@ $font-style-map: (
 }
 
 @mixin font-size-xs($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
-
+  $important-string: is-important($important);
   font-size: $font-size-xs #{$important-string};
 }
 
 @mixin font-size-sm($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
-
+  $important-string: is-important($important);
   font-size: $font-size-sm #{$important-string};
 }
 
 @mixin font-size-1($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
-
+  $important-string: is-important($important);
   font-size: $font-size-1 #{$important-string};
   line-height: #{$default-line-height} #{$important-string};
 }
 
 @mixin font-size-2($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
-
+  $important-string: is-important($important);
   font-size: $font-size-2 #{$important-string};
 }
 
 @mixin font-size-4($breakpoint: false, $important: false) {
-  $important-string: '';
-
-  @if ($important) {
-    $important-string: ' !important';
-  }
+  $important-string: is-important($important);
 
   @if $breakpoint == 'xl' {
     font-size: $font-size-4 #{$important-string};
@@ -109,36 +77,35 @@ $font-style-map: (
 }
 
 @mixin font-size-5($breakpoint: false, $important: false) {
-  $important-string: '';
+  font-size: $font-size-5 is-important($important);
+}
 
-  @if ($important) {
-    $important-string: ' !important';
-  }
-
-  font-size: $font-size-5 #{$important-string};
+@function is-important($important) {
+  @return #{if($important, '!important', '')};
 }
 
 @mixin font-style($style, $weight: null, $line: null) {
   $map: $font-style-map;
   $selector: map-get($map, $style);
+  $valid-selector: map-has-key($map, $style);
 
-  $selector-list: #{$selector};
-
-  @if $weight {
-    $selector-list: $selector-list + ', .' + $weight;
+  @if $valid-selector {
+    @extend #{$selector};
+    @include font-weight($weight: $weight, $important: true);
+    @include line-height($height: $line, $important: true);
   }
+}
 
-  @if $line {
-    $selector-list: $selector-list + ', .' + $line;
+@mixin font-weight($weight, $important: false) {
+  $important-string: is-important($important);
+
+  @if $weight == 'bold' {
+    font-weight: bold #{$important-string};
+  } @else if $weight == 'normal' {
+    font-weight: 400 #{$important-string};
+  } @else if $weight == 'light' {
+    @include font-mods('light');
   }
-
-  // @if $style == 'font-size-2' {
-  //   // @include font-size-2()
-
-  // } @else {
-  // TODO find a better way of extending without the use of @extend
-  @extend #{$selector-list} !optional;
-  // }
 }
 
 @mixin font-size-custom($sm: false, $lg: false, $xl: false) {
@@ -169,15 +136,17 @@ $font-style-map: (
   }
 }
 
-@mixin line-height($height: 'normal') {
+@mixin line-height($height: 'normal', $important: false) {
+  $important-string: is-important($important);
+
   @if $height == 'thin' {
-    line-height: 1.2em;
+    line-height: 1.2em #{$important-string};
   } @else if $height == 'wide' {
-    line-height: 1.7em;
+    line-height: 1.7em #{$important-string};
   } @else if $height == 'middle' {
-    line-height: 1.4em;
+    line-height: 1.4em #{$important-string};
   } @else {
-    line-height: var(--type-default-line-height);
+    line-height: var(--type-default-line-height) #{$important-string};
   }
 }
 
