@@ -41,3 +41,12 @@ CornerImg.args = {
     alt: 'Video Casestudy Uniper',
   },
 };
+
+export const FullWidth = Template.bind({});
+
+FullWidth.args = {
+  thumb: 'shared-components/teaser-dekra.png',
+  alt: 'Video Casestudy Uniper',
+  id: 'ThxpyUOz2R8',
+  fullWidth: true,
+};
