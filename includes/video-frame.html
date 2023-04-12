@@ -5,6 +5,7 @@
 {%- assign videoFrameContainer = include.container | default: false -%}
 {%- assign videoFrameCornerImg = include.corner | default: false -%}
 {%- assign videoFrameSpacingTop = include.spacingTop | default: false -%}
+{%- assign videoFrameFullWidth = include.fullWidth | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -24,7 +25,7 @@
 <div class="container video-frame__container {% if videoFrameSpacingTop %} video-frame__container--spacing {% endif %}">
   <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
 {% endif %}
-    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %}">
+    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %} {% if videoFrameFullWidth %} video-frame--full-width {% endif %}">
       <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
         "videoId": "{{ videoFrameId }}",
         "parentSelector": "#{{ videoFrameParentId }}",
