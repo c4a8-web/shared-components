@@ -13,7 +13,8 @@
   &.video-frame--played {
     pointer-events: none;
 
-    .video-frame__corner-img {
+    .video-frame__corner-img,
+    .video-frame__headline-container {
       display: none;
     }
 
@@ -52,6 +53,25 @@
 
   img {
     width: 100%;
+  }
+
+  .video-frame__headline-container {
+    display: none;
+
+    @include media-breakpoint-up(md) {
+      display: block;
+      position: absolute;
+      top: 25%;
+      left: 50%;
+      width: 100%;
+      transform: translate(-50%, -50%);
+    }
+
+    .video-frame__headline {
+      @include font-style($style: 'h2-font-size', $weight: 'bold', $line: 'thin');
+
+      filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.35));
+    }
   }
 }
 

@@ -49,4 +49,9 @@ FullWidth.args = {
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
   fullWidth: true,
+  headline: {
+    text: 'Himmelsstürmer gesucht: <br/> glueckkanja-gab sucht Verstärkung',
+    color: 'var(--color-white)',
+    alignment: 'text-center', // text-right, text-left
+  },
 };

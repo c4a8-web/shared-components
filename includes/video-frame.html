@@ -6,6 +6,7 @@
 {%- assign videoFrameCornerImg = include.corner | default: false -%}
 {%- assign videoFrameSpacingTop = include.spacingTop | default: false -%}
 {%- assign videoFrameFullWidth = include.fullWidth | default: false -%}
+{%- assign videoFrameHeadline = include.headline | default: false -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -38,6 +39,11 @@
         <div class="video-frame__target embed-responsive">
           <div id="{{ videoFrameTargetId }}"></div>
         </div>
+        {% if videoFrameHeadline %}
+          <div class="video-frame__headline-container px-4 {{ headline.alignment }}">
+            <span class="video-frame__headline" style="color:{{headline.color | default: 'var(--color-white)'}}">{{ videoFrameHeadline.text }}</span>
+          </div>
+        {% endif %}
         <div class="video-frame__play-wrapper">
           <span class="video-frame__play video-player-icon video-frame__player-icon">
             <i class="fas fa-play"></i>
