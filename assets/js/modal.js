@@ -50,7 +50,7 @@ class Modal {
       const formInstance = Form.getInstance(this.form);
 
       if (parent) {
-        const button = parent.querySelector(this.buttonSelector);
+        const button = parent.querySelector(this.buttonSelector) || document.querySelector('a[data-trigger="modal"]');
 
         button?.addEventListener('click', this.handleOpen.bind(this));
       }
