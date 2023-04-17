@@ -51,7 +51,7 @@ FullWidth.args = {
   fullWidth: true,
   headline: {
     text: 'Himmelsstürmer gesucht: <br/> glueckkanja-gab sucht Verstärkung',
-    color: 'var(--color-white)',
+    color: '--color-white',
     alignment: 'text-center', // text-right, text-left
   },
 };

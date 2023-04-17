@@ -23,10 +23,14 @@
 
 <!-- Shared Video Frame Section -->
 {% if videoFrameContainer %}
-<div class="container video-frame__container {% if videoFrameSpacingTop %} video-frame__container--spacing {% endif %}">
+<div class="container video-frame__container {% if videoFrameSpacingTop %} video-frame__container--spacing {% endif %}"
+  style="--video-frame-headline-color: var({{ videoFrameHeadline.color }});"
+>
   <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
 {% endif %}
-    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %} {% if videoFrameFullWidth %} video-frame--full-width {% endif %}">
+    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %} {% if videoFrameFullWidth %} video-frame--full-width {% endif %}"
+      style="--video-frame-headline-color: var({{ videoFrameHeadline.color }});"
+    >
       <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
         "videoId": "{{ videoFrameId }}",
         "parentSelector": "#{{ videoFrameParentId }}",
@@ -40,9 +44,14 @@
           <div id="{{ videoFrameTargetId }}"></div>
         </div>
         {% if videoFrameHeadline %}
-          <div class="video-frame__headline-container px-4 {{ headline.alignment }}">
-            <span class="video-frame__headline" style="color:{{headline.color | default: 'var(--color-white)'}}">{{ videoFrameHeadline.text }}</span>
-          </div>
+        <div class="video-frame__headline-container px-4 {{ videoFrameHeadline.alignment }}">
+          {%
+            include headline.html
+            text=videoFrameHeadline.text
+            classes="video-frame__headline"
+          %}
+
+        </div>
         {% endif %}
         <div class="video-frame__play-wrapper">
           <span class="video-frame__play video-player-icon video-frame__player-icon">
