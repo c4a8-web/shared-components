@@ -3,6 +3,7 @@
   background-repeat: no-repeat;
 
   &.text-image--bg-color {
+    + .sticky-scroller__spacer + *[class*='mt-'],
     + *[class*='mt-'] {
       margin-top: 0 !important;
     }
