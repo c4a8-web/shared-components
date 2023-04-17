@@ -1,10 +1,26 @@
 .is-sticky-scroller {
   &[data-sticky-scroller] {
-    will-change: clip-path;
+    &.is-sticky {
+      position: fixed !important;
 
-    // &.is-sticky {
-    //   width: 100%;
-    // }
+      .modal--open & {
+        position: relative !important;
+        top: auto !important;
+        left: auto !important;
+        transform: initial !important;
+        clip-path: none !important;
+
+        > * {
+          &:not(.modal) {
+            opacity: 0;
+          }
+        }
+
+        + .sticky-scroller__spacer {
+          display: none;
+        }
+      }
+    }
   }
 }
 
