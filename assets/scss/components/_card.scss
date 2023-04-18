@@ -61,6 +61,14 @@
     }
   }
 
+  &.card--large {
+    @include media-breakpoint-up(lg) {
+      .card__img-top {
+        height: 100%;
+      }
+    }
+  }
+
   .richtext {
     p + .card__link {
       margin-top: spacing(2);
