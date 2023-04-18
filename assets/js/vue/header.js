@@ -301,9 +301,16 @@ export default {
         parent = Tools.findRecursive(this.contact, matcher, callback);
       }
 
-      if (!parent) return;
+      if (!parent) return this.getHrefLang();
 
       return parent[lang]?.url;
+    },
+    getHrefLang() {
+      const hrefLang = document.querySelector('link[hreflang]');
+
+      if (!hrefLang) return;
+
+      return hrefLang.getAttribute('href');
     },
     getParentLink(key) {
       const navi = this.navigation[key];
