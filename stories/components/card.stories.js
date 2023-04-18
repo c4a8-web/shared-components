@@ -33,7 +33,7 @@ BlogPostLarge.args = {
   large: true,
   url: 'javascript:void(0);',
   layout: 'post',
-  title: 'Can Microsoft Teams call 911?',
+  title: 'Azure Virtual Desktop – Ja, aber automatisiert bitte! Lorem ipsum dolor sit',
   moment: '2021-05-11',
   author: ['Christian Kordel', 'Next Author'],
   categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
