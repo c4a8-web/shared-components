@@ -8,7 +8,6 @@ $header-border-size: 1px;
 
   .header {
     &.vue-component {
-      // TODO remove wrapping rule after migration to one header is done
       &.is-hovering {
         transition-duration: 0s;
       }
@@ -29,7 +28,6 @@ $header-border-size: 1px;
   --header-vertical-spacing: #{spacing(5)};
 
   &.vue-component {
-    // TODO remove wrapping rule after migration to one header is done
     position: fixed;
     display: flex;
     box-shadow: $header-section-box-shadow;
@@ -200,6 +198,8 @@ $header-border-size: 1px;
       }
 
       @include media-breakpoint-up($header-expand-breakpoint) {
+        bottom: 0;
+
         .header__item {
           &:hover {
             .header__link-text {
@@ -221,6 +221,10 @@ $header-border-size: 1px;
 
       .header__link {
         display: flex;
+
+        &::after {
+          bottom: 0;
+        }
       }
 
       .header__button,
