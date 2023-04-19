@@ -180,6 +180,8 @@ export default {
     handleMouseOver(item, index) {
       if (!item.children) return;
 
+      this.resetAllFlyouts();
+
       this.hover = true;
 
       const link = this.getLinkRef(index);
@@ -212,6 +214,15 @@ export default {
       if (!ref) return;
 
       ref.classList.remove(State.EXPANDED);
+    },
+    resetAllFlyouts() {
+      this.$refs['link']?.forEach((link) => {
+        link.classList.remove(State.EXPANDED);
+      });
+
+      this.$refs['flyout']?.forEach((flyout) => {
+        flyout.classList.remove(State.EXPANDED);
+      });
     },
     getFlyoutRef(refName) {
       return this.getRef('flyout', refName);
