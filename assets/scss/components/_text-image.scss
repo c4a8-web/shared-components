@@ -161,6 +161,10 @@
     @include safari {
       height: auto;
       width: 100%;
+
+      &.is-svg {
+        width: auto;
+      }
     }
   }
 }
