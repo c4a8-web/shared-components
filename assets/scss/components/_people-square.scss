@@ -35,19 +35,23 @@
 }
 
 .people-square__element {
-  img,
-  picture {
-    position: absolute;
-    max-height: max-content;
-    max-width: max-content;
-    height: 100%;
-  }
   &.people-square__element--extended {
     img,
     picture {
       width: 100%;
       height: auto;
     }
+  }
+
+  img,
+  picture {
+    @include safari {
+      object-fit: initial;
+    }
+
+    position: absolute;
+    object-fit: cover;
+    height: 100%;
   }
 }
 
