@@ -171,10 +171,8 @@
 }
 
 @mixin safari {
-  @media not all and (min-resolution: 0.001dpcm) {
-    @supports (-webkit-appearance: none) {
-      @content;
-    }
+  .safari & {
+    @content;
   }
 }
 

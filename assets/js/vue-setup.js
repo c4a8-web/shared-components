@@ -82,6 +82,15 @@ import TBlock from './vue/shapes/t-block.js';
 let root = document.querySelector('#app');
 let app;
 
+const isSafari = () => {
+  const userAgent = navigator.userAgent;
+  const isSafari = userAgent.includes('Safari');
+  const isChrome = userAgent.includes('Chrome') || userAgent.includes('CriOS');
+  const isEdge = userAgent.includes('Edg');
+
+  return isSafari && !isChrome && !isEdge;
+};
+
 const addApp = () => {
   if (!root) return;
 
@@ -92,6 +101,10 @@ const addApp = () => {
       const customEvent = new CustomEvent('VUE_IS_MOUNTED', {});
 
       document.dispatchEvent(customEvent);
+
+      if (isSafari()) {
+        document.body.classList.add('safari');
+      }
     },
   });
 
