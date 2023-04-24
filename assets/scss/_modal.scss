@@ -135,3 +135,7 @@
 modal {
   @include vue-loading;
 }
+
+[data-trigger='modal'] {
+  cursor: pointer;
+}

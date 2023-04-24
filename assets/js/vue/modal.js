@@ -20,6 +20,7 @@ export default {
         'data-client-name': this.clientName ? this.clientName : null,
         'data-api-url': this.apiUrl ? this.apiUrl : null,
         'data-job-id': this.jobId ? this.jobId : null,
+        'data-modal-id': this.modalId ? this.modalId : null,
       };
     },
     modal() {
@@ -80,6 +81,7 @@ export default {
     clientName: String,
     apiUrl: String,
     jobId: String,
+    modalId: String,
     slim: {
       default: null,
     },

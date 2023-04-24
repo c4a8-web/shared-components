@@ -23,6 +23,8 @@ class Modal {
     this.successClose = this.root.querySelector(this.successCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
+    console.log(this.root.dataset);
+    this.modalId = this.root.dataset.modalId;
 
     this.root.classList.add(State.READY);
 
@@ -46,14 +48,26 @@ class Modal {
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
-      const parent = Tools.getParentComponent(this.root);
+      // const parent = Tools.getParentComponent(this.root);
+      const parent = this.root.parentNode;
       const formInstance = Form.getInstance(this.form);
 
-      if (parent) {
-        const button = parent.querySelector(this.buttonSelector) || document.querySelector(this.buttonSelector);
+      console.group();
+      console.log('parent', parent);
+      console.log('hier');
+      console.log(this.root);
 
-        button?.addEventListener('click', this.handleOpen.bind(this));
+      if (parent && parent.getAttribute('id') !== 'app') {
+        const button = parent.querySelector(this.buttonSelector);
+
+        button.addEventListener('click', this.handleOpen.bind(this));
+      } else if (parent) {
+        const buttons = document.querySelectorAll(`[data-trigger-id='${this.modalId}']`);
+
+        buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
       }
+
+      console.groupEnd();
 
       if (formInstance) {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);

@@ -56,6 +56,8 @@ class Tools {
   }
 
   static getParent(element, selector) {
+    // TODO refactor so that only elements below main are selected as parent
+
     const parent = element.parentNode;
 
     if (parent === null || parent.tagName === 'body') {
