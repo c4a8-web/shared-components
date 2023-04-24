@@ -109,10 +109,17 @@
     flex-direction: row-reverse;
 
     &.link {
+      align-items: flex-start;
+
+      .icon {
+        height: calc(var(--type-default-line-height) * 1rem + 2px);
+      }
+
       svg {
         margin: 0 spacing(3) 0 0;
         width: spacing(4);
         height: spacing(4);
+        line-height: 2rem;
 
         @include media-breakpoint-up(lg) {
           margin-right: spacing(4);
@@ -308,10 +315,6 @@
 
     &.active {
       color: var(--color-active);
-
-      .cta__text {
-        // font-weight: bold;
-      }
     }
   }
 }
