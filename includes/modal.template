@@ -5,6 +5,7 @@
 {%- assign modalClientName = include.clientName -%}
 {%- assign modalApiUrl = include.apiUrl -%}
 {%- assign modalJobId = include.jobId -%}
+{%- assign modalModalId = include.modalId -%}
 {%- assign modalShow = include.show -%}
 {%- assign modalSlim = include.slim -%}
 {%- assign modalContent = include.content -%}
@@ -13,6 +14,7 @@
     client-name="{{ modalClientName }}"
     api-url="{{ modalApiUrl }}"
     job-id="{{ modalJobId }}"
+    modal-id="{{ modalModalId }}"
     :show="{{ modalShow }}"
     :slim="{{ modalSlim }}"
 >
