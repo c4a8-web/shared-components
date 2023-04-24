@@ -153,7 +153,7 @@ PrimaryLinkMonochrome.args = {
 export const PrimaryLinkReversed = Template.bind({});
 
 PrimaryLinkReversed.args = {
-  text: 'Primary Link',
+  text: 'Primary Link lorem ipsum dolor sit amet',
   href: 'javascript:void(0)',
   link: true,
   reversed: true,
