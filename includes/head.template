@@ -1,3 +1,5 @@
+{%- assign headSiteUrl = site.site_url_env | default: site.url -%}
+
 <!-- Shared Head Section -->
 <head>
   <meta charset="utf-8">
@@ -5,15 +7,13 @@
   <meta name="Content-Type" value="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
   <meta http-equiv="Accept-CH" content="DPR,Width,Viewport-Width">
-
-  {% if jekyll.environment == "production" or jekyll.environment == "staging" %}
+  {% if jekyll.environment == "production" or jekyll.environment == "staging" -%}
     <meta http-equiv="Content-Security-Policy" content="default-src 'none'; frame-src {% for src in site.content-security.frame-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; img-src data: https: {% for src in site.content-security.img-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; script-src 'self' 'unsafe-eval' 'unsafe-inline' {% for src in site.content-security.script-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; style-src https: 'unsafe-inline'; font-src 'self' {% for src in site.content-security.font-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; base-uri 'self'; media-src 'self'; connect-src 'self' {% for src in site.content-security.connect-src %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %};form-action 'self' {% for src in site.content-security.form-action %}{% unless forloop.last %}{{ src }} {% else %}{{ src }}{% endunless %}{% endfor %}; object-src 'none';">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000;">
-  {% else %}
+  {%- else -%}
     <!-- NON-PRODUCTIVE CODE -->
     <meta name="robots" content="noindex, nofollow">
-  {% endif %}
-
+  {%- endif %}
   <link rel="dns-prefetch" href="//res.cloudinary.com">
   <link rel="dns-prefetch" href="//ssl.google-analytics.com">
 
@@ -23,16 +23,16 @@
   <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
   <meta name="author" content="{{ site.author.name }}">
-  {% if site.webmaster.verification_code %}
+  {% if site.webmaster.verification_code -%}
     <meta name="google-site-verification" content="{{ site.webmaster.verification_code }}">
-  {% endif %}
+  {%- endif -%}
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | replace:'.html','' | prepend: site.url }}">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="alternate icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  {% if page.hreflang %}
-    <link rel="alternate" hreflang="{{ page.hreflang.lang }}" href="{{ site.url }}{{ page.hreflang.href }}" />
-  {% endif %}
+  {% if page.hreflang -%}
+    <link rel="alternate" hreflang="{{ page.hreflang.lang }}" href="{{ headSiteUrl }}{{ page.hreflang.href }}" />
+  {%- endif %}
 
   <!-- Facebook -->
   <meta property="og:type" content="website">
