@@ -1,6 +1,8 @@
 {%- if page.scripts.slick -%}
   <!-- Shared Quotes Section -->
   {% assign quotes = include.quotes %}
+  {% assign quotesFooterImages = quotes.footerImage %}
+  {% assign quotesImagesCount = quotesFooterImages | size %}
 
   {%- if quotes.items[0].img -%}
     {%- assign quotesImage = true -%}
@@ -56,6 +58,22 @@
           {% endfor %}
         </div>
       </div>
+      {% if quotesImagesCount != 0 %}
+        <div class="row mt-7 mt-md-0">
+          {% assign quotesColSize = 12 | divided_by: quotesImagesCount %}
+
+          {% for image in quotesFooterImages %}
+          <div class="d-flex justify-content-center col-lg-{{quotesColSize}}">
+            {%
+              include img.html
+              cloudinary=true
+              img=image.image
+              alt=image.alt
+            %}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
     </div>
   </div>
   <!-- End Shared quotes Section -->
