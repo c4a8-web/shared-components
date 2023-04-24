@@ -23,7 +23,6 @@ class Modal {
     this.successClose = this.root.querySelector(this.successCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
-    console.log(this.root.dataset);
     this.modalId = this.root.dataset.modalId;
 
     this.root.classList.add(State.READY);
@@ -52,11 +51,6 @@ class Modal {
       const parent = this.root.parentNode;
       const formInstance = Form.getInstance(this.form);
 
-      console.group();
-      console.log('parent', parent);
-      console.log('hier');
-      console.log(this.root);
-
       if (parent && parent.getAttribute('id') !== 'app') {
         const button = parent.querySelector(this.buttonSelector);
 
@@ -66,8 +60,6 @@ class Modal {
 
         buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
       }
-
-      console.groupEnd();
 
       if (formInstance) {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
