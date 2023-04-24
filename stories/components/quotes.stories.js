@@ -89,6 +89,47 @@ NoImage.args = {
         position: 'Projektmanager',
         company: 'Pöppelmann GmbH & Co.KG',
       },
+      {
+        text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
+        name: 'Ronnie Kolk',
+        position: 'Projektmanager',
+        company: 'Pöppelmann GmbH & Co.KG',
+      },
+    ],
+  },
+};
+
+export const FooterImage = Template.bind({});
+
+FooterImage.args = {
+  quotes: {
+    footerImage: [
+      {
+        image: 'logos/msft-misa-mxdr.png',
+        alt: 'msft-misa-mxdr',
+      },
+      {
+        image: 'logos/msft-misa-mxdr.png',
+        alt: 'msft-misa-mxdr',
+      },
+      {
+        image: 'logos/div-cyberwehr.png',
+        alt: 'star',
+      },
+    ],
+    items: [
+      {
+        text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
+        name: 'Ronnie Kolk',
+        position: 'Projektmanager',
+        company: 'Pöppelmann GmbH & Co.KG',
+      },
+      {
+        text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
+        name: 'Ronnie Kolk',
+        position: 'Projektmanager',
+        company: 'Pöppelmann GmbH & Co.KG',
+      },
     ],
   },
 };
