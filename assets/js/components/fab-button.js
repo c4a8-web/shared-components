@@ -10,10 +10,12 @@ class FabButton extends BaseComponent {
     super(root, options);
 
     this.iconSelector = '.fab-button__icon';
+    this.linkSelector = '.fab-trigger';
     this.modalSelector = '.fab-button__modal';
     this.closeSelector = '.fab-button__close';
 
     this.icon = this.root.querySelector(this.iconSelector);
+    this.link = document.querySelectorAll(this.linkSelector);
     this.modal = this.root.querySelector(this.modalSelector);
     this.close = this.root.querySelector(this.closeSelector);
 
@@ -29,6 +31,9 @@ class FabButton extends BaseComponent {
   bindEvents() {
     if (!this.icon || !this.modal) return;
 
+    this.link.forEach((link) => {
+      link.addEventListener('click', this.handleClick.bind(this));
+    });
     this.icon.addEventListener('click', this.handleClick.bind(this));
     this.close?.addEventListener('click', this.handleClose.bind(this));
 
@@ -40,7 +45,11 @@ class FabButton extends BaseComponent {
   }
 
   handleOutsideClick(e) {
-    if (this.root.classList.contains(State.EXPANDED) && Tools.isOutsideOf(FabButton.rootSelector.substring(1), e)) {
+    if (
+      this.root.classList.contains(State.EXPANDED) &&
+      Tools.isOutsideOf(FabButton.rootSelector.substring(1), e) &&
+      Tools.isOutsideOf(this.linkSelector.substring(1), e)
+    ) {
       this.handleClose();
     }
   }
