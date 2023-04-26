@@ -100,8 +100,6 @@ const addApp = () => {
     mounted() {
       const customEvent = new CustomEvent('VUE_IS_MOUNTED', {});
 
-      console.log('VUE_IS_MOUNTED');
-
       document.dispatchEvent(customEvent);
 
       if (isSafari()) {
