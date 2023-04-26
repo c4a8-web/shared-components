@@ -208,6 +208,8 @@ const VueSetup = () => {
 document.addEventListener('VUE_FORCE_UPDATE', () => {
   root = document.querySelector('.shared-components');
 
+  console.log('vue force update');
+
   addApp();
 });
 
