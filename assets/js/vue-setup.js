@@ -100,6 +100,8 @@ const addApp = () => {
     mounted() {
       const customEvent = new CustomEvent('VUE_IS_MOUNTED', {});
 
+      console.log('VUE_IS_MOUNTED');
+
       document.dispatchEvent(customEvent);
 
       if (isSafari()) {
@@ -207,8 +209,6 @@ const VueSetup = () => {
 
 document.addEventListener('VUE_FORCE_UPDATE', () => {
   root = document.querySelector('.shared-components');
-
-  console.log('vue force update');
 
   addApp();
 });
