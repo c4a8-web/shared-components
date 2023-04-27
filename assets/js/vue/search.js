@@ -1,10 +1,16 @@
 import Fuse from '../lib/fuse.esm.min.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'search',
   computed: {
     classList() {
-      return ['search', `${this.expanded ? 'search--expanded' : ''}`, 'vue-component'];
+      return [
+        'search',
+        `${this.expanded ? 'search--expanded' : ''}`,
+        `${this.searchCalled ? 'search--initialized' : ''}`,
+        'vue-component',
+      ];
     },
     limitedResults() {
       return this.results?.slice(0, this.maxResults);
@@ -16,6 +22,7 @@ export default {
       store: null,
       results: null,
       maxResults: 15,
+      searchCalled: false,
     };
   },
   methods: {
@@ -71,6 +78,13 @@ export default {
 
       this.searchEngine = new Fuse(results, options);
     },
+    handleSearchBar() {
+      this.searchCalled = !this.searchCalled;
+      window.addEventListener('click', this.handleOutsideClick.bind(this));
+    },
+    handleOutsideClick(e) {
+      this.searchCalled = Tools.isOutsideOf('search', e) ? false : this.searchCalled;
+    },
   },
   props: {
     placeholder: String,
@@ -79,7 +93,13 @@ export default {
   },
   template: `
     <div :class="classList">
-      <input ref="search" type="search" @keypress.enter="handleEnter" />
+      <icon
+        v-on:click="handleSearchBar"
+        class="search__icon"
+        icon="magnifier"
+        size="medium"
+      />
+      <input class="search__bar" ref="search" type="search" @keypress.enter="handleEnter" />
       <div v-for="result in limitedResults">
         <div class="">
           <div>title: {{ result.item.title }}</div>
