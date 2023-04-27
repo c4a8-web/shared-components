@@ -324,6 +324,10 @@ $header-border-size: 1px;
   justify-content: space-between;
   position: relative;
 
+  > .header__search + .header__language-switch {
+    margin-left: spacing(5);
+  }
+
   > .header__language-switch {
     margin-left: auto;
   }
@@ -546,7 +550,11 @@ $header-border-size: 1px;
 }
 
 .header__search {
-  display: none;
+  margin-left: auto;
+  .icon {
+    margin: auto 0;
+    display: flex;
+  }
 }
 
 .header__meta-list {

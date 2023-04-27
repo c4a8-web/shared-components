@@ -29,6 +29,9 @@ export default {
     lowerLang() {
       return this.lang.toLowerCase();
     },
+    searchValue() {
+      return Tools.isTrue(this.search);
+    },
     metaList() {
       return {
         ...this.meta,
@@ -371,6 +374,9 @@ export default {
     light: {
       default: null,
     },
+    search: {
+      default: null,
+    },
     lang: String,
     contact: Object,
     bgColor: String,
@@ -416,7 +422,6 @@ export default {
               <icon icon="menu" class="header__menu-icon" :closed="closed" />
             </div>
             <nav class="header__nav" v-on:mouseout="handleMouseOut">
-              <div class="header__search"></div>
               <ul class="header__list" ref="list">
                 <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
                   <a :class="headerLinkClasses(item, index)" :href="getHref(item)" :target="getTarget(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
@@ -491,6 +496,7 @@ export default {
                 :classes="ctaClassList"
               />
             </div>
+            <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
             <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
               {{ getNextLanguage() }}
             </div>
