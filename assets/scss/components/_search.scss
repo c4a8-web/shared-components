@@ -4,7 +4,7 @@
   @include media-breakpoint-up(lg) {
     display: block;
 
-    &.search--initialized {
+    &.search--expanded {
       .search__icon {
         display: none;
       }

@@ -7,8 +7,8 @@ export default {
     classList() {
       return [
         'search',
-        `${this.expanded ? 'search--expanded' : ''}`,
-        `${this.searchCalled ? 'search--initialized' : ''}`,
+        // `${this.expanded ? 'search--expanded' : ''}`,
+        `${this.searchExpanded ? 'search--expanded' : ''}`,
         'vue-component',
       ];
     },
@@ -22,7 +22,7 @@ export default {
       store: null,
       results: null,
       maxResults: 15,
-      searchCalled: false,
+      searchExpanded: false,
     };
   },
   methods: {
@@ -79,11 +79,11 @@ export default {
       this.searchEngine = new Fuse(results, options);
     },
     handleSearchBar() {
-      this.searchCalled = !this.searchCalled;
+      this.searchExpanded = !this.searchExpanded;
       window.addEventListener('click', this.handleOutsideClick.bind(this));
     },
     handleOutsideClick(e) {
-      this.searchCalled = Tools.isOutsideOf('search', e) ? false : this.searchCalled;
+      this.searchExpanded = Tools.isOutsideOf('search', e) ? false : this.searchExpanded;
     },
   },
   props: {

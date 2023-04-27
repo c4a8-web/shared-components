@@ -324,8 +324,8 @@ $header-border-size: 1px;
   justify-content: space-between;
   position: relative;
 
-  > .header__search-bar + .header__language-switch {
-    margin-left: spacing(2);
+  > .header__search + .header__language-switch {
+    margin-left: spacing(5);
   }
 
   > .header__language-switch {
@@ -549,10 +549,11 @@ $header-border-size: 1px;
   order: 1;
 }
 
-.header__search-bar {
+.header__search {
   margin-left: auto;
   .icon {
-    padding: var(--header-vertical-spacing) spacing(4);
+    margin: auto 0;
+    display: flex;
   }
 }
 

@@ -496,7 +496,7 @@ export default {
                 :classes="ctaClassList"
               />
             </div>
-            <search v-if="searchValue" class="header__search-bar" language="de" placeholder="search" />
+            <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
             <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
               {{ getNextLanguage() }}
             </div>
