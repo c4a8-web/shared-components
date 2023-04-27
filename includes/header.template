@@ -6,8 +6,8 @@
 {%- assign headerLang = include.lang | default: 'de' -%}
 {%- assign headerContact = include.contact | default: site.data.header.contact -%}
 {%- assign headerBgColor = include.bgColor -%}
-{%- assign headerProduct = include.product -%}
-{%- assign headerButton = include.button -%}
+{%- assign headerProduct = include.product | default: site.data.header.product -%}
+{%- assign headerButton = include.button | default: site.data.header.button -%}
 {%- assign headerBlendMode = include.blendMode -%}
 {%- assign headerSearch = include.search -%}
 
