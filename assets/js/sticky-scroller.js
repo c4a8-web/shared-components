@@ -42,11 +42,15 @@ class StickyScroller {
     main.appendChild(this.topPosition);
     main.appendChild(this.bottomPosition);
 
-    this.bottomPosition.style.postion = this.topPosition.style.position = 'absolute';
+    this.bottomPosition.style.position = this.topPosition.style.position = 'absolute';
+
+    this.bottomPosition.style.boxSizing = 'content-box';
     this.bottomPosition.style.left = this.topPosition.style.left = 0;
     this.bottomPosition.style.width = this.topPosition.style.width = '30px';
     this.bottomPosition.style.height = this.topPosition.style.height = '2px';
-    this.bottomPosition.style.backgroundColor = this.topPosition.style.backgroundColor = 'rgba(255, 0, 0, 1)';
+    this.bottomPosition.style.backgroundColor = 'rgba(255, 255, 0, 1)';
+    this.bottomPosition.style.border = '1px solid rgb(0, 0, 0)';
+    this.topPosition.style.backgroundColor = 'rgba(255, 0, 0, 1)';
     this.bottomPosition.style.zIndex = this.topPosition.style.zIndex = 1000;
     this.bottomPosition.style.pointerEvents = this.topPosition.style.pointerEvents = 'none';
 
@@ -54,7 +58,7 @@ class StickyScroller {
   }
 
   updateDebugPositions() {
-    if (!this.topPosition || this.bottomPosition) return;
+    if (!this.topPosition || !this.bottomPosition) return;
 
     this.topPosition.style.top = (this.calculatedOffsetTop || this.currentTopPosition) + 'px';
     this.bottomPosition.style.top = (this.calculatedOffsetBottom || this.currentBottomPosition) + 'px';
@@ -145,6 +149,10 @@ class StickyScroller {
   getPercentage(position, topValue) {
     this.calculatedOffsetTop = this.currentTopPosition - topValue - this.marginTop + this.getMainOffsetTop();
     this.calculatedOffsetBottom = this.currentBottomPosition - topValue + this.getMainOffsetTop();
+
+    if (this.marginTop < 0) {
+      this.calculatedOffsetBottom -= this.marginTop;
+    }
 
     let localPosition = position;
     let percentage;
