@@ -74,6 +74,7 @@ export default {
           this.dimensions = [height, width];
           this.buildSrcSet(preset, transformationsString);
         } else {
+          this.dimensions = [preset.fallback_max_width, preset.fallback_max_width];
           this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${width}w`;
         }
       }
