@@ -8,7 +8,10 @@ export default {
   tagName: 'v-img',
   data() {
     return {
-      dimensions: [0, 0],
+      dimensions: {
+        naturalWidth: null,
+        naturalHeight: null,
+      },
       srcset: '',
       cloudinary: Cloudinary,
       defaultPresets: Presets,
@@ -37,46 +40,41 @@ export default {
     this.initialize();
   },
   methods: {
-    mergeSettings() {
-      const defaultSettings = {
-        cloud_name: '',
-        developer_mode: false,
-        verbose: false,
-      };
-      return Object.assign(defaultSettings, this.cloudinary);
-    },
     setPreset() {
-      const settings = this.mergeSettings();
-      const presetExists = settings['presets'] && settings['presets']['default'];
-      return presetExists ? Object.assign(this.defaultPresets, settings['presets']['default']) : this.defaultPresets;
+      const settings = this.cloudinary;
+      try {
+        const presetExists = settings['presets'] && settings['presets'][this.preset];
+        return presetExists
+          ? Object.assign(this.defaultPresets, settings['presets'][this.preset])
+          : this.defaultPresets;
+      } catch (e) {
+        console.error(e);
+      }
     },
     getCloudinaryLink(url) {
       return basePath + url;
     },
     getMeta(url) {
-      return new Promise((resolve, reject) => {
-        let img = new Image();
-        img.onload = () => resolve(img);
-        img.onerror = (err) => reject(err);
-        img.src = this.getCloudinaryLink(url);
-      });
-    },
-    async initialize() {
-      if (this.cloudinary && !this.isGif()) {
-        let img = await this.getMeta(this.img);
-        const height = img?.height;
-        const width = img?.width;
-
+      let img = this.$refs.image;
+      img.onload = () => {
+        const height = img?.naturalHeight;
+        const width = img?.naturalWidth;
         const preset = this.setPreset();
         const transformationsString = this.getTransformationString(preset);
 
         if (height && width) {
-          this.dimensions = [height, width];
+          this.dimensions = { naturalHeight: height, naturalWidth: width };
           this.buildSrcSet(preset, transformationsString);
         } else {
-          this.dimensions = [preset.fallback_max_width, preset.fallback_max_width];
+          this.dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
           this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${width}w`;
         }
+      };
+      img.src = this.getCloudinaryLink(url);
+    },
+    async initialize() {
+      if (this.cloudinary && !this.isGif()) {
+        this.getMeta(this.img);
       }
     },
     getTransformationString(preset) {
@@ -86,9 +84,9 @@ export default {
           transformations.push(`${value}_${preset[key]}`);
         }
       }
-      const noTransformations = transformations.length === 0;
+      const transformationsIsNotEmpty = transformations.length > 0;
 
-      return !noTransformations ? transformations.join(',') : '';
+      return transformationsIsNotEmpty ? transformations.join(',') : '';
     },
     buildSrcSet(preset, transformationsString) {
       const srcsetArray = [];
@@ -96,26 +94,19 @@ export default {
       const minWidth = preset['min_width'];
       const maxWidth = preset['max_width'];
       const stepWidth = (maxWidth - minWidth) / (steps - 1);
-      const [_, naturalWidth] = this.dimensions;
+      const { naturalWidth } = this.dimensions;
 
       if (naturalWidth < minWidth) {
         const srcsetString = '';
         srcsetArray.push(srcsetString);
       } else {
-        let missedSizes = [];
         for (let factor = 1; factor < steps; factor++) {
           const width = minWidth + (factor - 1) * stepWidth;
-          if (width <= naturalWidth) {
-            const srcsetString = `${basePath}${transformationsString},w_${width}/${this.img} ${width}w`;
-            srcsetArray.push(srcsetString);
-          } else {
-            missedSizes.push(width);
-          }
-        }
-
-        if (missedSizes.length !== 0) {
-          const srcsetString = `${basePath}${transformationsString},w_${naturalWidth}/${this.img} ${naturalWidth}w`;
+          const isWithinNaturalWidth = width <= naturalWidth;
+          const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
+          const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
           srcsetArray.push(srcsetString);
+          if (!isWithinNaturalWidth) break;
         }
       }
       this.srcset = srcsetArray.join(', \n');
@@ -134,6 +125,6 @@ export default {
     preset: String,
   },
   template: `
-    <img :src="source" :loading="loading" :class="classList" :width="this.dimensions[1]" :height="this.dimensions[0]" :srcset="this.srcset" :sizes="sizes">
+    <img ref="image" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="sizes">
   `,
 };
