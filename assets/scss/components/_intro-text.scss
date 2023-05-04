@@ -1,8 +1,8 @@
 .intro-text {
   &.intro-text--large {
     .intro-text__copy {
-      @include font-size-5;
       @include media-breakpoint-up(lg) {
+        @include font-size-5;
         @include font-mods('light');
       }
     }

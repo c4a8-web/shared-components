@@ -232,8 +232,10 @@ $font-style-map: (
     } @else {
       @extend #{$selector};
     }
-    @if $weight or $line {
+    @if $weight {
       @include font-weight($weight: $weight, $important: true);
+    }
+    @if $line {
       @include line-height($height: $line, $important: true);
     }
   }
@@ -251,26 +253,27 @@ $font-style-map: (
   }
 }
 
-@mixin font-size-custom($sm: false, $md: false, $lg: false, $xl: false) {
+@mixin font-size-custom($sm: false, $md: false, $lg: false, $xl: false, $important: false) {
+  $important-string: is-important($important);
   @if ($sm) {
-    font-size: $sm;
+    font-size: $sm #{$important-string};
   }
 
   @if ($md) {
     @include media-breakpoint-up(md) {
-      font-size: $md;
+      font-size: $md #{$important-string};
     }
   }
 
   @if ($lg) {
     @include media-breakpoint-up(lg) {
-      font-size: $lg;
+      font-size: $lg #{$important-string};
     }
   }
 
   @if ($xl) {
     @include media-breakpoint-up(xl) {
-      font-size: $xl;
+      font-size: $xl #{$important-string};
     }
   }
 }
