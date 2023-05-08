@@ -32,7 +32,7 @@
 >
   <div class="row justify-content-center {% if videoFrameCornerImg %} position-relative {% endif %}">
 {% endif %}
-    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %} {% if videoFrameFullWidth %} video-frame--full-width {% endif %} {% if videoFrameContainer == false AND videoFrameSticky %}is-sticky-scroller {% endif %}"
+    <div id="{{ videoFrameParentId }}" class="video-frame {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %} {% if videoFrameContainer %} video-frame--container {% endif %} {% if videoFrameFullWidth %} video-frame--full-width {% endif %} {% if videoFrameContainer == false and videoFrameSticky %}is-sticky-scroller {% endif %}"
       style="{% if videoFrameHeadline.color %} --video-frame-headline-color: var({{ videoFrameHeadline.color }}); {% endif %}"
     >
       <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
