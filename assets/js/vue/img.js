@@ -42,12 +42,10 @@ export default {
   },
   methods: {
     setPreset() {
-      const settings = Cloudinary;
-      const defaultPresets = DefaultPresets;
-
       try {
-        const presetExists = settings['presets'] && settings['presets'][this.preset];
-        return presetExists ? Object.assign(defaultPresets, settings['presets'][this.preset]) : defaultPresets;
+        const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
+
+        return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
       } catch (e) {
         console.error(e);
       }
@@ -57,11 +55,11 @@ export default {
     },
     getMeta(url) {
       let img = this.$refs.image;
+
       img.onload = () => {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
         const preset = this.setPreset();
-
         const transformationsString = this.getTransformationString(preset);
 
         if (height && width) {
@@ -76,11 +74,13 @@ export default {
     },
     getTransformationString(preset) {
       const transformations = [];
+
       for (const [key, value] of Object.entries(TransformationOptions)) {
         if (preset[key]) {
           transformations.push(`${value}_${preset[key]}`);
         }
       }
+
       const transformationsIsNotEmpty = transformations.length > 0;
 
       return transformationsIsNotEmpty ? transformations.join(',') : '';
@@ -95,6 +95,7 @@ export default {
 
       if (naturalWidth < minWidth) {
         const srcsetString = '';
+
         srcsetArray.push(srcsetString);
       } else {
         for (let factor = 1; factor < steps; factor++) {
@@ -102,7 +103,9 @@ export default {
           const isWithinNaturalWidth = width <= naturalWidth;
           const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
           const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
+
           srcsetArray.push(srcsetString);
+
           if (!isWithinNaturalWidth) break;
         }
       }
