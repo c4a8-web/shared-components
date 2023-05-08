@@ -1,4 +1,4 @@
-const Presets = {
+const DefaultPresets = {
   min_width: 320,
   max_width: 1200,
   fallback_max_width: 1200,
@@ -36,4 +36,4 @@ const Presets = {
   transformation: false,
 };
 
-export default Presets;
+export default DefaultPresets;

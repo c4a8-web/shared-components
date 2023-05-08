@@ -1,4 +1,4 @@
-import Presets from '../presets.js';
+import DefaultPresets from '../default-presets.js';
 import TransformationOptions from '../transformation-options.js';
 import Cloudinary from '../../../.storybook/config/cloudinary.js';
 
@@ -13,9 +13,6 @@ export default {
         naturalHeight: null,
       },
       srcset: '',
-      cloudinary: Cloudinary,
-      defaultPresets: Presets,
-      transformationOptions: TransformationOptions,
     };
   },
   computed: {
@@ -37,16 +34,20 @@ export default {
     },
   },
   mounted() {
-    this.initialize();
+    if (this.cloudinary && !this.isGif()) {
+      this.getMeta(this.img);
+    } else {
+      this.fallback = this.img;
+    }
   },
   methods: {
     setPreset() {
-      const settings = this.cloudinary;
+      const settings = Cloudinary;
+      const defaultPresets = DefaultPresets;
+
       try {
         const presetExists = settings['presets'] && settings['presets'][this.preset];
-        return presetExists
-          ? Object.assign(this.defaultPresets, settings['presets'][this.preset])
-          : this.defaultPresets;
+        return presetExists ? Object.assign(defaultPresets, settings['presets'][this.preset]) : defaultPresets;
       } catch (e) {
         console.error(e);
       }
@@ -60,6 +61,7 @@ export default {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
         const preset = this.setPreset();
+
         const transformationsString = this.getTransformationString(preset);
 
         if (height && width) {
@@ -72,14 +74,9 @@ export default {
       };
       img.src = this.getCloudinaryLink(url);
     },
-    async initialize() {
-      if (this.cloudinary && !this.isGif()) {
-        this.getMeta(this.img);
-      }
-    },
     getTransformationString(preset) {
       const transformations = [];
-      for (const [key, value] of Object.entries(this.transformationOptions)) {
+      for (const [key, value] of Object.entries(TransformationOptions)) {
         if (preset[key]) {
           transformations.push(`${value}_${preset[key]}`);
         }
