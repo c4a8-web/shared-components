@@ -13,6 +13,9 @@ $font-style-map: (
   'h3-font-size': '%h3-font-size',
   'h4-font-size': '%h4-font-size',
 );
+@function is-important($important) {
+  @return #{if($important, '!important', '')};
+}
 
 @mixin h1-breakpoints($breakpoint: false) {
   line-height: $h1-line-height;
@@ -26,7 +29,7 @@ $font-style-map: (
   }
 }
 
-@mixin h1($important: false) {
+@mixin h1 {
   @include h1-breakpoints($breakpoint: 'sm');
 
   @include media-breakpoint-up(lg) {
@@ -38,21 +41,19 @@ $font-style-map: (
   }
 }
 
-@mixin h2-breakpoints($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-
+@mixin h2-breakpoints($breakpoint: false) {
   @if $breakpoint == 'lg' {
     font-size: $h2-font-size-lg;
   } @else if $breakpoint == 'xl' {
     font-size: $h2-font-size;
   } @else {
-    font-size: $h2-font-size-sm #{$important-string};
+    font-size: $h2-font-size-sm;
     font-weight: lighter;
     line-height: $h2-line-height;
   }
 }
 
-@mixin h2($important: false) {
+@mixin h2 {
   @include h2-breakpoints;
 
   @include media-breakpoint-up(lg) {
@@ -64,28 +65,26 @@ $font-style-map: (
   }
 }
 
-@mixin h3-breakpoints($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-
+@mixin h3-breakpoints($breakpoint: false) {
   @if $breakpoint == 'lg' {
     font-size: $h3-font-size-lg;
   } @else if $breakpoint == 'xl' {
     font-size: $h3-font-size;
   } @else {
-    font-size: $h3-font-size-sm #{$important-string};
+    font-size: $h3-font-size-sm;
     font-weight: lighter;
   }
 }
 
-@mixin h3($important: false) {
+@mixin h3 {
   @include h3-breakpoints;
 
   @include media-breakpoint-up(lg) {
-    @include h3-breakpoints($breakpoint: 'lg', $important: $important);
+    @include h3-breakpoints($breakpoint: 'lg');
   }
 
   @include media-breakpoint-up(xl) {
-    @include h3-breakpoints($breakpoint: 'xl', $important: $important);
+    @include h3-breakpoints($breakpoint: 'xl');
   }
 }
 
@@ -102,8 +101,7 @@ $font-style-map: (
   }
 }
 
-@mixin h4($important: false) {
-  $important-string: is-important($important);
+@mixin h4 {
   @include h4-breakpoints;
 
   @include media-breakpoint-up(lg) {
@@ -115,28 +113,24 @@ $font-style-map: (
   }
 }
 
-@mixin font-size-xs($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-  font-size: $font-size-xs #{$important-string};
+@mixin font-size-xs($breakpoint: false) {
+  font-size: $font-size-xs;
 }
 
-@mixin font-size-sm($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-  font-size: $font-size-sm #{$important-string};
+@mixin font-size-sm($breakpoint: false) {
+  font-size: $font-size-sm;
 }
 
-@mixin font-size-1($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-  font-size: $font-size-1 #{$important-string};
-  line-height: #{$default-line-height} #{$important-string};
+@mixin font-size-1($breakpoint: false) {
+  font-size: $font-size-1;
+  line-height: #{$default-line-height};
 }
 
-@mixin font-size-2($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-  font-size: $font-size-2 #{$important-string};
+@mixin font-size-2($breakpoint: false) {
+  font-size: $font-size-2;
 }
 
-@mixin font-size-3($breakpoint: false, $important: false) {
+@mixin font-size-3($breakpoint: false) {
   font-size: $font-size-2;
   line-height: $font-size-3-line-height;
 
@@ -149,27 +143,25 @@ $font-style-map: (
   }
 }
 
-@mixin font-size-4($breakpoint: false, $important: false) {
-  $important-string: is-important($important);
-
-  font-size: $font-size-3 #{$important-string};
-  line-height: $font-size-4-line-height #{$important-string};
+@mixin font-size-4($breakpoint: false) {
+  font-size: $font-size-3;
+  line-height: $font-size-4-line-height;
 
   @include media-breakpoint-up(lg) {
-    font-size: $font-size-3 #{$important-string};
-    line-height: $font-size-4-line-height-lg #{$important-string};
+    font-size: $font-size-3;
+    line-height: $font-size-4-line-height-lg;
   }
 
   @include media-breakpoint-up(xl) {
-    font-size: $font-size-4 #{$important-string};
+    font-size: $font-size-4;
   }
 }
 
-@mixin font-size-5($breakpoint: false, $important: false) {
-  font-size: $font-size-5 is-important($important);
+@mixin font-size-5($breakpoint: false) {
+  font-size: $font-size-5;
 }
 
-@mixin font-size-6($breakpoint: false, $important: false) {
+@mixin font-size-6($breakpoint: false) {
   font-size: 4rem;
   line-height: $font-size-6-line-height;
 
@@ -183,7 +175,7 @@ $font-style-map: (
   }
 }
 
-@mixin font-size-7($breakpoint: false, $important: false) {
+@mixin font-size-7($breakpoint: false) {
   font-size: $font-size-7-sm;
   line-height: $font-size-7-line-height;
   margin-left: -5px;
@@ -193,10 +185,6 @@ $font-style-map: (
     line-height: $font-size-7-line-height-lg;
     margin-left: -15px;
   }
-}
-
-@function is-important($important) {
-  @return #{if($important, '!important', '')};
 }
 
 @mixin font-style($style, $weight: null, $line: null) {

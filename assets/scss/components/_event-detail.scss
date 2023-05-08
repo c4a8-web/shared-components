@@ -1,7 +1,9 @@
-.event-detail__headline {
-  @include h2-breakpoints($important: true);
+.page-detail__intro-content {
+  .event-detail__headline {
+    @include h2-breakpoints;
 
-  @include media-breakpoint-up(lg) {
-    @include h3-breakpoints($breakpoint: 'lg', $important: true);
+    @include media-breakpoint-up(lg) {
+      @include h3-breakpoints($breakpoint: 'lg');
+    }
   }
 }
