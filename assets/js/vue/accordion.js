@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     isUpperBreakpoint() {
-      return !Tools.isBelowBreakpoint('lg');
+      return !Tools.isBelowBreakpoint('md');
     },
     selectFallbackImage() {
       if (!this.fallbackImage) {
