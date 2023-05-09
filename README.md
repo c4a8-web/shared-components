@@ -41,36 +41,6 @@ or the npm version of that if you are using npm.
 
 If you want to use the `shared-components` in your project you need to go through these Integration steps.
 
-## Git
-
-You need to add this project as a git submodule to the project you want to use the `shared-components`. Add a .gitmodules File or add them via GUI.
-
-```
-[submodule "_includes/shared-components"]
-	path = _includes/shared-components
-	url = https://github.com/c4a8-web/shared-components.git
-```
-
-If your Git Client doesn't initialize the submodule automatically or you use a terminal for git commands you need to run
-
-```
-git submodule init "_includes/shared-components"
-```
-
-and
-
-```
-git submodule update "_includes/shared-components"
-```
-
-to update and checkout the submodule.
-
-You also need to update your .gitignore file with this part
-
-```
-_temp
-```
-
 ## Jekyll
 
 In your Jekyll configuration the `_config.yml` you need to add the path to the `shared-components` folder like this:
@@ -79,76 +49,130 @@ In your Jekyll configuration the `_config.yml` you need to add the path to the `
 shared_components_path: _includes/shared-components
 ```
 
+You also need to add this part:
+
+```
+git:
+  - repo: https://github.com/c4a8-web/shared-components
+    branch: master
+    skip_if_exists: _local.shared-components.yml
+```
+
 And you need to add the \_temp/ folder to your exclude list
 
 You also need a Generator called `sharedcomponents.rb` in your \_plugins folder that looks like this:
 
 ```
 require 'fileutils'
+require 'git'
 
-module SharedComponents
-  class Generator < Jekyll::Generator
+class SharedComponentsNotFoundException < StandardError; end
+
+def redText(text)
+  "\e[31m#{text}\e[0m"
+end
+
+class SharedComponentsGenerator
+  def generate(site)
+    asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map,css,woff,woff2,ttf,eot}'
+    temp_path = "_temp/"
+    base_partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
+    partials_path = temp_path + site.config['shared_components_path'] + '/includes/**/*.{template}'
+    puts "Generate Shared Components as Static Files in " + asset_path
+
+    i=0
+    curr_file = nil
+
+    Dir.glob(asset_path, File::FNM_DOTMATCH) do |f|
+      file = File.stat(f)
+      next unless file.file?
+      i += 1
+      curr_file = [f, file]
+      if curr_file != nil then
+        filePath = curr_file[0]
+        site.static_files << Jekyll::StaticFile.new(site, site.source, File.dirname(filePath), File.basename(filePath))
+      end
+    end
+
+    Dir.glob(base_partials_path, File::FNM_DOTMATCH) do |f|
+      file = File.stat(f)
+      next unless file.file?
+      curr_file = [f, file]
+      if curr_file != nil then
+        filePath = curr_file[0]
+        full_path = temp_path + File.dirname(filePath)
+        destination_path = full_path + "/" + File.basename(filePath).sub('.html', '.template')
+
+        unless File.directory?(full_path)
+          FileUtils.mkdir_p(full_path)
+        end
+
+        FileUtils.cp(filePath, destination_path)
+      end
+    end
+
+    Dir.glob(partials_path, File::FNM_DOTMATCH) do |f|
+      file = File.stat(f)
+      next unless file.file?
+      i += 1
+      curr_file = [f, file]
+      if curr_file != nil then
+        filePath = curr_file[0]
+        source_path = site.source + '/' + temp_path
+        dirname = File.dirname(filePath).sub(temp_path, '')
+
+        staticFile = Jekyll::StaticFile.new(site, source_path, dirname, File.basename(filePath))
+        site.static_files << staticFile
+      end
+    end
+
+    puts "Total files: #{i}"
+  end
+end
+
+module Jekyll
+  class GitDownloader < Generator
     def generate(site)
-      asset_path = site.config['shared_components_path'] + '/assets/**/*.{js,png,svg,gif,map,css,woff,woff2,ttf,eot}'
-      temp_path = "_temp/"
-      base_partials_path = site.config['shared_components_path'] + '/includes/**/*.{html}'
-      partials_path = temp_path + site.config['shared_components_path'] + '/includes/**/*.{template}'
-      puts "Generate Shared Components as Static Files in " + asset_path
+      config = site.config['git']
+      return unless config
 
-      i=0
-      curr_file = nil
+      puts "Checks for Shared Components"
 
-      Dir.glob(asset_path, File::FNM_DOTMATCH) do |f|
-        file = File.stat(f)
-        next unless file.file?
-        i += 1
-        curr_file = [f, file]
-        if curr_file != nil then
-          filePath = curr_file[0]
-          site.static_files << Jekyll::StaticFile.new(site, site.source, File.dirname(filePath), File.basename(filePath))
-        end
+      config.each do |entry|
+        dest = File.join(site.source, site.config['shared_components_path'])
+        skip_if_exists = entry['skip_if_exists']
+
+        next if File.exist?(File.join(site.source, skip_if_exists))
+
+        puts "Tries to download Shared Components from git"
+
+        repo = entry['repo']
+        branch = entry['branch'] || 'master'
+
+        FileUtils.rm_rf(dest) if File.exist?(dest)
+        Git.clone(repo, dest, branch: branch)
       end
 
-      Dir.glob(base_partials_path, File::FNM_DOTMATCH) do |f|
-        file = File.stat(f)
-        next unless file.file?
-        curr_file = [f, file]
-        if curr_file != nil then
-          filePath = curr_file[0]
-          full_path = temp_path + File.dirname(filePath)
-          destination_path = full_path + "/" + File.basename(filePath).sub('.html', '.template')
+      folder_path = site.config['shared_components_path']
 
-          unless File.directory?(full_path)
-            FileUtils.mkdir_p(full_path)
-          end
+      if File.directory?(folder_path)
+        puts "Starting Generator of Shared Components"
 
-          FileUtils.cp(filePath, destination_path)
-        end
+        SharedComponentsGenerator.new.generate(site)
+      else
+        message = "You need to check out a Version of the Shared Components in this folder: '#{folder_path}'"
+
+        puts redText(message)
+
+        raise SharedComponentsNotFoundException, message
       end
-
-      Dir.glob(partials_path, File::FNM_DOTMATCH) do |f|
-        file = File.stat(f)
-        next unless file.file?
-        i += 1
-        curr_file = [f, file]
-        if curr_file != nil then
-          filePath = curr_file[0]
-          source_path = site.source + '/' + temp_path
-          dirname = File.dirname(filePath).sub(temp_path, '')
-
-          staticFile = Jekyll::StaticFile.new(site, source_path, dirname, File.basename(filePath))
-          site.static_files << staticFile
-        end
-      end
-
-      puts "Total files: #{i}"
     end
   end
 end
 
 ```
 
-This Generator will copy the JavaScript and the other assets to the static Folders in Jekyll.
+This Generator will download the latest version from git and copy the JavaScript and the other assets to the static Folders in Jekyll.
 
 ## SCSS
 
