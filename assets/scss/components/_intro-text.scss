@@ -2,7 +2,7 @@
   &.intro-text--large {
     .intro-text__copy {
       @include media-breakpoint-up(lg) {
-        @include font-size-5($breakpoint: 'lg');
+        @include font-size-5;
         @include font-mods('light');
       }
     }
@@ -14,6 +14,5 @@
 }
 
 .intro-text__copy {
-  @include font-size-4;
-  @include line-height('wide');
+  @include font-style($style: 'font-size-4', $line: 'wide');
 }

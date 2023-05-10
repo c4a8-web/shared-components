@@ -110,3 +110,10 @@ HeaderProductLight.args = {
   blendMode: true,
   ...productArgs,
 };
+
+export const HeaderSearch = Template.bind({});
+
+HeaderSearch.args = {
+  lang: 'en',
+  search: true,
+};
