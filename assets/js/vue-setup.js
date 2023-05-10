@@ -213,4 +213,6 @@ document.addEventListener('VUE_FORCE_UPDATE', () => {
   addApp();
 });
 
+console.log('Test Deployment');
+
 export default VueSetup;
