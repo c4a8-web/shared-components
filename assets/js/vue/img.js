@@ -10,8 +10,8 @@ export default {
   data() {
     return {
       dimensions: {
-        naturalWidth: null,
         naturalHeight: null,
+        naturalWidth: null,
       },
       srcset: '',
     };
@@ -49,6 +49,11 @@ export default {
         console.error(e);
       }
     },
+    updateDimensions(dimensions) {
+      if (this.dimensions.naturalHeight === null || this.dimensions.naturalHeight === null) {
+        this.dimensions = dimensions;
+      }
+    },
     getCloudinaryLink(url) {
       return basePath + url;
     },
@@ -56,19 +61,21 @@ export default {
       let img = this.$refs.image;
 
       img.onload = () => {
-        img.onload = null;
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
+
         const preset = this.setPreset();
         this.sizes = preset.sizes;
         const transformationsString = this.getTransformationString(preset);
 
         if (height && width && !!preset) {
-          this.dimensions = { naturalHeight: height, naturalWidth: width };
+          const dimensions = { naturalHeight: height, naturalWidth: width };
+          this.updateDimensions(dimensions);
           this.buildSrcSet(preset, transformationsString);
         } else {
-          this.dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
-          this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${width}w`;
+          const dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
+          this.updateDimensions(dimensions);
+          this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
         }
       };
       img.src = this.getCloudinaryLink(url);
