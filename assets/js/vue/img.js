@@ -83,12 +83,14 @@ export default {
         if (height && width) {
           const dimensions = { naturalHeight: height, naturalWidth: width };
 
-          this.updateDimensions(dimensions, img.src);
+          this.dimensions = dimensions;
+          // this.updateDimensions(dimensions, img.src);
           this.buildSrcSet(preset, transformationsString);
         } else {
           const dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
 
-          this.updateDimensions(dimensions, img.src);
+          // this.updateDimensions(dimensions, img.src);
+          this.dimensions = dimensions;
           this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
         }
       };
