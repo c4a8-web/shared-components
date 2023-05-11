@@ -1,5 +1,6 @@
 import State from './state.js';
 import Events from './events.js';
+import Tools from './tools.js';
 
 class StickyScroller {
   static rootSelector = '.is-sticky-scroller';
@@ -89,7 +90,7 @@ class StickyScroller {
     this.setStickyPosition();
   }
 
-  handleScroll(e) {
+  handleScroll() {
     if (this.isUpdating) return;
 
     this.isUpdating = true;
@@ -247,6 +248,23 @@ class StickyScroller {
     this.root.dataset.stickyScroller = true;
 
     this.setPositions();
+    this.setNextElementColor();
+  }
+
+  setNextElementColor() {
+    const nextElement = this.spacer.nextSibling;
+    const propertyName = '--color-sticky-scroller';
+    const backgroundColor = Tools.getElementBgColor(nextElement) || Tools.getElementBgColor(nextElement.firstChild);
+    console.log(
+      '🚀 ~ file: sticky-scroller.js:259 ~ StickyScroller ~ setNextElementColor ~ backgroundColor:',
+      backgroundColor
+    );
+
+    // if (nextElement.style.getPropertyValue(propertyName) !== '') return;
+
+    // nextElement?.style.setProperty(propertyName, Tools.getElementBgColor(nextElement));
+
+    this.spacer.style.setProperty(propertyName, backgroundColor);
   }
 
   setDimensions() {

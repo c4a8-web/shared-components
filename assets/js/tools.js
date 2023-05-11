@@ -350,6 +350,14 @@ class Tools {
 
     return;
   }
+
+  static getElementBgColor(element) {
+    if (!element) return;
+
+    const color = window.getComputedStyle(element).backgroundColor;
+
+    return color === 'rgba(0, 0, 0, 0)' ? null : color;
+  }
 }
 
 export default Tools;

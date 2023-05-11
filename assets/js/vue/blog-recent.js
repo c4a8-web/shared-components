@@ -153,7 +153,7 @@ export default {
   },
   template: `
     <template v-if="postsArray.length > 0">
-      <div :class="classList">
+      <div :class="classList" :style="{ '--color-sticky-scroller': 'green' }">
         <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
         <wrapper :hideContainer="hiddenContainer">
           <div class="row" v-if="headline">
