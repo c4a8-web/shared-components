@@ -34,14 +34,15 @@ export default {
     },
   },
   mounted() {
-    if (Tools.isTrue(this.cloudinary) && !this.isGif()) {
-      this.getMeta(this.img);
-    } else {
+    if (!this.canGenerateSrcSet()) {
       this.fallback = this.img;
       this.sizes = DefaultPresets.sizes;
     }
   },
   methods: {
+    canGenerateSrcSet() {
+      return Tools.isTrue(this.cloudinary) && !this.isGif();
+    },
     setPreset() {
       try {
         const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
@@ -60,33 +61,38 @@ export default {
     getCloudinaryLink(url) {
       return basePath + url;
     },
-    getMeta(url) {
-      let img = this.$refs.image;
+    loadImage() {
+      if (!this.canGenerateSrcSet()) return;
+
+      const img = document.createElement('img');
 
       img.onload = () => {
         const height = img?.naturalHeight;
+        console.group();
+        console.log('🚀 ~ file: img.js:74 ~ loadImage ~ img:', img.src);
+        console.log('🚀 ~ file: img.js:71 ~ loadImage ~ height:', height);
         const width = img?.naturalWidth;
-
+        console.log('🚀 ~ file: img.js:73 ~ loadImage ~ width:', width);
+        console.groupEnd();
         const preset = this.setPreset();
-        this.sizes = preset.sizes;
         const transformationsString = this.getTransformationString(preset);
+
+        this.sizes = preset.sizes;
 
         if (height && width) {
           const dimensions = { naturalHeight: height, naturalWidth: width };
+
           this.updateDimensions(dimensions, img.src);
-          console.group();
-          console.log('DIMSTACK ->>', this.dimStack);
-          console.log('IMG->>', img.src);
-          console.log('DIM->>', this.dimensions);
-          console.groupEnd();
           this.buildSrcSet(preset, transformationsString);
         } else {
           const dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
+
           this.updateDimensions(dimensions, img.src);
           this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
         }
       };
-      img.src = this.getCloudinaryLink(url);
+
+      img.src = this.source;
     },
     getTransformationString(preset) {
       const transformations = [];
@@ -143,6 +149,6 @@ export default {
     preset: String,
   },
   template: `
-    <img ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="this.crossorigin">
+    <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="this.crossorigin">
   `,
 };
