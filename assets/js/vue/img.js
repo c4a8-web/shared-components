@@ -13,6 +13,8 @@ export default {
         naturalHeight: null,
         naturalWidth: null,
       },
+      dimStack: {},
+      previousImg: null,
       srcset: '',
     };
   },
@@ -49,9 +51,10 @@ export default {
         console.error(e);
       }
     },
-    updateDimensions(dimensions) {
-      if (this.dimensions.naturalHeight === null || this.dimensions.naturalHeight === null) {
+    updateDimensions(dimensions, imgSrc) {
+      if (this.dimStack[imgSrc] == null) {
         this.dimensions = dimensions;
+        this.dimStack[imgSrc] = dimensions;
       }
     },
     getCloudinaryLink(url) {
@@ -68,13 +71,18 @@ export default {
         this.sizes = preset.sizes;
         const transformationsString = this.getTransformationString(preset);
 
-        if (height && width && !!preset) {
+        if (height && width) {
           const dimensions = { naturalHeight: height, naturalWidth: width };
-          this.updateDimensions(dimensions);
+          this.updateDimensions(dimensions, img.src);
+          console.group();
+          console.log('DIMSTACK ->>', this.dimStack);
+          console.log('IMG->>', img.src);
+          console.log('DIM->>', this.dimensions);
+          console.groupEnd();
           this.buildSrcSet(preset, transformationsString);
         } else {
           const dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
-          this.updateDimensions(dimensions);
+          this.updateDimensions(dimensions, img.src);
           this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
         }
       };
