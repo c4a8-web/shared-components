@@ -67,6 +67,7 @@ export default {
       const img = document.createElement('img');
 
       img.onload = () => {
+        console.log(img);
         const height = img?.naturalHeight;
         console.group();
         console.log('🚀 ~ file: img.js:74 ~ loadImage ~ img:', img.src);
