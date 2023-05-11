@@ -54,18 +54,15 @@ export default {
     },
     getMeta(url) {
       let img = this.$refs.image;
-      console.log('hier -->>');
 
       img.onload = () => {
-        console.log(img);
+        img.onload = null;
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
         const preset = this.setPreset();
         this.sizes = preset.sizes;
         const transformationsString = this.getTransformationString(preset);
 
-        console.log('dimensions ->>', height, width);
-        console.log('hier', preset);
         if (height && width && !!preset) {
           this.dimensions = { naturalHeight: height, naturalWidth: width };
           this.buildSrcSet(preset, transformationsString);
