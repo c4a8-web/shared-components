@@ -62,8 +62,10 @@ export default {
     },
     getMeta(url) {
       let img = this.$refs.image;
+      console.log('hier -->>');
 
       img.onload = () => {
+        console.log(img);
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
 
@@ -71,14 +73,10 @@ export default {
         this.sizes = preset.sizes;
         const transformationsString = this.getTransformationString(preset);
 
-        if (height && width) {
-          const dimensions = { naturalHeight: height, naturalWidth: width };
-          this.updateDimensions(dimensions, img.src);
-          console.group();
-          console.log('DIMSTACK ->>', this.dimStack);
-          console.log('IMG->>', img.src);
-          console.log('DIM->>', this.dimensions);
-          console.groupEnd();
+        console.log('dimensions ->>', height, width);
+        console.log('hier', preset);
+        if (height && width && !!preset) {
+          this.dimensions = { naturalHeight: height, naturalWidth: width };
           this.buildSrcSet(preset, transformationsString);
         } else {
           const dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
