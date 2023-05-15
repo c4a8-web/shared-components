@@ -3,7 +3,7 @@
   {% assign quotes = include.quotes %}
   {% assign quotesFooterImages = quotes.footerImage %}
   {% assign quotesImagesCount = quotesFooterImages | size %}
-  {% assign quotesSpacing = quotes.spacing | default: 'mt-8 mt-lg-10' %}
+  {% assign quotesSpacing = quotes.spacing %}
 
   {%- if quotes.items[0].img -%}
     {%- assign quotesImage = true -%}

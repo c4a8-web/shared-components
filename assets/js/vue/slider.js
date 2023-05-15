@@ -51,10 +51,13 @@ export default {
     classList() {
       return [
         'slider',
-        `${Tools.isTrue(this.hideContainer) === true ? '' : this.spacing}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : this.hasSpacing}`,
         `${this.backgroundClass}`,
         'vue-component',
       ];
+    },
+    hasSpacing() {
+      return this.spacing ? this.spacing : '';
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';

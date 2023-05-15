@@ -3,7 +3,7 @@
 {%- assign checkCardsHeadlineClasses = include.headlineClasses -%}
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
-{%- assign checkCardSpacing = include.spacing | default: 'mt-6 mt-lg-8' -%}
+{%- assign checkCardSpacing = include.spacing -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
 <check-card

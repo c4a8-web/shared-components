@@ -5,7 +5,7 @@
 {%- assign iconBlockSize = include.size | default: false -%}
 {%- assign iconBlockCta = iconBlocks.cta | default: false -%}
 {%- assign iconBlockHeadline = include.headline | default: false -%}
-{%- assign iconBlockSpacing = include.spacing | default: 'mt-5' -%}
+{%- assign iconBlockSpacing = include.spacing -%}
 
 {%- if iconBlocksColumns -%}
   {%- assign iconBlocksMaxColNumber = 12 -%}

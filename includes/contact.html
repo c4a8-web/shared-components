@@ -3,7 +3,7 @@
 {%- assign contactCollapsed = include.collapsed -%}
 {%- assign contactAjax = include.ajax -%}
 {%- assign contactQuote = include.quote | default: false -%}
-{%- assign contactSpacing = include.spacing | default: 'mt-8 mt-lg-10' -%}
+{%- assign contactSpacing = include.spacing -%}
 
 {%- if contactInfos -%}
   {%- assign contact = contactInfos -%}

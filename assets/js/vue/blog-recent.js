@@ -10,10 +10,13 @@ export default {
         'blog-recent',
         `${this.hasBackground}`,
         `${this.skinClass}`,
-        `${Tools.isTrue(this.hideContainer) === true ? '' : this.spacing}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : this.hasSpacing}`,
         `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
+    },
+    hasSpacing() {
+      return this.spacing ? this.spacing : '';
     },
     hasBackground() {
       return this.bgColor ? State.HAS_BACKGROUND : '';
