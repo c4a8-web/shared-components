@@ -10,12 +10,12 @@ export default {
         'blog-recent',
         `${this.hasBackground}`,
         `${this.skinClass}`,
-        `${Tools.isTrue(this.hideContainer) === true ? '' : this.hasSpacing}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
         `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
     },
-    hasSpacing() {
+    getSpacing() {
       return this.spacing ? this.spacing : '';
     },
     hasBackground() {
