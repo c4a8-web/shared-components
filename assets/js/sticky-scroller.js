@@ -251,20 +251,19 @@ class StickyScroller {
     this.setNextElementColor();
   }
 
+  hasBackground() {
+    return this.root.classList.contains(State.HAS_BACKGROUND) || Tools.getElementBgColor(this.root);
+  }
+
   setNextElementColor() {
+    if (!this.hasBackground()) return;
+
     const nextElement = this.spacer.nextSibling;
     const propertyName = '--color-sticky-scroller';
     const backgroundColor = Tools.getElementBgColor(nextElement) || Tools.getElementBgColor(nextElement.firstChild);
-    console.log(
-      '🚀 ~ file: sticky-scroller.js:259 ~ StickyScroller ~ setNextElementColor ~ backgroundColor:',
-      backgroundColor
-    );
-
-    // if (nextElement.style.getPropertyValue(propertyName) !== '') return;
-
-    // nextElement?.style.setProperty(propertyName, Tools.getElementBgColor(nextElement));
 
     this.spacer.style.setProperty(propertyName, backgroundColor);
+    this.spacer.classList.add(State.HAS_BACKGROUND);
   }
 
   setDimensions() {
