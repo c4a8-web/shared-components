@@ -51,7 +51,7 @@ export default {
     classList() {
       return [
         'slider',
-        `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : this.spacing}`,
         `${this.backgroundClass}`,
         'vue-component',
       ];
@@ -113,6 +113,7 @@ export default {
     headline: String,
     headlineLevel: String,
     headlineClasses: String,
+    spacing: String,
     hideContainer: {
       default: false,
     },

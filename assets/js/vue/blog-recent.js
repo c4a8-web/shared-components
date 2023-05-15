@@ -10,7 +10,7 @@ export default {
         'blog-recent',
         `${this.hasBackground}`,
         `${this.skinClass}`,
-        `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : this.spacing}`,
         `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
@@ -131,6 +131,7 @@ export default {
     headlineClasses: String,
     subline: String,
     sublineClasses: String,
+    spacing: String,
     posts: String,
     cta: {
       default: null,

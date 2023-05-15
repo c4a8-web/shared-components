@@ -10,6 +10,9 @@ export default {
     checkCardsContainerClass() {
       return ['check-card__container js-slick-carousel slick--single-list'];
     },
+    containerValue() {
+      return `col-lg-12 col-md-10 ${this.spacing ? this.spacing : ''} mb-9`;
+    },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
@@ -91,6 +94,7 @@ export default {
     headlineClasses: String,
     subline: String,
     sublineClasses: String,
+    spacing: String,
     checks: {
       default: null,
     },
@@ -102,7 +106,7 @@ export default {
     <div :class="classList">
       <div class="container">
         <div class="row" v-if="headline">
-          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-9">
+          <div :class="containerValue">
             <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
             <div v-if="subline" :class="sublineClassesValue" v-html="subline"></div>
           </div>

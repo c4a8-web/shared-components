@@ -3,6 +3,7 @@
   {% assign quotes = include.quotes %}
   {% assign quotesFooterImages = quotes.footerImage %}
   {% assign quotesImagesCount = quotesFooterImages | size %}
+  {% assign quotesSpacing = quotes.spacing | default: 'mt-8 mt-lg-10' %}
 
   {%- if quotes.items[0].img -%}
     {%- assign quotesImage = true -%}
@@ -10,7 +11,7 @@
     {%- assign quotesImage = false -%}
   {% endif %}
 
-  <div class="quotes {% if quotesImage %}mb-8{% else %}quotes--no-image{% endif %} mt-8 mt-lg-10">
+  <div class="quotes {% if quotesImage %}mb-8{% else %}quotes--no-image{% endif %} {{ quotesSpacing }}">
     <div class="container space-top-1 space-bottom-2 space-top-lg-2 space-bottom-lg-0">
       <div class="quotes__row row">
         <div class="col-lg-12 mb-4 mb-lg-6">
