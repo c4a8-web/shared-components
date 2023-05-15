@@ -4,12 +4,14 @@
 {%- assign textImageListHeadlineLevel = include.level | default: 'h2' -%}
 {%- assign textImageListHeadlineColor = include.headlineColor -%}
 {%- assign textImageListBgColor = include.bgColor | default: false -%}
+{%- assign textImageListSpacing = include.spacing -%}
 
 <text-image-list
   classes="{{ textImageListClasses }}"
   headline="{{ textImageListHeadline }}"
   bg-color="{{ textImageListBgColor }}"
   headline-color="{{ textImageListHeadlineColor }}"
+  spacing="{{ textImageListSpacing }}"
 >
 
   {% assign textImageListSize = textImageListItems | size %}

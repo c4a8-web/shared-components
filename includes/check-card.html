@@ -3,12 +3,14 @@
 {%- assign checkCardsHeadlineClasses = include.headlineClasses -%}
 {%- assign checkCardsSubline = include.subline -%}
 {%- assign checkCardsSublineClasses = include.sublineClasses -%}
+{%- assign checkCardSpacing = include.spacing -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
 
 <check-card
   :checks="{{ checkCards | jsonify | escape }}"
   subline="{{ checkCardsSubline }}"
   subline-classes="{{ checkCardsSublineClasses }}"
+  spacing="{{ checkCardSpacing }}"
   headline="{{ checkCardsHeadline }}"
   headline-level="{{ checkCardsHeadlineLevel }}"
   headline-classes="{{ checkCardsHeadlineClasses }}"
