@@ -1,0 +1,56 @@
+.fade-in-bottom {
+  @include fade-in-X($from: 'bottom');
+}
+
+.fade-in-top {
+  @include fade-in-X($from: 'top');
+}
+
+.zoom-in-out {
+  transform: scale(1);
+  animation: zoom-in-out 3s forwards;
+}
+
+.bouncing {
+  transform: translateY(0);
+  animation: bouncing 3s forwards;
+}
+
+.fill-in-left {
+  width: 0%;
+  overflow: hidden;
+  animation: fill-in-from-left 3s forwards;
+}
+
+@keyframes zoom-in-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fill-in-from-left {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
