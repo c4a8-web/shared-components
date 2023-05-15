@@ -78,9 +78,17 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
   h2,
   h3,
   h4 {
-    &[id^='über'],
-    &[id^='about'],
+    &[id='über'],
+    &[id='Über'],
+    &[id^='über '],
+    &[id^='Über '],
+    &[id='about'],
+    &[id='About'],
+    &[id^='about '],
+    &[id^='About '],
+    &#Fazit,
     &#fazit,
+    &#Conclusion,
     &#conclusion {
       background-color: var(--color-green-blue);
       color: var(--color-white);
