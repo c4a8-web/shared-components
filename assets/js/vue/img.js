@@ -52,12 +52,6 @@ export default {
         console.error(e);
       }
     },
-    updateDimensions(dimensions, imgSrc) {
-      if (this.dimStack[imgSrc] == null) {
-        this.dimensions = dimensions;
-        this.dimStack[imgSrc] = dimensions;
-      }
-    },
     getCloudinaryLink(url) {
       return basePath + url;
     },
@@ -67,32 +61,22 @@ export default {
       const img = document.createElement('img');
 
       img.onload = () => {
-        console.log(img);
         const height = img?.naturalHeight;
-        console.group();
-        console.log('🚀 ~ file: img.js:74 ~ loadImage ~ img:', img.src);
-        console.log('🚀 ~ file: img.js:71 ~ loadImage ~ height:', height);
         const width = img?.naturalWidth;
-        console.log('🚀 ~ file: img.js:73 ~ loadImage ~ width:', width);
-        console.groupEnd();
         const preset = this.setPreset();
         const transformationsString = this.getTransformationString(preset);
 
         this.sizes = preset.sizes;
 
-        if (height && width) {
-          const dimensions = { naturalHeight: height, naturalWidth: width };
+        const dimensions = {
+          naturalHeight: height ? height : preset.fallback_max_width,
+          naturalWidth: width ? width : preset.fallback_max_width,
+        };
+        this.dimensions = dimensions;
 
-          this.dimensions = dimensions;
-          // this.updateDimensions(dimensions, img.src);
-          this.buildSrcSet(preset, transformationsString);
-        } else {
-          const dimensions = { naturalHeight: preset.fallback_max_width, naturalWidth: preset.fallback_max_width };
+        const fallbackString = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
 
-          // this.updateDimensions(dimensions, img.src);
-          this.dimensions = dimensions;
-          this.fallback = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
-        }
+        height && width ? this.buildSrcSet(preset, transformationsString) : (this.fallback = fallbackString);
       };
 
       img.src = this.source;
@@ -118,23 +102,18 @@ export default {
       const stepWidth = (maxWidth - minWidth) / (steps - 1);
       const { naturalWidth } = this.dimensions;
 
-      if (naturalWidth < minWidth) {
-        const srcsetString = '';
+      for (let factor = 1; factor < steps; factor++) {
+        const width = minWidth + (factor - 1) * stepWidth;
+        const isWithinNaturalWidth = width <= naturalWidth;
+        const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
+        const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
 
         srcsetArray.push(srcsetString);
-      } else {
-        for (let factor = 1; factor < steps; factor++) {
-          const width = minWidth + (factor - 1) * stepWidth;
-          const isWithinNaturalWidth = width <= naturalWidth;
-          const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
-          const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
 
-          srcsetArray.push(srcsetString);
-
-          if (!isWithinNaturalWidth) break;
-        }
+        if (!isWithinNaturalWidth) break;
       }
-      this.srcset = srcsetArray.join(', \n');
+
+      this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
     },
     isGif() {
       const extension = this.img.split('.')[1];
