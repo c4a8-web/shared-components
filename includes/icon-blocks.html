@@ -2,9 +2,9 @@
 {%- assign iconBlocksLevel = include.level | default: 'h3' -%}
 {%- assign iconBlocksClasses = include.classes | default: 'font-size-3 bold' -%}
 {%- assign iconBlocksColumns = include.columns | default: false -%}
-{%- assign iconBlockSize = include.size | default: false -%}
-{%- assign iconBlockCta = iconBlocks.cta | default: false -%}
-{%- assign iconBlockHeadline = include.headline | default: false -%}
+{%- assign iconBlocksCta = iconBlocks.cta | default: false -%}
+{%- assign iconBlocksHeadline = include.headline | default: false -%}
+{%- assign iconBlocksSticky = include.sticky -%}
 
 {%- if iconBlocksColumns -%}
   {%- assign iconBlocksMaxColNumber = 12 -%}
@@ -19,14 +19,14 @@
 {%- endif -%}
 
 <!-- Shared Icon Blocks Section -->
-<div class="icon-blocks mt-5 container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
+<div class="icon-blocks mt-5 container-fluid {% if iconBlocksSticky %}is-sticky-scroller{% endif %}" style="background-color: {{ iconBlocks.bgColor }};">
   <div class="container space-2">
-    {% if iconBlockHeadline %}
+    {% if iconBlocksHeadline %}
       <div class="row mt-5 mb-8 px-lg-3">
         <div class="col">
           {%
             include headline.html
-            text=iconBlockHeadline
+            text=iconBlocksHeadline
             level=h3
           %}
         </div>
@@ -57,14 +57,14 @@
       </div>
       {% endfor %}
     </div>
-    {% if iconBlockCta %}
+    {% if iconBlocksCta %}
     <div class="row justify-content-center mt-8">
       {%
         include cta.html
-        text=iconBlockCta.text
-        href=iconBlockCta.href
-        skin=iconBlockCta.skin
-        button=iconBlockCta.button
+        text=iconBlocksCta.text
+        href=iconBlocksCta.href
+        skin=iconBlocksCta.skin
+        button=iconBlocksCta.button
       %}
     </div>
     {% endif %}
