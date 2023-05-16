@@ -20,7 +20,7 @@
 {%- endif -%}
 
 <!-- Shared Icon Blocks Section -->
-<div class="icon-blocks {{ iconsBlockSpacing }} container-fluid" style="background-color: {{ iconBlocks.bgColor }};">
+<div class="icon-blocks {{ iconsBlockSpacing }} container-fluid {% if iconBlocksSticky %}is-sticky-scroller{% endif %}" style="background-color: {{ iconBlocks.bgColor }};">
   <div class="container space-2">
     {% if iconBlocksHeadline %}
       <div class="row mt-5 mb-8 px-lg-3">
