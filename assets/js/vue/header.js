@@ -315,9 +315,37 @@ export default {
         parent = Tools.findRecursive(this.contact, matcher, callback);
       }
 
-      if (!parent) return this.getHrefLang();
+      if (!parent) {
+        const hrefLang = this.getHrefLang();
+
+        return hrefLang ? hrefLang : this.isBlogTagsUrl(currentPath) ? this.getBlogTagsUrl(lang, currentPath) : null;
+      }
 
       return parent[lang]?.url;
+    },
+    isBlogTagsUrl(currentPath) {
+      const regex = /\/blog\/tags/;
+
+      return regex.test(currentPath);
+    },
+    getBlogTagsUrl(lang, currentPath) {
+      let newPath;
+
+      const tagsIdentifier = 'tags';
+
+      switch (lang) {
+        case 'en':
+          newPath = currentPath.replace(tagsIdentifier, `${tagsIdentifier}-${lang}`);
+          break;
+        default:
+        case this.defaultLang:
+          const regex = new RegExp(`${tagsIdentifier}-..`);
+
+          newPath = currentPath.replace(regex, tagsIdentifier);
+          break;
+      }
+
+      return newPath + document.location.search;
     },
     getHrefLang() {
       const hrefLang = document.querySelector('link[hreflang]');

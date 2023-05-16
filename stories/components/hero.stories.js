@@ -1,5 +1,5 @@
 import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
-import { includesherotextimagehtml as component } from '../../.storybook/generatedIncludes';
+import heroTemplate from '!!raw-loader!./hero.html';
 
 const options = getTitle({
   title: 'Hero',
@@ -11,7 +11,7 @@ export default {
 
 const baseArgs = {};
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, heroTemplate);
 
 export const HeroCareer = Template.bind({});
 

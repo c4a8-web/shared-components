@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "node scripts/generateIncludes.js && start-storybook -p 6006",
-    "build-storybook": "node scripts/generateIncludes.js && build-storybook && node scripts/generateBuildIncludes.js"
+    "build-storybook": "node scripts/generateIncludes.js && build-storybook && node scripts/generateBuildIncludes.js",
+    "start": "npm run storybook"
   },
   "keywords": [],
   "author": "",

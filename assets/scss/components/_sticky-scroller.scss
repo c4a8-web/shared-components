@@ -27,8 +27,20 @@
 .sticky-scroller__spacer {
   pointer-events: none;
   position: relative;
-  opacity: 0;
-  overflow: hidden;
+
+  &.has-background {
+    &::before {
+      position: absolute;
+      display: block;
+      content: '';
+      width: 100%;
+      height: 300px;
+      background-color: var(--color-sticky-scroller);
+      bottom: -20px;
+      z-index: -1;
+      pointer-events: none;
+    }
+  }
 
   &::after {
     content: '';
