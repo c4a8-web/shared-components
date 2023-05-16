@@ -10,10 +10,13 @@ export default {
         'blog-recent',
         `${this.hasBackground}`,
         `${this.skinClass}`,
-        `${Tools.isTrue(this.hideContainer) === true ? '' : 'mt-10'}`,
+        `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
         `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
         'vue-component',
       ];
+    },
+    getSpacing() {
+      return this.spacing ? this.spacing : '';
     },
     hasBackground() {
       return this.bgColor ? State.HAS_BACKGROUND : '';
@@ -131,6 +134,7 @@ export default {
     headlineClasses: String,
     subline: String,
     sublineClasses: String,
+    spacing: String,
     posts: String,
     cta: {
       default: null,
