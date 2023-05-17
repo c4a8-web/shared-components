@@ -280,7 +280,7 @@ export default {
       const lastCharacter = '/';
 
       const matcher = (obj, parentKey) => {
-        if (!obj.title) return;
+        if (!obj?.title) return;
 
         let url = obj?.url;
 
