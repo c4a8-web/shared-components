@@ -82,7 +82,7 @@ export default {
         height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = this.source;
+      img.src = basePath + this.img;
     },
     getTransformationString(preset) {
       const transformations = [];
@@ -105,7 +105,7 @@ export default {
       const stepWidth = (maxWidth - minWidth) / (steps - 1);
       const { naturalWidth } = this.dimensions;
 
-      for (let factor = 1; factor < steps; factor++) {
+      for (let factor = 1; factor <= steps; factor++) {
         const width = minWidth + (factor - 1) * stepWidth;
         const isWithinNaturalWidth = width <= naturalWidth;
         const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
