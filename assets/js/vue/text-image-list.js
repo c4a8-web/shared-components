@@ -2,7 +2,7 @@ export default {
   tagName: 'text-image-list',
   computed: {
     classValue() {
-      return ['text-image-list py-8 mt-4', 'bouncing', `${this.classes ? this.classes : ''}`, 'vue-component'];
+      return ['text-image-list py-8 mt-4', `${this.classes ? this.classes : ''}`, 'vue-component'];
     },
     colorStyling() {
       const bgColor = this.bgColor ? `background-color:  ${this.bgColor};` : '';

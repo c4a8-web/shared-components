@@ -1,4 +1,5 @@
 import State from '../state.js';
+import UtilityAnimation from '../utility-animation.js';
 
 export default {
   tagName: 'faq',
@@ -18,9 +19,12 @@ export default {
       return entry;
     });
   },
+  mounted() {
+    new UtilityAnimation('.faq');
+  },
   computed: {
     classList() {
-      return ['faq container space-top-2', 'vue-component'];
+      return ['faq', 'fade-in-bottom', 'zoom-in-out', 'container space-top-2', 'vue-component'];
     },
     headlineClasses() {
       return `faq__headline ${this.headline?.classes ? this.headline.classes : ''}`;
@@ -95,7 +99,7 @@ export default {
     entries: Array,
   },
   template: `
-    <div :class="classList">
+    <div :class="classList" ref="faq-test">
       <div class="row">
         <div class="col-lg-8">
           <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" />

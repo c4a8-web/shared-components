@@ -1,22 +1,22 @@
-.fade-in-bottom {
+.--fade-in-bottom {
   @include fade-in-X($from: 'bottom');
 }
 
-.fade-in-top {
+.--fade-in-top {
   @include fade-in-X($from: 'top');
 }
 
-.zoom-in-out {
+.--zoom-in-out {
   transform: scale(1);
   animation: zoom-in-out 3s forwards;
 }
 
-.bouncing {
+.--bouncing {
   transform: translateY(0);
   animation: bouncing 3s forwards;
 }
 
-.fill-in-left {
+.--fill-in-left {
   width: 0%;
   overflow: hidden;
   animation: fill-in-from-left 3s forwards;
