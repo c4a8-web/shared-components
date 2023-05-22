@@ -68,22 +68,24 @@
         </div>
         {% if videoFrameCornerImg %}
           <div class="video-frame__corner-img">
-            {%
-              include img.html
-              img=videoFrameCornerImg.img
-              cloudinary=videoFrameCornerImg.cloudinary
-              alt=videoFrameCornerImg.alt
-              preset=videoFramePreset
-            %}
+            <v-img
+              img="{{ videoFrameCornerImg.img }}"
+              preset="{{ videoFramePreset }}"
+              cloudinary="{{ videoFrameCornerImg.cloudinary }}"
+              alt="{{ videoFrameCornerImg.alt }}"
+            >
+
+            </v-img>
           </div>
         {% endif %}
-        {%
-          include img.html
-          img=videoFrameThumb
-          cloudinary=true
-          alt=videoFrameAlt
-          preset=videoFramePreset
-        %}
+        <v-img
+          img="{{ videoFrameThumb }}"
+          cloudinary="{{ true }}"
+          alt="{{ videoFrameAlt }}"
+          preset="{{ videoFramePreset }}"
+        >
+        </v-img>
+
       </div>
     </div>
 {% if videoFrameContainer %}
