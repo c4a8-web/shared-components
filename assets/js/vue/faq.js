@@ -24,7 +24,7 @@ export default {
   },
   computed: {
     classList() {
-      return ['faq', 'fade-in-bottom', 'zoom-in-out', 'container space-top-2', 'vue-component'];
+      return ['faq', 'fade-in-bottom', 'zoom-in-out', 'bouncing', 'container space-top-2', 'vue-component'];
     },
     headlineClasses() {
       return `faq__headline ${this.headline?.classes ? this.headline.classes : ''}`;

@@ -1,5 +1,3 @@
-import Animate from './animate';
-
 // temporary inside utility-animation
 const animationPreset = {
   'fade-in-bottom': {},
@@ -15,6 +13,7 @@ class UtilityAnimation {
     this.selected = document.querySelector(this.root);
     this.classes = this.selected.classList;
     this.animationStack = [];
+    this.delay = 0;
 
     document.addEventListener('VUE_IS_MOUNTED', (e) => {
       this.getAnimationStack();
@@ -22,7 +21,6 @@ class UtilityAnimation {
     });
   }
   initialize() {
-    console.log('init ->>>', this.animationStack);
     if (this.animationStack.length > 0) {
       const currentAnimation = this.animationStack[0];
       this.animationStack.shift();
@@ -40,18 +38,20 @@ class UtilityAnimation {
     }
   }
 
-  handleAnimationEnd() {
+  handleAnimationEnd(modElement) {
+    this.selected.classList.remove(modElement);
+
     if (this.animationStack.length > 0) {
-      const currentAnimation = this.animationStack[0];
-      this.animationStack.shift();
-      this.startAnimation(currentAnimation);
+      this.initialize();
+    } else {
+      this.stopAnimation();
     }
   }
 
   startAnimation(element) {
-    this.selected.addEventListener('animationend', this.handleAnimationEnd.bind(this));
-    this.selected.classList.add('--' + element);
-    this.selected.classList.remove(element);
+    const modElement = '--' + element;
+    this.selected.addEventListener('animationend', this.handleAnimationEnd.bind(this, modElement));
+    this.selected.classList.add(modElement);
   }
 
   stopAnimation() {
