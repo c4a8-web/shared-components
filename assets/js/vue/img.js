@@ -1,13 +1,23 @@
-// This is a very basic img component and doesn't have the logic that the ruby version has.
-// we need to build that logic to implement a somewhat same version of that component
-// https://github.com/nhoizey/jekyll-cloudinary/blob/master/lib/jekyll/cloudinary.rb
+import DefaultPresets from '../default-presets.js';
+import TransformationOptions from '../transformation-options.js';
+import Cloudinary from '../cloudinary.js';
 import Tools from '../tools.js';
-import Presets from '../presets.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
 export default {
   tagName: 'v-img',
+  data() {
+    return {
+      dimensions: {
+        naturalHeight: null,
+        naturalWidth: null,
+      },
+      dimStack: {},
+      previousImg: null,
+      srcset: '',
+    };
+  },
   computed: {
     classList() {
       return [
@@ -17,70 +27,116 @@ export default {
       ];
     },
     source() {
-      if (Tools.isTrue(this.cloudinary)) {
-        return `${basePath}${this.urlParams}${this.img}`;
-      } else {
-        return `${this.img}`;
-      }
+      return this.noCloudinary || this.getCloudinaryLink(this.img);
     },
     loading() {
       return this.lazy ? 'lazy' : null;
     },
-    srcset() {
-      if (!this.cloudinary) return;
-
-      return;
-    },
-    sizes() {
-      if (!this.cloudinary) return;
-
-      const Preset = this.getPreset();
-
-      return Preset.sizes;
-    },
-    width() {
-      // TODO implement width calculation
-    },
-    height() {
-      // TODO implement height calculation
-    },
-    urlParams() {
-      return this.getUrlParams();
+    crossOriginValue() {
+      return this.crossorigin ? this.crossorigin : 'anonymous';
     },
   },
+  mounted() {
+    if (!this.canGenerateSrcSet()) {
+      this.noCloudinary = this.img;
+      this.sizes = DefaultPresets.sizes;
+    }
+  },
   methods: {
+    canGenerateSrcSet() {
+      return Tools.isTrue(this.cloudinary) && !this.isGif();
+    },
+    getSetup() {
+      const preset = this.getPreset();
+      const transformationsString = this.getTransformationString(preset);
+      return { preset, transformationsString };
+    },
+    getPreset() {
+      try {
+        const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
+
+        return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    getCloudinaryLink() {
+      const { preset, transformationsString } = this.getSetup();
+      return `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
+    },
+    loadImage() {
+      if (!this.canGenerateSrcSet()) return;
+
+      const img = document.createElement('img');
+
+      img.onload = () => {
+        const height = img?.naturalHeight;
+        const width = img?.naturalWidth;
+        const { preset, transformationsString } = this.getSetup();
+
+        this.sizes = preset.sizes;
+
+        const dimensions = {
+          naturalHeight: height ? height : preset.fallback_max_width,
+          naturalWidth: width ? width : preset.fallback_max_width,
+        };
+        this.dimensions = dimensions;
+
+        height && width ? this.buildSrcSet(preset, transformationsString) : null;
+      };
+
+      img.src = basePath + this.img;
+    },
+    getTransformationString(preset) {
+      const transformations = [];
+
+      for (const [key, value] of Object.entries(TransformationOptions)) {
+        if (preset[key]) {
+          transformations.push(`${value}_${preset[key]}`);
+        }
+      }
+
+      const transformationsIsNotEmpty = transformations.length > 0;
+
+      return transformationsIsNotEmpty ? transformations.join(',') : '';
+    },
+    buildSrcSet(preset, transformationsString) {
+      const srcsetArray = [];
+      const steps = preset['steps'];
+      const minWidth = preset['min_width'];
+      const maxWidth = preset['max_width'];
+      const stepWidth = (maxWidth - minWidth) / (steps - 1);
+      const { naturalWidth } = this.dimensions;
+
+      for (let factor = 1; factor <= steps; factor++) {
+        const width = minWidth + (factor - 1) * stepWidth;
+        const isWithinNaturalWidth = width <= naturalWidth;
+        const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
+        const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
+
+        srcsetArray.push(srcsetString);
+
+        if (!isWithinNaturalWidth) break;
+      }
+
+      this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
+    },
     isGif() {
       const extension = this.img.split('.')[1];
 
       return extension.toLowerCase() === 'gif';
     },
-    getPreset() {
-      const selectedPreset = Presets[this.preset];
-
-      return selectedPreset ? selectedPreset : Presets['default'];
-    },
-    getPresetWidth(value) {
-      const width = value ? value : this.getPreset()?.fallback_max_width;
-
-      if (!width) return '';
-
-      return `,w_${width}`;
-    },
-    getUrlParams(value) {
-      if (this.isGif()) return '';
-
-      // TODO generate c_limit and stuff
-      return `c_limit,f_auto,q_auto,dpr_auto${this.getPresetWidth(value)}/`;
-    },
   },
   props: {
     img: String,
+    alt: String,
     cloudinary: Boolean,
+    crossorigin: String,
     lazy: Boolean,
     class: String,
     preset: String,
   },
   template: `
-    <img :src="source" :loading="loading" :class="classList" :srcset="srcset" :sizes="sizes">
+    <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="crossOriginValue">
   `,
 };
