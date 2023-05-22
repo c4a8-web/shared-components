@@ -27,7 +27,7 @@ export default {
       ];
     },
     source() {
-      return this.fallback || this.getCloudinaryLink(this.img);
+      return this.noCloudinary || this.getCloudinaryLink(this.img);
     },
     loading() {
       return this.lazy ? 'lazy' : null;
@@ -35,7 +35,7 @@ export default {
   },
   mounted() {
     if (!this.canGenerateSrcSet()) {
-      this.fallback = this.img;
+      this.noCloudinary = this.img;
       this.sizes = DefaultPresets.sizes;
     }
   },
@@ -43,7 +43,12 @@ export default {
     canGenerateSrcSet() {
       return Tools.isTrue(this.cloudinary) && !this.isGif();
     },
-    setPreset() {
+    getSetup() {
+      const preset = this.getPreset();
+      const transformationsString = this.getTransformationString(preset);
+      return { preset, transformationsString };
+    },
+    getPreset() {
       try {
         const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
 
@@ -52,8 +57,9 @@ export default {
         console.error(e);
       }
     },
-    getCloudinaryLink(url) {
-      return basePath + url;
+    getCloudinaryLink() {
+      const { preset, transformationsString } = this.getSetup();
+      return `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
     },
     loadImage() {
       if (!this.canGenerateSrcSet()) return;
@@ -63,8 +69,7 @@ export default {
       img.onload = () => {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
-        const preset = this.setPreset();
-        const transformationsString = this.getTransformationString(preset);
+        const { preset, transformationsString } = this.getSetup();
 
         this.sizes = preset.sizes;
 
@@ -74,9 +79,7 @@ export default {
         };
         this.dimensions = dimensions;
 
-        const fallbackString = `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img} ${this.dimensions.naturalWidth}w`;
-
-        height && width ? this.buildSrcSet(preset, transformationsString) : (this.fallback = fallbackString);
+        height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
       img.src = this.source;
