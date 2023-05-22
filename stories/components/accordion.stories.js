@@ -29,7 +29,7 @@ Default.args = {
       {
         headline: 'WIFI and LAN policy creation 2',
         content: 'Easy download of XML files to generate WIFI and LAN policies',
-        image: 'shared-components/teaser-dekra.png',
+        image: 'security/CSOC-Services-Threat-Intelligence.png',
         alt: 'WIFI and LAN policy creation',
       },
       {

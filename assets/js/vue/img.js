@@ -1,6 +1,6 @@
 import DefaultPresets from '../default-presets.js';
 import TransformationOptions from '../transformation-options.js';
-import Cloudinary from '../../../.storybook/config/cloudinary.js';
+import Cloudinary from '../cloudinary.js';
 import Tools from '../tools.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
