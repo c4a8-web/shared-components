@@ -1,9 +1,5 @@
 // temporary inside utility-animation
-const animationPreset = {
-  'fade-in-bottom': {},
-  bouncing: {},
-  'zoom-in-out': {},
-};
+const animationPreset = ['fade-in-bottom', 'bouncing', 'zoom-in-out'];
 
 class UtilityAnimation {
   static root = '';
@@ -32,7 +28,7 @@ class UtilityAnimation {
     for (let i = 0; i < this.classes.length; i++) {
       const animation = this.classes[i];
 
-      if (animationPreset.hasOwnProperty(animation)) {
+      if (animationPreset.includes(animation)) {
         this.animationStack.push(animation);
       }
     }
