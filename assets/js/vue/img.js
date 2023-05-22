@@ -32,6 +32,9 @@ export default {
     loading() {
       return this.lazy ? 'lazy' : null;
     },
+    crossOriginValue() {
+      return this.crossorigin ? this.crossorigin : 'anonymous';
+    },
   },
   mounted() {
     if (!this.canGenerateSrcSet()) {
@@ -134,6 +137,6 @@ export default {
     preset: String,
   },
   template: `
-    <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="this.crossorigin">
+    <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="crossOriginValue">
   `,
 };
