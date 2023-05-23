@@ -359,3 +359,9 @@
     }
   }
 }
+
+@mixin richtext-width {
+  @include media-breakpoint-up(lg) {
+    width: $content-width-lg;
+  }
+}
