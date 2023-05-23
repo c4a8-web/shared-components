@@ -23,7 +23,8 @@ export default {
       return [
         'v-img',
         'vue-component',
-        this.cloudinary && !this.isGif() ? `no-small img-responsive ${this.class ? this.class : ''}` : '',
+        this.class ? this.class : '',
+        this.cloudinary && !this.isGif() ? `no-small img-responsive` : '',
       ];
     },
     source() {
