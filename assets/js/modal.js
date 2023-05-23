@@ -47,14 +47,13 @@ class Modal {
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
-      // const parent = Tools.getParentComponent(this.root);
       const parent = this.root.parentNode;
       const formInstance = Form.getInstance(this.form);
 
       if (parent && parent.getAttribute('id') !== 'app') {
         const button = parent.querySelector(this.buttonSelector);
 
-        button.addEventListener('click', this.handleOpen.bind(this));
+        button?.addEventListener('click', this.handleOpen.bind(this));
       } else if (parent) {
         const buttons = document.querySelectorAll(`[data-trigger-id='${this.modalId}']`);
 
