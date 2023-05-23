@@ -63,7 +63,10 @@
   {%- capture contactBoxClass %}col-md-10 col-lg-5 {{ contactOffsetClass }} order-2{% endcapture -%}
 {%- endif -%}
 
-<div class="contact {{ contactVariantClass }} {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %} {{ contactSpacing }} {% endunless %}{% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2{% endunless %}">
+<div class="contact {{ contactVariantClass }}
+            {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %} {{ contactSpacing }} {% endunless %}
+            {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2{% endunless %}"
+>
   <div class="{{ contactContainerClass }}">
     <div class="{{ contactRowClass }}">
       <div class="contact__form {{ contactFormClass }}">
@@ -95,7 +98,7 @@
       </div>
 
       <div class="contact__box {{ contactBoxClass }} {{ contactBoxQuoteClass }}">
-        <div class="contact__person {{ contactLight }}">
+        <div class="contact__person {{ contactLight }}" {% if contact.person.quoteBgColor %}style="--color-contact-person: {{ contact.person.quoteBgColor }}"{% endif %}>
           {% if contactQuote %}
             <div class="contact__person-quote">
               <div class="contact__icon">
