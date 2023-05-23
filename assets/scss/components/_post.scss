@@ -3,6 +3,8 @@ $post-content-width-lg: 80%;
 
 .post {
   .post-title {
+    @include richtext-width;
+
     &.h3-font-size {
       font-size: $h3-font-size-sm;
       font-weight: bold;
@@ -21,6 +23,8 @@ $post-content-width-lg: 80%;
 .post-content {
   main {
     > p {
+      @include richtext-width;
+
       &:not(.post__sticky-excerpt) {
         line-height: 2;
       }
@@ -31,10 +35,6 @@ $post-content-width-lg: 80%;
         img {
           margin-bottom: 0;
         }
-      }
-
-      @include media-breakpoint-up(lg) {
-        width: $richtext-content-width-lg;
       }
     }
   }
@@ -129,6 +129,7 @@ $post-content-width-lg: 80%;
 
 .post__sticky-excerpt {
   @include font-style($style: 'font-size-3', $weight: 'light');
+  @include richtext-width;
 
   padding-top: spacing(3);
 }

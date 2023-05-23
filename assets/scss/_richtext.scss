@@ -1,5 +1,4 @@
 $richtext-offset-spacing-xl: 7.5rem;
-$richtext-content-width-lg: 80%;
 $richtext-headline-top-spacing: spacing(20);
 $richtext-conclusion-spacing-sm: spacing(4);
 $richtext-conclusion-spacing-lg: $spacing-content-default;
@@ -9,6 +8,14 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
 
   &.richtext__small {
     @include font-style($style: 'font-size-1', $line: 'wide');
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include richtext-width;
   }
 
   > blockquote,
@@ -35,6 +42,8 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
   }
 
   ul {
+    @include richtext-width;
+
     list-style: none;
     margin-bottom: 0;
 
@@ -90,6 +99,8 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     &#fazit,
     &#Conclusion,
     &#conclusion {
+      @include richtext-width;
+
       background-color: var(--color-green-blue);
       color: var(--color-white);
       padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
@@ -105,7 +116,6 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
 
       @include media-breakpoint-up(lg) {
         padding: $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg spacing(10);
-        width: $richtext-content-width-lg;
 
         ~ p {
           padding: 0 $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg;
@@ -147,7 +157,6 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
       a {
         &::before {
           content: '';
-          display: inline-block;
           background-image: assets('../svg/arrow-right.svg');
           background-repeat: no-repeat;
           width: 28px;
