@@ -118,11 +118,17 @@
                   {% unless textImageFloat %}{% if textImageLeft and textImageOffset %}offset-lg-1{% endif %}{% endunless %}"
       >
         {% if textImageBadge %}
+          {% if textImageBadge.noUppercase %}
+            {% assign textImageBadgeUppercase = false %}
+          {% else %}
+            {% assign textImageBadgeUppercase = true %}
+          {% endif %}
+
           {%
             include badge.html
             text=textImageBadge.text
             icon=textImageBadge.icon
-            uppercase=true
+            uppercase=textImageBadgeUppercase
             classes="text-image__badge"
           %}
         {% endif %}
