@@ -161,7 +161,12 @@
         {% endif %}
 
         {% if heroTextImageHero.overline %}
-          <span class="hero-text-image__overline">
+          <span class="hero-text-image__overline"
+            style="
+              {% if heroTextImageHero.overlineBgColor %}--hero-text-image-overline-bg-color: {{ heroTextImageHero.overlineBgColor }};{% endif %}
+              {% if heroTextImageHero.overlineColor %}--hero-text-image-overline-color: {{ heroTextImageHero.overlineColor }};{% endif %}
+            "
+          >
             {{ heroTextImageHero.overline }}
           </span>
         {% endif %}
