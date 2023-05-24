@@ -1,0 +1,10 @@
+{%- assign footerData = include.data | default: site.data.company -%}
+{%- assign footerNoMargin = include.noMargin | default: layout.footer.noMargin or page.footer.noMargin -%}
+{%- assign footerLang = include.lang | default: 'de' -%}
+
+<v-footer
+  :data="{{ footerData | jsonify | escape }}"
+  :no-margin="{{ footerNoMargin }}"
+  lang="{{ footerLang }}"
+>
+</v-footer>
