@@ -10,8 +10,6 @@ const Company = {
   introduction:
     'Cutting Edge Microsoft Partner in Germany for Microsoft 365, Azure and Cloud Security.<br /><br /><br />',
   copyright: '2022 glueckkanja-gab AG. All rights reserved.',
-  kununuUrl: 'https://www.kununu.com/de/glueck-kanja-consulting',
-  isoUrl: '/documents/general/gkgab-ISO27001Certificate-de.pdf',
   logos: [
     {
       src: '/logos/gkgab-Logo-white-vektor.svg',
@@ -21,9 +19,32 @@ const Company = {
     {
       src: '/v1623133806/logos/primepulse-endorsement-white.svg',
       alt: 'glueckkanja-gab Logo',
-      url: 'https://www.primepulse.de/',
+      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
       classes: 'offset-lg-6',
+    },
+  ],
+  highlights: [
+    {
+      src: '/logos/iso-27001-siegel.png',
+      alt: 'ISO 27001',
+      url: '/documents/general/gkgab-ISO27001Certificate-de.pdf',
+      target: '_blank',
+      classes: 'w-65',
+    },
+    {
+      src: '/v1626011982/logos/kununu-white.svg',
+      alt: 'Kununu Logo',
+      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
+      target: '_blank',
+    },
+    {
+      src: '/v1626015679/logos/isg-o365-white.svg',
+      alt: 'ISG Office 365 Leader',
+    },
+    {
+      src: '/v1626015449/logos/isg-security-white.svg',
+      alt: 'ISG Security Rising Star',
     },
   ],
   socials: [

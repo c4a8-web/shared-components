@@ -59,7 +59,7 @@ export default {
                   {{ dataValue.postalCode }} {{ dataValue.city }}, {{ dataValue.country }}
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link media" href="tel:{{ dataValue.number }}">
+                  <a class="nav-link media" :href="'tel:' + dataValue.number">
                     <span class="media">
                       <span class="streamline-xs streamline-site-phone mr-3 d-flex">{% siteicons "site/phone" %}</span>
                       <span class="media-body">
@@ -69,7 +69,7 @@ export default {
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link media pt-0" href="mailto:{{ dataValue.mail }}">
+                  <a class="nav-link media pt-0" :href="'mailto:' + dataValue.mail">
                     <span class="media">
                       <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex">{% siteicons "site/mail" %}</span>
                       <span class="media-body">
@@ -80,23 +80,14 @@ export default {
                 </li>
               </ul>
               <!-- End Nav Link -->
-              <a href="{{ dataValue.isoUrl }}" target="_blank" class="d-block mt-3 space-top-1 w-65">
+              <a :href="highlight.url" :target="highlight.target" :class="['d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']" v-for="(highlight, index) in dataValue.highlights">
                 <v-img
-                  img="/logos/iso-27001-siegel.png"
-                  alt="ISO 27001"
+                  :img="highlight.src"
+                  :alt="highlight.alt"
                   class="no-small img-responsive"
                   cloudinary=true
                 ></v-img>
               </a>
-              <a href="{{ dataValue.kununuUrl }}" target="_blank" class="d-block space-top-1 w-75" target="_blank" rel="noopener">
-                {% cloudinary /v1626011982/logos/kununu-white.svg alt="Kununu Logo" class="no-small img-responsive" %}
-              </a>
-              <span class="d-block space-top-1 w-75">
-                {% cloudinary /v1626015679/logos/isg-o365-white.svg alt="ISG Office 365 Leader" class="no-small img-responsive" %}
-              </span>
-              <span class="d-block space-top-1 w-75">
-                {% cloudinary /v1626015449/logos/isg-security-white.svg alt="ISG Security Rising Star" class="no-small img-responsive" %}
-              </span>
               <hr class="d-lg-none mt-5">
             </div>
 
