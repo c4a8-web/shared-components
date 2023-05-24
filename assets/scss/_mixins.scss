@@ -361,7 +361,7 @@
 }
 
 @mixin richtext-width {
-  @include media-breakpoint-up(lg) {
-    width: $content-width-lg;
+  @include media-breakpoint-up(xxl) {
+    width: $content-width-xxl;
   }
 }
