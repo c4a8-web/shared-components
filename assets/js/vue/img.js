@@ -55,6 +55,8 @@ export default {
     },
     getPreset() {
       try {
+        if (!this.preset) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
+
         const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
 
         return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
@@ -88,7 +90,7 @@ export default {
         height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = basePath + this.img;
+      img.src = this.getCloudinaryLink();
     },
     getTransformationString(preset) {
       const transformations = [];
