@@ -86,21 +86,25 @@ const FooterData = {
   links: [
     {
       title: 'Datenschutz',
-      url: '/de/datenschutz',
+      url: 'https://www.glueckkanja-gab.com/en/imprint',
+      target: '_blank',
     },
     {
       title: 'Impressum',
-      url: '/de/impressum',
+      url: 'https://www.glueckkanja-gab.com/en/imprint',
+      target: '_blank',
     },
   ],
   linksEn: [
     {
       title: 'Privacy',
-      url: '/en/privacy',
+      url: 'https://www.glueckkanja-gab.com/en/privacy',
+      target: '_blank',
     },
     {
       title: 'Imprint',
-      url: '/en/imprint',
+      url: 'https://www.glueckkanja-gab.com/en/privacy',
+      target: '_blank',
     },
   ],
 };
