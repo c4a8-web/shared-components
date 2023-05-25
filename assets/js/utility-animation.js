@@ -1,6 +1,3 @@
-// temporary inside utility-animation
-const animationPreset = ['fade-in-bottom', 'bouncing', 'zoom-in-out'];
-
 class UtilityAnimation {
   static root = '';
 
@@ -10,32 +7,46 @@ class UtilityAnimation {
     this.classes = this.selected.classList;
     this.animationStack = [];
     this.delay = 0;
+    this.currentAnimation = '';
 
     document.addEventListener('VUE_IS_MOUNTED', (e) => {
       this.getAnimationStack();
       this.initialize();
+      this.selected.addEventListener('animationend', this.handleAnimationEnd.bind(this, this.currentAnimation));
     });
   }
   initialize() {
     if (this.animationStack.length > 0) {
-      const currentAnimation = this.animationStack[0];
+      this.currentAnimation = this.animationStack[0];
       this.animationStack.shift();
-      this.startAnimation(currentAnimation);
+
+      this.startAnimation(this.currentAnimation);
     }
   }
 
   getAnimationStack() {
     for (let i = 0; i < this.classes.length; i++) {
-      const animation = this.classes[i];
+      const animationClass = this.classes[i];
 
-      if (animationPreset.includes(animation)) {
+      if (animationClass.includes('util')) {
+        const splitArray = animationClass.split('-util');
+        const animationEntry = splitArray[0];
+        const duration = splitArray[1];
+        const durationValue = duration.charAt(0) === '-' ? duration.slice(1, duration.length) : duration;
+
+        const animation = {
+          animation: animationEntry,
+          duration: durationValue.length > 0 ? durationValue + 's' : '3s',
+        };
+
         this.animationStack.push(animation);
       }
     }
   }
 
-  handleAnimationEnd(modElement) {
-    this.selected.classList.remove(modElement);
+  handleAnimationEnd(element) {
+    const { animation } = element;
+    this.selected.classList.remove(animation);
 
     if (this.animationStack.length > 0) {
       this.initialize();
@@ -45,9 +56,9 @@ class UtilityAnimation {
   }
 
   startAnimation(element) {
-    const modElement = '--' + element;
-    this.selected.addEventListener('animationend', this.handleAnimationEnd.bind(this, modElement));
-    this.selected.classList.add(modElement);
+    const { animation, duration } = element;
+    this.selected.style.animationDuration = duration;
+    this.selected.classList.add(animation);
   }
 
   stopAnimation() {
