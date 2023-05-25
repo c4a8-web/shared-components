@@ -23,24 +23,25 @@ export default {
       return [
         'v-img',
         'vue-component',
-        this.cloudinary && !this.isGif() ? `no-small img-responsive ${this.class ? this.class : ''}` : '',
+        this.class ? this.class : '',
+        this.cloudinary && !this.isGif() ? `no-small img-responsive` : '',
       ];
     },
     source() {
-      return this.noCloudinary || this.getCloudinaryLink(this.img);
+      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink(this.img) : this.noCloudinary;
     },
     loading() {
       return this.lazy ? 'lazy' : null;
     },
     crossOriginValue() {
-      return this.crossorigin ? this.crossorigin : 'anonymous';
+      return this.cloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
   },
-  mounted() {
-    if (!this.canGenerateSrcSet()) {
-      this.noCloudinary = this.img;
-      this.sizes = DefaultPresets.sizes;
-    }
+  created() {
+    if (this.canGenerateSrcSet()) return;
+
+    this.noCloudinary = this.img;
+    this.sizes = DefaultPresets.sizes;
   },
   methods: {
     canGenerateSrcSet() {
@@ -49,10 +50,13 @@ export default {
     getSetup() {
       const preset = this.getPreset();
       const transformationsString = this.getTransformationString(preset);
+
       return { preset, transformationsString };
     },
     getPreset() {
       try {
+        if (!this.preset) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
+
         const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
 
         return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
@@ -62,6 +66,7 @@ export default {
     },
     getCloudinaryLink() {
       const { preset, transformationsString } = this.getSetup();
+
       return `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
     },
     loadImage() {
@@ -85,7 +90,7 @@ export default {
         height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = basePath + this.img;
+      img.src = this.getCloudinaryLink();
     },
     getTransformationString(preset) {
       const transformations = [];

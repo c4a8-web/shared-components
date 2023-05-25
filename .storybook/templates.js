@@ -3,6 +3,8 @@ import { Liquid } from 'liquidjs';
 import { AllIncludes } from './generatedIncludes';
 import { hrefTo } from './tools';
 // TODO implement an autoloader of the data folder
+import Authors from './data/authors';
+import Company from './data/company';
 import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
@@ -11,7 +13,6 @@ import Checks from './data/checks';
 import Posts from './data/posts';
 import Events from './data/events';
 import CaseStudies from './data/casestudies';
-import Authors from './data/authors';
 import Lang from './data/lang';
 import Options from './data/options';
 import Testimonials from './data/testimonials';
@@ -23,11 +24,12 @@ import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 const site = {
   cloudinary: Cloudinary,
   data: {
+    authors: Authors,
+    company: Company,
     imgSrcSets: ImgSrcSets,
     products: Products,
     contact: Contact,
     checks: Checks,
-    authors: Authors,
     lang: Lang,
     options: Options,
     header: Header,

@@ -199,7 +199,9 @@ export const HeroTextShapeSticky = Template.bind({});
 HeroTextShapeSticky.args = {
   hero: {
     sticky: true,
-    overline: 'Wir schaffen die optimale Arbeitsumgebung',
+    overline: 'Lorem ipsum',
+    overlineBgColor: 'var(--color-gigas)',
+    overlineColor: 'var(--color-white)',
     headline: 'Consulting Services',
     subline:
       'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
