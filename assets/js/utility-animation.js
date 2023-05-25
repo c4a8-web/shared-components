@@ -15,6 +15,7 @@ class UtilityAnimation {
       this.selected.addEventListener('animationend', this.handleAnimationEnd.bind(this, this.currentAnimation));
     });
   }
+
   initialize() {
     if (this.animationStack.length > 0) {
       this.currentAnimation = this.animationStack[0];
@@ -24,22 +25,24 @@ class UtilityAnimation {
     }
   }
 
+  parseAnimationString(animationString) {
+    const array = animationString.split('-util');
+    const animation = array[0];
+    const durationString = array[1];
+    const durationValue =
+      durationString.charAt(0) === '-' ? durationString.slice(1, durationString.length) : durationString;
+    const duration = durationValue.length > 0 ? durationValue + 's' : '3s';
+
+    return { animation, duration };
+  }
+
   getAnimationStack() {
     for (let i = 0; i < this.classes.length; i++) {
       const animationClass = this.classes[i];
 
       if (animationClass.includes('util')) {
-        const splitArray = animationClass.split('-util');
-        const animationEntry = splitArray[0];
-        const duration = splitArray[1];
-        const durationValue = duration.charAt(0) === '-' ? duration.slice(1, duration.length) : duration;
-
-        const animation = {
-          animation: animationEntry,
-          duration: durationValue.length > 0 ? durationValue + 's' : '3s',
-        };
-
-        this.animationStack.push(animation);
+        const parsedAnimation = this.parseAnimationString(animationClass);
+        this.animationStack.push(parsedAnimation);
       }
     }
   }
