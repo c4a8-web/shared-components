@@ -19,20 +19,9 @@ export default {
       return entry;
     });
   },
-  mounted() {
-    new UtilityAnimation('.faq');
-  },
   computed: {
     classList() {
-      return [
-        'faq',
-        'fade-in-bottom-util-3',
-        'zoom-in-out-util-2',
-        'bouncing-util-2',
-        'fill-in-left-util-5',
-        'container space-top-2',
-        'vue-component',
-      ];
+      return ['faq', 'utility-animation', 'fade-in-bottom', 'container space-top-2', 'vue-component'];
     },
     headlineClasses() {
       return `faq__headline ${this.headline?.classes ? this.headline.classes : ''}`;
@@ -107,15 +96,15 @@ export default {
     entries: Array,
   },
   template: `
-    <div :class="classList" ref="faq-test">
+    <div :class="classList" ref="faq-test" data-utility-animation-step="1">
       <div class="row">
         <div class="col-lg-8">
           <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" />
           <details v-for="entry in entriesWithState" :open="entry.isDetailsOpen" :class="entry.detailClasses">
             <summary @click.prevent="handleClick(entry)" :open="entry.isDetailsOpen">
-              <div class="faq__summary">{{ entry.summary }}</div>
+              <div class="faq__summary zoom-in-out" data-utility-animation-step="1">{{ entry.summary }}</div>
               <div class="faq__icon-frame">
-                <div class="faq__icon">
+                <div class="faq__icon bouncing" data-utility-animation-step="3" >
                   <icon icon="arrow-narrow" direction="clockwise" size="small" />
                 </div>
               </div>

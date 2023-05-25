@@ -1,71 +1,54 @@
+import State from './state';
+
 class UtilityAnimation {
-  static root = '';
+  static rootSelector = '.utility-animation';
+  static instances = [];
 
-  constructor(root) {
-    this.root = root;
-    this.selected = document.querySelector(this.root);
-    this.classes = this.selected.classList;
-    this.animationStack = [];
-    this.delay = 0;
-    this.currentAnimation = '';
-
-    document.addEventListener('VUE_IS_MOUNTED', (e) => {
-      this.getAnimationStack();
-      this.initialize();
-      this.selected.addEventListener('animationend', this.handleAnimationEnd.bind(this, this.currentAnimation));
-    });
+  constructor() {
+    this.count = 1;
+    this.currentElement = document.querySelectorAll('[data-utility-animation-step="1"]');
+    this.initialize();
   }
 
-  initialize() {
-    if (this.animationStack.length > 0) {
-      this.currentAnimation = this.animationStack[0];
-      this.animationStack.shift();
+  handleAnimationEnd() {
+    this.count++;
+    const searchQuery = `[data-utility-animation-step="${this.count}"]`;
 
-      this.startAnimation(this.currentAnimation);
-    }
-  }
-
-  parseAnimationString(animationString) {
-    const array = animationString.split('-util');
-    const animation = array[0];
-    const durationString = array[1];
-    const durationValue =
-      durationString.charAt(0) === '-' ? durationString.slice(1, durationString.length) : durationString;
-    const duration = durationValue.length > 0 ? durationValue + 's' : '3s';
-
-    return { animation, duration };
-  }
-
-  getAnimationStack() {
-    for (let i = 0; i < this.classes.length; i++) {
-      const animationClass = this.classes[i];
-
-      if (animationClass.includes('util')) {
-        const parsedAnimation = this.parseAnimationString(animationClass);
-        this.animationStack.push(parsedAnimation);
-      }
-    }
-  }
-
-  handleAnimationEnd(element) {
-    const { animation } = element;
-    this.selected.classList.remove(animation);
-
-    if (this.animationStack.length > 0) {
-      this.initialize();
+    if (this.currentElement.length > 1) {
+      this.currentElement.forEach((e) => {
+        e.classList.remove(State.IS_STARTING);
+      });
     } else {
-      this.stopAnimation();
+      this.currentElement[0]?.classList.remove(State.IS_STARTING);
+    }
+
+    this.currentElement = document.querySelectorAll(searchQuery);
+
+    if (this.currentElement !== null && this.currentElement.length > 0) {
+      this.startAnimation(this.currentElement);
     }
   }
 
   startAnimation(element) {
-    const { animation, duration } = element;
-    this.selected.style.animationDuration = duration;
-    this.selected.classList.add(animation);
+    if (element.length > 1) {
+      element.forEach((e) => {
+        e.classList.add(State.IS_STARTING);
+      });
+    } else {
+      element[0].classList.add(State.IS_STARTING);
+    }
   }
 
-  stopAnimation() {
-    return null;
+  initialize() {
+    this.startAnimation(this.currentElement);
+    document.addEventListener('animationend', this.handleAnimationEnd.bind(this));
+  }
+
+  static init() {
+    this.instances = [];
+    [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
+      this.instances.push(new this(element));
+    });
   }
 }
 
