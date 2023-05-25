@@ -20,7 +20,6 @@ export const Product = Template.bind({});
 Product.args = {
   noMargin: true,
   data: {
-    bgColor: 'var(--color-midnight)',
     logos: [
       {
         img: '/mandrill/radius-logo-footer.svg',

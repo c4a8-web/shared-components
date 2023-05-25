@@ -1,5 +1,5 @@
 const FooterData = {
-  bgColor: 'var(--color-blue-medium)',
+  bgColor: 'var(--color-midnight)',
   name: 'glueckkanja-gab AG',
   street: 'Kaiserstraße 39',
   postalCode: 63065,
