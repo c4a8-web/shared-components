@@ -62,7 +62,7 @@ export default {
                 <li class="nav-item">
                   {{ dataValue.postalCode }} {{ dataValue.city }}, {{ dataValue.country }}
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="dataValue.number">
                   <a class="nav-link media" :href="'tel:' + dataValue.number">
                     <span class="media">
                       <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
@@ -72,7 +72,7 @@ export default {
                     </span>
                   </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="dataValue.mail">
                   <a class="nav-link media pt-0" :href="'mailto:' + dataValue.mail">
                     <span class="media">
                       <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
