@@ -39,7 +39,7 @@ export default {
                   :href="logo.url"
                   :target="logo.target"
                   aria-label="Front"
-                  :class="['d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-65 w-md-35 w-lg-90']"
+                  :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-65 w-md-35 w-lg-90']"
                 >
                   <v-img
                     cloudinary=true
@@ -86,7 +86,7 @@ export default {
               <!-- End Nav Link -->
               <template v-for="(highlight, index) in dataValue.highlights">
                 <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-75 w-lg-100 pr-6">{{ highlight.title }}</span>
-                <a :href="highlight.url" :target="highlight.target" :class="['d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']">
+                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']">
                   <v-img
                     cloudinary=true
                     v-bind="highlight"

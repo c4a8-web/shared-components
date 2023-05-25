@@ -5,7 +5,6 @@ const FooterData = {
   postalCode: 63065,
   city: 'Offenbach',
   country: 'Germany',
-  number: '+49 69 4005520',
   mail: 'info@glueckkanja-gab.com',
   introduction:
     'Cutting Edge Microsoft Partner in Germany for Microsoft 365, Azure and Cloud Security.<br /><br /><br />',
@@ -55,7 +54,7 @@ const FooterData = {
       alt: 'ISO 27001',
       url: '/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
-      classes: 'mt-3 w-65',
+      classes: 'mt-3 w-60',
     },
   ],
   socials: [
