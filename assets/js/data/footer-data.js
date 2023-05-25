@@ -6,8 +6,7 @@ const FooterData = {
   city: 'Offenbach',
   country: 'Germany',
   mail: 'info@glueckkanja-gab.com',
-  introduction:
-    'Cutting Edge Microsoft Partner in Germany for Microsoft 365, Azure and Cloud Security.<br /><br /><br />',
+  introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
   copyright: '2022 glueckkanja-gab AG. All rights reserved.',
   logos: [
     {
