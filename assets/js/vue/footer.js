@@ -61,7 +61,7 @@ export default {
                 <li class="nav-item">
                   <a class="nav-link media" :href="'tel:' + dataValue.number">
                     <span class="media">
-                      <span class="streamline-xs streamline-site-phone mr-3 d-flex">{% siteicons "site/phone" %}</span>
+                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
                       <span class="media-body">
                         {{ dataValue.number }}
                       </span>
@@ -71,7 +71,7 @@ export default {
                 <li class="nav-item">
                   <a class="nav-link media pt-0" :href="'mailto:' + dataValue.mail">
                     <span class="media">
-                      <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex">{% siteicons "site/mail" %}</span>
+                      <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
                       <span class="media-body">
                         {{ dataValue.mail }}
                       </span>
