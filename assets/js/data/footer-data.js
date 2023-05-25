@@ -1,4 +1,4 @@
-const Company = {
+const FooterData = {
   bgColor: 'var(--color-blue-medium)',
   name: 'glueckkanja-gab AG',
   street: 'Kaiserstraße 39',
@@ -44,25 +44,18 @@ const Company = {
   ],
   highlights: [
     {
+      title: 'a brand of',
+      img: '/mandrill/gkgab-logo-white.svg',
+      alt: 'glueckkanja-gab AG',
+      url: 'https://www.glueckkanja-gab.com/de',
+      target: '_blank',
+    },
+    {
       img: '/logos/iso-27001-siegel.png',
       alt: 'ISO 27001',
       url: '/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
-      classes: 'w-65',
-    },
-    {
-      img: '/v1626011982/logos/kununu-white.svg',
-      alt: 'Kununu Logo',
-      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
-      target: '_blank',
-    },
-    {
-      img: '/v1626015679/logos/isg-o365-white.svg',
-      alt: 'ISG Office 365 Leader',
-    },
-    {
-      img: '/v1626015449/logos/isg-security-white.svg',
-      alt: 'ISG Security Rising Star',
+      classes: 'mt-3 w-65',
     },
   ],
   socials: [
@@ -101,10 +94,6 @@ const Company = {
       title: 'Impressum',
       url: '/de/impressum',
     },
-    {
-      title: 'No Cookies',
-      url: '/de/cookies',
-    },
   ],
   linksEn: [
     {
@@ -115,11 +104,7 @@ const Company = {
       title: 'Imprint',
       url: '/en/imprint',
     },
-    {
-      title: 'No Cookies',
-      url: '/en/cookies',
-    },
   ],
 };
 
-export default Company;
+export default FooterData;

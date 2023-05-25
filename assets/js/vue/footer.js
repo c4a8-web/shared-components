@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import FooterData from '../data/footer-data.js';
 
 export default {
   tagName: 'v-footer',
@@ -7,10 +8,10 @@ export default {
       return ['footer text-white', !Tools.isTrue(this.noMargin) ? 'mt-8 mt-lg-11' : '', 'vue-component'];
     },
     style() {
-      return [this.data?.bgColor ? `background-color: ${this.data.bgColor};` : ''];
+      return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ''];
     },
     dataValue() {
-      return this.data ? Tools.getJSON(this.data) : {};
+      return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
     },
     links() {
       if (this.lang === 'en') {
@@ -32,14 +33,17 @@ export default {
       <div class="container">
         <div class="space-top-2 space-top-lg-3 space-bottom-1">
           <div class="row">
-            <div :class="['col-lg-3', logo?.classes]" v-for="logo in data.logos">
+            <div :class="['col-lg-3', logo?.classes]" v-for="logo in dataValue.logos">
               <div class="mb-6">
-                <a :href="logo.url" :target="logo.target" aria-label="Front" class="d-block w-65 w-md-35 w-lg-90 pr-6">
+                <a
+                  :href="logo.url"
+                  :target="logo.target"
+                  aria-label="Front"
+                  :class="['d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-65 w-md-35 w-lg-90']"
+                >
                   <v-img
-                    :img="logo.src"
-                    :alt="logo.alt"
-                    class="no-small img-responsive"
                     cloudinary=true
+                    v-bind="logo"
                   ></v-img>
                 </a>
               </div>
@@ -80,14 +84,15 @@ export default {
                 </li>
               </ul>
               <!-- End Nav Link -->
-              <a :href="highlight.url" :target="highlight.target" :class="['d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']" v-for="(highlight, index) in dataValue.highlights">
-                <v-img
-                  :img="highlight.src"
-                  :alt="highlight.alt"
-                  class="no-small img-responsive"
-                  cloudinary=true
-                ></v-img>
-              </a>
+              <template v-for="(highlight, index) in dataValue.highlights">
+                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-75 w-lg-100 pr-6">{{ highlight.title }}</span>
+                <a :href="highlight.url" :target="highlight.target" :class="['d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']">
+                  <v-img
+                    cloudinary=true
+                    v-bind="highlight"
+                  ></v-img>
+                </a>
+              </template>
               <hr class="d-lg-none mt-5">
             </div>
 
@@ -96,18 +101,12 @@ export default {
                 <div class="col-lg-12">
                   <div class="w-lg-50" v-html="dataValue.introduction"></div>
                 </div>
-                <div class="col-lg-6 pr-lg-5 w-90 w-lg-100 space-top-1">
-                  {% cloudinary /logos/msftLogos-Solutions-white.svg alt="Solutions Partner Designations" class="no-small img-responsive" %}
-                </div>
 
-                <div class="col-lg-6 pl-lg-5 w-90 w-lg-100 space-top-1">
-                  {% cloudinary /logos/msftLogos-AdvanceSpecializations-white.svg alt="Advanced Specializations" class="no-small img-responsive" %}
-                </div>
-                <div class="col-lg-6 pr-lg-5 w-90 w-lg-100 space-top-1 ">
-                  {% cloudinary /logos/msftLogos-PartnerOfTheYear-white.svg alt="Partner of the Year" class="no-small img-responsive" %}
-                </div>
-                <div class="col-lg-6 pr-lg-5 w-90 w-lg-100 space-top-1" style="padding-left: 2rem !important;padding-right: 0rem !important;">
-                  {% cloudinary /logos/msftLogos-MisaMXDR-transparent.png alt="MISA" class="no-small img-responsive" %}
+                <div :class="['col-lg-6 w-90 w-lg-100 space-top-1', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
+                  <v-img
+                    cloudinary=true
+                    v-bind="partner"
+                  ></v-img>
                 </div>
               </div>
             </div>
@@ -122,7 +121,7 @@ export default {
               <!-- Nav Link -->
               <ul class="nav nav-sm nav-white nav-x-0 align-items-center">
                 <li class="nav-item mr-6 footer__links" v-for="link in links">
-                  <a class="nav-link" :href="link.url">{{ link.title }}</a>
+                  <a class="nav-link" :href="link.url" v-bind="link">{{ link.title }}</a>
                 </li>
               </ul>
               <!-- End Nav Link -->
