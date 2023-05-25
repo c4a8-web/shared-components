@@ -99,7 +99,7 @@ export default {
             <div class="col-lg-9">
               <div class="row no-gutters ml-lg-4">
                 <div class="col-lg-12">
-                  <div class="w-lg-50" v-html="dataValue.introduction"></div>
+                  <div class="w-lg-50 space-bottom-2" v-html="dataValue.introduction"></div>
                 </div>
 
                 <div :class="['col-lg-6 w-90 w-lg-100 space-top-1', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
