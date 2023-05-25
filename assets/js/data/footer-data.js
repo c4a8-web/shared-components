@@ -7,7 +7,7 @@ const FooterData = {
   country: 'Germany',
   mail: 'info@glueckkanja-gab.com',
   introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
-  copyright: '2022 glueckkanja-gab AG. All rights reserved.',
+  copyright: '2023 glueckkanja-gab AG. All rights reserved.',
   logos: [
     {
       img: '/logos/gkgab-Logo-white-vektor.svg',
@@ -42,7 +42,7 @@ const FooterData = {
   ],
   highlights: [
     {
-      title: 'a brand of',
+      title: 'a brand of:',
       img: '/mandrill/gkgab-logo-white.svg',
       alt: 'glueckkanja-gab AG',
       url: 'https://www.glueckkanja-gab.com/de',
@@ -53,7 +53,7 @@ const FooterData = {
       alt: 'ISO 27001',
       url: '/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
-      classes: 'mt-3 w-60',
+      classes: 'mt-3 w-40 w-lg-60',
     },
   ],
   socials: [

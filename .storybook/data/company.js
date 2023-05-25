@@ -1,15 +1,7 @@
 const Company = {
   bgColor: 'var(--color-blue-medium)',
-  name: 'glueckkanja-gab AG',
-  street: 'Kaiserstraße 39',
-  postalCode: 63065,
-  city: 'Offenbach',
-  country: 'Germany',
   number: '+49 69 4005520',
   mail: 'info@glueckkanja-gab.com',
-  introduction:
-    'Cutting Edge Microsoft Partner in Germany for Microsoft 365, Azure and Cloud Security.<br /><br /><br />',
-  copyright: '2022 glueckkanja-gab AG. All rights reserved.',
   logos: [
     {
       img: '/logos/gkgab-Logo-white-vektor.svg',
