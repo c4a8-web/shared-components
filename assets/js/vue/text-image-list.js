@@ -23,6 +23,9 @@ export default {
     level: String,
     bgColor: String,
     headlineColor: String,
+    headlineSticky: {
+      default: false,
+    },
     spacing: String,
   },
   template: `
@@ -30,7 +33,7 @@ export default {
       <div class="container">
         <div class="row">
           <div class="col-sm-12 ">
-            <headline :text="headline" :level="level" />
+            <headline :text="headline" :level="level" classes="text-image-list__headline" />
           </div>
         </div>
       </div>

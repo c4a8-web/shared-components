@@ -43,6 +43,7 @@ export const Benefits = Template.bind({});
 Benefits.args = {
   headline: 'Wo das Glück im Namen steckt.',
   headlineColor: 'var(--color-white)',
+  headlineSticky: true,
   bgColor: 'var(--color-career-background)',
   textImages: [
     {

@@ -3,8 +3,13 @@
 {%- assign textImageListHeadline = include.headline -%}
 {%- assign textImageListHeadlineLevel = include.level | default: 'h2' -%}
 {%- assign textImageListHeadlineColor = include.headlineColor -%}
+{%- assign textImageListHeadlineSticky = include.headlineSticky -%}
 {%- assign textImageListBgColor = include.bgColor | default: false -%}
 {%- assign textImageListSpacing = include.spacing -%}
+
+
+
+<div style="height: 50vh;"></div>
 
 <text-image-list
   classes="{{ textImageListClasses }}"
