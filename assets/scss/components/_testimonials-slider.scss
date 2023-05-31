@@ -1,4 +1,7 @@
 .testimonials-slider {
+  width: 100%;
+  overflow: hidden;
+
   @include media-breakpoint-up(md) {
     .testimonials-slider__slides {
       column-width: inherit;
