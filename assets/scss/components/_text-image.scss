@@ -1,6 +1,7 @@
 .text-image {
   position: relative;
   background-repeat: no-repeat;
+  width: 100%;
 
   &.text-image--bg-color {
     + .sticky-scroller__spacer + *[class*='mt-'],
@@ -102,8 +103,8 @@
 
 .text-image__img {
   &.text-image__img--floating {
-    width: calc(100vw + 15px);
-    left: calc(100vw + 15px);
+    width: 100vw;
+    left: 100vw;
     transform: translate(-100vw);
 
     .img__picture-wrapper {
@@ -115,14 +116,14 @@
     }
 
     @include media-breakpoint-up(sm) {
-      width: calc(100vw - (100vw - 570px) / 2);
-      left: calc(100vw - (100vw - 570px) / 2);
+      width: calc(100vw - (100vw - 530px) / 2);
+      left: calc(100vw - (100vw - 530px) / 2);
       transform: translateX(-540px);
     }
 
     @include media-breakpoint-up(md) {
-      width: calc(100vw - (100vw - 750px) / 2);
-      left: calc(100vw - (100vw - 750px) / 2);
+      width: calc(100vw - (100vw - 710px) / 2);
+      left: calc(100vw - (100vw - 710px) / 2);
       transform: translateX(-720px);
     }
 
