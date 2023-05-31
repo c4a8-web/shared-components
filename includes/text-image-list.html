@@ -7,15 +7,13 @@
 {%- assign textImageListBgColor = include.bgColor | default: false -%}
 {%- assign textImageListSpacing = include.spacing -%}
 
-
-
-<div style="height: 50vh;"></div>
-
 <text-image-list
   classes="{{ textImageListClasses }}"
   headline="{{ textImageListHeadline }}"
+  level="{{ textImageListHeadlineLevel }}"
   bg-color="{{ textImageListBgColor }}"
   headline-color="{{ textImageListHeadlineColor }}"
+  headline-sticky="{{ textImageListHeadlineSticky }}"
   spacing="{{ textImageListSpacing }}"
 >
 
