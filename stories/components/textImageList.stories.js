@@ -1,5 +1,5 @@
 import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
-import { includestextimagelisthtml as component } from '../../.storybook/generatedIncludes';
+import textImageListTemplate from '!!raw-loader!./textImageList.html';
 
 const options = getTitle({
   title: 'Text Image List',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, textImageListTemplate);
 
 export const TextImageList = Template.bind({});
 
@@ -41,8 +41,10 @@ TextImageList.args = {
 export const Benefits = Template.bind({});
 
 Benefits.args = {
+  level: 'h3',
   headline: 'Wo das Glück im Namen steckt.',
   headlineColor: 'var(--color-white)',
+  headlineSticky: true,
   bgColor: 'var(--color-career-background)',
   textImages: [
     {
