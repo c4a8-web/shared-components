@@ -96,7 +96,7 @@ export default {
     entries: Array,
   },
   template: `
-    <div :class="classList" ref="faq-test" data-utility-animation-step="1">
+    <div :class="classList" data-utility-animation-step="1">
       <div class="row">
         <div class="col-lg-8">
           <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" />

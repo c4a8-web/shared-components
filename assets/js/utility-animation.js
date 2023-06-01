@@ -18,7 +18,7 @@ class UtilityAnimation {
     this.currentElement = document.querySelectorAll(searchQuery);
 
     if (this.currentElement !== null && this.currentElement.length > 0) {
-      this.startAnimation(this.currentElement);
+      this.toggleState(this.currentElement);
     }
   }
 
@@ -32,12 +32,8 @@ class UtilityAnimation {
     }
   }
 
-  startAnimation(element) {
-    this.toggleState(element);
-  }
-
   initialize() {
-    this.startAnimation(this.currentElement);
+    this.toggleState(this.currentElement);
     document.addEventListener('animationend', this.handleAnimationEnd.bind(this));
   }
 
