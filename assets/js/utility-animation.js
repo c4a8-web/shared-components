@@ -14,14 +14,7 @@ class UtilityAnimation {
     this.count++;
     const searchQuery = `[data-utility-animation-step="${this.count}"]`;
 
-    if (this.currentElement.length > 1) {
-      this.currentElement.forEach((e) => {
-        e.classList.remove(State.IS_STARTING);
-      });
-    } else {
-      this.currentElement[0]?.classList.remove(State.IS_STARTING);
-    }
-
+    this.toggleState(this.currentElement);
     this.currentElement = document.querySelectorAll(searchQuery);
 
     if (this.currentElement !== null && this.currentElement.length > 0) {
@@ -29,14 +22,18 @@ class UtilityAnimation {
     }
   }
 
-  startAnimation(element) {
+  toggleState(element) {
     if (element.length > 1) {
       element.forEach((e) => {
-        e.classList.add(State.IS_STARTING);
+        e.classList.toggle(State.IS_STARTING);
       });
     } else {
-      element[0].classList.add(State.IS_STARTING);
+      element[0]?.classList.toggle(State.IS_STARTING);
     }
+  }
+
+  startAnimation(element) {
+    this.toggleState(element);
   }
 
   initialize() {
