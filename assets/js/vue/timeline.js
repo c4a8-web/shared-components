@@ -8,6 +8,7 @@ export default {
       return [
         'timeline',
         'has-background',
+        'timeline--headline-sticky has-headline-sticky',
         this.isReady ? State.READY : '',
         this.expanded ? State.EXPANDED : '',
         'vue-component',
@@ -23,7 +24,9 @@ export default {
       return `--color-timeline-background: ${this.backgroundColor}; --color-timeline-color: ${this.copyColor};`;
     },
     headlineClasses() {
-      return `timeline__headline h2-font-size light ${this.headline?.classes ? this.headline.classes : ''}`;
+      return `timeline__headline headline-sticky__target h2-font-size light ${
+        this.headline?.classes ? this.headline.classes : ''
+      }`;
     },
     lineEndStyle() {
       return `--timeline-line-position: ${this.entries?.length}`;

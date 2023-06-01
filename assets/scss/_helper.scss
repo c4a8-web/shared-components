@@ -9,3 +9,32 @@
 .is-sticky {
   position: fixed !important;
 }
+
+.has-headline-sticky {
+  .headline-sticky__target {
+    position: sticky;
+    top: var(--scroll-top);
+    z-index: 1;
+    background-color: var(--headline-sticky-bg-color);
+
+    &::after,
+    &::before {
+      display: none;
+      content: '';
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    &::before {
+      background-color: inherit;
+    }
+
+    &::after {
+      background: linear-gradient(var(--headline-sticky-bg-color), rgba(255, 255, 255, 0));
+    }
+  }
+}

@@ -49,4 +49,22 @@
     line-height: 1.5rem;
     margin-bottom: 0.5rem;
   }
+
+  .dummy-content {
+    background-color: #eee;
+    display: flex;
+    place-content: center;
+    place-items: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 3.75rem;
+    font-weight: lighter;
+    line-height: 1.2em;
+    text-transform: uppercase;
+  }
+
+  .dummy-content::before {
+    content: "Dummy Content Block" '\A' "Dummy Content Block" '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block " '\A' "Dummy Content Block ";
+    white-space: pre-wrap;
+  }
 </style>

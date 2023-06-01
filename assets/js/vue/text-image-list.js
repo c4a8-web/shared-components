@@ -1,16 +1,22 @@
+import Tools from '../tools.js';
+import State from '../state.js';
+
 export default {
   tagName: 'text-image-list',
   computed: {
     classValue() {
       return [
-        'text-image-list py-8',
+        'text-image-list',
         `${this.spacing ? this.spacing : ''}`,
         `${this.classes ? this.classes : ''}`,
+        Tools.isTrue(this.headlineSticky) ? 'text-image-list--headline-sticky has-headline-sticky' : '',
         'vue-component',
       ];
     },
     colorStyling() {
-      const bgColor = this.bgColor ? `background-color:  ${this.bgColor};` : '';
+      const bgColor = this.bgColor
+        ? `--text-image-list-bg-color: ${this.bgColor}; background-color: var(--text-image-list-bg-color);`
+        : '';
       const headlineColor = this.headlineColor
         ? `--color-headlines: ${this.headlineColor}; color: ${this.headlineColor}`
         : '';
@@ -23,14 +29,17 @@ export default {
     level: String,
     bgColor: String,
     headlineColor: String,
+    headlineSticky: {
+      default: false,
+    },
     spacing: String,
   },
   template: `
     <div :class="classValue" :style="colorStyling">
-      <div class="container">
+      <div class="text-image-list__container container headline-sticky__target">
         <div class="row">
           <div class="col-sm-12 ">
-            <headline :text="headline" :level="level" />
+            <headline :text="headline" :level="level" classes="text-image-list__headline" />
           </div>
         </div>
       </div>

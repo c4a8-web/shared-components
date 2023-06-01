@@ -10,6 +10,15 @@ $fab-button-scroll-top: 200px;
   width: 100%;
 
   &.fab-button--sticky {
+    &:not([style^='height']) {
+      .fab-button__modal {
+        &.is-off-screen {
+          transform: translateX(0);
+          opacity: 0;
+        }
+      }
+    }
+
     .fab-button__start {
       top: calc(-100vh + (#{$fab-button-bottom-offset-xs} * 2));
     }

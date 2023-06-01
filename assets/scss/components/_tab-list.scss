@@ -1,6 +1,7 @@
 .tab-list {
   margin-top: spacing(14);
   margin-bottom: spacing(14);
+  width: 100%;
 
   &.tab-list--small {
     flex-wrap: nowrap;

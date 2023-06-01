@@ -42,6 +42,7 @@ class FabButton extends BaseComponent {
 
     // force redraw
     this.modal.style = 'opacity: 1';
+    this.modal.style = '';
   }
 
   handleOutsideClick(e) {

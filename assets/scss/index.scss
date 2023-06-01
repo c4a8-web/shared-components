@@ -28,7 +28,7 @@ body {
 
   font-family: var(--font-family);
   color: var(--color-copy);
-  overflow-x: hidden;
+  // overflow-x: hidden; // removing this might have side-effects so we might need to enable it again
 
   @each $breakpoint in map-keys($grid-breakpoints) {
     @include media-breakpoint-up($breakpoint) {
