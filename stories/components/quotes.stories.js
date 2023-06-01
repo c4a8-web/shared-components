@@ -120,15 +120,9 @@ FooterImage.args = {
     items: [
       {
         text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
-        name: 'Ronnie Kolk',
-        position: 'Projektmanager',
-        company: 'Pöppelmann GmbH & Co.KG',
       },
       {
         text: 'Mit ‚My Workplace‘ und den darin enthaltenen Microsoft Technologien haben alle unsere Standorte heute die gleichen State-of-the-Art Modern-Workplace Lösungen im Einsatz.',
-        name: 'Ronnie Kolk',
-        position: 'Projektmanager',
-        company: 'Pöppelmann GmbH & Co.KG',
       },
     ],
   },

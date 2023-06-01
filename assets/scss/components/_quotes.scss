@@ -12,7 +12,7 @@
     }
 
     .quotes__entry-text {
-      @include h2;
+      @include font-style($style: 'h4-font-size', $weight: 'light', $line: 'middle');
     }
 
     .quotes__entry-text-wrapper {
