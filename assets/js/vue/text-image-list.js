@@ -9,7 +9,7 @@ export default {
         'text-image-list',
         `${this.spacing ? this.spacing : ''}`,
         `${this.classes ? this.classes : ''}`,
-        Tools.isTrue(this.headlineSticky) ? 'text-image-list--headline-sticky' : '',
+        Tools.isTrue(this.headlineSticky) ? 'text-image-list--headline-sticky has-headline-sticky' : '',
         'vue-component',
       ];
     },
@@ -36,7 +36,7 @@ export default {
   },
   template: `
     <div :class="classValue" :style="colorStyling">
-      <div class="text-image-list__container container">
+      <div class="text-image-list__container container headline-sticky__target">
         <div class="row">
           <div class="col-sm-12 ">
             <headline :text="headline" :level="level" classes="text-image-list__headline" />
