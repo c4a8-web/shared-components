@@ -60,8 +60,8 @@
         </div>
       </div>
       {% if quotesImagesCount != 0 %}
-        <div class="row mt-7 mt-md-0">
-          {% assign quotesColSize = 12 | divided_by: quotesImagesCount %}
+        <div class="row mt-7 mt-md-0 justify-content-center">
+          {% assign quotesColSize = 9 | divided_by: quotesImagesCount %}
 
           {% for image in quotesFooterImages %}
           <div class="d-flex justify-content-center col-lg-{{quotesColSize}}">
