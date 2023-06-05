@@ -25,11 +25,25 @@ class UtilityAnimation {
     return array;
   }
 
-  handleAnimationEnd() {
+  updateCurrentElement(event) {
+    const newArray = [];
+    this.currentElement.forEach((element) => {
+      if (event.srcElement === element) {
+      } else {
+        newArray.push(element);
+      }
+    });
+    this.currentElement = newArray;
+  }
+
+  handleAnimationEnd(event) {
+    this.updateCurrentElement(event);
+    if (this.currentElement.length > 0) return;
+
     this.count++;
     const searchQuery = `[data-utility-animation-step="${this.count}"]`;
-
     this.currentElement = this.root.querySelectorAll(searchQuery);
+    this.currentElement = Array.from(this.currentElement);
 
     if (this.currentElement !== null && this.currentElement.length > 0) {
       this.toggleState(this.currentElement);
@@ -43,10 +57,10 @@ class UtilityAnimation {
   }
 
   initialize() {
+    this.root.addEventListener('animationend', (e) => {
+      this.handleAnimationEnd(e);
+    });
     this.toggleState(this.currentElement);
-
-    // TODO here you look for every animationend and not just a specific one. set it before you toggle and listen only for the element you handle.
-    document.addEventListener('animationend', this.handleAnimationEnd.bind(this));
   }
 
   static init() {
