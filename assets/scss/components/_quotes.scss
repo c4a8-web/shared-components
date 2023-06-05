@@ -196,7 +196,6 @@
 .quotes__entry-infos {
   @include media-breakpoint-up(lg) {
     padding-bottom: spacing(12);
-    width: 85%;
 
     .font-size-2 {
       font-size: 1.1rem;
