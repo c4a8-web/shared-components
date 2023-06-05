@@ -7,11 +7,22 @@ class UtilityAnimation {
   constructor(root) {
     this.root = root;
     this.count = 1;
+    this.selector = '[data-utility-animation-step="1"]';
 
-    // TODO special case der prüft ob root auch step1 ist und der node list hinzufügen
-    this.currentElement = this.root.querySelectorAll('[data-utility-animation-step="1"]');
+    this.parentNode = this.root.parentNode.querySelector(this.selector);
+    this.currentElement = this.root.querySelectorAll(this.selector);
+
+    if (!this.currentElement[0].isEqualNode(this.parentNode)) {
+      this.currentElement = this.mergeNodes(this.parentNode, this.currentElement);
+    }
 
     this.initialize();
+  }
+
+  mergeNodes(Node, NodeList) {
+    const array = Array.from(NodeList);
+    array.unshift(Node);
+    return array;
   }
 
   handleAnimationEnd() {
