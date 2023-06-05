@@ -103,7 +103,7 @@ export default {
             <summary @click.prevent="handleClick(entry)" :open="entry.isDetailsOpen">
               <div class="faq__summary zoom-in-out" data-utility-animation-step="1">{{ entry.summary }}</div>
               <div class="faq__icon-frame">
-                <div class="faq__icon bouncing" data-utility-animation-step="2" >
+                <div class="faq__icon bouncing" data-utility-animation-step="3">
                   <icon icon="arrow-narrow" direction="clockwise" size="small" />
                 </div>
               </div>
@@ -114,6 +114,9 @@ export default {
               </div>
             </Transition>
           </details>
+          <div class="zoom-in-out" data-utility-animation-step="2">
+            Ich bin initial im Loading State, so dass man mich nicht sieht und ich starte erst nach dem Ende von Step2
+          </div>
         </div>
       </div>
     </div>`,

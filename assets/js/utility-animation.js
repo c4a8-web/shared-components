@@ -44,6 +44,8 @@ class UtilityAnimation {
 
   initialize() {
     this.toggleState(this.currentElement);
+
+    // TODO here you look for every animationend and not just a specific one. set it before you toggle and listen only for the element you handle.
     document.addEventListener('animationend', this.handleAnimationEnd.bind(this));
   }
 
