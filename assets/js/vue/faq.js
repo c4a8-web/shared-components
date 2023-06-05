@@ -1,5 +1,4 @@
 import State from '../state.js';
-import UtilityAnimation from '../utility-animation.js';
 
 export default {
   tagName: 'faq',
@@ -104,7 +103,7 @@ export default {
             <summary @click.prevent="handleClick(entry)" :open="entry.isDetailsOpen">
               <div class="faq__summary zoom-in-out" data-utility-animation-step="1">{{ entry.summary }}</div>
               <div class="faq__icon-frame">
-                <div class="faq__icon bouncing" data-utility-animation-step="3" >
+                <div class="faq__icon bouncing" data-utility-animation-step="2" >
                   <icon icon="arrow-narrow" direction="clockwise" size="small" />
                 </div>
               </div>

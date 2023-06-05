@@ -16,6 +16,7 @@ class UtilityAnimation {
 
     this.toggleState(this.currentElement);
     this.currentElement = document.querySelectorAll(searchQuery);
+    console.log('current Element: ', this.currentElement);
 
     if (this.currentElement !== null && this.currentElement.length > 0) {
       this.toggleState(this.currentElement);
@@ -23,13 +24,9 @@ class UtilityAnimation {
   }
 
   toggleState(element) {
-    if (element.length > 1) {
-      element.forEach((e) => {
-        e.classList.toggle(State.IS_STARTING);
-      });
-    } else {
-      element[0]?.classList.toggle(State.IS_STARTING);
-    }
+    element.forEach((e) => {
+      e.classList.toggle(State.IS_STARTING);
+    });
   }
 
   initialize() {

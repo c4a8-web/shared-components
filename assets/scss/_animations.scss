@@ -223,3 +223,68 @@ $transition-tween-t1: 0.2s ease-in-out;
     transform: translate(var(--blurry-x1), var(--blurry-y1));
   }
 }
+
+.fade-in-bottom {
+  &.is-starting {
+    @include fade-in-X($from: 'bottom');
+  }
+}
+
+.fade-in-top {
+  &.is-starting {
+    @include fade-in-X($from: 'top');
+  }
+}
+
+.zoom-in-out {
+  &.is-starting {
+    transform: scale(1);
+    animation: zoom-in-out 3s forwards;
+  }
+}
+
+.bouncing {
+  &.is-starting {
+    transform: translateY(0);
+    animation: bouncing 2s forwards;
+  }
+}
+
+.fill-in-left {
+  width: 0%;
+  overflow: hidden;
+  animation: fill-in-from-left 3s forwards;
+}
+
+@keyframes zoom-in-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fill-in-from-left {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
