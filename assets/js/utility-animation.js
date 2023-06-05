@@ -4,9 +4,10 @@ class UtilityAnimation {
   static rootSelector = '.utility-animation';
   static instances = [];
 
-  constructor() {
+  constructor(root) {
+    this.root = root;
     this.count = 1;
-    this.currentElement = document.querySelectorAll('[data-utility-animation-step="1"]');
+    this.currentElement = this.root.querySelectorAll('[data-utility-animation-step="1"]');
     this.initialize();
   }
 
@@ -14,9 +15,12 @@ class UtilityAnimation {
     this.count++;
     const searchQuery = `[data-utility-animation-step="${this.count}"]`;
 
+    console.log(
+      '🚀 ~ file: utility-animation.js:18 ~ UtilityAnimation ~ handleAnimationEnd ~ searchQuery:',
+      searchQuery
+    );
     this.toggleState(this.currentElement);
-    this.currentElement = document.querySelectorAll(searchQuery);
-    console.log('current Element: ', this.currentElement);
+    this.currentElement = this.root.querySelectorAll(searchQuery);
 
     if (this.currentElement !== null && this.currentElement.length > 0) {
       this.toggleState(this.currentElement);
