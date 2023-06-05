@@ -7,7 +7,10 @@ class UtilityAnimation {
   constructor(root) {
     this.root = root;
     this.count = 1;
+
+    // TODO special case der prüft ob root auch step1 ist und der node list hinzufügen
     this.currentElement = this.root.querySelectorAll('[data-utility-animation-step="1"]');
+
     this.initialize();
   }
 
@@ -15,11 +18,6 @@ class UtilityAnimation {
     this.count++;
     const searchQuery = `[data-utility-animation-step="${this.count}"]`;
 
-    console.log(
-      '🚀 ~ file: utility-animation.js:18 ~ UtilityAnimation ~ handleAnimationEnd ~ searchQuery:',
-      searchQuery
-    );
-    this.toggleState(this.currentElement);
     this.currentElement = this.root.querySelectorAll(searchQuery);
 
     if (this.currentElement !== null && this.currentElement.length > 0) {
