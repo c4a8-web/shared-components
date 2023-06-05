@@ -15,6 +15,10 @@
       @include font-style($style: 'h4-font-size', $weight: 'light', $line: 'middle');
     }
 
+    .quotes__entry-infos {
+      width: 100%;
+    }
+
     .quotes__entry-text-wrapper {
       margin: spacing(16) 0;
     }
@@ -196,6 +200,7 @@
 .quotes__entry-infos {
   @include media-breakpoint-up(lg) {
     padding-bottom: spacing(12);
+    width: 85%;
 
     .font-size-2 {
       font-size: 1.1rem;
