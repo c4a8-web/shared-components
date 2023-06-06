@@ -72,7 +72,7 @@ export default {
     getCloudinaryLink() {
       const { preset, transformationsString } = this.getSetup();
 
-      return this.isGif
+      return this.isGif()
         ? this.getCloudinaryBasePathLink()
         : `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
     },
