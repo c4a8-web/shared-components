@@ -26,6 +26,7 @@ const State = {
   IS_FULL: 'is-full',
   STICKY: 'is-sticky',
   IN_TRANSITION: 'in-transition',
+  IS_STARTING: 'is-starting',
 };
 
 export default State;
