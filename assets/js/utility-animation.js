@@ -80,6 +80,9 @@ class UtilityAnimation {
   static init() {
     this.instances = [];
 
+    // Disable for merging purposes
+    return;
+
     [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
       this.instances.push(new this(element));
     });
