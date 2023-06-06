@@ -69,23 +69,53 @@ class UtilityAnimation {
     });
   }
 
+  startAnimation() {
+    this.startStepAnimation(this.currentElements);
+  }
+
   initialize() {
     this.root.addEventListener('animationend', (event) => {
       this.handleAnimationEnd(event);
     });
 
-    this.startStepAnimation(this.currentElements);
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName.startsWith('data-utility-animation-viewport')) {
+          this.startAnimation();
+        }
+      });
+    });
+
+    observer.observe(this.root, { attributes: true });
+  }
+
+  static addObserver() {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.dataset.utilityAnimationViewport = true;
+          }
+        });
+      },
+      {
+        threshold: 0.4,
+      }
+    );
+
+    this.instances.forEach((instance) => {
+      observer.observe(instance.root);
+    });
   }
 
   static init() {
     this.instances = [];
 
-    // Disable for merging purposes
-    return;
-
     [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
       this.instances.push(new this(element));
     });
+
+    this.addObserver();
   }
 }
 
