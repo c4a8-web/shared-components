@@ -14,6 +14,10 @@
   details {
     margin: spacing(4) 0;
 
+    &[data-utility-animation-step] {
+      animation-duration: 1.4s;
+    }
+
     &[open]:not(.is-collapsing) {
       .faq__icon {
         transform: rotate(-180deg);
