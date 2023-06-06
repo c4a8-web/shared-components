@@ -340,7 +340,7 @@ class Tools {
   }
 
   static getLang() {
-    return document.querySelector('html').getAttribute('lang') || 'en';
+    return document.querySelector('html').getAttribute('lang').toLowerCase() || 'en';
   }
 
   static getJSON(data) {
