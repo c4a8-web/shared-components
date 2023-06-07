@@ -1,7 +1,10 @@
 import State from './state.js';
 
+// TODO refactor this to vue logic after we completly moved all components to vue
+
 class UtilityAnimation {
   static rootSelector = '.utility-animation';
+  static inViewportDataset = 'data-utility-animation-in-viewport';
   static instances = [];
 
   constructor(root) {
@@ -49,6 +52,10 @@ class UtilityAnimation {
     this.currentElements = newArray;
   }
 
+  setAnimationEnd() {
+    // this.root.dataset.utilityAnimationEnd = true;
+  }
+
   handleAnimationEnd(event) {
     this.updateCurrentElement(event);
 
@@ -60,6 +67,9 @@ class UtilityAnimation {
 
     if (this.currentElements !== null && this.currentElements.length > 0) {
       this.startStepAnimation(this.currentElements);
+    } else {
+      console.log('end animation');
+      this.setAnimationEnd();
     }
   }
 
@@ -80,8 +90,12 @@ class UtilityAnimation {
 
     const observer = new MutationObserver((mutations) => {
       mutations.forEach((mutation) => {
-        if (mutation.type === 'attributes' && mutation.attributeName.startsWith('data-utility-animation-viewport')) {
-          this.startAnimation();
+        if (mutation.type === 'attributes' && mutation.attributeName.startsWith(UtilityAnimation.inViewportDataset)) {
+          if (mutation.target?.getAttribute(UtilityAnimation.inViewportDataset) === 'true') {
+            this.startAnimation();
+          } else {
+            console.log('reset animation', mutation.target);
+          }
         }
       });
     });
@@ -94,7 +108,9 @@ class UtilityAnimation {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            entry.target.dataset.utilityAnimationViewport = true;
+            entry.target.setAttribute(this.inViewportDataset, true);
+          } else if (entry.target.classList.contains('utility-animation--enter-exit')) {
+            entry.target.removeAttribute(this.inViewportDataset);
           }
         });
       },

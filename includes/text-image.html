@@ -26,6 +26,8 @@
 {%- assign textImageHref = include.href -%}
 {%- assign textImageBadge = include.badge -%}
 {%- assign textImageSticky = include.sticky -%}
+{%- assign textImageAnimation = include.animation -%}
+{%- assign textImageIndex = include.index -%}
 
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
@@ -56,14 +58,16 @@
 <div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
           {% if textImageSticky %}is-sticky-scroller{% endif %}
+          {% if textImageAnimation %}utility-animation utility-animation--enter-exit{% endif %}
           {% if textImageFloat %}text-image--float{% endif %}"
      style="{% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endif %}
+            {% if textImageIndex %}--utility-animation-index:{{ textImageIndex }};{% endif %}
             {% if textImageBackground %}background-image:url('{{ textImageBackground }}');{% endif %}">
   <div class="container">
     <div class="row {% if textImageLeft %}flex-row-reverse{% endif %}">
 
       {% if textImageFloat %}
-        <div class="text-image__floating-col col-lg-{{ textImageFirstColWidth }} justify-content-end text-image__floating-img position-absolute top-0 right-0
+        <div class="text-image__floating-col justify-content-end text-image__floating-img position-absolute top-0 right-0 col-lg-{{ textImageFirstColWidth }}
                   {% if textImageFloat %}col-xl-{{ textImageFirstColWidthXl }}{% endif %}"
                   {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
         >
@@ -78,6 +82,7 @@
         </div>
       {% endif %}
       <div class="text-image__first-col d-flex text-image__img  justify-content-center {{ textImageImageClasses }}
+                  {% if textImageAnimation %}fade-in-bottom{% endif %}
                   col-lg-
                   {%- if textImageFloat -%}{{ textImageFirstColWidth }} col-xl-{{ textImageFirstColWidthXl }} text-image__img--floating{%- else -%}
                     {%- if textImageOffset -%}
@@ -88,6 +93,7 @@
                     {% endif %}
                   {%- endif -%}"
                   {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
+                  data-utility-animation-step="1"
       >
         {% if textImageFloat %}
           {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
@@ -106,7 +112,8 @@
           alt=textImageAlt
         %}
       </div>
-      <div class="text-image__second-col col-lg-{{ textImageSecondColWidth }} pt-2 pt-lg-4
+      <div class="text-image__second-col pt-2 pt-lg-4 col-lg-{{ textImageSecondColWidth }}
+                  {% if textImageAnimation %}fade-in-bottom{% endif %}
                   {% if textImageWhite %}text-white{% endif %}
                   {% if textImageReduceSpacing %}
                     {{ textImageReduceSpacing }}
@@ -116,6 +123,7 @@
                   {% endunless %}
                   {% if textImageFloat %}col-xl-{{ textImageSecondColWidthXl }}{% endif %}
                   {% unless textImageFloat %}{% if textImageLeft and textImageOffset %}offset-lg-1{% endif %}{% endunless %}"
+                  data-utility-animation-step="1"
       >
         {% if textImageBadge %}
           {% if textImageBadge.noUppercase %}

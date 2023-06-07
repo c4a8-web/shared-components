@@ -169,3 +169,33 @@
     }
   }
 }
+
+.text-image__first-col {
+  &[data-utility-animation-step] {
+    animation-duration: 0.8s;
+  }
+}
+
+.text-image__second-col {
+  &[data-utility-animation-step] {
+    animation-duration: 1.1s;
+  }
+}
+
+.text-image__second-col,
+.text-image__first-col {
+  &[data-utility-animation-step] {
+    animation-delay: calc(0.2s * var(--utility-animation-index));
+    // border: calc(var(--utility-animation-index) * 1px) solid red;
+  }
+}
+
+[data-utility-animation-end] + *:not([data-utility-animation-end]) {
+  .text-image__second-col,
+  .text-image__first-col {
+    &[data-utility-animation-step] {
+      animation-delay: 0s;
+      // border: 1px solid red;
+    }
+  }
+}
