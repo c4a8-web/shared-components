@@ -101,7 +101,7 @@ export default {
       <div class="row">
         <div class="col-lg-8">
           <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" data-utility-animation-step="1" />
-          <details v-for="entry in entriesWithState" :open="entry.isDetailsOpen" class="fade-in-bottom" data-utility-animation-step="2" :style="getDelay(entry)">
+          <details v-for="entry in entriesWithState" :open="entry.isDetailsOpen" class="fade-in-bottom" data-utility-animation-step="1" :style="getDelay(entry)">
             <summary @click.prevent="handleClick(entry)" :open="entry.isDetailsOpen">
               <div class="faq__summary">{{ entry.summary }}</div>
               <div class="faq__icon-frame">

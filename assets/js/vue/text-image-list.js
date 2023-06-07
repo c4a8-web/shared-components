@@ -6,7 +6,7 @@ export default {
   computed: {
     classValue() {
       return [
-        'text-image-list utility-animation vue-component',
+        'text-image-list vue-component',
         `${this.spacing ? this.spacing : ''}`,
         `${this.classes ? this.classes : ''}`,
         Tools.isTrue(this.headlineSticky) ? 'text-image-list--headline-sticky has-headline-sticky' : '',
@@ -35,10 +35,10 @@ export default {
   },
   template: `
     <div :class="classValue" :style="colorStyling">
-      <div class="text-image-list__container container headline-sticky__target">
+      <div class="text-image-list__container utility-animation container headline-sticky__target fade-in-bottom" data-utility-animation-step="1">
         <div class="row">
           <div class="col-sm-12 ">
-            <headline :text="headline" :level="level" classes="text-image-list__headline fade-in-bottom" data-utility-animation-step="1" />
+            <headline :text="headline" :level="level" classes="text-image-list__headline" />
           </div>
         </div>
       </div>

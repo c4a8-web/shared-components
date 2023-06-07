@@ -52,10 +52,6 @@ class UtilityAnimation {
     this.currentElements = newArray;
   }
 
-  setAnimationEnd() {
-    // this.root.dataset.utilityAnimationEnd = true;
-  }
-
   handleAnimationEnd(event) {
     this.updateCurrentElement(event);
 
@@ -67,9 +63,6 @@ class UtilityAnimation {
 
     if (this.currentElements !== null && this.currentElements.length > 0) {
       this.startStepAnimation(this.currentElements);
-    } else {
-      console.log('end animation');
-      this.setAnimationEnd();
     }
   }
 
@@ -94,7 +87,7 @@ class UtilityAnimation {
           if (mutation.target?.getAttribute(UtilityAnimation.inViewportDataset) === 'true') {
             this.startAnimation();
           } else {
-            console.log('reset animation', mutation.target);
+            // reset animation??
           }
         }
       });

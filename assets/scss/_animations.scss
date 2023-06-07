@@ -33,10 +33,10 @@ $transition-tween-t1: 0.2s ease-in-out;
 
 @mixin fade-in-X($from: 'bottom', $duration: 0.5s) {
   @if ($from == 'bottom') {
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, var(--utility-animation-distance), 0);
     animation: fade-in-from-bottom $duration forwards;
   } @else {
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
     animation: fade-in-from-top $duration forwards;
   }
 
@@ -46,7 +46,7 @@ $transition-tween-t1: 0.2s ease-in-out;
 @keyframes fade-in-from-bottom {
   0% {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, var(--utility-animation-distance), 0);
   }
   100% {
     opacity: 1;
@@ -57,7 +57,7 @@ $transition-tween-t1: 0.2s ease-in-out;
 @keyframes fade-in-from-top {
   0% {
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
   }
   100% {
     opacity: 1;
