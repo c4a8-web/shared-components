@@ -11,8 +11,15 @@
       text-align: center;
     }
 
+    .quotes__row {
+      .slick-slide {
+        margin-right: 0;
+      }
+    }
+
     .quotes__entry-text {
       @include font-style($style: 'h4-font-size', $weight: 'light', $line: 'middle');
+      width: 100%;
     }
 
     .quotes__entry-infos {

@@ -83,17 +83,7 @@ $slick-arrow-offset: 2;
 
 .shared-components {
   .slick--no-offset {
-    .slick-list {
-      width: 100%;
-
-      .slick-track {
-        left: 0;
-      }
-    }
-
     .slick-slide {
-      margin-right: 0;
-
       &:first-of-type {
         margin-left: 0;
 
@@ -282,26 +272,5 @@ $slick-arrow-offset: 2;
         }
       }
     }
-  }
-}
-
-.slick-slide {
-  background-color: orange;
-}
-
-.slick-current {
-  background-color: red;
-
-  .quotes__entry-text {
-    background-color: yellow;
-    width: 100%;
-  }
-
-  .quotes__entry-text-wrapper {
-    background-color: green;
-  }
-
-  .quotes__entry-quote-wrapper {
-    background-color: pink;
   }
 }
