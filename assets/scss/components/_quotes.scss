@@ -54,6 +54,14 @@
     }
 
     .quotes__entry-quote-wrapper {
+      @include media-breakpoint-down(md) {
+        position: relative;
+        left: 53%;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    .quotes__entry-quote-wrapper {
       display: flex;
       flex-direction: column;
     }
