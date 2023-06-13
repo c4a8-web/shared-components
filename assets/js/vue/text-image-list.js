@@ -1,5 +1,4 @@
 import Tools from '../tools.js';
-import State from '../state.js';
 
 export default {
   tagName: 'text-image-list',
@@ -34,15 +33,16 @@ export default {
     spacing: String,
   },
   template: `
-    <div :class="classValue" :style="colorStyling">
-      <div class="text-image-list__container utility-animation container headline-sticky__target fade-in-bottom" data-utility-animation-step="1">
-        <div class="row">
-          <div class="col-sm-12 ">
-            <headline :text="headline" :level="level" classes="text-image-list__headline" />
-          </div>
-        </div>
-      </div>
+    <list-container
+      :classes="classes"
+      :headline="headline"
+      :level="level"
+      :bg-color="bgColor"
+      :headline-color="headlineColor"
+      :headline-sticky="headlineSticky"
+      :spacing="spacing"
+    >
       <slot></slot>
-    </div>
+    </list-container>
   `,
 };
