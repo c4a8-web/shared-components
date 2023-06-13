@@ -8,7 +8,7 @@ export default {
     };
   },
   beforeMount() {
-    this.entriesWithState = this.entries.map((entry, index) => {
+    this.entriesWithState = this.entries?.map((entry, index) => {
       entry.isOpen = null;
       entry.isDetailsOpen = null;
       entry.height = null;
