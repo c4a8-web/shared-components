@@ -1,4 +1,22 @@
 .faq {
+  &[data-utility-animation-in-viewport] {
+    &:not([data-utility-animation-in-viewport]) {
+      details {
+        &[data-utility-animation-step] {
+          animation-delay: 0s;
+        }
+      }
+    }
+
+    & + [data-utility-animation-in-viewport] {
+      details {
+        &[data-utility-animation-step] {
+          animation-delay: 0.2s;
+        }
+      }
+    }
+  }
+
   summary {
     @include font-style($style: 'font-size-3', $line: 'wide');
 
