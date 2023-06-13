@@ -30,6 +30,7 @@ import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
 import LetterSwitcher from './vue/letter-switcher.js';
 import LinkList from './vue/link-list.js';
+import ListContainer from './vue/list-container.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
@@ -138,6 +139,7 @@ const addApp = () => {
     JobList,
     LetterSwitcher,
     LinkList,
+    ListContainer,
     Modal,
     Plus,
     ScrollArrow,
