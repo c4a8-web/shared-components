@@ -159,6 +159,12 @@ export const createComponent = function async(include, component) {
   return createTemplate(include, component);
 };
 
+export const getComponentInnerHtml = function async(include, component) {
+  const template = createComponent(include, component);
+
+  return template.innerHTML;
+};
+
 const getTitle = ({ page, title, docs, context, helper }) => {
   let type;
 
