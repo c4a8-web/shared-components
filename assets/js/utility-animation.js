@@ -88,6 +88,7 @@ class UtilityAnimation {
             this.startAnimation();
           } else {
             // reset animation??
+            // this.resetAnimation();
           }
         }
       });
@@ -97,6 +98,8 @@ class UtilityAnimation {
   }
 
   static addObserver() {
+    const intersectionOffset = 200;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -108,7 +111,8 @@ class UtilityAnimation {
         });
       },
       {
-        threshold: 0.4,
+        rootMargin: `0px 0px -${intersectionOffset}px 0px`,
+        threshold: 0,
       }
     );
 
