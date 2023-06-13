@@ -7,8 +7,10 @@
 
   {%- if quotes.items[0].img -%}
     {%- assign quotesImage = true -%}
+    {%- assign quotesSlidesToShow = 1.05 -%}
   {% else %}
     {%- assign quotesImage = false -%}
+    {%- assign quotesSlidesToShow = 1 -%}
   {% endif %}
 
   <div class="quotes {% if quotesImage %}mb-8{% else %}quotes--no-image{% endif %} {{ quotesSpacing }}">
@@ -33,13 +35,13 @@
             "responsive": [{
               "breakpoint": 992,
               "settings": {
-                "slidesToShow": 1.05
+                "slidesToShow": {{ quotesSlidesToShow }}
               }
             },
             {
               "breakpoint": 576,
               "settings": {
-                "slidesToShow": 1.05
+                "slidesToShow": {{ quotesSlidesToShow }}
               }
             }]
           }'
@@ -60,8 +62,8 @@
         </div>
       </div>
       {% if quotesImagesCount != 0 %}
-        <div class="row mt-7 mt-md-0">
-          {% assign quotesColSize = 12 | divided_by: quotesImagesCount %}
+        <div class="row mt-7 mt-md-0 justify-content-center">
+          {% assign quotesColSize = 9 | divided_by: quotesImagesCount %}
 
           {% for image in quotesFooterImages %}
           <div class="d-flex justify-content-center col-lg-{{quotesColSize}}">
