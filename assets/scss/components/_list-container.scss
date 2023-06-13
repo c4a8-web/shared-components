@@ -1,0 +1,125 @@
+$list-container-spacing: spacing(14);
+
+.list-container {
+  padding-top: $list-container-spacing;
+  padding-bottom: $list-container-spacing;
+
+  &.list-container--headline-sticky {
+    position: relative;
+
+    .list-container__container {
+      --headline-sticky-bg-color: var(--list-container-bg-color);
+
+      &::after,
+      &::before {
+        display: block;
+      }
+    }
+  }
+
+  .text-image {
+    .text-image__img {
+      flex: 1 0 100%;
+      max-width: 100%;
+
+      img.is-svg {
+        width: 90%;
+        max-width: 120px;
+        padding: spacing(6) 0;
+        margin: 0;
+      }
+
+      @include media-breakpoint-up(md) {
+        flex: 1 0 40%;
+        max-width: 40%;
+      }
+
+      @include media-breakpoint-up(lg) {
+        flex: 0 0 41.66667%;
+        max-width: 41.66667%;
+
+        img.is-svg {
+          width: 60%;
+          max-width: 100%;
+          padding: spacing(6);
+        }
+      }
+    }
+
+    .flex-row-reverse {
+      @include media-breakpoint-down(md) {
+        .text-image__first-col {
+          order: 1;
+          margin-top: 0;
+        }
+
+        .text-image__second-col {
+          order: 2;
+        }
+      }
+    }
+
+    .text-image__second-col {
+      display: flex;
+      flex-direction: column;
+
+      @include media-breakpoint-up(sm) {
+        display: block;
+      }
+    }
+
+    .row {
+      > div {
+        &:nth-child(2) {
+          flex: 0 1 100%;
+          max-width: 100%;
+
+          p {
+            display: none;
+          }
+
+          @include media-breakpoint-up(md) {
+            flex: 0 1 60%;
+            max-width: 60%;
+            display: flex;
+            justify-content: center;
+          }
+
+          @include media-breakpoint-up(lg) {
+            flex: 0 0 50%;
+            max-width: 50%;
+            display: block;
+          }
+        }
+      }
+    }
+  }
+
+  .h4-font-size {
+    @include media-breakpoint-down(md) {
+      font-size: 1.1rem;
+    }
+  }
+
+  > div {
+    &:nth-child(1n + 4).text-image {
+      padding-top: spacing(2);
+    }
+  }
+}
+
+.list-container__container {
+  &::after,
+  &::before {
+    height: calc(100% + #{$list-container-spacing});
+  }
+
+  &::before {
+    top: calc(-#{$list-container-spacing});
+  }
+
+  &::after {
+    bottom: -$list-container-spacing;
+    height: $list-container-spacing;
+  }
+}
