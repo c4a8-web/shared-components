@@ -19,6 +19,9 @@ export default {
     });
   },
   computed: {
+    style() {
+      return this.index ? `--utility-animation-index: ${this.index}` : null;
+    },
     classList() {
       return ['faq', 'utility-animation', 'container space-top-2', 'vue-component'];
     },
@@ -31,7 +34,10 @@ export default {
   },
   methods: {
     getDelay(entry) {
-      return entry.index > 0 ? `animation-delay: ${entry.index * 200}ms` : '';
+      const miliseconds = entry.index > 0 ? 200 : 0;
+      const delay = `${entry.index * miliseconds}ms`;
+
+      return `--utility-animation-delay: ${delay};`;
     },
     handleClick(entry) {
       entry.isOpen = entry.isOpen === null ? true : null;
@@ -95,9 +101,10 @@ export default {
   props: {
     headline: Object,
     entries: Array,
+    index: Number,
   },
   template: `
-    <div :class="classList">
+    <div :class="classList" :style="style">
       <div class="row">
         <div class="col-lg-8">
           <headline :text="headline?.text" :level="headlineLevel" :classes="headlineClasses" data-utility-animation-step="1" />

@@ -1,17 +1,21 @@
 .faq {
   &[data-utility-animation-in-viewport] {
-    &:not([data-utility-animation-in-viewport]) {
-      details {
-        &[data-utility-animation-step] {
+    & + :not([data-utility-animation-in-viewport]) {
+      [data-utility-animation-step] {
+        animation-delay: var(--utility-animation-delay);
+
+        &.faq__headline {
           animation-delay: 0s;
         }
       }
     }
 
     & + [data-utility-animation-in-viewport] {
-      details {
-        &[data-utility-animation-step] {
-          animation-delay: 0.2s;
+      [data-utility-animation-step] {
+        animation-delay: calc(200ms + var(--utility-animation-delay));
+
+        &.faq__headline {
+          animation-delay: 200ms;
         }
       }
     }
@@ -34,6 +38,7 @@
 
     &[data-utility-animation-step] {
       animation-duration: 1.4s;
+      animation-delay: var(--utility-animation-delay);
     }
 
     &[open]:not(.is-collapsing) {
