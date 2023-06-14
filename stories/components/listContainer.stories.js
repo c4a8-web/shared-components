@@ -67,7 +67,35 @@ const FaqEntry2 = getComponentInnerHtml(
   includesfaqhtml
 );
 
-const FaqContent = FaqEntry1 + FaqEntry2;
+const FaqEntry3 = getComponentInnerHtml(
+  {
+    headline: {
+      text: 'FAQs 4 Entries',
+      level: 'h3',
+    },
+    entries: [
+      {
+        summary: 'sit amet, consectet',
+        text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+      },
+      {
+        summary: 'Lorem ipsum dolor sit amet',
+        text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+      },
+      {
+        summary: 'Lorem ipsum dolor',
+        text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+      },
+      {
+        summary: 'Lorem ipsum dolor sit amet',
+        text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+      },
+    ],
+  },
+  includesfaqhtml
+);
+
+const FaqContent = FaqEntry1 + FaqEntry2 + FaqEntry3;
 
 const Template = (args) => createComponent(args, listContainerTemplate);
 
