@@ -49,6 +49,7 @@ import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
+import SlotItems from './vue/slot-items.js';
 import TestimonialList from './vue/testimonial-list.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
@@ -173,6 +174,7 @@ const addApp = () => {
     Smile,
     SBlock,
     TBlock,
+    SlotItems,
     TestimonialList,
     Timeline,
     LBlock,

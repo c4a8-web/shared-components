@@ -41,7 +41,7 @@ export default {
           </div>
         </div>
       </div>
-      <slot></slot>
+      <slot-items :items="$slots.default"></slot-items>
     </div>
   `,
 };
