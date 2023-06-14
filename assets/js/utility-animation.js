@@ -93,9 +93,6 @@ class UtilityAnimation {
         if (mutation.type === 'attributes' && mutation.attributeName.startsWith(UtilityAnimation.inViewportDataset)) {
           if (mutation.target?.getAttribute(UtilityAnimation.inViewportDataset) === 'true') {
             this.startAnimation();
-          } else {
-            // reset animation??
-            // this.resetAnimation();
           }
         }
       });
