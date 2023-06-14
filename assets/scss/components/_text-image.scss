@@ -4,15 +4,6 @@
   width: 100%;
 
   &[data-utility-animation-in-viewport] {
-    &:not([data-utility-animation-in-viewport]) {
-      .text-image__second-col,
-      .text-image__first-col {
-        &[data-utility-animation-step] {
-          animation-delay: 0s;
-        }
-      }
-    }
-
     & + [data-utility-animation-in-viewport] {
       .text-image__second-col,
       .text-image__first-col {
