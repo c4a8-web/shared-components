@@ -50,7 +50,6 @@ import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import TestimonialList from './vue/testimonial-list.js';
-import TextImageList from './vue/text-image-list.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
@@ -175,7 +174,6 @@ const addApp = () => {
     SBlock,
     TBlock,
     TestimonialList,
-    TextImageList,
     Timeline,
     LBlock,
     Square,
