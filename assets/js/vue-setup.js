@@ -20,6 +20,7 @@ import FormRadio from './vue/form-radio.js';
 import FormRadios from './vue/form-radios.js';
 import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
+import Footer from './vue/footer.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
@@ -129,6 +130,7 @@ const addApp = () => {
     FormRadios,
     FormSelect,
     Form,
+    Footer,
     Header,
     Headline,
     Icon,
