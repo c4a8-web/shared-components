@@ -10,85 +10,6 @@ export default {
   ...options,
 };
 
-const FaqContent = getComponentInnerHtmlList(
-  [
-    {
-      headline: {
-        text: 'FAQs 5 Entries',
-        level: 'h3',
-      },
-      entries: [
-        {
-          summary:
-            'Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet, consectet',
-          text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'sit amet, consectet',
-          text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor sit amet',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-      ],
-    },
-    {
-      headline: {
-        text: 'FAQs 3 Entries',
-        level: 'h3',
-      },
-      entries: [
-        {
-          summary: 'sit amet, consectet',
-          text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor sit amet',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-      ],
-    },
-    {
-      headline: {
-        text: 'FAQs 4 Entries',
-        level: 'h3',
-      },
-      entries: [
-        {
-          summary: 'sit amet, consectet',
-          text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor sit amet',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-        {
-          summary: 'Lorem ipsum dolor sit amet',
-          text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
-        },
-      ],
-    },
-  ],
-  includesfaqhtml
-);
-
 const Template = (args) => createComponent(args, listContainerTemplate);
 
 const defaultTextImageEntry = {
@@ -101,38 +22,6 @@ const defaultTextImageEntry = {
   copy: 'lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam non',
 };
 
-const TextImageContent = getComponentInnerHtmlList(
-  [
-    {
-      ...defaultTextImageEntry,
-      index: 1,
-    },
-    {
-      ...defaultTextImageEntry,
-      left: true,
-      headline: 'lorem ipsum dolor sit 2',
-      index: 2,
-    },
-    {
-      ...defaultTextImageEntry,
-      headline: 'lorem ipsum dolor sit 3',
-      index: 3,
-    },
-    {
-      ...defaultTextImageEntry,
-      left: true,
-      headline: 'lorem ipsum dolor sit 4',
-      index: 4,
-    },
-    {
-      ...defaultTextImageEntry,
-      headline: 'lorem ipsum dolor sit 5',
-      index: 5,
-    },
-  ],
-  includestextimagehtml
-);
-
 export const TextImage = Template.bind({});
 
 TextImage.args = {
@@ -141,7 +30,37 @@ TextImage.args = {
   headlineColor: 'var(--color-white)',
   headlineSticky: true,
   bgColor: 'var(--color-career-background)',
-  content: TextImageContent,
+  content: getComponentInnerHtmlList(
+    [
+      {
+        ...defaultTextImageEntry,
+        index: 1,
+      },
+      {
+        ...defaultTextImageEntry,
+        left: true,
+        headline: 'lorem ipsum dolor sit 2',
+        index: 2,
+      },
+      {
+        ...defaultTextImageEntry,
+        headline: 'lorem ipsum dolor sit 3',
+        index: 3,
+      },
+      {
+        ...defaultTextImageEntry,
+        left: true,
+        headline: 'lorem ipsum dolor sit 4',
+        index: 4,
+      },
+      {
+        ...defaultTextImageEntry,
+        headline: 'lorem ipsum dolor sit 5',
+        index: 5,
+      },
+    ],
+    includestextimagehtml
+  ),
 };
 
 export const FaqList = Template.bind({});
@@ -149,5 +68,82 @@ export const FaqList = Template.bind({});
 FaqList.args = {
   headline: 'Lorem ipsum dolor sit amet, consectet',
   spacing: 'space-top-3 space-bottom-3',
-  content: FaqContent,
+  content: getComponentInnerHtmlList(
+    [
+      {
+        headline: {
+          text: 'FAQs 5 Entries',
+          level: 'h3',
+        },
+        entries: [
+          {
+            summary:
+              'Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet, consectet Lorem ipsum dolor sit amet, consectet',
+            text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'sit amet, consectet',
+            text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor sit amet',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+        ],
+      },
+      {
+        headline: {
+          text: 'FAQs 3 Entries',
+          level: 'h3',
+        },
+        entries: [
+          {
+            summary: 'sit amet, consectet',
+            text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor sit amet',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+        ],
+      },
+      {
+        headline: {
+          text: 'FAQs 4 Entries',
+          level: 'h3',
+        },
+        entries: [
+          {
+            summary: 'sit amet, consectet',
+            text: '<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor sit amet',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+          {
+            summary: 'Lorem ipsum dolor sit amet',
+            text: '<p>Lorem ipsum dolor sit amore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</p>',
+          },
+        ],
+      },
+    ],
+    includesfaqhtml
+  ),
 };
