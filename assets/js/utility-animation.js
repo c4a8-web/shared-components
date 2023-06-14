@@ -5,6 +5,7 @@ import State from './state.js';
 class UtilityAnimation {
   static rootSelector = '.utility-animation';
   static inViewportDataset = 'data-utility-animation-in-viewport';
+  static endDataset = 'data-utility-animation-end';
   static instances = [];
 
   constructor(root) {
@@ -63,6 +64,8 @@ class UtilityAnimation {
 
     if (this.currentElements !== null && this.currentElements.length > 0) {
       this.startStepAnimation(this.currentElements);
+    } else {
+      this.setEnd();
     }
   }
 
@@ -70,6 +73,10 @@ class UtilityAnimation {
     elements.forEach((element) => {
       element.classList.add(State.IS_STARTING);
     });
+  }
+
+  setEnd() {
+    this.root.setAttribute(UtilityAnimation.endDataset, true);
   }
 
   startAnimation() {
