@@ -31,6 +31,7 @@ import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
 import LetterSwitcher from './vue/letter-switcher.js';
 import LinkList from './vue/link-list.js';
+import ListContainer from './vue/list-container.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
@@ -49,8 +50,8 @@ import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
+import SlotItems from './vue/slot-items.js';
 import TestimonialList from './vue/testimonial-list.js';
-import TextImageList from './vue/text-image-list.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
@@ -140,6 +141,7 @@ const addApp = () => {
     JobList,
     LetterSwitcher,
     LinkList,
+    ListContainer,
     Modal,
     Plus,
     ScrollArrow,
@@ -174,8 +176,8 @@ const addApp = () => {
     Smile,
     SBlock,
     TBlock,
+    SlotItems,
     TestimonialList,
-    TextImageList,
     Timeline,
     LBlock,
     Square,

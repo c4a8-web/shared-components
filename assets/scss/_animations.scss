@@ -1,6 +1,10 @@
 $animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
 $transition-tween-t1: 0.2s ease-in-out;
 
+@mixin animation-start-state {
+  opacity: 0;
+}
+
 @mixin background-grow($color, $spacing: 0, $half: false) {
   position: relative;
   z-index: 1;
@@ -27,21 +31,22 @@ $transition-tween-t1: 0.2s ease-in-out;
   }
 }
 
-@mixin fade-in-X($from: 'bottom') {
-  opacity: 0;
+@mixin fade-in-X($from: 'bottom', $duration: 0.5s) {
   @if ($from == 'bottom') {
-    transform: translate3d(0, 100%, 0);
-    animation: fade-in-from-bottom 3s forwards;
+    transform: translate3d(0, var(--utility-animation-distance), 0);
+    animation: fade-in-from-bottom $duration forwards;
   } @else {
-    transform: translate3d(0, -100%, 0);
-    animation: fade-in-from-top 3s forwards;
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
+    animation: fade-in-from-top $duration forwards;
   }
+
+  animation-timing-function: $animation-transition;
 }
 
 @keyframes fade-in-from-bottom {
   0% {
     opacity: 0;
-    transform: translate3d(0, 100%, 0);
+    transform: translate3d(0, var(--utility-animation-distance), 0);
   }
   100% {
     opacity: 1;
@@ -52,7 +57,7 @@ $transition-tween-t1: 0.2s ease-in-out;
 @keyframes fade-in-from-top {
   0% {
     opacity: 0;
-    transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
   }
   100% {
     opacity: 1;
@@ -222,6 +227,11 @@ $transition-tween-t1: 0.2s ease-in-out;
     filter: blur(var(--blurry-blur));
     transform: translate(var(--blurry-x1), var(--blurry-y1));
   }
+}
+
+.fade-in-bottom,
+.fade-in-top {
+  @include animation-start-state;
 }
 
 .fade-in-bottom {

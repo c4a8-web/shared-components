@@ -161,6 +161,22 @@ export const createComponent = function async(include, component) {
   return createTemplate(include, component);
 };
 
+export const getComponentInnerHtml = function async(include, component) {
+  const template = createComponent(include, component);
+
+  return template.innerHTML;
+};
+
+export const getComponentInnerHtmlList = function async(includes, component) {
+  let html = '';
+
+  includes.forEach((include) => {
+    html += getComponentInnerHtml(include, component);
+  });
+
+  return html;
+};
+
 const getTitle = ({ page, title, docs, context, helper }) => {
   let type;
 

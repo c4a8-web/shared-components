@@ -24,7 +24,7 @@ export default {
         'v-img',
         'vue-component',
         this.class ? this.class : '',
-        this.cloudinary && !this.isGif() ? `no-small img-responsive` : '',
+        this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
     },
     source() {
@@ -34,11 +34,13 @@ export default {
       return this.lazy ? 'lazy' : null;
     },
     crossOriginValue() {
-      return this.cloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
+      return Tools.isTrue(this.cloudinary) ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
   },
   created() {
     if (this.canGenerateSrcSet()) return;
+
+    if (Tools.isTrue(this.cloudinary)) return;
 
     this.noCloudinary = this.img;
     this.sizes = DefaultPresets.sizes;
@@ -64,10 +66,15 @@ export default {
         console.error(e);
       }
     },
+    getCloudinaryBasePathLink() {
+      return `${basePath}${this.img}`;
+    },
     getCloudinaryLink() {
       const { preset, transformationsString } = this.getSetup();
 
-      return `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
+      return this.isGif
+        ? this.getCloudinaryBasePathLink()
+        : `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
     },
     loadImage() {
       if (!this.canGenerateSrcSet()) return;
