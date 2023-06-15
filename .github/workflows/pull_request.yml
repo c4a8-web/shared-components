@@ -17,5 +17,4 @@ jobs:
         run: npm ci
 
       - name: Run generateTests.js
-        uses: cypress-io/github-action@v5
         run: node scripts/generateTests.js
