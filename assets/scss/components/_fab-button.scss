@@ -15,6 +15,7 @@ $fab-button-scroll-top: 200px;
         &.is-off-screen {
           transform: translateX(0);
           opacity: 0;
+          transition-duration: 0s;
         }
       }
     }
