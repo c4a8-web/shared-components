@@ -3,6 +3,9 @@
   color: var(--color-white);
 
   &.quotes--no-image {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
     padding-bottom: spacing(24);
 
     .quotes__entry-quote,
