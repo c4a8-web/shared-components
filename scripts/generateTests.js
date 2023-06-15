@@ -24,18 +24,6 @@ function checkLocalhost(callback) {
   request.end();
 }
 
-function runCommand(command) {
-  return new Promise((resolve, reject) => {
-    exec(command, (error, stdout, stderr) => {
-      if (error) {
-        reject(error);
-      } else {
-        resolve();
-      }
-    });
-  });
-}
-
 async function main() {
   try {
     // Run npm run storybook
@@ -59,7 +47,7 @@ async function main() {
 
     // Run npm run cypress:test
     console.log('Running npm run cypress:test...');
-    await runCommand('npm run cypress:test');
+    exec('npm run cypress:test');
 
     console.log('Script execution completed.');
   } catch (error) {
