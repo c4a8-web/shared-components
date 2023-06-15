@@ -1,7 +1,11 @@
 import State from './state.js';
 
+// TODO refactor this to vue logic after we completly moved all components to vue
+
 class UtilityAnimation {
   static rootSelector = '.utility-animation';
+  static inViewportDataset = 'data-utility-animation-in-viewport';
+  static endDataset = 'data-utility-animation-end';
   static instances = [];
 
   constructor(root) {
@@ -60,6 +64,8 @@ class UtilityAnimation {
 
     if (this.currentElements !== null && this.currentElements.length > 0) {
       this.startStepAnimation(this.currentElements);
+    } else {
+      this.setEnd();
     }
   }
 
@@ -69,23 +75,64 @@ class UtilityAnimation {
     });
   }
 
+  setEnd() {
+    this.root.setAttribute(UtilityAnimation.endDataset, true);
+  }
+
+  startAnimation() {
+    this.startStepAnimation(this.currentElements);
+  }
+
   initialize() {
     this.root.addEventListener('animationend', (event) => {
       this.handleAnimationEnd(event);
     });
 
-    this.startStepAnimation(this.currentElements);
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.type === 'attributes' && mutation.attributeName.startsWith(UtilityAnimation.inViewportDataset)) {
+          if (mutation.target?.getAttribute(UtilityAnimation.inViewportDataset) === 'true') {
+            this.startAnimation();
+          }
+        }
+      });
+    });
+
+    observer.observe(this.root, { attributes: true });
+  }
+
+  static addObserver() {
+    const intersectionOffset = 200;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.setAttribute(this.inViewportDataset, true);
+          } else if (entry.target.classList.contains('utility-animation--enter-exit')) {
+            entry.target.removeAttribute(this.inViewportDataset);
+          }
+        });
+      },
+      {
+        rootMargin: `0px 0px -${intersectionOffset}px 0px`,
+        threshold: 0,
+      }
+    );
+
+    this.instances.forEach((instance) => {
+      observer.observe(instance.root);
+    });
   }
 
   static init() {
     this.instances = [];
 
-    // Disable for merging purposes
-    return;
-
     [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
       this.instances.push(new this(element));
     });
+
+    this.addObserver();
   }
 }
 

@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     textValue() {
-      return this.text.length > 0 ? this.text : Lang.adBlockInfo;
+      return this.text.length > 0 ? this.text : Lang?.adBlockInfo;
     },
   },
   data() {

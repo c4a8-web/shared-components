@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, textImageListTemplate);
 
-export const TextImageList = Template.bind({});
+export const Default = Template.bind({});
 
-TextImageList.args = {
+Default.args = {
   headline: 'Lorem Ipsum',
   textImages: [
     {
@@ -38,9 +38,9 @@ TextImageList.args = {
   ],
 };
 
-export const Benefits = Template.bind({});
+export const StickyHeadline = Template.bind({});
 
-Benefits.args = {
+StickyHeadline.args = {
   level: 'h3',
   headline: 'Wo das Glück im Namen steckt.',
   headlineColor: 'var(--color-white)',
