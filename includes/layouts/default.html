@@ -1,35 +1,51 @@
-{% comment %}
+{%- assign lang = page.lang | default: site.lang | default: "de" -%}
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ lang }}">
 
   {%- include head.html -%}
 
   <body id="page-top" class="shared-components gkgab">
+    {% include body.html %}
 
-    {%
-      include navigation.html
-      light=page.light
-    %}
+    <div id="app">
+      {%
+        include header.html
+        light=page.light
+        lang=lang
+        bgColor=page.hero.bgColor
+        blendMode=page.blendMode
+      %}
 
-    <main class="page-content" aria-label="Content">
-      {% if page.hero %}
+      {% if page.backToTop or layout.backToTop %}
         {%
-          include hero-text-image.html
+          include back-to-top.html
         %}
       {% endif %}
-     947129371927319273912 {{ content }}
-    </main>
 
-    {% if page.contact %}
-      {% include contact.html %}
-    {% endif %}
-    {% unless page.nofooter %}
-      {% include footer.html %}
-    {% endunless %}
-    {% include footer-copyright.html %}
+      <main class="page-content" aria-label="Content">
+        {% if page.hero %}
+          {%
+            include hero-text-image.html
+          %}
+        {% endif %}
+        {{ content }}
+      </main>
+
+      {% if page.contact %}
+        {% include contact.html %}
+      {% endif %}
+      {% unless page.nofooter %}
+        {%
+          include footer.html
+          lang=lang
+        %}
+      {% endunless %}
+      {% include footer-copyright.html %}
+      {% include globals.html %}
+
+    </div>
     {% include scripts.html %}
 
     </body>
   </html>
   <!-- Page Info: DEFAULT Layout -->
-  {% endcomment %}
