@@ -7,7 +7,7 @@
 {%- assign textImageListBgColor = include.bgColor | default: false -%}
 {%- assign textImageListSpacing = include.spacing -%}
 
-<text-image-list
+<list-container
   classes="{{ textImageListClasses }}"
   headline="{{ textImageListHeadline }}"
   level="{{ textImageListHeadlineLevel }}"
@@ -37,7 +37,9 @@
       offset=true
       left=textImageEven
       spacing=textImageSpacing
+      animation=true
+      index=forloop.index
     %}
 
   {% endfor %}
-</text-image-list>
+</list-container>
