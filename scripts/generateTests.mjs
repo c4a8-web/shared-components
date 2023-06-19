@@ -1,4 +1,5 @@
 import { execa } from 'execa';
+import { exec } from 'child_process';
 import { platform } from 'os';
 import { get } from 'http';
 
@@ -47,7 +48,14 @@ async function main() {
   try {
     console.log('Running npm run storybook...');
 
-    execa('npm run hello', { stdio: 'inherit' });
+    exec('npm run hello', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`exec error: ${error}`);
+        return;
+      }
+      console.log(`stdout: ${stdout}`);
+      console.error(`stderr: ${stderr}`);
+    });
 
     return;
 
@@ -89,7 +97,7 @@ async function main() {
     closeStorybook();
   }
 
-  setTimeout(closeStorybook, 100000);
+  // setTimeout(closeStorybook, 100000);
 }
 
 main();
