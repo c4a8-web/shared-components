@@ -46,6 +46,11 @@ async function closeStorybook() {
 async function main() {
   try {
     console.log('Running npm run storybook...');
+
+    execa('npm run hello', { stdio: 'inherit' });
+
+    return;
+
     const storybookProcess = execa('npm run storybook');
     storybookProcess.stdout.pipe(process.stdout);
     storybookProcess.stderr.pipe(process.stderr);
