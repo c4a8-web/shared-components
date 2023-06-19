@@ -5,6 +5,13 @@ describe('Template Test Success!', () => {
   });
 });
 
+// Fail Template Test
+describe('Template Test Fail!', () => {
+  it('Template Fail Test!', () => {
+    expect(true).to.equal(false);
+  });
+});
+
 describe('Template Example Test!', () => {
   it('Template Example Test!', () => {
     let image;
