@@ -1,6 +1,6 @@
-const execa = require('execa');
-const os = require('os');
-const http = require('http');
+import execa, { command as _command } from 'execa';
+import { platform } from 'os';
+import { get } from 'http';
 
 function checkLocalhost(callback) {
   const options = {
@@ -9,7 +9,7 @@ function checkLocalhost(callback) {
     timeout: 2000,
   };
 
-  const request = http.get(options, (res) => {
+  const request = get(options, (res) => {
     if (res.statusCode === 200) {
       callback(true);
     } else {
@@ -25,17 +25,16 @@ function checkLocalhost(callback) {
 }
 
 async function closeStorybook() {
-  const operatingSystem = os.platform();
+  const operatingSystem = platform();
   console.log(operatingSystem);
   const isWindows = operatingSystem.includes('win');
   const command = isWindows ? 'taskkill /IM node.exe /F' : 'pkill -f start-storybook';
 
-  await execa
-    .command(command, {
-      shell: true,
-      stdio: 'inherit',
-      windowsVerbatimArguments: isWindows,
-    })
+  await _command(command, {
+    shell: true,
+    stdio: 'inherit',
+    windowsVerbatimArguments: isWindows,
+  })
     .then(() => {
       console.log('Storybook closed successfully!');
     })
