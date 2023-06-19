@@ -26,7 +26,6 @@ function checkLocalhost(callback) {
 
 async function closeStorybook() {
   const operatingSystem = platform();
-  console.log(operatingSystem);
   const isWindows = operatingSystem.includes('win');
   const command = isWindows ? 'taskkill /IM node.exe /F' : 'pkill -f start-storybook';
 
@@ -47,7 +46,7 @@ async function closeStorybook() {
 async function main() {
   try {
     console.log('Running npm run storybook...');
-    const storybookProcess = execa.command('npm run storybook');
+    const storybookProcess = execa('npm run storybook');
 
     storybookProcess.stdout.pipe(process.stdout);
     storybookProcess.stderr.pipe(process.stderr);
@@ -67,7 +66,7 @@ async function main() {
     console.log('localhost:6006 is accessible.');
 
     console.log('Running npm run cypress:test...');
-    const cypressProcess = execa.command('npm run cypress:test', { stdio: 'inherit' });
+    const cypressProcess = execa('npm run cypress:test', { stdio: 'inherit' });
 
     cypressProcess
       .then(() => {
