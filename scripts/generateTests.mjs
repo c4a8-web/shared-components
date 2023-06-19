@@ -46,42 +46,37 @@ async function closeStorybook() {
 async function main() {
   try {
     console.log('Running npm run storybook...');
-    const storybookProcess = await execa('npm run storybook', { stdio: 'inherit' })
-      .then(async () => {
-        storybookProcess.stdout.pipe(process.stdout);
-        storybookProcess.stderr.pipe(process.stderr);
+    const storybookProcess = execa('npm run storybook');
+    storybookProcess.stdout.pipe(process.stdout);
+    storybookProcess.stderr.pipe(process.stderr);
 
-        console.log('Waiting for localhost:6006...');
-        await new Promise((resolve) => {
-          const interval = setInterval(() => {
-            checkLocalhost((isAccessible) => {
-              if (isAccessible) {
-                clearInterval(interval);
-                resolve();
-              }
-            });
-          }, 1000);
+    console.log('Waiting for localhost:6006...');
+    await new Promise((resolve) => {
+      const interval = setInterval(() => {
+        checkLocalhost((isAccessible) => {
+          if (isAccessible) {
+            clearInterval(interval);
+            resolve();
+          }
         });
+      }, 1000);
+    });
 
-        console.log('localhost:6006 is accessible.');
+    console.log('localhost:6006 is accessible.');
 
-        console.log('Running npm run cypress:test...');
-        const cypressProcess = execa('npm run cypress:test', { stdio: 'inherit' });
+    console.log('Running npm run cypress:test...');
+    const cypressProcess = execa('npm run cypress:test', { stdio: 'inherit' });
 
-        cypressProcess
-          .then(() => {
-            console.log('Tests completed. Terminating script...');
-            storybookProcess.kill();
-            closeStorybook();
-          })
-          .catch((err) => {
-            console.error('Tests failed', err);
-            storybookProcess.kill();
-            closeStorybook();
-          });
+    cypressProcess
+      .then(() => {
+        console.log('Tests completed. Terminating script...');
+        storybookProcess.kill();
+        closeStorybook();
       })
-      .catch((error) => {
-        console.error(`Error launching Storybook: ${error}`);
+      .catch((err) => {
+        console.error('Tests failed', err);
+        storybookProcess.kill();
+        closeStorybook();
       });
   } catch (error) {
     console.error('An error occurred:', error);
