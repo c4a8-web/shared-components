@@ -16,5 +16,18 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run generateTests.mjs
-        run: node scripts/generateTests.mjs
+      - name: Start Storyboo
+        run: npm run storybook &
+
+      - name: Wait for localhost:6006
+        run: |
+          npx wait-on tcp:localhost:6006 -s -t 30000
+          echo "localhost:6006 is running!"
+
+      - name: Run Cypress test
+        run: npm run cypress:test
+
+      - name: Stop Storybook
+        run: |
+          pkill -f "storybook"
+          echo "Storybook stopped!"
