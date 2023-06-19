@@ -1,6 +1,6 @@
-import { command as _command } from 'execa';
-import { platform } from 'os';
-import { get } from 'http';
+const execa = require('execa');
+const os = require('os');
+const http = require('http');
 
 function checkLocalhost(callback) {
   const options = {
@@ -9,7 +9,7 @@ function checkLocalhost(callback) {
     timeout: 2000,
   };
 
-  const request = get(options, (res) => {
+  const request = http.get(options, (res) => {
     if (res.statusCode === 200) {
       callback(true);
     } else {
@@ -25,15 +25,16 @@ function checkLocalhost(callback) {
 }
 
 async function closeStorybook() {
-  const operatingSystem = platform();
+  const operatingSystem = os.platform();
   const isWindows = operatingSystem.includes('win');
   const command = isWindows ? 'taskkill /IM node.exe /F' : 'pkill -f start-storybook';
 
-  await _command(command, {
-    shell: true,
-    stdio: 'inherit',
-    windowsVerbatimArguments: isWindows,
-  })
+  await execa
+    .command(command, {
+      shell: true,
+      stdio: 'inherit',
+      windowsVerbatimArguments: isWindows,
+    })
     .then(() => {
       console.log('Storybook closed successfully!');
     })
@@ -46,7 +47,7 @@ async function closeStorybook() {
 async function main() {
   try {
     console.log('Running npm run storybook...');
-    const storybookProcess = _command('npm run storybook');
+    const storybookProcess = execa('npm run storybook');
 
     storybookProcess.stdout.pipe(process.stdout);
     storybookProcess.stderr.pipe(process.stderr);
@@ -66,7 +67,7 @@ async function main() {
     console.log('localhost:6006 is accessible.');
 
     console.log('Running npm run cypress:test...');
-    const cypressProcess = _command('npm run cypress:test', { stdio: 'inherit' });
+    const cypressProcess = execa('npm run cypress:test', { stdio: 'inherit' });
 
     cypressProcess
       .then(() => {
