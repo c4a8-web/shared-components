@@ -1,18 +1,19 @@
-{% comment %}
+{%- assign lang = page.lang | default: site.lang | default: "de" -%}
 <!DOCTYPE html>
-<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+<html lang="{{ lang }}">
 
   {%- include head.html -%}
 
-  <body id="page-top" class="shared-components gkgab">
+  <body id="page-top" class="shared-components {{ site.shared_theme }}">
+    <div id="app">
+      <main class="page-content" aria-label="Content">
+        {{ content }}
+      </main>
 
-    <main class="page-content" aria-label="Content">
-      {{ content }}
-    </main>
+      {% include globals.html %}
+    </div>
 
     {% include scripts.html %}
-
-    </body>
-  </html>
-  <!-- Page Info: DEFAULT Layout -->
-  {% endcomment %}
+  </body>
+</html>
+<!-- Page Info: PLAIN Layout -->
