@@ -4,7 +4,7 @@
 
   {%- include head.html -%}
 
-  <body id="page-top" class="shared-components gkgab">
+  <body id="page-top" class="shared-components {{ site.shared_theme }}">
     {% include body.html %}
 
     <div id="app">
@@ -33,6 +33,18 @@
 
       {% if page.contact %}
         {% include contact.html %}
+      {% endif %}
+      {% if page.modal %}
+        {%
+          include modal.html
+          form=site.data.jobApplication.form
+          success=site.data.jobApplication.success
+          modalId=site.data.jobApplication.modalId
+          application=true
+          clientName=site.data.jobApplication.clientName
+          jobId=site.data.jobApplication.jobId
+          apiUrl=site.data.jobApplication.apiUrl
+        %}
       {% endif %}
       {% unless page.nofooter %}
         {%
