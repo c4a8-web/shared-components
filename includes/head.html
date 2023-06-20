@@ -15,7 +15,6 @@
     <meta name="robots" content="noindex, nofollow">
   {%- endif %}
   <link rel="dns-prefetch" href="//res.cloudinary.com">
-  <link rel="dns-prefetch" href="//ssl.google-analytics.com">
 
   <!-- Plain Description -->
   <title>{{ site.title | escape }}{% if page.title %} | {{ page.title | strip_html | escape }}{% endif %}</title>
@@ -93,6 +92,8 @@
 
   <!-- CSS -->
   <link type="text/css" rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
+
+  {% include google-tag-manager.html %}
 
 </head>
 <!-- End Shared Head Section -->
