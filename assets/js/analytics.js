@@ -15,18 +15,17 @@ class AdBlockerBait {
   constructor() {
     this.bait();
   }
+
   bait() {
     fetch('https://www.google-analytics.com/collect')
       .then((response) => {
         if (response.status === 200) {
-          console.debug('If this Class can be loaded an AdBlocker is probably not active');
+          console.info('AdBlocker is probably not active');
         } else {
-          console.debug('If this Class can be loaded an AdBlocker is probably active');
           handleAdBlockerError(response);
         }
       })
       .catch((error) => {
-        console.debug('If this Class can be loaded an AdBlocker is probably active');
         handleAdBlockerError(error);
       });
   }
