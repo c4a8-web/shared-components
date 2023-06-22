@@ -1,19 +1,15 @@
-const mockData = {
-  candidate_first_name: 'Max',
-  candidate_last_name: 'Mustermann',
-  candidate_email: 'maxmustermann@googlemail.com',
-  candidate_phone: '+4912341234',
-  resume: 'cypress/fixtures/mock.pdf',
-  cancellation: '',
-  salary: '',
-  message: '',
-  candidate__gotcha: '',
-};
+import { mockData } from '../fixtures/mockRecruit';
 
 describe('Job Test', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:6006/iframe.html?args=&id=pages-jobs--jobs&viewMode=story');
-    cy.get('[data-text="Jetzt bewerben"' || '[data-text="Apply now"]').click();
+    const title = Cypress.currentTest.title;
+    if (title.includes('(Exception)')) {
+      cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
+      cy.get('[data-text=Initiativbewerbung]').click();
+    } else {
+      cy.visit('http://localhost:6006/iframe.html?args=&id=pages-jobs--jobs&viewMode=story');
+      cy.get('[data-text="Jetzt bewerben"' || '[data-text="Apply now"]').click();
+    }
 
     cy.intercept('POST', '/mock/jobApply.json', (req) => {
       req.reply({
@@ -22,15 +18,24 @@ describe('Job Test', () => {
       });
     }).as('submitRequest');
 
-    cy.get('#firstName').type(mockData['candidate_first_name']);
     cy.wait(500);
-    cy.get('#lastName').type(mockData['candidate_last_name']);
+    cy.get('.modal #firstName').type(mockData['candidate_first_name']);
     cy.wait(500);
-    cy.get('#email').type(mockData['candidate_email']);
+    cy.get('.modal #lastName').type(mockData['candidate_last_name']);
     cy.wait(500);
-    cy.get('#phone').type(mockData['candidate_phone']);
+    cy.get('.modal #email').type(mockData['candidate_email']);
     cy.wait(500);
-    cy.get('.form__checkbox-label').click();
+    cy.get('.modal #phone').type(mockData['candidate_phone']);
+    cy.wait(500);
+    cy.get('.modal .form__checkbox-label').click();
+
+    if (title.includes('Default')) {
+      cy.get('.modal .form-attachments__files').invoke('attr', 'style', 'display: block');
+      cy.get('.modal input[type=file]').selectFile(mockData['resume']);
+      cy.get('.modal .form-attachments__files').invoke('attr', 'style', 'display: none');
+    } else {
+      cy.get('.modal .form-attachments').selectFile(mockData['resume'], { action: 'drag-drop' });
+    }
   });
   afterEach(() => {
     cy.wait(500);
@@ -50,12 +55,8 @@ describe('Job Test', () => {
       expect(interception.response.statusCode).to.equal(200);
     });
   });
-  it('Default Submit', () => {
-    cy.get('.form-attachments__files').invoke('attr', 'style', 'display: block');
-    cy.get('input[type=file]').selectFile(mockData['resume']);
-    cy.get('.form-attachments__files').invoke('attr', 'style', 'display: none');
-  });
-  it('Drag and Drop Submit', () => {
-    cy.get('.form-attachments').selectFile(mockData['resume'], { action: 'drag-drop' });
-  });
+  it('Default Submit', () => {});
+  it('Drag and Drop Submit', () => {});
+  it('Carrer Test (Exception) Default', () => {});
+  it('Career Test (Exception) Drag and Drop ', () => {});
 });
