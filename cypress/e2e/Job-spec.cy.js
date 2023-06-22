@@ -3,7 +3,7 @@ import { mockData } from '../fixtures/mockRecruit';
 describe('Job Test', () => {
   beforeEach(() => {
     const title = Cypress.currentTest.title;
-    if (title.includes('(Exception)')) {
+    if (title.includes('Career')) {
       cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
       cy.get('[data-text=Initiativbewerbung]').click();
     } else {
@@ -57,6 +57,6 @@ describe('Job Test', () => {
   });
   it('Default Submit', () => {});
   it('Drag and Drop Submit', () => {});
-  it('Carrer Test (Exception) Default', () => {});
-  it('Career Test (Exception) Drag and Drop ', () => {});
+  it('Carrer Default', () => {});
+  it('Career Drag and Drop ', () => {});
 });
