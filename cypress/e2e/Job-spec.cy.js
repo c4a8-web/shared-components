@@ -44,11 +44,7 @@ describe('Job Test', () => {
       }, {});
 
       for (let key in mockData) {
-        if (!key.includes('resume')) {
-          expect(body[key]).to.equal(mockData[key]);
-        } else {
-          cy.wrap(body[key]).should('exist');
-        }
+        !key.includes('resume') ? expect(body[key]).to.equal(mockData[key]) : cy.wrap(body[key]).should('exist');
       }
 
       expect(interception.response.statusCode).to.equal(200);
