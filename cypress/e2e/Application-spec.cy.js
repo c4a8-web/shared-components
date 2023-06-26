@@ -4,12 +4,15 @@ function fillTheForm(test) {
   const title = Cypress.currentTest.title;
 
   if (test.includes('faq')) {
+    cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
     cy.get('.faq details').first().click();
     cy.get('.faq__text .is-component').click();
   } else if (test.includes('text-image')) {
+    cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
     cy.get('[data-text=Initiativbewerbung]').click();
   } else {
-    return;
+    cy.visit('http://localhost:6006/iframe.html?args=&id=pages-jobs--jobs&viewMode=story');
+    cy.get('[data-text="Jetzt bewerben"]' || '[data-text="Apply now"]').click();
   }
   cy.intercept('POST', '/mock/jobApply.json', (req) => {
     req.reply({
@@ -60,7 +63,6 @@ function submitForm() {
 
 describe('Job Test', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
     cy.viewport(2000, 2000);
   });
   it('Initiative Text Image Application', () => {
@@ -75,6 +77,10 @@ describe('Job Test', () => {
     fillTheForm('faq');
     submitForm();
     fillTheForm('text-image');
+    submitForm();
+  });
+  it('Job Detail', () => {
+    fillTheForm('job-detail');
     submitForm();
   });
 });
