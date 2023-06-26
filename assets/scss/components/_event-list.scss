@@ -26,7 +26,7 @@
     }
 
     &.is-starting {
-      animation-delay: calc(var(--utility-animation-index) * 200ms);
+      animation-delay: calc(var(--utility-animation-index) * 100ms);
       animation-duration: 0.8s;
     }
   }
