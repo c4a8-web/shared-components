@@ -23,9 +23,11 @@ class Modal {
     this.successClose = this.root.querySelector(this.successCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
-    this.modalId = this.root.dataset.modalId;
+    this.modalId = this.root.dataset.modalId || 'test2';
 
     this.root.classList.add(State.READY);
+    console.log(this.modalId);
+    console.log(this.root);
 
     if (this.application) {
       this.clientName = this.root.dataset.clientName;
@@ -43,6 +45,12 @@ class Modal {
   }
 
   bindEvents() {
+    // Click gets Registered
+    this.checkBox = this.root.querySelector('.form__checkbox-control');
+    this.checkBox?.addEventListener('click', () => {
+      console.log('Checkbox was clicked!!!');
+    });
+
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
 
@@ -109,8 +117,8 @@ class Modal {
       .then(() => {
         this.handleApplicationSuccess(fields);
       })
-      .catch(() => {
-        this.handleError();
+      .catch((e) => {
+        this.handleError(e);
       });
   }
 
@@ -128,8 +136,8 @@ class Modal {
     }
   }
 
-  handleError() {
-    console.error('error modal');
+  handleError(e) {
+    console.error(`Error ${e}`);
     // TODO add the generic error message here
   }
 

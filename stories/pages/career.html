@@ -1,6 +1,9 @@
 {%
+  include faq.html
+%}
+{%
   include fab-button.html
-  modal=fabModal.modal
+  modal=modal
 %}
 
 {%
@@ -9,4 +12,28 @@
 
 {%
   include text-image.html
+%}
+
+
+{%
+  include modal.html
+  form=modal.form
+  success=modal.success
+  modalId="bewerbung1"
+  application=true
+  clientName=modal.clientName
+  apiUrl=modal.apiUrl
+  jobId=modal.jobId
+%}
+
+
+{%
+  include modal.html
+  form=modal.form
+  success=modal.success
+  modalId="bewerbung2"
+  application=true
+  clientName=modal.clientName
+  apiUrl=modal.apiUrl
+  jobId=modal.jobId
 %}
