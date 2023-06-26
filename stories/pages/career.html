@@ -3,7 +3,7 @@
 %}
 {%
   include fab-button.html
-  modal=modal
+  modal=fabModal.modal
 %}
 
 {%
@@ -15,25 +15,16 @@
 %}
 
 
-{%
-  include modal.html
-  form=modal.form
-  success=modal.success
-  modalId="bewerbung1"
-  application=true
-  clientName=modal.clientName
-  apiUrl=modal.apiUrl
-  jobId=modal.jobId
-%}
+
 
 
 {%
   include modal.html
-  form=modal.form
-  success=modal.success
+  form=faqModal.form
+  success=faqModal.success
   modalId="bewerbung2"
   application=true
-  clientName=modal.clientName
-  apiUrl=modal.apiUrl
-  jobId=modal.jobId
+  clientName=faqModal.clientName
+  apiUrl=faqModal.apiUrl
+  jobId=faqModal.jobId
 %}

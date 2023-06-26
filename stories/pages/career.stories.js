@@ -29,7 +29,7 @@ const baseArgs = {
   fabModal: {
     ...Contact?.args,
   },
-  modal: {
+  faqModal: {
     id: 'bewerbung',
     apiUrl: 'mock/job.json',
     clientName: 'glueckkanja',
@@ -114,7 +114,7 @@ const baseArgs = {
           label:
             "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
           type: 'checkbox',
-          id: 'privacy2',
+          id: 'privacy3',
           required: true,
         },
         {

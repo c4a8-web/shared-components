@@ -26,8 +26,6 @@ class Modal {
     this.modalId = this.root.dataset.modalId || 'test2';
 
     this.root.classList.add(State.READY);
-    console.log(this.modalId);
-    console.log(this.root);
 
     if (this.application) {
       this.clientName = this.root.dataset.clientName;
@@ -44,6 +42,10 @@ class Modal {
     this.bindEvents();
   }
 
+  isNotVueApp(parent) {
+    return parent.getAttribute('data-v-app') === null;
+  }
+
   bindEvents() {
     // Click gets Registered
     this.checkBox = this.root.querySelector('.form__checkbox-control');
@@ -58,7 +60,7 @@ class Modal {
       const parent = this.root.parentNode;
       const formInstance = Form.getInstance(this.form);
 
-      if (parent && parent.getAttribute('id') !== 'app') {
+      if (parent && this.isNotVueApp(parent)) {
         const button = parent.querySelector(this.buttonSelector);
 
         button?.addEventListener('click', this.handleOpen.bind(this));
