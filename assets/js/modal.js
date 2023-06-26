@@ -47,12 +47,6 @@ class Modal {
   }
 
   bindEvents() {
-    // Click gets Registered
-    this.checkBox = this.root.querySelector('.form__checkbox-control');
-    this.checkBox?.addEventListener('click', () => {
-      console.log('Checkbox was clicked!!!');
-    });
-
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
 

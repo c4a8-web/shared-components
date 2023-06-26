@@ -4,8 +4,8 @@ export const mockData = {
   candidate_email: 'maxmustermann@googlemail.com',
   candidate_phone: '+4912341234',
   resume: 'cypress/fixtures/mock.pdf',
-  cancellation: '',
-  salary: '',
-  message: '',
+  candidate_cancellation: '',
+  candidate_salary: '',
+  candidate_message: '',
   candidate__gotcha: '',
 };

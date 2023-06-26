@@ -82,6 +82,9 @@ export default {
     getFieldClassList(field) {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
+    generateUuid() {
+      return Tools.uuid();
+    },
   },
   props: {
     form: Object,
@@ -108,6 +111,7 @@ export default {
       default: null,
     },
     options: Object,
+    uuid: String,
   },
   template: `
     <div :class="classList">
@@ -125,7 +129,7 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :uuid="generateUuid()" />
                 </div>
               </div>
             </template>

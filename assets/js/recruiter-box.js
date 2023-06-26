@@ -109,9 +109,22 @@ class RecruiterBox {
         // TODO handle select
       }
 
+      const idsWithoutUuid = [
+        'firstName',
+        'lastName',
+        'email',
+        'phone',
+        'cancellation',
+        'salary',
+        'message',
+        '_gotcha',
+      ];
+
+      const updatedName = idsWithoutUuid.find((string) => input.name.includes(string));
+
       const key = customFields.filter((value) => value === input.name).length
         ? input.name
-        : `candidate_${Tools.camalCaseToSnakeCase(input.name)}`;
+        : `candidate_${Tools.camalCaseToSnakeCase(updatedName)}`;
 
       data.push({
         key,

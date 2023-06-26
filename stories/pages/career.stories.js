@@ -114,13 +114,6 @@ const baseArgs = {
           label:
             "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
           type: 'checkbox',
-          id: 'privacy3',
-          required: true,
-        },
-        {
-          label:
-            "<small>Lorem ipsum dolor sit amet, consectetur adipiscing elit <a href='javascript:void()'>Lorem Ipsum</a>. Sit amet consectetur adipiscing elit.</small>",
-          type: 'checkbox',
           id: 'privacy',
           required: true,
         },

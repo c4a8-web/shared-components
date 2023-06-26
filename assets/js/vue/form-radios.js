@@ -1,3 +1,5 @@
+import Tools from '../tools';
+
 export default {
   tagName: 'form-radios',
   computed: {
@@ -11,7 +13,7 @@ export default {
       return this.field.required ? this.field.requiredMsg : null;
     },
     groupId() {
-      return this.field?.radios[0].id;
+      return Tools.uuid() + this.field?.radios[0].id;
     },
   },
   props: {

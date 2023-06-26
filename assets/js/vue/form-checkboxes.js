@@ -1,3 +1,5 @@
+import Tools from '../tools';
+
 export default {
   tagName: 'form-checkboxes',
   computed: {
@@ -11,7 +13,7 @@ export default {
       return this.field.required ? this.field.requiredMsg : null;
     },
     groupId() {
-      return this.field?.checkboxes[0].id;
+      return Tools.uuid() + this.field?.checkboxes[0].id;
     },
   },
   props: {
