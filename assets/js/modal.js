@@ -23,7 +23,7 @@ class Modal {
     this.successClose = this.root.querySelector(this.successCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
-    this.modalId = this.root.dataset.modalId || 'test2';
+    this.modalId = this.root.dataset.modalId;
 
     this.root.classList.add(State.READY);
 
