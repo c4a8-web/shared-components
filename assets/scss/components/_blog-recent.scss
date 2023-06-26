@@ -6,6 +6,12 @@ $blog-recent-arrow-offset-xl: 12;
 .blog-recent {
   position: relative;
   overflow: hidden;
+
+  [data-utility-animation-step] {
+    --utility-animation-distance: 35%;
+
+    animation-duration: 0.8s;
+  }
 }
 
 .blog-recent__bg {
