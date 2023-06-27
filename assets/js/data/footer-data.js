@@ -32,7 +32,7 @@ const FooterData = {
       alt: 'Advanced Specializations',
     },
     {
-      img: '/logos/msftLogos-PartnerOfTheYear-white-02.svg',
+      img: '/logos/msftLogos-PartnerOfTheYear-white.svg',
       alt: 'Partner of the Year',
     },
     {
