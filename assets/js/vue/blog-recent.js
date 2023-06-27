@@ -7,7 +7,7 @@ export default {
   computed: {
     classList() {
       return [
-        'blog-recent utility-animation',
+        'blog-recent utility-animation utility-animation--large-offset',
         `${this.hasBackground}`,
         `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
