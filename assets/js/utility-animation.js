@@ -101,27 +101,39 @@ class UtilityAnimation {
     observer.observe(this.root, { attributes: true });
   }
 
+  static hasLargeOffset(instance) {
+    return instance.root.classList.contains('utility-animation--large-offset');
+  }
+
   static addObserver() {
     const intersectionOffset = 200;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.setAttribute(this.inViewportDataset, true);
-          } else if (entry.target.classList.contains('utility-animation--enter-exit')) {
-            entry.target.removeAttribute(this.inViewportDataset);
-          }
-        });
-      },
-      {
-        rootMargin: `0px 0px -${intersectionOffset}px 0px`,
-        threshold: 0,
-      }
-    );
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute(this.inViewportDataset, true);
+        } else if (entry.target.classList.contains('utility-animation--enter-exit')) {
+          entry.target.removeAttribute(this.inViewportDataset);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      rootMargin: `0px 0px -${intersectionOffset}px 0px`,
+      threshold: 0,
+    });
+
+    const largeOffsetObserver = new IntersectionObserver(callback, {
+      rootMargin: `0px 0px 0px 0px`,
+      threshold: 0.5,
+    });
 
     this.instances.forEach((instance) => {
-      observer.observe(instance.root);
+      if (UtilityAnimation.hasLargeOffset(instance)) {
+        largeOffsetObserver.observe(instance.root);
+      } else {
+        observer.observe(instance.root);
+      }
     });
   }
 
