@@ -20,10 +20,10 @@
 {%- endif -%}
 
 <!-- Shared Icon Blocks Section -->
-<div class="icon-blocks {{ iconBlockSpacing }} container-fluid {% if iconBlocksSticky %}is-sticky-scroller{% endif %}" style="background-color: {{ iconBlocks.bgColor }};">
+<div class="icon-blocks utility-animation {{ iconBlockSpacing }} container-fluid {% if iconBlocksSticky %}is-sticky-scroller{% endif %}" style="background-color: {{ iconBlocks.bgColor }};">
   <div class="container space-2">
     {% if iconBlocksHeadline %}
-      <div class="row mt-5 mb-8 px-lg-3">
+      <div class="row mt-5 mb-8 px-lg-3 fade-in-bottom" data-utility-animation-step="1">
         <div class="col">
           {%
             include headline.html
@@ -35,7 +35,7 @@
     {% endif %}
     <div class="row">
       {% for item in iconBlocks.items %}
-      <div class="{{ iconBlocksColumnsClass }} mb-5 mb-md-8">
+      <div class="{{ iconBlocksColumnsClass }} mb-5 mb-md-8 fade-in-bottom" data-utility-animation-step="1" style="--utility-animation-index:{{ forloop.index }};">
         <!-- Shared Icon Blocks -->
         <div class="{% if item.copy == "" %}text-center{% endif %} px-lg-3">
           <figure class="max-w-15rem {% if item.copy == "" %}mx-auto{% endif %} mb-4">

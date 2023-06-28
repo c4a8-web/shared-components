@@ -12,6 +12,9 @@ export default {
 
       return `${classes} headline vue-component`;
     },
+    dataUtilityAnimationStep() {
+      return this.utilityAnimationStep ? this.utilityAnimationStep : null;
+    },
   },
   methods: {
     hasFontSizeClass() {
@@ -22,17 +25,20 @@ export default {
     text: String,
     level: String,
     classes: String,
+    utilityAnimationStep: Number,
   },
   template: `
     <component :is='tag'
               :class="classList"
               v-html="text"
               v-if="text"
+              :data-utility-animation-step="dataUtilityAnimationStep"
     >
     </component>
     <component :is='tag'
               :class="classList"
               v-else
+              :data-utility-animation-step="dataUtilityAnimationStep"
     >
       <slot></slot>
     </component>`,

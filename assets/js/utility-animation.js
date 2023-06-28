@@ -125,7 +125,7 @@ class UtilityAnimation {
 
     const largeOffsetObserver = new IntersectionObserver(callback, {
       rootMargin: `0px 0px 0px 0px`,
-      threshold: 0.5,
+      threshold: 0.3,
     });
 
     this.instances.forEach((instance) => {

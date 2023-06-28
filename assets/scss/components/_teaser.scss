@@ -2,6 +2,14 @@
   --color-teaser-copy-highlight: var(--color-copy-highlight);
   --color-teaser-background: var(--color-black-4);
 
+  [data-utility-animation-step] {
+    --utility-animation-distance: 135%;
+
+    &.is-starting {
+      animation-duration: 0.8s;
+    }
+  }
+
   position: relative;
   padding: spacing(16) 0 spacing(10);
 
@@ -94,4 +102,12 @@
 
 .teaser__logo {
   margin: spacing(4) 0;
+}
+
+.teaser__video-wrapper {
+  &[data-utility-animation-step] {
+    --utility-animation-distance: 15%;
+
+    animation-delay: 200ms;
+  }
 }

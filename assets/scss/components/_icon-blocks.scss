@@ -1,3 +1,12 @@
 .icon-blocks {
   margin-bottom: spacing(8);
+
+  [data-utility-animation-step] {
+    --utility-animation-distance: 15%;
+
+    &.is-starting {
+      animation-delay: calc(var(--utility-animation-index) * 100ms);
+      animation-duration: 0.6s;
+    }
+  }
 }
