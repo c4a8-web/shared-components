@@ -19,16 +19,9 @@
   width: calc(100% + (2 * #{$header-nav-link-padding-x}));
 
   > * {
+    @include utility-animation-options($distance: 15%, $delay: 100ms, $duration: 0.8s, $selector: '&');
+
     margin-bottom: spacing(5);
-
-    &[data-utility-animation-step] {
-      --utility-animation-distance: 15%;
-
-      &.is-starting {
-        animation-delay: calc(var(--utility-animation-index) * 100ms);
-        animation-duration: 0.8s;
-      }
-    }
   }
 
   @include media-breakpoint-up(lg) {
