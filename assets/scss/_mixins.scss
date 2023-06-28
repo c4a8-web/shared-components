@@ -365,3 +365,21 @@
     width: $content-width-xxl;
   }
 }
+
+@mixin utility-animation-options($distance: 15%, $duration: null, $delay: null, $delay-offset: 0ms) {
+  [data-utility-animation-step] {
+    @if $distance {
+      --utility-animation-distance: #{$distance};
+    }
+
+    &.is-starting {
+      @if $delay {
+        animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
+      }
+
+      @if $duration {
+        animation-duration: $duration;
+      }
+    }
+  }
+}

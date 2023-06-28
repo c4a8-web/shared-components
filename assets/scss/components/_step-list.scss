@@ -4,17 +4,14 @@ $step-list-counter-icon-padding: spacing(3);
 $step-list-color-img-tint: $color-copy;
 
 .step-list {
+  @include utility-animation-options($delay: 100ms, $delay-offset: 200ms);
+
   padding: spacing(24) 0;
   background-color: var(--step-list-background);
   color: var(--step-list-color);
 
   [data-utility-animation-step] {
-    --utility-animation-distance: 15%;
-
     &.is-starting {
-      animation-delay: calc((var(--utility-animation-index) * 100ms) + 200ms);
-      animation-duration: 0.8s;
-
       &.step-list__header {
         animation-delay: calc((var(--utility-animation-index) * 100ms));
       }

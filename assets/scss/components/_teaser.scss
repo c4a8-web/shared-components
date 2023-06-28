@@ -1,14 +1,8 @@
 .teaser {
+  @include utility-animation-options($distance: 135%, $duration: 0.8s);
+
   --color-teaser-copy-highlight: var(--color-copy-highlight);
   --color-teaser-background: var(--color-black-4);
-
-  [data-utility-animation-step] {
-    --utility-animation-distance: 135%;
-
-    &.is-starting {
-      animation-duration: 0.8s;
-    }
-  }
 
   position: relative;
   padding: spacing(16) 0 spacing(10);
