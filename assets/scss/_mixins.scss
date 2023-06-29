@@ -366,7 +366,7 @@
   }
 }
 
-@mixin utility-animation-options($distance: 15%, $duration: null, $delay: null, $delay-offset: 0ms, $selector: null) {
+@mixin utility-animation-options($distance: null, $duration: null, $delay: null, $delay-offset: 0ms, $selector: null) {
   #{$selector}[data-utility-animation-step] {
     @if $distance {
       --utility-animation-distance: #{$distance};
