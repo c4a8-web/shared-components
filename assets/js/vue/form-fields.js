@@ -32,11 +32,12 @@ export default {
         ? this.replaceValue
         : this.field.value;
     },
-    fieldId() {
-      return this.uuid ? this.uuid + this.field.id : this.field.id;
-    },
   },
   methods: {
+    setFieldId(id){
+      const fieldId = id ? id : this.field.id;
+      return this.hasUuid ? this.hasUuid + '-glk-' + fieldId : fieldId;
+    },
     getRequiredMsg(element) {
       return element.requiredMsg ? element.requiredMsg : '';
     },
@@ -44,7 +45,7 @@ export default {
   props: {
     options: Array,
     field: Object,
-    uuid: {
+    hasUuid: {
       default: null,
     },
     replaceValue: {
@@ -55,23 +56,23 @@ export default {
     <template v-if="field.id !== '_gotcha'">
       <div :class="classList">
         <template v-if="field.type === 'textarea'">
-          <label class="input-label" :for="fieldId">{{ field.label }}</label>
-          <textarea class="form-control form-textarea" :id="fieldId" :name="fieldId" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
+          <label class="input-label" :for="setFieldId()">{{ field.label }}</label>
+          <textarea class="form-control form-textarea" :id="setFieldId()" :name="setFieldId()" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
         </template>
         <template v-else-if="field.type ==='checkbox'">
-          <form-checkbox :checkbox="field" :id="fieldId" />
+          <form-checkbox :checkbox="field" :id="setFieldId()" />
         </template>
         <template v-else-if="field.type ==='hidden'">
-          <input type="hidden" :name="fieldId" :value="value">
+          <input type="hidden" :name="setFieldId()" :value="value">
         </template>
         <template v-else-if="field.checkboxes">
-          <form-checkboxes :field="field" :uuid="uuid" />
+          <form-checkboxes :field="field" :id="setFieldId(field?.checkboxes[0])" />
         </template>
         <template v-else-if="field.type === 'radio' ">
-          <form-radio :radio="field" :id="fieldId" />
+          <form-radio :radio="field" :id="setFieldId()" />
         </template>
         <template v-else-if="field.radios">
-          <form-radios :field="field" />
+          <form-radios :field="field" :id="setFieldId(field?.radios[0].id)" />
         </template>
         <template v-else-if="field.type === 'file'">
           <form-attachments
@@ -85,11 +86,11 @@ export default {
           />
         </template>
         <template v-else-if="field.type === 'select'">
-          <form-select :field="field" :options="options" :id="fieldId" />
+          <form-select :field="field" :options="options" :id="setFieldId()" />
         </template>
         <template v-else-if="field.type">
-          <label class="input-label" :for="fieldId">{{ field.label }}</label>
-          <input :type="field.type" :id="fieldId" :name="fieldId" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
+          <label class="input-label" :for="setFieldId()">{{ field.label }}</label>
+          <input :type="field.type" :id="setFieldId()" :name="setFieldId()" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
         </template>
       </div>
     </template>`,

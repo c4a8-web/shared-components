@@ -109,9 +109,15 @@ class RecruiterBox {
         // TODO handle select
       }
 
-      const idsWithoutUuid = ['firstName', 'lastName', 'email', 'phone', '_gotcha'].concat(customFields);
+      const fieldnames = ['firstName', 'lastName', 'email', 'phone', '_gotcha'].concat(customFields);
 
-      const updatedName = idsWithoutUuid.find((string) => input.name.includes(string));
+      let updatedName;
+
+      fieldnames.map(fieldName => {
+        if (this.removeUuid(input.name) === fieldName) {
+          updatedName = fieldName;
+        }
+      });
 
       const key = customFields.filter((value) => value === input.name).length
         ? input.name
@@ -124,6 +130,12 @@ class RecruiterBox {
     }
 
     return data;
+  }
+
+  removeUuid(string) {
+    const delimiter = '-glk-';
+    const array = string.split(delimiter)
+    return array[1] ? array[1] : array[0];
   }
 
   applyFileData(fileData, data, fields) {

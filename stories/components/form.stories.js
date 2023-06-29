@@ -111,7 +111,7 @@ export const BaseValidationWithUuid = Template.bind({});
 
 BaseValidationWithUuid.args = {
   ...baseArgs,
-  uuid: true,
+  hasUuid: true,
 };
 
 export const WithCheckboxes = Template.bind({});

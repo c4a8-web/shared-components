@@ -83,7 +83,7 @@ export default {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
     generateUuid() {
-      return Tools.isTrue(this.uuid) ? Tools.uuid() : null;
+      return Tools.isTrue(this.hasUuid) ? Tools.uuid() : null;
     },
   },
   props: {
@@ -111,7 +111,7 @@ export default {
       default: null,
     },
     options: Object,
-    uuid: {
+    hasUuid: {
       default: null,
     },
   },
@@ -131,7 +131,7 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :uuid="generateUuid()" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :hasUuid="generateUuid()" />
                 </div>
               </div>
             </template>
