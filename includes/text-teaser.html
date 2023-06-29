@@ -1,10 +1,11 @@
 <!-- Shared Text Teaser Section -->
-{%- assign textTeaserBackground = include.teaserBackground -%}
+{%- assign textTeaserBackground = include.background -%}
 {%- assign textTeaserBgColor = include.bgColor -%}
 {%- assign textTeaserCopy = include.copy -%}
 {%- assign textTeaserList = include.list -%}
+{%- assign textTeaserSpacing = include.spacing -%}
 
-<div class="text-teaser"
+<div class="text-teaser {{ textTeaserSpacing }}"
   style="{% if textTeaserBackground %}background-image:url('{{ textTeaserBackground }}');{% endif %}
   {% if textTeaserBgColor %}background-color:{{ textTeaserBgColor }};{% endif %}"
 >
