@@ -13,11 +13,14 @@ export default {
       return this.field.required ? this.field.requiredMsg : null;
     },
     groupId() {
-      return Tools.uuid() + this.field?.checkboxes[0].id;
+      return this.uuid ? this.uuid + this.field?.checkboxes[0].id : this.field?.checkboxes[0].id;
     },
   },
   props: {
     field: Object,
+    uuid: {
+      default: null,
+    },
   },
   template: `
     <label class="form__label input-label" :data-msg="message" >{{ field?.label }}</label>

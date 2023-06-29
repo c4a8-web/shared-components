@@ -109,16 +109,7 @@ class RecruiterBox {
         // TODO handle select
       }
 
-      const idsWithoutUuid = [
-        'firstName',
-        'lastName',
-        'email',
-        'phone',
-        'cancellation',
-        'salary',
-        'message',
-        '_gotcha',
-      ];
+      const idsWithoutUuid = ['firstName', 'lastName', 'email', 'phone', '_gotcha'].concat(customFields);
 
       const updatedName = idsWithoutUuid.find((string) => input.name.includes(string));
 

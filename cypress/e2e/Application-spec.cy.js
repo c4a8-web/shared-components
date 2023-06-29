@@ -44,7 +44,7 @@ function fillTheForm(test) {
 
 function submitForm() {
   cy.wait(500);
-  cy.get(`.modal [data-text="Bewerbung absenden"]:visible` || '[data-text="Submit application"]:visible').click();
+  cy.get('.modal .cta:visible').click();
   cy.wait('@submitRequest', { timeout: 1000 }).then((interception) => {
     const arrayOfObjects = interception.request.body.fields;
     const body = arrayOfObjects.reduce((result, { key, value }) => {
@@ -58,7 +58,7 @@ function submitForm() {
     expect(interception.response.statusCode).to.equal(200);
   });
 
-  cy.get('.modal [data-text="Schließen"]:visible' || '.modal [data-text="Close"]:visible').click();
+  cy.get('.modal .cta:visible').click();
 }
 
 describe('Job Test', () => {

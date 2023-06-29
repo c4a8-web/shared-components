@@ -1,4 +1,4 @@
-import Tools from '../tools';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'form-radios',
@@ -13,11 +13,14 @@ export default {
       return this.field.required ? this.field.requiredMsg : null;
     },
     groupId() {
-      return Tools.uuid() + this.field?.radios[0].id;
+      return Tools.isTrue(this.uuid) ? this.uuid + this.field?.radios[0].id : this.field?.radios[0].id;
     },
   },
   props: {
     field: Object,
+    uuid: {
+      default: null,
+    },
   },
   template: `
     <label class="form__label input-label" :data-msg="message" >{{ field?.label }}</label>

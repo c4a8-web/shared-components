@@ -83,7 +83,7 @@ export default {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
     generateUuid() {
-      return Tools.uuid();
+      return Tools.isTrue(this.uuid) ? Tools.uuid() : null;
     },
   },
   props: {
@@ -111,7 +111,9 @@ export default {
       default: null,
     },
     options: Object,
-    uuid: String,
+    uuid: {
+      default: null,
+    },
   },
   template: `
     <div :class="classList">
