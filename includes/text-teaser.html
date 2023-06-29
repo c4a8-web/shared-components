@@ -1,0 +1,28 @@
+<!-- Shared Text Teaser Section -->
+{%- assign textTeaserBackground = include.teaserBackground -%}
+{%- assign textTeaserBgColor = include.bgColor -%}
+{%- assign textTeaserCopy = include.copy -%}
+{%- assign textTeaserList = include.list -%}
+
+<div class="text-teaser"
+  style="{% if textTeaserBackground %}background-image:url('{{ textTeaserBackground }}');{% endif %}
+  {% if textTeaserBgColor %}background-color:{{ textTeaserBgColor }};{% endif %}"
+>
+  <div class="container">
+    <div class="row {% if textTeaserBackground %}justify-content-center{% endif %}">
+      <div class="col-lg-{% if textTeaserBackground %}6 py-11 d-flex text-center justify-content-center align-items-center flex-wrap font-size-4 font-weight-light{% else %}7 offset-lg-1 pt-8{% endif %}">
+        <div class="text-teaser__copy">{{ textTeaserCopy }}</div>
+        {% if textTeaserList %}
+          <div class="pt-4 pt-lg-6 w-100 w-md-auto">
+            {%
+              include cta-list.html
+              list=textTeaserList
+              classes="d-block"
+            %}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Shared Text Teaser Section -->
