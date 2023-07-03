@@ -5,16 +5,16 @@
 {%- assign textTeaserList = include.list -%}
 {%- assign textTeaserSpacing = include.spacing -%}
 
-<div class="text-teaser {{ textTeaserSpacing }}"
+<div class="text-teaser utility-animation {{ textTeaserSpacing }}"
   style="{% if textTeaserBackground %}background-image:url('{{ textTeaserBackground }}');{% endif %}
   {% if textTeaserBgColor %}background-color:{{ textTeaserBgColor }};{% endif %}"
 >
   <div class="container">
     <div class="row {% if textTeaserBackground %}justify-content-center{% endif %}">
       <div class="col-lg-{% if textTeaserBackground %}6 py-11 d-flex text-center justify-content-center align-items-center flex-wrap font-size-4 font-weight-light{% else %}7 offset-lg-1 pt-8{% endif %}">
-        <div class="text-teaser__copy">{{ textTeaserCopy }}</div>
+        <div class="text-teaser__copy fade-in-bottom" data-utility-animation-step="1">{{ textTeaserCopy }}</div>
         {% if textTeaserList %}
-          <div class="pt-4 pt-lg-6 w-100 w-md-auto">
+          <div class="pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom" data-utility-animation-step="1">
             {%
               include cta-list.html
               list=textTeaserList
