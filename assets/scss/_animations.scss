@@ -5,6 +5,10 @@ $transition-tween-t1: 0.2s ease-in-out;
   opacity: 0;
 }
 
+@mixin animation-end-state {
+  opacity: 1;
+}
+
 @mixin background-grow($color, $spacing: 0, $half: false) {
   position: relative;
   z-index: 1;

@@ -383,3 +383,9 @@
     }
   }
 }
+
+@mixin utility-animation-in-viewport {
+  &[data-utility-animation-in-viewport='true'] {
+    @content;
+  }
+}
