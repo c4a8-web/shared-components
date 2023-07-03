@@ -24,7 +24,7 @@
 
 <!-- Shared Video Frame Section -->
 {% if videoFrameContainer %}
-<div class="container has-background video-frame__container
+<div class="container utility-animation has-background video-frame__container
   {% if videoFrameSpacingTop %}video-frame__container--spacing {% endif %}
   {% if videoFrameSticky %}is-sticky-scroller {% endif %}
   "
@@ -34,12 +34,12 @@
 {% endif %}
     <div id="{{ videoFrameParentId }}" class="video-frame
                                               {% if videoFrameHasVideo %}video-frame--has-video{% else %}hover__parent{% endif %}
-                                              {% if videoFrameContainer %}video-frame--container {% else %}has-background {% endif %}
+                                              {% if videoFrameContainer %}video-frame--container {% else %}has-background utility-animation{% endif %}
                                               {% if videoFrameFullWidth %} video-frame--full-width {% endif %}
                                               {% if videoFrameContainer == false and videoFrameSticky %}is-sticky-scroller {% endif %}"
       style="{% if videoFrameHeadline.color %} --video-frame-headline-color: var({{ videoFrameHeadline.color }}); {% endif %}"
     >
-      <div class=" video-frame__player {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
+      <div class=" video-frame__player fade-in-bottom {% if videoFrameHasVideo %}js-inline-video-player{% endif %}" data-hs-video-player-options='{
         "videoId": "{{ videoFrameId }}",
         "parentSelector": "#{{ videoFrameParentId }}",
         "targetSelector": "#{{ videoFrameTargetId }}",
@@ -47,7 +47,7 @@
         "classMap": {
           "toggle": "video-frame--played"
         }
-      }'>
+      }' data-utility-animation-step="1">
         <div class="video-frame__target embed-responsive">
           <div id="{{ videoFrameTargetId }}"></div>
         </div>
