@@ -43,7 +43,13 @@
   {%- assign testimonialTeaserSrcSet = false -%}
 {% endif %}
 
-<a href="{{ testimonialTeaserHref }}" class="testimonial-teaser {{ testimonialTeaserAspectRatioClass }} {% if testimonialTeaserAspectRatioStyling %} testimonial-teaser--aspect-ratio{% endif %}" style="{% if testimonialTeaserBgStyling %} {{ testimonialTeaserBgStyling }} {% endif %} {% if testimonialTeaserAspectRatioStyling %}; {{ testimonialTeaserAspectRatioStyling }} {% endif %}">
+<a class="testimonial-teaser {{ testimonialTeaserAspectRatioClass }} utility-animation fade-in-bottom
+        {% if testimonialTeaserAspectRatioStyling %} testimonial-teaser--aspect-ratio{% endif %}"
+   style="{% if testimonialTeaserBgStyling %} {{ testimonialTeaserBgStyling }} {% endif %}
+              {% if testimonialTeaserAspectRatioStyling %}; {{ testimonialTeaserAspectRatioStyling }} {% endif %}"
+   href="{{ testimonialTeaserHref }}"
+   data-utility-animation-step="1"
+>
   <div class="testimonial-teaser__wrapper">
     {% if testimonialTeaserCornerImg %}
       <div class="testimonial-teaser__corner {{ testimonialTeaserCornerPosition }}">
