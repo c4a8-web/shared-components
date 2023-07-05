@@ -1,4 +1,6 @@
 .toggle-switch {
+  @include utility-animation-options($delay: 100ms, $selector: '&');
+
   cursor: default;
 
   .toggle-switch-label,
