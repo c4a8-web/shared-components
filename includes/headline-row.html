@@ -3,11 +3,12 @@
 {%- assign headlineRowLevel = include.level | default: "h2" -%}
 {%- assign headlineRowText = include.text -%}
 {%- assign headlineRowSpacing = include.spacing | default: "space-top-3" -%}
+{%- assign headlineRowHasAnimation = include.hasAnimation -%}
 {% capture headlineRowCenteredClass %}{% if headlineRowCentered %}text-center{% endif %}{% endcapture %}
 
-<div class="container {{ headlineRowSpacing }} headline-row">
+<div class="container {{ headlineRowSpacing }} headline-row {% if headlineRowHasAnimation %}utility-animation{% endif %}">
   <div class="row">
-    <div class="col-sm-12 {{ headlineRowCenteredClass }}">
+    <div class="col-sm-12 {% if headlineRowHasAnimation %}fade-in-bottom{% endif %} {{ headlineRowCenteredClass }}" data-utility-animation-step="1">
       {%
         include headline.html
         level=headlineRowLevel
