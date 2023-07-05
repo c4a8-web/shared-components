@@ -14,20 +14,22 @@
         include headline-row.html
         text=headline
         centered=true
+        hasAnimation=true
       %}
     {% endif %}
 
     {% if description %}
-      <p class="w-75 mt-5 ml-auto mr-auto text-center">
+      <p class="pricing-details__description w-75 mt-5 ml-auto mr-auto text-center utility-animation fade-in-bottom" data-utility-animation-step="1">
         {{ description }}
       </p>
     {% endif %}
 
-    <div class="pt-6 pt-lg-8 pb-10">
+    <div class="pricing-details__content pt-6 pt-lg-8 pb-10">
       {% if toggleSwitch %}
         {%
           include toggle-switch.html
           toggleSwitch=toggleSwitch
+          hasAnimation=true
         %}
       {% endif %}
 
@@ -37,6 +39,8 @@
           product=product
           targetSelectorClass=pricingDetailTargetSelector
           visibleTab=visibleTab
+          index=forloop.index
+          hasAnimation=true
         %}
       {% endfor %}
     </div>
