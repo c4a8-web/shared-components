@@ -20,7 +20,7 @@
 <div class="badge badge--normal font-size-1 normal {% if badgeOverlapping %}badge--overlapping{% endif %}{% if badgeUppercase %} badge--uppercase{% endif %} {{ badgeClasses }}" style="background-color: {{ badgeColor }}; color: {{ badgeTextColor }}">
   <div class="badge__text">{{ badgeText }}</div>
   {% if badgeIcon %}
-    {% assign badgeIconName = badgeIcon | default: 'computer-shield' %}
+    {% assign badgeIconName = badgeIcon %}
     <div class="badge__icon">
       {%
         include icon.html

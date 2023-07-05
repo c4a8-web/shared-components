@@ -7,7 +7,7 @@ export default {
   computed: {
     classList() {
       return [
-        'link-list',
+        'link-list utility-animation',
         `${this.isExpanded ? State.EXPANDED : ''}`,
         `${this.isExpandable() ? State.EXPANDABLE : ''}`,
         `${this.hasActiveItem ? State.ACTIVE : ''}`,
@@ -110,11 +110,11 @@ export default {
   },
   template: `
     <figure :class="classList" v-if="list" ref="root">
-      <figcaption class="link-list__title font-size-8 bold" v-if="list?.languages" v-on:click="handleClick">
+      <figcaption class="link-list__title font-size-8 bold fade-in-bottom" data-utility-animation-step="1" v-if="list?.languages" v-on:click="handleClick">
         {{ list.languages[lang]?.title }}
         <icon class="link-list__icon" icon="expand" size="small" />
       </figcaption>
-      <ul class="link-list__list header__list--expanded">
+      <ul class="link-list__list header__list--expanded fade-in-bottom" data-utility-animation-step="1">
         <li class="link-list__item" v-for="subChild in list.children">
           <cta
             v-if="subChild.languages && subChild.languages[lang]"

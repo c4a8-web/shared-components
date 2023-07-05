@@ -8,7 +8,7 @@ export default {
       return ['check-card vue-component', this.hasProducts ? 'check-card--products' : null];
     },
     checkCardsContainerClass() {
-      return ['check-card__container js-slick-carousel slick--single-list'];
+      return ['check-card__container utility-animation fade-in-bottom js-slick-carousel slick--single-list'];
     },
     containerValue() {
       return `col-lg-12 col-md-10 ${this.spacing ? this.spacing : ''} mb-9`;
@@ -17,10 +17,14 @@ export default {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
     headlineClassesValue() {
-      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''} ${this.subline ? 'mb-10' : ''}`;
+      return `h2-font-size utility-animation fade-in-bottom ${this.headlineClasses ? this.headlineClasses : ''} ${
+        this.subline ? 'mb-10' : ''
+      }`;
     },
     sublineClassesValue() {
-      return `check-card__subline w-lg-65 ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
+      return `check-card__subline utility-animation fade-in-bottom e w-lg-65 ${
+        this.sublineClasses ? this.sublineClasses : 'font-size-2'
+      }`;
     },
     itemClass() {
       return `check-card__slide`;
@@ -107,11 +111,11 @@ export default {
       <div class="container">
         <div class="row" v-if="headline">
           <div :class="containerValue">
-            <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-            <div v-if="subline" :class="sublineClassesValue" v-html="subline"></div>
+            <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" data-utility-animation-step="1" />
+            <div v-if="subline" :class="sublineClassesValue" v-html="subline" data-utility-animation-step="1"></div>
           </div>
         </div>
-        <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions">
+        <div :class="checkCardsContainerClass" :data-hs-slick-carousel-options="carouselOptions" data-utility-animation-step="1">
           <template v-for="(check, index) in checks">
             <div :class="itemClass">
               <template v-if="hasProducts">

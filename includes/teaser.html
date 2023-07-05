@@ -29,18 +29,19 @@
 {% endif %}
 
 <!-- Shared Teaser Section -->
-<div class="teaser {{ teaserLogoClass }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
+<div class="teaser utility-animation {{ teaserLogoClass }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
   <div class="container">
     <div class="row">
       <div class="teaser__row col">
-        <span class="teaser__overline">{{ teaserOverline }}</span>
+        <span class="teaser__overline fade-in-bottom" data-utility-animation-step="1">{{ teaserOverline }}</span>
         {%
           include headline.html
           text=teaserHeadline
           level="h2"
-          classes="teaser__headline"
+          classes="teaser__headline fade-in-bottom"
+          utilityAnimationStep="1"
         %}
-        <div class="teaser__video-wrapper">
+        <div class="teaser__video-wrapper fade-in-bottom" data-utility-animation-step="1">
           {%
             include video-frame.html
             id=teaserId
@@ -50,7 +51,7 @@
           %}
 
         </div>
-        <div class="teaser__logo">
+        <div class="teaser__logo fade-in-bottom" data-utility-animation-step="1">
           {%
             include img.html
             img=teaserLogo
@@ -58,8 +59,8 @@
             alt=teaserLogoAlt
           %}
         </div>
-        <div class="teaser__text font-size-2">{{ teaserText }}</div>
-        <div class="teaser__cta">
+        <div class="teaser__text font-size-2 fade-in-bottom" data-utility-animation-step="1">{{ teaserText }}</div>
+        <div class="teaser__cta fade-in-bottom" data-utility-animation-step="1">
           {%
             include cta.html
             text=teaserCtaText

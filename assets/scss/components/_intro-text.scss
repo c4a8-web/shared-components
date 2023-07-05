@@ -14,5 +14,6 @@
 }
 
 .intro-text__copy {
+  @include utility-animation-options($delay: 100ms, $selector: '&');
   @include font-style($style: 'font-size-4', $line: 'wide');
 }

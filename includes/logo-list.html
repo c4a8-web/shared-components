@@ -1,0 +1,12 @@
+<!-- Shared Logo List Section -->
+{%- assign logoList = include.logoList -%}
+{%- assign logoListSticky = include.sticky -%}
+{%- assign logoListSpacing = include.spacing -%}
+
+<logo-list
+  :list="{{ logoList | jsonify | escape }}"
+  sticky="{{ logoListSticky }}"
+  spacing="{{ logoListSpacing }}"
+>
+</logo-list>
+<!-- End Shared Logo List Section -->

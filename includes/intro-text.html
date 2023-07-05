@@ -4,11 +4,11 @@
 {%- assign introTextHeadline = include.headline -%}
 {%- assign introTextSpacing = include.spacing -%}
 
-<figure class="intro-text {{ introTextVariant }} {{ introTextSpacing }}">
+<figure class="intro-text utility-animation {{ introTextVariant }} {{ introTextSpacing }}">
   <div class="container space-lg-2">
     {% if introTextHeadline %}
       <div class="row mb-9 mt-9">
-        <div class="col text-center">
+        <div class="col text-center fade-in-bottom" data-utility-animation-step="1">
           {%
             include headline.html
             text=introTextHeadline
@@ -18,7 +18,7 @@
     {% endif %}
     <div class="row">
       <div class="col">
-        <p class="intro-text__copy">
+        <p class="intro-text__copy fade-in-bottom" data-utility-animation-step="1">
           {{ introTextCopy }}
         </p>
       </div>

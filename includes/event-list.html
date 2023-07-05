@@ -8,7 +8,7 @@ TODO figure out what happens when the teaser is the last element so the variants
 {% endcomment %}
 
 <!-- Shared Event List Section -->
-<div class="event-list container {% if eventListOverlap %}event-list--overlap{% endif %} {% if eventListSticky %}is-sticky-scroller{% endif %}">
+<div class="event-list container utility-animation {% if eventListOverlap %}event-list--overlap{% endif %} {% if eventListSticky %}is-sticky-scroller{% endif %}">
   <div class="event-list__row row col-lg-12">
     {% assign eventListTeaserIndex = 0 %}
     {% for eventListTeaser in eventListList %}
@@ -34,6 +34,7 @@ TODO figure out what happens when the teaser is the last element so the variants
           webcast=eventListTeaserData.webcast
           teaser=eventListTeaserData.teaser
           url=eventListTeaserData.url
+          index=forloop.index
         %}
       {% endif %}
 
@@ -56,6 +57,7 @@ TODO figure out what happens when the teaser is the last element so the variants
         webcast=eventListTeaser.webcast
         teaser=eventListTeaser.teaser
         url=eventListTeaser.url
+        index=forloop.index
       %}
       {% assign eventListTeaserIndex = eventListTeaserIndex | plus: 1 %}
     {% endfor %}

@@ -365,3 +365,27 @@
     width: $content-width-xxl;
   }
 }
+
+@mixin utility-animation-options($distance: null, $duration: null, $delay: null, $delay-offset: 0ms, $selector: null) {
+  #{$selector}[data-utility-animation-step] {
+    @if $distance {
+      --utility-animation-distance: #{$distance};
+    }
+
+    &.is-starting {
+      @if $delay {
+        animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
+      }
+
+      @if $duration {
+        animation-duration: $duration;
+      }
+    }
+  }
+}
+
+@mixin utility-animation-in-viewport {
+  &[data-utility-animation-in-viewport='true'] {
+    @content;
+  }
+}

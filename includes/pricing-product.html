@@ -1,5 +1,7 @@
 <!-- Shared Pricing Product -->
-{% assign product = include.product %}
+{%- assign product = include.product -%}
+{%- assign pricingProductIndex = include.index -%}
+{%- assign pricingProductHasAnimation = include.hasAnimation -%}
 
 {% assign title = product.title %}
 {% assign description = product.description %}
@@ -28,7 +30,10 @@
   {%- assign pricingProductPriceColumns = 'col-md-8 col-lg-7' -%}
 {% endif %}
 
-<div class="pricing-product row align-items-center {{ pricingProductClasses }} mb-3">
+<div class="pricing-product row align-items-center {{ pricingProductClasses }} mb-3 {% if pricingProductHasAnimation %}utility-animation fade-in-bottom{% endif %}"
+    {% if pricingProductIndex %}style="--utility-animation-index:{{ pricingProductIndex }};"{% endif %}
+    data-utility-animation-step="1"
+>
   <div class="pricing-product__description pl-0 mb-2 mb-md-0 col-12 col-md-4 col-lg-5">
     <h3 class="font-size-4 font-size-3-md">{{ title }}</h3>
     <p class="m-0">{{ description }}</p>

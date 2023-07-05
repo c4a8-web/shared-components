@@ -21,6 +21,7 @@
   {%- assign eventTeaserWebcast = event.webcast -%}
   {%- assign eventTeaserTeaser = event.teaser -%}
   {%- assign eventTeaserUrl = event.url -%}
+  {%- assign eventTeaserIndex = event.index -%}
 {% else %}
   {%- if include.json -%}
     {%- assign eventTeaserHeadline = include.json.headline -%}
@@ -37,6 +38,7 @@
     {%- assign eventTeaserWebcast = include.json.webcast -%}
     {%- assign eventTeaserTeaser = include.json.teaser -%}
     {%- assign eventTeaserUrl = include.json.url -%}
+    {%- assign eventTeaserIndex = include.json.index -%}
   {%- else -%}
     {%- assign eventTeaserHeadline = include.headline -%}
     {%- assign eventTeaserContent = include.content -%}
@@ -52,6 +54,7 @@
     {%- assign eventTeaserWebcast = include.webcast -%}
     {%- assign eventTeaserTeaser = include.teaser -%}
     {%- assign eventTeaserUrl = include.url -%}
+    {%- assign eventTeaserIndex = include.index -%}
   {%- endif -%}
 {% endif %}
 
@@ -62,13 +65,14 @@
 {%- assign eventTeaserHref = eventTeaserCta.href | default: eventTeaserUrl -%}
 
 <!-- Shared Event Teaser Section -->
-<article class="event-teaser hover__parent event-teaser--size-{{ eventTeaserVariant }} {{ eventTeaserImageFullWidth }}
+<article class="event-teaser utility-animation fade-in-bottom hover__parent event-teaser--size-{{ eventTeaserVariant }} {{ eventTeaserImageFullWidth }}
               {% if eventTeaserWebcast %}event-teaser--webcast
               {% elsif eventTeaserTeaser %}event-teaser--teaser
               {% else %}event-teaser--training
-              {% endif %}
-              "
+              {% endif %}"
           onclick="this.querySelector('a').click()"
+          data-utility-animation-step="1"
+          style="{% if eventTeaserIndex %}--utility-animation-index:{{ eventTeaserIndex }};{% endif %}"
 >
   <header class="event-teaser__header">
     <div class="event-teaser__background">
