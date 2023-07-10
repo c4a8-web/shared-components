@@ -361,7 +361,7 @@
 }
 
 @mixin richtext-width {
-  @include media-breakpoint-up(xxl) {
+  @container (min-width: 600px) {
     width: $content-width-xxl;
   }
 }
