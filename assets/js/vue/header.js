@@ -466,6 +466,7 @@ export default {
                       :lang="lowerLang"
                       :hidden="isLinkListHidden(item, index)"
                       classes="header__link-list"
+                      :no-animation="true"
                       v-if="item.children && !list.products"
                     />
                     <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
@@ -485,6 +486,7 @@ export default {
                   :list="metaList"
                   :lang="lowerLang"
                   classes="header__meta-list"
+                  :no-animation="true"
                   v-if="hasMeta"
                 />
 
@@ -557,6 +559,7 @@ export default {
                     <link-list
                       :list="list"
                       :lang="lowerLang"
+                      :no-animation="true"
                       v-if="item.children && !list.products"
                     />
                     <div class="header__product-list is-expanded" v-else>
