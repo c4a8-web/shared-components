@@ -8,6 +8,7 @@ import Company from './data/company';
 import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
+import Tags from './data/tags';
 import Contact from './data/contact';
 import Checks from './data/checks';
 import Posts from './data/posts';
@@ -34,6 +35,7 @@ const site = {
     options: Options,
     header: Header,
   },
+  tags: Tags,
   posts: Posts,
   events: Events,
   casestudies: CaseStudies,

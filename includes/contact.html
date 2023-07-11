@@ -65,7 +65,7 @@
 
 <div class="contact {{ contactVariantClass }}
             {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %} {{ contactSpacing }} {% endunless %}
-            {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2 utility-animation utility-animation--large-offset{% endunless %}"
+            {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2 utility-animation utility-animation--percentage-offset{% endunless %}"
 >
   <div class="{{ contactContainerClass }}">
     <div class="{{ contactRowClass }}">

@@ -18,6 +18,8 @@
 {%- assign cardProduct = include.product -%}
 {%- assign cardTag = include.tag -%}
 {%- assign cardCta = include.cta -%}
+{%- assign cardHasAnimation = include.hasAnimation -%}
+{%- assign cardIndex = include.index -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -47,5 +49,7 @@
   scope="{{ cardScope }}"
   product="{{ cardProduct | jsonify | escape }}"
   cta="{{ cardCta | jsonify | escape }}"
+  :has-animation="{{ cardHasAnimation }}"
+  index="{{ cardIndex }}"
 ></card>
 <!-- End Shared Card Section -->
