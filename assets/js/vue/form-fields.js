@@ -6,7 +6,7 @@ export default {
         'form-field js-form-message form-group',
         `${this.field.type === 'hidden' ? 'd-none' : ''}`,
         this.groupClass,
-        this.hasAnimation ? 'utility-animation fade-in-bottom' : '',
+        this.hasAnimation ? 'utility-animation utility-animation--small-offset fade-in-bottom' : '',
         'vue-component',
       ];
     },

@@ -101,12 +101,17 @@ class UtilityAnimation {
     observer.observe(this.root, { attributes: true });
   }
 
-  static hasLargeOffset(instance) {
-    return instance.root.classList.contains('utility-animation--large-offset');
+  static hasPercentageOffset(instance) {
+    return instance.root.classList.contains('utility-animation--percentage-offset');
+  }
+
+  static hasSmallOffset(instance) {
+    return instance.root.classList.contains('utility-animation--small-offset');
   }
 
   static addObserver() {
     const intersectionOffset = 200;
+    const smallIntersectionOffset = 100;
 
     const callback = (entries) => {
       entries.forEach((entry) => {
@@ -123,14 +128,21 @@ class UtilityAnimation {
       threshold: 0,
     });
 
-    const largeOffsetObserver = new IntersectionObserver(callback, {
+    const percentageOffsetObserver = new IntersectionObserver(callback, {
       rootMargin: `0px 0px 0px 0px`,
       threshold: 0.4,
     });
 
+    const smallOffsetObserver = new IntersectionObserver(callback, {
+      rootMargin: `0px 0px -${smallIntersectionOffset}px 0px`,
+      threshold: 0,
+    });
+
     this.instances.forEach((instance) => {
-      if (UtilityAnimation.hasLargeOffset(instance)) {
-        largeOffsetObserver.observe(instance.root);
+      if (UtilityAnimation.hasSmallOffset(instance)) {
+        smallOffsetObserver.observe(instance.root);
+      } else if (UtilityAnimation.hasPercentageOffset(instance)) {
+        percentageOffsetObserver.observe(instance.root);
       } else {
         observer.observe(instance.root);
       }

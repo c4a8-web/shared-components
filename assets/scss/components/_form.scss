@@ -281,3 +281,7 @@ div.custom-control,
     cursor: pointer;
   }
 }
+
+.form-field {
+  @include utility-animation-options($distance: 15%, $delay: 200ms, $duration: 0.8s, $selector: '&');
+}
