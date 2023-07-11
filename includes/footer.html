@@ -1,6 +1,12 @@
 {%- assign footerData = include.data | default: site.data.company -%}
-{%- assign footerNoMargin = include.noMargin | default: layout.footer.noMargin or page.footer.noMargin -%}
+{%- assign footerNoMargin = include.noMargin -%}
 {%- assign footerLang = include.lang | default: 'de' -%}
+
+{%- unless footerNoMargin -%}
+  {% if layout.footer.noMargin or page.footer.noMargin %}
+    {% assign footerNoMargin = true %}
+  {% endif %}
+{%- endunless -%}
 
 <v-footer
   :data="{{ footerData | jsonify | escape }}"
