@@ -515,8 +515,8 @@ export default {
                   />
                 </div>
                 <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
-                1
-                  {{ getNextLanguage() }}
+                11111
+                  <a href="" v-for="(language, key) in home.languages" class="header__language-link">{{ key }}</a>
                 </div>
               </div>
             </nav>

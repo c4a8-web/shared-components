@@ -194,7 +194,7 @@ $header-border-size: 1px;
       z-index: -1;
 
       .header__language-switch {
-        display: block;
+        display: flex;
       }
 
       @include media-breakpoint-up($header-expand-breakpoint) {
@@ -547,6 +547,7 @@ $header-border-size: 1px;
   padding: 0 0 var(--header-vertical-spacing) 0;
   display: none;
   order: 1;
+  gap: spacing(10);
 }
 
 .header__search {
