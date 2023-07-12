@@ -250,7 +250,6 @@ export default {
     },
     getNextLanguage() {
       const languages = this.home.languages;
-      console.log('🚀 ~ file: header.js:253 ~ getNextLanguage ~ languages:', languages);
 
       if (!languages) return;
 
@@ -259,14 +258,13 @@ export default {
       if (!keys.length) return;
 
       const nextLang = keys.filter((lang) => lang !== this.lowerLang);
-      console.log('🚀 ~ file: header.js:262 ~ getNextLanguage ~ nextLang:', nextLang);
 
       if (!nextLang.length) return;
 
       return nextLang[0];
     },
-    handleLanguageSwitch() {
-      const nextLang = this.getNextLanguage();
+    handleLanguageSwitch(nextLang) {
+      // const nextLang = this.getNextLanguage();
       const activeUrl = this.getActiveUrlByLang(nextLang);
       const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
@@ -514,9 +512,9 @@ export default {
                     :classes="ctaClassList"
                   />
                 </div>
-                <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
-                11111
-                  <a href="" v-for="(language, key) in home.languages" class="header__language-link">{{ key }}</a>
+                <div class="header__language-switch" v-if="hasLangSwitch">
+                  <a v-for="(language, key) in home.languages" class="header__language-link" v-on:click="handleLanguageSwitch(key)">{{ key }}</a>
+                  11111
                 </div>
               </div>
             </nav>
