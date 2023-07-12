@@ -250,6 +250,7 @@ export default {
     },
     getNextLanguage() {
       const languages = this.home.languages;
+      console.log('🚀 ~ file: header.js:253 ~ getNextLanguage ~ languages:', languages);
 
       if (!languages) return;
 
@@ -258,6 +259,7 @@ export default {
       if (!keys.length) return;
 
       const nextLang = keys.filter((lang) => lang !== this.lowerLang);
+      console.log('🚀 ~ file: header.js:262 ~ getNextLanguage ~ nextLang:', nextLang);
 
       if (!nextLang.length) return;
 
@@ -513,6 +515,7 @@ export default {
                   />
                 </div>
                 <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
+                1
                   {{ getNextLanguage() }}
                 </div>
               </div>
@@ -527,8 +530,10 @@ export default {
               />
             </div>
             <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
-            <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-if="hasLangSwitch">
-              {{ getNextLanguage() }}
+            <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-on:mouseover="handleLanguageOver" v-on:mouseout="handleLanguageOut" v-if="hasLangSwitch">
+              <span class="header__link-text">{{ lang }}</span>
+              <span class="header__link-text-spacer">{{ lang }}</span>
+              <icon class="header__link-icon" icon="expand" size="small" />
             </div>
           </div>
         </div>

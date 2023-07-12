@@ -17,6 +17,9 @@ const Lang = {
     similarPosts: 'Similar Posts',
     withAuthor: 'With',
   },
+  es: {
+    // TODO add es texts
+  },
 };
 
 export default Lang;
