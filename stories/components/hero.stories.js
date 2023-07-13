@@ -277,5 +277,19 @@ HeroText.args = {
     light: true,
     overline: 'Preventive Service',
     bgColor: 'var(--color-gigas)',
+    ctaList: [
+      {
+        ctaText: 'Jump on the Phone',
+        ctaHref: 'javascript:void(0);',
+        skin: 'primary',
+        icon: 'phone',
+      },
+      {
+        ctaText: 'Mail us',
+        ctaHref: 'javascript:void(0);',
+        skin: 'secondary',
+        icon: 'mail',
+      },
+    ],
   },
 };

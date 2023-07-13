@@ -85,6 +85,7 @@
   position: relative;
   border-radius: 0;
 
+  &.cta--has-icon,
   &.cta--download,
   &.cta--external {
     &::after,

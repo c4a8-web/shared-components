@@ -16,6 +16,7 @@ export default {
         `${this.classes ? this.classes : ''}`,
         `${this.download ? 'cta--download' : ''}`,
         `${this.external ? 'cta--external' : ''}`,
+        `${this.hasIcon ? 'cta--has-icon' : ''}`,
         `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
         `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
         `${this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : ''}`,

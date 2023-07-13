@@ -66,9 +66,11 @@ import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import Expand from './vue/icons/expand.js';
 import Magnifier from './vue/icons/magnifier.js';
+import Mail from './vue/icons/mail.js';
 import Menu from './vue/icons/menu.js';
 import Minus from './vue/icons/minus.js';
 import PhoneMail from './vue/icons/phone-mail.js';
+import Phone from './vue/icons/phone.js';
 import PlusMinus from './vue/icons/plus-minus.js';
 import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
@@ -169,8 +171,10 @@ const addApp = () => {
     Menu,
     PlusMinus,
     Magnifier,
+    Mail,
     Minus,
     PhoneMail,
+    Phone,
     Quotes,
     Rocket,
     Smile,
