@@ -22,6 +22,7 @@
   {% assign heroContainerPosition = "justify-content-lg-center" %}
   {% assign heroSublineStyling = "" %}
 {%- elsif heroTextImageVariant == 'hero--text' -%}
+  {% assign heroTextImageCtaTop = true -%}
   {%- assign heroTextImageSpacing = heroTextImageHero.spacing | default: 'space-bottom-0' -%}
 {%- else -%}
   {% assign heroTextImageCtaTop = true -%}
@@ -34,18 +35,36 @@
   {% assign heroTextImageClasses = '' -%}
 {%- endif -%}
 
-{%- if heroTextImageHero.cta -%}
+{%- if heroTextImageHero.cta or heroTextImageHero.ctaList -%}
   {%- capture heroTextImageCta -%}
     <div class="hero-text-image__cta-wrapper">
-      {%
-        include cta.html
-        text=heroTextImageHero.cta.text
-        href=heroTextImageHero.cta.href
-        type=heroTextImageHero.cta.type
-        target=heroTextImageHero.cta.target
-        link=heroTextImageHero.cta.link
-        skin=heroTextImageHero.cta.skin
-      %}
+      {% if heroTextImageHero.ctaList %}
+        {%
+          include cta-list.html
+          list=heroTextImageHero.ctaList
+        %}
+      {% else %}
+        {%
+          include cta.html
+          text=heroTextImageHero.cta.text
+          analytics=heroTextImageHero.cta.analytics
+          skin=heroTextImageHero.cta.skin
+          link=heroTextImageHero.cta.link
+          grow=heroTextImageHero.cta.grow
+          href=heroTextImageHero.cta.href
+          target=heroTextImageHero.cta.target
+          button=heroTextImageHero.cta.button
+          alternativeHref=heroTextImageHero.cta.alternativeHref
+          type=heroTextImageHero.cta.type
+          trigger=heroTextImageHero.cta.trigger
+          external=heroTextImageHero.cta.external
+          icon=heroTextImageHero.cta.icon
+          download=heroTextImageHero.cta.download
+          reversed=heroTextImageHero.cta.reversed
+          monochrome=heroTextImageHero.cta.monochrome
+          active=heroTextImageHero.cta.active
+        %}
+      {% endif %}
     </div>
   {%- endcapture -%}
 {%- endif -%}
@@ -193,7 +212,7 @@
             %}
           </div>
         {% endif %}
-        {% if heroTextImageHero.cta and heroTextImageCtaTop == true %}
+        {% if heroTextImageCta and heroTextImageCtaTop == true %}
           <div class="pt-4 {% if heroTextImageHero.video == true %}hero-video__animation text-center justify-content-lg-center {% endif %}">
             {{ heroTextImageCta }}
           </div>
