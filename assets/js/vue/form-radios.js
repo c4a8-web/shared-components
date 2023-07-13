@@ -12,9 +12,6 @@ export default {
     message() {
       return this.field.required ? this.field.requiredMsg : null;
     },
-    groupId() {
-      return Tools.isTrue(this.uuid) ? this.uuid + this.field?.radios[0].id : this.field?.radios[0].id;
-    },
   },
   props: {
     field: Object,

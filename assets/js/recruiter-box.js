@@ -114,7 +114,7 @@ class RecruiterBox {
       let updatedName;
 
       fieldnames.map(fieldName => {
-        if (this.removeUuid(input.name) === fieldName) {
+        if (this.getName(input.name) === fieldName) {
           updatedName = fieldName;
         }
       });
@@ -132,10 +132,14 @@ class RecruiterBox {
     return data;
   }
 
-  removeUuid(string) {
-    const delimiter = '-glk-';
-    const array = string.split(delimiter)
-    return array[1] ? array[1] : array[0];
+  getName(string) {
+    const delimiter = '-formHelper-';
+    if (string.includes(delimiter)){
+      const delimiterIndex = string.indexOf(delimiter);
+      return string.slice(delimiterIndex + delimiter.length)
+    } else {
+      return string;
+    }
   }
 
   applyFileData(fileData, data, fields) {

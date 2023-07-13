@@ -85,6 +85,14 @@ export default {
     generateUuid() {
       return Tools.isTrue(this.hasUuid) ? Tools.uuid() : null;
     },
+    getId(field){
+      const fieldId = field?.radios?.id[0] || field?.checkboxes?.id[0] || field?.id
+      if (!Tools.isTrue(this.hasUuid)) return fieldId;
+
+      const delimiter = '-formHelper-'
+      const uuidWithDelimiter = Tools.uuid() + delimiter + fieldId;
+      return uuidWithDelimiter;
+    },
   },
   props: {
     form: Object,
@@ -131,7 +139,7 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :hasUuid="generateUuid()" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" />
                 </div>
               </div>
             </template>
