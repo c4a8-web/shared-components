@@ -86,7 +86,8 @@ export default {
       return Tools.isTrue(this.hasUuid) ? Tools.uuid() : null;
     },
     getId(field){
-      const fieldId = field?.radios?.id[0] || field?.checkboxes?.id[0] || field?.id
+      const groupField = field?.radios || field?.checkboxes
+      const fieldId = groupField ? groupField[0].id : field?.id
       if (!Tools.isTrue(this.hasUuid)) return fieldId;
 
       const delimiter = '-formHelper-'
