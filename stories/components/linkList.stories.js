@@ -29,7 +29,7 @@ LinkList.args = {
         name: 'clear-spend-go-card',
         languages: {
           de: {
-            title: 'clear lorem ipsum',
+            title: 'clear lorem ipsum dolor sit, consectetur adipiscing elit sed diam nonumy euismod',
             url: 'javascript:void(0);',
           },
           en: {
