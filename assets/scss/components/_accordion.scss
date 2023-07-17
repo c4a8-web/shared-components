@@ -153,11 +153,6 @@
       position: sticky;
       left: 0;
       top: 25vh;
-
-      .show & {
-        opacity: 1;
-        transition: opacity 250ms ease-in-out;
-      }
     }
   }
 
@@ -165,6 +160,17 @@
     position: relative;
     height: 100%;
     width: 100%;
+  }
+}
+
+.accordion__fallback-image-wrapper {
+  img {
+    @include media-breakpoint-up(lg) {
+      .show & {
+        opacity: 1;
+        transition: opacity 250ms ease-in-out;
+      }
+    }
   }
 }
 
