@@ -65,11 +65,11 @@
 
 <div class="contact {{ contactVariantClass }}
             {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %} {{ contactSpacing }} {% endunless %}
-            {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2{% endunless %}"
+            {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2 utility-animation utility-animation--percentage-offset{% endunless %}"
 >
   <div class="{{ contactContainerClass }}">
     <div class="{{ contactRowClass }}">
-      <div class="contact__form {{ contactFormClass }}">
+      <div class="contact__form {% unless contactCollapsed %}fade-in-bottom{% endunless %} {{ contactFormClass }}" data-utility-animation-step="1">
         {%- capture contactHeadlineClasses %}{{ contact.headlineClasses }} contact__healdine{% endcapture -%}
         {%
           include headline.html
@@ -97,7 +97,7 @@
         {% endif %}
       </div>
 
-      <div class="contact__box {{ contactBoxClass }} {{ contactBoxQuoteClass }}">
+      <div class="contact__box {% unless contactCollapsed %}fade-in-bottom{% endunless %} {{ contactBoxClass }} {{ contactBoxQuoteClass }}" data-utility-animation-step="1">
         <div class="contact__person {{ contactLight }}" {% if contact.person.quoteBgColor %}style="--color-contact-person: {{ contact.person.quoteBgColor }}"{% endif %}>
           {% if contactQuote %}
             <div class="contact__person-quote">

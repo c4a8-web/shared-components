@@ -4,11 +4,11 @@
 {%- assign serviceOverviewTitle = include.title -%}
 
 <!-- Shared Service Overview Section -->
-<div class="service-overview">
+<div class="service-overview utility-animation">
   <div class="container">
     <div class="row">
       <div class="col">
-        <div class="service-overview__header">
+        <div class="service-overview__header fade-in-bottom" data-utility-animation-step="1">
           <div class="service-overview__logo">
             <a href="{{ serviceOverviewLogo.url }}" target="_blank" class="service-overview__logo-frame">
               <div class="service-overview__img">
@@ -36,14 +36,15 @@
           <span class="service-overview__title h3-font-size">{{ serviceOverviewTitle }}</span>
         </div>
         <div class="service-overview__content">
-          <div class="service-overview__list">
+          <div class="service-overview__list fade-in-bottom" data-utility-animation-step="1">
             {%
               include list.html
               title=serviceOverviewList.title
               items=serviceOverviewList.items
+              noAnimation=true
             %}
           </div>
-          <div class="service-overview__services">
+          <div class="service-overview__services fade-in-bottom" data-utility-animation-step="1">
             {%
               include services.html
               title=serviceOverviewServices.title

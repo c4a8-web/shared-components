@@ -1,11 +1,12 @@
 {%- assign quotesEntry = include.entry -%}
 {%- assign quotesEntryImage = include.image -%}
+{%- assign quotesEntryHasAnimation = include.hasAnimation -%}
 
 <!-- Shared Quotes Entry Section -->
 <div class="quotes__entry row no-gutters {% if include.active %}active{% endif %}">
   {% if quotesEntryImage %}
     <div class="quotes__entry-img-wrapper col-lg-5">
-      <div class="quotes__entry-img">
+      <div class="quotes__entry-img {% if quotesEntryHasAnimation %}utility-animation fade-in-bottom{% endif %}" data-utility-animation-step="1">
         {%
           include img.html
           cloudinary=true
@@ -15,7 +16,12 @@
       </div>
     </div>
   {% endif %}
-  <div class="quotes__entry-quote-wrapper {% if quotesEntryImage %}col-lg-6 offset-lg-1 disabledpb-lg-0{% else %}col-lg-12{% endif %} position-relative {% unless quotesEntryImage %}mx-auto{% endunless %}">
+  <div class="quotes__entry-quote-wrapper
+              {% if quotesEntryHasAnimation %}utility-animation fade-in-bottom{% endif %}
+              {% if quotesEntryImage %}col-lg-6 offset-lg-1 disabledpb-lg-0{% else %}col-lg-12{% endif %}
+              {% unless quotesEntryImage %}mx-auto{% endunless %}"
+    data-utility-animation-step="1"
+  >
     <div class="quotes__entry-quote">&#x84;</div>
     <div class="quotes__entry-text font-weight-light mt-3 font-size-2">
       <div class="quotes__entry-text-wrapper">

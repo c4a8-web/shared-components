@@ -37,7 +37,6 @@
       offset=true
       left=textImageEven
       spacing=textImageSpacing
-      animation=true
       index=forloop.index
     %}
 

@@ -1,4 +1,5 @@
 <!-- Shared Form Section -->
+{%- assign formHasAnimation = include.hasAnimation -%}
 {%- assign formForm = include.form -%}
 {%- assign formLight = include.light -%}
 {%- assign formAnalytics = include.analytics -%}
@@ -41,6 +42,7 @@ Refactor uncentered value and include the content migration of uncentered values
   uncentered="{{ formUncentered }}"
   replace-value="{{ formReplaceValue }}"
   :options="{{ formOptionsText }}"
+  :has-animation="{{ formHasAnimation }}"
 ></formular>
 
 <!-- End Shared Form Section -->
