@@ -1,5 +1,5 @@
 import { createComponent, getTitle } from '../../.storybook/templates';
-import { includesvideoinnerhtml as component } from '../../.storybook/generatedIncludes';
+import videoInnerTemplate from '!!raw-loader!./videoInner.html';
 
 const options = getTitle({
   title: 'Video Inner',
@@ -9,7 +9,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, videoInnerTemplate);
 
 export const VideoInner = Template.bind({});
 
@@ -72,9 +72,9 @@ VideoLightbox.args = {
   },
 };
 
-export const VideoRow = Template.bind({});
+export const VideoRowOverlapping = Template.bind({});
 
-VideoRow.args = {
+VideoRowOverlapping.args = {
   variant: 'row',
   overlapping: true,
   video: {

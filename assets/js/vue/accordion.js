@@ -9,14 +9,14 @@ export default {
     },
     containerClasses() {
       return [
-        'accordion__container container vue-component',
+        'accordion__container utility-animation container vue-component',
         this.spacing,
         this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
     accordionClasses() {
       return [
-        'accordion container mt-6 mb-4 my-lg-8 vue-component',
+        'accordion utility-animation container mt-6 mb-4 my-lg-8 vue-component',
         this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
@@ -116,6 +116,9 @@ export default {
 
       return ['accordion__card', state ? State.EXPANDED : null];
     },
+    cardStyle(index) {
+      return `--utility-animation-index: ${index}`;
+    },
     accordionId(accordion) {
       return `#${accordion.id}`;
     },
@@ -164,14 +167,14 @@ export default {
     </div>
     <section :class="accordionClasses">
       <div class="row position-relative">
-        <div class="col-lg-6"><!-- safespace for floating image on large breakpoints --></div>
+        <div class="accordion__image-spacer col-lg-6"><v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" v-if="outsideImage" /></div>
         <div class="col-lg-6 position-static" :id="accordion.id">
           <div class="accordion__fallback-container mb-4 col-lg-6" v-if="outsideImage">
             <div :class="fallbackImageClasses">
               <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" />
             </div>
           </div>
-          <div :class="cardClasses(index)"  v-for="(tab, index) in accordion.tabs">
+          <div :class="cardClasses(index)" v-for="(tab, index) in accordion.tabs" :style="cardStyle(index)">
             <div class="accordion__card-header card-collapse" :id="getId(accordion, index, 'Heading')">
               <button type="button" :class="buttonClasses(tab)"
                   data-toggle="collapse"

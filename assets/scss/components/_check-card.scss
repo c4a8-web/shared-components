@@ -17,6 +17,8 @@ $check-card-margin-lg: $check-card-spacing-lg / 2;
 }
 
 .check-card__container {
+  @include utility-animation-options($distance: 5%, $delay: 150ms, $selector: '&');
+
   width: 100%;
 
   @include media-breakpoint-up(lg) {
@@ -30,4 +32,8 @@ $check-card-margin-lg: $check-card-spacing-lg / 2;
   @include media-breakpoint-up(lg) {
     padding: 0 spacing($check-card-spacing-lg);
   }
+}
+
+.check-card__subline {
+  @include utility-animation-options($delay: 100ms, $selector: '&');
 }

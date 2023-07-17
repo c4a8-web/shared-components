@@ -7,7 +7,7 @@ export default {
   computed: {
     classList() {
       return [
-        'blog-recent',
+        'blog-recent utility-animation utility-animation--percentage-offset',
         `${this.hasBackground}`,
         `${this.skinClass}`,
         `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
@@ -23,7 +23,7 @@ export default {
     },
     blogRecentContainerClass() {
       return [
-        'blog-recent__container',
+        'blog-recent__container fade-in-bottom',
         `${Tools.isTrue(this.slider) === true ? 'js-slick-carousel' : 'row mb-3'}`,
         'vue-component',
       ];
@@ -161,12 +161,12 @@ export default {
         <div class="blog-recent__bg" :style="{ 'background-color' : bgColor  }" v-if="skinClass !== ''"></div>
         <wrapper :hideContainer="hiddenContainer">
           <div class="row" v-if="headline">
-            <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6">
+            <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 fade-in-bottom" data-utility-animation-step="1">
               <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
               <span v-if="subline" :class="sublineClassesValue" >{{ subline }}</span>
             </div>
           </div>
-          <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" >
+          <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" data-utility-animation-step="1">
             <template v-for="(post, index) in postsArray">
               <div :class="itemClass" v-if="index <= limit">
                 <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">

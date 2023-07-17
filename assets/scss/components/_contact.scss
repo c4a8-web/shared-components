@@ -9,6 +9,18 @@
 
   color: var(--contact-copy-color);
 
+  &.utility-animation {
+    [data-utility-animation-step] {
+      --utility-animation-distance: 10%;
+
+      animation-duration: 0.8s;
+
+      + [data-utility-animation-step] {
+        animation-delay: 100ms;
+      }
+    }
+  }
+
   .input-label,
   .headline {
     color: inherit;

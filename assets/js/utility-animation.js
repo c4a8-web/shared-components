@@ -101,27 +101,51 @@ class UtilityAnimation {
     observer.observe(this.root, { attributes: true });
   }
 
+  static hasPercentageOffset(instance) {
+    return instance.root.classList.contains('utility-animation--percentage-offset');
+  }
+
+  static hasSmallOffset(instance) {
+    return instance.root.classList.contains('utility-animation--small-offset');
+  }
+
   static addObserver() {
     const intersectionOffset = 200;
+    const smallIntersectionOffset = 100;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.setAttribute(this.inViewportDataset, true);
-          } else if (entry.target.classList.contains('utility-animation--enter-exit')) {
-            entry.target.removeAttribute(this.inViewportDataset);
-          }
-        });
-      },
-      {
-        rootMargin: `0px 0px -${intersectionOffset}px 0px`,
-        threshold: 0,
-      }
-    );
+    const callback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.setAttribute(this.inViewportDataset, true);
+        } else if (entry.target.classList.contains('utility-animation--enter-exit')) {
+          entry.target.removeAttribute(this.inViewportDataset);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, {
+      rootMargin: `0px 0px -${intersectionOffset}px 0px`,
+      threshold: 0,
+    });
+
+    const percentageOffsetObserver = new IntersectionObserver(callback, {
+      rootMargin: `0px 0px 0px 0px`,
+      threshold: 0.4,
+    });
+
+    const smallOffsetObserver = new IntersectionObserver(callback, {
+      rootMargin: `0px 0px -${smallIntersectionOffset}px 0px`,
+      threshold: 0,
+    });
 
     this.instances.forEach((instance) => {
-      observer.observe(instance.root);
+      if (UtilityAnimation.hasSmallOffset(instance)) {
+        smallOffsetObserver.observe(instance.root);
+      } else if (UtilityAnimation.hasPercentageOffset(instance)) {
+        percentageOffsetObserver.observe(instance.root);
+      } else {
+        observer.observe(instance.root);
+      }
     });
   }
 

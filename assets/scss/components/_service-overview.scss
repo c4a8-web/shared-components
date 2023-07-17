@@ -105,9 +105,9 @@ $service-overview-offset: $grid-gutter-half-width;
 }
 
 .service-overview__services {
+  @include utility-animation-options($delay: 100ms, $selector: '&');
+
   width: 100%;
-  @include media-breakpoint-up(md) {
-  }
 
   @include media-breakpoint-up(lg) {
     flex: 1 0 40%;
