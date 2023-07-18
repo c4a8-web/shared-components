@@ -218,6 +218,27 @@ export default {
 
       ref.classList.remove(State.EXPANDED);
     },
+    handleLanguageOver(event) {
+      console.log('handleLanguageOver');
+      const languageSwitch = this.$refs['languageSwitch'];
+
+      if (!languageSwitch) return;
+
+      languageSwitch.classList.add(State.EXPANDED);
+
+      // this.handleMouseOver({ children: true }, 0, event);
+    },
+    handleLanguageOut(event) {
+      console.log('reset language switch');
+
+      const languageSwitch = this.$refs['languageSwitch'];
+
+      if (!languageSwitch) return;
+
+      languageSwitch.classList.remove(State.EXPANDED);
+
+      this.handleMouseOut(event);
+    },
     resetAllFlyouts() {
       this.$refs['link']?.forEach((link) => {
         link.classList.remove(State.EXPANDED);
@@ -264,7 +285,6 @@ export default {
       return nextLang[0];
     },
     handleLanguageSwitch(nextLang) {
-      // const nextLang = this.getNextLanguage();
       const activeUrl = this.getActiveUrlByLang(nextLang);
       const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
@@ -513,8 +533,7 @@ export default {
                   />
                 </div>
                 <div class="header__language-switch" v-if="hasLangSwitch">
-                  <a v-for="(language, key) in home.languages" class="header__language-link" v-on:click="handleLanguageSwitch(key)">{{ key }}</a>
-                  11111
+                  <a v-for="(language, key) in home.languages" :class="{'header__language-link custom': true, 'active': key === lowerLang}" v-on:click="handleLanguageSwitch(key)">{{ key }}</a>
                 </div>
               </div>
             </nav>
@@ -528,7 +547,7 @@ export default {
               />
             </div>
             <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
-            <div class="header__language-switch" v-on:click="handleLanguageSwitch" v-on:mouseover="handleLanguageOver" v-on:mouseout="handleLanguageOut" v-if="hasLangSwitch">
+            <div class="header__language-switch" v-on:mouseover="handleLanguageOver" v-on:mouseout="handleLanguageOut" v-if="hasLangSwitch" ref="languageSwitch">
               <span class="header__link-text">{{ lang }}</span>
               <span class="header__link-text-spacer">{{ lang }}</span>
               <icon class="header__link-icon" icon="expand" size="small" />
@@ -575,6 +594,11 @@ export default {
                       </a>
                     </div>
                   </template>
+                </div>
+              </div>
+              <div class="header__flyout-content" ref="languageFlyout">
+                <div class="header__flyout-items">
+                  language switch flyout
                 </div>
               </div>
             </div>

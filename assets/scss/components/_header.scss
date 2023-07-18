@@ -12,6 +12,7 @@ $header-border-size: 1px;
         transition-duration: 0s;
       }
 
+      .header__language-switch,
       .header__link-content {
         .icon {
           @include media-breakpoint-up($header-expand-breakpoint) {
@@ -228,13 +229,14 @@ $header-border-size: 1px;
       }
 
       .header__button,
-      nav,
-      .header__language-switch {
+      nav {
         display: block;
       }
 
       .header__language-switch {
         padding-top: var(--header-vertical-spacing);
+        display: flex;
+        gap: 0;
       }
 
       nav {
@@ -413,19 +415,9 @@ $header-border-size: 1px;
       height: 3px;
     }
 
-    .icon {
-      --icon-rotation: 180deg !important;
-
-      color: var(--color-header-active);
-    }
-
     @include media-breakpoint-up($header-expand-breakpoint) {
       border-bottom-width: 1px;
       padding-bottom: var(--header-vertical-spacing);
-
-      .icon {
-        color: inherit;
-      }
     }
   }
 
@@ -438,13 +430,33 @@ $header-border-size: 1px;
   }
 }
 
+.header__link,
+.header__language-switch {
+  &.is-expanded {
+    .icon {
+      --icon-rotation: 180deg !important;
+
+      color: var(--color-header-active);
+    }
+
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      .icon {
+        color: inherit;
+      }
+    }
+  }
+}
+
 .header__link-content {
   width: 100%;
   display: flex;
   justify-content: space-between;
   place-items: center;
   pointer-events: none;
+}
 
+.header__link-content,
+.header__language-switch {
   .icon {
     margin-left: spacing(2);
   }
@@ -457,6 +469,12 @@ $header-border-size: 1px;
     .header__link {
       color: var(--color-active);
 
+      &.is-expanded {
+        .header__link-icon {
+          color: var(--color-active);
+        }
+      }
+
       .header__link-icon {
         color: var(--color-copy);
       }
@@ -467,6 +485,12 @@ $header-border-size: 1px;
         &:not(:hover)::after {
           display: block;
           background-color: var(--color-active);
+        }
+
+        &.is-expanded {
+          .header__link-icon {
+            color: var(--color-copy);
+          }
         }
       }
     }
@@ -548,6 +572,7 @@ $header-border-size: 1px;
   display: none;
   order: 1;
   gap: spacing(10);
+  place-items: center;
 }
 
 .header__search {
@@ -799,4 +824,12 @@ $header-border-size: 1px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.header__language-link {
+  color: var(--color-copy);
+
+  &.active {
+    color: var(--color-primary-accent);
+  }
 }
