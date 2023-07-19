@@ -32,6 +32,9 @@ export default {
     baseData() {
       return this.base ? JSON.parse(this.base) : {};
     },
+    getUuid() {
+      return 'job-list-detail-style';
+    },
   },
   mounted() {
     this.loading = new Loading(this.$refs['job-list-detail'], () => {
@@ -55,6 +58,7 @@ export default {
       entryData: {},
       personQuote: null,
       videoInner: null,
+      jobIdValue: null,
     };
   },
   methods: {
@@ -135,6 +139,10 @@ export default {
       const jobId = this.api.getJobId() || this.jobId;
       const url = `${this.api.jobDataUrl}${jobId}.json`;
 
+      this.jobIdValue = jobId;
+
+      this.addCustomStyle();
+
       return fetch(url, {
         method: 'GET',
         headers: {
@@ -150,6 +158,21 @@ export default {
         .catch((error) => {
           console.error('Job-list-Detail Local Job Data Error:', error);
         });
+    },
+    addCustomStyle() {
+      const style = document.createElement('style');
+
+      style.id = this.getUuid;
+
+      document.getElementById(this.getUuid)?.remove();
+
+      style.innerHTML = `
+        .show-in-${this.jobIdValue}.d-none {
+          display: block !important;
+        }
+      `;
+
+      document.head.appendChild(style);
     },
   },
   props: {
@@ -167,7 +190,7 @@ export default {
     modalSuccess: Object,
   },
   template: `
-    <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobId" :data-api-url="apiUrl" ref="job-list-detail">
+    <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobIdValue" :data-api-url="apiUrl" ref="job-list-detail">
       <div class="job-list__detail-container page-detail__container container">
         <div class="job-list__detail-start page-detail__start row">
           <div class="job-list__sticky-start page-detail__sticky-start col-md-11 col-lg-5">
@@ -202,7 +225,7 @@ export default {
             <div v-if="personQuote" class="job-list__detail-quote">
               <person-quote :img="personQuote.img" :text="personQuote.text" :name="personQuote.name" />
             </div>
-            
+
             <!-- <div class="job-list__detail-maps">
               <slot name="google-maps" />
             </div> -->
