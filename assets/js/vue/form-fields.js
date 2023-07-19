@@ -7,7 +7,7 @@ export default {
         `${this.field.type === 'hidden' ? 'd-none' : ''}`,
         this.groupClass,
         this.hasAnimation ? 'utility-animation utility-animation--small-offset fade-in-bottom' : '',
-        `${this.field.showIn ? 'd-none ' + this.showInClasses : ''}`,
+        `${this.field.showIn ? 'd-none form-field--show-in ' + this.showInClasses : ''}`,
         'vue-component',
       ];
     },
