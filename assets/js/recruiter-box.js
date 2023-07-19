@@ -90,6 +90,10 @@ class RecruiterBox {
     return this.fetch(url);
   }
 
+  isOptionalInputInvisible(input) {
+    return input?.parentNode?.classList.contains('form-field--show-in') && input.offsetParent === null;
+  }
+
   getFormData(form) {
     if (form === null || form === undefined) return [];
 
@@ -100,6 +104,8 @@ class RecruiterBox {
 
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
+
+      if (this.isOptionalInputInvisible(input)) continue;
 
       let value;
 
