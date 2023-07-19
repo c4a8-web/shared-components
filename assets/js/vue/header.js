@@ -218,26 +218,27 @@ export default {
 
       ref.classList.remove(State.EXPANDED);
     },
-    handleLanguageOver(event) {
-      console.log('handleLanguageOver');
+    handleLanguageOver() {
+      this.resetAllFlyouts();
+
+      this.hover = true;
+
       const languageSwitch = this.$refs['languageSwitch'];
 
       if (!languageSwitch) return;
 
       languageSwitch.classList.add(State.EXPANDED);
-
-      // this.handleMouseOver({ children: true }, 0, event);
     },
     handleLanguageOut(event) {
-      console.log('reset language switch');
+      if (event.relatedTarget?.closest('.header__flyout')) return;
+
+      this.hover = false;
 
       const languageSwitch = this.$refs['languageSwitch'];
 
       if (!languageSwitch) return;
 
       languageSwitch.classList.remove(State.EXPANDED);
-
-      this.handleMouseOut(event);
     },
     resetAllFlyouts() {
       this.$refs['link']?.forEach((link) => {
@@ -551,6 +552,9 @@ export default {
               <span class="header__link-text">{{ lang }}</span>
               <span class="header__link-text-spacer">{{ lang }}</span>
               <icon class="header__link-icon" icon="expand" size="small" />
+              <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
+                <a v-for="(language, key) in home.languages" :class="{'header__language-link custom': true, 'd-none': key === lowerLang}" v-on:click="handleLanguageSwitch(key)">{{ key }}</a>
+              </div>
             </div>
           </div>
         </div>
@@ -594,11 +598,6 @@ export default {
                       </a>
                     </div>
                   </template>
-                </div>
-              </div>
-              <div class="header__flyout-content" ref="languageFlyout">
-                <div class="header__flyout-items">
-                  language switch flyout
                 </div>
               </div>
             </div>
