@@ -1,5 +1,9 @@
 import Tools from './tools.js';
 
+/**
+ * https://apiv1.recruiterbox.com/frontend_api.html
+ */
+
 class RecruiterBox {
   apiUrl = 'https://jsapi.recruiterbox.com/v1/';
   jobDataUrl = '/assets/data/jobs/';

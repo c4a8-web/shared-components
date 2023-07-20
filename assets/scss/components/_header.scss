@@ -799,3 +799,38 @@ $header-border-size: 1px;
   flex-direction: column;
   justify-content: space-between;
 }
+
+.header__highlight-cta {
+  display: none;
+
+  @include media-breakpoint-up($header-expand-breakpoint) {
+    margin-top: spacing(12);
+    display: block;
+  }
+}
+
+.header__language-link {
+  color: var(--color-copy);
+
+  &.active {
+    color: var(--color-active);
+  }
+
+  &:hover {
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      color: var(--color-copy);
+      font-weight: bold;
+    }
+  }
+}
+
+.header__language-switch-flyout {
+  padding: 0 spacing(8) spacing(4);
+  bottom: 0;
+  right: spacing($size: 3, $negative: true);
+  z-index: 5;
+  display: flex;
+  gap: spacing(4);
+  flex-direction: column;
+  transition: transform $animation-transition 0.5s, opacity $animation-transition 0.4s 0.1s;
+}

@@ -2,6 +2,7 @@
 {%- assign fabButtonIcon = include.icon | default: 'phone-mail' -%}
 {%- assign fabButtonModal = include.modal -%}
 {%- assign fabButtonNoSticky = include.noSticky -%}
+{%- assign fabButtonBgColor = include.bgColor -%}
 
 <div class="fab-button {% unless fabButtonNoSticky %}fab-button--sticky{% endunless %}">
   <div class="fab-button__start"></div>
@@ -36,7 +37,7 @@
         {% endif %}
       </div>
     {% endif %}
-    <div class="fab-button__icon">
+    <div class="fab-button__icon" {% if fabButtonBgColor %}style="--color-fab-background: {{ fabButtonBgColor }}"{% endif %}>
       {%
         include icon.html
         icon=fabButtonIcon
