@@ -657,6 +657,7 @@ $header-border-size: 1px;
   }
 }
 
+.header__nav-highlight,
 .header__link-list,
 .header__product-list {
   margin: spacing(2) $grid-gutter-half-width spacing(2);
@@ -833,4 +834,23 @@ $header-border-size: 1px;
   gap: spacing(4);
   flex-direction: column;
   transition: transform $animation-transition 0.5s, opacity $animation-transition 0.4s 0.1s;
+}
+
+.header__nav-highlight {
+  @include font-size-custom($sm: $font-size-13px);
+
+  display: flex;
+  align-items: center;
+  color: var(--color-emergency);
+
+  .icon {
+    margin-right: spacing(2);
+  }
+
+  &.is-in-transition,
+  &.is-hidden {
+    @include is-invisible;
+
+    width: 0;
+  }
 }

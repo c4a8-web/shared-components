@@ -394,6 +394,11 @@ export default {
         list.style.height = newHeight;
       }
     },
+    navHighlightClasses(item, index) {
+      const isHidden = this.isLinkListHidden(item, index);
+
+      return ['header__nav-highlight', isHidden ? 'is-hidden' : ''];
+    },
   },
   props: {
     home: Object,
@@ -479,6 +484,12 @@ export default {
                       </a>
                     </div>
                   </template>
+
+                  <div :class="navHighlightClasses(item, index)" v-if="item.languages[lowerLang]?.emergency">
+                    <icon :icon="item.languages[lowerLang]?.emergency.icon" size="medium" />
+                    {{ item.languages[lowerLang].emergency.text }}
+                  </div>
+
                 </li>
               </ul>
               <div class="header__footer">

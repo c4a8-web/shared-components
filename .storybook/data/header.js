@@ -312,7 +312,7 @@ const Header = {
             text: 'Notfall-Service',
             href: 'javascript:void(0);',
             skin: 'primary',
-            icon: 'phone',
+            icon: 'emergency',
           },
         },
         en: {
@@ -323,7 +323,7 @@ const Header = {
             text: 'Emergency-Service',
             href: 'javascript:void(0);',
             skin: 'primary',
-            icon: 'phone',
+            icon: 'emergency',
           },
         },
       },
