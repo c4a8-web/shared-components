@@ -553,8 +553,8 @@ export default {
                         {{ contact.languages[lowerLang]?.title }}
                       </span>
                     </a>
-                    <div class="header__highlight-cta has-emergency-colors" v-if="item.languages[lowerLang]?.security">
-                      <cta v-bind="item.languages[lowerLang].security" />
+                    <div class="header__highlight-cta has-emergency-colors" v-if="item.languages[lowerLang]?.emergency">
+                      <cta v-bind="item.languages[lowerLang].emergency" />
                     </div>
                   </figure>
 
