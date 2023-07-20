@@ -7,6 +7,7 @@ const Events = {
   DIMENSIONS_CHANGED: 'dimensions-changed',
   SCROLL_UPDATE: 'scroll-update',
   WINDOW_RESIZE: 'window-resize',
+  OPEN_MODAL: 'open-modal',
 };
 
 export default Events;
