@@ -160,5 +160,5 @@ export const Emergency = Template.bind({});
 
 Emergency.args = {
   icon: 'emergency',
-  size: 'xxl',
+  size: 'large',
 };
