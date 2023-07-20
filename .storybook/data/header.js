@@ -308,10 +308,23 @@ const Header = {
         de: {
           title: 'Services',
           active: true,
+          emergency: {
+            text: 'Notfall-Service',
+            href: 'javascript:void(0);',
+            skin: 'primary',
+            icon: 'emergency',
+          },
         },
         en: {
           title: 'Services',
           active: true,
+          description: 'lorem ipsum services dolor sit amet, consectetur adipiscing elit',
+          emergency: {
+            text: 'Emergency-Service',
+            href: 'javascript:void(0);',
+            skin: 'primary',
+            icon: 'emergency',
+          },
         },
       },
       children: [

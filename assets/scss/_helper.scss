@@ -38,3 +38,8 @@
     }
   }
 }
+
+.has-emergency-colors {
+  --color-primary: var(--color-emergency);
+  --color-primary-accent: var(--color-emergency-accent);
+}

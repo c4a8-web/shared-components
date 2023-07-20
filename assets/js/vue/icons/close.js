@@ -7,7 +7,7 @@ export default {
       return viewBoxWidth - this.padding;
     },
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation));`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
   },
   props: {

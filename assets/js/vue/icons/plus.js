@@ -2,7 +2,7 @@ export default {
   tagName: 'plus',
   computed: {
     style() {
-      return `transform: rotate(var(--icon-rotation));`;
+      return `transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     stroke() {
       return this.color;

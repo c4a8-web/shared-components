@@ -28,8 +28,12 @@ class FabButton extends BaseComponent {
     this.bindEvents();
   }
 
+  hasTrigger() {
+    return this.root.classList.contains('fab-button--has-trigger');
+  }
+
   bindEvents() {
-    if (!this.icon || !this.modal) return;
+    if (!this.icon || !this.modal || this.hasTrigger()) return this.bindTriggerEvent();
 
     this.link.forEach((link) => {
       link.addEventListener('click', this.handleClick.bind(this));
@@ -43,6 +47,17 @@ class FabButton extends BaseComponent {
     // force redraw
     this.modal.style = 'opacity: 1';
     this.modal.style = '';
+  }
+
+  bindTriggerEvent() {
+    this.icon.addEventListener('click', this.handleTriggerClick.bind(this));
+  }
+
+  handleTriggerClick(e) {
+    const target = e.currentTarget;
+    const triggerId = target.dataset.triggerId;
+
+    document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
   }
 
   handleOutsideClick(e) {

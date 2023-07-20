@@ -65,6 +65,7 @@ import Arrow from './vue/icons/arrow.js';
 import CheckMark from './vue/icons/check-mark.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
+import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Mail from './vue/icons/mail.js';
@@ -169,6 +170,7 @@ const addApp = () => {
     Arrow,
     Close,
     ComputerShield,
+    Emergency,
     Expand,
     Menu,
     PlusMinus,

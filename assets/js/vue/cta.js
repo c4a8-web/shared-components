@@ -107,6 +107,7 @@ export default {
     },
     classes: {
       default: '',
+      type: String,
     },
   },
   template: `
