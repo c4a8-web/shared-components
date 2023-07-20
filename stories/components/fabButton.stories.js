@@ -99,6 +99,7 @@ export const Emergency = Template.bind({});
 
 Emergency.args = {
   bgColor: 'var(--color-orange)',
+  iconColor: 'var(--color-white)',
   icon: 'emergency',
   modal: {
     contact: {

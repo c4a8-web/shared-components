@@ -3,8 +3,10 @@
 {%- assign fabButtonModal = include.modal -%}
 {%- assign fabButtonNoSticky = include.noSticky -%}
 {%- assign fabButtonBgColor = include.bgColor -%}
+{%- assign fabButtonIconColor = include.iconColor -%}
+{%- assign fabButtonTrigger = include.trigger -%}
 
-<div class="fab-button {% unless fabButtonNoSticky %}fab-button--sticky{% endunless %}">
+<div class="fab-button {% unless fabButtonNoSticky %}fab-button--sticky{% endunless %}{% if fabButtonTrigger %} fab-button--has-trigger{% endif %}">
   <div class="fab-button__start"></div>
   <div class="fab-button__wrapper {% unless fabButtonNoSticky %}js-sticky-block{% endunless %}"
     data-hs-sticky-block-options='{
@@ -37,7 +39,11 @@
         {% endif %}
       </div>
     {% endif %}
-    <div class="fab-button__icon" {% if fabButtonBgColor %}style="--color-fab-background: {{ fabButtonBgColor }}"{% endif %}>
+    <div class="fab-button__icon"
+        style=" {% if fabButtonBgColor %}--color-fab-background: {{ fabButtonBgColor }};{% endif %}
+                {% if fabButtonIconColor %}color: {{ fabButtonIconColor }}{% endif %}"
+        {% if fabButtonTrigger %}data-trigger-id="{{ fabButtonTrigger }}"{% endif %}
+    >
       {%
         include icon.html
         icon=fabButtonIcon
