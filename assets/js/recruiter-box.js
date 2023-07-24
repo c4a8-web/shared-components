@@ -105,7 +105,6 @@ class RecruiterBox {
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-    const customFields = ['cancellation', 'salary', 'message', 'portfolio'];
 
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
