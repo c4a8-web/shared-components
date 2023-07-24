@@ -2,7 +2,7 @@ export default {
   tagName: 'arrow',
   computed: {
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation));`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
   },
   props: {

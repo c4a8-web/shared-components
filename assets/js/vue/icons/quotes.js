@@ -2,7 +2,7 @@ export default {
   tagName: 'quotes',
   computed: {
     style() {
-      return `fill: ${this.color}; transform: rotate(var(--icon-rotation));`;
+      return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
   },
   props: {

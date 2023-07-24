@@ -141,3 +141,24 @@ PlusMinus.args = {
   icon: 'plus-minus',
   size: 'large',
 };
+
+export const Phone = Template.bind({});
+
+Phone.args = {
+  icon: 'phone',
+  size: 'large',
+};
+
+export const Mail = Template.bind({});
+
+Mail.args = {
+  icon: 'mail',
+  size: 'large',
+};
+
+export const Emergency = Template.bind({});
+
+Emergency.args = {
+  icon: 'emergency',
+  size: 'large',
+};

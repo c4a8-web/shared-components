@@ -14,6 +14,9 @@ export default {
         'vue-component',
       ];
     },
+    hasAnimationValue() {
+      return Tools.isTrue(this.hasAnimation);
+    },
     rowClassList() {
       return ['form__row', `${this.container ? 'row' : ''}`];
     },
@@ -21,7 +24,11 @@ export default {
       return [`${this.container ? 'col-md-11 col-lg-10' : ''}`];
     },
     headlineClassList() {
-      return ['container headline-row', `${this.space ? this.space : 'space-top-2'}`];
+      return [
+        'container headline-row',
+        `${this.space ? this.space : 'space-top-2'}`,
+        this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
+      ];
     },
     sublineClassList() {
       return ['text-center', `${this.form.sublineClasses ? this.form.sublineClasses : ''}`];
@@ -123,12 +130,15 @@ export default {
     hasUuid: {
       default: null,
     },
+    hasAnimation: {
+      default: null,
+    },
   },
   template: `
     <div :class="classList">
       <div :class="rowClassList">
         <div :class="wrapperClassList">
-          <div v-if="form.headline" :class="headlineClassList" >
+          <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1">
             <div class="row">
               <div class="col-sm-12">
                 <headline :text="form.headline" :level="form.level" :id="form.id" classes="text-center" />
@@ -140,7 +150,7 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" />
                 </div>
               </div>
             </template>

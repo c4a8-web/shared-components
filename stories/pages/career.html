@@ -4,6 +4,7 @@
 {%
   include fab-button.html
   modal=fabModal.modal
+  bgColor=null
 %}
 
 {%
@@ -13,6 +14,29 @@
 {%
   include text-image.html
 %}
+
+<list-container
+  headline="Brauchst du Hilfe?<br />Wir haben Antworten."
+  spacing="space-top-3 space-bottom-3"
+>
+  {%
+    include faq.html
+    headline=faqApplicationProcess.headline
+    entries=faqApplicationProcess.entries
+  %}
+
+  {%
+    include faq.html
+    headline=faqApplicationDocuments.headline
+    entries=faqApplicationDocuments.entries
+  %}
+
+  {%
+    include faq.html
+    headline=faqApplicationEvents.headline
+    entries=faqApplicationEvents.entries
+  %}
+</list-container>
 
 {%
   include modal.html

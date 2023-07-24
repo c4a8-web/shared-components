@@ -1,22 +1,23 @@
 <!-- Shared Cta Section -->
-{% assign ctaText = include.text %}
-{% assign ctaAnalytics = include.analytics %}
-{% assign ctaLink = include.link | default: false %}
-{% assign ctaSkin = include.skin %}
-{% assign ctaWidth = include.width %}
-{% assign ctaGrow = include.grow | default: false %}
-{% assign ctaHref = include.href %}
-{% assign ctaTarget = include.target %}
-{% assign ctaButton = include.button | default: false %}
-{% assign ctaAlternativeHref = include.alternativeHref %}
-{% assign ctaType = include.type %}
-{% assign ctaTrigger = include.trigger %}
-{% assign ctaExternal = include.external %}
-{% assign ctaIcon = include.icon %}
-{% assign ctaDownload = include.download %}
-{% assign ctaReversed = include.reversed | default: false %}
-{% assign ctaMonochrome = include.monochrome | default: false %}
-{% assign ctaActive = include.active | default: false %}
+{%- assign ctaText = include.text -%}
+{%- assign ctaAnalytics = include.analytics -%}
+{%- assign ctaLink = include.link | default: false -%}
+{%- assign ctaSkin = include.skin -%}
+{%- assign ctaWidth = include.width -%}
+{%- assign ctaGrow = include.grow | default: false -%}
+{%- assign ctaHref = include.href -%}
+{%- assign ctaTarget = include.target -%}
+{%- assign ctaButton = include.button | default: false -%}
+{%- assign ctaAlternativeHref = include.alternativeHref -%}
+{%- assign ctaType = include.type -%}
+{%- assign ctaTrigger = include.trigger -%}
+{%- assign ctaExternal = include.external -%}
+{%- assign ctaIcon = include.icon -%}
+{%- assign ctaDownload = include.download -%}
+{%- assign ctaReversed = include.reversed | default: false -%}
+{%- assign ctaMonochrome = include.monochrome | default: false -%}
+{%- assign ctaActive = include.active | default: false -%}
+{%- assign ctaClasses = include.classes -%}
 
 <cta
       text="{{ ctaText }}"
@@ -36,7 +37,8 @@
       download="{{ ctaDownload }}"
       :reversed={{ ctaReversed }}
       :monochrome={{ ctaMonochrome }}
-      :active={{ active }}
+      classes="{{ ctaClasses }}"
+      :active="{{ active }}"
 >
 </cta>
 <!-- End Shared Cta Section -->

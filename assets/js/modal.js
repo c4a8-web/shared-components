@@ -1,4 +1,5 @@
 import State from './state.js';
+import Events from './events.js';
 import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
 import RecruiterBox from './recruiter-box.js';
@@ -68,6 +69,18 @@ class Modal {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
       }
     }
+
+    document.addEventListener(Events.OPEN_MODAL, this.handleModalOpen.bind(this));
+  }
+
+  handleModalOpen(e) {
+    e.stopImmediatePropagation();
+
+    const id = e?.detail?.id;
+
+    if (!id || id !== this.modalId) return;
+
+    this.handleOpen(e);
   }
 
   handleApplicationSubmit(e) {

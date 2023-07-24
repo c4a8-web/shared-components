@@ -6,8 +6,13 @@ export default {
         'form-field js-form-message form-group',
         `${this.field.type === 'hidden' ? 'd-none' : ''}`,
         this.groupClass,
+        this.hasAnimation ? 'utility-animation utility-animation--small-offset fade-in-bottom' : '',
+        `${this.field.showIn ? 'd-none form-field--show-in ' + this.showInClasses : ''}`,
         'vue-component',
       ];
+    },
+    showInClasses() {
+      return this.field?.showIn?.map((id) => 'show-in-' + id).join(' ');
     },
     groupClass() {
       if (this.field.type === 'checkbox') {
@@ -47,10 +52,13 @@ export default {
     replaceValue: {
       default: null,
     },
+    hasAnimation: {
+      default: null,
+    },
   },
   template: `
     <template v-if="field.id !== '_gotcha'">
-      <div :class="classList">
+      <div :class="classList" data-utility-animation-step="1">
         <template v-if="field.type === 'textarea'">
           <label class="input-label" :for="id">{{ field.label }}</label>
           <textarea class="form-control form-textarea" :id="id" :name="id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>

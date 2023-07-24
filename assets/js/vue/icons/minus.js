@@ -2,7 +2,7 @@ export default {
   tagName: 'minus',
   computed: {
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation));`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     stroke() {
       return this.color;

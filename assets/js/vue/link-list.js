@@ -8,6 +8,7 @@ export default {
     classList() {
       return [
         'link-list',
+        this.hasNoAnimation ? '' : 'utility-animation',
         `${this.isExpanded ? State.EXPANDED : ''}`,
         `${this.isExpandable() ? State.EXPANDABLE : ''}`,
         `${this.hasActiveItem ? State.ACTIVE : ''}`,
@@ -16,6 +17,15 @@ export default {
         this.classes,
         'vue-component',
       ];
+    },
+    hasNoAnimation() {
+      return Tools.isTrue(this.noAnimation);
+    },
+    classListTitle() {
+      return ['link-list__title font-size-8 bold', this.hasNoAnimation ? '' : 'fade-in-bottom'];
+    },
+    classListList() {
+      return ['link-list__list header__list--expanded', this.hasNoAnimation ? '' : 'fade-in-bottom'];
     },
     hasActiveItem() {
       const items = this.list.children;
@@ -100,6 +110,9 @@ export default {
     hidden: {
       default: null,
     },
+    noAnimation: {
+      default: null,
+    },
   },
   data() {
     return {
@@ -110,11 +123,11 @@ export default {
   },
   template: `
     <figure :class="classList" v-if="list" ref="root">
-      <figcaption class="link-list__title font-size-8 bold" v-if="list?.languages" v-on:click="handleClick">
+      <figcaption :class="classListTitle" data-utility-animation-step="1" v-if="list?.languages" v-on:click="handleClick">
         {{ list.languages[lang]?.title }}
         <icon class="link-list__icon" icon="expand" size="small" />
       </figcaption>
-      <ul class="link-list__list header__list--expanded">
+      <ul :class="classListList" data-utility-animation-step="1">
         <li class="link-list__item" v-for="subChild in list.children">
           <cta
             v-if="subChild.languages && subChild.languages[lang]"

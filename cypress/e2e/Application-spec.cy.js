@@ -6,7 +6,7 @@ function fillTheForm(test) {
   if (test.includes('faq')) {
     cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
     cy.get('.faq details').first().click();
-    cy.get('.faq__text .is-component').click();
+    cy.get('.faq__text .is-component').first().click();
   } else if (test.includes('text-image')) {
     cy.visit('http://localhost:6006/iframe.html?args=&id=pages-career--career&viewMode=story');
     cy.get('[data-text=Initiativbewerbung]').click();
@@ -69,18 +69,18 @@ describe('Job Test', () => {
     fillTheForm('text-image');
     submitForm();
   });
-  // it('FAQ Application', () => {
-  //   fillTheForm('faq');
-  //   submitForm();
-  // });
-  // it('Both', () => {
-  //   fillTheForm('faq');
-  //   submitForm();
-  //   fillTheForm('text-image');
-  //   submitForm();
-  // });
-  // it('Job Detail', () => {
-  //   fillTheForm('job-detail');
-  //   submitForm();
-  // });
+  it('FAQ Application', () => {
+    fillTheForm('faq');
+    submitForm();
+  });
+  it('Both', () => {
+    fillTheForm('faq');
+    submitForm();
+    fillTheForm('text-image');
+    submitForm();
+  });
+  it('Job Detail', () => {
+    fillTheForm('job-detail');
+    submitForm();
+  });
 });

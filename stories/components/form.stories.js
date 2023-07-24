@@ -264,3 +264,155 @@ WithCheckboxes.args = {
     ],
   },
 };
+
+export const WithAnimation = Template.bind({});
+
+WithAnimation.args = {
+  ...baseArgs,
+  hasAnimation: true,
+  form: {
+    headline: 'Headline with Checkboxes',
+    subline: 'Subline lorem ipsum dolor sit',
+    cta: {
+      skin: 'primary',
+      width: 'w-50',
+    },
+    ctaText: 'Bewerbung absenden',
+    method: 'post',
+    action: '',
+    fields: [
+      {
+        label: 'Vorname',
+        type: 'text',
+        col: 6,
+        rowStart: true,
+        required: true,
+      },
+      {
+        label: 'Nachname',
+        type: 'text',
+        col: 6,
+        rowEnd: true,
+        required: true,
+      },
+      {
+        label: 'Lorem ipsum',
+        type: 'text',
+        required: true,
+      },
+      {
+        label: 'Country',
+        type: 'select',
+        id: 'country',
+        required: true,
+        requiredMsg: 'Please select country.',
+        placeholder: 'Select country',
+        col: 6,
+        rowStart: true,
+        options: 'options',
+      },
+      {
+        label: 'Do you have a Microsoft Teams Phone System License?',
+        type: 'select',
+        id: 'TeamsPhoneSystemLicense',
+        required: true,
+        requiredMsg: 'Please select an answer.',
+        placeholder: 'Select an answer',
+        options: [
+          {
+            value: 'yes',
+            text: 'Yes',
+          },
+          {
+            value: 'no',
+            text: 'No',
+          },
+        ],
+        col: 6,
+        rowEnd: true,
+      },
+      {
+        label: 'lorem',
+        type: 'select',
+        id: 'lorem',
+        placeholder: 'lorem ipsum',
+        col: 6,
+        rowStart: true,
+        options: 'options',
+      },
+      {
+        label: 'lorem ipsum',
+        type: 'select',
+        id: 'loremid',
+        placeholder: 'lorem ipsum',
+        options: [
+          {
+            value: '1',
+            text: '1',
+          },
+          {
+            value: '2',
+            text: '2',
+          },
+          {
+            value: '3',
+            text: '3',
+          },
+        ],
+        col: 6,
+        rowEnd: true,
+      },
+      {
+        label: 'How are your client devices managed?',
+        id: 'managed_',
+        required: true,
+        requiredMsg: 'Please select at least one answer.',
+        checkboxes: [
+          {
+            id: 'not_1',
+            label: 'Not managed 1',
+          },
+          {
+            id: 'not_2',
+            label: 'Not managed 2',
+          },
+          {
+            id: 'not_3',
+            label: 'Not managed 3 ',
+          },
+          {
+            id: 'not_4',
+            label: 'Not managed 4',
+          },
+        ],
+      },
+      {
+        label: 'Lorem Ipsum 2',
+        id: 'test',
+        required: true,
+        radios: [
+          {
+            id: 'not_1',
+            label: 'Not managed 1',
+          },
+          {
+            id: 'not_2',
+            label: 'Not managed 2',
+          },
+          {
+            id: 'not_3',
+            label: 'Not managed 3 ',
+          },
+          {
+            id: 'not_4',
+            label: 'Not managed 4',
+          },
+        ],
+      },
+      {
+        type: 'hidden',
+        id: '_gotcha',
+      },
+    ],
+  },
+};

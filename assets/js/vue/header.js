@@ -394,6 +394,11 @@ export default {
         list.style.height = newHeight;
       }
     },
+    navHighlightClasses(item, index) {
+      const isHidden = this.isLinkListHidden(item, index);
+
+      return ['header__nav-highlight', isHidden ? 'is-hidden' : ''];
+    },
   },
   props: {
     home: Object,
@@ -466,6 +471,7 @@ export default {
                       :lang="lowerLang"
                       :hidden="isLinkListHidden(item, index)"
                       classes="header__link-list"
+                      :no-animation="true"
                       v-if="item.children && !list.products"
                     />
                     <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
@@ -478,6 +484,12 @@ export default {
                       </a>
                     </div>
                   </template>
+
+                  <div :class="navHighlightClasses(item, index)" v-if="item.languages[lowerLang]?.emergency">
+                    <icon :icon="item.languages[lowerLang]?.emergency.icon" size="medium" />
+                    {{ item.languages[lowerLang].emergency.text }}
+                  </div>
+
                 </li>
               </ul>
               <div class="header__footer">
@@ -485,6 +497,7 @@ export default {
                   :list="metaList"
                   :lang="lowerLang"
                   classes="header__meta-list"
+                  :no-animation="true"
                   v-if="hasMeta"
                 />
 
@@ -551,12 +564,16 @@ export default {
                         {{ contact.languages[lowerLang]?.title }}
                       </span>
                     </a>
+                    <div class="header__highlight-cta has-emergency-colors" v-if="item.languages[lowerLang]?.emergency">
+                      <cta v-bind="item.languages[lowerLang].emergency" />
+                    </div>
                   </figure>
 
                   <template v-for="list in item.children">
                     <link-list
                       :list="list"
                       :lang="lowerLang"
+                      :no-animation="true"
                       v-if="item.children && !list.products"
                     />
                     <div class="header__product-list is-expanded" v-else>

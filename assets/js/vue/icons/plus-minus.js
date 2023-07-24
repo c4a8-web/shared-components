@@ -5,7 +5,7 @@ export default {
       return '0.19 1 0.2 1';
     },
     style() {
-      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation));`;
+      return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
   },
   updated() {

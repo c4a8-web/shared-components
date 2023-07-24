@@ -1,4 +1,6 @@
 .teaser {
+  @include utility-animation-options($distance: 135%, $duration: 0.8s);
+
   --color-teaser-copy-highlight: var(--color-copy-highlight);
   --color-teaser-background: var(--color-black-4);
 
@@ -94,4 +96,12 @@
 
 .teaser__logo {
   margin: spacing(4) 0;
+}
+
+.teaser__video-wrapper {
+  &[data-utility-animation-step] {
+    --utility-animation-distance: 15%;
+
+    animation-delay: 200ms;
+  }
 }

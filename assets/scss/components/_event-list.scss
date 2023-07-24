@@ -19,6 +19,8 @@
   width: calc(100% + (2 * #{$header-nav-link-padding-x}));
 
   > * {
+    @include utility-animation-options($distance: 15%, $delay: 100ms, $duration: 0.8s, $selector: '&');
+
     margin-bottom: spacing(5);
   }
 

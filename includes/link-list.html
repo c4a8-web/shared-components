@@ -3,11 +3,13 @@
 {%- assign linkListLang = include.lang | default: 'de' -%}
 {%- assign linkListClasses = include.classes -%}
 {%- assign linkListHidden = include.hidden -%}
+{%- assign linkListNoAnimation = include.noAnimation -%}
 
 <link-list
   lang="{{ linkListLang }}"
   :list="{{ linkListList | jsonify | escape }}"
   classes="{{ linkListClasses }}"
   hidden="{{ linkListHidden }}"
+  :no-animation="{{ linkListNoAnimation }}"
 ></link-list>
 <!-- End Shared Link List Section -->
