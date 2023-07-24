@@ -76,6 +76,14 @@ const baseArgs = {
         id: 'salary',
       },
       {
+        label: 'Link zum Portfolio',
+        type: 'text',
+        col: 6,
+        rowStart: true,
+        id: 'portfolio',
+        showIn: ['fk0stpa'],
+      },
+      {
         label: 'Nachricht (optional)',
         type: 'textarea',
         id: 'message',
@@ -148,6 +156,7 @@ export const En = Template.bind({});
 
 En.args = {
   ...baseArgs,
+  jobId: 'fk034tm',
   apiUrl: 'mock/jobEn.json',
 };
 

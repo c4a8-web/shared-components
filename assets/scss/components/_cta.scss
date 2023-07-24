@@ -113,7 +113,13 @@
       align-items: flex-start;
 
       .icon {
-        height: calc(var(--type-default-line-height) * 1rem + 2px);
+        --cta-icon-offset: -3px;
+
+        height: calc(var(--type-default-line-height) * 1rem + var(--cta-icon-offset));
+
+        @include media-breakpoint-up(lg) {
+          --cta-icon-offset: 2px;
+        }
       }
 
       svg {

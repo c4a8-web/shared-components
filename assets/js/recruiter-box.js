@@ -90,16 +90,22 @@ class RecruiterBox {
     return this.fetch(url);
   }
 
+  isOptionalInputInvisible(input) {
+    return input?.parentNode?.classList.contains('form-field--show-in') && input.offsetParent === null;
+  }
+
   getFormData(form) {
     if (form === null || form === undefined) return [];
 
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-    const customFields = ['cancellation', 'salary', 'message'];
+    const customFields = ['cancellation', 'salary', 'message', 'portfolio'];
 
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
+
+      if (this.isOptionalInputInvisible(input)) continue;
 
       let value;
 
