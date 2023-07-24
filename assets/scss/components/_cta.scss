@@ -180,6 +180,12 @@
       stroke: var(--color-primary);
     }
   }
+
+  .icon {
+    &.icon--emergency {
+      --icon-scale: 1.8;
+    }
+  }
 }
 
 @mixin cta-no-btn-is-light {

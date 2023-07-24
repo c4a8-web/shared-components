@@ -155,3 +155,10 @@ Mail.args = {
   icon: 'mail',
   size: 'large',
 };
+
+export const Emergency = Template.bind({});
+
+Emergency.args = {
+  icon: 'emergency',
+  size: 'large',
+};
