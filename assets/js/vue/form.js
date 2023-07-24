@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import Form from '../components/form.js';
 
 export default {
   tagName: 'formular',
@@ -88,11 +89,10 @@ export default {
     getId(field){
       const groupField = field?.radios || field?.checkboxes
       const fieldId = groupField ? groupField[0].id : field?.id
+
       if (!Tools.isTrue(this.hasUuid)) return fieldId;
 
-      const delimiter = '-formHelper-'
-      const uuidWithDelimiter = Tools.uuid() + delimiter + fieldId;
-      return uuidWithDelimiter;
+      return Form.getId(fieldId);
     },
   },
   props: {

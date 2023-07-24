@@ -1,5 +1,3 @@
-import Tools from '../tools.js';
-
 export default {
   tagName: 'form-radios',
   computed: {

@@ -1,4 +1,5 @@
 import Tools from './tools.js';
+import Form from './components/form.js';
 
 class RecruiterBox {
   apiUrl = 'https://jsapi.recruiterbox.com/v1/';
@@ -109,19 +110,22 @@ class RecruiterBox {
         // TODO handle select
       }
 
-      const fieldnames = ['firstName', 'lastName', 'email', 'phone', '_gotcha'].concat(customFields);
+      const candidateFields = ['firstName', 'lastName', 'email', 'phone', '_gotcha'];
+      const fieldnames = candidateFields.concat(customFields);
 
       let updatedName;
 
       fieldnames.map(fieldName => {
-        if (this.getName(input.name) === fieldName) {
+        if (Form.getName(input.name) === fieldName) {
           updatedName = fieldName;
         }
       });
 
-      const key = customFields.filter((value) => value === input.name).length
-        ? input.name
-        : `candidate_${Tools.camalCaseToSnakeCase(updatedName)}`;
+      console.log(input.offsetParent)
+
+      const key = candidateFields.filter((value) => value === updatedName).length
+        ? `candidate_${Tools.camalCaseToSnakeCase(updatedName)}`
+        : updatedName;
 
       data.push({
         key,
@@ -129,18 +133,11 @@ class RecruiterBox {
       });
     }
 
+    console.log(data)
     return data;
   }
 
-  getName(string) {
-    const delimiter = '-formHelper-';
-    if (string.includes(delimiter)){
-      const delimiterIndex = string.indexOf(delimiter);
-      return string.slice(delimiterIndex + delimiter.length)
-    } else {
-      return string;
-    }
-  }
+
 
   applyFileData(fileData, data, fields) {
     const file = {

@@ -1,5 +1,3 @@
-import Tools from '../tools';
-
 export default {
   tagName: 'form-checkboxes',
   computed: {

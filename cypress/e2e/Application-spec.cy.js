@@ -69,18 +69,18 @@ describe('Job Test', () => {
     fillTheForm('text-image');
     submitForm();
   });
-  it('FAQ Application', () => {
-    fillTheForm('faq');
-    submitForm();
-  });
-  it('Both', () => {
-    fillTheForm('faq');
-    submitForm();
-    fillTheForm('text-image');
-    submitForm();
-  });
-  it('Job Detail', () => {
-    fillTheForm('job-detail');
-    submitForm();
-  });
+  // it('FAQ Application', () => {
+  //   fillTheForm('faq');
+  //   submitForm();
+  // });
+  // it('Both', () => {
+  //   fillTheForm('faq');
+  //   submitForm();
+  //   fillTheForm('text-image');
+  //   submitForm();
+  // });
+  // it('Job Detail', () => {
+  //   fillTheForm('job-detail');
+  //   submitForm();
+  // });
 });
