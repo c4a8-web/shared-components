@@ -90,9 +90,6 @@ export default {
     getFieldClassList(field) {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
-    generateUuid() {
-      return Tools.isTrue(this.hasUuid) ? Tools.uuid() : null;
-    },
     getId(field){
       const groupField = field?.radios || field?.checkboxes
       const fieldId = groupField ? groupField[0].id : field?.id
