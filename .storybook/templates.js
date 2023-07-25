@@ -24,6 +24,7 @@ import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
   cloudinary: Cloudinary,
+  excerpt: '',
   data: {
     authors: Authors,
     company: Company,
