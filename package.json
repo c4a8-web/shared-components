@@ -7,7 +7,8 @@
     "storybook": "node scripts/generateIncludes.js && start-storybook -p 6006",
     "build-storybook": "node scripts/generateIncludes.js && build-storybook && node scripts/generateBuildIncludes.js",
     "start": "npm run storybook",
-    "cypress:test": "npx cypress run --browser chrome"
+    "cypress:test": "npx cypress run --browser chrome",
+    "test": "npm run cypress:test"
   },
   "keywords": [],
   "author": "",
