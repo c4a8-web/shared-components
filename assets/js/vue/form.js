@@ -11,6 +11,7 @@ export default {
         `${Tools.isTrue(this.ajax) === true ? 'form--ajax' : ''}`,
         `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
         `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
+        this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
         'vue-component',
       ];
     },

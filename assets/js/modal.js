@@ -65,7 +65,7 @@ class Modal {
         buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
       }
 
-      if (formInstance) {
+      if (formInstance && formInstance.canHaveCustomSubmit()) {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
       }
     }

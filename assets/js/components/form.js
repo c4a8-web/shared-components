@@ -8,6 +8,7 @@ class Form extends BaseComponent {
   static rootSelector = '.form';
   static instances = [];
   static delimiter = '-formHelper-';
+  static noCustomSubmitClass = 'form--no-custom-submit';
 
   constructor(root, options) {
     super(root, options);
@@ -425,6 +426,10 @@ class Form extends BaseComponent {
     const gotcha = this.root.querySelector(this.gotchaSelector);
 
     gotcha?.classList.add(State.HIDDEN);
+  }
+
+  canHaveCustomSubmit() {
+    return this.root.classList.contains(Form.noCustomSubmitClass) ? false : true;
   }
 }
 

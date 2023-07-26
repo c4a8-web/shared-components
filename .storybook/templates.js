@@ -24,6 +24,7 @@ import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
   cloudinary: Cloudinary,
+  excerpt: '',
   data: {
     authors: Authors,
     company: Company,
@@ -198,7 +199,7 @@ const getTitle = ({ page, title, docs, context, helper }) => {
 
   return {
     title: titleText,
-    ...(page && { parameters: { root: true } }),
+    ...(page && { parameters: { root: true, page: true } }),
   };
 };
 
