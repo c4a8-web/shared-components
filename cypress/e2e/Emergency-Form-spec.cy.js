@@ -8,7 +8,7 @@ const mockData = {
   message: 'Emergency Test Message',
 };
 
-const waitDelay = 700;
+const waitDelay = 500;
 
 const wait = () => {
   cy.wait(waitDelay);
@@ -21,19 +21,12 @@ const fillInput = (id, value) => {
 const dataToFill = ['name', 'company', 'email', 'phone', 'message'];
 
 const fillOutForm = () => {
-  cy.task('log', 'before intercept');
-
-  // cy.intercept('POST', 'mock/emergency.json', (req) => {
-  //   cy.task('log', 'in intercept');
-
-  //   req.reply({
-  //     status: 200,
-  //     body: mockData,
-  //   });
-  // }).as('testRequest');
-
-  cy.intercept('POST', 'mock/emergency.json', { fixture: 'users.json' }).as('testRequest');
-
+  cy.intercept('POST', 'http://localhost:6006/mock/emergency.json', (req) => {
+    req.reply({
+      status: 200,
+      body: mockData,
+    });
+  }).as('submitRequest');
   wait();
 
   dataToFill.forEach((data) => {
@@ -41,29 +34,22 @@ const fillOutForm = () => {
     wait();
   });
 
+  cy.get(`.modal [id=phone]:visible`).click();
+  wait();
+
   cy.get('.modal label[for=dataprotection]:visible').click();
   wait();
 };
 
 const submitForm = () => {
-  console.log('hier');
-  cy.task('log', 'in submit');
+  cy.get('.modal .cta:visible').click();
+  cy.wait('@submitRequest', { timeout: 3000 }).then((interception) => {
+    const response = interception.response;
 
-  // wait();
-  // triggers request and times out
-  cy.get('.modal .cta', { timeout: 1000 }).click();
+    Object.keys(response.body).forEach((key, value) => {
+      expect(response.body[key]).to.equal(mockData[key]);
+    });
 
-  cy.wait('@testRequest', { timeout: 1000 }).then((interception) => {
-    cy.task('log', 'interception', interception);
-
-    // const arrayOfObjects = interception.request.body.fields;
-    // const body = arrayOfObjects.reduce((result, { key, value }) => {
-    //   result[key] = value;
-    //   return result;
-    // }, {});
-    // for (let key in mockData) {
-    //   !key.includes('resume') ? expect(body[key]).to.equal(mockData[key]) : cy.wrap(body[key]).should('exist');
-    // }
     expect(interception.response.statusCode).to.equal(200);
   });
 };
@@ -80,58 +66,15 @@ describe('Emergency Form Test', () => {
 
     fillOutForm();
     submitForm();
+  });
 
-    cy.task('log', 'after submit');
-
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
-    wait();
+  it('Fab Action Modal Application', () => {
+    cy.visit(EmergencyPage);
     wait();
 
-    // cy.get('.modal .cta:visible').click();
+    cy.get('.fab-button__icon:visible').click();
+
+    fillOutForm();
+    submitForm();
   });
 });

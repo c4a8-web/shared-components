@@ -199,7 +199,7 @@ const getTitle = ({ page, title, docs, context, helper }) => {
 
   return {
     title: titleText,
-    ...(page && { parameters: { root: true } }),
+    ...(page && { parameters: { root: true, page: true } }),
   };
 };
 

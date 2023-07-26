@@ -49,7 +49,7 @@ Emergency.args = {
         },
         ctaText: 'absenden',
         method: 'POST',
-        action: 'mock/emergency.json',
+        action: 'http://localhost:6006/mock/emergency.json',
         fields: [
           {
             label: 'Name*',

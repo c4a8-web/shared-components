@@ -33,13 +33,13 @@ This is not working right now. Need to figure out a way to create a page in stor
 {% layout layouts/default.html %}
 {% endcomment %}
 
-
 <main class="page-content" aria-label="Content">
   {% if page.hero %}
     {%
       include hero-text-image.html
     %}
   {% endif %}
+
   {{ content }}
 </main>
 
