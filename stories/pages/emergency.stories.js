@@ -1,4 +1,4 @@
-import { createTemplate, getTitle } from '../../.storybook/templates';
+import { createTemplate, getTitle, getAssetPath } from '../../.storybook/templates';
 import emergencyTemplate from '!!raw-loader!./emergency.html';
 
 const options = getTitle({
@@ -26,7 +26,7 @@ Emergency.args = {
       bgColor: 'var(--color-gigas)',
       overlineBgColor: 'var(--color-orange)',
       background: {
-        img: 'svg/shapes/shape-security-eye.svg',
+        img: getAssetPath('svg/shapes/shape-security-eye.svg'),
         alt: 'Cloud Security Day 2023',
         spacing: 'space-top-lg-2 mt-lg-10',
       },
