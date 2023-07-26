@@ -1,0 +1,45 @@
+{% capture content %}
+  {%
+    include fab-button.html
+    icon="emergency"
+    bgColor="var(--color-emergency)"
+    iconColor='var(--color-white)'
+    trigger="emergency"
+  %}
+
+  {%
+    include intro-text.html
+    copy=introTextCopy
+    variant="intro-text--large"
+    spacing="space-top-1"
+  %}
+
+
+  <modal :application="true" modal-id="emergency">
+    <div class="modal__application">
+      <div class="modal__body-default">
+        {%
+          include form.html
+          form=page.modalForm.form
+          container=true
+        %}
+      </div>
+    </div>
+  </modal>
+{% endcapture %}
+
+{% comment %}
+This is not working right now. Need to figure out a way to create a page in storybook with the vue application process starting
+{% layout layouts/default.html %}
+{% endcomment %}
+
+<main class="page-content" aria-label="Content">
+  {% if page.hero %}
+    {%
+      include hero-text-image.html
+    %}
+  {% endif %}
+
+  {{ content }}
+</main>
+
