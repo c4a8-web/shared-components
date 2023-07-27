@@ -141,3 +141,31 @@ PlusMinus.args = {
   icon: 'plus-minus',
   size: 'large',
 };
+
+export const Phone = Template.bind({});
+
+Phone.args = {
+  icon: 'phone',
+  size: 'large',
+};
+
+export const EmailActionUnread = Template.bind({});
+
+EmailActionUnread.args = {
+  icon: 'email-action-unread',
+  size: 'large',
+};
+
+export const Pin = Template.bind({});
+
+Pin.args = {
+  icon: 'pin',
+  size: 'large',
+};
+
+export const PhoneCharger = Template.bind({});
+
+PhoneCharger.args = {
+  icon: 'phone-charger',
+  size: 'large',
+};

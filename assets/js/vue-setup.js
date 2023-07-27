@@ -21,7 +21,8 @@ import FormRadios from './vue/form-radios.js';
 import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
 import Footer from './vue/footer.js';
-import GoogleMap from './vue/google-map.js'
+import GoogleMap from './vue/google-map.js';
+import GoogleMapEntry from './vue/google-map-entry.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
@@ -65,10 +66,14 @@ import Arrow from './vue/icons/arrow.js';
 import CheckMark from './vue/icons/check-mark.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
+import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Expand from './vue/icons/expand.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Menu from './vue/icons/menu.js';
 import Minus from './vue/icons/minus.js';
+import Pin from './vue/icons/pin.js';
+import Phone from './vue/icons/phone.js';
+import PhoneCharger from './vue/icons/phone-charger.js';
 import PhoneMail from './vue/icons/phone-mail.js';
 import PlusMinus from './vue/icons/plus-minus.js';
 import Plus from './vue/icons/plus.js';
@@ -133,6 +138,7 @@ const addApp = () => {
     Form,
     Footer,
     GoogleMap,
+    GoogleMapEntry,
     Header,
     Headline,
     Icon,
@@ -167,11 +173,15 @@ const addApp = () => {
     Arrow,
     Close,
     ComputerShield,
+    EmailActionUnread,
     Expand,
     Menu,
+    Pin,
     PlusMinus,
     Magnifier,
     Minus,
+    Phone,
+    PhoneCharger,
     PhoneMail,
     Quotes,
     Rocket,
