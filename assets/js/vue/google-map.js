@@ -7,7 +7,7 @@ export default {
       return ['position-relative mx-3 mx-md-8 vue-component'];
     },
     leafletOptions() {
-      const coordinates = this.contact.coordinates;
+      const coordinates = this.location.coordinates;
       const iconSize = [50, 45];
 
       const obj = {
@@ -23,7 +23,7 @@ export default {
               iconSize: iconSize,
             },
             popup: {
-              text: `${this.contact.street}, ${this.contact.city}`,
+              text: `${this.location.street}, ${this.location.city}`,
               title: 'Address',
             },
           },
@@ -46,7 +46,7 @@ export default {
     },
   },
   props: {
-    contact: {
+    location: {
       default: null,
     },
     entries: {
@@ -60,8 +60,8 @@ export default {
         <div class="col-md-6 col-lg-5">
           <div class="bg-white position-relative z-index-999 p-5 p-sm-7">
             <div class="mb-5">
-              <span class="d-block font-size-2 text-dark text-lh-sm">{{ this.contact.office }},</span>
-              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ this.contact.city }}</span>
+              <span class="d-block font-size-2 text-dark text-lh-sm">{{ this.location.office }},</span>
+              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ this.location.city }}</span>
             </div>
 
             <template v-for="entry in entries">

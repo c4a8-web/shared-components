@@ -1,8 +1,8 @@
-{% assign googleMapContact = include.contact %}
+{% assign googleMapLocation = include.location %}
 {% assign googleMapEntries = include.entries %}
 
 <google-map
-  :contact="{{ googleMapContact | jsonify | escape }}"
+  :location="{{ googleMapLocation | jsonify | escape }}"
   :entries="{{ googleMapEntries | jsonify | escape }}"
 >
 </google-map>

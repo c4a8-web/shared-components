@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const GoogleMap = Template.bind({});
 
 GoogleMap.args = {
-  contact: {
+  location: {
     street: 'Kaiserstraße 39',
     city: '63065 Offenbach am Main',
     office: 'Hauptsitz',
