@@ -181,9 +181,23 @@
     }
   }
 
-  .icon {
-    &.icon--emergency {
-      --icon-scale: 1.8;
+  &.cta--has-icon {
+    &.cta--icon-emergency {
+      &::after,
+      &.btn {
+        padding-right: spacing(16);
+      }
+
+      .icon {
+        --icon-scale: 2.3;
+
+        right: spacing(6);
+
+        svg {
+          stroke-width: 0.3;
+          stroke: currentColor;
+        }
+      }
     }
   }
 }
