@@ -3,6 +3,9 @@ const getStoryLink = function (story) {
     case 'header--en':
       return 'iframe.html?id=components-header--header-en&args=&viewMode=story';
       break;
+    case 'header--es':
+      return 'iframe.html?id=components-header--header-es&args=&viewMode=story';
+      break;
     default:
       return 'iframe.html?id=components-header--header&args=&viewMode=story';
       break;
@@ -26,6 +29,11 @@ const Header = {
         url: getStoryLink('header--en'),
         alt: 'alt text EN',
       },
+      es: {
+        title: 'Home ES',
+        url: getStoryLink('header--es'),
+        alt: 'alt text ES',
+      },
     },
   },
   navigation: [
@@ -38,6 +46,9 @@ const Header = {
         en: {
           title: 'Portfolio',
         },
+        es: {
+          title: 'Portfolio',
+        },
       },
       children: [
         {
@@ -47,6 +58,9 @@ const Header = {
               title: 'Managed Services',
             },
             en: {
+              title: 'Managed Services',
+            },
+            es: {
               title: 'Managed Services',
             },
           },
@@ -62,6 +76,10 @@ const Header = {
                   title: 'Managed Workplace',
                   url: getStoryLink('header--en'),
                 },
+                es: {
+                  title: 'Managed Workplace',
+                  url: getStoryLink('header--es'),
+                },
               },
             },
             {
@@ -74,6 +92,10 @@ const Header = {
                 en: {
                   title: 'Managed Azure',
                   url: getStoryLink('header--en'),
+                },
+                es: {
+                  title: 'Managed Azure',
+                  url: getStoryLink('header--es'),
                 },
               },
             },
@@ -88,6 +110,10 @@ const Header = {
                   title: 'Managed Security',
                   url: getStoryLink('header--en'),
                 },
+                es: {
+                  title: 'Managed Security',
+                  url: getStoryLink('header--es'),
+                },
               },
             },
           ],
@@ -100,6 +126,9 @@ const Header = {
             },
             en: {
               title: 'Modern Workplace EN',
+            },
+            es: {
+              title: 'Modern Workplace ES',
             },
           },
           children: [
@@ -114,6 +143,10 @@ const Header = {
                   title: 'dolor sit',
                   url: getStoryLink('header--en'),
                 },
+                es: {
+                  title: 'lorem ipsum',
+                  url: getStoryLink('header--es'),
+                },
               },
             },
             {
@@ -126,6 +159,10 @@ const Header = {
                 en: {
                   title: 'Consulting Services EN',
                   url: '/en/modern-workplace/consulting-services/',
+                },
+                es: {
+                  title: 'Consulting Services ES',
+                  url: '/es/modern-workplace/consulting-services/',
                 },
               },
             },
@@ -140,6 +177,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -151,6 +192,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -166,6 +211,9 @@ const Header = {
             en: {
               title: 'Azure / Cloud EN',
             },
+            es: {
+              title: 'Azure / Cloud ES',
+            },
           },
           children: [
             {
@@ -177,6 +225,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
                   url: 'javascript:void(0);',
                 },
               },
@@ -192,6 +244,10 @@ const Header = {
                   title: 'dolor sit',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -203,6 +259,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 2',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 2',
                   url: 'javascript:void(0);',
                 },
               },
@@ -218,6 +278,10 @@ const Header = {
                   title: 'dolor sit 3',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -229,6 +293,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 4',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 4',
                   url: 'javascript:void(0);',
                 },
               },
@@ -244,6 +312,10 @@ const Header = {
                   title: 'dolor sit 5',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 5',
+                  url: 'javascript:void(0);',
+                },
               },
             },
           ],
@@ -257,6 +329,9 @@ const Header = {
             en: {
               title: 'lorem ipsum 1 EN',
             },
+            es: {
+              title: 'lorem ipsum 1 ES',
+            },
           },
           children: [
             {
@@ -268,6 +343,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
                   url: 'javascript:void(0);',
                 },
               },
@@ -283,6 +362,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -294,6 +377,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -326,6 +413,10 @@ const Header = {
             icon: 'emergency',
           },
         },
+        es: {
+          title: 'Services',
+          active: true,
+        },
       },
       children: [
         {
@@ -344,6 +435,11 @@ const Header = {
                   url: 'javascript:void(0);',
                   active: true,
                 },
+                es: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                  active: true,
+                },
               },
             },
             {
@@ -357,6 +453,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -368,6 +468,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -388,6 +492,10 @@ const Header = {
                   title: 'dolor sit',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -401,6 +509,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -412,6 +524,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -431,6 +547,10 @@ const Header = {
           title: 'Cases',
           url: '/cases-en/',
         },
+        es: {
+          title: 'Cases',
+          url: '/cases-es/',
+        },
       },
     },
     {
@@ -441,6 +561,9 @@ const Header = {
         },
         en: {
           title: 'Company',
+        },
+        es: {
+          title: 'Empresa',
         },
       },
       children: [
@@ -453,6 +576,9 @@ const Header = {
             en: {
               title: 'lorem ipsum 1 EN',
             },
+            es: {
+              title: 'lorem ipsum 1 ES',
+            },
           },
           children: [
             {
@@ -464,6 +590,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
                   url: 'javascript:void(0);',
                 },
               },
@@ -479,6 +609,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -490,6 +624,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -505,6 +643,9 @@ const Header = {
             en: {
               title: 'lorem ipsum 2 EN',
             },
+            es: {
+              title: 'lorem ipsum 2 ES',
+            },
           },
           children: [
             {
@@ -516,6 +657,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
                   url: 'javascript:void(0);',
                 },
               },
@@ -531,6 +676,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -542,6 +691,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -557,6 +710,9 @@ const Header = {
             en: {
               title: 'lorem ipsum 3 EN',
             },
+            es: {
+              title: 'lorem ipsum 3 ES',
+            },
           },
           children: [
             {
@@ -568,6 +724,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
                   url: 'javascript:void(0);',
                 },
               },
@@ -583,6 +743,10 @@ const Header = {
                   title: 'dolor sit 2',
                   url: 'javascript:void(0);',
                 },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
               },
             },
             {
@@ -594,6 +758,10 @@ const Header = {
                 },
                 en: {
                   title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
                   url: 'javascript:void(0);',
                 },
               },
@@ -614,6 +782,11 @@ const Header = {
           title: 'Products',
           description:
             'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam EN',
+        },
+        es: {
+          title: 'Productos',
+          description:
+            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam ES',
         },
       },
       children: [
@@ -636,6 +809,11 @@ const Header = {
                   subtitle: 'Cloudbased Software distribution',
                   url: 'https://www.realmjoin.com/',
                 },
+                es: {
+                  title: 'RealmJoin',
+                  subtitle: 'Cloudbased Software distribution',
+                  url: 'https://www.realmjoin.com/',
+                },
               },
             },
             {
@@ -653,6 +831,11 @@ const Header = {
                   subtitle: 'Certificate distribution from the cloud',
                   url: 'https://www.scepman.com/',
                 },
+                es: {
+                  title: 'SCEPman',
+                  subtitle: 'Certificate distribution from the cloud',
+                  url: 'https://www.scepman.com/',
+                },
               },
             },
             {
@@ -666,6 +849,11 @@ const Header = {
                   url: 'https://www.konnekt.io/',
                 },
                 en: {
+                  title: 'KONNEKT',
+                  subtitle: 'Work with your local office 365 data',
+                  url: 'https://www.konnekt.io/',
+                },
+                es: {
                   title: 'KONNEKT',
                   subtitle: 'Work with your local office 365 data',
                   url: 'https://www.konnekt.io/',
@@ -693,6 +881,11 @@ const Header = {
                   subtitle: 'Migrate your data from one server to another',
                   url: 'https://www.realmigrator.com/',
                 },
+                es: {
+                  title: 'RealMigrator',
+                  subtitle: 'Migrate your data from one server to another',
+                  url: 'https://www.realmigrator.com/',
+                },
               },
             },
             {
@@ -710,6 +903,11 @@ const Header = {
                   subtitle: 'Authentication for your network',
                   url: 'https://www.radius-as-a-service.com/',
                 },
+                es: {
+                  title: 'RADIUSaaS',
+                  subtitle: 'Authentication for your network',
+                  url: 'https://www.radius-as-a-service.com/',
+                },
               },
             },
             {
@@ -723,6 +921,11 @@ const Header = {
                   url: 'https://www.unified-contacts.com/',
                 },
                 en: {
+                  title: 'Unified Contacts',
+                  subtitle: 'Find contacts in Microsoft Teams',
+                  url: 'https://www.unified-contacts.com/',
+                },
+                es: {
                   title: 'Unified Contacts',
                   subtitle: 'Find contacts in Microsoft Teams',
                   url: 'https://www.unified-contacts.com/',
@@ -746,6 +949,10 @@ const Header = {
           title: 'Career',
           url: '/en/career',
         },
+        es: {
+          title: 'Carrera',
+          url: '/es/carrera',
+        },
       },
     },
     {
@@ -759,6 +966,10 @@ const Header = {
           title: 'lorem ipsum blog',
           url: '/blog/index-en/',
         },
+        es: {
+          title: 'lorem ipsum blog',
+          url: '/blog/index-es/',
+        },
       },
     },
   ],
@@ -771,6 +982,10 @@ const Header = {
       en: {
         title: 'Contact Lorem EN',
         url: getStoryLink('header--en'),
+      },
+      es: {
+        title: 'Contact Lorem ES',
+        url: getStoryLink('header--es'),
       },
     },
   },

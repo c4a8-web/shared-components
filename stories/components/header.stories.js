@@ -29,6 +29,12 @@ HeaderEN.args = {
   lang: 'en',
 };
 
+export const HeaderES = Template.bind({});
+
+HeaderES.args = {
+  lang: 'es',
+};
+
 const productArgs = {
   lang: 'en',
   product: true,
