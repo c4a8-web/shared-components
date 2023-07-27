@@ -11,7 +11,6 @@ export default {
   },
   template: `
   <svg v-bind="settings" :style="style" viewBox="0 0 26 26">
-    <title>' + @Title + '</title>
     <line class="a" x1="2.5" y1="0.5" x2="2.5" y2="3.5" />
     <line class="a" x1="10.5" y1="0.5" x2="10.5" y2="3.5" />
     <line class="a" x1="4.5" y1="6.5" x2="8.5" y2="6.5" />

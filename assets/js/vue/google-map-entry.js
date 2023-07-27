@@ -4,11 +4,7 @@ export default {
     classList() {
       return ['media vue-component', this.entry.icon === 'phone-charger' ? '' : 'mb-5'];
     },
-    isPin() {
-      return this.entry.icon === 'pin';
-    },
   },
-  methods: {},
   props: {
     entry: {
       default: null,

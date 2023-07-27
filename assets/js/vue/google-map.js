@@ -2,26 +2,13 @@ import Tools from '../tools.js';
 
 export default {
   tagName: 'google-map',
-  data() {
-    return {
-      city: '',
-      street: null,
-      state: '',
-      postalCode: '',
-    };
-  },
   computed: {
     classList() {
       return ['position-relative mx-3 mx-md-8 vue-component'];
     },
-    contactVal() {
-      return Tools.getJSON(this.contact);
-    },
     leafletOptions() {
-      const coordinates = this.coordinates.split(',');
-      const street = Tools.isTrue(this.contactVal.street) ? this.contactVal.street : this.street;
-
-      console.log(street, this.postalCode);
+      const coordinates = this.contact.coordinates;
+      const iconSize = [50, 45];
 
       const obj = {
         map: {
@@ -32,11 +19,11 @@ export default {
           {
             coords: coordinates,
             icon: {
-              iconUrl: 'https://front.trustedroot.net/dist/assets/svg/components/map-pin.svg',
-              iconSize: [50, 45],
+              iconUrl: Tools.getAssetPath('svg/icons/map-pin.svg'),
+              iconSize: iconSize,
             },
             popup: {
-              text: `${street}, ${this.postalCode} ${this.state}`,
+              text: `${this.contact.street}, ${this.contact.city}`,
               title: 'Address',
             },
           },
@@ -50,31 +37,15 @@ export default {
     this.loadMap();
   },
   methods: {
-    async setAddress(latitude, longitude) {
-      const apiUrl = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${latitude}&lon=${longitude}`;
-      const response = await fetch(apiUrl);
-      const data = await response.json();
-      const address = data.address;
-      this.city = address.city;
-      this.state = address.state;
-      this.street = address.road;
-      this.postalCode = address.postcode;
-    },
     loadMap() {
       const mapRef = this.$refs.map;
       const LeafletLib = $?.HSCore?.components?.HSLeaflet;
 
       if (LeafletLib === null || L === null) return;
       LeafletLib.init(mapRef);
-
-      const coordinates = this.coordinates.split(',');
-      this.setAddress(coordinates[0], coordinates[1]);
     },
   },
   props: {
-    coordinates: {
-      default: null,
-    },
     contact: {
       default: null,
     },
@@ -90,7 +61,7 @@ export default {
           <div class="bg-white position-relative z-index-999 p-5 p-sm-7">
             <div class="mb-5">
               <span class="d-block font-size-2 text-dark text-lh-sm">{{ this.contact.office }},</span>
-              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ this.city }}</span>
+              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ this.contact.city }}</span>
             </div>
 
             <template v-for="entry in entries">
