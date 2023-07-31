@@ -23,6 +23,7 @@ export default {
       return [
         'v-img',
         'vue-component',
+        this.isSvg ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
@@ -36,13 +37,16 @@ export default {
     crossOriginValue() {
       return Tools.isTrue(this.cloudinary) ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
+    isSvg() {
+      return this.img?.indexOf('.svg') !== -1;
+    },
   },
   created() {
     if (this.canGenerateSrcSet()) return;
 
     if (Tools.isTrue(this.cloudinary)) return;
 
-    this.noCloudinary = this.img;
+    this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
   methods: {
@@ -65,6 +69,9 @@ export default {
       } catch (e) {
         console.error(e);
       }
+    },
+    getBaseAssetPath() {
+      return this.img?.indexOf('/assets/') !== -1 ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink() {
       return `${basePath}${this.img}`;
