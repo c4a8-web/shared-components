@@ -5,6 +5,7 @@ class Tools {
     maximumFractionDigits: 0,
   });
   static storagePrefix = '@gab_';
+  static storybookPath = '/shared-components';
 
   static intersection = (r1, r2) => {
     const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
@@ -289,11 +290,22 @@ class Tools {
     return date.match(/^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/) ? true : false;
   }
 
-  static getAssetPath(path) {
-    const storybookPath = '/shared-components';
-    const isStorybook = document.location.pathname.indexOf(storybookPath) !== -1;
+  static isStorybook() {
+    return window.STORYBOOK_ENV === 'HTML' ? true : false;
+  }
 
-    return isStorybook ? `${storybookPath}${path}` : path;
+  static isTestingStorybook() {
+    return document.location.pathname.indexOf(Tools.storybookPath) !== -1;
+  }
+
+  static getSiteAssetPath(path) {
+    return Tools.isTestingStorybook() ? `${Tools.storybookPath}${path}` : path;
+  }
+
+  static getAssetPath(path) {
+    const absolutePath = '/_includes/shared-components/assets/';
+
+    return Tools.isStorybook() ? `../assets/${path}` : `${absolutePath}${path}`;
   }
 
   static findRecursive(obj, matcher, callback) {
