@@ -12,6 +12,7 @@ import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
+import FeatureGridItem from './vue/feature-grid-item.js';
 import FormAttachments from './vue/form-attachments.js';
 import FormCheckbox from './vue/form-checkbox.js';
 import FormCheckboxes from './vue/form-checkboxes.js';
@@ -126,6 +127,7 @@ const addApp = () => {
     CheckCard,
     CheckMark,
     Faq,
+    FeatureGridItem,
     FormAttachments,
     FormCheckbox,
     FormCheckboxes,
