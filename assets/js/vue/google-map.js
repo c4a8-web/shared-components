@@ -4,7 +4,7 @@ export default {
   tagName: 'google-map',
   computed: {
     classList() {
-      return ['position-relative mx-3 mx-md-8 vue-component'];
+      return ['google-map position-relative mx-3 mx-md-8 vue-component'];
     },
     leafletOptions() {
       const coordinates = this.location.coordinates;
@@ -23,7 +23,7 @@ export default {
               iconSize: iconSize,
             },
             popup: {
-              text: `${this.location.street}, ${this.location.city}`,
+              text: this.location.street + ', ' + this.location.city,
               title: 'Address',
             },
           },
@@ -65,7 +65,7 @@ export default {
             </div>
 
             <template v-for="entry in entries">
-              <google-map-entry :entry="entry" />
+              <google-map-entry v-bind="entry"/>
             </template>
           </div>
         </div>
