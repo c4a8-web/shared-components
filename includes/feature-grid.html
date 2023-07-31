@@ -7,6 +7,7 @@
 {% assign image = props.image %}
 {% assign features = props.features %}
 {% assign footer = props.footer %}
+{%- assign featureGridCentered = include.centered -%}
 
 {% capture columnClass %}
 col-lg-{{ 12 | divided_by: gridSize }}
@@ -39,12 +40,13 @@ col-lg-{{ 12 | divided_by: gridSize }}
     <div class="my-8">
       <div class="d-flex flex-wrap">
         {% for feature in features %}
-          <div class="feature-grid__item {{ columnClass }} mb-3 fade-in-bottom" data-utility-animation-step="1" style="--utility-animation-index:{{ forloop.index }};">
-            {%
-              include feature-grid-item.html
-              featureGridItem=feature
-            %}
-          </div>
+          <feature-grid-item
+            classes="{{ columnClass }}"
+            :index="{{ forloop.index }}"
+            :item="{{ feature | jsonify | escape }}"
+            :centered="{{ featureGridCentered }}"
+          >
+          </feature-grid-item>
         {% endfor %}
       </div>
     </div>
