@@ -73,7 +73,7 @@ export default {
     </div>
 
     <div class="position-md-absolute top-0 right-0 bottom-0 left-0">
-      <div class="gmap min-h-300rem h-100 rounded-lg" ref="map" :data-hs-leaflet-options='leafletOptions'></div>
+      <div class="min-h-300rem h-100 rounded-lg" ref="map" :data-hs-leaflet-options='leafletOptions'></div>
     </div>
   </div>
   `,
