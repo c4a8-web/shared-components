@@ -1,4 +1,6 @@
 .feature-grid-item__text {
+  text-align: left;
+
   &::before {
     content: '';
     width: 15px;
