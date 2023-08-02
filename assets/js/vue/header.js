@@ -266,7 +266,7 @@ export default {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
-      const target = item.languages[this.lowerLang].target;
+      const target = item.languages[this.lowerLang]?.target;
 
       return target ? target : null;
     },
