@@ -7,12 +7,8 @@
   {% comment %}TODO try to get jekyll-paginate-v2 working for this to function{% endcomment %}
 {%- endif -%}
 
-lang{{ page.lang }}lang
-
 {% if page.lang == null %}
-hier
-  {%- assign getPostsData = getPostsDataBasePosts | where_exp:"item", "item.lang == page.lang or item.lang == nil" -%}
+  {%- assign getPostsData = getPostsDataBasePosts | where_exp:"item", "item.lang == page.lang or item.lang == 'de'" -%}
 {% else %}
-alles hier
   {%- assign getPostsData = getPostsDataBasePosts | where_exp:"item", "item.lang == page.lang or item.lang == 'en'" -%}
 {% endif %}

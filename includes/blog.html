@@ -4,8 +4,6 @@
 
 {% assign paginatorPosts = getPostsData %}
 
-{{ paginatorPosts | size }}##########
-
 {%- assign paginator_page = paginator.page %}
 {%- assign paginator_total_pages = paginator.total_pages %}
 {%- assign paginator_previous_page = paginator.previous_page %}
@@ -47,15 +45,7 @@
     getSite=true
   %}
 
-  {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
-
-  §§§{{ posts | size }}###
-
   {% assign posts = getPostsData %}
-
-
-  ---{{ posts | size }}###
-
 
   {% for post in posts limit:1 %}
     {% assign firstUrl = post.url %}
