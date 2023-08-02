@@ -420,6 +420,9 @@ export default {
 
       return ['header__nav-highlight', isHidden ? 'is-hidden' : ''];
     },
+    hasContactLink(item) {
+      return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
+    },
   },
   props: {
     home: Object,
@@ -581,7 +584,7 @@ export default {
                       {{ item.languages[lowerLang]?.title }}
                     </figcaption>
                     <div class="header__flyout-description font-size-1 thin" v-html="item.languages[lowerLang]?.description"></div>
-                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url" v-if="contact?.languages">
+                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url" v-if="hasContactLink(item)">
                       <icon
                         icon="phone-mail"
                         size="medium"
