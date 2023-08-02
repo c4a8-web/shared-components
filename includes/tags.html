@@ -1,14 +1,19 @@
 {%- assign lang = page.lang | default: site.lang | downcase | default: "de" -%}
 
+##lang:{{ lang }}##
+
 <!-- Shared Tags -->
 <div class="tags d-sm-flex flex-wrap align-items-sm-center text-center text-sm-left">
   {% capture site_tags %}{% for tag in site.tags %}{{ tag | first }}{% unless forloop.last %},{% endunless %}{% endfor %}{% endcapture%}
   {% assign sortedTags=site_tags | split:',' | sort %}
+
+  {{ site_tags }}
+
   {% for tag in sortedTags %}
     {%- if lang == 'de' -%}
       {% assign tagByLang = site.tags[tag] | where: 'lang', nil or lang %}
     {%- else -%}
-      {% assign tagByLang = site.tags[tag] | where: 'lang', lang %}
+      {% assign tagByLang = site.tags[tag] | where: 'lang', lang or 'en' %}
     {%- endif -%}
 
     {% if tagByLang.size > 0 %}
