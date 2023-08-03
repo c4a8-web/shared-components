@@ -18,7 +18,13 @@ const Lang = {
     withAuthor: 'With',
   },
   es: {
-    // TODO add es texts
+    tags: 'Etiquetas',
+    tagsHeadline: 'Entradas por Etiquetas',
+    tagsClear: 'Borrar todo',
+    posts: 'Entradas',
+    follow: 'Seguir',
+    similarPosts: 'Entradas similares',
+    withAuthor: 'Con',
   },
 };
 
