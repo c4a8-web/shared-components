@@ -1,4 +1,5 @@
 const es = {
+  address: 'Dirección',
   full_time: 'Tiempo completo',
   part_time: 'Tiempo parcial',
   contract: 'Contrato de trabajo',
