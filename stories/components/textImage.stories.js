@@ -86,6 +86,7 @@ JobApplication.args = {
     apiUrl: 'mock/job.json',
     clientName: 'glueckkanja',
     jobId: 'fk0slx5',
+    modalId: 'bewerbung1',
     form: {
       headline: 'Bewerbungsformular (m/w/d)',
       cta: {

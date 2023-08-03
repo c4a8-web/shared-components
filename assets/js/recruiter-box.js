@@ -1,4 +1,5 @@
 import Tools from './tools.js';
+import Form from './components/form.js';
 
 /**
  * https://apiv1.recruiterbox.com/frontend_api.html
@@ -21,7 +22,7 @@ class RecruiterBox {
   constructor(options) {
     this.options = options;
     this.filter = '';
-    this.jobDataUrl = Tools.getAssetPath(this.jobDataUrl);
+    this.jobDataUrl = Tools.getSiteAssetPath(this.jobDataUrl);
 
     this.options.jobId = this.getJobId();
   }
@@ -104,7 +105,6 @@ class RecruiterBox {
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-    const customFields = ['cancellation', 'salary', 'message', 'portfolio'];
 
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
@@ -119,9 +119,12 @@ class RecruiterBox {
         // TODO handle select
       }
 
-      const key = customFields.filter((value) => value === input.name).length
-        ? input.name
-        : `candidate_${Tools.camalCaseToSnakeCase(input.name)}`;
+      const candidateFields = ['firstName', 'lastName', 'email', 'phone', '_gotcha'];
+      const updatedName = Form.getName(input.name);
+
+      const key = candidateFields.filter((value) => value === updatedName).length
+        ? `candidate_${Tools.camalCaseToSnakeCase(updatedName)}`
+        : updatedName;
 
       data.push({
         key,

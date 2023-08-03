@@ -1,4 +1,8 @@
 {%
+  include faq.html
+%}
+
+{%
   include fab-button.html
   modal=fabModal.modal
   bgColor=null
@@ -34,3 +38,14 @@
     entries=faqApplicationEvents.entries
   %}
 </list-container>
+
+{%
+  include modal.html
+  form=faqModal.form
+  success=faqModal.success
+  modalId="bewerbung2"
+  application=true
+  clientName=faqModal.clientName
+  apiUrl=faqModal.apiUrl
+  jobId=faqModal.jobId
+%}

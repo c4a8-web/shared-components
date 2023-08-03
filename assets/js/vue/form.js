@@ -91,6 +91,14 @@ export default {
     getFieldClassList(field) {
       return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
+    getId(field){
+      const groupField = field?.radios || field?.checkboxes
+      const fieldId = groupField ? groupField[0].id : field?.id
+
+      if (!Tools.isTrue(this.hasUuid)) return fieldId;
+
+      return Form.getId(fieldId);
+    },
   },
   props: {
     form: Object,
@@ -117,6 +125,9 @@ export default {
       default: null,
     },
     options: Object,
+    hasUuid: {
+      default: null,
+    },
     hasAnimation: {
       default: null,
     },
@@ -137,7 +148,7 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :has-animation="hasAnimationValue" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" />
                 </div>
               </div>
             </template>
