@@ -7,6 +7,8 @@ import Events from '../events.js';
 class Form extends BaseComponent {
   static rootSelector = '.form';
   static instances = [];
+  static delimiter = '-formHelper-';
+  static noCustomSubmitClass = 'form--no-custom-submit';
 
   constructor(root, options) {
     super(root, options);
@@ -134,6 +136,22 @@ class Form extends BaseComponent {
     } else {
       this.form.submit();
     }
+  }
+
+  static getId(fieldId) {
+    const uuidWithDelimiter = Tools.uuid() + this.delimiter + fieldId;
+
+    return uuidWithDelimiter;
+  }
+
+  static getName(string) {
+    if (string.includes(this.delimiter)){
+      const delimiterIndex = string.indexOf(this.delimiter);
+
+      return string.slice(delimiterIndex + this.delimiter.length)
+    }
+
+    return string;
   }
 
   static getFormData(form) {
@@ -408,6 +426,10 @@ class Form extends BaseComponent {
     const gotcha = this.root.querySelector(this.gotchaSelector);
 
     gotcha?.classList.add(State.HIDDEN);
+  }
+
+  canHaveCustomSubmit() {
+    return this.root.classList.contains(Form.noCustomSubmitClass) ? false : true;
   }
 }
 

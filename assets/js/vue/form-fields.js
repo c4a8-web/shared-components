@@ -6,8 +6,13 @@ export default {
         'form-field js-form-message form-group',
         `${this.field.type === 'hidden' ? 'd-none' : ''}`,
         this.groupClass,
+        this.hasAnimation ? 'utility-animation utility-animation--small-offset fade-in-bottom' : '',
+        `${this.field.showIn ? 'd-none form-field--show-in ' + this.showInClasses : ''}`,
         'vue-component',
       ];
+    },
+    showInClasses() {
+      return this.field?.showIn?.map((id) => 'show-in-' + id).join(' ');
     },
     groupClass() {
       if (this.field.type === 'checkbox') {
@@ -41,31 +46,37 @@ export default {
   props: {
     options: Array,
     field: Object,
+    id: {
+      default: null,
+    },
     replaceValue: {
+      default: null,
+    },
+    hasAnimation: {
       default: null,
     },
   },
   template: `
     <template v-if="field.id !== '_gotcha'">
-      <div :class="classList">
+      <div :class="classList" data-utility-animation-step="1">
         <template v-if="field.type === 'textarea'">
-          <label class="input-label" :for="field.id">{{ field.label }}</label>
-          <textarea class="form-control form-textarea" :id="field.id" :name="field.id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
+          <label class="input-label" :for="id">{{ field.label }}</label>
+          <textarea class="form-control form-textarea" :id="id" :name="id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
         </template>
         <template v-else-if="field.type ==='checkbox'">
-          <form-checkbox :checkbox="field" />
+          <form-checkbox :checkbox="field" :id="id" />
         </template>
         <template v-else-if="field.type ==='hidden'">
-          <input type="hidden" :name="field.id" :value="value">
+          <input type="hidden" :name="id" :value="value">
         </template>
         <template v-else-if="field.checkboxes">
-          <form-checkboxes :field="field" />
+          <form-checkboxes :field="field" :id="id" />
         </template>
         <template v-else-if="field.type === 'radio' ">
-          <form-radio :radio="field" />
+          <form-radio :radio="field" :id="id" />
         </template>
         <template v-else-if="field.radios">
-          <form-radios :field="field" />
+          <form-radios :field="field" :id="id" />
         </template>
         <template v-else-if="field.type === 'file'">
           <form-attachments
@@ -79,11 +90,11 @@ export default {
           />
         </template>
         <template v-else-if="field.type === 'select'">
-          <form-select :field="field" :options="options" />
+          <form-select :field="field" :options="options" :id="id" />
         </template>
         <template v-else-if="field.type">
-          <label class="input-label" :for="field.id">{{ field.label }}</label>
-          <input :type="field.type" :id="field.id" :name="field.id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
+          <label class="input-label" :for="id">{{ field.label }}</label>
+          <input :type="field.type" :id="id" :name="id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
         </template>
       </div>
     </template>`,

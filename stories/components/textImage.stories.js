@@ -38,10 +38,10 @@ Right.args = {
   copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
 };
 
-export const WithAnimation = Template.bind({});
+export const WithoutAnimation = Template.bind({});
 
-WithAnimation.args = {
-  animation: true,
+WithoutAnimation.args = {
+  noAnimation: true,
   image: getAssetPath('svg/icons/icon-consulting-services.svg'),
   alt: 'Consulting Services',
   headline: 'Consulting Services',
@@ -86,6 +86,7 @@ JobApplication.args = {
     apiUrl: 'mock/job.json',
     clientName: 'glueckkanja',
     jobId: 'fk0slx5',
+    modalId: 'bewerbung1',
     form: {
       headline: 'Bewerbungsformular (m/w/d)',
       cta: {

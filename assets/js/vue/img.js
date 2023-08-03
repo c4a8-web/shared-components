@@ -23,6 +23,7 @@ export default {
       return [
         'v-img',
         'vue-component',
+        this.isSvg ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
@@ -36,13 +37,16 @@ export default {
     crossOriginValue() {
       return Tools.isTrue(this.cloudinary) ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
+    isSvg() {
+      return this.img?.indexOf('.svg') !== -1;
+    },
   },
   created() {
     if (this.canGenerateSrcSet()) return;
 
     if (Tools.isTrue(this.cloudinary)) return;
 
-    this.noCloudinary = this.img;
+    this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
   methods: {
@@ -66,15 +70,22 @@ export default {
         console.error(e);
       }
     },
+    getBaseAssetPath() {
+      return this.img?.indexOf('/assets/') !== -1 ? this.img : `/assets/${this.img}`;
+    },
     getCloudinaryBasePathLink() {
       return `${basePath}${this.img}`;
     },
     getCloudinaryLink() {
+      return this.isGif() ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
+    },
+    getCloudinaryLinkWithTransformation() {
       const { preset, transformationsString } = this.getSetup();
+      const hasWidth = /w_\d+/.test(this.img);
+      const base = basePath + transformationsString;
+      const end = `/${this.img}`;
 
-      return this.isGif()
-        ? this.getCloudinaryBasePathLink()
-        : `${basePath}${transformationsString},w_${preset.fallback_max_width}/${this.img}`;
+      return hasWidth ? `${base}${end}` : `${base},w_${preset.fallback_max_width}${end}`;
     },
     loadImage() {
       if (!this.canGenerateSrcSet()) return;
@@ -92,6 +103,7 @@ export default {
           naturalHeight: height ? height : preset.fallback_max_width,
           naturalWidth: width ? width : preset.fallback_max_width,
         };
+
         this.dimensions = dimensions;
 
         height && width ? this.buildSrcSet(preset, transformationsString) : null;

@@ -75,11 +75,29 @@ export const parameters = {
 export const decorators = [
   (story, params) => {
     const body = document.querySelector('body');
+    const base = document.querySelector('base');
+
+    if (base) {
+      if (base.getAttribute('target') !== '_parent' && !params?.parameters?.page) {
+        base.setAttribute('target', '_parent');
+      }
+    }
 
     if (params.parameters?.root) {
       body.setAttribute('style', 'padding: 0 !important; margin: 0 !important');
     } else {
       body.setAttribute('style', '');
+    }
+
+    if (params?.parameters?.page) {
+      if (base) {
+        // This does not work with _self or _parent with native form submits and cypress testing. That's why it is _blank right now
+        base.setAttribute('target', '_blank');
+
+        console.error(
+          "WARNING!!! When you make a submit or a switch in this story. You'll need to reload the whole storybook frame for it to work again."
+        );
+      }
     }
 
     document.querySelector('html')?.setAttribute('lang', 'de');

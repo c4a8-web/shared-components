@@ -1,0 +1,5 @@
+.text-teaser {
+  @include utility-animation-options($distance: 75%, $duration: 1s);
+
+  background-repeat: no-repeat;
+}

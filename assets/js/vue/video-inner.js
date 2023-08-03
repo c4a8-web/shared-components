@@ -6,7 +6,7 @@ export default {
   computed: {
     videoClass() {
       return [
-        'video',
+        'video utility-animation',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
         `${this.isVariantRow ? 'container' : 'd-flex flex-column'}`,
         `${Tools.isTrue(this.overlapping) ? 'video--is-overlapping' : ''}`,
@@ -18,7 +18,7 @@ export default {
     },
     videoPlayerClass() {
       return [
-        'video__player',
+        'video__player fade-in-bottom',
         `${this.variantClasses}`,
         `${this.isPlayed ? 'video-player-played' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
@@ -27,11 +27,11 @@ export default {
     },
     videoContentClass() {
       const padding = !this.isReversed() ? 'py-4 px-3 p-lg-5' : 'pb-4';
+
       return [
-        'video__content',
+        'video__content fade-in-bottom',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
         `${this.isVariantRow ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
-        'vue-component',
       ];
     },
     variantClasses() {
@@ -127,7 +127,7 @@ export default {
   template: `
     <div :class="videoClass" :onclick="onClick">
       <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantRow">
-        <div :class="videoPlayerClass" :id="videoId">
+        <div :class="videoPlayerClass" :id="videoId" data-utility-animation-step="1">
           <template v-if="videoParsed.lightbox">
             <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox">
               <div class="img-fluid" >
@@ -157,7 +157,7 @@ export default {
           </template>
         </div>
         <template v-if="videoParsed.headline">
-          <div :class="videoContentClass" :onclick="onClickVideoContent">
+          <div :class="videoContentClass" :onclick="onClickVideoContent" data-utility-animation-step="1">
             <div class="row no-gutters d-flex flex-wrap">
               <template v-if="videoParsed.logo">
                 <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">

@@ -12,6 +12,7 @@ import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
 import Faq from './vue/faq.js';
+import FeatureGridItem from './vue/feature-grid-item.js';
 import FormAttachments from './vue/form-attachments.js';
 import FormCheckbox from './vue/form-checkbox.js';
 import FormCheckboxes from './vue/form-checkboxes.js';
@@ -34,6 +35,7 @@ import JobList from './vue/job-list.js';
 import LetterSwitcher from './vue/letter-switcher.js';
 import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
+import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
@@ -67,14 +69,17 @@ import CheckMark from './vue/icons/check-mark.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import EmailActionUnread from './vue/icons/email-action-unread.js';
+import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Magnifier from './vue/icons/magnifier.js';
+import Mail from './vue/icons/mail.js';
 import Menu from './vue/icons/menu.js';
 import Minus from './vue/icons/minus.js';
 import Pin from './vue/icons/pin.js';
 import Phone from './vue/icons/phone.js';
 import PhoneCharger from './vue/icons/phone-charger.js';
 import PhoneMail from './vue/icons/phone-mail.js';
+import Phone from './vue/icons/phone.js';
 import PlusMinus from './vue/icons/plus-minus.js';
 import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
@@ -128,6 +133,7 @@ const addApp = () => {
     CheckCard,
     CheckMark,
     Faq,
+    FeatureGridItem,
     FormAttachments,
     FormCheckbox,
     FormCheckboxes,
@@ -150,6 +156,7 @@ const addApp = () => {
     LetterSwitcher,
     LinkList,
     ListContainer,
+    LogoList,
     Modal,
     Plus,
     ScrollArrow,
@@ -173,10 +180,12 @@ const addApp = () => {
     Arrow,
     Close,
     ComputerShield,
+    Emergency,
     EmailActionUnread,
     Expand,
     Menu,
     Magnifier,
+    Mail,
     Minus,
     Phone,
     PhoneCharger,

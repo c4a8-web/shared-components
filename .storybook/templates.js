@@ -8,6 +8,7 @@ import Company from './data/company';
 import Header from './data/header';
 import ImgSrcSets from './data/imgSrcSets';
 import Products from './data/products';
+import Tags from './data/tags';
 import Contact from './data/contact';
 import Checks from './data/checks';
 import Posts from './data/posts';
@@ -23,6 +24,7 @@ import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
   cloudinary: Cloudinary,
+  excerpt: '',
   data: {
     authors: Authors,
     company: Company,
@@ -34,6 +36,7 @@ const site = {
     options: Options,
     header: Header,
   },
+  tags: Tags,
   posts: Posts,
   events: Events,
   casestudies: CaseStudies,
@@ -196,7 +199,7 @@ const getTitle = ({ page, title, docs, context, helper }) => {
 
   return {
     title: titleText,
-    ...(page && { parameters: { root: true } }),
+    ...(page && { parameters: { root: true, page: true } }),
   };
 };
 

@@ -1,6 +1,10 @@
 .quotes {
-  background-color: var(--color-green-blue);
-  color: var(--color-white);
+  --color-quotes-highlight: var(--color-yellow);
+  --color-quotes-background: var(--color-green-blue);
+  --color-quotes-copy: var(--color-white);
+
+  background-color: var(--color-quotes-background);
+  color: var(--color-quotes-copy);
 
   &.quotes--no-image {
     min-height: 100vh;
@@ -22,6 +26,7 @@
 
     .quotes__entry-text {
       @include font-style($style: 'h4-font-size', $weight: 'light', $line: 'middle');
+
       width: 100%;
     }
 
@@ -113,7 +118,7 @@
 .quotes__entry-quote {
   position: relative;
   font-size: 10rem;
-  color: var(--color-yellow);
+  color: var(--color-quotes-highlight);
   line-height: 0;
   top: -4%;
   pointer-events: none;
@@ -137,7 +142,7 @@
 }
 
 .quotes__entry-name {
-  color: var(--color-yellow);
+  color: var(--color-quotes-highlight);
   flex: 1 0 100%;
 }
 
@@ -266,13 +271,22 @@
   &.slick-active,
   &.slick-current {
     .quotes__entry-quote-wrapper {
-      opacity: 1;
+      &:not(.utility-animation) {
+        opacity: 1;
+      }
+
       pointer-events: all;
     }
   }
 }
 
 .quotes__entry-quote-wrapper {
+  &.utility-animation {
+    @include utility-animation-options($distance: 15%, $delay: 200ms, $selector: '&');
+  }
+
+  position: relative;
+
   @include media-breakpoint-up(lg) {
     padding-bottom: spacing(16);
   }

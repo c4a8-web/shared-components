@@ -169,3 +169,17 @@ PhoneCharger.args = {
   icon: 'phone-charger',
   size: 'large',
 };
+
+export const Mail = Template.bind({});
+
+Mail.args = {
+  icon: 'mail',
+  size: 'large',
+};
+
+export const Emergency = Template.bind({});
+
+Emergency.args = {
+  icon: 'emergency',
+  size: 'large',
+};

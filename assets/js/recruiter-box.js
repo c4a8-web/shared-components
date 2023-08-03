@@ -1,4 +1,9 @@
 import Tools from './tools.js';
+import Form from './components/form.js';
+
+/**
+ * https://apiv1.recruiterbox.com/frontend_api.html
+ */
 
 class RecruiterBox {
   apiUrl = 'https://jsapi.recruiterbox.com/v1/';
@@ -90,16 +95,21 @@ class RecruiterBox {
     return this.fetch(url);
   }
 
+  isOptionalInputInvisible(input) {
+    return input?.parentNode?.classList.contains('form-field--show-in') && input.offsetParent === null;
+  }
+
   getFormData(form) {
     if (form === null || form === undefined) return [];
 
     // TODO refactor with select
     const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
-    const customFields = ['cancellation', 'salary', 'message'];
 
     for (let i = 0; i < inputs.length; i++) {
       const input = inputs[i];
+
+      if (this.isOptionalInputInvisible(input)) continue;
 
       let value;
 
@@ -109,9 +119,12 @@ class RecruiterBox {
         // TODO handle select
       }
 
-      const key = customFields.filter((value) => value === input.name).length
-        ? input.name
-        : `candidate_${Tools.camalCaseToSnakeCase(input.name)}`;
+      const candidateFields = ['firstName', 'lastName', 'email', 'phone', '_gotcha'];
+      const updatedName = Form.getName(input.name);
+
+      const key = candidateFields.filter((value) => value === updatedName).length
+        ? `candidate_${Tools.camalCaseToSnakeCase(updatedName)}`
+        : updatedName;
 
       data.push({
         key,

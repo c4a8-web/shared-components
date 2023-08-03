@@ -26,7 +26,7 @@
 {%- assign textImageHref = include.href -%}
 {%- assign textImageBadge = include.badge -%}
 {%- assign textImageSticky = include.sticky -%}
-{%- assign textImageAnimation = include.animation -%}
+{%- assign textImageNoAnimation = include.noAnimation -%}
 {%- assign textImageIndex = include.index -%}
 {%- assign textImageNoGutters = include.noGutters | default: false -%}
 
@@ -59,7 +59,7 @@
 <div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
           {% if textImageSticky %}is-sticky-scroller{% endif %}
-          {% if textImageAnimation %}utility-animation utility-animation--enter-exit{% endif %}
+          {% unless textImageNoAnimation %}utility-animation utility-animation--enter-exit{% endunless %}
           {% if textImageFloat %}text-image--float{% endif %}"
      style="{% if textImageBgColor %}background-color:{{ textImageBgColor }};{% endif %}
             {% if textImageIndex %}--utility-animation-index:{{ textImageIndex }};{% endif %}
@@ -83,7 +83,7 @@
         </div>
       {% endif %}
       <div class="text-image__first-col d-flex text-image__img  justify-content-center {{ textImageImageClasses }}
-                  {% if textImageAnimation %}fade-in-bottom{% endif %}
+                  {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}
                   col-lg-
                   {%- if textImageFloat -%}{{ textImageFirstColWidth }} col-xl-{{ textImageFirstColWidthXl }} text-image__img--floating{%- else -%}
                     {%- if textImageOffset -%}
@@ -116,7 +116,7 @@
       <div class="text-image__second-col
                   {% if textImageNoGutters %} no-gutters {% else %} pt-2 pt-lg-4 {% endif %}
                   col-lg-{{ textImageSecondColWidth }}
-                  {% if textImageAnimation %}fade-in-bottom{% endif %}
+                  {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}
                   {% if textImageWhite %}text-white{% endif %}
                   {% if textImageReduceSpacing %}
                     {{ textImageReduceSpacing }}

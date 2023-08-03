@@ -15,7 +15,7 @@ const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   ...De?.args,
-  apiUrl: null,
+  apiUrl: 'mock/job.json',
   jobId: 'fk0stpa',
 };
 

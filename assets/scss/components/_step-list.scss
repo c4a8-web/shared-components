@@ -4,9 +4,19 @@ $step-list-counter-icon-padding: spacing(3);
 $step-list-color-img-tint: $color-copy;
 
 .step-list {
+  @include utility-animation-options($delay: 100ms, $delay-offset: 200ms);
+
   padding: spacing(24) 0;
   background-color: var(--step-list-background);
   color: var(--step-list-color);
+
+  [data-utility-animation-step] {
+    &.is-starting {
+      &.step-list__header {
+        animation-delay: calc((var(--utility-animation-index) * 100ms));
+      }
+    }
+  }
 
   &:not(.step-list--small) {
     .step-list__counter {

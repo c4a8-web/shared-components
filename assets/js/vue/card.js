@@ -11,9 +11,22 @@ export default {
     noLink() {
       return this.url === undefined || this.url === '' ? true : false;
     },
+    indexValue() {
+      return this.index != '' && this.index >= 0 ? this.index : null;
+    },
+    style() {
+      return this.index ? `--utility-animation-index: ${this.index}` : null;
+    },
+    hasAnimationValue() {
+      return Tools.isTrue(this.hasAnimation) === true;
+    },
+    utilityAnimationStep() {
+      return this.hasAnimationValue ? '1' : null;
+    },
     classList() {
       return [
         'card',
+        this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
@@ -148,9 +161,17 @@ export default {
     cta: {
       default: null,
     },
+    hasAnimation: {
+      default: null,
+    },
+    index: Number,
   },
   template: `
-    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting" :onclick="handleClick"  >
+    <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"
+      :onclick="handleClick"
+      :data-utility-animation-step="utilityAnimationStep"
+      :style="style"
+    >
       <template v-if="large">
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">

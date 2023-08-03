@@ -7,24 +7,27 @@
 {% assign image = props.image %}
 {% assign features = props.features %}
 {% assign footer = props.footer %}
+{%- assign featureGridCentered = include.centered -%}
 
 {% capture columnClass %}
 col-lg-{{ 12 | divided_by: gridSize }}
 {% endcapture %}
 
 <div
-  class="feature-grid py-7"
+  class="feature-grid utility-animation py-7"
   style="background-color:{{ backgroundColor | default: 'var(--color-bg-grey)' }}"
 >
-  <div class="container {{ include.spacing }}">
+  <div class="container {{ include.spacing }}" >
     {%
       include headline-row.html
       text=headline
       centered=true
+      classes="fade-in-bottom"
+      utilityAnimationStep="1"
     %}
 
     {% if image %}
-      <figure class="d-flex mt-8 justify-content-center">
+      <figure class="d-flex mt-8 justify-content-center fade-in-bottom" data-utility-animation-step="1">
         {%
           include img.html
           img=image.src
@@ -37,12 +40,13 @@ col-lg-{{ 12 | divided_by: gridSize }}
     <div class="my-8">
       <div class="d-flex flex-wrap">
         {% for feature in features %}
-          <div class="feature-grid__item {{ columnClass }} mb-3">
-            {%
-              include feature-grid-item.html
-              featureGridItem=feature
-            %}
-          </div>
+          <feature-grid-item
+            classes="{{ columnClass }}"
+            :index="{{ forloop.index }}"
+            :item="{{ feature | jsonify | escape }}"
+            :centered="{{ featureGridCentered }}"
+          >
+          </feature-grid-item>
         {% endfor %}
       </div>
     </div>

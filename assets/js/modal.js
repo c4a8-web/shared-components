@@ -1,4 +1,5 @@
 import State from './state.js';
+import Events from './events.js';
 import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
 import RecruiterBox from './recruiter-box.js';
@@ -42,6 +43,10 @@ class Modal {
     this.bindEvents();
   }
 
+  isNotVueApp(parent) {
+    return parent.getAttribute('data-v-app') === null;
+  }
+
   bindEvents() {
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
@@ -50,7 +55,7 @@ class Modal {
       const parent = this.root.parentNode;
       const formInstance = Form.getInstance(this.form);
 
-      if (parent && parent.getAttribute('id') !== 'app') {
+      if (parent && this.isNotVueApp(parent)) {
         const button = parent.querySelector(this.buttonSelector);
 
         button?.addEventListener('click', this.handleOpen.bind(this));
@@ -60,10 +65,22 @@ class Modal {
         buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
       }
 
-      if (formInstance) {
+      if (formInstance && formInstance.canHaveCustomSubmit()) {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
       }
     }
+
+    document.addEventListener(Events.OPEN_MODAL, this.handleModalOpen.bind(this));
+  }
+
+  handleModalOpen(e) {
+    e.stopImmediatePropagation();
+
+    const id = e?.detail?.id;
+
+    if (!id || id !== this.modalId) return;
+
+    this.handleOpen(e);
   }
 
   handleApplicationSubmit(e) {
@@ -109,8 +126,8 @@ class Modal {
       .then(() => {
         this.handleApplicationSuccess(fields);
       })
-      .catch(() => {
-        this.handleError();
+      .catch((e) => {
+        this.handleError(e);
       });
   }
 
@@ -128,8 +145,8 @@ class Modal {
     }
   }
 
-  handleError() {
-    console.error('error modal');
+  handleError(e) {
+    console.error(`Error ${e}`);
     // TODO add the generic error message here
   }
 

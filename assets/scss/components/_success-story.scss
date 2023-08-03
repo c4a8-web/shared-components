@@ -1,6 +1,12 @@
 .success-story {
   position: relative;
   overflow: hidden;
+
+  [data-utility-animation-step] {
+    --utility-animation-distance: 15%;
+
+    animation-duration: 0.8s;
+  }
 }
 
 .success-story__bg {

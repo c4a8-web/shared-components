@@ -85,6 +85,7 @@
   position: relative;
   border-radius: 0;
 
+  &.cta--has-icon,
   &.cta--download,
   &.cta--external {
     &::after,
@@ -112,7 +113,13 @@
       align-items: flex-start;
 
       .icon {
-        height: calc(var(--type-default-line-height) * 1rem + 2px);
+        --cta-icon-offset: -3px;
+
+        height: calc(var(--type-default-line-height) * 1rem + var(--cta-icon-offset));
+
+        @include media-breakpoint-up(lg) {
+          --cta-icon-offset: 2px;
+        }
       }
 
       svg {
@@ -171,6 +178,26 @@
     svg {
       margin: 0 0 0 spacing(3);
       stroke: var(--color-primary);
+    }
+  }
+
+  &.cta--has-icon {
+    &.cta--icon-emergency {
+      &::after,
+      &.btn {
+        padding-right: spacing(16);
+      }
+
+      .icon {
+        --icon-scale: 2.3;
+
+        right: spacing(6);
+
+        svg {
+          stroke-width: 0.3;
+          stroke: currentColor;
+        }
+      }
     }
   }
 }

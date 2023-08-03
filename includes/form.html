@@ -1,4 +1,5 @@
 <!-- Shared Form Section -->
+{%- assign formHasAnimation = include.hasAnimation -%}
 {%- assign formForm = include.form -%}
 {%- assign formLight = include.light -%}
 {%- assign formAnalytics = include.analytics -%}
@@ -13,6 +14,7 @@ Refactor uncentered value and include the content migration of uncentered values
 {%- assign formUncentered = formForm.uncentered | default: include.uncentered | default: ''-%}
 {%- assign formReplaceValue = include.replaceValue -%}
 {%- assign formOptions = "" | split: "" -%}
+{%- assign formHasUuid = include.hasUuid -%}
 
 {% assign formOptionsText = "{" %}
 {% for field in formForm.fields %}
@@ -41,6 +43,8 @@ Refactor uncentered value and include the content migration of uncentered values
   uncentered="{{ formUncentered }}"
   replace-value="{{ formReplaceValue }}"
   :options="{{ formOptionsText }}"
+  :has-uuid="{{ formHasUuid }}"
+  :has-animation="{{ formHasAnimation }}"
 ></formular>
 
 <!-- End Shared Form Section -->

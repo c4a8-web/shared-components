@@ -1,10 +1,11 @@
 {%- assign listItems = include.items -%}
+{%- assign listNoAnimation = include.noAnimation -%}
 
 <!-- Shared List Section -->
-<div class="list richtext">
+<div class="list richtext {% unless listNoAnimation %}utility-animation{% endunless %}">
   <ul class="list__items font-size-2">
     {% for item in listItems %}
-      <li>{{ item }}</li>
+      <li class="list__item fade-in-bottom" data-utility-animation-step="1" style="--utility-animation-index:{{ forloop.index }};">{{ item }}</li>
     {% endfor %}
   </ul>
 </div>
