@@ -24,7 +24,7 @@ export default {
             },
             popup: {
               text: this.location.street + ', ' + this.location.city,
-              title: 'Address',
+              title: window.i18n?.translate('address'),
             },
           },
         ],
