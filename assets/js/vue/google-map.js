@@ -60,8 +60,8 @@ export default {
         <div class="col-md-6 col-lg-5">
           <div class="bg-white position-relative z-index-999 p-5 p-sm-7">
             <div class="mb-5">
-              <span class="d-block font-size-2 text-dark text-lh-sm">{{ this.location.office }},</span>
-              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ this.location.city }}</span>
+              <span class="d-block font-size-2 text-dark text-lh-sm">{{ location.office }},</span>
+              <span class="d-block font-size-4 text-dark font-weight-bold text-lh-sm">{{ location.city }}</span>
             </div>
 
             <template v-for="entry in entries">
