@@ -1,0 +1,14 @@
+{%- assign getPostsDataGetSite = include.getSite -%}
+
+{%- if paginator.size > 0 and getPostsDataGetSite != true -%}
+  {% assign getPostsDataBasePosts = paginator.posts %}
+{%- else -%}
+  {% assign getPostsDataBasePosts = site.posts %}
+  {% comment %}TODO try to get jekyll-paginate-v2 working for this to function{% endcomment %}
+{%- endif -%}
+
+{% if page.lang == null %}
+  {%- assign getPostsData = getPostsDataBasePosts | where_exp:"item", "item.lang == page.lang or item.lang == 'de'" -%}
+{% else %}
+  {%- assign getPostsData = getPostsDataBasePosts | where_exp:"item", "item.lang == page.lang or item.lang == 'en'" -%}
+{% endif %}

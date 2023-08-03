@@ -1,6 +1,7 @@
 import Modal from '../modal.js';
 import Tools from '../tools.js';
 import State from '../state.js';
+import Form from '../components/form.js';
 
 export default {
   tagName: 'modal',
@@ -54,7 +55,19 @@ export default {
         html.classList.add(State.MODAL_OPEN);
       } else {
         html.classList.remove(State.MODAL_OPEN);
+
+        this.handleClose();
       }
+    },
+    handleClose() {
+      const modal = this.$refs['modal'];
+      const form = modal.querySelector(Form.rootSelector);
+
+      if (!form) return;
+
+      const formInstance = Form.getInstance(form);
+
+      Form.reset(formInstance.form);
     },
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation);

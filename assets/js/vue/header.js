@@ -266,7 +266,7 @@ export default {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
-      const target = item.languages[this.lowerLang].target;
+      const target = item.languages[this.lowerLang]?.target;
 
       return target ? target : null;
     },
@@ -419,6 +419,9 @@ export default {
       const isHidden = this.isLinkListHidden(item, index);
 
       return ['header__nav-highlight', isHidden ? 'is-hidden' : ''];
+    },
+    hasContactLink(item) {
+      return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
     },
   },
   props: {
@@ -581,7 +584,7 @@ export default {
                       {{ item.languages[lowerLang]?.title }}
                     </figcaption>
                     <div class="header__flyout-description font-size-1 thin" v-html="item.languages[lowerLang]?.description"></div>
-                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url" v-if="contact?.languages">
+                    <a class="header__link custom" :href="contact.languages[lowerLang]?.url" v-if="hasContactLink(item)">
                       <icon
                         icon="phone-mail"
                         size="medium"
