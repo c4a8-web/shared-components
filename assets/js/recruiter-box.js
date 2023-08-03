@@ -22,7 +22,7 @@ class RecruiterBox {
   constructor(options) {
     this.options = options;
     this.filter = '';
-    this.jobDataUrl = Tools.getAssetPath(this.jobDataUrl);
+    this.jobDataUrl = Tools.getSiteAssetPath(this.jobDataUrl);
 
     this.options.jobId = this.getJobId();
   }
