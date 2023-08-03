@@ -79,7 +79,6 @@ import Pin from './vue/icons/pin.js';
 import Phone from './vue/icons/phone.js';
 import PhoneCharger from './vue/icons/phone-charger.js';
 import PhoneMail from './vue/icons/phone-mail.js';
-import Phone from './vue/icons/phone.js';
 import PlusMinus from './vue/icons/plus-minus.js';
 import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
