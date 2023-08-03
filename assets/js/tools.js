@@ -1,4 +1,5 @@
 class Tools {
+  static defaultLang = 'de';
   static urlSeperator = '#';
   static priceFormatter = new Intl.NumberFormat('de-DE', {
     style: 'decimal',
@@ -45,6 +46,14 @@ class Tools {
         behavior: smooth ? 'smooth' : 'auto',
       });
     }
+  }
+
+  static getLang() {
+    return (document.querySelector('html').getAttribute('lang') || defaultLang).toLowerCase();
+  }
+
+  static isNotDefaultLang() {
+    return this.getLang() !== this.defaultLang;
   }
 
   static scrollToTop() {

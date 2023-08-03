@@ -3,10 +3,10 @@
 {%- assign authorsAuthors = include.authors -%}
 {%- assign authorsNoLink = include.noLink -%}
 
-
 <authors
   :data-authors="{{ site.data.authors | jsonify | escape }}"
   :data-lang="{{ site.data.lang[lang] | jsonify | escape }}"
   :authors-list="{{ authorsAuthors | jsonify | escape }}"
   no-link="{{ authorsNoLink }}"
+  lang="{{ lang }}"
 ></authors>
