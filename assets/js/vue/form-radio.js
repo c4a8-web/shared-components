@@ -22,7 +22,7 @@ export default {
     <template v-if="radio?.placeholder">
       <input class="form__radio" type="radio" :data-form-group="group" :required="required" :name="otherId" :id="otherId">
       <label class="form__radio-label" :for="otherId"></label>
-      <input class="" type="text" :name="name" :id="idValue" :placeholder="radio?.placeholder" :data-form-group="group">
+      <input class="form__input form-control form-control-sm" type="text" :name="name" :id="idValue" :placeholder="radio?.placeholder" :data-form-group="group">
     </template>
     <template v-else>
       <input class="form__radio" type="radio" :name="name" :id="idValue" :data-form-group="group" :required="required">

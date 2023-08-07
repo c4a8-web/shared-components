@@ -51,6 +51,14 @@ $form-radio-size: $form-checkbox-size;
       background-color: var(--color-bg-checkbox);
     }
 
+    .form__radio.is-invalid {
+      border-color: $form-error-color;
+    }
+
+    .form__radio.is-invalid ~ .form__radio-label {
+      color: $form-error-color;
+    }
+
     .was-validated .form-control:invalid,
     .form-control.is-invalid {
       border-color: $form-error-color;
