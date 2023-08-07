@@ -238,6 +238,7 @@ WithCheckboxes.args = {
         label: 'Lorem Ipsum 2',
         id: 'test',
         required: true,
+        requiredMsg: 'Please select at least one answer.',
         radios: [
           {
             id: 'not_1',
