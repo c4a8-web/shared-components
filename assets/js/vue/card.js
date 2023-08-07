@@ -8,6 +8,9 @@ export default {
     };
   },
   computed: {
+    combinedTitle() {
+      return `${this.title} ${this.externalLanguage ? '(' + this.externalLanguage + ')' : ''}`;
+    },
     noLink() {
       return this.url === undefined || this.url === '' ? true : false;
     },
@@ -165,6 +168,7 @@ export default {
       default: null,
     },
     index: Number,
+    externalLanguage: String,
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"
@@ -192,7 +196,7 @@ export default {
 
           <div class="col-lg-4">
             <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
-              <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ title }}</a></headline>
+              <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ combinedTitle }}</a></headline>
               <p>{{ truncatedExcerpt }}</p>
               <div :class="mediaClass">
                 <div class="card__author" v-if="author">
@@ -246,7 +250,7 @@ export default {
 
         <div class="card__body card-body richtext">
           <div class="card__scope" v-if="scope">{{ scope }}</div>
-          <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ title }}</a></headline>
+          <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ combinedTitle }}</a></headline>
           <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
 
           <ul class="card__points text-black">
@@ -272,7 +276,7 @@ export default {
         </div>
 
         <div class="card__body card-body">
-          <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ title }}</a></headline>
+          <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ combinedTitle }}</a></headline>
           <p>{{ truncatedExcerpt }}</p>
         </div>
 
