@@ -30,7 +30,9 @@
   <link rel="alternate icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   {% if page.hreflang -%}
-    <link rel="alternate" hreflang="{{ page.hreflang.lang }}" href="{{ headSiteUrl }}{{ page.hreflang.href }}" />
+    {% for pageLang in page.hreflang %}
+      <link rel="alternate" hreflang="{{ pageLang.lang }}" href="{{ headSiteUrl }}{{ pageLang.href }}" />
+    {% endfor %}
   {%- endif %}
 
   <!-- Facebook -->

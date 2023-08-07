@@ -337,7 +337,7 @@ export default {
       }
 
       if (!parent) {
-        const hrefLang = this.getHrefLang();
+        const hrefLang = this.getHrefLang(lang);
 
         return hrefLang ? hrefLang : this.isBlogTagsUrl(currentPath) ? this.getBlogTagsUrl(lang, currentPath) : null;
       }
@@ -368,8 +368,8 @@ export default {
 
       return newPath + document.location.search;
     },
-    getHrefLang() {
-      const hrefLang = document.querySelector('link[hreflang]');
+    getHrefLang(lang) {
+      const hrefLang = document.querySelector(`link[hreflang=${lang}]`);
 
       if (!hrefLang) return;
 
