@@ -49,6 +49,12 @@
 
   {% for post in posts limit:1 %}
     {% assign firstUrl = post.url %}
+    {% assign postExternalLanguage = null %}
+
+    {% if post.lang != page.lang %}
+      {% assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage %}
+    {% endif %}
+
     {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
     {%
       include card.html
@@ -60,6 +66,7 @@
       author=post.author
       large=true
       hasAnimation=true
+      externalLanguage=postExternalLanguage
     %}
   {% endfor %}
 
@@ -76,6 +83,12 @@
   <div class="row mb-3">
     {% for post in paginatorPosts %}
       {% if post.url != firstUrl %}
+        {% assign postExternalLanguage = null %}
+
+        {% if post.lang != page.lang %}
+          {% assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage %}
+        {% endif %}
+
         <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8">
           {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
           {%
@@ -88,6 +101,7 @@
             author=post.author
             hasAnimation=true
             index=forloop.index
+            externalLanguage=postExternalLanguage
           %}
         </div>
       {% endif %}

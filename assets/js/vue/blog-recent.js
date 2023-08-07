@@ -169,7 +169,7 @@ export default {
           <div :class="blogRecentContainerClass" :data-hs-slick-carousel-options="carouselOptions" data-utility-animation-step="1">
             <template v-for="(post, index) in postsArray">
               <div :class="itemClass" v-if="index <= limit">
-                <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors">
+                <card :url="post.url" :title="post.title" :blog-title-pic="blogTitleUrl(post)" :youtube-url="post.youtubeUrl" :excerpt="post.excerpt" :date="post.date" :author="post.author" :target="target(post)" :event="event(post)" :dataAuthors="dataAuthors" :external-language="post.externalLanguage">
               </div>
             </template>
           </div>

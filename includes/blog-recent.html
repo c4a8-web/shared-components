@@ -18,6 +18,13 @@
 {%- assign blogRecentHideContainer = include.hideContainer -%}
 {%- assign blogRecentSticky = include.sticky -%}
 
+{%
+  include get-posts-data.html
+  getSite=true
+%}
+
+{% assign sitePosts = getPostsData %}
+
 {%- if blogRecentCombine -%}
   {%- assign blogRecentEvents = true -%}
   {%- assign blogRecentCaseStudies = true -%}
@@ -45,7 +52,7 @@
 {%- endif -%}
 
 {%- if blogRecentCombine -%}
-  {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+  {% assign posts = sitePosts %}
   {% assign posts = posts | concat: events | concat: caseStudies %}
   {% assign posts = posts | sort: 'moment' %}
 
@@ -58,7 +65,7 @@
   {% elsif blogRecentCaseStudies %}
     {% assign posts = caseStudies %}
   {% else %}
-    {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+    {% assign posts = sitePosts %}
   {% endif %}
 {%- endif -%}
 
@@ -99,6 +106,11 @@
           "excerpt": "{{ post.hero.subline | strip_html | strip_newlines | escape }}"
         }{% unless forloop.last %},{% endunless -%}
       {%- else -%}
+        {%- assign postExternalLanguage = null -%}
+
+        {%- if post.lang != page.lang -%}
+          {%- assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage -%}
+        {%- endif -%}
         {
           "url": "{{ blogRecentPostUrl }}",
           "youtubeUrl": "{{ post.youtubeUrl }}",
@@ -108,7 +120,8 @@
           "author": {{ post.author | jsonify }},
           "blogtitlepic": "{{ post.blogtitlepic }}",
           "external": {{ blogRecentPostExternal }},
-          "excerpt": "{{ post.excerpt | strip_html | strip_newlines | escape }}"
+          "excerpt": "{{ post.excerpt | strip_html | strip_newlines | escape }}",
+          "externalLanguage": "{{ postExternalLanguage }}"
         }{% unless forloop.last %},{% endunless -%}
       {%- endif -%}
     {% endfor %}

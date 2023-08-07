@@ -7,6 +7,7 @@ const Lang = {
     follow: 'Folgen',
     similarPosts: 'Ähnliche Artikel',
     withAuthor: 'Mit',
+    onlyLanguage: 'German only',
   },
   en: {
     tags: 'Tags',
@@ -16,6 +17,7 @@ const Lang = {
     follow: 'Follow',
     similarPosts: 'Similar Posts',
     withAuthor: 'With',
+    onlyLanguage: 'English only',
   },
   es: {
     tags: 'Etiquetas',
@@ -25,6 +27,7 @@ const Lang = {
     follow: 'Seguir',
     similarPosts: 'Entradas similares',
     withAuthor: 'Con',
+    onlyLanguage: 'Sólo español',
   },
 };
 
