@@ -145,10 +145,10 @@ class Form extends BaseComponent {
   }
 
   static getName(string) {
-    if (string.includes(this.delimiter)){
+    if (string.includes(this.delimiter)) {
       const delimiterIndex = string.indexOf(this.delimiter);
 
-      return string.slice(delimiterIndex + this.delimiter.length)
+      return string.slice(delimiterIndex + this.delimiter.length);
     }
 
     return string;
@@ -279,19 +279,17 @@ class Form extends BaseComponent {
   }
 
   addGroupError(group, isFirst) {
-    const length = group.length;
-    const parent = this.getGroupParent(group[0]);
-
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < group.length; i++) {
+      const parent = this.getGroupParent(group[i]);
       group[i].classList.add(State.ERROR);
-    }
 
-    if (parent) {
-      if (isFirst) {
-        Tools.scrollIntoView(parent);
+      if (parent) {
+        if (isFirst) {
+          Tools.scrollIntoView(parent);
+        }
+
+        this.addErrorMessage(parent);
       }
-
-      this.addErrorMessage(parent);
     }
   }
 
@@ -313,21 +311,18 @@ class Form extends BaseComponent {
       element.classList.remove(State.ERROR);
 
       const error = element.nextSibling;
-
       error.remove();
     }
   }
 
   delGroupError(group) {
-    const length = group.length;
-    const parent = this.getGroupParent(group[0]);
-
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < group.length; i++) {
+      const parent = this.getGroupParent(group[i]);
       group[i].classList.remove(State.ERROR);
-    }
 
-    if (parent) {
-      this.delErrorMessage(parent);
+      if (parent) {
+        this.delErrorMessage(parent);
+      }
     }
   }
 
@@ -340,6 +335,8 @@ class Form extends BaseComponent {
       const element = group[i];
 
       if (element.type === 'checkbox' && element.checked) {
+        isValid = true;
+      } else if (element.type === 'radio' && element.checked) {
         isValid = true;
       } else {
         const otherField = element.closest('input[type="text"]');
@@ -368,17 +365,33 @@ class Form extends BaseComponent {
     });
   }
 
+  isRadio(element) {
+    return element?.getAttribute('type') === 'radio' ? true : false;
+  }
+
   isCheckbox(element) {
     return element?.getAttribute('type') === 'checkbox' ? true : false;
   }
 
   addLiveValidation(element) {
     if (element) {
-      if (this.isCheckbox(element)) {
+      if (this.isCheckbox(element) || this.isRadio(element)) {
         element.addEventListener('change', this.handleLiveValidation.bind(this));
       } else {
         element.addEventListener('keyup', this.handleLiveValidation.bind(this));
       }
+    }
+  }
+
+  groupFilter(group, type) {
+    return group.filter((obj) => obj.getAttribute('type') === type);
+  }
+
+  handleGroupError(element, group) {
+    if (element.checked) {
+      this.delGroupError(group);
+    } else if (!this.isValidGroup(group)) {
+      this.addGroupError(group);
     }
   }
 
@@ -387,13 +400,13 @@ class Form extends BaseComponent {
 
     if (element) {
       const group = this.getGroupByName(element.dataset.formGroup);
+      const checkboxes = this.groupFilter(group, 'checkbox');
+      const radios = this.groupFilter(group, 'radio');
 
       if (element.getAttribute('type') === 'checkbox') {
-        if (element.checked) {
-          this.delGroupError(group);
-        } else if (!this.isValidGroup(group)) {
-          this.addGroupError(group);
-        }
+        this.handleGroupError(element, checkboxes);
+      } else if (element.getAttribute('type') === 'radio') {
+        this.handleGroupError(element, radios);
       } else {
         if (this.isValidGroup(group)) {
           this.delGroupError(group);
