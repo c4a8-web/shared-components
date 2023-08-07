@@ -70,8 +70,13 @@ export default {
         console.error(e);
       }
     },
+    hasProtocol() {
+      const regex = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
+
+      return regex.test(this.img);
+    },
     getBaseAssetPath() {
-      return this.img?.indexOf('/assets/') !== -1 ? this.img : `/assets/${this.img}`;
+      return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink() {
       return `${basePath}${this.img}`;
