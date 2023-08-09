@@ -32,7 +32,7 @@ export default {
         mail: this.dataValue.mail,
       });
 
-      if (this.dataValue.additionalLocations) {
+      if (this.dataValue.additionalLocations && this.dataValue.additionalLocations.length) {
         newLocations.push(...this.dataValue.additionalLocations);
       }
 
