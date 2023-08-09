@@ -16,24 +16,36 @@ export const FeatureList = Template.bind({});
 FeatureList.args = {
   items: [
     {
-      icon: 'close',
-      iconSize: 'medium',
-      bullet: '<span> Lorem Ipsum 1 </span>',
+      icon: 'check-mark',
+      iconSize: 'small',
+      bullet: 'Wie bewerte ich meine Workloads und setze die nächsten IT-Prioritäten fest?',
     },
     {
-      icon: 'close',
-      iconSize: 'medium',
-      bullet: '<span> Lorem Ipsum 2 </span>',
+      icon: 'check-mark',
+      iconSize: 'small',
+      bullet: 'Wie stelle ich sicher, dass mein Business ohne Unterbrechungen weiterläuft?',
     },
     {
-      icon: 'plus',
-      iconSize: 'medium',
-      bullet: '<span> Lorem Ipsum 3 </span>',
+      icon: 'check-mark',
+      iconSize: 'small',
+      bullet:
+        'Sollte ich den Betrieb für ein eigenes Rechenzentrum angesichts Ressourcen- und finanzieller Beschränkungen noch einmal überdenken?',
     },
     {
-      icon: 'minus',
-      iconSize: 'medium',
-      bullet: '<span> Lorem Ipsum 4 </span>',
+      icon: 'check-mark',
+      iconSize: 'small',
+      bullet: 'Wie kann ich mein Netzwerk und meine Assets vor Angreifern schützen?',
+    },
+    {
+      icon: 'check-mark',
+      iconSize: 'small',
+      bullet: 'Wie investiere ich richtig, damit ich für die Zukunft besser aufgestellt bin?',
+    },
+    {
+      icon: 'check-mark',
+      iconSize: 'small',
+      bullet:
+        'Wie kann ich sicherstellen, dass meine Mitarbeiter sich der steilen Lernkurve bei neuen Technologien anpassen?',
     },
   ],
 };
