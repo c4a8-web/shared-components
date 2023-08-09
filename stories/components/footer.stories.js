@@ -26,7 +26,7 @@ Product.args = {
     city: 'Offenbach',
     country: 'Germany',
     mail: 'info@glueckkanja-gab.com',
-    additonalLocations: [
+    additionalLocations: [
       {
         name: 'glueckkanja Pacific Pty Ltd',
         over: 'c/o WOTSO',
