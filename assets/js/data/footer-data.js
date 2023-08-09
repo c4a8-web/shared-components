@@ -1,11 +1,15 @@
 const FooterData = {
   bgColor: 'var(--color-midnight)',
-  name: 'glueckkanja-gab AG',
-  street: 'Kaiserstraße 39',
-  postalCode: 63065,
-  city: 'Offenbach',
-  country: 'Germany',
-  mail: 'info@glueckkanja-gab.com',
+  locations: [
+    {
+      name: 'glueckkanja-gab AG',
+      street: 'Kaiserstraße 39',
+      postalCode: 63065,
+      city: 'Offenbach',
+      country: 'Germany',
+      mail: 'info@glueckkanja-gab.com',
+    },
+  ],
   introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
   copyright: '2023 glueckkanja-gab AG. All rights reserved.',
   logos: [

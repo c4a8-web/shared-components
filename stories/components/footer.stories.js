@@ -20,6 +20,23 @@ export const Product = Template.bind({});
 Product.args = {
   noMargin: true,
   data: {
+    locations: [
+      {
+        name: 'glueckkanja-gab AG',
+        street: 'Kaiserstraße 39',
+        postalCode: 63065,
+        city: 'Offenbach',
+        country: 'Germany',
+        mail: 'info@glueckkanja-gab.com',
+      },
+      {
+        name: 'glueckkanja Pacific Pty Ltd <br /> c/o WOTSO',
+        street: 'Level 1 9-13 Bronte Road',
+        postal: 'Bondi Junction NSW 2022',
+        country: 'Australia',
+        mail: 'info@glueckkanja-gab.com',
+      },
+    ],
     logos: [
       {
         img: '/mandrill/radius-logo-footer.svg',
