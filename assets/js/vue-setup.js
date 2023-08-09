@@ -66,6 +66,7 @@ import ArrowCurl from './vue/icons/arrow-curl.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
+import Check from './vue/icons/check.js';
 import CheckMark from './vue/icons/check-mark.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
@@ -179,6 +180,7 @@ const addApp = () => {
     ArrowExternal,
     ArrowNarrow,
     Arrow,
+    Check,
     Close,
     ComputerShield,
     Emergency,
