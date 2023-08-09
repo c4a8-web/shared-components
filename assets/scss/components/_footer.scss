@@ -23,6 +23,12 @@ footer {
       height: 0.94rem;
     }
   }
+
+  .nav {
+    + .nav {
+      margin-top: spacing(4);
+    }
+  }
 }
 
 .footer__links {
@@ -32,5 +38,54 @@ footer {
 .footer__contacts {
   @include media-breakpoint-up(lg) {
     border-right: 1px solid var(--color-white-30);
+  }
+}
+
+.footer__address-block {
+  &.is-reversed {
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    > * {
+      flex: 0 auto;
+    }
+
+    .footer__city {
+      order: 1;
+
+      &::after {
+        content: '\00A0';
+        display: inline-block;
+      }
+    }
+
+    .footer__postal-code {
+      order: 2;
+
+      &::after {
+        content: ',';
+        display: inline-block;
+      }
+    }
+
+    .footer__country {
+      display: block;
+      flex: 1 100%;
+      order: 3;
+    }
+  }
+}
+
+.footer__postal-code {
+  &::after {
+    content: '\00A0';
+    display: inline-block;
+  }
+}
+
+.footer__city {
+  &::after {
+    content: ',\00A0';
+    display: inline-block;
   }
 }

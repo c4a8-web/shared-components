@@ -20,6 +20,24 @@ export default {
         return this.dataValue.links;
       }
     },
+    locations() {
+      const newLocations = [];
+
+      newLocations.push({
+        name: this.dataValue.name,
+        street: this.dataValue.street,
+        postalCode: this.dataValue.postalCode,
+        city: this.dataValue.city,
+        country: this.dataValue.country,
+        mail: this.dataValue.mail,
+      });
+
+      if (this.dataValue.additonalLocations) {
+        newLocations.push(...this.dataValue.additonalLocations);
+      }
+
+      return newLocations;
+    },
   },
   props: {
     data: Object,
@@ -52,53 +70,40 @@ export default {
           <div class="row justify-content-lg-between">
             <div class="col-lg-3 ml-lg-auto mb-2 mb-lg-0 footer__contacts">
               <!-- Nav Link -->
-              <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                <template v-for="location in dataValue.locations">
-                  <li class="nav-item" v-html="location.name">
-                  </li>
-                  <li class="nav-item">
-                    {{ location.street }}
-                  </li>
-
-                  <g v-if="location.country == 'Australia'">
-                    <li class="nav-item">
-                      {{ location.postal }},
-                      <br />
-                      {{ location.country }}
-                    </li>
-                  </g>
-
-                  <g v-else>
-                    <li class="nav-item">
-                      {{ location.postalCode }} {{ location.city }}, {{ location.country }}
-                    </li>
-                  </g>
-
-                  <br />
-                </template>
-
-                  <li class="nav-item" v-if="dataValue.number">
-                    <a class="nav-link media" :href="'tel:' + dataValue.number">
-                      <span class="media">
-                        <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
-                        <span class="media-body">
-                          {{ dataValue.number }}
-                        </span>
+              <ul class="nav nav-sm nav-x-0 nav-white flex-column" v-for="location in locations">
+                <li class="nav-item">
+                  {{ location.name }}
+                </li>
+                <li class="nav-item" v-if="location.over">{{ location.over }}</li>
+                <li class="nav-item">
+                  {{ location.street }}
+                </li>
+                <li :class="['nav-item footer__address-block', location.postalReversed ? 'is-reversed' : '']">
+                  <span class="footer__postal-code">{{ location.postalCode }}</span>
+                  <span class="footer__city">{{ location.city }}</span>
+                  <span class="footer__country">{{ location.country }}</span>
+                </li>
+                <li class="nav-item" v-if="location.number">
+                  <a class="nav-link media" :href="'tel:' + location.number">
+                    <span class="media">
+                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
+                      <span class="media-body">
+                        {{ location.number }}
                       </span>
-                    </a>
-                  </li>
-                  <li class="nav-item" v-if="dataValue.mail">
-                    <a class="nav-link media pt-0" :href="'mailto:' + dataValue.mail">
-                      <span class="media">
-                        <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
-                        <span class="media-body">
-                          {{ dataValue.mail }}
-                        </span>
+                    </span>
+                  </a>
+                </li>
+                <li class="nav-item" v-if="location.mail">
+                  <a class="nav-link media pt-0" :href="'mailto:' + location.mail">
+                    <span class="media">
+                      <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
+                      <span class="media-body">
+                        {{ location.mail }}
                       </span>
-                    </a>
-                  </li>
+                    </span>
+                  </a>
+                </li>
               </ul>
-
               <!-- End Nav Link -->
               <template v-for="(highlight, index) in dataValue.highlights">
                 <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-75 w-lg-100 pr-6">{{ highlight.title }}</span>
