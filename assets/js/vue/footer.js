@@ -32,8 +32,8 @@ export default {
         mail: this.dataValue.mail,
       });
 
-      if (this.dataValue.additonalLocations) {
-        newLocations.push(...this.dataValue.additonalLocations);
+      if (this.dataValue.additionalLocations) {
+        newLocations.push(...this.dataValue.additionalLocations);
       }
 
       return newLocations;
