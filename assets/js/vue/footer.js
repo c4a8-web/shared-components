@@ -53,36 +53,52 @@ export default {
             <div class="col-lg-3 ml-lg-auto mb-2 mb-lg-0 footer__contacts">
               <!-- Nav Link -->
               <ul class="nav nav-sm nav-x-0 nav-white flex-column">
-                <li class="nav-item">
-                  {{ dataValue.name }}
-                </li>
-                <li class="nav-item">
-                  {{ dataValue.street }}
-                </li>
-                <li class="nav-item">
-                  {{ dataValue.postalCode }} {{ dataValue.city }}, {{ dataValue.country }}
-                </li>
-                <li class="nav-item" v-if="dataValue.number">
-                  <a class="nav-link media" :href="'tel:' + dataValue.number">
-                    <span class="media">
-                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
-                      <span class="media-body">
-                        {{ dataValue.number }}
+                <template v-for="location in dataValue.locations">
+                  <li class="nav-item" v-html="location.name">
+                  </li>
+                  <li class="nav-item">
+                    {{ location.street }}
+                  </li>
+
+                  <g v-if="location.country == 'Australia'">
+                    <li class="nav-item">
+                      {{ location.postal }},
+                      <br />
+                      {{ location.country }}
+                    </li>
+                  </g>
+
+                  <g v-else>
+                    <li class="nav-item">
+                      {{ location.postalCode }} {{ location.city }}, {{ location.country }}
+                    </li>
+                  </g>
+
+                  <br />
+                </template>
+
+                  <li class="nav-item" v-if="dataValue.number">
+                    <a class="nav-link media" :href="'tel:' + dataValue.number">
+                      <span class="media">
+                        <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
+                        <span class="media-body">
+                          {{ dataValue.number }}
+                        </span>
                       </span>
-                    </span>
-                  </a>
-                </li>
-                <li class="nav-item" v-if="dataValue.mail">
-                  <a class="nav-link media pt-0" :href="'mailto:' + dataValue.mail">
-                    <span class="media">
-                      <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
-                      <span class="media-body">
-                        {{ dataValue.mail }}
+                    </a>
+                  </li>
+                  <li class="nav-item" v-if="dataValue.mail">
+                    <a class="nav-link media pt-0" :href="'mailto:' + dataValue.mail">
+                      <span class="media">
+                        <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
+                        <span class="media-body">
+                          {{ dataValue.mail }}
+                        </span>
                       </span>
-                    </span>
-                  </a>
-                </li>
+                    </a>
+                  </li>
               </ul>
+
               <!-- End Nav Link -->
               <template v-for="(highlight, index) in dataValue.highlights">
                 <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-75 w-lg-100 pr-6">{{ highlight.title }}</span>
