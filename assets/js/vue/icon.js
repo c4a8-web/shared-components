@@ -97,9 +97,6 @@ export default {
     closed: {
       default: null,
     },
-    backgroundColor: {
-      default: null,
-    },
   },
   template: `
     <span :class="classList" :style="parentStyle">
