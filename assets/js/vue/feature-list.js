@@ -4,16 +4,17 @@ export default {
     classList() {
       return ['feature-list container space-2 vue-component'];
     },
-    defaultItems() {
+    itemsWithFallback() {
       const items = [];
 
-      for (let i = 0; i < this.items.length; i++) {
-        const item = this.items[i];
+      this.items.forEach((item) => {
         const icon = item.icon ? item.icon : 'check';
-        const color = item.color ? item.color : 'var(--color-blue-jeans)';
-        const classes = item.classes ? item.classes : icon === 'check' ? 'icon--has-background' : '';
-        const circle = item.circle;
-        const size = 'medium';
+        const isCheck = icon === 'check';
+
+        const color = isCheck ? 'var(--color-blue-jeans)' : item.color;
+        const classes = isCheck ? 'icon--has-background' : item.classes;
+        const circle = isCheck ? true : item.circle;
+        const size = isCheck ? 'medium' : item.size;
         const bullet = item.bullet;
 
         const entry = {
@@ -26,7 +27,8 @@ export default {
         };
 
         items.push(entry);
-      }
+      });
+
       return items;
     },
   },
@@ -39,7 +41,7 @@ export default {
   template: `
     <div :class="classList">
       <div class="row justify-content-lg-center align-items-md-center">
-        <template v-for="item in defaultItems">
+        <template v-for="item in itemsWithFallback">
           <div class="col-lg-10">
             <div class="media text-body mb-3">
               <icon class="mr-3" :icon="item.icon" :color="item.color" :classes="item.classes" :circle="item.circle" :size="item.size"></icon>
