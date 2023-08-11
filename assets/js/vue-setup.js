@@ -37,6 +37,7 @@ import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
+import PartnerQuote from './vue/partner-quote.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
@@ -157,6 +158,7 @@ const addApp = () => {
     ListContainer,
     LogoList,
     Modal,
+    PartnerQuote,
     Plus,
     ScrollArrow,
     Search,
