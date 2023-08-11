@@ -13,7 +13,6 @@ export default {
     style() {
       const imageOffsetLeft = this.author.imageOffsetLeft || this.defaultImageOffsetLeft;
       const imageOffsetTop = this.author.imageOffsetTop || this.defaultImageOffsetTop;
-      console.log(this.srcSet);
 
       return `left:${imageOffsetLeft};top:${imageOffsetTop}`;
     },
@@ -33,7 +32,7 @@ export default {
     <div :class="classList">
       <div class="author__avatar-frame">
         <div :style="style">
-          <v-img :img="imgUrl" :cloudinary=true preset="author" alt="author.display_name" />
+          <v-img :img="imgUrl" :cloudinary=true preset="author" :imgSrcSets="srcSet" :alt="author.display_name" />
         </div>
       </div>
     </div>
