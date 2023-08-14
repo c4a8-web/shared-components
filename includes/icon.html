@@ -8,6 +8,7 @@
 {%- assign iconPadding = include.padding -%}
 {%- assign iconAnimation = include.animation -%}
 {%- assign iconClasses = include.classes -%}
+{%- assign iconHasBackground = include.hasBackground -%}
 
 <icon
       icon="{{ iconIcon }}"
@@ -19,6 +20,7 @@
       padding="{{ iconPadding }}"
       animation='{{ iconAnimation }}'
       classes="{{ iconClasses }}"
+      has-background="{{ iconHasBackground }}"
 >
 </icon>
 <!-- End Shared Icon Section -->

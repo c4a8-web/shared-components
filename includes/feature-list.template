@@ -1,0 +1,5 @@
+{% assign featureListItems = include.items %}
+
+<feature-list
+  :items="{{ featureListItems | jsonify | escape }}"
+></feature-list>

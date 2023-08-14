@@ -1,9 +1,8 @@
-{%- if paginator.size > 0 -%}
-  {%- assign paginatiorPosts = paginator.posts | where_exp:"item","item.lang == page.lang" -%}
-{%- else -%}
-  {%- assign paginatiorPosts = site.posts | where_exp:"item","item.lang == page.lang" -%}
-  {% comment %}TODO try to get jekyll-paginate-v2 working for this to function{% endcomment %}
-{%- endif -%}
+{%
+  include get-posts-data.html
+%}
+
+{% assign paginatorPosts = getPostsData %}
 
 {%- assign paginator_page = paginator.page %}
 {%- assign paginator_total_pages = paginator.total_pages %}
@@ -40,10 +39,22 @@
   </div>
 
   {% assign firstUrl = '' %}
-  {% assign posts = site.posts | where_exp:"item","item.lang == page.lang" %}
+
+  {%
+    include get-posts-data.html
+    getSite=true
+  %}
+
+  {% assign posts = getPostsData %}
 
   {% for post in posts limit:1 %}
     {% assign firstUrl = post.url %}
+    {% assign postExternalLanguage = null %}
+
+    {% if post.lang != page.lang %}
+      {% assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage %}
+    {% endif %}
+
     {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
     {%
       include card.html
@@ -55,10 +66,11 @@
       author=post.author
       large=true
       hasAnimation=true
+      externalLanguage=postExternalLanguage
     %}
   {% endfor %}
 
-  {% if paginatiorPosts %}
+  {% if paginatorPosts %}
   <!-- Title -->
   <div class="row mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
     <div class="col-12">
@@ -69,8 +81,14 @@
   {% endif %}
 
   <div class="row mb-3">
-    {% for post in paginatiorPosts %}
+    {% for post in paginatorPosts %}
       {% if post.url != firstUrl %}
+        {% assign postExternalLanguage = null %}
+
+        {% if post.lang != page.lang %}
+          {% assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage %}
+        {% endif %}
+
         <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8">
           {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
           {%
@@ -83,6 +101,7 @@
             author=post.author
             hasAnimation=true
             index=forloop.index
+            externalLanguage=postExternalLanguage
           %}
         </div>
       {% endif %}
