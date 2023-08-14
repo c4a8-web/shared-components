@@ -93,7 +93,7 @@ export default {
                     </span>
                   </a>
                 </li>
-                <li class="nav-item" v-if="location.mail">
+                <li :class="['nav-item', locations.length > 1 ? 'pt-4' : '']" v-if="location.mail">
                   <a class="nav-link media pt-0" :href="'mailto:' + location.mail">
                     <span class="media">
                       <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
