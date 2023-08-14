@@ -931,4 +931,9 @@ $header-border-size: 1px;
 
     width: 0;
   }
+
+  &:hover,
+  &:active {
+    color: var(--color-emergency);
+  }
 }
