@@ -418,7 +418,7 @@ export default {
     navHighlightClasses(item, index) {
       const isHidden = this.isLinkListHidden(item, index);
 
-      return ['header__nav-highlight', isHidden ? 'is-hidden' : ''];
+      return ['header__nav-highlight custom', isHidden ? 'is-hidden' : ''];
     },
     hasContactLink(item) {
       return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
@@ -509,10 +509,10 @@ export default {
                     </div>
                   </template>
 
-                  <div :class="navHighlightClasses(item, index)" v-if="item.languages[lowerLang]?.emergency">
+                  <a :href="item.languages[lowerLang]?.emergency.href" :class="navHighlightClasses(item, index)" v-if="item.languages[lowerLang]?.emergency">
                     <icon :icon="item.languages[lowerLang]?.emergency.icon" size="medium" />
-                    {{ item.languages[lowerLang].emergency.text }}
-                  </div>
+                    {{ item.languages[lowerLang]?.emergency.text }}
+                  </a>
 
                 </li>
               </ul>
