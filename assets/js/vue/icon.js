@@ -10,6 +10,7 @@ export default {
       return [
         'icon',
         `${this.classes ? this.classes : ''}`,
+        `${this.hasBackground ? 'icon--has-background' : ''}`,
         `icon--${this.props.direction}`,
         `icon--${this.props.icon}`,
         `${this.props.animation ? 'js-text-animation__icon' : ''}`,
@@ -97,6 +98,7 @@ export default {
     closed: {
       default: null,
     },
+    hasBackground: Boolean,
   },
   template: `
     <span :class="classList" :style="parentStyle">
