@@ -199,3 +199,9 @@
     --utility-animation-distance: 15%;
   }
 }
+
+.text-image__first-col {
+  .text-image__placeholder {
+    opacity: 0;
+  }
+}

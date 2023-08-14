@@ -28,7 +28,7 @@
 {%- assign textImageSticky = include.sticky -%}
 {%- assign textImageNoAnimation = include.noAnimation -%}
 {%- assign textImageIndex = include.index -%}
-{%- assign textImageNoGutters = include.noGutters | default: false -%}
+{%- assign textImagePlaceholder = include.placeholder | default: false -%}
 
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
@@ -82,7 +82,9 @@
           %}
         </div>
       {% endif %}
-      <div class="text-image__first-col d-flex text-image__img  justify-content-center {{ textImageImageClasses }}
+      <div class="text-image__first-col d-flex text-image__img
+                  {% if textImagePlaceholder %} flex-column {% else %} justify-content-center {% endif %}
+                  {{ textImageImageClasses }}
                   {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}
                   col-lg-
                   {%- if textImageFloat -%}{{ textImageFirstColWidth }} col-xl-{{ textImageFirstColWidthXl }} text-image__img--floating{%- else -%}
@@ -99,6 +101,10 @@
         {% if textImageFloat %}
           {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
           {% assign textImagePreset = textImageImagePreset | default: "textImageFloatingSmall" %}
+        {% elsif textImagePlaceholder %}
+          <div class="text-image__placeholder">
+            {{ textImagePlaceholder }}
+          </div>
         {% else %}
           {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
           {% assign textImagePreset = textImageImagePreset | default: false %}
@@ -114,7 +120,7 @@
         %}
       </div>
       <div class="text-image__second-col
-                  {% if textImageNoGutters %} no-gutters {% else %} pt-2 pt-lg-4 {% endif %}
+                  {% if textImagePlaceholder %} no-gutters {% else %} pt-2 pt-lg-4 {% endif %}
                   col-lg-{{ textImageSecondColWidth }}
                   {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}
                   {% if textImageWhite %}text-white{% endif %}
