@@ -63,8 +63,7 @@ footer {
       order: 2;
 
       &::after {
-        content: '';
-        display: inline-block;
+        display: none;
       }
     }
 
