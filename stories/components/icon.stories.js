@@ -191,5 +191,5 @@ Check.args = {
   color: 'var(--color-blue-jeans)',
   circle: true,
   size: 'large',
-  classes: 'icon--has-background',
+  hasBackground: true,
 };

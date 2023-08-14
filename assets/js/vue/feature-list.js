@@ -2,7 +2,7 @@ export default {
   tagName: 'feature-list',
   data() {
     return {
-      check: 'check',
+      defaultIcon: 'check',
     };
   },
   computed: {
@@ -13,19 +13,19 @@ export default {
       const items = [];
 
       this.items.forEach((item) => {
-        const icon = item.icon ? item.icon : this.check;
-        const isCheck = icon === this.check;
+        const icon = item.icon ? item.icon : this.defaultIcon;
+        const isDefaultIcon = icon === this.defaultIcon;
 
-        const color = isCheck ? 'var(--color-blue-jeans)' : item.color;
-        const classes = isCheck ? 'icon--has-background' : item.classes;
-        const circle = isCheck ? true : item.circle;
-        const size = isCheck ? 'medium' : item.size;
+        const color = isDefaultIcon ? 'var(--color-blue-jeans)' : item.color;
+        const hasBackground = isDefaultIcon;
+        const circle = isDefaultIcon ? true : item.circle;
+        const size = isDefaultIcon ? 'medium' : item.size;
         const bullet = item.bullet;
 
         const entry = {
           icon: icon,
           color: color,
-          classes: classes,
+          hasBackground: hasBackground,
           circle: circle,
           size: size,
           bullet: bullet,

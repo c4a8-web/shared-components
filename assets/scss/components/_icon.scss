@@ -44,7 +44,7 @@
     }
 
     background-color: var(--color-icon-check-background);
-    border-color: transparent;
+    border-color: var(--color-icon-check-background);
   }
 
   &.icon--smile {
