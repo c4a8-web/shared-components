@@ -4,9 +4,8 @@ export default {
     classList() {
       return [
         'partner-quote',
-        this.partnerQuote
-          ? 'overflow-hidden'
-          : `partner-quote--text-teaser utility-animation ${this.spacing ? this.spacing : ''}`,
+        this.partnerQuote ? 'overflow-hidden' : 'partner-quote--text-teaser utility-animation',
+        this.spacing ? this.spacing : '',
         'vue-component',
       ];
     },
@@ -82,12 +81,14 @@ export default {
         <template v-else>
           <div :class="rowBackgroundClass">
             <div :class="colBackgroundClass">
-              <div class="text-teaser__copy fade-in-bottom" data-utility-animation-step="1">{{ copy }}</div>
+              <div class="partner-quote__copy fade-in-bottom" data-utility-animation-step="1">{{ copy }}</div>
+
               <div class="pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom" data-utility-animation-step="1" v-if="ctaList">
                 <template v-for="entry in ctaList">
                   <cta v-bind="entry" />
                 </template>
               </div>
+
             </div>
           </div>
         </template>
