@@ -76,6 +76,8 @@ export default {
       return regex.test(this.img);
     },
     getBaseAssetPath() {
+      if (Tools.isTestingStorybook()) return this.img;
+
       return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink() {
