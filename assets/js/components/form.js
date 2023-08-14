@@ -98,7 +98,7 @@ class Form extends BaseComponent {
   }
 
   static reset(form) {
-    if (!form) return;
+    if (!form || !form.reset) return;
 
     form.reset();
 

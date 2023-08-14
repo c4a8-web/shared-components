@@ -1,15 +1,17 @@
----
-layout: default
----
-
-{% comment %}
 {%- assign lang = page.lang | default: 'de' -%}
 {%- assign author = site.data.authors[page.name] -%}
 
 {%- if author -%}
   {%- assign imgUrl = author.avatar -%}
   {%- assign metaTopSpacing = 5 -%}
-  {%- assign filtered_posts = site.posts | where: 'author', page.name -%}
+
+  {%
+    include get-posts-data.html
+    getSite=true
+  %}
+
+  {%- assign filtered_posts = getPostsData | where: 'author', page.name -%}
+
   {%- assign postCount = filtered_posts.size -%}
 
   <div class="container space-top-2 space-top-lg-4">
@@ -38,7 +40,13 @@ layout: default
       </div>
       <div class="row">
         <div class="author__intro font-size-2 col-lg-10 pl-lg-0">
-          {{ content }}
+          {% if lang != 'de' %}
+            {% assign languageContent = page.otherLanguages[lang] | default: page.otherLanguages['en'] | default: content %}
+
+            {{ languageContent }}
+          {% else %}
+            {{ content }}
+          {% endif %}
         </div>
       </div>
       <div class="row">
@@ -59,4 +67,3 @@ layout: default
 {%- else -%}
 Author not found
 {%- endif -%}
-{% endcomment %}

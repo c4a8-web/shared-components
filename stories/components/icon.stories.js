@@ -183,3 +183,13 @@ Emergency.args = {
   icon: 'emergency',
   size: 'large',
 };
+
+export const Check = Template.bind({});
+
+Check.args = {
+  icon: 'check',
+  color: 'var(--color-blue-jeans)',
+  circle: true,
+  size: 'large',
+  hasBackground: true,
+};

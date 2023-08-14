@@ -1,10 +1,12 @@
+import Tools from '../tools.js';
+
 class i18n {
   constructor() {
     this.init();
   }
 
   init() {
-    this.lang = (document.querySelector('html').getAttribute('lang') || 'de').toLowerCase();
+    this.lang = Tools.getLang();
 
     this.load();
   }

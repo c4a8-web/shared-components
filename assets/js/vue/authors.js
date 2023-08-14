@@ -18,9 +18,11 @@ export default {
     },
     hasDataAndAuthors() {
       return this.authorArray && this.dataAuthors;
-    }
+    },
+    langValue() {
+      return this.lang ? this.lang : Tools.getLang();
+    },
   },
-
   methods: {
     authorsSeperator(array, element) {
       return array[array.length - 1] === element;
@@ -31,7 +33,9 @@ export default {
       }
     },
     authorLink(author) {
-      return this.dataAuthors?.hasOwnProperty(author) ? this.dataAuthors[author].permalink : '';
+      const folder = Tools.isNotDefaultLang() ? '/' + this.langValue : '';
+
+      return this.dataAuthors?.hasOwnProperty(author) ? `${folder}${this.dataAuthors[author].permalink}` : '';
     },
   },
   props: {
@@ -45,6 +49,7 @@ export default {
     dataAuthors: {
       default: null,
     },
+    lang: String,
   },
   template: `
     <template v-if="hasDataAndAuthors">

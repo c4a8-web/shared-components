@@ -266,7 +266,7 @@ export default {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
-      const target = item.languages[this.lowerLang].target;
+      const target = item.languages[this.lowerLang]?.target;
 
       return target ? target : null;
     },
@@ -337,7 +337,7 @@ export default {
       }
 
       if (!parent) {
-        const hrefLang = this.getHrefLang();
+        const hrefLang = this.getHrefLang(lang);
 
         return hrefLang ? hrefLang : this.isBlogTagsUrl(currentPath) ? this.getBlogTagsUrl(lang, currentPath) : null;
       }
@@ -368,8 +368,8 @@ export default {
 
       return newPath + document.location.search;
     },
-    getHrefLang() {
-      const hrefLang = document.querySelector('link[hreflang]');
+    getHrefLang(lang) {
+      const hrefLang = document.querySelector(`link[hreflang=${lang}]`);
 
       if (!hrefLang) return;
 

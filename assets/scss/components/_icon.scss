@@ -38,6 +38,15 @@
     }
   }
 
+  &.icon--has-background {
+    &.icon--circle {
+      flex: none;
+    }
+
+    background-color: var(--color-icon-check-background);
+    border-color: var(--color-icon-check-background);
+  }
+
   &.icon--smile {
     &.icon--step-1 {
       svg {
