@@ -25,7 +25,7 @@ Product.args = {
     postalCode: 63065,
     city: 'Offenbach',
     country: 'Germany',
-    mail: 'info@glueckkanja-gab.com',
+    mail: null,
     additionalLocations: [
       {
         name: 'glueckkanja Pacific Pty Ltd',
