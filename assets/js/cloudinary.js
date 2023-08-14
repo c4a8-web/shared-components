@@ -4,6 +4,14 @@ const Cloudinary = {
   origin_url: '',
   verbose: false,
   presets: {
+    avatar: {
+      min_width: 100,
+      max_width: 300,
+      steps: 2,
+      sizes: '(min-width: 50rem)',
+      figure: 'never',
+      loading: 'auto',
+    },
     textImageFloatingSmall: {
       'min-width': 320,
       'max-width': 1000,

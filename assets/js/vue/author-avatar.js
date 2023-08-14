@@ -24,15 +24,12 @@ export default {
     },
     classes: String,
     imgUrl: String,
-    srcSet: {
-      default: null,
-    },
   },
   template: `
     <div :class="classList">
       <div class="author__avatar-frame">
         <div :style="style">
-          <v-img :img="imgUrl" :cloudinary=true preset="author" :imgSrcSets="srcSet" :alt="author.display_name" />
+          <v-img :img="imgUrl" :cloudinary=true preset="avatar" :alt="author.display_name" />
         </div>
       </div>
     </div>
