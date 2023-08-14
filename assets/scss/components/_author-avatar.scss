@@ -1,0 +1,21 @@
+$author-scale: 1.6;
+$author-percent: calc(100% * #{$author-scale});
+
+.author__avatar-frame {
+  @include aspect-ratio(1, 1);
+
+  overflow: hidden;
+  border-radius: 100%;
+  box-shadow: 0 0 0 1px rgba($gray-600, 0.1);
+
+  > * {
+    width: 100%;
+    height: 100%;
+  }
+
+  img {
+    width: $author-percent;
+    max-width: $author-percent;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}
