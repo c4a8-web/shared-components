@@ -68,8 +68,6 @@ footer {
     }
 
     .footer__country {
-      display: block;
-      flex: 1 100%;
       order: 3;
     }
   }
@@ -82,9 +80,7 @@ footer {
   }
 }
 
-.footer__city {
-  &::after {
-    content: ',\00A0';
-    display: inline-block;
-  }
+.footer__country {
+  display: block;
+  flex: 1 100%;
 }
