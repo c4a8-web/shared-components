@@ -37,7 +37,6 @@ import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
-import PartnerQuote from './vue/partner-quote.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
@@ -57,6 +56,7 @@ import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
 import TestimonialList from './vue/testimonial-list.js';
+import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
@@ -158,7 +158,6 @@ const addApp = () => {
     ListContainer,
     LogoList,
     Modal,
-    PartnerQuote,
     Plus,
     ScrollArrow,
     Search,
@@ -200,6 +199,7 @@ const addApp = () => {
     TBlock,
     SlotItems,
     TestimonialList,
+    TextTeaser,
     Timeline,
     LBlock,
     Square,

@@ -24,3 +24,24 @@ TextTeaser.args = {
     },
   ],
 };
+
+export const PartnerQuote = Template.bind({});
+
+PartnerQuote.args = {
+  copy: 'Wir ermöglichen es Unternehmen, schnell und sicher in die Cloud zu wechseln, indem wir eine beispiellose Cloud-Transformations- und Optimierungstechnologie bereitstellen.',
+  list: [
+    {
+      ctaText: 'Erfahren Sie mehr zu Txture',
+      ctaHref: 'javascript:void',
+      link: false,
+      target: '_blank',
+    },
+  ],
+  logo: {
+    alt: 'logo-txture',
+    img: getAssetPath('svg/logos/logo-txture.svg'),
+    background: getAssetPath('svg/shapes/bg-abstract-shapes.svg'),
+    cloudinary: false,
+    alt: 'Lorem Ipsum',
+  },
+};
