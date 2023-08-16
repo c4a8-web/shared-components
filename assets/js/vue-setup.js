@@ -95,7 +95,7 @@ import SBlock from './vue/shapes/s-block.js';
 import Square from './vue/shapes/square.js';
 import TBlock from './vue/shapes/t-block.js';
 
-let root = document.querySelector('#app');
+let appRoot = document.querySelector('#app');
 let app;
 
 const isSafari = () => {
@@ -108,7 +108,7 @@ const isSafari = () => {
 };
 
 const addApp = () => {
-  if (!root) return;
+  if (!appRoot) return;
 
   window.vueH = Vue.h;
 
@@ -219,26 +219,38 @@ const addApp = () => {
   });
 
   // TODO figure out how to get all of them
-  const illegalTags = root.querySelectorAll('style');
+  const illegalTags = appRoot.querySelectorAll('style');
 
   illegalTags.forEach((element) => {
     document.body.appendChild(element);
   });
 
-  app.mount(root);
+  app.mount(appRoot);
 
   window.vApp = app;
 };
 
+const isDocsPage = () => {
+  const root = document.getElementById('root');
+
+  return root?.getAttribute('hidden') === 'true';
+};
+
+const getAppRoot = (event) => {
+  return isDocsPage()
+    ? document.getElementById(event?.detail?.id)
+    : document.querySelector('#app') || document.querySelector('.shared-components');
+};
+
 const VueSetup = () => {
-  if (!root) root = document.querySelector('.shared-components');
-  if (root?.dataset.vApp !== undefined) return;
+  if (!appRoot) appRoot = getAppRoot();
+  if (appRoot?.dataset.vApp !== undefined) return;
 
   addApp();
 };
 
-document.addEventListener('VUE_FORCE_UPDATE', () => {
-  root = document.querySelector('.shared-components');
+document.addEventListener('VUE_FORCE_UPDATE', (event) => {
+  appRoot = getAppRoot(event);
 
   addApp();
 });
