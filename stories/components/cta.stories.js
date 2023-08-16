@@ -27,7 +27,7 @@ export default {
     },
     analytics,
     grow: {
-      defaultValue: false,
+      defaultValue: false, // possible remove after migration to 7.x
       control: { type: 'boolean' },
       description: "Will apply w-lg-auto when you don't specify a width.",
       type: {
