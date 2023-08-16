@@ -7,6 +7,7 @@ import Accordion from './vue/accordion.js';
 import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
+import AuthorAvatar from './vue/author-avatar.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
@@ -128,6 +129,7 @@ const addApp = () => {
     AdBlockInfo,
     AsideWrapper,
     Authors,
+    AuthorAvatar,
     BlogRecent,
     Card,
     Cta,
