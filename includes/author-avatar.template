@@ -1,0 +1,9 @@
+{%- assign authorAvatar = include.author -%}
+{%- assign authorAvatarImgUrl = include.imgUrl -%}
+{%- assign authorAvatarClasses = include.classList -%}
+
+<author-avatar
+  :author="{{ authorAvatar | jsonify | escape }}"
+  classes="{{ authorAvatarClasses }}"
+  img-url="{{ authorAvatarImgUrl }}"
+></author-avatar>
