@@ -31,7 +31,9 @@ export default {
           ];
     },
     ctaListClass() {
-      return this.logo ? ['w-lg-50 mx-lg-auto'] : ['pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom'];
+      return this.logo
+        ? ['w-lg-50 mx-lg-auto pb-11 pb-lg-0 mb-6 mb-sm-0']
+        : ['pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom'];
     },
     ctaListRefactor() {
       const invalidKeyText = 'ctaText';
