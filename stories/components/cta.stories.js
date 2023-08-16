@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, getDecorators } from '../../.storybook/templates';
 import { includesctahtml as component } from '../../.storybook/generatedIncludes';
 
 import { analytics } from '../globalArgTypes';
@@ -48,6 +48,7 @@ export default {
       description: 'Here you can add helper classes for the width:',
     },
   },
+  decorators: getDecorators(),
 };
 
 const Template = (args) => createComponent(args, component);

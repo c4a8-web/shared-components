@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, getDecorators } from '../../.storybook/templates';
 import accordionTemplate from '!!raw-loader!./accordion.html';
 
 const options = getTitle({
@@ -7,6 +7,7 @@ const options = getTitle({
 
 export default {
   ...options,
+  decorators: getDecorators(),
 };
 
 const Template = (args) => createComponent(args, accordionTemplate);
