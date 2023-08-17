@@ -2,12 +2,12 @@
 {%- assign textTeaserBackground = include.background -%}
 {%- assign textTeaserBgColor = include.bgColor -%}
 {%- assign textTeaserCopy = include.copy -%}
-{%- assign textTeaserList = include.list -%}
+{%- assign textTeaserCtaList = include.list -%}
 {%- assign textTeaserSpacing = include.spacing -%}
 {%- assign textTeaserLogo = include.logo -%}
 
 <text-teaser
-  :cta-list="{{ textTeaserList | jsonify | escape }}"
+  :cta-list="{{ textTeaserCtaList | jsonify | escape }}"
   bg-color="{{ textTeaserBgColor }}"
   copy="{{ textTeaserCopy }}"
   background="{{ textTeaserBackground }}"
