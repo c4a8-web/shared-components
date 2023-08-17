@@ -45,7 +45,7 @@ PartnerQuote.args = {
   copy: 'Wir ermöglichen es Unternehmen, schnell und sicher in die Cloud zu wechseln, indem wir eine beispiellose Cloud-Transformations- und Optimierungstechnologie bereitstellen.',
   list: [
     {
-      ctaText: 'Erfahren Sie mehr zu Txture',
+      ctaText: 'Erfahren Sie mehr zu RadiusSaaS',
       ctaHref: 'javascript:void',
       link: false,
       target: '_blank',
@@ -65,7 +65,7 @@ PartnerQuoteNoBackground.args = {
   copy: 'Wir ermöglichen es Unternehmen, schnell und sicher in die Cloud zu wechseln, indem wir eine beispiellose Cloud-Transformations- und Optimierungstechnologie bereitstellen.',
   list: [
     {
-      ctaText: 'Erfahren Sie mehr zu Txture',
+      ctaText: 'Erfahren Sie mehr zu RadiusSaaS',
       ctaHref: 'javascript:void',
       link: false,
       target: '_blank',
