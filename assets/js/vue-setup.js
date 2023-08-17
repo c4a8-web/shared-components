@@ -58,6 +58,7 @@ import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
 import TestimonialList from './vue/testimonial-list.js';
+import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
@@ -204,6 +205,7 @@ const addApp = () => {
     TBlock,
     SlotItems,
     TestimonialList,
+    TextTeaser,
     Timeline,
     LBlock,
     Square,
