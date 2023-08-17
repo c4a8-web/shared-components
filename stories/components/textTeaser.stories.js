@@ -52,7 +52,7 @@ PartnerQuote.args = {
     },
   ],
   logo: {
-    alt: 'logo-txture',
+    alt: 'gkgab-RADIUSaaS',
     img: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
     cloudinary: false,
     alt: 'Lorem Ipsum',
@@ -72,8 +72,8 @@ PartnerQuoteNoBackground.args = {
     },
   ],
   logo: {
-    alt: 'logo-txture',
-    img: getAssetPath('svg/logos/logo-txture.svg'),
+    alt: 'gkgab-RADIUSaaS',
+    img: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
     cloudinary: false,
     alt: 'Lorem Ipsum',
   },

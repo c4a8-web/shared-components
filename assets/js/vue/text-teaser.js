@@ -23,6 +23,9 @@ export default {
     ctaListClass() {
       return ['pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom'];
     },
+    logoClass() {
+      return ['max-w-11rem max-w-md-13rem', this.background ? 'mx-auto' : ''];
+    },
     ctaListNormalize() {
       const fixedArr = this.ctaList.map((obj) => {
         const newObj = {};
@@ -68,7 +71,7 @@ export default {
         <div :class="rowBackgroundClass">
           <div :class="colBackgroundClass">
             <div class="mb-4 w-100" v-if="logo">
-              <figure class="max-w-11rem max-w-md-13rem mx-auto">
+              <figure :class="logoClass">
                 <v-img v-bind="logo" />
               </figure>
             </div>
