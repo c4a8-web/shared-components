@@ -46,7 +46,6 @@ export default {
       return fixedArr;
     },
   },
-  methods: {},
   props: {
     ctaList: {
       default: null,
