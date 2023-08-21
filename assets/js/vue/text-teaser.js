@@ -6,25 +6,30 @@ export default {
     },
     style() {
       return [
-        this.background ? `background-image:url('${this.background}');` : '',
-        this.bgColor ? `background-color: ${this.bgColor};` : '',
+        this.background && !this.logo?.background ? `background-image:url('${this.background}');` : '',
+        this.bgColor && !this.logo?.background ? `background-color: ${this.bgColor};` : '',
       ];
     },
     rowBackgroundClass() {
-      return ['row', this.background ? 'justify-content-center' : ''];
+      return ['row', this.background ? 'justify-content-center' : '', this.logo?.background ? 'position-relative' : ''];
     },
     colBackgroundClass() {
-      return [
-        this.background
-          ? 'col-lg-6 py-11 d-flex text-center justify-content-center align-items-center flex-wrap font-size-4 font-weight-light'
-          : 'col-lg-7 offset-lg-1 pt-8',
-      ];
+      return this.logo?.background
+        ? ['bg-light text-center rounded-lg p-4 p-md-7 text-center font-size-4 font-weight-light']
+        : [
+            this.background
+              ? 'col-lg-6 py-11 d-flex text-center justify-content-center align-items-center flex-wrap font-size-4 font-weight-light'
+              : 'col-lg-7 offset-lg-1 pt-8',
+          ];
     },
     ctaListClass() {
-      return ['pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom'];
+      return ['text-teaser__cta pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom'];
     },
     logoClass() {
-      return ['max-w-11rem max-w-md-13rem', this.background ? 'mx-auto' : ''];
+      return ['max-w-11rem max-w-md-13rem', this.background || this.logo?.background ? 'mx-auto' : ''];
+    },
+    copyClass() {
+      return ['text-teaser__copy fade-in-bottom', this.logo?.background ? 'w-md-80 w-lg-50 mx-md-auto mb-2' : ''];
     },
     ctaListNormalize() {
       const fixedArr = this.ctaList.map((obj) => {
@@ -75,13 +80,19 @@ export default {
               </figure>
             </div>
 
-            <div class="text-teaser__copy fade-in-bottom" data-utility-animation-step="1">{{ copy }}</div>
+            <div :class="copyClass" data-utility-animation-step="1">{{ copy }}</div>
 
             <div :class="ctaListClass" data-utility-animation-step="1" v-if="ctaList">
               <template v-for="entry in ctaListNormalize">
                 <cta v-bind="entry" />
               </template>
             </div>
+
+            <figure class="max-w-15rem w-100 position-absolute bottom-0 left-0" v-if="logo.background">
+              <div class="mb-n7 ml-n7">
+                <v-img :img="logo.background" :cloudinary="logo.cloudinary" :alt="logo.alt" />
+              </div>
+            </figure>
 
           </div>
         </div>
