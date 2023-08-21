@@ -4,6 +4,7 @@
   img {
     overflow: hidden;
     border-radius: 100%;
+    box-shadow: 0 0 0 1px rgba($gray-600, 0.1);
     transform: translateX(-50%) translateY(-50%);
   }
 }
