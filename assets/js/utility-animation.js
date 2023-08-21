@@ -54,6 +54,23 @@ class UtilityAnimation {
   }
 
   handleAnimationEnd(event) {
+    const group = this.getGroup(event.srcElement);
+
+    if (group) {
+      const itemsLoadedProperty = '--utility-animation-items-loaded';
+
+      // if (!group.style.getPropertyValue(itemsLoadedProperty))
+      //   group.style.setProperty(itemsLoadedProperty, group.children?.length);
+
+      const oldItemsValue = parseInt(group.style.getPropertyValue(itemsLoadedProperty), 10) || 0;
+
+      group.style.setProperty(itemsLoadedProperty, oldItemsValue + 1);
+
+      console.log(group.style.getPropertyValue(itemsLoadedProperty) + '###');
+
+      console.log('🚀 ~ file: utility-animation.js:97 ~ UtilityAnimation ~ this.root.addEventListener ~ group:', group);
+    }
+
     this.updateCurrentElement(event);
 
     if (this.currentElements.length > 0) return;
@@ -81,6 +98,10 @@ class UtilityAnimation {
 
   startAnimation() {
     this.startStepAnimation(this.currentElements);
+  }
+
+  getGroup(element) {
+    return element.closest('.utility-animation__group');
   }
 
   initialize() {

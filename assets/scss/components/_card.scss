@@ -1,6 +1,13 @@
 .card {
   &.utility-animation {
-    @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 50ms, $selector: '&');
+    @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 50ms, $selector: '&', $max: 300ms);
+
+    // &.is-starting[data-utility-animation-step] {
+    //   animation-delay: calc(min(var(--utility-animation-index) * 50ms, 500ms));
+    // }
+
+    .utility-animation__group & {
+    }
   }
 
   &:not(.card--no-link) {

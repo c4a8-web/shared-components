@@ -366,7 +366,14 @@
   }
 }
 
-@mixin utility-animation-options($distance: null, $duration: null, $delay: null, $delay-offset: 0ms, $selector: null) {
+@mixin utility-animation-options(
+  $distance: null,
+  $duration: null,
+  $delay: null,
+  $delay-offset: 0ms,
+  $selector: null,
+  $max: null
+) {
   #{$selector}[data-utility-animation-step] {
     @if $distance {
       --utility-animation-distance: #{$distance};
@@ -374,7 +381,32 @@
 
     &.is-starting {
       @if $delay {
-        animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
+        @if $max {
+          $baseDelay: 30ms; // Adjust as needed
+          $linearFactor: 40ms; // This is your linear increase per index
+          $inverseFactor: 4000ms;
+          // test: calc(#{$max} + var(--utility-animation-index) * 1ms);
+          // animation-delay: calc(min(var(--utility-animation-index) * 50ms, 500ms));
+          test: calc(
+            #{$baseDelay} +
+              #{$linearFactor} *
+              var(--utility-animation-index) -
+              #{$inverseFactor} /
+              var(--utility-animation-index)
+          );
+          animation-delay: calc(
+            min(
+              ((var(--utility-animation-index) * #{$delay}) + #{$delay-offset}),
+              #{$linearFactor} * var(--utility-animation-index) - #{$inverseFactor} / var(--utility-animation-index)
+            )
+          );
+
+          animation-delay: calc(
+            #{$linearFactor} * var(--utility-animation-index) - #{$inverseFactor} / var(--utility-animation-index)
+          );
+        } @else {
+          animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
+        }
       }
 
       @if $duration {
