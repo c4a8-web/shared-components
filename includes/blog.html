@@ -3,6 +3,7 @@
 %}
 
 {% assign paginatorPosts = getPostsData %}
+{% assign maxBlogPosts = site.maxBlogPosts | plus: 1 %}
 
 {%- assign paginator_page = paginator.page %}
 {%- assign paginator_total_pages = paginator.total_pages %}
@@ -71,17 +72,17 @@
   {% endfor %}
 
   {% if paginatorPosts %}
-  <!-- Title -->
-  <div class="row mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
-    <div class="col-12">
-      <h2 class="h3 mb-0">{{ blogNewsTitle }}</h2>
+    <!-- Title -->
+    <div class="row mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
+      <div class="col-12">
+        <h2 class="h3 mb-0">{{ blogNewsTitle }}</h2>
+      </div>
     </div>
-  </div>
-  <!-- End Title -->
+    <!-- End Title -->
   {% endif %}
 
   <div class="row mb-3 utility-animation__group">
-    {% for post in paginatorPosts %}
+    {% for post in paginatorPosts limit: maxBlogPosts %}
       {% if post.url != firstUrl %}
         {% assign postExternalLanguage = null %}
 

@@ -28,6 +28,7 @@ const site = {
   },
   // paginate: 11, // disabled because corp has pagination disabled
   paginate_path: '/blog/page:num/',
+  maxBlogPosts: 5,
   cloudinary: Cloudinary,
   excerpt: '',
   data: {
