@@ -1,0 +1,5 @@
+{% assign imageBlockImage = include.imageBlock %}
+
+<image-block
+  :image="{{ imageBlockImage | jsonify | escape }}"
+></image-block>
