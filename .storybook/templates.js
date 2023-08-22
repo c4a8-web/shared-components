@@ -23,6 +23,12 @@ import StreamlinelightTag from '../assets/js/liquid/tags/streamlinelightTag';
 import SiteiconsTag from '../assets/js/liquid/tags/siteiconsTag';
 
 const site = {
+  pagination: {
+    pagesAroundActive: 1,
+  },
+  // paginate: 11, // disabled because corp has pagination disabled
+  paginate_path: '/blog/page:num/',
+  maxBlogPosts: 100,
   cloudinary: Cloudinary,
   excerpt: '',
   data: {
