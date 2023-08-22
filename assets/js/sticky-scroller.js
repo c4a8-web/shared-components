@@ -270,7 +270,9 @@ class StickyScroller {
   }
 
   setDimensions() {
-    this.width = this.root.clientWidth;
+    const bodyWidth = document.body.getBoundingClientRect().width;
+
+    this.width = this.root.clientWidth > bodyWidth ? bodyWidth : this.root.clientWidth;
     this.height = this.root.clientHeight;
 
     this.spacer.style.width = this.width + 'px';
