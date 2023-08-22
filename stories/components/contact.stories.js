@@ -29,7 +29,7 @@ Collapsed.args = {
       name: 'Hast du Fragen? Sprich uns gerne an!',
       details: [
         {
-          text: 'kontakt@glueckkanja-gab.com',
+          text: 'Lorem ipsum dolor & Sit amet lorem',
           href: 'mailto:kontakt@glueckkanja-gab.com',
           icon: 'site/mail',
         },
