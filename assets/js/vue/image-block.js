@@ -2,7 +2,7 @@ export default {
   tagName: 'image-block',
   computed: {
     classList() {
-      return ['space-2'];
+      return ['image-block space-2'];
     },
   },
   props: {
@@ -11,12 +11,8 @@ export default {
     },
   },
   template: `
-    <div class="image-block vue-component">
-      <wrapper :classes="classList">
-        <div class="mx-auto">
-          <v-img v-bind="image" />
-        </div>
-      </wrapper>
-    </div>
+    <wrapper :classes="classList">
+      <v-img class="mx-auto" v-bind="image" />
+    </wrapper>
   `,
 };
