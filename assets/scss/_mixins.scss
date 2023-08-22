@@ -372,7 +372,7 @@
   $delay: null,
   $delay-offset: 0ms,
   $selector: null,
-  $max: null
+  $group: null
 ) {
   #{$selector}[data-utility-animation-step] {
     @if $distance {
@@ -381,40 +381,10 @@
 
     &.is-starting {
       @if $delay {
-        @if $max {
-          // $baseDelay: 30ms; // Adjust as needed
-          // $linearFactor: 40ms; // This is your linear increase per index
-          // $inverseFactor: 4000ms;
-          // // test: calc(#{$max} + var(--utility-animation-index) * 1ms);
-          // // animation-delay: calc(min(var(--utility-animation-index) * 50ms, 500ms));
-          // test: calc(
-          //   #{$baseDelay} +
-          //     #{$linearFactor} *
-          //     var(--utility-animation-index) -
-          //     #{$inverseFactor} /
-          //     var(--utility-animation-index)
-          // );
-          // animation-delay: calc(
-          //   min(
-          //     ((var(--utility-animation-index) * #{$delay}) + #{$delay-offset}),
-          //     #{$linearFactor} * var(--utility-animation-index) - #{$inverseFactor} / var(--utility-animation-index)
-          //   )
-          // );
-
-          // animation-delay: calc(
-          //   #{$linearFactor} * var(--utility-animation-index) - #{$inverseFactor} / var(--utility-animation-index)
-          // );
-
+        @if $group {
           animation-delay: calc(
             ((var(--utility-animation-index) - var(--utility-animation-items-loaded)) * #{$delay}) + #{$delay-offset}
           );
-
-          // animation-delay: calc(
-          //   (max(1, (var(--utility-animation-index) - var(--utility-animation-items-loaded))) * #{$delay}) +
-          //     #{$delay-offset}
-          // );
-
-          // animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
         } @else {
           animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
         }

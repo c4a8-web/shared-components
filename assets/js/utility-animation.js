@@ -58,17 +58,9 @@ class UtilityAnimation {
 
     if (group) {
       const itemsLoadedProperty = '--utility-animation-items-loaded';
-
-      // if (!group.style.getPropertyValue(itemsLoadedProperty))
-      //   group.style.setProperty(itemsLoadedProperty, group.children?.length);
-
       const oldItemsValue = parseInt(group.style.getPropertyValue(itemsLoadedProperty), 10) || 0;
 
       group.style.setProperty(itemsLoadedProperty, oldItemsValue + 1);
-
-      console.log(group.style.getPropertyValue(itemsLoadedProperty) + '###');
-
-      console.log('🚀 ~ file: utility-animation.js:97 ~ UtilityAnimation ~ this.root.addEventListener ~ group:', group);
     }
 
     this.updateCurrentElement(event);
