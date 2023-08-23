@@ -51,7 +51,7 @@ const FooterData = {
     {
       img: '/logos/iso-27001-siegel.png',
       alt: 'ISO 27001',
-      url: '/documents/general/gkgab-ISO27001Certificate-de.pdf',
+      url: 'https://www.glueckkanja-gab.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
       classes: 'mt-3 w-40 w-lg-60',
     },
