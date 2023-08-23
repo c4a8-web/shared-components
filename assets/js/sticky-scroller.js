@@ -183,7 +183,15 @@ class StickyScroller {
     const headerHeight = this.getHeaderHeight();
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
+    console.log(
+      '🚀 ~ file: sticky-scroller.js:191 ~ StickyScroller ~ setStickyPosition ~ viewPortOverflow:',
+      viewPortOverflow
+    );
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
+    console.log(
+      '🚀 ~ file: sticky-scroller.js:196 ~ StickyScroller ~ setStickyPosition ~ this.offsetBottom:',
+      this.offsetBottom
+    );
     console.log(
       '🚀 ~ file: sticky-scroller.js:186 ~ StickyScroller ~ setStickyPosition ~ scrollThreshold:',
       scrollThreshold
