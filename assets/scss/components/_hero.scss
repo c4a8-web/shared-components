@@ -1,3 +1,7 @@
+header {
+  opacity: 0.4;
+}
+
 .shared-components {
   .hero-text-image {
     h1 {
@@ -19,6 +23,7 @@
   .container {
     &.hero-text-image__background {
       &:not(.has-icon) {
+        overflow: hidden;
         padding-right: 0;
 
         .row {
