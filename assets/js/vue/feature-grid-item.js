@@ -67,7 +67,7 @@ export default {
 
         <headline v-if="title" :text="title" :level="headlineLevel" :classes="headlineClasses" />
 
-        <p v-if="description" class="mb-0">{{ description }}</p>
+        <p v-if="description" class="mb-0" v-html="description"></p>
         <p v-if="copy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="copy"></p>
 
         <ul v-if="list" class="m-0 p-0 flex-grow-1" style="margin-bottom:10px !important;">
