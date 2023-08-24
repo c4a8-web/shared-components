@@ -29,7 +29,7 @@ export default {
       ];
     },
     source() {
-      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink(this.img) : this.noCloudinary;
+      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink() : this.noCloudinary;
     },
     loading() {
       return this.lazy ? 'lazy' : null;
@@ -116,7 +116,7 @@ export default {
         height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = this.getCloudinaryLink();
+      img.src = this.getCloudinaryBasePathLink();
     },
     getTransformationString(preset) {
       const transformations = [];
