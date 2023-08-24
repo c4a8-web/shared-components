@@ -1,4 +1,4 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getTitle } from '../../.storybook/templates';
 import { includesimageblockhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
