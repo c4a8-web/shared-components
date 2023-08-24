@@ -29,7 +29,7 @@ export default {
       ];
     },
     source() {
-      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink(this.img) : this.noCloudinary;
+      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink() : this.noCloudinary;
     },
     loading() {
       return this.lazy ? 'lazy' : null;
