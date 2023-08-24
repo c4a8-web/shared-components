@@ -1,6 +1,10 @@
 .card {
   &.utility-animation {
     @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 50ms, $selector: '&');
+
+    .utility-animation__group & {
+      @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 28ms, $selector: '&', $group: true);
+    }
   }
 
   &:not(.card--no-link) {
