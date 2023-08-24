@@ -116,7 +116,7 @@ export default {
         height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = this.getCloudinaryLink();
+      img.src = this.getCloudinaryBasePathLink();
     },
     getTransformationString(preset) {
       const transformations = [];

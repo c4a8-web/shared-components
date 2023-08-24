@@ -15,8 +15,7 @@ export const ImageBlock = Template.bind({});
 
 ImageBlock.args = {
   imageBlock: {
-    img: '/infographics/6r-flowchart.svg',
-    cloudinary: true,
+    image: '/infographics/6r-flowchart.svg',
     alt: 'image-placeholder',
   },
 };
