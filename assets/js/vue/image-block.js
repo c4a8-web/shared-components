@@ -6,22 +6,24 @@ export default {
     },
     imageWithCloudinary() {
       const image = {
-        img: this.image['image'],
+        img: this.imageBlock['image'],
         cloudinary: true,
-        alt: this.image['alt'],
+        alt: this.imageBlock['alt'],
       };
 
       return image;
     },
   },
   props: {
-    image: {
+    imageBlock: {
       default: null,
     },
   },
   template: `
     <wrapper :classes="classList">
-      <v-img class="mx-auto" v-bind="imageWithCloudinary" />
+      <div class="mx-auto">
+        <v-img v-bind="imageWithCloudinary" />
+      </div>
     </wrapper>
   `,
 };
