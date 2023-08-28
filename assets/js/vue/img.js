@@ -84,7 +84,9 @@ export default {
       return `${basePath}${this.img}`;
     },
     getCloudinaryLink() {
-      return this.isGif() ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
+      return this.isGif() || this.isSvgCloudinary()
+        ? this.getCloudinaryBasePathLink()
+        : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
       const { preset, transformationsString } = this.getSetup();
@@ -113,7 +115,7 @@ export default {
 
         this.dimensions = dimensions;
 
-        height && width ? this.buildSrcSet(preset, transformationsString) : null;
+        height && width && !this.isSvgCloudinary() ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
       img.src = this.getCloudinaryBasePathLink();
@@ -156,6 +158,10 @@ export default {
       const extension = this.img.split('.')[1];
 
       return extension.toLowerCase() === 'gif';
+    },
+    isSvgCloudinary() {
+      const extension = Tools.getExtension(this.getCloudinaryBasePathLink());
+      return extension.toLowerCase() === 'svg';
     },
   },
   props: {
