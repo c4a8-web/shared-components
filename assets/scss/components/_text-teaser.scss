@@ -2,4 +2,12 @@
   @include utility-animation-options($distance: 75%, $duration: 1s);
 
   background-repeat: no-repeat;
+
+  .text-teaser__cta {
+    padding-bottom: spacing(30);
+
+    @include media-breakpoint-up(lg) {
+      padding-bottom: spacing(0);
+    }
+  }
 }
