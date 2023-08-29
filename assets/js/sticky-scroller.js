@@ -24,7 +24,7 @@ class StickyScroller {
 
     this.setup();
     this.bindEvents();
-    this.addDebugPositions();
+    // this.addDebugPositions();
     this.setStickyPosition();
   }
 
@@ -178,43 +178,18 @@ class StickyScroller {
   }
 
   setStickyPosition() {
-    console.group();
-    console.log(this.root.classList);
     const headerHeight = this.getHeaderHeight();
     const scrollPosition = window.scrollY;
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
-    console.log(
-      '🚀 ~ file: sticky-scroller.js:191 ~ StickyScroller ~ setStickyPosition ~ viewPortOverflow:',
-      viewPortOverflow
-    );
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
-    console.log(
-      '🚀 ~ file: sticky-scroller.js:196 ~ StickyScroller ~ setStickyPosition ~ this.offsetBottom:',
-      this.offsetBottom
-    );
-    console.log(
-      '🚀 ~ file: sticky-scroller.js:186 ~ StickyScroller ~ setStickyPosition ~ scrollThreshold:',
-      scrollThreshold
-    );
 
-    let topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
+    let topValue = viewPortOverflow > 0 ? -viewPortOverflow : 0;
 
     topValue = topValue - this.marginTop;
 
     const percentage = this.getPercentage(scrollPosition, topValue);
-    console.log('🚀 ~ file: sticky-scroller.js:191 ~ StickyScroller ~ setStickyPosition ~ percentage:', percentage);
     const outOfViewport = this.isOutOfViewport(percentage);
-    console.log(
-      '🚀 ~ file: sticky-scroller.js:193 ~ StickyScroller ~ setStickyPosition ~ outOfViewport:',
-      outOfViewport
-    );
     const isNotOverflowing = scrollPosition > scrollThreshold - window.innerHeight;
-    console.log(
-      '🚀 ~ file: sticky-scroller.js:195 ~ StickyScroller ~ setStickyPosition ~ isNotOverflowing:',
-      isNotOverflowing
-    );
-
-    console.groupEnd();
 
     if (!outOfViewport && isNotOverflowing) {
       if (!this.spacer.style.height) {
@@ -236,7 +211,6 @@ class StickyScroller {
       this.isUpdating = false;
       this.root.classList.remove(State.OFF_SCREEN);
     } else {
-      console.log('disable stickyness');
       this.disableStickyness();
     }
 
