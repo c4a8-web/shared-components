@@ -90,6 +90,10 @@ $form-radio-size: $form-checkbox-size;
         }
       }
     }
+
+    .row {
+      overflow: hidden;
+    }
   }
 }
 
