@@ -22,6 +22,8 @@
   }
 
   &.text-image--float {
+    overflow: hidden;
+
     .row {
       .text-image__first-col {
         order: 2;
@@ -31,6 +33,10 @@
       .text-image__second-col {
         order: 1;
       }
+    }
+
+    @include media-breakpoint-up(lg) {
+      overflow: inherit;
     }
   }
 
