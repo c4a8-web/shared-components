@@ -289,7 +289,8 @@ export default {
       const activeUrl = this.getActiveUrlByLang(nextLang);
       const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
-      document.location.href = gotoUrl;
+      // document.location.href = gotoUrl;
+      console.log('🚀 ~ file: header.js:293 ~ handleLanguageSwitch ~ gotoUrl:', gotoUrl);
     },
     getCurrentPath() {
       const currentPath = document.location.pathname;
@@ -339,10 +340,32 @@ export default {
       if (!parent) {
         const hrefLang = this.getHrefLang(lang);
 
-        return hrefLang ? hrefLang : this.isBlogTagsUrl(currentPath) ? this.getBlogTagsUrl(lang, currentPath) : null;
+        return hrefLang ? hrefLang : this.getTranslatedUrl(currentPath, lang);
       }
 
       return parent[lang]?.url;
+    },
+    getTranslatedUrl(currentPath, lang) {
+      if (this.isBlogTagsUrl(currentPath)) return this.getBlogTagsUrl(lang, currentPath);
+
+      if (this.isFolderSwitchUrl(currentPath)) return this.getFolderSwitchUrl(lang, currentPath);
+      console.log('currentPath', currentPath);
+      console.log(this.home);
+      console.log(this.home.folderSwitch);
+
+      // TODO check if this is a folder switch case
+
+      return null;
+    },
+    isFolderSwitchUrl(currentPath) {
+      const folderSwitch = this.home.folderSwitch;
+
+      if (!folderSwitch) return false;
+
+      return false;
+    },
+    getFolderSwitchUrl(lang, currentPath) {
+      return '';
     },
     isBlogTagsUrl(currentPath) {
       const regex = /\/blog\/tags/;
