@@ -82,8 +82,7 @@
           %}
         </div>
       {% endif %}
-      <div class="text-image__first-col d-none d-lg-flex text-image__img  justify-content-center {{ textImageImageClasses }}
-                  {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}
+      <div class="text-image__first-col d-flex text-image__img justify-content-center {{ textImageImageClasses }}
                   col-lg-
                   {%- if textImageFloat -%}{{ textImageFirstColWidth }} col-xl-{{ textImageFirstColWidthXl }} text-image__img--floating{%- else -%}
                     {%- if textImageOffset -%}
@@ -94,24 +93,26 @@
                     {% endif %}
                   {%- endif -%}"
                   {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
-                  data-utility-animation-step="1"
-      >
-        {% if textImageFloat %}
-          {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
-          {% assign textImagePreset = textImageImagePreset | default: "textImageFloatingSmall" %}
-        {% else %}
-          {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
-          {% assign textImagePreset = textImageImagePreset | default: false %}
-        {% endif %}
 
-        {%
-          include img.html
-          img=textImageImage
-          cloudinary=textImageCloudinary
-          imgSrcSets=textImageImgSrcSets
-          preset=textImagePreset
-          alt=textImageAlt
-        %}
+      >
+        <div class="text-image__first-col-wrapper {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}" data-utility-animation-step="1">
+          {% if textImageFloat %}
+            {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
+            {% assign textImagePreset = textImageImagePreset | default: "textImageFloatingSmall" %}
+          {% else %}
+            {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
+            {% assign textImagePreset = textImageImagePreset | default: false %}
+          {% endif %}
+
+          {%
+            include img.html
+            img=textImageImage
+            cloudinary=textImageCloudinary
+            imgSrcSets=textImageImgSrcSets
+            preset=textImagePreset
+            alt=textImageAlt
+          %}
+        </div>
       </div>
       <div class="text-image__second-col
                   {% if textImageNoGutters %} no-gutters {% else %} pt-2 pt-lg-4 {% endif %}
