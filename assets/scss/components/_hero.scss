@@ -19,6 +19,7 @@
   .container {
     &.hero-text-image__background {
       &:not(.has-icon) {
+        overflow: hidden;
         padding-right: 0;
 
         .row {

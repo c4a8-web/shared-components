@@ -183,7 +183,7 @@ class StickyScroller {
     const viewPortOverflow = this.root.offsetHeight - window.innerHeight;
     const scrollThreshold = viewPortOverflow > 0 ? this.offsetBottom : this.offsetBottom - headerHeight;
 
-    let topValue = this.isFirstChild(this.root) ? 0 : viewPortOverflow > 0 ? -viewPortOverflow : 0;
+    let topValue = viewPortOverflow > 0 ? -viewPortOverflow : 0;
 
     topValue = topValue - this.marginTop;
 
@@ -270,7 +270,9 @@ class StickyScroller {
   }
 
   setDimensions() {
-    this.width = this.root.clientWidth;
+    const bodyWidth = document.body.getBoundingClientRect().width;
+
+    this.width = this.root.clientWidth > bodyWidth ? bodyWidth : this.root.clientWidth;
     this.height = this.root.clientHeight;
 
     this.spacer.style.width = this.width + 'px';
