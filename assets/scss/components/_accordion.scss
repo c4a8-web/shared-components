@@ -92,6 +92,8 @@
     @include fade-in-X($from: 'bottom');
   }
 
+  overflow: hidden;
+
   &.accordion--has-image {
     .accordion__image {
       display: block;
