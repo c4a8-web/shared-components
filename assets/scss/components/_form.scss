@@ -90,14 +90,12 @@ $form-radio-size: $form-checkbox-size;
         }
       }
     }
-
-    .row {
-      overflow: hidden;
-    }
   }
 }
 
 .form__row {
+  overflow: hidden;
+
   @include media-breakpoint-up(md) {
     justify-content: center;
   }
