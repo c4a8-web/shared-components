@@ -1,0 +1,76 @@
+{%- assign postTeaserLang = page.lang | default: site.lang | default: "de" -%}
+{%- assign postTeaserPost = include.post -%}
+{%- assign postTeaserTag = include.tag -%}
+{%- assign excerpt = post.excerpt | default: post.content -%}
+
+{%- capture postTeaserPostString -%}
+  {%- if postTeaserPost.moment -%}
+    {% assign postTeaserPostDate = postTeaserPost.moment %}
+  {%- else -%}
+    {% assign blogRecentPostDate = postTeaserPost.date %}
+  {%- endif -%}
+  {
+    "url": "{{ postTeaserPost.url }}",
+    "title": "{{ postTeaserPost.title | strip_html | escape }}",
+    "date": "{{ postTeaserPostDate }}",
+    "blogtitlepic": "{{ postTeaserPost.blogtitlepic }}",
+    "excerpt": "{{ postTeaserPost.excerpt | strip_html | escape }}",
+    "tags": {{ postTeaserPost.tags | jsonify }},
+    "lang": "{{ postTeaserPost.lang }}"
+  }
+{%- endcapture %}
+
+<post-teaser
+  :post="{{ postTeaserPostString | jsonify | escape }}"
+  tag="{{ postTeaserTag | cgi-escape }}"
+  lang="{{ postTeaserLang }}"
+>
+</post-teaser>
+
+{% comment %}
+<br/>##<br/>{{ postTeaserPostString }}##<br/><br/><br/>
+<!-- Shared Post Teaser -->
+<div class="post-teaser mb-8 row" data-tags='{{ tag | cgi-escape }}'>
+  <div class="col-sm-4 mb-4 mb-sm-0">
+    <a href="{{ post.url }}">
+      {%
+        include img.html
+        img=imgUrl
+        cloudinary=true
+        preset="postTeaser"
+        imgSrcSets=site.data.imgSrcSets.postTeaser
+        alt=post.title
+        class="img-responsive shadow"
+      %}
+    </a>
+  </div>
+  <div class="col-sm-8">
+    <div class="post-teaser__date mb-2">
+      {{ post.moment | date: '%d.%m.%Y' }}
+    </div>
+    <h3 class="post-teaser__title mb-3">
+      {% assign title = post.title %}
+
+      {% if post.lang != page.lang %}
+        {% capture title %}{{ post.title }} ({{ site.data.lang[post.lang].onlyLanguage }}){% endcapture %}
+      {% endif %}
+
+      <a href="{{ post.url }}">{{ title }}</a>
+    </h3>
+    <p class="post-teaser__abstract mb-5">{{ excerpt | strip_html | truncatewords: 30, " ..." }}</p>
+
+    <ul class="list-inline">
+      <li class="list-inline-item mx-sm-n{{ spacing }}">
+        {% for tag in post.tags %}
+          {%
+            include tag.html
+            tag=tag
+            spacing=spacing
+          %}
+        {% endfor %}
+      </li>
+    </ul>
+  </div>
+</div>
+{% endcomment %}
+<!-- End Shared Post Teaser -->
