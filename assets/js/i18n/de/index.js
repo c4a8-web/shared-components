@@ -6,6 +6,7 @@ const de = {
   gender: '(m/w/d)',
   formAttachmentsWrongType:
     'Bitte wählen Sie ein gültiges Dateiformat oder überprüfen Sie den Dateinamen (keine Sonderzeichen benutzen).',
+  onlyLanguage: 'German only',
 };
 
 export default de;
