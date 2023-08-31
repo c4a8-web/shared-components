@@ -339,10 +339,43 @@ export default {
       if (!parent) {
         const hrefLang = this.getHrefLang(lang);
 
-        return hrefLang ? hrefLang : this.isBlogTagsUrl(currentPath) ? this.getBlogTagsUrl(lang, currentPath) : null;
+        return hrefLang ? hrefLang : this.getTranslatedUrl(currentPath, lang);
       }
 
       return parent[lang]?.url;
+    },
+    getTranslatedUrl(currentPath, lang) {
+      if (this.isBlogTagsUrl(currentPath)) return this.getBlogTagsUrl(lang, currentPath);
+
+      const segment = this.getFolderSwitchSegment(currentPath);
+
+      if (segment) return this.getFolderSwitchUrl(lang, currentPath, segment);
+
+      return null;
+    },
+    getFolderSwitchSegment(currentPath) {
+      const folderSwitch = this.home.folderSwitch;
+
+      if (!folderSwitch) return null;
+
+      const foundSegment = folderSwitch.find((segment) => currentPath.includes(segment));
+
+      return foundSegment || null;
+    },
+    getFolderSwitchUrl(lang, currentPath, segment) {
+      if (!segment) return currentPath;
+
+      let newPath;
+
+      if (lang === this.defaultLang) {
+        const regex = new RegExp(`/${this.lowerLang}/`);
+
+        newPath = currentPath.replace(regex, '/');
+      } else {
+        newPath = currentPath.replace(segment, `${lang}/${segment}`);
+      }
+
+      return newPath;
     },
     isBlogTagsUrl(currentPath) {
       const regex = /\/blog\/tags/;
