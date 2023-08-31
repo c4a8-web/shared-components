@@ -289,8 +289,7 @@ export default {
       const activeUrl = this.getActiveUrlByLang(nextLang);
       const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
-      // document.location.href = gotoUrl;
-      console.log('🚀 ~ file: header.js:293 ~ handleLanguageSwitch ~ gotoUrl:', gotoUrl);
+      document.location.href = gotoUrl;
     },
     getCurrentPath() {
       const currentPath = document.location.pathname;
@@ -348,24 +347,35 @@ export default {
     getTranslatedUrl(currentPath, lang) {
       if (this.isBlogTagsUrl(currentPath)) return this.getBlogTagsUrl(lang, currentPath);
 
-      if (this.isFolderSwitchUrl(currentPath)) return this.getFolderSwitchUrl(lang, currentPath);
-      console.log('currentPath', currentPath);
-      console.log(this.home);
-      console.log(this.home.folderSwitch);
+      const segment = this.getFolderSwitchSegment(currentPath);
 
-      // TODO check if this is a folder switch case
+      if (segment) return this.getFolderSwitchUrl(lang, currentPath, segment);
 
       return null;
     },
-    isFolderSwitchUrl(currentPath) {
+    getFolderSwitchSegment(currentPath) {
       const folderSwitch = this.home.folderSwitch;
 
-      if (!folderSwitch) return false;
+      if (!folderSwitch) return null;
 
-      return false;
+      const foundSegment = folderSwitch.find((segment) => currentPath.includes(segment));
+
+      return foundSegment || null;
     },
-    getFolderSwitchUrl(lang, currentPath) {
-      return '';
+    getFolderSwitchUrl(lang, currentPath, segment) {
+      if (!segment) return currentPath;
+
+      let newPath;
+
+      if (lang === this.defaultLang) {
+        const regex = new RegExp(`/${this.lowerLang}/`);
+
+        newPath = currentPath.replace(regex, '/');
+      } else {
+        newPath = currentPath.replace(segment, `${lang}/${segment}`);
+      }
+
+      return newPath;
     },
     isBlogTagsUrl(currentPath) {
       const regex = /\/blog\/tags/;
