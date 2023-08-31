@@ -2,6 +2,7 @@ import DefaultPresets from '../default-presets.js';
 import TransformationOptions from '../transformation-options.js';
 import Cloudinary from '../cloudinary.js';
 import Tools from '../tools.js';
+import ImgSrcSets from '../data/img-src-sets.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
@@ -164,6 +165,10 @@ export default {
     },
   },
   props: {
+    // TODO handle img src set and correct all the places where it is not used correctly
+    imgSrcSet: {
+      default: null,
+    },
     img: String,
     alt: String,
     cloudinary: Boolean,
@@ -176,3 +181,22 @@ export default {
     <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="crossOriginValue">
   `,
 };
+
+/*
+
+      <div class="img__picture-wrapper {{ imgImgSrcSets.ratioClasses }}">
+        <picture>
+          {% for srcSet in imgImgSrcSets.srcSets %}
+            {% capture imgUrl %}https://res.cloudinary.com/{{ site.cloudinary.cloud_name }}/image/upload/{{- srcSet.params -}}{{ imgImg }}{% endcapture %}
+            {% if srcSet.media %}
+              <source media="{{ srcSet.media }}" srcset="{{ imgUrl }}" />
+            {% else %}
+              {% capture cloudinaryImgUrl %}{{- srcSet.params -}}{{ imgImg }}{% endcapture %}
+              {% cloudinary {{ imgPreset }} {{ cloudinaryImgUrl }} alt="{{ imgAlt }}" class="img-responsive {{ imgClass }}" %}
+            {% endif %}
+          {% endfor %}
+        </picture>
+      </div>
+
+
+*/
