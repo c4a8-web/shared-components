@@ -42,6 +42,9 @@ export default {
     listClasses() {
       return `list-inline-item mx-sm-n${this.spacing}`;
     },
+    href() {
+      return this.postData?.url;
+    },
   },
   beforeMount() {
     const hasLanguageLoader = window.i18n?.loader;
@@ -61,8 +64,8 @@ export default {
   },
   template: `
     <div class="post-teaser mb-8 row" :data-tags="tag">
-      <div class="col-sm-4 mb-4 mb-sm-0">
-        <a :href="post.url">
+      <div class="post-teaser__img-container col-sm-4 mb-4 mb-sm-0">
+        <a :href="href" class="post-teaser__link is-foreground">
           <v-img :img="imgUrl" :alt="post.title" class="img-responsive shadow" :cloudinary="true" preset="postTeaser" img-src-sets="postTeaser" />
         </a>
       </div>
@@ -71,7 +74,7 @@ export default {
           {{ formattedDate }}
         </div>
         <h3 class="post-teaser__title mb-3">
-          <a :href="postData?.url">{{ title }}</a>
+          <a :href="href" class="post-teaser__link">{{ title }}</a>
         </h3>
         <p class="post-teaser__abstract mb-5">{{ excerpt }}</p>
         <ul class="list-inline">
