@@ -34,30 +34,55 @@ export default {
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
     },
+    isCloudinary() {
+      return Tools.isTrue(this.cloudinary);
+    },
     source() {
-      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink(this.img) : this.noCloudinary;
+      return this.isCloudinary ? this.noCloudinary || this.getCloudinaryLink(this.img) : this.noCloudinary;
     },
     loading() {
       return this.lazy ? 'lazy' : null;
     },
     crossOriginValue() {
-      return Tools.isTrue(this.cloudinary) ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
+      return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
     isSvg() {
       return this.img?.indexOf('.svg') !== -1;
+    },
+    hasPictureTag() {
+      return this.isCloudinary && this.imgSrcSets;
+    },
+    pictureWrapperClassList() {
+      return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];
+    },
+    imgSrcSetValue() {
+      return ImgSrcSets[this.imgSrcSets];
+    },
+    imgSrcSetSources() {
+      return this.imgSrcSetValue?.srcSets?.filter((item) => item.media);
+    },
+    imgSrcSetImg() {
+      const srcSets = this.imgSrcSetValue?.srcSets;
+
+      if (!srcSets) return null;
+
+      return this.getSourceLink(srcSets[srcSets.length - 1]);
     },
   },
   created() {
     if (this.canGenerateSrcSet()) return;
 
-    if (Tools.isTrue(this.cloudinary)) return;
+    if (this.isCloudinary) return;
 
     this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
   methods: {
+    getSourceLink(srcSet) {
+      return `${basePath}${srcSet.params}${this.img}`;
+    },
     canGenerateSrcSet() {
-      return Tools.isTrue(this.cloudinary) && !this.isGif();
+      return this.isCloudinary && !this.isGif();
     },
     getSetup() {
       const preset = this.getPreset();
@@ -100,7 +125,7 @@ export default {
 
       return hasWidth ? `${base}${end}` : `${base},w_${preset.fallback_max_width}${end}`;
     },
-    loadImage() {
+    loadImage(link) {
       if (!this.canGenerateSrcSet()) return;
 
       const img = document.createElement('img');
@@ -122,7 +147,7 @@ export default {
         height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = this.getCloudinaryLink();
+      img.src = link ? link : this.getCloudinaryLink();
     },
     getTransformationString(preset) {
       const transformations = [];
@@ -149,7 +174,10 @@ export default {
         const width = minWidth + (factor - 1) * stepWidth;
         const isWithinNaturalWidth = width <= naturalWidth;
         const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
-        const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
+        const srcsetBaseString = this.hasPictureTag
+          ? this.imgSrcSetImg
+          : `${basePath}${transformationsString},w_${selectedWidth}/${this.img}`;
+        const srcsetString = `${srcsetBaseString} ${selectedWidth}w`;
 
         srcsetArray.push(srcsetString);
 
@@ -166,7 +194,8 @@ export default {
   },
   props: {
     // TODO handle img src set and correct all the places where it is not used correctly
-    imgSrcSet: {
+    imgSrcSets: {
+      type: String,
       default: null,
     },
     img: String,
@@ -178,25 +207,14 @@ export default {
     preset: String,
   },
   template: `
-    <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="crossOriginValue">
-  `,
-};
-
-/*
-
-      <div class="img__picture-wrapper {{ imgImgSrcSets.ratioClasses }}">
+    <template v-if="hasPictureTag">
+      <div :class="pictureWrapperClassList">
         <picture>
-          {% for srcSet in imgImgSrcSets.srcSets %}
-            {% capture imgUrl %}https://res.cloudinary.com/{{ site.cloudinary.cloud_name }}/image/upload/{{- srcSet.params -}}{{ imgImg }}{% endcapture %}
-            {% if srcSet.media %}
-              <source media="{{ srcSet.media }}" srcset="{{ imgUrl }}" />
-            {% else %}
-              {% capture cloudinaryImgUrl %}{{- srcSet.params -}}{{ imgImg }}{% endcapture %}
-              {% cloudinary {{ imgPreset }} {{ cloudinaryImgUrl }} alt="{{ imgAlt }}" class="img-responsive {{ imgClass }}" %}
-            {% endif %}
-          {% endfor %}
+          <source v-for="srcSet in imgSrcSetSources" :key="srcSet.params" :media="srcSet.media" :srcset="getSourceLink(srcSet)" />
+          <img @load="loadImage(imgSrcSetImg)" ref="image" :src="imgSrcSetImg" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
         </picture>
       </div>
-
-
-*/
+    </template>
+    <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
+  `,
+};
