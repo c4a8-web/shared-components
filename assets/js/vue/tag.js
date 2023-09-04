@@ -56,7 +56,7 @@ export default {
       rel="tag"
       :title="'Posts tagged with ' + tag"
     >
-      {{ tag }}<span v-if="count"> ({{ count }})</span>
+      {{ tag }}<span v-if="count">({{ count }})</span>
     </a>
   `,
 };
