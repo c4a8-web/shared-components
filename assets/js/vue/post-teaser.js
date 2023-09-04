@@ -66,7 +66,7 @@ export default {
     <div class="post-teaser mb-8 row" :data-tags="tag">
       <div class="post-teaser__img-container col-sm-4 mb-4 mb-sm-0">
         <a :href="href" class="post-teaser__link is-foreground">
-          <v-img :img="imgUrl" :alt="post.title" class="img-responsive shadow" :cloudinary="true" preset="postTeaser" img-src-sets="postTeaser" />
+          <v-img :img="imgUrl" :alt="title" class="img-responsive shadow" :cloudinary="true" preset="postTeaser" img-src-sets="postTeaser" />
         </a>
       </div>
       <div class="col-sm-8">
