@@ -9,6 +9,15 @@ export default {
     };
   },
   computed: {
+    formattedDate() {
+      const date = this.postData?.date;
+
+      if (date) {
+        return date.split('-').reverse().join('.');
+      }
+
+      return;
+    },
     classList() {
       return ['post-teaser', this.classes !== '' ? this.classes : '', 'vue-component'];
     },
@@ -20,7 +29,9 @@ export default {
       return this.postData?.title;
     },
     excerpt() {
-      return this.postData?.excerpt || this.post.content;
+      const maxWords = 30;
+
+      return Tools.truncateWords(this.postData?.excerpt, maxWords);
     },
     imgUrl() {
       return `/blog/heads/${this.postData?.blogtitlepic}.jpg`;
@@ -57,7 +68,7 @@ export default {
       </div>
       <div class="col-sm-8">
         <div class="post-teaser__date mb-2">
-          {{ postData?.moment }}
+          {{ formattedDate }}
         </div>
         <h3 class="post-teaser__title mb-3">
           <a :href="postData?.url">{{ title }}</a>
