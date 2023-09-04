@@ -28,7 +28,7 @@ export default {
       return [
         'v-img',
         'vue-component',
-        this.isSvg ? 'is-svg' : '',
+        this.isSvg() ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
@@ -41,9 +41,6 @@ export default {
     },
     crossOriginValue() {
       return Tools.isTrue(this.cloudinary) ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
-    },
-    isSvg() {
-      return this.img?.indexOf('.svg') !== -1;
     },
   },
   created() {
@@ -59,6 +56,8 @@ export default {
       return Tools.isTrue(this.cloudinary) && !this.isGif();
     },
     getSetup() {
+      if (this.isSvg()) return;
+
       const preset = this.getPreset();
       const transformationsString = this.getTransformationString(preset);
 
@@ -89,7 +88,9 @@ export default {
       return `${basePath}${this.img}`;
     },
     getCloudinaryLink() {
-      return this.isGif() ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
+      return this.isGif() || this.isSvg()
+        ? this.getCloudinaryBasePathLink()
+        : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
       const { preset, transformationsString } = this.getSetup();
@@ -118,7 +119,7 @@ export default {
 
         this.dimensions = dimensions;
 
-        height && width ? this.buildSrcSet(preset, transformationsString) : null;
+        height && width && !this.isSvg() ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
       img.src = this.getCloudinaryBasePathLink();
@@ -161,6 +162,10 @@ export default {
       const extension = this.img.split('.')[1];
 
       return extension.toLowerCase() === 'gif';
+    },
+    isSvg() {
+      const extension = Tools.getExtension(this.getCloudinaryBasePathLink());
+      return extension.toLowerCase() === 'svg' || this.img?.indexOf('.svg') !== -1;
     },
   },
   props: {
