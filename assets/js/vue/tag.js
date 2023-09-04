@@ -6,6 +6,9 @@ export default {
     return Tools.validateVueProps(this);
   },
   computed: {
+    lowerLang() {
+      return this.lang.toLowerCase();
+    },
     classList() {
       return [
         `tags__btn btn btn-xs btn-soft-secondary btn-pill mx-sm-${this.props?.spacing} mb-2 vue-component`,
@@ -13,7 +16,10 @@ export default {
       ];
     },
     url() {
-      return this.lang === 'de' ? 'tags' : `tags-${this.lang}`;
+      return this.lowerLang === 'de' ? 'tags' : `tags-${this.lowerLang}`;
+    },
+    href() {
+      return '/blog/' + this.url + '/?tag=' + encodeURIComponent(this.tag);
     },
   },
   props: {
@@ -46,7 +52,7 @@ export default {
     <a
       :class="classList"
       :data-text="filter ? tag : undefined"
-      :href="'/blog/' + url + '/?tag=' + encodeURIComponent(tag)"
+      :href="href"
       rel="tag"
       :title="'Posts tagged with ' + tag"
     >
