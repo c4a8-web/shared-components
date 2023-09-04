@@ -184,3 +184,9 @@
   display: flex;
   justify-content: flex-end;
 }
+
+.card:not(.vue-component) {
+  img {
+    padding: spacing(5);
+  }
+}
