@@ -16,12 +16,10 @@ export const German = Template.bind({});
 German.args = {
   post: {
     url: 'javascript:void(0);',
-    layout: 'post',
     title: 'Audiocodes Devices Review',
     date: '2021-06-17',
     moment: '2021-06-17',
     author: 'Jan Petersen',
-    categories: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
     tags: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
     blogtitlepic: 'head-audiocodes-review',
     socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
@@ -37,12 +35,10 @@ English.args = {
   post: {
     lang: 'en',
     url: 'javascript:void(0);',
-    layout: 'post',
     title: 'Audiocodes Devices Review',
     date: '2021-06-17',
     moment: '2021-06-17',
     author: 'Jan Petersen',
-    categories: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
     tags: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
     blogtitlepic: 'head-audiocodes-review',
     socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
