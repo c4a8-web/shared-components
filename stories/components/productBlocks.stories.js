@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const ProductBlocks = Template.bind({});
+export const TwoItems = Template.bind({});
 
-ProductBlocks.args = {
+TwoItems.args = {
   productBlocks: {
     items: [
       {
@@ -45,6 +45,62 @@ ProductBlocks.args = {
             target: '_blank',
           },
         ],
+      },
+    ],
+  },
+  headline: 'Payment options',
+  cloudinary: 'true',
+};
+
+export const FiveItems = Template.bind({});
+
+FiveItems.args = {
+  productBlocks: {
+    items: [
+      {
+        image: getAssetPath('svg/logos/gkgab-SCEPman.svg'),
+        headline: '',
+        copy: '<ul class="dashed"><li>Get rid of your legacy PKI!</li><li>Issue and validate certificates for Intune managed clients for authentication purposes</li></ul>',
+        ctaText: 'Go to SCEPman',
+        ctaHref: 'https://scepman.com/',
+        link: true,
+        target: '_blank',
+      },
+      {
+        image: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
+        headline: '',
+        copy: '<ul class="dashed"><li>Get rid of your RADIUS server!</li><li>Enjoy certificate-based authentication using the RADIUS protocol</li></ul>',
+        ctaText: 'Go to RADIUSaaS',
+        ctaHref: 'https://radius-as-a-service.com/',
+        link: true,
+        target: '_blank',
+      },
+      {
+        image: getAssetPath('svg/logos/gkgab-KONNEKT.svg'),
+        headline: '',
+        copy: '<ul class="dashed"><li>Get rid of your file server!</li><li>Enjoy certificate-based authentication using the RADIUS protocol</li></ul>',
+        ctaText: 'Go to KONNEKT',
+        ctaHref: 'https://konnekt.io/',
+        link: true,
+        target: '_blank',
+      },
+      {
+        image: getAssetPath('svg/logos/gkgab-Realmjoin.svg'),
+        headline: '',
+        copy: '<ul class="dashed"><li>Get rid of your legacy client management solution!</li><li>Empower Intune with additional features and easy access for your helpdesk staff</li><li>Get Intune-packages for all your Win32 and MacOS apps</li></ul>',
+        ctaText: 'Go to RealmJoin',
+        ctaHref: 'https://realmjoin.com/',
+        link: true,
+        target: '_blank',
+      },
+      {
+        image: getAssetPath('svg/logos/logo-unified-contacts.svg'),
+        headline: '',
+        copy: '<ul class="dashed"><li>Find all your contacts in Microsoft Teams</li><li>Initiate calls, chats, or emails directly from the contact card</li><li>Mark your contacts as favorites</li></ul>',
+        ctaText: 'Go to Unified Contacts',
+        ctaHref: 'https://unified-contacts.com/',
+        link: true,
+        target: '_blank',
       },
     ],
   },
