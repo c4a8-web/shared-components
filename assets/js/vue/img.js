@@ -66,7 +66,7 @@ export default {
 
       if (!srcSets) return null;
 
-      return this.getSourceLink(srcSets[srcSets.length - 1]);
+      return this.getCloudinaryBasePathLink(srcSets[srcSets.length - 1]);
     },
   },
   created() {
@@ -78,9 +78,6 @@ export default {
     this.sizes = DefaultPresets.sizes;
   },
   methods: {
-    getSourceLink(srcSet) {
-      return `${basePath}${srcSet.params}${this.img}`;
-    },
     canGenerateSrcSet() {
       return this.isCloudinary && !this.isGif();
     },
@@ -111,8 +108,8 @@ export default {
 
       return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
-    getCloudinaryBasePathLink() {
-      return `${basePath}${this.img}`;
+    getCloudinaryBasePathLink(srcSet) {
+      return `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
     },
     getCloudinaryLink() {
       return this.isGif() ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
@@ -210,7 +207,7 @@ export default {
     <template v-if="hasPictureTag">
       <div :class="pictureWrapperClassList">
         <picture>
-          <source v-for="srcSet in imgSrcSetSources" :key="srcSet.params" :media="srcSet.media" :srcset="getSourceLink(srcSet)" />
+          <source v-for="srcSet in imgSrcSetSources" :key="srcSet.params" :media="srcSet.media" :srcset="getCloudinaryBasePathLink(srcSet)" />
           <img @load="loadImage(imgSrcSetImg)" ref="image" :src="imgSrcSetImg" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
         </picture>
       </div>
