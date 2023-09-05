@@ -5,6 +5,7 @@ const en = {
   contract: 'Contract work',
   gender: '(m/f/d)',
   formAttachmentsWrongType: 'Please choose a valid file format',
+  onlyLanguage: 'English only',
 };
 
 export default en;
