@@ -5,6 +5,7 @@ const Cloudinary = {
   verbose: false,
   presets: {
     avatar: {
+      fallback_max_width: 300,
       min_width: 100,
       max_width: 300,
       steps: 2,

@@ -29,6 +29,7 @@ import GoogleMapEntry from './vue/google-map-entry.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
+import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
 import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
@@ -155,6 +156,7 @@ const addApp = () => {
     Header,
     Headline,
     Icon,
+    ImageBlock,
     ImageList,
     VImg,
     JobListDetail,
