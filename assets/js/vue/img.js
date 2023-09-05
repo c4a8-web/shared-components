@@ -79,8 +79,6 @@ export default {
       return this.isCloudinary && !this.isGif();
     },
     getSetup() {
-      if (this.isSvg()) return;
-
       const preset = this.getPreset();
       const transformationsString = this.getTransformationString(preset);
 
@@ -131,18 +129,30 @@ export default {
       img.onload = () => {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
-        const { preset, transformationsString } = this.getSetup();
 
-        this.sizes = preset.sizes;
+        let dimensions;
 
-        const dimensions = {
-          naturalHeight: height ? height : preset.fallback_max_width,
-          naturalWidth: width ? width : preset.fallback_max_width,
-        };
+        if (!this.isSvg()) {
+          const { preset, transformationsString } = this.getSetup();
+
+          this.sizes = preset?.sizes;
+
+          dimensions = {
+            naturalHeight: height ? height : preset?.fallback_max_width,
+            naturalWidth: width ? width : preset?.fallback_max_width,
+          };
+
+          if (height && width && !this.isSvg()) {
+            this.buildSrcSet(preset, transformationsString);
+          }
+        } else {
+          dimensions = {
+            naturalHeight: height,
+            naturalWidth: width,
+          };
+        }
 
         this.dimensions = dimensions;
-
-        height && width && !this.isSvg() ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
       img.src = link ? link : this.getCloudinaryBasePathLink();
