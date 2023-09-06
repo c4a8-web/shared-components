@@ -1,5 +1,5 @@
 {%- assign lang = page.lang | default: 'de' -%}
-{%- assign author = site.data.authors[page.name] -%}
+{%- assign author = site.data.authors[page.nameWithUmlaut] | default: site.data.authors[page.name] -%}
 
 {%- if author -%}
   {%- assign imgUrl = author.avatar -%}
