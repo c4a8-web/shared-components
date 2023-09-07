@@ -190,11 +190,6 @@
     padding: spacing(5);
   }
 
-  .card-footer,
-  .card-body {
-    background-color: var(--color-card-background);
-  }
-
   &:not(.card--no-link) {
     @include hover-scale;
 
