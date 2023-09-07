@@ -29,6 +29,7 @@ import GoogleMapEntry from './vue/google-map-entry.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
+import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
 import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
@@ -39,6 +40,7 @@ import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
+import PostTeaser from './vue/post-teaser.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
@@ -57,6 +59,7 @@ import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
+import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
@@ -153,6 +156,7 @@ const addApp = () => {
     Header,
     Headline,
     Icon,
+    ImageBlock,
     ImageList,
     VImg,
     JobListDetail,
@@ -204,11 +208,13 @@ const addApp = () => {
     SBlock,
     TBlock,
     SlotItems,
+    Tag,
     TestimonialList,
     TextTeaser,
     Timeline,
     LBlock,
     Square,
+    PostTeaser,
     PersonQuote,
     VideoInner,
     XMark,

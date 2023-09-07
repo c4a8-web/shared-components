@@ -333,14 +333,10 @@
   text-shadow: 0 0 14px var(--color-white);
 }
 
-@mixin hover-scale {
-  @include shadow('super-light');
-
+@mixin hover-scale-transform {
   $scale-factor: 1.025;
   $scale-duration-initial: 1.3s;
   $scale-duration-return: 0.4s;
-
-  transition: box-shadow 1.5s $animation-transition;
 
   .is-foreground :is(img, svg),
   .is-background {
@@ -350,13 +346,22 @@
   }
 
   &:hover {
-    @include shadow('medium-light');
-
     .is-foreground :is(img, svg),
     .is-background {
       transform: scale($scale-factor);
       transition-duration: $scale-duration-initial;
     }
+  }
+}
+
+@mixin hover-scale {
+  @include shadow('super-light');
+  @include hover-scale-transform;
+
+  transition: box-shadow 1.5s $animation-transition;
+
+  &:hover {
+    @include shadow('medium-light');
   }
 }
 

@@ -24,6 +24,14 @@ class i18n {
 
     return `Translation key ${key} not found in ${this.lang} lang File`;
   }
+
+  getTranslationData(keyList) {
+    return keyList.reduce((accumulatedTranslations, key) => {
+      accumulatedTranslations[key] = this.translate(key);
+
+      return accumulatedTranslations;
+    }, {});
+  }
 }
 
 export default i18n;

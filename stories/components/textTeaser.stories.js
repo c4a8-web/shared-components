@@ -40,6 +40,8 @@ TextTeaserNoBackground.args = {
 export const PartnerQuote = Template.bind({});
 
 PartnerQuote.args = {
+  bgColor: 'var(--color-black-4)',
+  background: getAssetPath('svg/shapes/shape-5.svg'),
   copy: 'Wir ermöglichen es Unternehmen, schnell und sicher in die Cloud zu wechseln, indem wir eine beispiellose Cloud-Transformations- und Optimierungstechnologie bereitstellen.',
   list: [
     {
@@ -51,7 +53,6 @@ PartnerQuote.args = {
   ],
   logo: {
     alt: 'gkgab-RADIUSaaS',
-    background: getAssetPath('svg/shapes/shape-career-2.svg'),
     img: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
     cloudinary: false,
     alt: 'Lorem Ipsum',

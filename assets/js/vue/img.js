@@ -2,6 +2,7 @@ import DefaultPresets from '../default-presets.js';
 import TransformationOptions from '../transformation-options.js';
 import Cloudinary from '../cloudinary.js';
 import Tools from '../tools.js';
+import ImgSrcSets from '../data/img-src-sets.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
@@ -28,35 +29,54 @@ export default {
       return [
         'v-img',
         'vue-component',
-        this.isSvg ? 'is-svg' : '',
+        this.isSvg() ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
     },
+    isCloudinary() {
+      return Tools.isTrue(this.cloudinary);
+    },
     source() {
-      return Tools.isTrue(this.cloudinary) ? this.noCloudinary || this.getCloudinaryLink(this.img) : this.noCloudinary;
+      return this.isCloudinary ? this.noCloudinary || this.getCloudinaryLink() : this.noCloudinary;
     },
     loading() {
       return this.lazy ? 'lazy' : null;
     },
     crossOriginValue() {
-      return Tools.isTrue(this.cloudinary) ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
+      return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
-    isSvg() {
-      return this.img?.indexOf('.svg') !== -1;
+    hasPictureTag() {
+      return this.isCloudinary && this.imgSrcSets;
+    },
+    pictureWrapperClassList() {
+      return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];
+    },
+    imgSrcSetValue() {
+      return ImgSrcSets[this.imgSrcSets];
+    },
+    imgSrcSetSources() {
+      return this.imgSrcSetValue?.srcSets?.filter((item) => item.media);
+    },
+    imgSrcSetImg() {
+      const srcSets = this.imgSrcSetValue?.srcSets;
+
+      if (!srcSets) return null;
+
+      return this.getCloudinaryBasePathLink(srcSets[srcSets.length - 1]);
     },
   },
   created() {
     if (this.canGenerateSrcSet()) return;
 
-    if (Tools.isTrue(this.cloudinary)) return;
+    if (this.isCloudinary) return;
 
     this.noCloudinary = this.getBaseAssetPath();
     this.sizes = DefaultPresets.sizes;
   },
   methods: {
     canGenerateSrcSet() {
-      return Tools.isTrue(this.cloudinary) && !this.isGif();
+      return this.isCloudinary && !this.isGif();
     },
     getSetup() {
       const preset = this.getPreset();
@@ -85,11 +105,13 @@ export default {
 
       return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
-    getCloudinaryBasePathLink() {
-      return `${basePath}${this.img}`;
+    getCloudinaryBasePathLink(srcSet) {
+      return `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
     },
     getCloudinaryLink() {
-      return this.isGif() ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
+      return this.isGif() || this.isSvg()
+        ? this.getCloudinaryBasePathLink()
+        : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
       const { preset, transformationsString } = this.getSetup();
@@ -99,7 +121,7 @@ export default {
 
       return hasWidth ? `${base}${end}` : `${base},w_${preset.fallback_max_width}${end}`;
     },
-    loadImage() {
+    loadImage(link) {
       if (!this.canGenerateSrcSet()) return;
 
       const img = document.createElement('img');
@@ -107,21 +129,33 @@ export default {
       img.onload = () => {
         const height = img?.naturalHeight;
         const width = img?.naturalWidth;
-        const { preset, transformationsString } = this.getSetup();
 
-        this.sizes = preset.sizes;
+        let dimensions;
 
-        const dimensions = {
-          naturalHeight: height ? height : preset.fallback_max_width,
-          naturalWidth: width ? width : preset.fallback_max_width,
-        };
+        if (!this.isSvg()) {
+          const { preset, transformationsString } = this.getSetup();
+
+          this.sizes = preset?.sizes;
+
+          dimensions = {
+            naturalHeight: height ? height : preset?.fallback_max_width,
+            naturalWidth: width ? width : preset?.fallback_max_width,
+          };
+
+          if (height && width && !this.isSvg()) {
+            this.buildSrcSet(preset, transformationsString);
+          }
+        } else {
+          dimensions = {
+            naturalHeight: height,
+            naturalWidth: width,
+          };
+        }
 
         this.dimensions = dimensions;
-
-        height && width ? this.buildSrcSet(preset, transformationsString) : null;
       };
 
-      img.src = this.getCloudinaryLink();
+      img.src = link ? link : this.getCloudinaryBasePathLink();
     },
     getTransformationString(preset) {
       const transformations = [];
@@ -148,7 +182,10 @@ export default {
         const width = minWidth + (factor - 1) * stepWidth;
         const isWithinNaturalWidth = width <= naturalWidth;
         const selectedWidth = isWithinNaturalWidth ? width : naturalWidth;
-        const srcsetString = `${basePath}${transformationsString},w_${selectedWidth}/${this.img} ${selectedWidth}w`;
+        const srcsetBaseString = this.hasPictureTag
+          ? this.imgSrcSetImg
+          : `${basePath}${transformationsString},w_${selectedWidth}/${this.img}`;
+        const srcsetString = `${srcsetBaseString} ${selectedWidth}w`;
 
         srcsetArray.push(srcsetString);
 
@@ -162,8 +199,18 @@ export default {
 
       return extension.toLowerCase() === 'gif';
     },
+    isSvg() {
+      const extension = Tools.getExtension(this.getCloudinaryBasePathLink());
+
+      return extension.toLowerCase() === 'svg' || this.img?.indexOf('.svg') !== -1;
+    },
   },
   props: {
+    // TODO handle img src set and correct all the places where it is not used correctly
+    imgSrcSets: {
+      type: String,
+      default: null,
+    },
     img: String,
     alt: String,
     cloudinary: Boolean,
@@ -173,6 +220,14 @@ export default {
     preset: String,
   },
   template: `
-    <img @load="loadImage" ref="image" :alt="this.alt" :src="source" :loading="loading" :class="classList" :width="this.dimensions.naturalWidth" :height="this.dimensions.naturalHeight" :srcset="this.srcset" :sizes="this.sizes" :crossorigin="crossOriginValue">
+    <template v-if="hasPictureTag">
+      <div :class="pictureWrapperClassList">
+        <picture>
+          <source v-for="srcSet in imgSrcSetSources" :key="srcSet.params" :media="srcSet.media" :srcset="getCloudinaryBasePathLink(srcSet)" />
+          <img @load="loadImage(imgSrcSetImg)" ref="image" :src="imgSrcSetImg" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
+        </picture>
+      </div>
+    </template>
+    <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `,
 };
