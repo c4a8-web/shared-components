@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const Right = Template.bind({});
 
 Right.args = {
-  image: getAssetPath('svg/icons/icon-consulting-services.svg'),
+  image: getAssetPath('svg/icons/icon-products.svg'),
   alt: 'Consulting Services',
   headline: 'Consulting Services',
   offset: true,
