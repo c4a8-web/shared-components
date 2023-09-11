@@ -1,157 +1,159 @@
 .card {
-  &.utility-animation {
-    @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 50ms, $selector: '&');
+  &.vue-component {
+    &.utility-animation {
+      @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 50ms, $selector: '&');
 
-    .utility-animation__group & {
-      @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 28ms, $selector: '&', $group: true);
+      .utility-animation__group & {
+        @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 28ms, $selector: '&', $group: true);
+      }
     }
-  }
 
-  &:not(.card--no-link) {
-    @include hover-scale;
+    &:not(.card--no-link) {
+      @include hover-scale;
 
-    &:hover {
-      cursor: pointer;
+      &:hover {
+        cursor: pointer;
+      }
     }
-  }
 
-  &:not(.card--large):not(.card--long):not(.card--products) {
-    max-width: unquote('min(480px, 100%)');
+    &:not(.card--large):not(.card--long):not(.card--products) {
+      max-width: unquote('min(480px, 100%)');
 
-    @include media-breakpoint-up(md) {
-      max-width: unquote('min(480px, 100vw)');
+      @include media-breakpoint-up(md) {
+        max-width: unquote('min(480px, 100vw)');
+      }
     }
-  }
 
-  &.card--products,
-  &.card--long {
-    max-width: 100%;
+    &.card--products,
+    &.card--long {
+      max-width: 100%;
 
-    @include media-breakpoint-up(lg) {
-      max-width: unquote('min(580px, 100%)');
+      @include media-breakpoint-up(lg) {
+        max-width: unquote('min(580px, 100%)');
+      }
     }
-  }
 
-  &.card--event {
-    .card__author {
-      text-align: right;
+    &.card--event {
+      .card__author {
+        text-align: right;
+      }
     }
-  }
 
-  &.card--products {
-    .card__img-top {
-      &::before {
-        display: none;
+    &.card--products {
+      .card__img-top {
+        &::before {
+          display: none;
+        }
+
+        .card__img-headline {
+          padding: spacing(4) spacing(5) spacing(6);
+        }
+
+        .card__img-headline-container {
+          height: 100%;
+          position: relative;
+          top: 0%;
+
+          .headline {
+            @include font-style($style: 'font-size-4', $line: 'wide');
+
+            min-height: 70%;
+          }
+        }
       }
 
-      .card__img-headline {
-        padding: spacing(4) spacing(5) spacing(6);
-      }
-
-      .card__img-headline-container {
-        height: 100%;
-        position: relative;
-        top: 0%;
-
+      .card-body {
         .headline {
-          @include font-style($style: 'font-size-4', $line: 'wide');
-
-          min-height: 70%;
+          color: var(--color-regent-grey);
+          text-transform: uppercase;
         }
       }
     }
 
-    .card-body {
-      .headline {
-        color: var(--color-regent-grey);
-        text-transform: uppercase;
+    &.card--large {
+      @include media-breakpoint-up(lg) {
+        .card__img-top {
+          height: 100%;
+        }
       }
     }
-  }
 
-  &.card--large {
-    @include media-breakpoint-up(lg) {
-      .card__img-top {
-        height: 100%;
+    .richtext {
+      p + .card__link {
+        margin-top: spacing(2);
       }
     }
-  }
 
-  .richtext {
-    p + .card__link {
-      margin-top: spacing(2);
+    article {
+      margin: 0;
     }
-  }
 
-  article {
-    margin: 0;
-  }
+    .ie-curved-x,
+    .ie-curved-y {
+      display: none;
+    }
 
-  .ie-curved-x,
-  .ie-curved-y {
-    display: none;
-  }
+    .card__img-top {
+      @include aspect-ratio(16, 9);
 
-  .card__img-top {
-    @include aspect-ratio(16, 9);
+      overflow: hidden;
 
-    overflow: hidden;
+      &:not(.card-img--long) {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
 
-    &:not(.card-img--long) {
-      img {
-        width: 100%;
-        height: 100%;
+      .card-img--long {
         object-fit: cover;
       }
     }
 
-    .card-img--long {
-      object-fit: cover;
+    .card-img {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
     }
-  }
 
-  .card-img {
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
+    .card__img-tag {
+      @include font-style($style: 'font-size-3', $weight: 'bold');
 
-  .card__img-tag {
-    @include font-style($style: 'font-size-3', $weight: 'bold');
-
-    display: inline-block;
-    position: absolute;
-    right: 13%;
-    line-height: 1em !important; // TODO there is an issue with font-style when this issue is fixed important can go away
-    padding: spacing(2) spacing(3);
-    text-transform: uppercase;
-  }
-
-  .card-img-cutoff {
-    height: spacing(12);
-    background: linear-gradient(
-      4deg,
-      var(--color-card-background) 0%,
-      var(--color-card-background) 55%,
-      rgba(255, 0, 0, 0) 56%,
-      rgba(255, 0, 0, 0) 100%
-    );
-  }
-
-  .card-footer {
-    &:last-child {
-      border-radius: 0;
+      display: inline-block;
+      position: absolute;
+      right: 13%;
+      line-height: 1em !important; // TODO there is an issue with font-style when this issue is fixed important can go away
+      padding: spacing(2) spacing(3);
+      text-transform: uppercase;
     }
-  }
 
-  .card-footer,
-  .card-body {
-    background-color: var(--color-card-background);
-  }
+    .card-img-cutoff {
+      height: spacing(12);
+      background: linear-gradient(
+        4deg,
+        var(--color-card-background) 0%,
+        var(--color-card-background) 55%,
+        rgba(255, 0, 0, 0) 56%,
+        rgba(255, 0, 0, 0) 100%
+      );
+    }
 
-  h4 {
-    line-height: 1.2em;
+    .card-footer {
+      &:last-child {
+        border-radius: 0;
+      }
+    }
+
+    .card-footer,
+    .card-body {
+      background-color: var(--color-card-background);
+    }
+
+    h4 {
+      line-height: 1.2em;
+    }
   }
 }
 
@@ -181,4 +183,14 @@
 .card__link {
   display: flex;
   justify-content: flex-end;
+}
+
+.card:not(.vue-component) {
+  &:not(.card--no-link) {
+    @include hover-scale;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
