@@ -186,10 +186,6 @@
 }
 
 .card:not(.vue-component) {
-  img {
-    padding: spacing(5);
-  }
-
   &:not(.card--no-link) {
     @include hover-scale;
 
