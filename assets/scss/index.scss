@@ -46,6 +46,10 @@ body {
   @include media-breakpoint-up('md') {
     --scroll-top: 100px;
   }
+
+  @include media-breakpoint-up(xxl) {
+    font-size: 1.19vw;
+  }
 }
 
 body {
