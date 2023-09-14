@@ -9,6 +9,8 @@ class Form extends BaseComponent {
   static instances = [];
   static delimiter = '-formHelper-';
   static noCustomSubmitClass = 'form--no-custom-submit';
+  static regularExpression =
+    /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/;
 
   constructor(root, options) {
     super(root, options);
@@ -30,6 +32,8 @@ class Form extends BaseComponent {
     this.minLengthOther = 1;
     this.options = options;
 
+    this.addCustomValidationRules();
+
     this.updateGotcha();
     this.addValidation();
 
@@ -41,6 +45,14 @@ class Form extends BaseComponent {
       this.bindEvents();
     } else if (this.isCompanyForm()) {
       this.addSubjectListener();
+    }
+  }
+
+  addCustomValidationRules() {
+    if (window.$) {
+      $.validator.methods.email = function (value, element) {
+        return this.optional(element) || Form.regularExpression.test(value);
+      };
     }
   }
 
