@@ -3,7 +3,7 @@ class YoutubePlayer {
     const origin = encodeURIComponent(document.location.origin);
     const referrer = encodeURIComponent(document.location.href);
 
-    return `//www.youtube-nocookie.com/embed/${videoId}?origin=${origin}&autoplay=${autoplay}&widget_referrer=${referrer}&enablejsapi=1&widgetid=1`;
+    return `https://www.youtube-nocookie.com/embed/${videoId}?origin=${origin}&autoplay=${autoplay}&widget_referrer=${referrer}&enablejsapi=1&widgetid=1`;
   }
 }
 
