@@ -16,6 +16,8 @@
   }
 
   @include media-breakpoint-up(lg) {
+    overflow: visible;
+
     .testimonials-slider__slides {
       .testimonial-teaser {
         max-width: 50%;
