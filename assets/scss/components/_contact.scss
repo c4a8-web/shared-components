@@ -6,6 +6,7 @@
   --color-contact-quote-background: var(--color-gigas);
   --contact-spacing-collapsed: #{spacing(3)};
   --contact-copy-color: var(--color-copy);
+  --contact-box-copy-color: var(--contact-copy-color);
 
   color: var(--contact-copy-color);
 
@@ -173,6 +174,7 @@
 
 .contact__person {
   background-color: var(--color-contact-person);
+  color: var(--contact-box-copy-color);
   height: 100%;
   padding-bottom: spacing(20);
 
