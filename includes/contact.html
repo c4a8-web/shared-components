@@ -16,6 +16,8 @@
     {%- else -%}
       {%- if page.lang == 'en' -%}
         {%- assign contact = site.data.contact.infosEn -%}
+      {%- elsif page.lang == 'es' -%}
+        {%- assign contact = site.data.contact.infosEs -%}
       {%- else -%}
         {%- assign contact = site.data.contact.infos -%}
       {%- endif -%}
