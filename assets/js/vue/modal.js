@@ -7,12 +7,17 @@ export default {
   tagName: 'modal',
   computed: {
     classList() {
-      return ['modal fade', `${this.slimMode ? 'modal--slim' : ''}`, 'vue-component'];
+      return [
+        'modal fade',
+        this.slimValue ? 'modal--slim' : '',
+        this.notificationValue ? 'modal--notification' : '',
+        'vue-component',
+      ];
     },
     dialogClassList() {
       return [
         'modal-dialog',
-        `${this.slimMode ? 'modal-lg' : 'modal-xl'}`,
+        `${this.slimValue ? 'modal-lg' : 'modal-xl'}`,
         `${this.center ? 'modal-dialog-centered' : ''}`,
       ];
     },
@@ -27,11 +32,20 @@ export default {
     modal() {
       return this.$refs.modal;
     },
-    slimMode() {
+    slimValue() {
       return Tools.isTrue(this.slim);
     },
+    notificationValue() {
+      return Tools.isTrue(this.notification);
+    },
     size() {
-      return this.slim ? 'small' : null;
+      return this.slimValue || this.notificationValue ? 'small' : null;
+    },
+    circle() {
+      return this.notificationValue ? false : true;
+    },
+    hover() {
+      return this.notificationValue ? false : true;
     },
   },
   mounted() {
@@ -104,6 +118,9 @@ export default {
     center: {
       default: null,
     },
+    notification: {
+      default: null,
+    },
   },
   template: `
     <div :class="classList" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)" ref="modal"
@@ -112,7 +129,7 @@ export default {
         <div class="modal__content">
           <div class="modal__header">
             <div class="modal__close">
-              <icon icon="close" :hover="true" :circle="true" :size="size" />
+              <icon icon="close" :hover="hover" :circle="circle" :size="size" />
             </div>
           </div>
           <div class="modal__body">

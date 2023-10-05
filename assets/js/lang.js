@@ -24,7 +24,14 @@ const LangData = {
     follow: 'Follow',
     similarPosts: 'Similar Posts',
     withAuthor: 'With',
-    adBlockInfo: `<div class="text-center"><img src="${adBlockImage}" alt="Full Service" class="is-svg"><h3>Page functionality may be limited</h3>We have noticed that you are using an adblocker. To ensure that our site works properly and all features are available to you, we recommend that you add our site to your whitelist. We definitely do not display ads. Promise!</div>`,
+    adBlockInfo: `
+        <div class="ad-block-info__content">
+          <img src="${adBlockImage}" alt="Full Service" class="is-svg">
+          <div class="ad-block-info__row">
+            <h5>Adblocker</h5>
+            <div class="ad-block-info__text">We have noticed that you are using an adblocker. To ensure that our site works properly and all features are available to you, we recommend that you add our site to your whitelist. We definitely do not display ads. Promise!</div>
+          </div>
+        </div>`,
   },
 };
 
