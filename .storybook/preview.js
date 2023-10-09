@@ -71,7 +71,7 @@ export const parameters = {
   controls: {
     expanded: true,
     matchers: {
-      color: /(background|color)$/i, // TODO fix issue with Addon controls: Control of type color only supports string, received "boolean" instead
+      color: /^background$|^color$/,
       date: /Date$/,
     },
   },
