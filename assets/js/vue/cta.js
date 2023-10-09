@@ -8,14 +8,17 @@ export default {
       return this.href || this.alternativeHref || this.target ? 'a' : 'button';
     },
     hasIcon() {
-      return this.link || this.external || this.icon || this.download;
+      return this.link || this.externalValue || this.icon || this.download;
+    },
+    externalValue() {
+      return Tools.isTrue(this.external);
     },
     classList() {
       return [
         `${this.baseClass} ${this.innerSkin}`,
         `${this.classes ? this.classes : ''}`,
         `${this.download ? 'cta--download' : ''}`,
-        `${this.external ? 'cta--external' : ''}`,
+        `${this.externalValue ? 'cta--external' : ''}`,
         `${this.icon ? `cta--has-icon cta--icon-${this.icon}` : ''}`,
         `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
         `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
@@ -55,7 +58,7 @@ export default {
         iconName = this.icon;
       } else if (this.link) {
         iconName = 'arrow';
-      } else if (this.external) {
+      } else if (this.externalValue) {
         iconName = 'arrow-external';
       } else if (this.download) {
         iconName = 'arrow-external';
@@ -64,7 +67,7 @@ export default {
       return iconName;
     },
     targetValue() {
-      return this.external ? '_blank' : this.target;
+      return this.externalValue ? '_blank' : this.target;
     },
     sizeValue() {
       return 'medium';

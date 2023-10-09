@@ -69,9 +69,9 @@ export default getArgTypes({
         summary: 'Bootstrap widths',
         detail: 'w-10, w-20, w-30, ... or w-lg-80, w-md-60, ...',
       },
+      options: ['', '_self', '_blank', '_parent', '_top'],
       control: {
         type: 'select',
-        options: ['', '_self', '_blank', '_parent', '_top'],
       },
     },
     button: {
@@ -79,8 +79,34 @@ export default getArgTypes({
       type: 'boolean',
     },
     alternativeHref: {
-      description: 'Toggles Link Mode',
+      description: 'An alternative link for the pricing details toggle',
+      type: 'string',
+    },
+    type: {
+      description: 'The type attribute of the Cta',
+      control: { type: 'select' },
+      options: ['', 'submit', 'reset', 'button'],
+      type: 'string',
+    },
+    trigger: {
+      description: 'A trigger for modals or other components',
+      control: { type: 'select' },
+      options: ['', 'modal'],
+      type: 'string',
+    },
+    external: {
+      description: 'Adds an external icon to the Cta',
       type: 'boolean',
+    },
+    icon: {
+      description: 'Adds an icon to the Cta',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Icon name',
+        detail: 'check, ...',
+      },
     },
   },
 });
