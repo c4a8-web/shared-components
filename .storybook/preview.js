@@ -69,6 +69,7 @@ function createDocsWrapper(params) {
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
+    expanded: true,
     matchers: {
       color: /(background|color)$/i, // TODO fix issue with Addon controls: Control of type color only supports string, received "boolean" instead
       date: /Date$/,

@@ -239,4 +239,19 @@ const getAssetPath = (path) => {
   return process.env.NODE_ENV === 'production' ? `../shared-components/${path}` : `${path}`;
 };
 
-export { hrefTo, getTitle, getAssetPath, site };
+const getArgTypes = (defaultExport) => {
+  const requiredText = '<b>(*)</b>&nbsp;';
+  const argTypes = defaultExport.argTypes;
+
+  if (!argTypes) return defaultExport;
+
+  Object.keys(argTypes).forEach((key) => {
+    if (argTypes[key].required) {
+      argTypes[key].description = `${requiredText} ${argTypes[key].description}`;
+    }
+  });
+
+  return defaultExport;
+};
+
+export { hrefTo, getTitle, getAssetPath, getArgTypes, site };

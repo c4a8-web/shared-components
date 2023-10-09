@@ -1,4 +1,4 @@
-import { createComponent, getTitle, getDecorators } from '../../.storybook/templates';
+import { createComponent, getTitle, getDecorators, getArgTypes } from '../../.storybook/templates';
 import { includesctahtml as component } from '../../.storybook/generatedIncludes';
 
 import { analytics } from '../globalArgTypes';
@@ -8,11 +8,22 @@ const options = getTitle({
 });
 
 // More on default export: https://storybook.js.org/docs/html/writing-stories/introduction#default-export
-export default {
+export default getArgTypes({
   ...options,
   // More on argTypes: https://storybook.js.org/docs/html/api/argtypes
   argTypes: {
+    text: {
+      description: 'The Text of the Cta',
+      type: 'string',
+      required: true,
+    },
+    analytics,
+    link: {
+      description: 'Toggles Link Mode',
+      type: 'boolean',
+    },
     skin: {
+      description: 'The skin of the Cta',
       control: { type: 'select' },
       options: [
         'primary',
@@ -25,16 +36,8 @@ export default {
         'secondary is-light',
       ],
     },
-    analytics,
-    grow: {
-      defaultValue: false, // TODO possible remove after migration to 7.x
-      control: { type: 'boolean' },
-      description: "Will apply w-lg-auto when you don't specify a width.",
-      type: {
-        summary: null,
-      },
-    },
     width: {
+      description: 'Here you can add helper classes for the width:',
       table: {
         disabled: false,
       },
@@ -45,11 +48,42 @@ export default {
         summary: 'Bootstrap widths',
         detail: 'w-10, w-20, w-30, ... or w-lg-80, w-md-60, ...',
       },
-      description: 'Here you can add helper classes for the width:',
+    },
+    grow: {
+      // table: {
+      //   defaultValue: { summary: false },
+      // },
+      control: { type: 'boolean' },
+      description: "Will apply w-lg-auto when you don't specify a width.",
+      type: {
+        summary: null,
+      },
+    },
+    href: {
+      description: 'The link of the Cta',
+      type: 'string',
+    },
+    target: {
+      description: 'The link target',
+      type: {
+        summary: 'Bootstrap widths',
+        detail: 'w-10, w-20, w-30, ... or w-lg-80, w-md-60, ...',
+      },
+      control: {
+        type: 'select',
+        options: ['', '_self', '_blank', '_parent', '_top'],
+      },
+    },
+    button: {
+      description: 'Toggles Button Mode',
+      type: 'boolean',
+    },
+    alternativeHref: {
+      description: 'Toggles Link Mode',
+      type: 'boolean',
     },
   },
-  decorators: getDecorators(),
-};
+});
 
 const Template = (args) => createComponent(args, component);
 
@@ -60,6 +94,7 @@ PrimaryButtonCutoff.args = {
   skin: 'primary is-cutoff',
   button: true,
 };
+PrimaryButtonCutoff.decorators = getDecorators();
 
 export const SecondaryButtonCutoff = Template.bind({});
 
@@ -106,6 +141,7 @@ SecondaryButton.args = {
   skin: 'secondary',
   button: true,
 };
+SecondaryButton.decorators = getDecorators();
 
 export const PrimaryLink = Template.bind({});
 
@@ -115,14 +151,14 @@ PrimaryLink.args = {
   link: true,
 };
 
-PrimaryLink.argTypes = {
-  width: {
-    table: { disable: true },
-  },
-  skin: {
-    table: { disable: true },
-  },
-};
+// PrimaryLink.argTypes = {
+//   width: {
+//     table: { disable: true },
+//   },
+//   skin: {
+//     table: { disable: true },
+//   },
+// };
 
 export const PrimaryLinkActive = Template.bind({});
 
@@ -159,3 +195,4 @@ PrimaryLinkReversed.args = {
   link: true,
   reversed: true,
 };
+PrimaryLinkReversed.decorators = getDecorators();
