@@ -11,6 +11,8 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
+// TODO make this available at the main tag data-pricing="{{ site.data.products.pricing | jsonify | xml_escape }}"
+
 export const PricingDetails = Template.bind({});
 
 PricingDetails.args = {
