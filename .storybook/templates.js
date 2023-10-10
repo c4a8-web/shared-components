@@ -254,4 +254,14 @@ const getArgTypes = (defaultExport) => {
   return defaultExport;
 };
 
-export { hrefTo, getTitle, getAssetPath, getArgTypes, site };
+const createStory = (component, args) => {
+  const Template = (args) => createComponent(args, component);
+  const story = Template.bind({});
+
+  story.args = args;
+  story.decorators = getDecorators();
+
+  return story;
+};
+
+export { hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };

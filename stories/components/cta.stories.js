@@ -1,4 +1,4 @@
-import { createComponent, getTitle, getDecorators, getArgTypes } from '../../.storybook/templates';
+import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';
 import { includesctahtml as component } from '../../.storybook/generatedIncludes';
 
 import { analytics } from '../globalArgTypes';
@@ -26,6 +26,7 @@ export default getArgTypes({
       description: 'The skin of the Cta',
       control: { type: 'select' },
       options: [
+        '',
         'primary',
         'secondary',
         'primary is-cutoff',
@@ -37,7 +38,7 @@ export default getArgTypes({
       ],
     },
     width: {
-      description: 'Here you can add helper classes for the width:',
+      description: 'Adds helper classes for the width:',
       table: {
         disabled: false,
       },
@@ -105,77 +106,84 @@ export default getArgTypes({
       },
       type: {
         summary: 'Icon name',
-        detail: 'check, ...',
+        detail: 'arrow, mail, phone, ...',
+      },
+    },
+    download: {
+      description: 'Adds an download icon to the Cta',
+      type: 'boolean',
+    },
+    reversed: {
+      description: 'Reverses the order of the icon and the text. Does not work with download.',
+      type: 'boolean',
+    },
+    active: {
+      description: 'Sets the active State of the Cta',
+      type: 'boolean',
+    },
+    classes: {
+      description: 'Adds classes:',
+      table: {
+        disabled: false,
+      },
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Examples',
+        detail: 'space-4, parent-component-class, ...',
       },
     },
   },
 });
 
-const Template = (args) => createComponent(args, component);
-
-export const PrimaryButtonCutoff = Template.bind({});
-
-PrimaryButtonCutoff.args = {
+export const PrimaryButtonCutoff = createStory(component, {
   text: 'Primary Button Cutoff',
   skin: 'primary is-cutoff',
   button: true,
-};
-PrimaryButtonCutoff.decorators = getDecorators();
+});
 
-export const SecondaryButtonCutoff = Template.bind({});
-
-SecondaryButtonCutoff.args = {
+export const SecondaryButtonCutoff = createStory(component, {
   text: 'Secondary Button Cutoff',
   href: 'javascript:void(0)',
   skin: 'secondary is-cutoff',
-};
+});
 
-export const PrimaryButton = Template.bind({});
-
-PrimaryButton.args = {
+export const PrimaryButton = createStory(component, {
   text: 'Primary Button',
   href: 'javascript:void(0)',
   skin: 'primary',
   button: true,
-};
+});
 
-export const PrimaryButtonDownload = Template.bind({});
-
-PrimaryButtonDownload.args = {
+export const PrimaryButtonDownload = createStory(component, {
   text: 'Primary Button',
   href: 'javascript:void(0)',
   skin: 'primary',
   button: true,
   download: true,
-};
+});
 
-export const PrimaryButtonExternal = Template.bind({});
-
-PrimaryButtonExternal.args = {
+export const PrimaryButtonExternal = createStory(component, {
   text: 'Primary Button',
   href: 'javascript:void(0)',
   skin: 'primary',
   button: true,
   external: true,
-};
+});
 
-export const SecondaryButton = Template.bind({});
-
-SecondaryButton.args = {
+export const SecondaryButton = createStory(component, {
   text: 'Secondary Button',
   href: 'javascript:void(0)',
   skin: 'secondary',
   button: true,
-};
-SecondaryButton.decorators = getDecorators();
+});
 
-export const PrimaryLink = Template.bind({});
-
-PrimaryLink.args = {
+export const PrimaryLink = createStory(component, {
   text: 'Primary Link',
   href: 'javascript:void(0)',
   link: true,
-};
+});
 
 // PrimaryLink.argTypes = {
 //   width: {
@@ -186,14 +194,12 @@ PrimaryLink.args = {
 //   },
 // };
 
-export const PrimaryLinkActive = Template.bind({});
-
-PrimaryLinkActive.args = {
+export const PrimaryLinkActive = createStory(component, {
   text: 'Primary Link',
   href: 'javascript:void(0)',
   link: true,
   active: true,
-};
+});
 
 PrimaryLinkActive.argTypes = {
   width: {
@@ -204,21 +210,16 @@ PrimaryLinkActive.argTypes = {
   },
 };
 
-export const PrimaryLinkMonochrome = Template.bind({});
-
-PrimaryLinkMonochrome.args = {
+export const PrimaryLinkMonochrome = createStory(component, {
   text: 'Primary Link',
   href: 'javascript:void(0)',
   link: true,
   monochrome: true,
-};
+});
 
-export const PrimaryLinkReversed = Template.bind({});
-
-PrimaryLinkReversed.args = {
+export const PrimaryLinkReversed = createStory(component, {
   text: 'Primary Link lorem ipsum dolor sit amet',
   href: 'javascript:void(0)',
   link: true,
   reversed: true,
-};
-PrimaryLinkReversed.decorators = getDecorators();
+});
