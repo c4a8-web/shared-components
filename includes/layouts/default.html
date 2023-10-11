@@ -24,8 +24,13 @@
 
       <main class="page-content" aria-label="Content">
         {% if page.hero %}
+          {% comment %}
           {%
             include hero-text-image.html
+          %}
+          {% endcomment %}
+          {%
+            include stage.html
           %}
         {% endif %}
         {{ content }}
