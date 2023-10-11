@@ -31,7 +31,6 @@ import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
 import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
-import VImg from './vue/img.js';
 import JobListDetail from './vue/job-list-detail.js';
 import JobListEntry from './vue/job-list-entry.js';
 import JobList from './vue/job-list.js';
@@ -57,14 +56,16 @@ import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
-import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
+import Stage from './vue/stage.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
-import Wrapper from './vue/wrapper.js';
+import VImg from './vue/v-img.js';
+import VideoInner from './vue/video-inner.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
+import Wrapper from './vue/wrapper.js';
 
 // Icons
 import ArrowCurl from './vue/icons/arrow-curl.js';
@@ -136,9 +137,8 @@ const addApp = () => {
     AuthorAvatar,
     BlogRecent,
     Card,
-    Cta,
     CheckCard,
-    CheckMark,
+    Cta,
     Faq,
     FeatureGridItem,
     FeatureList,
@@ -158,7 +158,6 @@ const addApp = () => {
     Icon,
     ImageBlock,
     ImageList,
-    VImg,
     JobListDetail,
     JobListEntry,
     JobList,
@@ -167,7 +166,8 @@ const addApp = () => {
     ListContainer,
     LogoList,
     Modal,
-    Plus,
+    PostTeaser,
+    PersonQuote,
     ScrollArrow,
     Search,
     ShapeAnimation,
@@ -183,43 +183,49 @@ const addApp = () => {
     ShapeTrianglesToCenter,
     Shape,
     Slider,
+    SlotItems,
+    Stage,
+    Tag,
+    TestimonialList,
+    TextTeaser,
+    Timeline,
+    VImg,
+    VideoInner,
+    WrapperSlotItems,
+    Wrapper,
+
+    // Icons
     ArrowCurl,
     ArrowExternal,
     ArrowNarrow,
     Arrow,
     Check,
+    CheckMark,
     Close,
     ComputerShield,
-    Emergency,
     EmailActionUnread,
+    Emergency,
     Expand,
-    Menu,
     Magnifier,
     Mail,
+    Menu,
     Minus,
+    Pin,
     Phone,
     PhoneCharger,
     PhoneMail,
-    Pin,
     PlusMinus,
+    Plus,
     Quotes,
     Rocket,
     Smile,
-    SBlock,
-    TBlock,
-    SlotItems,
-    Tag,
-    TestimonialList,
-    TextTeaser,
-    Timeline,
-    LBlock,
-    Square,
-    PostTeaser,
-    PersonQuote,
-    VideoInner,
     XMark,
-    Wrapper,
-    WrapperSlotItems,
+
+    // Shapes
+    LBlock,
+    SBlock,
+    Square,
+    TBlock,
   ];
 
   components.forEach((component) => {
