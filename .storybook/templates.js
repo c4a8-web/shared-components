@@ -186,7 +186,7 @@ export const getComponentInnerHtmlList = function async(includes, component) {
   return html;
 };
 
-const getTitle = ({ page, title, docs, context, helper }) => {
+const getTitle = ({ root, page, title, docs, context, helper }) => {
   let type;
 
   if (page) {
@@ -205,6 +205,7 @@ const getTitle = ({ page, title, docs, context, helper }) => {
 
   return {
     title: titleText,
+    ...(root && { parameters: { root: true } }),
     ...(page && { parameters: { root: true, page: true } }),
   };
 };
