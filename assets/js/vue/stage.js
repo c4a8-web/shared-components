@@ -3,11 +3,15 @@ import Tools from '../tools.js';
 export default {
   tagName: 'stage',
   computed: {
+    lightValue() {
+      return Tools.isTrue(this.light);
+    },
     classValue() {
       return [
         'stage is-component vue-component',
-        `${this.spacing ? this.spacing : ''}`,
-        `${this.classes ? this.classes : ''}`,
+        this.lightValue ? 'text--light' : '',
+        this.spacing ? this.spacing : '',
+        this.classes ? this.classes : '',
         Tools.isTrue(this.sticky) ? 'stage--sticky has-sticky' : '',
       ];
     },
@@ -37,6 +41,9 @@ export default {
     sticky: {
       default: false,
     },
+    light: {
+      default: null,
+    },
     spacing: String,
     video: Boolean,
     animation: Object,
@@ -46,8 +53,8 @@ export default {
   template: `
     <div :class="classValue" :style="colorStyling">
       <div class="stage__container container" DISABLED-data-utility-animation-step="1">
-        <div class="row">
-          <div class="col-sm-12">
+        <div class="stage__row row">
+          <div class="stage__wrapper col-sm-12">
             <overline v-if="overline" :text="overline" />
             <headline :text="headline" level="h1" :classes="headlineClasses" />
             <subline v-if="subline" :text="subline" />

@@ -536,6 +536,11 @@ $font-style-map: (
   }
 }
 
+.text--light {
+  --color-copy: var(--color-white);
+  --color-headlines: var(--color-white);
+}
+
 :root {
   --type-default-line-height: #{$default-line-height};
 }
