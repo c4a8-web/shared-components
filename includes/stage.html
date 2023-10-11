@@ -5,6 +5,7 @@
 {%- assign stageBgColor = include.bgColor | default: stageHero.bgColor -%}
 {%- assign stageLight = include.light | default: stageHero.light -%}
 {%- assign stageSpacing = include.spacing | default: stageHero.spacing -%}
+{%- assign stageOverline = include.overline | default: stageHero.overline -%}
 
 <stage
   headline="{{ stageHeadline }}"
@@ -12,6 +13,7 @@
   bg-color="{{ stageBgColor }}"
   :light="{{ stageLight }}"
   spacing="{{ stageSpacing }}"
+  overline="{{ stageOverline }}"
 >
 </stage>
 

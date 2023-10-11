@@ -39,6 +39,7 @@ import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
+import Overline from './vue/overline.js';
 import PostTeaser from './vue/post-teaser.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
@@ -166,6 +167,7 @@ const addApp = () => {
     ListContainer,
     LogoList,
     Modal,
+    Overline,
     PostTeaser,
     PersonQuote,
     ScrollArrow,
