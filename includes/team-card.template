@@ -1,0 +1,73 @@
+{% assign teamcard = include.teamcard %}
+<!-- Team Section -->
+<div class="team-card container space-2">
+  <div class="row mx-n2 mb-5">
+      {% for item in teamcard.items %}
+    <div class="col-sm-6 col-lg-4 px-2 mb-3">
+
+      <!-- Team -->
+
+      <div class="card h-100 ">
+
+        <div class="card-body has-card-background">
+          <div style="margin-bottom:50px;">
+              {%
+                  include img.html
+                  cloudinary=true
+                  img=item.img
+                  alt=item.alt
+                %}
+          </div>
+
+          <h3>{{ item.name }}</h3>
+          <h4>{{ item.job }}</h4>
+          <p>{{ item.description }} </p>
+
+
+        <div>
+          {% if item.knowledge %}
+          <p class="list-inline-item">
+
+              <p class="navbar-promo-icon">{% streamlinelight "certified/certified-ribbon-2" "Certification" "navbar-promo-icon" %}</p>
+              {{ item.knowledge }}
+          </p>
+          {% endif %}
+          {% if item.webcasts %}
+          <h3 class="mb-3">
+              <a class="text-dark" href="{{ item.href }}">{{ item.webcasts }}</a>
+          </h3>
+          {% endif %}
+
+        </div></div>
+
+        <div class="card-footer border-0 pt-0">
+          <!-- Social Networks -->
+
+          <ul class="list-inline mb-0">
+
+
+          {% if item.twitter %}
+            <li class="list-inline-item">
+              <a href="{{ item.twitter }}">
+                <i class="fab fa-twitter" style="font-size:1.5rem;"></i>
+              </a>
+            </li>
+          {% endif %}
+          {% if item.linkedin %}
+            <li class="list-inline-item">
+              <a href="{{ item.linkedin }}">
+                <i class="fab fa-linkedin" style="font-size:1.5rem;"></i>
+              </a>
+            </li>
+          {% endif %}
+
+          </ul>
+          <!-- End Social Networks -->
+        </div>
+      </div>
+
+      <!-- End Team -->
+    </div>
+
+    {% endfor %}
+</div>
