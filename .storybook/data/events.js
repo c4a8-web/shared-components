@@ -14,8 +14,31 @@ const Events = [
       'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
   },
   {
+    url: 'javascript:void(0);' /* url is not overwriteable in yaml */,
+    eventid: 'eventid',
+    title: 'Security Workshop in Offenbach',
+    headline: 'Security Workshop in Offenbach',
+    moment: '2023-10-18',
+    webcast: true,
+    time: '9:30-15 Uhr',
+    image: {
+      img: '/events/card-sec-motion-of.jpg',
+      alt: 'Security Motion Offenbach',
+    },
+    layout: 'event',
+    tags: ['Security'],
+    cta: {
+      text: 'Jetzt anmelden',
+      href: 'https://security-motion-offenbach.eventbrite.de',
+      skin: 'primary',
+      button: true,
+      external: true,
+    },
+    excerpt:
+      'Kostenloser Security Workshop am 18. Oktober 2023 in Offenbach! Treffen Sie uns im glueckkanja Headquarter für einen spannenden Microsoft Security Roundtable, organisiert in enger Kooperation mit Microsoft. Jetzt anmelden und Platz sichern!',
+  },
+  {
     excerpt: '',
-    blogtitlepic: 'head-azure-security-webcast',
     moment: '2022-06-17',
     layout: 'event',
     url: 'javascript:void(0)',
