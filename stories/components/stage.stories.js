@@ -17,7 +17,7 @@ export const Text = Template.bind({});
 Text.args = {
   variant: 'hero--text',
   headline: 'Wenn Sie wissen, worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
-  // level: 'h5',
+  headlineLevel: 'h5',
   light: true,
   overline: 'Preventive Service',
   bgColor: 'var(--color-gigas)',

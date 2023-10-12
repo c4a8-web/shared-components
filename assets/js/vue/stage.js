@@ -25,6 +25,9 @@ export default {
     headlineClasses() {
       return 'stage__headline h2-font-size thin light';
     },
+    headlineLevel() {
+      return this.headlineLevel || 'h1';
+    },
     spacingClasses() {
       // TODO implement
     },
@@ -33,6 +36,7 @@ export default {
     classes: String,
     variant: String,
     headline: String,
+    headlineLevel: String,
     subline: String,
     overline: String,
     ctaText: String,
@@ -56,7 +60,7 @@ export default {
         <div class="stage__row row">
           <div class="stage__wrapper col-sm-12">
             <overline v-if="overline" :text="overline" />
-            <headline :text="headline" level="h1" :classes="headlineClasses" />
+            <headline :text="headline" :level="headlineLevel" :classes="headlineClasses" />
             <subline v-if="subline" :text="subline" />
             <cta v-if="ctaText" :text="ctaText" />
             <animation v-if="animation" :sequence="animation.sequence" />
