@@ -2,6 +2,9 @@
 {%- assign eventDate = include.date -%}
 {%- assign eventCategory = include.category -%}
 {%- assign eventText = include.text -%}
+{%- assign eventBgColor = include.bgColor -%}
+{%- assign eventColor = include.color -%}
+{%- assign eventImage = include.image -%}
 
 <!-- Shared Event Section -->
 <event
@@ -9,6 +12,9 @@
   date="{{ eventDate }}"
   category="{{ eventCategory }}"
   text="{{ eventText }}"
+  bg-color="{{ eventBgColor }}"
+  color="{{ eventColor }}"
+  image="{{ eventImage | jsonify | escape }}"
 >
 </event>
 <!-- End Shared Event Section -->

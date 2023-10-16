@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Event = Template.bind({});
+export const Default = Template.bind({});
 
-Event.args = {
+Default.args = {
   title: 'Event Title',
   date: '2020-01-01',
   category: 'Event Category',
@@ -22,4 +22,19 @@ Event.args = {
     img: 'https://picsum.photos/200',
     alt: 'Event Image',
   },
+};
+
+export const YellowWithImage = Template.bind({});
+
+YellowWithImage.args = {
+  title: 'Event Title',
+  date: '2023-12-17',
+  category: 'Event Category',
+  text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
+  image: {
+    img: '/events/security-quick-check-workshop.png',
+    alt: 'Security Quick Check Workshop',
+  },
+  bgColor: 'var(--color-yellow)',
+  color: 'var(--color-copy)',
 };

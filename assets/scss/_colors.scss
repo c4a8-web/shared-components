@@ -84,6 +84,9 @@ $gray-600: #8c98a4;
 
   --color-active: var(--color-primary);
 
+  // more abstract color assignments
+  --color-surface-background: var(--color-black-4);
+
   // rules that default to everything
 
   --color-border-default: var(--color-black-30);
@@ -150,13 +153,13 @@ $gray-600: #8c98a4;
   --color-event-teaser-teaser-background: var(--color-green-blue);
   --color-event-teaser-teaser-copy: var(--color-white);
 
-  --color-event-detail: var(--color-black-4);
+  --color-event-detail: var(--color-surface-background);
   --color-event-detail-shape: var(--color-yellow);
 
   --color-badge-icon: var(--color-white);
   --color-badge-background: var(--color-orange);
 
-  --color-card-background: var(--color-black-4);
+  --color-card-background: var(--color-surface-background);
   --color-card-highlight: var(--color-orange);
 
   --color-back-to-top-border: var(--color-border-default);
@@ -191,7 +194,7 @@ $gray-600: #8c98a4;
 
   --color-toggle-switch-indicator: var(--color-midnight);
 
-  --color-accordion-hover-background: var(--color-black-4);
+  --color-accordion-hover-background: var(--color-surface-background);
   --color-table-mark: var(--color-yellow);
 
   --color-emergency: var(--color-orange);

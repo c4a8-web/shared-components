@@ -1,0 +1,37 @@
+.event {
+  @include hover-scale;
+
+  container-type: inline-size;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  @container (min-width: 700px) {
+    .event__inner {
+      display: flex;
+      flex-direction: row;
+    }
+  }
+}
+
+.event__date {
+  background-color: var(--color-event-background);
+  color: var(--color-event-copy);
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  place-content: center;
+  padding: spacing(7) spacing(5);
+}
+
+.event__date,
+.event__image-container {
+  flex: 0 1 16%;
+}
+
+.event__content {
+  background-color: var(--color-surface-background);
+  flex: 1;
+  padding: spacing(5);
+}
