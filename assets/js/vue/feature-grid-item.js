@@ -60,7 +60,7 @@ export default {
   },
   template: `
     <div :class="classList" data-utility-animation-step="1" :style="style">
-      <div class="bg-white d-flex flex-column  h-100 py-5 px-3">
+      <div class="bg-white d-flex flex-column h-100 py-5 px-3 richtext">
         <figure class="w-100 max-w-10rem mb-5 mx-auto" v-if="image" >
           <v-img :img="image.src" :alt="image.alt" :cloudinary="image.cloudinary" />
         </figure>
@@ -70,7 +70,7 @@ export default {
         <p v-if="description" class="mb-0" v-html="description"></p>
         <p v-if="copy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="copy"></p>
 
-        <ul v-if="list" class="m-0 p-0 flex-grow-1" style="margin-bottom:10px !important;">
+        <ul v-if="list" class="m-0 flex-grow-1" style="margin-bottom:10px !important;">
           <li v-for="text in list" class="feature-grid-item__text font-size-sm d-flex" d-flex v-html="text"></li>
         </ul>
 
