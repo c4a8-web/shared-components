@@ -46,16 +46,19 @@
               alt=iconBlocks.alt
             %}
           </figure>
-          {%
-            include headline.html
-            text=item.headline
-            level=iconBlocksLevel
-            classes=iconBlocksClasses
-          %}
-          <p>{{ item.copy }}</p>
-        </div>
-        <!-- End Shared Icon Blocks -->
+            {%
+              include headline.html
+              text=item.headline
+              level=iconBlocksLevel
+              classes=iconBlocksClasses
+            %}
+
+          <div class="{% if item.headline != "Windows 10"%} icon-blocks__richtext richtext richtext__small {% endif %}">
+            {{ item.copy }}
+          </div>
       </div>
+      <!-- End Shared Icon Blocks -->
+    </div>
       {% endfor %}
     </div>
     {% if iconBlocksCta %}
