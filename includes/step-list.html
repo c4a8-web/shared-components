@@ -57,7 +57,10 @@ This starts at 2 to increase the first
                 <div class="step-list__title step-list__title--no-default">
                   {{ element.title }}
                 </div>
-                {{ element.content }}
+                <div class="step-list__richtext richtext richtext__small">
+                  {{ element.content }}
+                </div>
+
                 {% if element.ctaText %}
                   {%
                     include cta.html

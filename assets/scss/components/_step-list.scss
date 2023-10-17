@@ -82,6 +82,10 @@ $step-list-color-img-tint: $color-copy;
     }
   }
 
+  .step-list__richtext {
+    padding: spacing(5);
+  }
+
   @include media-breakpoint-up(lg) {
     .step-list__list {
       display: flex;
