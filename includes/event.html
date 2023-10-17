@@ -5,6 +5,8 @@
 {%- assign eventBgColor = include.bgColor -%}
 {%- assign eventColor = include.color -%}
 {%- assign eventImage = include.image -%}
+{%- assign eventTime = include.time -%}
+{%- assign eventTimeColor = include.timeColor -%}
 
 <!-- Shared Event Section -->
 <event
@@ -15,6 +17,8 @@
   bg-color="{{ eventBgColor }}"
   color="{{ eventColor }}"
   image="{{ eventImage | jsonify | escape }}"
+  time="{{ eventTime }}"
+  time-color="{{ eventTimeColor }}"
 >
 </event>
 <!-- End Shared Event Section -->

@@ -387,6 +387,41 @@ class Tools {
 
     return color === 'rgba(0, 0, 0, 0)' ? null : color;
   }
+
+  static isValidTimeFormat(timeStr) {
+    const regex = /^(\d{1,2}(:\d{2})?-\d{1,2}(:\d{2})? Uhr)$/;
+
+    return regex.test(timeStr);
+  }
+
+  static standardizeTimeFormat(time) {
+    if (!this.isValidTimeFormat(time)) return time;
+
+    const timeKeyWord = 'Uhr';
+
+    let times = time.split('-');
+    let startTime = times[0].trim();
+
+    if (!startTime.includes(':')) {
+      startTime += ':00';
+    }
+
+    if (startTime.length === 4) {
+      startTime = '0' + startTime;
+    }
+
+    let endTime = times[1].trim().replace(` ${timeKeyWord}`, '');
+
+    if (!endTime.includes(':')) {
+      endTime += ':00';
+    }
+
+    if (endTime.length === 4) {
+      endTime = '0' + endTime;
+    }
+
+    return `${startTime} - ${endTime} ${timeKeyWord}`;
+  }
 }
 
 export default Tools;

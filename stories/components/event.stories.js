@@ -18,23 +18,22 @@ Default.args = {
   date: '2020-01-01',
   category: 'Event Category',
   text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
-  image: {
-    img: 'https://picsum.photos/200',
-    alt: 'Event Image',
-  },
 };
 
 export const YellowWithImage = Template.bind({});
 
 YellowWithImage.args = {
-  title: 'Event Title',
+  title: 'Event Title lorem ipsum dolor',
   date: '2023-12-17',
   category: 'Event Category',
   text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
   image: {
-    img: '/events/security-quick-check-workshop.png',
-    alt: 'Security Quick Check Workshop',
+    img: '/shared-components/card-sec-motion-dus.png',
+    alt: 'Event Image',
+    cloudinary: true,
   },
   bgColor: 'var(--color-yellow)',
   color: 'var(--color-copy)',
+  timeColor: 'var(--color-yellow-medium)',
+  time: '15-16 Uhr',
 };
