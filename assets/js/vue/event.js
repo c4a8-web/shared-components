@@ -14,27 +14,34 @@ export default {
       const date = new Date(this.date);
 
       if (isNaN(date.getTime())) {
-        throw new Error('Invalid date format');
+        return null;
       }
 
       return date;
     },
     dateDay() {
+      if (!this.validDate) return;
+
       const day = this.validDate.getDate();
 
       return day < 10 ? `0${day}` : day;
     },
     dateMonth() {
+      if (!this.validDate) return;
+
       const month = this.validDate.toLocaleDateString(undefined, { month: 'short' });
 
       return month.slice(0, 3);
     },
     dateWeekDay() {
+      if (!this.validDate) return;
+
       const weekDay = this.validDate.toLocaleDateString(undefined, { weekday: 'short' });
 
       return weekDay.slice(0, 2);
     },
     imageValue() {
+      console.log('🚀 ~ file: event.js:45 ~ imageValue ~ this.image:', this.image);
       return Tools.getJSON(this.image);
     },
     cloudinary() {
@@ -67,7 +74,7 @@ export default {
         <div class="event__content">
           <div class="event__meta">
             <time class="event__time font-size-1 bold" v-if="timeValue">{{ timeValue }}</time>
-            <span class="event__category font-size-1 bold is-uppercase">{{ category }}</span>
+            <span class="event__category font-size-1 bold is-uppercase" v-if="category">{{ category }}</span>
           </div>
           <headline class="event__headline" :text="title" level="h4" />
           <p class="event__text font-size-2 thin">{{ text }}</p>

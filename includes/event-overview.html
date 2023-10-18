@@ -1,0 +1,33 @@
+{%- assign eventOverviewEvents = include.events -%}
+
+{%- capture eventOverviewEventsString -%}[
+    {%- for eventOverviewEvent in eventOverviewEvents -%}
+      {% if eventOverviewEvent.moment -%}
+        {% assign eventOverviewEventDate = eventOverviewEvent.moment %}
+      {% else -%}
+        {% assign eventOverviewEventDate = eventOverviewEvent.date %}
+      {% endif -%}
+      {
+        "url": "{{ eventOverviewEvent.url }}",
+        "title": "{{ eventOverviewEvent.title | strip_html }}",
+        "date": "{{ eventOverviewEventDate }}",
+        "time": "{{ eventOverviewEvent.time }}",
+        "bgColor": "{{ eventOverviewEvent.bgColor }}",
+        "color": "{{ eventOverviewEvent.color }}",
+        "timeColor": "{{ eventOverviewEvent.timeColor }}",
+        {% if eventOverviewEvent.image %}
+        "image": {{ eventOverviewEvent.image | jsonify }},
+        {% endif %}
+        "category": "{{ eventOverviewEvent.categories[0] }}",
+        "text": "{{ eventOverviewEvent.excerpt | strip_html | strip_newlines | escape }}"
+      }{% unless forloop.last %},{% endunless -%}
+    {% endfor %}
+  ]
+{%- endcapture %}
+
+<!-- Shared Event Overview Section -->
+<event-overview
+  :events="{{ eventOverviewEventsString | jsonify | escape }}"
+>
+</event-overview>
+<!-- End Shared Event Overview Section -->
