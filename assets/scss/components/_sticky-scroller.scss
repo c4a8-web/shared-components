@@ -12,7 +12,8 @@
 
         > * {
           &:not(.modal) {
-            opacity: 0;
+            // TODO figure out why this was necessary. right now it is disabled
+            // opacity: 0;
           }
         }
 
