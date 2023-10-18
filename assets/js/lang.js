@@ -14,7 +14,14 @@ const LangData = {
     follow: 'Folgen',
     similarPosts: 'Ähnliche Artikel',
     withAuthor: 'Mit',
-    adBlockInfo: `<div class="text-center"><img src="${adBlockImage}" alt="Full Service" class="is-svg"><h3>Seitenfunktionalität möglicherweise eingeschränkt</h3>Wir haben festgestellt, dass du einen Adblocker verwendest. Um sicherzustellen, dass unsere Seite richtig funktioniert und dir alle Funktionen zur Verfügung stehen, empfehlen wir dir, unsere Seite zu deiner Whitelist hinzuzufügen. Wir zeigen definitiv keine Werbung an. Versprochen!</div>`,
+    adBlockInfo: `
+        <div class="ad-block-info__content">
+          <img src="${adBlockImage}" alt="Full Service" class="is-svg">
+          <div class="ad-block-info__row">
+            <h5>Hoppla, Adblocker erkannt!</h5>
+            <div class="ad-block-info__text">Damit unsere Website reibungslos funktioniert, füge uns zur Whitelist hinzu. Wir nerven nicht mit Werbung. Versprochen!</div>
+          </div>
+        </div>`,
   },
   en: {
     tags: 'Tags',
@@ -28,13 +35,31 @@ const LangData = {
         <div class="ad-block-info__content">
           <img src="${adBlockImage}" alt="Full Service" class="is-svg">
           <div class="ad-block-info__row">
-            <h5>Adblocker</h5>
-            <div class="ad-block-info__text">We have noticed that you are using an adblocker. To ensure that our site works properly and all features are available to you, we recommend that you add our site to your whitelist. We definitely do not display ads. Promise!</div>
+            <h5>Oops, adblocker detected!</h5>
+            <div class="ad-block-info__text">To keep our website running smoothly, add us to the whitelist. We won't annoy you with ads. Promise!</div>
+          </div>
+        </div>`,
+  },
+  es: {
+    tags: 'Tags',
+    tagsHeadline: 'Entradas por Tags',
+    tagsClear: 'Borrar todo',
+    posts: 'Puestos',
+    follow: 'Siga',
+    similarPosts: 'Puestos similares',
+    withAuthor: 'Con',
+    adBlockInfo: `
+        <div class="ad-block-info__content">
+          <img src="${adBlockImage}" alt="Full Service" class="is-svg">
+          <div class="ad-block-info__row">
+            <h5>Oops, adblocker detectado!</h5>
+            <div class="ad-block-info__text">Para que nuestro sitio web funcione correctamente, añádenos a tu lista blanca. No te molestaremos con publicidad. Te lo prometemos.</div>
           </div>
         </div>`,
   },
 };
 
 const Lang = LangData[Tools.getLang()];
+console.log('🚀 ~ file: lang.js:63 ~ [Tools.getLang():', Tools.getLang());
 
 export default Lang;
