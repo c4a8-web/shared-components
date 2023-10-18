@@ -39,6 +39,37 @@
       }
     }
   }
+
+  &.modal--notification {
+    .modal-dialog {
+      --modal-bottom-spacing: #{spacing(8)};
+
+      display: flex;
+      align-items: flex-end;
+      min-height: calc(100% - var(--modal-bottom-spacing));
+
+      @include media-breakpoint-up(lg) {
+        --modal-bottom-spacing: #{spacing(16)};
+      }
+    }
+
+    .modal__header {
+      position: relative;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+
+    .modal__close {
+      position: absolute;
+      z-index: 1;
+      cursor: pointer;
+    }
+
+    .modal__body {
+      padding: spacing(4);
+    }
+  }
 }
 
 .modal__header {

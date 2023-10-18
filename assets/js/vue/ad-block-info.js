@@ -57,8 +57,7 @@ export default {
     <div class="ad-block-info vue-component" v-if="textValue">
       <modal
         ref="modal-component"
-        slim=true
-        center=true
+        notification=true
       >
         <div class="container">
           <div class="row">
