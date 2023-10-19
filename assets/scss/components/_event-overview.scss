@@ -2,4 +2,31 @@
   display: flex;
   flex-direction: column;
   gap: spacing(6);
+
+  &:not(.event-overview--overlap) {
+    padding: spacing(6) 0;
+
+    @include media-breakpoint-up(lg) {
+      padding: spacing(12) 0;
+    }
+  }
+
+  &.event-overview--overlap {
+    @include z-index;
+
+    position: relative;
+    margin-top: spacing($size: 10, $negative: true);
+
+    .event-overview__headline {
+      display: none;
+    }
+
+    @include media-breakpoint-up(lg) {
+      margin-top: spacing($size: 40, $negative: true);
+    }
+  }
+
+  .event-overview__headline {
+    margin-bottom: spacing(6);
+  }
 }

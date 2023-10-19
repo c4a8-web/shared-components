@@ -11,9 +11,9 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const EventOverview = Template.bind({});
+export const ManualEvents = Template.bind({});
 
-EventOverview.args = {
+ManualEvents.args = {
   events: [
     {
       url: 'javascript:void(0);' /* url is not overwriteable in yaml */,
@@ -26,6 +26,10 @@ EventOverview.args = {
       tags: ['Microsoft', 'Teams', 'Calling', 'Audiocodes'],
       blogtitlepic: 'head-audiocodes-review',
       socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
+      image: {
+        img: '/demo/authors-demo.png',
+        alt: 'lorem ipsum',
+      },
       excerpt:
         'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
     },
@@ -71,4 +75,12 @@ EventOverview.args = {
       },
     },
   ],
+};
+
+export const Ordered = Template.bind({});
+
+Ordered.args = {
+  headline: 'Termine',
+  headlineLevel: 'h2',
+  order: ['event-1', 'event-3', 'event-4'],
 };

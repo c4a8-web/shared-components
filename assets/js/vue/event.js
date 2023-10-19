@@ -41,7 +41,6 @@ export default {
       return weekDay.slice(0, 2);
     },
     imageValue() {
-      console.log('🚀 ~ file: event.js:45 ~ imageValue ~ this.image:', this.image);
       return Tools.getJSON(this.image);
     },
     cloudinary() {
