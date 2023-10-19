@@ -1,4 +1,3 @@
 .feature-grid {
   @include utility-animation-options($distance: 15%, $delay: 100ms, $duration: 0.8s);
-  @include bulletpoints;
 }

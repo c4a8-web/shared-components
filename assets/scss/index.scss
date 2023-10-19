@@ -77,13 +77,11 @@ ul.dashed {
   list-style-type: none;
 }
 
-ul.dashed li:before {
-  content: '\2014';
-  position: absolute;
-  margin-left: -30px;
-  color: var(--color-macaroni-and-cheese);
+ul {
+  &.dashed {
+    @include bulletpoints;
+  }
 }
-
 .drop-shadow {
   filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.2));
 }

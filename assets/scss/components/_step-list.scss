@@ -82,10 +82,6 @@ $step-list-color-img-tint: $color-copy;
     }
   }
 
-  .step-list__bulletpoints {
-    @include bulletpoints;
-  }
-
   @include media-breakpoint-up(lg) {
     .step-list__list {
       display: flex;

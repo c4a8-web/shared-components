@@ -45,6 +45,7 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
 
   ul {
     @include richtext-width;
+    @include bulletpoints;
 
     list-style: none;
     margin-bottom: 0;
@@ -63,20 +64,10 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     }
 
     li {
-      position: relative;
       margin-bottom: spacing(4);
 
       &::before {
-        content: '';
-        position: absolute;
-        display: inline-flex;
-        height: 2px;
-        width: 20px;
         top: 16px;
-        left: -20px;
-        background-color: var(--color-primary);
-        padding-right: 20px;
-        transform: translateX(-100%);
       }
     }
   }
