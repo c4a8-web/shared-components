@@ -33,7 +33,6 @@
 
     li {
       position: relative;
-      margin-bottom: spacing(4); // remove for no gaps
 
       &::before {
         content: '';
@@ -41,7 +40,7 @@
         display: inline-flex;
         height: 2px;
         width: 20px;
-        top: 13px;
+        top: 11px;
         left: -20px;
         background-color: var(--color-primary);
         padding-right: 20px;

@@ -60,7 +60,7 @@ export default {
   },
   template: `
     <div :class="classList" data-utility-animation-step="1" :style="style">
-      <div class="bg-white d-flex flex-column h-100 py-5 px-3 richtext">
+      <div class="bg-white d-flex flex-column h-100 py-5 px-3">
         <figure class="w-100 max-w-10rem mb-5 mx-auto" v-if="image" >
           <v-img :img="image.src" :alt="image.alt" :cloudinary="image.cloudinary" />
         </figure>

@@ -57,7 +57,7 @@ This starts at 2 to increase the first
                 <div class="step-list__title step-list__title--no-default">
                   {{ element.title }}
                 </div>
-                <div class="step-list__richtext richtext richtext__small">
+                <div class="{% unless element.img %} step-list__bulletpoints {% endunless %}">
                   {{ element.content }}
                 </div>
 
