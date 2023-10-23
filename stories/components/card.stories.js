@@ -68,16 +68,16 @@ CardLong.args = {
   long: true,
   scope: 'Umfang: 1-2 Tage',
   layout: 'post',
-  title: 'glueckkanja-gab Quick-Check',
+  title: 'glueckkanja Quick-Check',
   footer:
     'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit ame',
   blogtitlepic: `${site.blog_image_path}head-emergency-calls`,
   socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
   excerpt:
-    'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mirosoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
+    'Bei glueckkanja sitzt du nicht nur direkt an der Mirosoft-Quelle- du profitierst auch von einer Microsoft-Expertise lorem ipsum dolor sit amet erat non proident',
   subpoints: [
-    'Bei glueckkanja-gab sitzt du nicht nur direkt an der Mirosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
-    'Dir stehen bei glueckkanja-gab viele Türen offen und',
+    'Bei glueckkanja sitzt du nicht nur direkt an der Mirosoft-Quelle- du profitierst auch von einer Microsoft-Expertise, die so kaum ein anderes IT-Beratungsunternehmen in Deutschland hat',
+    'Dir stehen bei glueckkanja viele Türen offen und',
     'Auch wenn du heute nicht so weit bist',
   ],
   cta: {

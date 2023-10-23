@@ -1,9 +1,9 @@
 import { createTemplate, getTitle } from '../../.storybook/templates';
-import homeGkgabTemplate from '!!raw-loader!./home-gkgab.html';
+import homeGkTemplate from '!!raw-loader!./home-gk.html';
 import { Right } from '../components/textImage.stories';
 
 const options = getTitle({
-  title: 'Home Gkgab',
+  title: 'Home Gk',
   page: true,
 });
 
@@ -11,7 +11,7 @@ export default {
   ...options,
 };
 
-const Template = (args) => createTemplate(args, homeGkgabTemplate);
+const Template = (args) => createTemplate(args, homeGkTemplate);
 
 const baseArgs = {
   firstTeaser: {
@@ -19,8 +19,8 @@ const baseArgs = {
   },
 };
 
-export const HomeGkgab = Template.bind({});
+export const HomeGk = Template.bind({});
 
-HomeGkgab.args = {
+HomeGk.args = {
   ...baseArgs,
 };

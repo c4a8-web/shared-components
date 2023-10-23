@@ -240,7 +240,7 @@ LeftFloatingBg.args = {
   level: 'h2',
   left: true,
   float: true,
-  copy: 'Dieses Jahr findet die Workplace Ninja Virtual Edition 2021 <strong>vom 31. August bis 2. September </strong> statt. Eine der wichtigsten europäischen Technologiekonferenzen für Hardcore-Techies in ConfigMgr, Intune, Microsoft Security, Azure AD, PowerShell und Azure Virtual Desktop. Ziel der Veranstaltung ist es, Workplace-Experten zusammenzubringen, um ihr Wissen zu teilen und gemeinsam zu lernen. glueckkanja-gab ist dieses Jahr Platin-Sponsor und wird mit zwei Beiträgen dabei sein. Aufgrund der COVID-19 ist die Veranstaltung <strong>virtuell und komplett kostenlos</strong>. Die Anmeldung ist bereits möglich. Wir freuen uns darauf, euch dort zu treffen.',
+  copy: 'Dieses Jahr findet die Workplace Ninja Virtual Edition 2021 <strong>vom 31. August bis 2. September </strong> statt. Eine der wichtigsten europäischen Technologiekonferenzen für Hardcore-Techies in ConfigMgr, Intune, Microsoft Security, Azure AD, PowerShell und Azure Virtual Desktop. Ziel der Veranstaltung ist es, Workplace-Experten zusammenzubringen, um ihr Wissen zu teilen und gemeinsam zu lernen. glueckkanja ist dieses Jahr Platin-Sponsor und wird mit zwei Beiträgen dabei sein. Aufgrund der COVID-19 ist die Veranstaltung <strong>virtuell und komplett kostenlos</strong>. Die Anmeldung ist bereits möglich. Wir freuen uns darauf, euch dort zu treffen.',
   background: getAssetPath('svg/shapes/shape-5.svg'),
   list: [
     {

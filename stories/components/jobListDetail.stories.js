@@ -123,7 +123,7 @@ const baseArgs = {
       level: 'h3',
     },
     address: {
-      name: 'glueckkanja-gab AG',
+      name: 'glueckkanja AG',
       street: 'Kaiserstraße 39',
       postalCode: '63065',
       city: 'Offenbach am Main',

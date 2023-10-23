@@ -20,7 +20,7 @@ TextTeaser.args = {
   list: [
     {
       ctaText: 'Sprechen Sie uns an',
-      ctaHref: 'mailto:leads@glueckkanja-gab.com',
+      ctaHref: 'mailto:leads@glueckkanja.com',
     },
   ],
 };
@@ -32,7 +32,7 @@ TextTeaserNoBackground.args = {
   list: [
     {
       ctaText: 'Sprechen Sie uns an',
-      ctaHref: 'mailto:leads@glueckkanja-gab.com',
+      ctaHref: 'mailto:leads@glueckkanja.com',
     },
   ],
 };
@@ -52,8 +52,8 @@ PartnerQuote.args = {
     },
   ],
   logo: {
-    alt: 'gkgab-RADIUSaaS',
-    img: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
+    alt: 'gk-RADIUSaaS',
+    img: getAssetPath('svg/logos/gk-RADIUSaaS.svg'),
     cloudinary: false,
     alt: 'Lorem Ipsum',
   },
@@ -72,8 +72,8 @@ PartnerQuoteNoBackground.args = {
     },
   ],
   logo: {
-    alt: 'gkgab-RADIUSaaS',
-    img: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
+    alt: 'gk-RADIUSaaS',
+    img: getAssetPath('svg/logos/gk-RADIUSaaS.svg'),
     cloudinary: false,
     alt: 'Lorem Ipsum',
   },
