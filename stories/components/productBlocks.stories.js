@@ -17,7 +17,7 @@ TwoItems.args = {
   productBlocks: {
     items: [
       {
-        image: getAssetPath('svg/logos/gkgab-SCEPman.svg'),
+        image: getAssetPath('svg/logos/gk-SCEPman.svg'),
         headline: '',
         copy: 'Erklären wer von Kauf über Azur Marketplace profitiert.  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         list: [
@@ -35,7 +35,7 @@ TwoItems.args = {
         ],
       },
       {
-        image: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
+        image: getAssetPath('svg/logos/gk-RADIUSaaS.svg'),
         headline: '',
         copy: 'Erklären wer von Kauf über Azur Marketplace profitiert.  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. wer von Kauf über Azur Marketplace profitiert.  dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.',
         list: [
@@ -58,7 +58,7 @@ FiveItems.args = {
   productBlocks: {
     items: [
       {
-        image: getAssetPath('svg/logos/gkgab-SCEPman.svg'),
+        image: getAssetPath('svg/logos/gk-SCEPman.svg'),
         headline: '',
         copy: '<ul class="dashed"><li>Get rid of your legacy PKI!</li><li>Issue and validate certificates for Intune managed clients for authentication purposes</li></ul>',
         ctaText: 'Go to SCEPman',
@@ -67,7 +67,7 @@ FiveItems.args = {
         target: '_blank',
       },
       {
-        image: getAssetPath('svg/logos/gkgab-RADIUSaaS.svg'),
+        image: getAssetPath('svg/logos/gk-RADIUSaaS.svg'),
         headline: '',
         copy: '<ul class="dashed"><li>Get rid of your RADIUS server!</li><li>Enjoy certificate-based authentication using the RADIUS protocol</li></ul>',
         ctaText: 'Go to RADIUSaaS',
@@ -76,7 +76,7 @@ FiveItems.args = {
         target: '_blank',
       },
       {
-        image: getAssetPath('svg/logos/gkgab-KONNEKT.svg'),
+        image: getAssetPath('svg/logos/gk-KONNEKT.svg'),
         headline: '',
         copy: '<ul class="dashed"><li>Get rid of your file server!</li><li>Enjoy certificate-based authentication using the RADIUS protocol</li></ul>',
         ctaText: 'Go to KONNEKT',
@@ -85,7 +85,7 @@ FiveItems.args = {
         target: '_blank',
       },
       {
-        image: getAssetPath('svg/logos/gkgab-RealmJoin.svg'),
+        image: getAssetPath('svg/logos/gk-RealmJoin.svg'),
         headline: '',
         copy: '<ul class="dashed"><li>Get rid of your legacy client management solution!</li><li>Empower Intune with additional features and easy access for your helpdesk staff</li><li>Get Intune-packages for all your Win32 and MacOS apps</li></ul>',
         ctaText: 'Go to RealmJoin',

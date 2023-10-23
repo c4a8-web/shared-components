@@ -10,7 +10,7 @@ const FooterData = {
   copyright: '2023 glueckkanja AG. All rights reserved.',
   logos: [
     {
-      img: '/logos/gkgab-Logo-white-vektor.svg',
+      img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
     },
@@ -43,9 +43,10 @@ const FooterData = {
   highlights: [
     {
       title: 'a brand of:',
-      img: '/mandrill/gkgab-logo-white.svg',
+      img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja AG',
       url: 'https://www.glueckkanja.com/de',
+      classes: 'w-50 w-sm-40 w-lg-60 w-xl-50',
       target: '_blank',
     },
     {

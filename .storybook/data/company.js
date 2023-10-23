@@ -4,9 +4,10 @@ const Company = {
   mail: 'info@glueckkanja.com',
   logos: [
     {
-      img: '/logos/gkgab-Logo-white-vektor.svg',
+      img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
+      class: 'max-w-19rem',
     },
     {
       img: '/v1623133806/logos/primepulse-endorsement-white.svg',

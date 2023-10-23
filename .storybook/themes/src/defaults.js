@@ -1,7 +1,7 @@
 export const THEME_LIST = {
-  gkgab: {
+  gk: {
     name: 'Glueckkanja',
-    type: 'gkgab',
+    type: 'gk',
   },
   radius: {
     name: 'RADIUSaaS',
