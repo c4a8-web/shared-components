@@ -1,16 +1,16 @@
 const Company = {
   bgColor: 'var(--color-blue-medium)',
   number: '+49 69 4005520',
-  mail: 'info@glueckkanja-gab.com',
+  mail: 'info@glueckkanja.com',
   logos: [
     {
       img: '/logos/gkgab-Logo-white-vektor.svg',
-      alt: 'glueckkanja-gab Logo',
+      alt: 'glueckkanja Logo',
       url: 'index.html',
     },
     {
       img: '/v1623133806/logos/primepulse-endorsement-white.svg',
-      alt: 'glueckkanja-gab Logo',
+      alt: 'glueckkanja Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
       classes: 'offset-lg-6',
@@ -38,7 +38,7 @@ const Company = {
     {
       img: '/logos/iso-27001-siegel.png',
       alt: 'ISO 27001',
-      url: 'https://www.glueckkanja-gab.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
+      url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
       classes: 'w-65',
     },

@@ -20,7 +20,7 @@ TextTeaser.args = {
   list: [
     {
       ctaText: 'Sprechen Sie uns an',
-      ctaHref: 'mailto:leads@glueckkanja-gab.com',
+      ctaHref: 'mailto:leads@glueckkanja.com',
     },
   ],
 };
@@ -32,7 +32,7 @@ TextTeaserNoBackground.args = {
   list: [
     {
       ctaText: 'Sprechen Sie uns an',
-      ctaHref: 'mailto:leads@glueckkanja-gab.com',
+      ctaHref: 'mailto:leads@glueckkanja.com',
     },
   ],
 };

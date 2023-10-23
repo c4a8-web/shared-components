@@ -23,12 +23,12 @@ TwoItems.args = {
         list: [
           {
             ctaText: 'Buy Lorem',
-            ctaHref: 'https://www.glueckkanja-gab.com/',
+            ctaHref: 'https://www.glueckkanja.com/',
             target: '_blank',
           },
           {
             ctaText: 'Quote Lorem',
-            ctaHref: 'https://www.glueckkanja-gab.com/',
+            ctaHref: 'https://www.glueckkanja.com/',
             target: '_blank',
             skin: 'secondary',
           },
@@ -41,7 +41,7 @@ TwoItems.args = {
         list: [
           {
             ctaText: 'Buy Lorem',
-            ctaHref: 'https://www.glueckkanja-gab.com/',
+            ctaHref: 'https://www.glueckkanja.com/',
             target: '_blank',
           },
         ],

@@ -50,7 +50,7 @@ FullWidth.args = {
   id: 'ThxpyUOz2R8',
   fullWidth: true,
   headline: {
-    text: 'Himmelsstürmer gesucht: <br/> glueckkanja-gab sucht Verstärkung',
+    text: 'Himmelsstürmer gesucht: <br/> glueckkanja sucht Verstärkung',
     color: '--color-white',
     alignment: 'text-center', // text-right, text-left
   },

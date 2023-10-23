@@ -9,7 +9,7 @@ const Contact = {
       alt: 'Kontakt mit Sophie',
       name: 'Sophie Luna',
       number: '+49 69 4005520',
-      mail: 'sales@glueckkanja-gab.com',
+      mail: 'sales@glueckkanja.com',
     },
     form: {
       ctaText: 'Absenden',
@@ -55,14 +55,14 @@ const Contact = {
         },
         {
           label:
-            'Ich möchte per E-Mail über Neuigkeiten, Veranstaltungen und Angebote und Dienstleistungen von glueckkanja-gab informiert werden.',
+            'Ich möchte per E-Mail über Neuigkeiten, Veranstaltungen und Angebote und Dienstleistungen von glueckkanja informiert werden.',
           type: 'checkbox',
           id: 'checkbox2',
         },
         {
           type: 'hidden',
           id: '_to',
-          value: '6ad396fb.glueckkanja-gab.com@de.teams.ms',
+          value: '6ad396fb.glueckkanja.com@de.teams.ms',
         },
         {
           type: 'hidden',
@@ -81,7 +81,7 @@ const Contact = {
       alt: 'Kontakt mit Sophie',
       name: 'Sophie Luna',
       number: '+49 69 4005520',
-      mail: 'sales@glueckkanja-gab.com',
+      mail: 'sales@glueckkanja.com',
     },
     form: {
       ctaText: 'Submit',
@@ -123,14 +123,14 @@ const Contact = {
           id: 'checkbox1',
         },
         {
-          label: 'I would like to be informed by email about news, events and offers and services of glueckkanja-gab.',
+          label: 'I would like to be informed by email about news, events and offers and services of glueckkanja.',
           type: 'checkbox',
           id: 'checkbox2',
         },
         {
           type: 'hidden',
           id: '_to',
-          value: '6ad396fb.glueckkanja-gab.com@de.teams.ms',
+          value: '6ad396fb.glueckkanja.com@de.teams.ms',
         },
         {
           type: 'hidden',

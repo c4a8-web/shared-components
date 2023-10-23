@@ -20,7 +20,7 @@ export const Product = Template.bind({});
 Product.args = {
   noMargin: true,
   data: {
-    name: 'glueckkanja-gab AG',
+    name: 'glueckkanja AG',
     street: 'Kaiserstraße 39',
     postalCode: 63065,
     city: 'Offenbach',
@@ -34,7 +34,7 @@ Product.args = {
         street: 'Level 1 9-13 Bronte Road',
         city: 'Bondi Junction NSW',
         country: 'Australia',
-        mail: 'info@glueckkanja-gab.com',
+        mail: 'info@glueckkanja.com',
         postalReversed: true,
       },
     ],
