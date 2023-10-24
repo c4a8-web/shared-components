@@ -18,16 +18,16 @@ Videos.args = {
     bgColor: '#5cbbff',
     headline: 'Leuchtturmprojekte',
     subline:
-      'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
+      'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
     videos: [
       {
         thumb: 'thumbs/video-thumb-haniel.jpg',
         alt: 'Video Casestudy Franz Haniel',
         id: 'hV97zDTlDko',
-        headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+        headline: 'Franz Haniel verlässt sich auf glueckkanja',
         logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
         logoAlt: 'Franz Haniel',
-        text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+        text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
       },
       {
         ctaText: 'Button',
@@ -40,7 +40,7 @@ Videos.args = {
         headline: 'Uniper setzt auf M365 und CSOC',
         logo: 'c_lpad,h_100,w_180/logos/cust-uniper.png',
         logoAlt: 'alt logo',
-        text: 'Mit der Einführung von Microsoft 365 und anderen Services des preisgekrönten Partners glueckkanja-gab veränderte Uniper seine Arbeitsplatzkultur und optimierte die Zusammenarbeit und Sicherheit im gesamten Unternehmen.',
+        text: 'Mit der Einführung von Microsoft 365 und anderen Services des preisgekrönten Partners glueckkanja veränderte Uniper seine Arbeitsplatzkultur und optimierte die Zusammenarbeit und Sicherheit im gesamten Unternehmen.',
       },
     ],
   },
@@ -53,15 +53,15 @@ NoVideo.args = {
     bgColor: '#5cbbff',
     headline: 'Leuchtturmprojekte',
     subline:
-      'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
+      'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
     videos: [
       {
         thumb: 'thumbs/video-thumb-haniel.jpg',
         alt: 'Video Casestudy Franz Haniel',
-        headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+        headline: 'Franz Haniel verlässt sich auf glueckkanja',
         logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
         logoAlt: 'Franz Haniel',
-        text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+        text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
       },
       {
         ctaText: 'Button',
@@ -73,7 +73,7 @@ NoVideo.args = {
         headline: 'Uniper setzt auf M365 und CSOC',
         logo: 'c_lpad,h_100,w_180/logos/cust-uniper.png',
         logoAlt: 'alt logo',
-        text: 'Mit der Einführung von Microsoft 365 und anderen Services des preisgekrönten Partners glueckkanja-gab veränderte Uniper seine Arbeitsplatzkultur und optimierte die Zusammenarbeit und Sicherheit im gesamten Unternehmen.',
+        text: 'Mit der Einführung von Microsoft 365 und anderen Services des preisgekrönten Partners glueckkanja veränderte Uniper seine Arbeitsplatzkultur und optimierte die Zusammenarbeit und Sicherheit im gesamten Unternehmen.',
       },
     ],
   },
@@ -86,16 +86,16 @@ Slider.args = {
     bgColor: '#5cbbff',
     headline: 'Leuchtturmprojekte',
     subline:
-      'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
+      'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
     videos: [
       {
         thumb: 'thumbs/video-thumb-haniel.jpg',
         alt: 'Video Casestudy Franz Haniel',
         id: 'hV97zDTlDko',
-        headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+        headline: 'Franz Haniel verlässt sich auf glueckkanja',
         logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
         logoAlt: 'Franz Haniel',
-        text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+        text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
       },
       {
         ctaText: 'Button',
@@ -108,7 +108,7 @@ Slider.args = {
         headline: 'Uniper setzt auf M365 und CSOC',
         logo: 'c_lpad,h_100,w_180/logos/cust-uniper.png',
         logoAlt: 'alt logo',
-        text: 'Mit der Einführung von Microsoft 365 und anderen Services des preisgekrönten Partners glueckkanja-gab veränderte Uniper seine Arbeitsplatzkultur und optimierte die Zusammenarbeit und Sicherheit im gesamten Unternehmen.',
+        text: 'Mit der Einführung von Microsoft 365 und anderen Services des preisgekrönten Partners glueckkanja veränderte Uniper seine Arbeitsplatzkultur und optimierte die Zusammenarbeit und Sicherheit im gesamten Unternehmen.',
       },
       {
         thumb: 'thumbs/video-thumb-fuchs.jpg',
@@ -117,7 +117,7 @@ Slider.args = {
         headline: 'Modernes und sicheres Arbeiten in der Microsoft Cloud',
         logo: '/c_lpad,h_70,w_180/logos/cust-fuchs.svg',
         logoAlt: 'alt logo',
-        text: 'glueckkanja-gab hat den führenden Schmierstoffhersteller FUCHS PETROLUB SE dabei unterstützt, seinen Mitarbeitern einen modernen und sicheren Abeitsplatz mit Azure Virtual Desktop zur Verfügung zu stellen. Somit kann auch in Krisenzeiten aus dem Home Office aus ein reibungsloser Geschäftsbetrieb aufrecht erhalten und sicher gestellt werden.',
+        text: 'glueckkanja hat den führenden Schmierstoffhersteller FUCHS PETROLUB SE dabei unterstützt, seinen Mitarbeitern einen modernen und sicheren Abeitsplatz mit Azure Virtual Desktop zur Verfügung zu stellen. Somit kann auch in Krisenzeiten aus dem Home Office aus ein reibungsloser Geschäftsbetrieb aufrecht erhalten und sicher gestellt werden.',
       },
       {
         thumb: 'thumbs/video-thumb-wvd-webcast.jpg',

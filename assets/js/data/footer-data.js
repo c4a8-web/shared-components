@@ -1,22 +1,22 @@
 const FooterData = {
   bgColor: 'var(--color-midnight)',
-  name: 'glueckkanja-gab AG',
+  name: 'glueckkanja AG',
   street: 'Kaiserstraße 39',
   postalCode: 63065,
   city: 'Offenbach',
   country: 'Germany',
-  mail: 'info@glueckkanja-gab.com',
+  mail: 'info@glueckkanja.com',
   introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
-  copyright: '2023 glueckkanja-gab AG. All rights reserved.',
+  copyright: '2023 glueckkanja AG. All rights reserved.',
   logos: [
     {
-      img: '/logos/gkgab-Logo-white-vektor.svg',
-      alt: 'glueckkanja-gab Logo',
+      img: '/logos/gk-Logo-sw.svg',
+      alt: 'glueckkanja Logo',
       url: 'index.html',
     },
     {
       img: '/v1623133806/logos/primepulse-endorsement-white.svg',
-      alt: 'glueckkanja-gab Logo',
+      alt: 'glueckkanja Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
       classes: 'offset-lg-6',
@@ -43,15 +43,16 @@ const FooterData = {
   highlights: [
     {
       title: 'a brand of:',
-      img: '/mandrill/gkgab-logo-white.svg',
-      alt: 'glueckkanja-gab AG',
-      url: 'https://www.glueckkanja-gab.com/de',
+      img: '/logos/gk-Logo-sw.svg',
+      alt: 'glueckkanja AG',
+      url: 'https://www.glueckkanja.com/de',
+      classes: 'w-50 w-sm-40 w-lg-60 w-xl-50',
       target: '_blank',
     },
     {
       img: '/logos/iso-27001-siegel.png',
       alt: 'ISO 27001',
-      url: 'https://www.glueckkanja-gab.com/documents/general/gkgab-ISO27001Certificate-en.pdf',
+      url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-en.pdf',
       target: '_blank',
       classes: 'mt-3 w-40 w-lg-60',
     },
@@ -86,24 +87,24 @@ const FooterData = {
   links: [
     {
       title: 'Datenschutz',
-      url: 'https://www.glueckkanja-gab.com/en/imprint',
+      url: 'https://www.glueckkanja.com/en/imprint',
       target: '_blank',
     },
     {
       title: 'Impressum',
-      url: 'https://www.glueckkanja-gab.com/en/imprint',
+      url: 'https://www.glueckkanja.com/en/imprint',
       target: '_blank',
     },
   ],
   linksEn: [
     {
       title: 'Privacy',
-      url: 'https://www.glueckkanja-gab.com/en/privacy',
+      url: 'https://www.glueckkanja.com/en/privacy',
       target: '_blank',
     },
     {
       title: 'Imprint',
-      url: 'https://www.glueckkanja-gab.com/en/privacy',
+      url: 'https://www.glueckkanja.com/en/privacy',
       target: '_blank',
     },
   ],

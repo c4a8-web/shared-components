@@ -24,8 +24,8 @@ Contact.args = {
           name: 'Hast du Fragen? Sprich uns gerne an!',
           details: [
             {
-              text: 'kontakt@glueckkanja-gab.com',
-              href: 'mailto:kontakt@glueckkanja-gab.com',
+              text: 'kontakt@glueckkanja.com',
+              href: 'mailto:kontakt@glueckkanja.com',
               icon: 'site/mail',
             },
             {
@@ -82,7 +82,7 @@ Contact.args = {
             {
               type: 'hidden',
               id: '_to',
-              value: 'loremipsum@glueckkanja-gab.com',
+              value: 'loremipsum@glueckkanja.com',
             },
             {
               type: 'hidden',
@@ -111,8 +111,8 @@ Emergency.args = {
           name: 'Hast du Fragen? Sprich uns gerne an!',
           details: [
             {
-              text: 'kontakt@glueckkanja-gab.com',
-              href: 'mailto:kontakt@glueckkanja-gab.com',
+              text: 'kontakt@glueckkanja.com',
+              href: 'mailto:kontakt@glueckkanja.com',
               icon: 'site/mail',
             },
             {
@@ -169,7 +169,7 @@ Emergency.args = {
             {
               type: 'hidden',
               id: '_to',
-              value: 'loremipsum@glueckkanja-gab.com',
+              value: 'loremipsum@glueckkanja.com',
             },
             {
               type: 'hidden',

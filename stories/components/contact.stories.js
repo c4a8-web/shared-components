@@ -30,7 +30,7 @@ Collapsed.args = {
       details: [
         {
           text: 'Lorem ipsum dolor & Sit amet lorem',
-          href: 'mailto:kontakt@glueckkanja-gab.com',
+          href: 'mailto:kontakt@glueckkanja.com',
           icon: 'site/mail',
         },
         {
@@ -86,7 +86,7 @@ Collapsed.args = {
         {
           type: 'hidden',
           id: '_to',
-          value: 'loremipsum@glueckkanja-gab.com',
+          value: 'loremipsum@glueckkanja.com',
         },
         {
           type: 'hidden',
@@ -149,7 +149,7 @@ WithQuote.args = {
     level: 'h2',
     person: {
       image: '/people/people-jan-geisbauer-csoc.jpg',
-      mail: 'sales@glueckkanja-gab.com',
+      mail: 'sales@glueckkanja.com',
       number: '+49694005520',
       cloudinary: true,
       alt: 'Quotation Svg/Picture Platzhalter',
@@ -167,8 +167,8 @@ WithQuote.args = {
           icon: 'site/phone',
         },
         {
-          text: 'kontakt@glueckkanja-gab.com',
-          href: 'mailto:kontakt@glueckkanja-gab.com',
+          text: 'kontakt@glueckkanja.com',
+          href: 'mailto:kontakt@glueckkanja.com',
           icon: 'site/mail',
         },
       ],
@@ -242,7 +242,7 @@ WithQuoteBgColor.args = {
     level: 'h2',
     person: {
       image: '/people/people-jan-geisbauer-csoc.jpg',
-      mail: 'sales@glueckkanja-gab.com',
+      mail: 'sales@glueckkanja.com',
       number: '+49694005520',
       cloudinary: true,
       alt: 'Quotation Svg/Picture Platzhalter',
@@ -260,8 +260,8 @@ WithQuoteBgColor.args = {
           icon: 'site/phone',
         },
         {
-          text: 'kontakt@glueckkanja-gab.com',
-          href: 'mailto:kontakt@glueckkanja-gab.com',
+          text: 'kontakt@glueckkanja.com',
+          href: 'mailto:kontakt@glueckkanja.com',
           icon: 'site/mail',
         },
       ],

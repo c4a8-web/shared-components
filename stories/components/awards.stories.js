@@ -20,7 +20,7 @@ Awards.args = {
     alt: 'award alt',
     headline: 'Auszeichnungen und Preise',
     subline:
-      'Holen Sie den maximalen Nutzen aus der Cloud für Ihr Unternehmen und profitieren Sie von dem fundierten Wissen und der langjährigen Erfahrung unserer glueckkanja-gab Experten.',
+      'Holen Sie den maximalen Nutzen aus der Cloud für Ihr Unternehmen und profitieren Sie von dem fundierten Wissen und der langjährigen Erfahrung unserer glueckkanja Experten.',
     text: 'Mit unseren mehrfachen Microsoft Gold Kompetenzen, unserer Auszeichnung als Microsoft Security 20/20 Award Finalist für Security Advisory und mehrfachen Microsoft Partner of the Year Auszeichnungen können wir alle Microsoft Cloud Technologien mit weit überdurchschnittlicher Expertise und Erfahrung anbieten. Daher sind wir der ideale Partner für den Betrieb und die Überwachung Ihrer Microsoft 365 und Azure basierten Infrastruktur.',
     images: [
       {
@@ -53,7 +53,7 @@ FourColumns.args = {
     alt: 'award alt',
     headline: 'Auszeichnungen und Preise',
     subline:
-      'Holen Sie den maximalen Nutzen aus der Cloud für Ihr Unternehmen und profitieren Sie von dem fundierten Wissen und der langjährigen Erfahrung unserer glueckkanja-gab Experten.',
+      'Holen Sie den maximalen Nutzen aus der Cloud für Ihr Unternehmen und profitieren Sie von dem fundierten Wissen und der langjährigen Erfahrung unserer glueckkanja Experten.',
     text: 'Mit unseren mehrfachen Microsoft Gold Kompetenzen, unserer Auszeichnung als Microsoft Security 20/20 Award Finalist für Security Advisory und mehrfachen Microsoft Partner of the Year Auszeichnungen können wir alle Microsoft Cloud Technologien mit weit überdurchschnittlicher Expertise und Erfahrung anbieten. Daher sind wir der ideale Partner für den Betrieb und die Überwachung Ihrer Microsoft 365 und Azure basierten Infrastruktur.',
     images: [
       {
