@@ -70,7 +70,7 @@ form:
   -
     type: hidden
     id: _to
-    value: leads@glueckkanja-gab.com
+    value: leads@glueckkanja.com
   -
     type: hidden
     id: _gotcha
