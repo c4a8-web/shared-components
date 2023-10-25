@@ -1,0 +1,67 @@
+{%- assign eventOverviewEvents = include.events | default: site.events -%}
+{%- assign eventOverviewOrder = include.order -%}
+{%- assign eventOverviewHeadline = include.headline -%}
+{%- assign eventOverviewHeadlineLevel = include.headlineLevel -%}
+{%- assign eventOverviewOverlap = include.overlap -%}
+{%- assign eventOverviewLimit = include.limit -%}
+{%- assign eventOverviewMoreUrl = include.moreUrl -%}
+{%- assign eventOverviewMaxLimit = include.maxLimit -%}
+
+{% if eventOverviewOverlap == true %}
+  {% assign eventOverviewOverlap = true %}
+{% else %}
+  {% assign eventOverviewOverlap = false %}
+{% endif %}
+
+{%- assign eventOverviewVisibleExpression = '' -%}
+{% for eventId in eventOverviewOrder %}
+  {% capture eventOverviewVisibleExpression %}{{ eventOverviewVisibleExpression }}item.eventid contains '{{ eventId }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
+{% endfor %}
+
+{% if page.lang %}
+  {% capture eventOverviewLangEventsExpression %}item.lang == '{{ page.lang }}'{% endcapture %}
+{% else %}
+  {% capture eventOverviewLangEventsExpression %}item.lang == null{% endcapture %}
+{% endif %}
+
+{%- assign eventOverviewEventsByLanguage = eventOverviewEvents | where_exp: "item", eventOverviewLangEventsExpression -%}
+{%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' | reverse -%}
+
+{%- capture eventOverviewEventsString -%}
+  [
+    {%- for eventOverviewEvent in eventOverviewFilteredEvents -%}
+      {% if eventOverviewEvent.moment -%}
+        {% assign eventOverviewEventDate = eventOverviewEvent.moment %}
+      {% else -%}
+        {% assign eventOverviewEventDate = eventOverviewEvent.date %}
+      {% endif -%}
+      {
+        "url": "{{ eventOverviewEvent.url }}",
+        "title": "{{ eventOverviewEvent.title | strip_html }}",
+        "date": "{{ eventOverviewEventDate }}",
+        "time": "{{ eventOverviewEvent.time }}",
+        "bgColor": "{{ eventOverviewEvent.bgColor }}",
+        "color": "{{ eventOverviewEvent.color }}",
+        "timeColor": "{{ eventOverviewEvent.timeColor }}",
+        {% if eventOverviewEvent.image %}
+        "image": {{ eventOverviewEvent.image | jsonify }},
+        {% endif %}
+        "category": "{{ eventOverviewEvent.categories[0] }}",
+        "text": "{{ eventOverviewEvent.excerpt | strip_html | strip_newlines | escape }}"
+      }{% unless forloop.last %},{% endunless -%}
+    {% endfor %}
+  ]
+{%- endcapture %}
+
+<!-- Shared Event Overview Section -->
+<event-overview
+  headline="{{ eventOverviewHeadline }}"
+  headline-level="{{ eventOverviewHeadlineLevel }}"
+  :events="{{ eventOverviewEventsString | jsonify | escape }}"
+  :overlap="{{ eventOverviewOverlap }}"
+  limit="{{ eventOverviewLimit }}"
+  more-url="{{ eventOverviewMoreUrl }}"
+  max-limit="{{ eventOverviewMaxLimit }}"
+>
+</event-overview>
+<!-- End Shared Event Overview Section -->

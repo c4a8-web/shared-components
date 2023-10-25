@@ -6,6 +6,7 @@ const es = {
   gender: '(h/m/d)',
   formAttachmentsWrongType: 'Elija un formato de archivo válido',
   onlyLanguage: 'Sólo español',
+  moreEvents: 'Otras fechas',
 };
 
 export default es;

@@ -12,6 +12,8 @@ import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
+import EventOverview from './vue/event-overview.js';
+import Event from './vue/event.js';
 import Faq from './vue/faq.js';
 import FeatureGridItem from './vue/feature-grid-item.js';
 import FeatureList from './vue/feature-list.js';
@@ -137,6 +139,8 @@ const addApp = () => {
     BlogRecent,
     Card,
     Cta,
+    EventOverview,
+    Event,
     CheckCard,
     CheckMark,
     Faq,
