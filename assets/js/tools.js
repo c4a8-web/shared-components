@@ -383,9 +383,7 @@ class Tools {
   static getElementBgColor(element) {
     if (!element) return;
 
-    // element is not what i would expect at this point. it is the headline for some reason
-
-    const color = window.getComputedStyle(element).backgroundColor;
+    const color = window.getComputedStyle(element)?.backgroundColor;
 
     return color === 'rgba(0, 0, 0, 0)' ? null : color;
   }
