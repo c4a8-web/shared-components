@@ -3,6 +3,7 @@
 
   container-type: inline-size;
   background-color: var(--color-surface-background);
+  overflow: hidden;
 
   .event__headline {
     margin-bottom: spacing(2);

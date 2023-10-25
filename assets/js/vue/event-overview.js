@@ -8,7 +8,7 @@ export default {
   computed: {
     classList() {
       return [
-        'event-overview is-component vue-component',
+        'event-overview has-no-row is-component vue-component',
         Tools.isTrue(this.overlap) ? 'event-overview--overlap' : null,
       ];
     },

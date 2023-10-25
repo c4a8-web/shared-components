@@ -524,6 +524,11 @@
     @include media-breakpoint-up(lg) {
       padding-right: $header-floating-inner-padding-x;
       padding-left: $header-floating-inner-padding-x;
+
+      &.has-no-row {
+        padding-right: calc(#{$header-floating-inner-padding-x} + 15px);
+        padding-left: calc(#{$header-floating-inner-padding-x} + 15px);
+      }
     }
   }
 
