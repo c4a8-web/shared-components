@@ -7,6 +7,7 @@ const de = {
   formAttachmentsWrongType:
     'Bitte wählen Sie ein gültiges Dateiformat oder überprüfen Sie den Dateinamen (keine Sonderzeichen benutzen).',
   onlyLanguage: 'German only',
+  moreEvents: 'Weitere Termine',
 };
 
 export default de;

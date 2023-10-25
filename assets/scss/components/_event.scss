@@ -2,6 +2,7 @@
   @include hover-scale;
 
   container-type: inline-size;
+  background-color: var(--color-surface-background);
 
   .event__headline {
     margin-bottom: spacing(2);

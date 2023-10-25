@@ -1,4 +1,4 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle, hrefTo } from '../../.storybook/templates';
 import { includeseventoverviewhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
@@ -83,4 +83,23 @@ Ordered.args = {
   headline: 'Termine',
   headlineLevel: 'h2',
   order: ['event-1', 'event-3', 'event-4'],
+};
+
+export const Overlap = Template.bind({});
+
+Overlap.args = {
+  headline: 'Termine',
+  headlineLevel: 'h2',
+  order: ['event-1', 'event-3', 'event-4'],
+  overlap: true,
+  moreUrl: hrefTo('Components/Event/Overview', 'Manual-Events'),
+};
+
+export const Limit = Template.bind({});
+
+Limit.args = {
+  headline: 'Termine',
+  headlineLevel: 'h2',
+  order: ['event-1', 'event-3', 'event-4'],
+  limit: 4,
 };

@@ -3,8 +3,16 @@
 {%- assign eventOverviewHeadline = include.headline -%}
 {%- assign eventOverviewHeadlineLevel = include.headlineLevel -%}
 {%- assign eventOverviewOverlap = include.overlap -%}
+{%- assign eventOverviewLimit = include.limit -%}
+{%- assign eventOverviewMoreUrl = include.moreUrl -%}
 
-{%- assign eventOverviewVisibleExpression = '' -%}
+{% if eventOverviewOverlap == true %}
+  {% assign eventOverviewOverlap = true %}
+{% else %}
+  {% assign eventOverviewOverlap = false %}
+{% endif %}
+
+{%- assign eventOverviewVisibleExpression = 'item==item' -%}
 {% for eventId in eventOverviewOrder %}
   {% capture eventOverviewVisibleExpression %}{{ eventOverviewVisibleExpression }}item.eventid contains '{{ eventId }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
 {% endfor %}
@@ -50,6 +58,8 @@
   headline-level="{{ eventOverviewHeadlineLevel }}"
   :events="{{ eventOverviewEventsString | jsonify | escape }}"
   :overlap="{{ eventOverviewOverlap }}"
+  limit="{{ eventOverviewLimit }}"
+  more-url="{{ eventOverviewMoreUrl }}"
 >
 </event-overview>
 <!-- End Shared Event Overview Section -->

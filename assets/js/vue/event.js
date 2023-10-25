@@ -50,7 +50,11 @@ export default {
       return Tools.standardizeTimeFormat(this.time);
     },
   },
-  methods: {},
+  methods: {
+    handleClick() {
+      document.location.href = this.url;
+    },
+  },
   props: {
     title: String,
     date: String,
@@ -61,9 +65,11 @@ export default {
     color: String,
     time: String,
     timeColor: String,
+    classes: String,
+    url: String,
   },
   template: `
-    <article class="event vue-component" :style="style">
+    <article :class="['event vue-component', classes ? classes : null]" :style="style" @click="handleClick">
       <div class="event__inner">
         <div class="event__date">
           <div class="event__date-week-day font-size-1 thin is-uppercase">{{ dateWeekDay }}</div>
