@@ -381,9 +381,9 @@ class Tools {
   }
 
   static getElementBgColor(element) {
-    if (!element) return;
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
 
-    const color = window.getComputedStyle(element)?.backgroundColor;
+    const color = window.getComputedStyle(element).backgroundColor;
 
     return color === 'rgba(0, 0, 0, 0)' ? null : color;
   }
