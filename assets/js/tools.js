@@ -422,6 +422,21 @@ class Tools {
 
     return `${startTime} - ${endTime} ${timeKeyWord}`;
   }
+
+  static convertToDate(dateStr) {
+    const match = dateStr.match(/^(\d{1,2})\.-\d{1,2}\.(\d{1,2})\.(\d{4})$/);
+
+    if (match) {
+      const radix = 10;
+      const day = parseInt(match[1], radix);
+      const month = parseInt(match[2], radix) - 1;
+      const year = parseInt(match[3], radix);
+
+      return new Date(year, month, day);
+    }
+
+    return null;
+  }
 }
 
 export default Tools;

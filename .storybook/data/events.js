@@ -194,7 +194,7 @@ const Events = [
   {
     eventid: 'event-3',
     title: 'Event Title 3 lorem ipsum dolor',
-    date: '2023-01-17',
+    date: '10.-12.10.2023',
     category: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
     excerpt: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
     image: {

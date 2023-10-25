@@ -11,10 +11,12 @@ export default {
             `;
     },
     validDate() {
-      const date = new Date(this.date);
+      let date = new Date(this.date);
 
       if (isNaN(date.getTime())) {
-        return null;
+        date = Tools.convertToDate(this.date);
+
+        if (date && isNaN(date.getTime())) return null;
       }
 
       return date;
