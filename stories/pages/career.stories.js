@@ -148,7 +148,7 @@ const baseArgs = {
       },
       {
         summary: 'Kann ich mich auf mehrere Stellen gleichzeitig bewerben?',
-        text: '<p><a href="mailto:v-steffi.altendorf@glueckkanja-gab.com">Wende dich an Steffi</a>, um gemeinsam herauszufinden, welche Stelle am besten zu dir passt. Du kannst dich auch auf eine Stelle bewerben und im Anschreiben weitere Interessen erwähnen.</p>',
+        text: '<p><a href="mailto:v-steffi.altendorf@glueckkanja.com">Wende dich an Steffi</a>, um gemeinsam herauszufinden, welche Stelle am besten zu dir passt. Du kannst dich auch auf eine Stelle bewerben und im Anschreiben weitere Interessen erwähnen.</p>',
       },
       {
         summary:

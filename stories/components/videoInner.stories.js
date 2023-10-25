@@ -18,10 +18,10 @@ VideoInner.args = {
     thumb: 'thumbs/video-thumb-haniel.jpg',
     alt: 'Video Casestudy Franz Haniel',
     id: 'hV97zDTlDko',
-    headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+    headline: 'Franz Haniel verlässt sich auf glueckkanja',
     logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
     logoAlt: 'Franz Haniel',
-    text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+    text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
   },
 };
 
@@ -33,10 +33,10 @@ VideoInnerPost.args = {
     thumb: 'thumbs/video-thumb-haniel.jpg',
     alt: 'Video Casestudy Franz Haniel',
     id: 'hV97zDTlDko',
-    headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+    headline: 'Franz Haniel verlässt sich auf glueckkanja',
     logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
     logoAlt: 'Franz Haniel',
-    text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+    text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
   },
 };
 
@@ -49,10 +49,10 @@ VideoReversed.args = {
     thumb: 'thumbs/video-thumb-haniel.jpg',
     alt: 'Video Casestudy Franz Haniel',
     id: 'hV97zDTlDko',
-    headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+    headline: 'Franz Haniel verlässt sich auf glueckkanja',
     logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
     logoAlt: 'Franz Haniel',
-    text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+    text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
   },
 };
 
@@ -65,10 +65,10 @@ VideoLightbox.args = {
     thumb: 'thumbs/video-thumb-haniel.jpg',
     alt: 'Video Casestudy Franz Haniel',
     id: 'hV97zDTlDko',
-    headline: 'Franz Haniel verlässt sich auf glueckkanja-gab',
+    headline: 'Franz Haniel verlässt sich auf glueckkanja',
     logo: '/c_lpad,h_100,w_180/logos/cust-haniel.png',
     logoAlt: 'Franz Haniel',
-    text: 'Mit Hilfe von glueckkanja-gab migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
+    text: 'Mit Hilfe von glueckkanja migrierte Franz Haniel seine IT-Systeme in die Microsoft Azure Cloud, die durch die Microsoft Defender Suite gesichert ist. Das Unternehmen profitiert nun von einer modernen, hochsicheren IT-Infrastruktur, die von einem erfahrenen Partner gemanagt wird.',
   },
 };
 

@@ -2,7 +2,6 @@
 {%- assign contactInfos = include.infos -%}
 {%- assign contactCollapsed = include.collapsed -%}
 {%- assign contactAjax = include.ajax -%}
-{%- assign contactQuote = include.quote | default: false -%}
 {%- assign contactSpacing = include.spacing -%}
 
 {%- if contactInfos -%}
@@ -24,6 +23,12 @@
     {%- endif -%}
   {%- endif -%}
 {%- endif -%}
+
+{%- assign contactQuote = include.quote | default: contact.quote | default: false -%}
+{%- assign contactBgColor = include.bgColor | default: contact.bgColor -%}
+{%- assign contactColor = include.color | default: contact.color -%}
+{%- assign contactBoxBgColor = include.boxBgColor | default: contact.boxBgColor -%}
+{%- assign contactBoxColor = include.boxColor | default: contact.boxColor -%}
 
 {%- assign contactLight = contact.light -%}
 
@@ -68,6 +73,12 @@
 <div class="contact {{ contactVariantClass }}
             {% unless page.contactNoTopSpacing or contact.svgShape or contactCollapsed %} {{ contactSpacing }} {% endunless %}
             {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2 utility-animation utility-animation--percentage-offset{% endunless %}"
+            style="{% if contactBgColor %}--color-contact-background: {{ contactBgColor }}; --color-contact-quote-background: {{ contactBgColor }};{% endif %}
+                    {% if contactColor %}--contact-copy-color: {{ contactColor }};{% endif %}
+                    {% if contactBoxBgColor %}--color-contact-quote-person: {{ contactBoxBgColor }};{% endif %}
+                    {% if contactBoxColor %}--contact-box-copy-color: {{ contactBoxColor }};{% endif %}
+
+            "
 >
   <div class="{{ contactContainerClass }}">
     <div class="{{ contactRowClass }}">

@@ -59,8 +59,8 @@ HeroCareer.args = {
               name: 'Hast du Fragen? Sprich uns gerne an!',
               details: [
                 {
-                  text: 'kontakt@glueckkanja-gab.com',
-                  href: 'mailto:kontakt@glueckkanja-gab.com',
+                  text: 'kontakt@glueckkanja.com',
+                  href: 'mailto:kontakt@glueckkanja.com',
                   icon: 'site/mail',
                 },
                 {
@@ -116,7 +116,7 @@ HeroCareer.args = {
                 {
                   type: 'hidden',
                   id: '_to',
-                  value: 'loremipsum@glueckkanja-gab.com',
+                  value: 'loremipsum@glueckkanja.com',
                 },
                 {
                   type: 'hidden',
@@ -139,7 +139,7 @@ HeroTextImage.args = {
     overline:
       'Karriere bei einem der führenden Microsoft Gold Partner. Lorem ipsum dolor sit two lines would need to fit.',
     headline: 'Komm zu uns. Finde deinen Platz.',
-    subline: 'Entdecke all die guten Gründe, warum es sich lohnt, bei glueckkanja-gab zu arbeiten',
+    subline: 'Entdecke all die guten Gründe, warum es sich lohnt, bei glueckkanja zu arbeiten',
     fullscreen: {
       img: 'b_rgb:000000,bo_0px_solid_rgb:000,c_crop,g_custom,o_60/people/hessisch-bayrische-hochzeit.jpg',
       alt: 'alt for fullscreen',
