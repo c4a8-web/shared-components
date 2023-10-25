@@ -8,6 +8,7 @@
   flex-direction: column;
   padding-top: var(--event-overview-vertical-padding);
   padding-bottom: var(--event-overview-vertical-padding);
+  margin-bottom: spacing(10);
 
   @include media-breakpoint-up(lg) {
     --event-overview-vertical-padding: spacing(12);

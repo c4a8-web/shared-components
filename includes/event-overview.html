@@ -13,7 +13,7 @@
   {% assign eventOverviewOverlap = false %}
 {% endif %}
 
-{%- assign eventOverviewVisibleExpression = 'item==item' -%}
+{%- assign eventOverviewVisibleExpression = '' -%}
 {% for eventId in eventOverviewOrder %}
   {% capture eventOverviewVisibleExpression %}{{ eventOverviewVisibleExpression }}item.eventid contains '{{ eventId }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
 {% endfor %}
