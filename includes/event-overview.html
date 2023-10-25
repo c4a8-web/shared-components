@@ -5,6 +5,7 @@
 {%- assign eventOverviewOverlap = include.overlap -%}
 {%- assign eventOverviewLimit = include.limit -%}
 {%- assign eventOverviewMoreUrl = include.moreUrl -%}
+{%- assign eventOverviewMaxLimit = include.maxLimit -%}
 
 {% if eventOverviewOverlap == true %}
   {% assign eventOverviewOverlap = true %}
@@ -60,6 +61,7 @@
   :overlap="{{ eventOverviewOverlap }}"
   limit="{{ eventOverviewLimit }}"
   more-url="{{ eventOverviewMoreUrl }}"
+  max-limit="{{ eventOverviewMaxLimit }}"
 >
 </event-overview>
 <!-- End Shared Event Overview Section -->

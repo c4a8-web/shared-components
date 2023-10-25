@@ -102,4 +102,5 @@ Limit.args = {
   headlineLevel: 'h2',
   order: ['event-1', 'event-3', 'event-4'],
   limit: 4,
+  maxLimit: 7,
 };

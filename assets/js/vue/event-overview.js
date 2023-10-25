@@ -3,7 +3,7 @@ import Tools from '../tools.js';
 export default {
   tagName: 'event-overview',
   data() {
-    return { translationData: null, defaultLimit: 3, maxLimit: 6, showMore: false };
+    return { translationData: null, defaultLimit: 3, maxLimitDefault: 6, showMore: false };
   },
   computed: {
     classList() {
@@ -15,10 +15,13 @@ export default {
     limitValue() {
       return this.limit ? this.limit : this.defaultLimit;
     },
+    maxLimitValue() {
+      return this.maxLimit > 0 ? this.maxLimit : this.maxLimitDefault;
+    },
     eventsValue() {
       const events = Tools.getJSON(this.events);
 
-      return Tools.getJSON(this.events).slice(0, this.maxLimit) || [];
+      return events.slice(0, this.maxLimitValue) || [];
     },
     hasMore() {
       return this.showMore ? false : this.translationData?.moreEvents && this.eventsValue.length > this.limitValue;
@@ -49,6 +52,7 @@ export default {
     headlineLevel: String,
     overlap: Boolean,
     limit: Number,
+    maxLimit: Number,
     url: String,
     moreUrl: String,
   },
