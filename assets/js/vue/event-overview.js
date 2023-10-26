@@ -8,9 +8,14 @@ export default {
   computed: {
     classList() {
       return [
-        'event-overview has-no-row is-component vue-component',
+        'event-overview has-no-row is-component utility-animation vue-component',
         Tools.isTrue(this.overlap) ? 'event-overview--overlap' : null,
       ];
+    },
+    lastIndex() {
+      const radix = 10;
+
+      return parseInt(this.limitValue, radix) + 1;
     },
     limitValue() {
       return this.limit ? this.limit : this.defaultLimit;
@@ -62,12 +67,14 @@ export default {
         <transition-group name="event-overview__item">
           <template v-for="(event, index) in eventsValue">
             <div :class="{'is-visible': isVisible(index), 'event-overview__item': true}">
-              <event :key="event.url" v-bind="event" />
+              <div class="fade-in-bottom" data-utility-animation-step="1" :style="{'--utility-animation-index': index + 1}">
+                <event :key="event.url" v-bind="event" />
+              </div>
             </div>
           </template>
         </transition-group>
 
-      <div class="event-overview__more font-size-1 bold" v-if="hasMore" @click="handleShowMore">{{ translationData?.moreEvents }}</div>
+      <div class="event-overview__more font-size-1 bold fade-in-bottom" v-if="hasMore" @click="handleShowMore" data-utility-animation-step="1" :style="{'--utility-animation-index': lastIndex}">{{ translationData?.moreEvents }}</div>
     </wrapper>
   `,
 };

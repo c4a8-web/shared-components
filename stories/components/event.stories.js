@@ -37,3 +37,20 @@ YellowWithImage.args = {
   timeColor: 'var(--color-yellow-medium)',
   time: '15-16 Uhr',
 };
+
+export const MultipleDays = Template.bind({});
+
+MultipleDays.args = {
+  title: 'Event Title lorem ipsum dolor',
+  date: '10.-12.10.2023',
+  category: 'Event Category',
+  text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
+  image: {
+    img: '/shared-components/card-sec-motion-dus.png',
+    alt: 'Event Image',
+    cloudinary: true,
+  },
+  bgColor: 'var(--color-yellow)',
+  color: 'var(--color-copy)',
+  timeColor: 'var(--color-yellow-medium)',
+};

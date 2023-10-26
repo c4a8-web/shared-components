@@ -13,7 +13,7 @@
     cursor: pointer;
   }
 
-  @container (min-width: 700px) {
+  @container (min-width: 740px) {
     .event__inner {
       --event-max-height: 190px;
 
@@ -111,4 +111,29 @@
 .event__inner {
   display: flex;
   flex-wrap: wrap;
+}
+
+.event__date-month,
+.event__date-week-day {
+  @include font-style($style: 'font-size-1', $line: 'thin');
+
+  @include media-breakpoint-up(sm) {
+    @include font-style($style: 'font-size-3', $line: 'thin');
+  }
+
+  @include media-breakpoint-up(lg) {
+    @include font-style($style: 'font-size-1', $line: 'thin');
+  }
+}
+
+.event__date-day {
+  @include font-style($style: 'font-size-5', $weight: 'bold', $line: 'thin');
+
+  @include media-breakpoint-up(sm) {
+    @include font-style($style: 'font-size-6', $weight: 'bold', $line: 'thin');
+  }
+
+  @include media-breakpoint-up(lg) {
+    @include font-style($style: 'font-size-5', $weight: 'bold', $line: 'thin');
+  }
 }

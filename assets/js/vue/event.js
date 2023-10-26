@@ -2,6 +2,11 @@ import Tools from '../tools.js';
 
 export default {
   tagName: 'event',
+  data() {
+    return {
+      hasMultipleDays: false,
+    };
+  },
   computed: {
     style() {
       return `
@@ -15,6 +20,8 @@ export default {
 
       if (isNaN(date.getTime())) {
         date = Tools.convertToDate(this.date);
+
+        this.hasMultipleDays = true;
 
         if (date && isNaN(date.getTime())) return null;
       }
@@ -49,7 +56,7 @@ export default {
       return this.imageValue && this.imageValue.cloudinary ? this.imageValue.cloudinary : true;
     },
     timeValue() {
-      return Tools.standardizeTimeFormat(this.time);
+      return !this.hasMultipleDays ? Tools.standardizeTimeFormat(this.time) : this.date;
     },
   },
   methods: {
@@ -74,9 +81,9 @@ export default {
     <article :class="['event vue-component', classes ? classes : null]" :style="style" @click="handleClick">
       <div class="event__inner">
         <div class="event__date">
-          <div class="event__date-week-day font-size-1 thin is-uppercase">{{ dateWeekDay }}</div>
-          <div class="event__date-day font-size-5 bold thin">{{ dateDay }}</div>
-          <div class="event__date-month font-size-1 thin is-uppercase">{{ dateMonth }}</div>
+          <div class="event__date-week-day is-uppercase">{{ dateWeekDay }}</div>
+          <div class="event__date-day">{{ dateDay }}</div>
+          <div class="event__date-month is-uppercase">{{ dateMonth }}</div>
         </div>
         <div class="event__content">
           <div class="event__meta">

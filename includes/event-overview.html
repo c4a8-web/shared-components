@@ -25,7 +25,7 @@
 {% endif %}
 
 {%- assign eventOverviewEventsByLanguage = eventOverviewEvents | where_exp: "item", eventOverviewLangEventsExpression -%}
-{%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' | reverse -%}
+{%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' -%}
 
 {%- capture eventOverviewEventsString -%}
   [

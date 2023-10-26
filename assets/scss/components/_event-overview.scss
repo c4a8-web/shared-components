@@ -14,6 +14,10 @@
     --event-overview-vertical-padding: spacing(12);
   }
 
+  [data-utility-animation-step] {
+    @include utility-animation-options($distance: 15%, $delay: 200ms, $duration: 0.8s, $selector: '&');
+  }
+
   &.event-overview--overlap {
     --event-overview-vertical-padding: 0;
 
