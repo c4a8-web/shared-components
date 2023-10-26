@@ -205,7 +205,6 @@ const Events = [
     bgColor: 'var(--color-yellow)',
     color: 'var(--color-copy)',
     timeColor: 'var(--color-yellow-medium)',
-    time: '15-16 Uhr',
     author: 'Lorem Ipsum',
     blogtitlepic: 'head-emergency-calls',
     socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
