@@ -381,11 +381,61 @@ class Tools {
   }
 
   static getElementBgColor(element) {
-    if (!element) return;
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
 
     const color = window.getComputedStyle(element).backgroundColor;
 
     return color === 'rgba(0, 0, 0, 0)' ? null : color;
+  }
+
+  static isValidTimeFormat(timeStr) {
+    const regex = /^(\d{1,2}(:\d{2})?-\d{1,2}(:\d{2})? Uhr)$/;
+
+    return regex.test(timeStr);
+  }
+
+  static standardizeTimeFormat(time) {
+    if (!this.isValidTimeFormat(time)) return time;
+
+    const timeKeyWord = 'Uhr';
+
+    let times = time.split('-');
+    let startTime = times[0].trim();
+
+    if (!startTime.includes(':')) {
+      startTime += ':00';
+    }
+
+    if (startTime.length === 4) {
+      startTime = '0' + startTime;
+    }
+
+    let endTime = times[1].trim().replace(` ${timeKeyWord}`, '');
+
+    if (!endTime.includes(':')) {
+      endTime += ':00';
+    }
+
+    if (endTime.length === 4) {
+      endTime = '0' + endTime;
+    }
+
+    return `${startTime} - ${endTime} ${timeKeyWord}`;
+  }
+
+  static convertToDate(dateStr) {
+    const match = dateStr.match(/^(\d{1,2})\.-\d{1,2}\.(\d{1,2})\.(\d{4})$/);
+
+    if (match) {
+      const radix = 10;
+      const day = parseInt(match[1], radix);
+      const month = parseInt(match[2], radix) - 1;
+      const year = parseInt(match[3], radix);
+
+      return new Date(year, month, day);
+    }
+
+    return null;
   }
 }
 

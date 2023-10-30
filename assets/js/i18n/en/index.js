@@ -6,6 +6,7 @@ const en = {
   gender: '(m/f/d)',
   formAttachmentsWrongType: 'Please choose a valid file format',
   onlyLanguage: 'English only',
+  moreEvents: 'More events',
 };
 
 export default en;
