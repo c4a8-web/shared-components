@@ -13,10 +13,12 @@ const Template = (args) => createComponent(args, component);
 
 export const German = Template.bind({});
 
+// TODO Check date
+
 German.args = {
   post: {
     url: 'javascript:void(0);',
-    title: 'Audiocodes Devices Review',
+    title: 'Audiocodes & Devices Review',
     date: '2021-06-17',
     moment: '2021-06-17',
     author: 'Jan Petersen',
@@ -24,7 +26,7 @@ German.args = {
     blogtitlepic: 'head-audiocodes-review',
     socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
     excerpt:
-      'Mit der Power Platform stellt Microsoft jedem Microsoft 365-Nutzer Dienste zur Verfügung, die es ermöglichen, persönliche und abteilungsspezifische Anforderungen an Prozessautomatisierung, App-Entwicklung und Business Intelligence in einer Low-Code-Umgebung umzusetzen. Zielgruppe für die Dienste sind somit die Nutzer:innen selbst, die ihre Anforderungen definieren und auch selbstständig umsetzen können. Die Standardkonfiguration der Power Platform in einem Microsoft 365-Tenant ist nach oben offen. Dadurch können die Nutzer:innen die Power Platform-Dienste ohne Einschränkungen nutzen, aber möglicherweise fehlen hilfreiche Leitplanken oder Einschränkungen, um Compliance-Anforderungen zu erfüllen. Es ist daher sinnvoll, sich vor der Einführung der Power Platform Gedanken über die Governance-Regeln und -Prozesse zu machen.',
+      'Bei der diesjährigen Inspire 2023 in München war das Team von glueckkanja erneut vertreten. Geehrt mit dem &quot;Partner of the Year Accelerate Trust Award&quot; im Bereich Security und erstmalig als Product-Partner der Microsoft Partner Community vorgestellt, setzt unsere Zusammenarbeit mit Microsoft stetig neue Akzente.',
   },
   tag: 'Microsoft',
 };
@@ -35,7 +37,7 @@ English.args = {
   post: {
     lang: 'en',
     url: 'javascript:void(0);',
-    title: 'Audiocodes Devices Review',
+    title: 'Audiocodes & Devices Review',
     date: '2021-06-17',
     moment: '2021-06-17',
     author: 'Jan Petersen',
@@ -43,7 +45,7 @@ English.args = {
     blogtitlepic: 'head-audiocodes-review',
     socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
     excerpt:
-      'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
+      'Bei der diesjährigen Inspire 2023 in München war das Team von glueckkanja erneut vertreten. Geehrt mit dem &quot;Partner of the Year Accelerate Trust Award&quot; im Bereich Security und erstmalig als Product-Partner der Microsoft Partner Community vorgestellt, setzt unsere Zusammenarbeit mit Microsoft stetig neue Akzente.',
   },
   tag: 'Microsoft',
 };

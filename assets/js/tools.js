@@ -8,6 +8,12 @@ class Tools {
   static storagePrefix = '@gab_';
   static storybookPath = '/shared-components';
 
+  static decodeHTML = (input) => {
+    const document = new DOMParser().parseFromString(input, 'text/html');
+
+    return document.documentElement.textContent;
+  };
+
   static intersection = (r1, r2) => {
     const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
     const yOverlap = Math.max(0, Math.min(r1.y + r1.height, r2.y + r2.height) - Math.max(r1.y, r2.y));

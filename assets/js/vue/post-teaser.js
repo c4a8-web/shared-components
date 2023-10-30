@@ -31,7 +31,7 @@ export default {
     excerpt() {
       const maxWords = 30;
 
-      return Tools.truncateWords(this.postData?.excerpt, maxWords);
+      return Tools.decodeHTML(Tools.truncateWords(this.postData?.excerpt, maxWords));
     },
     imgUrl() {
       return `/blog/heads/${this.postData?.blogtitlepic}.jpg`;
@@ -74,9 +74,9 @@ export default {
           {{ formattedDate }}
         </div>
         <h3 class="post-teaser__title mb-3">
-          <a :href="href" class="post-teaser__link">{{ title }}</a>
+          <a :href="href" class="post-teaser__link" v-html="title"></a>
         </h3>
-        <p class="post-teaser__abstract mb-5">{{ excerpt }}</p>
+        <p class="post-teaser__abstract mb-5" v-html="excerpt"></p>
         <ul class="list-inline">
           <li :class="listClasses">
             <tag v-for="tag in postData?.tags" :key="tag" :tag="tag" :spacing="spacing" ></tag>
