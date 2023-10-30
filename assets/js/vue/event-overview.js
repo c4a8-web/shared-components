@@ -74,7 +74,7 @@ export default {
           </template>
         </transition-group>
 
-      <div class="event-overview__more font-size-1 bold fade-in-bottom" v-if="hasMore" @click="handleShowMore" data-utility-animation-step="1" :style="{'--utility-animation-index': lastIndex}">{{ translationData?.moreEvents }}</div>
+      <div class="event-overview__more font-size-1 bold fade-in-bottom" v-show="hasMore" @click="handleShowMore" data-utility-animation-step="1" :style="{'--utility-animation-index': lastIndex}">{{ translationData?.moreEvents }}</div>
     </wrapper>
   `,
 };
