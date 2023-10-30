@@ -7,6 +7,48 @@ const options = getTitle({
 
 export default {
   ...options,
+  argTypes: {
+    headline: {
+      description: 'The Headline above the element overview',
+      type: 'string',
+    },
+    headlineLevel: {
+      description: 'The Headline Level of the Headline element',
+      type: 'string',
+    },
+    order: {
+      description: 'A list of the event ids to show in that particular order',
+      control: {
+        type: 'array',
+      },
+      type: {
+        summary: 'List of element ids',
+        detail: "['event-id1', 'event-id2', 'event-id3', 'event-id4']",
+      },
+    },
+    overlap: {
+      description: 'Switches between overlap mode and normal mode',
+      type: 'boolean',
+    },
+    events: {
+      description: 'List of elements. If you want to provide a speicifc list otherwise the events of the site is used',
+      control: {
+        type: 'array',
+      },
+    },
+    limit: {
+      description: 'A custom limit for the number of events to show initially',
+      type: 'number',
+    },
+    maxLimit: {
+      description: 'A custom limit for the maxium number of events to show',
+      type: 'number',
+    },
+    moreUrl: {
+      description: 'An url to a custom page',
+      type: 'string',
+    },
+  },
 };
 
 const Template = (args) => createComponent(args, component);
