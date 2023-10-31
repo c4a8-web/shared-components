@@ -27,7 +27,7 @@
 {%- assign eventOverviewEventsByLanguage = eventOverviewEvents | where_exp: "item", eventOverviewLangEventsExpression -%}
 
 {% if eventOverviewVisibleExpression == '' %}
-  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | sort: 'eventid' -%}
+  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | reverse -%}
 {% else %}
   {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' -%}
 {% endif %}
