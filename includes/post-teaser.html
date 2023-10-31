@@ -6,14 +6,14 @@
   {%- if postTeaserPost.moment -%}
     {% assign postTeaserPostDate = postTeaserPost.moment %}
   {%- else -%}
-    {% assign blogRecentPostDate = postTeaserPost.date %}
+    {% assign postTeaserPostDate = postTeaserPost.date | date: '%Y-%m-%d' %}
   {%- endif -%}
   {
     "url": "{{ postTeaserPost.url }}",
-    "title": "{{ postTeaserPost.title | strip_html | escape }}",
+    "title": "{{ postTeaserPost.title | strip_html | strip_newlines | escape }}",
     "date": "{{ postTeaserPostDate }}",
     "blogtitlepic": "{{ postTeaserPost.blogtitlepic }}",
-    "excerpt": "{{ postTeaserPost.excerpt | strip_html | escape }}",
+    "excerpt": "{{ postTeaserPost.excerpt | strip_html | strip_newlines | escape }}",
     "tags": {{ postTeaserPost.tags | jsonify }},
     "lang": "{{ postTeaserPost.lang }}"
   }

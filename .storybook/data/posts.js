@@ -2,7 +2,7 @@ const Posts = [
   {
     url: 'javascript:void(0);',
     layout: 'post',
-    title: 'Audiocodes Devices Review',
+    title: 'Audiocodes & Devices Review',
     date: '2021-06-17',
     moment: '2021-06-17',
     author: 'Jan Petersen',
@@ -11,7 +11,7 @@ const Posts = [
     blogtitlepic: 'head-audiocodes-review',
     socialimg: 'https://res.cloudinary.com/c4a8/image/upload/v1625931868/blog/heads/head-audiocodes-review.jpg',
     excerpt:
-      'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
+      'Audiocodes &quot; hat mir mehrere Geräte &quot; für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
   },
   {
     url: 'javascript:void(1);',

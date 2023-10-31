@@ -45,9 +45,12 @@ export default {
       return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
-      return Tools.isTrue(this.long) === true
-        ? this.strippedExcerpt
-        : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
+      const excerptValue =
+        Tools.isTrue(this.long) === true
+          ? this.strippedExcerpt
+          : Tools.truncateWords(this.strippedExcerpt, this.wordsToTruncate);
+
+      return Tools.decodeHTML(excerptValue);
     },
     strippedExcerpt() {
       return Tools.stripHtml(this.excerpt);
@@ -197,7 +200,7 @@ export default {
           <div class="col-lg-4">
             <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ combinedTitle }}</a></headline>
-              <p>{{ truncatedExcerpt }}</p>
+              <p v-html="truncatedExcerpt"></p>
               <div :class="mediaClass">
                 <div class="card__author" v-if="author">
                   <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
@@ -251,7 +254,7 @@ export default {
         <div class="card__body card-body richtext">
           <div class="card__scope" v-if="scope">{{ scope }}</div>
           <headline level="h4"><a ref="title" class="card__title text-inherit text-decoration-none text-reset mt-4 mb-4" :href="url" :target="target">{{ combinedTitle }}</a></headline>
-          <p class="mb-4 mt-4">{{ truncatedExcerpt }}</p>
+          <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
           <ul class="card__points text-black">
             <template v-for="points in subPointsList(subPoints)">
@@ -277,7 +280,7 @@ export default {
 
         <div class="card__body card-body">
           <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ combinedTitle }}</a></headline>
-          <p>{{ truncatedExcerpt }}</p>
+          <p v-html="truncatedExcerpt"></p>
         </div>
 
         <div class="card-footer border-0 pt-0">
