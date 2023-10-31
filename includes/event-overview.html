@@ -25,7 +25,12 @@
 {% endif %}
 
 {%- assign eventOverviewEventsByLanguage = eventOverviewEvents | where_exp: "item", eventOverviewLangEventsExpression -%}
-{%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' -%}
+
+{% if eventOverviewVisibleExpression == '' %}
+  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | sort: 'eventid' -%}
+{% else %}
+  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' -%}
+{% endif %}
 
 {%- capture eventOverviewEventsString -%}
   [
