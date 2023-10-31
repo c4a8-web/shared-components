@@ -84,3 +84,15 @@ footer {
   display: block;
   flex: 1 100%;
 }
+
+.footer__partner-image {
+  width: inherit;
+
+  @include media-breakpoint-up(md) {
+    max-width: 400px;
+  }
+}
+
+.footer__highlight-link {
+  max-width: 300px;
+}
