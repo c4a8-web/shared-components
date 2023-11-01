@@ -37,8 +37,7 @@
     left: 0;
     height: 100%;
     width: 25%;
-    background-color: var(--color-white);
-    // z-index: -1;
+    background-color: var(--color-background);
   }
 
   @include media-breakpoint-up(md) {
