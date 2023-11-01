@@ -1,0 +1,47 @@
+.screenshot {
+  .flex-row-reverse {
+    .screenshot__img {
+      position: relative;
+
+      &::before {
+        left: -50vw;
+        right: auto;
+      }
+
+      &::after {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+}
+
+.screenshot__img {
+  position: relative;
+
+  &::before {
+    position: absolute;
+    display: block;
+    content: '';
+    right: -50vw;
+    height: 100%;
+    width: 50vw;
+    background-color: inherit;
+    z-index: -1;
+  }
+
+  &::after {
+    position: absolute;
+    display: block;
+    content: '';
+    left: 0;
+    height: 100%;
+    width: 25%;
+    background-color: var(--color-white);
+    // z-index: -1;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-height: 500px;
+  }
+}

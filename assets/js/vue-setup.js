@@ -43,6 +43,7 @@ import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
 import PostTeaser from './vue/post-teaser.js';
+import Screenshot from './vue/screenshot.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
@@ -219,6 +220,7 @@ const addApp = () => {
     LBlock,
     Square,
     PostTeaser,
+    Screenshot,
     PersonQuote,
     VideoInner,
     XMark,
