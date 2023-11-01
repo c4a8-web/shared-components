@@ -6,7 +6,7 @@ export default {
     },
     style() {
       return [
-        this.background ? `background-image:url('${this.background}');` : '',
+        this.background ? `background-image: url('${this.background}');` : '',
         this.bgColor ? `background-color: ${this.bgColor};` : '',
       ];
     },
@@ -24,7 +24,7 @@ export default {
       return ['pt-4 pt-lg-6 w-100 w-md-auto fade-in-bottom'];
     },
     logoClass() {
-      return ['max-w-11rem max-w-md-13rem', this.background ? 'mx-auto' : ''];
+      return ['text-teaser__logo-container', this.background ? 'mx-auto' : ''];
     },
     ctaListNormalize() {
       const fixedArr = this.ctaList.map((obj) => {
@@ -47,21 +47,11 @@ export default {
     },
   },
   props: {
-    ctaList: {
-      default: null,
-    },
-    spacing: {
-      default: null,
-    },
-    background: {
-      default: null,
-    },
-    bgColor: {
-      default: null,
-    },
-    logo: {
-      default: null,
-    },
+    ctaList: Object,
+    spacing: String,
+    background: String,
+    bgColor: String,
+    logo: Object,
     copy: String,
   },
   template: `
