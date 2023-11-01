@@ -1,0 +1,36 @@
+<!-- Shared Screenshot Section -->
+{%- assign screenshotSpacing = include.spacing -%}
+{%- assign screenshotLevel = include.level -%}
+{%- assign screenshotHeadline = include.headline -%}
+{%- assign screenshotCopy = include.copy -%}
+{%- assign screenshotLeft = include.left -%}
+{%- assign screenshotBgColor = include.bgColor -%}
+{%- assign screenshotSource = include.source -%}
+{%- assign screenshotSourceCaption = include.sourceCaption -%}
+{%- assign screenshotImage = include.image -%}
+{%- assign screenshotCloudinary = include.cloudinary -%}
+{%- assign screenshotAlt = include.alt -%}
+{%- assign screenshotClasses = include.classes -%}
+
+{% if screenshotLeft == true %}
+  {% assign screenshotLeft = true %}
+{% else %}
+  {% assign screenshotLeft = false %}
+{% endif %}
+
+<screenshot
+  spacing="{{ screenshotSpacing }}"
+  level="{{ screenshotLevel }}"
+  headline="{{ screenshotHeadline }}"
+  copy="{{ screenshotCopy }}"
+  :left="{{ screenshotLeft }}"
+  bg-color="{{ screenshotBgColor }}"
+  source="{{ screenshotSource }}"
+  source-caption="{{ screenshotSourceCaption }}"
+  :image="{{ screenshotImage | jsonify | escape }}"
+  :cloudinary="{{ screenshotCloudinary }}"
+  alt="{{ screenshotAlt }}"
+  classes="{{ screenshotClasses }}"
+>
+</screenshot>
+<!-- End Shared Screenshot Section -->
