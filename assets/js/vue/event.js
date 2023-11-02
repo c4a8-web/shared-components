@@ -61,6 +61,8 @@ export default {
   },
   methods: {
     handleClick() {
+      if (this.external) return window.open(this.url, '_blank');
+
       document.location.href = this.url;
     },
   },
@@ -76,6 +78,7 @@ export default {
     timeColor: String,
     classes: String,
     url: String,
+    external: Boolean,
   },
   template: `
     <article :class="['event vue-component', classes ? classes : null]" :style="style" @click="handleClick">

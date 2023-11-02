@@ -109,3 +109,14 @@ MultipleDays.args = {
   color: 'var(--color-copy)',
   timeColor: 'var(--color-yellow-medium)',
 };
+
+export const External = Template.bind({});
+
+External.args = {
+  title: 'Event Title',
+  date: '2020-01-01',
+  category: 'Event Category',
+  text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
+  external: true,
+  url: 'https://www.google.com/search?q=glueckkanja',
+};

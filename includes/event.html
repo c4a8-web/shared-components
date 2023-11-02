@@ -9,6 +9,13 @@
 {%- assign eventTimeColor = include.timeColor -%}
 {%- assign eventUrl = include.url -%}
 {%- assign eventClasses = include.classes -%}
+{%- assign eventExternal = include.external -%}
+
+{% if eventExternal == true %}
+  {% assign eventExternal = true %}
+{% else %}
+  {% assign eventExternal = false %}
+{% endif %}
 
 <!-- Shared Event Section -->
 <event
@@ -23,6 +30,7 @@
   time-color="{{ eventTimeColor }}"
   classes="{{ eventClasses }}"
   url="{{ eventUrl }}"
+  :external="{{ eventExternal }}"
 >
 </event>
 <!-- End Shared Event Section -->
