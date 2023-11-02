@@ -40,8 +40,17 @@
       {% else -%}
         {% assign eventOverviewEventDate = eventOverviewEvent.date %}
       {% endif -%}
+
+      {% if eventOverviewEvent.cta -%}
+        {% assign eventOverviewEventUrl = eventOverviewEvent.cta.href %}
+        {% assign eventOverviewEventExternal = true %}
+      {% else -%}
+        {% assign eventOverviewEventUrl = eventOverviewEvent.url %}
+        {% assign eventOverviewEventExternal = false %}
+      {% endif -%}
       {
-        "url": "{{ eventOverviewEvent.url }}",
+        "url": "{{ eventOverviewEventUrl }}",
+        "external": {{ eventOverviewEventExternal }},
         "title": "{{ eventOverviewEvent.title | strip_html }}",
         "date": "{{ eventOverviewEventDate }}",
         "time": "{{ eventOverviewEvent.time }}",
