@@ -97,12 +97,6 @@ $list-container-spacing: spacing(14);
     }
   }
 
-  .h4-font-size {
-    @include media-breakpoint-down(md) {
-      font-size: 1.1rem;
-    }
-  }
-
   > div {
     &:nth-child(1n + 4).text-image {
       padding-top: spacing(2);
