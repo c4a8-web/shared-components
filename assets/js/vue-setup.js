@@ -81,6 +81,7 @@ import ComputerShield from './vue/icons/computer-shield.js';
 import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
+import Hand from './vue/icons/hand.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Mail from './vue/icons/mail.js';
 import Menu from './vue/icons/menu.js';
@@ -198,6 +199,7 @@ const addApp = () => {
     Emergency,
     EmailActionUnread,
     Expand,
+    Hand,
     Menu,
     Magnifier,
     Mail,
