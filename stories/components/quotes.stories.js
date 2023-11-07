@@ -3,6 +3,7 @@ import { includesquoteshtml as component } from '../../.storybook/generatedInclu
 
 const options = getTitle({
   title: 'Quotes',
+  block: true,
 });
 
 export default {

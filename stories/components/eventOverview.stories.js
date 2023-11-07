@@ -3,6 +3,7 @@ import { includeseventoverviewhtml as component } from '../../.storybook/generat
 
 const options = getTitle({
   title: 'Event Overview',
+  block: true,
 });
 
 export default {

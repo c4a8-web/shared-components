@@ -3,6 +3,7 @@ import { includessliderhtml as component } from '../../.storybook/generatedInclu
 
 const options = getTitle({
   title: 'Slider',
+  block: true,
 });
 
 export default {

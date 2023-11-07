@@ -3,6 +3,7 @@ import { includessuccessstoryhtml as component } from '../../.storybook/generate
 
 const options = getTitle({
   title: 'Success Story',
+  block: true,
 });
 
 export default {

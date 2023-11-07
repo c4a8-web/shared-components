@@ -3,6 +3,7 @@ import timelineTemplate from '!!raw-loader!./timeline.html';
 
 const options = getTitle({
   title: 'Timeline',
+  block: true,
 });
 
 export default {

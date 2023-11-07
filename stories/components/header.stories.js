@@ -3,6 +3,7 @@ import headerTemplate from '!!raw-loader!./header.html';
 
 const options = getTitle({
   title: 'Header',
+  block: true,
 });
 
 export default {

@@ -3,6 +3,7 @@ import { includespricingdetailshtml as component } from '../../.storybook/genera
 
 const options = getTitle({
   title: 'Pricing Details',
+  block: true,
 });
 
 export default {

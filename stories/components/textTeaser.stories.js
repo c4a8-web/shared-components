@@ -3,6 +3,7 @@ import { includestextteaserhtml as component } from '../../.storybook/generatedI
 
 const options = getTitle({
   title: 'Text Teaser',
+  block: true,
 });
 
 export default {

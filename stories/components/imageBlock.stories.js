@@ -3,6 +3,7 @@ import { includesimageblockhtml as component } from '../../.storybook/generatedI
 
 const options = getTitle({
   title: 'Image Block',
+  block: true,
 });
 
 export default {

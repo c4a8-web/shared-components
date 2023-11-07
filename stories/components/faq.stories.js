@@ -3,6 +3,7 @@ import { includesfaqhtml as component } from '../../.storybook/generatedIncludes
 
 const options = getTitle({
   title: 'Faq',
+  block: true,
 });
 
 export default {

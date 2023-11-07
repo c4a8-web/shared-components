@@ -3,6 +3,7 @@ import { includesfeaturelisthtml as component } from '../../.storybook/generated
 
 const options = getTitle({
   title: 'Feature List',
+  block: true,
 });
 
 export default {

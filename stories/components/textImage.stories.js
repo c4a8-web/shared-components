@@ -3,6 +3,7 @@ import { includestextimagehtml as component } from '../../.storybook/generatedIn
 
 const options = getTitle({
   title: 'Text Image',
+  block: true,
 });
 
 export default {

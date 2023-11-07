@@ -3,6 +3,7 @@ import { includestagcloudhtml as component } from '../../.storybook/generatedInc
 
 const options = getTitle({
   title: 'Tag Cloud',
+  block: true,
 });
 
 export default {

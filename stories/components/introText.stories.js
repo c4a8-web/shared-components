@@ -3,6 +3,7 @@ import { includesintrotexthtml as component } from '../../.storybook/generatedIn
 
 const options = getTitle({
   title: 'Intro Text',
+  block: true,
 });
 
 export default {

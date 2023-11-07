@@ -14,6 +14,6 @@ addons.setConfig({
   initialActive: 'sidebar',
   sidebar: {
     showRoots: true,
-    collapsedRoots: ['context', 'docs'],
+    collapsedRoots: ['context', 'docs', 'pages', 'helper'],
   },
 });

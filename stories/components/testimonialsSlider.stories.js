@@ -3,6 +3,7 @@ import { includestestimonialssliderhtml as component } from '../../.storybook/ge
 
 const options = getTitle({
   title: 'Testimonials Slider',
+  block: true,
 });
 
 export default {

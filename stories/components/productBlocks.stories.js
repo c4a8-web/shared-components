@@ -3,6 +3,7 @@ import { includesproductblockshtml as component } from '../../.storybook/generat
 
 const options = getTitle({
   title: 'Product Blocks',
+  block: true,
 });
 
 export default {

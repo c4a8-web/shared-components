@@ -3,6 +3,7 @@ import { includesblogrecenthtml as component } from '../../.storybook/generatedI
 
 const options = getTitle({
   title: 'Blog Recent',
+  block: true,
 });
 
 export default {

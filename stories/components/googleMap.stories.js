@@ -3,6 +3,7 @@ import { includesgooglemaphtml as component } from '../../.storybook/generatedIn
 
 const options = getTitle({
   title: 'Google Map',
+  block: true,
 });
 
 export default {

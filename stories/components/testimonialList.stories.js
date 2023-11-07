@@ -3,6 +3,7 @@ import { includestestimoniallisthtml as component } from '../../.storybook/gener
 
 const options = getTitle({
   title: 'Testimonial List',
+  block: true,
 });
 
 export default {

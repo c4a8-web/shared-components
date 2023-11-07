@@ -3,6 +3,7 @@ import { includesawardshtml as component } from '../../.storybook/generatedInclu
 
 const options = getTitle({
   title: 'Awards',
+  block: true,
 });
 
 export default {

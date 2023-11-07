@@ -3,6 +3,7 @@ import { includesbloghtml as component } from '../../.storybook/generatedInclude
 
 const options = getTitle({
   title: 'Blog',
+  block: true,
 });
 
 export default {

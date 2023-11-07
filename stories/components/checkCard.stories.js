@@ -3,6 +3,7 @@ import { includescheckcardhtml as component } from '../../.storybook/generatedIn
 
 const options = getTitle({
   title: 'Check Card',
+  block: true,
 });
 
 export default {

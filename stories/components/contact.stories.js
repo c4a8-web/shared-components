@@ -3,6 +3,7 @@ import { includescontacthtml as component } from '../../.storybook/generatedIncl
 
 const options = getTitle({
   title: 'Contact',
+  block: true,
 });
 
 export default {

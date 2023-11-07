@@ -3,6 +3,7 @@ import { includesfeaturegridhtml as component } from '../../.storybook/generated
 
 const options = getTitle({
   title: 'Feature Grid',
+  block: true,
 });
 
 export default {

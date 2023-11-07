@@ -3,6 +3,7 @@ import iconBlocksTemplate from '!!raw-loader!./icon-blocks.html';
 
 const options = getTitle({
   title: 'Icon Blocks',
+  block: true,
 });
 
 export default {

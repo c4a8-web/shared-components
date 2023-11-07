@@ -3,6 +3,7 @@ import accordionTemplate from '!!raw-loader!./accordion.html';
 
 const options = getTitle({
   title: 'Accordion',
+  block: true,
 });
 
 export default {

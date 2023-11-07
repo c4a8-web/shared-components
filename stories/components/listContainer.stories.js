@@ -4,6 +4,7 @@ import { includesfaqhtml, includestextimagehtml } from '../../.storybook/generat
 
 const options = getTitle({
   title: 'List Container',
+  block: true,
 });
 
 export default {

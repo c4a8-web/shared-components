@@ -3,6 +3,7 @@ import { includessteplisthtml as component } from '../../.storybook/generatedInc
 
 const options = getTitle({
   title: 'Step List',
+  block: true,
 });
 
 export default {

@@ -3,6 +3,7 @@ import { includeslogolisthtml as component } from '../../.storybook/generatedInc
 
 const options = getTitle({
   title: 'Logo List',
+  block: true,
 });
 
 export default {

@@ -3,6 +3,7 @@ import heroTemplate from '!!raw-loader!./hero.html';
 
 const options = getTitle({
   title: 'Hero',
+  block: true,
 });
 
 export default {

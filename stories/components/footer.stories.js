@@ -3,6 +3,7 @@ import { includesfooterhtml as component } from '../../.storybook/generatedInclu
 
 const options = getTitle({
   title: 'Footer',
+  block: true,
 });
 
 export default {

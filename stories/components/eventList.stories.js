@@ -3,6 +3,7 @@ import { includeseventlisthtml as component } from '../../.storybook/generatedIn
 
 const options = getTitle({
   title: 'Event List',
+  block: true,
 });
 
 export default {

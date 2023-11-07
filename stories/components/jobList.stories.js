@@ -2,7 +2,8 @@ import { createComponent, hrefTo, getTitle } from '../../.storybook/templates';
 import { includesjoblisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
-  title: 'Job/List',
+  title: 'Job List',
+  block: true,
 });
 
 export default {

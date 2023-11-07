@@ -3,6 +3,7 @@ import { includesheadlinerowhtml as component } from '../../.storybook/generated
 
 const options = getTitle({
   title: 'Headline Row',
+  block: true,
 });
 
 export default {

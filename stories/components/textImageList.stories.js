@@ -3,6 +3,7 @@ import textImageListTemplate from '!!raw-loader!./textImageList.html';
 
 const options = getTitle({
   title: 'Text Image List',
+  block: true,
 });
 
 export default {
