@@ -3,17 +3,17 @@ import Tools from '../tools.js';
 import BaseComponent from './base-component.js';
 
 class HeroTextImage extends BaseComponent {
-  static rootSelector = '.hero-text-image.hero--security';
+  static rootSelector = '.hero-text-image';
 
   constructor(root, options) {
     super(root, options);
 
     this.videoSelector = '.hero-text-image__video video';
     this.videoAnimatinoSelector = '.hero-video__animation';
-    this.ctaSelector = '.hero-text-image__cta-wrapper .cta';
+    this.ctaSelector = '.cta';
 
     this.videos = this.root.querySelectorAll(this.videoSelector);
-    this.cta = this.root.querySelector(this.ctaSelector);
+    this.ctas = this.root.querySelectorAll(this.ctaSelector);
 
     this.animationDelay = 6400;
 
@@ -26,9 +26,11 @@ class HeroTextImage extends BaseComponent {
   }
 
   bindEvents() {
-    if (!this.cta) return;
+    if (!this.ctas) return;
 
-    this.cta.addEventListener('click', this.handleClick.bind(this));
+    this.ctas.forEach((cta) => {
+      cta.addEventListener('click', this.handleClick.bind(this));
+    });
   }
 
   handleClick(e) {
