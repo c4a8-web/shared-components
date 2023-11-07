@@ -23,15 +23,18 @@ $list-container-spacing: spacing(14);
       max-width: 100%;
 
       img.is-svg {
-        width: 90%;
-        max-width: 120px;
-        padding: spacing(6) 0;
-        margin: 0;
+        width: 40vw;
+        margin: 0 auto;
+        display: flex;
       }
 
       @include media-breakpoint-up(md) {
         flex: 1 0 40%;
         max-width: 40%;
+
+        img.is-svg {
+          max-width: 100%;
+        }
       }
 
       @include media-breakpoint-up(lg) {
@@ -40,7 +43,6 @@ $list-container-spacing: spacing(14);
 
         img.is-svg {
           width: 60%;
-          max-width: 100%;
           padding: spacing(6);
         }
       }
@@ -92,12 +94,6 @@ $list-container-spacing: spacing(14);
           }
         }
       }
-    }
-  }
-
-  .h4-font-size {
-    @include media-breakpoint-down(md) {
-      font-size: 1.1rem;
     }
   }
 
