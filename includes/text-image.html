@@ -33,7 +33,7 @@
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageCopyLight -%}
-  {% assign textImageLightText = 'text-light' %}
+  {% assign textImageLightText = ' text-light' %}
 {% else %}
   {% assign textImageLightText = '' %}
 {% endif %}
@@ -55,6 +55,16 @@
 {% if textImageSubline %}
   {% assign textImageImageClasses = 'text-image__img--mobile' | append: textImageImageClases %}
 {% endif %}
+
+{%- assign textImageHeadlineClasses = include.headlineClasses | append: textImageLightText | append: ' mb-2 mb-lg-4' %}
+
+{% unless include.headlineClasses %}
+  {% if textImageFloat %}
+    {%- assign textImageHeadlineClasses = textImageHeadlineClasses | append: ' h3-font-size' %}
+  {% else %}
+    {%- assign textImageHeadlineClasses = textImageHeadlineClasses | append: ' h4-font-size font-weight-normal' -%}
+  {% endif %}
+{% endunless %}
 
 <div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
@@ -152,9 +162,12 @@
         {% endif %}
 
         {% if textImageHeadline %}
-          <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4 {{ textImageLightText }}">
-            {{ textImageHeadline }}
-          </{{ textImageLevel }}>
+          {%
+            include headline.html
+            level=textImageLevel
+            text=textImageHeadline
+            classes=textImageHeadlineClasses
+          %}
         {% endif %}
 
         {% if textImageSubline %}
