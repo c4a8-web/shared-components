@@ -13,7 +13,8 @@ class HeroTextImage extends BaseComponent {
     this.ctaSelector = '.cta';
 
     this.videos = this.root.querySelectorAll(this.videoSelector);
-    this.ctas = this.root.querySelectorAll(this.ctaSelector);
+    this.ctaList = this.root.querySelectorAll(this.ctaSelector);
+    this.classList = this.root.classList;
 
     this.animationDelay = 6400;
 
@@ -25,16 +26,19 @@ class HeroTextImage extends BaseComponent {
     this.bindEvents();
   }
 
-  isSecurityOrCareer() {
-    const classList = this.root.classList;
-    const containsSecurityOrCareer = classList.contains('hero--security') || classList.contains('hero--career');
-    return containsSecurityOrCareer;
+  isSecurity() {
+    return this.classList.contains('hero--security');
+  }
+
+  isCareer() {
+    return this.classList.contains('hero--career');
   }
 
   bindEvents() {
-    if (!this.ctas || !this.isSecurityOrCareer()) return;
+    const hasCareerOrSecurity = this.isSecurity() || this.isCareer();
+    if (!this.ctaList || !hasCareerOrSecurity) return;
 
-    this.ctas.forEach((cta) => {
+    this.ctaList.forEach((cta) => {
       cta.addEventListener('click', this.handleClick.bind(this));
     });
   }

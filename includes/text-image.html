@@ -33,7 +33,7 @@
 {%- capture textImageLevel %}{{ include.level | default: "h3" }}{% endcapture -%}
 
 {%- if textImageCopyLight -%}
-  {% assign textImageLightText = ' text-light' %}
+  {% assign textImageLightText = 'text-light' %}
 {% else %}
   {% assign textImageLightText = '' %}
 {% endif %}
@@ -56,7 +56,7 @@
   {% assign textImageImageClasses = 'text-image__img--mobile' | append: textImageImageClases %}
 {% endif %}
 
-{%- assign textImageHeadlineClasses = include.headlineClasses | append: textImageLightText | append: ' mb-2 mb-lg-4' %}
+{%- capture textImageHeadlineClasses -%}{{include.headlineClasses}} {{textImageLightText}} mb-2 mb-lg-4 {% endcapture %}
 
 {% unless include.headlineClasses %}
   {% if textImageFloat %}
