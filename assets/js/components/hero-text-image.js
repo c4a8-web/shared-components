@@ -25,8 +25,14 @@ class HeroTextImage extends BaseComponent {
     this.bindEvents();
   }
 
+  isSecurityOrCareer() {
+    const classList = this.root.classList;
+    const containsSecurityOrCareer = classList.contains('hero--security') || classList.contains('hero--career');
+    return containsSecurityOrCareer;
+  }
+
   bindEvents() {
-    if (!this.ctas) return;
+    if (!this.ctas || !this.isSecurityOrCareer()) return;
 
     this.ctas.forEach((cta) => {
       cta.addEventListener('click', this.handleClick.bind(this));
