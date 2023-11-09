@@ -172,9 +172,7 @@ export default {
                   <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses">
                 </div>
               </template>
-              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text">
-                {{ videoParsed.text }}
-              </div>
+              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text" v-html="videoParsed.text"></div>
               <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
                 {{ videoParsed.date }}
               </div>
