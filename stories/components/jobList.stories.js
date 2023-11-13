@@ -30,6 +30,13 @@ List.args = {
   ...baseArgs,
 };
 
+export const ListWithBackground = Template.bind({});
+
+ListWithBackground.args = {
+  ...baseArgs,
+  bgColor: 'var(--color-surface-background)',
+};
+
 export const ListLimit = Template.bind({});
 
 ListLimit.args = {

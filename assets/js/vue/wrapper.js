@@ -20,6 +20,7 @@ export default {
         backgroundColor: this.bgColor,
         '--color-copy': copyColor,
         '--color-headlines': copyColor,
+        '--color-border': copyColor,
       };
     },
   },

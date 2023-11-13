@@ -40,7 +40,7 @@ $job-list-detail-transition-3-delay: 1.8s;
 }
 
 .job-list__entry {
-  @include underline(var(--color-white), '.job-list__entry-title');
+  @include underline(var(--color-copy-light), '.job-list__entry-title');
 
   border: 2px solid var(--color-border);
   padding: spacing(8);
@@ -49,11 +49,13 @@ $job-list-detail-transition-3-delay: 1.8s;
   flex: 1 0 100%;
   margin-bottom: spacing(6);
   cursor: pointer;
+  color: var(--color-copy);
 
   &:hover {
+    --color-copy: var(--color-copy-light);
+
     background-color: var(--color-primary-accent);
     border-color: var(--color-primary-accent);
-    color: var(--color-white);
   }
 
   @include media-breakpoint-up(lg) {

@@ -13,23 +13,32 @@
 {%- assign jobListSublineText = include.sublineText -%}
 {%- assign jobListExpandText = include.expandText -%}
 {%- assign jobListSticky = include.sticky -%}
+{%- assign jobListSpacing = include.spacing -%}
+{%- assign jobListBgColor = include.bgColor -%}
+{%- assign jobListLight = include.light -%}
 
-<job-list
-  client-name="{{ jobListClientName }}"
-  max-items="{{ jobListMaxItems }}"
-  :detail-url='{{ jobListDetailUrl | jsonify }}'
-  job-id="{{ jobListJobId }}"
-  tags="{{ jobListTags }}"
-  lang="{{ jobListLang }}"
-  team="{{ jobListTeam }}"
-  api-url="{{ jobListApiUrl }}"
-  headline-classes="{{ jobListHeadlineClasses }}"
-  headline-level="{{ jobListHeadlineLevel }}"
-  headline-text="{{ jobListHeadlineText }}"
-  subline-text="{{ jobListSublineText }}"
-  expand-text="{{ jobListExpandText }}"
-  :sticky="{{ jobListSticky }}"
+<wrapper
+  bg-color="{{ jobListBgColor }}"
+  light="{{ jobListLight }}"
+  no-container="true"
+  spacing="{{ jobListSpacing }}"
 >
-</job-list>
-
+  <job-list
+    client-name="{{ jobListClientName }}"
+    max-items="{{ jobListMaxItems }}"
+    :detail-url='{{ jobListDetailUrl | jsonify }}'
+    job-id="{{ jobListJobId }}"
+    tags="{{ jobListTags }}"
+    lang="{{ jobListLang }}"
+    team="{{ jobListTeam }}"
+    api-url="{{ jobListApiUrl }}"
+    headline-classes="{{ jobListHeadlineClasses }}"
+    headline-level="{{ jobListHeadlineLevel }}"
+    headline-text="{{ jobListHeadlineText }}"
+    subline-text="{{ jobListSublineText }}"
+    expand-text="{{ jobListExpandText }}"
+    :sticky="{{ jobListSticky }}"
+  >
+  </job-list>
+</wrapper>
 <!-- End Shared Job List Section -->
