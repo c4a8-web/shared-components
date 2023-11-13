@@ -1,0 +1,19 @@
+.wrapper {
+  &.has-background:not(.has-spacing) {
+    padding: spacing(10) 0;
+
+    @include media-breakpoint-up(lg) {
+      padding: spacing(14) 0;
+    }
+  }
+
+  &.has-background,
+  &.has-spacing {
+    > .container:first-child {
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+}
