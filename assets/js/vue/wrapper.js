@@ -14,14 +14,21 @@ export default {
       ];
     },
     style() {
+      const copyColor = Tools.isTrue(this.light) ? 'var(--color-copy-light)' : null;
+
       return {
         backgroundColor: this.bgColor,
+        '--color-copy': copyColor,
+        '--color-headlines': copyColor,
       };
     },
   },
   props: {
     bgColor: String,
     spacing: String,
+    light: {
+      default: false,
+    },
     noContainer: {
       default: false,
     },
