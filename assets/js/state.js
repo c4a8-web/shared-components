@@ -23,6 +23,7 @@ const State = {
   IS_SCROLLED: 'is-scrolled',
   MODAL_OPEN: 'modal--open',
   HAS_BACKGROUND: 'has-background',
+  HAS_SPACING: 'has-spacing',
   IS_FULL: 'is-full',
   STICKY: 'is-sticky',
   IN_TRANSITION: 'in-transition',
