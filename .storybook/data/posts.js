@@ -14,7 +14,7 @@ const Posts = [
       'Audiocodes &quot; hat mir mehrere Geräte &quot; für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
   },
   {
-    url: 'javascript:void(1);',
+    url: "javascript:console.log('click 1');",
     layout: 'post',
     title: 'Externe Emails besser erkennen',
     date: '2021-06-10',
