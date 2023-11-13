@@ -1,11 +1,30 @@
+import Tools from '../tools.js';
+import State from '../state.js';
+
 export default {
   tagName: 'wrapper',
   computed: {
     classList() {
-      return ['wrapper container vue-component', this.classes ? this.classes : null];
+      return [
+        'wrapper vue-component',
+        this.classes ? this.classes : null,
+        this.spacing && this.bgColor ? `${this.spacing} ${State.HAS_SPACING}` : null,
+        this.bgColor ? State.HAS_BACKGROUND : null,
+        Tools.isTrue(this.noContainer) ? null : 'container',
+      ];
+    },
+    style() {
+      return {
+        backgroundColor: this.bgColor,
+      };
     },
   },
   props: {
+    bgColor: String,
+    spacing: String,
+    noContainer: {
+      default: false,
+    },
     hideContainer: {
       default: false,
     },
@@ -15,7 +34,7 @@ export default {
   },
   template: `
     <template v-if="!hideContainer">
-      <div :class="classList">
+      <div :class="classList" :style="style">
         <slot></slot>
       </div>
     </template>
