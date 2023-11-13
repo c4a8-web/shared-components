@@ -9,6 +9,7 @@
 
   &.has-background,
   &.has-spacing {
+    .is-component,
     > .container:first-child {
       margin-top: 0 !important;
       margin-bottom: 0 !important;
