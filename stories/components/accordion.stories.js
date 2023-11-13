@@ -41,7 +41,8 @@ Default.args = {
       },
       {
         headline: 'WIFI and LAN policy creation 4',
-        content: 'Easy download of XML files to generate WIFI and LAN policies',
+        content:
+          'Easy download of XML files to generate WIFI and LAN policies. Lorem ipsum dolor sit amet, consectetur adipiscing elit sed diam nonumy euismod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis no. Lorem ipsum dolor sit amet, consectetur adipiscing elit sed diam nonumy euismod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis no.',
         image: 'security/CSOC-Services-Analysis-Reporting.png',
         alt: 'WIFI and LAN policy creation',
       },
@@ -49,9 +50,11 @@ Default.args = {
   },
 };
 
-export const Image = Template.bind({});
+export const ImageWithBackground = Template.bind({});
 
-Image.args = {
+ImageWithBackground.args = {
+  bgColor: 'var(--color-primary)',
+  spacing: 'pt-6 pb-4 py-lg-8',
   shadowless: false,
   left: true,
   accordion: {

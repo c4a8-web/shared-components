@@ -3,12 +3,21 @@
 {% assign accordionLeft = include.left %}
 {% assign accordionShadowless = include.shadowless | default: false %}
 {% assign accordionSpacing = include.spacing %}
+{% assign accordionBgColor = include.bgColor %}
+{% assign accordionLight = include.light %}
 
-<accordion
-  :accordion="{{ accordion | jsonify | escape }}"
-  shadowless="{{ accordionShadowless }}"
+<wrapper
+  bg-color="{{ accordionBgColor }}"
+  light="{{ accordionLight }}"
+  no-container="true"
   spacing="{{ accordionSpacing }}"
-  left="{{ accordionLeft }}"
 >
-</accordion>
+  <accordion
+    :accordion="{{ accordion | jsonify | escape }}"
+    shadowless="{{ accordionShadowless }}"
+    spacing="{{ accordionSpacing }}"
+    left="{{ accordionLeft }}"
+  >
+  </accordion>
+</wrapper>
 <!-- End Shared Accordion Section -->
