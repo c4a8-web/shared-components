@@ -10,6 +10,7 @@ export default {
     classList() {
       return [
         'job-list container',
+        State.HAS_SWAPPABLE_COPY,
         `${this.hasLoading ? State.LOADING : ''}`,
         `${this.hasLoader ? 'loading' : ''}`,
         `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
