@@ -24,6 +24,7 @@ const State = {
   MODAL_OPEN: 'modal--open',
   HAS_BACKGROUND: 'has-background',
   HAS_SPACING: 'has-spacing',
+  HAS_SWAPPABLE_COPY: 'has-swappable-copy',
   IS_FULL: 'is-full',
   STICKY: 'is-sticky',
   IN_TRANSITION: 'in-transition',

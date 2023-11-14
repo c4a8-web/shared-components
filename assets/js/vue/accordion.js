@@ -11,12 +11,14 @@ export default {
       return [
         'accordion__container utility-animation container vue-component',
         this.spacing,
+        State.HAS_SWAPPABLE_COPY,
         this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
     accordionClasses() {
       return [
         'accordion utility-animation container mt-6 mb-4 my-lg-8 vue-component',
+        State.HAS_SWAPPABLE_COPY,
         this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
