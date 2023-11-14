@@ -78,6 +78,10 @@
       }
     }
 
+    .headline {
+      color: var(--color-surface-headlines);
+    }
+
     .richtext {
       p + .card__link {
         margin-top: spacing(2);

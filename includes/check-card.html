@@ -1,17 +1,27 @@
-{%- assign checkCardsHeadline = include.headline -%}
-{%- assign checkCardsHeadlineLevel = include.level -%}
-{%- assign checkCardsHeadlineClasses = include.headlineClasses -%}
-{%- assign checkCardsSubline = include.subline -%}
-{%- assign checkCardsSublineClasses = include.sublineClasses -%}
-{%- assign checkCardSpacing = include.spacing -%}
+{%- assign checkCardHeadline = include.headline -%}
+{%- assign checkCardHeadlineLevel = include.level -%}
+{%- assign checkCardHeadlineClasses = include.headlineClasses -%}
+{%- assign checkCardSubline = include.subline -%}
+{%- assign checkCardSublineClasses = include.sublineClasses -%}
+{%- assign checkCardpacing = include.spacing -%}
 {%- assign checkCards = include.checks | default: site.data.checks | where_exp:"item", "item.lang == page.lang" -%}
+{%- assign checkCardSpacing = include.spacing -%}
+{%- assign checkCardBgColor = include.bgColor -%}
+{%- assign checkCardLight = include.light -%}
 
-<check-card
-  :checks="{{ checkCards | jsonify | escape }}"
-  subline="{{ checkCardsSubline }}"
-  subline-classes="{{ checkCardsSublineClasses }}"
+<wrapper
+  bg-color="{{ checkCardBgColor }}"
+  light="{{ checkCardLight }}"
+  no-container="true"
   spacing="{{ checkCardSpacing }}"
-  headline="{{ checkCardsHeadline }}"
-  headline-level="{{ checkCardsHeadlineLevel }}"
-  headline-classes="{{ checkCardsHeadlineClasses }}"
-></check-card>
+>
+  <check-card
+    :checks="{{ checkCards | jsonify | escape }}"
+    subline="{{ checkCardSubline }}"
+    subline-classes="{{ checkCardSublineClasses }}"
+    spacing="{{ checkCardpacing }}"
+    headline="{{ checkCardHeadline }}"
+    headline-level="{{ checkCardHeadlineLevel }}"
+    headline-classes="{{ checkCardHeadlineClasses }}"
+  ></check-card>
+</wrapper>

@@ -22,6 +22,18 @@ CheckCard.args = {
     "<strong>In Zusammenarbeit mit Microsoft sind verschiedene </strong>Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
 };
 
+export const WithBackground = Template.bind({});
+
+WithBackground.args = {
+  bgColor: 'var(--color-jacarta)',
+  light: true,
+  headline: 'Wir checken jetzt ihre IT-Sicherheit on Premises und in der Cloud',
+  level: 'h2',
+  headlineClasses: 'text-black',
+  subline:
+    "<strong>In Zusammenarbeit mit Microsoft sind verschiedene </strong>Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
+};
+
 export const Products = Template.bind({});
 
 Products.args = {

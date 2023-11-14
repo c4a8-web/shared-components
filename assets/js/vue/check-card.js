@@ -1,4 +1,4 @@
-import Tools from '../tools.js';
+import State from '../state.js';
 
 // TODO rename component
 export default {
@@ -6,6 +6,9 @@ export default {
   computed: {
     classList() {
       return ['check-card vue-component', this.hasProducts ? 'check-card--products' : null];
+    },
+    rowClassList() {
+      return ['row', State.HAS_SWAPPABLE_COPY];
     },
     checkCardsContainerClass() {
       return ['check-card__container utility-animation fade-in-bottom js-slick-carousel slick--single-list'];
@@ -109,7 +112,7 @@ export default {
   template: `
     <div :class="classList">
       <div class="container">
-        <div class="row" v-if="headline">
+        <div :class="rowClassList" v-if="headline">
           <div :class="containerValue">
             <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" data-utility-animation-step="1" />
             <div v-if="subline" :class="sublineClassesValue" v-html="subline" data-utility-animation-step="1"></div>
