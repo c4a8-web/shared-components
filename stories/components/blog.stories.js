@@ -12,8 +12,15 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const Blog = Template.bind({});
+export const Default = Template.bind({});
 
-Blog.args = {
+Default.args = {
   newsTitle: 'Aktuelles',
+};
+
+export const WithBackground = Template.bind({});
+
+WithBackground.args = {
+  newsTitle: 'Aktuelles',
+  bgColor: 'var(--color-macaroni-and-cheese)',
 };

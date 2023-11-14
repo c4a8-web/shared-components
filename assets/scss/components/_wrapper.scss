@@ -17,7 +17,7 @@
       padding-bottom: 0 !important;
     }
 
-    .vue-component,
+    .vue-component:not(.card),
     .richtext {
       color: var(--color-copy);
     }
