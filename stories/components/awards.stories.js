@@ -81,7 +81,6 @@ export const WithBackground = Template.bind({});
 
 WithBackground.args = {
   bgColor: 'var(--color-sunglow)',
-  visualOnly: true,
   awards: {
     icon: 'svg/award-star.svg',
     alt: 'award alt',
