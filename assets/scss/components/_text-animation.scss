@@ -27,6 +27,11 @@
 .text-animation__visible {
   position: absolute;
   top: 0;
+  width: 100%;
+
+  @include media-breakpoint-up(md) {
+    width: inherit;
+  }
 }
 
 .text-animation__cta {

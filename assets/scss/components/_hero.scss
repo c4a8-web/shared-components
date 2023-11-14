@@ -133,6 +133,7 @@
         margin-top: spacing($size: 12, $negative: true);
 
         .text-animation__text {
+          word-break: break-all;
           opacity: 0;
           animation: hero-text-animation-show-text 6s 4s;
           animation-fill-mode: forwards;
