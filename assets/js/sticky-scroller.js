@@ -115,7 +115,7 @@ class StickyScroller {
   }
 
   updateClipPath(percentage) {
-    const clipPath = `inset(0 0 ${percentage}% 0)`;
+    const clipPath = 'inset(0% 0% ' + percentage + '%)';
 
     this.root.style.clipPath = clipPath;
 
@@ -170,7 +170,7 @@ class StickyScroller {
       percentage = this.maxPercentage;
     }
 
-    return percentage;
+    return parseFloat(percentage.toFixed(2));
   }
 
   isOutOfViewport(percentage) {
