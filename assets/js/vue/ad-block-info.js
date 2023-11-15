@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      disableDelay: 24 * 60 * 60 * 1000,
+      disableDelay: 30 * 24 * 60 * 60 * 1000,
       storageKey: 'adBlockInfo',
     };
   },
@@ -57,8 +57,7 @@ export default {
     <div class="ad-block-info vue-component" v-if="textValue">
       <modal
         ref="modal-component"
-        slim=true
-        center=true
+        notification=true
       >
         <div class="container">
           <div class="row">

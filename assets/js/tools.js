@@ -366,10 +366,6 @@ class Tools {
     return localStorage.getItem(Tools.storagePrefix + key);
   }
 
-  static getLang() {
-    return document.querySelector('html').getAttribute('lang').toLowerCase() || 'en';
-  }
-
   static getJSON(data) {
     if (data && typeof data === 'object' && Object.keys(data)?.length > 0) return data;
 
