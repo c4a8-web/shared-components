@@ -60,6 +60,5 @@ const LangData = {
 };
 
 const Lang = LangData[Tools.getLang()];
-console.log('🚀 ~ file: lang.js:63 ~ [Tools.getLang():', Tools.getLang());
 
 export default Lang;
