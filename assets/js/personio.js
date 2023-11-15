@@ -78,9 +78,11 @@ class Personio {
     const newData = data;
     const rootId = 'workzag-jobs';
 
-    newData.objects = data[rootId]?.position.map((position) => this.convertPosition(position));
+    const positions = data[rootId]?.position;
 
-    console.log('🚀 ~ file: personio.js:61 ~ Personio ~ convertData ~ newData:', newData);
+    newData.objects = positions.length
+      ? data[rootId]?.position.map((position) => this.convertPosition(position))
+      : [this.convertPosition(positions)];
 
     newData.meta = { offset: 0, limit: 20, total: 10 };
 

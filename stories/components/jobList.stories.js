@@ -78,7 +78,7 @@ export const ListPersonio = Template.bind({});
 
 ListPersonio.args = {
   ...baseArgs,
-  clientName: 'glueckkanja-gab-ag-conversations',
+  clientName: 'c4a8',
   // headlineText: 'English Jobs',
   lang: 'de',
   // apiUrl: 'mock/jobListEn.json',
