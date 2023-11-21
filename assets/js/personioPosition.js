@@ -17,7 +17,9 @@ class PersonioPosition {
   }
 
   get description() {
-    return this.position.jobDescriptions.jobDescription.map((desc) => desc.value['#cdata-section']).join('\n');
+    return this.position.jobDescriptions && this.position.jobDescriptions.jobDescription
+      ? this.position.jobDescriptions.jobDescription.map((desc) => desc.value['#cdata-section']).join('\n')
+      : null;
   }
 
   get id() {
@@ -28,8 +30,43 @@ class PersonioPosition {
     return this.getValue('name');
   }
 
+  getTeamText(text) {
+    let value = text;
+
+    if (value.includes('/')) {
+      const segments = value.split(' / ');
+      const firstSegment = segments[0];
+      const secondSegment = segments[1];
+      const securityIdentifier = 'CSOC';
+      const managedServicesIdentifier = 'Managed Services';
+
+      if (firstSegment === managedServicesIdentifier && secondSegment !== securityIdentifier) {
+        value = managedServicesIdentifier;
+      } else {
+        switch (secondSegment) {
+          case 'Azure Architecture':
+            value = 'Azure';
+            break;
+          case 'M365 Architecture':
+            value = 'Workplace';
+            break;
+          case securityIdentifier:
+            value = 'Security';
+            break;
+          default:
+            value = secondSegment;
+            break;
+        }
+      }
+    }
+
+    return value + ' Team';
+  }
+
   get team() {
-    return `${this.getValue('department')} / ${this.positionType}`;
+    const value = this.getTeamText(this.getValue('department'));
+
+    return `${value}${this.positionType ? ' / ' + this.positionType : ''}`;
   }
 
   get data() {
@@ -43,24 +80,24 @@ class PersonioPosition {
   }
 
   get positionType() {
-    let value = this.getValue('recruitingCategory');
+    let value = this.getValue('employmentType');
 
     switch (value) {
-      case 'Festangestellte':
-      case 'Festanstellung':
+      case 'permanent':
         value = window.i18n?.translate('positionTypePermantently');
         break;
-      case 'Praktikum/Werkstudium':
+      case 'intern':
         value = window.i18n?.translate('positionTypeInternship');
         break;
-      case 'Ausbildung / Trainee':
+      case 'trainee':
         value = window.i18n?.translate('positionTypeTraining');
         break;
-      case 'Werkstudierende':
+      case 'working_student':
         value = window.i18n?.translate('positionTypeStudent');
         break;
-      case 'Freelancing':
-      case 'Befristet':
+      default:
+      case 'freelance':
+      case 'temporary':
         value = null;
         break;
     }

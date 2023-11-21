@@ -10,7 +10,7 @@ const de = {
   moreEvents: 'Weitere Termine',
   positionTypePermantently: 'Festanstellung',
   positionTypeInternship: 'Praktikum',
-  positionTypeTraining: 'Ausbildung / Trainee',
+  positionTypeTraining: 'Ausbildung oder Trainee',
   positionTypeStudent: 'Werkstudierende',
 };
 
