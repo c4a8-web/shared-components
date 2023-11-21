@@ -4,16 +4,24 @@
   {%- assign testimonialsSliderSubline = include.json.subline -%}
   {%- assign testimonialsSliderSlides = include.slides | include.json.slides -%}
   {%- assign testimonialsSliderSticky = include.sticky | include.json.sticky -%}
+  {%- assign testimonialsSliderLang = include.lang | include.json.lang -%}
 {%- else -%}
   {%- assign testimonialsSliderHeadline = include.headline -%}
   {%- assign testimonialsSliderHeadlineLevel = include.headlineLevel -%}
   {%- assign testimonialsSliderSubline = include.subline -%}
   {%- assign testimonialsSliderSlides = include.slides -%}
   {%- assign testimonialsSliderSticky = include.sticky -%}
+  {%- assign testimonialsSliderLang = include.lang -%}
 {%- endif -%}
 
 {%- assign testimonialsSliderSpacing = include.spacing | default: 'space-bottom-3' -%}
 {%- assign testimonialsSliderSlides = testimonialsSliderSlides | sort: 'uid' -%}
+
+{% if testimonialsSliderLang %}
+  {% assign testimonialsSliderSlides = testimonialsSliderSlides | where_exp: 'item', 'item.lang == testimonialsSliderLang' %}
+{% else %}
+  {% assign testimonialsSliderSlides = testimonialsSliderSlides | where_exp: 'item', 'item.lang == page.lang' %}
+{% endif %}
 
 <!-- Shared Testimonial Slider Section -->
 <div class="testimonials-slider container {{ testimonialsSliderSpacing }} {% if testimonialsSliderSticky %}is-sticky-scroller{% endif %}">
