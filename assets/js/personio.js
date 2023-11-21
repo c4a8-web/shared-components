@@ -1,4 +1,5 @@
 import Tools from './tools.js';
+import PersonioPosition from './personioPosition.js';
 
 class Personio {
   languagePlaceholder = 'LANGUAGE_PLACEHOLDER';
@@ -51,10 +52,14 @@ class Personio {
   }
 
   convertPosition(position) {
+    const positionObject = new PersonioPosition(position);
+
+    console.log('🚀 ~ file: personio.js:56 ~ Personio ~ convertPosition ~ positionObject:', positionObject);
+
     const newPosition = {
-      id: position.id['#text'],
-      title: position.name['#text'],
-      description: position.jobDescriptions.jobDescription.map((desc) => desc.value['#cdata-section']).join('\n'),
+      id: positionObject.id,
+      title: positionObject.title,
+      description: positionObject.description,
       location: {
         city: '', // Assuming there's no equivalent in position
         state: '', // Assuming there's no equivalent in position
@@ -67,12 +72,14 @@ class Personio {
       hosted_url: '', // Assuming there's no equivalent in position
       allows_remote: position.office['#text'] === 'Remote',
       position_type: position.schedule['#text'].replace('-', '_'),
-      team: '', // Assuming there's no equivalent in position
+      team: positionObject.team, // Assuming there's no equivalent in position
       close_date: null, // Assuming there's no equivalent in position
     };
 
     return newPosition;
   }
+
+  getValue(position) {}
 
   convertData(data) {
     const newData = data;
