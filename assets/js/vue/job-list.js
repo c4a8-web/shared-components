@@ -1,4 +1,4 @@
-import RecruiterBox from '../recruiter-box.js';
+import JobListings from '../job-listings.js';
 import State from '../state.js';
 import Loading from '../loading.js';
 import Tools from '../tools.js';
@@ -34,8 +34,7 @@ export default {
     },
   },
   mounted() {
-    this.api = new RecruiterBox({
-      // ...this.options, // TODO check if we need options
+    this.api = new JobListings({
       ...(this.jobId && { jobId: this.jobId }),
       ...(this.apiUrl && { apiUrl: this.apiUrl }),
       client_name: this.clientName,

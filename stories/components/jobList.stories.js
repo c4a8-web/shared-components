@@ -73,3 +73,13 @@ ListFilteredByLang.args = {
   lang: 'en',
   apiUrl: 'mock/jobListEn.json',
 };
+
+export const ListPersonio = Template.bind({});
+
+ListPersonio.args = {
+  ...baseArgs,
+  clientName: 'glueckkanja-gab-ag-conversations',
+  // headlineText: 'English Jobs',
+  lang: 'de',
+  // apiUrl: 'mock/jobListEn.json',
+};
