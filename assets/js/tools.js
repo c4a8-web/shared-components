@@ -443,7 +443,7 @@ class Tools {
   static XMLtoJSON(xml) {
     let obj = {};
 
-    if (xml.nodeType === 1) {
+    if (xml.nodeType === Node.ELEMENT_NODE) {
       if (xml.attributes.length > 0) {
         obj['@attributes'] = {};
         for (let j = 0; j < xml.attributes.length; j++) {
@@ -451,7 +451,7 @@ class Tools {
           obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
         }
       }
-    } else if (xml.nodeType === 3) {
+    } else if (xml.nodeType === Node.TEXT_NODE || xml.nodeType === Node.CDATA_SECTION_NODE) {
       obj = xml.nodeValue;
     }
 

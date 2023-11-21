@@ -52,14 +52,16 @@ class Personio {
   }
 
   convertPosition(position) {
+    console.log('🚀 ~ file: personio.js:55 ~ Personio ~ convertPosition ~ position:', position);
     const positionObject = new PersonioPosition(position);
 
-    console.log('🚀 ~ file: personio.js:56 ~ Personio ~ convertPosition ~ positionObject:', positionObject);
+    console.log('🚀 ~ file: personio.js:56 ~ Personio ~ convertPosition ~ positionObject:', positionObject.data);
 
     const newPosition = {
-      id: positionObject.id,
-      title: positionObject.title,
-      description: positionObject.description,
+      ...positionObject.data,
+      // id: positionObject.id,
+      // title: positionObject.title,
+      // description: positionObject.description,
       location: {
         city: '', // Assuming there's no equivalent in position
         state: '', // Assuming there's no equivalent in position
@@ -72,7 +74,7 @@ class Personio {
       hosted_url: '', // Assuming there's no equivalent in position
       allows_remote: position.office['#text'] === 'Remote',
       position_type: position.schedule['#text'].replace('-', '_'),
-      team: positionObject.team, // Assuming there's no equivalent in position
+      // team: positionObject.team, // Assuming there's no equivalent in position
       close_date: null, // Assuming there's no equivalent in position
     };
 
@@ -100,6 +102,7 @@ class Personio {
     const parser = new DOMParser();
     const xmlData = parser.parseFromString(data, 'application/xml');
     const jsonData = Tools.XMLtoJSON(xmlData);
+    console.log('🚀 ~ file: personio.js:105 ~ Personio ~ getConvertedJson ~ jsonData:', jsonData);
 
     return this.convertData(jsonData);
   }

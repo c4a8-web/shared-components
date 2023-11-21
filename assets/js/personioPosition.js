@@ -17,6 +17,8 @@ class PersonioPosition {
   }
 
   get description() {
+    // TODO also add the name so the headline of the section
+
     return this.position.jobDescriptions && this.position.jobDescriptions.jobDescription
       ? this.position.jobDescriptions.jobDescription.map((desc) => desc.value['#cdata-section']).join('\n')
       : null;
