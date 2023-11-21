@@ -48,6 +48,12 @@
   }
 
   &.icon--smile {
+    svg {
+      .hand {
+        transition: stroke-width ease-in 0.2s;
+      }
+    }
+
     &.icon--step-1 {
       svg {
         .hand,
@@ -57,7 +63,7 @@
         }
 
         .hand {
-          transition-delay: 0.2s;
+          transition-delay: 0.25s;
         }
       }
     }
@@ -67,6 +73,7 @@
         .left-eyebrow,
         .right-eyebrow {
           transition-delay: 0s;
+          transition-duration: 0.25s;
         }
 
         .mouth-upper {
@@ -80,7 +87,7 @@
 
         .hand-upper {
           stroke-width: 6px !important;
-          transition-delay: 0.15s;
+          transition-delay: 0.25s;
         }
 
         .hand {
@@ -101,7 +108,7 @@
         .left-eyebrow {
           stroke-width: 6px !important;
           transition-delay: 0.2s;
-          transition-duration: 0.2s;
+          transition-duration: 0.45s;
         }
 
         .circle {

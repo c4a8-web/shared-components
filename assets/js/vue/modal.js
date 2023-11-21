@@ -86,7 +86,11 @@ export default {
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation);
 
-      this.observer.observe(document.body, { attributes: true });
+      const observerStartingDelay = 200;
+
+      setTimeout(() => {
+        this.observer.observe(document.body, { attributes: true });
+      }, observerStartingDelay);
     },
     handleMutation() {
       this.setModalMode(this.isModalOpen());
