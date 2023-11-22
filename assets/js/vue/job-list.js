@@ -258,7 +258,6 @@ export default {
     },
     getDetailUrl(data) {
       if (typeof this.detailUrl !== 'object') return this.detailUrl;
-      if (data?.tags?.length === 0) return this.detailUrl.default;
 
       const lang = this.api.getLangFromEntry(data);
 

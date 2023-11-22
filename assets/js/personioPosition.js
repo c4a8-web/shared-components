@@ -25,7 +25,9 @@ class PersonioPosition {
   }
 
   get id() {
-    return this.getValue('id');
+    const value = this.getValue('id');
+
+    return value.replace(/\n|\t|\s/g, '');
   }
 
   get title() {

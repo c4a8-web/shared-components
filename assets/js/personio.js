@@ -1,8 +1,13 @@
 import Tools from './tools.js';
 import PersonioPosition from './personioPosition.js';
 
+// TODO filter by team
+// TODO detail page
+// TODO send application
+// TODO adjust pages career + jobs
+
 class Personio {
-  languagePlaceholder = 'LANGUAGE_PLACEHOLDER';
+  defaultLang = 'de';
 
   types = {
     OPENINGS: 'openings',
@@ -13,11 +18,13 @@ class Personio {
     JSON: 'json',
   };
 
+  mockApplyUrl = 'mock/jobApply.json';
+
   constructor(options) {
     this.options = options;
 
     this.apiUrl = `https://api.personio.de/v1`;
-    this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml?language=${this.languagePlaceholder}`;
+    this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
   }
 
   getUrl(type, params, action) {
@@ -30,18 +37,14 @@ class Personio {
     }
 
     // const idParam = params ? `/${params}/${action ?? ''}` : '';
-    // const urlParams = this.options.apiUrl ? '' : `${idParam}?client_name=${this.options?.client_name}`;
+    const langParams = this.lang !== this.defaultLang ? (this.options.apiUrl ? '' : `?language=${this.lang}`) : '';
     // const filter = this.options.apiUrl ? '' : this.filter;
 
-    typeUrl = typeUrl.replace(this.languagePlaceholder, this.lang);
-
-    const urlParams = '';
-    const filter = '';
-
-    return `${typeUrl}${urlParams}${filter}`;
+    return `${typeUrl}${langParams}`;
   }
 
   setLang(lang) {
+    console.log('🚀 ~ file: personio.js:52 ~ Personio ~ setLang ~ lang:', lang);
     this.lang = lang;
   }
 
@@ -51,47 +54,42 @@ class Personio {
     return this.fetch(url, null, this.responseTypes.XML);
   }
 
-  convertPosition(position) {
-    console.log('🚀 ~ file: personio.js:55 ~ Personio ~ convertPosition ~ position:', position);
-    const positionObject = new PersonioPosition(position);
+  getOpening() {
+    return this.getAll();
+  }
 
-    console.log('🚀 ~ file: personio.js:56 ~ Personio ~ convertPosition ~ positionObject:', positionObject.data);
+  convertPosition(position) {
+    const positionObject = new PersonioPosition(position);
+    const jobId = this.options?.jobId;
+
+    if (jobId && positionObject.id !== jobId) return null;
 
     const newPosition = {
       ...positionObject.data,
-      // id: positionObject.id,
-      // title: positionObject.title,
-      // description: positionObject.description,
       location: {
         city: '', // Assuming there's no equivalent in position
         state: '', // Assuming there's no equivalent in position
         country: '', // Assuming there's no equivalent in position
         zipcode: '', // Assuming there's no equivalent in position
       },
-      tags: [
-        'lang_de', // Assuming this is a constant value
-      ],
-      hosted_url: '', // Assuming there's no equivalent in position
+      tags: [],
+      lang: this.lang,
       allows_remote: position.office['#text'] === 'Remote',
       position_type: position.schedule['#text'].replace('-', '_'),
-      // team: positionObject.team, // Assuming there's no equivalent in position
       close_date: null, // Assuming there's no equivalent in position
     };
 
     return newPosition;
   }
 
-  getValue(position) {}
-
   convertData(data) {
     const newData = data;
     const rootId = 'workzag-jobs';
-
     const positions = data[rootId]?.position;
 
     newData.objects = positions.length
-      ? data[rootId]?.position.map((position) => this.convertPosition(position))
-      : [this.convertPosition(positions)];
+      ? data[rootId]?.position.map((position) => this.convertPosition(position)).filter(Boolean)
+      : [this.convertPosition(positions)].filter(Boolean);
 
     newData.meta = { offset: 0, limit: 20, total: 10 };
 
@@ -102,7 +100,6 @@ class Personio {
     const parser = new DOMParser();
     const xmlData = parser.parseFromString(data, 'application/xml');
     const jsonData = Tools.XMLtoJSON(xmlData);
-    console.log('🚀 ~ file: personio.js:105 ~ Personio ~ getConvertedJson ~ jsonData:', jsonData);
 
     return this.convertData(jsonData);
   }

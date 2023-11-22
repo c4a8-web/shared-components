@@ -12,7 +12,7 @@ export default {
 const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
-  clientName: 'glueckkanja',
+  clientName: 'c4a8',
   headlineText: 'Offene Stellen',
   headlineLevel: 'h2',
   sublineText:
@@ -21,6 +21,7 @@ const baseArgs = {
     default: hrefTo('Components/Job/Detail', 'De'),
     en: hrefTo('Components/Job/Detail', 'En'),
   },
+  lang: 'de',
 };
 
 export const List = Template.bind({});
@@ -43,8 +44,8 @@ export const ListFilteredById = Template.bind({});
 ListFilteredById.args = {
   ...baseArgs,
   headlineText: 'Einzelne Stellenausschreibung mit Id',
-  jobId: 'fk0sjp7',
-  apiUrl: 'mock/job.json',
+  jobId: '1327578',
+  apiUrl: 'mock/jobList.xml',
 };
 
 export const ListFilteredByTags = Template.bind({});
@@ -53,7 +54,7 @@ ListFilteredByTags.args = {
   ...baseArgs,
   headlineText: 'Offene UX + Dev Stellen',
   tags: 'dev,ux',
-  apiUrl: 'mock/jobList.json',
+  apiUrl: 'mock/jobList.xml',
 };
 
 export const ListFilteredByTeam = Template.bind({});
@@ -62,7 +63,7 @@ ListFilteredByTeam.args = {
   ...baseArgs,
   headlineText: 'Offene Stellen in Team 1',
   team: 'team 1',
-  apiUrl: 'mock/jobList.json',
+  apiUrl: 'mock/jobList.xml',
 };
 
 export const ListFilteredByLang = Template.bind({});
@@ -71,15 +72,5 @@ ListFilteredByLang.args = {
   ...baseArgs,
   headlineText: 'English Jobs',
   lang: 'en',
-  apiUrl: 'mock/jobListEn.json',
-};
-
-export const ListPersonio = Template.bind({});
-
-ListPersonio.args = {
-  ...baseArgs,
-  clientName: 'c4a8',
-  // headlineText: 'English Jobs',
-  lang: 'de',
-  // apiUrl: 'mock/jobListEn.json',
+  // apiUrl: 'mock/jobListEn.xml',
 };

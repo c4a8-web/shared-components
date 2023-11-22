@@ -4,7 +4,6 @@ import Personio from './personio.js';
 class JobListings {
   jobDataUrl = '/assets/data/jobs/';
 
-  // langTagPrefix = 'lang_';
   // hiddenTag = 'hidden';
 
   constructor(options) {
@@ -16,15 +15,15 @@ class JobListings {
   }
 
   setLang(lang) {
-    // this.setFilter({
-    //   tags: this.langTagPrefix + lang,
-    // });
-
     this.api.setLang(lang);
   }
 
   getAll() {
     return this.api.getAll();
+  }
+
+  getOpening() {
+    return this.api.getOpening();
   }
 
   getUrl(type, params, action) {
@@ -33,6 +32,10 @@ class JobListings {
 
   fetch(url, options) {
     return this.api.fetch(url, options);
+  }
+
+  getLangFromEntry(entry) {
+    return entry.lang || null;
   }
 }
 
