@@ -117,7 +117,7 @@ Product.args = {
       title: 'Tenant',
       subpoints: [
         {
-          included: true,
+          hideIcon: true,
           subpoint: 'Lorem Ipsum 1',
         },
         {

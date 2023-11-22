@@ -55,3 +55,17 @@
 .has-card-background {
   background-color: var(--color-card-background);
 }
+
+.is--desktop {
+  display: none;
+}
+
+@include media-breakpoint-up(lg) {
+  .is--desktop {
+    display: block;
+  }
+
+  .is--mobile {
+    display: none;
+  }
+}
