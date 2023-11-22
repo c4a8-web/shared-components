@@ -36,7 +36,6 @@ Products.args = {
           title: 'Tenant',
           subpoints: [
             {
-              included: true,
               subpoint: 'Runs in your tenant (SaaS)',
             },
           ],

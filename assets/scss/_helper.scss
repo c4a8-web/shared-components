@@ -59,3 +59,17 @@
 .full-width-container {
   overflow-x: hidden;
 }
+
+.is--desktop {
+  display: none;
+}
+
+@include media-breakpoint-up(lg) {
+  .is--desktop {
+    display: block;
+  }
+
+  .is--mobile {
+    display: none;
+  }
+}
