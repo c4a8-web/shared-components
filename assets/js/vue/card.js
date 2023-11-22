@@ -238,7 +238,7 @@ export default {
             <headline :class="headlineClassValue(index)" level="h6" :text="info.title"/>
             <template v-for="points in info.subpoints">
               <div class="card__check-mark-row">
-                <icon class="card__check-mark-icon" :icon="isIncluded(points.included)" size="medium" />
+                <icon class="card__check-mark-icon" v-if="!points.hideIcon" :icon="isIncluded(points.included)" size="medium" />
                 <span class="card__check-mark-point">{{ points.subpoint }}</span>
               </div>
             </template>
