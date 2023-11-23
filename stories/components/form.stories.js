@@ -80,9 +80,11 @@ const baseArgs = {
         id: 'seats',
       },
       {
-        label: 'Nachricht (optional)',
+        label: 'Nachricht',
         type: 'textarea',
         id: 'message',
+        required: true,
+        requiredMsg: 'Bitte geben Sie eine Nachricht ein',
       },
       {
         type: 'hidden',
