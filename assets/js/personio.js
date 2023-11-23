@@ -1,7 +1,6 @@
 import Tools from './tools.js';
 import PersonioPosition from './personioPosition.js';
 
-// TODO filter by team
 // TODO detail page
 // TODO send application
 // TODO adjust pages career + jobs
@@ -27,25 +26,26 @@ class Personio {
     this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
   }
 
-  getUrl(type, params, action) {
+  getUrl(type) {
     let typeUrl;
 
-    if (this.options.apiUrl?.match(/.json$/) && action) {
+    if (this.options.apiUrl?.match(/.json$/)) {
       typeUrl = this.mockApplyUrl;
     } else {
       typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
     }
 
-    // const idParam = params ? `/${params}/${action ?? ''}` : '';
     const langParams = this.lang !== this.defaultLang ? (this.options.apiUrl ? '' : `?language=${this.lang}`) : '';
-    // const filter = this.options.apiUrl ? '' : this.filter;
 
     return `${typeUrl}${langParams}`;
   }
 
   setLang(lang) {
-    console.log('🚀 ~ file: personio.js:52 ~ Personio ~ setLang ~ lang:', lang);
     this.lang = lang;
+  }
+
+  setFilter(filter) {
+    this.filter = filter;
   }
 
   getAll() {
@@ -63,23 +63,33 @@ class Personio {
     const jobId = this.options?.jobId;
 
     if (jobId && positionObject.id !== jobId) return null;
+    if (!this.filterPosition(positionObject)) return null;
 
     const newPosition = {
       ...positionObject.data,
-      location: {
-        city: '', // Assuming there's no equivalent in position
-        state: '', // Assuming there's no equivalent in position
-        country: '', // Assuming there's no equivalent in position
-        zipcode: '', // Assuming there's no equivalent in position
-      },
-      tags: [],
+      // location: {
+      //   city: '', // Assuming there's no equivalent in position
+      //   state: '', // Assuming there's no equivalent in position
+      //   country: '', // Assuming there's no equivalent in position
+      //   zipcode: '', // Assuming there's no equivalent in position
+      // },
       lang: this.lang,
-      allows_remote: position.office['#text'] === 'Remote',
-      position_type: position.schedule['#text'].replace('-', '_'),
-      close_date: null, // Assuming there's no equivalent in position
+      // allows_remote: position.office['#text'] === 'Remote',
+      // position_type: position.schedule['#text'].replace('-', '_'),
+      // close_date: null, // Assuming there's no equivalent in position
     };
 
     return newPosition;
+  }
+
+  filterPosition(position) {
+    if (!this.filter?.tags?.length) return position;
+
+    if (this.filter.tags.some((tag) => position.tags.map((t) => t.toLowerCase()).includes(tag.toLowerCase()))) {
+      return position;
+    }
+
+    return null;
   }
 
   convertData(data) {

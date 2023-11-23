@@ -18,6 +18,10 @@ class JobListings {
     this.api.setLang(lang);
   }
 
+  setFilter(filter) {
+    this.api.setFilter(filter);
+  }
+
   getAll() {
     return this.api.getAll();
   }

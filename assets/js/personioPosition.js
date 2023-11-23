@@ -27,11 +27,17 @@ class PersonioPosition {
   get id() {
     const value = this.getValue('id');
 
-    return value.replace(/\n|\t|\s/g, '');
+    return value.replace(/\s/g, '');
   }
 
   get title() {
     return this.getValue('name');
+  }
+
+  get tags() {
+    const value = this.getValue('keywords');
+
+    return value ? value.split(',') : [];
   }
 
   getTeamText(text) {
@@ -80,6 +86,7 @@ class PersonioPosition {
       description: this.description,
       team: this.team,
       position_type: this.positionType,
+      tags: this.tags,
     };
   }
 
@@ -114,7 +121,9 @@ class PersonioPosition {
   }
 
   getValue(property, key = 'text') {
-    return this.position && this.position[property] ? this.position[property][`#${key}`] : null;
+    return this.position && this.position[property]
+      ? this.position[property][`#${key}`].replace(/\n|\t|    /g, '')
+      : null;
   }
 }
 

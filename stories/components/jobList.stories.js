@@ -52,8 +52,8 @@ export const ListFilteredByTags = Template.bind({});
 
 ListFilteredByTags.args = {
   ...baseArgs,
-  headlineText: 'Offene UX + Dev Stellen',
-  tags: 'dev,ux',
+  headlineText: 'Offene Microsoft Azure + Trainee Stellen',
+  tags: 'MicroSoft Azure,trainee',
   apiUrl: 'mock/jobList.xml',
 };
 
@@ -62,7 +62,7 @@ export const ListFilteredByTeam = Template.bind({});
 ListFilteredByTeam.args = {
   ...baseArgs,
   headlineText: 'Offene Stellen in Team 1',
-  team: 'team 1',
+  team: 'Projects & Account Management',
   apiUrl: 'mock/jobList.xml',
 };
 

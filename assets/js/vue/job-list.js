@@ -42,7 +42,9 @@ export default {
 
     if (this.lang) {
       this.api.setLang(this.lang);
-    } else if (this.tagList) {
+    }
+
+    if (this.tagList) {
       this.api.setFilter({ tags: this.tagList });
     }
 
