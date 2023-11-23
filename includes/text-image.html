@@ -56,6 +56,16 @@
   {% assign textImageImageClasses = 'text-image__img--mobile' | append: textImageImageClases %}
 {% endif %}
 
+{%- capture textImageHeadlineClasses -%}{{include.headlineClasses}} {{textImageLightText}} mb-2 mb-lg-4 {% endcapture %}
+
+{% unless include.headlineClasses %}
+  {% if textImageFloat %}
+    {%- assign textImageHeadlineClasses = textImageHeadlineClasses | append: ' h3-font-size' %}
+  {% else %}
+    {%- assign textImageHeadlineClasses = textImageHeadlineClasses | append: ' h4-font-size font-weight-normal' -%}
+  {% endif %}
+{% endunless %}
+
 <div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
           {% if textImageSticky %}is-sticky-scroller{% endif %}
@@ -152,9 +162,12 @@
         {% endif %}
 
         {% if textImageHeadline %}
-          <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4 {{ textImageLightText }}">
-            {{ textImageHeadline }}
-          </{{ textImageLevel }}>
+          {%
+            include headline.html
+            level=textImageLevel
+            text=textImageHeadline
+            classes=textImageHeadlineClasses
+          %}
         {% endif %}
 
         {% if textImageSubline %}

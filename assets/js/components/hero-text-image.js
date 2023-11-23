@@ -3,17 +3,18 @@ import Tools from '../tools.js';
 import BaseComponent from './base-component.js';
 
 class HeroTextImage extends BaseComponent {
-  static rootSelector = '.hero-text-image.hero--security';
+  static rootSelector = '.hero-text-image';
 
   constructor(root, options) {
     super(root, options);
 
     this.videoSelector = '.hero-text-image__video video';
     this.videoAnimatinoSelector = '.hero-video__animation';
-    this.ctaSelector = '.hero-text-image__cta-wrapper .cta';
+    this.ctaSelector = '.cta';
 
     this.videos = this.root.querySelectorAll(this.videoSelector);
-    this.cta = this.root.querySelector(this.ctaSelector);
+    this.ctaList = this.root.querySelectorAll(this.ctaSelector);
+    this.classList = this.root.classList;
 
     this.animationDelay = 6400;
 
@@ -25,10 +26,21 @@ class HeroTextImage extends BaseComponent {
     this.bindEvents();
   }
 
-  bindEvents() {
-    if (!this.cta) return;
+  isSecurity() {
+    return this.classList.contains('hero--security');
+  }
 
-    this.cta.addEventListener('click', this.handleClick.bind(this));
+  isCareer() {
+    return this.classList.contains('hero--career');
+  }
+
+  bindEvents() {
+    const hasCareerOrSecurity = this.isSecurity() || this.isCareer();
+    if (!this.ctaList || !hasCareerOrSecurity) return;
+
+    this.ctaList.forEach((cta) => {
+      cta.addEventListener('click', this.handleClick.bind(this));
+    });
   }
 
   handleClick(e) {
