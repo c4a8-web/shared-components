@@ -61,7 +61,7 @@ export default {
       <div :class="classList" data-utility-animation-step="1">
         <template v-if="field.type === 'textarea'">
           <label class="input-label" :for="id">{{ field.label }}</label>
-          <textarea class="form-control form-textarea" :id="id" :name="id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
+          <textarea class="form-control form-textarea" :id="id" :name="id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly" :data-msg="getRequiredMsg(field)"></textarea>
         </template>
         <template v-else-if="field.type ==='checkbox'">
           <form-checkbox :checkbox="field" :id="id" />
