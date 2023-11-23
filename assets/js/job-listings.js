@@ -26,8 +26,8 @@ class JobListings {
     return this.api.getAll();
   }
 
-  getOpening() {
-    return this.api.getOpening();
+  getOpening(jobId) {
+    return this.api.getOpening(jobId);
   }
 
   getUrl(type, params, action) {
@@ -40,6 +40,26 @@ class JobListings {
 
   getLangFromEntry(entry) {
     return entry.lang || null;
+  }
+
+  getJobId() {
+    let jobId = '';
+
+    const hash = window.location.hash;
+
+    if (hash) {
+      if (hash.indexOf('-') !== -1) {
+        const splitHash = hash.split('-');
+
+        jobId = splitHash[splitHash.length - 1];
+      } else {
+        jobId = hash.substring(1);
+      }
+    } else if (this.options.jobId) {
+      jobId = this.options.jobId;
+    }
+
+    return jobId;
   }
 }
 

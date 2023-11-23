@@ -22,6 +22,7 @@ class Personio {
   constructor(options) {
     this.options = options;
 
+    this.jobId = null;
     this.apiUrl = `https://api.personio.de/v1`;
     this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
   }
@@ -54,7 +55,9 @@ class Personio {
     return this.fetch(url, null, this.responseTypes.XML);
   }
 
-  getOpening() {
+  getOpening(jobId) {
+    this.options.jobId = jobId;
+
     return this.getAll();
   }
 
@@ -67,12 +70,6 @@ class Personio {
 
     const newPosition = {
       ...positionObject.data,
-      // location: {
-      //   city: '', // Assuming there's no equivalent in position
-      //   state: '', // Assuming there's no equivalent in position
-      //   country: '', // Assuming there's no equivalent in position
-      //   zipcode: '', // Assuming there's no equivalent in position
-      // },
       lang: this.lang,
       // allows_remote: position.office['#text'] === 'Remote',
       // position_type: position.schedule['#text'].replace('-', '_'),

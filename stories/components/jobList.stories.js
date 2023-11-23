@@ -72,5 +72,4 @@ ListFilteredByLang.args = {
   ...baseArgs,
   headlineText: 'English Jobs',
   lang: 'en',
-  // apiUrl: 'mock/jobListEn.xml',
 };
