@@ -17,11 +17,29 @@ class PersonioPosition {
   }
 
   get description() {
-    // TODO also add the name so the headline of the section
-
     return this.position.jobDescriptions && this.position.jobDescriptions.jobDescription
-      ? this.position.jobDescriptions.jobDescription.map((desc) => desc.value['#cdata-section']).join('\n')
+      ? this.position.jobDescriptions.jobDescription
+          .map((desc, index) => this.getEnhanchedDescription(index, desc.name, desc.value['#cdata-section']))
+          .join('\n')
       : null;
+  }
+
+  getEnhanchedDescription(index, name, text) {
+    const sectionName = index > 0 && name && name['#text'] ? `<h4>${this.trimNewlines(name['#text'])}</h4>` : '';
+
+    let newText = text.replace(/<\/?span[^>]*>/g, '');
+
+    newText = newText
+      .replace(/(?<=<\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)/g, (_, text) => {
+        const trimmedText = text.trim();
+
+        if (trimmedText.length === 0) return '';
+
+        return '<p>' + trimmedText + '</p>';
+      })
+      .replace(/<\/p><br>/g, '<br></p>');
+
+    return `${sectionName}${newText}`.replace(/<\/p><br><p>/g, '</p><p>');
   }
 
   get id() {
@@ -31,7 +49,13 @@ class PersonioPosition {
   }
 
   get title() {
-    return this.getValue('name');
+    return this.removeGenderNotations(this.getValue('name'));
+  }
+
+  removeGenderNotations(text) {
+    const pattern = /\(m\/w\/d\)|\(m\/f\/d\)|\(h\/m\/d\)/gi;
+
+    return text.replace(pattern, '').trim();
   }
 
   get tags() {
@@ -120,10 +144,12 @@ class PersonioPosition {
     // TODO implement order logic
   }
 
+  trimNewlines(text) {
+    return text.replace(/\n|\t|    /g, '');
+  }
+
   getValue(property, key = 'text') {
-    return this.position && this.position[property]
-      ? this.position[property][`#${key}`].replace(/\n|\t|    /g, '')
-      : null;
+    return this.position && this.position[property] ? this.trimNewlines(this.position[property][`#${key}`]) : null;
   }
 }
 

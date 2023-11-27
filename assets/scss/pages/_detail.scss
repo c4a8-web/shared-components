@@ -166,6 +166,10 @@ $page-detail-subline-background-color: $white-30;
 
   > p:first-of-type {
     @include font-style($style: 'font-size-3', $weight: 'light');
+
+    + p {
+      @include font-style($style: 'font-size-3', $weight: 'light');
+    }
   }
 
   > h1:first-child,
