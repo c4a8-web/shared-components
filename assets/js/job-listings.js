@@ -10,7 +10,7 @@ class JobListings {
     this.options = options;
     this.api = new Personio(this.options);
 
-    this.jobDataUrl = Tools.getAssetPath(this.jobDataUrl);
+    this.jobDataUrl = Tools.getSiteAssetPath(this.jobDataUrl);
     this.openingsUrl = this.api.openingsUrl;
   }
 
