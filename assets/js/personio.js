@@ -22,6 +22,7 @@ class Personio {
   constructor(options) {
     this.options = options;
 
+    this.lang = this.defaultLang;
     this.jobId = null;
     this.apiUrl = `https://api.personio.de/v1`;
     this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
