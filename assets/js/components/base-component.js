@@ -31,7 +31,7 @@ class BaseComponent {
       window[BaseComponent.namespacePrefix][instanceKey] = [];
     }
 
-    window[BaseComponent.namespacePrefix][this.getInstancesKey()].push(instance);
+    window[BaseComponent.namespacePrefix][instanceKey].push(instance);
   }
 
   static getInstance(element) {
