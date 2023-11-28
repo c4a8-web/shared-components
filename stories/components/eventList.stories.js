@@ -1,19 +1,27 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';
 import { includeseventlisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Event List',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    list: {
+      description: 'List of Events',
+      type: 'array',
+    },
+    settings: {
+      description: 'Event Teaser Variant/Size',
+      type: 'array',
+    },
+  },
+});
 
 const Template = (args) => createComponent(args, component);
 
-export const EventList = Template.bind({});
-
-EventList.args = {
+export const EventList = createStory(component, {
   list: [
     {
       url: 'javascript:void(0)',
@@ -195,4 +203,4 @@ EventList.args = {
     },
     { variant: 4 },
   ],
-};
+});

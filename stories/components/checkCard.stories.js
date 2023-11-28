@@ -1,29 +1,68 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includescheckcardhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Check Card',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    headline: {
+      description: 'Headline of Check Cards',
+      type: 'string',
+    },
+    level: {
+      description: 'Headline Level of Check Cards',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Headline Levels',
+        detail: 'h1, h2, h3, h4',
+      },
+    },
+    headlineClasses: {
+      description: 'Headline Classes of Check Cards',
+      type: 'string',
+    },
+    subline: {
+      description: 'Subline of Check Cards',
+      type: 'string',
+    },
+    sublineClasses: {
+      description: 'Subline Classes of Check Cards',
+      type: 'string',
+    },
+    spacing: {
+      description: 'Adds helper classes for the spacing',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Bootstrap Spacing',
+        detail: 'space-bottom-1, space-bottom-2, space-top-1, space-top-2',
+      },
+    },
+    checks: {
+      description: 'Checks Content',
+      control: {
+        type: 'array',
+      },
+      required: true,
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const CheckCard = Template.bind({});
-
-CheckCard.args = {
+export const CheckCard = createStory(component, {
   headline: 'Wir checken jetzt ihre IT-Sicherheit on Premises und in der Cloud',
   level: 'h2',
   headlineClasses: 'text-black',
   subline:
     "<strong>In Zusammenarbeit mit Microsoft sind verschiedene </strong>Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
-};
+});
 
-export const Products = Template.bind({});
-
-Products.args = {
+export const Products = createStory(component, {
   headline: 'Plan comparison',
   level: 'h2',
   headlineClasses: 'bold text-black text-center',
@@ -118,4 +157,4 @@ Products.args = {
       ],
     },
   ],
-};
+});

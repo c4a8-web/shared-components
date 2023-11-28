@@ -1,25 +1,48 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includescontacthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Contact',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    infos: {
+      description: 'Contact Info contains all fields and Imagery',
+      type: 'object',
+      required: true,
+    },
+    collapsed: {
+      description: 'Compiles the Contact Card into a small part',
+      type: 'boolean',
+    },
+    ajax: {
+      description: 'Asynchrous Data Transfer for the Contacts Form',
+      type: 'object',
+    },
+    quote: {
+      description: 'Adds Quote to the Contact Form if Quotes exists within Contact Infos',
+      type: 'boolean',
+    },
+    spacing: {
+      description: 'Adds helper classes for the spacing',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Bootstrap Spacing',
+        detail: 'space-bottom-1, space-bottom-2, space-top-1, space-top-2',
+      },
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const Expanded = Template.bind({});
-
-Expanded.args = {
+export const Expanded = createStory(component, {
   light: true,
-};
+});
 
-export const Collapsed = Template.bind({});
-
-Collapsed.args = {
+export const Collapsed = createStory(component, {
   collapsed: true,
   infos: {
     person: {
@@ -95,11 +118,9 @@ Collapsed.args = {
       ],
     },
   },
-};
+});
 
-export const WithShape = Template.bind({});
-
-WithShape.args = {
+export const WithShape = createStory(component, {
   infos: {
     headline: 'What do you want to do next?',
     level: 'h2',
@@ -138,11 +159,9 @@ WithShape.args = {
       },
     ],
   },
-};
+});
 
-export const WithQuote = Template.bind({});
-
-WithQuote.args = {
+export const WithQuote = createStory(component, {
   quote: true,
   infos: {
     headline: 'Jetzt Gesprächstermin vereinbaren',
@@ -227,5 +246,6 @@ WithQuote.args = {
       ],
     },
   },
-};
+});
+
 // TODO add shape variant without form
