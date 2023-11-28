@@ -183,28 +183,10 @@ export default {
       this.stopLoading();
     },
     orderList(list) {
-      const orderedList = [];
-      const unordedList = [];
+      const orderedList = list.filter((entry) => entry.order !== undefined).sort((a, b) => b.order - a.order);
+      const unorderedList = list.filter((entry) => entry.order === undefined);
 
-      for (let i = 0; i < list.length; i++) {
-        const entry = list[i];
-
-        if (!entry) continue;
-
-        const { id } = entry;
-
-        if (!id) continue;
-
-        const index = this.jobData?.order?.findIndex((item) => item === id);
-
-        if (index !== -1) {
-          orderedList[index] = entry;
-        } else {
-          unordedList.push(entry);
-        }
-      }
-
-      return [...orderedList, ...unordedList];
+      return [...orderedList, ...unorderedList];
     },
     showExpandButton() {
       this.hasExpand = true;

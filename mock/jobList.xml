@@ -562,6 +562,9 @@
     <employmentType>
 			working_student
     </employmentType>
+    <keywords>
+			ORDER_100
+    </keywords>
     <seniority>
 			entry-level
     </seniority>

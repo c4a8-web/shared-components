@@ -111,6 +111,7 @@ class PersonioPosition {
       team: this.team,
       position_type: this.positionType,
       tags: this.tags,
+      order: this.order,
     };
   }
 
@@ -141,7 +142,14 @@ class PersonioPosition {
   }
 
   get order() {
-    // TODO implement order logic
+    const orderTag = this.tags.find((tag) => tag.includes('ORDER_'));
+
+    if (!orderTag) return null;
+
+    const orderNumber = orderTag.split('_')[1];
+    const radix = 10;
+
+    return parseInt(orderNumber, radix);
   }
 
   trimNewlines(text) {

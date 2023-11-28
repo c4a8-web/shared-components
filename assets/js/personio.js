@@ -72,9 +72,6 @@ class Personio {
     const newPosition = {
       ...positionObject.data,
       lang: this.lang,
-      // allows_remote: position.office['#text'] === 'Remote',
-      // position_type: position.schedule['#text'].replace('-', '_'),
-      // close_date: null, // Assuming there's no equivalent in position
     };
 
     return newPosition;
