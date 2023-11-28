@@ -94,7 +94,7 @@ const baseArgs = {
         rowStart: true,
         rowEnd: true,
         formAttachments: {
-          required: true,
+          // required: true,
           requiredMsg: 'Bitte einen Anhang hinzufügen',
           id: 'file',
           description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',

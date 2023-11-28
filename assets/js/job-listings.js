@@ -1,4 +1,5 @@
 import Tools from './tools.js';
+import Form from './components/form.js';
 import Personio from './personio.js';
 
 class JobListings {
@@ -62,11 +63,15 @@ class JobListings {
     return jobId;
   }
 
-  getOrderedList(list) {
-    const orderedList = list.filter((entry) => entry.order !== undefined).sort((a, b) => b.order - a.order);
-    const unorderedList = list.filter((entry) => entry.order === undefined);
+  getFormData(form) {
+    const formData = Form.getFormData(form);
+    const payload = this.api.getFormPayload(formData, Form);
 
-    return [...orderedList, ...unorderedList];
+    return payload;
+  }
+
+  applyFileData(fileData, data, fields) {
+    return this.api.applyFileData(fileData, data, fields);
   }
 }
 

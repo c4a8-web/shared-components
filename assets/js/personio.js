@@ -1,9 +1,8 @@
 import Tools from './tools.js';
 import PersonioPosition from './personioPosition.js';
 
-// TODO detail page
+// https://developer.personio.de/reference/post_v1-recruiting-applications
 // TODO send application
-// TODO adjust pages career + jobs
 
 class Personio {
   defaultLang = 'de';
@@ -137,6 +136,54 @@ class Personio {
         reject('no client_name specified');
       }
     });
+  }
+
+  applyFileData(fileData, data, fields) {
+    const file = {
+      key: 'resume',
+      value: {
+        encoded_data: data,
+        file_name: fileData.name,
+      },
+    };
+
+    fields.push(file);
+
+    return fields;
+  }
+
+  getFormPayload(formData, Form) {
+    console.log('🚀 ~ file: personio.js:155 ~ Personio ~ getFormPayload ~ formData:', formData);
+
+    const payload = {
+      job_position_id: this.options.jobId,
+      attributes: [],
+    };
+
+    const baseParams = { first_name: true, last_name: true, email: true };
+
+    for (let i = 0; i < formData.length; i++) {
+      const formEntry = formData[i];
+      const input = formEntry.input;
+      const updatedName = Form.getName(input.name);
+      const snakeCaseName = Tools.camalCaseToSnakeCase(updatedName);
+      console.log('🚀 ~ file: personio.js:169 ~ Personio ~ getFormPayload ~ snakeCaseName:', snakeCaseName);
+
+      if (baseParams.hasOwnProperty(snakeCaseName)) {
+        payload[snakeCaseName] = input.value;
+      } else {
+        payload.attributes.push({
+          id: snakeCaseName,
+          value: input.value,
+        });
+      }
+
+      console.log('🚀 ~ file: personio.js:165 ~ Personio ~ getFormPayload ~ updatedName:', updatedName);
+    }
+
+    console.log('🚀 ~ file: personio.js:161 ~ Personio ~ getFormPayload ~ payload:', payload);
+
+    return formData;
   }
 }
 

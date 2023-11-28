@@ -2,7 +2,8 @@ import State from './state.js';
 import Events from './events.js';
 import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
-import RecruiterBox from './recruiter-box.js';
+// import RecruiterBox from './recruiter-box.js';
+import JobListings from './job-listings.js';
 import Tools from './tools.js';
 
 class Modal {
@@ -33,7 +34,7 @@ class Modal {
       this.apiUrl = this.root.dataset.apiUrl;
       this.jobId = this.root.dataset.jobId;
 
-      this.api = new RecruiterBox({
+      this.api = new JobListings({
         ...(this.jobId && { jobId: this.jobId }),
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
@@ -103,32 +104,33 @@ class Modal {
       fileData = fileInput?.files[0];
     }
 
-    if (fileData) {
-      if (base64Value) {
-        fields = this.api.applyFileData(fileData, base64Value, fields);
-        this.handleApplicationRequest(fields);
-      } else {
-        Tools.toBase64(fileData).then((data) => {
-          fields = this.api.applyFileData(fileData, data, fields);
-          this.handleApplicationRequest(fields);
-        });
-      }
-    } else {
-      console.error('handle generic error no files');
+    // if (fileData) {
+    // if (base64Value) {
+    fields = this.api.applyFileData(fileData, base64Value, fields);
+    this.handleApplicationRequest(fields);
+    // } else {
+    //   Tools.toBase64(fileData).then((data) => {
+    //     fields = this.api.applyFileData(fileData, data, fields);
+    //     this.handleApplicationRequest(fields);
+    //   });
+    // }
+    // } else {
+    //   console.error('handle generic error no files');
 
-      this.handleError();
-    }
+    //   this.handleError();
+    // }
   }
 
   handleApplicationRequest(fields) {
-    this.api
-      .handleApply(fields)
-      .then(() => {
-        this.handleApplicationSuccess(fields);
-      })
-      .catch((e) => {
-        this.handleError(e);
-      });
+    console.log('🚀 ~ file: modal.js:125 ~ Modal ~ handleApplicationRequest ~ fields:', fields);
+    // this.api
+    //   .handleApply(fields)
+    //   .then(() => {
+    //     this.handleApplicationSuccess(fields);
+    //   })
+    //   .catch((e) => {
+    //     this.handleError(e);
+    //   });
   }
 
   handleApplicationSuccess(fields) {
