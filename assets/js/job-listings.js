@@ -61,6 +61,13 @@ class JobListings {
 
     return jobId;
   }
+
+  getOrderedList(list) {
+    const orderedList = list.filter((entry) => entry.order !== undefined).sort((a, b) => b.order - a.order);
+    const unorderedList = list.filter((entry) => entry.order === undefined);
+
+    return [...orderedList, ...unorderedList];
+  }
 }
 
 export default JobListings;

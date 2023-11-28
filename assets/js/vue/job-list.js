@@ -133,7 +133,7 @@ export default {
 
         Promise.all(this.promises)
           .then(() => {
-            const orderedList = this.orderList(localData.objects);
+            const orderedList = this.api.getOrderedList(localData.objects);
 
             this.filterJobs(data, orderedList);
           })
@@ -181,12 +181,6 @@ export default {
       }
 
       this.stopLoading();
-    },
-    orderList(list) {
-      const orderedList = list.filter((entry) => entry.order !== undefined).sort((a, b) => b.order - a.order);
-      const unorderedList = list.filter((entry) => entry.order === undefined);
-
-      return [...orderedList, ...unorderedList];
     },
     showExpandButton() {
       this.hasExpand = true;
