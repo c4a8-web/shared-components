@@ -2,7 +2,6 @@ import State from './state.js';
 import Events from './events.js';
 import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
-// import RecruiterBox from './recruiter-box.js';
 import JobListings from './job-listings.js';
 import Tools from './tools.js';
 
@@ -106,7 +105,7 @@ class Modal {
 
     // if (fileData) {
     // if (base64Value) {
-    fields = this.api.applyFileData(fileData, base64Value, fields);
+    // fields = this.api.applyFileData(fileData, base64Value, fields);
     this.handleApplicationRequest(fields);
     // } else {
     //   Tools.toBase64(fileData).then((data) => {
@@ -123,14 +122,14 @@ class Modal {
 
   handleApplicationRequest(fields) {
     console.log('🚀 ~ file: modal.js:125 ~ Modal ~ handleApplicationRequest ~ fields:', fields);
-    // this.api
-    //   .handleApply(fields)
-    //   .then(() => {
-    //     this.handleApplicationSuccess(fields);
-    //   })
-    //   .catch((e) => {
-    //     this.handleError(e);
-    //   });
+    this.api
+      .handleApply(fields)
+      .then(() => {
+        this.handleApplicationSuccess(fields);
+      })
+      .catch((e) => {
+        this.handleError(e);
+      });
   }
 
   handleApplicationSuccess(fields) {

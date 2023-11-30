@@ -9,6 +9,11 @@ class Personio {
 
   types = {
     OPENINGS: 'openings',
+    APPLICATIONS: 'applications',
+  };
+
+  phaseIds = {
+    NEW_APPLICATION: 890494,
   };
 
   responseTypes = {
@@ -24,7 +29,9 @@ class Personio {
     this.lang = this.defaultLang;
     this.jobId = null;
     this.apiUrl = `https://api.personio.de/v1`;
+
     this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
+    this.applicationsUrl = `${this.apiUrl}/recruiting/applications`;
   }
 
   getUrl(type) {
@@ -32,6 +39,8 @@ class Personio {
 
     if (this.options.apiUrl?.match(/.json$/)) {
       typeUrl = this.mockApplyUrl;
+      // } else if (type === this.types.OPENINGS && !this.options.apiUrl) {
+      //   typeUrl = this.openingsUrl;
     } else {
       typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
     }
@@ -139,51 +148,106 @@ class Personio {
   }
 
   applyFileData(fileData, data, fields) {
-    const file = {
-      key: 'resume',
-      value: {
-        encoded_data: data,
-        file_name: fileData.name,
-      },
-    };
+    // send file to endpoint and apply ids to fields
 
-    fields.push(file);
+    // const file = {
+    //   key: 'resume',
+    //   value: {
+    //     encoded_data: data,
+    //     file_name: fileData.name,
+    //   },
+    // };
+
+    // fields.push(file);
 
     return fields;
   }
 
-  getFormPayload(formData, Form) {
-    console.log('🚀 ~ file: personio.js:155 ~ Personio ~ getFormPayload ~ formData:', formData);
+  getMappedFieldName(name) {
+    let mappedName;
 
+    switch (name) {
+      case 'salary':
+        mappedName = 'salary_expectations';
+        break;
+      case 'cancellation':
+        mappedName = 'available_from';
+        break;
+      default:
+        mappedName = name;
+        break;
+    }
+
+    return mappedName;
+  }
+
+  isValidResponseCode(response) {
+    return this.options.apiUrl ? response.status === 200 : response.status === 201 || response.status === 204;
+  }
+
+  handleApply(fields) {
+    return new Promise((resolve, reject) => {
+      this.apply({ fields })
+        .then((response) => {
+          if (this.isValidResponseCode(response)) return resolve();
+
+          response
+            .json()
+            .then((jsonResponse) => {
+              if (jsonResponse.errors) return reject(jsonResponse.errors);
+            })
+            .catch((error) => {
+              return reject(error);
+            });
+        })
+        .catch((error) => {
+          return reject(error);
+        });
+    });
+  }
+
+  getFormPayload(formData, Form) {
     const payload = {
-      job_position_id: this.options.jobId,
+      job_position_id: parseInt(this.options.jobId),
       attributes: [],
+      phase: {
+        type: 'custom',
+        id: this.phaseIds.NEW_APPLICATION,
+      },
     };
 
-    const baseParams = { first_name: true, last_name: true, email: true };
+    const baseParams = { first_name: true, last_name: true, email: true, message: true };
 
     for (let i = 0; i < formData.length; i++) {
       const formEntry = formData[i];
       const input = formEntry.input;
       const updatedName = Form.getName(input.name);
       const snakeCaseName = Tools.camalCaseToSnakeCase(updatedName);
-      console.log('🚀 ~ file: personio.js:169 ~ Personio ~ getFormPayload ~ snakeCaseName:', snakeCaseName);
 
       if (baseParams.hasOwnProperty(snakeCaseName)) {
         payload[snakeCaseName] = input.value;
-      } else {
+      } else if (snakeCaseName !== '_gotcha') {
         payload.attributes.push({
-          id: snakeCaseName,
+          id: this.getMappedFieldName(snakeCaseName),
           value: input.value,
         });
       }
-
-      console.log('🚀 ~ file: personio.js:165 ~ Personio ~ getFormPayload ~ updatedName:', updatedName);
     }
 
-    console.log('🚀 ~ file: personio.js:161 ~ Personio ~ getFormPayload ~ payload:', payload);
+    return payload;
+  }
 
-    return formData;
+  async apply(fields) {
+    const url = this.getUrl(this.types.APPLICATIONS, this.options?.jobId, 'apply');
+    console.log('🚀 ~ file: personio.js:237 ~ Personio ~ apply ~ url:', url);
+
+    return this.fetch(url, {
+      method: 'POST',
+      body: JSON.stringify(fields),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 }
 

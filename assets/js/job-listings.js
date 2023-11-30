@@ -12,7 +12,7 @@ class JobListings {
     this.api = new Personio(this.options);
 
     this.jobDataUrl = Tools.getSiteAssetPath(this.jobDataUrl);
-    this.openingsUrl = this.api.openingsUrl;
+    // this.openingsUrl = this.api.openingsUrl;
   }
 
   setLang(lang) {
@@ -82,7 +82,7 @@ class JobListings {
   }
 
   handleApply(fields) {
-    this.api.handleApply(fields);
+    return this.api.handleApply(fields);
   }
 }
 
