@@ -10,6 +10,7 @@ class Personio {
   types = {
     OPENINGS: 'openings',
     APPLICATIONS: 'applications',
+    DOCUMENTS: 'documents',
   };
 
   phaseIds = {
@@ -22,6 +23,7 @@ class Personio {
   };
 
   mockApplyUrl = 'mock/jobApply.json';
+  mockDocumentsUrl = 'mock/jobDocuments.json';
 
   constructor(options) {
     this.options = options;
@@ -30,17 +32,20 @@ class Personio {
     this.jobId = null;
     this.apiUrl = `https://api.personio.de/v1`;
 
+    // set this to something else if there is an api url in the options
+
     this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
     this.applicationsUrl = `${this.apiUrl}/recruiting/applications`;
+    this.applicationsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/applications';
+    this.documentsUrl = `${this.apiUrl}/recruiting/documents`;
+    this.documentsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/documents-mock';
   }
 
   getUrl(type) {
     let typeUrl;
 
-    if (this.options.apiUrl?.match(/.json$/)) {
-      typeUrl = this.mockApplyUrl;
-      // } else if (type === this.types.OPENINGS && !this.options.apiUrl) {
-      //   typeUrl = this.openingsUrl;
+    if (type !== this.types.OPENINGS && this.options.apiUrl?.match(/.xml$/)) {
+      typeUrl = type === this.types.APPLICATIONS ? this.mockApplyUrl : this.mockDocumentsUrl;
     } else {
       typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
     }
@@ -147,20 +152,69 @@ class Personio {
     });
   }
 
-  applyFileData(fileData, data, fields) {
-    // send file to endpoint and apply ids to fields
+  async uploadDocuments(fileData) {
+    const url = this.getUrl(this.types.DOCUMENTS);
+    const formData = new FormData();
 
-    // const file = {
-    //   key: 'resume',
-    //   value: {
-    //     encoded_data: data,
-    //     file_name: fileData.name,
-    //   },
-    // };
+    formData.append('file', fileData);
 
-    // fields.push(file);
+    return this.fetch(url, {
+      method: 'POST',
+      body: formData,
+      // headers: {
+      //   // ...this.getHeaders(),
+      //   // 'Content-Type': 'multipart/form-data',
+      // },
+    });
+  }
 
-    return fields;
+  getHeaders() {
+    return {
+      // 'x-company-id': this.options?.client_name,
+      // Authorization: `Bearer ${this.options.token}`,
+    };
+  }
+
+  async applyFileData(fileData, _, fields) {
+    return new Promise((resolve, reject) => {
+      this.uploadDocuments(fileData)
+        .then((response) => {
+          if (this.isValidResponseCode(response)) return this.addFilesToFields(response, fields, resolve, reject);
+
+          response
+            .json()
+            .then((jsonResponse) => {
+              if (jsonResponse.errors) return reject(jsonResponse.errors);
+            })
+            .catch((error) => {
+              return reject(error);
+            });
+        })
+        .catch((error) => {
+          return reject(error);
+        });
+    });
+  }
+
+  addFilesToFields(response, fields, resolve, reject) {
+    const newFields = fields;
+
+    newFields.files = [];
+
+    response
+      .json()
+      .then((jsonResponse) => {
+        newFields.files.push({
+          uuid: jsonResponse.uuid,
+          original_filename: jsonResponse.original_filename,
+          category: 'cv',
+        });
+
+        return resolve(newFields);
+      })
+      .catch((error) => {
+        return reject(error);
+      });
   }
 
   getMappedFieldName(name) {
@@ -238,8 +292,7 @@ class Personio {
   }
 
   async apply(fields) {
-    const url = this.getUrl(this.types.APPLICATIONS, this.options?.jobId, 'apply');
-    console.log('🚀 ~ file: personio.js:237 ~ Personio ~ apply ~ url:', url);
+    const url = this.getUrl(this.types.APPLICATIONS);
 
     return this.fetch(url, {
       method: 'POST',

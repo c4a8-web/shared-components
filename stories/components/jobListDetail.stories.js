@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 const baseArgs = {
   clientName: 'c4a8',
   jobId: '1327578',
-  // apiUrl: 'mock/jobList.xml',
+  apiUrl: 'mock/jobList.xml',
   base: {
     ctaText: 'Jetzt bewerben',
     ctaButton: true,

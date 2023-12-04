@@ -103,29 +103,36 @@ class Modal {
       fileData = fileInput?.files[0];
     }
 
-    // if (fileData) {
-    // if (base64Value) {
-    // fields = this.api.applyFileData(fileData, base64Value, fields);
-    this.handleApplicationRequest(fields);
-    // } else {
-    //   Tools.toBase64(fileData).then((data) => {
-    //     fields = this.api.applyFileData(fileData, data, fields);
-    //     this.handleApplicationRequest(fields);
-    //   });
-    // }
-    // } else {
-    //   console.error('handle generic error no files');
+    console.log('🚀 ~ file: modal.js:107 ~ Modal ~ handleApplicationSubmit ~ fileData:', fileData);
+    if (fileData) {
+      if (base64Value) {
+        // fields = this.api.applyFileData(fileData, base64Value, fields);
+        this.handleApplicationRequest(fields, fileData, base64Value);
+      } else {
+        Tools.toBase64(fileData).then((data) => {
+          // fields = this.api.applyFileData(fileData, data, fields);
+          this.handleApplicationRequest(fields, fileData, data);
+        });
+      }
+    } else {
+      console.error('handle generic error no files');
 
-    //   this.handleError();
-    // }
+      this.handleError();
+    }
   }
 
-  handleApplicationRequest(fields) {
-    console.log('🚀 ~ file: modal.js:125 ~ Modal ~ handleApplicationRequest ~ fields:', fields);
+  handleApplicationRequest(fields, fileData, base64Value) {
     this.api
-      .handleApply(fields)
-      .then(() => {
-        this.handleApplicationSuccess(fields);
+      .applyFileData(fileData, base64Value, fields)
+      .then((newFields) => {
+        this.api
+          .handleApply(newFields)
+          .then(() => {
+            this.handleApplicationSuccess(newFields);
+          })
+          .catch((e) => {
+            this.handleError(e);
+          });
       })
       .catch((e) => {
         this.handleError(e);
@@ -147,7 +154,9 @@ class Modal {
   }
 
   handleError(e) {
-    console.error(`Error ${e}`);
+    const message = typeof e === 'string' ? e : e.message;
+
+    console.error(`Error ${message}`);
     // TODO add the generic error message here
   }
 
