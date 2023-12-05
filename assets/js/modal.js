@@ -103,7 +103,6 @@ class Modal {
       fileData = fileInput?.files[0];
     }
 
-    console.log('🚀 ~ file: modal.js:107 ~ Modal ~ handleApplicationSubmit ~ fileData:', fileData);
     if (fileData) {
       if (base64Value) {
         // fields = this.api.applyFileData(fileData, base64Value, fields);
@@ -117,6 +116,8 @@ class Modal {
     } else {
       console.error('handle generic error no files');
 
+      // TODO required file is not triggered why?
+
       this.handleError();
     }
   }
@@ -125,6 +126,7 @@ class Modal {
     this.api
       .applyFileData(fileData, base64Value, fields)
       .then((newFields) => {
+        console.log('🚀 ~ file: modal.js:127 ~ Modal ~ .then ~ newFields:', newFields);
         this.api
           .handleApply(newFields)
           .then(() => {
@@ -154,6 +156,8 @@ class Modal {
   }
 
   handleError(e) {
+    if (!e) return console.error('handle generic error');
+
     const message = typeof e === 'string' ? e : e.message;
 
     console.error(`Error ${message}`);

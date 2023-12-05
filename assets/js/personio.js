@@ -38,7 +38,7 @@ class Personio {
     this.applicationsUrl = `${this.apiUrl}/recruiting/applications`;
     this.applicationsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/applications';
     this.documentsUrl = `${this.apiUrl}/recruiting/documents`;
-    this.documentsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/documents-mock';
+    this.documentsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/documents';
   }
 
   getUrl(type) {
@@ -161,18 +161,7 @@ class Personio {
     return this.fetch(url, {
       method: 'POST',
       body: formData,
-      // headers: {
-      //   // ...this.getHeaders(),
-      //   // 'Content-Type': 'multipart/form-data',
-      // },
     });
-  }
-
-  getHeaders() {
-    return {
-      // 'x-company-id': this.options?.client_name,
-      // Authorization: `Bearer ${this.options.token}`,
-    };
   }
 
   async applyFileData(fileData, _, fields) {
@@ -201,7 +190,7 @@ class Personio {
 
     newFields.files = [];
 
-    response
+    return response
       .json()
       .then((jsonResponse) => {
         newFields.files.push({
@@ -236,7 +225,9 @@ class Personio {
   }
 
   isValidResponseCode(response) {
-    return this.options.apiUrl ? response.status === 200 : response.status === 201 || response.status === 204;
+    return this.options.apiUrl
+      ? response.status === 200
+      : response.status === 200 || response.status === 201 || response.status === 204;
   }
 
   handleApply(fields) {
@@ -296,7 +287,9 @@ class Personio {
 
     return this.fetch(url, {
       method: 'POST',
-      body: JSON.stringify(fields),
+      body: JSON.stringify({
+        ...fields,
+      }),
       headers: {
         'Content-Type': 'application/json',
       },
