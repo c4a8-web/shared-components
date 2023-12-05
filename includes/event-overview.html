@@ -33,7 +33,14 @@
   {% if eventOverviewOrder %}
     {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression -%}
   {% else %}
-    {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' -%}
+
+    {% if eventOverviewEventsByLanguage[0].date %}
+      {% assign eventOverviewEventSortBy = 'date' %}
+    {% else %}
+      {% assign eventOverviewEventSortBy = 'moment' %}
+    {% endif %}
+
+    {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: eventOverviewEventSortBy -%}
   {% endif %}
 {% endif %}
 
