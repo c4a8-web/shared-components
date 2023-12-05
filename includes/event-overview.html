@@ -13,12 +13,6 @@
   {% assign eventOverviewOverlap = false %}
 {% endif %}
 
-{%- assign eventOverviewVisibleExpression = '' -%}
-
-{% for eventId in eventOverviewOrder %}
-  {% capture eventOverviewVisibleExpression %}{{ eventOverviewVisibleExpression }}item.eventid contains '{{ eventId }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
-{% endfor %}
-
 {% if page.lang %}
   {% capture eventOverviewLangEventsExpression %}item.lang == '{{ page.lang }}'{% endcapture %}
 {% else %}
@@ -27,14 +21,30 @@
 
 {%- assign eventOverviewEventsByLanguage = eventOverviewEvents | where_exp: "item", eventOverviewLangEventsExpression -%}
 
-{% if eventOverviewVisibleExpression == '' %}
-  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | reverse -%}
+{% if eventOverviewOrder.size > 0 %}
+  {%- assign eventOverviewVisibleExpression = '' -%}
+
+  {% for eventId in eventOverviewOrder %}
+    {% capture eventOverviewVisibleExpression %}{{ eventOverviewVisibleExpression }}item.eventid contains '{{ eventId }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
+  {% endfor %}
+
+  {%- assign eventOverviewEventsByLanguage123 = eventOverviewEventsByLanguage | where_exp: 'item', eventOverviewVisibleExpression -%}
+
+  {% assign eventOverviewOrderedArray = '' | split: '' %}
+
+  {% for eventId in eventOverviewOrder %}
+
+    {% for event in eventOverviewEventsByLanguage %}
+      {% if eventId == event.eventid %}
+        {% assign eventOverviewOrderedArray = eventOverviewOrderedArray | push: event %}
+      {% endif %}
+    {% endfor %}
+  {% endfor %}
+
+  {%- assign eventOverviewFilteredEvents = eventOverviewOrderedArray -%}
+
 {% else %}
-  {% if eventOverviewOrder %}
-    {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression -%}
-  {% else %}
-    {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'date' -%}
-  {% endif %}
+  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | reverse -%}
 {% endif %}
 
 {%- capture eventOverviewEventsString -%}
