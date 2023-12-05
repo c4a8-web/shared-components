@@ -1,104 +1,36 @@
----
-layout: default
-footer:
-  noMargin: true
-form:
-  uncentered: true
-  ctaText: Anfrage Absenden
-  cta:
-    skin: primary
-  method: post
-  action: /de/success
-  fields:
-  -
-    label: Vorname
-    type: text
-    id: firstname
-    required: true
-    requiredMsg: Bitte geben Sie Ihren Vornamen an.
-  -
-    label: Nachname
-    type: text
-    id: lastname
-    required: true
-    requiredMsg: Bitte geben Sie Ihren Nachnamen an.
-  -
-    label: Funktion im Unternehmen
-    type: text
-    id: function
-    required: false
-    requiredMsg: Bitte geben Sie Ihre Funktion im Unternehmen an.
-  -
-    label: Unternehmen
-    type: text
-    id: company
-    required: true
-    requiredMsg: Bitte geben Sie Ihr Unternehmen an.
-  -
-    label: E-Mail
-    type: email
-    id: email
-    required: true
-    requiredMsg: Bitte geben Sie Ihre E-Mail-Adresse ein.
-  -
-    label: Anzahl Teilnehmer
-    type: number
-    id: participants
-    required: true
-    requiredMsg: Bitte geben Sie eine Teilnehmeranzahl an.
-    col: 5
-    rowStart: true
-    rowEnd: true
-  -
-    label: Wunschtermin
-    type: text
-    id: date
-    required: false
-    requiredMsg: Bitte geben Sie einen Wunschtermin an.
-  -
-    label: Ihre Nachricht an uns (optional)
-    type: textarea
-    id: message
-    required: false
-    requiredMsg: Bitte ausfüllen
-  -
-    label: Ich bin mit der Speicherung meiner Daten einverstanden, die <a href="/de/datenschutz">Datenschutzerklärung</a> habe ich gelesen und akzeptiert. Meine Einwilligung kann ich jederzeit widerrufen.
-    type: checkbox
-    id: dataprotection
-    required: false
-    requiredMsg: Bitte ausfüllen
-  -
-    type: hidden
-    id: _to
-    value: leads@glueckkanja.com
-  -
-    type: hidden
-    id: _gotcha
+{%- assign eventTitle = include.title -%}
+{%- assign eventDate = include.date -%}
+{%- assign eventCategory = include.category -%}
+{%- assign eventText = include.text -%}
+{%- assign eventBgColor = include.bgColor -%}
+{%- assign eventColor = include.color -%}
+{%- assign eventImage = include.image -%}
+{%- assign eventTime = include.time -%}
+{%- assign eventTimeColor = include.timeColor -%}
+{%- assign eventUrl = include.url -%}
+{%- assign eventClasses = include.classes -%}
+{%- assign eventExternal = include.external -%}
 
-additionalFields:
--
-  type: 'hidden'
-  id: 'eventid'
-  value: '#form-field-replace-value#'
----
-
-{% if page.form %}
-  {% assign eventForm = page.form %}
+{% if eventExternal == true %}
+  {% assign eventExternal = true %}
 {% else %}
-  {% assign eventForm = layout.form %}
+  {% assign eventExternal = false %}
 {% endif %}
 
-{% comment %}
-  include event-detail.html
-  headline=page.headline
-  content=page.content
-  name=page.author
-  image=page.image
-  form=eventForm
-  formAdditionalFields=layout.additionalFields
-  formReplaceValue=page.eventid
-  badge=page.badge
-  moment=page.moment
-  time=page.time
-  detailShapeColor=page.detailShapeColor
-{% endcomment %}
+<!-- Shared Event Section -->
+<event
+  title="{{ eventTitle }}"
+  date="{{ eventDate }}"
+  category="{{ eventCategory }}"
+  text="{{ eventText }}"
+  bg-color="{{ eventBgColor }}"
+  color="{{ eventColor }}"
+  image="{{ eventImage | jsonify | escape }}"
+  time="{{ eventTime }}"
+  time-color="{{ eventTimeColor }}"
+  classes="{{ eventClasses }}"
+  url="{{ eventUrl }}"
+  :external="{{ eventExternal }}"
+>
+</event>
+<!-- End Shared Event Section -->
