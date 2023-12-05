@@ -14,6 +14,7 @@
 {% endif %}
 
 {%- assign eventOverviewVisibleExpression = '' -%}
+
 {% for eventId in eventOverviewOrder %}
   {% capture eventOverviewVisibleExpression %}{{ eventOverviewVisibleExpression }}item.eventid contains '{{ eventId }}'{% unless forloop.last %} or {% endunless %}{% endcapture %}
 {% endfor %}
@@ -29,7 +30,11 @@
 {% if eventOverviewVisibleExpression == '' %}
   {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | reverse -%}
 {% else %}
-  {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'eventid' -%}
+  {% if eventOverviewOrder %}
+    {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression -%}
+  {% else %}
+    {%- assign eventOverviewFilteredEvents = eventOverviewEventsByLanguage | where_exp: "item", eventOverviewVisibleExpression | sort: 'date' -%}
+  {% endif %}
 {% endif %}
 
 {%- capture eventOverviewEventsString -%}
