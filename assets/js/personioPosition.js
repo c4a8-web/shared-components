@@ -29,15 +29,17 @@ class PersonioPosition {
 
     let newText = text.replace(/<\/?span[^>]*>/g, '');
 
-    newText = newText
-      .replace(/(?<=<\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)/g, (_, text) => {
-        const trimmedText = text.trim();
+    if (index === 0) {
+      newText = newText
+        .replace(/(?<=<\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)/g, (_, text) => {
+          const trimmedText = text.trim();
 
-        if (trimmedText.length === 0) return '';
+          if (trimmedText.length === 0) return '';
 
-        return '<p>' + trimmedText + '</p>';
-      })
-      .replace(/<\/p><br>/g, '<br></p>');
+          return '<p>' + trimmedText + '</p>';
+        })
+        .replace(/<\/p><br>/g, '<br></p>');
+    }
 
     return `${sectionName}${newText}`.replace(/<\/p><br><p>/g, '</p><p>');
   }
