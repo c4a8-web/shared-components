@@ -22,11 +22,17 @@ class Personio {
     JSON: 'json',
   };
 
+  defaultClientName = 'c4a8';
+
   mockApplyUrl = 'mock/jobApply.json';
   mockDocumentsUrl = 'mock/jobDocuments.json';
 
   constructor(options) {
     this.options = options;
+
+    if (!this.options.client_name || this.options.client_name === 'glueckkanja') {
+      this.options.client_name = this.defaultClientName;
+    }
 
     this.lang = this.defaultLang;
     this.jobId = null;
