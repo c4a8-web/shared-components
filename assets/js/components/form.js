@@ -49,7 +49,7 @@ class Form extends BaseComponent {
   }
 
   addCustomValidationRules() {
-    if (window.$) {
+    if (window.$ && $.validator) {
       $.validator.methods.email = function (value, element) {
         return this.optional(element) || Form.regularExpression.test(value);
       };
