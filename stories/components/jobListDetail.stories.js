@@ -156,8 +156,8 @@ export const En = Template.bind({});
 
 En.args = {
   ...baseArgs,
-  jobId: 'fk034tm',
-  apiUrl: 'mock/jobEn.json',
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
 };
 
 export const WithVideo = Template.bind({});

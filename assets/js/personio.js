@@ -79,8 +79,12 @@ class Personio {
     const positionObject = new PersonioPosition(position);
     const jobId = this.options?.jobId;
 
-    if (jobId && positionObject.id !== jobId) return null;
-    if (!this.filterPosition(positionObject)) return null;
+    if (
+      positionObject.description === null ||
+      (jobId && positionObject.id !== jobId) ||
+      !this.filterPosition(positionObject)
+    )
+      return null;
 
     const newPosition = {
       ...positionObject.data,
