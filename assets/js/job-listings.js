@@ -5,14 +5,11 @@ import Personio from './personio.js';
 class JobListings {
   jobDataUrl = '/assets/data/jobs/';
 
-  // hiddenTag = 'hidden';
-
   constructor(options) {
     this.options = options;
     this.api = new Personio(this.options);
 
     this.jobDataUrl = Tools.getSiteAssetPath(this.jobDataUrl);
-    // this.openingsUrl = this.api.openingsUrl;
   }
 
   setLang(lang) {
