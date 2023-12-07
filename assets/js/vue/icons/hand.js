@@ -1,7 +1,7 @@
 const iconHandStepTime = '0s';
-const iconHandDuration = '1.2s';
+const iconHandDuration = '0.7s';
 const iconHandRepetition = '2';
-const iconHandPause = '3s';
+const iconHandPause = '2s';
 
 export default {
   tagName: 'hand',
@@ -36,15 +36,25 @@ export default {
       <path id="outter-line-bottom" d="M3 247.452C3 276.522 26.7846 300.307 55.8546 300.307" :stroke="stroke" stroke-width="6" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
     </g>
 
+    <animateTransform id="reset-hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
+      values="-17 187.5 192; 0 187.5 192"
+      begin="hand-rotation.end+0s" dur="0.1s"
+    />
+
     <animateTransform id="pause-hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
       values="0 187.5 192"
-      begin="hand-rotation.end+0s" dur="${iconHandPause}"
+      begin="reset-hand-rotation.end+0s" dur="${iconHandPause}"
+    />
+
+    <animateTransform id="set-hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
+      values="0 187.5 192; -17 187.5 192"
+      begin="pause-hand-rotation.end+0s" dur="0.1s"
     />
 
     <animateTransform id="hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
-      values="0 187.5 192; -17 187.5 192; 22 187.5 192; 0 187.5 192"
-      begin="${iconHandStepTime};pause-hand-rotation.end+0s" dur="${iconHandDuration}"
-      repeatCount="${iconHandRepetition}"
+      values="-17 187.5 192; 22 187.5 192; -17 187.5 192"
+      begin="${iconHandStepTime};set-hand-rotation.end+0s" dur="${iconHandDuration}"
+      repeatCount="${iconHandRepetition}" keySplines="0.25 0 0.25 1; 0.5 0 0.5 1" calcMode="spline"
     />
 
     <animate id="pause-inner-lines-opacity" href="#inner-lines" attributeName="opacity"
