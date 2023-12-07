@@ -242,7 +242,7 @@ export default {
         ref="modal-component"
         :client-name="clientName"
         :api-url="apiUrl"
-        :job-id="jobId"
+        :job-id="jobIdValue"
       >
         <slot name="modal-application" />
       </modal>

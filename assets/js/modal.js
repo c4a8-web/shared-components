@@ -105,11 +105,9 @@ class Modal {
 
     if (fileData) {
       if (base64Value) {
-        // fields = this.api.applyFileData(fileData, base64Value, fields);
         this.handleApplicationRequest(fields, fileData, base64Value);
       } else {
         Tools.toBase64(fileData).then((data) => {
-          // fields = this.api.applyFileData(fileData, data, fields);
           this.handleApplicationRequest(fields, fileData, data);
         });
       }
@@ -123,10 +121,10 @@ class Modal {
   }
 
   handleApplicationRequest(fields, fileData, base64Value) {
+    // TODO move this into job-listings
     this.api
       .applyFileData(fileData, base64Value, fields)
       .then((newFields) => {
-        console.log('🚀 ~ file: modal.js:127 ~ Modal ~ .then ~ newFields:', newFields);
         this.api
           .handleApply(newFields)
           .then(() => {
@@ -150,8 +148,9 @@ class Modal {
         modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
       }
 
-      const firstName = fields[0];
-      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+      const firstName = fields.first_name;
+
+      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName}`;
     }
   }
 

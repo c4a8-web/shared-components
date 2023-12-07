@@ -13,6 +13,10 @@ class Personio {
     DOCUMENTS: 'documents',
   };
 
+  recruitingChannels = {
+    CAREER_PAGE: 1610421,
+  };
+
   phaseIds = {
     NEW_APPLICATION: 890494,
   };
@@ -269,6 +273,7 @@ class Personio {
         type: 'custom',
         id: this.phaseIds.NEW_APPLICATION,
       },
+      recruiting_channel_id: this.recruitingChannels.CAREER_PAGE,
     };
 
     const baseParams = { first_name: true, last_name: true, email: true, message: true };
@@ -297,9 +302,7 @@ class Personio {
 
     return this.fetch(url, {
       method: 'POST',
-      body: JSON.stringify({
-        ...fields,
-      }),
+      body: JSON.stringify(fields.fields),
       headers: {
         'Content-Type': 'application/json',
       },
