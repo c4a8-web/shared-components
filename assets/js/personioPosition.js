@@ -75,9 +75,12 @@ class PersonioPosition {
       const secondSegment = segments[1];
       const securityIdentifier = 'CSOC';
       const managedServicesIdentifier = 'Managed Services';
+      const productsIdentifier = 'Products';
 
       if (firstSegment === managedServicesIdentifier && secondSegment !== securityIdentifier) {
         value = managedServicesIdentifier;
+      } else if (firstSegment === productsIdentifier) {
+        value = `${productsIdentifier} ${secondSegment}`;
       } else {
         switch (secondSegment) {
           case 'Azure Architecture':
