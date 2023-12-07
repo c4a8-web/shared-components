@@ -24,6 +24,10 @@ class PersonioPosition {
       : null;
   }
 
+  hasStartingHtmlTag(text) {
+    return /^\s*<[^>]+>/.test(text);
+  }
+
   getEnhanchedDescription(index, name, text) {
     const sectionName = index > 0 && name && name['#text'] ? `<h4>${this.trimNewlines(name['#text'])}</h4>` : '';
 
@@ -31,14 +35,16 @@ class PersonioPosition {
 
     if (index === 0) {
       newText = newText
-        .replace(/(?<=<\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)/g, (_, text) => {
-          const trimmedText = text.trim();
+        .replace(/(?<=<\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)/g, (_, textToChange) => {
+          const trimmedText = textToChange.trim();
 
           if (trimmedText.length === 0) return '';
 
           return '<p>' + trimmedText + '</p>';
         })
         .replace(/<\/p><br>/g, '<br></p>');
+    } else if (!this.hasStartingHtmlTag(newText)) {
+      newText = '<p>' + newText + '</p>';
     }
 
     return `${sectionName}${newText}`.replace(/<\/p><br><p>/g, '</p><p>');
