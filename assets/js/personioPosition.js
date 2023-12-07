@@ -32,18 +32,26 @@ class PersonioPosition {
     const sectionName = index > 0 && name && name['#text'] ? `<h4>${this.trimNewlines(name['#text'])}</h4>` : '';
 
     let newText = text.replace(/<\/?span[^>]*>/g, '');
+    let paragraphCount = 0;
+
+    const minTextLength = 5;
+    const maxParagraphs = 2;
 
     if (index === 0) {
       newText = newText
         .replace(/(?<=<\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)/g, (_, textToChange) => {
-          const trimmedText = textToChange.trim();
+          if (textToChange.length > minTextLength && /^\s*$/.test(textToChange)) return textToChange;
 
-          if (trimmedText.length === 0) return '';
+          if (paragraphCount < maxParagraphs && textToChange.length > minTextLength && textToChange[0] !== ',') {
+            paragraphCount++;
 
-          return '<p>' + trimmedText + '</p>';
+            return '<p>' + textToChange.trim() + '</p>';
+          } else {
+            return textToChange;
+          }
         })
         .replace(/<\/p><br>/g, '<br></p>');
-    } else if (!this.hasStartingHtmlTag(newText)) {
+    } else if (!this.hasStartingHtmlTag(newText) && newText.length > minTextLength) {
       newText = '<p>' + newText + '</p>';
     }
 

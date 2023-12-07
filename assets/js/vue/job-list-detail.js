@@ -68,6 +68,8 @@ export default {
         client_name: this.clientName,
       });
 
+      this.api.setLang(Tools.getLang());
+
       const jobId = this.api.getJobId() || this.jobId;
 
       this.jobIdValue = jobId;
