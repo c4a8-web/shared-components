@@ -17,7 +17,9 @@ class PersonioPosition {
   }
 
   get description() {
-    return this.position.jobDescriptions && this.position.jobDescriptions.jobDescription
+    return this.position.jobDescriptions &&
+      this.position.jobDescriptions.jobDescription &&
+      this.position.jobDescriptions.jobDescription.map
       ? this.position.jobDescriptions.jobDescription
           .map((desc, index) => this.getEnhanchedDescription(index, desc.name, desc.value['#cdata-section']))
           .join('\n')
@@ -81,6 +83,8 @@ class PersonioPosition {
   }
 
   getTeamText(text) {
+    if (!text) return;
+
     let value = text;
 
     if (value.includes('/')) {
@@ -118,8 +122,9 @@ class PersonioPosition {
 
   get team() {
     const value = this.getTeamText(this.getValue('department'));
+    const seperator = value ? ' / ' : '';
 
-    return `${value}${this.positionType ? ' / ' + this.positionType : ''}`;
+    return `${value ? value : ''}${this.positionType ? seperator + this.positionType : ''}`;
   }
 
   get data() {
