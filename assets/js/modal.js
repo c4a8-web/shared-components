@@ -32,11 +32,13 @@ class Modal {
       this.clientName = this.root.dataset.clientName;
       this.apiUrl = this.root.dataset.apiUrl;
       this.jobId = this.root.dataset.jobId;
+      this.apiKey = this.root.dataset.apiKey;
 
       this.api = new JobListings({
         ...(this.jobId && { jobId: this.jobId }),
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
+        apiKey: this.apiKey,
       });
     }
 

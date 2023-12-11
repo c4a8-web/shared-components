@@ -2,7 +2,6 @@ import Tools from './tools.js';
 import PersonioPosition from './personioPosition.js';
 
 // https://developer.personio.de/reference/post_v1-recruiting-applications
-// TODO send application
 
 class Personio {
   defaultLang = 'de';
@@ -42,13 +41,9 @@ class Personio {
     this.jobId = null;
     this.apiUrl = `https://api.personio.de/v1`;
 
-    // set this to something else if there is an api url in the options
-
     this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`;
-    this.applicationsUrl = `${this.apiUrl}/recruiting/applications`;
-    this.applicationsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/applications';
-    this.documentsUrl = `${this.apiUrl}/recruiting/documents`;
-    this.documentsUrl = 'https://cywpb5pfh5.execute-api.eu-central-1.amazonaws.com/production/documents';
+    this.applicationsUrl = 'https://apim-c4a8-recruiting-prd-weu.azure-api.net/applications';
+    this.documentsUrl = 'https://apim-c4a8-recruiting-prd-weu.azure-api.net/applications/documents';
   }
 
   getUrl(type) {
@@ -170,11 +165,19 @@ class Personio {
     const url = this.getUrl(this.types.DOCUMENTS);
     const formData = new FormData();
 
-    formData.append('file', fileData);
+    formData.append(
+      'file',
+      new File([fileData], fileData.name, {
+        type: fileData.type,
+      })
+    );
 
     return this.fetch(url, {
       method: 'POST',
       body: formData,
+      headers: {
+        ...this.getHeaders(),
+      },
     });
   }
 
@@ -297,6 +300,12 @@ class Personio {
     return payload;
   }
 
+  getHeaders() {
+    return {
+      'Ocp-Apim-Subscription-Key': this.options.apiKey,
+    };
+  }
+
   async apply(fields) {
     const url = this.getUrl(this.types.APPLICATIONS);
 
@@ -304,6 +313,7 @@ class Personio {
       method: 'POST',
       body: JSON.stringify(fields.fields),
       headers: {
+        ...this.getHeaders(),
         'Content-Type': 'application/json',
       },
     });

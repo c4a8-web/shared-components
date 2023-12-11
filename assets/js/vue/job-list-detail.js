@@ -66,6 +66,7 @@ export default {
       this.api = new JobListings({
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
+        apiKey: this.apiKey,
       });
 
       this.api.setLang(Tools.getLang());
@@ -164,6 +165,8 @@ export default {
         });
     },
     addCustomStyle() {
+      return; // TODO disabled till personio implementation is fixed
+
       const style = document.createElement('style');
 
       style.id = this.getUuid;
@@ -192,6 +195,7 @@ export default {
     form: Object,
     googleMaps: Object,
     modalSuccess: Object,
+    apiKey: String,
   },
   template: `
     <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobIdValue" :data-api-url="apiUrl" ref="job-list-detail">
@@ -243,6 +247,7 @@ export default {
         :client-name="clientName"
         :api-url="apiUrl"
         :job-id="jobIdValue"
+        :api-key="apiKey"
       >
         <slot name="modal-application" />
       </modal>

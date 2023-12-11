@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 const baseArgs = {
   clientName: 'c4a8',
   jobId: '1327578',
-  // apiUrl: 'mock/jobList.xml',
+  apiUrl: 'mock/jobList.xml',
   base: {
     ctaText: 'Jetzt bewerben',
     ctaButton: true,
@@ -81,7 +81,7 @@ const baseArgs = {
         col: 6,
         rowStart: true,
         id: 'portfolio',
-        showIn: ['fk0stpa'],
+        showIn: ['1327578'],
       },
       {
         label: 'Nachricht (optional)',
@@ -94,7 +94,7 @@ const baseArgs = {
         rowStart: true,
         rowEnd: true,
         formAttachments: {
-          // required: true,
+          required: true,
           requiredMsg: 'Bitte einen Anhang hinzufügen',
           id: 'file',
           description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
@@ -159,6 +159,16 @@ En.args = {
   jobId: '1327578',
   apiUrl: 'mock/jobListEn.xml',
 };
+
+// TODO figure out how to have an example that will work even though the job not be found
+// export const Unsolicited = Template.bind({});
+
+// Unsolicited.args = {
+//   ...baseArgs,
+//   // jobId: '1338121',
+//   apiKey: process.env.STORYBOOK_PERSONIO_API_KEY,
+//   apiUrl: null,
+// };
 
 export const WithVideo = Template.bind({});
 

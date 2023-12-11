@@ -27,6 +27,7 @@ export default {
         'data-api-url': this.apiUrl ? this.apiUrl : null,
         'data-job-id': this.jobId ? this.jobId : null,
         'data-modal-id': this.modalId ? this.modalId : null,
+        'data-api-key': this.apiKey ? this.apiKey : null,
       };
     },
     modal() {
@@ -121,6 +122,7 @@ export default {
     notification: {
       default: null,
     },
+    apiKey: String,
   },
   template: `
     <div :class="classList" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)" ref="modal"
