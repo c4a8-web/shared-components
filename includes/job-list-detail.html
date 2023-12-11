@@ -15,7 +15,7 @@
 {%- assign jobListDetailPersonQuote = include.personQuote -%}
 {%- assign jobListDetailGoogleMaps = include.googleMaps -%}
 {%- assign jobListDetailModalSuccess = include.modalSuccess -%}
-{%- assign jobListDetailApiKey = include.apiKey -%}
+{%- assign jobListDetailApiKey = include.apiKey | default: site.personio_api_key_env -%}
 
 <job-list-detail
   detail-color="{{ jobListDetailColor }}"
