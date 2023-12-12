@@ -116,8 +116,6 @@ class Modal {
     } else {
       console.error('handle generic error no files');
 
-      // TODO required file is not triggered why?
-
       this.handleError();
     }
   }
