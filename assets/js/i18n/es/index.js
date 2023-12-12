@@ -7,6 +7,10 @@ const es = {
   formAttachmentsWrongType: 'Elija un formato de archivo válido',
   onlyLanguage: 'Sólo español',
   moreEvents: 'Otras fechas',
+  positionTypePermanently: 'Puesto permanente',
+  positionTypeInternship: 'Prácticas',
+  positionTypeTraining: 'Educación',
+  positionTypeStudent: 'Estudiantes que trabajan',
 };
 
 export default es;

@@ -1,4 +1,4 @@
-import RecruiterBox from '../recruiter-box.js';
+import JobListings from '../job-listings.js';
 import State from '../state.js';
 import Loading from '../loading.js';
 import Modal from '../modal.js';
@@ -63,10 +63,17 @@ export default {
   },
   methods: {
     init() {
-      this.api = new RecruiterBox({
+      this.api = new JobListings({
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
+        apiKey: this.apiKey,
       });
+
+      this.api.setLang(Tools.getLang());
+
+      const jobId = this.api.getJobId() || this.jobId;
+
+      this.jobIdValue = jobId;
 
       this.showBackButton();
 
@@ -89,7 +96,7 @@ export default {
       // TODO wait for all promises. right now it is working since vue is reactive so maybe we don't need that
       this.loadLocalJobData();
       this.api
-        ?.getOpening()
+        ?.getOpening(this.jobIdValue)
         .then((response) => response.json())
         .then((data) => {
           this.handleJob(data);
@@ -105,7 +112,7 @@ export default {
       Tools.sleep(this.sleepDelay).then(() => {
         const localEntry = entry.objects ? entry.objects[0] : entry;
 
-        if (localEntry && localEntry.location) {
+        if (localEntry) {
           const gender = window.i18n?.translate('gender');
           const { title, description } = localEntry;
 
@@ -136,10 +143,7 @@ export default {
       this.stopLoading();
     },
     loadLocalJobData() {
-      const jobId = this.api.getJobId() || this.jobId;
-      const url = `${this.api.jobDataUrl}${jobId}.json`;
-
-      this.jobIdValue = jobId;
+      const url = `${this.api.jobDataUrl}${this.jobIdValue}.json`;
 
       this.addCustomStyle();
 
@@ -160,6 +164,8 @@ export default {
         });
     },
     addCustomStyle() {
+      return; // TODO disabled till personio implementation is fixed
+
       const style = document.createElement('style');
 
       style.id = this.getUuid;
@@ -188,6 +194,7 @@ export default {
     form: Object,
     googleMaps: Object,
     modalSuccess: Object,
+    apiKey: String,
   },
   template: `
     <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobIdValue" :data-api-url="apiUrl" ref="job-list-detail">
@@ -238,7 +245,8 @@ export default {
         ref="modal-component"
         :client-name="clientName"
         :api-url="apiUrl"
-        :job-id="jobId"
+        :job-id="jobIdValue"
+        :api-key="apiKey"
       >
         <slot name="modal-application" />
       </modal>

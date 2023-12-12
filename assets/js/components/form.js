@@ -49,7 +49,7 @@ class Form extends BaseComponent {
   }
 
   addCustomValidationRules() {
-    if (window.$) {
+    if (window.$ && $.validator) {
       $.validator.methods.email = function (value, element) {
         return this.optional(element) || Form.regularExpression.test(value);
       };
@@ -455,6 +455,39 @@ class Form extends BaseComponent {
 
   canHaveCustomSubmit() {
     return this.root.classList.contains(Form.noCustomSubmitClass) ? false : true;
+  }
+
+  static isOptionalInputInvisible(input) {
+    return input?.parentNode?.classList.contains('form-field--show-in') && input.offsetParent === null;
+  }
+
+  static getFormData(form) {
+    if (form === null || form === undefined) return [];
+
+    // TODO refactor with select
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
+    const data = [];
+
+    for (let i = 0; i < inputs.length; i++) {
+      const input = inputs[i];
+
+      if (this.isOptionalInputInvisible(input)) continue;
+
+      let value;
+
+      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
+        value = input.value;
+      } else {
+        // TODO handle select
+      }
+
+      data.push({
+        input,
+        value,
+      });
+    }
+
+    return data;
   }
 }
 

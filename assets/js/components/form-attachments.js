@@ -81,6 +81,8 @@ class FormAttachments extends BaseComponent {
   }
 
   isAllowedFileExtension(file) {
+    if (!file) return;
+
     const accept = this.file.getAttribute('accept')?.toLowerCase();
     const allowedExtensions = accept?.split(',') || [];
     const fileExtension = Tools.getExtension(file.name);
@@ -94,7 +96,7 @@ class FormAttachments extends BaseComponent {
     if (!this.isAllowedFileExtension(droppedFile)) return this.showError(this.wrongTypeText);
 
     Tools.toBase64(droppedFile).then((data) => {
-      this.appendDroppedFile(data, droppedFile.name);
+      this.appendDroppedFile(data, droppedFile);
       this.switchText(droppedFiles);
     });
   }
@@ -126,16 +128,18 @@ class FormAttachments extends BaseComponent {
     this.root.classList.remove(State.HAS_ERROR);
   }
 
-  appendDroppedFile(data, name) {
+  appendDroppedFile(_, droppedFile) {
     if (!this.base64) return;
 
     if (this.isRequired) {
       this.file.required = false;
     }
 
-    this.file.value = null;
-    this.base64.dataset.fileName = name;
-    this.base64.value = data;
+    let dataTransfer = new DataTransfer();
+
+    dataTransfer.items.add(droppedFile);
+
+    this.file.files = dataTransfer.files;
   }
 
   resetFile() {
