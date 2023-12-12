@@ -19,7 +19,7 @@ function createDir(dir) {
 }
 
 function getAllMocks() {
-  glob(`${mockPath}/**/*.json`, function (err, files) {
+  glob(`${mockPath}/**/*.{json,xml}`, function (err, files) {
     if (err) throw err;
 
     files.forEach((filePath) => {

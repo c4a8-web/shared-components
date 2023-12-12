@@ -31,9 +31,8 @@ const baseArgs = {
   },
   faqModal: {
     id: 'bewerbung',
-    apiUrl: 'mock/job.json',
-    clientName: 'glueckkanja',
-    jobId: 'fk0slx5',
+    apiUrl: 'mock/jobList.xml',
+    jobId: '1327578',
     form: {
       headline: 'Bewerbungsformular (m/w/d)',
       cta: {
@@ -200,6 +199,9 @@ const baseArgs = {
     ],
   },
 };
+
+baseArgs.modal.apiUrl = baseArgs.faqModal.apiUrl;
+baseArgs.modal.jobId = baseArgs.faqModal.jobId;
 
 export const Career = Template.bind({});
 

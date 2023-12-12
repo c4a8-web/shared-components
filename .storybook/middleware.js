@@ -9,8 +9,11 @@ const extensionRegex = new RegExp(`${fixedExtension}`);
 
 module.exports = function expressMiddleware(app) {
   app.use(function (req, res, next) {
-    if (/mock\/[a-zA-Z0-9-_]*.json/.test(req.url)) {
-      res.setHeader('Content-Type', 'application/json');
+    if (/mock\/[a-zA-Z0-9-_]*.(json|xml)/.test(req.url)) {
+      const isXml = /\.xml/.test(req.url);
+      const contentType = isXml ? 'application/xml' : 'application/json';
+
+      res.setHeader('Content-Type', contentType);
       console.log('[POST => GET] : ' + req.url);
 
       try {
@@ -18,7 +21,7 @@ module.exports = function expressMiddleware(app) {
 
         req.method = 'GET';
 
-        res.send(JSON.parse(result));
+        res.send(!isXml ? JSON.parse(result) : result);
       } catch (error) {
         console.log('error', error);
         res.send(`error ${req.url} could not be loaded`);

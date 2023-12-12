@@ -2,7 +2,7 @@ import State from './state.js';
 import Events from './events.js';
 import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
-import RecruiterBox from './recruiter-box.js';
+import JobListings from './job-listings.js';
 import Tools from './tools.js';
 
 class Modal {
@@ -32,11 +32,13 @@ class Modal {
       this.clientName = this.root.dataset.clientName;
       this.apiUrl = this.root.dataset.apiUrl;
       this.jobId = this.root.dataset.jobId;
+      this.apiKey = this.root.dataset.apiKey;
 
-      this.api = new RecruiterBox({
+      this.api = new JobListings({
         ...(this.jobId && { jobId: this.jobId }),
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
+        apiKey: this.apiKey,
       });
     }
 
@@ -105,12 +107,10 @@ class Modal {
 
     if (fileData) {
       if (base64Value) {
-        fields = this.api.applyFileData(fileData, base64Value, fields);
-        this.handleApplicationRequest(fields);
+        this.handleApplicationRequest(fields, fileData, base64Value);
       } else {
         Tools.toBase64(fileData).then((data) => {
-          fields = this.api.applyFileData(fileData, data, fields);
-          this.handleApplicationRequest(fields);
+          this.handleApplicationRequest(fields, fileData, data);
         });
       }
     } else {
@@ -120,11 +120,19 @@ class Modal {
     }
   }
 
-  handleApplicationRequest(fields) {
+  handleApplicationRequest(fields, fileData, base64Value) {
+    // TODO move this into job-listings
     this.api
-      .handleApply(fields)
-      .then(() => {
-        this.handleApplicationSuccess(fields);
+      .applyFileData(fileData, base64Value, fields)
+      .then((newFields) => {
+        this.api
+          .handleApply(newFields)
+          .then(() => {
+            this.handleApplicationSuccess(newFields);
+          })
+          .catch((e) => {
+            this.handleError(e);
+          });
       })
       .catch((e) => {
         this.handleError(e);
@@ -140,13 +148,18 @@ class Modal {
         modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
       }
 
-      const firstName = fields[0];
-      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+      const firstName = fields.first_name;
+
+      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName}`;
     }
   }
 
   handleError(e) {
-    console.error(`Error ${e}`);
+    if (!e) return console.error('handle generic error');
+
+    const message = typeof e === 'string' ? e : e.message;
+
+    console.error(`Error ${message}`);
     // TODO add the generic error message here
   }
 

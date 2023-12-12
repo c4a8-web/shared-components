@@ -57,16 +57,16 @@ export default {
       </div>
       <div class="form-attachments__content">
         <div class="form-attachments__description">
-          {{description}}
+          {{ description }}
         </div>
         <div class="form-attachments__text">
-          {{text}}
+          {{ text }}
         </div>
         <div v-if="requiredMsg" class="form-attachments__error is-error">
-          {{requiredMsg}}
+          {{ requiredMsg }}
         </div>
         <div class="form-attachments__extensions">
-          {{extensionListText}}
+          {{ extensionListText }}
         </div>
       </div>
       <div class="form-attachments__files">

@@ -12,9 +12,9 @@ export default {
 const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
-  clientName: 'glueckkanja',
-  jobId: 'fk0stpa',
-  apiUrl: 'mock/job.json',
+  clientName: 'c4a8',
+  jobId: '1327578',
+  apiUrl: 'mock/jobList.xml',
   base: {
     ctaText: 'Jetzt bewerben',
     ctaButton: true,
@@ -81,7 +81,7 @@ const baseArgs = {
         col: 6,
         rowStart: true,
         id: 'portfolio',
-        showIn: ['fk0stpa'],
+        showIn: ['1327578'],
       },
       {
         label: 'Nachricht (optional)',
@@ -156,9 +156,19 @@ export const En = Template.bind({});
 
 En.args = {
   ...baseArgs,
-  jobId: 'fk034tm',
-  apiUrl: 'mock/jobEn.json',
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
 };
+
+// TODO figure out how to have an example that will work even though the job not be found
+// export const Unsolicited = Template.bind({});
+
+// Unsolicited.args = {
+//   ...baseArgs,
+//   // jobId: '1338121',
+//   apiKey: process.env.STORYBOOK_PERSONIO_API_KEY,
+//   apiUrl: null,
+// };
 
 export const WithVideo = Template.bind({});
 

@@ -8,6 +8,10 @@ const de = {
     'Bitte wählen Sie ein gültiges Dateiformat oder überprüfen Sie den Dateinamen (keine Sonderzeichen benutzen).',
   onlyLanguage: 'German only',
   moreEvents: 'Weitere Termine',
+  positionTypePermanently: 'Festanstellung',
+  positionTypeInternship: 'Praktikum',
+  positionTypeTraining: 'Ausbildung oder Trainee',
+  positionTypeStudent: 'Werkstudierende',
 };
 
 export default de;

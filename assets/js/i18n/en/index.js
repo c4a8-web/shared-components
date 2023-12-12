@@ -7,6 +7,10 @@ const en = {
   formAttachmentsWrongType: 'Please choose a valid file format',
   onlyLanguage: 'English only',
   moreEvents: 'More events',
+  positionTypePermanently: 'Permanent',
+  positionTypeInternship: 'Internship',
+  positionTypeTraining: 'Trainee',
+  positionTypeStudent: 'Working Students',
 };
 
 export default en;

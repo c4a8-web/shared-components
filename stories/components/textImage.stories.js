@@ -83,9 +83,8 @@ JobApplication.args = {
     trigger: 'modal',
   },
   modal: {
-    apiUrl: 'mock/job.json',
-    clientName: 'glueckkanja',
-    jobId: 'fk0slx5',
+    jobId: '1338121',
+    apiKey: process.env.STORYBOOK_PERSONIO_API_KEY,
     modalId: 'bewerbung1',
     form: {
       headline: 'Bewerbungsformular (m/w/d)',
