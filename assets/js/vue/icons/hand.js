@@ -1,5 +1,6 @@
 const iconHandStepTime = '0s';
-const iconHandDuration = '0.7s';
+const iconHandDuration = '0.35s';
+const iconResetAndSetDuration = '0.1s';
 const iconHandRepetition = '2';
 const iconHandPause = '2s';
 
@@ -37,44 +38,66 @@ export default {
     </g>
 
     <animateTransform id="reset-hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
-      values="-17 187.5 192; 0 187.5 192"
-      begin="hand-rotation.end+0s" dur="0.1s"
+      values="-17 187.5 192; 15 187.5 192"
+      begin="hand-rotation.end+0s" dur="${iconResetAndSetDuration}"
+      additive="sum"
+    />
+
+    <animateTransform id="reset-hand-movement" href="#hand-outline" attributeName="transform" type="translate"
+      values="-5 -15; 0 0"
+      begin="hand-movmenet.end+0s" dur="${iconResetAndSetDuration}"
+      additive="sum"
     />
 
     <animateTransform id="pause-hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
-      values="0 187.5 192"
+      values="15 187.5 192"
       begin="reset-hand-rotation.end+0s" dur="${iconHandPause}"
+      additive="sum"
+    />
+
+    <animateTransform id="set-hand-movement" href="#hand-outline" attributeName="transform" type="translate"
+      values="0 0; -5 -15"
+      begin="pause-hand-rotation.end+0s" dur="${iconResetAndSetDuration}"
+      additive="sum"
     />
 
     <animateTransform id="set-hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
-      values="0 187.5 192; -17 187.5 192"
-      begin="pause-hand-rotation.end+0s" dur="0.1s"
+      values="15 187.5 192; -17 187.5 192"
+      begin="pause-hand-rotation.end+0s" dur="${iconResetAndSetDuration}"
+      additive="sum"
+    />
+
+    <animateTransform id="hand-movement" href="#hand-outline" attributeName="transform" type="translate"
+      values="-5 -15; 2 2; -5 -15"
+      begin="0s;set-hand-rotation.end+0s" dur="${iconHandDuration}"
+      repeatCount="${iconHandRepetition}"
+      additive="sum"
     />
 
     <animateTransform id="hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
       values="-17 187.5 192; 22 187.5 192; -17 187.5 192"
-      begin="${iconHandStepTime};set-hand-rotation.end+0s" dur="${iconHandDuration}"
-      repeatCount="${iconHandRepetition}" keySplines="0.25 0 0.25 1; 0.5 0 0.5 1" calcMode="spline"
+      begin="0s;set-hand-rotation.end+0s" dur="${iconHandDuration}"
+      repeatCount="${iconHandRepetition}" additive="sum" keySplines="0.25 0 0.25 1; 0.5 0 0.5 1" calcMode="spline"
     />
 
     <animate id="pause-inner-lines-opacity" href="#inner-lines" attributeName="opacity"
       values="0.9"
-      begin="inner-lines-opacity.end+0s" dur="${iconHandPause}"
+      begin="inner-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandPause}"
     />
 
     <animate id="inner-lines-opacity" href="#inner-lines" attributeName="opacity"
       values="0.9; 0.05; 0.9"
-      begin="${iconHandStepTime}; pause-inner-lines-opacity.end+0s" dur="${iconHandDuration}" repeatCount="${iconHandRepetition}"
+      begin="${iconHandStepTime}; pause-inner-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandDuration}" repeatCount="${iconHandRepetition}"
     />
 
     <animate id="pause-outter-lines-opacity" href="#outter-lines" attributeName="opacity"
       values="0.9"
-      begin="outter-lines-opacity.end+0s" dur="${iconHandPause}"
+      begin="outter-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandPause}"
     />
 
     <animate id="outter-lines-opacity" href="#outter-lines" attributeName="opacity"
       values="0.05; 0.9; 0.05"
-      begin="${iconHandStepTime}; pause-outter-lines-opacity.end+0s" dur="${iconHandDuration}" repeatCount="${iconHandRepetition}"
+      begin="${iconHandStepTime}; pause-outter-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandDuration}" repeatCount="${iconHandRepetition}"
     />
   </svg>
   `,
