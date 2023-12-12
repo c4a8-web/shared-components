@@ -9,6 +9,7 @@
 {%- assign modalShow = include.show -%}
 {%- assign modalSlim = include.slim -%}
 {%- assign modalContent = include.content -%}
+{%- assign modalApiKey = include.apiKey -%}
 
 <modal
     client-name="{{ modalClientName }}"
@@ -17,6 +18,7 @@
     modal-id="{{ modalModalId }}"
     :show="{{ modalShow }}"
     :slim="{{ modalSlim }}"
+    api-key="{{ modalApiKey }}"
 >
   {% if modalApplication %}
 

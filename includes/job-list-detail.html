@@ -11,10 +11,11 @@
 {%- assign jobListDetailCtaText = include.ctaText -%}
 {%- assign jobListDetailCtaButton = include.ctaButton -%}
 {%- assign jobListDetailDescription = include.description -%}
-{%- assign jobListDetailForm = include.form %}
-{%- assign jobListDetailPersonQuote = include.personQuote %}
-{%- assign jobListDetailGoogleMaps = include.googleMaps %}
-{%- assign jobListDetailModalSuccess = include.modalSuccess %}
+{%- assign jobListDetailForm = include.form -%}
+{%- assign jobListDetailPersonQuote = include.personQuote -%}
+{%- assign jobListDetailGoogleMaps = include.googleMaps -%}
+{%- assign jobListDetailModalSuccess = include.modalSuccess -%}
+{%- assign jobListDetailApiKey = include.apiKey | default: site.personio_api_key_env -%}
 
 <job-list-detail
   detail-color="{{ jobListDetailColor }}"
@@ -31,6 +32,7 @@
   headline-level="{{ jobListDetailHeadlineLevel }}"
   headline-classes="{{ jobListDetailHeadlineClasses }}"
   gender="{{ jobListDetailGender }}"
+  api-key="{{ jobListDetailApiKey }}"
 >
   <template v-slot:person-quote>
     {% comment %}
