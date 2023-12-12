@@ -7,7 +7,7 @@ class PersonioPosition {
     if (hasLanguageLoader) {
       hasLanguageLoader.then(() => {
         this.translationData = window.i18n?.getTranslationData([
-          'positionTypePermantently',
+          'positionTypePermanently',
           'positionTypeInternship',
           'positionTypeTraining',
           'positionTypeStudent',
@@ -144,7 +144,7 @@ class PersonioPosition {
 
     switch (value) {
       case 'permanent':
-        value = window.i18n?.translate('positionTypePermantently');
+        value = window.i18n?.translate('positionTypePermanently');
         break;
       case 'intern':
         value = window.i18n?.translate('positionTypeInternship');
