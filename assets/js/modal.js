@@ -89,6 +89,8 @@ class Modal {
     e.preventDefault();
     e.stopImmediatePropagation();
 
+    this.setLoading(true);
+
     const base64 = this.form.querySelector(FormAttachments.base64Selector);
     const base64Value = base64?.value;
     let fields = this.api.getFormData(this.form);
@@ -120,6 +122,10 @@ class Modal {
     }
   }
 
+  setLoading(mode) {
+    document.dispatchEvent(new CustomEvent(Events.LOAD_MODAL, { detail: mode }));
+  }
+
   handleApplicationRequest(fields, fileData, base64Value) {
     // TODO move this into job-listings
     this.api
@@ -128,13 +134,16 @@ class Modal {
         this.api
           .handleApply(newFields)
           .then(() => {
+            this.setLoading(false);
             this.handleApplicationSuccess(newFields);
           })
           .catch((e) => {
+            this.setLoading(false);
             this.handleError(e);
           });
       })
       .catch((e) => {
+        this.setLoading(false);
         this.handleError(e);
       });
   }
