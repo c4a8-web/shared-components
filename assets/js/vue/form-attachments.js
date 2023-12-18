@@ -62,7 +62,7 @@ export default {
         <div class="form-attachments__text">
           {{ text }}
         </div>
-        <div v-if="requiredMsg" class="form-attachments__error is-error">
+        <div class="form-attachments__error is-error">
           {{ requiredMsg }}
         </div>
         <div class="form-attachments__extensions">
@@ -71,6 +71,7 @@ export default {
       </div>
       <div class="form-attachments__files">
         <input type="file" class="form-attachments__file"
+          multiple
           :required="required"
           :id="id"
           :name="id"

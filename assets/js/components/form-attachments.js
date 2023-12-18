@@ -22,6 +22,7 @@ class FormAttachments extends BaseComponent {
 
     this.isRequired = this.file?.required;
     this.requiredMsg = this.error?.innerText;
+    this.maxSize = this.root.dataset.maxSize;
 
     this.bindEvents();
 
@@ -90,10 +91,18 @@ class FormAttachments extends BaseComponent {
     return allowedExtensions.includes(`.${fileExtension}`);
   }
 
-  handleDroppedFiles(droppedFiles) {
-    const droppedFile = droppedFiles[0];
+  isUnderMaxSize(file) {
+    if (!file || !file.size) return;
 
-    if (!this.isAllowedFileExtension(droppedFile)) return this.showError(this.wrongTypeText);
+    return file.size <= this.maxSize;
+  }
+
+  handleDroppedFiles(droppedFiles) {
+    // const droppedFile = droppedFiles[0];
+
+    if (!this.areFilesAllowed(droppedFiles)) return this.showError(this.wrongTypeText);
+
+    return;
 
     Tools.toBase64(droppedFile).then((data) => {
       this.appendDroppedFile(data, droppedFile);
@@ -161,19 +170,26 @@ class FormAttachments extends BaseComponent {
   }
 
   switchText(files) {
-    const file = files[0];
-    const fileName = file?.name ?? null;
+    if (files[0].name) {
+      let text = '';
 
-    if (fileName) {
-      this.text.innerHTML = `${fileName} <nobr>( ${Tools.toSize(file.size)} )</nobr>`;
+      Array.from(files).forEach((file) => {
+        text += `${file.name} <nobr>( ${Tools.toSize(file.size)} )</nobr><br/>`;
+      });
+
+      this.text.innerHTML = text;
       this.resetError();
     } else {
       this.resetText();
     }
   }
 
+  areFilesAllowed(files) {
+    return Array.from(files).every((file) => this.isAllowedFileExtension(file) && this.isUnderMaxSize(file));
+  }
+
   handleChange(event) {
-    if (!this.isAllowedFileExtension(event?.target?.files[0])) return this.showError(this.wrongTypeText);
+    if (!this.areFilesAllowed(event?.target?.files)) return this.showError(this.wrongTypeText);
 
     this.resetDroppedFile();
 
