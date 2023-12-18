@@ -52,6 +52,9 @@ export default {
     hover() {
       return this.notificationValue ? false : true;
     },
+    bodyClasses() {
+      return ['modal__body', this.loading ? State.LOADING : null];
+    },
   },
   mounted() {
     this.bindEvents();
@@ -154,7 +157,7 @@ export default {
               <icon icon="close" :hover="hover" :circle="circle" :size="size" />
             </div>
           </div>
-          <div class="modal__body">
+          <div :class="bodyClasses">
             <slot></slot>
           </div>
         </div>
