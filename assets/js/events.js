@@ -8,6 +8,7 @@ const Events = {
   SCROLL_UPDATE: 'scroll-update',
   WINDOW_RESIZE: 'window-resize',
   OPEN_MODAL: 'open-modal',
+  LOAD_MODAL: 'load-modal',
 };
 
 export default Events;
