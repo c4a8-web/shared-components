@@ -158,3 +158,13 @@ PrimaryLinkReversed.args = {
   link: true,
   reversed: true,
 };
+
+export const PrimaryButtonLoading = Template.bind({});
+
+PrimaryButtonLoading.args = {
+  text: 'Primary Button',
+  href: 'javascript:void(0)',
+  skin: 'primary',
+  button: true,
+  loading: true,
+};
