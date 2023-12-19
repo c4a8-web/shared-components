@@ -1,6 +1,6 @@
 const iconHandStepTime = '0s';
-const iconHandDuration = '0.35s';
-const iconResetAndSetDuration = '0.1s';
+const iconHandDuration = '0.5s';
+const iconResetAndSetDuration = '0.2s';
 const iconHandRepetition = '2';
 const iconHandPause = '2s';
 
@@ -45,7 +45,7 @@ export default {
 
     <animateTransform id="reset-hand-movement" href="#hand-outline" attributeName="transform" type="translate"
       values="-5 -15; 0 0"
-      begin="hand-movmenet.end+0s" dur="${iconResetAndSetDuration}"
+      begin="hand-movement.end+0s" dur="${iconResetAndSetDuration}"
       additive="sum"
     />
 
@@ -77,26 +77,26 @@ export default {
     <animateTransform id="hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
       values="-17 187.5 192; 22 187.5 192; -17 187.5 192"
       begin="0s;set-hand-rotation.end+0s" dur="${iconHandDuration}"
-      repeatCount="${iconHandRepetition}" additive="sum" keySplines="0.25 0 0.25 1; 0.5 0 0.5 1" calcMode="spline"
+      repeatCount="${iconHandRepetition}" additive="sum" keySplines="0.67 0.17 0.5 0.17; 0.67 0.83 0.67 0.5" calcMode="spline"
     />
 
     <animate id="pause-inner-lines-opacity" href="#inner-lines" attributeName="opacity"
-      values="0.9"
+      values="1"
       begin="inner-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandPause}"
     />
 
     <animate id="inner-lines-opacity" href="#inner-lines" attributeName="opacity"
-      values="0.9; 0.05; 0.9"
+      values="1; 0.8; 1"
       begin="${iconHandStepTime}; pause-inner-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandDuration}" repeatCount="${iconHandRepetition}"
     />
 
     <animate id="pause-outter-lines-opacity" href="#outter-lines" attributeName="opacity"
-      values="0.9"
+      values="1"
       begin="outter-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandPause}"
     />
 
     <animate id="outter-lines-opacity" href="#outter-lines" attributeName="opacity"
-      values="0.05; 0.9; 0.05"
+      values="0.8; 1; 0.8"
       begin="${iconHandStepTime}; pause-outter-lines-opacity.end+${iconResetAndSetDuration}" dur="${iconHandDuration}" repeatCount="${iconHandRepetition}"
     />
   </svg>
