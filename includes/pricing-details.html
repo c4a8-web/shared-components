@@ -6,6 +6,7 @@
 {%- assign toggleSwitch = include.toggleSwitch -%}
 {%- assign pricingDetailTargetSelector = toggleSwitch.targetSelectorClass | default: 'pricingSwitch' -%}
 {%- assign visibleTab = include.visibleTab -%}
+{%- assign lang = page.lang | default: site.lang | downcase | default: "de" -%}
 
 <section id="pricingDetails" class="pricing-details" style="background-color: {{ bgColor }};">
   <div class="container">
@@ -43,7 +44,7 @@
           hasAnimation=true
         %}
       {% endfor %}
-      <div class="pt-5">*All prices are excluding VAT. Our offers are addressing professional customers, only.</div>
+      <div class="pt-5">{{ site.data.lang[lang].vatInfo }}</div>
     </div>
   </div>
 </section>
