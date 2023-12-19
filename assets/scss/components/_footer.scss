@@ -86,9 +86,11 @@ footer {
   }
 }
 
-.footer__country {
-  display: block;
-  flex: 1 100%;
+.footer__contacts {
+  .footer__country {
+    display: block;
+    flex: 1 100%;
+  }
 }
 
 .footer__partner-image {
