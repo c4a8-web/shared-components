@@ -1,6 +1,6 @@
 const iconHandStepTime = '0s';
 const iconHandDuration = '0.5s';
-const iconResetAndSetDuration = '0.2s';
+const iconResetAndSetDuration = '0.3s';
 const iconHandRepetition = '2';
 const iconHandPause = '2s';
 
@@ -77,7 +77,7 @@ export default {
     <animateTransform id="hand-rotation" href="#hand-outline" attributeName="transform" type="rotate"
       values="-17 187.5 192; 22 187.5 192; -17 187.5 192"
       begin="0s;set-hand-rotation.end+0s" dur="${iconHandDuration}"
-      repeatCount="${iconHandRepetition}" additive="sum" keySplines="0.67 0.17 0.5 0.17; 0.67 0.83 0.67 0.5" calcMode="spline"
+      repeatCount="${iconHandRepetition}" additive="sum" keySplines="0.4 0.17 1 1; 0.2 0.2 0.5 0.9" calcMode="spline"
     />
 
     <animate id="pause-inner-lines-opacity" href="#inner-lines" attributeName="opacity"
