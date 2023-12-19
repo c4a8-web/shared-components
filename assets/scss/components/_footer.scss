@@ -3,6 +3,12 @@ footer {
     .fab {
       font-size: 1.6em;
     }
+
+    .btn {
+      &:hover {
+        color: var(--color-blue-light);
+      }
+    }
   }
 
   hr {

@@ -17,7 +17,7 @@ const FooterData = {
     {
       img: '/v1623133806/logos/primepulse-endorsement-white.svg',
       alt: 'glueckkanja Logo',
-      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
+      url: 'https://primepulse.com/',
       target: '_blank',
       classes: 'offset-lg-6',
     },
@@ -60,7 +60,7 @@ const FooterData = {
   socials: [
     {
       icon: 'fa-twitter',
-      url: 'https://twitter.com/glueckkanjagab',
+      url: 'https://twitter.com/glueckkanja',
       title: 'Twitter',
     },
     {
@@ -70,12 +70,12 @@ const FooterData = {
     },
     {
       icon: 'fa-linkedin',
-      url: 'https://www.linkedin.com/company/glueckkanja-gab',
+      url: 'https://www.linkedin.com/company/glueckkanja',
       title: 'LinkedIn',
     },
     {
       icon: 'fa-xing',
-      url: 'https://www.xing.com/pages/glueckkanja-gab',
+      url: 'https://www.xing.com/pages/glueckkanja',
       title: 'Xing',
     },
     {
