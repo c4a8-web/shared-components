@@ -162,15 +162,26 @@ class Personio {
   }
 
   async uploadDocuments(fileData) {
+    console.log('🚀 ~ file: personio.js:165 ~ Personio ~ uploadDocuments ~ fileData:', fileData);
     const url = this.getUrl(this.types.DOCUMENTS);
     const formData = new FormData();
+    const files = fileData.length > 0 ? fileData : [fileData];
 
-    formData.append(
-      'file',
-      new File([fileData], fileData.name, {
-        type: fileData.type,
-      })
-    );
+    Array.from(files).forEach((data) => {
+      formData.append(
+        'file',
+        new File([data], data.name, {
+          type: data.type,
+        })
+      );
+    });
+
+    // output formData
+    for (const pair of formData.entries()) {
+      console.log(pair[0], pair[1]);
+    }
+
+    return;
 
     return this.fetch(url, {
       method: 'POST',

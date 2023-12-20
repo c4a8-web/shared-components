@@ -98,8 +98,6 @@ class FormAttachments extends BaseComponent {
   }
 
   handleDroppedFiles(droppedFiles) {
-    // const droppedFile = droppedFiles[0];
-
     if (!this.areFilesAllowed(droppedFiles)) return this.showError(this.wrongTypeText);
 
     return;

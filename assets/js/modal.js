@@ -96,23 +96,18 @@ class Modal {
     let fileData;
 
     if (base64Value) {
+      // this does not work with multiple files or pretty large files
       fileData = {
         name: base64.dataset.fileName,
       };
     } else {
       const fileInput = this.form.querySelector('input[type="file"]');
 
-      fileData = fileInput?.files[0];
+      fileData = fileInput?.files;
     }
 
     if (fileData) {
-      if (base64Value) {
-        this.handleApplicationRequest(fields, fileData, base64Value);
-      } else {
-        Tools.toBase64(fileData).then((data) => {
-          this.handleApplicationRequest(fields, fileData, data);
-        });
-      }
+      this.handleApplicationRequest(fields, fileData, base64Value);
     } else {
       console.error('handle generic error no files');
 
