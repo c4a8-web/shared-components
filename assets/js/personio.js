@@ -162,26 +162,26 @@ class Personio {
   }
 
   async uploadDocuments(fileData) {
-    console.log('🚀 ~ file: personio.js:165 ~ Personio ~ uploadDocuments ~ fileData:', fileData);
-    const url = this.getUrl(this.types.DOCUMENTS);
-    const formData = new FormData();
     const files = fileData.length > 0 ? fileData : [fileData];
+    const documentPromises = [];
 
     Array.from(files).forEach((data) => {
-      formData.append(
-        'file',
-        new File([data], data.name, {
-          type: data.type,
-        })
-      );
+      documentPromises.push(this.uploadDocument(data));
     });
 
-    // output formData
-    for (const pair of formData.entries()) {
-      console.log(pair[0], pair[1]);
-    }
+    return Promise.all(documentPromises);
+  }
 
-    return;
+  async uploadDocument(fileData) {
+    const url = this.getUrl(this.types.DOCUMENTS);
+    const formData = new FormData();
+
+    formData.append(
+      'file',
+      new File([fileData], fileData.name, {
+        type: fileData.type,
+      })
+    );
 
     return this.fetch(url, {
       method: 'POST',
@@ -195,10 +195,10 @@ class Personio {
   async applyFileData(fileData, _, fields) {
     return new Promise((resolve, reject) => {
       this.uploadDocuments(fileData)
-        .then((response) => {
-          if (this.isValidResponseCode(response)) return this.addFilesToFields(response, fields, resolve, reject);
+        .then((responses) => {
+          if (this.hasValidResponseCodes(responses)) return this.addFilesToFields(responses, fields, resolve, reject);
 
-          response
+          responses
             .json()
             .then((jsonResponse) => {
               if (jsonResponse.errors) return reject(jsonResponse.errors);
@@ -213,25 +213,27 @@ class Personio {
     });
   }
 
-  addFilesToFields(response, fields, resolve, reject) {
+  addFilesToFields(responses, fields, resolve, reject) {
     const newFields = fields;
 
     newFields.files = [];
 
-    return response
-      .json()
-      .then((jsonResponse) => {
-        newFields.files.push({
-          uuid: jsonResponse.uuid,
-          original_filename: jsonResponse.original_filename,
-          category: 'cv',
+    responses.forEach((response) => {
+      return response
+        .json()
+        .then((jsonResponse) => {
+          newFields.files.push({
+            uuid: jsonResponse.uuid,
+            original_filename: jsonResponse.original_filename,
+            category: 'cv',
+          });
+        })
+        .catch((error) => {
+          return reject(error);
         });
+    });
 
-        return resolve(newFields);
-      })
-      .catch((error) => {
-        return reject(error);
-      });
+    return resolve(newFields);
   }
 
   getMappedFieldName(name) {
@@ -256,6 +258,10 @@ class Personio {
     return this.options.apiUrl
       ? response.status === 200
       : response.status === 200 || response.status === 201 || response.status === 204;
+  }
+
+  hasValidResponseCodes(responses) {
+    return responses.every((response) => this.isValidResponseCode(response));
   }
 
   handleApply(fields) {
