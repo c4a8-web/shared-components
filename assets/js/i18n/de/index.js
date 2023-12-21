@@ -6,6 +6,8 @@ const de = {
   gender: '(m/w/d)',
   formAttachmentsWrongType:
     'Bitte wählen Sie ein gültiges Dateiformat oder überprüfen Sie den Dateinamen (keine Sonderzeichen benutzen).',
+  formAttachmentsMaxFiles: 'Max. %s Dateien',
+  formAttachmentsMaxSize: 'Eine oder mehrere Dateien sind zu groß.',
   onlyLanguage: 'German only',
   moreEvents: 'Weitere Termine',
   positionTypePermanently: 'Festanstellung',

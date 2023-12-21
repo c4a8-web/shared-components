@@ -33,3 +33,12 @@ RequiredWithError.args = {
   requiredMsg: 'Bitte einen Anhang hinzufügen',
   hasError: true,
 };
+
+export const RequiredMaxTwoFiles = Template.bind({});
+
+RequiredMaxTwoFiles.args = {
+  ...baseArgs,
+  required: true,
+  requiredMsg: 'Bitte einen Anhang hinzufügen',
+  maxFiles: 2,
+};

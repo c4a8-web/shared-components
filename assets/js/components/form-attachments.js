@@ -23,6 +23,7 @@ class FormAttachments extends BaseComponent {
     this.isRequired = this.file?.required;
     this.requiredMsg = this.error?.innerText;
     this.maxSize = this.root.dataset.maxSize;
+    this.maxFiles = this.root.dataset.maxFiles;
 
     this.bindEvents();
 
@@ -30,6 +31,8 @@ class FormAttachments extends BaseComponent {
 
     window.i18n?.loader?.then(() => {
       this.wrongTypeText = window.i18n?.translate('formAttachmentsWrongType');
+      this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFiles);
+      this.maxSizeText = window.i18n?.translate('formAttachmentsMaxSize');
     });
   }
 
@@ -98,14 +101,12 @@ class FormAttachments extends BaseComponent {
   }
 
   handleDroppedFiles(droppedFiles) {
-    if (!this.areFilesAllowed(droppedFiles)) return this.showError(this.wrongTypeText);
+    const errors = this.getErrors(droppedFiles);
 
-    return;
+    if (errors) return this.showError(errors);
 
-    Tools.toBase64(droppedFile).then((data) => {
-      this.appendDroppedFile(data, droppedFile);
-      this.switchText(droppedFiles);
-    });
+    this.appendDroppedFiles(droppedFiles);
+    this.switchText(droppedFiles);
   }
 
   handleAddAttachment() {
@@ -135,7 +136,7 @@ class FormAttachments extends BaseComponent {
     this.root.classList.remove(State.HAS_ERROR);
   }
 
-  appendDroppedFile(_, droppedFile) {
+  appendDroppedFiles(droppedFiles) {
     if (!this.base64) return;
 
     if (this.isRequired) {
@@ -144,7 +145,9 @@ class FormAttachments extends BaseComponent {
 
     let dataTransfer = new DataTransfer();
 
-    dataTransfer.items.add(droppedFile);
+    Array.from(droppedFiles).forEach((droppedFile) => {
+      dataTransfer.items.add(droppedFile);
+    });
 
     this.file.files = dataTransfer.files;
   }
@@ -183,18 +186,31 @@ class FormAttachments extends BaseComponent {
   }
 
   areFilesAllowed(files) {
-    return Array.from(files).every((file) => this.isAllowedFileExtension(file) && this.isUnderMaxSize(file));
+    return Array.from(files).every((file) => this.isAllowedFileExtension(file));
+  }
+
+  getErrors(files) {
+    if (!this.areFilesAllowed(files)) return this.wrongTypeText;
+
+    if (files.length > this.maxFiles) return this.maxFilesText;
+
+    if (!Array.from(files).every((file) => this.isUnderMaxSize(file))) return this.maxSizeText;
+
+    return;
   }
 
   handleChange(event) {
-    if (!this.areFilesAllowed(event?.target?.files)) return this.showError(this.wrongTypeText);
+    const files = event?.target?.files;
+    const errors = this.getErrors(files);
+
+    if (errors) return this.showError(errors);
 
     this.resetDroppedFile();
 
     if (this.file.value === '') {
       this.resetText();
     } else {
-      this.switchText(event?.target?.files);
+      this.switchText(files);
     }
   }
 }

@@ -12,6 +12,11 @@ export default {
     maxSizeMb() {
       return this.maxSize / 1000000;
     },
+    maxFilesValue() {
+      const defaultMaxFiles = 5;
+
+      return this.maxFiles ? this.maxFiles : defaultMaxFiles;
+    },
     extensionCollection() {
       return this.extensions.split ? this.extensions.split(',') : this.extensions;
     },
@@ -44,9 +49,10 @@ export default {
     },
     extensions: String,
     id: String,
+    maxFiles: Number,
   },
   template: `
-    <div :class="classList" :data-max-size="maxSize">
+    <div :class="classList" :data-max-size="maxSize" :data-max-files="maxFilesValue">
       <div class="form-attachments__button">
         <icon
           icon='close'
