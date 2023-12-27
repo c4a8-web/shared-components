@@ -218,22 +218,19 @@ class Personio {
 
     newFields.files = [];
 
-    responses.forEach((response) => {
-      return response
-        .json()
-        .then((jsonResponse) => {
-          newFields.files.push({
-            uuid: jsonResponse.uuid,
-            original_filename: jsonResponse.original_filename,
-            category: 'cv',
-          });
-        })
-        .catch((error) => {
-          return reject(error);
+    const filePromises = responses.map((response) => {
+      return response.json().then((jsonResponse) => {
+        newFields.files.push({
+          uuid: jsonResponse.uuid,
+          original_filename: jsonResponse.original_filename,
+          category: 'cv',
         });
+      });
     });
 
-    return resolve(newFields);
+    return Promise.all(filePromises)
+      .then(() => resolve(newFields))
+      .catch((error) => reject(error));
   }
 
   getMappedFieldName(name) {
