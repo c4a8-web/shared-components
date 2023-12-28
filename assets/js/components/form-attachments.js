@@ -22,6 +22,8 @@ class FormAttachments extends BaseComponent {
 
     this.isRequired = this.file?.required;
     this.requiredMsg = this.error?.innerText;
+    this.maxSize = this.root.dataset.maxSize;
+    this.maxFiles = this.root.dataset.maxFiles;
 
     this.bindEvents();
 
@@ -29,6 +31,8 @@ class FormAttachments extends BaseComponent {
 
     window.i18n?.loader?.then(() => {
       this.wrongTypeText = window.i18n?.translate('formAttachmentsWrongType');
+      this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFiles);
+      this.maxSizeText = window.i18n?.translate('formAttachmentsMaxSize');
     });
   }
 
@@ -90,15 +94,19 @@ class FormAttachments extends BaseComponent {
     return allowedExtensions.includes(`.${fileExtension}`);
   }
 
+  isUnderMaxSize(file) {
+    if (!file || !file.size) return;
+
+    return file.size <= this.maxSize;
+  }
+
   handleDroppedFiles(droppedFiles) {
-    const droppedFile = droppedFiles[0];
+    const errors = this.getErrors(droppedFiles);
 
-    if (!this.isAllowedFileExtension(droppedFile)) return this.showError(this.wrongTypeText);
+    if (errors) return this.showError(errors);
 
-    Tools.toBase64(droppedFile).then((data) => {
-      this.appendDroppedFile(data, droppedFile);
-      this.switchText(droppedFiles);
-    });
+    this.appendDroppedFiles(droppedFiles);
+    this.switchText(droppedFiles);
   }
 
   handleAddAttachment() {
@@ -128,7 +136,7 @@ class FormAttachments extends BaseComponent {
     this.root.classList.remove(State.HAS_ERROR);
   }
 
-  appendDroppedFile(_, droppedFile) {
+  appendDroppedFiles(droppedFiles) {
     if (!this.base64) return;
 
     if (this.isRequired) {
@@ -137,7 +145,9 @@ class FormAttachments extends BaseComponent {
 
     let dataTransfer = new DataTransfer();
 
-    dataTransfer.items.add(droppedFile);
+    Array.from(droppedFiles).forEach((droppedFile) => {
+      dataTransfer.items.add(droppedFile);
+    });
 
     this.file.files = dataTransfer.files;
   }
@@ -161,26 +171,46 @@ class FormAttachments extends BaseComponent {
   }
 
   switchText(files) {
-    const file = files[0];
-    const fileName = file?.name ?? null;
+    if (files[0].name) {
+      let text = '';
 
-    if (fileName) {
-      this.text.innerHTML = `${fileName} <nobr>( ${Tools.toSize(file.size)} )</nobr>`;
+      Array.from(files).forEach((file) => {
+        text += `${file.name} <nobr>( ${Tools.toSize(file.size)} )</nobr><br/>`;
+      });
+
+      this.text.innerHTML = text;
       this.resetError();
     } else {
       this.resetText();
     }
   }
 
+  areFilesAllowed(files) {
+    return Array.from(files).every((file) => this.isAllowedFileExtension(file));
+  }
+
+  getErrors(files) {
+    if (!this.areFilesAllowed(files)) return this.wrongTypeText;
+
+    if (files.length > this.maxFiles) return this.maxFilesText;
+
+    if (!Array.from(files).every((file) => this.isUnderMaxSize(file))) return this.maxSizeText;
+
+    return;
+  }
+
   handleChange(event) {
-    if (!this.isAllowedFileExtension(event?.target?.files[0])) return this.showError(this.wrongTypeText);
+    const files = event?.target?.files;
+    const errors = this.getErrors(files);
+
+    if (errors) return this.showError(errors);
 
     this.resetDroppedFile();
 
     if (this.file.value === '') {
       this.resetText();
     } else {
-      this.switchText(event?.target?.files);
+      this.switchText(files);
     }
   }
 }

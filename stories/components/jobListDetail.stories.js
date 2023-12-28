@@ -13,8 +13,9 @@ const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   clientName: 'c4a8',
-  jobId: '1327578',
-  apiUrl: 'mock/jobList.xml',
+  jobId: '1327578', // pick an active jobId for api testing like 1335399
+  apiUrl: 'mock/jobList.xml', // set to null for api testing
+  // apiKey: process.env.STORYBOOK_PERSONIO_API_KEY, // comment out for api testing
   base: {
     ctaText: 'Jetzt bewerben',
     ctaButton: true,
@@ -98,9 +99,9 @@ const baseArgs = {
           requiredMsg: 'Bitte einen Anhang hinzufügen',
           id: 'file',
           description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-          text: 'Oder Datei auswählen',
+          text: 'Oder Dateien auswählen',
           extensions: ['pdf'],
-          maxSize: 10000000,
+          maxSize: 20000000,
         },
       },
       {

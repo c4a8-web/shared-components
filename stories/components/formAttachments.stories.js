@@ -11,9 +11,9 @@ export default {
 
 const baseArgs = {
   description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-  text: 'Oder Datei auswählen',
+  text: 'Oder Dateien auswählen',
   extensions: ['pdf', 'txt', 'doc'],
-  maxSize: 10000000,
+  maxSize: 20000000,
   id: 'file',
 };
 
@@ -32,4 +32,13 @@ RequiredWithError.args = {
   required: true,
   requiredMsg: 'Bitte einen Anhang hinzufügen',
   hasError: true,
+};
+
+export const RequiredMaxTwoFiles = Template.bind({});
+
+RequiredMaxTwoFiles.args = {
+  ...baseArgs,
+  required: true,
+  requiredMsg: 'Bitte einen Anhang hinzufügen',
+  maxFiles: 2,
 };
