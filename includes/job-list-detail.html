@@ -16,6 +16,8 @@
 {%- assign jobListDetailGoogleMaps = include.googleMaps -%}
 {%- assign jobListDetailModalSuccess = include.modalSuccess -%}
 {%- assign jobListDetailApiKey = include.apiKey | default: site.personio_api_key_env -%}
+{%- assign jobListDetailMockApplyUrl = include.mockApplyUrl -%}
+{%- assign jobListDetailMockDocumentsUrl = include.mockDocumentsUrl -%}
 
 <job-list-detail
   detail-color="{{ jobListDetailColor }}"
@@ -33,6 +35,8 @@
   headline-classes="{{ jobListDetailHeadlineClasses }}"
   gender="{{ jobListDetailGender }}"
   api-key="{{ jobListDetailApiKey }}"
+  mock-apply-url="{{ jobListDetailMockApplyUrl }}"
+  mock-documents-url="{{ jobListDetailMockDocumentsUrl }}"
 >
   <template v-slot:person-quote>
     {% comment %}

@@ -29,6 +29,8 @@ export default {
         'data-job-id': this.jobId ? this.jobId : null,
         'data-modal-id': this.modalId ? this.modalId : null,
         'data-api-key': this.apiKey ? this.apiKey : null,
+        'data-mock-apply-url': this.mockApplyUrl ? this.mockApplyUrl : null,
+        'data-mock-documents-url': this.mockDocumentsUrl ? this.mockDocumentsUrl : null,
       };
     },
     modal() {
@@ -146,6 +148,8 @@ export default {
       default: null,
     },
     apiKey: String,
+    mockApplyUrl: String,
+    mockDocumentsUrl: String,
   },
   template: `
     <div :class="classList" tabindex="-1" aria-hidden="true" :data-loading="loadingValue" style="--color-icon-hover-color: var(--color-white)" ref="modal"

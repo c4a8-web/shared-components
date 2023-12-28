@@ -33,12 +33,16 @@ class Modal {
       this.apiUrl = this.root.dataset.apiUrl;
       this.jobId = this.root.dataset.jobId;
       this.apiKey = this.root.dataset.apiKey;
+      this.mockApplyUrl = this.root.dataset.mockApplyUrl;
+      this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl;
 
       this.api = new JobListings({
         ...(this.jobId && { jobId: this.jobId }),
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
         apiKey: this.apiKey,
+        mockApplyUrl: this.mockApplyUrl,
+        mockDocumentsUrl: this.mockDocumentsUrl,
       });
     }
 

@@ -63,10 +63,15 @@ export default {
   },
   methods: {
     init() {
+      const mockApplyUrl = this.mockApplyUrl;
+      const mockDocumentsUrl = this.mockDocumentsUrl;
+
       this.api = new JobListings({
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
         apiKey: this.apiKey,
+        mockApplyUrl,
+        mockDocumentsUrl,
       });
 
       this.api.setLang(Tools.getLang());
@@ -195,6 +200,8 @@ export default {
     googleMaps: Object,
     modalSuccess: Object,
     apiKey: String,
+    mockApplyUrl: String,
+    mockDocumentsUrl: String,
   },
   template: `
     <div :class="classList" :style="style" :data-id="clientName" :data-job-id="jobIdValue" :data-api-url="apiUrl" ref="job-list-detail">
@@ -247,6 +254,8 @@ export default {
         :api-url="apiUrl"
         :job-id="jobIdValue"
         :api-key="apiKey"
+        :mock-apply-url="mockApplyUrl"
+        :mock-documents-url="mockDocumentsUrl"
       >
         <slot name="modal-application" />
       </modal>

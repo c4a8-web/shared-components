@@ -176,3 +176,13 @@ WithVideo.args = {
   ...baseArgs,
   jobId: 'videoInner',
 };
+
+export const Error = Template.bind({});
+
+Error.args = {
+  ...baseArgs,
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
+  mockApplyUrl: 'mock/jobApplyError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError.json',
+};

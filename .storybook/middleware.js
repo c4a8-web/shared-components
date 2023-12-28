@@ -17,6 +17,7 @@ module.exports = function expressMiddleware(app) {
       console.log('[POST => GET] : ' + req.url);
 
       try {
+        // try to fake the status code here
         const result = fs.readFileSync(`${servicesPath}${req.url}`, 'utf8');
 
         req.method = 'GET';

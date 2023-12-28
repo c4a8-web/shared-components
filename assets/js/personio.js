@@ -50,7 +50,11 @@ class Personio {
     let typeUrl;
 
     if (type !== this.types.OPENINGS && this.options.apiUrl?.match(/.xml$/)) {
-      typeUrl = type === this.types.APPLICATIONS ? this.mockApplyUrl : this.mockDocumentsUrl;
+      if (type === this.types.APPLICATIONS) {
+        typeUrl = this.options.mockApplyUrl ? this.options.mockApplyUrl : this.mockApplyUrl;
+      } else {
+        typeUrl = this.options.mockDocumentsUrl ? this.options.mockDocumentsUrl : this.mockDocumentsUrl;
+      }
     } else {
       typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
     }
