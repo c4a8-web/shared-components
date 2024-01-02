@@ -1,19 +1,21 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includesfeaturelisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Feature List',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    items: {
+      description: 'A list of Features',
+      type: 'array',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const FeatureList = Template.bind({});
-
-FeatureList.args = {
+export const FeatureList = createStory(component, {
   items: [
     {
       bullet: 'Wie bewerte ich meine Workloads und setze die nächsten IT-Prioritäten fest?',
@@ -36,4 +38,4 @@ FeatureList.args = {
         'Wie kann ich sicherstellen, dass meine Mitarbeiter sich der steilen Lernkurve bei neuen Technologien anpassen?',
     },
   ],
-};
+});
