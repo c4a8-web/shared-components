@@ -41,7 +41,7 @@
   }
 
   .media-viewer-container {
-    z-index: 1;
+    z-index: 2;
   }
 
   @include media-breakpoint-up(md) {
