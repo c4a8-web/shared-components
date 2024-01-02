@@ -48,7 +48,7 @@ Product.args = {
     ],
     socials: [
       {
-        icon: 'fa-twitter',
+        icon: 'fa-x-twitter',
         url: 'https://twitter.com/RADIUSaaS',
         title: 'Twitter',
       },
