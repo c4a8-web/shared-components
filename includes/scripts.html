@@ -173,6 +173,10 @@
     // end of synchronous or asynchronous jQuery-related code
   }, false);</script>
 
+{% if jekyll.environment == "production" and site.google_analytics_enabled %}
+  {% include google-analytics.html %}
+{% endif %}
+
 <style>
 .a {
   fill: currentColor;
