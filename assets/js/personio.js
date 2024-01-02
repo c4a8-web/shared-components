@@ -182,6 +182,9 @@ class Personio {
   }
 
   async applyFileData(fileData, _, fields) {
+    console.log('🚀 ~ file: personio.js:185 ~ Personio ~ applyFileData ~ fields:', fields);
+
+    return;
     return new Promise((resolve, reject) => {
       this.uploadDocuments(fileData)
         .then((response) => {
@@ -233,8 +236,14 @@ class Personio {
       case 'cancellation':
         mappedName = 'available_from';
         break;
-      default:
+      case 'gender':
+      case 'birthday':
+      case 'location':
+      case 'phone':
         mappedName = name;
+        break;
+      default:
+        mappedName = 'custom_' + name;
         break;
     }
 
