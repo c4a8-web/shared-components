@@ -26,11 +26,12 @@ const Form = import('./components/form.js')
 let componentLoadingList;
 
 const componentList = [
-  import('./analytics.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleAdBlockerError),
+  // This is disabled for now because we want to check if users will complain or not
+  // import('./analytics.js')
+  //   .then((module) => {
+  //     return module.default;
+  //   })
+  //   .catch(handleAdBlockerError),
   import('./anchor.js')
     .then((module) => {
       return module.default;
