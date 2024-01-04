@@ -2,12 +2,15 @@ import BaseComponent from './base-component.js';
 import Tools from '../tools.js';
 import State from '../state.js';
 
+// TODO move all of this to the vue component
+
 class FormAttachments extends BaseComponent {
   static rootSelector = '.form-attachments';
   static base64Selector = '.form-attachments__base64';
 
   constructor(root, options) {
     super(root, options);
+    return;
 
     this.buttonSelector = '.form-attachments__button';
     this.textSelector = '.form-attachments__text';

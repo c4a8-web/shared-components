@@ -1,4 +1,83 @@
 .form-attachments {
+  display: flex;
+  justify-content: space-between;
+
+  > * {
+    flex: 0 calc(50% - #{spacing(4)});
+  }
+
+  &.is-dragging {
+    .form-attachments__interactable {
+      background-color: transparent;
+
+      .icon {
+        transform: scale(1.5);
+
+        svg {
+          --icon-rotation: 135deg;
+        }
+      }
+    }
+  }
+
+  // cursor: pointer;
+  // border: 2px dashed var(--color-primary);
+  // padding: spacing(6);
+  // background-color: var(--color-form-background);
+  // display: flex;
+  // align-items: center;
+  // transition: background-color 0.5s $animation-transition;
+
+  // &:hover {
+  //   .form-attachments__text {
+  //     color: var(--color-primary-accent);
+  //   }
+
+  //   .form-attachments__button .icon {
+  //     --color-icon-hover-background: var(--color-primary-accent);
+
+  //     background-color: var(--color-icon-hover-background);
+  //     color: var(--color-icon-hover-color);
+  //   }
+  // }
+
+  // &.is-dragging {
+  //   background-color: transparent;
+
+  //   .icon {
+  //     transform: scale(1.5);
+
+  //     svg {
+  //       --icon-rotation: 135deg;
+  //     }
+  //   }
+  // }
+
+  // .is-light & {
+  //   background-color: var(--color-form-background-light);
+  // }
+
+  &.has-error {
+    border-color: var(--color-form-error);
+
+    .form-attachments__text {
+      margin-bottom: spacing(3.5);
+    }
+
+    .form-attachments__error {
+      display: block;
+    }
+  }
+
+  .form-attachments__button {
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.form-attachments__interactable {
   cursor: pointer;
   border: 2px dashed var(--color-primary);
   padding: spacing(6);
@@ -20,39 +99,8 @@
     }
   }
 
-  &.is-dragging {
-    background-color: transparent;
-
-    .icon {
-      transform: scale(1.5);
-
-      svg {
-        --icon-rotation: 135deg;
-      }
-    }
-  }
-
   .is-light & {
     background-color: var(--color-form-background-light);
-  }
-
-  &.has-error {
-    border-color: var(--color-form-error);
-
-    .form-attachments__text {
-      margin-bottom: spacing(3.5);
-    }
-
-    .form-attachments__error {
-      display: block;
-    }
-  }
-
-  .form-attachments__button {
-    .icon {
-      width: 100%;
-      height: 100%;
-    }
   }
 }
 
