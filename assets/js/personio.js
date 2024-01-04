@@ -182,9 +182,6 @@ class Personio {
   }
 
   async applyFileData(fileData, _, fields) {
-    console.log('🚀 ~ file: personio.js:185 ~ Personio ~ applyFileData ~ fields:', fields);
-
-    return;
     return new Promise((resolve, reject) => {
       this.uploadDocuments(fileData)
         .then((response) => {
@@ -243,7 +240,7 @@ class Personio {
         mappedName = name;
         break;
       default:
-        mappedName = 'custom_' + name;
+        mappedName = 'custom_attribute_' + name;
         break;
     }
 

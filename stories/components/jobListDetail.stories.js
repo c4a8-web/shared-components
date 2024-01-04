@@ -13,7 +13,7 @@ const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   clientName: 'c4a8',
-  jobId: '1327578',
+  jobId: '1324539',
   apiUrl: 'mock/jobList.xml',
   base: {
     ctaText: 'Jetzt bewerben',
@@ -80,8 +80,8 @@ const baseArgs = {
         type: 'text',
         col: 6,
         rowStart: true,
-        id: 'portfolio',
-        showIn: ['1327578'],
+        id: '2516986', // id from the custom_attribute_2516986
+        showIn: ['1335399'],
       },
       {
         label: 'Nachricht (optional)',
