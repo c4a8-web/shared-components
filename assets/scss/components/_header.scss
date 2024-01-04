@@ -301,7 +301,7 @@ $header-border-size: 1px;
 
   img {
     width: #{'min(30%, 36vw)'};
-    min-width: 150px;
+    min-width: 110px;
     height: auto;
 
     @include media-breakpoint-up($header-expand-breakpoint) {
