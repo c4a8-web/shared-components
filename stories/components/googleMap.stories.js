@@ -1,19 +1,25 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includesgooglemaphtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Google Map',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    location: {
+      description: 'Contains Information like Coordinates/Office/City/Street',
+      type: 'object',
+    },
+    entries: {
+      description: 'Information in Relation to the Google Map (e.g. Charging/Telephone etc.)',
+      type: 'object',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const GoogleMap = Template.bind({});
-
-GoogleMap.args = {
+export const GoogleMap = createStory(component, {
   location: {
     street: 'Kaiserstraße 39',
     city: '63065 Offenbach am Main',
@@ -42,4 +48,4 @@ GoogleMap.args = {
       subline: 'E-Tankstellen in unserer Tiefgarage',
     },
   ],
-};
+});

@@ -1,13 +1,31 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includesgooglemapshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Google Maps',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    address: {
+      description: 'Contains Information like (Name/Street/Postal Code/City)',
+      type: 'object',
+    },
+    coords: {
+      description: 'Coordinates split into Latitude and Longitude',
+      type: 'object',
+    },
+    marker: {
+      description: 'Coordinates split into Latitude and Longitude for the marker',
+      type: 'object',
+    },
+    headline: {
+      description: 'Headline for the Google Map Component',
+      type: 'object',
+    },
+  },
+});
 
 const baseArgs = {
   headline: {
@@ -30,10 +48,6 @@ const baseArgs = {
   },
 };
 
-const Template = (args) => createComponent(args, component);
-
-export const GoogleMaps = Template.bind({});
-
-GoogleMaps.args = {
+export const GoogleMaps = createStory(component, {
   ...baseArgs,
-};
+});
