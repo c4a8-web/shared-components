@@ -10,13 +10,14 @@
         ad_personalization: "denied",
         ad_storage: "denied",
         analytics_storage: "denied",
-        functionality_storage: "denied",
+        functionality_storage: "granted",
         personalization_storage: "denied",
         security_storage: "granted",
         wait_for_update: 500,
     });
     gtag("set", "ads_data_redaction", true);
-    gtag("set", "url_passthrough", true);
+    gtag("set", "user_id", "111.222");
+    gtag("set", "client_id", "333.444");
 
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
