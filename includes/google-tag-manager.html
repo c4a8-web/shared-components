@@ -44,8 +44,7 @@
     Object.defineProperty(document, 'cookie', {
       get: function () {
         // Use a regular expression to match cookie names like '_ga_XXXXX' where 'XXXXX' can be any string
-        const cookieNames = Object.keys(localStorage).filter((key) => /^_ga_[\w-]+$/.test(key));
-
+        const cookieNames = Object.keys(localStorage);
         console.log(`GET INTERCEPT - Cookie data retrieved from local storage: ${cookieNames}`);
 
         // Loop through matched cookie names and intercept the read operation
