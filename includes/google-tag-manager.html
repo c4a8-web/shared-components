@@ -19,41 +19,42 @@
     }
 
     // Function to intercept cookie reads and return data from local storage
-    function interceptCookieRead(cookieName) {
-      console.log(`Intercepted cookie read: ${cookieName}`);
-
-      // Check if the cookie exists in local storage
-      const storedCookieValue = localStorage.getItem(cookieName);
-
-      if (storedCookieValue !== null) {
-        // If found in local storage, return the value
-        console.log(`Cookie data retrieved from local storage: ${storedCookieValue}`);
-        return `${cookieName}=${storedCookieValue}`;
+    function interceptCookieRead() {
+      console.log('Intercepted cookie read');
+    
+      // Get all cookie names stored in local storage
+      const cookieNames = Object.keys(localStorage);
+      const interceptedCookies = {};
+    
+      // Loop through all cookie names and check if they exist in local storage
+      for (const cookieName of cookieNames) {
+        const storedCookieValue = localStorage.getItem(cookieName);
+    
+        if (storedCookieValue !== null) {
+          // If found in local storage, add it to the intercepted cookies object
+          interceptedCookies[cookieName] = storedCookieValue;
+        }
       }
-    }    
+    
+      // Convert the intercepted cookies object to a string with '; ' separator
+      const interceptedCookieString = Object.entries(interceptedCookies)
+        .map(([name, value]) => `${name}=${value}`)
+        .join('; ');
+    
+      if (Object.keys(interceptedCookies).length > 0) {
+        // If intercepted cookies exist in local storage, return them
+        console.log('Cookies intercepted from local storage:', interceptedCookieString);
+        return interceptedCookieString;
+      }
+    }
 
     // Override the document.cookie property setter
     Object.defineProperty(document, 'cookie', {
       set: function (cookieValue) {
         interceptCookieWrite(cookieValue);
       },
-      configurable: true,
-    });
-
-    // Override the document.cookie property getter
-    Object.defineProperty(document, 'cookie', {
       get: function () {
-        // Use a regular expression to match cookie names like '_ga_XXXXX' where 'XXXXX' can be any string
-        const cookieNames = Object.keys(localStorage);
-        console.log(`GET INTERCEPT - Cookie data retrieved from local storage: ${cookieNames}`);
-
-        // Loop through matched cookie names and intercept the read operation
-        for (const cookieName of cookieNames) {
-          const interceptedValue = interceptCookieRead(cookieName);
-          if (interceptedValue) {
-            return interceptedValue;
-          }
-        }
+        return interceptCookieRead();
       },
       configurable: true,
     });
