@@ -5,14 +5,14 @@
     function interceptCookieWrite(cookieValue) {
       const cookieData = cookieValue.split(';')[0];
       const [cookieName, cookieContent] = cookieData.split('=');
-      localStorage.setItem(cookieName.trim(), cookieContent.trim());
+      sessionStorage.setItem(cookieName.trim(), cookieContent.trim());
     }
 
     function interceptCookieRead() {
-      const cookieNames = Object.keys(localStorage);
+      const cookieNames = Object.keys(sessionStorage);
       const interceptedCookies = {};
       for (const cookieName of cookieNames) {
-        const storedCookieValue = localStorage.getItem(cookieName);   
+        const storedCookieValue = sessionStorage.getItem(cookieName);   
         if (storedCookieValue !== null) {
           interceptedCookies[cookieName] = storedCookieValue;
         }
