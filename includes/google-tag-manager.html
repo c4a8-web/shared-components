@@ -1,6 +1,30 @@
 {% if jekyll.environment == "production" and site.google_tag_manager_id %}
   <!-- Google Tag Manager - DEV -->
   <script>
+
+    // Intercept any cookies
+    // Original document.cookie value
+    const originalDocumentCookie = document.cookie;
+
+    // Function to intercept cookie writes
+    function interceptCookieWrite(cookieValue) {
+      console.log(`Intercepted cookie write: ${cookieValue}`);
+
+      // Write the intercepted cookie to the original document.cookie
+      //document.cookie = cookieValue;
+    }
+
+    // Override the document.cookie property setter
+    Object.defineProperty(document, 'cookie', {
+      set: function (cookieValue) {
+        interceptCookieWrite(cookieValue);
+      },
+      get: function () {
+        return originalDocumentCookie;
+      },
+      configurable: true,
+    });
+
     window.dataLayer = window.dataLayer || [];
     function gtag() {
         dataLayer.push(arguments);
