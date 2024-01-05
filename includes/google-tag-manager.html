@@ -9,9 +9,6 @@
     // Function to intercept cookie writes
     function interceptCookieWrite(cookieValue) {
       console.log(`Intercepted cookie write: ${cookieValue}`);
-
-      // Write the intercepted cookie to the original document.cookie
-      //document.cookie = cookieValue;
         
       // Store the intercepted cookie data in local storage
       const cookieData = cookieValue.split(';')[0]; // Extract the cookie name and value
@@ -21,13 +18,27 @@
       localStorage.setItem(cookieName.trim(), cookieContent.trim());
     }
 
+    // Function to intercept cookie reads and return data from local storage
+    function interceptCookieRead(cookieName) {
+      console.log(`Intercepted cookie read: ${cookieName}`);
+
+      // Check if the cookie exists in local storage
+      const storedCookieValue = localStorage.getItem(cookieName);
+
+      if (storedCookieValue !== null) {
+        // If found in local storage, return the value
+        console.log(`Cookie data retrieved from local storage: ${storedCookieValue}`);
+        return `${cookieName}=${storedCookieValue}`;
+      }
+    }    
+
     // Override the document.cookie property setter
     Object.defineProperty(document, 'cookie', {
       set: function (cookieValue) {
         interceptCookieWrite(cookieValue);
       },
       get: function () {
-        return originalDocumentCookie;
+        return interceptCookieRead();
       },
       configurable: true,
     });
