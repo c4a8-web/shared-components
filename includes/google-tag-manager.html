@@ -37,8 +37,22 @@
       set: function (cookieValue) {
         interceptCookieWrite(cookieValue);
       },
+      configurable: true,
+    });
+
+    // Override the document.cookie property getter
+    Object.defineProperty(document, 'cookie', {
       get: function () {
-        return interceptCookieRead();
+        // Use a regular expression to match cookie names like '_ga_XXXXX' where 'XXXXX' can be any string
+        const cookieNames = Object.keys(localStorage).filter((key) => /^_ga_[\w-]+$/.test(key));
+
+        // Loop through matched cookie names and intercept the read operation
+        for (const cookieName of cookieNames) {
+          const interceptedValue = interceptCookieRead(cookieName);
+          if (interceptedValue) {
+            return interceptedValue;
+          }
+        }
       },
       configurable: true,
     });
@@ -58,9 +72,6 @@
         wait_for_update: 500,
     });
     gtag("set", "ads_data_redaction", true);
-    gtag("set", "user_id", "111.222");
-    gtag("set", "client_id", "333.444");
-    gtag("set", "cookie_expires", 0);
 
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
