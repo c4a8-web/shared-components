@@ -1,31 +1,37 @@
 {% if jekyll.environment == "production" and site.google_tag_manager_id %}
   <!-- GDPR accepted Tag Manager and additional Cookie Intercepter -->
   <script>
-
     const originalDocumentCookie = document.cookie;
     function interceptCookieWrite(cookieValue) {
       const cookieData = cookieValue.split(';')[0];
       const [cookieName, cookieContent] = cookieData.split('=');
       localStorage.setItem(cookieName.trim(), cookieContent.trim());
     }
-    function interceptCookieRead(cookieName) {
-      const storedCookieValue = localStorage.getItem(cookieName);
-      if (storedCookieValue !== null) {
-        return `${cookieName}=${storedCookieValue}`;
+
+    function interceptCookieRead() {
+      const cookieNames = Object.keys(localStorage);
+      const interceptedCookies = {};
+      for (const cookieName of cookieNames) {
+        const storedCookieValue = localStorage.getItem(cookieName);   
+        if (storedCookieValue !== null) {
+          interceptedCookies[cookieName] = storedCookieValue;
+        }
       }
-    }    
+      const interceptedCookieString = Object.entries(interceptedCookies)
+        .map(([name, value]) => `${name}=${value}`)
+        .join('; ');
+    
+      if (Object.keys(interceptedCookies).length > 0) {
+        return interceptedCookieString;
+      }
+    }
+
     Object.defineProperty(document, 'cookie', {
       set: function (cookieValue) {
         interceptCookieWrite(cookieValue);
       },
       get: function () {
-        const cookieNames = Object.keys(localStorage);
-        for (const cookieName of cookieNames) {
-          const interceptedValue = interceptCookieRead(cookieName);
-          if (interceptedValue) {
-            return interceptedValue;
-          }
-        }
+        return interceptCookieRead();
       },
       configurable: true,
     });
