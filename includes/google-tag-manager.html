@@ -12,6 +12,13 @@
 
       // Write the intercepted cookie to the original document.cookie
       //document.cookie = cookieValue;
+        
+      // Store the intercepted cookie data in local storage
+      const cookieData = cookieValue.split(';')[0]; // Extract the cookie name and value
+      const [cookieName, cookieContent] = cookieData.split('=');
+
+      // Store the cookie in local storage
+      localStorage.setItem(cookieName.trim(), cookieContent.trim());
     }
 
     // Override the document.cookie property setter
