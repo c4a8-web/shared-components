@@ -20,8 +20,12 @@
     gtag("set", "client_id", "333.444");
     gtag("set", "cookie_expires", 0);
 
-    gtag("config", "{{ site.google_tag_manager_id }}", {"user_id": "555.666"});
-    gtag("config", "{{ site.google_tag_manager_id }}", {"client_id": "777.888"});
+    gtag('config', '{{ site.google_tag_manager_id }}', {
+      allow_google_signals: false,
+      ad_storage: 'none',
+      user_id: '555.666',
+      client_id: '777.888'
+    });
 
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
