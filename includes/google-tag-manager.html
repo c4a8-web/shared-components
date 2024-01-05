@@ -1,54 +1,31 @@
 {% if jekyll.environment == "production" and site.google_tag_manager_id %}
-  <!-- Google Tag Manager - DEV -->
+  <!-- GDPR accepted Tag Manager and additional Cookie Intercepter -->
   <script>
-
-    // Intercept any cookies
-    // Original document.cookie value
     const originalDocumentCookie = document.cookie;
-
-    // Function to intercept cookie writes
     function interceptCookieWrite(cookieValue) {
-      console.log(`Intercepted cookie write: ${cookieValue}`);
-        
-      // Store the intercepted cookie data in local storage
-      const cookieData = cookieValue.split(';')[0]; // Extract the cookie name and value
+      const cookieData = cookieValue.split(';')[0];
       const [cookieName, cookieContent] = cookieData.split('=');
-
-      // Store the cookie in local storage
       localStorage.setItem(cookieName.trim(), cookieContent.trim());
     }
 
-    // Function to intercept cookie reads and return data from local storage
     function interceptCookieRead() {
-      console.log('Intercepted cookie read');
-    
-      // Get all cookie names stored in local storage
       const cookieNames = Object.keys(localStorage);
       const interceptedCookies = {};
-    
-      // Loop through all cookie names and check if they exist in local storage
       for (const cookieName of cookieNames) {
-        const storedCookieValue = localStorage.getItem(cookieName);
-    
+        const storedCookieValue = localStorage.getItem(cookieName);   
         if (storedCookieValue !== null) {
-          // If found in local storage, add it to the intercepted cookies object
           interceptedCookies[cookieName] = storedCookieValue;
         }
       }
-    
-      // Convert the intercepted cookies object to a string with '; ' separator
       const interceptedCookieString = Object.entries(interceptedCookies)
         .map(([name, value]) => `${name}=${value}`)
         .join('; ');
     
       if (Object.keys(interceptedCookies).length > 0) {
-        // If intercepted cookies exist in local storage, return them
-        console.log('Cookies intercepted from local storage:', interceptedCookieString);
         return interceptedCookieString;
       }
     }
 
-    // Override the document.cookie property setter
     Object.defineProperty(document, 'cookie', {
       set: function (cookieValue) {
         interceptCookieWrite(cookieValue);
@@ -59,6 +36,7 @@
       configurable: true,
     });
 
+    // limit the hosted Tag Manager to only statistical non-personal data
     window.dataLayer = window.dataLayer || [];
     function gtag() {
         dataLayer.push(arguments);
@@ -80,5 +58,5 @@
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://{{ site.google_tag_manager_domain }}/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','{{ site.google_tag_manager_id }}');</script>
-  <!-- End Google Tag Manager -->
+  <!-- End of Tag Manager -->
 {% endif %}
