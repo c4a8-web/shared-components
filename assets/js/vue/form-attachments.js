@@ -81,7 +81,7 @@ export default {
 
     window.i18n?.loader?.then(() => {
       this.wrongTypeText = window.i18n?.translate('formAttachmentsWrongType');
-      this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFiles);
+      this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFilesValue);
       this.maxSizeText = window.i18n?.translate('formAttachmentsMaxSize');
     });
   },
@@ -137,10 +137,6 @@ export default {
       const allowedExtensions = accept?.split(',') || [];
       const fileExtension = Tools.getExtension(file.name);
 
-      console.log(
-        '🚀 ~ file: form-attachments.js:137 ~ isAllowedFileExtension ~ allowedExtensions.includes(`.${fileExtension}`):',
-        allowedExtensions.includes(`.${fileExtension}`)
-      );
       return allowedExtensions.includes(`.${fileExtension}`);
     },
     isUnderMaxSize(file) {
@@ -229,7 +225,7 @@ export default {
     getErrors(files) {
       if (!this.areFilesAllowed(files)) return this.wrongTypeText;
 
-      if (files.length > this.maxFiles) return this.maxFilesText;
+      if (files.length > this.maxFilesValue) return this.maxFilesText;
 
       if (!Array.from(files).every((file) => this.isUnderMaxSize(file))) return this.maxSizeText;
 
