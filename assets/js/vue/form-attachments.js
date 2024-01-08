@@ -7,9 +7,20 @@ export default {
     return {
       isDragging: false,
       hasError: false,
+      filesLength: 0,
+      files: new DataTransfer(),
     };
   },
   computed: {
+    filesList() {
+      if (!this.files.files) return null;
+
+      const filesArray = Array.from(this.files.files);
+
+      if (this.filesLength > this.maxFilesValue) return filesArray.slice(0, this.maxFilesValue);
+
+      return filesArray;
+    },
     classList() {
       return [
         'form-attachments',
@@ -77,8 +88,6 @@ export default {
 
     this.bindEvents();
 
-    // this.text.dataset.text = this.text.innerText.trim();
-
     window.i18n?.loader?.then(() => {
       this.wrongTypeText = window.i18n?.translate('formAttachmentsWrongType');
       this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFilesValue);
@@ -98,11 +107,10 @@ export default {
       this.interactable.addEventListener('dragend', this.handleDrop.bind(this));
 
       this.interactable.addEventListener('click', this.handleAddAttachment.bind(this));
-      this.file?.addEventListener('change', this.handleChange.bind(this));
 
       const parent = Tools.getParent(this.root, 'form');
 
-      parent?.addEventListener('reset', this.resetText.bind(this));
+      parent?.addEventListener('reset', this.reset.bind(this));
     },
     handleDragStart(e) {
       e.preventDefault();
@@ -144,19 +152,21 @@ export default {
 
       return file.size <= this.maxSize;
     },
-    handleDroppedFiles(droppedFiles) {
-      const errors = this.getErrors(droppedFiles);
+    handleDroppedFiles(files) {
+      const errors = this.getErrors(files);
 
       if (errors) return this.showError(errors);
 
-      this.appendDroppedFiles(droppedFiles);
-      this.switchText(droppedFiles);
+      this.appendDroppedFiles(files);
     },
     handleAddAttachment() {
       this.file.click();
     },
+    restoreDataTransfer() {
+      this.file.files = this.files.files;
+    },
     showError(text) {
-      this.resetFile();
+      this.restoreDataTransfer();
       this.setErrorText(text);
 
       this.hasError = true;
@@ -166,8 +176,11 @@ export default {
 
       this.error.innerText = text;
     },
-    resetText() {
-      this.textElement.innerText = this.textElement.dataset.text;
+    reset() {
+      this.file.files = null;
+      this.files = new DataTransfer();
+
+      this.resetError();
     },
     resetError() {
       this.setErrorText(this.requiredMsg);
@@ -181,55 +194,42 @@ export default {
         this.file.required = false;
       }
 
-      let dataTransfer = new DataTransfer();
-
-      Array.from(droppedFiles).forEach((droppedFile) => {
-        dataTransfer.items.add(droppedFile);
-      });
-
-      this.file.files = dataTransfer.files;
+      this.appendFiles(droppedFiles);
     },
-    resetFile() {
-      this.file.value = null;
+    // switchText(files) {
+    //   if (files[0].name) {
+    //     let text = '';
 
-      this.resetText();
-      this.resetDroppedFile();
-    },
-    resetDroppedFile() {
-      if (!this.base64) return;
+    //     Array.from(files).forEach((file) => {
+    //       text += `${file.name} <nobr>( ${Tools.toSize(file.size)} )</nobr><br/>`;
+    //     });
 
-      if (this.isRequired) {
-        this.file.required = true;
-      }
-
-      this.base64.removeAttribute('data-file-name');
-      this.base64.value = null;
-    },
-    switchText(files) {
-      if (files[0].name) {
-        let text = '';
-
-        Array.from(files).forEach((file) => {
-          text += `${file.name} <nobr>( ${Tools.toSize(file.size)} )</nobr><br/>`;
-        });
-
-        this.textElement.innerHTML = text;
-        this.resetError();
-      } else {
-        this.resetText();
-      }
-    },
+    //     this.resetError();
+    //   }
+    // },
     areFilesAllowed(files) {
       return Array.from(files).every((file) => this.isAllowedFileExtension(file));
     },
     getErrors(files) {
       if (!this.areFilesAllowed(files)) return this.wrongTypeText;
 
-      if (files.length > this.maxFilesValue) return this.maxFilesText;
+      if (this.files.files.length + files.length > this.maxFilesValue) return this.maxFilesText;
 
       if (!Array.from(files).every((file) => this.isUnderMaxSize(file))) return this.maxSizeText;
 
       return;
+    },
+    appendFiles(files) {
+      if (this.files.files.length >= this.maxFilesValue) return this.showError(this.maxFilesText);
+
+      Array.from(files).forEach((file) => {
+        this.files.items.add(file);
+      });
+
+      this.filesLength = this.files.items.length;
+      this.file.files = this.files.files;
+
+      this.resetError();
     },
     handleChange(event) {
       const files = event?.target?.files;
@@ -237,13 +237,10 @@ export default {
 
       if (errors) return this.showError(errors);
 
-      this.resetDroppedFile();
-
-      if (this.file.value === '') {
-        this.resetText();
-      } else {
-        this.switchText(files);
-      }
+      this.appendFiles(files);
+    },
+    handleClick(e) {
+      console.log('click delete me');
     },
   },
   template: `
@@ -278,9 +275,15 @@ export default {
           :required="required"
           :id="id"
           :name="id"
-          :accept="acceptList">
+          :accept="acceptList"
+          @change="handleChange"
+        >
         <input type="hidden" class="form-attachments__base64" ref="base64">
-        <div class="form-attachments__files-list"></div>
+        <div class="form-attachments__files-list">
+          <div class="form-attachments__files-list-item" v-for="file in filesList">
+            {{ file.name }} <icon class="form-attachments__delete" size="small" icon="bin" @click="handleClick"  />
+          </div>
+        </div>
       </div>
     </div>
   `,

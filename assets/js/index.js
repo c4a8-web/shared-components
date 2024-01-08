@@ -71,11 +71,6 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
-  import('./components/form-attachments.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
   Form,
   import('./components/google-maps.js')
     .then((module) => {
