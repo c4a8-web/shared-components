@@ -242,6 +242,9 @@ export default {
     handleClick(e) {
       console.log('click delete me');
     },
+    toSize(size) {
+      return Tools.toSize(size);
+    },
   },
   template: `
     <div :class="classList" :data-max-size="maxSize" :data-max-files="maxFilesValue" ref="root">
@@ -281,7 +284,9 @@ export default {
         <input type="hidden" class="form-attachments__base64" ref="base64">
         <div class="form-attachments__files-list">
           <div class="form-attachments__files-list-item" v-for="file in filesList">
-            {{ file.name }} <icon class="form-attachments__delete" size="small" icon="bin" @click="handleClick"  />
+            <span class="form-attachments__file-details">{{ file.name }}</span>
+            <span class="form-attachments__file-size">({{ toSize(file.size) }})</span>
+            <icon class="form-attachments__delete" size="small" icon="bin" @click="handleClick"  />
           </div>
         </div>
       </div>
