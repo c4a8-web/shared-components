@@ -196,17 +196,6 @@ export default {
 
       this.appendFiles(droppedFiles);
     },
-    // switchText(files) {
-    //   if (files[0].name) {
-    //     let text = '';
-
-    //     Array.from(files).forEach((file) => {
-    //       text += `${file.name} <nobr>( ${Tools.toSize(file.size)} )</nobr><br/>`;
-    //     });
-
-    //     this.resetError();
-    //   }
-    // },
     areFilesAllowed(files) {
       return Array.from(files).every((file) => this.isAllowedFileExtension(file));
     },
@@ -226,6 +215,9 @@ export default {
         this.files.items.add(file);
       });
 
+      this.syncFiles();
+    },
+    syncFiles() {
       this.filesLength = this.files.items.length;
       this.file.files = this.files.files;
 
@@ -239,8 +231,14 @@ export default {
 
       this.appendFiles(files);
     },
-    handleClick(e) {
-      console.log('click delete me');
+    handleClick(index) {
+      const file = this.files.files[index];
+
+      if (!file) return;
+
+      this.files.items.remove(index);
+
+      this.syncFiles();
     },
     toSize(size) {
       return Tools.toSize(size);
@@ -283,10 +281,10 @@ export default {
         >
         <input type="hidden" class="form-attachments__base64" ref="base64">
         <div class="form-attachments__files-list">
-          <div class="form-attachments__files-list-item" v-for="file in filesList">
+          <div class="form-attachments__files-list-item" v-for="(file, index) in filesList">
             <span class="form-attachments__file-details">{{ file.name }}</span>
             <span class="form-attachments__file-size">({{ toSize(file.size) }})</span>
-            <icon class="form-attachments__delete" size="small" icon="bin" @click="handleClick"  />
+            <icon class="form-attachments__delete" size="small" icon="bin" @click="handleClick(index)" />
           </div>
         </div>
       </div>
