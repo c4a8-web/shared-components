@@ -1,7 +1,9 @@
 .tab-list {
   margin-top: spacing(14);
-  margin-bottom: spacing(14);
+  margin-bottom: spacing(12);
   width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
 
   &.tab-list--small {
     flex-wrap: nowrap;
@@ -52,4 +54,9 @@
       }
     }
   }
+}
+
+.tab-list__text {
+  flex: 0 0 auto;
+  white-space: nowrap;
 }
