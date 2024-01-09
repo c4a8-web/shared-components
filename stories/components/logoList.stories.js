@@ -14,6 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const LogoList = Template.bind({});
 
 LogoList.args = {
+  columns: 6,
   logoList: [
     {
       img: '/c_lpad,h_60,w_180/logos/cust-dbschenker.png',
