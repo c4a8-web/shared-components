@@ -2,14 +2,14 @@
   margin-top: spacing(14);
   margin-bottom: spacing(12);
   width: 100%;
-  overflow-x: auto;
-  scroll-behavior: smooth;
 
   &.tab-list--small {
-    flex-wrap: nowrap;
+    .tab-list__list {
+      flex-wrap: nowrap;
 
-    @include media-breakpoint-up(sm) {
-      justify-content: center;
+      @include media-breakpoint-up(sm) {
+        justify-content: center;
+      }
     }
   }
 
@@ -28,6 +28,11 @@
       --color-headlines: var(--color-primary);
     }
   }
+}
+
+.tab-list__list {
+  scroll-behavior: smooth;
+  overflow-x: auto;
 }
 
 .tab-list__tab,

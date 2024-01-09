@@ -17,7 +17,10 @@ export default {
       return this.variant ? this.variant : this.smallVariant;
     },
     classList() {
-      return ['tab-list row nav nav-pills vue-component', this.tabs ? 'px-4 px-lg-0' : '', this.variantClass];
+      return ['tab-list vue-component', this.tabs ? 'px-4 px-lg-0' : '', this.variantClass];
+    },
+    listClassList() {
+      return ['tab-list__list row nav nav-pills'];
     },
     isSmall() {
       return this.variantClass === this.smallVariant;
@@ -76,30 +79,32 @@ export default {
     variant: String,
   },
   template: `
-    <ul :class="classList" role="tablist">
-      <li v-for="(tab, index) in list" :class="columnClassList">
-        <a v-bind="linkAttributes(tab, index)"
-          :class="tabClassList(index)" @click="handleClick">
-          <div class="tab-list__content">
-            <div :class="boxClassList(tab)">
-              <div class="d-flex flex-column align-items-center position-relative z-index-2">
-                <h2 class="tab-list__text mb-4 mb-md-6 text-center" v-if="tab.title">
-                  {{ tab.title }}
-                </h2>
-                <p class="mb-6 flex-grow-1" v-if="tab.description">{{ tab.description }}</p>
-                  <cta
-                    text=tab.cta.text
-                    href=tab.cta.href
-                    target=tab.cta.target
-                    skin=tab.cta.skin
-                    classes="align-self-center z-index-2"
-                    v-if="tab.cta != tab.href"
-                  ></cta>
+    <div :class="classList">
+      <ul :class="listClassList" role="tablist">
+        <li v-for="(tab, index) in list" :class="columnClassList">
+          <a v-bind="linkAttributes(tab, index)"
+            :class="tabClassList(index)" @click="handleClick">
+            <div class="tab-list__content">
+              <div :class="boxClassList(tab)">
+                <div class="d-flex flex-column align-items-center position-relative z-index-2">
+                  <h2 class="tab-list__text mb-4 mb-md-6 text-center" v-if="tab.title">
+                    {{ tab.title }}
+                  </h2>
+                  <p class="mb-6 flex-grow-1" v-if="tab.description">{{ tab.description }}</p>
+                    <cta
+                      text=tab.cta.text
+                      href=tab.cta.href
+                      target=tab.cta.target
+                      skin=tab.cta.skin
+                      classes="align-self-center z-index-2"
+                      v-if="tab.cta != tab.href"
+                    ></cta>
+                </div>
               </div>
             </div>
-          </div>
-        </a>
-      </li>
-    </ul>
+          </a>
+        </li>
+      </ul>
+    </div>
   `,
 };
