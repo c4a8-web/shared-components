@@ -38,7 +38,7 @@
   }
 
   @include media-breakpoint-up(lg) {
-    flex-basis: var(--flex-basis-value);
-    max-width: var(--flex-basis-value);
+    flex-basis: var(--column-width);
+    max-width: var(--column-width);
   }
 }

@@ -13,18 +13,11 @@ export default {
     },
     columnsValue() {
       const defaultColumn = 4;
-      const gap = 1;
-      const flexBasis = '--flex-basis-value: ';
+      const columnPercentage = 100 / (Number.isNaN(Number(this.columns)) ? defaultColumn : parseInt(this.columns));
+      const columnWidth = '--column-width: ';
+      const gap = 3;
 
-      return Number.isNaN(Number(this.columns))
-        ? flexBasis + (100 / defaultColumn - gap) + '%'
-        : flexBasis + (100 / parseInt(this.columns) - gap) + '%';
-    },
-    itemClass() {
-      return [
-        'logo-list__item py-8  mb-3 d-flex justify-content-center align-items-center fade-in-bottom',
-        this.columns ? 'py-lg-4' : '',
-      ];
+      return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
     },
   },
   methods: {
@@ -54,7 +47,7 @@ export default {
             :href="item.url"
             target="_blank"
             rel="noopener"
-            :class="itemClass"
+            class="logo-list__item py-8 px-4 mb-3 d-flex justify-content-center align-items-center fade-in-bottom"
             :title="item.title"
             data-utility-animation-step="1"
             :style="getDelay(index)"

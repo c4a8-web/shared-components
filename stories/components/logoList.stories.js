@@ -11,10 +11,7 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const LogoList = Template.bind({});
-
-LogoList.args = {
-  columns: 6,
+const baseArgs = {
   logoList: [
     {
       img: '/c_lpad,h_60,w_180/logos/cust-dbschenker.png',
@@ -88,4 +85,17 @@ LogoList.args = {
       title: 'Uniper',
     },
   ],
+};
+
+export const defaultLogoList = Template.bind({});
+
+defaultLogoList.args = {
+  ...baseArgs,
+};
+
+export const customColumns = Template.bind({});
+
+customColumns.args = {
+  ...baseArgs,
+  columns: 6,
 };
