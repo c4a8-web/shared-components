@@ -37,6 +37,12 @@ ArrowExternal.args = {
   icon: 'arrow-external',
 };
 
+export const ArrowCurl = Template.bind({});
+
+ArrowCurl.args = {
+  icon: 'arrow-curl',
+};
+
 export const Close = Template.bind({});
 
 Close.args = {
