@@ -1,9 +1,9 @@
 {%- if page.scripts.slick -%}
   <!-- Shared Quotes Section -->
-  {% assign quotes = include.quotes %}
-  {% assign quotesFooterImages = quotes.footerImage %}
-  {% assign quotesImagesCount = quotesFooterImages | size %}
-  {% assign quotesSpacing = include.spacing %}
+  {%- assign quotes = include.quotes -%}
+  {%- assign quotesFooterImages = quotes.footerImage -%}
+  {%- assign quotesImagesCount = quotesFooterImages | size -%}
+  {%- assign quotesSpacing = include.spacing -%}
 
   {%- if quotes.items[0].img -%}
     {%- assign quotesImage = true -%}
@@ -17,11 +17,13 @@
     <div class="container space-top-1 space-bottom-2 space-top-lg-2 space-bottom-lg-0">
       <div class="quotes__row row">
         <div class="utility-animation col-lg-12 mb-4 mb-lg-6 fade-in-bottom" data-utility-animation-step="1">
+          {%- assign quotesHeadlineClass = quotes.headlineClasses | default: 'h2-font-size' -%}
+          {% capture quotesHeadlineClasses -%}{{ quotesHeadlineClass }} quotes__headline{% endcapture %}
           {%
             include headline.html
             level=quotes.level
             text=quotes.headline
-            classes="h2-font-size quotes__headline"
+            classes=quotesHeadlineClasses
           %}
         </div>
         <div class="col-sm-12 slick--default js-slick-carousel mb-lg-n8"

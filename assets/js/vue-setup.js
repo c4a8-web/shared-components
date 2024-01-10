@@ -62,6 +62,7 @@ import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
+import TabList from './vue/tab-list.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
 import TextTeaser from './vue/text-teaser.js';
@@ -215,6 +216,7 @@ const addApp = () => {
     SBlock,
     TBlock,
     SlotItems,
+    TabList,
     Tag,
     TestimonialList,
     TextTeaser,
