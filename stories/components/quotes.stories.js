@@ -58,6 +58,7 @@ export const Short = Template.bind({});
 Short.args = {
   quotes: {
     headline: 'Das sagen unsere Kunden',
+    headlineClasses: 'h3-font-size',
     level: 'h3',
     items: [
       {
