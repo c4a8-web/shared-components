@@ -1,3 +1,5 @@
+import Events from '../events.js';
+
 export default {
   tagName: 'tab-list',
   data() {
@@ -88,6 +90,7 @@ export default {
       return attrs;
     },
     handleClick(e) {
+      console.log('🚀 ~ file: tab-list.js:91 ~ handleClick ~ e:', e);
       const current = e.currentTarget;
 
       if (!current.href) return;
@@ -97,6 +100,7 @@ export default {
       this.currentIndex = index;
 
       const tabContent = document.getElementById(current.href.split('#')[1]);
+      console.log('🚀 ~ file: tab-list.js:103 ~ handleClick ~ tabContent:', tabContent);
 
       if (tabContent === null) return;
 
