@@ -8,6 +8,7 @@
 {%- assign teaserAlt = include.alt -%}
 {%- assign teaserId = include.id -%}
 {%- assign teaserHeadline = include.headline -%}
+{%- assign teaserHeadlineClasses = include.headlineClasses -%}
 {%- assign teaserOverline = include.overline -%}
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
@@ -34,11 +35,12 @@
     <div class="row">
       <div class="teaser__row col">
         <span class="teaser__overline fade-in-bottom" data-utility-animation-step="1">{{ teaserOverline }}</span>
+        {% capture teaserHeadlineClassesWithDefault -%}{{ teaserHeadlineClasses }} teaser__headline fade-in-bottom{% endcapture %}
         {%
           include headline.html
           text=teaserHeadline
           level="h2"
-          classes="teaser__headline fade-in-bottom"
+          classes=teaserHeadlineClassesWithDefault
           utilityAnimationStep="1"
         %}
         <div class="teaser__video-wrapper fade-in-bottom" data-utility-animation-step="1">
