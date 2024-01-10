@@ -3,7 +3,13 @@ export default {
   data() {
     return {
       smallVariant: 'tab-list--small',
+      showLeftArrow: false,
+      showRightArrow: false,
+      currentIndex: 0,
     };
+  },
+  mounted() {
+    this.handleScroll();
   },
   computed: {
     columnClassList() {
@@ -17,7 +23,13 @@ export default {
       return this.variant ? this.variant : this.smallVariant;
     },
     classList() {
-      return ['tab-list vue-component', this.tabs ? 'px-4 px-lg-0' : '', this.variantClass];
+      return [
+        'tab-list vue-component',
+        this.tabs ? 'px-4 px-lg-0' : '',
+        this.variantClass,
+        this.showLeftArrow ? 'show-left-arrow' : '',
+        this.showRightArrow ? 'show-right-arrow' : '',
+      ];
     },
     listClassList() {
       return ['tab-list__list row nav nav-pills'];
@@ -27,11 +39,25 @@ export default {
     },
   },
   methods: {
+    canScrollLeft() {
+      const tabList = this.$refs['tabList'];
+
+      if (!tabList) return;
+
+      return tabList.scrollLeft > 0;
+    },
+    canScrollRight() {
+      const tabList = this.$refs['tabList'];
+
+      if (!tabList) return;
+
+      return tabList.scrollLeft + tabList.clientWidth < tabList.scrollWidth - 2;
+    },
     tabClassList(index) {
-      return ['tab-list__tab rounded', index === 0 ? 'active' : ''];
+      return ['tab-list__tab rounded', index === this.currentIndex ? 'active' : ''];
     },
     ariaSelected(index) {
-      return index === 0 ? true : false;
+      return index === this.currentIndex ? true : false;
     },
     boxClassList(tab) {
       return ['tab-list__box rounded', !tab.link ? 'bg-white shadow-lg' : ''];
@@ -66,11 +92,41 @@ export default {
 
       if (!current.href) return;
 
+      const index = Array.prototype.indexOf.call(this.$refs['link'], current);
+
+      this.currentIndex = index;
+
       const tabContent = document.getElementById(current.href.split('#')[1]);
 
       if (tabContent === null) return;
 
       document.dispatchEvent(new CustomEvent(Events.REFRESH_ANIMATE_NUMBERS, { detail: { target: tabContent } }));
+    },
+    handleScroll() {
+      this.showLeftArrow = this.canScrollLeft();
+      this.showRightArrow = this.canScrollRight();
+    },
+    scrollToTab(index) {
+      const tabList = this.$refs['tabList'];
+      const activeTab = this.$refs['tab'][this.currentIndex];
+
+      if (!tabList || !activeTab) return;
+
+      const nextTab = this.$refs['tab'][index];
+
+      if (!nextTab) return;
+
+      const nextTabPosition = nextTab.offsetLeft;
+
+      tabList.scrollLeft = index === 0 ? 0 : nextTabPosition;
+
+      nextTab.querySelector('a').click();
+    },
+    scrollToNext() {
+      this.scrollToTab(this.currentIndex + 1);
+    },
+    scrollToPrevious() {
+      this.scrollToTab(this.currentIndex - 1);
     },
   },
   props: {
@@ -80,10 +136,18 @@ export default {
   },
   template: `
     <div :class="classList">
-      <ul :class="listClassList" role="tablist">
-        <li v-for="(tab, index) in list" :class="columnClassList">
+      <div class="tab-list__controls">
+        <div class="tab-list__left" @click="scrollToPrevious">
+          <div class="tab-list__arrow-icon"></div>
+        </div>
+        <div class="tab-list__right" @click="scrollToNext">
+          <div class="tab-list__arrow-icon"></div>
+        </div>
+      </div>
+      <ul :class="listClassList" role="tablist" ref="tabList" @scroll="handleScroll">
+        <li v-for="(tab, index) in list" :class="columnClassList" ref="tab">
           <a v-bind="linkAttributes(tab, index)"
-            :class="tabClassList(index)" @click="handleClick">
+            :class="tabClassList(index)" @click="handleClick" ref="link">
             <div class="tab-list__content">
               <div :class="boxClassList(tab)">
                 <div class="d-flex flex-column align-items-center position-relative z-index-2">

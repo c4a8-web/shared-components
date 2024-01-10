@@ -44,42 +44,42 @@ export const SixEntries = Template.bind({});
 SixEntries.args = {
   list: [
     {
-      title: 'ES',
+      title: 'Lorem',
       id: 'tab1',
       link: {
         href: '#tab1',
       },
     },
     {
-      title: 'Defender for Cloud',
+      title: 'Lorem ipsum dolor',
       id: 'tab2',
       link: {
         href: '#tab2',
       },
     },
     {
-      title: 'Sentinel',
+      title: 'Sit amet',
       id: 'tab3',
       link: {
         href: '#tab3',
       },
     },
     {
-      title: 'ES',
+      title: 'Dolor',
       id: 'tab4',
       link: {
         href: '#tab4',
       },
     },
     {
-      title: 'Defender for Cloud',
+      title: 'Lorem ipsum dolor sit',
       id: 'tab5',
       link: {
         href: '#tab5',
       },
     },
     {
-      title: 'Sentinel',
+      title: 'Amet',
       id: 'tab6',
       link: {
         href: '#tab6',
