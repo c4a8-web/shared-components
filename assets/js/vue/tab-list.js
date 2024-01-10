@@ -8,10 +8,13 @@ export default {
       showLeftArrow: false,
       showRightArrow: false,
       currentIndex: 0,
+      currentTabId: '',
     };
   },
   mounted() {
     this.handleScroll();
+
+    this.currentTabId = this.list[0].id;
   },
   computed: {
     columnClassList() {
@@ -89,26 +92,57 @@ export default {
 
       return attrs;
     },
+    handleContentSwitch(id) {
+      const tab = document.getElementById(id);
+
+      if (!tab) return;
+
+      const oldTab = document.getElementById(this.currentTabId);
+
+      oldTab.classList.remove('active');
+      oldTab.classList.remove('show');
+
+      tab.classList.add('active');
+
+      const delay = 50;
+
+      setTimeout(() => {
+        tab.classList.add('show');
+      }, delay);
+
+      this.currentTabId = id;
+    },
     handleClick(e) {
-      console.log('🚀 ~ file: tab-list.js:91 ~ handleClick ~ e:', e);
+      e.preventDefault();
+      e.stopImmediatePropagation();
+
       const current = e.currentTarget;
 
       if (!current.href) return;
 
-      const index = Array.prototype.indexOf.call(this.$refs['link'], current);
+      const tabId = current.href.split('#')[1];
+      const tabContent = document.getElementById(tabId);
+
+      const index = Array.prototype.indexOf.call(this.$refs['tabLink'], current);
 
       this.currentIndex = index;
-
-      const tabContent = document.getElementById(current.href.split('#')[1]);
-      console.log('🚀 ~ file: tab-list.js:103 ~ handleClick ~ tabContent:', tabContent);
 
       if (tabContent === null) return;
 
       document.dispatchEvent(new CustomEvent(Events.REFRESH_ANIMATE_NUMBERS, { detail: { target: tabContent } }));
+
+      this.handleContentSwitch(tabId);
     },
     handleScroll() {
       this.showLeftArrow = this.canScrollLeft();
       this.showRightArrow = this.canScrollRight();
+    },
+    getArrowOffset() {
+      const left = this.$refs['left'];
+
+      if (!left) return 0;
+
+      return left.offsetWidth;
     },
     scrollToTab(index) {
       const tabList = this.$refs['tabList'];
@@ -120,7 +154,8 @@ export default {
 
       if (!nextTab) return;
 
-      const nextTabPosition = nextTab.offsetLeft;
+      const arrowOffset = this.getArrowOffset();
+      const nextTabPosition = nextTab.offsetLeft - arrowOffset;
 
       tabList.scrollLeft = index === 0 ? 0 : nextTabPosition;
 
@@ -141,7 +176,7 @@ export default {
   template: `
     <div :class="classList">
       <div class="tab-list__controls">
-        <div class="tab-list__left" @click="scrollToPrevious">
+        <div class="tab-list__left" @click="scrollToPrevious" ref="left">
           <div class="tab-list__arrow-icon"></div>
         </div>
         <div class="tab-list__right" @click="scrollToNext">
@@ -151,7 +186,7 @@ export default {
       <ul :class="listClassList" role="tablist" ref="tabList" @scroll="handleScroll">
         <li v-for="(tab, index) in list" :class="columnClassList" ref="tab">
           <a v-bind="linkAttributes(tab, index)"
-            :class="tabClassList(index)" @click="handleClick" ref="link">
+            :class="tabClassList(index)" @click="handleClick" ref="tabLink">
             <div class="tab-list__content">
               <div :class="boxClassList(tab)">
                 <div class="d-flex flex-column align-items-center position-relative z-index-2">
