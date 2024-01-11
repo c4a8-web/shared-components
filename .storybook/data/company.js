@@ -41,7 +41,7 @@ const Company = {
       alt: 'ISO 27001',
       url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
-      classes: 'w-65',
+      classes: 'w-90',
     },
     {
       img: '/v1626011982/logos/kununu-white.svg',
