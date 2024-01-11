@@ -13,7 +13,8 @@ export default {
     },
     columnsValue() {
       const defaultColumn = 4;
-      const columnPercentage = 100 / (Number.isNaN(Number(this.columns)) ? defaultColumn : parseInt(this.columns));
+      const columnParam = parseInt(this.columns);
+      const columnPercentage = 100 / (Number.isNaN(columnParam) ? defaultColumn : columnParam);
       const columnWidth = '--column-width: ';
       const gap = 3;
 
@@ -37,12 +38,12 @@ export default {
       default: false,
     },
     spacing: String,
-    columns: String,
+    columns: Number,
   },
   template: `
     <div :class="classValue" :style="columnsValue">
       <div class="row">
-        <div class="col d-flex flex-wrap justify-content-between">
+        <div class="col d-flex flex-wrap">
           <component v-for="(item, index) in list" :is="getItemComponent(item)"
             :href="item.url"
             target="_blank"
