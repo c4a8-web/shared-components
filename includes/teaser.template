@@ -13,8 +13,9 @@
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
-{%- assign teaserTextHtml = include.textHtml | default: false %}
+{%- assign teaserTextHtml = include.textHtml | default: false -%}
 {%- assign teaserPreset = include.preset | default: 'teaser' -%}
+{%- assign teaserSpacing = include.spacing -%}
 
 {% unless teaserTextHtml %}
   {%- assign teaserText = teaserText | strip_html -%}
@@ -30,7 +31,7 @@
 {% endif %}
 
 <!-- Shared Teaser Section -->
-<div class="teaser utility-animation {{ teaserLogoClass }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
+<div class="teaser utility-animation {{ teaserLogoClass }} {{ teaserSpacing }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
   <div class="container">
     <div class="row">
       <div class="teaser__row col">
