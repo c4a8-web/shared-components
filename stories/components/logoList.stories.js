@@ -87,9 +87,9 @@ const baseArgs = {
   ],
 };
 
-export const defaultLogoList = Template.bind({});
+export const defaultColumns = Template.bind({});
 
-defaultLogoList.args = {
+defaultColumns.args = {
   ...baseArgs,
 };
 
@@ -99,3 +99,17 @@ customColumns.args = {
   ...baseArgs,
   columns: 6,
 };
+
+customColumns.args.logoList.push(
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-microsoft.png',
+    alt: 'Microsoft',
+    url: 'https://www.microsoft.com/en-us/microsoft-365/business?rtc=1',
+    title: 'Microsoft',
+  },
+  {
+    img: '/c_lpad,h_60,w_100/logos/cust-swb.png',
+    alt: 'SWB',
+    title: 'SWB',
+  }
+);
