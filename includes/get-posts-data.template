@@ -1,9 +1,10 @@
 {%- assign getPostsDataGetSite = include.getSite -%}
+{%- assign getPostsDataPosts = include.posts | default: site.posts -%}
 
 {%- if paginator.size > 0 and getPostsDataGetSite != true -%}
   {% assign getPostsDataBasePosts = paginator.posts %}
 {%- else -%}
-  {% assign getPostsDataBasePosts = site.posts %}
+  {% assign getPostsDataBasePosts = getPostsDataPosts %}
   {% comment %}TODO try to get jekyll-paginate-v2 working for this to function{% endcomment %}
 {%- endif -%}
 

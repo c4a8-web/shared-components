@@ -17,10 +17,12 @@
 {%- assign blogRecentCaseStudies = include.caseStudies -%}
 {%- assign blogRecentHideContainer = include.hideContainer -%}
 {%- assign blogRecentSticky = include.sticky -%}
+{%- assign blogRecentPosts = include.posts -%}
 
 {%
   include get-posts-data.html
   getSite=true
+  posts=blogRecentPosts
 %}
 
 {% assign sitePosts = getPostsData %}
