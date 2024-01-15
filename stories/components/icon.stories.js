@@ -206,3 +206,10 @@ Check.args = {
   size: 'large',
   hasBackground: true,
 };
+
+export const Bin = Template.bind({});
+
+Bin.args = {
+  icon: 'bin',
+  size: 'large',
+};

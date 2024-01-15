@@ -4,7 +4,10 @@ const en = {
   part_time: 'Part-Time',
   contract: 'Contract work',
   gender: '(m/f/d)',
-  formAttachmentsWrongType: 'Please choose a valid file format',
+  formAttachmentsWrongType:
+    'Please choose a valid file format and make sure that the file name does not contain any special characters.',
+  formAttachmentsMaxFiles: 'Max. %s Files',
+  formAttachmentsMaxSize: 'One or more files are too large.',
   onlyLanguage: 'English only',
   moreEvents: 'More events',
   positionTypePermanently: 'Permanent',
