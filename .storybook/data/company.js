@@ -44,7 +44,7 @@ const Company = {
       classes: 'w-90',
     },
     {
-      img: '/v1626011982/logos/kununu-white.svg',
+      img: '/v1705390659/logos/kununu-compact.svg',
       alt: 'Kununu Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
