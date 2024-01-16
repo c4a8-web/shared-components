@@ -11,6 +11,7 @@
 {%- assign screenshotCloudinary = include.cloudinary -%}
 {%- assign screenshotAlt = include.alt -%}
 {%- assign screenshotClasses = include.classes -%}
+{%- assign screenshotList = include.list -%}
 
 {% if screenshotLeft == true %}
   {% assign screenshotLeft = true %}
@@ -31,6 +32,7 @@
   :cloudinary="{{ screenshotCloudinary }}"
   alt="{{ screenshotAlt }}"
   classes="{{ screenshotClasses }}"
+  :list="{{ screenshotList | jsonify | escape }}"
 >
 </screenshot>
 <!-- End Shared Screenshot Section -->

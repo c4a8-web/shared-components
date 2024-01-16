@@ -25,6 +25,7 @@ export default {
     cloudinary: Boolean,
     alt: String,
     classes: String,
+    list: Object,
   },
   template: `
     <div class="screenshot full-width-container vue-component">
@@ -37,6 +38,16 @@ export default {
             />
             <div class="screenshot__copy">
               {{ copy }}
+            </div>
+            <div class="screenshot__list pt-4" v-if="list">
+              <cta
+                :text=list.ctaText
+                :href=list.ctaHref
+                :skin=list.skin
+                :type=list.ctaType
+                :target=list.target
+                :external=list.external
+              />
             </div>
           </div>
           <div :class="['screenshot__img d-flex align-items-center col-lg-7', leftValue ? null : 'offset-lg-1']" :style="style">
