@@ -3,6 +3,12 @@ footer {
     .fab {
       font-size: 1.6em;
     }
+
+    .btn {
+      &:hover {
+        color: var(--color-blue-light);
+      }
+    }
   }
 
   hr {
@@ -80,9 +86,11 @@ footer {
   }
 }
 
-.footer__country {
-  display: block;
-  flex: 1 100%;
+.footer__contacts {
+  .footer__country {
+    display: block;
+    flex: 1 100%;
+  }
 }
 
 .footer__partner-image {
@@ -95,4 +103,7 @@ footer {
 
 .footer__highlight-link {
   max-width: 300px;
+  img {
+    width: 100%;
+  }
 }
