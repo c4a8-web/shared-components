@@ -56,6 +56,10 @@
   background-color: var(--color-card-background);
 }
 
+.full-width-container {
+  overflow-x: hidden;
+}
+
 .is--desktop {
   display: none;
 }

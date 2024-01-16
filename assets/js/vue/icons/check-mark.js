@@ -2,6 +2,7 @@ export default {
   tagName: 'check-mark',
   computed: {
     style() {
+      // TODO check if we can use this style like in the other icons
       return `stroke: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
     },
     foregroundStroke() {

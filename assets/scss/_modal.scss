@@ -19,6 +19,18 @@
     }
   }
 
+  &[data-loading] {
+    .modal__close,
+    .modal__body {
+      opacity: 0.7;
+    }
+
+    .modal__success,
+    .modal__content {
+      pointer-events: none;
+    }
+  }
+
   .modal__close {
     width: 50px;
     height: 50px;

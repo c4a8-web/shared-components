@@ -59,8 +59,8 @@ const FooterData = {
   ],
   socials: [
     {
-      icon: 'fa-twitter',
-      url: 'https://twitter.com/glueckkanja',
+      icon: 'fa-x-twitter',
+      url: 'https://twitter.com/glueckkanjagab',
       title: 'Twitter',
     },
     {

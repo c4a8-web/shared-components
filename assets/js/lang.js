@@ -22,6 +22,8 @@ const LangData = {
             <div class="ad-block-info__text">Damit unsere Website reibungslos funktioniert, füge uns zur Whitelist hinzu. Wir nerven nicht mit Werbung. Versprochen!</div>
           </div>
         </div>`,
+    vatInfo:
+      '*Alle Preise sind exklusive Mehrwertsteuer. Unsere Angebote richten sich ausschließlich an gewerbliche Kunden.',
   },
   en: {
     tags: 'Tags',
@@ -39,6 +41,7 @@ const LangData = {
             <div class="ad-block-info__text">To keep our website running smoothly, add us to the whitelist. We won't annoy you with ads. Promise!</div>
           </div>
         </div>`,
+    vatInfo: '*All prices are excluding VAT. Our offers are addressing professional customers, only.',
   },
   es: {
     tags: 'Tags',
@@ -56,6 +59,7 @@ const LangData = {
             <div class="ad-block-info__text">Para que nuestro sitio web funcione correctamente, añádenos a tu lista blanca. No te molestaremos con publicidad. Te lo prometemos.</div>
           </div>
         </div>`,
+    vatInfo: '*Todos los precios son sin IVA. Nuestras ofertas se dirigen exclusivamente a clientes profesionales.',
   },
 };
 

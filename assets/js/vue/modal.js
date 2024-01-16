@@ -1,4 +1,5 @@
 import Modal from '../modal.js';
+import Events from '../events.js';
 import Tools from '../tools.js';
 import State from '../state.js';
 import Form from '../components/form.js';
@@ -27,6 +28,7 @@ export default {
         'data-api-url': this.apiUrl ? this.apiUrl : null,
         'data-job-id': this.jobId ? this.jobId : null,
         'data-modal-id': this.modalId ? this.modalId : null,
+        'data-api-key': this.apiKey ? this.apiKey : null,
       };
     },
     modal() {
@@ -34,6 +36,9 @@ export default {
     },
     slimValue() {
       return Tools.isTrue(this.slim);
+    },
+    loadingValue() {
+      return this.loading ? true : null;
     },
     notificationValue() {
       return Tools.isTrue(this.notification);
@@ -47,6 +52,9 @@ export default {
     hover() {
       return this.notificationValue ? false : true;
     },
+    bodyClasses() {
+      return ['modal__body', this.loading ? State.LOADING : null];
+    },
   },
   mounted() {
     this.bindEvents();
@@ -57,6 +65,8 @@ export default {
   },
   unmounted() {
     this.observer.disconnect();
+
+    document.removeEventListener(Events.LOAD_MODAL, this.handleLoading);
   },
   methods: {
     isModalOpen() {
@@ -81,6 +91,8 @@ export default {
 
       const formInstance = Form.getInstance(form);
 
+      if (formInstance) return;
+
       Form.reset(formInstance.form);
     },
     bindEvents() {
@@ -91,9 +103,16 @@ export default {
       setTimeout(() => {
         this.observer.observe(document.body, { attributes: true });
       }, observerStartingDelay);
+
+      document.addEventListener(Events.LOAD_MODAL, this.handleLoading);
     },
     handleMutation() {
       this.setModalMode(this.isModalOpen());
+    },
+    handleLoading(e) {
+      const loading = e?.detail;
+
+      this.loading = loading;
     },
     openModal() {
       const openDelay = 70;
@@ -106,6 +125,7 @@ export default {
   data() {
     return {
       observer: null,
+      loading: false,
     };
   },
   props: {
@@ -125,9 +145,10 @@ export default {
     notification: {
       default: null,
     },
+    apiKey: String,
   },
   template: `
-    <div :class="classList" tabindex="-1" aria-hidden="true" style="--color-icon-hover-color: var(--color-white)" ref="modal"
+    <div :class="classList" tabindex="-1" aria-hidden="true" :data-loading="loadingValue" style="--color-icon-hover-color: var(--color-white)" ref="modal"
           v-bind="settings">
       <div :class="dialogClassList">
         <div class="modal__content">
@@ -136,7 +157,7 @@ export default {
               <icon icon="close" :hover="hover" :circle="circle" :size="size" />
             </div>
           </div>
-          <div class="modal__body">
+          <div :class="bodyClasses">
             <slot></slot>
           </div>
         </div>

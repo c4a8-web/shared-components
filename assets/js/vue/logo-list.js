@@ -11,6 +11,15 @@ export default {
         this.spacing ? this.spacing : 'py-4',
       ];
     },
+    columnsValue() {
+      const defaultColumn = 4;
+      const columnParam = parseInt(this.columns);
+      const columnPercentage = 100 / (Number.isNaN(columnParam) ? defaultColumn : columnParam);
+      const columnWidth = '--column-width: ';
+      const gap = 3;
+
+      return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
+    },
   },
   methods: {
     getItemComponent(item) {
@@ -29,16 +38,17 @@ export default {
       default: false,
     },
     spacing: String,
+    columns: Number,
   },
   template: `
-    <div :class="classValue">
+    <div :class="classValue" :style="columnsValue">
       <div class="row">
-        <div class="col d-flex flex-wrap justify-content-between">
+        <div class="col d-flex flex-wrap">
           <component v-for="(item, index) in list" :is="getItemComponent(item)"
             :href="item.url"
             target="_blank"
             rel="noopener"
-            class="logo-list__item py-8 mb-3 d-flex justify-content-center align-items-center fade-in-bottom"
+            class="logo-list__item py-8 px-4 mb-3 d-flex justify-content-center align-items-center fade-in-bottom"
             :title="item.title"
             data-utility-animation-step="1"
             :style="getDelay(index)"

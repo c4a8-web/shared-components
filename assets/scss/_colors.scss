@@ -82,11 +82,13 @@ $gray-600: #8c98a4;
   --color-copy: var(--color-blue-dark);
   --color-copy-light: var(--color-white);
   --color-copy-lowlight: var(--color-black-30);
+  --color-copy-reduced: var(--color-black-50);
 
   --color-active: var(--color-primary);
 
   // more abstract color assignments
   --color-surface-background: var(--color-black-4);
+  --color-background: var(--color-white);
 
   // rules that default to everything
 

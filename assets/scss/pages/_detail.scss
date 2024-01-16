@@ -166,11 +166,13 @@ $page-detail-subline-background-color: $white-30;
 
   > p:first-of-type {
     @include font-style($style: 'font-size-3', $weight: 'light');
+
+    + p {
+      @include font-style($style: 'font-size-3', $weight: 'light');
+    }
   }
 
-  > h1:first-child,
-  > h2:first-child,
-  > h1:first-child + h2 {
+  > h1:first-child {
     display: none;
   }
 
@@ -178,6 +180,7 @@ $page-detail-subline-background-color: $white-30;
     @include h2;
 
     margin-bottom: spacing(4);
+    line-height: $default-line-height-headlines;
 
     @include media-breakpoint-up(lg) {
       @include h3-breakpoints($breakpoint: 'lg');

@@ -31,9 +31,8 @@ const baseArgs = {
   },
   faqModal: {
     id: 'bewerbung',
-    apiUrl: 'mock/job.json',
-    clientName: 'glueckkanja',
-    jobId: 'fk0slx5',
+    apiUrl: 'mock/jobList.xml',
+    jobId: '1327578',
     form: {
       headline: 'Bewerbungsformular (m/w/d)',
       cta: {
@@ -105,9 +104,9 @@ const baseArgs = {
             requiredMsg: 'Bitte einen Anhang hinzufügen',
             id: 'file',
             description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-            text: 'Oder Datei auswählen',
+            text: 'Oder Dateien auswählen',
             extensions: ['pdf'],
-            maxSize: 10000000,
+            maxSize: 20000000,
           },
         },
         {
@@ -200,6 +199,9 @@ const baseArgs = {
     ],
   },
 };
+
+baseArgs.modal.apiUrl = baseArgs.faqModal.apiUrl;
+baseArgs.modal.jobId = baseArgs.faqModal.jobId;
 
 export const Career = Template.bind({});
 

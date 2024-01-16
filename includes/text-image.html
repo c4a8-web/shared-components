@@ -209,6 +209,8 @@
     </div>
   </div>
   {% if textImageModal %}
+    {% assign textImageModalApiKey = textImageModal.apiKey | default: site.personio_api_key_env %}
+
     {%
       include modal.html
       form=textImageModal.form
@@ -217,6 +219,7 @@
       clientName=textImageModal.clientName
       jobId=textImageModal.jobId
       apiUrl=textImageModal.apiUrl
+      apiKey=textImageModalApiKey
     %}
   {% endif %}
 </div>

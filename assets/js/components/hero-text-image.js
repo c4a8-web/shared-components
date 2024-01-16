@@ -36,6 +36,7 @@ class HeroTextImage extends BaseComponent {
 
   bindEvents() {
     const hasCareerOrSecurity = this.isSecurity() || this.isCareer();
+
     if (!this.ctaList || !hasCareerOrSecurity) return;
 
     this.ctaList.forEach((cta) => {
@@ -43,12 +44,20 @@ class HeroTextImage extends BaseComponent {
     });
   }
 
+  isValidSelector(href) {
+    return href.indexOf('#') === -1 ? false : true;
+  }
+
   handleClick(e) {
+    const element = e.currentTarget;
+    const href = element.getAttribute('href');
+
+    if (!this.isValidSelector(href)) return;
+
     e.preventDefault();
     e.stopImmediatePropagation();
 
-    const element = e.currentTarget;
-    const target = document.querySelector(element.getAttribute('href'));
+    const target = document.querySelector(href);
 
     if (!target) return;
 

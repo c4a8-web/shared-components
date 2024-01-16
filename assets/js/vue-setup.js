@@ -43,6 +43,7 @@ import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
 import PostTeaser from './vue/post-teaser.js';
+import Screenshot from './vue/screenshot.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
 import Search from './vue/search.js';
@@ -61,6 +62,7 @@ import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
+import TabList from './vue/tab-list.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
 import TextTeaser from './vue/text-teaser.js';
@@ -73,8 +75,9 @@ import ArrowCurl from './vue/icons/arrow-curl.js';
 import ArrowExternal from './vue/icons/arrow-external.js';
 import ArrowNarrow from './vue/icons/arrow-narrow.js';
 import Arrow from './vue/icons/arrow.js';
-import Check from './vue/icons/check.js';
+import Bin from './vue/icons/bin.js';
 import CheckMark from './vue/icons/check-mark.js';
+import Check from './vue/icons/check.js';
 import Close from './vue/icons/close.js';
 import ComputerShield from './vue/icons/computer-shield.js';
 import EmailActionUnread from './vue/icons/email-action-unread.js';
@@ -192,6 +195,7 @@ const addApp = () => {
     ArrowExternal,
     ArrowNarrow,
     Arrow,
+    Bin,
     Check,
     Close,
     ComputerShield,
@@ -214,6 +218,7 @@ const addApp = () => {
     SBlock,
     TBlock,
     SlotItems,
+    TabList,
     Tag,
     TestimonialList,
     TextTeaser,
@@ -221,6 +226,7 @@ const addApp = () => {
     LBlock,
     Square,
     PostTeaser,
+    Screenshot,
     PersonQuote,
     VideoInner,
     XMark,

@@ -9,7 +9,119 @@ export default {
   ...options,
 };
 
-const baseArgs = {};
+const baseArgs = {
+  cta: {
+    text: 'Zu den Stellenanzeigen',
+  },
+  variant: 'hero--career',
+  light: true,
+  overline: 'Deine Karriere',
+  headlineClass: '',
+  animation: {
+    sequence: [
+      {
+        text: 'HEY,',
+        textSize: 'font-size-7',
+      },
+      {
+        text: 'Wo bin ich denn hier gelandet?',
+      },
+      {
+        text: 'Da, wo eine neue Welt entsteht',
+      },
+      {
+        text: 'Gemeinsam',
+        subline:
+          'wollen wir nichts weniger als die Welt verändern: die Dinge neu denken, die Revolution des Digitalen, einen Entwicklungssprung für unsere Kunden. Dafür braucht es Menschen, die nicht nach einem bloßen Job, sondern nach einer echten Aufgabe suchen. Menschen, die eine Vision haben. Menschen, die Utopien Realität werden lassen wollen.',
+      },
+    ],
+  },
+  background: {
+    icon: 'smile',
+    spacing: 'space-top-lg-5',
+  },
+  bgColor: 'var(--color-blue-dark)',
+  fab: {
+    modal: {
+      contact: {
+        infos: {
+          person: {
+            image: 'people/people-sophie-luna.png',
+            cloudinary: true,
+            alt: 'Kontakt mit Sophie',
+            name: 'Hast du Fragen? Sprich uns gerne an!',
+            details: [
+              {
+                text: 'kontakt@glueckkanja.com',
+                href: 'mailto:kontakt@glueckkanja.com',
+                icon: 'site/mail',
+              },
+              {
+                text: '+49 69 4005520',
+                href: 'tel:+49 69 4005520',
+                details: 'lorem ipsum dolor sit amet lore',
+                icon: 'site/phone',
+              },
+            ],
+          },
+          form: {
+            ctaText: 'Absenden',
+            cta: {
+              skin: 'primary is-light',
+            },
+            method: 'post',
+            action: '/',
+            fields: [
+              {
+                label: 'Vorname',
+                type: 'text',
+                id: 'prename',
+                required: true,
+                requiredMsg: 'Bitte geben Sie Ihren Vornamen an.',
+              },
+              {
+                label: 'Nachname',
+                type: 'text',
+                id: 'surname',
+                required: true,
+                requiredMsg: 'Bitte geben Sie Ihren Nachnamen an.',
+              },
+              {
+                label: 'Email-Adresse',
+                type: 'email',
+                id: 'email',
+                required: true,
+                requiredMsg: 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
+              },
+              {
+                label: 'Nachricht',
+                type: 'textarea',
+                id: 'message',
+                required: false,
+                requiredMsg: 'Bitte ausfüllen',
+              },
+              {
+                label:
+                  'Ich bin mit der Speicherung meiner Daten einverstanden, die Datenschutzerklärung habe ich gelesen und akzeptiert. Meine Einwilligung kann ich jederzeit widerrufen.',
+                type: 'checkbox',
+                id: 'checkbox1',
+              },
+              {
+                type: 'hidden',
+                id: '_to',
+                value: 'loremipsum@glueckkanja.com',
+              },
+              {
+                type: 'hidden',
+                id: '_gotcha',
+              },
+            ],
+          },
+        },
+      },
+    },
+  },
+};
 
 const Template = (args) => createComponent(args, heroTemplate);
 
@@ -17,116 +129,18 @@ export const HeroCareer = Template.bind({});
 
 HeroCareer.args = {
   hero: {
-    cta: {
-      text: 'Zu den Stellenanzeigen',
-    },
-    variant: 'hero--career',
-    light: true,
-    overline: 'Deine Karriere',
-    headlineClass: '',
-    animation: {
-      sequence: [
-        {
-          text: 'HEY,',
-          textSize: 'font-size-7',
-        },
-        {
-          text: 'Wo bin ich denn hier gelandet?',
-        },
-        {
-          text: 'Da, wo eine neue Welt entsteht',
-        },
-        {
-          text: 'Gemeinsam',
-          subline:
-            'wollen wir nichts weniger als die Welt verändern: die Dinge neu denken, die Revolution des Digitalen, einen Entwicklungssprung für unsere Kunden. Dafür braucht es Menschen, die nicht nach einem bloßen Job, sondern nach einer echten Aufgabe suchen. Menschen, die eine Vision haben. Menschen, die Utopien Realität werden lassen wollen.',
-        },
-      ],
-    },
+    ...baseArgs,
+  },
+};
+
+export const HeroCareerHand = Template.bind({});
+
+HeroCareerHand.args = {
+  hero: {
+    ...baseArgs,
     background: {
-      icon: 'smile',
+      icon: 'hand',
       spacing: 'space-top-lg-5',
-    },
-    bgColor: 'var(--color-blue-dark)',
-    fab: {
-      modal: {
-        contact: {
-          infos: {
-            person: {
-              image: 'people/people-sophie-luna.png',
-              cloudinary: true,
-              alt: 'Kontakt mit Sophie',
-              name: 'Hast du Fragen? Sprich uns gerne an!',
-              details: [
-                {
-                  text: 'kontakt@glueckkanja.com',
-                  href: 'mailto:kontakt@glueckkanja.com',
-                  icon: 'site/mail',
-                },
-                {
-                  text: '+49 69 4005520',
-                  href: 'tel:+49 69 4005520',
-                  details: 'lorem ipsum dolor sit amet lore',
-                  icon: 'site/phone',
-                },
-              ],
-            },
-            form: {
-              ctaText: 'Absenden',
-              cta: {
-                skin: 'primary is-light',
-              },
-              method: 'post',
-              action: '/',
-              fields: [
-                {
-                  label: 'Vorname',
-                  type: 'text',
-                  id: 'prename',
-                  required: true,
-                  requiredMsg: 'Bitte geben Sie Ihren Vornamen an.',
-                },
-                {
-                  label: 'Nachname',
-                  type: 'text',
-                  id: 'surname',
-                  required: true,
-                  requiredMsg: 'Bitte geben Sie Ihren Nachnamen an.',
-                },
-                {
-                  label: 'Email-Adresse',
-                  type: 'email',
-                  id: 'email',
-                  required: true,
-                  requiredMsg: 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
-                },
-                {
-                  label: 'Nachricht',
-                  type: 'textarea',
-                  id: 'message',
-                  required: false,
-                  requiredMsg: 'Bitte ausfüllen',
-                },
-                {
-                  label:
-                    'Ich bin mit der Speicherung meiner Daten einverstanden, die Datenschutzerklärung habe ich gelesen und akzeptiert. Meine Einwilligung kann ich jederzeit widerrufen.',
-                  type: 'checkbox',
-                  id: 'checkbox1',
-                },
-                {
-                  type: 'hidden',
-                  id: '_to',
-                  value: 'loremipsum@glueckkanja.com',
-                },
-                {
-                  type: 'hidden',
-                  id: '_gotcha',
-                },
-              ],
-            },
-          },
-        },
-      },
     },
   },
 };

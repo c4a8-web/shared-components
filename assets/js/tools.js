@@ -150,7 +150,7 @@ class Tools {
 
     const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
 
-    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + units[i];
+    return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + units[i];
   }
 
   static camalCaseToSnakeCase(camalCase) {
@@ -438,6 +438,42 @@ class Tools {
     }
 
     return null;
+  }
+
+  static XMLtoJSON(xml) {
+    let obj = {};
+
+    if (xml.nodeType === Node.ELEMENT_NODE) {
+      if (xml.attributes.length > 0) {
+        obj['@attributes'] = {};
+        for (let j = 0; j < xml.attributes.length; j++) {
+          const attribute = xml.attributes.item(j);
+          obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
+        }
+      }
+    } else if (xml.nodeType === Node.TEXT_NODE || xml.nodeType === Node.CDATA_SECTION_NODE) {
+      obj = xml.nodeValue;
+    }
+
+    if (xml.hasChildNodes()) {
+      for (let i = 0; i < xml.childNodes.length; i++) {
+        const item = xml.childNodes.item(i);
+        const nodeName = item.nodeName;
+
+        if (typeof obj[nodeName] === 'undefined') {
+          obj[nodeName] = this.XMLtoJSON(item);
+        } else {
+          if (typeof obj[nodeName].push === 'undefined') {
+            const old = obj[nodeName];
+            obj[nodeName] = [];
+            obj[nodeName].push(old);
+          }
+          obj[nodeName].push(this.XMLtoJSON(item));
+        }
+      }
+    }
+
+    return obj;
   }
 }
 
