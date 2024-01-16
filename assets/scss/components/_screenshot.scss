@@ -40,6 +40,10 @@
     background-color: var(--color-background);
   }
 
+  .media-viewer-container {
+    z-index: 2;
+  }
+
   @include media-breakpoint-up(md) {
     min-height: 500px;
   }
