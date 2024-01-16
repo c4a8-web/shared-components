@@ -1,3 +1,5 @@
+import Tools from '../tools.js';
+
 export default {
   tagName: 'headline',
   computed: {
@@ -6,7 +8,7 @@ export default {
     },
     classList() {
       const classes =
-        this.classes && this.hasFontSizeClass()
+        this.classes && Tools.hasFontSizeClass(this.classes)
           ? this.classes
           : `${this.tag}-font-size ${this.classes ? this.classes : ''}`;
 
@@ -14,11 +16,6 @@ export default {
     },
     dataUtilityAnimationStep() {
       return this.utilityAnimationStep ? this.utilityAnimationStep : null;
-    },
-  },
-  methods: {
-    hasFontSizeClass() {
-      return this.classes.indexOf('-font-size') !== -1 || this.classes.indexOf('font-size-') !== -1;
     },
   },
   props: {
