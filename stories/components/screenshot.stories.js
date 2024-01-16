@@ -39,4 +39,12 @@ Left.args = {
   level: 'h2',
   headline: 'Migration Roadmap Planning',
   copy: 'Txture erfasst alle Anwendungen, die für einen Umzug in die Cloud in Frage kommen, und hilft Ihnen, deren Migration in Wellen zu planen. Es ist wichtig, Migrationen auf der Grundlage von Kriterien und Beziehungen zu planen. Txture macht es einfach herauszufinden, welche Anwendungen in denselben Rechenzentren betrieben werden und welche Anwendungen dieselben Cloud-Service-Provider haben, und empfiehlt dann ähnliche Migrationsstrategien und -wellen.',
+  list: {
+    ctaText: 'Jump on the Phone',
+    ctaHref: 'javascript:void(0);',
+    skin: 'primary',
+    ctaType: 'button',
+    target: '_blank',
+    external: true,
+  },
 };
