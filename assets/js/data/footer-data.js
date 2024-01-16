@@ -7,7 +7,7 @@ const FooterData = {
   country: 'Germany',
   mail: 'info@glueckkanja.com',
   introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
-  copyright: '2023 glueckkanja AG. All rights reserved.',
+  copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
       img: '/logos/gk-Logo-sw.svg',
