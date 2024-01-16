@@ -3,6 +3,7 @@
 {%- assign heroTextImageVariant = heroTextImageHero.variant | default: '' -%}
 {%- assign heroTextImagePattern = heroTextImageHero.pattern | default: false -%}
 {%- assign heroTextImageSticky = heroTextImageHero.sticky -%}
+{%- assign heroTextImageImageWrapperCols = heroTextImageHero.imageWrapperCols | default: 8 -%}
 
 {%- assign heroContainerPosition = "justify-content-lg-between" -%}
 {%- assign heroSublineStyling = "hero-text-image__subline" %}
@@ -150,7 +151,7 @@
         </div>
       {% endif %}
 
-      <div class="hero-text-image__wrapper col-lg-8 w-100">
+      <div class="hero-text-image__wrapper col-lg-{{ heroTextImageImageWrapperCols }} w-100">
         {% if heroTextImageHero.back %}
           <div class="hero-text-image__back back">
             {%

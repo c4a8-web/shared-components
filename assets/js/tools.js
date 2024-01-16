@@ -475,6 +475,10 @@ class Tools {
 
     return obj;
   }
+
+  static hasFontSizeClass(classes) {
+    return classes.indexOf('-font-size') !== -1 || classes.indexOf('font-size-') !== -1;
+  }
 }
 
 export default Tools;

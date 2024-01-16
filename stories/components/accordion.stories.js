@@ -115,6 +115,7 @@ ImageShadowless.args = {
     alt: 'Products',
     cloudinary: true,
     headline: 'Features of the Admin Portal',
+    headlineClasses: 'h3-font-size',
     id: 'featureAccordion',
     tabs: [
       {
