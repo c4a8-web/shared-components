@@ -14,11 +14,13 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 fade-in-bottom" data-utility-animation-step="1">
+        {%- assign successStoryHeadlineClass = successStory.headlineClasses | default: 'h2-font-size' -%}
+        {% capture successStoryHeadlineClasses -%}{{ successStoryHeadlineClass }} success-story__headline{% endcapture %}
         {%
           include headline.html
           level=successStoryLevel
           text=successStory.headline
-          classes="h2-font-size"
+          classes=successStoryHeadlineClasses
         %}
         <div class="mt-5 mb-5 w-lg-65">{{ successStory.subline }}</div>
       </div>
