@@ -9,7 +9,7 @@
     "start": "npm run storybook",
     "cypress:test": "npx cypress run --browser chrome",
     "test": "npm run cypress:test",
-    "build": "cd bundle && yarn build"
+    "build": "cd bundle && yarn install && yarn build"
   },
   "keywords": [],
   "author": "",
