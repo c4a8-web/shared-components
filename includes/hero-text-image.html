@@ -99,6 +99,7 @@
         class=heroClasses
         cloudinary=heroTextImageBackgroundCloudinary
         imgSrcSets=heroTextImageSrcSet
+        lazy=true
       %}
     {% endif %}
   {% endcapture -%}
@@ -137,6 +138,7 @@
         img=heroTextImageHero.fullscreen.img
         alt=heroTextImageHero.fullscreen.alt
         cloudinary=heroTextImageFullscreenCloudinary
+        lazy=true
       %}
     </div>
   {% endif %}
@@ -210,6 +212,7 @@
               alt=heroTextImageHero.alt
               class="hero-text-image__img"
               cloudinary=heroTextImageCloudinary
+              lazy=true
             %}
           </div>
         {% endif %}
