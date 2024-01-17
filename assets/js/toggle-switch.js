@@ -12,6 +12,21 @@ class ToggleSwitch {
     this.parsePricingData = this.root.querySelector('[data-pricing]')?.dataset.pricing;
 
     this.bindEvents();
+    this.initPrices();
+  }
+
+  getTargetSelectors(element) {
+    const options = JSON.parse(element.dataset.toggleSwitchOptions);
+    const selectorArray = options.targetSelector.split(',');
+    const selectors = [];
+
+    for (let i = 0; i < selectorArray.length; i++) {
+      const targetSelector = selectorArray[i].replace(/\s/g, '');
+
+      selectors.push(targetSelector);
+    }
+
+    return selectors;
   }
 
   handleChange(e) {
@@ -68,11 +83,28 @@ class ToggleSwitch {
       timing: Animate.easing.easeInOutCubic,
       draw: (progress) => {
         const currentResult = progress * (end - start) + start;
-        const formatter = this.priceFormatter();
-        const formattedResult = formatter.format(currentResult);
 
-        element.innerHTML = formattedResult;
+        this.updatePrices(element, currentResult);
       },
+    });
+  }
+
+  updatePrices(element, state) {
+    const formatter = this.priceFormatter();
+    const formattedResult = formatter.format(state);
+
+    element.innerHTML = formattedResult;
+  }
+
+  initPrices() {
+    const selectors = this.getTargetSelectors(this.target);
+
+    selectors.forEach((selector) => {
+      const targetElements = document.querySelectorAll(selector);
+
+      targetElements.forEach((element) => {
+        this.updatePrices(element, element.innerHTML);
+      });
     });
   }
 
