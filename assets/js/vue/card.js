@@ -183,7 +183,7 @@ export default {
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
             <div class="card__img-top position-relative overflow-hidden is-foreground">
-              <v-img :img ="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+              <v-img :img ="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets" :lazy="true" />
               <figure class="d-none d-lg-block">
                 <svg class="ie-curved-x position-absolute top-0 right-0 bottom-0 mr-n1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100.1 1920" height="101%">
                   <path fill="#fff" d="M0,1920c0,0,93.4-934.4,0-1920h100.1v1920H0z"></path>
@@ -216,7 +216,7 @@ export default {
 
       <template v-else-if="productValue">
         <div class="card__img-top card-img--products position-relative no-gutters is-foreground" v-if="blogTitlePic">
-          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets" :lazy="true"/>
           <div class="card__img-headline-container">
             <template v-if="tag">
               <span class="card__img-tag"
@@ -249,7 +249,7 @@ export default {
 
       <template v-else-if="long">
         <div class="card__img-top position-relative no-gutters is-foreground" v-if="blogTitlePic">
-          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets" :lazy="true"/>
         </div>
 
         <div class="card__body card-body richtext">
@@ -271,7 +271,7 @@ export default {
       </template>
       <template v-else>
         <div class="card__img-top position-relative is-foreground" v-if="blogTitlePic">
-          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets"/>
+          <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets" :lazy="true"/>
           <figure class="ie-curved-y position-absolute right-0 bottom-0 left-0 mb-n1">
             <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 100.1">
               <path fill="#fff" d="M0,0c0,0,934.4,93.4,1920,0v100.1H0L0,0z"></path>
