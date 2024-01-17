@@ -1,7 +1,7 @@
-import 'core-js/stable';
+// import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
-console.log('new bundle is created 555');
+console.log('new bundle is created 123');
 
 // import * as index from './index';
 

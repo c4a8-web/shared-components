@@ -5,7 +5,6 @@ module.exports = {
   entry: '../entry-bundle.js',
 
   output: {
-    // path: path.resolve(__dirname, 'storybook-static/test'),
     path: path.resolve(__dirname, '../storybook-static/js/bundle'),
     filename: 'index.js',
     libraryTarget: 'module',
