@@ -90,8 +90,9 @@ class ToggleSwitch {
   }
 
   updatePrices(element, state) {
+    const cleanedValue = state.replace ? parseFloat(state.replace(/,/, '.')) : state;
     const formatter = this.priceFormatter();
-    const formattedResult = formatter.format(state);
+    const formattedResult = formatter.format(cleanedValue);
 
     element.innerHTML = formattedResult;
   }
