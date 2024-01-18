@@ -38,6 +38,12 @@ export default {
         children: this.meta,
       };
     },
+    highlightList() {
+      return {
+        ...this.highlight,
+        children: this.highlight,
+      };
+    },
     spacerBgColor() {
       const color = this.bgColor ? this.bgColor : 'var(--color-header-background)';
 
@@ -456,11 +462,21 @@ export default {
     hasContactLink(item) {
       return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
     },
+    hasContactTab(list) {
+      if (!this.isLowerBreakpoint()) {
+        return list.filter((element) => {
+          return element.name != 'kontakt' && element.name != 'contact';
+        });
+      }
+
+      return list;
+    },
   },
   props: {
     home: Object,
     navigation: Object,
     meta: Object,
+    highlight: Object,
     light: {
       default: null,
     },
@@ -513,7 +529,8 @@ export default {
             </div>
             <nav class="header__nav" v-on:mouseout="handleMouseOut">
               <ul class="header__list" ref="list">
-                <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
+                <li :class="headerItemClasses(item)" v-for="(item, index) in hasContactTab(activeNavigation)">
+
                   <a :class="headerLinkClasses(item, index)" :href="getHref(item)" :target="getTarget(item)" v-on:click="handleClick(item, index)" v-if="item?.languages" ref="link">
                     <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
                       <span class="header__link-text">{{ item.languages[lowerLang]?.title }}</span>
@@ -550,27 +567,10 @@ export default {
                 </li>
               </ul>
               <div class="header__footer">
-                <link-list
-                  :list="metaList"
-                  :lang="lowerLang"
-                  classes="header__meta-list"
-                  :no-animation="true"
-                  v-if="hasMeta"
-                />
+                <template v-for="item in this.highlight" v-if="isLowerBreakpoint">
+                  <v-img class="my-4" v-bind="item" />
+                </template>
 
-                <div class="header__contact header__contact--mobile" v-if="hasContact">
-                  <a class="header__contact-link custom" :href="contact.languages[lowerLang]?.url" v-if="contact?.languages">
-                    <div class="header__contact-text">
-                      <icon
-                        icon="phone-mail"
-                        size="medium"
-                      />
-                      <span class="header__contact-title">
-                        {{ contact.languages[lowerLang]?.title }}
-                      </span>
-                    </div>
-                  </a>
-                </div>
                 <div class="header__button" v-if="button">
                   <cta
                     :text="button.text"

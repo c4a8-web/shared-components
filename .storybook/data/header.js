@@ -937,6 +937,30 @@ const Header = {
         },
       ],
     },
+    {
+      name: 'kontakt',
+      languages: {
+        de: {
+          title: 'Kontakt',
+          url: '/kontakt-de/',
+        },
+        en: {
+          title: 'Kontakt',
+          url: '/kontakt-en/',
+        },
+        es: {
+          title: 'Kontakt',
+          url: '/kontakt-es/',
+        },
+      },
+    },
+  ],
+  highlight: [
+    {
+      img: 'career/remote-working.jpg',
+      alt: 'remote-working',
+      cloudinary: true,
+    },
   ],
   meta: [
     {

@@ -2,6 +2,7 @@
 {%- assign headerHome = include.home | default: site.data.header.home -%}
 {%- assign headerNavigation = include.navigation | default: site.data.header.navigation -%}
 {%- assign headerMeta = include.meta | default: site.data.header.meta -%}
+{%- assign headerHighlight = include.highlight | default: site.data.header.highlight -%}
 {%- assign headerLight = include.light -%}
 {%- assign headerLang = include.lang | default: 'de' -%}
 {%- assign headerContact = include.contact | default: site.data.header.contact -%}
@@ -15,6 +16,7 @@
   :home="{{ headerHome | jsonify | escape }}"
   :navigation="{{ headerNavigation | jsonify | escape }}"
   :meta="{{ headerMeta | jsonify | escape }}"
+  :highlight="{{ headerHighlight | jsonify | escape}}"
   :light="{{ headerLight }}"
   lang="{{ headerLang }}"
   :contact="{{ headerContact | jsonify | escape }}"
