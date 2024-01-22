@@ -7,10 +7,6 @@ module.exports = {
   mode: 'production',
   entry: {
     index: '../entry-bundle.js',
-    // vendor: [
-    //   '../assets/front/dist/assets/vendor/jquery/dist.jquery.min.js',
-    //   '../assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js',
-    // ],
   },
 
   output: {
@@ -46,6 +42,15 @@ module.exports = {
           `${vendorPath}vendor/jquery-migrate/dist/jquery-migrate.min.js`,
           `${vendorPath}vendor/bootstrap/dist/js/bootstrap.bundle.min.js`,
           `${vendorPath}vendor/slick-carousel/slick/slick.min.js`,
+          `${vendorPath}vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js`,
+          `${vendorPath}vendor/jquery-validation/dist/jquery.validate.min.js`,
+          `${vendorPath}vendor/cubeportfolio/js/jquery.cubeportfolio.min.js`,
+          `${vendorPath}vendor/hs-unfold/dist/hs-unfold.min.js`,
+          `${vendorPath}vendor/leaflet/dist/leaflet.js`,
+          `${vendorPath}vendor/ion-range-slider/ion-rangeslider.js`,
+          `${vendorPath}js/theme.min.js`,
+          `${vendorPath}js/hs.validation.js`,
+          `${vendorPath}vendor/hs-sticky-block/dist/hs-sticky-block.min.js`,
         ],
       },
     }),
