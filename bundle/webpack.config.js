@@ -1,12 +1,21 @@
 const path = require('path');
+const MergeIntoSingleFilePlugin = require('webpack-merge-and-include-globally');
+
+const vendorPath = '../assets/front/dist/assets/';
 
 module.exports = {
   mode: 'production',
-  entry: '../entry-bundle.js',
+  entry: {
+    index: '../entry-bundle.js',
+    // vendor: [
+    //   '../assets/front/dist/assets/vendor/jquery/dist.jquery.min.js',
+    //   '../assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js',
+    // ],
+  },
 
   output: {
     path: path.resolve(__dirname, '../storybook-static/js/bundle'),
-    filename: 'index.js',
+    filename: '[name].js',
     libraryTarget: 'module',
   },
 
@@ -25,17 +34,19 @@ module.exports = {
     ],
   },
 
-  optimization: {
-    // splitChunks: {
-    //   chunks: 'all',
-    //   name: false,
-    // },
-    // runtimeChunk: false,
-  },
-
   experiments: {
     outputModule: true,
   },
 
-  plugins: [],
+  plugins: [
+    new MergeIntoSingleFilePlugin({
+      files: {
+        'vendor.js': [
+          `${vendorPath}vendor/jquery/dist/jquery.min.js`,
+          `${vendorPath}vendor/jquery-migrate/dist/jquery-migrate.min.js`,
+          `${vendorPath}vendor/bootstrap/dist/js/bootstrap.bundle.min.js`,
+        ],
+      },
+    }),
+  ],
 };
