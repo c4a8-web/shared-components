@@ -45,6 +45,7 @@ module.exports = {
           `${vendorPath}vendor/jquery/dist/jquery.min.js`,
           `${vendorPath}vendor/jquery-migrate/dist/jquery-migrate.min.js`,
           `${vendorPath}vendor/bootstrap/dist/js/bootstrap.bundle.min.js`,
+          `${vendorPath}vendor/slick-carousel/slick/slick.min.js`,
         ],
       },
     }),
