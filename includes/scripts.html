@@ -1,4 +1,4 @@
-{% if jekyll.environment == "production" or jekyll.environment == "staging" -%}
+{% if jekyll.environment == "ignorethis" or jekyll.environment == "ignorethis" -%}
   <script src="/_includes/shared-components/storybook-static/js/bundle/vendor.js"></script>
   <script
     type="module"
@@ -75,8 +75,8 @@
   <script
     type="module"
     charset="UTF-8"
-    src="{{ site.baseurl }}/assets/js/app.js"
-    ignoresrc="/_includes/shared-components/assets/js/production-app.js"
+    ignoresrc="{{ site.baseurl }}/assets/js/app.js"
+    src="/_includes/shared-components/assets/js/production-app.js"
     id="appjs"
   ></script>
 {% endif %}
