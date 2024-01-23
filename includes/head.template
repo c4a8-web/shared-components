@@ -70,23 +70,18 @@
 
   <!-- CSS Implementing Plugins -->
   <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/fontawesome/css/all.min.css">
-  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.css">
   {% if loadSlick %}
     <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/slick-carousel/slick/slick.css">
   {% endif %}
   {% if loadLightbox %}
     <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
   {% endif %}
-  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/dzsparallaxer/dzsparallaxer.css">
   <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/hs-unfold/dist/hs-unfold.min.css">
   {% if page.scripts.cubeportfolio %}
     <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/cubeportfolio/css/cubeportfolio.min.css">
   {% endif %}
   {% if page.scripts.google-map %}
   <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/leaflet/dist/leaflet.css">
-  {% endif %}
-  {% if page.scripts.videobg %}
-  <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/hs-video-bg/dist/hs-video-bg.min.css">
   {% endif %}
   {% if page.scripts.rangeSlider %}
     <link rel="stylesheet" href="/_includes/shared-components/assets/front/dist/assets/vendor/ion-range-slider/ion.rangeSlider.min.css">

@@ -127,6 +127,7 @@
                     img=contact.person.image
                     cloudinary=contact.person.cloudinary
                     alt=contact.person.alt
+                    lazy=true
                   %}
                 </div>
               </div>
@@ -143,6 +144,7 @@
                 img=contact.person.image
                 cloudinary=contact.person.cloudinary
                 alt=contact.person.alt
+                lazy=true
               %}
             </div>
             <div class="contact__name font-size-4 my-6 mx-5">{{ contact.person.name }}</div>
