@@ -567,9 +567,6 @@ export default {
                 </li>
               </ul>
               <div class="header__footer">
-                <template v-for="item in this.highlight" v-if="isLowerBreakpoint">
-                  <v-img class="my-4" v-bind="item" />
-                </template>
 
                 <div class="header__button" v-if="button">
                   <cta
@@ -583,6 +580,10 @@ export default {
                 <div class="header__language-switch" v-if="hasLangSwitch">
                   <a v-for="(language, key) in home.languages" :class="{'header__language-link custom': true, 'active': key === lowerLang}" v-on:click="handleLanguageSwitch(key)">{{ key }}</a>
                 </div>
+
+                <template v-for="item in this.highlight" v-if="isLowerBreakpoint">
+                  <v-img class="header__footer-img mb-4" v-bind="item" />
+                </template>
               </div>
             </nav>
             <div class="header__button" v-if="button">

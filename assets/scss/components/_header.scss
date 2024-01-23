@@ -580,7 +580,7 @@ $header-border-size: 1px;
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
-  padding: 0 0 var(--header-vertical-spacing) 0;
+  padding: var(--header-vertical-spacing) 0;
   display: none;
   order: 1;
   gap: spacing(10);
@@ -670,8 +670,20 @@ $header-border-size: 1px;
   margin: 0 auto;
   padding-left: $grid-gutter-half-width;
   padding-right: $grid-gutter-half-width;
-  display: flex;
+  display: block;
   flex-direction: column;
+
+  @include media-breakpoint-up(md) {
+    display: flex;
+  }
+
+  .header__footer-img {
+    display: block;
+
+    @include media-breakpoint-up(md) {
+      display: none;
+    }
+  }
 
   .header__button {
     display: block;
