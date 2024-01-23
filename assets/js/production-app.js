@@ -1,6 +1,6 @@
 import { State } from '/_includes/shared-components/storybook-static/js/bundle/index.js';
 
-console.log('production app');
+console.info('Production App');
 
 // Initialization of page related code
 window.pageisready = true;
