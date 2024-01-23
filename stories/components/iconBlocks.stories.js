@@ -156,3 +156,36 @@ HeadlineAndSticky.args = {
     ],
   },
 };
+
+export const List = Template.bind({});
+
+List.args = {
+  iconBlocks: {
+    items: [
+      {
+        image: getAssetPath('svg/logos/logo-windows10.svg'),
+        alt: 'Windows 10',
+        headline: 'Windows 10',
+        copy: `
+          <ul class="dashed">
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+          </ul>
+        `,
+      },
+      {
+        image: getAssetPath('svg/logos/logo-windows10.svg'),
+        alt: 'Windows 11',
+        headline: 'Windows 11',
+        copy: `
+          <ul class="dashed">
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+          </ul>
+        `,
+      },
+    ],
+  },
+};

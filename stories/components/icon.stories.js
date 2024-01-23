@@ -68,7 +68,7 @@ export const Hand = Template.bind({});
 
 Hand.args = {
   icon: 'hand',
-  size: 'large',
+  size: 'xxl',
 };
 
 export const Rocket = Template.bind({});

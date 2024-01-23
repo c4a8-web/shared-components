@@ -20,6 +20,27 @@
   @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
 }
 
+@mixin bulletpoints() {
+  $dash-size: 20px;
+
+  li {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      display: inline-flex;
+      height: 2px;
+      width: $dash-size;
+      top: 12px;
+      left: -$dash-size;
+      background-color: var(--color-primary);
+      padding-right: $dash-size;
+      transform: translateX(-100%);
+    }
+  }
+}
+
 @mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($name, $breakpoints);
 

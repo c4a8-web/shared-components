@@ -164,8 +164,6 @@ export default {
         });
     },
     addCustomStyle() {
-      return; // TODO disabled till personio implementation is fixed
-
       const style = document.createElement('style');
 
       style.id = this.getUuid;
