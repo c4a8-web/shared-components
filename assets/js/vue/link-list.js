@@ -127,7 +127,7 @@ export default {
         {{ list.languages[lang]?.title }}
         <icon class="link-list__icon" icon="expand" size="small" />
       </figcaption>
-      <ul :class="classListList" data-utility-animation-step="1" >
+      <ul :class="classListList" data-utility-animation-step="1">
         <template v-for="subChild in list.children">
           <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]">
             <cta
