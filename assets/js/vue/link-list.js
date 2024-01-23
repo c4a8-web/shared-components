@@ -128,17 +128,18 @@ export default {
         <icon class="link-list__icon" icon="expand" size="small" />
       </figcaption>
       <ul :class="classListList" data-utility-animation-step="1">
-        <li class="link-list__item" v-for="subChild in list.children">
-          <cta
-            v-if="subChild.languages && subChild.languages[lang]"
-            :href="subChild.languages[lang].url"
-            :text="subChild.languages[lang].title"
-            :active="subChild.languages[lang].active"
-            link=true
-            reversed=true
-            monochrome=true
-          />
-        </li>
+        <template v-for="subChild in list.children">
+          <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]">
+            <cta
+              :href="subChild.languages[lang].url"
+              :text="subChild.languages[lang].title"
+              :active="subChild.languages[lang].active"
+              link=true
+              reversed=true
+              monochrome=true
+            />
+          </li>
+        </template>
       </ul>
     </figure>
   `,
