@@ -42,3 +42,9 @@
     max-width: var(--column-width);
   }
 }
+
+.logo-list {
+  &.logo-list--aspect-ratio {
+    @include aspect-ratio(var(--aspect-ratio-width), var(--height));
+  }
+}
