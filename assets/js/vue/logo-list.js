@@ -7,6 +7,7 @@ export default {
     classValue() {
       return [
         'logo-list container utility-animation vue-component',
+        this.aspectRatio ? 'logo-list--aspect-ratio' : '',
         Tools.isTrue(this.sticky) ? 'is-sticky-scroller' : '',
         this.spacing ? this.spacing : 'py-4',
       ];
@@ -19,6 +20,15 @@ export default {
       const gap = 3;
 
       return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
+    },
+    aspectRatioValue() {
+      const aspectRatio = this.aspectRatio.split('/');
+      if (aspectRatio.length != 2) return '';
+
+      return `--aspect-ratio-width: ${aspectRatio[0]}; --aspect-ratio-height: ${aspectRatio[1]}`;
+    },
+    styles() {
+      return [this.columnsValue, this.aspectRatioValue].join('; ');
     },
   },
   methods: {
@@ -39,9 +49,12 @@ export default {
     },
     spacing: String,
     columns: Number,
+    aspectRatio: {
+      default: false,
+    },
   },
   template: `
-    <div :class="classValue" :style="columnsValue">
+    <div :class="classValue" :style="this.styles">
       <div class="row">
         <div class="col d-flex flex-wrap">
           <component v-for="(item, index) in list" :is="getItemComponent(item)"

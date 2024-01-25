@@ -113,3 +113,10 @@ customColumns.args.logoList.push(
     title: 'SWB',
   }
 );
+
+export const aspectRatio = Template.bind({});
+
+aspectRatio.args = {
+  ...baseArgs,
+  aspectRatio: '16/9',
+};
