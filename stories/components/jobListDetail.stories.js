@@ -184,5 +184,5 @@ Error.args = {
   jobId: '1327578',
   apiUrl: 'mock/jobListEn.xml',
   mockApplyUrl: 'mock/jobApplyError.json',
-  mockDocumentsUrl: 'mock/jobDocumentsError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError500.json',
 };

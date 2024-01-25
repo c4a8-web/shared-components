@@ -170,9 +170,9 @@ class Modal {
   handleError(e) {
     if (!e) return console.error('handle generic error');
 
-    const message = typeof e === 'string' ? e : e.message;
+    const message = typeof e === 'string' ? e : e.message ? e.message : e;
 
-    console.error(`Error ${message}`);
+    console.error('Modal Error', message);
     // TODO add the generic error message here
   }
 

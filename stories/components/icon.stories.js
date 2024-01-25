@@ -200,3 +200,10 @@ Check.args = {
   size: 'large',
   hasBackground: true,
 };
+
+export const Meerkat = Template.bind({});
+
+Meerkat.args = {
+  icon: 'meerkat',
+  size: 'xxl',
+};
