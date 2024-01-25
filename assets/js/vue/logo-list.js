@@ -23,12 +23,12 @@ export default {
     },
     aspectRatioValue() {
       const aspectRatio = this.aspectRatio.split('/');
-      const aspectRatioWidth = '--aspect-ratio-width: ' + aspectRatio[0];
-      const aspectRatioHeight = ';--aspect-ratio-height: ' + aspectRatio[1];
-      return aspectRatioWidth + aspectRatioHeight;
+      if (aspectRatio.length != 2) return '';
+
+      return `--aspect-ratio-width: ${aspectRatio[0]}; --aspect-ratio-height: ${aspectRatio[1]}`;
     },
     styles() {
-      return [this.columnsValue, this.aspectRatio.split('/').length == 2 ? this.aspectRatioValue : ''].join('; ');
+      return [this.columnsValue, this.aspectRatioValue].join('; ');
     },
   },
   methods: {
