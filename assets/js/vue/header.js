@@ -582,7 +582,9 @@ export default {
                 </div>
 
                 <template v-for="item in this.highlight" v-if="isLowerBreakpoint">
-                  <v-img class="header__footer-img mb-4" v-bind="item" />
+                  <a :href="item.link">
+                    <v-img class="header__footer-img mb-4" v-bind="item" />
+                  </a>
                 </template>
               </div>
             </nav>

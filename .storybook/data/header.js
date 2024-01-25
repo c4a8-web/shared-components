@@ -960,6 +960,7 @@ const Header = {
       img: 'career/remote-working.jpg',
       alt: 'remote-working',
       cloudinary: true,
+      link: 'javascript:void',
     },
   ],
   meta: [
