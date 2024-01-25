@@ -118,5 +118,5 @@ export const aspectRatio = Template.bind({});
 
 aspectRatio.args = {
   ...baseArgs,
-  aspectRatio: [16, 9],
+  aspectRatio: '16/9',
 };

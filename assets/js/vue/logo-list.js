@@ -22,12 +22,13 @@ export default {
       return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
     },
     aspectRatioValue() {
-      const aspectRatioWidth = '--aspect-ratio-width: ' + this.aspectRatio[0];
-      const aspectRatioHeight = ';--aspect-ratio-height: ' + this.aspectRatio[1];
+      const aspectRatio = this.aspectRatio.split('/');
+      const aspectRatioWidth = '--aspect-ratio-width: ' + aspectRatio[0];
+      const aspectRatioHeight = ';--aspect-ratio-height: ' + aspectRatio[1];
       return aspectRatioWidth + aspectRatioHeight;
     },
     styles() {
-      return [this.columnsValue, this.aspectRatio ? this.aspectRatioValue : ''].join('; ');
+      return [this.columnsValue, this.aspectRatio.split('/').length == 2 ? this.aspectRatioValue : ''].join('; ');
     },
   },
   methods: {
