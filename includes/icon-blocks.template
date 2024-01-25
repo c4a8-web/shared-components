@@ -46,19 +46,16 @@
               alt=iconBlocks.alt
             %}
           </figure>
-            {%
-              include headline.html
-              text=item.headline
-              level=iconBlocksLevel
-              classes=iconBlocksClasses
-            %}
-
-          <div >
-            {{ item.copy }}
-          </div>
+          {%
+            include headline.html
+            text=item.headline
+            level=iconBlocksLevel
+            classes=iconBlocksClasses
+          %}
+          <p>{{ item.copy }}</p>
+        </div>
+        <!-- End Shared Icon Blocks -->
       </div>
-      <!-- End Shared Icon Blocks -->
-    </div>
       {% endfor %}
     </div>
     {% if iconBlocksCta %}
