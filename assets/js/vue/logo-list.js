@@ -22,9 +22,9 @@ export default {
       return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
     },
     aspectRatioValue() {
-      const aspectRatioWidth = '--aspect-ratio-width: ';
-      const aspectRatioHeight = ';--aspect-ratio-height: ';
-      return aspectRatioWidth + this.aspectRatio[0] + aspectRatioHeight + this.aspectRatio[1];
+      const aspectRatioWidth = '--aspect-ratio-width: ' + this.aspectRatio[0];
+      const aspectRatioHeight = ';--aspect-ratio-height: ' + this.aspectRatio[1];
+      return aspectRatioWidth + aspectRatioHeight;
     },
     styles() {
       return [this.columnsValue, this.aspectRatio ? this.aspectRatioValue : ''].join('; ');
