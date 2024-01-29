@@ -145,6 +145,20 @@ const baseArgs = {
     },
     text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
   },
+  modalError: {
+    cta: {
+      skin: 'primary',
+      width: 'w-100 w-lg-30',
+      text: 'Schließen',
+    },
+    headline: {
+      text: 'Ooops!',
+    },
+    subline: 'Irgendetwas ist schief gelaufen.',
+    text: 'Bitte versuche es später nocheinmal oder kontaktiere uns unter:',
+    mail: 'contact@glueckkanja.de',
+    phone: '+49 69 4005520',
+  },
 };
 export const De = Template.bind({});
 

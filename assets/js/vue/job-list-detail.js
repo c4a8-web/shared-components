@@ -199,6 +199,7 @@ export default {
     form: Object,
     googleMaps: Object,
     modalSuccess: Object,
+    modalError: Object,
     apiKey: String,
     mockApplyUrl: String,
     mockDocumentsUrl: String,
@@ -256,6 +257,7 @@ export default {
         :api-key="apiKey"
         :mock-apply-url="mockApplyUrl"
         :mock-documents-url="mockDocumentsUrl"
+        :modal-error="modalError"
       >
         <slot name="modal-application" />
       </modal>

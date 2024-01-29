@@ -1,5 +1,6 @@
 .modal {
-  &.is-successful {
+  &.is-successful,
+  &.is-invalid {
     .modal-dialog {
       @include media-breakpoint-up(lg) {
         width: 70%;
@@ -9,8 +10,20 @@
     .modal__body-default {
       display: none;
     }
+  }
 
+  &.is-successful {
     .modal__success {
+      display: block;
+      height: auto;
+      width: auto;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  &.is-invalid {
+    .modal__error {
       display: block;
       height: auto;
       width: auto;
@@ -25,6 +38,7 @@
       opacity: 0.7;
     }
 
+    .modal__error,
     .modal__success,
     .modal__content {
       pointer-events: none;
@@ -114,6 +128,8 @@
     @include font-style($style: 'h3-font-size', $weight: 'bold');
   }
 
+  .modal__error-text,
+  .modal__error-subline,
   .modal__success-text,
   .modal__success-subline,
   h1,
@@ -124,6 +140,7 @@
   }
 }
 
+.modal__error,
 .modal__success {
   height: 0;
   width: 0;
@@ -132,10 +149,13 @@
   pointer-events: none;
 }
 
+.modal__error-row,
 .modal__success-row {
   justify-content: center;
 }
 
+.modal__error-icon,
+.modal__error-close,
 .modal__success-icon,
 .modal__success-close {
   display: flex;
@@ -158,10 +178,12 @@
   margin-bottom: spacing(8);
 }
 
+.modal__error-headline,
 .modal__success-headline {
   margin-bottom: spacing(10);
 }
 
+.modal__error-icon,
 .modal__success-icon {
   margin-bottom: spacing(10);
 
@@ -169,6 +191,66 @@
     width: 200px;
     height: 100%;
   }
+}
+
+.modal__error-headline {
+  .headline {
+    color: var(--color-modal-error-title);
+  }
+}
+
+.modal__error-subline {
+  @include font-style($style: 'font-size-2', $weight: 'bold', $line: 'wide');
+
+  margin-bottom: spacing(2);
+}
+
+.modal__error-text {
+  @include font-style($style: 'font-size-sm', $line: 'wide');
+
+  text-align: center;
+  margin-bottom: spacing(4);
+}
+
+.modal__error-phone,
+.modal__error-mail {
+  display: flex;
+  place-content: center;
+  place-items: center;
+
+  a {
+    color: var(--color-modal-error-contact);
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.modal__error {
+  .modal__error-phone,
+  .modal__error-mail {
+    .icon {
+      width: spacing(4);
+      height: spacing(4);
+      margin-right: spacing(5);
+    }
+
+    .icon.icon--phone {
+      width: spacing(5);
+      height: spacing(5);
+      margin-right: spacing(3);
+
+      svg {
+        width: inherit;
+        height: inherit;
+      }
+    }
+  }
+}
+
+.modal__error-close {
+  margin-top: spacing(8);
 }
 
 .modal--open {

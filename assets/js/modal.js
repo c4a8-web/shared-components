@@ -15,6 +15,7 @@ class Modal {
 
     this.closeSelector = '.modal__close';
     this.successCloseSelector = '.modal__success-close .cta';
+    this.errorCloseSelector = '.modal__error-close .cta';
     this.applicationSelector = '.modal__application';
     this.modalSuccessHeadlineSelector = '.modal__success-headline > *';
     this.buttonSelector = '[data-trigger="modal"]';
@@ -22,6 +23,7 @@ class Modal {
 
     this.close = this.root.querySelector(this.closeSelector);
     this.successClose = this.root.querySelector(this.successCloseSelector);
+    this.errorClose = this.root.querySelector(this.errorCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
     this.modalId = this.root.dataset.modalId;
@@ -56,6 +58,7 @@ class Modal {
   bindEvents() {
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
+    this.errorClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
       const parent = this.root.parentNode;
@@ -173,7 +176,8 @@ class Modal {
     const message = typeof e === 'string' ? e : e.message ? e.message : e;
 
     console.error('Modal Error', message);
-    // TODO add the generic error message here
+
+    this.root.classList.add(State.ERROR);
   }
 
   handleClose(e) {
@@ -218,6 +222,7 @@ class Modal {
       form?.reset();
 
       element.classList.remove(State.SUCCESS);
+      element.classList.remove(State.ERROR);
     }, 200);
   }
 
