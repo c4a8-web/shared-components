@@ -4,6 +4,7 @@ import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
 import JobListings from './job-listings.js';
 import Tools from './tools.js';
+import StatusCodes from './statusCodes.js';
 
 class Modal {
   static rootSelector = '.modal';
@@ -114,6 +115,8 @@ class Modal {
       fileData = fileInput?.files[0];
     }
 
+    return;
+
     if (fileData) {
       if (base64Value) {
         this.handleApplicationRequest(fields, fileData, base64Value);
@@ -123,8 +126,6 @@ class Modal {
         });
       }
     } else {
-      console.error('handle generic error no files');
-
       this.handleError();
     }
   }
@@ -174,10 +175,15 @@ class Modal {
     if (!e) return console.error('handle generic error');
 
     const message = typeof e === 'string' ? e : e.message ? e.message : e;
+    const statusCode = typeof e === 'object' && e.statusCode ? e.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
 
     console.error('Modal Error', message);
 
-    this.root.classList.add(State.ERROR);
+    if (statusCode === StatusCodes.PAYLOAD_TOO_LARGE) {
+      console.log('display error on field for files');
+    } else {
+      this.root.classList.add(State.ERROR);
+    }
   }
 
   handleClose(e) {
@@ -217,6 +223,7 @@ class Modal {
 
   static resetModal(element) {
     setTimeout(function () {
+      console.log('reset modal');
       const form = element.querySelector('form');
 
       form?.reset();

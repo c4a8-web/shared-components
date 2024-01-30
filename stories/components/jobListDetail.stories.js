@@ -154,9 +154,9 @@ const baseArgs = {
     headline: {
       text: 'Ooops!',
     },
-    subline: 'Irgendetwas ist schief gelaufen.',
-    text: 'Bitte versuche es später nocheinmal oder kontaktiere uns unter:',
-    mail: 'contact@glueckkanja.de',
+    subline: 'Etwas ist schief gelaufen!',
+    text: 'Bitte versuche es später noch einmal oder kontaktiere uns unter:',
+    mail: 'info@glueckkanja.de',
     phone: '+49 69 4005520',
   },
 };
@@ -191,12 +191,22 @@ WithVideo.args = {
   jobId: 'videoInner',
 };
 
-export const Error = Template.bind({});
+export const ErrorGeneric = Template.bind({});
 
-Error.args = {
+ErrorGeneric.args = {
   ...baseArgs,
   jobId: '1327578',
   apiUrl: 'mock/jobListEn.xml',
   mockApplyUrl: 'mock/jobApplyError.json',
   mockDocumentsUrl: 'mock/jobDocumentsError500.json',
+};
+
+export const ErrorFileSize = Template.bind({});
+
+ErrorFileSize.args = {
+  ...baseArgs,
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
+  mockApplyUrl: 'mock/jobApplyError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError413.json',
 };
