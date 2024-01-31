@@ -178,10 +178,14 @@ class Modal {
     console.error('Modal Error', message);
 
     if (statusCode === StatusCodes.PAYLOAD_TOO_LARGE) {
-      console.log('display error on field for files');
+      this.handlePayloadTooLarge(e);
     } else {
       this.root.classList.add(State.ERROR);
     }
+  }
+
+  handlePayloadTooLarge(e) {
+    const fileInput = this.form.querySelector('input[type="file"]');
   }
 
   handleClose(e) {
@@ -221,7 +225,6 @@ class Modal {
 
   static resetModal(element) {
     setTimeout(function () {
-      console.log('reset modal');
       const form = element.querySelector('form');
 
       form?.reset();
