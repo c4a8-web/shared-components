@@ -1,5 +1,6 @@
 import Tools from '../tools.js';
 import State from '../state.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'form-attachments',
@@ -108,9 +109,16 @@ export default {
 
       this.interactable.addEventListener('click', this.handleAddAttachment.bind(this));
 
+      document.addEventListener(Events.FORM_ATTACHMENT_ERROR, this.handleFormAttachmentError.bind(this));
+
       const parent = Tools.getParent(this.root, 'form');
 
-      parent?.addEventListener('reset', this.reset.bind(this));
+      if (!parent) return;
+
+      parent.addEventListener('reset', this.reset.bind(this));
+    },
+    handleFormAttachmentError(e) {
+      this.showError(this.maxSizeText);
     },
     handleDragStart(e) {
       e.preventDefault();

@@ -202,8 +202,9 @@ class Personio {
       this.uploadDocuments(fileData)
         .then((responses) => {
           if (this.hasValidResponseCodes(responses)) return this.addFilesToFields(responses, fields, resolve, reject);
+          const response = responses[0];
 
-          responses
+          response
             .json()
             .then((jsonResponse) => {
               if (jsonResponse.errors) return reject({ statusCode: response.status, errors: jsonResponse.errors });

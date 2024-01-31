@@ -180,7 +180,7 @@ class Modal {
   }
 
   handlePayloadTooLarge(e) {
-    const fileInput = this.form.querySelector('input[type="file"]');
+    document.dispatchEvent(new CustomEvent(Events.FORM_ATTACHMENT_ERROR, { detail: e }));
   }
 
   handleClose(e) {
