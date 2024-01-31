@@ -44,13 +44,7 @@ function fillTheForm(test) {
   cy.get('label[for$=privacy]:visible').click();
   cy.wait(500);
 
-  if (title.includes('Default')) {
-    cy.get(`.modal .form-attachments__files`).invoke('attr', 'style', 'display: block');
-    cy.get(`.modal input[type$=file]`).selectFile(mockResume);
-    cy.get(`.modal .form-attachments__files`).invoke('attr', 'style', 'display: none');
-  } else {
-    cy.get(`.modal .form-attachments:visible`).selectFile(mockResume, { action: 'drag-drop' });
-  }
+  cy.get(`.modal .form-attachments__interactable:visible`).selectFile(mockResume, { action: 'drag-drop' });
 }
 
 function submitForm() {

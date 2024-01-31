@@ -104,9 +104,9 @@ const baseArgs = {
             requiredMsg: 'Bitte einen Anhang hinzufügen',
             id: 'file',
             description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-            text: 'Oder Datei auswählen',
+            text: 'Oder Dateien auswählen',
             extensions: ['pdf'],
-            maxSize: 10000000,
+            maxSize: 20000000,
           },
         },
         {

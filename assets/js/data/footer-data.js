@@ -7,7 +7,7 @@ const FooterData = {
   country: 'Germany',
   mail: 'info@glueckkanja.com',
   introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
-  copyright: '2023 glueckkanja AG. All rights reserved.',
+  copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
       img: '/logos/gk-Logo-sw.svg',
@@ -17,7 +17,7 @@ const FooterData = {
     {
       img: '/v1623133806/logos/primepulse-endorsement-white.svg',
       alt: 'glueckkanja Logo',
-      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
+      url: 'https://primepulse.com/',
       target: '_blank',
       classes: 'offset-lg-6',
     },
@@ -59,8 +59,8 @@ const FooterData = {
   ],
   socials: [
     {
-      icon: 'fa-twitter',
-      url: 'https://twitter.com/glueckkanjagab',
+      icon: 'fa-x-twitter',
+      url: 'https://twitter.com/glueckkanja_',
       title: 'Twitter',
     },
     {
@@ -70,17 +70,17 @@ const FooterData = {
     },
     {
       icon: 'fa-linkedin',
-      url: 'https://www.linkedin.com/company/glueckkanja-gab',
+      url: 'https://www.linkedin.com/company/glueckkanja',
       title: 'LinkedIn',
     },
     {
       icon: 'fa-xing',
-      url: 'https://www.xing.com/pages/glueckkanja-gab',
+      url: 'https://www.xing.com/pages/glueckkanja',
       title: 'Xing',
     },
     {
       icon: 'fa-github',
-      url: 'https://github.com/glueckkanja-gab',
+      url: 'https://github.com/glueckkanja',
       title: 'Github',
     },
   ],

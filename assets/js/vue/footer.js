@@ -106,8 +106,8 @@ export default {
               </ul>
               <!-- End Nav Link -->
               <template v-for="(highlight, index) in dataValue.highlights">
-                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-75 w-lg-100 pr-6">{{ highlight.title }}</span>
-                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']">
+                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ highlight.title }}</span>
+                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
                   <v-img
                     cloudinary=true
                     v-bind="highlight"

@@ -7,5 +7,6 @@ node_modules
 storybook-static
 .vscode/
 .env.local
+yarn-error.log
 
 NOTES.md

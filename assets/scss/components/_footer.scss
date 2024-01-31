@@ -80,9 +80,11 @@ footer {
   }
 }
 
-.footer__country {
-  display: block;
-  flex: 1 100%;
+.footer__contacts {
+  .footer__country {
+    display: block;
+    flex: 1 100%;
+  }
 }
 
 .footer__partner-image {
@@ -95,4 +97,7 @@ footer {
 
 .footer__highlight-link {
   max-width: 300px;
+  img {
+    width: 100%;
+  }
 }

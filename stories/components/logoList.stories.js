@@ -11,9 +11,7 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
-export const LogoList = Template.bind({});
-
-LogoList.args = {
+const baseArgs = {
   logoList: [
     {
       img: '/c_lpad,h_60,w_180/logos/cust-dbschenker.png',
@@ -87,4 +85,38 @@ LogoList.args = {
       title: 'Uniper',
     },
   ],
+};
+
+export const defaultColumns = Template.bind({});
+
+defaultColumns.args = {
+  ...baseArgs,
+};
+
+export const customColumns = Template.bind({});
+
+customColumns.args = {
+  ...baseArgs,
+  columns: 6,
+};
+
+customColumns.args.logoList.push(
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-microsoft.png',
+    alt: 'Microsoft',
+    url: 'https://www.microsoft.com/en-us/microsoft-365/business?rtc=1',
+    title: 'Microsoft',
+  },
+  {
+    img: '/c_lpad,h_60,w_100/logos/cust-swb.png',
+    alt: 'SWB',
+    title: 'SWB',
+  }
+);
+
+export const aspectRatio = Template.bind({});
+
+aspectRatio.args = {
+  ...baseArgs,
+  aspectRatio: '16/9',
 };

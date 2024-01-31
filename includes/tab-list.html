@@ -1,49 +1,12 @@
 <!-- Shared Tablist Section -->
-{% assign tablistList = include.list | default: list %}
-{% assign tablistTabs = include.tabs | default: tabs | default: true %}
-{% assign tablistVariant = include.variant | default: variant | default: 'tab-list--small' %}
+{%- assign tablistList = include.list | default: list -%}
+{%- assign tablistTabs = include.tabs | default: tabs | default: true -%}
+{%- assign tablistVariant = include.variant | default: variant -%}
 
-{% if tablistVariant == 'tab-list--small' %}
-  {% assign tabListColumnClass = '' %}
-{% else %}
-  {% capture tabListColumnClass %}col-{% unless tablistTabs %}lg-{% endunless %}{{ 12 | divided_by: tablistList.size }}{% endcapture %}
-{% endif %}
-
-<ul class="tab-list {{ tablistVariant }} row nav nav-pills{% if tablistTabs %} px-4 px-lg-0{% endif %}" role="tablist">
-  {% for tab in tablistList %}
-    <li class="{{ tabListColumnClass }}{% if tablistTabs %} px-2 px-lg-3 nav-item{% else %} mb-6 mb-md-8 mb-lg-0{% endif %}">
-      {% if tab.link %}
-        <a href="{{ tab.link.href }}" target="{{ tab.link.target }}"
-          class="tab-list__tab rounded {% if tablistTabs and forloop.index == 1 %} active{% endif %}"
-          {% if tab.id %} id="{{ tab.id }}-tab" data-toggle="pill" role="tab" aria-controls="{{ tab.id }}"
-          aria-selected="{% if forloop.index == 1 %}true{% else %}false{% endif %}" {% endif %}>
-      {% endif %}
-        <div class="tab-list__content">
-          <div class="tab-list__box rounded {% unless tab.link %}bg-white shadow-lg{% endunless %}">
-            <div class="d-flex flex-column align-items-center position-relative z-index-2">
-              {% if tab.title %}
-                <h2 class="tab-list__text mb-2 mb-md-6 text-center">
-                  {{ tab.title }}
-                </h2>
-              {% endif %}
-              {% if tab.description %}<p class="mb-6 flex-grow-1">{{ tab.description }}</p>{% endif %}
-              {% if tab.cta != tab.href %}
-                {%
-                  include cta.html
-                  text=tab.cta.text
-                  href=tab.cta.href
-                  target=tab.cta.target
-                  skin=tab.cta.skin
-                  classes="align-self-center z-index-2"
-                %}
-              {% endif %}
-            </div>
-          </div>
-        </div>
-      {% if tab.link %}
-        </a>
-      {% endif %}
-    </li>
-  {% endfor %}
-</ul>
+<tab-list
+  :list="{{ tablistList | jsonify | escape }}"
+  :tabs="{{ tablistTabs }}"
+  variant="{{ tablistVariant }}"
+>
+</tab-list>
 <!-- End Shared Tablist Section -->

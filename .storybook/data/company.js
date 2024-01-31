@@ -12,7 +12,7 @@ const Company = {
     {
       img: '/v1623133806/logos/primepulse-endorsement-white.svg',
       alt: 'glueckkanja Logo',
-      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
+      url: 'https://primepulse.com/',
       target: '_blank',
       classes: 'offset-lg-6',
     },
@@ -41,26 +41,26 @@ const Company = {
       alt: 'ISO 27001',
       url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
-      classes: 'w-65',
+      classes: 'w-90',
     },
     {
-      img: '/v1626011982/logos/kununu-white.svg',
+      img: '/v1705390659/logos/kununu-compact.svg',
       alt: 'Kununu Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
     },
     {
-      img: '/v1626015679/logos/isg-o365-white.svg',
-      alt: 'ISG Office 365 Leader',
+      img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
+      alt: 'ISG Microsoft 365 Services',
     },
     {
-      img: '/v1626015449/logos/isg-security-white.svg',
-      alt: 'ISG Security Rising Star',
+      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
+      alt: 'ISG Managed Services for Azure',
     },
   ],
   socials: [
     {
-      icon: 'fa-twitter',
+      icon: 'fa-x-twitter',
       url: 'https://twitter.com/glueckkanjagab',
       title: 'Twitter',
     },

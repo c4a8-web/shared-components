@@ -85,6 +85,7 @@ Slider.args = {
   successStory: {
     bgColor: '#5cbbff',
     headline: 'Leuchtturmprojekte',
+    headlineClasses: 'h3-font-size',
     subline:
       'In Zusammenarbeit mit Microsoft sind verschiedene Video Casestudies im Rahmen unseres ’100% Cloud’ Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung.',
     videos: [
