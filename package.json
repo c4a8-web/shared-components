@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "storybook": "node scripts/generateIncludes.js && start-storybook -p 6006",
+    "storybook": "node scripts/generateIncludes.js && cross-env NODE_OPTIONS=--openssl-legacy-provider start-storybook -p 6006",
     "build-storybook": "node scripts/generateIncludes.js && build-storybook && node scripts/generateBuildIncludes.js",
     "start": "npm run storybook",
     "cypress:test": "npx cypress run --browser chrome",
@@ -29,7 +29,7 @@
     "js-yaml": "^4.1.0",
     "liquidjs": "^9.28.4",
     "node-glob": "^1.2.0",
-    "node-sass": "^6.0.1",
+    "node-sass": "^9.0.0",
     "prettier": "^3.1.0",
     "regenerator-runtime": "^0.14.1",
     "sass-loader": "^10.1.0",
