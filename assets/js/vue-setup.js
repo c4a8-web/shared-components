@@ -86,6 +86,7 @@ import Expand from './vue/icons/expand.js';
 import Hand from './vue/icons/hand.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Mail from './vue/icons/mail.js';
+import Meerkat from './vue/icons/meerkat.js';
 import Menu from './vue/icons/menu.js';
 import Minus from './vue/icons/minus.js';
 import Pin from './vue/icons/pin.js';
@@ -206,6 +207,7 @@ const addApp = () => {
     Menu,
     Magnifier,
     Mail,
+    Meerkat,
     Minus,
     Phone,
     PhoneCharger,

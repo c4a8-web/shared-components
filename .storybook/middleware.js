@@ -5,6 +5,12 @@ const servicesPath = '.';
 const fixedExtension = '.template';
 const extensionRegex = new RegExp(`${fixedExtension}`);
 
+const getErrorCode = (url) => {
+  const errorMatch = url.match(/Error(\d+)\.json/);
+
+  return errorMatch ? errorMatch[1] : null;
+};
+
 // If you add a new middleware, you need to make sure it works with the static build of storybook
 
 module.exports = function expressMiddleware(app) {
@@ -17,7 +23,12 @@ module.exports = function expressMiddleware(app) {
       console.log('[POST => GET] : ' + req.url);
 
       try {
+        const errorCode = getErrorCode(req.url);
         const result = fs.readFileSync(`${servicesPath}${req.url}`, 'utf8');
+
+        if (errorCode) {
+          res.status(errorCode);
+        }
 
         req.method = 'GET';
 

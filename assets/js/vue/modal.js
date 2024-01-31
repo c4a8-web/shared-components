@@ -7,6 +7,9 @@ import Form from '../components/form.js';
 export default {
   tagName: 'modal',
   computed: {
+    modalErrorValue() {
+      return Tools.getJSON(this.modalError);
+    },
     classList() {
       return [
         'modal fade',
@@ -29,6 +32,8 @@ export default {
         'data-job-id': this.jobId ? this.jobId : null,
         'data-modal-id': this.modalId ? this.modalId : null,
         'data-api-key': this.apiKey ? this.apiKey : null,
+        'data-mock-apply-url': this.mockApplyUrl ? this.mockApplyUrl : null,
+        'data-mock-documents-url': this.mockDocumentsUrl ? this.mockDocumentsUrl : null,
       };
     },
     modal() {
@@ -126,6 +131,7 @@ export default {
     return {
       observer: null,
       loading: false,
+      blabla: 'text',
     };
   },
   props: {
@@ -146,6 +152,9 @@ export default {
       default: null,
     },
     apiKey: String,
+    mockApplyUrl: String,
+    mockDocumentsUrl: String,
+    modalError: Object,
   },
   template: `
     <div :class="classList" tabindex="-1" aria-hidden="true" :data-loading="loadingValue" style="--color-icon-hover-color: var(--color-white)" ref="modal"
@@ -159,6 +168,44 @@ export default {
           </div>
           <div :class="bodyClasses">
             <slot></slot>
+            <div class="modal__error container" v-if="modalErrorValue">
+              <div class="modal__error-row row">
+                <div class="modal__error-content col-lg-8">
+                  <div class="modal__error-headline">
+                    <headline
+                      :text="modalErrorValue.headline.text"
+                      level='h2'
+                      :classes="modalErrorValue.headline.classes"
+                    />
+                  </div>
+                  <div class="modal__error-icon">
+                    <icon
+                      icon='meerkat'
+                      size='xxl'
+                    />
+                  </div>
+                  <div class="modal__error-subline">
+                    {{ modalErrorValue.subline }}
+                  </div>
+                  <div class="modal__error-text">
+                    {{ modalErrorValue.text }}
+                  </div>
+                  <div class="modal__error-mail">
+                    <icon icon='mail' size="small" /> <a class="custom" :href="'mailto:' + modalErrorValue.mail">{{ modalErrorValue.mail }} </a>
+                  </div>
+                  <div class="modal__error-phone">
+                    <icon icon='phone' size="small" /> <a class="custom" :href="'tel:' + modalErrorValue.phone" > {{ modalErrorValue.phone }} </a>
+                  </div>
+                  <div class="modal__error-close" v-if="modalErrorValue.cta">
+                    <cta
+                      :text="modalErrorValue.cta.text"
+                      :skin="modalErrorValue.cta.skin"
+                      :width="modalErrorValue.cta.width"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

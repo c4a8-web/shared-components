@@ -2,6 +2,14 @@ const path = require('path');
 const includePath = path.resolve(__dirname, '../');
 
 module.exports = {
+  // core: {
+  //   builder: 'webpack5',
+  // },
+  features: {
+    postcss: false,
+    storyStoreV7: false,
+    legacyMdx1: true, // 👈 Enables MDX v1 support
+  },
   stories: ['../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-links',
