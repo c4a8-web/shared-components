@@ -213,3 +213,10 @@ Bin.args = {
   icon: 'bin',
   size: 'large',
 };
+
+export const Meerkat = Template.bind({});
+
+Meerkat.args = {
+  icon: 'meerkat',
+  size: 'xxl',
+};

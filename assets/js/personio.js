@@ -1,5 +1,6 @@
 import Tools from './tools.js';
 import PersonioPosition from './personioPosition.js';
+import StatusCodes from './statusCodes.js';
 
 // https://developer.personio.de/reference/post_v1-recruiting-applications
 
@@ -50,7 +51,11 @@ class Personio {
     let typeUrl;
 
     if (type !== this.types.OPENINGS && this.options.apiUrl?.match(/.xml$/)) {
-      typeUrl = type === this.types.APPLICATIONS ? this.mockApplyUrl : this.mockDocumentsUrl;
+      if (type === this.types.APPLICATIONS) {
+        typeUrl = this.options.mockApplyUrl ? this.options.mockApplyUrl : this.mockApplyUrl;
+      } else {
+        typeUrl = this.options.mockDocumentsUrl ? this.options.mockDocumentsUrl : this.mockDocumentsUrl;
+      }
     } else {
       typeUrl = this.options.apiUrl ? this.options.apiUrl : this[`${type}Url`];
     }
@@ -197,11 +202,12 @@ class Personio {
       this.uploadDocuments(fileData)
         .then((responses) => {
           if (this.hasValidResponseCodes(responses)) return this.addFilesToFields(responses, fields, resolve, reject);
+          const response = responses[0];
 
-          responses
+          response
             .json()
             .then((jsonResponse) => {
-              if (jsonResponse.errors) return reject(jsonResponse.errors);
+              if (jsonResponse.errors) return reject({ statusCode: response.status, errors: jsonResponse.errors });
             })
             .catch((error) => {
               return reject(error);
@@ -253,8 +259,10 @@ class Personio {
 
   isValidResponseCode(response) {
     return this.options.apiUrl
-      ? response.status === 200
-      : response.status === 200 || response.status === 201 || response.status === 204;
+      ? response.status === StatusCodes.VALID
+      : response.status === StatusCodes.VALID ||
+          response.status === StatusCodes.CREATED ||
+          response.status === StatusCodes.NO_CONTENT;
   }
 
   hasValidResponseCodes(responses) {
@@ -270,7 +278,7 @@ class Personio {
           response
             .json()
             .then((jsonResponse) => {
-              if (jsonResponse.errors) return reject(jsonResponse.errors);
+              if (jsonResponse.errors) return reject({ statusCode: response.status, errors: jsonResponse.errors });
             })
             .catch((error) => {
               return reject(error);

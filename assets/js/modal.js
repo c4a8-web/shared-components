@@ -4,6 +4,7 @@ import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
 import JobListings from './job-listings.js';
 import Tools from './tools.js';
+import StatusCodes from './statusCodes.js';
 
 class Modal {
   static rootSelector = '.modal';
@@ -15,6 +16,7 @@ class Modal {
 
     this.closeSelector = '.modal__close';
     this.successCloseSelector = '.modal__success-close .cta';
+    this.errorCloseSelector = '.modal__error-close .cta';
     this.applicationSelector = '.modal__application';
     this.modalSuccessHeadlineSelector = '.modal__success-headline > *';
     this.buttonSelector = '[data-trigger="modal"]';
@@ -22,6 +24,7 @@ class Modal {
 
     this.close = this.root.querySelector(this.closeSelector);
     this.successClose = this.root.querySelector(this.successCloseSelector);
+    this.errorClose = this.root.querySelector(this.errorCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
     this.modalId = this.root.dataset.modalId;
@@ -33,12 +36,16 @@ class Modal {
       this.apiUrl = this.root.dataset.apiUrl;
       this.jobId = this.root.dataset.jobId;
       this.apiKey = this.root.dataset.apiKey;
+      this.mockApplyUrl = this.root.dataset.mockApplyUrl;
+      this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl;
 
       this.api = new JobListings({
         ...(this.jobId && { jobId: this.jobId }),
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
         apiKey: this.apiKey,
+        mockApplyUrl: this.mockApplyUrl,
+        mockDocumentsUrl: this.mockDocumentsUrl,
       });
     }
 
@@ -52,6 +59,7 @@ class Modal {
   bindEvents() {
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
+    this.errorClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
       const parent = this.root.parentNode;
@@ -111,8 +119,6 @@ class Modal {
     if (fileData) {
       this.handleApplicationRequest(fields, fileData, base64Value);
     } else {
-      console.error('handle generic error no files');
-
       this.handleError();
     }
   }
@@ -161,10 +167,20 @@ class Modal {
   handleError(e) {
     if (!e) return console.error('handle generic error');
 
-    const message = typeof e === 'string' ? e : e.message;
+    const message = typeof e === 'string' ? e : e.message ? e.message : e;
+    const statusCode = typeof e === 'object' && e.statusCode ? e.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
 
-    console.error(`Error ${message}`);
-    // TODO add the generic error message here
+    console.error('Modal Error', message);
+
+    if (statusCode === StatusCodes.PAYLOAD_TOO_LARGE) {
+      this.handlePayloadTooLarge(e);
+    } else {
+      this.root.classList.add(State.ERROR);
+    }
+  }
+
+  handlePayloadTooLarge(e) {
+    document.dispatchEvent(new CustomEvent(Events.FORM_ATTACHMENT_ERROR, { detail: e }));
   }
 
   handleClose(e) {
@@ -209,6 +225,7 @@ class Modal {
       form?.reset();
 
       element.classList.remove(State.SUCCESS);
+      element.classList.remove(State.ERROR);
     }, 200);
   }
 

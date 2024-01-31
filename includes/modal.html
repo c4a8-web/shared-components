@@ -1,6 +1,7 @@
 <!-- Shared Modal Section -->
 {%- assign modalForm = include.form -%}
 {%- assign modalSuccess = include.success -%}
+{%- assign modalError = include.error -%}
 {%- assign modalApplication = include.application -%}
 {%- assign modalClientName = include.clientName -%}
 {%- assign modalApiUrl = include.apiUrl -%}
@@ -19,6 +20,7 @@
     :show="{{ modalShow }}"
     :slim="{{ modalSlim }}"
     api-key="{{ modalApiKey }}"
+    modal-error="{{ modalError | jsonify | escape }}"
 >
   {% if modalApplication %}
 

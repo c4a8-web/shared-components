@@ -146,6 +146,20 @@ const baseArgs = {
     },
     text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
   },
+  modalError: {
+    cta: {
+      skin: 'primary',
+      width: 'w-100 w-lg-30',
+      text: 'Schließen',
+    },
+    headline: {
+      text: 'Ooops!',
+    },
+    subline: 'Etwas ist schief gelaufen!',
+    text: 'Bitte versuche es später noch einmal oder kontaktiere uns unter:',
+    mail: 'info@glueckkanja.de',
+    phone: '+49 69 4005520',
+  },
 };
 export const De = Template.bind({});
 
@@ -176,4 +190,24 @@ export const WithVideo = Template.bind({});
 WithVideo.args = {
   ...baseArgs,
   jobId: 'videoInner',
+};
+
+export const ErrorGeneric = Template.bind({});
+
+ErrorGeneric.args = {
+  ...baseArgs,
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
+  mockApplyUrl: 'mock/jobApplyError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError500.json',
+};
+
+export const ErrorFileSize = Template.bind({});
+
+ErrorFileSize.args = {
+  ...baseArgs,
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
+  mockApplyUrl: 'mock/jobApplyError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError413.json',
 };
