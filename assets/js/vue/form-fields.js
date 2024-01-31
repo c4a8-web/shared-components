@@ -1,9 +1,11 @@
+import Events from '../events.js';
+
 export default {
   tagName: 'form-fields',
   data() {
     return {
-      fieldValue: null,
-      crazyValueNobodyKnows: 'ggggg',
+      edited: false,
+      userValue: null,
     };
   },
   computed: {
@@ -16,9 +18,6 @@ export default {
         `${this.field.showIn ? 'd-none form-field--show-in ' + this.showInClasses : ''}`,
         'vue-component',
       ];
-    },
-    fieldValueComputed() {
-      return this.fieldValue;
     },
     showInClasses() {
       return this.field?.showIn?.map((id) => 'show-in-' + id).join(' ');
@@ -42,40 +41,30 @@ export default {
       return this.field.placeholder ? this.field.placeholder : null;
     },
     value() {
+      if (this.edited) return this.userValue;
+
       const fieldValue =
         this.replaceValue && this.field.value === '#form-field-replace-value#'
           ? this.replaceValue
-          : this.fieldValue
-            ? this.fieldValue
-            : this.field.value;
-
-      console.log('value my ass');
-
-      this.fieldValue = fieldValue;
+          : this.field.value
+            ? this.field.value
+            : null;
 
       return fieldValue;
     },
   },
-  updated() {
-    // console.log('updated element', this.$refs['input']);
-
-    this.checkForReset();
-  },
   mounted() {
-    // console.log('mounted element', this.$refs['input']);
+    const parent = this.$parent;
+
+    if (!parent) return;
+
+    const parentElement = parent.$el;
+
+    if (!parentElement) return;
+
+    parentElement.addEventListener('reset', this.handleReset);
   },
   methods: {
-    checkForReset() {
-      const input = this.$refs['input'];
-
-      if (!input) return;
-
-      if (input.dataset.reset) {
-        console.log('reset i n form field', input);
-        input.removeAttribute('data-reset');
-        this.fieldValue = null;
-      }
-    },
     getRequiredMsg(element) {
       return element.requiredMsg ? element.requiredMsg : '';
     },
@@ -83,11 +72,12 @@ export default {
       const currentTarget = e.currentTarget;
       const value = currentTarget.value;
 
-      this.fieldValue = value;
-      console.log('🚀 ~ handleChange ~ this.fieldValue:', this.fieldValue);
+      this.edited = true;
+      this.userValue = value;
     },
     handleReset() {
-      console.log('HANDLE RESET HIER');
+      this.edited = false;
+      this.userValue = null;
     },
   },
   props: {
@@ -140,8 +130,8 @@ export default {
           <form-select :field="field" :options="options" :id="id" />
         </template>
         <template v-else-if="field.type">
-          <label class="input-label" :for="id">{{ field.label }}###{{ fieldValueComputed }}</label>
-          <input :data-field-value="fieldValue" ref="input" @change="handleChange" @keyup="handleChange" :type="field.type" :id="id" :name="id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
+          <label class="input-label" :for="id">{{ field.label }}</label>
+          <input ref="input" @change="handleChange" @keyup="handleChange" :type="field.type" :id="id" :name="id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
         </template>
       </div>
     </template>`,

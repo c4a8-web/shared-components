@@ -106,27 +106,20 @@ class Form extends BaseComponent {
   }
 
   handleReset() {
-    console.log('reset');
     Form.reset(this.form);
   }
 
   static reset(form) {
     if (!form || !form.reset) return;
 
-    console.log('RESET');
-
     form.reset();
 
     [].forEach.call(form.querySelectorAll(`.${State.VALID}`), (element) => {
       element.classList.remove(State.VALID);
-      element.dataset.reset = 'true';
-      console.log('RESET element', element);
     });
 
     [].forEach.call(form.querySelectorAll(`.${State.ERROR}`), (element) => {
       element.classList.remove(State.ERROR);
-      element.dataset.reset = 'true';
-      console.log('RESET element', element);
     });
   }
 

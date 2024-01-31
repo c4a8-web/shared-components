@@ -44,7 +44,6 @@ export default {
     },
     loadingValue() {
       return this.loading ? true : null;
-      // return null;
     },
     notificationValue() {
       return Tools.isTrue(this.notification);
@@ -59,18 +58,11 @@ export default {
       return this.notificationValue ? false : true;
     },
     bodyClasses() {
-      // return ['modal__body', this.loading ? State.LOADING : null];
-      return ['modal__body'];
+      return ['modal__body', this.loading ? State.LOADING : null];
     },
   },
   mounted() {
     this.bindEvents();
-
-    setTimeout(() => {
-      console.log('timeout');
-
-      this.blabla = 'HMMMM';
-    }, 9000);
 
     if (this.show !== true) return;
 
@@ -113,9 +105,9 @@ export default {
 
       const observerStartingDelay = 200;
 
-      // setTimeout(() => {
-      //   this.observer.observe(document.body, { attributes: true });
-      // }, observerStartingDelay);
+      setTimeout(() => {
+        this.observer.observe(document.body, { attributes: true });
+      }, observerStartingDelay);
 
       document.addEventListener(Events.LOAD_MODAL, this.handleLoading);
     },
@@ -125,7 +117,7 @@ export default {
     handleLoading(e) {
       const loading = e?.detail;
 
-      this.blabla = loading;
+      this.loading = loading;
     },
     openModal() {
       const openDelay = 70;
@@ -174,8 +166,7 @@ export default {
               <icon icon="close" :hover="hover" :circle="circle" :size="size" />
             </div>
           </div>
-          <div :class="bodyClasses">BODY {{ blabla }}</div>
-          <div class="modal__body">
+          <div :class="bodyClasses">
             <slot></slot>
             <div class="modal__error container" v-if="modalErrorValue">
               <div class="modal__error-row row">

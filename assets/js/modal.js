@@ -115,8 +115,6 @@ class Modal {
       fileData = fileInput?.files[0];
     }
 
-    return;
-
     if (fileData) {
       if (base64Value) {
         this.handleApplicationRequest(fields, fileData, base64Value);
