@@ -1,19 +1,105 @@
-import { createComponent, getTitle, site } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle, site } from '../../.storybook/templates';
 import { includescardhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Card',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    excerpt: {
+      description: 'A short summary of the Card Content',
+      type: 'string',
+    },
+    blogtitlepic: {
+      description: 'Image of the Card',
+      type: 'string',
+    },
+    url: {
+      description: 'Card Url',
+      type: 'string',
+    },
+    title: {
+      description: 'The title of the Card',
+      type: 'string',
+    },
+    author: {
+      description: 'A List of Authors contributing to the Card/Blog',
+      type: 'array',
+    },
+    moment: {
+      description: 'A specific Date if a Card Date is not given',
+      type: 'string',
+    },
+    date: {
+      description: 'A specific Date for the Card',
+      type: 'string',
+    },
+    large: {
+      description: 'Enables large Variant of the Card',
+      type: 'boolean',
+    },
+    webcast: {
+      description: 'Turns Card into Webcast Card',
+      type: 'boolean',
+    },
+    event: {
+      description: 'Enables Event Variant of the Card',
+      type: 'boolean',
+    },
+    target: {
+      description: 'Headline Target',
+      type: 'target',
+    },
+    youtubeUrl: {
+      description: 'Card links to a Youtube Video',
+      type: 'string',
+    },
+    long: {
+      description: 'Enables Long Variant of the Card',
+      type: 'boolean',
+    },
+    subpoints: {
+      description: 'A List of Subpoints within the Card Content',
+      type: 'array',
+    },
+    scope: {
+      description: 'Displays a Time Scope on the Card',
+      type: 'string',
+    },
+    footer: {
+      description: 'Creates a Footer on the Card',
+      type: 'string',
+    },
+    product: {
+      description: 'Product Variant of Cards, Includes Subpoints e.g. Tenant/Contacts/Other',
+      type: 'array',
+    },
+    tag: {
+      description: 'Adds Tags to the Card',
+      type: 'array',
+    },
+    cta: {
+      description: 'Adds Button to the Card',
+      type: 'object',
+    },
+    hasAnimation: {
+      description: 'Adds Animation to the Card',
+      type: 'boolean',
+    },
+    index: {
+      description: 'Cards Animation Step',
+      type: 'number',
+    },
+    externalLanguage: {
+      description: 'Adds External Language to the Title',
+      type: 'string',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const BlogPost = Template.bind({});
-
-BlogPost.args = {
+export const BlogPost = createStory(component, {
   url: 'javascript:void(0);',
   layout: 'post',
   title: 'Can Microsoft Teams call 911?',
@@ -25,11 +111,9 @@ BlogPost.args = {
   socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
   excerpt:
     'In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
-};
+});
 
-export const BlogPostLarge = Template.bind({});
-
-BlogPostLarge.args = {
+export const BlogPostLarge = createStory(component, {
   large: true,
   url: 'javascript:void(0);',
   layout: 'post',
@@ -43,11 +127,9 @@ BlogPostLarge.args = {
   excerpt:
     '<strong>Test123</strong> & &quot;In allen Teams Voice Projekten&quot; "Wir&#8209;Gefühl" kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
   externalLanguage: 'English only',
-};
+});
 
-export const WithAnimation = Template.bind({});
-
-WithAnimation.args = {
+export const WithAnimation = createStory(component, {
   hasAnimation: true,
   url: 'javascript:void(0);',
   layout: 'post',
@@ -60,11 +142,9 @@ WithAnimation.args = {
   socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
   excerpt:
     'In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
-};
+});
 
-export const CardLong = Template.bind({});
-
-CardLong.args = {
+export const CardLong = createStory(component, {
   long: true,
   scope: 'Umfang: 1-2 Tage',
   layout: 'post',
@@ -84,11 +164,9 @@ CardLong.args = {
     text: 'Lorem ipsum',
     href: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
   },
-};
+});
 
-export const Webcast = Template.bind({});
-
-Webcast.args = {
+export const Webcast = createStory(component, {
   youtubeUrl: 'https://www.youtube.com/watch?v=m2pa27Hv8K0',
   title: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   moment: '2022-02-16',
@@ -100,11 +178,9 @@ Webcast.args = {
   tags: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
   excerpt:
     'In allen Teams Voice Projekten kommt man mit dem Kunden an den Punkt, dass man über ein Konzept für Notrufe sprechen muss. Unsere generelle Empfehlung ist, die Mitarbeiter anzuweisen, Notrufe von ihrem Handy aus zu tätigen. Dies ist jedoch nicht bei allen Kunden möglich. Daher muss auch dieses Szenario mit den Möglichkeiten der Teams Voice Plattform abgedeckt werden.',
-};
+});
 
-export const Product = Template.bind({});
-
-Product.args = {
+export const Product = createStory(component, {
   title: 'Unified Contact',
   blogtitlepic: 'products/unified-contacts/unified-contacts-products-header.png',
   tag: {
@@ -154,4 +230,4 @@ Product.args = {
       ],
     },
   ],
-};
+});

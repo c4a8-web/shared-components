@@ -1,19 +1,95 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includeseventdetailhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Event Detail',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    detailColor: {
+      description: 'Sets the Event Detail Color',
+      control: {
+        type: 'text',
+      },
+    },
+    detailShapeColor: {
+      description: 'Sets the Event Detail Shape Color',
+      control: {
+        type: 'text',
+      },
+    },
+    headline: {
+      description: 'Headline of Event Detail',
+      type: 'string',
+    },
+    name: {
+      description: 'Name of the Event Presenters/Hosts',
+      type: 'array',
+    },
+    headlineLevel: {
+      description: 'Adds classes for the Headline Level',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Headline Levels',
+        detail: 'h1, h2, h3, h4',
+      },
+    },
+    headlineClasses: {
+      description: 'Adds helper classes for the Headline',
+      control: {
+        type: 'text',
+      },
+    },
+    content: {
+      description: 'Event Detail Content',
+      type: 'string',
+    },
+    form: {
+      description: 'Contact form',
+      type: 'object',
+    },
+    formAdditionalFields: {
+      description: 'Adds additional Fields to the Form',
+      type: 'array',
+    },
+    formReplaceValue: {
+      description: 'Replaces Input Value for Forms',
+      type: 'string',
+    },
+    image: {
+      description: 'Event Detail Image',
+      type: 'object',
+    },
+    badge: {
+      description: 'Adds Badge to the Even Detail Page',
+      type: 'object',
+    },
+    price: {
+      description: 'The Event Price',
+      type: 'string',
+    },
+    moment: {
+      description: 'Specific Date',
+      type: 'string',
+    },
+    shapes: {
+      description: 'Event Detail Shapes',
+      type: 'object',
+    },
+    time: {
+      description: 'Time  or time span of an Event',
+      control: {
+        type: 'text',
+      },
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const EventDetail = Template.bind({});
-
-EventDetail.args = {
+export const EventDetail = createStory(component, {
   form: {
     uncentered: true,
     ctaText: 'Anfrage Absenden',
@@ -120,4 +196,4 @@ EventDetail.args = {
   time: '14:15 Uhr',
   content:
     '<p>Weit hinten, hinter den Wortbergen, fern der Länder Vokalien und Konsonantien leben die Blindtexte. Abgeschieden wohnen sie in Buchstabhausen an der Küste des Semantik, eines großen Sprachozeans.</p><h2>Your department, current job:</h2><p>I work as a senior consultant in the Azure department. I spend most of my days together with customers in varying projects and aside to that I lead the development of gk-gab Azure Foundation product, run trainings on anything related to Azure, DevOps or Infrastructure as a Code practice and participate in the internal process development.</p><h2>That is why I chose GK-GAB:</h2><p>I was recruited by gk-gab (GAB Exactly IT back then) shortly after our family had moved to Germany, leaving our home country Finland behind. Changing to a new employer at the time we were still settling down was definitely not an easy decision to make but having former colleagues in the company and the opportunity for being a part of building a practice around the Azure technology was too tempting to turn down. And looking back the 1,5 years I have been at gk-gab, I`m happy to have made the right decision.</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</p><p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr,</p>',
-};
+});
