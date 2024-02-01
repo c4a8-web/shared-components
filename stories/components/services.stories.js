@@ -50,22 +50,32 @@ ServicesSocials.args = {
     {
       text: 'Azure Active Directory',
       href: 'javascript:void(0)',
+      external: true,
+      link: true,
     },
     {
       text: 'Azure Virtual Desktop',
       href: 'javascript:void(0)',
+      external: true,
+      link: true,
     },
     {
       text: 'Exchange Online',
       href: 'javascript:void(0)',
+      external: true,
+      link: true,
     },
     {
       text: 'Microsoft 365',
       href: 'javascript:void(0)',
+      external: true,
+      link: true,
     },
     {
       text: 'Microsoft Intune',
       href: 'javascript:void(0)',
+      external: true,
+      link: true,
     },
   ],
   socials: {
