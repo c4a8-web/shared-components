@@ -157,3 +157,12 @@ job-list-detail {
   min-height: 100vh;
   display: block;
 }
+
+.job-list__detail-description {
+  &.richtext {
+    span,
+    p {
+      font-family: inherit !important;
+    }
+  }
+}

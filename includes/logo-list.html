@@ -2,11 +2,15 @@
 {%- assign logoList = include.logoList -%}
 {%- assign logoListSticky = include.sticky -%}
 {%- assign logoListSpacing = include.spacing -%}
+{%- assign logoListColumns = include.columns -%}
+{%- assign logoListAspectRatio = include.aspectRatio -%}
 
 <logo-list
   :list="{{ logoList | jsonify | escape }}"
   sticky="{{ logoListSticky }}"
   spacing="{{ logoListSpacing }}"
+  :columns="{{ logoListColumns }}"
+  aspect-ratio="{{ logoListAspectRatio }}"
 >
 </logo-list>
 <!-- End Shared Logo List Section -->

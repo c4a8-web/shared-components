@@ -47,3 +47,29 @@
 .is-centered {
   text-align: center;
 }
+
+.is-uppercase {
+  text-transform: uppercase;
+}
+
+.has-card-background {
+  background-color: var(--color-card-background);
+}
+
+.full-width-container {
+  overflow-x: hidden;
+}
+
+.is--desktop {
+  display: none;
+}
+
+@include media-breakpoint-up(lg) {
+  .is--desktop {
+    display: block;
+  }
+
+  .is--mobile {
+    display: none;
+  }
+}

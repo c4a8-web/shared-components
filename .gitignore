@@ -6,5 +6,7 @@ node_modules
 .storybook/generatedIncludes.js
 storybook-static
 .vscode/
+.env.local
+yarn-error.log
 
 NOTES.md

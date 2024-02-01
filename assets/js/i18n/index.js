@@ -17,12 +17,20 @@ class i18n {
     });
   }
 
-  translate(key) {
+  translate(key, args) {
     if (this.translations && this.translations[key]) {
-      return this.translations[key];
+      return args ? this.translations[key].replace('%s', args) : this.translations[key];
     }
 
     return `Translation key ${key} not found in ${this.lang} lang File`;
+  }
+
+  getTranslationData(keyList) {
+    return keyList.reduce((accumulatedTranslations, key) => {
+      accumulatedTranslations[key] = this.translate(key);
+
+      return accumulatedTranslations;
+    }, {});
   }
 }
 

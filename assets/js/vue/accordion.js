@@ -157,6 +157,7 @@ export default {
         <div :class="columnClasses">
           <headline
             :text="accordion.headline"
+            :classes="accordion.headlineClasses"
           />
           <div class="accordion__subline font-size-2" v-if="accordion.subline">{{ accordion.subline }}</div>
         </div>

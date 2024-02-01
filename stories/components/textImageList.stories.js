@@ -23,7 +23,7 @@ Default.args = {
       copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
     },
     {
-      image: getAssetPath('svg/icons/icon-consulting-services.svg'),
+      image: getAssetPath('svg/icons/icon-products.svg'),
       alt: 'Lorem Ipsum',
       headline: 'Expertise Lorem Ipsum 2',
       copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',

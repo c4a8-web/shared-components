@@ -28,6 +28,7 @@ body {
   --utility-animation-index: 1;
   --utility-animation-distance: 25%;
   --utility-animation-to-opacity: 1;
+  --utility-animation-items-loaded: 0;
   --icon-scale: 1;
 
   font-family: var(--font-family);
@@ -49,6 +50,7 @@ body {
 
 body {
   line-height: var(--type-default-line-height);
+  background-color: var(--color-background);
 }
 
 .other {
@@ -76,13 +78,11 @@ ul.dashed {
   list-style-type: none;
 }
 
-ul.dashed li:before {
-  content: '\2014';
-  position: absolute;
-  margin-left: -30px;
-  color: var(--color-macaroni-and-cheese);
+ul {
+  &.dashed {
+    @include bulletpoints;
+  }
 }
-
 .drop-shadow {
   filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.2));
 }

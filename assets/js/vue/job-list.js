@@ -1,4 +1,4 @@
-import RecruiterBox from '../recruiter-box.js';
+import JobListings from '../job-listings.js';
 import State from '../state.js';
 import Loading from '../loading.js';
 import Tools from '../tools.js';
@@ -34,8 +34,7 @@ export default {
     },
   },
   mounted() {
-    this.api = new RecruiterBox({
-      // ...this.options, // TODO check if we need options
+    this.api = new JobListings({
       ...(this.jobId && { jobId: this.jobId }),
       ...(this.apiUrl && { apiUrl: this.apiUrl }),
       client_name: this.clientName,
@@ -43,7 +42,9 @@ export default {
 
     if (this.lang) {
       this.api.setLang(this.lang);
-    } else if (this.tagList) {
+    }
+
+    if (this.tagList) {
       this.api.setFilter({ tags: this.tagList });
     }
 
@@ -132,7 +133,7 @@ export default {
 
         Promise.all(this.promises)
           .then(() => {
-            const orderedList = this.orderList(localData.objects);
+            const orderedList = this.api.getOrderedList(localData.objects);
 
             this.filterJobs(data, orderedList);
           })
@@ -180,30 +181,6 @@ export default {
       }
 
       this.stopLoading();
-    },
-    orderList(list) {
-      const orderedList = [];
-      const unordedList = [];
-
-      for (let i = 0; i < list.length; i++) {
-        const entry = list[i];
-
-        if (!entry) continue;
-
-        const { id } = entry;
-
-        if (!id) continue;
-
-        const index = this.jobData?.order?.findIndex((item) => item === id);
-
-        if (index !== -1) {
-          orderedList[index] = entry;
-        } else {
-          unordedList.push(entry);
-        }
-      }
-
-      return [...orderedList, ...unordedList];
     },
     showExpandButton() {
       this.hasExpand = true;
@@ -259,7 +236,6 @@ export default {
     },
     getDetailUrl(data) {
       if (typeof this.detailUrl !== 'object') return this.detailUrl;
-      if (data?.tags?.length === 0) return this.detailUrl.default;
 
       const lang = this.api.getLangFromEntry(data);
 

@@ -4,7 +4,16 @@ const es = {
   part_time: 'Tiempo parcial',
   contract: 'Contrato de trabajo',
   gender: '(h/m/d)',
-  formAttachmentsWrongType: 'Elija un formato de archivo válido',
+  formAttachmentsWrongType:
+    'Elija un formato de archivo válido y asegúrese de que el nombre del archivo no contiene caracteres especiales.',
+  formAttachmentsMaxFiles: 'Máx. %s archivos',
+  formAttachmentsMaxSize: 'Uno o más archivos son demasiado grandes.',
+  onlyLanguage: 'Sólo español',
+  moreEvents: 'Otras fechas',
+  positionTypePermanently: 'Puesto permanente',
+  positionTypeInternship: 'Prácticas',
+  positionTypeTraining: 'Educación',
+  positionTypeStudent: 'Estudiantes que trabajan',
 };
 
 export default es;

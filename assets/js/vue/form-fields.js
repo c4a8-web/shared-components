@@ -1,5 +1,13 @@
+import Events from '../events.js';
+
 export default {
   tagName: 'form-fields',
+  data() {
+    return {
+      edited: false,
+      userValue: null,
+    };
+  },
   computed: {
     classList() {
       return [
@@ -33,14 +41,43 @@ export default {
       return this.field.placeholder ? this.field.placeholder : null;
     },
     value() {
-      return this.replaceValue && this.field.value === '#form-field-replace-value#'
-        ? this.replaceValue
-        : this.field.value;
+      if (this.edited) return this.userValue;
+
+      const fieldValue =
+        this.replaceValue && this.field.value === '#form-field-replace-value#'
+          ? this.replaceValue
+          : this.field.value
+            ? this.field.value
+            : null;
+
+      return fieldValue;
     },
+  },
+  mounted() {
+    const parent = this.$parent;
+
+    if (!parent) return;
+
+    const parentElement = parent.$el;
+
+    if (!parentElement) return;
+
+    parentElement.addEventListener('reset', this.handleReset);
   },
   methods: {
     getRequiredMsg(element) {
       return element.requiredMsg ? element.requiredMsg : '';
+    },
+    handleChange(e) {
+      const currentTarget = e.currentTarget;
+      const value = currentTarget.value;
+
+      this.edited = true;
+      this.userValue = value;
+    },
+    handleReset() {
+      this.edited = false;
+      this.userValue = null;
     },
   },
   props: {
@@ -61,7 +98,7 @@ export default {
       <div :class="classList" data-utility-animation-step="1">
         <template v-if="field.type === 'textarea'">
           <label class="input-label" :for="id">{{ field.label }}</label>
-          <textarea class="form-control form-textarea" :id="id" :name="id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly"></textarea>
+          <textarea class="form-control form-textarea" :id="id" :name="id" rows="4" :placeholder="placeholder" :required="required" :readonly="readonly" :data-msg="getRequiredMsg(field)"></textarea>
         </template>
         <template v-else-if="field.type ==='checkbox'">
           <form-checkbox :checkbox="field" :id="id" />
@@ -94,7 +131,7 @@ export default {
         </template>
         <template v-else-if="field.type">
           <label class="input-label" :for="id">{{ field.label }}</label>
-          <input :type="field.type" :id="id" :name="id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
+          <input ref="input" @change="handleChange" @keyup="handleChange" :type="field.type" :id="id" :name="id" class="form-control" :data-msg="getRequiredMsg(field)" :value="value" :placeholder="placeholder" :required="required" :readonly="readonly">
         </template>
       </div>
     </template>`,

@@ -46,8 +46,8 @@ export const Contact = createStory(component, {
           name: 'Hast du Fragen? Sprich uns gerne an!',
           details: [
             {
-              text: 'kontakt@glueckkanja-gab.com',
-              href: 'mailto:kontakt@glueckkanja-gab.com',
+              text: 'kontakt@glueckkanja.com',
+              href: 'mailto:kontakt@glueckkanja.com',
               icon: 'site/mail',
             },
             {
@@ -104,7 +104,7 @@ export const Contact = createStory(component, {
             {
               type: 'hidden',
               id: '_to',
-              value: 'loremipsum@glueckkanja-gab.com',
+              value: 'loremipsum@glueckkanja.com',
             },
             {
               type: 'hidden',
@@ -131,8 +131,8 @@ export const Emergency = createStory(component, {
           name: 'Hast du Fragen? Sprich uns gerne an!',
           details: [
             {
-              text: 'kontakt@glueckkanja-gab.com',
-              href: 'mailto:kontakt@glueckkanja-gab.com',
+              text: 'kontakt@glueckkanja.com',
+              href: 'mailto:kontakt@glueckkanja.com',
               icon: 'site/mail',
             },
             {
@@ -189,7 +189,7 @@ export const Emergency = createStory(component, {
             {
               type: 'hidden',
               id: '_to',
-              value: 'loremipsum@glueckkanja-gab.com',
+              value: 'loremipsum@glueckkanja.com',
             },
             {
               type: 'hidden',

@@ -2,7 +2,7 @@ $post-offset-spacing-xl: 7.5rem;
 $post-content-width-lg: 80%;
 
 .post {
-  container-type: inline-size;
+  container-type: normal;
 
   .post-title {
     @include richtext-width;

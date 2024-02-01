@@ -106,8 +106,8 @@ export default {
               </ul>
               <!-- End Nav Link -->
               <template v-for="(highlight, index) in dataValue.highlights">
-                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-75 w-lg-100 pr-6">{{ highlight.title }}</span>
-                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-75']">
+                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ highlight.title }}</span>
+                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
                   <v-img
                     cloudinary=true
                     v-bind="highlight"
@@ -123,10 +123,11 @@ export default {
                   <div class="w-lg-50 space-bottom-2" v-html="dataValue.introduction"></div>
                 </div>
 
-                <div :class="['col-lg-6 w-90 w-lg-100 space-top-1', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
+                <div :class="['footer__partner-images col-lg-6 w-90 w-lg-100 space-top-1', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
                   <v-img
                     cloudinary=true
                     v-bind="partner"
+                    class="footer__partner-image"
                   ></v-img>
                 </div>
               </div>

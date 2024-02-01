@@ -37,6 +37,12 @@ ArrowExternal.args = {
   icon: 'arrow-external',
 };
 
+export const ArrowCurl = Template.bind({});
+
+ArrowCurl.args = {
+  icon: 'arrow-curl',
+};
+
 export const Close = Template.bind({});
 
 Close.args = {
@@ -56,6 +62,13 @@ CloseCircleHover.args = {
   icon: 'close',
   circle: true,
   hover: true,
+};
+
+export const Hand = Template.bind({});
+
+Hand.args = {
+  icon: 'hand',
+  size: 'xxl',
 };
 
 export const Rocket = Template.bind({});
@@ -192,4 +205,18 @@ Check.args = {
   circle: true,
   size: 'large',
   hasBackground: true,
+};
+
+export const Bin = Template.bind({});
+
+Bin.args = {
+  icon: 'bin',
+  size: 'large',
+};
+
+export const Meerkat = Template.bind({});
+
+Meerkat.args = {
+  icon: 'meerkat',
+  size: 'xxl',
 };

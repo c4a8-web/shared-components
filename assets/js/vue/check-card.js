@@ -5,7 +5,11 @@ export default {
   tagName: 'check-card',
   computed: {
     classList() {
-      return ['check-card vue-component', this.hasProducts ? 'check-card--products' : null];
+      return [
+        'check-card vue-component',
+        this.hasProducts ? 'check-card--products' : null,
+        this.classes ? this.classes : null,
+      ];
     },
     checkCardsContainerClass() {
       return ['check-card__container utility-animation fade-in-bottom js-slick-carousel slick--single-list'];
@@ -105,6 +109,7 @@ export default {
     products: {
       default: null,
     },
+    classes: String,
   },
   template: `
     <div :class="classList">

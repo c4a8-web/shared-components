@@ -253,19 +253,10 @@ You also need to create a color theme file for your new site in `scss/themes` yo
 After that you need to add that theme to the Theme Switcher Addon of Storybook. Go to `.storybook/themes/src` add your theme in `defaults.js` and in `.storybook/themeImports.js` add
 the path to the themes scss.
 
-## CloudCannon
+## Personio
 
-In order for cloud cannon to work with this submodule which they can't out of the box we need a preinstall hook to clone the repo.
-For that go to the `.cloudcannon` folder and create a file `preinstall` with this content:
-
-```
-#!/bin/bash
-
-cd ./_includes
-rm -Rf shared-components
-
-git clone --branch 0.0.1 https://github.com/c4a8-web/shared-components.git
+In order for personio to work you need to create a file called `.env.local` where you need to add the local subscription api key
 
 ```
-
-The 0.0.1 stands for the latest tag that was released so the number might be different now.
+STORYBOOK_PERSONIO_API_KEY=INSERT_PERSONIO_LOCAL_API_KEY_HERE
+```

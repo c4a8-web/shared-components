@@ -1,80 +1,85 @@
-{%- if page.scripts.sticky or page.layout == 'post' or page.layout == 'testimonial' or page.layout == 'event' or page.layout == 'casestudies' -%}
-  {%- assign loadSticky = true -%}
+{% if site.shared_bundle && jekyll.environment == "production" or jekyll.environment == "staging" -%}
+  <script src="/_includes/shared-components/storybook-static/js/bundle/vendor.js"></script>
+  <script
+    type="module"
+    charset="UTF-8"
+    id="appjs"
+    src="/_includes/shared-components/assets/js/production-app.js"></script>
 {%- else -%}
-  {%- assign loadSticky = false -%}
-{%- endif -%}
 
-{%- if page.scripts.slick or page.layout == 'post' or page.scripts.team or page.layout == 'casestudies' -%}
-  {%- assign loadSlick = true -%}
-{%- else -%}
-  {%- assign loadSlick = false -%}
-{%- endif -%}
+  {%- if page.scripts.sticky or page.layout == 'post' or page.layout == 'testimonial' or page.layout == 'event' or page.layout == 'casestudies' -%}
+    {%- assign loadSticky = true -%}
+  {%- else -%}
+    {%- assign loadSticky = false -%}
+  {%- endif -%}
 
-{%- if page.scripts.lightbox or page.layout == 'post' or page.layout == 'casestudies' or layout.scripts.lightbox -%}
-  {%- assign loadLightbox = true -%}
-{%- else -%}
-  {%- assign loadLightbox = false -%}
-{%- endif -%}
+  {%- if page.scripts.slick or page.layout == 'post' or page.scripts.team or page.layout == 'casestudies' -%}
+    {%- assign loadSlick = true -%}
+  {%- else -%}
+    {%- assign loadSlick = false -%}
+  {%- endif -%}
 
-<!-- SCRIPTS SECTION -->
+  {%- if page.scripts.lightbox or page.layout == 'post' or page.layout == 'casestudies' or layout.scripts.lightbox -%}
+    {%- assign loadLightbox = true -%}
+  {%- else -%}
+    {%- assign loadLightbox = false -%}
+  {%- endif -%}
 
-<!-- JS Global Compulsory -->
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery/dist/jquery.min.js"></script>
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- SCRIPTS SECTION -->
 
-<!-- JS Implementing Plugins -->
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-header/dist/hs-header.min.js"></script>
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-mega-menu/dist/hs-mega-menu.min.js"></script>
-{% if loadSlick %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js"></script>
-{% endif %}
-{% if loadLightbox %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
-{% endif %}
-{% if page.scripts.form or layout.scripts.form %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
-{% endif %}
-{% if page.scripts.cubeportfolio %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
-{% endif %}
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/dzsparallaxer/dzsparallaxer.js"></script>
-<script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-unfold/dist/hs-unfold.min.js"></script>
-{% if page.scripts.google-map %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/leaflet/dist/leaflet.js"></script>
-{% endif %}
+  <!-- JS Global Compulsory -->
+  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery/dist/jquery.min.js"></script>
+  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
+  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
-{% if page.scripts.videobg %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-video-bg/dist/hs-video-bg.min.js"></script>
-{% endif %}
-{% if page.scripts.rangeSlider %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/ion-range-slider/ion-rangeslider.js"></script>
-{% endif %}
-{% if page.scripts.dummy %}
+  <!-- JS Implementing Plugins -->
+  {% if loadSlick %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js"></script>
+  {% endif %}
+  {% if loadLightbox %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+  {% endif %}
+  {% if page.scripts.form or layout.scripts.form %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/jquery-validation/dist/jquery.validate.min.js"></script>
+  {% endif %}
+  {% if page.scripts.cubeportfolio %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/cubeportfolio/js/jquery.cubeportfolio.min.js"></script>
+  {% endif %}
+  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-unfold/dist/hs-unfold.min.js"></script>
+  {% if page.scripts.google-map %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/leaflet/dist/leaflet.js"></script>
+  {% endif %}
+
+  {% if page.scripts.rangeSlider %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/ion-range-slider/ion-rangeslider.js"></script>
+  {% endif %}
+  {% if page.scripts.dummy %}
+    <script>
+      console.log('js for dummy snippet loaded')
+    </script>
+  {% endif %}
+
+  <!-- JS Front -->
+  <script src="/_includes/shared-components/assets/front/dist/assets/js/theme.min.js"></script>
+  {% if page.scripts.form %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/js/hs.validation.js"></script>
+  {% endif %}
+  {% if loadSticky %}
+    <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js"></script>
+  {% endif %}
+
+  <!-- JS App -->
   <script>
-    console.log('js for dummy snippet loaded')
+    window.partialsPath = '/_includes/shared-components/includes/';
   </script>
+  <script
+    type="module"
+    charset="UTF-8"
+    src="{{ site.baseurl }}/assets/js/app.js"
+    ignoresrc="/_includes/shared-components/assets/js/production-app.js"
+    id="appjs"
+  ></script>
 {% endif %}
-
-<!-- JS Front -->
-<script src="/_includes/shared-components/assets/front/dist/assets/js/theme.min.js"></script>
-{% if page.scripts.form %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/js/hs.validation.js"></script>
-{% endif %}
-{% if loadSticky %}
-  <script src="/_includes/shared-components/assets/front/dist/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js"></script>
-{% endif %}
-
-<!-- JS App -->
-<script>
-  window.partialsPath = '/_includes/shared-components/includes/';
-</script>
-<script
-  type="module"
-  charset="UTF-8"
-  src="{{ site.baseurl }}/assets/js/app.js"
-  id="appjs"
-></script>
 
 <script>
   document.addEventListener('SHARED_COMPONENTS_READY', function load() {
@@ -172,10 +177,6 @@
 
     // end of synchronous or asynchronous jQuery-related code
   }, false);</script>
-
-{% if jekyll.environment == "production" and site.google_analytics_enabled %}
-  {% include google-analytics.html %}
-{% endif %}
 
 <style>
 .a {

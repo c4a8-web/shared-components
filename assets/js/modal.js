@@ -2,8 +2,9 @@ import State from './state.js';
 import Events from './events.js';
 import Form from './components/form.js';
 import FormAttachments from './components/form-attachments.js';
-import RecruiterBox from './recruiter-box.js';
+import JobListings from './job-listings.js';
 import Tools from './tools.js';
+import StatusCodes from './statusCodes.js';
 
 class Modal {
   static rootSelector = '.modal';
@@ -15,6 +16,7 @@ class Modal {
 
     this.closeSelector = '.modal__close';
     this.successCloseSelector = '.modal__success-close .cta';
+    this.errorCloseSelector = '.modal__error-close .cta';
     this.applicationSelector = '.modal__application';
     this.modalSuccessHeadlineSelector = '.modal__success-headline > *';
     this.buttonSelector = '[data-trigger="modal"]';
@@ -22,6 +24,7 @@ class Modal {
 
     this.close = this.root.querySelector(this.closeSelector);
     this.successClose = this.root.querySelector(this.successCloseSelector);
+    this.errorClose = this.root.querySelector(this.errorCloseSelector);
     this.application = this.root.querySelector(this.applicationSelector);
     this.form = this.root.querySelector(this.formSelector);
     this.modalId = this.root.dataset.modalId;
@@ -32,11 +35,17 @@ class Modal {
       this.clientName = this.root.dataset.clientName;
       this.apiUrl = this.root.dataset.apiUrl;
       this.jobId = this.root.dataset.jobId;
+      this.apiKey = this.root.dataset.apiKey;
+      this.mockApplyUrl = this.root.dataset.mockApplyUrl;
+      this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl;
 
-      this.api = new RecruiterBox({
+      this.api = new JobListings({
         ...(this.jobId && { jobId: this.jobId }),
         ...(this.apiUrl && { apiUrl: this.apiUrl }),
         client_name: this.clientName,
+        apiKey: this.apiKey,
+        mockApplyUrl: this.mockApplyUrl,
+        mockDocumentsUrl: this.mockDocumentsUrl,
       });
     }
 
@@ -50,6 +59,7 @@ class Modal {
   bindEvents() {
     this.close?.addEventListener('click', this.handleClose.bind(this));
     this.successClose?.addEventListener('click', this.handleClose.bind(this));
+    this.errorClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
       const parent = this.root.parentNode;
@@ -87,6 +97,8 @@ class Modal {
     e.preventDefault();
     e.stopImmediatePropagation();
 
+    this.setLoading(true);
+
     const base64 = this.form.querySelector(FormAttachments.base64Selector);
     const base64Value = base64?.value;
     let fields = this.api.getFormData(this.form);
@@ -94,39 +106,45 @@ class Modal {
     let fileData;
 
     if (base64Value) {
+      // this does not work with multiple files or pretty large files
       fileData = {
         name: base64.dataset.fileName,
       };
     } else {
       const fileInput = this.form.querySelector('input[type="file"]');
 
-      fileData = fileInput?.files[0];
+      fileData = fileInput?.files;
     }
 
     if (fileData) {
-      if (base64Value) {
-        fields = this.api.applyFileData(fileData, base64Value, fields);
-        this.handleApplicationRequest(fields);
-      } else {
-        Tools.toBase64(fileData).then((data) => {
-          fields = this.api.applyFileData(fileData, data, fields);
-          this.handleApplicationRequest(fields);
-        });
-      }
+      this.handleApplicationRequest(fields, fileData, base64Value);
     } else {
-      console.error('handle generic error no files');
-
       this.handleError();
     }
   }
 
-  handleApplicationRequest(fields) {
+  setLoading(mode) {
+    document.dispatchEvent(new CustomEvent(Events.LOAD_MODAL, { detail: mode }));
+  }
+
+  handleApplicationRequest(fields, fileData, base64Value) {
+    // TODO move this into job-listings
     this.api
-      .handleApply(fields)
-      .then(() => {
-        this.handleApplicationSuccess(fields);
+      .applyFileData(fileData, base64Value, fields)
+      .then((newFields) => {
+        this.api
+          .handleApply(newFields)
+          .then(() => {
+            this.setLoading(false);
+            this.handleApplicationSuccess(newFields);
+          })
+          .catch((e) => {
+            this.setLoading(false);
+            this.handleError(e);
+          });
       })
       .catch((e) => {
+        this.setLoading(false);
         this.handleError(e);
       });
   }
@@ -140,14 +158,29 @@ class Modal {
         modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
       }
 
-      const firstName = fields[0];
-      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName.value}`;
+      const firstName = fields.first_name;
+
+      modalSuccessHeadline.innerText = `${modalSuccessHeadline.dataset.text} ${firstName}`;
     }
   }
 
   handleError(e) {
-    console.error(`Error ${e}`);
-    // TODO add the generic error message here
+    if (!e) return console.error('handle generic error');
+
+    const message = typeof e === 'string' ? e : e.message ? e.message : e;
+    const statusCode = typeof e === 'object' && e.statusCode ? e.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
+
+    console.error('Modal Error', message);
+
+    if (statusCode === StatusCodes.PAYLOAD_TOO_LARGE) {
+      this.handlePayloadTooLarge(e);
+    } else {
+      this.root.classList.add(State.ERROR);
+    }
+  }
+
+  handlePayloadTooLarge(e) {
+    document.dispatchEvent(new CustomEvent(Events.FORM_ATTACHMENT_ERROR, { detail: e }));
   }
 
   handleClose(e) {
@@ -192,6 +225,7 @@ class Modal {
       form?.reset();
 
       element.classList.remove(State.SUCCESS);
+      element.classList.remove(State.ERROR);
     }, 200);
   }
 

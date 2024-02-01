@@ -34,7 +34,7 @@ export const Corporate = createStory(component, {});
 export const Product = createStory(component, {
   noMargin: true,
   data: {
-    name: 'glueckkanja-gab AG',
+    name: 'glueckkanja AG',
     street: 'Kaiserstraße 39',
     postalCode: 63065,
     city: 'Offenbach',
@@ -48,7 +48,7 @@ export const Product = createStory(component, {
         street: 'Level 1 9-13 Bronte Road',
         city: 'Bondi Junction NSW',
         country: 'Australia',
-        mail: 'info@glueckkanja-gab.com',
+        mail: 'info@glueckkanja.com',
         postalReversed: true,
       },
     ],
@@ -62,7 +62,7 @@ export const Product = createStory(component, {
     ],
     socials: [
       {
-        icon: 'fa-twitter',
+        icon: 'fa-x-twitter',
         url: 'https://twitter.com/RADIUSaaS',
         title: 'Twitter',
       },

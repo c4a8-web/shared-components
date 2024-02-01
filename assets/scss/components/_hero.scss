@@ -19,6 +19,7 @@
   .container {
     &.hero-text-image__background {
       &:not(.has-icon) {
+        overflow: hidden;
         padding-right: 0;
 
         .row {
@@ -132,6 +133,8 @@
         margin-top: spacing($size: 12, $negative: true);
 
         .text-animation__text {
+          word-wrap: break-word;
+          hyphens: auto;
           opacity: 0;
           animation: hero-text-animation-show-text 6s 4s;
           animation-fill-mode: forwards;

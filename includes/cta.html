@@ -18,6 +18,7 @@
 {%- assign ctaMonochrome = include.monochrome | default: false -%}
 {%- assign ctaActive = include.active | default: false -%}
 {%- assign ctaClasses = include.classes -%}
+{%- assign ctaLoading = include.loading -%}
 
 <cta
       text="{{ ctaText }}"
@@ -39,6 +40,7 @@
       :monochrome={{ ctaMonochrome }}
       classes="{{ ctaClasses }}"
       :active="{{ active }}"
+      :loading="{{ ctaLoading }}"
 >
 </cta>
 <!-- End Shared Cta Section -->

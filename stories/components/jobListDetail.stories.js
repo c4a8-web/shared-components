@@ -12,9 +12,10 @@ export default {
 const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
-  clientName: 'glueckkanja',
-  jobId: 'fk0stpa',
-  apiUrl: 'mock/job.json',
+  clientName: 'c4a8',
+  jobId: '1327578', // pick an active jobId for api testing like 1335399
+  apiUrl: 'mock/jobList.xml', // set to null for api testing
+  // apiKey: process.env.STORYBOOK_PERSONIO_API_KEY, // comment out for api testing
   base: {
     ctaText: 'Jetzt bewerben',
     ctaButton: true,
@@ -80,8 +81,8 @@ const baseArgs = {
         type: 'text',
         col: 6,
         rowStart: true,
-        id: 'portfolio',
-        showIn: ['fk0stpa'],
+        id: '2516986', // id from the custom_attribute_2516986
+        showIn: ['1335399'],
       },
       {
         label: 'Nachricht (optional)',
@@ -90,7 +91,7 @@ const baseArgs = {
       },
       {
         type: 'file',
-        col: 6,
+        col: 12,
         rowStart: true,
         rowEnd: true,
         formAttachments: {
@@ -98,9 +99,9 @@ const baseArgs = {
           requiredMsg: 'Bitte einen Anhang hinzufügen',
           id: 'file',
           description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-          text: 'Oder Datei auswählen',
+          text: 'Oder Dateien auswählen',
           extensions: ['pdf'],
-          maxSize: 10000000,
+          maxSize: 20000000,
         },
       },
       {
@@ -123,7 +124,7 @@ const baseArgs = {
       level: 'h3',
     },
     address: {
-      name: 'glueckkanja-gab AG',
+      name: 'glueckkanja AG',
       street: 'Kaiserstraße 39',
       postalCode: '63065',
       city: 'Offenbach am Main',
@@ -145,6 +146,20 @@ const baseArgs = {
     },
     text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
   },
+  modalError: {
+    cta: {
+      skin: 'primary',
+      width: 'w-100 w-lg-30',
+      text: 'Schließen',
+    },
+    headline: {
+      text: 'Ooops!',
+    },
+    subline: 'Etwas ist schief gelaufen!',
+    text: 'Bitte versuche es später noch einmal oder kontaktiere uns unter:',
+    mail: 'info@glueckkanja.de',
+    phone: '+49 69 4005520',
+  },
 };
 export const De = Template.bind({});
 
@@ -156,13 +171,43 @@ export const En = Template.bind({});
 
 En.args = {
   ...baseArgs,
-  jobId: 'fk034tm',
-  apiUrl: 'mock/jobEn.json',
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
 };
+
+// TODO figure out how to have an example that will work even though the job not be found
+// export const Unsolicited = Template.bind({});
+
+// Unsolicited.args = {
+//   ...baseArgs,
+//   // jobId: '1338121',
+//   apiKey: process.env.STORYBOOK_PERSONIO_API_KEY,
+//   apiUrl: null,
+// };
 
 export const WithVideo = Template.bind({});
 
 WithVideo.args = {
   ...baseArgs,
   jobId: 'videoInner',
+};
+
+export const ErrorGeneric = Template.bind({});
+
+ErrorGeneric.args = {
+  ...baseArgs,
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
+  mockApplyUrl: 'mock/jobApplyError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError500.json',
+};
+
+export const ErrorFileSize = Template.bind({});
+
+ErrorFileSize.args = {
+  ...baseArgs,
+  jobId: '1327578',
+  apiUrl: 'mock/jobListEn.xml',
+  mockApplyUrl: 'mock/jobApplyError.json',
+  mockDocumentsUrl: 'mock/jobDocumentsError413.json',
 };

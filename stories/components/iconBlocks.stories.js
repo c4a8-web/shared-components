@@ -36,19 +36,19 @@ Default.args = {
       },
       {
         image: getAssetPath('svg/icons-large/icon-endpoint-manager.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'Endpoint Manager',
         copy: '',
       },
       {
         image: getAssetPath('svg/icons-large/icon-m365-apps.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'Microsoft 365 Apps<br />for Enterprise',
         copy: '',
       },
       {
         image: getAssetPath('svg/icons-large/icon-realmjoin.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'RealmJoin',
         copy: '',
       },
@@ -89,19 +89,19 @@ CustomColumnCount.args = {
       },
       {
         image: getAssetPath('svg/icons-large/icon-endpoint-manager.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'Endpoint Manager',
         copy: '',
       },
       {
         image: getAssetPath('svg/icons-large/icon-m365-apps.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'Microsoft 365 Apps<br />for Enterprise',
         copy: '',
       },
       {
         image: getAssetPath('svg/icons-large/icon-realmjoin.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'RealmJoin',
         copy: '',
       },
@@ -137,21 +137,54 @@ HeadlineAndSticky.args = {
       },
       {
         image: getAssetPath('svg/icons-large/icon-endpoint-manager.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'Endpoint Manager',
         copy: '',
       },
       {
         image: getAssetPath('svg/icons-large/icon-m365-apps.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'Microsoft 365 Apps<br />for Enterprise',
         copy: '',
       },
       {
         image: getAssetPath('svg/icons-large/icon-realmjoin.svg'),
-        alt: 'Endpoint gkgab-SecOfferingMDATPOnePager',
+        alt: 'Endpoint gk-SecOfferingMDATPOnePager',
         headline: 'RealmJoin',
         copy: '',
+      },
+    ],
+  },
+};
+
+export const List = Template.bind({});
+
+List.args = {
+  iconBlocks: {
+    items: [
+      {
+        image: getAssetPath('svg/logos/logo-windows10.svg'),
+        alt: 'Windows 10',
+        headline: 'Windows 10',
+        copy: `
+          <ul class="dashed">
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+          </ul>
+        `,
+      },
+      {
+        image: getAssetPath('svg/logos/logo-windows10.svg'),
+        alt: 'Windows 11',
+        headline: 'Windows 11',
+        copy: `
+          <ul class="dashed">
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+            <li>Lorem Ipsum </li>
+          </ul>
+        `,
       },
     ],
   },

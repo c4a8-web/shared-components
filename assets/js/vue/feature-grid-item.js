@@ -60,23 +60,23 @@ export default {
   },
   template: `
     <div :class="classList" data-utility-animation-step="1" :style="style">
-      <div class="bg-white d-flex flex-column  h-100 py-5 px-3">
+      <div class="bg-white d-flex flex-column h-100 py-5 px-3">
         <figure class="w-100 max-w-10rem mb-5 mx-auto" v-if="image" >
           <v-img :img="image.src" :alt="image.alt" :cloudinary="image.cloudinary" />
         </figure>
 
         <headline v-if="title" :text="title" :level="headlineLevel" :classes="headlineClasses" />
 
-        <p v-if="description" class="mb-0">{{ description }}</p>
+        <p v-if="description" class="mb-0" v-html="description"></p>
         <p v-if="copy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="copy"></p>
 
-        <ul v-if="list" class="m-0 p-0 flex-grow-1" style="margin-bottom:10px !important;">
+        <ul v-if="list" class="dashed m-0 flex-grow-1" style="margin-bottom:10px !important;">
           <li v-for="text in list" class="feature-grid-item__text font-size-sm d-flex" d-flex v-html="text"></li>
         </ul>
 
         <p v-if="secondCopy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="secondCopy"></p>
 
-        <ul v-if="secondList" class="m-0 p-0 flex-grow-1">
+        <ul v-if="secondList" class="dashed m-0 p-0 flex-grow-1">
           <li v-for="text in secondList" class="feature-grid-item__text font-size-sm d-flex" v-html="text"></li>
         </ul>
 

@@ -20,7 +20,7 @@ export default {
       return [
         'video__player fade-in-bottom',
         `${this.variantClasses}`,
-        `${this.isPlayed ? 'video-player-played' : ''}`,
+        `${this.isPlayed ? 'video-player-played is-starting' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
         'vue-component',
       ];
@@ -65,7 +65,7 @@ export default {
         buttons: ['fullScreen', 'close'],
         media: {
           youtube: {
-            url: '//www.youtube-nocookie.com/embed/$4',
+            url: 'https://www.youtube-nocookie.com/embed/$4',
             params: {
               autoplay: 1,
             },
@@ -87,7 +87,7 @@ export default {
       return JSON.stringify(this.options);
     },
     dataSrc() {
-      return '//www.youtube-nocookie.com/' + this.videoParsed.id;
+      return 'https://www.youtube-nocookie.com/' + this.videoParsed.id;
     },
     embedSrc() {
       return YoutubePlayer.getEmbedSrc(this.videoParsed.id, this.options.isAutoplay);
@@ -152,7 +152,7 @@ export default {
               </a>
             </template>
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe v-if="isPlayed" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" width="640" height="360" :src="embedSrc" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"></iframe>
+              <iframe v-if="isPlayed" frameborder="0" allowfullscreen="1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" width="640" height="360" :src="embedSrc" sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"></iframe>
             </div>
           </template>
         </div>
@@ -172,9 +172,7 @@ export default {
                   <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses">
                 </div>
               </template>
-              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text">
-                {{ videoParsed.text }}
-              </div>
+              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text" v-html="videoParsed.text"></div>
               <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
                 {{ videoParsed.date }}
               </div>
