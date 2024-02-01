@@ -14,9 +14,10 @@ const getStoryLink = function (story) {
 
 const Header = {
   home: {
+    folderSwitch: ['authors'],
     name: 'home',
-    imgLight: '/logos/gkgab-Logo-white-vektor.svg',
-    img: '/logos/gkgab-Logo-vektor.svg',
+    imgLight: '/logos/gk-Logo-sw.svg',
+    img: '/logos/gk-Logo-rgb.svg',
     languages: {
       de: {
         title: 'Home DE',

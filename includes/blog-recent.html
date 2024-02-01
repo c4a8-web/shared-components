@@ -17,10 +17,12 @@
 {%- assign blogRecentCaseStudies = include.caseStudies -%}
 {%- assign blogRecentHideContainer = include.hideContainer -%}
 {%- assign blogRecentSticky = include.sticky -%}
+{%- assign blogRecentPosts = include.posts -%}
 
 {%
   include get-posts-data.html
   getSite=true
+  posts=blogRecentPosts
 %}
 
 {% assign sitePosts = getPostsData %}
@@ -111,14 +113,21 @@
         {%- if post.lang != page.lang -%}
           {%- assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage -%}
         {%- endif -%}
+
+        {%- if post.image.img -%}
+          {% capture blogRecentPostBlogTitlePic %}../..{{ post.image.img }}{% endcapture %}
+        {%- else -%}
+          {% assign blogRecentPostBlogTitlePic = post.blogtitlepic -%}
+        {%- endif -%}
+
         {
           "url": "{{ blogRecentPostUrl }}",
           "youtubeUrl": "{{ post.youtubeUrl }}",
           "layout": "{{ post.layout }}",
           "title": "{{ post.title | strip_html }}",
           "date": "{{ blogRecentPostDate }}",
-          "author": {{ post.author | jsonify }},
-          "blogtitlepic": "{{ post.blogtitlepic }}",
+          "author": {{ post.author | jsonify | default: 'null' }},
+          "blogtitlepic": "{{ blogRecentPostBlogTitlePic }}",
           "external": {{ blogRecentPostExternal }},
           "excerpt": "{{ post.excerpt | strip_html | strip_newlines | escape }}",
           "externalLanguage": "{{ postExternalLanguage }}"

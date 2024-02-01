@@ -8,12 +8,14 @@
 {%- assign teaserAlt = include.alt -%}
 {%- assign teaserId = include.id -%}
 {%- assign teaserHeadline = include.headline -%}
+{%- assign teaserHeadlineClasses = include.headlineClasses -%}
 {%- assign teaserOverline = include.overline -%}
 {%- assign teaserLogo = include.logo -%}
 {%- assign teaserLogoAlt = include.logoAlt -%}
 {%- assign teaserText = include.text -%}
-{%- assign teaserTextHtml = include.textHtml | default: false %}
+{%- assign teaserTextHtml = include.textHtml | default: false -%}
 {%- assign teaserPreset = include.preset | default: 'teaser' -%}
+{%- assign teaserSpacing = include.spacing -%}
 
 {% unless teaserTextHtml %}
   {%- assign teaserText = teaserText | strip_html -%}
@@ -29,16 +31,17 @@
 {% endif %}
 
 <!-- Shared Teaser Section -->
-<div class="teaser utility-animation {{ teaserLogoClass }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
+<div class="teaser utility-animation {{ teaserLogoClass }} {{ teaserSpacing }} {% if teaserId %}teaser--has-video"{% else %}hover__parent" onclick="this.querySelector('.teaser__cta a').click()" {% endif %}>
   <div class="container">
     <div class="row">
       <div class="teaser__row col">
         <span class="teaser__overline fade-in-bottom" data-utility-animation-step="1">{{ teaserOverline }}</span>
+        {% capture teaserHeadlineClassesWithDefault -%}{{ teaserHeadlineClasses }} teaser__headline fade-in-bottom{% endcapture %}
         {%
           include headline.html
           text=teaserHeadline
           level="h2"
-          classes="teaser__headline fade-in-bottom"
+          classes=teaserHeadlineClassesWithDefault
           utilityAnimationStep="1"
         %}
         <div class="teaser__video-wrapper fade-in-bottom" data-utility-animation-step="1">

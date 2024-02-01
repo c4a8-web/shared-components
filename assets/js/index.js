@@ -26,11 +26,12 @@ const Form = import('./components/form.js')
 let componentLoadingList;
 
 const componentList = [
-  import('./analytics.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleAdBlockerError),
+  // This is disabled for now because we want to check if users will complain or not
+  // import('./analytics.js')
+  //   .then((module) => {
+  //     return module.default;
+  //   })
+  //   .catch(handleAdBlockerError),
   import('./anchor.js')
     .then((module) => {
       return module.default;
@@ -71,11 +72,6 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
-  import('./components/form-attachments.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
   Form,
   import('./components/google-maps.js')
     .then((module) => {
@@ -88,11 +84,6 @@ const componentList = [
     })
     .catch(handleLoadingError),
   import('./components/pricing-slider.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./components/tab-list.js')
     .then((module) => {
       return module.default;
     })

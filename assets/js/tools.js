@@ -8,6 +8,12 @@ class Tools {
   static storagePrefix = '@gab_';
   static storybookPath = '/shared-components';
 
+  static decodeHTML = (input) => {
+    const document = new DOMParser().parseFromString(input, 'text/html');
+
+    return document.documentElement.textContent;
+  };
+
   static intersection = (r1, r2) => {
     const xOverlap = Math.max(0, Math.min(r1.x + r1.width, r2.x + r2.width) - Math.max(r1.x, r2.x));
     const yOverlap = Math.max(0, Math.min(r1.y + r1.height, r2.y + r2.height) - Math.max(r1.y, r2.y));
@@ -144,7 +150,7 @@ class Tools {
 
     const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
 
-    return Math.round(bytes / Math.pow(1024, i), 2) + ' ' + units[i];
+    return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + units[i];
   }
 
   static camalCaseToSnakeCase(camalCase) {
@@ -360,24 +366,118 @@ class Tools {
     return localStorage.getItem(Tools.storagePrefix + key);
   }
 
-  static getLang() {
-    return document.querySelector('html').getAttribute('lang').toLowerCase() || 'en';
-  }
-
   static getJSON(data) {
     if (data && typeof data === 'object' && Object.keys(data)?.length > 0) return data;
 
-    if (data && typeof data === 'string') return JSON.parse(data);
+    if (data && typeof data === 'string') {
+      try {
+        return JSON.parse(data);
+      } catch (error) {
+        console.error('Error parsing JSON:', data);
+
+        return;
+      }
+    }
 
     return;
   }
 
   static getElementBgColor(element) {
-    if (!element) return;
+    if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
 
     const color = window.getComputedStyle(element).backgroundColor;
 
     return color === 'rgba(0, 0, 0, 0)' ? null : color;
+  }
+
+  static isValidTimeFormat(timeStr) {
+    const regex = /^(\d{1,2}(:\d{2})?-\d{1,2}(:\d{2})? Uhr)$/;
+
+    return regex.test(timeStr);
+  }
+
+  static standardizeTimeFormat(time) {
+    if (!this.isValidTimeFormat(time)) return time;
+
+    const timeKeyWord = 'Uhr';
+
+    let times = time.split('-');
+    let startTime = times[0].trim();
+
+    if (!startTime.includes(':')) {
+      startTime += ':00';
+    }
+
+    if (startTime.length === 4) {
+      startTime = '0' + startTime;
+    }
+
+    let endTime = times[1].trim().replace(` ${timeKeyWord}`, '');
+
+    if (!endTime.includes(':')) {
+      endTime += ':00';
+    }
+
+    if (endTime.length === 4) {
+      endTime = '0' + endTime;
+    }
+
+    return `${startTime} - ${endTime} ${timeKeyWord}`;
+  }
+
+  static convertToDate(dateStr) {
+    const match = dateStr.match(/^(\d{1,2})\.-\d{1,2}\.(\d{1,2})\.(\d{4})$/);
+
+    if (match) {
+      const radix = 10;
+      const day = parseInt(match[1], radix);
+      const month = parseInt(match[2], radix) - 1;
+      const year = parseInt(match[3], radix);
+
+      return new Date(year, month, day);
+    }
+
+    return null;
+  }
+
+  static XMLtoJSON(xml) {
+    let obj = {};
+
+    if (xml.nodeType === Node.ELEMENT_NODE) {
+      if (xml.attributes.length > 0) {
+        obj['@attributes'] = {};
+        for (let j = 0; j < xml.attributes.length; j++) {
+          const attribute = xml.attributes.item(j);
+          obj['@attributes'][attribute.nodeName] = attribute.nodeValue;
+        }
+      }
+    } else if (xml.nodeType === Node.TEXT_NODE || xml.nodeType === Node.CDATA_SECTION_NODE) {
+      obj = xml.nodeValue;
+    }
+
+    if (xml.hasChildNodes()) {
+      for (let i = 0; i < xml.childNodes.length; i++) {
+        const item = xml.childNodes.item(i);
+        const nodeName = item.nodeName;
+
+        if (typeof obj[nodeName] === 'undefined') {
+          obj[nodeName] = this.XMLtoJSON(item);
+        } else {
+          if (typeof obj[nodeName].push === 'undefined') {
+            const old = obj[nodeName];
+            obj[nodeName] = [];
+            obj[nodeName].push(old);
+          }
+          obj[nodeName].push(this.XMLtoJSON(item));
+        }
+      }
+    }
+
+    return obj;
+  }
+
+  static hasFontSizeClass(classes) {
+    return classes.indexOf('-font-size') !== -1 || classes.indexOf('font-size-') !== -1;
   }
 }
 

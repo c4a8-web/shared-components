@@ -330,7 +330,7 @@ $font-style-map: (
     color: var(--color-headlines);
     margin-top: 0;
     margin-bottom: spacing(2);
-    line-height: 1.4em;
+    line-height: $default-line-height-headlines;
   }
 
   %font-size-xs,

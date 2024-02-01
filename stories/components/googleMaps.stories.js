@@ -41,7 +41,7 @@ const baseArgs = {
     longitude: '8.760059035466721',
   },
   address: {
-    name: 'glueckkanja-gab AG',
+    name: 'glueckkanja AG',
     street: 'Kaiserstraße 39',
     postalCode: '63065',
     city: 'Offenbach am Main',

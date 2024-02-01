@@ -301,11 +301,11 @@ $header-border-size: 1px;
 
   img {
     width: #{'min(30%, 36vw)'};
-    min-width: 130px;
+    min-width: 100px;
     height: auto;
 
     @include media-breakpoint-up($header-expand-breakpoint) {
-      min-width: 180px;
+      min-width: 140px;
     }
   }
 
@@ -393,8 +393,11 @@ $header-border-size: 1px;
     background-color: var(--color-header-border);
     z-index: 10;
     pointer-events: none;
-    transition: background-color 0.5s $animation-transition, height 0.5s $animation-transition,
-      width 0.5s $animation-transition, left 0.5s $animation-transition;
+    transition:
+      background-color 0.5s $animation-transition,
+      height 0.5s $animation-transition,
+      width 0.5s $animation-transition,
+      left 0.5s $animation-transition;
 
     @include media-breakpoint-up($header-expand-breakpoint) {
       display: none;
@@ -502,7 +505,9 @@ $header-border-size: 1px;
   left: 0;
   width: 100%;
   z-index: 5;
-  transition: transform $animation-transition 0.5s, opacity $animation-transition 0.4s;
+  transition:
+    transform $animation-transition 0.5s,
+    opacity $animation-transition 0.4s;
 }
 
 .header__flyout,
@@ -544,7 +549,9 @@ $header-border-size: 1px;
   gap: spacing(18);
 
   > * {
-    transition: opacity 0.5s 0.15s $animation-transition, transform 0.4s 0.15s $animation-transition;
+    transition:
+      opacity 0.5s 0.15s $animation-transition,
+      transform 0.4s 0.15s $animation-transition;
     flex: 1 0 var(--header-flyout-item-width);
 
     &.header__product-list {
@@ -746,12 +753,10 @@ $header-border-size: 1px;
 }
 
 .header__product-list {
-  transition: height 0.4s $animation-transition, opacity 0.5s 0.15s $animation-transition,
+  transition:
+    height 0.4s $animation-transition,
+    opacity 0.5s 0.15s $animation-transition,
     transform 0.4s 0.15s $animation-transition;
-
-  &:first-of-type {
-    margin-top: spacing(6);
-  }
 
   &:not(.is-expanded),
   &.in-transition {
@@ -876,7 +881,9 @@ $header-border-size: 1px;
   display: flex;
   gap: spacing(4);
   flex-direction: column;
-  transition: transform $animation-transition 0.5s, opacity $animation-transition 0.4s 0.1s;
+  transition:
+    transform $animation-transition 0.5s,
+    opacity $animation-transition 0.4s 0.1s;
 }
 
 .header__highlight-cta {
@@ -911,7 +918,9 @@ $header-border-size: 1px;
   display: flex;
   gap: spacing(4);
   flex-direction: column;
-  transition: transform $animation-transition 0.5s, opacity $animation-transition 0.4s 0.1s;
+  transition:
+    transform $animation-transition 0.5s,
+    opacity $animation-transition 0.4s 0.1s;
 }
 
 .header__nav-highlight {

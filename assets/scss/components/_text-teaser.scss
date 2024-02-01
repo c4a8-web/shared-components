@@ -3,3 +3,11 @@
 
   background-repeat: no-repeat;
 }
+
+.text-teaser__logo-container {
+  max-width: spacing(26);
+
+  @include media-breakpoint-up(lg) {
+    max-width: spacing(30);
+  }
+}

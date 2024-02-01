@@ -89,19 +89,6 @@ class TextAnimation extends BaseComponent {
     window.clearTimeout(this.timeout);
   }
 
-  updateStepAnimations() {
-    if (!this.icon) return;
-
-    const delayOffset = 150;
-    const updateDelay = this.lastDelay;
-
-    [].forEach.call(this.icon.querySelectorAll(`${this.iconStepSelector}${this.step + 1}`), (animation) => {
-      const delay = (updateDelay - delayOffset) / 1000 + 's';
-
-      animation.setAttribute('begin', delay);
-    });
-  }
-
   next() {
     if (this.step >= this.sequence.length - 1) return;
 
@@ -113,6 +100,15 @@ class TextAnimation extends BaseComponent {
 
     this.icon.classList.remove(`icon--step-${this.step - 1}`);
     this.icon.classList.add(`icon--step-${this.step}`);
+
+    this.startIconSteps();
+  }
+
+  startIconSteps() {
+    [].forEach.call(this.icon.querySelectorAll(`${this.iconStepSelector}${this.step}`), (animation) => {
+      animation.setAttribute('begin', '0s');
+      animation.beginElement();
+    });
   }
 
   resetText() {
@@ -141,7 +137,6 @@ class TextAnimation extends BaseComponent {
 
   animate() {
     this.calculateDelay();
-    this.updateStepAnimations();
     this.animateText();
 
     this.timeout = setTimeout(() => {

@@ -1,6 +1,4 @@
-const iconSmileStep1Time = '200s';
-const iconSmileStep2Time = '300s';
-const iconSmileStep3Time = '400s';
+const iconSmileStepTime = 'indefinite';
 
 export default {
   tagName: 'smile',
@@ -43,77 +41,77 @@ export default {
           M85,221.75a93.26,93.26,0,0,0,172.17,0;
           M164.55,220.75a93.26,174.26,0,0,0,54.17,-16
         "
-          begin="${iconSmileStep1Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-1" href="#smile-left-eye" attributeName="d" values="
           M92.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59;
           M113.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59
         "
-          begin="${iconSmileStep1Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-1" href="#smile-right-eye" attributeName="d" values="
           M250,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59;
           M229,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59
         "
-          begin="${iconSmileStep1Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-1" href="#smile-circle" attributeName="d" values="
           M170.12,335.42a165,165,0,1,1,0.1,0;
           M44.12,277.42a165,165,0,1,1,254.87,0
         "
-          begin="${iconSmileStep1Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-2" href="#smile-mouth" attributeName="d" values="
           M164.55,220.75a93.26,174.26,0,0,0,54.17,-16;
           M140.55,206.75a59.26,86.26,0,0,0,107.17,0
         "
-          begin="${iconSmileStep2Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-2" href="#smile-left-eye" attributeName="d" values="
           M113.13,139.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59;
           M127.13,129.25a3.59,3.59,0,1,1-3.59,3.59,3.59,3.59,0,0,1,3.59-3.59
         "
-          begin="${iconSmileStep2Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-2" href="#smile-right-eye" attributeName="d" values="
           M229,139.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59;
           M265,129.25a3.59,3.59,0,1,0,3.58,3.59,3.59,3.59,0,0,0-3.58-3.59
         "
-          begin="${iconSmileStep2Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-3" href="#smile-mouth" attributeName="d" values="
           M140.55,206.75a59.26,86.26,0,0,0,107.17,0;
           M85,221.75a93.26,93.26,0,0,0,172.17,0
         "
-          begin="${iconSmileStep3Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
         <animate class="js-text-animation__step-3" href="#smile-left-eyebrow" attributeName="d" values="
           M140.35,121.86a33.84,33.84,0,0,1-57.39,0;
           M140.35,121.86a33.84,33.84,0,0,1-57.39,0
         "
-          begin="${iconSmileStep3Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 0.4 0.6 1"
         />
         <animate class="js-text-animation__step-3" href="#smile-right-eyebrow" attributeName="d" values="
           M214.09,120.86a33.84,33.84,0,0,0,57.39,0;
           M214.09,120.86a33.84,33.84,0,0,0,57.39,0
         "
-          begin="${iconSmileStep3Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 0.4 0.6 1"
         />
         <animate class="js-text-animation__step-3" href="#smile-circle" attributeName="d" values="
           M44.12,277.42a165,165,0,1,1,254.87,0;
           M170.12,335.42a165,165,0,1,1,0.1,0
         "
-          begin="${iconSmileStep1Time}" dur="0.7s" fill="freeze" calcMode="spline"
+          begin="${iconSmileStepTime}" dur="0.7s" fill="freeze" calcMode="spline"
           keySplines="0.19 1 0.2 1"
         />
       </g>

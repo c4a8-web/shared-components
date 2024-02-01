@@ -54,6 +54,15 @@ class UtilityAnimation {
   }
 
   handleAnimationEnd(event) {
+    const group = this.getGroup(event.srcElement);
+
+    if (group) {
+      const itemsLoadedProperty = '--utility-animation-items-loaded';
+      const oldItemsValue = parseInt(group.style.getPropertyValue(itemsLoadedProperty), 10) || 0;
+
+      group.style.setProperty(itemsLoadedProperty, oldItemsValue + 1);
+    }
+
     this.updateCurrentElement(event);
 
     if (this.currentElements.length > 0) return;
@@ -81,6 +90,10 @@ class UtilityAnimation {
 
   startAnimation() {
     this.startStepAnimation(this.currentElements);
+  }
+
+  getGroup(element) {
+    return element.closest('.utility-animation__group');
   }
 
   initialize() {

@@ -223,3 +223,11 @@ export const PrimaryLinkReversed = createStory(component, {
   link: true,
   reversed: true,
 });
+
+export const PrimaryButtonLoading = createStory(component, {
+  text: 'Primary Button',
+  href: 'javascript:void(0)',
+  skin: 'primary',
+  button: true,
+  loading: true,
+});

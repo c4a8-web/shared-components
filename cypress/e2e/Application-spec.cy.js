@@ -1,4 +1,4 @@
-import { mockData } from '../fixtures/mockRecruit';
+import { mockData, mockResume, mockDocument } from '../fixtures/mockRecruit';
 
 function fillTheForm(test) {
   const title = Cypress.currentTest.title;
@@ -14,6 +14,14 @@ function fillTheForm(test) {
     cy.visit('http://localhost:6006/iframe.html?args=&id=pages-jobs--jobs&viewMode=story');
     cy.get('[data-text="Jetzt bewerben"]' || '[data-text="Apply now"]').click();
   }
+
+  cy.intercept('POST', '/mock/jobDocuments.json', (req) => {
+    req.reply({
+      status: 200,
+      body: mockDocument,
+    });
+  }).as('submitDocumentRequest');
+
   cy.intercept('POST', '/mock/jobApply.json', (req) => {
     req.reply({
       status: 200,
@@ -21,40 +29,45 @@ function fillTheForm(test) {
     });
   }).as('submitRequest');
 
+  const attributes = mockData.attributes;
+  const phone = attributes.find((attribute) => attribute.id === 'phone');
+
   cy.wait(500);
-  cy.get('.modal input[id$=firstName]:visible').type(mockData['candidate_first_name']);
+  cy.get('.modal input[id$=firstName]:visible').type(mockData['first_name']);
   cy.wait(500);
-  cy.get('.modal input[id$=lastName]:visible').type(mockData['candidate_last_name']);
+  cy.get('.modal input[id$=lastName]:visible').type(mockData['last_name']);
   cy.wait(500);
-  cy.get('.modal input[id$=email]:visible').type(mockData['candidate_email']);
+  cy.get('.modal input[id$=email]:visible').type(mockData['email']);
   cy.wait(500);
-  cy.get('.modal input[id$=phone]:visible').type(mockData['candidate_phone']);
+  cy.get('.modal input[id$=phone]:visible').type(phone.value);
   cy.wait(500);
   cy.get('label[for$=privacy]:visible').click();
   cy.wait(500);
 
-  if (title.includes('Default')) {
-    cy.get(`.modal .form-attachments__files`).invoke('attr', 'style', 'display: block');
-    cy.get(`.modal input[type$=file]`).selectFile(mockData['resume']);
-    cy.get(`.modal .form-attachments__files`).invoke('attr', 'style', 'display: none');
-  } else {
-    cy.get(`.modal .form-attachments:visible`).selectFile(mockData['resume'], { action: 'drag-drop' });
-  }
+  cy.get(`.modal .form-attachments__interactable:visible`).selectFile(mockResume, { action: 'drag-drop' });
 }
 
 function submitForm() {
   cy.wait(500);
   cy.get('.modal .cta:visible').click();
-  cy.wait('@submitRequest', { timeout: 1000 }).then((interception) => {
-    const arrayOfObjects = interception.request.body.fields;
-    const body = arrayOfObjects.reduce((result, { key, value }) => {
-      result[key] = value;
-      return result;
-    }, {});
 
+  cy.wait('@submitDocumentRequest', { timeout: 1000 })
+    .then((interception) => {
+      // TODO find a way to read form multipart data and compare it to mock data
+      expect(interception.response.statusCode).to.equal(200);
+    })
+    .debug();
+
+  cy.wait('@submitRequest', { timeout: 1000 }).then((interception) => {
+    const body = interception.request.body;
+
+    // TODO compoare files and attributes
     for (let key in mockData) {
-      !key.includes('resume') ? expect(body[key]).to.equal(mockData[key]) : cy.wrap(body[key]).should('exist');
+      if (!key.includes('files') && !key.includes('attributes') && body[key]) {
+        expect(body[key]).to.equal(mockData[key]);
+      }
     }
+
     expect(interception.response.statusCode).to.equal(200);
   });
 

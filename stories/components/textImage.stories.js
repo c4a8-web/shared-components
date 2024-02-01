@@ -14,7 +14,7 @@ const Template = (args) => createComponent(args, component);
 export const Right = Template.bind({});
 
 Right.args = {
-  image: getAssetPath('svg/icons/icon-consulting-services.svg'),
+  image: getAssetPath('svg/icons/icon-products.svg'),
   alt: 'Consulting Services',
   headline: 'Consulting Services',
   offset: true,
@@ -83,9 +83,8 @@ JobApplication.args = {
     trigger: 'modal',
   },
   modal: {
-    apiUrl: 'mock/job.json',
-    clientName: 'glueckkanja',
-    jobId: 'fk0slx5',
+    jobId: '1338121',
+    apiKey: process.env.STORYBOOK_PERSONIO_API_KEY,
     modalId: 'bewerbung1',
     form: {
       headline: 'Bewerbungsformular (m/w/d)',
@@ -158,9 +157,9 @@ JobApplication.args = {
             requiredMsg: 'Bitte einen Anhang hinzufügen',
             id: 'file',
             description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-            text: 'Oder Datei auswählen',
+            text: 'Oder Dateien auswählen',
             extensions: ['pdf'],
-            maxSize: 10000000,
+            maxSize: 20000000,
           },
         },
         {
@@ -240,7 +239,7 @@ LeftFloatingBg.args = {
   level: 'h2',
   left: true,
   float: true,
-  copy: 'Dieses Jahr findet die Workplace Ninja Virtual Edition 2021 <strong>vom 31. August bis 2. September </strong> statt. Eine der wichtigsten europäischen Technologiekonferenzen für Hardcore-Techies in ConfigMgr, Intune, Microsoft Security, Azure AD, PowerShell und Azure Virtual Desktop. Ziel der Veranstaltung ist es, Workplace-Experten zusammenzubringen, um ihr Wissen zu teilen und gemeinsam zu lernen. glueckkanja-gab ist dieses Jahr Platin-Sponsor und wird mit zwei Beiträgen dabei sein. Aufgrund der COVID-19 ist die Veranstaltung <strong>virtuell und komplett kostenlos</strong>. Die Anmeldung ist bereits möglich. Wir freuen uns darauf, euch dort zu treffen.',
+  copy: 'Dieses Jahr findet die Workplace Ninja Virtual Edition 2021 <strong>vom 31. August bis 2. September </strong> statt. Eine der wichtigsten europäischen Technologiekonferenzen für Hardcore-Techies in ConfigMgr, Intune, Microsoft Security, Azure AD, PowerShell und Azure Virtual Desktop. Ziel der Veranstaltung ist es, Workplace-Experten zusammenzubringen, um ihr Wissen zu teilen und gemeinsam zu lernen. glueckkanja ist dieses Jahr Platin-Sponsor und wird mit zwei Beiträgen dabei sein. Aufgrund der COVID-19 ist die Veranstaltung <strong>virtuell und komplett kostenlos</strong>. Die Anmeldung ist bereits möglich. Wir freuen uns darauf, euch dort zu treffen.',
   background: getAssetPath('svg/shapes/shape-5.svg'),
   list: [
     {

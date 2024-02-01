@@ -1,21 +1,16 @@
-import React, { Fragment } from "react";
-import {
-  Icons,
-  IconButton,
-  WithTooltip,
-  TooltipLinkList,
-} from "@storybook/components";
-import { useStorybookApi, useParameter, useAddonState } from "@storybook/api";
-import { TOOL_ID, ADDON_ID, PARAM_KEY, EVENTS, THEME_LIST } from "./themes";
+import React, { Fragment } from 'react';
+import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
+import { useStorybookApi, useParameter, useAddonState } from '@storybook/api';
+import { TOOL_ID, ADDON_ID, PARAM_KEY, EVENTS, THEME_LIST } from './themes';
 
 const getThemeName = function (type) {
   return THEME_LIST[type]?.name || `Theme by type ${type} not found`;
 };
 
 const defaultTheme = {
-  id: "reset",
-  title: "Reset Theme",
-  type: "gkgab",
+  id: 'reset',
+  title: 'Reset Theme',
+  type: 'gk',
 };
 
 const baseThemes = [defaultTheme];
@@ -59,10 +54,7 @@ const IconButtonLabel = function (props) {
 };
 
 export const Tool = function () {
-  const {
-    themes = THEME_LIST,
-    defaultThemeId = defaultTheme.id,
-  } = useParameter(PARAM_KEY, {});
+  const { themes = THEME_LIST, defaultThemeId = defaultTheme.id } = useParameter(PARAM_KEY, {});
 
   const list = toList(themes);
   const api = useStorybookApi();
@@ -81,10 +73,7 @@ export const Tool = function () {
     defaultTheme;
 
   const active = false;
-  const label =
-    selected === "reset"
-      ? getThemeName(defaultTheme.type)
-      : getThemeName(selected);
+  const label = selected === 'reset' ? getThemeName(defaultTheme.type) : getThemeName(selected);
 
   return (
     <Fragment>
@@ -93,11 +82,7 @@ export const Tool = function () {
         trigger="click"
         closeOnClick
         tooltip={({ onHide }) => {
-          return (
-            <TooltipLinkList
-              links={toLinks(list, item, setState, state, api, onHide)}
-            />
-          );
+          return <TooltipLinkList links={toLinks(list, item, setState, state, api, onHide)} />;
         }}
       >
         <IconButton key={TOOL_ID} active={active} title="Pick a Theme">

@@ -51,9 +51,9 @@ export default getArgTypes({
 
 const baseArgs = {
   description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
-  text: 'Oder Datei auswählen',
+  text: 'Oder Dateien auswählen',
   extensions: ['pdf', 'txt', 'doc'],
-  maxSize: 10000000,
+  maxSize: 20000000,
   id: 'file',
 };
 
@@ -66,4 +66,11 @@ export const RequiredWithError = createStory(component, {
   required: true,
   requiredMsg: 'Bitte einen Anhang hinzufügen',
   hasError: true,
+});
+
+export const RequiredMaxTwoFiles = createStory(component, {
+  ...baseArgs,
+  required: true,
+  requiredMsg: 'Bitte einen Anhang hinzufügen',
+  maxFiles: 2,
 });

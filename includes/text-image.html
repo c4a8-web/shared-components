@@ -56,6 +56,16 @@
   {% assign textImageImageClasses = 'text-image__img--mobile' | append: textImageImageClases %}
 {% endif %}
 
+{%- capture textImageHeadlineClasses -%}{{include.headlineClasses}} {{textImageLightText}} mb-2 mb-lg-4 {% endcapture %}
+
+{% unless include.headlineClasses %}
+  {% if textImageFloat %}
+    {%- assign textImageHeadlineClasses = textImageHeadlineClasses | append: ' h3-font-size' %}
+  {% else %}
+    {%- assign textImageHeadlineClasses = textImageHeadlineClasses | append: ' h4-font-size font-weight-normal' -%}
+  {% endif %}
+{% endunless %}
+
 <div class="text-image is-component {{ textImageSpacing }}
           {% if textImageBgColor %}text-image--bg-color{% endif %}
           {% if textImageSticky %}is-sticky-scroller{% endif %}
@@ -82,8 +92,7 @@
           %}
         </div>
       {% endif %}
-      <div class="text-image__first-col d-none d-lg-flex text-image__img  justify-content-center {{ textImageImageClasses }}
-                  {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}
+      <div class="text-image__first-col d-flex text-image__img justify-content-center {{ textImageImageClasses }}
                   col-lg-
                   {%- if textImageFloat -%}{{ textImageFirstColWidth }} col-xl-{{ textImageFirstColWidthXl }} text-image__img--floating{%- else -%}
                     {%- if textImageOffset -%}
@@ -94,24 +103,26 @@
                     {% endif %}
                   {%- endif -%}"
                   {% if textImageHref %}onclick="document.location.href='{{ textImageHref }}'" style="cursor: pointer;"{% endif %}
-                  data-utility-animation-step="1"
-      >
-        {% if textImageFloat %}
-          {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
-          {% assign textImagePreset = textImageImagePreset | default: "textImageFloatingSmall" %}
-        {% else %}
-          {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
-          {% assign textImagePreset = textImageImagePreset | default: false %}
-        {% endif %}
 
-        {%
-          include img.html
-          img=textImageImage
-          cloudinary=textImageCloudinary
-          imgSrcSets=textImageImgSrcSets
-          preset=textImagePreset
-          alt=textImageAlt
-        %}
+      >
+        <div class="text-image__first-col-wrapper {% unless textImageNoAnimation %}fade-in-bottom{% endunless %}" data-utility-animation-step="1">
+          {% if textImageFloat %}
+            {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: site.data.imgSrcSets.textImageFloatingSmall %}
+            {% assign textImagePreset = textImageImagePreset | default: "textImageFloatingSmall" %}
+          {% else %}
+            {% assign textImageImgSrcSets = site.data.imgSrcSets[textImageImagePreset] | default: false %}
+            {% assign textImagePreset = textImageImagePreset | default: false %}
+          {% endif %}
+
+          {%
+            include img.html
+            img=textImageImage
+            cloudinary=textImageCloudinary
+            imgSrcSets=textImageImgSrcSets
+            preset=textImagePreset
+            alt=textImageAlt
+          %}
+        </div>
       </div>
       <div class="text-image__second-col
                   {% if textImageNoGutters %} no-gutters {% else %} pt-2 pt-lg-4 {% endif %}
@@ -151,9 +162,12 @@
         {% endif %}
 
         {% if textImageHeadline %}
-          <{{ textImageLevel }} class="{% if textImageFloat %}h3-font-size{% else %}h4-font-size font-weight-normal{% endif %} mb-2 mb-lg-4 {{ textImageLightText }}">
-            {{ textImageHeadline }}
-          </{{ textImageLevel }}>
+          {%
+            include headline.html
+            level=textImageLevel
+            text=textImageHeadline
+            classes=textImageHeadlineClasses
+          %}
         {% endif %}
 
         {% if textImageSubline %}
@@ -195,6 +209,8 @@
     </div>
   </div>
   {% if textImageModal %}
+    {% assign textImageModalApiKey = textImageModal.apiKey | default: site.personio_api_key_env %}
+
     {%
       include modal.html
       form=textImageModal.form
@@ -203,6 +219,7 @@
       clientName=textImageModal.clientName
       jobId=textImageModal.jobId
       apiUrl=textImageModal.apiUrl
+      apiKey=textImageModalApiKey
     %}
   {% endif %}
 </div>

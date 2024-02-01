@@ -106,7 +106,13 @@ export default {
       return this.headlineLevel ? this.headlineLevel : 'h3';
     },
     headlineClassesValue() {
-      return `h2-font-size ${this.headlineClasses ? this.headlineClasses : ''}`;
+      const defaultHeadlineClasses = 'h2-font-size';
+
+      return this.headlineClasses
+        ? Tools.hasFontSizeClass(this.headlineClasses)
+          ? this.headlineClasses
+          : `${defaultHeadlineClasses} ${this.headlineClasses}`
+        : defaultHeadlineClasses;
     },
     sublineClassesValue() {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;

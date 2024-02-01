@@ -3,10 +3,10 @@
 {%- assign cta = include.cta -%}
 {%- assign headline = include.headline -%}
 
-<div class="container-fluid" style="background-color: {{ productBlocks.bgColor }};">
+<div class="product-blocks utility-animation container-fluid" style="background-color: {{ productBlocks.bgColor }};">
   <div class="container space-2">
     {% if headline %}
-      <div class="container pb-4 pb-lg-6">
+      <div class="container pb-4 pb-lg-6 fade-in-bottom" data-utility-animation-step="1" style="--utility-animation-index: 1;">
           {%
             include headline-row.html
             text=headline
@@ -17,7 +17,7 @@
     <div class="row">
       {% for item in productBlocks.items %}
         {% assign productBlocksList = item.list %}
-        <div class="product-blocks__item col-md-6 mb-5 mb-md-0 space-1">
+        <div class="product-blocks__item col-md-6 mb-5 mb-md-0 space-1 fade-in-bottom" data-utility-animation-step="1" style="--utility-animation-index: {{ forloop.index }};">
           <!-- Shared Product Blocks -->
           <div class="product-blocks__block{% if item.copy == "" %}text-center{% endif %} pl-lg-3 pr-lg-8">
             <div class="product-blocks__content">

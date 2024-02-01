@@ -3,6 +3,7 @@ import State from './state.js';
 
 class ToggleSwitch {
   static rootSelector = '.toggle-switch';
+
   constructor(root) {
     this.root = root;
     this.targetSelector = '.js-toggle-switch';
@@ -10,7 +11,22 @@ class ToggleSwitch {
     this.duration = 400;
     this.parsePricingData = this.root.querySelector('[data-pricing]')?.dataset.pricing;
 
-    this.start();
+    this.bindEvents();
+    this.initPrices();
+  }
+
+  getTargetSelectors(element) {
+    const options = JSON.parse(element.dataset.toggleSwitchOptions);
+    const selectorArray = options.targetSelector.split(',');
+    const selectors = [];
+
+    for (let i = 0; i < selectorArray.length; i++) {
+      const targetSelector = selectorArray[i].replace(/\s/g, '');
+
+      selectors.push(targetSelector);
+    }
+
+    return selectors;
   }
 
   handleChange(e) {
@@ -22,8 +38,21 @@ class ToggleSwitch {
 
     for (let i = 0; i < selectorArray.length; i++) {
       const targetSelector = selectorArray[i].replace(/\s/g, '');
+
       this.switchData(targetSelector, state, pricingSwitch);
     }
+
+    [].forEach.call(document.querySelectorAll('[data-alternative-href]'), (element) => {
+      this.switchButtonHrefs(element, state);
+    });
+  }
+
+  switchButtonHrefs(element, state) {
+    if (!element.dataset.originalHref) {
+      element.dataset.originalHref = element.href;
+    }
+
+    element.href = state ? element.dataset.originalHref : element.dataset.alternativeHref;
   }
 
   pricingData() {
@@ -38,6 +67,7 @@ class ToggleSwitch {
 
   priceFormatter() {
     const pricingData = this.pricingData();
+
     return new Intl.NumberFormat(pricingData.format, {
       style: 'currency',
       currency: pricingData.currency,
@@ -47,15 +77,35 @@ class ToggleSwitch {
 
   switchAnimation(element, start, end) {
     const animate = new Animate();
+
     animate.start({
       duration: this.duration,
       timing: Animate.easing.easeInOutCubic,
       draw: (progress) => {
-        let currentResult = progress * (end - start) + start;
-        let formatter = this.priceFormatter();
-        let formattedResult = formatter.format(currentResult);
-        element.innerHTML = formattedResult;
+        const currentResult = progress * (end - start) + start;
+
+        this.updatePrices(element, currentResult);
       },
+    });
+  }
+
+  updatePrices(element, state) {
+    const cleanedValue = state.replace ? parseFloat(state.replace(/,/, '.')) : state;
+    const formatter = this.priceFormatter();
+    const formattedResult = formatter.format(cleanedValue);
+
+    element.innerHTML = formattedResult;
+  }
+
+  initPrices() {
+    const selectors = this.getTargetSelectors(this.target);
+
+    selectors.forEach((selector) => {
+      const targetElements = document.querySelectorAll(selector);
+
+      targetElements.forEach((element) => {
+        this.updatePrices(element, element.innerHTML);
+      });
     });
   }
 
@@ -64,6 +114,7 @@ class ToggleSwitch {
 
     for (let i = 0; i < targetElements.length; i++) {
       const currentTarget = targetElements[i];
+
       pricingSwitch ? this.handlePriceSwitch(currentTarget, state) : this.handleForms(currentTarget, element);
     }
   }
@@ -72,16 +123,18 @@ class ToggleSwitch {
     const options = JSON.parse(currentTarget.dataset.toggleSwitchItemOptions);
     const start = state ? options.monthly : options.annual;
     const end = state ? options.annual : options.monthly;
+
     this.switchAnimation(currentTarget, start, end);
   }
 
   handleForms(currentTarget, element) {
     const visible = currentTarget.className.includes(State.HIDDEN);
     const elementWithoutPoint = element.startsWith('.') ? element.substring(1) : element;
+
     currentTarget.className = elementWithoutPoint + ' ' + (visible ? '' : State.HIDDEN);
   }
 
-  start() {
+  bindEvents() {
     this.target.addEventListener('change', this.handleChange.bind(this));
   }
 

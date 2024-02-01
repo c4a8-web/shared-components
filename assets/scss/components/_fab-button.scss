@@ -16,6 +16,8 @@ $fab-button-scroll-top: 200px;
           transform: translateX(0);
           opacity: 0;
           transition-duration: 0s;
+          pointer-events: none;
+          width: 0;
         }
       }
     }
@@ -88,6 +90,7 @@ $fab-button-scroll-top: 200px;
   width: $fab-button-icon-size;
   height: $fab-button-icon-size;
   right: 0;
+  overflow: hidden;
 
   svg {
     width: 90%;

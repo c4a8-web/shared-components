@@ -19,13 +19,14 @@ export default {
     classList() {
       return [
         `${this.baseClass} ${this.innerSkin}`,
-        `${this.classes ? this.classes : ''}`,
-        `${this.downloadValue ? 'cta--download' : ''}`,
-        `${this.externalValue ? 'cta--external' : ''}`,
-        `${this.icon ? `cta--has-icon cta--icon-${this.icon}` : ''}`,
-        `${Tools.isTrue(this.reversed) === true ? 'cta--reversed' : ''}`,
-        `${Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : ''}`,
-        `${this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : ''}`,
+        this.classes ? this.classes : '',
+        this.download ? 'cta--download' : '',
+        this.external ? 'cta--external' : '',
+        this.icon ? `cta--has-icon cta--icon-${this.icon}` : '',
+        Tools.isTrue(this.reversed) === true ? 'cta--reversed' : '',
+        Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : '',
+        this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : '',
+        Tools.isTrue(this.loading) ? State.LOADING : '',
         'vue-component',
       ];
     },
@@ -114,6 +115,9 @@ export default {
     classes: {
       default: '',
       type: String,
+    },
+    loading: {
+      default: null,
     },
   },
   template: `

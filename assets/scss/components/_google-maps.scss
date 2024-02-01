@@ -1,6 +1,8 @@
 .google-maps {
   .leaflet-popup-content-wrapper {
-    @include font-style($style: 'font-size-1') background-color: var(--color-google-maps-popup-background);
+    @include font-style($style: 'font-size-1');
+
+    background-color: var(--color-google-maps-popup-background);
     color: var(--color-copy-light);
     border-radius: 0;
   }

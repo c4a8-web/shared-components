@@ -59,7 +59,7 @@ export const CheckCard = createStory(component, {
   level: 'h2',
   headlineClasses: 'text-black',
   subline:
-    "<strong>In Zusammenarbeit mit Microsoft sind verschiedene </strong>Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja-gab Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
+    "<strong>In Zusammenarbeit mit Microsoft sind verschiedene </strong>Video Casestudies im Rahmen useres '100% Cloud' Blueprints entstanden. Erfahren Sie mehr über die glueckkanja Erfolgsgeschichten aus der Energiewirtschaft, Logistik und Bildung",
 });
 
 export const Products = createStory(component, {
@@ -75,7 +75,6 @@ export const Products = createStory(component, {
           title: 'Tenant',
           subpoints: [
             {
-              included: true,
               subpoint: 'Runs in your tenant (SaaS)',
             },
           ],

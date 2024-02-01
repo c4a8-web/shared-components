@@ -1,0 +1,29 @@
+{%- assign postTeaserLang = page.lang | default: site.lang | default: "de" -%}
+{%- assign postTeaserPost = include.post -%}
+{%- assign postTeaserTag = include.tag -%}
+
+{%- capture postTeaserPostString -%}
+  {%- if postTeaserPost.moment -%}
+    {% assign postTeaserPostDate = postTeaserPost.moment %}
+  {%- else -%}
+    {% assign postTeaserPostDate = postTeaserPost.date | date: '%Y-%m-%d' %}
+  {%- endif -%}
+  {
+    "url": "{{ postTeaserPost.url }}",
+    "title": "{{ postTeaserPost.title | strip_html | strip_newlines | escape }}",
+    "date": "{{ postTeaserPostDate }}",
+    "blogtitlepic": "{{ postTeaserPost.blogtitlepic }}",
+    "excerpt": "{{ postTeaserPost.excerpt | strip_html | strip_newlines | escape }}",
+    "tags": {{ postTeaserPost.tags | jsonify }},
+    "lang": "{{ postTeaserPost.lang }}"
+  }
+{%- endcapture %}
+
+<!-- Shared Post Teaser -->
+<post-teaser
+  :post="{{ postTeaserPostString | jsonify | escape }}"
+  tag="{{ postTeaserTag | cgi-escape }}"
+  lang="{{ postTeaserLang }}"
+>
+</post-teaser>
+<!-- End Shared Post Teaser -->

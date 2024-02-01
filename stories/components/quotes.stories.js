@@ -20,7 +20,7 @@ Long.args = {
     items: [
       {
         // text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit',
-        text: 'Die Entscheidung für einen Wechsel in die Azure Cloud wurde maßgeblich durch den Dialog mit glueckkanja-gab vorangetrieben. Neben einer insgesamt kosteneffizienten Cloud-Infrastruktur haben wir zusammen mit unserem 100 % Cloud Modern Desktop einen Arbeitsplatz geschaffen, mit dem wir unsere Geschäftsanwender schnell, sicher und flexibel unterstützen können.',
+        text: 'Die Entscheidung für einen Wechsel in die Azure Cloud wurde maßgeblich durch den Dialog mit glueckkanja vorangetrieben. Neben einer insgesamt kosteneffizienten Cloud-Infrastruktur haben wir zusammen mit unserem 100 % Cloud Modern Desktop einen Arbeitsplatz geschaffen, mit dem wir unsere Geschäftsanwender schnell, sicher und flexibel unterstützen können.',
         name: 'Patrick Lange',
         company: 'Franz Haniel & Cie. GmbH',
         img: '/testimonals/patrick-lange.jpg',
@@ -28,7 +28,7 @@ Long.args = {
       },
       {
         // text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet',
-        text: 'Für eine sich so schnell verändernde Branche und insbesondere für unser Uniper Business ist Microsoft 365 die richtige Wahl, da es einzigartige Möglichkeiten in Bezug auf Skalierbarkeit, Performance und Sicherheit der Plattform bietet und mit glueckkanja-gab haben wir den Partner gefunden, um das Beste aus dieser Technologie herauszuholen.',
+        text: 'Für eine sich so schnell verändernde Branche und insbesondere für unser Uniper Business ist Microsoft 365 die richtige Wahl, da es einzigartige Möglichkeiten in Bezug auf Skalierbarkeit, Performance und Sicherheit der Plattform bietet und mit glueckkanja haben wir den Partner gefunden, um das Beste aus dieser Technologie herauszuholen.',
         name: 'Hans Pezold',
         company: 'Uniper SE',
         img: '/testimonals/hans-pezold.jpg',
@@ -58,6 +58,7 @@ export const Short = Template.bind({});
 Short.args = {
   quotes: {
     headline: 'Das sagen unsere Kunden',
+    headlineClasses: 'h3-font-size',
     level: 'h3',
     items: [
       {
