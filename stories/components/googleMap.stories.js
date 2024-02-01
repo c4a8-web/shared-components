@@ -1,11 +1,11 @@
-import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle } from '../../.storybook/templates';
 import { includesgooglemaphtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Google Map',
 });
 
-export default getArgTypes({
+export default {
   ...options,
   argTypes: {
     location: {
@@ -17,9 +17,13 @@ export default getArgTypes({
       type: 'object',
     },
   },
-});
+};
 
-export const GoogleMap = createStory(component, {
+const Template = (args) => createComponent(args, component);
+
+export const GoogleMap = Template.bind({});
+
+GoogleMap.args = {
   location: {
     street: 'Kaiserstraße 39',
     city: '63065 Offenbach am Main',
@@ -48,4 +52,4 @@ export const GoogleMap = createStory(component, {
       subline: 'E-Tankstellen in unserer Tiefgarage',
     },
   ],
-});
+};

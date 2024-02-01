@@ -1,11 +1,11 @@
-import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
+import { createComponent, getTitle } from '../../.storybook/templates';
 import { includesformattachmentshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Form Attachments',
 });
 
-export default getArgTypes({
+export default {
   ...options,
   argTypes: {
     description: {
@@ -46,8 +46,14 @@ export default getArgTypes({
       description: 'Toggle for Error in Form Attachment',
       type: 'boolean',
     },
+    maxFiles: {
+      description: 'Maximum Allowed Files',
+      type: 'number',
+    },
   },
-});
+};
+
+const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
@@ -57,16 +63,20 @@ const baseArgs = {
   id: 'file',
 };
 
-export const NotRequired = createStory(component, {
-  ...baseArgs,
-});
+export const NotRequired = Template.bind({});
 
-export const RequiredWithError = createStory(component, {
+NotRequired.args = {
+  ...baseArgs,
+};
+
+export const RequiredWithError = Template.bind({});
+
+RequiredWithError.args = {
   ...baseArgs,
   required: true,
   requiredMsg: 'Bitte einen Anhang hinzufügen',
   hasError: true,
-});
+};
 
 export const RequiredMaxTwoFiles = Template.bind({});
 
