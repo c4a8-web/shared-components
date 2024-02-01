@@ -1,34 +1,40 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includesauthorshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Authors',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    authors: {
+      description: 'List of Authors',
+      type: 'array',
+    },
+    noLink: {
+      description: "Authors won't act as Link",
+      type: 'boolean',
+    },
+    dataLang: {},
+    dataAuthors: {},
+    lang: {
+      description: 'Sets the language',
+      type: 'string',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const WithLink = Template.bind({});
-
-WithLink.args = {
+export const WithLink = createStory(component, {
   authors: ['Author Name', 'Second Author'],
-};
+});
 
-export const WithoutLink = Template.bind({});
-
-WithoutLink.args = {
+export const WithoutLink = createStory(component, {
   authors: ['Author Name', 'Second Author'],
   noLink: true,
-};
+});
 
-export const SingleName = Template.bind({});
-
-SingleName.args = {
+export const SingleName = createStory(component, {
   authors: 'Author',
   noLink: true,
-}
-
-
+});

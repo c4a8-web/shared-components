@@ -1,8 +1,8 @@
 const analytics = {
-  control: { type: "text" },
+  control: { type: 'text' },
   type: {
-    summary: "Analytics Code",
-    detail: "For instance: AW-1234123312...",
+    summary: 'The Analytics Code for tracking',
+    detail: 'For instance: AW-1234123312...',
   },
 };
 

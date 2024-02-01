@@ -1,13 +1,44 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent, createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includesbadgehtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Badge',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    text: {
+      description: 'Badge Text',
+      type: 'string',
+      required: true,
+    },
+    icon: {
+      description: 'Badge icon',
+      type: 'string',
+    },
+    color: {
+      description: 'Bagde Color',
+      type: 'string',
+    },
+    textColor: {
+      description: 'Badge Text Color',
+      type: 'string',
+    },
+    uppercase: {
+      description: 'Turns Text into Uppercase',
+      type: 'boolean',
+    },
+    overlapping: {
+      description: 'Allows Overlapping',
+      type: 'boolean',
+    },
+    classes: {
+      description: 'CSS Classes',
+      type: 'string',
+    },
+  },
+});
 
 const Template = (args) => createComponent(args, component);
 
@@ -18,28 +49,22 @@ WithIcon.args = {
   icon: '',
 };
 
-export const WithoutIcon = Template.bind({});
-
-WithoutIcon.args = {
+export const WithoutIcon = createStory(component, {
   text: 'Training',
   textColor: 'var(--color-black)',
   color: 'var(--color-sunglow)',
-};
+});
 
-export const Overlapping = Template.bind({});
-
-Overlapping.args = {
+export const Overlapping = createStory(component, {
   text: 'Training',
   textColor: 'var(--color-black)',
   color: 'var(--color-sunglow)',
   overlapping: true,
-};
+});
 
-export const Uppercase = Template.bind({});
-
-Uppercase.args = {
+export const Uppercase = createStory(component, {
   text: 'Training',
   textColor: 'var(--color-black)',
   color: 'var(--color-sunglow)',
   uppercase: true,
-};
+});

@@ -1,19 +1,41 @@
-import { createTemplate, getTitle } from '../../.storybook/templates';
-import fabButtonTemplate from '!!raw-loader!./fabButton.html';
+import { getArgTypes, createStory, getTitle } from '../../.storybook/templates';
+import { includesfabbuttonhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Fab Button',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    icon: {
+      description: 'Fab Button Icon',
+      type: 'object',
+    },
+    modal: {
+      description: 'The Modal that gets called after fab Button is pressed',
+      type: 'object',
+    },
+    noSticky: {
+      description: 'Disables Sticky for the fab Button',
+      type: 'boolean',
+    },
+    bgColor: {
+      description: 'Sets the Background Color of the fab Button',
+      type: 'string',
+    },
+    iconColor: {
+      description: 'Sets the color of the Icon',
+      type: 'string',
+    },
+    trigger: {
+      description: 'Trigger for the Modal',
+      type: 'string',
+    },
+  },
+});
 
-const Template = (args) => createTemplate(args, fabButtonTemplate);
-
-export const Contact = Template.bind({});
-
-Contact.args = {
+export const Contact = createStory(component, {
   modal: {
     contact: {
       infos: {
@@ -93,11 +115,9 @@ Contact.args = {
       },
     },
   },
-};
+});
 
-export const Emergency = Template.bind({});
-
-Emergency.args = {
+export const Emergency = createStory(component, {
   bgColor: 'var(--color-orange)',
   iconColor: 'var(--color-white)',
   icon: 'emergency',
@@ -180,4 +200,4 @@ Emergency.args = {
       },
     },
   },
-};
+});

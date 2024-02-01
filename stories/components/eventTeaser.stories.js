@@ -1,19 +1,77 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includeseventteaserhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Event Teaser',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    headline: {
+      description: 'Event Teaser Headline',
+      type: 'string',
+    },
+    content: {
+      description: 'Event Teaser Content',
+      type: 'string',
+    },
+    moment: {
+      description: 'Specific Date',
+      type: 'string',
+    },
+    time: {
+      description: 'Time or time span of an Event',
+      control: {
+        type: 'text',
+      },
+    },
+    shapes: {
+      description: 'Event Teaser Shapes',
+      type: 'object',
+    },
+    webcast: {
+      description: 'Toggles Webcast Mode',
+      type: 'boolean',
+    },
+    author: {
+      description: 'Event Teaser Authors',
+      type: 'array',
+    },
+    image: {
+      description: 'Event Teaser Image',
+      type: 'object',
+    },
+    badge: {
+      description: 'Adds Badge to the Even Teaser',
+      type: 'object',
+    },
+    cta: {
+      description: 'Event Teaser CTA',
+      type: 'object',
+    },
+    variant: {
+      description: 'Changes Event Teaser Size',
+      type: 'number',
+    },
+    url: {
+      description: 'Event Teaser URL',
+      type: 'string',
+    },
+    index: {
+      description: 'Adds Index for the Animation Step',
+      type: 'number',
+    },
+    teaser: {
+      description: 'Toggles Event teaser',
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const EventTeaserWebcast = Template.bind({});
-
-EventTeaserWebcast.args = {
+export const EventTeaserWebcast = createStory(component, {
   headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   content:
     '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
@@ -44,11 +102,9 @@ EventTeaserWebcast.args = {
     external: true,
   },
   variant: 6,
-};
+});
 
-export const EventTeaserBackground = Template.bind({});
-
-EventTeaserBackground.args = {
+export const EventTeaserBackground = createStory(component, {
   headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   content:
     '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
@@ -78,12 +134,10 @@ EventTeaserBackground.args = {
     external: true,
   },
   variant: 6,
-};
+});
 
 // TODO fix this example so the image flows over the whole background
-export const EventTeaserImage = Template.bind({});
-
-EventTeaserImage.args = {
+export const EventTeaserImage = createStory(component, {
   headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   content:
     '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
@@ -106,11 +160,9 @@ EventTeaserImage.args = {
     external: true,
   },
   variant: 6,
-};
+});
 
-export const EventTeaserFullWidth = Template.bind({});
-
-EventTeaserFullWidth.args = {
+export const EventTeaserFullWidth = createStory(component, {
   headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   content:
     'Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was even in the midst of the all the negative influences from family TWhen',
@@ -137,11 +189,9 @@ EventTeaserFullWidth.args = {
     skin: 'primary',
   },
   variant: 12,
-};
+});
 
-export const EventTeaserCustomShapes = Template.bind({});
-
-EventTeaserCustomShapes.args = {
+export const EventTeaserCustomShapes = createStory(component, {
   headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
   content:
     '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
@@ -175,11 +225,9 @@ EventTeaserCustomShapes.args = {
     skin: 'primary',
   },
   variant: 6,
-};
+});
 
-export const EventTeaserTraining = Template.bind({});
-
-EventTeaserTraining.args = {
+export const EventTeaserTraining = createStory(component, {
   headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
   time: '1-4 Tage',
   shapes: [
@@ -202,11 +250,9 @@ EventTeaserTraining.args = {
   },
   price: 'Kostenlos',
   url: 'javascript:void(0)',
-};
+});
 
-export const EventTeaser = Template.bind({});
-
-EventTeaser.args = {
+export const EventTeaser = createStory(component, {
   teaser: true,
   headline: 'Eigenes Training Lorem Ipsum dolor Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
   content:
@@ -217,4 +263,4 @@ EventTeaser.args = {
     skin: 'secondary is-light',
   },
   variant: 8,
-};
+});

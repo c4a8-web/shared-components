@@ -1,23 +1,37 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';
 import { includesfooterhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Footer',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    data: {
+      description: 'Contains Company Information for the Footer',
+      type: 'object',
+    },
+    noMargin: {
+      description: 'Toggles Margin on the footer Page',
+      type: 'boolean',
+    },
+    lang: {
+      description: 'The Language of the Page',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Languages',
+        detail: 'de, en, es',
+      },
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
+export const Corporate = createStory(component, {});
 
-export const Corporate = Template.bind({});
-
-Corporate.args = {};
-
-export const Product = Template.bind({});
-
-Product.args = {
+export const Product = createStory(component, {
   noMargin: true,
   data: {
     name: 'glueckkanja AG',
@@ -64,4 +78,4 @@ Product.args = {
       },
     ],
   },
-};
+});

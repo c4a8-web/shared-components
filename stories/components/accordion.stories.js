@@ -1,19 +1,26 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
-import accordionTemplate from '!!raw-loader!./accordion.html';
+import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';
+import { includesaccordionhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Accordion',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    accordion: {
+      description: 'Object of the Accordion',
+      control: 'object',
+      required: true,
+    },
+    'accordion.headline': {
+      description: 'The Headline of the Accordion',
+      type: 'string',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, accordionTemplate);
-
-export const Default = Template.bind({});
-
-Default.args = {
+export const Default = createStory(component, {
   accordion: {
     headline: 'Features of the Admin Portal',
     id: 'featureAccordion',
@@ -46,11 +53,11 @@ Default.args = {
       },
     ],
   },
-};
+});
 
-export const Image = Template.bind({});
+// Default.args = {};
 
-Image.args = {
+export const Image = createStory(component, {
   shadowless: false,
   left: true,
   accordion: {
@@ -102,11 +109,9 @@ Image.args = {
       },
     ],
   },
-};
+});
 
-export const ImageShadowless = Template.bind({});
-
-ImageShadowless.args = {
+export const ImageShadowless = createStory(component, {
   shadowless: true,
   left: true,
   accordion: {
@@ -144,11 +149,9 @@ ImageShadowless.args = {
       },
     ],
   },
-};
+});
 
-export const Collapsed = Template.bind({});
-
-Collapsed.args = {
+export const Collapsed = createStory(component, {
   shadowless: false,
   left: true,
   accordion: {
@@ -185,4 +188,4 @@ Collapsed.args = {
       },
     ],
   },
-};
+});
