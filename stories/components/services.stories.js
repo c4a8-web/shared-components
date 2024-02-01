@@ -40,3 +40,11 @@ Services.args = {
     },
   ],
 };
+
+export const ServicesSocials = Template.bind({});
+
+ServicesSocials.args = {
+  title: 'Lorem Ipsum',
+  label: 'Folgen',
+  socials: [{}],
+};

@@ -43,10 +43,11 @@ import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
 import PostTeaser from './vue/post-teaser.js';
-import Screenshot from './vue/screenshot.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
+import Screenshot from './vue/screenshot.js';
 import Search from './vue/search.js';
+import Services from './vue/services.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
@@ -60,6 +61,7 @@ import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
+import Socials from './vue/socials.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
 import TabList from './vue/tab-list.js';
@@ -179,6 +181,7 @@ const addApp = () => {
     Plus,
     ScrollArrow,
     Search,
+    Services,
     ShapeAnimation,
     ShapeCircleWithinSquare,
     ShapeFastFordward,
@@ -192,6 +195,7 @@ const addApp = () => {
     ShapeTrianglesToCenter,
     Shape,
     Slider,
+    Socials,
     ArrowCurl,
     ArrowExternal,
     ArrowNarrow,
