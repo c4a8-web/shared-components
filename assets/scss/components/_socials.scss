@@ -18,6 +18,14 @@
     }
   }
 
+  &.socials--label-expand {
+    width: 100%;
+
+    .socials__label {
+      flex-grow: 1;
+    }
+  }
+
   .fas,
   .fab {
     font-size: 1.6em;

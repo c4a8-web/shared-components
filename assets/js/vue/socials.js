@@ -6,7 +6,7 @@ export default {
     classValue() {
       return [
         'socials align-items-center',
-        Tools.isTrue(this.expand) ? 'socials--expand' : '',
+        Tools.isTrue(this.expand) ? (!Tools.isTrue(this.label) ? 'socials--label-expand' : 'socials--expand') : '',
         Tools.isTrue(this.vertical) ? 'is-vertical-xl mr-5 mr-xl-0 align-items-xl-start mb-xl-4' : '',
         'vue-component',
       ];
@@ -63,7 +63,7 @@ export default {
     expand: {
       default: null,
     },
-    lang: {
+    message: {
       default: null,
     },
     shareUrl: String,
@@ -71,7 +71,7 @@ export default {
   template: `
   <div :class="classValue" v-if="list">
     <template v-if="showLabel">
-      <span class="socials__label mr-4">{{ this.lang }}</span>
+      <span class="socials__label mr-4">{{ this.message }}</span>
     </template>
 
     <template v-for="(url, index) in list">

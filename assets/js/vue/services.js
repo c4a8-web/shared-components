@@ -19,6 +19,9 @@ export default {
     value: {
       default: null,
     },
+    socials: {
+      default: null,
+    },
   },
   template: `
   <div :class="classValue">
@@ -33,8 +36,13 @@ export default {
       </template>
     </div>
     <div class="services__footer">
-      <div class="services__label font-size-xs bold">{{ this.label }}</div>
-      <div class="services__value">{{ this.value }}</div>
+      <template v-if="socials">
+        <socials v-bind="socials" />
+      </template>
+      <template v-else>
+        <div class="services__label font-size-xs bold">{{ this.label }}</div>
+        <div class="services__value">{{ this.value }}</div>
+      </template>
     </div>
   </div>
 `,
