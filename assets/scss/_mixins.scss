@@ -406,3 +406,7 @@
     @content;
   }
 }
+
+@function mathDivHelper($numerator, $denominator) {
+  @return $numerator / $denominator; // This is a temporary solution until we upgrade to webpack 5
+}
