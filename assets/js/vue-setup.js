@@ -279,4 +279,6 @@ document.addEventListener('VUE_FORCE_UPDATE', (event) => {
   addApp();
 });
 
+console.log('Info v5.02');
+
 export default VueSetup;
