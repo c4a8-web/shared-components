@@ -479,6 +479,18 @@ class Tools {
   static hasFontSizeClass(classes) {
     return classes.indexOf('-font-size') !== -1 || classes.indexOf('font-size-') !== -1;
   }
+
+  static red(hex) {
+    return parseInt(hex.substring(1, 3), 16);
+  }
+
+  static green(hex) {
+    return parseInt(hex.substring(3, 5), 16);
+  }
+
+  static blue(hex) {
+    return parseInt(hex.substring(5, 7), 16);
+  }
 }
 
 export default Tools;

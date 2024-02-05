@@ -1,6 +1,6 @@
 $check-card-spacing-md: 4;
 $check-card-spacing-lg: 4;
-$check-card-margin-lg: $check-card-spacing-lg / 2;
+$check-card-margin-lg: mathDivHelper($check-card-spacing-lg, 2);
 
 .check-card {
   position: relative;

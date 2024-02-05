@@ -291,13 +291,14 @@
     $e: nth($list, $i);
 
     @if type-of($e) == list {
-      $result: $result#{to-string($e, $separator, true)};
+      $sublist: to-string($e, $separator, true);
+      $result: if($result == null, $sublist, $result + $sublist);
     } @else {
-      $result: if($i != length($list) or $is-nested, $result#{$e}#{$separator}, $result#{$e});
+      $result: if($result == null, $e, $result + $separator + $e);
     }
   }
 
-  @return $result;
+  @return if($result == null, '', $result);
 }
 
 @mixin shadow($size: 'medium', $x-offset: 0) {
@@ -325,29 +326,6 @@
 
 @mixin vue-loading {
   display: none;
-}
-
-@mixin img-to-color($color: #000, $opacity: 1) {
-  $r: red($color) / 255;
-  $g: green($color) / 255;
-  $b: blue($color) / 255;
-  $a: $opacity;
-  $lightness: lightness($color);
-  $svg-filter-id: 'img-to-color';
-
-  filter: saturate(0%) brightness(0%) invert($lightness) opacity($opacity);
-  filter: url('data:image/svg+xml;utf8,\
-    <svg xmlns="http://www.w3.org/2000/svg">\
-      <filter id="#{$svg-filter-id}" color-interpolation-filters="sRGB">\
-        <feColorMatrix type="matrix" values="\
-          0 0 0 0 #{$r}\
-          0 0 0 0 #{$g}\
-          0 0 0 0 #{$b}\
-          0 0 0 #{$a} 0\
-        "/>\
-      </filter>\
-    </svg>\
-    ##{$svg-filter-id}');
 }
 
 @mixin light-text-shadow {
@@ -427,4 +405,8 @@
   &[data-utility-animation-in-viewport='true'] {
     @content;
   }
+}
+
+@function mathDivHelper($numerator, $denominator) {
+  @return $numerator / $denominator; // This is a temporary solution until we upgrade to webpack 5
 }
