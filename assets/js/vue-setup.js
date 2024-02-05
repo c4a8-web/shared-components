@@ -277,6 +277,4 @@ document.addEventListener('VUE_FORCE_UPDATE', (event) => {
   addApp();
 });
 
-console.info('v05.02');
-
 export default VueSetup;
