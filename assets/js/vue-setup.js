@@ -279,6 +279,6 @@ document.addEventListener('VUE_FORCE_UPDATE', (event) => {
   addApp();
 });
 
-console.log('Info v5.02');
+console.log('Info v5.03');
 
 export default VueSetup;
