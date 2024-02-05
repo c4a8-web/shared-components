@@ -40,13 +40,22 @@ This starts at 2 to increase the first
             <li class="step-list__list-element font-size-2 fade-in-bottom" data-utility-animation-step="1" style="--utility-animation-index:{{ stepListIndex }};">
               <div class="step-list__counter {% if element.step or element.img %}step-list__counter--manual {% endif %}{% if element.overlapping %}step-list__counter--overlapping{% endif %}" {% if element.step %}data-content="{{ element.step }}"{% endif %}>
                 {% if element.img %}
-                  <div class="step-list__counter-icon {% if element.tint %}step-list__counter-icon--tinted{% endif %}">
-                    {%
-                      include img.html
-                      img=element.img
-                      cloudinary=element.cloudinary
-                      alt=element.alt
-                    %}
+                  <div class="step-list__counter-icon">
+                    {% if element.tint %}
+                      <img-filter
+                        img="{{ element.img }}"
+                        :cloudinary="{{ element.cloudinary }}"
+                        alt="{{ element.alt }}"
+                      />
+                      </img-filter>
+                    {% else %}
+                      {%
+                        include img.html
+                        img=element.img
+                        cloudinary=element.cloudinary
+                        alt=element.alt
+                      %}
+                    {% endif %}
                   </div>
                 {% endif %}
               </div>
