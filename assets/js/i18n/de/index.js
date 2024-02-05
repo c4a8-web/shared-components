@@ -11,8 +11,8 @@ const de = {
   onlyLanguage: 'German only',
   moreEvents: 'Weitere Termine',
   positionTypePermanently: 'Festanstellung',
-  positionTypeInternship: 'Praktikum',
-  positionTypeTraining: 'Ausbildung oder Trainee',
+  positionTypeInternship: 'Praktikum oder Werkstudententätigkeit',
+  positionTypeTraining: 'Ausbildung oder Traineeprogramm',
   positionTypeStudent: 'Werkstudierende',
 };
 
