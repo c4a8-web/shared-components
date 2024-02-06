@@ -3,15 +3,15 @@
 {%- assign servicesLabel = include.label -%}
 {%- assign servicesValue = include.value -%}
 {%- assign servicesAuthor = include.author -%}
-{%- assign servicesSite = site -%}
-{%- assign servicesPage = page -%}
+
+{% capture shareUrl %}{{ site.url}}{{ page.url }}{% endcapture%}
+
 
 <services
+  share-url="{{ shareUrl }}"
   :items="{{ servicesItems | jsonify | escape }}"
   title="{{ servicesTitle }}"
   label="{{ servicesLabel }}"
   value="{{ servicesValue }}"
   :author="{{ servicesAuthor | jsonify | escape }}"
-  :site="{{ servicesSite | jsonify | escape }}"
-  :page="{{ servicesPage | jsonify | escape }}"
 ></services>

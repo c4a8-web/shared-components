@@ -1,19 +1,14 @@
-{%- assign lang = page.lang | default: 'de' -%}
-
 {%- assign socialsLabel = include.hideLabel -%}
 {%- assign socialsAuthor = include.author -%}
 {%- assign socialsVertical = include.vertical -%}
 {%- assign socialsExpand = include.expand -%}
 
-{%- capture shareUrl -%}{{ site.url }}{{ page.url }}{%- endcapture -%}
-{%- assign socialsMessage = site.data.lang[lang].follow -%}
-
+{% capture shareUrl %}{{ site.url}}{{ page.url }}{% endcapture%}
 
 <socials
   label="{{ socialsLabel }}"
   :author="{{ socialsAuthor | jsonify | escape }}"
   vertical="{{ socialsVertical }}"
   expand="{{ socialsExpand }}"
-  message="{{ socialsMessage }}"
   share-url="{{ shareUrl }}"
 ></socials>

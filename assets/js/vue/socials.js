@@ -2,6 +2,11 @@ import Tools from '../tools.js';
 
 export default {
   tagName: 'socials',
+  data() {
+    return {
+      follow: '',
+    };
+  },
   computed: {
     classValue() {
       return [
@@ -24,6 +29,11 @@ export default {
       return this.getIconList();
     },
   },
+  mounted() {
+    window.i18n?.loader?.then(() => {
+      this.follow = window.i18n?.translate('follow');
+    });
+  },
   methods: {
     getList() {
       const twitterUrl = 'https://www.twitter.com/';
@@ -37,7 +47,7 @@ export default {
 
       return this.author
         ? [twitterUrl + this.author.twitter, linkedinUrl + this.author.linkedin]
-        : diverseSocials.map((item) => item + this.shareUrl);
+        : diverseSocials.map((item) => item + this.sharedUrl);
     },
     getIconList() {
       return this.author
@@ -63,15 +73,14 @@ export default {
     expand: {
       default: null,
     },
-    message: {
+    shareUrl: {
       default: null,
     },
-    shareUrl: String,
   },
   template: `
   <div :class="classValue" v-if="this.list">
     <template v-if="showLabel">
-      <span class="socials__label mr-4">{{ this.message }}</span>
+      <span class="socials__label mr-4">{{ this.follow }}</span>
     </template>
 
     <template v-for="(url, index) in this.list">

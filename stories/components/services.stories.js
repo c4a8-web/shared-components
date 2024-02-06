@@ -45,7 +45,6 @@ export const ServicesSocials = Template.bind({});
 
 ServicesSocials.args = {
   title: 'Lorem Ipsum',
-  label: 'Folgen',
   items: [
     {
       text: 'Azure Active Directory',

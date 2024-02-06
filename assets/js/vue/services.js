@@ -9,15 +9,6 @@ export default {
         'vue-component',
       ];
     },
-    sharedUrl() {
-      return this.site.url + this.page.url;
-    },
-    followMessage() {
-      const pageLang = this.page.lang || 'de';
-      const langData = this.site.data.lang[pageLang];
-
-      return langData?.follow;
-    },
     authorSocialsExist() {
       return this.author.socials !== undefined;
     },
@@ -42,10 +33,7 @@ export default {
     author: {
       default: null,
     },
-    site: {
-      default: null,
-    },
-    page: {
+    shareUrl: {
       default: null,
     },
   },
@@ -65,7 +53,7 @@ export default {
     </template>
     <div class="services__footer">
       <template v-if="this.author">
-        <socials :author="this.author" :message="this.followMessage" expand="true" />
+        <socials :author="this.author" :message="this.followMessage" :site="site" :page="page" expand="true" :share-url="this.shareUrl"/>
       </template>
       <template v-else>
         <div class="services__label font-size-xs bold">{{ this.label }}</div>
