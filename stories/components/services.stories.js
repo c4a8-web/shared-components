@@ -78,9 +78,5 @@ ServicesSocials.args = {
       link: true,
     },
   ],
-  socials: {
-    author: 'adrian-ritter',
-    expand: true,
-    message: 'Folgen',
-  },
+  author: 'adrian-ritter',
 };

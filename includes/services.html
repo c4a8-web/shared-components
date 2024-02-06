@@ -2,12 +2,16 @@
 {%- assign servicesTitle = include.title -%}
 {%- assign servicesLabel = include.label -%}
 {%- assign servicesValue = include.value -%}
-{%- assign servicesSocials = include.socials -%}
+{%- assign servicesAuthor = include.author -%}
+{%- assign servicesSite = site -%}
+{%- assign servicesPage = page -%}
 
 <services
   :items="{{ servicesItems | jsonify | escape }}"
   title="{{ servicesTitle }}"
   label="{{ servicesLabel }}"
   value="{{ servicesValue }}"
-  :socials="{{ servicesSocials | jsonify | escape }}"
+  :author="{{ servicesAuthor | jsonify | escape }}"
+  :site="{{ servicesSite | jsonify | escape }}"
+  :page="{{ servicesPage | jsonify | escape }}"
 ></services>

@@ -5,6 +5,8 @@
   {%- assign imgUrl = author.avatar -%}
   {%- assign metaTopSpacing = 5 -%}
 
+  {%- assign items= author.socials -%}
+
   {%
     include get-posts-data.html
     getSite=true
@@ -29,17 +31,10 @@
           </span>
           <span class="author__post-count">{{ postCount }}</span> <span class="author__posts ml-1">{{ site.data.lang[lang].posts }}</span>
         </div>
-        {%- if author.twitter or author.linkedin -%}
-          <div class="author__socials col-lg-2 mt-lg-{{ metaTopSpacing }} pt-lg-4">
-            {%
-              include socials.html
-              author=author
-            %}
-          </div>
-        {%- endif -%}
+
       </div>
       <div class="row">
-        <div class="author__intro font-size-2 col-lg-10 pl-lg-0">
+        <div class="author__intro font-size-2 col-lg-8 pl-lg-0">
           {% if lang != 'de' %}
             {% assign languageContent = page.otherLanguages[lang] | default: page.otherLanguages['en'] | default: content %}
 
@@ -48,6 +43,16 @@
             {{ content }}
           {% endif %}
         </div>
+        {%- if author.twitter or author.linkedin -%}
+          <div class="author__socials col-lg-4 {% if items %} mt-lg-{{ metaTopSpacing }} pt-lg-4 {% endif %}">
+            {%
+              include services.html
+              author=author
+              title="Lorem Ipsum"
+              items=""
+            %}
+          </div>
+        {%- endif -%}
       </div>
       <div class="row">
         <div class="author__posts-list mt-6 pt-6">

@@ -1,4 +1,4 @@
-import Tools from '../tools';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'socials',
@@ -36,7 +36,7 @@ export default {
       ];
 
       return this.author
-        ? [twitterUrl + this.author, linkedinUrl + this.author]
+        ? [twitterUrl + this.author.twitter, linkedinUrl + this.author.linkedin]
         : diverseSocials.map((item) => item + this.shareUrl);
     },
     getIconList() {
@@ -47,7 +47,7 @@ export default {
     lastEntry(index) {
       return [
         'socials__item',
-        index != this.list.length - 1 ? (Tools.isTrue(this.expand) ? 'mr-5' : 'mr-3') : '',
+        index != this.list.length - 1 ? (Tools.isTrue(this.expand) && Tools.isTrue(this.label) ? 'mr-5' : 'mr-3') : '',
         this.iconClasses,
       ];
     },
@@ -69,12 +69,12 @@ export default {
     shareUrl: String,
   },
   template: `
-  <div :class="classValue" v-if="list">
+  <div :class="classValue" v-if="this.list">
     <template v-if="showLabel">
       <span class="socials__label mr-4">{{ this.message }}</span>
     </template>
 
-    <template v-for="(url, index) in list">
+    <template v-for="(url, index) in this.list">
       <a :href="url" target="_blank" rel="noopener"
         :class="this.lastEntry(index)" >
         <i :class="iconList[index]"></i>

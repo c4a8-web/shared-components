@@ -6,12 +6,12 @@
 {%- assign socialsExpand = include.expand -%}
 
 {%- capture shareUrl -%}{{ site.url }}{{ page.url }}{%- endcapture -%}
-{%- assign socialsMessage = include.message | default: site.data.lang[lang].follow -%}
+{%- assign socialsMessage = site.data.lang[lang].follow -%}
 
 
 <socials
   label="{{ socialsLabel }}"
-  author="{{ socialsAuthor }}"
+  :author="{{ socialsAuthor | jsonify | escape }}"
   vertical="{{ socialsVertical }}"
   expand="{{ socialsExpand }}"
   message="{{ socialsMessage }}"
