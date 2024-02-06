@@ -35,6 +35,7 @@ export default {
         `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
         `${this.productValue ? 'card--products' : ''}`,
         `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
+        this.spacing,
         'vue-component',
       ];
     },
@@ -172,6 +173,7 @@ export default {
     },
     index: Number,
     externalLanguage: String,
+    spacing: String,
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"

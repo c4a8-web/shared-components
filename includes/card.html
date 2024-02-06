@@ -21,6 +21,7 @@
 {%- assign cardHasAnimation = include.hasAnimation -%}
 {%- assign cardIndex = include.index -%}
 {%- assign cardExternalLanguage = include.externalLanguage -%}
+{%- assign cardSpacing = include.spacing -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -31,6 +32,7 @@
 {%- endif -%}
 
 <card
+  spacing="{{ cardSpacing }}"
   large="{{ cardLarge }}"
   long="{{ cardLong }}"
   footer="{{ cardFooter }}"
