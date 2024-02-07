@@ -1,7 +1,32 @@
 import Tools from '../tools.js';
 
+const cardFooter = {
+  tagName: 'card-footer',
+  template: `
+    <div class="d-flex align-items-center mt-auto">
+      <div class="card__date media-body d-flex font-size-1 mr-2">
+        {{ date }}
+      </div>
+      <div class="card__author" v-if="author">
+        <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
+      </div>
+    </div>
+  `,
+  props: {
+    classes: String,
+    date: String,
+    author: Array,
+    authorsList: String,
+    hasNoLink: Boolean,
+    dataAuthors: Object,
+  },
+};
+
 export default {
   tagName: 'card',
+  components: {
+    'card-footer': cardFooter,
+  },
   data() {
     return {
       wordsToTruncate: 20,
@@ -42,9 +67,6 @@ export default {
     productValue() {
       return Tools.getJSON(this.product);
     },
-    mediaClass() {
-      return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
-    },
     truncatedExcerpt() {
       const excerptValue =
         Tools.isTrue(this.long) === true
@@ -84,6 +106,15 @@ export default {
       }
 
       return cta;
+    },
+    cardFooterData() {
+      return {
+        date: this.cardDate,
+        author: this.author,
+        authorsList: this.authorList(this.author),
+        hasNoLink: this.hasNoLink,
+        dataAuthors: this.dataAuthors,
+      };
     },
   },
   methods: {
@@ -203,14 +234,7 @@ export default {
             <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ combinedTitle }}</a></headline>
               <p v-html="truncatedExcerpt"></p>
-              <div :class="mediaClass">
-                <div class="card__author" v-if="author">
-                  <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
-                </div>
-                <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
-                  {{ cardDate }}
-                </div>
-              </div>
+              <card-footer v-bind="cardFooterData" />
             </div>
           </div>
         </div>
@@ -287,14 +311,7 @@ export default {
         </div>
 
         <div class="card-footer border-0 pt-0">
-          <div :class="mediaClass">
-            <div class="card__author" v-if="author">
-              <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
-            </div>
-            <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
-              {{ cardDate }}
-            </div>
-          </div>
+          <card-footer v-bind="cardFooterData" />
         </div>
       </template>
     </article>
