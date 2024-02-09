@@ -12,6 +12,18 @@
     getSite=true
   %}
 
+
+  {% assign authorEvents = "" | split: "," %}
+  {% assign filteredEvents = site.events | where_exp: 'item', 'item.author' %}
+
+  {% for item in filteredEvents %}
+    {% if item.author contains page.name %}
+      {% assign authorEvents = authorEvents | push: item %}
+    {% endif %}
+
+  {% endfor %}
+
+
   {%- assign filtered_posts = getPostsData | where: 'author', page.name -%}
 
   {%- assign postCount = filtered_posts.size -%}
@@ -29,11 +41,11 @@
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <h1 class="author__name h2" itemprop="name">{{ author.display_name }}</h1>
           </span>
-          <span class="author__post-count">{{ postCount }}</span> <span class="author__posts ml-1">{{ site.data.lang[lang].posts }}</span>
+          <span class="author__post-count">{{ postCount }}</span> <span class="ml-1">{{ site.data.lang[lang].posts }}</span>
         </div>
 
       </div>
-      <div class="row">
+      <div class="author__intro-block row">
         <div class="author__intro font-size-2 col-lg-8 pl-lg-0">
           {% if lang != 'de' %}
             {% assign languageContent = page.otherLanguages[lang] | default: page.otherLanguages['en'] | default: content %}
@@ -54,7 +66,15 @@
           </div>
         {%- endif -%}
       </div>
-      <div class="row">
+      {% if authorEvents.size > 0 %}
+        <div class="author__events row mt-lg-5">
+          {%
+            include event-overview.html
+            events=authorEvents
+          %}
+        </div>
+      {% endif %}
+      <div class="author__posts row">
         <div class="author__posts-list mt-6 pt-6">
           <div class="col-lg-10 pl-lg-0">
             {% for post in filtered_posts %}
@@ -67,6 +87,7 @@
           </div>
         </div>
       </div>
+
     </div>
   </div>
 {%- else -%}
