@@ -5,7 +5,7 @@ export default {
       return [
         'services',
         this.author ? 'services--author' : '',
-        this.authorSocialsExist ? 'services--no-socials' : '',
+        this.authorSocialsExist ? '' : 'services--no-socials',
         'vue-component',
       ];
     },
