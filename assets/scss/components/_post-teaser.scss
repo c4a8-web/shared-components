@@ -1,3 +1,14 @@
+.post-teaser {
+  &.post-teaser--author {
+    .post-teaser__img-container {
+      @include aspect-ratio(16, 9);
+    }
+
+    .post-teaser__date {
+      order: 3;
+    }
+  }
+}
 .post-teaser__img-container {
   @include hover-scale-transform;
 

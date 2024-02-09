@@ -19,7 +19,13 @@ export default {
       return;
     },
     classList() {
-      return ['post-teaser', this.classes !== '' ? this.classes : '', 'vue-component'];
+      return [
+        'post-teaser',
+        'mb-8 row',
+        this.author ? 'post-teaser--author' : '',
+        this.classes !== '' ? this.classes : '',
+        'vue-component',
+      ];
     },
     title() {
       if (this.postData?.lang !== this.lang && this.postData.lang !== '' && this.translationData?.onlyLanguage) {
@@ -45,6 +51,12 @@ export default {
     href() {
       return this.postData?.url;
     },
+    postTeaserPreset() {
+      return this.author ? '' : 'postTeaser';
+    },
+    columnClasses() {
+      return ['col-sm-8', this.author ? 'd-flex flex-column' : ''];
+    },
   },
   beforeMount() {
     const hasLanguageLoader = window.i18n?.loader;
@@ -55,23 +67,30 @@ export default {
       });
     }
   },
+  methods: {},
   props: {
     classes: String,
     post: Object,
     tag: String,
     site: Object,
     lang: String,
+    author: {
+      default: null,
+    },
   },
   template: `
-    <div class="post-teaser mb-8 row vue-component" :data-tags="tag">
+    <div :class="classList" :data-tags="tag">
       <div class="post-teaser__img-container col-sm-4 mb-4 mb-sm-0">
         <a :href="href" class="post-teaser__link is-foreground">
-          <v-img :img="imgUrl" :alt="title" class="img-responsive shadow" :cloudinary="true" preset="postTeaser" img-src-sets="postTeaser" />
+          <v-img :img="imgUrl" :alt="title" class="img-responsive shadow" :cloudinary="true" :preset="this.postTeaserPreset" :img-src-sets="this.postTeaserPreset" />
         </a>
       </div>
-      <div class="col-sm-8">
+      <div :class="columnClasses">
         <div class="post-teaser__date mb-2">
           {{ formattedDate }}
+          <a :href="href" v-if="this.author">
+            {{ this.author }}
+          </a>
         </div>
         <h3 class="post-teaser__title mb-3">
           <a :href="href" class="post-teaser__link" v-html="title"></a>

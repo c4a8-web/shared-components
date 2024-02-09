@@ -1,6 +1,7 @@
 {%- assign postTeaserLang = page.lang | default: site.lang | default: "de" -%}
 {%- assign postTeaserPost = include.post -%}
 {%- assign postTeaserTag = include.tag -%}
+{%- assign postTeaserAuthor = include.author -%}
 
 {%- capture postTeaserPostString -%}
   {%- if postTeaserPost.moment -%}
@@ -24,6 +25,7 @@
   :post="{{ postTeaserPostString | jsonify | escape }}"
   tag="{{ postTeaserTag | cgi-escape }}"
   lang="{{ postTeaserLang }}"
+  author="{{ postTeaserAuthor }}"
 >
 </post-teaser>
 <!-- End Shared Post Teaser -->
