@@ -1,0 +1,35 @@
+.filter-bar__toggle {
+  background-color: var(--color-surface-background);
+  display: inline-flex;
+}
+
+.filter-bar__toggle-icon {
+  display: flex;
+  cursor: pointer;
+  padding: spacing(3);
+
+  &.active {
+    color: var(--color-primary);
+  }
+
+  &:hover {
+    color: var(--color-primary-accent);
+  }
+
+  &:not(:first-of-type) {
+    position: relative;
+    margin-left: 1px;
+
+    &::before {
+      position: absolute;
+      content: '';
+      display: block;
+      left: 0;
+      width: 1px;
+      height: 120%;
+      height: calc(100% - #{spacing(4)});
+      transform: translateY(#{spacing($size: 1, $negative: true)});
+      background-color: var(--color-border-light);
+    }
+  }
+}

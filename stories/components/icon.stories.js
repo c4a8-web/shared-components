@@ -220,3 +220,10 @@ Meerkat.args = {
   icon: 'meerkat',
   size: 'xxl',
 };
+
+export const TileView = Template.bind({});
+
+TileView.args = {
+  icon: 'tile-view',
+  size: 'xxl',
+};

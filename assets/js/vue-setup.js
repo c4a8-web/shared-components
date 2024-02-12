@@ -100,6 +100,7 @@ import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
+import TileView from './vue/icons/tile-view.js';
 import XMark from './vue/icons/x-mark.js';
 
 // Shapes
@@ -221,6 +222,7 @@ const addApp = () => {
     Quotes,
     Rocket,
     Smile,
+    TileView,
     SBlock,
     TBlock,
     SlotItems,
