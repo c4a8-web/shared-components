@@ -1,6 +1,5 @@
 import Tools from '../tools.js';
 import State from '../state.js';
-// import Store from './../store.js';
 
 export default {
   tagName: 'filter-bar',
@@ -11,10 +10,13 @@ export default {
   },
   created() {
     this.$root.StoreData.blogItems = this.$root.Store(Tools.getJSON(this.items));
+    this.$root.StoreData.blogView = this.$root.Store(this.activeView);
   },
   methods: {
     handleView(view) {
       this.activeView = view;
+
+      this.$root.StoreData.blogView(this.activeView);
     },
     toggleIconClasses(view) {
       return ['filter-bar__toggle-icon', view === this.activeView ? State.ACTIVE : ''];
@@ -33,7 +35,7 @@ export default {
   template: `
     <div class="filter-bar">
       <div class="filter-bar__selection">
-        SELECTION {{ storedItems }}
+        SELECTION
       </div>
       <div class="filter-bar__views">
         <div class="filter-bar__toggle">

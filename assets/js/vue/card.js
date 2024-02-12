@@ -30,9 +30,13 @@ export default {
   data() {
     return {
       wordsToTruncate: 20,
+      activeView: null,
     };
   },
   computed: {
+    blogView() {
+      return this.activeView;
+    },
     combinedTitle() {
       return `${this.title} ${this.externalLanguage ? '(' + this.externalLanguage + ')' : ''}`;
     },
@@ -117,12 +121,18 @@ export default {
       };
     },
   },
-  mounted() {
+  created() {
     if (Tools.isTrue(this.store) !== true) return;
 
-    // this.$root.StoreData.blogItems()
+    const blogView = this.$root.StoreData.blogView;
 
-    console.log('has store');
+    if (!blogView) return null;
+
+    this.activeView = blogView();
+
+    blogView.subscribe((view) => {
+      this.activeView = view;
+    });
   },
   methods: {
     formatDate(date) {
@@ -217,6 +227,7 @@ export default {
     },
   },
   template: `
+  {{ blogView }}
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"
       :onclick="handleClick"
       :data-utility-animation-step="utilityAnimationStep"
