@@ -15,8 +15,8 @@ const cardFooter = {
   props: {
     classes: String,
     date: String,
-    author: Array,
-    authorsList: String,
+    author: String,
+    authorsList: Array,
     hasNoLink: Boolean,
     dataAuthors: Object,
   },
