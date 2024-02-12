@@ -1,3 +1,8 @@
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+}
+
 .filter-bar__toggle {
   background-color: var(--color-surface-background);
   display: inline-flex;

@@ -89,8 +89,4 @@ function remove(array, item) {
   }
 }
 
-if (typeof module === 'object') {
-  module.exports = Store;
-} else {
-  window['Store'] = Store;
-}
+export default Store;

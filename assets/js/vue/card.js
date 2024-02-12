@@ -117,6 +117,13 @@ export default {
       };
     },
   },
+  mounted() {
+    if (Tools.isTrue(this.store) !== true) return;
+
+    // this.$root.StoreData.blogItems()
+
+    console.log('has store');
+  },
   methods: {
     formatDate(date) {
       if (!date) return;
@@ -205,6 +212,9 @@ export default {
     index: Number,
     externalLanguage: String,
     spacing: String,
+    store: {
+      default: null,
+    },
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"

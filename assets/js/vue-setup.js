@@ -2,6 +2,8 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+import Store from './store.js';
+
 // Base Components
 import Accordion from './vue/accordion.js';
 import AdBlockInfo from './vue/ad-block-info.js';
@@ -136,6 +138,12 @@ const addApp = () => {
       if (isSafari()) {
         document.body.classList.add('safari');
       }
+    },
+    data() {
+      return {
+        Store: Store,
+        StoreData: {},
+      };
     },
   });
 
