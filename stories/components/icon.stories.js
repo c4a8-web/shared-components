@@ -227,3 +227,10 @@ TileView.args = {
   icon: 'tile-view',
   size: 'xxl',
 };
+
+export const ListView = Template.bind({});
+
+ListView.args = {
+  icon: 'list-view',
+  size: 'xxl',
+};
