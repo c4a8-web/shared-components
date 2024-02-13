@@ -159,15 +159,6 @@ PrimaryLinkReversed.args = {
   reversed: true,
 };
 
-export const PrimaryLinkExternal = Template.bind({});
-
-PrimaryLinkExternal.args = {
-  text: 'Primary Link',
-  href: 'javascript:void(0)',
-  link: true,
-  external: true,
-};
-
 export const PrimaryButtonLoading = Template.bind({});
 
 PrimaryButtonLoading.args = {
