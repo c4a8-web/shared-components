@@ -1,7 +1,16 @@
 .post-teaser {
   &.post-teaser--author {
     .post-teaser__img-container {
-      @include aspect-ratio(16, 9);
+      a {
+        @include aspect-ratio(16, 9);
+
+        display: block;
+        height: 100%;
+
+        img {
+          object-fit: cover;
+        }
+      }
     }
 
     .post-teaser__date {
