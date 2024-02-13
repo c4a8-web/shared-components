@@ -45,37 +45,28 @@ export const ServicesSocials = Template.bind({});
 
 ServicesSocials.args = {
   title: 'Lorem Ipsum',
-  items: [
-    {
-      text: 'Azure Active Directory',
-      href: 'javascript:void(0)',
-      external: true,
-      link: true,
-    },
-    {
-      text: 'Azure Virtual Desktop',
-      href: 'javascript:void(0)',
-      external: true,
-      link: true,
-    },
-    {
-      text: 'Exchange Online',
-      href: 'javascript:void(0)',
-      external: true,
-      link: true,
-    },
-    {
-      text: 'Microsoft 365',
-      href: 'javascript:void(0)',
-      external: true,
-      link: true,
-    },
-    {
-      text: 'Microsoft Intune',
-      href: 'javascript:void(0)',
-      external: true,
-      link: true,
-    },
-  ],
-  author: 'adrian-ritter',
+  author: {
+    socials: [
+      {
+        text: 'Azure Active Directory',
+        href: 'javascript:void(0)',
+      },
+      {
+        text: 'Azure Virtual Desktop',
+        href: 'javascript:void(0)',
+      },
+      {
+        text: 'Exchange Online',
+        href: 'javascript:void(0)',
+      },
+      {
+        text: 'Microsoft 365',
+        href: 'javascript:void(0)',
+      },
+      {
+        text: 'Microsoft Intune',
+        href: 'javascript:void(0)',
+      },
+    ],
+  },
 };

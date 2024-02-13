@@ -5,7 +5,7 @@ export default {
       return [
         'services',
         this.author ? 'services--author' : '',
-        this.authorSocialsExist ? '' : 'services--no-socials',
+        this.authorSocialsExist ? '' : this.author ? 'services--no-socials' : '',
         'vue-component',
       ];
     },
@@ -13,7 +13,7 @@ export default {
       return this.author.socials !== undefined;
     },
     itemsList() {
-      return this.authorSocialsExist ? this.authors.socials : this.items;
+      return this.authorSocialsExist ? this.author.socials : this.items;
     },
   },
   methods: {},
@@ -39,14 +39,14 @@ export default {
   },
   template: `
   <div :class="classValue">
-    <template v-if="this.items">
+    <template v-if="this.itemsList">
       <div class="services__title font-size-xs bold">
         {{ this.title }}
       </div>
       <div class="services__items font-size-1" >
         <template v-for="item in this.itemsList">
           <div class="services__item">
-            <cta v-bind="item" link="true" />
+            <cta v-bind="item" link="true" :external="this.authorSocialsExist"/>
           </div>
         </template>
       </div>
