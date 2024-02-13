@@ -29,8 +29,9 @@ import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
 import FilterBar from './vue/filter-bar.js';
 import Footer from './vue/footer.js';
-import GoogleMap from './vue/google-map.js';
 import GoogleMapEntry from './vue/google-map-entry.js';
+import GoogleMap from './vue/google-map.js';
+import GridList from './vue/grid-list.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
@@ -173,8 +174,9 @@ const addApp = () => {
     Form,
     FilterBar,
     Footer,
-    GoogleMap,
     GoogleMapEntry,
+    GoogleMap,
+    GridList,
     Header,
     Headline,
     Icon,
