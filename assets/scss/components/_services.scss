@@ -66,8 +66,23 @@
 }
 
 .services--author {
+  border-top: 1px solid var(--color-services-border);
+  padding-top: spacing(4);
+  margin-top: spacing(4);
+
+  @include media-breakpoint-up(lg) {
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+  }
+
   .services__footer {
     border-bottom: none;
+    padding-bottom: spacing(15);
+
+    @include media-breakpoint-up(lg) {
+      padding-bottom: 0;
+    }
   }
 }
 .services--no-socials {
