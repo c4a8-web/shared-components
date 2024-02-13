@@ -73,7 +73,8 @@ export default {
           <headline level="h3" classes="h2-font-size mb-0" :text="title"></headline>
         </div>
       </div>
-      <div class="row mb-3 utility-animation__group">
+      <grid-list :items="storedItems" :view="activeView" :data-authors="dataAuthorsValue" />
+      <div class="row mb-3 utility-animation__group" style="display: none">
         <template v-for="(post, index) in storedItems">
           <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8" v-if="index > 0">
             <card
