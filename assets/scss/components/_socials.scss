@@ -15,6 +15,10 @@
       &:first-child {
         flex-grow: 1;
       }
+
+      &:not(:last-child) {
+        margin-right: spacing(8);
+      }
     }
   }
 
@@ -23,6 +27,18 @@
 
     .socials__label {
       flex-grow: 1;
+    }
+
+    .socials__item {
+      &:not(:last-child) {
+        margin-right: spacing(4);
+      }
+    }
+  }
+
+  .socials__item {
+    &:not(:last-child) {
+      margin-right: spacing(4);
     }
   }
 

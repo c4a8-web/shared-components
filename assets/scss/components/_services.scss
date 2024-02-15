@@ -26,18 +26,18 @@
     }
   }
 
-  &.services--no-socials {
-    .services__footer {
-      border-top: none;
-      padding-top: 0;
-      margin-top: 0;
-    }
-  }
-
   &:not(.services--author) {
     padding-top: spacing(4);
     margin-top: spacing(5);
     border-top: 2px solid var(--color-services-border);
+  }
+
+  &:not(.services--no-socials) {
+    .services__footer {
+      border-top: 1px solid var(--color-services-border);
+      padding-top: spacing(4);
+      margin-top: spacing(4);
+    }
   }
 
   @include media-breakpoint-up(md) {
@@ -83,9 +83,7 @@
 
 .services__footer {
   border-bottom: 2px solid var(--color-services-border);
-  border-top: 1px solid var(--color-services-border);
-  padding-top: spacing(4);
-  margin-top: spacing(4);
+
   padding-bottom: spacing(5);
   flex: 1 0 100%;
 

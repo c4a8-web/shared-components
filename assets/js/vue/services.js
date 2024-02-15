@@ -4,16 +4,15 @@ export default {
     classValue() {
       return [
         'services',
-        this.author ? 'services--author' : '',
-        this.authorSocialsExist ? '' : this.author ? 'services--no-socials' : '',
+        this.author ? `services--author ${this.authorHasSocials ? '' : 'services--no-socials'}` : '',
         'vue-component',
       ];
     },
-    authorSocialsExist() {
+    authorHasSocials() {
       return this.author.socials !== undefined;
     },
     itemsList() {
-      return this.authorSocialsExist ? this.author.socials : this.items;
+      return this.authorHasSocials ? this.author.socials : this.items;
     },
   },
   methods: {},
@@ -39,21 +38,21 @@ export default {
   },
   template: `
   <div :class="classValue">
-    <template v-if="this.itemsList">
+    <template v-if="itemsList">
       <div class="services__title font-size-xs bold">
         {{ this.title }}
       </div>
       <div class="services__items font-size-1" >
-        <template v-for="item in this.itemsList">
+        <template v-for="item in itemsList">
           <div class="services__item">
-            <cta v-bind="item" link="true" :external="this.authorSocialsExist"/>
+            <cta v-bind="item" link="true" :external="authorHasSocials"/>
           </div>
         </template>
       </div>
     </template>
     <div class="services__footer">
-      <template v-if="this.author">
-        <socials :author="this.author" :message="this.followMessage" :site="site" :page="page" expand="true" :share-url="this.shareUrl"/>
+      <template v-if="author">
+        <socials :author="author" :message="followMessage" expand="true" :share-url="shareUrl"/>
       </template>
       <template v-else>
         <div class="services__label font-size-xs bold">{{ this.label }}</div>
