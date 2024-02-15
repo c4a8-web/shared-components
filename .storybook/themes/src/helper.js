@@ -22,17 +22,26 @@ function addStyles(styles) {
   }
 }
 
-function addBaseClass(theme) {
-  const root = document.querySelector('#root');
+function addBaseClass({ theme, docs = false }) {
+  const root = docs ? document.getElementById('docs-root') : document.getElementById('root');
   const baseSharedClass = 'shared-components';
 
   if (root) {
-    const wrapper = root.firstChild;
+    const elements = docs ? root.querySelectorAll('.docs-story') : root.firstChild;
 
-    if (wrapper) {
-      wrapper.classList = `${baseSharedClass} ${theme}`;
-    }
+    if (!elements) return;
+    if (elements.length === undefined) return elements.classList.add(...[baseSharedClass, theme]);
+    if (elements.length === 0) return;
+
+    elements.forEach((element) => {
+      element.classList.add(...[baseSharedClass, theme]);
+    });
   }
 }
 
-export { addStyles, addBaseClass };
+function addBaseClasses(theme) {
+  addBaseClass({ theme });
+  addBaseClass({ theme, docs: true });
+}
+
+export { addStyles, addBaseClass, addBaseClasses };

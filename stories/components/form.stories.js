@@ -1,13 +1,69 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';
 import { includesformhtml as component } from '../../.storybook/generatedIncludes';
+
+import { analytics } from '../globalArgTypes';
 
 const options = getTitle({
   title: 'Form',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    hasAnimation: {
+      description: 'Toggles Animation for the Form',
+      type: 'boolean',
+    },
+    analytics,
+    form: {
+      description: 'Form Content contains Headline/Subline/Cta/Fields etc.',
+      type: 'object',
+    },
+    light: {
+      description: 'Toggles Light Mode',
+      type: 'boolean',
+    },
+    space: {
+      description: 'Helper Class for the Form Spacing',
+      type: {
+        summary: 'Spacings',
+        detail: 'space-top-1, space-top-2',
+      },
+    },
+    container: {
+      description: 'Toggles Container',
+      type: 'boolean',
+    },
+    customValidation: {
+      description: 'Toggles Custom Validation for the Form',
+      type: 'boolean',
+    },
+    ajax: {
+      description: 'Asynchronous Javascript and XML datatransfer',
+      type: 'string',
+    },
+    additionalFields: {
+      description: 'Adds additiona Fields',
+      type: 'object',
+    },
+    uncentered: {
+      description: 'Toggle to center/uncenter the Form',
+      type: 'string',
+    },
+    replaceValue: {
+      description: 'Replace Value for a Form Field',
+      type: 'string',
+    },
+    options: {
+      description: 'Field Options',
+      type: 'object',
+    },
+    hasUuid: {
+      description: 'Toggles unique id for fields',
+      type: 'boolean',
+    },
+  },
+});
 
 const baseArgs = {
   container: true,

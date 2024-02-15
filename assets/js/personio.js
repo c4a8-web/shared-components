@@ -249,8 +249,14 @@ class Personio {
       case 'cancellation':
         mappedName = 'available_from';
         break;
-      default:
+      case 'gender':
+      case 'birthday':
+      case 'location':
+      case 'phone':
         mappedName = name;
+        break;
+      default:
+        mappedName = 'custom_attribute_' + name;
         break;
     }
 

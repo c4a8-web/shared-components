@@ -1,19 +1,33 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';
 import { includesawardshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Awards',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    awards: {
+      description: 'Award Object contains various Elements',
+      type: 'object',
+    },
+    level: {
+      description: 'Headline Level',
+      type: 'string',
+    },
+    visualOnly: {
+      description: 'Only Shows Visuals',
+      type: 'boolean',
+    },
+    cols: {
+      description: 'Amount of Columns',
+      type: 'number',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const Awards = Template.bind({});
-
-Awards.args = {
+export const Awards = createStory(component, {
   visualOnly: true,
   awards: {
     icon: 'svg/award-star.svg',
@@ -41,11 +55,9 @@ Awards.args = {
       },
     ],
   },
-};
+});
 
-export const FourColumns = Template.bind({});
-
-FourColumns.args = {
+export const FourColumns = createStory(component, {
   cols: 4,
   visualOnly: true,
   awards: {
@@ -75,4 +87,4 @@ FourColumns.args = {
       },
     ],
   },
-};
+});

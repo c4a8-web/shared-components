@@ -186,6 +186,38 @@ export const getComponentInnerHtmlList = function async(includes, component) {
   return html;
 };
 
+export const getDecorators = () => {
+  return [
+    (Story, context) => {
+      const componentName = context?.componentId?.replace('components-', '');
+      const argList = Object.keys(context?.args || {});
+
+      const argListString = argList
+        .map((arg) => {
+          let value = context.args[arg];
+
+          if (typeof value === 'string') {
+            value = `"${value}"`;
+          }
+
+          return `${arg}=${value}`;
+        })
+        .join('\n  ');
+
+      const customCode = `
+{%
+  include ${componentName}.html
+  ${argListString}
+%}`;
+
+      context.parameters.docs.source.language = 'liquid';
+      context.parameters.docs.source.code = customCode;
+
+      return Story();
+    },
+  ];
+};
+
 const getTitle = ({ page, title, docs, context, helper }) => {
   let type;
 
@@ -213,4 +245,29 @@ const getAssetPath = (path) => {
   return process.env.NODE_ENV === 'production' ? `../shared-components/${path}` : `${path}`;
 };
 
-export { hrefTo, getTitle, getAssetPath, site };
+const getArgTypes = (defaultExport) => {
+  const requiredText = '<b>(*)</b>&nbsp;';
+  const argTypes = defaultExport.argTypes;
+
+  if (!argTypes) return defaultExport;
+
+  Object.keys(argTypes).forEach((key) => {
+    if (argTypes[key].required) {
+      argTypes[key].description = `${requiredText} ${argTypes[key].description}`;
+    }
+  });
+
+  return defaultExport;
+};
+
+const createStory = (component, args) => {
+  const Template = (args) => createComponent(args, component);
+  const story = Template.bind({});
+
+  story.args = args;
+  story.decorators = getDecorators();
+
+  return story;
+};
+
+export { hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };

@@ -8,7 +8,13 @@ export default {
       return this.href || this.alternativeHref || this.target ? 'a' : 'button';
     },
     hasIcon() {
-      return this.link || this.external || this.icon || this.download;
+      return this.link || this.externalValue || this.icon || this.downloadValue;
+    },
+    externalValue() {
+      return Tools.isTrue(this.external);
+    },
+    downloadValue() {
+      return Tools.isTrue(this.download);
     },
     classList() {
       return [
@@ -54,9 +60,9 @@ export default {
 
       if (this.icon) {
         iconName = this.icon;
-      } else if (this.external) {
+      } else if (this.externalValue) {
         iconName = 'arrow-external';
-      } else if (this.download) {
+      } else if (this.downloadValue) {
         iconName = 'arrow-external';
       } else if (this.link) {
         iconName = 'arrow';
@@ -64,7 +70,7 @@ export default {
       return iconName;
     },
     targetValue() {
-      return this.external ? '_blank' : this.target;
+      return this.externalValue ? '_blank' : this.target;
     },
     sizeValue() {
       return 'medium';

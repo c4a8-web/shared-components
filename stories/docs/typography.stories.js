@@ -122,7 +122,18 @@ const generateDocs = function (typeFace, breakpoints) {
 
     if (!typeFaceValue) return;
 
-    const pxValue = typeFaceValue.replace('rem', '') * baseFontSize;
+    let pxValue;
+
+    if (typeFaceValue.indexOf('calc(') !== -1) {
+      const pxValueWithRem = typeFaceValue.replace('calc(', '').replace(')', '').replace('rem', '');
+      const pxValueWithRemParts = pxValueWithRem.split('/');
+      const pxNumerator = parseFloat(pxValueWithRemParts[0]);
+      const pxDenominator = parseFloat(pxValueWithRemParts[1]);
+
+      pxValue = (pxNumerator / pxDenominator) * baseFontSize;
+    } else {
+      pxValue = typeFaceValue.replace('rem', '') * baseFontSize;
+    }
 
     let pxValueLineHeight;
 

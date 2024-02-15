@@ -1,18 +1,20 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includesbloghtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Blog',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    newsTitle: {
+      description: 'News Title of the Blog',
+      type: 'string',
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const Blog = Template.bind({});
-
-Blog.args = {
+export const Blog = createStory(component, {
   newsTitle: 'Aktuelles',
-};
+});

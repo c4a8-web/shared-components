@@ -10,13 +10,13 @@ import { Styles } from './themeImports';
 
 import { STORY_RENDERED } from '@storybook/core-events';
 import addons from '@storybook/addons';
-import { EVENTS, DEFAULT_THEME, addStyles, addBaseClass } from './themes/src/themes';
+import { EVENTS, DEFAULT_THEME, addStyles, addBaseClasses } from './themes/src/themes';
 import { HTML_DOWNLOAD_EVENTS, downloadHtml } from './html-download/src/exports';
 
 let currentTheme = DEFAULT_THEME;
 
 function loadTheme(theme) {
-  addBaseClass(theme);
+  addBaseClasses(theme);
   addStyles(Styles[theme]);
 
   currentTheme = theme;
@@ -34,8 +34,8 @@ const removeModal = function () {
   }
 };
 
-function vueForceUpdate() {
-  const customEvent = new CustomEvent('VUE_FORCE_UPDATE', {});
+function vueForceUpdate(id) {
+  const customEvent = new CustomEvent('VUE_FORCE_UPDATE', { detail: { id } });
 
   document.dispatchEvent(customEvent);
 }
@@ -46,9 +46,9 @@ channel.on(EVENTS.CHANGE, (theme) => {
   removeModal();
 });
 
-channel.on(STORY_RENDERED, () => {
+channel.on(STORY_RENDERED, (name) => {
   loadTheme(currentTheme);
-  vueForceUpdate();
+  vueForceUpdate(name);
   Interim();
   removeModal();
 });
@@ -57,11 +57,21 @@ channel.on(HTML_DOWNLOAD_EVENTS.CHANGE, (e) => {
   downloadHtml(e);
 });
 
+function createDocsWrapper(params) {
+  const wrapper = document.createElement('div');
+
+  wrapper.className = 'custom-docs-wrapper';
+  wrapper.id = params?.id;
+
+  return wrapper;
+}
+
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
+    expanded: true,
     matchers: {
-      color: /(background|color)$/i,
+      color: /^background$|^color$/,
       date: /Date$/,
     },
   },
@@ -101,6 +111,15 @@ export const decorators = [
     }
 
     document.querySelector('html')?.setAttribute('lang', 'de');
+
+    if (params?.viewMode === 'docs') {
+      const storyElement = story();
+      const wrapper = createDocsWrapper(params);
+
+      wrapper.insertBefore(storyElement, wrapper.querySelector('footer'));
+
+      return wrapper;
+    }
 
     return story();
   },

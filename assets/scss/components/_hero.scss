@@ -542,7 +542,7 @@
         order: 2;
 
         .hero-text-image__keyvisual.is-svg {
-          margin-top: spacing($size: 16, $negative: true);
+          margin-top: spacing($size: 9, $negative: true);
           margin-bottom: spacing($size: 12, $negative: true);
         }
       }
@@ -669,7 +669,9 @@
   height: 0;
   overflow: hidden;
 
-  transition: height 0.7s $animation-transition, opacity 1.6s $animation-transition;
+  transition:
+    height 0.7s $animation-transition,
+    opacity 1.6s $animation-transition;
 
   &:first-of-type {
     margin-top: spacing($size: 8, $negative: true);

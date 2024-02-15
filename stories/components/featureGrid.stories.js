@@ -1,19 +1,35 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { getTitle, getAssetPath, getArgTypes, createStory } from '../../.storybook/templates';
 import { includesfeaturegridhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Feature Grid',
 });
 
-export default {
+export default getArgTypes({
   ...options,
-};
+  argTypes: {
+    featureGrid: {
+      description: 'A List of Features with a corresponding Headline',
+      type: 'object',
+    },
+    centered: {
+      description: 'Toggle to center feature Grid',
+      type: 'boolean',
+    },
+    spacing: {
+      description: 'Adds helper classes for the spacing',
+      control: {
+        type: 'text',
+      },
+      type: {
+        summary: 'Bootstrap Spacing',
+        detail: 'space-bottom-1, space-bottom-2, space-top-1, space-top-2',
+      },
+    },
+  },
+});
 
-const Template = (args) => createComponent(args, component);
-
-export const Default = Template.bind({});
-
-Default.args = {
+export const Default = createStory(component, {
   featureGrid: {
     headline: 'Specifications',
     features: [
@@ -54,11 +70,9 @@ Default.args = {
       },
     ],
   },
-};
+});
 
-export const WithImage = Template.bind({});
-
-WithImage.args = {
+export const WithImage = createStory(component, {
   featureGrid: {
     image: {
       src: getAssetPath('img/image-placeholder-1.jpg'),
@@ -103,11 +117,9 @@ WithImage.args = {
       },
     ],
   },
-};
+});
 
-export const Centered = Template.bind({});
-
-Centered.args = {
+export const Centered = createStory(component, {
   centered: true,
   featureGrid: {
     headline: 'Specifications',
@@ -154,4 +166,4 @@ Centered.args = {
       },
     ],
   },
-};
+});

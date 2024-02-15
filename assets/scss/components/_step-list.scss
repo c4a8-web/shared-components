@@ -202,11 +202,11 @@ $step-list-color-img-tint: $color-copy;
   top: 0;
   left: 0;
 
-  &.step-list__counter-icon--tinted {
-    img {
-      @include img-to-color($step-list-color-img-tint);
-    }
-  }
+  // &.step-list__counter-icon--tinted {
+  //   img {
+  //     @include img-to-color($step-list-color-img-tint);
+  //   }
+  // }
 
   img {
     vertical-align: baseline;

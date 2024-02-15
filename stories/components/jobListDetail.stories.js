@@ -81,8 +81,8 @@ const baseArgs = {
         type: 'text',
         col: 6,
         rowStart: true,
-        id: 'portfolio',
-        showIn: ['1327578'],
+        id: '2516986', // id from the custom_attribute_2516986
+        showIn: ['1335399'],
       },
       {
         label: 'Nachricht (optional)',
