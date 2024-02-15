@@ -23,10 +23,12 @@
   }
 
   &.link {
-    svg {
-      @include move-right-left;
+    &:not(.cta--external) {
+      svg {
+        @include move-right-left;
 
-      stroke: var(--color-svg-icon--hover);
+        stroke: var(--color-svg-icon--hover);
+      }
     }
 
     .cta__text {
@@ -135,14 +137,26 @@
       padding-left: spacing(4);
     }
 
-    .icon {
-      position: absolute;
-      width: 16px;
-      height: 16px;
-      top: calc(50% - 1px);
-      transform: translateY(-50%);
-      right: spacing(4);
-      z-index: 2;
+    &:not(.link) {
+      .icon {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: calc(50% - 1px);
+        transform: translateY(-50%);
+        right: spacing(4);
+        z-index: 2;
+      }
+    }
+  }
+
+  &.cta--external {
+    &.link {
+      .icon {
+        padding-left: spacing(2);
+        width: 28px;
+        height: 28px;
+      }
     }
   }
 
@@ -214,10 +228,11 @@
     &:not(:last-of-type) {
       margin-right: 0.5rem;
     }
-
-    svg {
-      margin: 0 0 0 spacing(3);
-      stroke: var(--color-primary);
+    &:not(.cta--external) {
+      svg {
+        margin: 0 0 0 spacing(3);
+        stroke: var(--color-primary);
+      }
     }
   }
 
