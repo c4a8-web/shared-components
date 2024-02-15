@@ -55,15 +55,26 @@ export default {
     utilityAnimationStep() {
       return this.hasAnimationValue ? '1' : null;
     },
+    variant() {
+      if (Tools.isTrue(this.long) === true) {
+        return 'card--long';
+      } else if (this.productValue) {
+        return 'card--products';
+      } else if (Tools.isTrue(this.event) === true) {
+        return 'card--event';
+      } else if (Tools.isTrue(this.row) === true) {
+        return 'card--row';
+      }
+
+      return 'card--default';
+    },
     classList() {
       return [
         'card',
         this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
-        `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
-        `${this.productValue ? 'card--products' : ''}`,
-        `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
+        this.variant,
         this.spacing,
         'vue-component',
       ];
@@ -225,9 +236,11 @@ export default {
     store: {
       default: null,
     },
+    row: {
+      default: null,
+    },
   },
   template: `
-  {{ blogView }}
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"
       :onclick="handleClick"
       :data-utility-animation-step="utilityAnimationStep"

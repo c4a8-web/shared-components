@@ -8,6 +8,7 @@
   {%- for item in filterBarItems -%}
     {
       "title": "{{ item.title | strip_html }}",
+      "url": "{{ item.url }}",
       "blog_image_path": "{{ site.blog_image_path }}",
       "blogtitlepic": "{{ item.blogtitlepic }}",
       "date": "{{ item.date }}",

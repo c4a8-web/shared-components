@@ -23,6 +23,7 @@
 {%- assign cardExternalLanguage = include.externalLanguage -%}
 {%- assign cardSpacing = include.spacing -%}
 {%- assign cardStore = include.store -%}
+{%- assign cardRow = include.row -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -57,5 +58,6 @@
   index="{{ cardIndex }}"
   external-language="{{ cardExternalLanguage }}"
   :store="{{ cardStore }}"
+  row="{{ cardRow }}"
 ></card>
 <!-- End Shared Card Section -->
