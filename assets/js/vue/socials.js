@@ -84,7 +84,7 @@ export default {
   template: `
   <div :class="classValue" v-if="getList">
     <template v-if="showLabel">
-      <span class="socials__label mr-4">{{ this.follow }}</span>
+      <span class="socials__label mr-4">{{ follow }}</span>
     </template>
 
     <template v-for="(listEntry, index) in getList">

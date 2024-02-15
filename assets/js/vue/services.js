@@ -40,7 +40,7 @@ export default {
   <div :class="classValue">
     <template v-if="itemsList">
       <div class="services__title font-size-xs bold">
-        {{ this.title }}
+        {{ title }}
       </div>
       <div class="services__items font-size-1" >
         <template v-for="item in itemsList">
@@ -55,8 +55,8 @@ export default {
         <socials :author="author" :message="followMessage" expand="true" :share-url="shareUrl"/>
       </template>
       <template v-else>
-        <div class="services__label font-size-xs bold">{{ this.label }}</div>
-        <div class="services__value">{{ this.value }}</div>
+        <div class="services__label font-size-xs bold">{{ label }}</div>
+        <div class="services__value">{{ value }}</div>
       </template>
     </div>
   </div>
