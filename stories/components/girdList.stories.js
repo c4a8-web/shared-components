@@ -15,7 +15,7 @@ export const ListView = createStory(component, {
   view: 'list-view',
 });
 
-export const GridView = createStory(component, {
+export const TileView = createStory(component, {
   items: site.posts,
-  view: 'grid-view',
+  view: 'tile-view',
 });

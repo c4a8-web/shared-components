@@ -20,6 +20,7 @@ export default {
   props: {
     items: String,
     view: String,
+    dataAuthors: Array,
   },
   template: `
     <div :class="classList">
@@ -27,12 +28,14 @@ export default {
         <div :class="columnClassList" v-if="index > 0">
           <card
             :title="item.title"
+            :blog-title-pic="item.blogtitlepic"
             :excerpt="item.excerpt"
             :date="item.date"
             :url="item.url"
             :author="item.author"
             :hasAnimation="true"
             :index="index"
+            :data-authors="dataAuthors"
           />
         </div>
       </template>
