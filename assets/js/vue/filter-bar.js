@@ -10,6 +10,14 @@ export default {
     dataAuthorsValue() {
       return Tools.getJSON(this.dataAuthors);
     },
+    normalizedItems() {
+      return this.storedItems.map((item) => {
+        return {
+          ...item,
+          blogtitlepic: `${item.blog_image_path}${item.blogtitlepic}`,
+        };
+      });
+    },
   },
   created() {
     this.$root.StoreData.blogItems = this.$root.Store(Tools.getJSON(this.items));
@@ -73,7 +81,7 @@ export default {
           <headline level="h3" classes="h2-font-size mb-0" :text="title"></headline>
         </div>
       </div>
-      <grid-list :items="storedItems" :view="activeView" :data-authors="dataAuthorsValue" />
+      <grid-list :items="normalizedItems" :view="activeView" :data-authors="dataAuthorsValue" />
       <div class="row mb-3 utility-animation__group" style="display: none">
         <template v-for="(post, index) in storedItems">
           <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8" v-if="index > 0">
