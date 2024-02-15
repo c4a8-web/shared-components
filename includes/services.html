@@ -2,25 +2,16 @@
 {%- assign servicesTitle = include.title -%}
 {%- assign servicesLabel = include.label -%}
 {%- assign servicesValue = include.value -%}
+{%- assign servicesAuthor = include.author -%}
 
-<!-- Shared Services Section -->
-<div class="services">
-  <div class="services__title font-size-xs bold">{{ servicesTitle }}</div>
-  <div class="services__items font-size-1">
-    {% for item in servicesItems %}
-      <div class="services__item">
-        {%
-          include cta.html
-          text=item.text
-          href=item.href
-          link=true
-        %}
-      </div>
-    {% endfor %}
-  </div>
-  <div class="services__footer">
-    <div class="services__label font-size-xs bold">{{ servicesLabel }}</div>
-    <div class="services__value">{{ servicesValue }}</div>
-  </div>
-</div>
-<!-- End Shared Services Section -->
+{% capture shareUrl %}{{ site.url}}{{ page.url }}{% endcapture%}
+
+
+<services
+  share-url="{{ shareUrl }}"
+  :items="{{ servicesItems | jsonify | escape }}"
+  title="{{ servicesTitle }}"
+  label="{{ servicesLabel }}"
+  value="{{ servicesValue }}"
+  :author="{{ servicesAuthor | jsonify | escape }}"
+></services>
