@@ -17,21 +17,35 @@
     }
 
     &.card--row {
+      @include media-breakpoint-up(md) {
+        display: grid;
+        max-width: none;
+        grid-template-columns: 1fr 2fr;
+        grid-template-areas: 'image body' 'image footer';
+
+        .card__img-top {
+          grid-area: image;
+        }
+
+        .card__body {
+          grid-area: body;
+        }
+
+        .card-footer {
+          grid-area: footer;
+        }
+      }
     }
 
     &:not(.card--large):not(.card--long):not(.card--products) {
-      // &.card--row {
-      //   max-width: none;
-      // }
-
       max-width: unquote('min(480px, 100%)');
 
       @include media-breakpoint-up(md) {
         max-width: unquote('min(480px, 100vw)');
 
-        // &.card--row {
-        //   max-width: none;
-        // }
+        &.card--row {
+          max-width: none;
+        }
       }
     }
 

@@ -4,7 +4,7 @@ const cardFooter = {
   tagName: 'card-footer',
   template: `
     <div class="d-flex align-items-center mt-auto">
-      <div class="card__date media-body d-flex font-size-1 mr-2">
+      <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
         {{ date }}
       </div>
       <div class="card__author" v-if="author">
@@ -19,6 +19,7 @@ const cardFooter = {
     authorsList: Array,
     hasNoLink: Boolean,
     dataAuthors: Object,
+    isRow: Boolean,
   },
 };
 
@@ -55,6 +56,9 @@ export default {
     utilityAnimationStep() {
       return this.hasAnimationValue ? '1' : null;
     },
+    rowValue() {
+      return Tools.isTrue(this.row) === true;
+    },
     variant() {
       if (Tools.isTrue(this.long) === true) {
         return 'card--long';
@@ -62,7 +66,7 @@ export default {
         return 'card--products';
       } else if (Tools.isTrue(this.event) === true) {
         return 'card--event';
-      } else if (Tools.isTrue(this.row) === true) {
+      } else if (this.rowValue) {
         return 'card--row';
       }
 
@@ -129,6 +133,7 @@ export default {
         authorsList: this.authorList(this.author),
         hasNoLink: this.hasNoLink,
         dataAuthors: this.dataAuthors,
+        isRow: this.rowValue,
       };
     },
   },
