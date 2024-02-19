@@ -1,3 +1,5 @@
+import UtilityAnimation from '../utility-animation.js';
+
 export default {
   tagName: 'grid-list',
   computed: {
@@ -8,12 +10,18 @@ export default {
       return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-12', 'mb-3 mb-sm-8'];
     },
     isList() {
-      // TODO on update set is-starting or restart the animation
-
       return this.view === 'list-view';
     },
     isRow() {
       return this.isList ? true : false;
+    },
+  },
+  watch: {
+    view() {
+      setTimeout(() => {
+        // delay for view to be ready for the outside view manipulation
+        UtilityAnimation.resetGroup(this.$refs.group);
+      }, 100);
     },
   },
   created() {},
@@ -28,9 +36,9 @@ export default {
     dataAuthors: Array,
   },
   template: `
-    <div :class="classList">
+    <div :class="classList" ref="group">
       <template v-for="(item, index) in items">
-        <div :class="columnClassList" v-if="index > 0">
+        <div :class="columnClassList" v-if="index > 0" dddref="list">
           <card
             :title="item.title"
             :url="item.url"
