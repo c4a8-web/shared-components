@@ -7,6 +7,7 @@ class UtilityAnimation {
   static inViewportDataset = 'data-utility-animation-in-viewport';
   static endDataset = 'data-utility-animation-end';
   static instances = [];
+  static groupItemsLoadedProperty = '--utility-animation-items-loaded';
 
   constructor(root) {
     this.root = root;
@@ -54,13 +55,12 @@ class UtilityAnimation {
   }
 
   handleAnimationEnd(event) {
-    const group = this.getGroup(event.srcElement);
+    const group = UtilityAnimation.getGroup(event.srcElement);
 
     if (group) {
-      const itemsLoadedProperty = '--utility-animation-items-loaded';
-      const oldItemsValue = parseInt(group.style.getPropertyValue(itemsLoadedProperty), 10) || 0;
+      const oldItemsValue = parseInt(group.style.getPropertyValue(UtilityAnimation.groupItemsLoadedProperty), 10) || 0;
 
-      group.style.setProperty(itemsLoadedProperty, oldItemsValue + 1);
+      UtilityAnimation.setGroupItemsLoaded(group, oldItemsValue + 1);
     }
 
     this.updateCurrentElement(event);
@@ -92,7 +92,7 @@ class UtilityAnimation {
     this.startStepAnimation(this.currentElements);
   }
 
-  getGroup(element) {
+  static getGroup(element) {
     return element.closest('.utility-animation__group');
   }
 
@@ -112,6 +112,10 @@ class UtilityAnimation {
     });
 
     observer.observe(this.root, { attributes: true });
+  }
+
+  static setGroupItemsLoaded(group, count) {
+    group.style.setProperty(this.groupItemsLoadedProperty, count);
   }
 
   static hasPercentageOffset(instance) {
@@ -160,6 +164,32 @@ class UtilityAnimation {
         observer.observe(instance.root);
       }
     });
+  }
+
+  static resetGroup(group) {
+    this.setGroupItemsLoaded(group, 0);
+
+    this.instances.forEach((instance) => {
+      const instanceGroup = this.getGroup(instance.root);
+
+      if (instanceGroup === group) {
+        const rootElement = instance.root;
+
+        instance.currentElements = [rootElement];
+
+        rootElement.removeAttribute('data-utility-animation-end');
+
+        instance.startAnimation();
+      }
+    });
+  }
+
+  static initElement(element, options) {
+    const instance = new this(element, options);
+
+    this.instances.push(instance);
+
+    return instance;
   }
 
   static init() {
