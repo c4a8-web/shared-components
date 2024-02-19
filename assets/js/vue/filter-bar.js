@@ -82,22 +82,6 @@ export default {
         </div>
       </div>
       <grid-list :items="normalizedItems" :view="activeView" :data-authors="dataAuthorsValue" />
-      <div class="row mb-3 utility-animation__group" style="display: none">
-        <template v-for="(post, index) in storedItems">
-          <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8" v-if="index > 0">
-            <card
-              :title="post.title"
-              :excerpt="post.excerpt"
-              :date="post.date"
-              :url="post.url"
-              :author="post.author"
-              :hasAnimation="true"
-              :index="index"
-              :data-authors="dataAuthorsValue"
-            />
-          </div>
-        </template>
-      </div>
     </div>
   `,
 };
