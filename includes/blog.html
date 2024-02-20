@@ -72,17 +72,9 @@
     maxBlogPosts=blogMaxBlogPosts
   %}
 
-  <div style="display: none" class="col-lg-12 mb-5 mb-lg-0">
-    REMOVE ME
-    {%
-      include tags.html
-      all=true
-    %}
-  </div>
-
   {% if paginatorPosts %}
     <!-- Title -->
-    <div class="row mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
+    <div class="row no-gutters  mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1" style="display:none;">
       <div class="col-12">
         <headline level="h3" classes="h2-font-size mb-0">
           {{ blogNewsTitle }}
@@ -92,7 +84,7 @@
     <!-- End Title -->
   {% endif %}
 
-  <div class="row mb-3 utility-animation__group">
+  <div class="row mb-3 utility-animation__group" style="display:none;">
     {% for post in paginatorPosts limit: blogMaxBlogPosts %}
       {% if post.url != firstUrl %}
         {% assign postExternalLanguage = null %}

@@ -2,13 +2,23 @@ import Tools from '../tools.js';
 
 const cardFooter = {
   tagName: 'card-footer',
+  computed: {
+    tagsList() {
+      return Array.isArray(this.tags) ? this.tags : this.tags.split(',');
+    },
+  },
   template: `
-    <div class="d-flex align-items-center mt-auto">
-      <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
-        {{ date }}
+    <div class="card__footer">
+      <div class="card__tags" v-if="tags">
+        <tag v-for="tag in tagsList" :key="tag" :tag="tag" ></tag>
       </div>
-      <div class="card__author" v-if="author">
-        <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
+      <div class="d-flex align-items-center mt-auto">
+        <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
+          {{ date }}
+        </div>
+        <div class="card__author" v-if="author">
+          <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
+        </div>
       </div>
     </div>
   `,
@@ -20,6 +30,7 @@ const cardFooter = {
     hasNoLink: Boolean,
     dataAuthors: Object,
     isRow: Boolean,
+    tags: Array,
   },
 };
 
@@ -134,6 +145,7 @@ export default {
         hasNoLink: this.hasNoLink,
         dataAuthors: this.dataAuthors,
         isRow: this.rowValue,
+        tags: this.tags,
       };
     },
   },
@@ -244,6 +256,7 @@ export default {
     row: {
       default: null,
     },
+    tags: Array,
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"
@@ -344,13 +357,15 @@ export default {
           </figure>
         </div>
 
-        <div class="card__body card-body">
-          <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ combinedTitle }}</a></headline>
-          <p v-html="truncatedExcerpt"></p>
-        </div>
+        <div class="card__content">
+          <div class="card__body card-body">
+            <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ combinedTitle }}</a></headline>
+            <p v-html="truncatedExcerpt"></p>
+          </div>
 
-        <div class="card-footer border-0 pt-0">
-          <card-footer v-bind="cardFooterData" />
+          <div class="card-footer border-0 pt-0">
+            <card-footer v-bind="cardFooterData" />
+          </div>
         </div>
       </template>
     </article>

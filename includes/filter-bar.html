@@ -13,7 +13,7 @@
       "blogtitlepic": "{{ item.blogtitlepic }}",
       "date": "{{ item.date }}",
       "moment": "{{ item.moment }}",
-      "tags": "{{ item.tags }}",
+      "tags": {{ item.tags | jsonify }},
       "author": {{ item.author | jsonify | default: 'null' }},
       "excerpt": "{{ item.excerpt | strip_html | strip_newlines | escape }}"
     }{% unless forloop.last %},{% endunless -%}

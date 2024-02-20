@@ -4,7 +4,7 @@ export default {
   tagName: 'grid-list',
   computed: {
     classList() {
-      return ['grid-list row mb-3 utility-animation__group vue-component'];
+      return ['grid-list row mb-3 mx-n3 utility-animation__group vue-component'];
     },
     columnClassList() {
       return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-12', 'mb-3 mb-sm-8'];
@@ -38,7 +38,7 @@ export default {
   template: `
     <div :class="classList" ref="group">
       <template v-for="(item, index) in items">
-        <div :class="columnClassList" v-if="index > 0" dddref="list">
+        <div :class="columnClassList" v-if="index > 0">
           <card
             :title="item.title"
             :url="item.url"
@@ -51,6 +51,7 @@ export default {
             :index="index"
             :data-authors="dataAuthors"
             :row="isRow"
+            :tags="item.tags"
           />
         </div>
       </template>

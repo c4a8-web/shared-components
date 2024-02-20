@@ -76,7 +76,7 @@ export default {
           </div>
         </div>
       </div>
-      <div class="row mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
+      <div class="row no-gutters mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
         <div class="col-12">
           <headline level="h3" classes="h2-font-size mb-0" :text="title"></headline>
         </div>
