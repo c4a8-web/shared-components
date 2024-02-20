@@ -17,6 +17,12 @@
     }
 
     &.card--row {
+      .card__img-top {
+        img {
+          aspect-ratio: 16/9;
+        }
+      }
+
       @include media-breakpoint-up(lg) {
         --color-card-background: transparent;
         --card-img-width: 43%;
@@ -36,7 +42,6 @@
 
           img {
             flex: 1;
-            aspect-ratio: 16/9;
             height: auto;
           }
         }
