@@ -1,0 +1,10 @@
+<!-- Shared Dropdown Section -->
+{%- assign dropdownLabel = include.label -%}
+{%- assign dropdownItems = include.items -%}
+
+<dropdown
+  label="{{ dropdownLabel }}"
+  :items="{{ dropdownItems | jsonify | escape }}"
+>
+</dropdown>
+<!-- End Shared Dropdown Section -->

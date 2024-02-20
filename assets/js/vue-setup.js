@@ -14,6 +14,7 @@ import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
+import Dropdown from './vue/dropdown.js';
 import EventOverview from './vue/event-overview.js';
 import Event from './vue/event.js';
 import Faq from './vue/faq.js';
@@ -157,6 +158,7 @@ const addApp = () => {
     BlogRecent,
     Card,
     Cta,
+    Dropdown,
     EventOverview,
     Event,
     CheckCard,
