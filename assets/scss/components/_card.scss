@@ -19,7 +19,7 @@
     &.card--row {
       @include media-breakpoint-up(lg) {
         --color-card-background: transparent;
-        --card-img-width: 37%;
+        --card-img-width: 43%;
 
         box-shadow: none;
         border-radius: 0;
@@ -58,11 +58,19 @@
         .card__body {
           padding-bottom: 0;
           padding-top: spacing(0.5);
+
+          p {
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+          }
         }
       }
 
       @include media-breakpoint-up(xl) {
-        --card-img-width: 33%;
+        --card-img-width: 34%;
       }
     }
 
@@ -266,4 +274,10 @@
   flex: 1;
   height: 100%;
   flex-direction: column;
+}
+
+.card__tags {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
 }
