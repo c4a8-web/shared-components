@@ -11,7 +11,8 @@ export default {
     },
     classList() {
       return [
-        `tags__btn btn btn-xs btn-soft-secondary btn-pill mx-sm-${this.props?.spacing} mb-2 vue-component`,
+        `tags__btn btn btn-xs btn-soft-secondary btn-pill mb-2 vue-component`,
+        this.variant ? 'tag--' + this.variant : `mx-sm-${this.props?.spacing}`,
         this.classes ? this.classes : null,
       ];
     },
@@ -44,6 +45,10 @@ export default {
       default: 1,
     },
     classes: {
+      type: String,
+      default: null,
+    },
+    variant: {
       type: String,
       default: null,
     },

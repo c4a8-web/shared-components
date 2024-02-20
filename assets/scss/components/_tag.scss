@@ -1,0 +1,9 @@
+.tags__btn {
+  &.tag--small {
+    @include font-weight('bold');
+
+    padding: spacing(1) spacing(2);
+    margin-right: spacing(2);
+    text-transform: uppercase;
+  }
+}

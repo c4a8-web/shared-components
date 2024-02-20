@@ -3,6 +3,7 @@
 {%- assign tagCount = include.count -%}
 {%- assign tagSpacing = include.spacing -%}
 {%- assign tagFilter = include.filter -%}
+{%- assign tagVariant = include.variant -%}
 
 <!-- Shared Tag -->
 <tag
@@ -11,6 +12,7 @@
   :spacing="{{ tagSpacing }}"
   :count="{{ tagCount }}"
   filter="{{ tagFilter }}"
+  variant="{{ tagVariant }}"
 >
 </tag>
 <!-- End Shared Tag -->
