@@ -14,6 +14,9 @@ const en = {
   positionTypeInternship: 'Internship',
   positionTypeTraining: 'Trainee',
   positionTypeStudent: 'Working Students',
+  filterAuthors: 'Authors',
+  filterTopics: 'Topics',
+  filterTags: 'Tags',
 };
 
 export default en;

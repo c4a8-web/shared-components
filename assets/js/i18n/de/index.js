@@ -14,6 +14,9 @@ const de = {
   positionTypeInternship: 'Praktikum oder Werkstudententätigkeit',
   positionTypeTraining: 'Ausbildung oder Traineeprogramm',
   positionTypeStudent: 'Werkstudierende',
+  filterAuthors: 'Autoren',
+  filterTopics: 'Themen',
+  filterTags: 'Tags',
 };
 
 export default de;
