@@ -28,7 +28,27 @@ export default {
 
     if (hasLanguageLoader) {
       hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData(['onlyLanguage']);
+        this.translationData = window.i18n?.getTranslationData([
+          'onlyLanguage',
+          'filterAuthors',
+          'filterTopics',
+          'filterTags',
+        ]);
+
+        this.filterDropdowns = [
+          {
+            label: this.translationData?.filterAuthors,
+            items: this.dataAuthorsValue,
+          },
+          {
+            label: this.translationData?.filterTopics,
+            items: this.dataAuthorsValue,
+          },
+          {
+            label: this.translationData?.filterTags,
+            items: this.dataAuthorsValue,
+          },
+        ];
       });
     }
   },
@@ -53,6 +73,7 @@ export default {
     return {
       activeView: 'tile-view',
       views: ['tile-view', 'list-view'],
+      filterDropdowns: [],
     };
   },
   props: {
@@ -66,7 +87,7 @@ export default {
     <div class="filter-bar">
       <div class="filter-bar__controls">
         <div class="filter-bar__selection">
-          SELECTION
+          <dropdown v-for="dropdownItem in filterDropdowns"v-bind="dropdownItem" />
         </div>
         <div class="filter-bar__views">
           <div class="filter-bar__toggle">

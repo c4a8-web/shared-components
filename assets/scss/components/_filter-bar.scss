@@ -38,3 +38,8 @@
     }
   }
 }
+
+.filter-bar__selection {
+  display: flex;
+  gap: spacing(4);
+}
