@@ -49,8 +49,8 @@ export default {
         <span class="dropdown__label-icon"></span>
       </div>
       <div class="dropdown__items" v-show="isOpen">
-        <div :class="toggleIconClasses(item)" @click="handleSelection(index)" v-for="(item, index) in parsedItems">
-          <input type="checkbox" :value="item.value" :checked="activeSelection.includes(index)">
+        <div :class="toggleIconClasses(item)" @click="handleSelection(item)" v-for="(item, index) in parsedItems">
+          <input type="checkbox" :value="item.value" :checked="activeSelection.includes(item)">
           {{ item.text }}
           <span style="float: right;">{{ item.count }}</span>
         </div>
