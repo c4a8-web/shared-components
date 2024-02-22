@@ -21,15 +21,23 @@ export default {
     filteredItems() {
       if (!this.selections.length) return this.normalizedItems;
 
-      // TODO check in filterDropdowns for the keys to check if item matches any of them
+      let filteredItems = [];
 
-      return this.normalizedItems.filter((item) => {
-        return this.selections.some((selectionArray) => {
-          return selectionArray.some((selection) => {
-            return Array.isArray(item.author) ? item.author.includes(selection.value) : item.author === selection.value;
+      this.selections.forEach((selectionArray) => {
+        selectionArray.forEach((selection) => {
+          this.filterDropdowns.forEach((dropdown) => {
+            const key = dropdown.key;
+            const matchingItems = this.normalizedItems.filter((item) => {
+              return Array.isArray(item[key]) ? item[key].includes(selection.value) : item[key] === selection.value;
+            });
+            filteredItems = [...filteredItems, ...matchingItems];
           });
         });
       });
+
+      filteredItems = [...new Set(filteredItems)];
+
+      return filteredItems;
     },
     authors() {
       return this.extractPropertyCounts('author');
