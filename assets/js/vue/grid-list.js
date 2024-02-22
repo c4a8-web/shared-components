@@ -55,7 +55,7 @@ export default {
   template: `
     <div :class="classList" ref="group">
       <template v-for="(item, index) in items">
-        <div :class="columnClassList" v-if="index > 0">
+        <div :class="columnClassList">
           <card
             :title="item.title"
             :url="item.url"
