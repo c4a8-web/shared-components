@@ -26,6 +26,10 @@ export default {
     },
     toggleDropdown() {
       this.isOpen = !this.isOpen;
+
+      if (this.isOpen) {
+        this.$emit(Events.DROPDOWN_OPENED, this);
+      }
     },
     toggleIconClasses(selection) {
       return ['dropdown__toggle-icon', this.activeSelection.includes(selection) ? State.ACTIVE : ''];

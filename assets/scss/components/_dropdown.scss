@@ -12,6 +12,11 @@
   transform: translateY(spacing(3));
   background-color: var(--color-background);
   padding: spacing(5);
+  width: 100vw;
+
+  @include media-breakpoint-up(md) {
+    width: 320px;
+  }
 }
 
 .dropdown__label {
@@ -51,4 +56,8 @@
 
 .dropdown__label-text {
   position: absolute;
+}
+
+.filter-bar__controls {
+  margin-bottom: spacing(12);
 }
