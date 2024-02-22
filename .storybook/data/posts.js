@@ -21,7 +21,7 @@ const Posts = [
     moment: '2021-06-10',
     author: 'Thorsten Kunzi',
     categories: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
-    tags: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
+    tags: ['Tag 1', 'Tag 2', 'Tag 3', 'Tag 4'],
     blogtitlepic: 'head-external-mail-hack',
     socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1623166719/blog/heads/head-external-mail-hack.jpg',
     excerpt:
@@ -63,7 +63,7 @@ const Posts = [
     moment: '2021-06-10',
     author: 'Thorsten Kunzi',
     categories: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
-    tags: ['Microsoft', 'ExchangeOnline', 'Outlook', 'Hacking'],
+    tags: ['Microsoft', 'Tag 1', 'Outlook', 'Hacking'],
     blogtitlepic: 'head-external-mail-hack',
     socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1623166719/blog/heads/head-external-mail-hack.jpg',
     excerpt:
@@ -105,7 +105,7 @@ const Posts = [
     moment: '2021-05-11',
     author: 'Christian Kordel',
     categories: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
-    tags: ['Microsoft', 'Teams', 'Voice', 'SBC', 'Routing'],
+    tags: ['Microsoft', 'Tag 1', 'Voice', 'SBC', 'Routing'],
     blogtitlepic: 'head-emergency-calls',
     socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
     excerpt:
