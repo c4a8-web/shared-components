@@ -19,19 +19,17 @@ export default {
       });
     },
     filteredItems() {
-      if (!this.selections.length) {
-        return this.normalizedItems;
-      }
+      if (!this.selections.length) return this.normalizedItems;
 
-      const results = this.normalizedItems.filter((item) => {
+      // TODO check in filterDropdowns for the keys to check if item matches any of them
+
+      return this.normalizedItems.filter((item) => {
         return this.selections.some((selectionArray) => {
           return selectionArray.some((selection) => {
             return Array.isArray(item.author) ? item.author.includes(selection.value) : item.author === selection.value;
           });
         });
       });
-
-      return results;
     },
     authors() {
       return this.extractPropertyCounts('author');
@@ -63,14 +61,17 @@ export default {
           {
             label: this.translationData?.filterAuthors,
             items: this.authors,
+            key: 'author',
           },
           {
             label: this.translationData?.filterTopics,
             items: this.topics,
+            key: 'categories',
           },
           {
             label: this.translationData?.filterTags,
             items: this.tags,
+            key: 'tags',
           },
         ];
       });
@@ -92,7 +93,7 @@ export default {
       return results.sort((a, b) => a.text.localeCompare(b.text));
     },
     updatePropertyCount(accumulator, propertyValue) {
-      const existingProperty = accumulator.find((prop) => prop.text === propertyValue);
+      const existingProperty = accumulator.find((prop) => prop.text.toLowerCase() === propertyValue.toLowerCase());
 
       if (existingProperty) {
         existingProperty.count += 1;
@@ -146,7 +147,7 @@ export default {
     spacing: String,
     items: String,
     title: String,
-    maxBlogPosts: Number,
+    maxBlogPosts: Number, // TODO handle max blog posts
     dataAuthors: String,
   },
   template: `
