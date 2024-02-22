@@ -72,47 +72,6 @@
     maxBlogPosts=blogMaxBlogPosts
   %}
 
-  {% if paginatorPosts %}
-    <!-- Title -->
-    <div class="row no-gutters  mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1" style="display:none;">
-      <div class="col-12">
-        <headline level="h3" classes="h2-font-size mb-0">
-          {{ blogNewsTitle }}
-        </headline>
-      </div>
-    </div>
-    <!-- End Title -->
-  {% endif %}
-
-  <div class="row mb-3 utility-animation__group" style="display:none;">
-    {% for post in paginatorPosts limit: blogMaxBlogPosts %}
-      {% if post.url != firstUrl %}
-        {% assign postExternalLanguage = null %}
-
-        {% if post.lang != page.lang %}
-          {% assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage %}
-        {% endif %}
-
-        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8">
-          {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
-          {%
-            include card.html
-            title=post.title
-            blogtitlepic=imgUrl
-            excerpt=post.excerpt
-            date=post.date
-            url=post.url
-            author=post.author
-            hasAnimation=true
-            index=forloop.index
-            externalLanguage=postExternalLanguage
-            store=true
-          %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-
   {%
     include pagination.html
     page=paginator_page
