@@ -4,7 +4,7 @@ export default {
   tagName: 'grid-list',
   computed: {
     classList() {
-      return ['grid-list row mb-3 mx-n3 utility-animation__group vue-component'];
+      return ['grid-list row mb-3 utility-animation__group vue-component'];
     },
     columnClassList() {
       return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-12', 'mb-3 mb-sm-8'];
@@ -18,17 +18,34 @@ export default {
   },
   watch: {
     view() {
+      this.resetUtilityAnimation();
+    },
+    items() {
+      this.itemsChanged = true;
+    },
+  },
+  created() {},
+  updated() {
+    if (this.itemsChanged) {
+      this.itemsChanged = false;
+
+      this.reinitUtilityAnimation();
+    }
+  },
+  methods: {
+    resetUtilityAnimation() {
       setTimeout(() => {
         // delay for view to be ready for the outside view manipulation
         UtilityAnimation.resetGroup(this.$refs.group);
       }, 100);
     },
-  },
-  created() {},
-  beforeMount() {},
-  methods: {},
-  data() {
-    return {};
+    reinitUtilityAnimation() {
+      if (!this.$refs.items.length === 0) return;
+
+      UtilityAnimation.instances = [];
+      UtilityAnimation.init(Array.from(this.$refs.items));
+      UtilityAnimation.addObserver();
+    },
   },
   props: {
     items: String,
@@ -52,6 +69,7 @@ export default {
             :data-authors="dataAuthors"
             :row="isRow"
             :tags="item.tags"
+            ref="items"
           />
         </div>
       </template>
