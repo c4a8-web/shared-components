@@ -32,8 +32,6 @@
     {% endcomment %}
   </div>
 
-  {% assign firstUrl = '' %}
-
   {%
     include get-posts-data.html
     getSite=true
@@ -42,7 +40,6 @@
   {% assign posts = getPostsData %}
 
   {% for post in posts limit:1 %}
-    {% assign firstUrl = post.url %}
     {% assign postExternalLanguage = null %}
 
     {% if post.lang != page.lang %}
