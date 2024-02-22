@@ -11,12 +11,35 @@ export default {
       return Tools.getJSON(this.dataAuthors);
     },
     normalizedItems() {
-      return this.storedItems.map((item) => {
+      return this.storedItems.slice(1).map((item) => {
         return {
           ...item,
           blogtitlepic: `${item.blog_image_path}${item.blogtitlepic}`,
         };
       });
+    },
+    filteredItems() {
+      if (!this.selections.length) {
+        return this.normalizedItems;
+      }
+
+      const results = this.normalizedItems.filter((item) => {
+        return this.selections.some((selection) => {
+          return Array.isArray(item.author) ? item.author.includes(selection.value) : item.author === selection.value;
+        });
+      });
+      console.log('🚀 ~ filteredItems ~ results:', results);
+
+      return results;
+    },
+    authors() {
+      return this.extractPropertyCounts('author');
+    },
+    topics() {
+      return this.extractPropertyCounts('categories');
+    },
+    tags() {
+      return this.extractPropertyCounts('tags');
     },
   },
   created() {
@@ -38,21 +61,52 @@ export default {
         this.filterDropdowns = [
           {
             label: this.translationData?.filterAuthors,
-            items: this.dataAuthorsValue,
+            items: this.authors,
           },
           {
             label: this.translationData?.filterTopics,
-            items: this.dataAuthorsValue,
+            items: this.topics,
           },
           {
             label: this.translationData?.filterTags,
-            items: this.dataAuthorsValue,
+            items: this.tags,
           },
         ];
       });
     }
   },
   methods: {
+    extractPropertyCounts(property) {
+      const results = this.normalizedItems.reduce((accumulator, item) => {
+        if (Array.isArray(item[property])) {
+          item[property].forEach((propValue) => {
+            this.updatePropertyCount(accumulator, propValue);
+          });
+        } else {
+          this.updatePropertyCount(accumulator, item[property]);
+        }
+        return accumulator;
+      }, []);
+
+      return results.sort((a, b) => a.text.localeCompare(b.text));
+    },
+    updatePropertyCount(accumulator, propertyValue) {
+      const existingProperty = accumulator.find((prop) => prop.text === propertyValue);
+
+      if (existingProperty) {
+        existingProperty.count += 1;
+      } else {
+        accumulator.push({
+          text: propertyValue,
+          value: propertyValue,
+          count: 1,
+        });
+      }
+    },
+    filterItems() {
+      // set up filters that work out in normalizedItems
+      // console.log('filter items');
+    },
     handleView(view) {
       this.activeView = view;
 
@@ -68,12 +122,29 @@ export default {
 
       return postData?.title;
     },
+    handleDropdownChange(selection, index) {
+      if (selection.length === 0) {
+        this.selections.splice(index, 1);
+      } else {
+        this.selections[index] = selection;
+      }
+
+      this.filterItems();
+    },
+    handleDropdownOpened(openedDropdown) {
+      this.$refs.dropdowns.forEach((dropdown) => {
+        if (dropdown !== openedDropdown) {
+          dropdown.isOpen = false;
+        }
+      });
+    },
   },
   data() {
     return {
       activeView: 'tile-view',
       views: ['tile-view', 'list-view'],
       filterDropdowns: [],
+      selections: [],
     };
   },
   props: {
@@ -87,7 +158,14 @@ export default {
     <div class="filter-bar">
       <div class="filter-bar__controls">
         <div class="filter-bar__selection">
-          <dropdown v-for="dropdownItem in filterDropdowns"v-bind="dropdownItem" />
+          <dropdown
+            v-for="(dropdownItem, index) in filterDropdowns"
+            v-bind="dropdownItem"
+            @dropdown-changed="handleDropdownChange($event, index)"
+            @dropdown-opened="handleDropdownOpened"
+            ref="dropdowns"
+            :key="index"
+          />
         </div>
         <div class="filter-bar__views">
           <div class="filter-bar__toggle">
@@ -97,12 +175,7 @@ export default {
           </div>
         </div>
       </div>
-      <div class="row no-gutters mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
-        <div class="col-12">
-          <headline level="h3" classes="h2-font-size mb-0" :text="title"></headline>
-        </div>
-      </div>
-      <grid-list :items="normalizedItems" :view="activeView" :data-authors="dataAuthorsValue" />
+      <grid-list :items="filteredItems" :view="activeView" :data-authors="dataAuthorsValue" />
     </div>
   `,
 };

@@ -43,3 +43,11 @@
   display: flex;
   gap: spacing(4);
 }
+
+.filter-bar__views {
+  display: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+}

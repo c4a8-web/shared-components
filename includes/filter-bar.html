@@ -11,6 +11,7 @@
       "url": "{{ item.url }}",
       "blog_image_path": "{{ site.blog_image_path }}",
       "blogtitlepic": "{{ item.blogtitlepic }}",
+      "categories": {{ item.categories | jsonify }},
       "date": "{{ item.date }}",
       "moment": "{{ item.moment }}",
       "tags": {{ item.tags | jsonify }},
