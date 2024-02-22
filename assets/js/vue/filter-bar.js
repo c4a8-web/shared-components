@@ -24,11 +24,12 @@ export default {
       }
 
       const results = this.normalizedItems.filter((item) => {
-        return this.selections.some((selection) => {
-          return Array.isArray(item.author) ? item.author.includes(selection.value) : item.author === selection.value;
+        return this.selections.some((selectionArray) => {
+          return selectionArray.some((selection) => {
+            return Array.isArray(item.author) ? item.author.includes(selection.value) : item.author === selection.value;
+          });
         });
       });
-      console.log('🚀 ~ filteredItems ~ results:', results);
 
       return results;
     },
@@ -103,10 +104,6 @@ export default {
         });
       }
     },
-    filterItems() {
-      // set up filters that work out in normalizedItems
-      // console.log('filter items');
-    },
     handleView(view) {
       this.activeView = view;
 
@@ -126,10 +123,8 @@ export default {
       if (selection.length === 0) {
         this.selections.splice(index, 1);
       } else {
-        this.selections[index] = selection;
+        this.selections = [...this.selections.slice(0, index), selection, ...this.selections.slice(index + 1)];
       }
-
-      this.filterItems();
     },
     handleDropdownOpened(openedDropdown) {
       this.$refs.dropdowns.forEach((dropdown) => {
