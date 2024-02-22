@@ -26,7 +26,7 @@ export default getArgTypes({
 });
 
 export const WithLink = createStory(component, {
-  authors: ['Author Name', 'Second Author'],
+  authors: ['Author Name', 'Second Name'],
 });
 
 export const WithoutLink = createStory(component, {

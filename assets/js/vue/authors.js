@@ -35,7 +35,7 @@ export default {
     authorLink(author) {
       const folder = Tools.isNotDefaultLang() ? '/' + this.langValue : '';
 
-      return this.dataAuthors?.hasOwnProperty(author) ? `${folder}${this.dataAuthors[author].permalink}` : '';
+      return this.dataAuthors?.hasOwnProperty(author) ? `${folder}${this.dataAuthors[author].permalink}` : null;
     },
   },
   props: {
@@ -56,11 +56,11 @@ export default {
       <span :class="classList" v-for="author in authorArray">
         <template v-if="!noLink">
           <a :href="authorLink(author)" class="authors__link post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">{{author}}</span>
+            <span itemprop="name">{{ author }}</span>
           </a>
         </template>
         <template v-else>
-          <span itemprop="name">{{ authorStart(authorArray, author) }} {{author}}</span>
+          <span itemprop="name">{{ authorStart(authorArray, author) }} {{ author }}</span>
         </template>
         <template v-if="!authorsSeperator(authorArray, author)">
           {{ seperator }}
