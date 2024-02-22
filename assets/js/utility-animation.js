@@ -155,7 +155,6 @@ class UtilityAnimation {
       threshold: 0,
     });
 
-    console.log('🚀 ~ UtilityAnimation ~ this.instances.forEach ~ this.instances:', this.instances);
     this.instances.forEach((instance) => {
       if (UtilityAnimation.hasSmallOffset(instance)) {
         smallOffsetObserver.observe(instance.root);
@@ -168,7 +167,6 @@ class UtilityAnimation {
   }
 
   static resetGroup(group) {
-    console.log('🚀 ~ UtilityAnimation ~ resetGroup ~ group:', group);
     this.setGroupItemsLoaded(group, 0);
 
     this.instances.forEach((instance) => {
@@ -196,7 +194,6 @@ class UtilityAnimation {
   }
 
   static init(elements) {
-    console.log('🚀 ~ UtilityAnimation ~ init ~ elements:', elements);
     this.instances = [];
 
     [].forEach.call(elements || document.querySelectorAll(this.rootSelector), (element) => {
