@@ -1,5 +1,7 @@
 .services {
   &.services--author {
+    display: flex;
+    flex-wrap: wrap;
     border-top: 1px solid var(--color-services-border);
     padding-top: spacing(4);
     margin-top: spacing(4);
@@ -19,10 +21,20 @@
     .services__footer {
       border-bottom: none;
       padding-bottom: spacing(15);
+      flex-basis: 100%;
 
       @include media-breakpoint-up(lg) {
         padding-bottom: 0;
       }
+    }
+
+    .services__items,
+    .services__title {
+      flex: 1 0 50%;
+    }
+
+    .services__items {
+      margin-top: spacing(1.2, true);
     }
   }
 

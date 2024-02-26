@@ -26,6 +26,17 @@ export default {
     eventsValue() {
       const events = Tools.getJSON(this.events);
 
+      if (Tools.isBelowBreakpoint('md')) {
+        return (
+          events.slice(0, this.maxLimitValue).map((event) => ({
+            ...event,
+            text: Tools.truncateWords(event.text, 5),
+            headlineLevel: this.headlineLevel,
+            headlineClass: 'font-size-3',
+          })) || []
+        );
+      }
+
       return events.slice(0, this.maxLimitValue) || [];
     },
     hasMore() {
