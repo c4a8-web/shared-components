@@ -71,7 +71,7 @@ export default {
         <p v-if="copy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="copy"></p>
 
         <ul v-if="list" class="dashed m-0 flex-grow-1" style="margin-bottom:10px !important;">
-          <li v-for="text in list" class="feature-grid-item__text font-size-sm d-flex" d-flex v-html="text"></li>
+          <li v-for="text in list" class="feature-grid-item__text font-size-sm" v-html="text"></li>
         </ul>
 
         <p v-if="secondCopy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="secondCopy"></p>
