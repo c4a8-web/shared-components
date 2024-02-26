@@ -3,6 +3,7 @@
   --dropdown-items-offset: #{spacing(3)};
 
   position: relative;
+  display: inline-block;
   padding-bottom: var(--dropdown-items-offset);
 
   &.dropdown--opened {
@@ -12,6 +13,10 @@
       .dropdown__label-text {
         @include font-weight('bold');
       }
+    }
+
+    .dropdown__label-icon {
+      transform: rotate(-180deg);
     }
   }
 }
@@ -62,6 +67,13 @@
   position: absolute;
 }
 
-.filter-bar__controls {
-  margin-bottom: spacing(12);
+.dropdown__label-icon {
+  display: inline-block;
+  margin-left: spacing(4);
+  transition: transform 0.5s $animation-transition;
+  position: relative;
+
+  .icon {
+    transform: scaleY(2.2) scale(1.2);
+  }
 }

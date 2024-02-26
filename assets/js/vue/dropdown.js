@@ -56,7 +56,9 @@ export default {
       <div class="dropdown__label font-size-sm" @click="toggleDropdown">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
-        <span class="dropdown__label-icon"></span>
+        <span class="dropdown__label-icon">
+          <icon icon="arrow-narrow" direction="clockwise" size="xs" />
+        </span>
       </div>
       <div class="dropdown__items" v-show="isOpen">
         <div :class="toggleIconClasses(item)" @click="handleSelection(item)" v-for="(item, index) in parsedItems">
