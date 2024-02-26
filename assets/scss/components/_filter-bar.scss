@@ -1,6 +1,7 @@
 .filter-bar__controls {
   display: flex;
   justify-content: space-between;
+  margin-bottom: spacing(12);
 }
 
 .filter-bar__toggle {
