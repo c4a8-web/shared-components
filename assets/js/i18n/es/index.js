@@ -1,6 +1,5 @@
 const es = {
   address: 'Dirección',
-  follow: 'Seguir',
   full_time: 'Tiempo completo',
   part_time: 'Tiempo parcial',
   contract: 'Contrato de trabajo',

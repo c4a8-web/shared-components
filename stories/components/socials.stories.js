@@ -28,10 +28,3 @@ Expand.args = {
   expand: true,
   hideLabel: true,
 };
-
-export const ExpandLabel = Template.bind({});
-
-ExpandLabel.args = {
-  expand: true,
-  hideLabel: false,
-};
