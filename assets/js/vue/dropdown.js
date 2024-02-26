@@ -34,6 +34,16 @@ export default {
     toggleIconClasses(selection) {
       return ['dropdown__toggle-icon', this.activeSelection.includes(selection) ? State.ACTIVE : ''];
     },
+    handleMouseEnter(e) {
+      if (!Tools.isUpperBreakpoint()) return e.preventDefault();
+
+      this.toggleDropdown();
+    },
+    handleMouseDown() {
+      if (!Tools.isUpperBreakpoint()) return e.preventDefault();
+
+      this.toggleDropdown();
+    },
   },
   data() {
     return {
@@ -42,7 +52,7 @@ export default {
     };
   },
   template: `
-    <div class="dropdown">
+    <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
       <div class="dropdown__label font-size-sm" @click="toggleDropdown">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
