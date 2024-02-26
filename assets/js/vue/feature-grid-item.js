@@ -77,7 +77,7 @@ export default {
         <p v-if="secondCopy" class="mb-0 font-size-sm d-flex" style="padding-bottom:5px;" v-html="secondCopy"></p>
 
         <ul v-if="secondList" class="dashed m-0 p-0 flex-grow-1">
-          <li v-for="text in secondList" class="feature-grid-item__text font-size-sm d-flex" v-html="text"></li>
+          <li v-for="text in secondList" class="feature-grid-item__text font-size-sm" v-html="text"></li>
         </ul>
 
         <div v-if="item.cta" class="ctaClasses">
