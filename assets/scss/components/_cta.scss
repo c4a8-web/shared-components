@@ -192,7 +192,7 @@
   }
 
   &.cta--download {
-    &:not(.cta--link) {
+    &:not(.link) {
       .icon {
         transform: translateY(-50%) rotate(135deg);
         width: 14px;
@@ -231,7 +231,7 @@
       margin-right: 0.5rem;
     }
 
-    &:not(.cta--reversed) {
+    &:not(.cta--reversed):not(.cta--external) {
       svg {
         margin: 0 0 0 spacing(3);
         stroke: var(--color-primary);
