@@ -58,9 +58,6 @@ export default {
     timeValue() {
       return !this.hasMultipleDays ? Tools.standardizeTimeFormat(this.time) : this.date;
     },
-    headlineLevelValue() {
-      return this.headlineLevel ? this.headlineLevel : 'h4';
-    },
   },
   methods: {
     handleClick() {
@@ -82,8 +79,6 @@ export default {
     classes: String,
     url: String,
     external: Boolean,
-    headlineLevel: String,
-    headlineClass: String,
   },
   template: `
     <article :class="['event vue-component', classes ? classes : null]" :style="style" @click="handleClick">
@@ -98,7 +93,7 @@ export default {
             <time class="event__time font-size-1 bold" v-if="timeValue">{{ timeValue }}</time>
             <span class="event__category font-size-1 bold is-uppercase" v-if="category">{{ category }}</span>
           </div>
-          <headline :class="['event__headline', headlineClass ? headlineClass : '']" :text="title" :level="headlineLevelValue" />
+          <headline class="event__headline" :text="title" level="h4" />
           <p class="event__text font-size-2 thin">{{ text }}</p>
         </div>
         <div class="event__image-container is-background" v-if="imageValue">

@@ -192,10 +192,12 @@
   }
 
   &.cta--download {
-    .icon {
-      transform: translateY(-50%) rotate(135deg);
-      width: 14px;
-      height: 14px;
+    &:not(.cta--link) {
+      .icon {
+        transform: translateY(-50%) rotate(135deg);
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 
@@ -228,7 +230,8 @@
     &:not(:last-of-type) {
       margin-right: 0.5rem;
     }
-    &:not(.cta--external) {
+
+    &:not(.cta--reversed) {
       svg {
         margin: 0 0 0 spacing(3);
         stroke: var(--color-primary);
