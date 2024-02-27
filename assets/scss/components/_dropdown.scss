@@ -23,17 +23,27 @@
 }
 
 .dropdown__items {
-  @include shadow('super-light');
   @include z-index;
 
   position: absolute;
-  transform: translateY(var(--dropdown-items-offset));
+  transform: translateX(calc(-1 * (var(--dropdown-items-offset))));
+  background-color: transparent;
+  padding: var(--dropdown-items-offset);
+}
+
+.dropdown__items-content {
+  @include shadow('super-light');
+  @include scrollbar;
+
   background-color: var(--color-background);
   padding: spacing(7);
   width: 100vw;
+  max-height: 300px;
+  overflow-y: auto;
 
   @include media-breakpoint-up(md) {
     width: 320px;
+    max-height: 460px;
   }
 }
 
