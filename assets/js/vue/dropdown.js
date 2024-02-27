@@ -39,10 +39,18 @@ export default {
 
       this.toggleDropdown();
     },
-    handleMouseDown() {
+    handleMouseDown(e) {
       if (!Tools.isUpperBreakpoint()) return e.preventDefault();
 
       this.toggleDropdown();
+    },
+    handleClick(e) {
+      if (Tools.isUpperBreakpoint()) return e.preventDefault();
+
+      this.toggleDropdown();
+    },
+    getCheckboxId(item, index) {
+      return `dropdown-checkbox-${item.value}-${index}`;
     },
   },
   data() {
@@ -53,7 +61,7 @@ export default {
   },
   template: `
     <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
-      <div class="dropdown__label font-size-sm" @click="toggleDropdown">
+      <div class="dropdown__label font-size-sm" @click="handleClick">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
         <span class="dropdown__label-icon">
@@ -62,9 +70,10 @@ export default {
       </div>
       <div class="dropdown__items" v-show="isOpen">
         <div :class="toggleIconClasses(item)" @click="handleSelection(item)" v-for="(item, index) in parsedItems">
-          <input type="checkbox" :value="item.value" :checked="activeSelection.includes(item)">
-          {{ item.text }}
-          <span style="float: right;">{{ item.count }}</span>
+          <input class="dropdown__checkbox" type="checkbox" :value="item.value" :id="getCheckboxId(item, index)" :name="getCheckboxId(item, index)" :checked="activeSelection.includes(item)">
+          <label class="dropdown__checkbox-label" :for="getCheckboxId(item, index)"></label>
+          <span class="dropdown__item-text">{{ item.text }}</span>
+          <span class="dropdown__item-count">{{ item.count }}</span>
         </div>
       </div>
     </div>
