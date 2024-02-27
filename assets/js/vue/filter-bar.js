@@ -4,6 +4,9 @@ import State from '../state.js';
 export default {
   tagName: 'filter-bar',
   computed: {
+    flatSelections() {
+      return this.selections.flat();
+    },
     storedItems() {
       return this.$root.StoreData.blogItems ? this.$root.StoreData.blogItems() : [];
     },
@@ -128,11 +131,31 @@ export default {
 
       return postData?.title;
     },
+    isArrayEmpty(array) {
+      return Object.keys(array).length ? false : true;
+    },
+    isArrayEmptyRecursive(array) {
+      for (let i = 0; i < array.length; i++) {
+        const item = array[i];
+
+        if (item && !this.isArrayEmpty(item)) {
+          return false;
+        }
+      }
+
+      return true;
+    },
     handleDropdownChange(selection, index) {
       if (selection.length === 0) {
-        this.selections.splice(index, 1);
+        if (this.selections[index]) {
+          delete this.selections[index];
+        }
       } else {
-        this.selections = [...this.selections.slice(0, index), selection, ...this.selections.slice(index + 1)];
+        this.selections[index] = selection;
+      }
+
+      if (this.isArrayEmptyRecursive(this.selections)) {
+        this.selections = [];
       }
     },
     handleDropdownOpened(openedDropdown) {
@@ -162,14 +185,19 @@ export default {
     <div class="filter-bar">
       <div class="filter-bar__controls">
         <div class="filter-bar__selection">
-          <dropdown
-            v-for="(dropdownItem, index) in filterDropdowns"
-            v-bind="dropdownItem"
-            @dropdown-changed="handleDropdownChange($event, index)"
-            @dropdown-opened="handleDropdownOpened"
-            ref="dropdowns"
-            :key="index"
-          />
+          <div class="filter-bar__dropdowns">
+            <dropdown
+              v-for="(dropdownItem, index) in filterDropdowns"
+              v-bind="dropdownItem"
+              @dropdown-changed="handleDropdownChange($event, index)"
+              @dropdown-opened="handleDropdownOpened"
+              ref="dropdowns"
+              :key="index"
+            />
+          </div>
+          <div class="filter-bar__tags">
+            <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" />
+          </div>
         </div>
         <div class="filter-bar__views">
           <div class="filter-bar__toggle">
