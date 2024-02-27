@@ -94,11 +94,9 @@
 }
 
 .services__footer {
-  padding-top: spacing(4);
-  padding-bottom: spacing(5);
-  margin-top: spacing(4);
-  border-top: 1px solid var(--color-services-border);
   border-bottom: 2px solid var(--color-services-border);
+
+  padding-bottom: spacing(5);
   flex: 1 0 100%;
 
   @include media-breakpoint-up(md) {
