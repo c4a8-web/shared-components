@@ -13,6 +13,24 @@
     cursor: pointer;
   }
 
+  .event__inner {
+    .event__content {
+      .headline {
+        @include media-breakpoint-down(md) {
+          @include font-style($style: 'h3-font-size', $weight: 'bold');
+        }
+      }
+    }
+  }
+
+  .event__text {
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+  }
+
   @container (min-width: 740px) {
     .event__inner {
       --event-max-height: 190px;
