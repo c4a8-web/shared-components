@@ -159,22 +159,16 @@ const baseArgs = {
 
 const Template = (args) => createComponent(args, component);
 
-export const BaseValidation = Template.bind({});
-
-BaseValidation.args = {
+export const BaseValidation = createStory(component, {
   ...baseArgs,
-};
+});
 
-export const BaseValidationWithUuid = Template.bind({});
-
-BaseValidationWithUuid.args = {
+export const BaseValidationWithUuid = createStory(component, {
   ...baseArgs,
   hasUuid: true,
-};
+});
 
-export const WithCheckboxes = Template.bind({});
-
-WithCheckboxes.args = {
+export const WithCheckboxes = createStory(component, {
   ...baseArgs,
   form: {
     headline: 'Headline with Checkboxes',
@@ -290,6 +284,38 @@ WithCheckboxes.args = {
             id: 'not_4',
             label: 'Not managed 4',
           },
+          {
+            id: 'other',
+            placeholder: 'Other',
+          },
+        ],
+      },
+      {
+        label: 'Lorem ipsum test',
+        id: 'test_',
+        required: true,
+        requiredMsg: 'Please select at least one answer.',
+        checkboxes: [
+          {
+            id: 'not_1',
+            label: 'Not managed 1',
+          },
+          {
+            id: 'not_2',
+            label: 'Not managed 2',
+          },
+          {
+            id: 'not_3',
+            label: 'Not managed 3 ',
+          },
+          {
+            id: 'not_4',
+            label: 'Not managed 4',
+          },
+          {
+            id: 'other',
+            placeholder: 'Other',
+          },
         ],
       },
       {
@@ -322,11 +348,9 @@ WithCheckboxes.args = {
       },
     ],
   },
-};
+});
 
-export const WithAnimation = Template.bind({});
-
-WithAnimation.args = {
+export const WithAnimation = createStory(component, {
   ...baseArgs,
   hasAnimation: true,
   form: {
@@ -474,4 +498,4 @@ WithAnimation.args = {
       },
     ],
   },
-};
+});
