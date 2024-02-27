@@ -96,6 +96,7 @@
   cursor: pointer;
   align-items: center;
 
+  &:hover,
   &.active {
     font-weight: bold;
   }
@@ -107,6 +108,7 @@
 
 .dropdown__item-text {
   flex: 1;
+  padding-right: spacing(3);
 }
 
 input[type='checkbox'].dropdown__checkbox {
