@@ -60,13 +60,14 @@ export default {
 
       if (this.icon) {
         iconName = this.icon;
+      } else if (this.link) {
+        iconName = 'arrow';
       } else if (this.externalValue) {
         iconName = 'arrow-external';
       } else if (this.downloadValue) {
         iconName = 'arrow-external';
-      } else if (this.link) {
-        iconName = 'arrow';
       }
+
       return iconName;
     },
     targetValue() {

@@ -2,7 +2,7 @@ export default {
   tagName: 'form-checkbox',
   computed: {
     otherId() {
-      return `${this.checkbox.id}_checkbox`;
+      return `${this.idValue}_checkbox`;
     },
     required() {
       return this.checkbox?.required ? 'required' : null;
@@ -25,8 +25,7 @@ export default {
       </template>
       <template v-else>
         <input class="form__checkbox form-check-input custom-control-input" type="checkbox" :name="idValue" :id="idValue" :data-form-group="group" :required="required">
-        <label class="form__checkbox-label custom-control-label" :for="idValue" v-html="checkbox?.label">
-        </label>
+        <label class="form__checkbox-label custom-control-label" :for="idValue" v-html="checkbox?.label"></label>
       </template>
     </div>
   `,

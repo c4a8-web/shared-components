@@ -23,12 +23,10 @@
   }
 
   &.link {
-    &:not(.cta--external) {
-      svg {
-        @include move-right-left;
+    svg {
+      @include move-right-left;
 
-        stroke: var(--color-svg-icon--hover);
-      }
+      stroke: var(--color-svg-icon--hover);
     }
 
     .cta__text {
@@ -236,6 +234,7 @@
         margin: 0 0 0 spacing(3);
         stroke: var(--color-primary);
       }
+
     }
   }
 
