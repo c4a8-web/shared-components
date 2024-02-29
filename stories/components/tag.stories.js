@@ -43,3 +43,8 @@ export const Small = createStory(component, {
   tag: 'Azure',
   variant: 'small',
 });
+
+export const Icon = createStory(component, {
+  tag: 'Azure',
+  variant: 'icon',
+});

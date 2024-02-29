@@ -22,6 +22,9 @@ export default {
     href() {
       return '/blog/' + this.url + '/?tag=' + encodeURIComponent(this.tag);
     },
+    hasIcon() {
+      return this.variant === 'icon';
+    },
   },
   props: {
     tag: {
@@ -61,7 +64,7 @@ export default {
       rel="tag"
       :title="'Posts tagged with ' + tag"
     >
-      {{ tag }}<span v-if="count">({{ count }})</span>
+      {{ tag }}<span v-if="count">({{ count }})</span><span class="tag__icon" v-if="hasIcon"><icon icon="close" size="xs" /></span>
     </a>
   `,
 };

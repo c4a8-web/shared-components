@@ -1,9 +1,43 @@
 .tags__btn {
   &.tag--small {
+    padding: spacing(1) spacing(2);
+
+    &:hover {
+      background-color: var(--color-primary-accent) !important;
+    }
+  }
+
+  &.tag--icon {
+    --tag-base-color: var(--color-waterloo);
+
+    border: 1px solid var(--tag-base-color);
+    color: var(--tag-base-color);
+    background-color: transparent;
+    padding: spacing(1) spacing(3);
+    display: inline-flex;
+    gap: spacing(2);
+
+    &:active,
+    &:hover {
+      --tag-base-color: var(--color-primary-accent);
+
+      background-color: transparent !important;
+      color: var(--tag-base-color) !important;
+    }
+  }
+
+  &.tag--small,
+  &.tag--icon {
     @include font-weight('bold');
 
-    padding: spacing(1) spacing(2);
     margin-right: spacing(2);
     text-transform: uppercase;
+  }
+}
+
+.tag__icon {
+  .icon {
+    color: var(--tag-base-color);
+    stroke-width: 5px;
   }
 }
