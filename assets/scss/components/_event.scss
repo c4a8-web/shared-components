@@ -17,7 +17,7 @@
     .event__content {
       .headline {
         @include media-breakpoint-down(md) {
-          @include font-style($style: 'h3-font-size', $weight: 'bold');
+          @include font-style($style: 'h3-font-size', $weight: 'normal');
         }
       }
     }
