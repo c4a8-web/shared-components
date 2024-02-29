@@ -21,6 +21,22 @@ Default.args = {
       alt: 'Lorem Ipsum',
       headline: 'Expertise Lorem Ipsum',
       copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et',
+      list: [
+        {
+          ctaText: 'Modern Workplace',
+          ctaHref: '/de/modern-workplace/consulting-services',
+        },
+        {
+          ctaText: 'Azure',
+          ctaHref: '/de/azure/azure-consulting',
+          link: true,
+        },
+        {
+          ctaText: 'Security',
+          ctaHref: '/de/security/security-consulting',
+          link: true,
+        },
+      ],
     },
     {
       image: getAssetPath('svg/icons/icon-products.svg'),
