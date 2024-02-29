@@ -17,7 +17,9 @@
 
   .author__events {
     .container {
-      padding: 0;
+      @include media-breakpoint-up(lg) {
+        padding: 0;
+      }
     }
   }
 }
