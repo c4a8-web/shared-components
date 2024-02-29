@@ -165,6 +165,25 @@ export default {
         }
       });
     },
+    clearAllSelections() {
+      this.selections = [];
+
+      this.$refs.dropdowns.forEach((dropdown) => {
+        dropdown.isOpen = false;
+        dropdown.activeSelection = [];
+      });
+    },
+    removeSelection(e, index) {
+      console.log('🚀 ~ removeSelection ~ index:', index);
+      console.log('🚀 ~ removeSelection ~ e:', e);
+      e.preventDefault();
+
+      // this.selections.splice(index, 1);
+
+      // if (this.isArrayEmptyRecursive(this.selections)) {
+      //   this.selections = [];
+      // }
+    },
   },
   data() {
     return {
@@ -196,7 +215,10 @@ export default {
             />
           </div>
           <div class="filter-bar__tags">
-            <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" />
+            <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" variant="icon" @click="removeSelection($event, index)" />
+            <a class="filter-bar__reset" v-if="flatSelections.length >= 2" @click="clearAllSelections">
+              <icon icon="close" size="xs" /> Clear all
+            </a>
           </div>
         </div>
         <div class="filter-bar__views">
@@ -211,3 +233,14 @@ export default {
     </div>
   `,
 };
+
+// TODO add click to tag that removes this tag
+// TODO add i18n to the clear button
+// TODO add shim to mobile dropdown
+// TODO adjust mobile dropdown styling when opened (sticky)
+// TODO add an apply and a reset button
+// TODO adjust card style to only show a max of 3 tags
+// TODO adjust grid list list view to show 2 columns on mobile like the other view
+// TODO tags has a search option to filter the list -> check with design
+// TODO search clear search with X
+// TODO search show X instead of search icon

@@ -52,3 +52,35 @@
     display: block;
   }
 }
+
+.filter-bar__reset {
+  @include font-size-sm;
+
+  margin-left: spacing(2);
+  display: inline-flex;
+  cursor: pointer;
+  gap: spacing(2);
+  place-items: center;
+
+  > .icon.vue-component {
+    width: 12px;
+    height: 12px;
+    stroke-width: 5px;
+
+    > svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.filter-bar__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: spacing(1);
+  place-items: center;
+
+  .filter-bar__tag {
+    margin-top: spacing(2);
+  }
+}
