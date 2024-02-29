@@ -201,8 +201,8 @@ export default {
     dataAuthors: String,
   },
   template: `
-    <div class="filter-bar">
-      <div class="filter-bar__controls">
+    <div class="filter-bar" >
+      <div class="filter-bar__controls utility-animation fade-in-bottom" data-utility-animation-step="1">
         <div class="filter-bar__selection">
           <div class="filter-bar__dropdowns">
             <dropdown
