@@ -173,16 +173,20 @@ export default {
         dropdown.activeSelection = [];
       });
     },
-    removeSelection(e, index) {
-      console.log('🚀 ~ removeSelection ~ index:', index);
-      console.log('🚀 ~ removeSelection ~ e:', e);
+    removeSelection(e, selection) {
       e.preventDefault();
 
-      // this.selections.splice(index, 1);
+      this.selections = this.selections.map((selectionArray) => {
+        return selectionArray.filter((item) => item.value !== selection.value);
+      });
 
-      // if (this.isArrayEmptyRecursive(this.selections)) {
-      //   this.selections = [];
-      // }
+      this.selections.forEach((selectionArray, index) => {
+        this.$refs.dropdowns[index].activeSelection = selectionArray || [];
+      });
+
+      const result = this.selections.filter((selectionArray) => selectionArray.length > 0);
+
+      if (result.length === 0) return this.clearAllSelections();
     },
   },
   data() {
@@ -215,7 +219,7 @@ export default {
             />
           </div>
           <div class="filter-bar__tags">
-            <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" variant="icon" @click="removeSelection($event, index)" />
+            <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" variant="icon" @click="removeSelection($event, selection)" />
             <a class="filter-bar__reset" v-if="flatSelections.length >= 2" @click="clearAllSelections">
               <icon icon="close" size="xs" /> Clear all
             </a>
@@ -234,7 +238,6 @@ export default {
   `,
 };
 
-// TODO add click to tag that removes this tag
 // TODO add i18n to the clear button
 // TODO add shim to mobile dropdown
 // TODO adjust mobile dropdown styling when opened (sticky)

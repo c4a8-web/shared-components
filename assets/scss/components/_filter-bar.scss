@@ -4,6 +4,10 @@
   justify-content: space-between;
   margin-bottom: spacing(12);
   z-index: 1;
+
+  &.utility-animation {
+    @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 300ms, $selector: '&');
+  }
 }
 
 .filter-bar__toggle {
