@@ -113,7 +113,7 @@ export default {
           <form-radio :radio="field" :id="id" />
         </template>
         <template v-else-if="field.radios">
-          <form-radios :field="field" :id="id" />
+          <form-radios :field="field" :id="id" @action-changed="$emit('action-changed', $event)" />
         </template>
         <template v-else-if="field.type === 'file'">
           <form-attachments

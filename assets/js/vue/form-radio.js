@@ -17,6 +17,11 @@ export default {
     id: String,
     name: String,
   },
+  methods: {
+    changed(radio) {
+      this.$emit('action-changed', radio.changeAction || null);
+    },
+  },
   template: `
   <div class="form__radio-control mb-1 vue-component">
     <template v-if="radio?.placeholder">
@@ -25,7 +30,15 @@ export default {
       <input class="form__input form-control form-control-sm" type="text" :name="name" :id="idValue" :placeholder="radio?.placeholder" :data-form-group="group">
     </template>
     <template v-else>
-      <input class="form__radio" type="radio" :name="name" :id="idValue" :data-form-group="group" :required="required">
+      <input
+        class="form__radio"
+        type="radio"
+        :name="name"
+        :id="idValue"
+        :data-form-group="group"
+        :required="required"
+        @change="changed(radio)"
+      >
       <label class="form__radio-label" :for="idValue" v-html="radio?.label">
       </label>
     </template>
