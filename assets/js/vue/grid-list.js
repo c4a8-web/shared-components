@@ -7,7 +7,7 @@ export default {
       return ['grid-list row mb-3 utility-animation__group vue-component'];
     },
     columnClassList() {
-      return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-12', 'mb-3 mb-sm-8'];
+      return [this.view === 'tile-view' ? 'col-sm-6 col-lg-4' : 'col-sm-6 col-lg-12', 'mb-3 mb-sm-8'];
     },
     isList() {
       return this.view === 'list-view';
