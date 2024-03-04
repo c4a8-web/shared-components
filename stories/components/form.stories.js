@@ -326,7 +326,8 @@ export const WithCheckboxes = createStory(component, {
         radios: [
           {
             id: 'not_1',
-            label: 'Not managed 1',
+            label: 'change action',
+            changeAction: 'www.google.com',
           },
           {
             id: 'not_2',
