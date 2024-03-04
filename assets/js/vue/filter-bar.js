@@ -242,7 +242,6 @@ export default {
 // TODO add shim to mobile dropdown
 // TODO adjust mobile dropdown styling when opened (sticky)
 // TODO add an apply and a reset button
-// TODO adjust card style to only show a max of 3 tags
 // TODO adjust grid list list view to show 2 columns on mobile like the other view
 // TODO tags has a search option to filter the list -> check with design
 // TODO search clear search with X

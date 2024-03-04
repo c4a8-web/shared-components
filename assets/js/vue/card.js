@@ -2,9 +2,16 @@ import Tools from '../tools.js';
 
 const cardFooter = {
   tagName: 'card-footer',
+  data() {
+    return {
+      maxTags: 3,
+    };
+  },
   computed: {
     tagsList() {
-      return Array.isArray(this.tags) ? this.tags : this.tags.split(',');
+      let tags = Array.isArray(this.tags) ? this.tags : this.tags.split(',');
+
+      return tags.slice(0, this.maxTags);
     },
   },
   template: `
