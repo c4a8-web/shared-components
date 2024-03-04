@@ -396,7 +396,7 @@ class Form extends BaseComponent {
   }
 
   groupFilter(group, type) {
-    return group.filter((obj) => obj.getAttribute('type') === type);
+    return group ? group.filter((obj) => obj.getAttribute('type') === type) : null;
   }
 
   handleGroupError(element, group) {
@@ -412,6 +412,9 @@ class Form extends BaseComponent {
 
     if (element) {
       const group = this.getGroupByName(element.dataset.formGroup);
+
+      if (!group) return;
+
       const checkboxes = this.groupFilter(group, 'checkbox');
       const radios = this.groupFilter(group, 'radio');
 
