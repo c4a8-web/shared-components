@@ -24,7 +24,14 @@ export default {
         <input class="form__input form-control form-control-sm" type="text" :name="idValue" :id="idValue" :placeholder="checkbox?.placeholder" :data-form-group="group">
       </template>
       <template v-else>
-        <input class="form__checkbox form-check-input custom-control-input" type="checkbox" :name="idValue" :id="idValue" :data-form-group="group" :required="required">
+        <input
+          class="form__checkbox form-check-input custom-control-input"
+          type="checkbox"
+          :name="idValue"
+          :id="idValue"
+          :data-form-group="group"
+          :required="required"
+        >
         <label class="form__checkbox-label custom-control-label" :for="idValue" v-html="checkbox?.label"></label>
       </template>
     </div>

@@ -3,6 +3,12 @@ import Form from '../components/form.js';
 
 export default {
   tagName: 'formular',
+  data() {
+    return {
+      originalAction: '',
+      formAction: '',
+    };
+  },
   computed: {
     classList() {
       return [
@@ -81,6 +87,9 @@ export default {
       return blocks;
     },
   },
+  beforeMount() {
+    this.originalAction = this.formAction = this.form.action;
+  },
   methods: {
     getOptions(field) {
       return typeof field.options === 'string' ? this.options[field.options] : field.options;
@@ -98,6 +107,13 @@ export default {
       if (!Tools.isTrue(this.hasUuid)) return fieldId;
 
       return Form.getId(fieldId);
+    },
+    updateAction(newAction) {
+      if (newAction) {
+        this.formAction = newAction;
+      } else {
+        this.formAction = this.originalAction;
+      }
     },
   },
   props: {
@@ -144,11 +160,11 @@ export default {
               </div>
             </div>
           </div>
-          <form class="form__form js-validate mt-6" :method="method" :action="form.action">
+          <form class="form__form js-validate mt-6" :method="method" :action="formAction">
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" />
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" @action-changed="updateAction" />
                 </div>
               </div>
             </template>
