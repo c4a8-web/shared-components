@@ -66,6 +66,7 @@ export default {
           'filterAuthors',
           'filterTopics',
           'filterTags',
+          'clearAll',
         ]);
 
         this.filterDropdowns = [
@@ -221,7 +222,7 @@ export default {
           <div class="filter-bar__tags">
             <tag class="filter-bar__tag" :tag="selection.text" :key="index" v-for="(selection, index) in flatSelections" variant="icon" @click="removeSelection($event, selection)" />
             <a class="filter-bar__reset" v-if="flatSelections.length >= 2" @click="clearAllSelections">
-              <icon icon="close" size="xs" /> Clear all
+              <icon icon="close" size="xs" /> {{ translationData?.clearAll }}
             </a>
           </div>
         </div>
@@ -238,7 +239,6 @@ export default {
   `,
 };
 
-// TODO add i18n to the clear button
 // TODO add shim to mobile dropdown
 // TODO adjust mobile dropdown styling when opened (sticky)
 // TODO add an apply and a reset button

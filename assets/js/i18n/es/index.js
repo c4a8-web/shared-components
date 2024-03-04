@@ -17,6 +17,7 @@ const es = {
   filterAuthors: 'Autores',
   filterTopics: 'Temas',
   filterTags: 'Tags',
+  clearAll: 'Borrar todo',
 };
 
 export default es;

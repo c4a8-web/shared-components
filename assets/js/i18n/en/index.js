@@ -17,6 +17,7 @@ const en = {
   filterAuthors: 'Authors',
   filterTopics: 'Topics',
   filterTags: 'Tags',
+  clearAll: 'Clear all',
 };
 
 export default en;
