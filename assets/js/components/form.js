@@ -396,7 +396,7 @@ class Form extends BaseComponent {
   }
 
   groupFilter(group, type) {
-    return group.filter((obj) => obj.getAttribute('type') === type);
+    return group ? group.filter((obj) => obj.getAttribute('type') === type) : null;
   }
 
   handleGroupError(element, group) {
