@@ -7,10 +7,23 @@ export default {
   props: {
     label: String,
     items: String,
+    filterable: {
+      default: null,
+    },
   },
   computed: {
     parsedItems() {
       return Tools.getJSON(this.items);
+    },
+    filteredItems() {
+      if (this.filterableValue && this.filterText.length >= this.minCharsToFilter) {
+        return this.parsedItems.filter((item) => item.text.toLowerCase().includes(this.filterText.toLowerCase()));
+      } else {
+        return this.parsedItems;
+      }
+    },
+    filterableValue() {
+      return Tools.isTrue(this.filterable) === true;
     },
   },
   methods: {
@@ -19,6 +32,7 @@ export default {
         this.activeSelection.push(selection);
       } else {
         const index = this.activeSelection.indexOf(selection);
+
         this.activeSelection.splice(index, 1);
       }
 
@@ -29,6 +43,8 @@ export default {
 
       if (this.isOpen) {
         this.$emit(Events.DROPDOWN_OPENED, this);
+      } else {
+        this.filterText = '';
       }
     },
     toggleIconClasses(selection) {
@@ -53,10 +69,21 @@ export default {
       return `dropdown-checkbox-${item.value}-${index}`;
     },
   },
+  beforeMount() {
+    const hasLanguageLoader = window.i18n?.loader;
+
+    if (hasLanguageLoader) {
+      hasLanguageLoader.then(() => {
+        this.translationData = window.i18n?.getTranslationData(['search']);
+      });
+    }
+  },
   data() {
     return {
       activeSelection: [],
       isOpen: false,
+      filterText: '',
+      minCharsToFilter: 3,
     };
   },
   template: `
@@ -70,11 +97,14 @@ export default {
       </div>
       <div class="dropdown__items" v-show="isOpen">
         <div class="dropdown__items-content">
-          <div :class="toggleIconClasses(item)" @click="handleSelection(item)" v-for="(item, index) in parsedItems">
-            <input class="dropdown__checkbox" type="checkbox" :value="item.value" :id="getCheckboxId(item, index)" :name="getCheckboxId(item, index)" :checked="activeSelection.includes(item)">
-            <label class="dropdown__checkbox-label" :for="getCheckboxId(item, index)"></label>
-            <span class="dropdown__item-text">{{ item.text }}</span>
-            <span class="dropdown__item-count">{{ item.count }}</span>
+          <input v-if="filterableValue" type="text" v-model="filterText" :placeholder="translationData?.search">
+          <div class="dropdown__items-list">
+            <div :class="toggleIconClasses(item)" @click="handleSelection(item)" v-for="(item, index) in filteredItems">
+              <input class="dropdown__checkbox" type="checkbox" :value="item.value" :id="getCheckboxId(item, index)" :name="getCheckboxId(item, index)" :checked="activeSelection.includes(item)">
+              <label class="dropdown__checkbox-label" :for="getCheckboxId(item, index)"></label>
+              <span class="dropdown__item-text">{{ item.text }}</span>
+              <span class="dropdown__item-count">{{ item.count }}</span>
+            </div>
           </div>
         </div>
       </div>

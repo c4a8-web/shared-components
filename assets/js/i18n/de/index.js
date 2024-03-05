@@ -18,6 +18,7 @@ const de = {
   filterTopics: 'Themen',
   filterTags: 'Tags',
   clearAll: 'Alles löschen',
+  search: 'Suche',
 };
 
 export default de;

@@ -33,16 +33,24 @@
 
 .dropdown__items-content {
   @include shadow('super-light');
-  @include scrollbar;
 
   background-color: var(--color-background);
-  padding: spacing(7);
   width: 100vw;
+
+  @include media-breakpoint-up(md) {
+    width: 320px;
+  }
+}
+
+.dropdown__items-list {
+  @include scrollbar;
+
+  padding: spacing(7);
+  margin-top: spacing(4);
   max-height: 300px;
   overflow-y: auto;
 
   @include media-breakpoint-up(md) {
-    width: 320px;
     max-height: 460px;
   }
 }

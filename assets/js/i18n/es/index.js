@@ -18,6 +18,7 @@ const es = {
   filterTopics: 'Temas',
   filterTags: 'Tags',
   clearAll: 'Borrar todo',
+  search: 'Buscar en',
 };
 
 export default es;

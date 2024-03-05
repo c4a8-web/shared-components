@@ -18,6 +18,7 @@ const en = {
   filterTopics: 'Topics',
   filterTags: 'Tags',
   clearAll: 'Clear all',
+  search: 'Search',
 };
 
 export default en;
