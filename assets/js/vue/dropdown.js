@@ -10,8 +10,15 @@ export default {
     filterable: {
       default: null,
     },
+    hasAnimation: {
+      default: null,
+    },
+    index: Number,
   },
   computed: {
+    dropdownLabelClasses() {
+      return ['dropdown__label font-size-sm', this.hasAnimation ? 'utility-animation fade-in-bottom' : ''];
+    },
     parsedItems() {
       return Tools.getJSON(this.items);
     },
@@ -24,6 +31,9 @@ export default {
     },
     filterableValue() {
       return Tools.isTrue(this.filterable) === true;
+    },
+    style() {
+      return this.hasAnimation ? `--utility-animation-index: ${this.index};` : '';
     },
   },
   methods: {
@@ -112,7 +122,7 @@ export default {
       <teleport to="[data-v-app]">
         <div class="dropdown__background-shim" v-show="isOpen" @click="toggleDropdown"></div>
       </teleport>
-      <div class="dropdown__label font-size-sm" @click="handleClick">
+      <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
         <span class="dropdown__label-icon">

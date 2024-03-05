@@ -1,6 +1,4 @@
 .dropdown {
-  @include z-index;
-
   --dropdown-label-border: transparent;
   --dropdown-items-offset: #{spacing(3)};
   --dropdown-checkbox-size: #{spacing(4.5)};
@@ -73,7 +71,6 @@
 .dropdown__items-list {
   @include scrollbar;
 
-  margin-top: var(--dropdown-inner-spacing);
   padding: 0 var(--dropdown-inner-spacing) spacing(4) var(--dropdown-inner-spacing);
   max-height: 45vh;
   overflow-y: auto;
@@ -208,6 +205,10 @@ label.dropdown__checkbox-label {
 .dropdown__search-container {
   margin: 0 var(--dropdown-inner-spacing);
   display: flex;
+
+  + .dropdown__items-list {
+    margin-top: var(--dropdown-inner-spacing);
+  }
 }
 
 .dropdown__close-icon,
