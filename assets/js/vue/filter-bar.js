@@ -22,7 +22,8 @@ export default {
       });
     },
     filteredItems() {
-      if (!this.selections.length) return this.normalizedItems;
+      if (!this.selections.length)
+        return this.maxBlogPosts ? this.normalizedItems.slice(0, this.maxBlogPosts) : this.normalizedItems;
 
       let filteredItems = [];
 
@@ -40,7 +41,7 @@ export default {
 
       filteredItems = [...new Set(filteredItems)];
 
-      return filteredItems;
+      return this.maxBlogPosts ? filteredItems.slice(0, this.maxBlogPosts) : filteredItems;
     },
     authors() {
       return this.extractPropertyCounts('author');
@@ -126,13 +127,6 @@ export default {
     toggleIconClasses(view) {
       return ['filter-bar__toggle-icon', view === this.activeView ? State.ACTIVE : ''];
     },
-    title(postData) {
-      if (postData?.lang !== this.lang && postData.lang !== '' && this.translationData?.onlyLanguage) {
-        return `${postData.title} (${this.translationData?.onlyLanguage})`;
-      }
-
-      return postData?.title;
-    },
     isArrayEmpty(array) {
       return Object.keys(array).length ? false : true;
     },
@@ -202,8 +196,7 @@ export default {
   props: {
     spacing: String,
     items: String,
-    title: String,
-    maxBlogPosts: Number, // TODO handle max blog posts
+    maxBlogPosts: Number,
     dataAuthors: String,
   },
   template: `
@@ -217,7 +210,7 @@ export default {
               @dropdown-changed="handleDropdownChange($event, index)"
               @dropdown-opened="handleDropdownOpened"
               ref="dropdowns"
-              :has-animation="true"
+              :has-animation="false"
               :key="index"
               :index="index"
             />
@@ -242,6 +235,4 @@ export default {
   `,
 };
 
-// TODO add title to mobile item list
-// TODO adjust mobile dropdown styling when opened (sticky)
-// TODO add content for the filter-bar story
+// TODO has-animation is still buggy

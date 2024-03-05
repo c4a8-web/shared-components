@@ -1,6 +1,5 @@
 <!-- Shared Filter Bar Section -->
 {%- assign filterBarItems = include.items -%}
-{%- assign filterBarTitle = include.title -%}
 {%- assign filterBarMaxBlogPosts = include.maxBlogPosts -%}
 {%- assign filterBarDataAuthors = include.authors | default: site.data.authors -%}
 
@@ -24,7 +23,6 @@
 
 <filter-bar
   :items="{{ itemsString | jsonify | escape }}"
-  title="{{ filterBarTitle }}"
   :max-blog-posts="{{ filterBarMaxBlogPosts }}"
   :data-authors="{{ filterBarDataAuthors | jsonify | escape }}"
 >
