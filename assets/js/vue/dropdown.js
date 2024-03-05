@@ -131,6 +131,15 @@ export default {
       </div>
       <div class="dropdown__items" v-show="isOpen">
         <div class="dropdown__items-content">
+          <div class="dropdown__items-header">
+            <span class="dropdown__items-header-text">{{ label }}</span>
+            <icon
+              @click="toggleDropdown"
+              class="dropdown__items-close-icon"
+              icon="close"
+              size="medium"
+            />
+          </div>
           <div class="dropdown__search-container" v-if="filterableValue">
             <input type="text" class="dropdown__search" v-model="filterText" :placeholder="translationData?.search">
             <icon
