@@ -84,6 +84,7 @@ export default {
             label: this.translationData?.filterTags,
             items: this.tags,
             key: 'tags',
+            filterable: true,
           },
         ];
       });
@@ -245,3 +246,4 @@ export default {
 // TODO tags has a search option to filter the list -> check with design
 // TODO search clear search with X
 // TODO search show X instead of search icon
+// TODO add content for the filter-bar story
