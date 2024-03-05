@@ -19,6 +19,8 @@ const es = {
   filterTags: 'Tags',
   clearAll: 'Borrar todo',
   search: 'Buscar en',
+  apply: 'Aplicar',
+  reset: 'Reiniciar',
 };
 
 export default es;

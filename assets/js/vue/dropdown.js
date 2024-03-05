@@ -27,6 +27,12 @@ export default {
     },
   },
   methods: {
+    resetSelection() {
+      this.activeSelection = [];
+    },
+    applySelection() {
+      this.toggleDropdown();
+    },
     handleSelection(selection) {
       if (!this.activeSelection.includes(selection)) {
         this.activeSelection.push(selection);
@@ -43,9 +49,21 @@ export default {
 
       if (this.isOpen) {
         this.$emit(Events.DROPDOWN_OPENED, this);
+        this.modalOpened();
       } else {
         this.resetFilterText();
+        this.modalClosed();
       }
+    },
+    modalOpened() {
+      if (Tools.isUpperBreakpoint()) return;
+
+      document.body.classList.add('modal-open');
+    },
+    modalClosed() {
+      if (Tools.isUpperBreakpoint()) return;
+
+      document.body.classList.remove('modal-open');
     },
     toggleIconClasses(selection) {
       return ['dropdown__toggle-icon', this.activeSelection.includes(selection) ? State.ACTIVE : ''];
@@ -77,7 +95,7 @@ export default {
 
     if (hasLanguageLoader) {
       hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData(['search']);
+        this.translationData = window.i18n?.getTranslationData(['search', 'apply', 'reset']);
       });
     }
   },
@@ -91,6 +109,9 @@ export default {
   },
   template: `
     <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true, 'dropdown--filtering': filterText.length > 0 }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
+      <teleport to="[data-v-app]">
+        <div class="dropdown__background-shim" v-show="isOpen" @click="toggleDropdown"></div>
+      </teleport>
       <div class="dropdown__label font-size-sm" @click="handleClick">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
@@ -121,6 +142,22 @@ export default {
               <span class="dropdown__item-text">{{ item.text }}</span>
               <span class="dropdown__item-count">{{ item.count }}</span>
             </div>
+          </div>
+          <div class="dropdown__buttons">
+            <cta
+              :text="translationData?.apply"
+              class="dropdown__apply-button"
+              href="#apply"
+              @click="applySelection"
+            />
+            <cta
+              :text="translationData?.reset"
+              class="dropdown__reset-button"
+              skin="secondary"
+              :button="true"
+              href="#reset"
+              @click="resetSelection"
+            />
           </div>
         </div>
       </div>

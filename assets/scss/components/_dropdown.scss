@@ -1,4 +1,6 @@
 .dropdown {
+  @include z-index;
+
   --dropdown-label-border: transparent;
   --dropdown-items-offset: #{spacing(3)};
   --dropdown-checkbox-size: #{spacing(4.5)};
@@ -40,10 +42,20 @@
 .dropdown__items {
   @include z-index;
 
-  position: absolute;
-  transform: translateX(calc(-1 * (var(--dropdown-items-offset))));
+  position: fixed;
+  left: 50%;
+  bottom: 0;
   background-color: transparent;
-  padding: var(--dropdown-items-offset);
+
+  transform: translateX(-50%);
+
+  @include media-breakpoint-up(md) {
+    position: absolute;
+    left: auto;
+    bottom: auto;
+    padding: var(--dropdown-items-offset);
+    transform: translateX(calc(-1 * (var(--dropdown-items-offset))));
+  }
 }
 
 .dropdown__items-content {
@@ -62,12 +74,13 @@
   @include scrollbar;
 
   margin-top: var(--dropdown-inner-spacing);
-  padding: 0 var(--dropdown-inner-spacing);
-  max-height: 300px;
+  padding: 0 var(--dropdown-inner-spacing) spacing(4) var(--dropdown-inner-spacing);
+  max-height: 45vh;
   overflow-y: auto;
 
   @include media-breakpoint-up(md) {
     max-height: 460px;
+    padding-bottom: 0;
   }
 }
 
@@ -215,5 +228,33 @@ label.dropdown__checkbox-label {
 .dropdown__close-icon {
   svg {
     stroke-width: 5px;
+  }
+}
+
+.dropdown__buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: spacing(4);
+  border-top: 1px solid var(--color-header-container-border);
+  padding: spacing(5) var(--dropdown-inner-spacing) 0;
+
+  @include media-breakpoint-up(md) {
+    display: none;
+  }
+}
+
+.dropdown__background-shim {
+  @include z-index;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 300vh;
+  background-color: rgba(0, 0, 0, 0.5);
+
+  @include media-breakpoint-up(md) {
+    display: none;
   }
 }
