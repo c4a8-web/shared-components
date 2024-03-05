@@ -44,7 +44,7 @@ export default {
       if (this.isOpen) {
         this.$emit(Events.DROPDOWN_OPENED, this);
       } else {
-        this.filterText = '';
+        this.resetFilterText();
       }
     },
     toggleIconClasses(selection) {
@@ -68,6 +68,9 @@ export default {
     getCheckboxId(item, index) {
       return `dropdown-checkbox-${item.value}-${index}`;
     },
+    resetFilterText() {
+      this.filterText = '';
+    },
   },
   beforeMount() {
     const hasLanguageLoader = window.i18n?.loader;
@@ -87,7 +90,7 @@ export default {
     };
   },
   template: `
-    <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
+    <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true, 'dropdown--filtering': filterText.length > 0 }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
       <div class="dropdown__label font-size-sm" @click="handleClick">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
@@ -97,7 +100,20 @@ export default {
       </div>
       <div class="dropdown__items" v-show="isOpen">
         <div class="dropdown__items-content">
-          <input v-if="filterableValue" type="text" v-model="filterText" :placeholder="translationData?.search">
+          <div class="dropdown__search-container" v-if="filterableValue">
+            <input type="text" class="dropdown__search" v-model="filterText" :placeholder="translationData?.search">
+            <icon
+              class="dropdown__search-icon"
+              icon="magnifier"
+              size="small"
+            />
+            <icon
+              @click="resetFilterText"
+              class="dropdown__close-icon"
+              icon="close"
+              size="small"
+            />
+          </div>
           <div class="dropdown__items-list">
             <div :class="toggleIconClasses(item)" @click="handleSelection(item)" v-for="(item, index) in filteredItems">
               <input class="dropdown__checkbox" type="checkbox" :value="item.value" :id="getCheckboxId(item, index)" :name="getCheckboxId(item, index)" :checked="activeSelection.includes(item)">
