@@ -21,6 +21,9 @@
 {%- assign cardHasAnimation = include.hasAnimation -%}
 {%- assign cardIndex = include.index -%}
 {%- assign cardExternalLanguage = include.externalLanguage -%}
+{%- assign cardSpacing = include.spacing -%}
+{%- assign cardStore = include.store -%}
+{%- assign cardRow = include.row -%}
 
 {%- unless cardDate -%}
   {%- assign cardDate = include.moment -%}
@@ -31,6 +34,7 @@
 {%- endif -%}
 
 <card
+  spacing="{{ cardSpacing }}"
   large="{{ cardLarge }}"
   long="{{ cardLong }}"
   footer="{{ cardFooter }}"
@@ -53,5 +57,7 @@
   :has-animation="{{ cardHasAnimation }}"
   index="{{ cardIndex }}"
   external-language="{{ cardExternalLanguage }}"
+  :store="{{ cardStore }}"
+  row="{{ cardRow }}"
 ></card>
 <!-- End Shared Card Section -->

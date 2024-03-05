@@ -11,17 +11,9 @@
 {%- assign paginator_previous_page_path = paginator.previous_page_path %}
 {%- assign paginator_next_page = paginator.next_page %}
 {%- assign paginator_next_page_path = paginator.next_page_path %}
-{%- assign blogNewsTitle = include.newsTitle -%}
 
 <div class="container space-bottom-2 space-bottom-lg-3">
   <div class="row justify-content-lg-between align-items-lg-center mb-7">
-    <div class="col-lg-12 mb-5 mb-lg-0">
-      {%
-        include tags.html
-        all=true
-      %}
-    </div>
-
     {% comment %}
       search is currently not used
       <div class="col-lg-4">
@@ -39,8 +31,6 @@
     {% endcomment %}
   </div>
 
-  {% assign firstUrl = '' %}
-
   {%
     include get-posts-data.html
     getSite=true
@@ -49,7 +39,6 @@
   {% assign posts = getPostsData %}
 
   {% for post in posts limit:1 %}
-    {% assign firstUrl = post.url %}
     {% assign postExternalLanguage = null %}
 
     {% if post.lang != page.lang %}
@@ -68,48 +57,15 @@
       large=true
       hasAnimation=true
       externalLanguage=postExternalLanguage
+      spacing="mt-n48"
     %}
   {% endfor %}
 
-  {% if paginatorPosts %}
-    <!-- Title -->
-    <div class="row mb-5 utility-animation fade-in-bottom" data-utility-animation-step="1">
-      <div class="col-12">
-        <headline level="h3" classes="h2-font-size mb-0">
-          {{ blogNewsTitle }}
-        </headline>
-      </div>
-    </div>
-    <!-- End Title -->
-  {% endif %}
-
-  <div class="row mb-3 utility-animation__group">
-    {% for post in paginatorPosts limit: blogMaxBlogPosts %}
-      {% if post.url != firstUrl %}
-        {% assign postExternalLanguage = null %}
-
-        {% if post.lang != page.lang %}
-          {% assign postExternalLanguage = site.data.lang[post.lang].onlyLanguage %}
-        {% endif %}
-
-        <div class="col-sm-6 col-lg-4 mb-3 mb-sm-8">
-          {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
-          {%
-            include card.html
-            title=post.title
-            blogtitlepic=imgUrl
-            excerpt=post.excerpt
-            date=post.date
-            url=post.url
-            author=post.author
-            hasAnimation=true
-            index=forloop.index
-            externalLanguage=postExternalLanguage
-          %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
+  {%
+    include filter-bar.html
+    items=paginatorPosts
+    maxBlogPosts=blogMaxBlogPosts
+  %}
 
   {%
     include pagination.html

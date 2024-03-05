@@ -15,6 +15,13 @@ const es = {
   positionTypeInternship: 'Prácticas',
   positionTypeTraining: 'Educación',
   positionTypeStudent: 'Estudiantes que trabajan',
+  filterAuthors: 'Autores',
+  filterTopics: 'Temas',
+  filterTags: 'Tags',
+  clearAll: 'Borrar todo',
+  search: 'Buscar en',
+  apply: 'Aplicar',
+  reset: 'Reiniciar',
 };
 
 export default es;

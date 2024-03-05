@@ -1,0 +1,10 @@
+<!-- Shared Grid List Section -->
+{%- assign gridListItems = include.items -%}
+{%- assign gridListView = include.view -%}
+
+<grid-list
+  :items="{{ gridListItems | jsonify | escape }}"
+  view="{{ gridListView }}"
+>
+</grid-list>
+<!-- End Shared Filter Section -->

@@ -1,6 +1,13 @@
 .authors {
+  color: var(--color-copy-reduced);
+
   &.authors--no-link {
     color: $gray-600;
+  }
+
+  .authors__link:not([href]) {
+    color: var(--color-copy-reduced) !important;
+    pointer-events: none;
   }
 }
 

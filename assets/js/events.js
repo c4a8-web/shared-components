@@ -11,6 +11,8 @@ const Events = {
   WINDOW_RESIZE: 'window-resize',
   OPEN_MODAL: 'open-modal',
   LOAD_MODAL: 'load-modal',
+  DROPDOWN_CHANGED: 'dropdown-changed',
+  DROPDOWN_OPENED: 'dropdown-opened',
 };
 
 export default Events;

@@ -1,13 +1,61 @@
 import Tools from '../tools.js';
 
-export default {
-  tagName: 'card',
+const cardFooter = {
+  tagName: 'card-footer',
   data() {
     return {
-      wordsToTruncate: 20,
+      maxTags: 3,
     };
   },
   computed: {
+    tagsList() {
+      let tags = Array.isArray(this.tags) ? this.tags : this.tags.split(',');
+
+      return tags.slice(0, this.maxTags);
+    },
+  },
+  template: `
+    <div class="card__footer">
+      <div class="card__tags" v-if="tags">
+        <tag v-for="tag in tagsList" :key="tag" :tag="tag" variant="small"></tag>
+      </div>
+      <div class="d-flex align-items-center mt-auto">
+        <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
+          {{ date }}
+        </div>
+        <div class="card__author" v-if="author">
+          <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
+        </div>
+      </div>
+    </div>
+  `,
+  props: {
+    classes: String,
+    date: String,
+    author: String,
+    authorsList: Array,
+    hasNoLink: Boolean,
+    dataAuthors: Object,
+    isRow: Boolean,
+    tags: Array,
+  },
+};
+
+export default {
+  tagName: 'card',
+  components: {
+    'card-footer': cardFooter,
+  },
+  data() {
+    return {
+      wordsToTruncate: 20,
+      activeView: null,
+    };
+  },
+  computed: {
+    blogView() {
+      return this.activeView;
+    },
     combinedTitle() {
       return `${this.title} ${this.externalLanguage ? '(' + this.externalLanguage + ')' : ''}`;
     },
@@ -26,23 +74,35 @@ export default {
     utilityAnimationStep() {
       return this.hasAnimationValue ? '1' : null;
     },
+    rowValue() {
+      return Tools.isTrue(this.row) === true;
+    },
+    variant() {
+      if (Tools.isTrue(this.long) === true) {
+        return 'card--long';
+      } else if (this.productValue) {
+        return 'card--products';
+      } else if (Tools.isTrue(this.event) === true) {
+        return 'card--event';
+      } else if (this.rowValue) {
+        return 'card--row';
+      }
+
+      return 'card--default';
+    },
     classList() {
       return [
         'card',
         this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
         `${this.noLink ? 'card--no-link' : ''}`,
         `${Tools.isTrue(this.large) === true ? 'card--large mb-11' : 'h-100'}`,
-        `${Tools.isTrue(this.long) === true ? 'card--long' : ''}`,
-        `${this.productValue ? 'card--products' : ''}`,
-        `${Tools.isTrue(this.event) === true ? 'card--event' : ''}`,
+        this.variant,
+        this.spacing,
         'vue-component',
       ];
     },
     productValue() {
       return Tools.getJSON(this.product);
-    },
-    mediaClass() {
-      return `${Tools.isTrue(this.event) === true ? 'align-items-center mt-auto' : 'media align-items-center mt-auto'}`;
     },
     truncatedExcerpt() {
       const excerptValue =
@@ -84,6 +144,30 @@ export default {
 
       return cta;
     },
+    cardFooterData() {
+      return {
+        date: this.cardDate,
+        author: this.author,
+        authorsList: this.authorList(this.author),
+        hasNoLink: this.hasNoLink,
+        dataAuthors: this.dataAuthors,
+        isRow: this.rowValue,
+        tags: this.tags,
+      };
+    },
+  },
+  created() {
+    if (Tools.isTrue(this.store) !== true) return;
+
+    const blogView = this.$root.StoreData.blogView;
+
+    if (!blogView) return null;
+
+    this.activeView = blogView();
+
+    blogView.subscribe((view) => {
+      this.activeView = view;
+    });
   },
   methods: {
     formatDate(date) {
@@ -172,6 +256,14 @@ export default {
     },
     index: Number,
     externalLanguage: String,
+    spacing: String,
+    store: {
+      default: null,
+    },
+    row: {
+      default: null,
+    },
+    tags: Array,
   },
   template: `
     <article :class="classList" itemscope itemtype="http://schema.org/BlogPosting"
@@ -201,14 +293,7 @@ export default {
             <div class="card__body card-body d-flex flex-column h-100 p-4 p-lg-5">
               <headline level="h3"><a class="card__title text-inherit" ref="title" :href="url" :target="target">{{ combinedTitle }}</a></headline>
               <p v-html="truncatedExcerpt"></p>
-              <div :class="mediaClass">
-                <div class="card__author" v-if="author">
-                  <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
-                </div>
-                <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
-                  {{ cardDate }}
-                </div>
-              </div>
+              <card-footer v-bind="cardFooterData" />
             </div>
           </div>
         </div>
@@ -279,19 +364,14 @@ export default {
           </figure>
         </div>
 
-        <div class="card__body card-body">
-          <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ combinedTitle }}</a></headline>
-          <p v-html="truncatedExcerpt"></p>
-        </div>
+        <div class="card__content">
+          <div class="card__body card-body">
+            <headline level="h4"><a ref="title" class="card__title text-inherit" :href="url" :target="target">{{ combinedTitle }}</a></headline>
+            <p v-html="truncatedExcerpt"></p>
+          </div>
 
-        <div class="card-footer border-0 pt-0">
-          <div :class="mediaClass">
-            <div class="card__author" v-if="author">
-              <authors :authorsList="authorList(author)" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
-            </div>
-            <div class="media-body d-flex justify-content-end text-muted font-size-1 ml-2">
-              {{ cardDate }}
-            </div>
+          <div class="card-footer border-0 pt-0">
+            <card-footer v-bind="cardFooterData" />
           </div>
         </div>
       </template>
