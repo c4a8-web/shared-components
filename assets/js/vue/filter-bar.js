@@ -208,7 +208,7 @@ export default {
   },
   template: `
     <div class="filter-bar" >
-      <div class="filter-bar__controls utility-animation fade-in-bottom" data-utility-animation-step="1">
+      <div class="filter-bar__controls">
         <div class="filter-bar__selection">
           <div class="filter-bar__dropdowns">
             <dropdown
@@ -217,7 +217,9 @@ export default {
               @dropdown-changed="handleDropdownChange($event, index)"
               @dropdown-opened="handleDropdownOpened"
               ref="dropdowns"
+              :has-animation="true"
               :key="index"
+              :index="index"
             />
           </div>
           <div class="filter-bar__tags">
@@ -240,10 +242,6 @@ export default {
   `,
 };
 
-// TODO add shim to mobile dropdown
+// TODO add title to mobile item list
 // TODO adjust mobile dropdown styling when opened (sticky)
-// TODO add an apply and a reset button
-// TODO tags has a search option to filter the list -> check with design
-// TODO search clear search with X
-// TODO search show X instead of search icon
 // TODO add content for the filter-bar story
