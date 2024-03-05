@@ -11,7 +11,6 @@
 {%- assign paginator_previous_page_path = paginator.previous_page_path %}
 {%- assign paginator_next_page = paginator.next_page %}
 {%- assign paginator_next_page_path = paginator.next_page_path %}
-{%- assign blogNewsTitle = include.newsTitle -%}
 
 <div class="container space-bottom-2 space-bottom-lg-3">
   <div class="row justify-content-lg-between align-items-lg-center mb-7">
@@ -65,7 +64,6 @@
   {%
     include filter-bar.html
     items=paginatorPosts
-    title=blogNewsTitle
     maxBlogPosts=blogMaxBlogPosts
   %}
 
