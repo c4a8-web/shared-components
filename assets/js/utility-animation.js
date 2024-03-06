@@ -202,6 +202,16 @@ class UtilityAnimation {
 
     this.addObserver();
   }
+
+  static isElementObserved(element) {
+    return this.instances.some((instance) => instance.root === element);
+  }
+
+  static observeElementIfNotAlready(element) {
+    if (!this.isElementObserved(element)) {
+      this.initElement(element);
+    }
+  }
 }
 
 export default UtilityAnimation;
