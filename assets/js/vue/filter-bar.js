@@ -210,7 +210,7 @@ export default {
               @dropdown-changed="handleDropdownChange($event, index)"
               @dropdown-opened="handleDropdownOpened"
               ref="dropdowns"
-              :has-animation="false"
+              :has-animation="true"
               :key="index"
               :index="index"
             />
@@ -234,5 +234,3 @@ export default {
     </div>
   `,
 };
-
-// TODO has-animation is still buggy

@@ -1,6 +1,7 @@
 import Tools from '../tools.js';
 import State from '../state.js';
 import Events from '../events.js';
+import UtilityAnimation from '../utility-animation.js';
 
 export default {
   tagName: 'dropdown',
@@ -37,6 +38,11 @@ export default {
     },
   },
   methods: {
+    handleEventTrigger() {
+      if (!this.hasAnimation) return;
+
+      UtilityAnimation.observeElementIfNotAlready(this.$refs.label);
+    },
     resetSelection() {
       this.activeSelection = [];
     },
@@ -109,6 +115,9 @@ export default {
       });
     }
   },
+  mounted() {
+    this.handleEventTrigger();
+  },
   data() {
     return {
       activeSelection: [],
@@ -122,7 +131,7 @@ export default {
       <teleport to="[data-v-app]">
         <div class="dropdown__background-shim" v-show="isOpen" @click="toggleDropdown"></div>
       </teleport>
-      <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1">
+      <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1" ref="label">
         <span class="dropdown__label-text">{{ label }}</span>
         <span class="dropdown__label-placeholder">{{ label }}</span>
         <span class="dropdown__label-icon">
