@@ -123,7 +123,7 @@ export default {
       activeSelection: [],
       isOpen: false,
       filterText: '',
-      minCharsToFilter: 3,
+      minCharsToFilter: 1,
     };
   },
   template: `
