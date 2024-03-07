@@ -63,7 +63,7 @@ export default {
           <span class="authors__name" itemprop="name">{{ authorStart(authorArray, author) }} {{ author }}</span>
         </template>
         <template v-if="!authorsSeperator(authorArray, author)">
-          {{ seperator }}
+          {{ seperator }}&nbsp;
         </template>
       </span>
     </template>
