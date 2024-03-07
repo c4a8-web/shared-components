@@ -71,6 +71,9 @@ export default {
         this.modalClosed();
       }
     },
+    closeModal() {
+      document.body.classList.remove('modal-open');
+    },
     modalOpened() {
       if (Tools.isUpperBreakpoint()) return;
 
@@ -79,7 +82,7 @@ export default {
     modalClosed() {
       if (Tools.isUpperBreakpoint()) return;
 
-      document.body.classList.remove('modal-open');
+      this.closeModal();
     },
     toggleIconClasses(selection) {
       return ['dropdown__toggle-icon', this.activeSelection.includes(selection) ? State.ACTIVE : ''];
@@ -105,6 +108,14 @@ export default {
     resetFilterText() {
       this.filterText = '';
     },
+    resetModal() {
+      this.isOpen = false;
+
+      this.closeModal();
+    },
+    handleResize() {
+      this.resetModal();
+    },
   },
   beforeMount() {
     const hasLanguageLoader = window.i18n?.loader;
@@ -117,6 +128,11 @@ export default {
   },
   mounted() {
     this.updateUtilityAnimation();
+
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
   data() {
     return {
@@ -129,7 +145,7 @@ export default {
   template: `
     <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true, 'dropdown--filtering': filterText.length > 0 }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
       <teleport to="[data-v-app]">
-        <div class="dropdown__background-shim" v-show="isOpen" @click="toggleDropdown"></div>
+        <div :class="{'dropdown__background-shim': true, 'show': isOpen}" @click="toggleDropdown"></div>
       </teleport>
       <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1" ref="label">
         <span class="dropdown__label-text">{{ label }}</span>

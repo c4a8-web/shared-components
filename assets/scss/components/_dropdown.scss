@@ -265,9 +265,18 @@ label.dropdown__checkbox-label {
   width: 100vw;
   height: 300vh;
   background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+
+  &.show {
+    display: block;
+  }
 
   @include media-breakpoint-up(md) {
     display: none;
+
+    &.show {
+      display: none;
+    }
   }
 }
 
