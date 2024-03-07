@@ -12,7 +12,6 @@
     getSite=true
   %}
 
-
   {% assign authorEvents = "" | split: "," %}
   {% assign filteredEvents = site.events | where_exp: 'item', 'item.author' %}
 
@@ -20,12 +19,9 @@
     {% if item.author contains page.name %}
       {% assign authorEvents = authorEvents | push: item %}
     {% endif %}
-
   {% endfor %}
 
-
   {%- assign filtered_posts = getPostsData | where: 'author', page.name -%}
-
   {%- assign postCount = filtered_posts.size -%}
 
   <div class="container space-top-2 space-top-lg-4">
@@ -75,15 +71,12 @@
       {% endif %}
       <div class="author__posts row">
         <div class="author__posts-list mt-6 pt-6">
-          <div class="col-lg-10 pl-lg-0">
-            {% for post in filtered_posts %}
-              {%
-                include post-teaser.html
-                post=post
-                author=author.display_name
-              %}
-            {% endfor %}
-          </div>
+          {%
+            include grid-list.html
+            items=filtered_posts
+            view="list-view"
+			      authors=author
+          %}
         </div>
       </div>
 

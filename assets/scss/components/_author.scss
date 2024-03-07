@@ -31,3 +31,7 @@ $author-percent: calc(100% * #{$author-scale});
     transform: translateX(-50%) translateY(-50%);
   }
 }
+
+.author__posts-list {
+  width: 100%;
+}
