@@ -38,7 +38,7 @@ export default {
     },
   },
   methods: {
-    handleEventTrigger() {
+    updateUtilityAnimation() {
       if (!this.hasAnimation) return;
 
       UtilityAnimation.observeElementIfNotAlready(this.$refs.label);
@@ -116,7 +116,7 @@ export default {
     }
   },
   mounted() {
-    this.handleEventTrigger();
+    this.updateUtilityAnimation();
   },
   data() {
     return {
