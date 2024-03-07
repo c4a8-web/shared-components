@@ -23,6 +23,10 @@
         }
       }
 
+      .card__body {
+        padding-bottom: spacing(4);
+      }
+
       @include media-breakpoint-up(lg) {
         --color-card-background: transparent;
         --card-img-width: 43%;
@@ -82,9 +86,15 @@
     &:not(.card--large):not(.card--long):not(.card--products) {
       max-width: unquote('min(480px, 100%)');
 
+      &.card--default,
+      &.card--row {
+        max-width: none;
+      }
+
       @include media-breakpoint-up(md) {
         max-width: unquote('min(480px, 100vw)');
 
+        &.card--default,
         &.card--row {
           max-width: none;
         }
@@ -101,7 +111,7 @@
     }
 
     &.card--event {
-      .card__author {
+      .card__authors {
         text-align: right;
       }
     }
@@ -285,4 +295,21 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
+  margin: 0 spacing($size: 2, $negative: true);
+}
+
+.card__authors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.card__footer-infos {
+  width: 100%;
+}
+
+.card__footer {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
 }

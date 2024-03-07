@@ -56,14 +56,14 @@ export default {
       <span :class="classList" v-for="author in authorArray">
         <template v-if="!noLink">
           <a :href="authorLink(author)" class="authors__link post-teaser__auto" itemprop="author" itemscope itemtype="https://schema.org/Person">
-            <span itemprop="name">{{ author }}</span>
+            <span class="authors__name" itemprop="name">{{ author }}</span>
           </a>
         </template>
         <template v-else>
-          <span itemprop="name">{{ authorStart(authorArray, author) }} {{ author }}</span>
+          <span class="authors__name" itemprop="name">{{ authorStart(authorArray, author) }} {{ author }}</span>
         </template>
         <template v-if="!authorsSeperator(authorArray, author)">
-          {{ seperator }}
+          {{ seperator }}&nbsp;
         </template>
       </span>
     </template>

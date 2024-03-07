@@ -13,18 +13,23 @@ const cardFooter = {
 
       return tags.slice(0, this.maxTags);
     },
+    dataAuthorsList() {
+      if (!this.dataAuthors.display_name) return this.dataAuthors;
+
+      return { [this.dataAuthors.display_name]: this.dataAuthors };
+    },
   },
   template: `
     <div class="card__footer">
       <div class="card__tags" v-if="tags">
         <tag v-for="tag in tagsList" :key="tag" :tag="tag" variant="small"></tag>
       </div>
-      <div class="d-flex align-items-center mt-auto">
+      <div class="card__footer-infos d-flex align-items-end mt-auto" >
         <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
           {{ date }}
         </div>
-        <div class="card__author" v-if="author">
-          <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthors"></authors>
+        <div class="card__authors" v-if="author">
+          <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthorsList"></authors>
         </div>
       </div>
     </div>
@@ -275,7 +280,7 @@ export default {
         <div class="row no-gutters">
           <div class="col-lg-8" v-if="blogTitlePic">
             <div class="card__img-top position-relative overflow-hidden is-foreground">
-              <v-img :img ="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets" :lazy="true" />
+              <v-img :img="hasExtension" :cloudinary="hasBlogTitlePic" :imgSrcSets="imgSrcSets" :lazy="true" />
               <figure class="d-none d-lg-block">
                 <svg class="ie-curved-x position-absolute top-0 right-0 bottom-0 mr-n1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 100.1 1920" height="101%">
                   <path fill="#fff" d="M0,1920c0,0,93.4-934.4,0-1920h100.1v1920H0z"></path>

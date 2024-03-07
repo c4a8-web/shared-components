@@ -46,6 +46,11 @@ export default {
       UtilityAnimation.init(Array.from(this.$refs.items));
       UtilityAnimation.addObserver();
     },
+    blogImgUrl(url) {
+      const blogPath = 'blog/heads/';
+
+      return !url.includes(blogPath) ? `${blogPath}${url}` : url;
+    },
   },
   props: {
     items: String,
@@ -59,7 +64,7 @@ export default {
           <card
             :title="item.title"
             :url="item.url"
-            :blog-title-pic="item.blogtitlepic"
+            :blog-title-pic="blogImgUrl(item.blogtitlepic)"
             :excerpt="item.excerpt"
             :date="item.moment ? item.moment : item.date"
             :url="item.url"
