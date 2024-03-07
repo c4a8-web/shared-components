@@ -46,19 +46,21 @@
     {% endif %}
 
     {% capture imgUrl %}{{ site.blog_image_path }}{{ post.blogtitlepic }}{% endcapture %}
-    {%
-      include card.html
-      title=post.title
-      blogtitlepic=imgUrl
-      excerpt=post.excerpt
-      date=post.date
-      url=post.url
-      author=post.author
-      large=true
-      hasAnimation=true
-      externalLanguage=postExternalLanguage
-      spacing="mt-n48"
-    %}
+    <div class="d-none d-lg-block">
+      {%
+        include card.html
+        title=post.title
+        blogtitlepic=imgUrl
+        excerpt=post.excerpt
+        date=post.date
+        url=post.url
+        author=post.author
+        large=true
+        hasAnimation=true
+        externalLanguage=postExternalLanguage
+        spacing="mt-n48"
+      %}
+    </div>
   {% endfor %}
 
   {%

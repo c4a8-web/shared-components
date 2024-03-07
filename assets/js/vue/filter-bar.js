@@ -14,7 +14,7 @@ export default {
       return Tools.getJSON(this.dataAuthors);
     },
     normalizedItems() {
-      return this.storedItems.slice(1).map((item) => {
+      return this.storedItems.slice(this.itemStartPoint).map((item) => {
         return {
           ...item,
           blogtitlepic: `${item.blog_image_path}${item.blogtitlepic}`,
@@ -91,7 +91,16 @@ export default {
       });
     }
   },
+  mounted() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   methods: {
+    handleResize() {
+      this.itemStartPoint = Tools.isUpperBreakpoint() ? 1 : 0;
+    },
     extractPropertyCounts(property) {
       const results = this.normalizedItems.reduce((accumulator, item) => {
         if (Array.isArray(item[property])) {
@@ -191,6 +200,7 @@ export default {
       views: ['tile-view', 'list-view'],
       filterDropdowns: [],
       selections: [],
+      itemStartPoint: 0,
     };
   },
   props: {
