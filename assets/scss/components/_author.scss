@@ -1,18 +1,6 @@
 $author-scale: 1.6;
 $author-percent: calc(100% * #{$author-scale});
 
-.author {
-  @include media-breakpoint-up(lg) {
-    margin: 0 auto;
-    width: calc(100% - #{$bootstrap-space-3});
-  }
-
-  @include media-breakpoint-up(xl) {
-    margin: 0 auto;
-    width: calc(100% - #{$bootstrap-space-4});
-  }
-}
-
 .author__avatar-frame {
   @include aspect-ratio(1, 1);
   @include shadow('super-light');
