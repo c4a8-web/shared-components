@@ -101,7 +101,7 @@
     }
 
     &.card--event {
-      .card__author {
+      .card__authors {
         text-align: right;
       }
     }
@@ -285,4 +285,10 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
+  margin: 0 spacing($size: 2, $negative: true);
+}
+
+.card__authors {
+  display: flex;
+  flex-direction: column-reverse;
 }

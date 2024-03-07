@@ -24,11 +24,11 @@ const cardFooter = {
       <div class="card__tags" v-if="tags">
         <tag v-for="tag in tagsList" :key="tag" :tag="tag" variant="small"></tag>
       </div>
-      <div class="d-flex align-items-center mt-auto" >
+      <div class="d-flex align-items-end mt-auto" >
         <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
           {{ date }}
         </div>
-        <div class="card__author" v-if="author">
+        <div class="card__authors" v-if="author">
           <authors :authorsList="authorsList" :noLink="hasNoLink" :dataAuthors="dataAuthorsList"></authors>
         </div>
       </div>
