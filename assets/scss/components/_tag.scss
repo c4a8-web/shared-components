@@ -1,9 +1,11 @@
 .tags__btn {
   &.tag--small {
     padding: spacing(1) spacing(2);
+    color: var(--color-copy-reduced);
 
     &:hover {
       background-color: var(--color-primary-accent) !important;
+      color: var(--color-copy-light);
     }
   }
 
