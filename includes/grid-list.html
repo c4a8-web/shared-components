@@ -1,10 +1,12 @@
 <!-- Shared Grid List Section -->
 {%- assign gridListItems = include.items -%}
 {%- assign gridListView = include.view -%}
+{%- assign gridListAuthors = include.authors -%}
 
 <grid-list
   :items="{{ gridListItems | jsonify | escape }}"
   view="{{ gridListView }}"
+  :data-authors="{{ gridListAuthors | jsonify | escape }}"
 >
 </grid-list>
 <!-- End Shared Filter Section -->
