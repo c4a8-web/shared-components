@@ -1,5 +1,6 @@
 const de = {
   address: 'Adresse',
+  follow: 'Folgen',
   full_time: 'Vollzeit',
   part_time: 'Teilzeit',
   contract: 'Leiharbeitszeit',

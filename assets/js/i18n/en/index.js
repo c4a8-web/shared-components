@@ -1,5 +1,6 @@
 const en = {
   address: 'Address',
+  follow: 'Follow',
   full_time: 'Full-Time',
   part_time: 'Part-Time',
   contract: 'Contract work',
