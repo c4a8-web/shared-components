@@ -17,6 +17,9 @@ export default {
     index: Number,
   },
   computed: {
+    teleportSelector() {
+      return '[id="root"], [data-v-app]';
+    },
     dropdownLabelClasses() {
       return ['dropdown__label font-size-sm', this.hasAnimation ? 'utility-animation fade-in-bottom' : ''];
     },
@@ -144,7 +147,7 @@ export default {
   },
   template: `
     <div :class="{ 'dropdown--opened': isOpen, 'dropdown': true, 'dropdown--filtering': filterText.length > 0 }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseDown">
-      <teleport to="[data-v-app]">
+      <teleport :to="teleportSelector">
         <div :class="{'dropdown__background-shim': true, 'show': isOpen}" @click="toggleDropdown"></div>
       </teleport>
       <div :class="dropdownLabelClasses" @click="handleClick" :style="style" data-utility-animation-step="1" ref="label">
