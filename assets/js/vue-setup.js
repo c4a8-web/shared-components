@@ -42,6 +42,7 @@ import LetterSwitcher from './vue/letter-switcher.js';
 import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
+import LottiePlayer from './vue/lottie-player.js';
 import Modal from './vue/modal.js';
 import PostTeaser from './vue/post-teaser.js';
 import Screenshot from './vue/screenshot.js';
@@ -177,6 +178,7 @@ const addApp = () => {
     LinkList,
     ListContainer,
     LogoList,
+    LottiePlayer,
     Modal,
     Plus,
     ScrollArrow,

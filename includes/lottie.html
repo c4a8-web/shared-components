@@ -1,0 +1,22 @@
+{%- assign lottieData = include.data -%}
+{%- assign lottieWidth = include.width -%}
+{%- assign lottieHeight = include.height -%}
+{%- assign lottieBackground = include.background -%}
+{%- assign lottieLoop = include.loop -%}
+{%- assign lottieAutoplay = include.autoplay -%}
+{%- assign lottieRenderer = include.renderer -%}
+{%- assign lottiePath = include.path -%}
+
+<lottie-player
+  :data="{{ lottieData | jsonify | escape }}"
+  :width="{{ lottieWidth }}"
+  :height="{{ lottieHeight }}"
+  :background="{{ lottieBackground }}"
+  :loop="{{ lottieLoop }}"
+  :autoplay="{{ lottieAutoplay }}"
+  :renderer="{{ lottieRenderer }}"
+  :path="{{ lottiePath }}"
+>
+</lottie-player>
+
+
