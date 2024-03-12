@@ -5,13 +5,23 @@
   {%- assign imgUrl = author.avatar -%}
   {%- assign metaTopSpacing = 5 -%}
 
+  {%- assign authorItems = author.socials -%}
+
   {%
     include get-posts-data.html
     getSite=true
   %}
 
-  {%- assign filtered_posts = getPostsData | where: 'author', page.name -%}
+  {% assign authorEvents = "" | split: "," %}
+  {% assign filteredEvents = site.events | where_exp: 'item', 'item.author' %}
 
+  {% for item in filteredEvents %}
+    {% if item.author contains page.name %}
+      {% assign authorEvents = authorEvents | push: item %}
+    {% endif %}
+  {% endfor %}
+
+  {%- assign filtered_posts = getPostsData | where: 'author', page.name -%}
   {%- assign postCount = filtered_posts.size -%}
 
   <div class="container space-top-2 space-top-lg-4">
@@ -27,19 +37,12 @@
           <span itemprop="author" itemscope itemtype="http://schema.org/Person">
             <h1 class="author__name h2" itemprop="name">{{ author.display_name }}</h1>
           </span>
-          <span class="author__post-count">{{ postCount }}</span> <span class="author__posts ml-1">{{ site.data.lang[lang].posts }}</span>
+          <span class="author__post-count">{{ postCount }}</span> <span class="ml-1">{{ site.data.lang[lang].posts }}</span>
         </div>
-        {%- if author.twitter or author.linkedin -%}
-          <div class="author__socials col-lg-2 mt-lg-{{ metaTopSpacing }} pt-lg-4">
-            {%
-              include socials.html
-              author=author
-            %}
-          </div>
-        {%- endif -%}
+
       </div>
-      <div class="row">
-        <div class="author__intro font-size-2 col-lg-10 pl-lg-0">
+      <div class="author__intro-block row">
+        <div class="author__intro font-size-2 col-lg-8 pl-lg-0">
           {% if lang != 'de' %}
             {% assign languageContent = page.otherLanguages[lang] | default: page.otherLanguages['en'] | default: content %}
 
@@ -48,20 +51,35 @@
             {{ content }}
           {% endif %}
         </div>
-      </div>
-      <div class="row">
-        <div class="author__posts-list mt-6 pt-6">
-          <div class="col-lg-10 pl-lg-0">
-            {% for post in filtered_posts %}
-              {%
-                include post-teaser.html
-                post=post
-                author=author.display_name
-              %}
-            {% endfor %}
+        {%- if author.twitter or author.linkedin -%}
+          <div class="author__socials col-lg-4 {% if authorItems %} pt-lg-4 {% endif %}">
+            {%
+              include services.html
+              author=author
+              title="Lorem Ipsum"
+            %}
           </div>
+        {%- endif -%}
+      </div>
+      {% if authorEvents.size > 0 %}
+        <div class="author__events row mt-lg-5">
+          {%
+            include event-overview.html
+            events=authorEvents
+          %}
+        </div>
+      {% endif %}
+      <div class="author__posts">
+        <div class="author__posts-list mt-6 pt-6">
+          {%
+            include grid-list.html
+            items=filtered_posts
+            view="list-view"
+			      authors=author
+          %}
         </div>
       </div>
+
     </div>
   </div>
 {%- else -%}
