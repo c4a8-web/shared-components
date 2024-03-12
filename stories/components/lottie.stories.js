@@ -9,6 +9,7 @@ export default {
   ...options,
 };
 
+// TODO extract to lottie file
 export const AnimationHero = createStory(component, {
   data: {
     v: '5.9.0',
