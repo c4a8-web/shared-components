@@ -1,4 +1,5 @@
 const es = {
+  posts: 'Entradas',
   address: 'Dirección',
   follow: 'Seguir',
   full_time: 'Tiempo completo',
