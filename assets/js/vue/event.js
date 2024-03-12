@@ -94,7 +94,7 @@ export default {
             <span class="event__category font-size-1 bold is-uppercase" v-if="category">{{ category }}</span>
           </div>
           <headline class="event__headline" :text="title" level="h4" />
-          <p class="event__text font-size-2 thin">{{ text }}</p>
+          <p class="event__text">{{ text }}</p>
         </div>
         <div class="event__image-container is-background" v-if="imageValue">
           <v-img class="event__image" :cloudinary="cloudinary" :img="imageValue.img" :alt="imageValue.alt" lazy="true">

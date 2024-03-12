@@ -7,6 +7,7 @@ class UtilityAnimation {
   static inViewportDataset = 'data-utility-animation-in-viewport';
   static endDataset = 'data-utility-animation-end';
   static instances = [];
+  static groupItemsLoadedProperty = '--utility-animation-items-loaded';
 
   constructor(root) {
     this.root = root;
@@ -54,13 +55,12 @@ class UtilityAnimation {
   }
 
   handleAnimationEnd(event) {
-    const group = this.getGroup(event.srcElement);
+    const group = UtilityAnimation.getGroup(event.srcElement);
 
     if (group) {
-      const itemsLoadedProperty = '--utility-animation-items-loaded';
-      const oldItemsValue = parseInt(group.style.getPropertyValue(itemsLoadedProperty), 10) || 0;
+      const oldItemsValue = parseInt(group.style.getPropertyValue(UtilityAnimation.groupItemsLoadedProperty), 10) || 0;
 
-      group.style.setProperty(itemsLoadedProperty, oldItemsValue + 1);
+      UtilityAnimation.setGroupItemsLoaded(group, oldItemsValue + 1);
     }
 
     this.updateCurrentElement(event);
@@ -92,7 +92,7 @@ class UtilityAnimation {
     this.startStepAnimation(this.currentElements);
   }
 
-  getGroup(element) {
+  static getGroup(element) {
     return element.closest('.utility-animation__group');
   }
 
@@ -114,6 +114,10 @@ class UtilityAnimation {
     observer.observe(this.root, { attributes: true });
   }
 
+  static setGroupItemsLoaded(group, count) {
+    group.style.setProperty(this.groupItemsLoadedProperty, count);
+  }
+
   static hasPercentageOffset(instance) {
     return instance.root.classList.contains('utility-animation--percentage-offset');
   }
@@ -122,7 +126,7 @@ class UtilityAnimation {
     return instance.root.classList.contains('utility-animation--small-offset');
   }
 
-  static addObserver() {
+  static addObserver(instance) {
     const intersectionOffset = 200;
     const smallIntersectionOffset = 100;
 
@@ -151,7 +155,9 @@ class UtilityAnimation {
       threshold: 0,
     });
 
-    this.instances.forEach((instance) => {
+    const instances = instance ? [instance] : this.instances;
+
+    instances.forEach((instance) => {
       if (UtilityAnimation.hasSmallOffset(instance)) {
         smallOffsetObserver.observe(instance.root);
       } else if (UtilityAnimation.hasPercentageOffset(instance)) {
@@ -162,14 +168,55 @@ class UtilityAnimation {
     });
   }
 
-  static init() {
+  static resetGroup(group) {
+    this.setGroupItemsLoaded(group, 0);
+
+    this.instances.forEach((instance) => {
+      const instanceGroup = this.getGroup(instance.root);
+
+      if (instanceGroup === group) {
+        const rootElement = instance.root;
+
+        instance.currentElements = [rootElement];
+
+        rootElement.removeAttribute('data-utility-animation-end');
+
+        instance.startAnimation();
+      }
+    });
+  }
+
+  static initElement(element) {
+    const domElement = element.$el ? element.$el : element;
+    const instance = new this(domElement);
+
+    this.instances.push(instance);
+
+    return instance;
+  }
+
+  static init(elements) {
     this.instances = [];
 
-    [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
-      this.instances.push(new this(element));
+    [].forEach.call(elements || document.querySelectorAll(this.rootSelector), (element) => {
+      this.initElement(element);
     });
 
     this.addObserver();
+  }
+
+  static isElementObserved(element) {
+    return this.instances.some((instance) => instance.root === element);
+  }
+
+  static observeElementIfNotAlready(element) {
+    let instance;
+
+    if (!this.isElementObserved(element)) {
+      instance = this.initElement(element);
+    }
+
+    this.addObserver(instance);
   }
 }
 

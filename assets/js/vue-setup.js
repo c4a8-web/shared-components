@@ -2,6 +2,8 @@
 // import './lib/vue/vue.global.js';
 import './lib/vue/vue.global.prod.js';
 
+import Store from './store.js';
+
 // Base Components
 import Accordion from './vue/accordion.js';
 import AdBlockInfo from './vue/ad-block-info.js';
@@ -12,6 +14,7 @@ import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
+import Dropdown from './vue/dropdown.js';
 import EventOverview from './vue/event-overview.js';
 import Event from './vue/event.js';
 import Faq from './vue/faq.js';
@@ -25,9 +28,11 @@ import FormRadio from './vue/form-radio.js';
 import FormRadios from './vue/form-radios.js';
 import FormSelect from './vue/form-select.js';
 import Form from './vue/form.js';
+import FilterBar from './vue/filter-bar.js';
 import Footer from './vue/footer.js';
-import GoogleMap from './vue/google-map.js';
 import GoogleMapEntry from './vue/google-map-entry.js';
+import GoogleMap from './vue/google-map.js';
+import GridList from './vue/grid-list.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
@@ -44,10 +49,11 @@ import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
 import Modal from './vue/modal.js';
 import PostTeaser from './vue/post-teaser.js';
-import Screenshot from './vue/screenshot.js';
 import PersonQuote from './vue/person-quote.js';
 import ScrollArrow from './vue/scroll-arrow.js';
+import Screenshot from './vue/screenshot.js';
 import Search from './vue/search.js';
+import Services from './vue/services.js';
 import ShapeAnimation from './vue/shape-animation.js';
 import ShapeCircleWithinSquare from './vue/shape-circle-within-square.js';
 import ShapeFastFordward from './vue/shape-fast-forward.js';
@@ -61,6 +67,7 @@ import ShapeSquareCircle from './vue/shape-square-circle.js';
 import ShapeTrianglesToCenter from './vue/shape-triangles-to-center.js';
 import Shape from './vue/shape.js';
 import Slider from './vue/slider.js';
+import Socials from './vue/socials.js';
 import VideoInner from './vue/video-inner.js';
 import SlotItems from './vue/slot-items.js';
 import TabList from './vue/tab-list.js';
@@ -85,6 +92,7 @@ import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Hand from './vue/icons/hand.js';
+import ListView from './vue/icons/list-view.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Mail from './vue/icons/mail.js';
 import Meerkat from './vue/icons/meerkat.js';
@@ -99,6 +107,7 @@ import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
+import TileView from './vue/icons/tile-view.js';
 import XMark from './vue/icons/x-mark.js';
 
 // Shapes
@@ -134,6 +143,12 @@ const addApp = () => {
         document.body.classList.add('safari');
       }
     },
+    data() {
+      return {
+        Store: Store,
+        StoreData: {},
+      };
+    },
   });
 
   const components = [
@@ -145,6 +160,7 @@ const addApp = () => {
     BlogRecent,
     Card,
     Cta,
+    Dropdown,
     EventOverview,
     Event,
     CheckCard,
@@ -160,9 +176,11 @@ const addApp = () => {
     FormRadios,
     FormSelect,
     Form,
+    FilterBar,
     Footer,
-    GoogleMap,
     GoogleMapEntry,
+    GoogleMap,
+    GridList,
     Header,
     Headline,
     Icon,
@@ -181,6 +199,7 @@ const addApp = () => {
     Plus,
     ScrollArrow,
     Search,
+    Services,
     ShapeAnimation,
     ShapeCircleWithinSquare,
     ShapeFastFordward,
@@ -194,6 +213,7 @@ const addApp = () => {
     ShapeTrianglesToCenter,
     Shape,
     Slider,
+    Socials,
     ArrowCurl,
     ArrowExternal,
     ArrowNarrow,
@@ -206,6 +226,7 @@ const addApp = () => {
     EmailActionUnread,
     Expand,
     Hand,
+    ListView,
     Menu,
     Magnifier,
     Mail,
@@ -219,6 +240,7 @@ const addApp = () => {
     Quotes,
     Rocket,
     Smile,
+    TileView,
     SBlock,
     TBlock,
     SlotItems,
