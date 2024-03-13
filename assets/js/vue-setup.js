@@ -10,6 +10,7 @@ import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
 import AuthorAvatar from './vue/author-avatar.js';
+import AuthorHeader from './vue/author-header.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import CheckCard from './vue/check-card.js';
@@ -157,6 +158,7 @@ const addApp = () => {
     AsideWrapper,
     Authors,
     AuthorAvatar,
+    AuthorHeader,
     BlogRecent,
     Card,
     Cta,

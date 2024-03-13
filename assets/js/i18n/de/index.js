@@ -1,4 +1,5 @@
 const de = {
+  posts: 'Einträge',
   address: 'Adresse',
   follow: 'Folgen',
   full_time: 'Vollzeit',
