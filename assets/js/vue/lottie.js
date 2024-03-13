@@ -2,10 +2,10 @@ import lottie from '../lib/lottie.min.js';
 import Tools from '../tools.js';
 
 export default {
-  tagName: 'lottie-player',
+  tagName: 'lottie',
   computed: {
     classList() {
-      return ['lottie-player', 'vue-component'];
+      return ['lottie', 'vue-component'];
     },
     jsonData() {
       return Tools.getJSON(this.data);

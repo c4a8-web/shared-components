@@ -11,6 +11,8 @@ export default {
 
 // TODO extract to lottie file
 export const AnimationHero = createStory(component, {
+  width: 960,
+  height: 1440,
   data: {
     v: '5.9.0',
     fr: 60,

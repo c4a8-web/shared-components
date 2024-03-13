@@ -7,7 +7,7 @@
 {%- assign lottieRenderer = include.renderer -%}
 {%- assign lottiePath = include.path -%}
 
-<lottie-player
+<lottie
   :data="{{ lottieData | jsonify | escape }}"
   :width="{{ lottieWidth }}"
   :height="{{ lottieHeight }}"
@@ -17,6 +17,6 @@
   :renderer="{{ lottieRenderer }}"
   :path="{{ lottiePath }}"
 >
-</lottie-player>
+</lottie>
 
 
