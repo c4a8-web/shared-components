@@ -240,6 +240,7 @@
 .hero-text-image__keyvisual {
   &.is-svg {
     max-height: 600px;
+    padding-right: $grid-gutter-half-width;
 
     &.is-large {
       @include media-breakpoint-up(lg) {
@@ -504,7 +505,6 @@
 
     .hero-text-image__background {
       @include media-breakpoint-up(xl) {
-        // margin-right: calc((100vw - var(--container-width) + #{spacing(12)}) / 2);
         margin-right: spacing(12);
 
         .hero-text-image__keyvisual.is-svg {
