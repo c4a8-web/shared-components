@@ -1,5 +1,6 @@
 import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
 import heroTemplate from '!!raw-loader!./hero.html';
+import lottie1 from '../data/lottie1.json';
 
 const options = getTitle({
   title: 'Hero',
@@ -305,5 +306,21 @@ HeroText.args = {
         icon: 'mail',
       },
     ],
+  },
+};
+
+export const HeroLottie = Template.bind({});
+
+HeroLottie.args = {
+  hero: {
+    overline: 'Lorem ipsum',
+    overlineBgColor: 'var(--color-gigas)',
+    overlineColor: 'var(--color-white)',
+    headline: 'Consulting Services',
+    subline:
+      'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+    background: {
+      lottie: lottie1,
+    },
   },
 };

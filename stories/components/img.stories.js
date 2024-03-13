@@ -1,5 +1,6 @@
-import { createComponent, getTitle, getAssetPath, site } from '../../.storybook/templates';
+import { createStory, getTitle, getAssetPath, site } from '../../.storybook/templates';
 import { includesimghtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 const options = getTitle({
   title: 'Img',
@@ -13,29 +14,27 @@ const baseArgs = {
   alt: 'Image Alt Text',
 };
 
-const Template = (args) => createComponent(args, component);
-
-export const Img = Template.bind({});
-
-Img.args = {
+export const Img = createStory(component, {
   ...baseArgs,
   img: getAssetPath('img/image-placeholder-1.jpg'),
-};
+});
 
-export const ImgCloudinary = Template.bind({});
-
-ImgCloudinary.args = {
+export const ImgCloudinary = createStory(component, {
   ...baseArgs,
   img: 'career/remote-working.jpg',
   cloudinary: true,
-};
+});
 
-export const ImgSrcSet = Template.bind({});
-
-ImgSrcSet.args = {
+export const ImgSrcSet = createStory(component, {
   ...baseArgs,
   img: 'career/remote-working.jpg',
   cloudinary: true,
   preset: 'cardSmall',
   imgSrcSets: site.data.imgSrcSets.cardSmall,
-};
+});
+
+export const Lottie = createStory(component, {
+  ...baseArgs,
+  img: getAssetPath('img/image-placeholder-1.jpg'),
+  lottie: lottie1,
+});

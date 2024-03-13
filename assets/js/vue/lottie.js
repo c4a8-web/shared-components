@@ -1,4 +1,7 @@
-import lottie from '../lib/lottie.min.js';
+const lottie = import('../lib/lottie.min.js').then((module) => {
+  return module.default || window.lottie;
+});
+
 import Tools from '../tools.js';
 
 export default {
@@ -11,28 +14,28 @@ export default {
       return Tools.getJSON(this.data);
     },
     widthValue() {
-      return this.width !== '' ? this.width : '200px';
+      return this.width && this.width !== '' ? this.width : '100%';
     },
     heightValue() {
-      return this.height !== '' ? this.height : '200px';
+      return this.height && this.height !== '' ? this.height : '100%';
     },
     backgroundValue() {
-      return this.background !== '' ? this.background : 'transparent';
+      return this.background && this.background !== '' ? this.background : 'transparent';
     },
     loopValue() {
-      return this.loop !== '' ? this.loop : false;
+      return this.loop && this.loop !== '' ? this.loop : false;
     },
     autoplayValue() {
-      return this.autoplay !== '' ? this.autoplay : true;
+      return this.autoplay && this.autoplay !== '' ? this.autoplay : true;
     },
     nameValue() {
-      return this.name !== '' ? this.name : 'lottie-' + Math.random();
+      return this.name && this.name !== '' ? this.name : 'lottie-' + Math.random();
     },
     rendererValue() {
-      return this.renderer !== '' ? this.renderer : 'svg';
+      return this.renderer && this.renderer !== '' ? this.renderer : 'svg';
     },
     pathValue() {
-      return this.path !== '' ? this.path : null;
+      return this.path && this.path !== '' ? this.path : null;
     },
     options() {
       return {
@@ -66,12 +69,14 @@ export default {
       };
     },
     getSize(size) {
-      return size.indexOf('px') === -1 ? `${size}px` : size;
+      return size.indexOf('px') === -1 && size.indexOf('%') === -1 ? `${size}px` : size;
     },
     loadAnimation() {
-      let anim = lottie.loadAnimation(this.options);
+      let anim = lottie.then((lottieModule) => {
+        lottieModule.loadAnimation(this.options);
 
-      this.$emit('animControl', anim);
+        this.$emit('animControl', anim);
+      });
     },
   },
   props: {
