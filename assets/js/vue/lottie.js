@@ -66,7 +66,7 @@ export default {
       };
     },
     getSize(size) {
-      return typeof size == Number ? `${size}px` : size;
+      return size.indexOf('px') === -1 ? `${size}px` : size;
     },
     loadAnimation() {
       let anim = lottie.loadAnimation(this.options);
