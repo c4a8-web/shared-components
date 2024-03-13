@@ -7,7 +7,7 @@ export default {
   },
   computed: {
     classList() {
-      return ['author__header row mb-4 mb-lg-5 vue-component', this.classes ? this.classes : ''];
+      return ['author-header row mb-4 mb-lg-5 vue-component', this.classes ? this.classes : ''];
     },
   },
   beforeMount() {
@@ -30,7 +30,7 @@ export default {
   },
   template: `
     <div :class="classList">
-      <div class="author-header__back back back--animated">
+      <div class="author-header__back back">
         <icon icon='arrow' direction='left' hover=true circle=true />
       </div>
       <author-avatar :author="author" :imgUrl="imgUrl" classes="col-6 col-sm-4 col-lg-2 pl-lg-0 mb-5 mb-lg-0"></author-avatar>
