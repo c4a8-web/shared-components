@@ -26,11 +26,10 @@ export default {
   },
   created() {},
   updated() {
-    if (this.itemsChanged) {
-      this.itemsChanged = false;
+    if (!this.itemsChanged) return;
+    this.itemsChanged = false;
 
-      this.reinitUtilityAnimation();
-    }
+    this.reinitUtilityAnimation();
   },
   methods: {
     resetUtilityAnimation() {
@@ -40,7 +39,7 @@ export default {
       }, 100);
     },
     reinitUtilityAnimation() {
-      if (!this.$refs.items.length === 0) return;
+      if (!this.$refs.items || !this.$refs.items.length === 0) return;
 
       UtilityAnimation.instances = [];
       UtilityAnimation.init(Array.from(this.$refs.items));
