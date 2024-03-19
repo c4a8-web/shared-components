@@ -51,6 +51,9 @@ export default {
     tags() {
       return this.extractPropertyCounts('tags');
     },
+    dropdownCollection() {
+      return [this.authors, this.topics, this.tags];
+    },
   },
   created() {
     this.$root.StoreData.blogItems = this.$root.Store(Tools.getJSON(this.items));
@@ -119,7 +122,7 @@ export default {
       return tags;
     },
     addTagToSelection(tag, index) {
-      const selectedIndex = index ? index : this.selections.length;
+      const selectedIndex = index ? index : this.dropdownCollection.length - 1;
 
       this.selections[selectedIndex] = [tag];
     },
