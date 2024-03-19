@@ -491,6 +491,10 @@ class Tools {
   static blue(hex) {
     return parseInt(hex.substring(5, 7), 16);
   }
+
+  static getHash() {
+    return window.location.hash;
+  }
 }
 
 export default Tools;

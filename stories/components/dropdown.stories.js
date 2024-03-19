@@ -27,6 +27,7 @@ export const Default = createStory(component, {
       text: 'Azure',
       value: 'azure',
       count: 3,
+      checked: true,
     },
     {
       text: 'Maximilian Mustermann-Schulz',
@@ -59,6 +60,7 @@ export const Filterable = createStory(component, {
       text: 'Azure',
       value: 'azure',
       count: 3,
+      checked: true,
     },
     {
       text: 'Maximilian Mustermann-Schulz',
@@ -69,6 +71,12 @@ export const Filterable = createStory(component, {
       text: 'Maximilian Mustermann',
       value: 'azure',
       count: 263,
+    },
+    {
+      text: 'Lorem ispum',
+      value: 'lorem',
+      count: 3,
+      checked: true,
     },
   ],
 });

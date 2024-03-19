@@ -17,10 +17,10 @@ export default {
       ];
     },
     url() {
-      return this.lowerLang === 'de' ? 'tags' : `tags-${this.lowerLang}`;
+      return this.lowerLang === 'de' ? '' : `index-${this.lowerLang}/`;
     },
     href() {
-      return '/blog/' + this.url + '/?tag=' + encodeURIComponent(this.tag);
+      return '/blog/' + this.url + '#' + encodeURIComponent(this.tag);
     },
     hasIcon() {
       return this.variant === 'icon';
@@ -60,6 +60,7 @@ export default {
     <a
       :class="classList"
       :data-text="filter ? tag : undefined"
+      :data-tag="tag"
       :href="href"
       rel="tag"
       :title="'Posts tagged with ' + tag"

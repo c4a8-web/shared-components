@@ -34,14 +34,13 @@ export default {
             const matchingItems = this.normalizedItems.filter((item) => {
               return Array.isArray(item[key]) ? item[key].includes(selection.value) : item[key] === selection.value;
             });
+
             filteredItems = [...filteredItems, ...matchingItems];
           });
         });
       });
 
-      filteredItems = [...new Set(filteredItems)];
-
-      return this.maxBlogPosts ? filteredItems.slice(0, this.maxBlogPosts) : filteredItems;
+      return this.getMaxItems(filteredItems);
     },
     authors() {
       return this.extractPropertyCounts('author');
@@ -83,7 +82,7 @@ export default {
           },
           {
             label: this.translationData?.filterTags,
-            items: this.tags,
+            items: this.getFilteredTags(),
             key: 'tags',
             filterable: true,
           },
@@ -100,6 +99,35 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    getFilteredTags() {
+      const hash = Tools.getHash();
+
+      if (!hash) return this.tags;
+
+      const filteredTag = decodeURIComponent(hash.substring(1)).toLowerCase();
+
+      const tags = this.tags.map((tag) => {
+        if (tag.text.toLowerCase() === filteredTag) {
+          this.addTagToSelection(tag);
+
+          return { ...tag, checked: true };
+        }
+
+        return tag;
+      });
+
+      return tags;
+    },
+    addTagToSelection(tag, index) {
+      const selectedIndex = index ? index : this.selections.length;
+
+      this.selections[selectedIndex] = [tag];
+    },
+    getMaxItems(items) {
+      items = [...new Set(items)];
+
+      return this.maxBlogPosts ? items.slice(0, this.maxBlogPosts) : items;
+    },
     handleResize() {
       this.itemStartPoint = Tools.isUpperBreakpoint() ? 1 : 0;
     },
@@ -152,12 +180,33 @@ export default {
 
       return true;
     },
+    handleCardTagClicked(event) {
+      this.clearAllSelections();
+      this.getTagByName(event.toLowerCase());
+    },
+    getTagByName(tagName) {
+      this.tags.map((tag) => {
+        if (tag.text.toLowerCase() === tagName) {
+          const index = this.filterDropdowns.length - 1;
+
+          this.addTagToSelection(tag, index);
+          this.updateDropdownSelection([tag], index);
+          this.hasClickedOnTag = true;
+        }
+      });
+    },
     handleDropdownChange(selection, index) {
       if (selection.length === 0) {
         if (this.selections[index]) {
           delete this.selections[index];
         }
       } else {
+        if (this.hasClickedOnTag) {
+          this.hasClickedOnTag = false;
+
+          this.selections[index] = [];
+        }
+
         this.selections[index] = selection;
       }
 
@@ -188,12 +237,19 @@ export default {
       });
 
       this.selections.forEach((selectionArray, index) => {
-        this.$refs.dropdowns[index].activeSelection = selectionArray || [];
+        this.updateDropdownSelection(selectionArray || [], index);
       });
 
       const result = this.selections.filter((selectionArray) => selectionArray.length > 0);
 
       if (result.length === 0) return this.clearAllSelections();
+    },
+    updateDropdownSelection(selection, index) {
+      const dropdown = this.$refs.dropdowns[index];
+
+      if (!dropdown) return;
+
+      dropdown.activeSelection = selection;
     },
   },
   data() {
@@ -203,6 +259,7 @@ export default {
       filterDropdowns: [],
       selections: [],
       itemStartPoint: 0,
+      hasClickedOnTag: false,
     };
   },
   props: {
@@ -242,7 +299,12 @@ export default {
           </div>
         </div>
       </div>
-      <grid-list :items="filteredItems" :view="activeView" :data-authors="dataAuthorsValue" />
+      <grid-list
+        :items="filteredItems"
+        :view="activeView"
+        :data-authors="dataAuthorsValue"
+        @card-tag-clicked="handleCardTagClicked"
+      />
     </div>
   `,
 };

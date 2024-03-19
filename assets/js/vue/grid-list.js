@@ -1,4 +1,5 @@
 import UtilityAnimation from '../utility-animation.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'grid-list',
@@ -26,11 +27,10 @@ export default {
   },
   created() {},
   updated() {
-    if (this.itemsChanged) {
-      this.itemsChanged = false;
+    if (!this.itemsChanged) return;
+    this.itemsChanged = false;
 
-      this.reinitUtilityAnimation();
-    }
+    this.reinitUtilityAnimation();
   },
   methods: {
     resetUtilityAnimation() {
@@ -40,7 +40,7 @@ export default {
       }, 100);
     },
     reinitUtilityAnimation() {
-      if (!this.$refs.items.length === 0) return;
+      if (!this.$refs.items || !this.$refs.items.length === 0) return;
 
       UtilityAnimation.instances = [];
       UtilityAnimation.init(Array.from(this.$refs.items));
@@ -50,6 +50,9 @@ export default {
       const blogPath = 'blog/heads/';
 
       return !url.includes(blogPath) ? `${blogPath}${url}` : url;
+    },
+    handleCardTagClicked(event) {
+      this.$emit(Events.CARD_TAG_CLICKED, event);
     },
   },
   props: {
@@ -62,6 +65,7 @@ export default {
       <template v-for="(item, index) in items">
         <div :class="columnClassList">
           <card
+            @card-tag-clicked="handleCardTagClicked"
             :title="item.title"
             :url="item.url"
             :blog-title-pic="blogImgUrl(item.blogtitlepic)"
