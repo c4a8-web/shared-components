@@ -14,6 +14,8 @@ const cardFooter = {
       return tags.slice(0, this.maxTags);
     },
     dataAuthorsList() {
+      if (!this.dataAuthors) return null;
+
       if (!this.dataAuthors.display_name) return this.dataAuthors;
 
       return { [this.dataAuthors.display_name]: this.dataAuthors };
