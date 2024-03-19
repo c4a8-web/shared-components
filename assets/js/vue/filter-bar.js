@@ -22,14 +22,11 @@ export default {
       });
     },
     filteredItems() {
-      // if (this.filterByTag !== null) return this.getItemsFilteredByTag;
-
       if (!this.selections.length)
         return this.maxBlogPosts ? this.normalizedItems.slice(0, this.maxBlogPosts) : this.normalizedItems;
 
       let filteredItems = [];
 
-      console.log('🚀 ~ this.selections.forEach ~ this.selections:', this.selections);
       this.selections.forEach((selectionArray) => {
         selectionArray.forEach((selection) => {
           this.filterDropdowns.forEach((dropdown) => {
@@ -45,13 +42,6 @@ export default {
 
       return this.getMaxItems(filteredItems);
     },
-    // getItemsFilteredByTag() {
-    //   const filteredItems = this.normalizedItems.filter((item) =>
-    //     item.tags.map((tag) => tag.toLowerCase()).includes(this.filterByTag.toLowerCase())
-    //   );
-
-    //   return this.getMaxItems(filteredItems);
-    // },
     authors() {
       return this.extractPropertyCounts('author');
     },
@@ -128,8 +118,10 @@ export default {
 
       return tags;
     },
-    addTagToSelection(tag) {
-      this.selections[this.filterDropdowns.length] = [tag];
+    addTagToSelection(tag, index) {
+      const selectedIndex = index ? index : this.selections.length;
+
+      this.selections[selectedIndex] = [tag];
     },
     getMaxItems(items) {
       items = [...new Set(items)];
@@ -189,16 +181,32 @@ export default {
       return true;
     },
     handleCardTagClicked(event) {
-      console.log('🚀 ~ handleCardTagClicked ~ event:', event);
+      this.clearAllSelections();
+      this.getTagByName(event.toLowerCase());
+    },
+    getTagByName(tagName) {
+      this.tags.map((tag) => {
+        if (tag.text.toLowerCase() === tagName) {
+          const index = this.filterDropdowns.length - 1;
+
+          this.addTagToSelection(tag, index);
+          this.updateDropdownSelection([tag], index);
+          this.hasClickedOnTag = true;
+        }
+      });
     },
     handleDropdownChange(selection, index) {
-      this.filterByTag = null;
-
       if (selection.length === 0) {
         if (this.selections[index]) {
           delete this.selections[index];
         }
       } else {
+        if (this.hasClickedOnTag) {
+          this.hasClickedOnTag = false;
+
+          this.selections[index] = [];
+        }
+
         this.selections[index] = selection;
       }
 
@@ -229,12 +237,19 @@ export default {
       });
 
       this.selections.forEach((selectionArray, index) => {
-        this.$refs.dropdowns[index].activeSelection = selectionArray || [];
+        this.updateDropdownSelection(selectionArray || [], index);
       });
 
       const result = this.selections.filter((selectionArray) => selectionArray.length > 0);
 
       if (result.length === 0) return this.clearAllSelections();
+    },
+    updateDropdownSelection(selection, index) {
+      const dropdown = this.$refs.dropdowns[index];
+
+      if (!dropdown) return;
+
+      dropdown.activeSelection = selection;
     },
   },
   data() {
@@ -244,7 +259,7 @@ export default {
       filterDropdowns: [],
       selections: [],
       itemStartPoint: 0,
-      filterByTag: null,
+      hasClickedOnTag: false,
     };
   },
   props: {

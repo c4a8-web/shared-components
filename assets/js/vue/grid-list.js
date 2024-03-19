@@ -1,4 +1,5 @@
 import UtilityAnimation from '../utility-animation.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'grid-list',
@@ -50,6 +51,9 @@ export default {
 
       return !url.includes(blogPath) ? `${blogPath}${url}` : url;
     },
+    handleCardTagClicked(event) {
+      this.$emit(Events.CARD_TAG_CLICKED, event);
+    },
   },
   props: {
     items: String,
@@ -61,6 +65,7 @@ export default {
       <template v-for="(item, index) in items">
         <div :class="columnClassList">
           <card
+            @card-tag-clicked="handleCardTagClicked"
             :title="item.title"
             :url="item.url"
             :blog-title-pic="blogImgUrl(item.blogtitlepic)"

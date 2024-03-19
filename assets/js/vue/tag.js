@@ -60,6 +60,7 @@ export default {
     <a
       :class="classList"
       :data-text="filter ? tag : undefined"
+      :data-tag="tag"
       :href="href"
       rel="tag"
       :title="'Posts tagged with ' + tag"
