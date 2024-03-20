@@ -35,6 +35,5 @@ export const ImgSrcSet = createStory(component, {
 
 export const Lottie = createStory(component, {
   ...baseArgs,
-  img: getAssetPath('img/image-placeholder-1.jpg'),
   lottie: lottie1,
 });
