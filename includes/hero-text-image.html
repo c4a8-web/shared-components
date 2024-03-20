@@ -92,11 +92,11 @@
 {%- if heroTextImageHero.background -%}
   {%- capture heroClasses -%}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{%- endcapture -%}
   {%- capture heroImage -%}
-    {% if heroTextImageHero.background.img or heroTextImageHero.background.lottie or heroTextImageHero.background.lottieFile %}
+    {% if heroTextImageHero.background.img or heroTextImageHero.background.lottie or heroTextImageHero.background.lottie %}
       {%- assign heroTextImageHeroLottie = heroTextImageHero.background.lottie -%}
 
-      {%- if heroTextImageHero.background.lottieFile -%}
-        {%- assign heroTextImageHeroLottie = site.data[heroTextImageHero.background.lottieFile] -%}
+      {%- if heroTextImageHero.background.lottie -%}
+        {%- assign heroTextImageHeroLottie = site.data[heroTextImageHero.background.lottie] -%}
       {%- endif -%}
 
       {%
