@@ -337,7 +337,7 @@
   $scale-duration-initial: 1.3s;
   $scale-duration-return: 0.4s;
 
-  .is-foreground :is(img, svg),
+  .is-foreground :is(img, svg, .lottie),
   .is-background {
     transition-property: transform;
     transition-timing-function: $animation-transition;
@@ -345,7 +345,7 @@
   }
 
   &:hover {
-    .is-foreground :is(img, svg),
+    .is-foreground :is(img, svg, .lottie),
     .is-background {
       transform: scale($scale-factor);
       transition-duration: $scale-duration-initial;

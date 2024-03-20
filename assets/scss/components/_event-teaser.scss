@@ -16,6 +16,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
         max-width: none;
       }
 
+      .lottie,
       img {
         width: 100%;
         height: 100%;
@@ -220,6 +221,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
       }
 
       .event-teaser__image {
+        .lottie,
         img {
           bottom: 0;
           top: auto;
@@ -382,6 +384,7 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
 }
 
 .event-teaser__image {
+  .lottie,
   img {
     position: absolute;
     right: 0;
