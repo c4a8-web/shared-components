@@ -55,8 +55,6 @@ export const Default = createStory(component, {
   },
 });
 
-// Default.args = {};
-
 export const Image = createStory(component, {
   shadowless: false,
   left: true,
