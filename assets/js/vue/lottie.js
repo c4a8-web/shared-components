@@ -23,7 +23,7 @@ export default {
       return this.background && this.background !== '' ? this.background : 'transparent';
     },
     loopValue() {
-      return this.loop && this.loop !== '' ? this.loop : false;
+      return this.loop && this.loop !== '' ? this.loop : true;
     },
     autoplayValue() {
       return this.autoplay && this.autoplay !== '' ? this.autoplay : true;
