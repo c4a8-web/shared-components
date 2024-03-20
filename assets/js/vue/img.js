@@ -203,6 +203,8 @@ export default {
       this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
     },
     isGif() {
+      if (!this.img) return;
+
       const extension = this.img.split('.')[1];
 
       return extension.toLowerCase() === 'gif';
