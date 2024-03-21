@@ -277,7 +277,7 @@ export const EventTeaserWithAnimation = createStory(component, {
       color: 'var(--color-green-blue)',
     },
     {
-      color: 'var(--color-yellow)',
+      color: 'var(--color-summer-green)',
     },
   ],
   webcast: true,
