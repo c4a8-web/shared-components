@@ -410,3 +410,46 @@
 @function mathDivHelper($numerator, $denominator) {
   @return $numerator / $denominator; // This is a temporary solution until we upgrade to webpack 5
 }
+
+@mixin scrollbar {
+  --scrollbar-background-color: var(--color-athens-gray);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-background-color);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    // background: #ac6411;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    // background: #17a63a;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track:hover {
+    // background: #666666;
+  }
+
+  &::-webkit-scrollbar-track:active {
+    // background: #333333;
+  }
+
+  &::-webkit-scrollbar-corner {
+    // background: transparent;
+  }
+}

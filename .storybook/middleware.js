@@ -27,7 +27,7 @@ module.exports = function expressMiddleware(app) {
         const result = fs.readFileSync(`${servicesPath}${req.url}`, 'utf8');
 
         if (errorCode) {
-          res.status(errorCode);
+          res.status(parseInt(errorCode, 10));
         }
 
         req.method = 'GET';

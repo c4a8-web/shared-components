@@ -64,6 +64,10 @@
   display: none;
 }
 
+.mt-n48 {
+  margin-top: spacing($size: 48, $negative: true);
+}
+
 @include media-breakpoint-up(lg) {
   .is--desktop {
     display: block;
@@ -71,5 +75,9 @@
 
   .is--mobile {
     display: none;
+  }
+
+  .mt-lg-n48 {
+    margin-top: spacing($size: 48, $negative: true);
   }
 }

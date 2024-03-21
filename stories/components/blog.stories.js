@@ -7,14 +7,7 @@ const options = getTitle({
 
 export default getArgTypes({
   ...options,
-  argTypes: {
-    newsTitle: {
-      description: 'News Title of the Blog',
-      type: 'string',
-    },
-  },
+  argTypes: {},
 });
 
-export const Blog = createStory(component, {
-  newsTitle: 'Aktuelles',
-});
+export const Blog = createStory(component, {});

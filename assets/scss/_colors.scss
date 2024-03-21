@@ -75,6 +75,7 @@ $gray-600: #8c98a4;
   --color-athens-gray: #e5e6e9;
   --color-bombay: #b3b4bc;
   --color-cornflower-blue: #666979;
+  --color-waterloo: #80828f;
 
   --color-white: #fff;
 
@@ -169,8 +170,6 @@ $gray-600: #8c98a4;
   --color-back-to-top-hover-background: var(--color-blue-dark);
   --color-back-to-top-hover-foreground: var(--color-white);
 
-  --color-background: var(--color-white);
-
   --color-faq-border: var(--color-trout);
 
   --color-modal-error-title: var(--color-red);
@@ -202,6 +201,8 @@ $gray-600: #8c98a4;
 
   --color-emergency: var(--color-orange);
   --color-emergency-accent: var(--color-piper);
+
+  --color-input-placeholder: var(--color-bombay);
 }
 
 .bg-grey {

@@ -1,5 +1,6 @@
 const en = {
   address: 'Address',
+  follow: 'Follow',
   full_time: 'Full-Time',
   part_time: 'Part-Time',
   contract: 'Contract work',
@@ -14,6 +15,13 @@ const en = {
   positionTypeInternship: 'Internship',
   positionTypeTraining: 'Trainee',
   positionTypeStudent: 'Working Students',
+  filterAuthors: 'Authors',
+  filterTopics: 'Topics',
+  filterTags: 'Tags',
+  clearAll: 'Clear all',
+  search: 'Search',
+  apply: 'Apply',
+  reset: 'Reset',
 };
 
 export default en;

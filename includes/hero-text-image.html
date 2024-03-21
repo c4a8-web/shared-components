@@ -238,6 +238,9 @@
       </div>
     </div>
   {% elsif heroTextImageHero.background.icon %}
+    {% comment %}
+      This case is currently unreachable which needs to be considered in the refactoring of the component
+    {% endcomment %}
     {% unless heroTextImageHero.animation %}
       <div class="hero-text-image__background has-icon container position-absolute z-index-2 space-bottom-2 top-0 {{ heroTextImageHero.background.spacing }}">
         <div class="row">

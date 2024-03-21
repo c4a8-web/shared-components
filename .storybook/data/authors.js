@@ -1,4 +1,11 @@
 const Authors = {
+  'Author Name': {
+    display_name: 'Author Name',
+    avatar: 'people/people-author-name.png',
+    permalink: '/authors/author-name/',
+    twitter: 'glueckkanjagab',
+    linkedin: '../company/glueckkanja-gab',
+  },
   'Alexander Rudolph': {
     display_name: 'Alexander Rudolph',
     avatar: 'people/people-alexander-rudolph.png',

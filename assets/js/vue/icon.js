@@ -35,6 +35,9 @@ export default {
         case 'small':
           innerSize = '18px';
           break;
+        case 'xs':
+          innerSize = '10px';
+          break;
         default:
         case 'large':
           innerSize = '48px';
