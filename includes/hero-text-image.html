@@ -96,7 +96,7 @@
       {%- assign heroTextImageHeroLottie = heroTextImageHero.background.lottie -%}
 
       {%- if heroTextImageHero.background.lottie -%}
-        {%- assign heroTextImageHeroLottie = site.data[heroTextImageHero.background.lottie] -%}
+        {%- assign heroTextImageHeroLottie = site.data[heroTextImageHero.background.lottie] | default: heroTextImageHero.background.lottie -%}
       {%- endif -%}
 
       {%
