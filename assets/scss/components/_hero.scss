@@ -245,11 +245,13 @@
     &.is-large {
       @include media-breakpoint-up(lg) {
         max-height: 900px;
+        padding-right: 0;
       }
     }
 
     @include media-breakpoint-up(lg) {
       max-height: 725px;
+      padding-right: 0;
     }
   }
 }
