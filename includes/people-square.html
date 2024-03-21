@@ -33,6 +33,7 @@
             include img.html
             img=element.img.src
             cloudinary=element.img.cloudinary
+            lottie=element.img.lottie
           %}
         {% else %}
           <div class="people-square__background" {% if element.color %}style="background-color: {{ element.color }}"{% endif %}>
@@ -41,6 +42,7 @@
                 include img.html
                 img=element.shape.src
                 cloudinary=element.shape.cloudinary
+                lottie=element.shape.lottie
               %}
             {% endif %}
           </div>
