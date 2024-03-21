@@ -26,9 +26,10 @@ export default {
   },
   computed: {
     classList() {
+      return ['v-img', 'vue-component', this.classListComponent];
+    },
+    classListComponent() {
       return [
-        'v-img',
-        'vue-component',
         this.isSvg() ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
@@ -239,7 +240,7 @@ export default {
         </picture>
       </div>
     </template>
-    <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classList" />
+    <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" />
     <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `,
 };
