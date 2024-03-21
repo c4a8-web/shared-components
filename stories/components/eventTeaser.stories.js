@@ -1,5 +1,6 @@
 import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
 import { includeseventteaserhtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 const options = getTitle({
   title: 'Event Teaser',
@@ -263,4 +264,37 @@ export const EventTeaser = createStory(component, {
     skin: 'secondary is-light',
   },
   variant: 8,
+});
+
+export const EventTeaserWithAnimation = createStory(component, {
+  headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
+  content:
+    '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
+  moment: '16.02.2022',
+  time: '14-15 Uhr',
+  shapes: [
+    {
+      color: 'var(--color-green-blue)',
+    },
+    {
+      color: 'var(--color-summer-green)',
+    },
+  ],
+  webcast: true,
+  author: ['Nadine Kern', 'Max Mustermann'],
+  image: {
+    lottie: lottie1,
+    alt: 'lorem ipsum',
+  },
+  badge: {
+    text: 'Neuer Webcast',
+    icon: '',
+  },
+  cta: {
+    text: 'Jetzt anmelden',
+    href: 'https://www.google.com',
+    skin: 'primary',
+    external: true,
+  },
+  variant: 6,
 });

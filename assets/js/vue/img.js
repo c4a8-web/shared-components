@@ -26,13 +26,22 @@ export default {
   },
   computed: {
     classList() {
+      return ['v-img', 'vue-component', this.classListComponent];
+    },
+    classListComponent() {
       return [
-        'v-img',
-        'vue-component',
         this.isSvg() ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
+    },
+    isLottie() {
+      return typeof this.jsonLottieData === 'object' ? true : false;
+    },
+    jsonLottieData() {
+      if (!this.lottie) return;
+
+      return typeof this.lottie !== 'object' ? Tools.getJSON(this.lottie) : this.lottie;
     },
     isCloudinary() {
       return Tools.isTrue(this.cloudinary);
@@ -195,6 +204,8 @@ export default {
       this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
     },
     isGif() {
+      if (!this.img) return;
+
       const extension = this.img.split('.')[1];
 
       return extension.toLowerCase() === 'gif';
@@ -218,6 +229,7 @@ export default {
     lazy: Boolean,
     class: String,
     preset: String,
+    lottie: Object,
   },
   template: `
     <template v-if="hasPictureTag">
@@ -228,6 +240,7 @@ export default {
         </picture>
       </div>
     </template>
+    <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" />
     <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `,
 };

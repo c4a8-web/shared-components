@@ -3,6 +3,7 @@
 {%- assign textImageImage = include.image -%}
 {%- assign textImageImageClasses = include.imageClasses -%}
 {%- assign textImageImagePreset = include.imagePreset -%}
+{%- assign textImageLottie = include.lottie -%}
 {%- assign textImageFloat = include.float -%}
 {%- assign textImageOverline = include.overline -%}
 {%- assign textImageHeadline = include.headline -%}
@@ -89,6 +90,7 @@
             alt=textImageAlt
             imgSrcSets=site.data.imgSrcSets.textImageFloating
             preset="textImageFloating"
+            lottie=textImageLottie
           %}
         </div>
       {% endif %}
@@ -121,6 +123,7 @@
             imgSrcSets=textImageImgSrcSets
             preset=textImagePreset
             alt=textImageAlt
+            lottie=textImageLottie
           %}
         </div>
       </div>
@@ -180,6 +183,7 @@
               imgSrcSets=textImageImgSrcSets
               preset=textImagePreset
               alt=textImageAlt
+              lottie=textImageLottie
             %}
           </div>
         {% endif %}

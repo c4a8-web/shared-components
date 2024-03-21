@@ -104,6 +104,8 @@ class ToggleSwitch {
       const targetElements = document.querySelectorAll(selector);
 
       targetElements.forEach((element) => {
+        if (element.dataset.currencyFormat === undefined) return;
+
         this.updatePrices(element, element.innerHTML);
       });
     });

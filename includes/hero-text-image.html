@@ -92,7 +92,13 @@
 {%- if heroTextImageHero.background -%}
   {%- capture heroClasses -%}hero-text-image__keyvisual {{ heroTextImageHero.background.class }}{%- endcapture -%}
   {%- capture heroImage -%}
-    {% if heroTextImageHero.background.img %}
+    {% if heroTextImageHero.background.img or heroTextImageHero.background.lottie or heroTextImageHero.background.lottie %}
+      {%- assign heroTextImageHeroLottie = heroTextImageHero.background.lottie -%}
+
+      {%- if heroTextImageHero.background.lottie -%}
+        {%- assign heroTextImageHeroLottie = site.data[heroTextImageHero.background.lottie] | default: heroTextImageHero.background.lottie -%}
+      {%- endif -%}
+
       {%
         include img.html
         img=heroTextImageHero.background.img
@@ -100,6 +106,7 @@
         class=heroClasses
         cloudinary=heroTextImageBackgroundCloudinary
         imgSrcSets=heroTextImageSrcSet
+        lottie=heroTextImageHeroLottie
       %}
     {% endif %}
   {% endcapture -%}

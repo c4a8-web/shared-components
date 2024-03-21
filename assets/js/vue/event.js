@@ -97,7 +97,7 @@ export default {
           <p class="event__text">{{ text }}</p>
         </div>
         <div class="event__image-container is-background" v-if="imageValue">
-          <v-img class="event__image" :cloudinary="cloudinary" :img="imageValue.img" :alt="imageValue.alt" lazy="true">
+          <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" lazy="true">
         </div>
       </div>
     </article>

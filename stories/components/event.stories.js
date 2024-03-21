@@ -1,5 +1,6 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createStory, getTitle } from '../../.storybook/templates';
 import { includeseventhtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 const options = getTitle({
   title: 'Event',
@@ -64,20 +65,14 @@ export default {
   },
 };
 
-const Template = (args) => createComponent(args, component);
-
-export const Default = Template.bind({});
-
-Default.args = {
+export const Default = createStory(component, {
   title: 'Event Title',
   date: '2020-01-01',
   category: 'Event Category',
   text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
-};
+});
 
-export const YellowWithImage = Template.bind({});
-
-YellowWithImage.args = {
+export const YellowWithImage = createStory(component, {
   title: 'Event Title lorem ipsum dolor',
   date: '2023-12-17',
   category: 'Event Category',
@@ -91,11 +86,9 @@ YellowWithImage.args = {
   color: 'var(--color-copy)',
   timeColor: 'var(--color-yellow-medium)',
   time: '15-16 Uhr',
-};
+});
 
-export const MultipleDays = Template.bind({});
-
-MultipleDays.args = {
+export const MultipleDays = createStory(component, {
   title: 'Event Title lorem ipsum dolor',
   date: '10.-12.10.2023',
   category: 'Event Category',
@@ -108,15 +101,29 @@ MultipleDays.args = {
   bgColor: 'var(--color-yellow)',
   color: 'var(--color-copy)',
   timeColor: 'var(--color-yellow-medium)',
-};
+});
 
-export const External = Template.bind({});
-
-External.args = {
+export const External = createStory(component, {
   title: 'Event Title',
   date: '2020-01-01',
   category: 'Event Category',
   text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
   external: true,
   url: 'https://www.google.com/search?q=glueckkanja',
-};
+});
+
+export const WithAnimation = createStory(component, {
+  title: 'Event Title lorem ipsum dolor',
+  date: '2023-12-17',
+  category: 'Event Category',
+  text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
+  image: {
+    lottie: lottie1,
+    alt: 'Event Image',
+    cloudinary: true,
+  },
+  bgColor: 'var(--color-yellow)',
+  color: 'var(--color-copy)',
+  timeColor: 'var(--color-yellow-medium)',
+  time: '15-16 Uhr',
+});
