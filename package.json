@@ -20,7 +20,7 @@
     "@storybook/addon-actions": "^6.5.14",
     "@storybook/addon-essentials": "^6.5.14",
     "@storybook/addon-links": "^6.5.14",
-    "@storybook/html": "^6.5.14",
+    "@storybook/html": "^8.0.4",
     "@storybook/addon-docs": "^6.5.14",
     "babel-loader": "^8.2.2",
     "cypress": "^12.14.0"
