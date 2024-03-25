@@ -3,6 +3,8 @@
     padding: spacing(1) spacing(2);
     color: var(--color-copy-reduced);
 
+    &:focus,
+    &:active,
     &:hover {
       background-color: var(--color-primary-accent) !important;
       color: var(--color-copy-light);
@@ -19,6 +21,7 @@
     display: inline-flex;
     gap: spacing(2);
 
+    &:focus,
     &:active,
     &:hover {
       --tag-base-color: var(--color-primary-accent);

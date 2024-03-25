@@ -1,4 +1,5 @@
 import Tools from '../tools.js';
+import Events from '../events.js';
 
 const cardFooter = {
   tagName: 'card-footer',
@@ -8,6 +9,9 @@ const cardFooter = {
     };
   },
   computed: {
+    lang() {
+      return Tools.getLang();
+    },
     tagsList() {
       let tags = Array.isArray(this.tags) ? this.tags : this.tags.split(',');
 
@@ -24,7 +28,7 @@ const cardFooter = {
   template: `
     <div class="card__footer">
       <div class="card__tags" v-if="tags">
-        <tag v-for="tag in tagsList" :key="tag" :tag="tag" variant="small"></tag>
+        <tag v-for="tag in tagsList" :key="tag" :tag="tag" variant="small" :lang="lang"></tag>
       </div>
       <div class="card__footer-infos d-flex align-items-end mt-auto" >
         <div :class="['card__date d-flex font-size-1 mr-3', isRow ? '' : 'media-body']">
@@ -177,6 +181,12 @@ export default {
     });
   },
   methods: {
+    isTags(target) {
+      return target.parentElement.classList.contains('tags__btn') ||
+        target.parentElement.classList.contains('card__tags')
+        ? true
+        : false;
+    },
     formatDate(date) {
       if (!date) return;
 
@@ -200,7 +210,6 @@ export default {
     subPointsList(subpoints) {
       return Tools.getJSON(subpoints);
     },
-
     headlineClassValue(index) {
       return index !== 0 ? 'mt-5' : '';
     },
@@ -212,10 +221,19 @@ export default {
 
       if (target.classList.contains('card__title')) return;
 
-      if (!target.parentElement.classList.contains('authors__link')) {
+      const isTags = this.isTags(target);
+
+      if (!target.parentElement.classList.contains('authors__link') && !isTags) {
         e.stopImmediatePropagation();
 
         title.click();
+      } else {
+        if (!isTags) return;
+
+        e.stopImmediatePropagation();
+        e.preventDefault();
+
+        this.$emit(Events.CARD_TAG_CLICKED, target.dataset.tag);
       }
     },
     isIncluded(include) {

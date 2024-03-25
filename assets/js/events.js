@@ -13,6 +13,7 @@ const Events = {
   LOAD_MODAL: 'load-modal',
   DROPDOWN_CHANGED: 'dropdown-changed',
   DROPDOWN_OPENED: 'dropdown-opened',
+  CARD_TAG_CLICKED: 'card-tag-clicked',
 };
 
 export default Events;

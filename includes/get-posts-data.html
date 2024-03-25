@@ -18,24 +18,30 @@
 Removes Posts from other languages that share the same url minus the "-lang" Part
 {% endcomment %}
 
-{%- assign distinctPosts = "" | split: "" -%}
-{%- for post in getPostsData -%}
-  {%- assign langToRemove = "-" | append: post.lang -%}
-  {%- assign postUrl = post.url | remove: langToRemove -%}
+{% unless getPostsData.length > 0 %}
+  {% comment %}
+  Will not run in storybook
+  {% endcomment %}
 
-  {%- assign duplicate = false -%}
-  {%- for distinctPost in distinctPosts -%}
-    {%- assign distinctPostLangToRemove = "-" | append: page.lang -%}
-    {%- assign distinctPostUrl = distinctPost.url | remove: distinctPostLangToRemove -%}
+  {%- assign distinctPosts = "" | split: "," -%}
+  {%- for post in getPostsData -%}
+    {%- assign langToRemove = "-" | append: post.lang -%}
+    {%- assign postUrl = post.url | remove: langToRemove -%}
 
-    {%- if distinctPostUrl == postUrl -%}
-      {%- assign duplicate = true -%}
-      {%- break -%}
-    {%- endif -%}
+    {%- assign duplicate = false -%}
+    {%- for distinctPost in distinctPosts -%}
+      {%- assign distinctPostLangToRemove = "-" | append: page.lang -%}
+      {%- assign distinctPostUrl = distinctPost.url | remove: distinctPostLangToRemove -%}
+
+      {%- if distinctPostUrl == postUrl -%}
+        {%- assign duplicate = true -%}
+        {%- break -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {%- unless duplicate -%}
+      {%- assign distinctPosts = distinctPosts | push: post -%}
+    {%- endunless -%}
   {%- endfor -%}
-  {%- unless duplicate -%}
-    {%- assign distinctPosts = distinctPosts | push: post -%}
-  {%- endunless -%}
-{%- endfor -%}
 
-{%- assign getPostsData = distinctPosts -%}
+  {%- assign getPostsData = distinctPosts -%}
+{% endunless %}

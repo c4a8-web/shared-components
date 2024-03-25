@@ -41,6 +41,9 @@ export default {
     },
   },
   methods: {
+    initActiveSelection() {
+      this.activeSelection = this.filteredItems.filter((item) => item.checked);
+    },
     updateUtilityAnimation() {
       if (!this.hasAnimation) return;
 
@@ -128,6 +131,8 @@ export default {
         this.translationData = window.i18n?.getTranslationData(['search', 'apply', 'reset']);
       });
     }
+
+    this.initActiveSelection();
   },
   mounted() {
     this.updateUtilityAnimation();
