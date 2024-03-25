@@ -23,7 +23,7 @@ function addStyles(styles) {
 }
 
 function addBaseClass({ theme, docs = false }) {
-  const root = docs ? document.getElementById('docs-root') : document.getElementById('root');
+  const root = docs ? document.getElementById('storybook-docs') : document.getElementById('storybook-root');
   const baseSharedClass = 'shared-components';
 
   if (root) {

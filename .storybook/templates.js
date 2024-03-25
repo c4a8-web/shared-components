@@ -261,13 +261,14 @@ const getArgTypes = (defaultExport) => {
 };
 
 const createStory = (component, args) => {
-  const Template = (args) => createComponent(args, component);
-  const story = Template.bind({});
+  const Template = createComponent(args, component);
 
-  story.args = args;
-  story.decorators = getDecorators();
+  // const story = Template.bind({});
 
-  return story;
+  // story.args = args;
+  // story.decorators = getDecorators();
+
+  return Template;
 };
 
 export { hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };
