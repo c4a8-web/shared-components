@@ -271,4 +271,20 @@ const createStory = (component, args) => {
   return Template;
 };
 
-export { hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };
+const render = ({ component, args }) => {
+  return createStory(component, { ...args });
+};
+
+const getDefaultSettings = ({ options, argTypes, component }) => {
+  return {
+    ...getArgTypes({
+      options,
+      argTypes,
+    }),
+    render: ({ ...args }) => {
+      return render({ component, args });
+    },
+  };
+};
+
+export { getDefaultSettings, hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };
