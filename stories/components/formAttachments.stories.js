@@ -1,12 +1,14 @@
-import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
+import { getTitle , getDefaultSettings} from '../../.storybook/templates';
 import { includesformattachmentshtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Form Attachments',
 });
 
-export default getArgTypes({
-  ...options,
+export default {
+  ...getDefaultSettings({
+  options,
+component,
   argTypes: {
     description: {
       description: 'Description of the Form Attachment',
@@ -47,7 +49,8 @@ export default getArgTypes({
       type: 'boolean',
     },
   },
-});
+}),
+};
 
 const baseArgs = {
   description: 'Anhänge wie Lebenslauf und Anschreiben hinzufügen',
@@ -57,20 +60,20 @@ const baseArgs = {
   id: 'file',
 };
 
-export const NotRequired = createStory(component, {
+export const NotRequired = { args: {
   ...baseArgs,
-});
+} };
 
-export const RequiredWithError = createStory(component, {
+export const RequiredWithError = { args: {
   ...baseArgs,
   required: true,
   requiredMsg: 'Bitte einen Anhang hinzufügen',
   hasError: true,
-});
+} };
 
-export const RequiredMaxTwoFiles = createStory(component, {
+export const RequiredMaxTwoFiles = { args: {
   ...baseArgs,
   required: true,
   requiredMsg: 'Bitte einen Anhang hinzufügen',
   maxFiles: 2,
-});
+} };

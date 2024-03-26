@@ -1,12 +1,14 @@
-import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
+import { getTitle , getDefaultSettings} from '../../.storybook/templates';
 import { includestaghtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Tag',
 });
 
-export default getArgTypes({
-  ...options,
+export default {
+  ...getDefaultSettings({
+  options,
+component,
   argTypes: {
     tag: {
       description: 'The text on the Tag',
@@ -22,29 +24,30 @@ export default getArgTypes({
       type: 'number',
     },
   },
-});
+}),
+};
 
-export const WithCount = createStory(component, {
+export const WithCount = { args: {
   tag: 'Microsoft',
   count: 10,
-});
+} };
 
-export const WithoutCount = createStory(component, {
+export const WithoutCount = { args: {
   tag: 'Modern Workplace',
   filter: 'Modern Workplace',
-});
+} };
 
-export const WithSpacing = createStory(component, {
+export const WithSpacing = { args: {
   tag: 'Modern Workplace',
   spacing: 3,
-});
+} };
 
-export const Small = createStory(component, {
+export const Small = { args: {
   tag: 'Azure',
   variant: 'small',
-});
+} };
 
-export const Icon = createStory(component, {
+export const Icon = { args: {
   tag: 'Azure',
   variant: 'icon',
-});
+} };

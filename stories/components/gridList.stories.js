@@ -1,16 +1,19 @@
-import { getTitle, createStory, getArgTypes, site } from '../../.storybook/templates';
+import { getTitle, site , getDefaultSettings} from '../../.storybook/templates';
 import { includesgridlisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Grid List',
 });
 
-export default getArgTypes({
-  ...options,
+export default {
+  ...getDefaultSettings({
+  options,
+component,
   argTypes: {},
-});
+}),
+};
 
-export const ListView = createStory(component, {
+export const ListView = { args: {
   items: site.posts,
   view: 'list-view',
   authors: {
@@ -22,9 +25,9 @@ export const ListView = createStory(component, {
       linkedin: '../company/glueckkanja-gab',
     },
   },
-});
+} };
 
-export const TileView = createStory(component, {
+export const TileView = { args: {
   items: site.posts,
   view: 'tile-view',
   authors: {
@@ -34,4 +37,4 @@ export const TileView = createStory(component, {
     twitter: 'glueckkanjagab',
     linkedin: '../company/glueckkanja-gab',
   },
-});
+} };
