@@ -1,12 +1,14 @@
-import { getArgTypes, createStory, getTitle } from '../../.storybook/templates';
+import { getTitle , getDefaultSettings} from '../../.storybook/templates';
 import { includesfabbuttonhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Fab Button',
 });
 
-export default getArgTypes({
-  ...options,
+export default {
+  ...getDefaultSettings({
+  options,
+component,
   argTypes: {
     icon: {
       description: 'Fab Button Icon',
@@ -33,9 +35,10 @@ export default getArgTypes({
       type: 'string',
     },
   },
-});
+}),
+};
 
-export const Contact = createStory(component, {
+export const Contact = { args: {
   modal: {
     contact: {
       infos: {
@@ -115,9 +118,9 @@ export const Contact = createStory(component, {
       },
     },
   },
-});
+} };
 
-export const Emergency = createStory(component, {
+export const Emergency = { args: {
   bgColor: 'var(--color-orange)',
   iconColor: 'var(--color-white)',
   icon: 'emergency',
@@ -200,4 +203,4 @@ export const Emergency = createStory(component, {
       },
     },
   },
-});
+} };

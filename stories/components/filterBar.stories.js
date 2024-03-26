@@ -1,20 +1,25 @@
-import { createStory, getArgTypes, getTitle, site } from '../../.storybook/templates';
+import { getTitle, site, getDefaultSettings } from '../../.storybook/templates';
 import { includesfilterbarhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Filter Bar',
 });
 
-export default getArgTypes({
-  ...options,
-  argTypes: {
-    items: {
-      description: 'The list of items to display',
-      type: 'array',
+export default {
+  ...getDefaultSettings({
+    options,
+    component,
+    argTypes: {
+      items: {
+        description: 'The list of items to display',
+        type: 'array',
+      },
     },
-  },
-});
+  }),
+};
 
-export const FilterBar = createStory(component, {
-  items: site.posts,
-});
+export const FilterBar = {
+  args: {
+    items: site.posts,
+  },
+};

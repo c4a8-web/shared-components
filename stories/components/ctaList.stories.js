@@ -1,12 +1,14 @@
-import { createStory, getArgTypes, getTitle } from '../../.storybook/templates';
+import { getTitle , getDefaultSettings} from '../../.storybook/templates';
 import { includesctalisthtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
   title: 'Cta List',
 });
 
-export default getArgTypes({
-  ...options,
+export default {
+  ...getDefaultSettings({
+  options,
+component,
   getArgTypes: {
     list: {
       description: 'A List of Cta',
@@ -17,9 +19,10 @@ export default getArgTypes({
       type: 'string',
     },
   },
-});
+}),
+};
 
-export const Buttons = createStory(component, {
+export const Buttons = { args: {
   list: [
     {
       ctaText: 'Jump on the Phone',
@@ -34,9 +37,9 @@ export const Buttons = createStory(component, {
       icon: 'mail',
     },
   ],
-});
+} };
 
-export const LinkList = createStory(component, {
+export const LinkList = { args: {
   list: [
     {
       ctaText: 'Modern Workplace',
@@ -54,4 +57,4 @@ export const LinkList = createStory(component, {
       link: true,
     },
   ],
-});
+} };
