@@ -2,7 +2,33 @@ const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 
+const migratedFilesLogPath = path.join(__dirname, 'migratedStories.log');
+
+let migratedFiles = new Set();
+
+const loadMigratedFiles = () => {
+  if (fs.existsSync(migratedFilesLogPath)) {
+    const logContents = fs.readFileSync(migratedFilesLogPath, 'utf-8');
+
+    logContents.split('\n').forEach((fileName) => {
+      if (fileName) migratedFiles.add(fileName);
+    });
+  }
+};
+
+const logMigratedFile = (filePath) => {
+  const fileName = path.basename(filePath);
+
+  fs.appendFileSync(migratedFilesLogPath, fileName + '\n', 'utf-8');
+
+  migratedFiles.add(fileName);
+};
+
 const convertFileStructure = (filePath) => {
+  const fileName = path.basename(filePath);
+
+  if (migratedFiles.has(fileName)) return;
+
   fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
       console.error(`Error reading file ${filePath}:`, err);
@@ -42,8 +68,12 @@ const convertFileStructure = (filePath) => {
         console.log(`File converted: ${filePath}`);
       }
     });
+
+    logMigratedFile(filePath);
   });
 };
+
+loadMigratedFiles();
 
 const pattern = path.join(__dirname, '../stories/**/', '*.stories.js');
 glob(pattern, (err, files) => {
