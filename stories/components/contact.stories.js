@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includescontacthtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Contact',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       infos: {
@@ -39,6 +34,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Contact',
 };
 
 export const Expanded = {

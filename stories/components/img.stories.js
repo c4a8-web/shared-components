@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath, site } from '../../.storybook/templates';
+import { createComponent, getAssetPath, site } from '../../.storybook/templates';
 import { includesimghtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Img',
-});
-
 export default {
-  ...options,
+  title: 'Components/Img',
 };
 
 const baseArgs = {

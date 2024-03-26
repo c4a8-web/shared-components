@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import { includespeoplesquarehtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'People Square',
-});
-
 export default {
-  ...options,
+  title: 'Components/People Square',
 };
 
 const Template = (args) => createComponent(args, component);
@@ -98,8 +94,6 @@ ThreeByThree.args = {
   ],
 };
 
-
-
 export const FourByFour = Template.bind({});
 
 FourByFour.args = {
@@ -167,4 +161,4 @@ FourByFour.args = {
       colEnd: 4,
     },
   ],
-}
+};

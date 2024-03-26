@@ -1,12 +1,10 @@
-import { createComponent, hrefTo, getTitle } from '../../.storybook/templates';
+import { createComponent, hrefTo } from '../../.storybook/templates';
 import { includesjoblisthtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Job/List',
-});
+// TODO fix hrefTo
 
 export default {
-  ...options,
+  title: 'Components/Job/List',
 };
 
 const Template = (args) => createComponent(args, component);

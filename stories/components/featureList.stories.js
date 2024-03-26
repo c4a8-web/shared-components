@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesfeaturelisthtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Feature List',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       items: {
@@ -16,6 +11,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Feature List',
 };
 
 export const FeatureList = {

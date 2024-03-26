@@ -1,13 +1,9 @@
-import { createComponent, getTitle, getComponentInnerHtmlList, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getComponentInnerHtmlList, getAssetPath } from '../../.storybook/templates';
 import listContainerTemplate from '!!raw-loader!./list-container.html';
 import { includesfaqhtml, includestextimagehtml } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'List Container',
-});
-
 export default {
-  ...options,
+  title: 'Components/List Container',
 };
 
 const Template = (args) => createComponent(args, listContainerTemplate);

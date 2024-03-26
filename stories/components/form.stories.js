@@ -1,15 +1,9 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesformhtml as component } from '../../.storybook/generatedIncludes';
-
 import { analytics } from '../globalArgTypes';
-
-const options = getTitle({
-  title: 'Form',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       hasAnimation: {
@@ -66,6 +60,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Form',
 };
 
 const baseArgs = {

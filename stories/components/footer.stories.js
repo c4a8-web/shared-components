@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesfooterhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Footer',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       data: {
@@ -30,6 +25,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Footer',
 };
 
 export const Corporate = { args: {} };

@@ -1,16 +1,10 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesctahtml as component } from '../../.storybook/generatedIncludes';
-
 import { analytics } from '../globalArgTypes';
-
-const options = getTitle({
-  title: 'Cta',
-});
 
 // More on default export: https://storybook.js.org/docs/html/writing-stories/introduction#default-export
 export default {
   ...getDefaultSettings({
-    options,
     component,
     // More on argTypes: https://storybook.js.org/docs/html/api/argtypes
     argTypes: {
@@ -138,6 +132,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Cta',
 };
 
 export const PrimaryButtonCutoff = {

@@ -1,13 +1,8 @@
-import { getTitle, site, getDefaultSettings } from '../../.storybook/templates';
+import { site, getDefaultSettings } from '../../.storybook/templates';
 import { includescardhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Card',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       excerpt: {
@@ -100,6 +95,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Card',
 };
 
 export const BlogPost = {

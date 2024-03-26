@@ -1,13 +1,8 @@
-import { getTitle, site, getDefaultSettings } from '../../.storybook/templates';
+import { site, getDefaultSettings } from '../../.storybook/templates';
 import { includesfilterbarhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Filter Bar',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       items: {
@@ -16,6 +11,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Filter Bar',
 };
 
 export const FilterBar = {

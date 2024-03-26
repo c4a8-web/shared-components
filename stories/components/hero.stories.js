@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import heroTemplate from '!!raw-loader!./hero.html';
 
-const options = getTitle({
-  title: 'Hero',
-});
-
 export default {
-  ...options,
+  title: 'Components/Hero',
 };
 
 const baseArgs = {

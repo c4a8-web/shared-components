@@ -1,13 +1,8 @@
-import { getTitle, getAssetPath, getDefaultSettings } from '../../.storybook/templates';
+import { getAssetPath, getDefaultSettings } from '../../.storybook/templates';
 import { includesfeaturegridhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Feature Grid',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       featureGrid: {
@@ -30,6 +25,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Feature Grid',
 };
 
 export const Default = {

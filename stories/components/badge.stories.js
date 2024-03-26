@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesbadgehtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Badge',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     argTypes: {
       text: {
         description: 'Badge Text',
@@ -41,6 +36,7 @@ export default {
     },
     component,
   }),
+  title: 'Components/Badge',
 };
 
 export const WithIcon = {

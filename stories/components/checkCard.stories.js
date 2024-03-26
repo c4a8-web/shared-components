@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includescheckcardhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Check Card',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       headline: {
@@ -55,6 +50,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Check Card',
 };
 
 export const CheckCard = {

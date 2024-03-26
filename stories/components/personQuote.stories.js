@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includespersonquotehtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Person Quote',
-});
-
 export default {
-  ...options,
+  title: 'Components/Person Quote',
 };
 
 const baseArgs = {
