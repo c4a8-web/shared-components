@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includeseventhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Event',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       title: {
@@ -65,6 +60,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Event',
 };
 
 export const Default = {
