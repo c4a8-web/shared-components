@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includeseventlisthtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Event List',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       list: {
@@ -20,6 +15,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Event List',
 };
 
 export const EventList = {

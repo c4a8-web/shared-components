@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includeseventteaserhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Event Teaser',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       headline: {
@@ -72,6 +67,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Event Teaser',
 };
 
 export const EventTeaserWebcast = {
