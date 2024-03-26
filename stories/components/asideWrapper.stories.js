@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesasidewrapperhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Aside Wrapper',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       content: {
@@ -20,6 +15,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Aside Wrapper',
 };
 
 export const TextWithImage = {

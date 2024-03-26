@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesauthoravatarhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Author Avatar',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     author: {
       description: 'Author Object',
@@ -22,6 +17,7 @@ export default {
       type: 'string',
     },
   }),
+  title: 'Components/Author Avatar',
 };
 
 export const Default = {

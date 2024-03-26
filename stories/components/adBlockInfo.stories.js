@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import component from '!!raw-loader!./adBlockInfo.html';
-
-const options = getTitle({
-  title: 'Ad Block Info',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       text: {
@@ -20,6 +15,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Ad Block Info',
 };
 
 // TODO figure out why create story does not work here

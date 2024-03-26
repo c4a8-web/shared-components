@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesauthorshtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Authors',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       authors: {
@@ -26,6 +21,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Authors',
 };
 
 export const WithLink = {

@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesawardshtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Awards',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {
       awards: {
@@ -28,6 +23,7 @@ export default {
       },
     },
   }),
+  title: 'Components/Awards',
 };
 
 export const Awards = {

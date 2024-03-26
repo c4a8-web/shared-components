@@ -1,16 +1,12 @@
-import { getDefaultSettings, getTitle } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import component from '!!raw-loader!./backToTop.html';
-
-const options = getTitle({
-  title: 'Back To Top',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     component,
     argTypes: {},
   }),
+  title: 'Components/Back To Top',
 };
 
 export const BackToTop = { args: {} };

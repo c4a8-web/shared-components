@@ -1,13 +1,8 @@
-import { getTitle, getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includesaccordionhtml as component } from '../../.storybook/generatedIncludes';
-
-const options = getTitle({
-  title: 'Accordion',
-});
 
 export default {
   ...getDefaultSettings({
-    options,
     argTypes: {
       accordion: {
         description: 'Object of the Accordion',
@@ -21,6 +16,7 @@ export default {
     },
     component,
   }),
+  title: 'Components/Accordion',
 };
 
 export const Default = {
