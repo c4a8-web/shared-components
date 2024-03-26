@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesscreenshothtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Screenshot',
-});
-
 export default {
-  ...options,
+  title: 'Components/Screenshot',
 };
 
 const Template = (args) => createComponent(args, component);

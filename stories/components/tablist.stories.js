@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includestablisthtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Tab List',
-});
-
 export default {
-  ...options,
+  title: 'Components/Tab List',
 };
 
 const Template = (args) => createComponent(args, component);

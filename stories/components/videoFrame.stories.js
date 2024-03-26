@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesvideoframehtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Video Frame',
-});
-
 export default {
-  ...options,
+  title: 'Components/Video Frame',
 };
 
 const Template = (args) => createComponent(args, component);

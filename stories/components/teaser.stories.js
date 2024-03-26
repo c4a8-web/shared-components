@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesteaserhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Teaser',
-});
-
 export default {
-  ...options,
+  title: 'Components/Teaser',
 };
 
 const Template = (args) => createComponent(args, component);

@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includessvgshapehtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Svg Shape',
-});
-
 export default {
-  ...options,
+  title: 'Components/Svg Shape',
 };
 
 const Template = (args) => createComponent(args, component);

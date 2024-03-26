@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import textImageListTemplate from '!!raw-loader!./textImageList.html';
 
-const options = getTitle({
-  title: 'Text Image List',
-});
-
 export default {
-  ...options,
+  title: 'Components/Text Image List',
 };
 
 const Template = (args) => createComponent(args, textImageListTemplate);

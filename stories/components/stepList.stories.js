@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import { includessteplisthtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Step List',
-});
-
 export default {
-  ...options,
+  title: 'Components/Step List',
 };
 
 const Template = (args) => createComponent(args, component);
