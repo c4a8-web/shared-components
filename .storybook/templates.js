@@ -275,16 +275,17 @@ const render = ({ component, args }) => {
   return createStory(component, { ...args });
 };
 
-const getDefaultSettings = ({ options, argTypes, component }) => {
-  return {
+const getDefaultSettings = ({ argTypes, component }) => {
+  const settings = {
     ...getArgTypes({
-      options,
       argTypes,
     }),
     render: ({ ...args }) => {
       return render({ component, args });
     },
   };
+
+  return settings;
 };
 
 export { getDefaultSettings, hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };
