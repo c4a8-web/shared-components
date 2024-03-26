@@ -1,4 +1,4 @@
-import { getDefaultSettings, getTitle } from '../../.storybook/templates';
+import { getTitle, getDefaultSettings } from '../../.storybook/templates';
 import { includesbadgehtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
