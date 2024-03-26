@@ -1,4 +1,4 @@
-import { getDefaultSettings, getTitle, createStory } from '../../.storybook/templates';
+import { getDefaultSettings, getTitle } from '../../.storybook/templates';
 import { includesaccordionhtml as component } from '../../.storybook/generatedIncludes';
 
 const options = getTitle({
