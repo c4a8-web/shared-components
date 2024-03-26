@@ -8,6 +8,7 @@ const options = getTitle({
 export default {
   ...getDefaultSettings({
     options,
+    component,
     argTypes: {
       content: {
         description: 'Main Content that takes 60% of the Screen',
@@ -18,7 +19,6 @@ export default {
         type: 'string',
       },
     },
-    component,
   }),
 };
 
