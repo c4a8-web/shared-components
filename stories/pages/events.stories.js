@@ -1,14 +1,9 @@
-import { createTemplate, getTitle } from '../../.storybook/templates';
+import { createTemplate } from '../../.storybook/templates';
 import eventsTemplate from '!!raw-loader!./events.html';
 import { EventList } from '../components/eventList.stories';
 
-const options = getTitle({
-  title: 'Events',
-  page: true,
-});
-
 export default {
-  ...options,
+  title: 'Pages/Events',
 };
 
 const baseArgs = {

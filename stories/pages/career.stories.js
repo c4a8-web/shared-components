@@ -1,17 +1,12 @@
-import { createTemplate, hrefTo, getTitle } from '../../.storybook/templates';
+import { createTemplate, hrefTo } from '../../.storybook/templates';
 import careerTemplate from '!!raw-loader!./career.html';
 import { List } from '../components/jobList.stories';
 import { JobApplication } from '../components/textImage.stories';
 import { Contact } from '../components/fabButton.stories';
 import { MultipleEntries } from '../components/faq.stories';
 
-const options = getTitle({
-  title: 'Career',
-  page: true,
-});
-
 export default {
-  ...options,
+  title: 'Pages/Career',
 };
 
 const Template = (args) => createTemplate(args, careerTemplate);

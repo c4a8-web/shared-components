@@ -1,14 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
-
+import { createComponent } from '../../.storybook/templates';
 import colorsHtml from '!!raw-loader!./colors.html';
 
-const options = getTitle({
-  title: 'Colors',
-  docs: true,
-});
-
 export default {
-  ...options,
+  title: 'Docs/Colors',
 };
 
 const Template = (args) => createComponent(args, colorsHtml);
