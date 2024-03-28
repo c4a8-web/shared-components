@@ -219,6 +219,13 @@ export const getDecorators = () => {
   ];
 };
 
+const getParams = ({ page }) => {
+  return {
+    ...(page && { parameters: { root: true, page: true } }),
+  };
+};
+
+// TODO: deprecate getTitle
 const getTitle = ({ page, title, docs, context, helper }) => {
   let type;
 
@@ -289,4 +296,4 @@ const getDefaultSettings = ({ argTypes, component }) => {
   return settings;
 };
 
-export { getDefaultSettings, hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };
+export { getDefaultSettings, hrefTo, getTitle, getParams, getAssetPath, getArgTypes, createStory, site };

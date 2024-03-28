@@ -1,7 +1,8 @@
-import { createTemplate, getAssetPath } from '../../.storybook/templates';
+import { createTemplate, getAssetPath, getParams } from '../../.storybook/templates';
 import emergencyTemplate from '!!raw-loader!./emergency.html';
 
 export default {
+  ...getParams({ page: true }),
   title: 'Pages/Emergency',
 };
 

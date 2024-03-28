@@ -1,8 +1,9 @@
-import { createComponent } from '../../.storybook/templates';
+import { createComponent, getParams } from '../../.storybook/templates';
 import { includesjoblistdetailhtml as component } from '../../.storybook/generatedIncludes';
 import { De } from '../components/jobListDetail.stories';
 
 export default {
+  ...getParams({ page: true }),
   title: 'Pages/Jobs',
 };
 

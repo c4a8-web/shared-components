@@ -1,4 +1,4 @@
-import { createTemplate, hrefTo } from '../../.storybook/templates';
+import { createTemplate, hrefTo, getParams } from '../../.storybook/templates';
 import careerTemplate from '!!raw-loader!./career.html';
 import { List } from '../components/jobList.stories';
 import { JobApplication } from '../components/textImage.stories';
@@ -6,6 +6,7 @@ import { Contact } from '../components/fabButton.stories';
 import { MultipleEntries } from '../components/faq.stories';
 
 export default {
+  ...getParams({ page: true }),
   title: 'Pages/Career',
 };
 

@@ -1,8 +1,9 @@
-import { createTemplate } from '../../.storybook/templates';
+import { createTemplate, getParams } from '../../.storybook/templates';
 import homeGkTemplate from '!!raw-loader!./home-gk.html';
 import { Right } from '../components/textImage.stories';
 
 export default {
+  ...getParams({ page: true }),
   title: 'Pages/Home Gk',
 };
 
