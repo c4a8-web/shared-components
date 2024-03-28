@@ -30,7 +30,23 @@ const config = {
   webpackFinal: async (config) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader'],
+      use: [
+        {
+          loader: 'style-loader',
+        },
+        {
+          loader: 'css-loader',
+          options: {
+            importLoaders: 1,
+            modules: {
+              mode: 'icss',
+            },
+          },
+        },
+        {
+          loader: 'sass-loader',
+        },
+      ],
       include: includePath,
     });
 
