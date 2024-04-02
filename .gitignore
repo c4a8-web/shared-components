@@ -10,3 +10,5 @@ storybook-static
 yarn-error.log
 
 NOTES.md
+
+scripts/migratedStories.log

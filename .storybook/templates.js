@@ -151,6 +151,7 @@ export const createTemplate = function async(include, template, path = 'includes
 
   // add map of jekyll filter
   engine.filters.impls.jsonify = engine.filters?.impls?.json;
+  engine.filters.impls.push = engine.filters?.impls?.concat;
   // TODO figure out how to make where_exp compatible to where
   // engine.filters.impls.where_exp = engine.filters?.impls?.where;
 
@@ -218,6 +219,13 @@ export const getDecorators = () => {
   ];
 };
 
+const getParams = ({ page }) => {
+  return {
+    ...(page && { parameters: { root: true, page: true } }),
+  };
+};
+
+// TODO: deprecate getTitle
 const getTitle = ({ page, title, docs, context, helper }) => {
   let type;
 
@@ -261,13 +269,31 @@ const getArgTypes = (defaultExport) => {
 };
 
 const createStory = (component, args) => {
-  const Template = (args) => createComponent(args, component);
-  const story = Template.bind({});
+  const Template = createComponent(args, component);
 
-  story.args = args;
-  story.decorators = getDecorators();
+  // const story = Template.bind({});
 
-  return story;
+  // story.args = args;
+  // story.decorators = getDecorators();
+
+  return Template;
 };
 
-export { hrefTo, getTitle, getAssetPath, getArgTypes, createStory, site };
+const render = ({ component, args }) => {
+  return createStory(component, { ...args });
+};
+
+const getDefaultSettings = ({ argTypes, component }) => {
+  const settings = {
+    ...getArgTypes({
+      argTypes,
+    }),
+    render: ({ ...args }) => {
+      return render({ component, args });
+    },
+  };
+
+  return settings;
+};
+
+export { getDefaultSettings, hrefTo, getTitle, getParams, getAssetPath, getArgTypes, createStory, site };

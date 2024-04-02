@@ -1,12 +1,7 @@
-import { createComponent, getTitle, hrefTo } from '../../.storybook/templates';
+import { createComponent, hrefTo } from '../../.storybook/templates';
 import { includeseventoverviewhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Event Overview',
-});
-
 export default {
-  ...options,
   argTypes: {
     headline: {
       description: 'The Headline above the element overview',
@@ -49,6 +44,7 @@ export default {
       type: 'string',
     },
   },
+  title: 'Components/Event Overview',
 };
 
 const Template = (args) => createComponent(args, component);

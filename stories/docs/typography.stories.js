@@ -1,15 +1,9 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
-
+import { createComponent } from '../../.storybook/templates';
 import typographyHtml from '!!raw-loader!./typography.html';
 import styles from '../../assets/scss/_exports.scss';
 
-const options = getTitle({
-  title: 'Typography',
-  docs: true,
-});
-
 export default {
-  ...options,
+  title: 'Docs/Typography',
 };
 
 const Template = (args) => createComponent(args, typographyHtml);

@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import timelineTemplate from '!!raw-loader!./timeline.html';
 
-const options = getTitle({
-  title: 'Timeline',
-});
-
 export default {
-  ...options,
+  title: 'Components/Timeline',
 };
 
 const Template = (args) => createComponent(args, timelineTemplate);

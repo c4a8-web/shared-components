@@ -1,14 +1,10 @@
-import { createComponent, hrefTo, getTitle } from '../../.storybook/templates';
+import { createComponent, hrefTo, getParams } from '../../.storybook/templates';
 import { includesjoblisthtml as component } from '../../.storybook/generatedIncludes';
 import { List } from '../components/jobList.stories';
 
-const options = getTitle({
-  title: 'Job List',
-  page: true,
-});
-
 export default {
-  ...options,
+  ...getParams({ page: true }),
+  title: 'Pages/Job List',
 };
 
 const Template = (args) => createComponent(args, component);

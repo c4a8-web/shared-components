@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import { Icons, IconButton, WithTooltip, TooltipLinkList } from '@storybook/components';
-import { useStorybookApi, useParameter, useAddonState } from '@storybook/api';
+import { Icons, IconButton, TooltipLinkList, Tooltip } from '@storybook/components';
+// import { useStorybookState, useStorybookApi, useParameter, useAddonState } from '@storybook/api';
 import { TOOL_ID, ADDON_ID, PARAM_KEY, EVENTS, THEME_LIST } from './themes';
 
 const getThemeName = function (type) {
@@ -37,7 +37,7 @@ const toLinks = (list, active, set, state, api, close) => {
           return {
             ...i,
             onClick: () => {
-              api.getChannel().emit(EVENTS.CHANGE, i.type);
+              api.emit(EVENTS.CHANGE, i.type);
 
               set({ ...state, selected: i.id });
               close();
@@ -77,19 +77,19 @@ export const Tool = function () {
 
   return (
     <Fragment>
-      <WithTooltip
-        placement="top"
-        trigger="click"
-        closeOnClick
-        tooltip={({ onHide }) => {
-          return <TooltipLinkList links={toLinks(list, item, setState, state, api, onHide)} />;
-        }}
-      >
-        <IconButton key={TOOL_ID} active={active} title="Pick a Theme">
-          <Icons icon="switchalt" />
-          <IconButtonLabel>{label}</IconButtonLabel>
-        </IconButton>
-      </WithTooltip>
+      {/* <Tooltip title="Pick a Theme" placement="top">
+        <IconButton
+          key={TOOL_ID}
+          active={active}
+          onClick={() => {
+            const links = toLinks(list, item, setState, state, api, () => {});
+            return <TooltipLinkList links={links} />;
+          }}
+        >
+          <Icons icon="switchalt" /> */}
+      <IconButtonLabel>{label}</IconButtonLabel>
+      {/* </IconButton>
+      </Tooltip> */}
     </Fragment>
   );
 };

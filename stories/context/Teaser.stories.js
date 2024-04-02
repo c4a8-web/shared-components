@@ -1,16 +1,11 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includescardhtml as cardComponent } from '../../.storybook/generatedIncludes';
 import { BlogPost } from '../components/card.stories';
 import { includeseventteaserhtml as eventTeaserComponent } from '../../.storybook/generatedIncludes';
 import { EventTeaserWebcast } from '../components/eventTeaser.stories';
 
-const options = getTitle({
-  title: 'Teaser',
-  context: true,
-});
-
 export default {
-  ...options,
+  title: 'Context/Teaser',
 };
 
 const CardTemplate = (args) => createComponent(args, cardComponent);

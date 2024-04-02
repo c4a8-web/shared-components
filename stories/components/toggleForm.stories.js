@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includestoggleformhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Toggle Form',
-});
-
 export default {
-  ...options,
+  title: 'Components/Toggle Form',
 };
 
 const Template = (args) => createComponent(args, component);

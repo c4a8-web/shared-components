@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesiconhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Icon',
-});
-
 export default {
-  ...options,
+  title: 'Components/Icon',
 };
 
 const Template = (args) => createComponent(args, component);

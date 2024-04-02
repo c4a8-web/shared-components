@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import iconBlocksTemplate from '!!raw-loader!./icon-blocks.html';
 
-const options = getTitle({
-  title: 'Icon Blocks',
-});
-
 export default {
-  ...options,
+  title: 'Components/Icon Blocks',
 };
 
 const Template = (args) => createComponent(args, iconBlocksTemplate);
