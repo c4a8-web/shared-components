@@ -1,13 +1,9 @@
-import { createComponent, getTitle, getDecorators } from '../../.storybook/templates';
+import { createComponent, getDecorators } from '../../.storybook/templates';
 import letterSwitchTemplate from '!!raw-loader!./letterSwitch.html';
 
-const options = getTitle({
-  title: 'Letter Switcher',
-});
-
 export default {
-  ...options,
   decorators: getDecorators(),
+  title: 'Components/Letter Switcher',
 };
 
 const Template = (args) => createComponent(args, letterSwitchTemplate);

@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import richtextTemplate from '!!raw-loader!./richtext.html';
 
-const options = getTitle({
-  title: 'Richtext',
-});
-
 export default {
-  ...options,
+  title: 'Components/Richtext',
 };
 
 const Template = (args) => createComponent(args, richtextTemplate);

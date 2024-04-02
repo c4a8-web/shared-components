@@ -1,13 +1,9 @@
-import { createTemplate, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createTemplate, getAssetPath, getParams } from '../../.storybook/templates';
 import emergencyTemplate from '!!raw-loader!./emergency.html';
 
-const options = getTitle({
-  title: 'Emergency',
-  page: true,
-});
-
 export default {
-  ...options,
+  ...getParams({ page: true }),
+  title: 'Pages/Emergency',
 };
 
 const Template = (args) => createTemplate(args, emergencyTemplate);

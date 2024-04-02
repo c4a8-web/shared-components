@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includestagcloudhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Tag Cloud',
-});
-
 export default {
-  ...options,
+  title: 'Components/Tag Cloud',
 };
 
 const Template = (args) => createComponent(args, component);

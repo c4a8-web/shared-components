@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import scrollArrowTemplate from '!!raw-loader!./scrollArrow.html';
 
-const options = getTitle({
-  title: 'Scroll Arrow',
-});
-
 export default {
-  ...options,
+  title: 'Components/Scroll Arrow',
 };
 
 const Template = (args) => createComponent(args, scrollArrowTemplate);

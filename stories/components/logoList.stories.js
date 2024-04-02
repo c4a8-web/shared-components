@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includeslogolisthtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Logo List',
-});
-
 export default {
-  ...options,
+  title: 'Components/Logo List',
 };
 
 const Template = (args) => createComponent(args, component);

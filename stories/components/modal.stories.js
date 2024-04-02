@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesmodalhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Modal',
-});
-
 export default {
-  ...options,
+  title: 'Components/Modal',
 };
 
 const Template = (args) => createComponent(args, component);

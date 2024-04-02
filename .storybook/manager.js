@@ -1,6 +1,5 @@
-import { addons } from '@storybook/addons';
-
-// https://storybook.js.org/docs/react/configure/features-and-behavior
+// https://storybook.js.org/docs/configure/features-and-behavior
+import { addons } from '@storybook/manager-api';
 
 addons.setConfig({
   isFullscreen: false,

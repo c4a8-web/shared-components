@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import videoInnerTemplate from '!!raw-loader!./videoInner.html';
 
-const options = getTitle({
-  title: 'Video Inner',
-});
-
 export default {
-  ...options,
+  title: 'Components/Video Inner',
 };
 
 const Template = (args) => createComponent(args, videoInnerTemplate);

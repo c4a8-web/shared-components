@@ -1,16 +1,16 @@
-import { createStory, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import { includestextimagehtml as component } from '../../.storybook/generatedIncludes';
 import lottie1 from '../data/lottie1.json';
 
-const options = getTitle({
-  title: 'Text Image',
-});
-
 export default {
-  ...options,
+  title: 'Components/Text Image',
 };
 
-export const Right = createStory(component, {
+const Template = (args) => createComponent(args, component);
+
+export const Right = Template.bind({});
+
+Right.args = {
   image: getAssetPath('svg/icons/icon-products.svg'),
   alt: 'Consulting Services',
   headline: 'Consulting Services',
@@ -33,9 +33,11 @@ export const Right = createStory(component, {
     },
   ],
   copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
-});
+};
 
-export const WithoutAnimation = createStory(component, {
+export const WithoutAnimation = Template.bind({});
+
+WithoutAnimation.args = {
   noAnimation: true,
   image: getAssetPath('svg/icons/icon-consulting-services.svg'),
   alt: 'Consulting Services',
@@ -59,9 +61,11 @@ export const WithoutAnimation = createStory(component, {
     },
   ],
   copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
-});
+};
 
-export const JobApplication = createStory(component, {
+export const JobApplication = Template.bind({});
+
+JobApplication.args = {
   image: getAssetPath('svg/icons/icon-hand.svg'),
   left: true,
   bgColor: 'var(--color-text-image-background)',
@@ -182,9 +186,11 @@ export const JobApplication = createStory(component, {
     },
   },
   // TODO add icon with animations
-});
+};
 
-export const LeftFloating = createStory(component, {
+export const LeftFloating = Template.bind({});
+
+LeftFloating.args = {
   href: '',
   image: getAssetPath('svg/products/protection-shield.svg'),
   imagePreset: 'textImageFloatingSmallSquare',
@@ -195,9 +201,11 @@ export const LeftFloating = createStory(component, {
   left: true,
   float: true,
   copy: 'We hear this question frequently: <strong>&quot;Why should I not log in to my WIFI by using my (Azure) Active Directory credentials?&quot; </strong><br /><br />We believe that users should use their (Azure) Active Directory credentials as little as possible. Working password-less is state of the art and prevents identity theft. This is why we use certificates for network authentication. While authenticating with certificates, no credentials are transferred. <br /><br />There is another benefit: device certificates are available for the operating system prior to user login. Therefore, network connections can be established before Windows user logon. <br /><br />And finally, it is not a big deal: Certificates and WIFI profiles can be deployed to clients easily. You just need a Certificate Authority (e.g. <a href="https://scepman.com/" target="_blank">SCEPman</a> – super-easy) and a device management system, like Microsoft Intune or JAMF.',
-});
+};
 
-export const WithBadge = createStory(component, {
+export const WithBadge = Template.bind({});
+
+WithBadge.args = {
   badge: {
     text: 'Badge Text',
   },
@@ -214,9 +222,11 @@ export const WithBadge = createStory(component, {
   left: true,
   float: true,
   copy: 'We hear this question frequently: <strong>&quot;Why should I not log in to my WIFI by using my (Azure) Active Directory credentials?&quot; </strong><br /><br />We believe that users should use their (Azure) Active Directory credentials as little as possible. Working password-less is state of the art and prevents identity theft. This is why we use certificates for network authentication. While authenticating with certificates, no credentials are transferred. <br /><br />There is another benefit: device certificates are available for the operating system prior to user login. Therefore, network connections can be established before Windows user logon. <br /><br />And finally, it is not a big deal: Certificates and WIFI profiles can be deployed to clients easily. You just need a Certificate Authority (e.g. <a href="https://scepman.com/" target="_blank">SCEPman</a> – super-easy) and a device management system, like Microsoft Intune or JAMF.',
-});
+};
 
-export const LeftFloatingBg = createStory(component, {
+export const LeftFloatingBg = Template.bind({});
+
+LeftFloatingBg.args = {
   href: '',
   image: 'visuals/security-ninjacat.png',
   alt: 'Calling with teams',
@@ -236,9 +246,11 @@ export const LeftFloatingBg = createStory(component, {
       target: '_blank',
     },
   ],
-});
+};
 
-export const WithAnimation = createStory(component, {
+export const WithAnimation = Template.bind({});
+
+WithAnimation.args = {
   lottie: lottie1,
   alt: 'Consulting Services',
   headline: 'Consulting Services',
@@ -261,4 +273,4 @@ export const WithAnimation = createStory(component, {
     },
   ],
   copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
-});
+};

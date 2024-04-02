@@ -1,13 +1,8 @@
-import { createStory, getTitle, hrefTo } from '../../.storybook/templates';
+import { createComponent, hrefTo } from '../../.storybook/templates';
 import { includeseventoverviewhtml as component } from '../../.storybook/generatedIncludes';
 import lottie1 from '../data/lottie1.json';
 
-const options = getTitle({
-  title: 'Event Overview',
-});
-
 export default {
-  ...options,
   argTypes: {
     headline: {
       description: 'The Headline above the element overview',
@@ -50,9 +45,14 @@ export default {
       type: 'string',
     },
   },
+  title: 'Components/Event Overview',
 };
 
-export const ManualEvents = createStory(component, {
+const Template = (args) => createComponent(args, component);
+
+export const ManualEvents = Template.bind({});
+
+ManualEvents.args = {
   events: [
     {
       url: 'javascript:void(0);' /* url is not overwriteable in yaml */,
@@ -114,26 +114,32 @@ export const ManualEvents = createStory(component, {
       },
     },
   ],
-});
+};
 
-export const Ordered = createStory(component, {
+export const Ordered = Template.bind({});
+
+Ordered.args = {
   headline: 'Termine',
   headlineLevel: 'h2',
   order: ['event-1', 'event-3', 'event-4'],
-});
+};
 
-export const Overlap = createStory(component, {
+export const Overlap = Template.bind({});
+
+Overlap.args = {
   headline: 'Termine',
   headlineLevel: 'h2',
   order: ['event-1', 'event-3', 'event-4'],
   overlap: true,
   moreUrl: hrefTo('Components/Event/Overview', 'Manual-Events'),
-});
+};
 
-export const Limit = createStory(component, {
+export const Limit = Template.bind({});
+
+Limit.args = {
   headline: 'Termine',
   headlineLevel: 'h2',
   order: ['event-1', 'event-3', 'event-4'],
   limit: 4,
   maxLimit: 7,
-});
+};

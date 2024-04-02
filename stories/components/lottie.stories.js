@@ -1,22 +1,26 @@
-import { createStory, getTitle } from '../../.storybook/templates';
+import { getDefaultSettings } from '../../.storybook/templates';
 import { includeslottiehtml as component } from '../../.storybook/generatedIncludes';
 import lottie1 from '../data/lottie1.json';
 
-const options = getTitle({
-  title: 'Lottie',
-});
-
 export default {
-  ...options,
+  ...getDefaultSettings({
+    component,
+    argTypes: {},
+  }),
+  title: 'Components/Lottie',
 };
 
-export const AnimationHero = createStory(component, {
-  width: 600,
-  height: 600,
-  data: lottie1,
-  background: '#ff0000',
-});
+export const DimensionsAndBackground = {
+  args: {
+    width: 600,
+    height: 600,
+    data: lottie1,
+    background: '#aaaaaa',
+  },
+};
 
-export const NoDimensions = createStory(component, {
-  data: lottie1,
-});
+export const NoDimensions = {
+  args: {
+    data: lottie1,
+  },
+};

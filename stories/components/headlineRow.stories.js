@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesheadlinerowhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Headline Row',
-});
-
 export default {
-  ...options,
+  title: 'Components/Headline Row',
 };
 
 const Template = (args) => createComponent(args, component);

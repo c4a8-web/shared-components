@@ -1,12 +1,8 @@
-import { createComponent, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import { includesproductblockshtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Product Blocks',
-});
-
 export default {
-  ...options,
+  title: 'Components/Product Blocks',
 };
 
 const Template = (args) => createComponent(args, component);

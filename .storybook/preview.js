@@ -9,9 +9,9 @@ import Interim from './interim.js';
 import { Styles } from './themeImports';
 
 import { STORY_RENDERED } from '@storybook/core-events';
-import addons from '@storybook/addons';
+import { addons } from '@storybook/preview-api';
 import { EVENTS, DEFAULT_THEME, addStyles, addBaseClasses } from './themes/src/themes';
-import { HTML_DOWNLOAD_EVENTS, downloadHtml } from './html-download/src/exports';
+// import { HTML_DOWNLOAD_EVENTS, downloadHtml } from './html-download/src/exports';
 
 let currentTheme = DEFAULT_THEME;
 
@@ -53,9 +53,9 @@ channel.on(STORY_RENDERED, (name) => {
   removeModal();
 });
 
-channel.on(HTML_DOWNLOAD_EVENTS.CHANGE, (e) => {
-  downloadHtml(e);
-});
+// channel.on(HTML_DOWNLOAD_EVENTS.CHANGE, (e) => {
+//   downloadHtml(e);
+// });
 
 function createDocsWrapper(params) {
   const wrapper = document.createElement('div');
@@ -66,7 +66,7 @@ function createDocsWrapper(params) {
   return wrapper;
 }
 
-export const parameters = {
+const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     expanded: true,
@@ -77,15 +77,21 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Components', 'Pages', 'Context', 'Docs'],
+      order: ['Components', 'Pages', 'Context', 'Docs', 'Helper'],
     },
   },
 };
 
-export const decorators = [
+const decorators = [
   (story, params) => {
     const body = document.querySelector('body');
     const base = document.querySelector('base');
+    // const storybookRoot = body.querySelector('#storybook-root');
+
+    // if (storybookRoot && storybookRoot.firstChild && !storybookRoot.firstChild.classList.length) {
+    //   console.log('add SHARED CLASS');
+    //   storybookRoot.firstChild.classList.add('shared-components');
+    // }
 
     if (base) {
       if (base.getAttribute('target') !== '_parent' && !params?.parameters?.page) {
@@ -124,3 +130,10 @@ export const decorators = [
     return story();
   },
 ];
+
+const preview = {
+  parameters,
+  decorators,
+};
+
+export default preview;

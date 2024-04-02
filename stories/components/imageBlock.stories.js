@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includesimageblockhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Image Block',
-});
-
 export default {
-  ...options,
+  title: 'Components/Image Block',
 };
 
 const Template = (args) => createComponent(args, component);

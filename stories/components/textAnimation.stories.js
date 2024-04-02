@@ -1,12 +1,8 @@
-import { createComponent, getTitle } from '../../.storybook/templates';
+import { createComponent } from '../../.storybook/templates';
 import { includestextanimationhtml as component } from '../../.storybook/generatedIncludes';
 
-const options = getTitle({
-  title: 'Text Animation',
-});
-
 export default {
-  ...options,
+  title: 'Components/Text Animation',
 };
 
 const Template = (args) => createComponent(args, component);

@@ -1,16 +1,15 @@
-import { createStory, getTitle, getAssetPath } from '../../.storybook/templates';
+import { createComponent, getAssetPath } from '../../.storybook/templates';
 import { includespeoplesquarehtml as component } from '../../.storybook/generatedIncludes';
 import lottie1 from '../data/lottie1.json';
 
-const options = getTitle({
-  title: 'People Square',
-});
-
 export default {
-  ...options,
+  title: 'Components/People Square',
 };
+const Template = (args) => createComponent(args, component);
 
-export const TwoByTwo = createStory(component, {
+export const TwoByTwo = Template.bind({});
+
+TwoByTwo.args = {
   absolute: true,
   width: 2,
   height: 2,
@@ -38,9 +37,11 @@ export const TwoByTwo = createStory(component, {
       text: 'Mitarbeiter',
     },
   ],
-});
+};
 
-export const ThreeByThree = createStory(component, {
+export const ThreeByThree = Template.bind({});
+
+ThreeByThree.args = {
   grid: [
     {
       number: 410,
@@ -91,9 +92,11 @@ export const ThreeByThree = createStory(component, {
       },
     },
   ],
-});
+};
 
-export const FourByFour = createStory(component, {
+export const FourByFour = Template.bind({});
+
+FourByFour.args = {
   absolute: true,
   width: 4,
   height: 4,
@@ -158,9 +161,11 @@ export const FourByFour = createStory(component, {
       colEnd: 4,
     },
   ],
-});
+};
 
-export const WithAnimation = createStory(component, {
+export const WithAnimation = Template.bind({});
+
+WithAnimation.args = {
   grid: [
     {
       number: 410,
@@ -211,4 +216,4 @@ export const WithAnimation = createStory(component, {
       },
     },
   ],
-});
+};
