@@ -1,4 +1,5 @@
 const EmergencyPage = 'http://localhost:6006/iframe.html?args=&id=pages-emergency--emergency&viewMode=story';
+const mockUrl = '/mock/emergency.json';
 // TODO move to fixtures
 const mockData = {
   name: 'Emergency Test Name',
@@ -21,12 +22,13 @@ const fillInput = (id, value) => {
 const dataToFill = ['name', 'company', 'email', 'phone', 'message'];
 
 const fillOutForm = () => {
-  cy.intercept('POST', 'http://localhost:6006/mock/emergency.json', (req) => {
+  cy.intercept('POST', mockUrl, (req) => {
     req.reply({
       status: 200,
       body: mockData,
     });
   }).as('submitRequest');
+
   wait();
 
   dataToFill.forEach((data) => {
@@ -42,16 +44,21 @@ const fillOutForm = () => {
 };
 
 const submitForm = () => {
+  cy.get('base').invoke('attr', 'target', '_self');
+
   cy.get('.modal .cta:visible').click();
+
   cy.wait('@submitRequest', { timeout: 3000 }).then((interception) => {
     const response = interception.response;
 
-    Object.keys(response.body).forEach((key, value) => {
+    Object.keys(response.body).forEach((key) => {
       expect(response.body[key]).to.equal(mockData[key]);
     });
 
     expect(interception.response.statusCode).to.equal(200);
   });
+
+  cy.location('pathname').should('eq', mockUrl);
 };
 
 describe('Emergency Form Test', () => {
