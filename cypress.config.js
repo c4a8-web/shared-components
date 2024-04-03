@@ -5,6 +5,7 @@ module.exports = defineConfig({
   video: false,
   e2e: {
     // pageLoadTimeout: 20000,
+    chromeWebSecurity: false,
     setupNodeEvents(on, config) {
       // implement node event listeners here
       on('task', {
