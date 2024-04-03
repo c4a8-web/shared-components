@@ -9,7 +9,7 @@ export default {
       ];
     },
     authorHasSocials() {
-      return this.author.socials !== undefined;
+      return this.author?.socials !== undefined;
     },
     itemsList() {
       return this.authorHasSocials ? this.author.socials : this.items;
