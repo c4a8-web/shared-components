@@ -8,6 +8,7 @@ const Lang = {
     similarPosts: 'Ähnliche Artikel',
     withAuthor: 'Mit',
     onlyLanguage: 'German only',
+    socialsTitle: 'Socials',
   },
   en: {
     tags: 'Tags',
@@ -18,6 +19,7 @@ const Lang = {
     similarPosts: 'Similar Posts',
     withAuthor: 'With',
     onlyLanguage: 'English only',
+    socialsTitle: 'Socials',
   },
   es: {
     tags: 'Etiquetas',
@@ -28,6 +30,7 @@ const Lang = {
     similarPosts: 'Entradas similares',
     withAuthor: 'Con',
     onlyLanguage: 'Sólo español',
+    socialsTitle: 'Sociales',
   },
 };
 
