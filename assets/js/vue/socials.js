@@ -26,6 +26,8 @@ export default {
       return ['socials__item', this.iconClasses];
     },
     getList() {
+      if (!this.author) return false;
+
       const twitterUrl = 'https://www.twitter.com/';
       const linkedinUrl = 'https://www.linkedin.com/in/';
       const diverseSocials = [
@@ -36,7 +38,7 @@ export default {
       ];
       const diverseIcons = ['fas fa-envelope', 'fab fa-linkedin', 'fab fa-xing', 'fab fa-x-twitter'];
 
-      const authorList = [
+      const authorSocials = [
         {
           link: this.author.twitter ? twitterUrl + this.author.twitter : '',
           icon: diverseIcons[3],
@@ -47,12 +49,13 @@ export default {
         },
       ];
 
-      const filteredAuthorsList = authorList.filter((obj) => obj.link !== '');
+      const filteredAuthorSocials = authorSocials.filter((obj) => obj.link !== '');
 
-      if (filteredAuthorsList.length > 0) return filteredAuthorsList;
+      if (filteredAuthorSocials.length > 0) return filteredAuthorSocials;
 
-      const socialsUrls = diverseSocials.map((item) => item + this.sharedUrl);
-      return socialsUrls.map((link, index) => {
+      const socialsUrls = diverseSocials.map((item) => item + this.shareUrl);
+
+      return socialsUrls?.map((link, index) => {
         return {
           link: link,
           icon: diverseIcons[index],
