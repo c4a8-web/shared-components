@@ -1,1 +1,7 @@
-null
+{
+  "name": "Emergency Test Name",
+  "company": "Emergency Test Company",
+  "email": "test@example.com",
+  "phone": "Emergency Test Phone",
+  "message": "Emergency Test Message"
+}
