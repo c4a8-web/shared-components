@@ -289,6 +289,8 @@ export default {
       const activeUrl = this.getActiveUrlByLang(nextLang);
       const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
+      Tools.storageSave('preferedLanguage', nextLang, false);
+
       document.location.href = gotoUrl;
     },
     getCurrentPath() {
