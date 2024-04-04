@@ -1,9 +1,5 @@
 {%- assign lang = page.lang | default: 'de' -%}
 
-{% for person in page.author limit:1 %}
-  {%- assign postAuthor = site.data.authors[person] -%}
-{% endfor %}
-
 <div class="container space-top-2 space-top-lg-4">
   <div class="w-xl-80 mx-xl-auto">
     <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
@@ -74,7 +70,7 @@
                 include socials.html
                 vertical=true
                 hideLabel=true
-                author=postAuthor
+                author=null
               %}
             </div>
           </div>
