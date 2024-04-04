@@ -26,8 +26,6 @@ export default {
       return ['socials__item', this.iconClasses];
     },
     getList() {
-      if (!this.author) return false;
-
       const twitterUrl = 'https://www.twitter.com/';
       const linkedinUrl = 'https://www.linkedin.com/in/';
       const diverseSocials = [
@@ -40,11 +38,11 @@ export default {
 
       const authorSocials = [
         {
-          link: this.author.twitter ? twitterUrl + this.author.twitter : '',
+          link: this.author?.twitter ? twitterUrl + this.author.twitter : '',
           icon: diverseIcons[3],
         },
         {
-          link: this.author.linkedin ? linkedinUrl + this.author.linkedin : '',
+          link: this.author?.linkedin ? linkedinUrl + this.author.linkedin : '',
           icon: diverseIcons[1],
         },
       ];
