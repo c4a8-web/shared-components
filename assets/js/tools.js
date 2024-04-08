@@ -5,7 +5,7 @@ class Tools {
     style: 'decimal',
     maximumFractionDigits: 0,
   });
-  static storagePrefix = '@gab_';
+  static storagePrefix = '@gab_'; // if you change this you need to change this in the index.html as well
   static storybookPath = '/shared-components';
 
   static decodeHTML = (input) => {
@@ -358,8 +358,8 @@ class Tools {
     return result;
   }
 
-  static storageSave(key, value) {
-    localStorage.setItem(Tools.storagePrefix + key, JSON.stringify(value));
+  static storageSave(key, value, stringify = true) {
+    localStorage.setItem(Tools.storagePrefix + key, stringify ? JSON.stringify(value) : value);
   }
 
   static storageGet(key) {
