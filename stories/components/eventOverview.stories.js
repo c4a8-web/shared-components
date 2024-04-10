@@ -70,7 +70,7 @@ ManualEvents.args = {
         alt: 'lorem ipsum',
       },
       excerpt:
-        'Audiocodes hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
+        'Audiocodes & hat mir mehrere Geräte für einen Test zur Verfügung gestellt. Ich habe sie alle eingerichtet und getestet. Hier ist eine kurze Zusammenfassung meiner Ergebnisse.',
     },
     {
       bgColor: 'var(--color-yellow)',

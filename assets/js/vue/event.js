@@ -15,6 +15,9 @@ export default {
                 --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-green-blue)'};
             `;
     },
+    textWithAmpersand() {
+      return this.text.replace(/&amp;/g, '&');
+    },
     validDate() {
       let date = new Date(this.date);
 
@@ -94,7 +97,7 @@ export default {
             <span class="event__category font-size-1 bold is-uppercase" v-if="category">{{ category }}</span>
           </div>
           <headline class="event__headline" :text="title" level="h4" />
-          <p class="event__text">{{ text }}</p>
+          <p class="event__text">{{ textWithAmpersand }}</p>
         </div>
         <div class="event__image-container is-background" v-if="imageValue">
           <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" lazy="true">
