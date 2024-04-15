@@ -6,14 +6,23 @@ export default {
     classList() {
       return ['hero vue-component', this.isLight ? 'is-light' : ''];
     },
+    style() {
+      return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
+    },
     isLight() {
       return this.heroJson ? this.heroJson.isLight : false;
     },
     bgColor() {
       return this.heroJson ? this.heroJson.bgColor : null;
     },
-    style() {
-      return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
+    overline() {
+      return this.heroJson ? this.heroJson.overline : null;
+    },
+    headline() {
+      return this.heroJson ? this.heroJson.headline : null;
+    },
+    animation() {
+      return this.heroJson ? this.heroJson.animation : null;
     },
     heroJson() {
       return Tools.getJSON(this.hero);
@@ -27,7 +36,11 @@ export default {
     <div :class="classList" :style="style">
       <div class="hero__container container">
         <main class="hero__content row">
-          isch bin ein held
+          <span class="hero__overline" v-if="overline">{{ overline }}</span>
+          <headline class="hero__headline" v-if="headline">{{ headline }}</headline>
+          <div class="hero__animation" v-if="animation">
+            text animation sequence
+          </div>
         </main>
       </div>
     </div>
