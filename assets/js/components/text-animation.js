@@ -9,6 +9,8 @@ class TextAnimation extends BaseComponent {
   constructor(root, options) {
     super(root, options);
 
+    return;
+
     const parent = Tools.getParentComponent(this.root);
 
     this.iconSelector = '.js-text-animation__icon';

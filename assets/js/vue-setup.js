@@ -74,6 +74,7 @@ import SlotItems from './vue/slot-items.js';
 import TabList from './vue/tab-list.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
+import TextAnimation from './vue/text-animation.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
@@ -249,6 +250,7 @@ const addApp = () => {
     TabList,
     Tag,
     TestimonialList,
+    TextAnimation,
     TextTeaser,
     Timeline,
     LBlock,
