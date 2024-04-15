@@ -69,12 +69,15 @@ export default {
   },
   methods: {
     getDelayByValue(value) {
+      const fontSize6Value = 6;
+      const fontSize7Value = 7;
+
       switch (value) {
-        case 6:
+        case fontSize6Value:
           this.sizeBasedDelay = this.letterDelay / 1.8;
           this.sizeBasedOffset = this.delayOffset;
           break;
-        case 7:
+        case fontSize7Value:
         default:
           this.sizeBasedDelay = this.letterDelay / 10;
           this.sizeBasedOffset = this.minDelay;
@@ -105,7 +108,6 @@ export default {
 
       setTimeout(() => {
         this.end();
-        // this.button.classList.toggle(State.INVISIBLE);
       }, timeout + this.buttonDelay);
     },
     end() {
@@ -140,7 +142,6 @@ export default {
       }
 
       // TOdO requestanimation frame
-      console.log('🚀 ~ animateText ~ this.currentText:', this.currentText);
 
       for (let i = 0; i < this.currentText.length; i++) {
         this.textTimeout = i * this.sizeBasedDelay + this.sizeBasedDelay;
@@ -198,7 +199,7 @@ export default {
     this.animate();
   },
   template: `
-    <div :class="classList" :data-sequence-remove-me="sequence">
+    <div :class="classList">
       <div class="text-animation__placeholder">
         <span :class="placeholderTextClassList" ref="placeholderText">{{ textValue }}</span>
         <div :class="placeholderSublineClassList">{{ sublineValue }}</div>
