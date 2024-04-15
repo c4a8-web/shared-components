@@ -1,0 +1,14 @@
+<!-- Shared Text Icon Animation Section -->
+{%- assign textIconAnimationAnimation = include.animation -%}
+{%- assign textIconAnimationFixed = include.fixed -%}
+{%- assign textIconAnimationCta = include.cta -%}
+{%- assign textIconAnimationIcon = include.icon -%}
+
+<text-icon-animation
+  :animation="{{ textIconAnimationAnimation | jsonify | escape }}"
+  :fixed="{{ textIconAnimationFixed }}"
+  :cta="{{ textIconAnimationCta | jsonify | escape }}"
+  :icon="{{ textIconAnimationIcon | jsonify | escape }}"
+>
+</text-icon-animation>
+<!-- End Shared Text Icon Animation Section -->
