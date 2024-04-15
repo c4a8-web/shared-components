@@ -9,6 +9,12 @@ export default {
     style() {
       return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
     },
+    cta() {
+      return this.heroJson ? this.heroJson.cta : null;
+    },
+    fixed() {
+      return this.heroJson ? this.heroJson.fixed : false;
+    },
     isLight() {
       return this.heroJson ? this.heroJson.isLight : false;
     },
@@ -39,7 +45,12 @@ export default {
           <span class="hero__overline" v-if="overline">{{ overline }}</span>
           <headline class="hero__headline" v-if="headline">{{ headline }}</headline>
           <div class="hero__animation" v-if="animation">
-            text animation sequence
+            <text-icon-animation
+              :animation="animation"
+              :fixed="fixed"
+              :cta="cta"
+            >
+            </text-icon-animation>
           </div>
         </main>
       </div>
