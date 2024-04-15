@@ -1,2 +1,11 @@
 .hero {
+  --hero-background-color: transparent;
+  --hero-copy-color: var(--color-copy);
+
+  background-color: var(--hero-background-color);
+  color: var(--hero-copy-color);
+
+  &.is-light {
+    --hero-copy-color: var(--color-copy-light);
+  }
 }

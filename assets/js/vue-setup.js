@@ -35,6 +35,7 @@ import GoogleMap from './vue/google-map.js';
 import GridList from './vue/grid-list.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
+import Hero from './vue/hero.js';
 import Icon from './vue/icon.js';
 import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
@@ -183,6 +184,7 @@ const addApp = () => {
     GridList,
     Header,
     Headline,
+    Hero,
     Icon,
     ImageBlock,
     ImageList,
