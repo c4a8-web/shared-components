@@ -33,11 +33,7 @@ export default {
   },
   computed: {
     classList() {
-      return [
-        'text-animation vue-component',
-        this.isFixed ? 'text-animation--fixed' : '',
-        this.isEnded ? State.END : '',
-      ];
+      return ['text-animation vue-component', this.isEnded ? State.END : ''];
     },
     textClassList() {
       return ['text-animation__text', this.currentTextSize];
@@ -56,9 +52,6 @@ export default {
     },
     ctaClassList() {
       return ['text-animation__cta', this.isEnded ? '' : State.INVISIBLE];
-    },
-    isFixed() {
-      return Tools.isTrue(this.fixed);
     },
     sequenceData() {
       return Tools.getJSON(this.sequence);

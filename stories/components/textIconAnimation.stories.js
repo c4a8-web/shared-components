@@ -33,5 +33,6 @@ export const TextIconAnimation = {
     cta: {
       text: 'Zu den Stellenanzeigen',
     },
+    icon: 'smile',
   },
 };

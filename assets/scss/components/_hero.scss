@@ -11,6 +11,15 @@
     --hero-copy-color: var(--color-copy-light);
     --hero-copy-overline-color: var(--color-copy);
   }
+
+  &.hero--fullscreen {
+    min-height: 100vh;
+
+    .hero__container,
+    .hero__content {
+      min-height: inherit;
+    }
+  }
 }
 
 .hero__overline {

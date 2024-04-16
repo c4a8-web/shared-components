@@ -1,0 +1,34 @@
+.text-icon-animation {
+  --text-icon-animation-icon-color: var(--color-secondary);
+
+  position: relative;
+
+  &.text-icon-animation--fixed {
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100%;
+    }
+  }
+
+  .text-icon-animation__icon .icon {
+    height: 100%;
+    width: 100%;
+    max-width: 300px;
+    color: var(--text-icon-animation-icon-color);
+
+    svg {
+      width: inherit;
+      height: inherit;
+    }
+  }
+}
+
+.text-icon-animation {
+  .text-animation {
+    @include media-breakpoint-up(lg) {
+      margin-right: spacing(16);
+    }
+  }
+}

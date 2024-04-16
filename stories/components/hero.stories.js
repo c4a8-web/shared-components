@@ -16,6 +16,8 @@ export const Careers = {
       bgColor: 'var(--color-blue-dark)',
       isLight: true,
       overline: 'Deine Karriere',
+      fixed: true,
+      fullscreen: true,
       animation: {
         sequence: [
           {
@@ -34,6 +36,13 @@ export const Careers = {
               'wollen wir nichts weniger als die Welt verändern: die Dinge neu denken, die Revolution des Digitalen, einen Entwicklungssprung für unsere Kunden. Dafür braucht es Menschen, die nicht nach einem bloßen Job, sondern nach einer echten Aufgabe suchen. Menschen, die eine Vision haben. Menschen, die Utopien Realität werden lassen wollen.',
           },
         ],
+      },
+      background: {
+        icon: 'smile',
+        spacing: 'space-top-lg-4',
+      },
+      cta: {
+        text: 'Zu den Stellenanzeigen',
       },
     },
   },
