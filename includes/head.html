@@ -49,7 +49,7 @@
     {%- assign headMetaDescription = site.excerpt | strip_html -%}
   {%- endif -%}
 
-  {%- assign headMetaImage = "https://res.cloudinary.com/c4a8/image/upload/" | append: page.socialimg | append: "test" -%}
+  {%- assign headMetaImage = "https://res.cloudinary.com/c4a8/image/upload/" | append: page.socialimg -%}
   {%- assign headMetaUrl = site.url | append: page.url -%}
 
   {%- if page.lang -%}
