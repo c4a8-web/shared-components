@@ -6,6 +6,11 @@ const Authors = {
     twitter: 'glueckkanjagab',
     linkedin: '../company/glueckkanja-gab',
   },
+  'Author Name 2': {
+    display_name: 'Author Name 2',
+    avatar: 'people/people-author-name.png',
+    permalink: '/authors/author-name/',
+  },
   'Alexander Rudolph': {
     display_name: 'Alexander Rudolph',
     avatar: 'people/people-alexander-rudolph.png',
@@ -166,6 +171,27 @@ const Authors = {
     display_name: 'Jörg Wunderlich',
     avatar: 'c_thumb,h_1600,w_1600/people/joerg-wunderlich.png',
     permalink: '/authors/joerg-wunderlich',
+  },
+  'Carolin Kanja': {
+    display_name: 'Carolin Kanja',
+    avatar: 'c_thumb,h_1600,w_1600/people/people-carolin-kanja.jpg',
+    permalink: '/authors/carolin-kanja',
+    twitter: 'fraukanja',
+    linkedin: 'carolin-kanja',
+    socials: [
+      {
+        text: 'Blog',
+        href: '/',
+      },
+      {
+        text: 'Podcast',
+        href: '/',
+      },
+      {
+        text: 'Youtube',
+        href: '/',
+      },
+    ],
   },
 };
 

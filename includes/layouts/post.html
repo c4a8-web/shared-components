@@ -1,4 +1,4 @@
-{% assign lang = page.lang | default: 'de' %}
+{%- assign lang = page.lang | default: 'de' -%}
 
 <div class="container space-top-2 space-top-lg-4">
   <div class="w-xl-80 mx-xl-auto">
@@ -70,6 +70,7 @@
                 include socials.html
                 vertical=true
                 hideLabel=true
+                author=null
               %}
             </div>
           </div>
