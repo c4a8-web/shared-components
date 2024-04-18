@@ -31,10 +31,9 @@ export default {
       const diverseSocials = [
         `mailto:?subject=`,
         `https://www.linkedin.com/shareArticle?mini=true&url=`,
-        'https://www.xing.com/app/user?op=share;url=',
         'https://twitter.com/intent/tweet?text=&url=',
       ];
-      const diverseIcons = ['fas fa-envelope', 'fab fa-linkedin', 'fab fa-xing', 'fab fa-x-twitter'];
+      const diverseIcons = ['fas fa-envelope', 'fab fa-linkedin', 'fab fa-x-twitter'];
 
       const authorSocials = [
         {
