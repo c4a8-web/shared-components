@@ -37,22 +37,43 @@
     {% endfor %}
   {%- endif %}
 
-  <!-- Facebook -->
+  {%- if page.fulltitle -%}
+    {%- assign headMetaTitle = page.fulltitle -%}
+  {%- else -%}
+    {%- assign headMetaTitle = page.title -%}
+  {%- endif -%}
+
+  {%- if page.excerpt -%}
+    {%- assign headMetaDescription = page.excerpt | strip_html -%}
+  {%- else -%}
+    {%- assign headMetaDescription = site.excerpt | strip_html -%}
+  {%- endif -%}
+
+  {%- assign headMetaImage = "https://res.cloudinary.com/c4a8/image/upload/" | append: page.socialimg -%}
+  {%- assign headMetaUrl = site.url | append: page.url -%}
+
+  {%- if page.lang -%}
+    {%- assign headMetaLang = page.lang -%}
+  {%- else -%}
+    {%- assign headMetaLang = site.lang -%}
+  {%- endif -%}
+
+  <!-- OpenGraph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}">
-  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
-  <meta property="og:image" content="https://res.cloudinary.com/c4a8/image/upload/{{ page.socialimg }}">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ headMetaTitle }}">
+  <meta property="og:description" content="{{ headMetaDescription }}">
+  <meta property="og:image" content="{{ headMetaImage }}">
+  <meta property="og:url" content="{{ headMetaUrl }}">
   <meta property="og:site_name" content="{{ site.title }}">
-  <meta property="og:locale" content="{% if page.lang %}{{ page.lang }}{% else %}{{ site.lang }}{% endif %}">
+  <meta property="og:locale" content="{{ headMetaLang }}">
   <meta property="article:author" content="{{ site.twitter.username }}">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{% if page.fulltitle %}{{ page.fulltitle}}{% else %}{{ page.title}} | {{ site.title }} {% endif %}">
-  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
-  <meta name="twitter:image" content="https://res.cloudinary.com/c4a8/image/upload/{{ page.socialimg }}">
-  <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:title" content="{{ headMetaTitle }}">
+  <meta name="twitter:description" content="{{ headMetaDescription }}">
+  <meta name="twitter:image" content="{{ headMetaImage }}">
+  <meta name="twitter:url" content="{{ headMetaUrl }}">
   <meta name="twitter:creator" content="{{ site.twitter.username }}">
   <meta name="twitter:site" content="{{ site.twitter.username }}">
 

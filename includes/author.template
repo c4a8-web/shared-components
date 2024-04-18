@@ -1,5 +1,6 @@
 {%- assign lang = page.lang | default: 'de' -%}
 {%- assign author = site.data.authors[page.name] -%}
+{%- assign authorSocialsTitle = site.data.lang[lang].socialsTitle -%}
 
 {%- if author -%}
   {%- assign imgUrl = author.avatar -%}
@@ -56,7 +57,7 @@
             {%
               include services.html
               author=author
-              title="Lorem Ipsum"
+              title=authorSocialsTitle
             %}
           </div>
         {%- endif -%}
