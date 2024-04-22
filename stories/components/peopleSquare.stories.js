@@ -5,6 +5,7 @@ import lottie1 from '../data/lottie1.json';
 export default {
   title: 'Components/People Square',
 };
+
 const Template = (args) => createComponent(args, component);
 
 export const TwoByTwo = Template.bind({});

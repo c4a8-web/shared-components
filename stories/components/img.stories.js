@@ -42,4 +42,7 @@ export const Lottie = Template.bind({});
 Lottie.args = {
   ...baseArgs,
   lottie: lottie1,
+  lottieSettings: {
+    width: '200px',
+  },
 };
