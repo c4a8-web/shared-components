@@ -43,6 +43,11 @@ export default {
 
       return typeof this.lottie !== 'object' ? Tools.getJSON(this.lottie) : this.lottie;
     },
+    jsonLottieSettingsData() {
+      if (!this.lottie || !this.lottieSettings) return;
+
+      return typeof this.lottieSettings !== 'object' ? Tools.getJSON(this.lottieSettings) : this.lottieSettings;
+    },
     isCloudinary() {
       return Tools.isTrue(this.cloudinary);
     },
@@ -230,6 +235,7 @@ export default {
     class: String,
     preset: String,
     lottie: Object,
+    lottieSettings: Object,
   },
   template: `
     <template v-if="hasPictureTag">
@@ -240,7 +246,7 @@ export default {
         </picture>
       </div>
     </template>
-    <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" />
+    <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" v-bind="jsonLottieSettingsData" />
     <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `,
 };
