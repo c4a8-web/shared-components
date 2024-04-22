@@ -241,7 +241,7 @@ export const EventTeaserTraining = {
   args: {
     headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
     time: '1-4 Tage',
-    shapes: [
+    shape: [
       {
         color: 'var(--color-yellow)',
       },
