@@ -33,16 +33,20 @@ export default {
         `https://www.linkedin.com/shareArticle?mini=true&url=`,
         'https://twitter.com/intent/tweet?text=&url=',
       ];
-      const diverseIcons = ['fas fa-envelope', 'fab fa-linkedin', 'fab fa-x-twitter'];
+      const diverseIcons = {
+        email: 'fas fa-envelope',
+        linkedin: 'fab fa-linkedin',
+        twitter: 'fab fa-x-twitter',
+      };
 
       const authorSocials = [
         {
           link: this.author?.twitter ? twitterUrl + this.author.twitter : '',
-          icon: diverseIcons[3],
+          icon: diverseIcons['twitter'],
         },
         {
           link: this.author?.linkedin ? linkedinUrl + this.author.linkedin : '',
-          icon: diverseIcons[1],
+          icon: diverseIcons['linkedin'],
         },
       ];
 
@@ -53,9 +57,11 @@ export default {
       const socialsUrls = diverseSocials.map((item) => item + this.shareUrl);
 
       return socialsUrls?.map((link, index) => {
+        const socialName = Object.keys(diverseIcons)[index];
+
         return {
           link: link,
-          icon: diverseIcons[index],
+          icon: diverseIcons[socialName],
         };
       });
     },
