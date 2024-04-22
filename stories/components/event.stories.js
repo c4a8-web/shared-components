@@ -1,5 +1,6 @@
 import { getDefaultSettings } from '../../.storybook/templates';
 import { includeseventhtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   ...getDefaultSettings({
@@ -115,5 +116,23 @@ export const External = {
     text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
     external: true,
     url: 'https://www.google.com/search?q=glueckkanja',
+  },
+};
+
+export const WithAnimation = {
+  args: {
+    title: 'Event Title lorem ipsum dolor',
+    date: '2023-12-17',
+    category: 'Event Category',
+    text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
+    image: {
+      lottie: lottie1,
+      alt: 'Event Image',
+      cloudinary: true,
+    },
+    bgColor: 'var(--color-yellow)',
+    color: 'var(--color-copy)',
+    timeColor: 'var(--color-yellow-medium)',
+    time: '15-16 Uhr',
   },
 };

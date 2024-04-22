@@ -1,5 +1,6 @@
 import { createComponent, hrefTo } from '../../.storybook/templates';
 import { includeseventoverviewhtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   argTypes: {
@@ -97,7 +98,7 @@ ManualEvents.args = {
       webcast: true,
       author: ['Nadine Kern', 'Jan Petersen'],
       image: {
-        img: '/demo/authors-demo.png',
+        lottie: lottie1,
         alt: 'lorem ipsum',
       },
       badge: {

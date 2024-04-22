@@ -1,5 +1,6 @@
 import { createComponent, getAssetPath, site } from '../../.storybook/templates';
 import { includesimghtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   title: 'Components/Img',
@@ -34,4 +35,11 @@ ImgSrcSet.args = {
   cloudinary: true,
   preset: 'cardSmall',
   imgSrcSets: site.data.imgSrcSets.cardSmall,
+};
+
+export const Lottie = Template.bind({});
+
+Lottie.args = {
+  ...baseArgs,
+  lottie: lottie1,
 };
