@@ -93,6 +93,22 @@
   </div>
 </div>
 
+{% if page.contactInContent %}
+  {% assign postBlogRecentSpacing = '' %}
+
+  {%
+    include contact.html
+    infos=page.contactInContent.infos
+    quote=true
+    base=page.contactInContent.infos.base
+    form=page.contactInContent.infos.form
+    modalSuccess=page.contactInContent.infos.modalSuccess
+    spacing="mt-10"
+  %}
+{% else %}
+  {% assign postBlogRecentSpacing = 'mt-10' %}
+{% endif %}
+
 {% assign headline = site.data.lang[lang].similarPosts %}
 
 {%
@@ -101,5 +117,5 @@
   limit=21
   headline=headline
   slider=true
-  spacing="mt-10"
+  spacing=postBlogRecentSpacing
 %}
