@@ -28,9 +28,7 @@
     <meta name="google-site-verification" content="{{ site.webmaster.verification_code }}">
   {%- endif -%}
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | replace:'.html','' | prepend: site.url }}">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="alternate icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" />
   {% if page.hreflang -%}
     {% for pageLang in page.hreflang %}
       <link rel="alternate" hreflang="{{ pageLang.lang }}" href="{{ headSiteUrl }}{{ pageLang.href }}" />
