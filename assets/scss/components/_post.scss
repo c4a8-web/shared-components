@@ -4,6 +4,10 @@ $post-content-width-lg: 80%;
 .post {
   container-type: normal;
 
+  .full-width-container {
+    overflow: visible;
+  }
+
   .post-title {
     @include richtext-width;
 
