@@ -7,11 +7,13 @@
 {%- assign imgAlt = include.alt | default: alt -%}
 {%- assign imgLazy = include.lazy -%}
 {%- assign imgLottie = include.lottie -%}
+{%- assign imgLottieSettings = include.lottieSettings -%}
 
 {% if imgImg or imgLottie %}
   {%- if imgLottie -%}
     <v-img
       lottie="{{ imgLottie | jsonify | escape }}"
+      lottie-settings="{{ imgLottieSettings | jsonify | escape }}"
       class="{{ imgClass }}"
     >
     </v-img>
