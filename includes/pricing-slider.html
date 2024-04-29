@@ -6,7 +6,7 @@
 
 <div class="pricing-slider">
   {% if pricingSliderRange %}
-    <div class="js-slider-data" data-range="{{ pricingSliderRange | jsonify | xml_escape }}" data-products="{{ products | jsonify | xml_escape }}">
+    <div class="js-slider-data" data-range="{{ pricingSliderRange | jsonify | escape }}" data-products="{{ products | jsonify | escape }}">
       <!-- Range Slider -->
         <input class="js-ion-range-slider" type="text"
         data-hs-ion-range-slider-options='{
