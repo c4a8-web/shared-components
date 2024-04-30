@@ -55,6 +55,9 @@ const page = {
   scripts: {
     slick: true,
     video: true,
+    cubeportfolio: true,
+    rangeSlider: true,
+    'google-map': true,
   },
   url: '',
 };
