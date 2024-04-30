@@ -15,6 +15,7 @@ export default {
         'modal fade',
         this.slimValue ? 'modal--slim' : '',
         this.notificationValue ? 'modal--notification' : '',
+        this.isCenterSlim ? 'modal--center-slim' : '',
         'vue-component',
       ];
     },
@@ -22,7 +23,7 @@ export default {
       return [
         'modal-dialog',
         `${this.slimValue ? 'modal-lg' : 'modal-xl'}`,
-        `${this.center ? 'modal-dialog-centered' : ''}`,
+        `${this.centerValue ? 'modal-dialog-centered' : ''}`,
       ];
     },
     settings() {
@@ -36,8 +37,14 @@ export default {
         'data-mock-documents-url': this.mockDocumentsUrl ? this.mockDocumentsUrl : null,
       };
     },
+    isCenterSlim() {
+      return this.slimValue && this.centerValue;
+    },
     modal() {
       return this.$refs.modal;
+    },
+    centerValue() {
+      return Tools.isTrue(this.center);
     },
     slimValue() {
       return Tools.isTrue(this.slim);
@@ -51,11 +58,14 @@ export default {
     size() {
       return this.slimValue || this.notificationValue ? 'small' : null;
     },
+    hasCircleAndHover() {
+      return this.isCenterSlim || this.notificationValue ? false : true;
+    },
     circle() {
-      return this.notificationValue ? false : true;
+      return this.hasCircleAndHover;
     },
     hover() {
-      return this.notificationValue ? false : true;
+      return this.hasCircleAndHover;
     },
     bodyClasses() {
       return ['modal__body', this.loading ? State.LOADING : null];

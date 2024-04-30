@@ -44,6 +44,15 @@
   --color-primary-accent: var(--color-emergency-accent);
 }
 
+.is-copy-link {
+  text-decoration: underline !important;
+  color: inherit !important;
+
+  &:hover {
+    color: var(--color-copy-hover) !important;
+  }
+}
+
 .is-centered {
   text-align: center;
 }

@@ -1,4 +1,5 @@
 import BaseComponent from './base-component.js';
+import Modal from '../modal.js';
 
 class PricingSlider extends BaseComponent {
   static rootSelector = '.pricing-slider';
@@ -43,10 +44,26 @@ class PricingSlider extends BaseComponent {
   init() {
     if (window.handleChange) return console.error('remove handleChange from app.js');
 
+    this.bindEvents();
+  }
+
+  bindEvents() {
+    const info = this.root.querySelector('.pricing-slider__info');
+
+    if (info) {
+      info.addEventListener('click', this.handleInfoClick.bind(this));
+    }
+
     // TODO rename after global migration
     window.handleChange = this.handlePricingSlider.bind(this);
     window.fixSliderText = this.fixText.bind(this);
     window.prepareSlider = this.prepare.bind(this);
+  }
+
+  handleInfoClick() {
+    const modal = this.root.querySelector('.pricing-slider__modal');
+
+    Modal.open(modal);
   }
 
   /**
