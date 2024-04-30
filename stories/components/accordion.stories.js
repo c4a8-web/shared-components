@@ -194,3 +194,63 @@ export const Collapsed = {
     },
   },
 };
+
+export const AnimatedImage = {
+  args: {
+    shadowless: false,
+    left: true,
+    accordion: {
+      subline: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+      image: 'products/konnekt/konnekt-drive-letter.webp',
+      animated: true,
+      alt: 'Products',
+      cloudinary: true,
+      id: 'featureAccordion',
+      tabs: [
+        {
+          headline: 'Animated Webp',
+          content:
+            'Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies. Easy download of XML files to generate WIFI and LAN policies',
+          expanded: true,
+          image: 'products/konnekt/konnekt-drive-letter.webp',
+          cloudinary: true,
+          alt: 'WIFI and LAN policy creation',
+          animated: true,
+        },
+        {
+          headline: 'Normal Webp',
+          content: 'Easy download of XML files to generate WIFI and LAN policies',
+          image: '/products/konnekt/konnekt-hero-image.webp',
+          cloudinary: true,
+          alt: 'WIFI and LAN policy creation',
+        },
+        {
+          headline: 'WIFI and LAN policy creation (default image)',
+          content: 'Easy download of XML files to generate WIFI and LAN policies',
+          image: 'security/CSOC-Services-SOAR.png',
+          alt: 'WIFI and LAN policy creation',
+        },
+        {
+          headline: 'WIFI and LAN policy creation',
+          content: 'Easy download of XML files to generate WIFI and LAN policies',
+          image: 'security/CSOC-Services-Analysis-Reporting.png',
+          alt: 'WIFI and LAN policy creation',
+        },
+        {
+          headline: 'Active Threat Hunting',
+          content:
+            '<ul> <li>Unsere Threat Experts hunten regelmäßig in den Kunden Tenants nach neuen, aufkommenden Bedrohungen und neuen Angriffstechniken, die von unseren Threat Researchern entdeckt wurden</li> <li>Das erweitert die Sicht auf die Bedrohungslage unserer Kunden und erhört so die Qualität des Schutzes</li> </ul>',
+          image: 'security/CSOC-Services-Active-Threat-Hunting.png',
+          alt: 'WIFI and LAN policy creation',
+        },
+        {
+          headline: 'Continuous Improvement & Reporting',
+          content:
+            '<ul> <li>Wir verbessern kontinuierlich die Analytic Rules in den Kunden-Repositories und erhöhen so die Sicherheit der Kundenumgebungen</li> <li>Erstellung monatlicher CSOC Berichte mit Empfehlungen für neue Einstellungen und Konfigurationen auf der Grundlage unserer Best Practices (Blueprint)</li> <li>Zugang zu Online Reports, die eine umfangreiche Beschreibung des individuellen Security Zustands des Kunden wiedergeben</li> </ul>',
+          image: 'security/CSOC-Services-Continous-Improvement.png',
+          alt: 'WIFI and LAN policy creation',
+        },
+      ],
+    },
+  },
+};

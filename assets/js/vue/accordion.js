@@ -51,7 +51,10 @@ export default {
     },
     selectFallbackImage() {
       if (!this.fallbackImage) {
-        this.fallbackImage = this.accordion.image || this.getActiveTab()?.image;
+        const activeTab = this.getActiveTab();
+
+        this.fallbackImage = this.accordion.image || activeTab?.image;
+        this.fallbackAnimated = this.accordion.image ? this.accordion.animated : activeTab.animated;
       }
     },
     getActiveTab() {
@@ -78,12 +81,14 @@ export default {
 
       this.accordion.image = this.fallbackImage;
       this.outsideImage = this.fallbackImage;
+      this.outsideAnimated = this.fallbackAnimated;
     },
     changeOutsideImage(index) {
       const tab = this.getTabByIndex(index);
 
       this.showOutsideImage = true;
       this.outsideImage = tab?.image || this.fallbackImage;
+      this.outsideAnimated = tab?.image ? tab.animated : this.fallbackAnimated;
     },
     getTabByIndex(index) {
       if (typeof index === 'undefined') return this.getActiveTab();
@@ -132,13 +137,18 @@ export default {
 
       return null;
     },
+    getTab(tab) {
+      return tab.image ? tab : this.accordion;
+    },
   },
   data() {
     return {
       showOutsideImage: false,
       outsideImage: false,
+      outsideAnimated: false,
       states: [],
       fallbackImage: false,
+      fallbackAnimated: false,
     };
   },
   props: {
@@ -162,17 +172,19 @@ export default {
           <div class="accordion__subline font-size-2" v-if="accordion.subline">{{ accordion.subline }}</div>
         </div>
         <div class="row accordion__image" v-if="accordion.image">
-          <v-img :img="accordion.image" :cloudinary="cloudinary(accordion)" :alt="accordion.alt" />
+          <v-img :img="accordion.image" :cloudinary="cloudinary(accordion)" :alt="accordion.alt" :animated="accordion.animated" />
         </div>
       </div>
     </div>
     <section :class="accordionClasses">
       <div class="row position-relative">
-        <div class="accordion__image-spacer col-lg-6"><v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" v-if="outsideImage" /></div>
+        <div class="accordion__image-spacer col-lg-6">
+          <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" :animated="outsideAnimated" v-if="outsideImage" />
+        </div>
         <div class="col-lg-6 position-static" :id="accordion.id">
           <div class="accordion__fallback-container mb-4 col-lg-6" v-if="outsideImage">
             <div :class="fallbackImageClasses">
-              <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" />
+              <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" :animated="outsideAnimated" />
             </div>
           </div>
           <div :class="cardClasses(index)" v-for="(tab, index) in accordion.tabs" :style="cardStyle(index)">
@@ -195,7 +207,7 @@ export default {
               <div class="accordion__richtext richtext richtext__small card-body">
                 <div class="mb-4 col-lg-6 accordion__floating-container">
                   <div :class="imageWrapperClasses" v-if="getImage(tab)">
-                    <v-img :img="getImage(tab)" :cloudinary="cloudinary(tab)" lazy="true" :alt="tab.alt" />
+                    <v-img :img="getImage(tab)" :cloudinary="cloudinary(tab)" lazy="true" :alt="tab.alt" :animated="getTab(tab).animated" />
                   </div>
                 </div>
                 <div class="accordion__text" v-html="tab.content"></div>

@@ -80,6 +80,11 @@ export default {
       return this.getCloudinaryBasePathLink(srcSets[srcSets.length - 1]);
     },
   },
+  watch: {
+    animated(newAnimated, oldAnimated) {
+      this.srcset = '';
+    },
+  },
   created() {
     if (this.canGenerateSrcSet()) return;
 
@@ -90,7 +95,7 @@ export default {
   },
   methods: {
     canGenerateSrcSet() {
-      return this.isCloudinary && !this.isGif();
+      return this.isCloudinary && !this.isGif() && !this.animated;
     },
     getSetup() {
       const preset = this.getPreset();
@@ -123,7 +128,7 @@ export default {
       return `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
     },
     getCloudinaryLink() {
-      return this.isGif() || this.isSvg()
+      return this.isGif() || this.isSvg() || this.animated
         ? this.getCloudinaryBasePathLink()
         : this.getCloudinaryLinkWithTransformation();
     },
@@ -236,6 +241,7 @@ export default {
     preset: String,
     lottie: Object,
     lottieSettings: Object,
+    animated: Boolean,
   },
   template: `
     <template v-if="hasPictureTag">
