@@ -1,10 +1,12 @@
 <!-- Shared Product Stage Section -->
 {%- assign props = page.stage | default: include.stage -%}
+{%- assign productStageDescription = props.description -%}
+{%- assign productStageAdditionalCopy = props.additionalCopy -%}
+{%- assign productStageTooltip = props.tooltip -%}
+
 {%- assign products = site.data.products.list -%}
 {%- assign background = props.background -%}
 {%- assign headline = props.headline -%}
-{%- assign productStageDescription = props.description -%}
-{%- assign productStageAdditionalCopy = props.additionalCopy -%}
 {%- assign bgColor = props.bgColor | default: 'var(--color-primary)' -%}
 {%- assign slider = props.slider -%}
 {%- assign buttons = props.buttons -%}
@@ -42,11 +44,12 @@
     {% if slider and products %}
       {% include pricing-slider.html
         slider=slider
+        tooltip=productStageTooltip
       %}
     {% endif %}
 
     {% if productStageAdditionalCopy %}
-      <div class="row justify-content-center py-6"><div>{{ productStageAdditionalCopy }}</div></div>
+      <div class="row justify-content-center py-6"><div class="text-center">{{ productStageAdditionalCopy }}</div></div>
     {% endif %}
 
     {% if buttons %}

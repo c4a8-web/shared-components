@@ -39,9 +39,57 @@
   }
 }
 
+// .tool-tip {
+//   position: relative;
+//   display: inline-block;
+
+//   &:focus .tool-tip__content,
+//   &:hover .tool-tip__content {
+//     visibility: visible;
+//   }
+// }
+
+// .tool-tip__content {
+//   @include z-index;
+
+//   visibility: hidden;
+//   background-color: var(--color-background);
+//   color: var(--color-copy);
+//   // text-align: center;
+//   border-radius: 6px;
+//   padding: spacing(2) spacing(3);
+//   position: absolute;
+//   z-index: 1;
+//   bottom: 100%;
+//   width: 80vw;
+//   left: -50vw;
+//   transform: translateX(50vw);
+
+//   @include media-breakpoint-up(lg) {
+//     width: 28vw;
+//     left: 50%;
+//     transform: translateX(-50%);
+//   }
+
+//   @include media-breakpoint-up(lg) {
+//     width: 28vw;
+//     left: 50%;
+//     transform: translateX(-50%);
+//   }
+// }
+
 .has-emergency-colors {
   --color-primary: var(--color-emergency);
   --color-primary-accent: var(--color-emergency-accent);
+}
+
+.is-copy-link {
+  text-decoration: underline !important;
+  color: inherit !important;
+
+  &:hover {
+    color: var(--color-copy-hover) !important;
+  }
 }
 
 .is-centered {

@@ -93,6 +93,7 @@ import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Hand from './vue/icons/hand.js';
+import Info from './vue/icons/info.js';
 import ListView from './vue/icons/list-view.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Mail from './vue/icons/mail.js';
@@ -228,6 +229,7 @@ const addApp = () => {
     EmailActionUnread,
     Expand,
     Hand,
+    Info,
     ListView,
     Menu,
     Magnifier,
