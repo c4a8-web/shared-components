@@ -6,4 +6,17 @@
   display: inline-flex;
   cursor: pointer;
   padding-left: spacing(1);
+
+  &:hover {
+    .icon svg {
+      path {
+        fill: var(--color-copy-light);
+      }
+
+      circle {
+        stroke: var(--color-copy);
+        fill: var(--color-copy);
+      }
+    }
+  }
 }
