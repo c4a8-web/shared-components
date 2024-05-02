@@ -18,7 +18,7 @@ class PricingSlider extends BaseComponent {
       : {
           format: 'de-DE',
           currency: 'EUR',
-          defaultPlan: 'monthly',
+          defaultPlan: 'annual',
         };
 
     this.priceFormatter = new Intl.NumberFormat(pricingData.format, {
