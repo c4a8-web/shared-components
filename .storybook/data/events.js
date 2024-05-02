@@ -225,6 +225,12 @@ const Events = [
     author: 'Lorem Ipsum',
     blogtitlepic: 'head-emergency-calls',
     socialimg: 'https://res.cloudinary.com/glueckkanja/image/upload/v1620393502/blog/heads/head-emergency-calls.jpg',
+    cta: {
+      text: 'Jetzt anmelden',
+      href: 'https://www.youtube.com/watch?v=DjqgniyRv9g',
+      skin: 'primary',
+      button: true,
+    },
   },
 ];
 
