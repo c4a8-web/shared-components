@@ -80,6 +80,8 @@ class Modal {
       }
     }
 
+    console.log('check here');
+
     document.addEventListener(Events.OPEN_MODAL, this.handleModalOpen.bind(this));
   }
 

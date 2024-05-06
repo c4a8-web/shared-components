@@ -27,6 +27,7 @@ export default {
       ];
     },
     settings() {
+      console.log('🚀 ~ settings ~ this.modalId:', this.modalId);
       return {
         'data-client-name': this.clientName ? this.clientName : null,
         'data-api-url': this.apiUrl ? this.apiUrl : null,
