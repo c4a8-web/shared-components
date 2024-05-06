@@ -36,9 +36,7 @@ export default {
               :level=level
               :text=headline
             />
-            <div class="screenshot__copy">
-              {{ copy }}
-            </div>
+            <div class="screenshot__copy" v-html="copy"></div>
             <div class="screenshot__list pt-4" v-if="list">
               <cta
                 :text=list.ctaText
