@@ -3,6 +3,7 @@
 {%- assign productStageDescription = props.description -%}
 {%- assign productStageAdditionalCopy = props.additionalCopy -%}
 {%- assign productStageTooltip = props.tooltip -%}
+{%- assign productStageModalId = props.modalId -%}
 
 {%- assign products = site.data.products.list -%}
 {%- assign background = props.background -%}
@@ -45,6 +46,7 @@
       {% include pricing-slider.html
         slider=slider
         tooltip=productStageTooltip
+        modalId=productStageModalId
       %}
     {% endif %}
 

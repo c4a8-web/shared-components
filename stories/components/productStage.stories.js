@@ -41,6 +41,7 @@ export const Default = {
           ctaHref: 'javascript:void(0);',
         },
       ],
+      tooltip: 'lorem ipsum dolor sit amet',
     },
   },
 };
@@ -68,6 +69,7 @@ export const NoDescription = {
           resultPer: 'mo',
         },
       },
+      modalId: 'product-stage-modal',
       tooltip:
         '<h3>Pricing Details</h3>All prices exclude sales tax. Our offers exclusively address professional customers. Billing for RADIUSaaS is based on a per-user model, with no setup or base fees. The subscription allows each user to authenticate to multiple devices. Subscribers are granted full access to all features, and we ensure RADIUSaaS remains up-to-date with the latest updates. A minimum subscription for 50 users per organization is required. <a href="javascript:void(0);" class="is-copy-link">Learn more on our license page</a>.',
       additionalCopy:
