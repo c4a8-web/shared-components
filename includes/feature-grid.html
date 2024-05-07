@@ -8,6 +8,7 @@
 {% assign features = props.features %}
 {% assign footer = props.footer %}
 {%- assign featureGridCentered = include.centered -%}
+{%- assign featureGridHeadlineClasses = props.headlineClasses -%}
 
 {% capture columnClass %}
 col-lg-{{ 12 | divided_by: gridSize }}
@@ -18,11 +19,13 @@ col-lg-{{ 12 | divided_by: gridSize }}
   style="background-color:{{ backgroundColor | default: 'var(--color-bg-grey)' }}"
 >
   <div class="container {{ include.spacing }}" >
+    {% capture featureGridHeadlineRowClasses %}fade-in-bottom {{ featureGridHeadlineClasses }}{% endcapture %}
+
     {%
       include headline-row.html
       text=headline
       centered=true
-      classes="fade-in-bottom"
+      classes=featureGridHeadlineRowClasses
       utilityAnimationStep="1"
     %}
 

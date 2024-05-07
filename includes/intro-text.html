@@ -3,12 +3,13 @@
 {%- assign introTextVariant = include.variant -%}
 {%- assign introTextHeadline = include.headline -%}
 {%- assign introTextSpacing = include.spacing -%}
+{%- assign introTextHeadlineClasses = include.headlineClasses | default: 'text-center' -%}
 
 <figure class="intro-text utility-animation {{ introTextVariant }} {{ introTextSpacing }}">
   <div class="container space-lg-2">
     {% if introTextHeadline %}
       <div class="row mb-9 mt-9">
-        <div class="col text-center fade-in-bottom" data-utility-animation-step="1">
+        <div class="col {{ introTextHeadlineClasses }} fade-in-bottom" data-utility-animation-step="1">
           {%
             include headline.html
             text=introTextHeadline
