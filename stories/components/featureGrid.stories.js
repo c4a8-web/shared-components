@@ -182,6 +182,7 @@ export const WithAnimation = {
         lottie: lottie1,
       },
       headline: 'Specifications',
+      headlineClasses: 'text-left',
       features: [
         {
           title: 'Contact Sources',
