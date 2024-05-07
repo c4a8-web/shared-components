@@ -6,6 +6,7 @@
 {%- assign headlineRowHasAnimation = include.hasAnimation -%}
 {%- assign headlineRowClasses = include.classes -%}
 {%- assign headlineRowHeadlineClasses = include.headlineClasses -%}
+{%- assign headlineRowNoContainer = include.noContainer -%}
 
 {% capture headlineRowClassesValue %}
   {%- if headlineRowClasses and headlineRowClasses contains "text-" -%}
@@ -15,7 +16,7 @@
   {%- endif -%}
 {% endcapture %}
 
-<div class="container {{ headlineRowSpacing }} headline-row {% if headlineRowHasAnimation %}utility-animation{% endif %}">
+<div class="{% unless headlineRowNoContainer %}container{% endunless %} {{ headlineRowSpacing }} headline-row {% if headlineRowHasAnimation %}utility-animation{% endif %}">
   <div class="row">
     <div class="col-sm-12 {% if headlineRowHasAnimation %}fade-in-bottom{% endif %} {{ headlineRowClassesValue }}" data-utility-animation-step="1">
       {%
