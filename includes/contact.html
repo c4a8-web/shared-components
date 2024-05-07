@@ -111,7 +111,7 @@
       </div>
 
       <div class="contact__box {% unless contactCollapsed %}fade-in-bottom{% endunless %} {{ contactBoxClass }} {{ contactBoxQuoteClass }}" data-utility-animation-step="1">
-        <div class="contact__person {{ contactLight }}" {% if contact.person.quoteBgColor %}style="--color-contact-person: {{ contact.person.quoteBgColor }}"{% endif %}>
+        <div class="contact__person {{ contactLight }}">
           {% if contactQuote %}
             <div class="contact__person-quote">
               <div class="contact__icon">
