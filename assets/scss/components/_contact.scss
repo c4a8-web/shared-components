@@ -1,6 +1,5 @@
 .contact {
-  --color-contact-person: var(--color-yellow);
-  --color-contact-quote-person: var(--color-green-blue);
+  --color-contact-box-background: var(--color-yellow);
   --color-detail-highlight: var(--color-orange);
   --color-contact-background: var(--color-primary);
   --color-contact-quote-background: var(--color-gigas);
@@ -28,7 +27,7 @@
   }
 
   &.contact--has-shape {
-    --color-contact-person: var(--color-primary);
+    --color-contact-box-background: var(--color-primary);
   }
 
   &:not(.contact--has-shape):not(.is-collapsed):not(.contact--quote) {
@@ -40,6 +39,7 @@
 
   &.contact--quote {
     --contact-copy-color: var(--color-copy-light);
+    --color-contact-box-background: var(--color-green-blue);
 
     .contact__icon {
       width: 100%;
@@ -61,8 +61,6 @@
     }
 
     .contact__person {
-      --color-contact-person: var(--color-contact-quote-person);
-
       position: relative;
       height: auto;
       padding: spacing(12) spacing(8) spacing(12) spacing(11);
@@ -127,7 +125,9 @@
       overflow: hidden;
       flex: 0;
       height: 0;
-      transition: opacity 0.7s $animation-transition, height 0.7s $animation-transition;
+      transition:
+        opacity 0.7s $animation-transition,
+        height 0.7s $animation-transition;
     }
 
     .contact__box {
@@ -173,7 +173,7 @@
 }
 
 .contact__person {
-  background-color: var(--color-contact-person);
+  background-color: var(--color-contact-box-background);
   color: var(--contact-box-copy-color);
   height: 100%;
   padding-bottom: spacing(20);
