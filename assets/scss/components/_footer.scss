@@ -115,6 +115,10 @@ footer {
   }
 }
 
-.footer__partner-images {
+.footer__images {
   padding-top: var(--footer-spacing);
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 0;
+  }
 }

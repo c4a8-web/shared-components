@@ -103,31 +103,31 @@ export default {
                   </a>
                 </li>
               </ul>
+            </div>
 
-              <div class="footer__partner-row col-lg-9">
-                <div class="row no-gutters ml-lg-4">
-                  <div :class="['footer__partner-images col-lg-6 w-90 w-lg-100', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
-                    <v-img
-                      cloudinary=true
-                      v-bind="partner"
-                      class="footer__partner-image"
-                    ></v-img>
-                  </div>
+            <div class="footer__images col-lg-9">
+              <div class="row no-gutters ml-lg-4">
+                <div :class="['footer__partner-images col-lg-6', partner.width ? 'w-' + partner.width : 'w-100', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
+                  <v-img
+                    cloudinary=true
+                    v-bind="partner"
+                    class="footer__partner-image"
+                  ></v-img>
                 </div>
               </div>
 
-              <template v-for="(highlight, index) in dataValue.highlights">
-                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ highlight.title }}</span>
-                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
-                  <v-img
-                    cloudinary=true
-                    v-bind="highlight"
-                  ></v-img>
-                </a>
-              </template>
-              <hr class="d-lg-none mt-5">
+              <div class="row no-gutters ml-lg-4">
+                <template v-for="(highlight, index) in dataValue.highlights">
+                  <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ highlight.title }}</span>
+                  <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
+                    <v-img
+                      cloudinary=true
+                      v-bind="highlight"
+                    ></v-img>
+                  </a>
+                </template>
+              </div>
             </div>
-
           </div>
         </div>
 

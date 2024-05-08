@@ -13,31 +13,23 @@ const FooterData = {
       alt: 'glueckkanja Logo',
       url: 'index.html',
     },
-    {
-      img: '/v1623133806/logos/primepulse-endorsement-white.svg',
-      alt: 'glueckkanja Logo',
-      url: 'https://primepulse.com/',
-      target: '_blank',
-      classes: 'offset-lg-6',
-    },
   ],
   partners: [
     {
       img: '/logos/partner-misa-mxdr.svg',
       alt: 'MISA',
-      width: '70%',
+      width: '75',
     },
     {
-      img: '/logos/msftLogos-Solutions-white.svg',
-      alt: 'Solutions Partner Designations',
-    },
-    {
-      img: '/logos/msftLogos-AdvanceSpecializations-white.svg',
-      alt: 'Advanced Specializations',
-    },
-    {
-      img: '/logos/msftLogos-PartnerOfTheYear-white.svg',
+      img: '/logos/partner-mpoy.svg',
       alt: 'Partner of the Year',
+    },
+    {
+      img: '/logos/partner-primepulse.svg',
+      alt: 'Member of Primepulse',
+      width: '75',
+      url: 'https://primepulse.com/',
+      target: '_blank',
     },
   ],
   highlights: [
