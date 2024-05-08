@@ -6,7 +6,6 @@ const FooterData = {
   city: 'Offenbach',
   country: 'Germany',
   mail: 'info@glueckkanja.com',
-  introduction: 'Cutting edge Microsoft Partner in Germany<br />for Microsoft 365, Azure and Cloud Security.',
   copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
@@ -24,6 +23,11 @@ const FooterData = {
   ],
   partners: [
     {
+      img: '/logos/partner-misa-mxdr.svg',
+      alt: 'MISA',
+      width: '70%',
+    },
+    {
       img: '/logos/msftLogos-Solutions-white.svg',
       alt: 'Solutions Partner Designations',
     },
@@ -34,10 +38,6 @@ const FooterData = {
     {
       img: '/logos/msftLogos-PartnerOfTheYear-white.svg',
       alt: 'Partner of the Year',
-    },
-    {
-      img: '/logos/msftLogos-MisaMXDR-transparent.png',
-      alt: 'MISA',
     },
   ],
   highlights: [

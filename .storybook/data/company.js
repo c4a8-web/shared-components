@@ -19,6 +19,11 @@ const Company = {
   ],
   partners: [
     {
+      img: '/logos/partner-misa-mxdr.svg',
+      alt: 'MISA',
+      width: '70%',
+    },
+    {
       img: '/logos/msftLogos-Solutions-white.svg',
       alt: 'Solutions Partner Designations',
     },
@@ -29,10 +34,6 @@ const Company = {
     {
       img: '/logos/msftLogos-PartnerOfTheYear-white.svg',
       alt: 'Partner of the Year',
-    },
-    {
-      img: '/logos/msftLogos-MisaMXDR-transparent.png',
-      alt: 'MISA',
     },
   ],
   highlights: [
