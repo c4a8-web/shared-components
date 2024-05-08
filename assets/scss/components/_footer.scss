@@ -1,4 +1,7 @@
 footer {
+  --color-footer-border: var(--color-white-50);
+  --footer-spacing: #{spacing(10)};
+
   .footer__socials {
     .fab {
       font-size: 1.6em;
@@ -6,7 +9,7 @@ footer {
   }
 
   hr {
-    border-color: var(--color-white-30);
+    border-color: var(--color-footer-border);
   }
 
   .streamline-site-phone {
@@ -100,4 +103,18 @@ footer {
   img {
     width: 100%;
   }
+}
+
+.footer__locations {
+  padding-bottom: var(--footer-spacing);
+  border-bottom: 1px solid var(--color-footer-border);
+
+  @include media-breakpoint-up(lg) {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
+.footer__partner-images {
+  padding-top: var(--footer-spacing);
 }

@@ -4,6 +4,7 @@ $color-blue-dark: #000520;
 $color-blue-medium: #0072c6;
 
 $white-30: rgba(255, 255, 255, 0.3);
+$white-50: rgba(255, 255, 255, 0.5);
 $color-primary-accent: $color-blue-medium;
 $color-copy: $color-blue-dark;
 
@@ -22,6 +23,7 @@ $gray-600: #8c98a4;
   --color-black-2: #fbfbfb;
 
   --color-white-30: #{$white-30};
+  --color-white-50: #{$white-50};
 
   --color-manatee: #999ba6;
   --color-blue-dark: #{$color-blue-dark};
