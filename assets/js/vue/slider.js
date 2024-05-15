@@ -92,6 +92,9 @@ export default {
     hideBackgroundValue() {
       return Tools.isTrue(this.hideBackground);
     },
+    hideContainerValue() {
+      return Tools.isTrue(this.hideContainer);
+    },
     backgroundClass() {
       return this.hideBackgroundValue === false ? State.HAS_BACKGROUND : '';
     },
@@ -135,7 +138,7 @@ export default {
           </svg>
         </figure>
       </div>
-      <wrapper :hideContainer="hiddenContainer" classes="slider__wrapper" :style="style">
+      <wrapper :hideContainer="hideContainerValue" classes="slider__wrapper" :style="style">
         <div class="row" v-if="headline">
           <div class="slider__header col-lg-12 col-md-10 mt-6 mt-lg-8 mb-6 mb-lg-8 text-center">
             <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
