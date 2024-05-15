@@ -19,7 +19,7 @@ export const Post = {
     page: {
       title: 'Post Title',
       author: ['Carolin Kanja'],
-      blogtitlepic: 'head-external-mail-hack',
+      blogtitlepic: 'head-cloud-summit-2024',
       excerpt,
     },
     site,
@@ -32,7 +32,7 @@ export const Slider = {
     page: {
       title: 'Post with Slider',
       author: ['Carolin Kanja'],
-      blogtitlepic: 'head-external-mail-hack',
+      blogtitlepic: 'head-cloud-summit-2024',
       excerpt,
       blogTitleImages: [
         {

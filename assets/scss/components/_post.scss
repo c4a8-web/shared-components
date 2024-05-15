@@ -161,14 +161,22 @@ $post-content-width-lg: 80%;
   margin-top: -1px;
 
   .slider {
-    width: 100vw;
+    @include media-breakpoint-up(lg) {
+      .slider__wrapper {
+        padding: 0 spacing(14);
+      }
 
-    .slider__wrapper {
-      padding: 0 spacing(18);
+      .wrapper-slot-items__item {
+        padding: 0 spacing(4);
+      }
     }
 
-    .wrapper-slot-items__item {
-      padding: 0 spacing(4);
+    @include media-breakpoint-up(xl) {
+      width: 100vw;
+
+      .slider__wrapper {
+        padding: 0 spacing(18);
+      }
     }
   }
 }
