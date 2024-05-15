@@ -50,9 +50,10 @@ export default {
     <footer :class="classList" :style="style">
       <div class="container">
         <div class="space-top-2 space-top-lg-3 space-bottom-1">
-          <div class="row">
-            <div :class="['col-lg-3', logo?.classes]" v-for="logo in dataValue.logos">
-              <div class="mb-6">
+          <div class="row justify-content-lg-between">
+            <div class="col-lg-3 ml-lg-auto mb-2 mb-lg-0 footer__contacts">
+
+              <div :class="['mb-6', logo?.classes]" v-for="logo in dataValue.logos">
                 <a
                   :href="logo.url"
                   :target="logo.target"
@@ -65,10 +66,7 @@ export default {
                   ></v-img>
                 </a>
               </div>
-            </div>
-          </div>
-          <div class="row justify-content-lg-between">
-            <div class="col-lg-3 ml-lg-auto mb-2 mb-lg-0 footer__contacts">
+
               <ul class="footer__locations nav nav-sm nav-x-0 nav-white flex-column" v-for="location in locations">
                 <li class="nav-item">
                   {{ location.name }}
@@ -107,13 +105,13 @@ export default {
 
             <div class="footer__images col-lg-9">
               <div class="row no-gutters ml-lg-4">
-                <div :class="['footer__partner-images col-lg-6', partner.width ? 'w-' + partner.width : 'w-100', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
+                <a :href="partner.url" :target="partner.target"  :class="['footer__partner-images col-lg-4 px-lg-5', partner.width ? 'w-lg-100 w-' + partner.width : 'w-100']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
                   <v-img
                     cloudinary=true
                     v-bind="partner"
                     class="footer__partner-image"
                   ></v-img>
-                </div>
+                </a>
               </div>
 
               <div class="row no-gutters ml-lg-4">
@@ -130,6 +128,15 @@ export default {
             </div>
           </div>
         </div>
+
+        <div>
+          // redo the structure here without the grid
+
+        </div>
+
+
+
+
 
         <hr class="mx-lg-3">
 

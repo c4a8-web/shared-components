@@ -98,6 +98,16 @@ footer {
   }
 }
 
+.footer__partner-images {
+  @include media-breakpoint-up(md) {
+    border-right: 1px solid var(--color-footer-border);
+
+    &:last-of-type {
+      border-right: 0;
+    }
+  }
+}
+
 .footer__highlight-link {
   max-width: 300px;
   img {
