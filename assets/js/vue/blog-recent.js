@@ -77,17 +77,6 @@ export default {
             },
           },
           {
-            breakpoint: 768,
-            settings: {
-              centerMode: true,
-              infinite: false,
-              centerPadding: '30px',
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              dots: this.postsArray.length > 1 ? true : false,
-            },
-          },
-          {
             breakpoint: 576,
             settings: {
               centerMode: true,
