@@ -161,6 +161,13 @@ $post-content-width-lg: 80%;
   margin-top: -1px;
 
   .slider {
+    @include media-breakpoint-down(md) {
+      .slider__wrapper {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
     @include media-breakpoint-up(lg) {
       .slider__wrapper {
         padding: 0 spacing(14);
