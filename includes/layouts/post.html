@@ -42,7 +42,20 @@
       </header>
       <div class="post-content e-content" itemprop="articleBody">
         <p class="post__sticky-excerpt">{{ page.excerpt }}</p>
-        {% if page.blogtitlepic %}
+        {% if page.blogTitleImages %}
+          <div class="post__title-images">
+            <slider
+              hide-background="true"
+            >
+              {% for postTitleImage in page.blogTitleImages %}
+                <v-img
+                  cloudinary="{{ postTitleImage.cloudinary }}"
+                  img="{{ postTitleImage.img }}"
+                ></v-img>
+              {% endfor %}
+            </slider>
+          </div>
+        {% elsif page.blogtitlepic %}
           {% capture imgUrl %}{{ site.blog_image_path }}{{ page.blogtitlepic }}{% endcapture %}
           <div class="post__intro-img">
             {%

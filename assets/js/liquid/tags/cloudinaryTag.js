@@ -78,6 +78,10 @@ const dummyDimensions = function (img, data) {
       width = 1280;
       height = 720;
       break;
+    case 'blog/heads/head-cloud-summit-2024':
+      width = 2880;
+      height = 1620;
+      break;
     default:
       width = 800;
       height = 800;

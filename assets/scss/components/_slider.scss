@@ -24,7 +24,9 @@
   .slick-list {
     @include media-breakpoint-up(sm) {
       width: calc(100%);
+    }
 
+    @include media-breakpoint-up(lg) {
       .slick-track {
         left: 0;
       }
