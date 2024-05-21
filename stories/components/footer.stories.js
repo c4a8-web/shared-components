@@ -1,7 +1,8 @@
-import { getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings, getParams } from '../../.storybook/templates';
 import { includesfooterhtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
+  ...getParams({ page: true }),
   ...getDefaultSettings({
     component,
     argTypes: {

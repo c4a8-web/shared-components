@@ -129,16 +129,81 @@ export default {
           </div>
         </div>
 
-        <div>
-          // redo the structure here without the grid
+        <div class="footer__content-row row">
+          <div class="footer__content col-lg-12">
+            <div class="footer__address">
+              <div :class="['mb-6', logo?.classes]" v-for="logo in dataValue.logos">
+                <a
+                  :href="logo.url"
+                  :target="logo.target"
+                  aria-label="Front"
+                  :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-65 w-md-35 w-lg-90']"
+                >
+                  <v-img
+                    cloudinary=true
+                    v-bind="logo"
+                  ></v-img>
+                </a>
+              </div>
 
+              <ul class="footer__locations nav nav-sm nav-x-0 nav-white flex-column" v-for="location in locations">
+                <li class="nav-item">
+                  {{ location.name }}
+                </li>
+                <li class="nav-item" v-if="location.over">{{ location.over }}</li>
+                <li class="nav-item">
+                  {{ location.street }}
+                </li>
+                <li :class="['nav-item footer__address-block', location.postalReversed ? 'is-reversed' : '']">
+                  <span class="footer__postal-code">{{ location.postalCode }}</span>
+                  <span class="footer__city">{{ location.city }}</span>
+                  <span class="footer__country">{{ location.country }}</span>
+                </li>
+                <li class="nav-item" v-if="location.number">
+                  <a class="nav-link media" :href="'tel:' + location.number">
+                    <span class="media">
+                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
+                      <span class="media-body">
+                        {{ location.number }}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+                <li :class="['nav-item', locations.length > 1 ? 'pt-4' : '']" v-if="location.mail">
+                  <a class="nav-link media pt-3" :href="'mailto:' + location.mail">
+                    <span class="media">
+                      <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
+                      <span class="media-body">
+                        {{ location.mail }}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="footer__highlights">
+              <div class="footer__partners">
+                <template v-for="(partner, index) in dataValue.partners">
+                  <a :href="partner.url" :target="partner.target" class="footer__partner-images" aaaaav-for="(partner, index) in dataValue.partners">
+                    <v-img
+                      cloudinary=true
+                      v-bind="partner"
+                      class="footer__partner-image"
+                    ></v-img>
+                  </a>
+                  <div class="footer__vertical-line" v-if="index < dataValue.partners.length-1">&nbsp;</div>
+                </template>
+              </div>
+            </div>
+          </div>
         </div>
 
 
 
 
 
-        <hr class="mx-lg-3">
+        <hr class="footer__divider mx-lg-3">
 
         <div class="mt-3">
           <div class="row align-items-md-center mb-3">
