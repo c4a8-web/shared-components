@@ -185,23 +185,23 @@ export default {
             <div class="footer__highlights">
               <div class="footer__partners">
                 <template v-for="(partner, index) in dataValue.partners">
-                  <a :href="partner.url" :target="partner.target" class="footer__partner-images" aaaaav-for="(partner, index) in dataValue.partners">
+                  <a :href="partner.url" :target="partner.target" class="footer__partner-images">
                     <v-img
                       cloudinary=true
                       v-bind="partner"
                       class="footer__partner-image"
                     ></v-img>
                   </a>
-                  <div class="footer__vertical-line" v-if="index < dataValue.partners.length-1">&nbsp;</div>
+                  <div class="footer__vertical-line" v-if="index < dataValue.partners.length-1"></div>
                 </template>
+              </div>
+
+              <div class="footer__slider">
+                SLIDER HERE
               </div>
             </div>
           </div>
         </div>
-
-
-
-
 
         <hr class="footer__divider mx-lg-3">
 

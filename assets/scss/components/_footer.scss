@@ -100,9 +100,10 @@ footer {
 }
 
 .footer__partner-image {
+  width: auto;
+
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
     max-width: 400px;
-    width: auto;
     max-width: 100%;
     height: 100%;
   }
@@ -112,12 +113,24 @@ footer {
   display: flex;
   justify-content: space-between;
   width: 100%;
+  flex-direction: column;
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    flex-direction: row;
+  }
 }
 
 .footer__vertical-line {
+  height: 1px;
+  width: 100%;
+  border-bottom: 1px solid var(--color-footer-border);
+
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
     flex: 1 0 auto;
     position: relative;
+    height: auto;
+    width: auto;
+    border-bottom: 0;
 
     &::after {
       content: '';
@@ -133,7 +146,12 @@ footer {
 }
 
 .footer__partner-images {
+  padding: var(--footer-content-spacing) 0;
+
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    padding-top: 0;
+    padding-bottom: 0;
+
     &:first-child {
       padding-right: var(--footer-partner-spacing);
     }
@@ -181,14 +199,23 @@ footer {
 }
 
 .footer__address {
+  border-bottom: 1px solid var(--color-footer-border);
+  padding-bottom: var(--footer-content-spacing);
+
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
     padding-right: var(--footer-content-spacing);
+    padding-bottom: 0;
     border-right: 1px solid var(--color-footer-border);
+    border-bottom: 0;
   }
 }
 
 .footer__divider {
-  margin-top: var(--footer-spacing);
+  margin-top: 0;
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    margin-top: var(--footer-spacing);
+  }
 }
 
 .footer__highlights {
