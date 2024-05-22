@@ -7,6 +7,8 @@ footer {
   --footer-partner-spacing: #{spacing(4)};
   --footer-content-spacing: var(--footer-spacing);
 
+  padding-top: var(--footer-spacing-large);
+
   .footer__socials {
     .fab {
       font-size: 1.6em;
@@ -40,6 +42,8 @@ footer {
 
   @include media-breakpoint-up('xl') {
     --footer-content-spacing: var(--footer-spacing-large);
+
+    padding-top: spacing(20);
   }
 }
 
@@ -117,6 +121,7 @@ footer {
 
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
     flex-direction: row;
+    margin-bottom: var(--footer-spacing-large);
   }
 }
 
@@ -224,4 +229,13 @@ footer {
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
     padding-left: var(--footer-content-spacing);
   }
+}
+
+.footer__slider-container {
+  width: 100%;
+}
+
+.footer__slider {
+  width: 100%;
+  flex: 0 0 100%;
 }
