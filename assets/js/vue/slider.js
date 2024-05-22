@@ -142,7 +142,7 @@ export default {
             <span v-if="subline" :class="sublineClassesValue" >{{ subline }}</span>
           </div>
         </div>
-        <div class="slider__container js-slick-carousel" :data-hs-slick-carousel-options="carouselOptions" >
+        <div class="slider__container js-slick-carousel" :data-hs-slick-carousel-options="carouselOptions">
           <wrapper-slot-items :items="$slots.default"></wrapper-slot-items>
         </div>
       </wrapper>
