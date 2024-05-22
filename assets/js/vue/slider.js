@@ -56,6 +56,9 @@ export default {
         'vue-component',
       ];
     },
+    jsonOptions() {
+      return Tools.getJSON(this.options);
+    },
     getSpacing() {
       return this.spacing ? this.spacing : '';
     },
@@ -73,16 +76,21 @@ export default {
 
       if (childrenLength === 0) return null;
 
-      const options = defaultOptions({ length: childrenLength, centerPadding: this.centerPaddingValue });
-      const slidesToShow = 1;
+      const options = this.jsonOptions
+        ? this.jsonOptions
+        : defaultOptions({ length: childrenLength, centerPadding: this.centerPaddingValue });
 
-      options.slidesToShow = options.slidesToScroll = slidesToShow;
-      options.dots = true;
+      if (!this.jsonOptions) {
+        const slidesToShow = 1;
 
-      options.responsive.forEach((breakpoint) => {
-        breakpoint.settings.dots = true;
-        breakpoint.settings.slidesToScroll = breakpoint.settings.slidesToShow = slidesToShow;
-      });
+        options.slidesToShow = options.slidesToScroll = slidesToShow;
+        options.dots = true;
+
+        options.responsive.forEach((breakpoint) => {
+          breakpoint.settings.dots = true;
+          breakpoint.settings.slidesToScroll = breakpoint.settings.slidesToShow = slidesToShow;
+        });
+      }
 
       return JSON.stringify(options);
     },
@@ -114,7 +122,6 @@ export default {
   },
   data() {
     return {
-      options: '',
       defaultBgColor: 'var(--color-bg-grey)',
     };
   },
@@ -131,6 +138,7 @@ export default {
     },
     bgColor: String,
     centerPadding: Number,
+    options: Object,
   },
   // TODO move shape to a vue component and insert it here
   template: `
