@@ -180,6 +180,16 @@ export default {
                   </a>
                 </li>
               </ul>
+
+              <template v-for="(brandLogo, index) in dataValue.brandLogos">
+                <span v-if="brandLogo.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
+                <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
+                  <v-img
+                    cloudinary=true
+                    v-bind="brandLogo"
+                  ></v-img>
+                </a>
+              </template>
             </div>
 
             <div class="footer__highlights">
@@ -197,7 +207,16 @@ export default {
               </div>
 
               <div class="footer__slider">
-                SLIDER HERE
+                <slider
+                  hide-background="true"
+                >
+                  <a v-for="(highlight, index) in dataValue.highlights" :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
+                    <v-img
+                      cloudinary=true
+                      v-bind="highlight"
+                    ></v-img>
+                  </a>
+                </slider>
               </div>
             </div>
           </div>
