@@ -1,0 +1,33 @@
+.carousel {
+  overflow: hidden;
+  background-color: red;
+  width: 100%;
+}
+
+.carousel__content {
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+
+.item {
+  display: inline-block;
+  width: 20%;
+  padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+  border-right: 1px solid #ddd;
+}
+
+.item:last-child {
+  border-right: none;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}

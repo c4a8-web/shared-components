@@ -12,6 +12,7 @@ import Authors from './vue/authors.js';
 import AuthorAvatar from './vue/author-avatar.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
+import Carousel from './vue/carousel.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
@@ -161,11 +162,12 @@ const addApp = () => {
     AuthorAvatar,
     BlogRecent,
     Card,
+    Carousel,
+    CheckCard,
     Cta,
     Dropdown,
     EventOverview,
     Event,
-    CheckCard,
     CheckMark,
     Faq,
     FeatureGridItem,

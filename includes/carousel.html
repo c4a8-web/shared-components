@@ -1,0 +1,6 @@
+{% assign carouselItems = include.items %}
+
+<carousel
+  items="{{ carouselItems | jsonify | escape }}"
+>
+</carousel>

@@ -10,6 +10,56 @@ export default {
     style() {
       return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ''];
     },
+    sliderOptions() {
+      return {
+        slidesToShow: 4,
+        // slidesToScroll: 2,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        speed: 500,
+        cssEase: 'linear',
+        pauseOnHover: true,
+        pauseOnFocus: true,
+        arrows: false,
+        dots: true,
+        // centerMode: true,
+        // centerPadding: '140px',
+        infinite: true,
+        draggable: true,
+        // variableWidth: true,
+        dotsClass: 'slick-pagination is-default',
+        // responsive: [
+        //   {
+        //     breakpoint: 1200,
+        //     settings: {
+        //       slidesToShow: 4,
+        //       slidesToScroll: 1,
+        //       infinite: true,
+        //     },
+        //   },
+        //   {
+        //     breakpoint: 992,
+        //     settings: {
+        //       centerMode: true,
+        //       centerPadding: '30px',
+        //       infinite: true,
+        //       slidesToShow: 4,
+        //       slidesToScroll: 1,
+        //     },
+        //   },
+        //   {
+        //     breakpoint: 576,
+        //     settings: {
+        //       centerMode: true,
+        //       centerPadding: '20px',
+        //       infinite: true,
+        //       slidesToShow: 4,
+        //       slidesToScroll: 1,
+        //     },
+        //   },
+        // ],
+      };
+    },
     dataValue() {
       return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
     },
@@ -127,9 +177,15 @@ export default {
               </div>
 
               <div class="footer__slider-container">
+                <carousel
+                  :items="dataValue.highlights"
+                >
+                </carousel>
+
                 <slider
                   class="footer__slider"
                   hide-background="true"
+                  :options="sliderOptions"
                 >
                   <a v-for="(highlight, index) in dataValue.highlights" :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
                     <v-img
