@@ -44,6 +44,13 @@ const FooterData = {
   ],
   highlights: [
     {
+      img: '/logos/iso-27001-siegel.png',
+      alt: 'ISO 27001',
+      url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
+      target: '_blank',
+      classes: 'w-90',
+    },
+    {
       img: '/v1705390659/logos/kununu-compact.svg',
       alt: 'Kununu Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
@@ -52,6 +59,10 @@ const FooterData = {
     {
       img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
       alt: 'ISG Microsoft 365 Services',
+    },
+    {
+      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
+      alt: 'ISG Managed Services for Azure',
     },
     {
       img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
