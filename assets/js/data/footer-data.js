@@ -32,7 +32,7 @@ const FooterData = {
       target: '_blank',
     },
   ],
-  highlights: [
+  brandLogos: [
     {
       title: 'a brand of:',
       img: '/logos/gk-Logo-sw.svg',
@@ -41,12 +41,21 @@ const FooterData = {
       classes: 'w-50 w-sm-40 w-lg-60 w-xl-50',
       target: '_blank',
     },
+  ],
+  highlights: [
     {
-      img: '/logos/iso-27001-siegel.png',
-      alt: 'ISO 27001',
-      url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-en.pdf',
+      img: '/v1705390659/logos/kununu-compact.svg',
+      alt: 'Kununu Logo',
+      url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
-      classes: 'mt-3 w-40 w-lg-60',
+    },
+    {
+      img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
+      alt: 'ISG Microsoft 365 Services',
+    },
+    {
+      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
+      alt: 'ISG Managed Services for Azure',
     },
   ],
   socials: [
