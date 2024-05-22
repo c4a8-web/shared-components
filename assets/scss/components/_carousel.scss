@@ -1,33 +1,55 @@
 .carousel {
+  --color-carousel-background: rgb(227, 47, 47);
+
   overflow: hidden;
-  background-color: red;
   width: 100%;
+  position: relative;
+
+  &.has-background {
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      width: 90px;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      left: 0;
+      background: linear-gradient(to right, var(--color-carousel-background) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    &:after {
+      right: 0;
+      left: auto;
+      top: 0;
+      background: linear-gradient(to left, var(--color-carousel-background) 0%, rgba(255, 255, 255, 0) 100%);
+    }
+
+    @include media-breakpoint-up('lg') {
+      &:before,
+      &:after {
+        width: 150px;
+      }
+    }
+  }
 }
 
 .carousel__content {
   display: flex;
   white-space: nowrap;
-  animation: scroll 20s linear infinite;
+  animation: scroll 50s linear infinite;
 }
 
-.item {
+.carousel__item-container {
   display: inline-block;
-  width: 20%;
-  padding: 20px;
+  max-width: 33%;
+  padding: 0 spacing(4);
   box-sizing: border-box;
   text-align: center;
-  border-right: 1px solid #ddd;
-}
+  flex-grow: 1;
+  flex-shrink: 0;
 
-.item:last-child {
-  border-right: none;
-}
-
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
+  @include media-breakpoint-up('lg') {
+    max-width: 25%;
   }
 }

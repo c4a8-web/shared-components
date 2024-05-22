@@ -3,62 +3,17 @@ import FooterData from '../data/footer-data.js';
 
 export default {
   tagName: 'v-footer',
+  data() {
+    return {
+      bgColorRgbaValue: null,
+    };
+  },
   computed: {
     classList() {
       return ['footer text-white', !Tools.isTrue(this.noMargin) ? 'mt-8 mt-lg-11' : '', 'vue-component'];
     },
     style() {
       return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ''];
-    },
-    sliderOptions() {
-      return {
-        slidesToShow: 4,
-        // slidesToScroll: 2,
-        autoplay: true,
-        autoplaySpeed: 5000,
-        speed: 500,
-        cssEase: 'linear',
-        pauseOnHover: true,
-        pauseOnFocus: true,
-        arrows: false,
-        dots: true,
-        // centerMode: true,
-        // centerPadding: '140px',
-        infinite: true,
-        draggable: true,
-        // variableWidth: true,
-        dotsClass: 'slick-pagination is-default',
-        // responsive: [
-        //   {
-        //     breakpoint: 1200,
-        //     settings: {
-        //       slidesToShow: 4,
-        //       slidesToScroll: 1,
-        //       infinite: true,
-        //     },
-        //   },
-        //   {
-        //     breakpoint: 992,
-        //     settings: {
-        //       centerMode: true,
-        //       centerPadding: '30px',
-        //       infinite: true,
-        //       slidesToShow: 4,
-        //       slidesToScroll: 1,
-        //     },
-        //   },
-        //   {
-        //     breakpoint: 576,
-        //     settings: {
-        //       centerMode: true,
-        //       centerPadding: '20px',
-        //       infinite: true,
-        //       slidesToShow: 4,
-        //       slidesToScroll: 1,
-        //     },
-        //   },
-        // ],
-      };
     },
     dataValue() {
       return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
@@ -89,6 +44,21 @@ export default {
       return newLocations;
     },
   },
+  mounted() {
+    this.bgColorRgbaValue = this.bgColorRgba();
+  },
+  methods: {
+    bgColorRgba() {
+      const root = this.$refs.root;
+
+      if (!root) return null;
+
+      const bgColor = window.getComputedStyle(this.$refs.root).getPropertyValue('background-color');
+      const rgb = bgColor.replace(/[^\d,]/g, '').split(',');
+
+      return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+    },
+  },
   props: {
     data: Object,
     noMargin: {
@@ -97,7 +67,7 @@ export default {
     lang: String,
   },
   template: `
-    <footer :class="classList" :style="style">
+    <footer :class="classList" :style="style" ref="root">
       <div class="container">
         <div class="footer__content-row row">
           <div class="footer__content col-lg-12">
@@ -179,21 +149,9 @@ export default {
               <div class="footer__slider-container">
                 <carousel
                   :items="dataValue.highlights"
+                  :bg-color="bgColorRgbaValue"
                 >
                 </carousel>
-
-                <slider
-                  class="footer__slider"
-                  hide-background="true"
-                  :options="sliderOptions"
-                >
-                  <a v-for="(highlight, index) in dataValue.highlights" :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
-                    <v-img
-                      cloudinary=true
-                      v-bind="highlight"
-                    ></v-img>
-                  </a>
-                </slider>
               </div>
             </div>
           </div>

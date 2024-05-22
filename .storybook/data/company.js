@@ -28,6 +28,7 @@ const Company = {
       target: '_blank',
     },
   ],
+  brandLogos: null,
   highlights: [
     {
       img: '/logos/iso-27001-siegel.png',

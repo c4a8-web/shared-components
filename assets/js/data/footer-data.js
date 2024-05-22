@@ -64,10 +64,6 @@ const FooterData = {
       img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
       alt: 'ISG Managed Services for Azure',
     },
-    {
-      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
-      alt: 'ISG Managed Services for Azure',
-    },
   ],
   socials: [
     {
