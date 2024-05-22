@@ -61,6 +61,28 @@ export const Product = {
           linkClasses: 'w-75 w-lg-100',
         },
       ],
+      partners: [
+        {
+          img: '/logos/partner-misa-mxdr.svg',
+          alt: 'MISA',
+          width: '75',
+        },
+        {
+          img: '/logos/partner-mpoy.svg',
+          alt: 'Partner of the Year',
+        },
+        {
+          img: '/logos/partner-primepulse.svg',
+          alt: 'Member of Primepulse',
+          width: '75',
+          url: 'https://primepulse.com/',
+          target: '_blank',
+        },
+        {
+          img: '/logos/partner-mpoy.svg',
+          alt: 'Partner of the Year',
+        },
+      ],
       socials: [
         {
           icon: 'fa-x-twitter',
