@@ -1,7 +1,7 @@
 const Company = {
   bgColor: 'var(--color-blue-medium)',
   mail: 'info@glueckkanja.com',
-  locations: ['Germany', 'Austria', 'Spain', 'Australia'],
+  offices: ['Germany', 'Austria', 'Spain', 'Australia'],
   logos: [
     {
       img: '/logos/gk-Logo-sw.svg',

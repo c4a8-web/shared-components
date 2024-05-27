@@ -1,7 +1,7 @@
 const FooterData = {
   bgColor: 'var(--color-midnight)',
   mail: 'info@glueckkanja.com',
-  locations: ['Germany', 'Austria', 'Spain', 'Australia'],
+  offices: ['Germany', 'Austria', 'Spain', 'Australia'],
   copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
