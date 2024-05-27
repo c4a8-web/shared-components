@@ -35,52 +35,13 @@ export const Product = {
   args: {
     noMargin: true,
     data: {
-      name: 'glueckkanja AG',
-      street: 'Kaiserstraße 39',
-      postalCode: 63065,
-      city: 'Offenbach',
-      country: 'Germany',
-      mail: null,
-      additionalLocations: [
-        {
-          name: 'glueckkanja Pacific Pty Ltd',
-          over: 'c/o WOTSO',
-          postalCode: '2022',
-          street: 'Level 1 9-13 Bronte Road',
-          city: 'Bondi Junction NSW',
-          country: 'Australia',
-          mail: 'info@glueckkanja.com',
-          postalReversed: true,
-        },
-      ],
+      mail: 'sales@radius-as-a-service.com',
       logos: [
         {
           img: '/mandrill/radius-logo-footer.svg',
           alt: 'RADIUSaaS Logo',
           url: 'index.html',
           linkClasses: 'w-75 w-lg-100',
-        },
-      ],
-      partners: [
-        {
-          img: '/logos/partner-misa-mxdr.svg',
-          alt: 'MISA',
-          width: '75',
-        },
-        {
-          img: '/logos/partner-mpoy.svg',
-          alt: 'Partner of the Year',
-        },
-        {
-          img: '/logos/partner-primepulse.svg',
-          alt: 'Member of Primepulse',
-          width: '75',
-          url: 'https://primepulse.com/',
-          target: '_blank',
-        },
-        {
-          img: '/logos/partner-mpoy.svg',
-          alt: 'Partner of the Year',
         },
       ],
       socials: [
