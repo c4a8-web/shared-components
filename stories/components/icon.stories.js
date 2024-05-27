@@ -237,3 +237,10 @@ Info.args = {
   icon: 'info',
   size: 'xxl',
 };
+
+export const World = Template.bind({});
+
+World.args = {
+  icon: 'world',
+  size: 'xxl',
+};

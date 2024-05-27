@@ -111,6 +111,7 @@ import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import TileView from './vue/icons/tile-view.js';
+import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
 
 // Shapes
@@ -261,6 +262,7 @@ const addApp = () => {
     Screenshot,
     PersonQuote,
     VideoInner,
+    World,
     XMark,
     Wrapper,
     WrapperSlotItems,
