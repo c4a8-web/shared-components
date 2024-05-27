@@ -1,35 +1,24 @@
 const FooterData = {
   bgColor: 'var(--color-midnight)',
-  name: 'glueckkanja AG',
-  street: 'Kaiserstraße 39',
-  postalCode: 63065,
-  city: 'Offenbach',
-  country: 'Germany',
   mail: 'info@glueckkanja.com',
+  locations: ['Germany', 'Austria', 'Spain', 'Australia'],
   copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
       img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
+      class: 'max-w-19rem',
     },
   ],
   partners: [
     {
-      img: '/logos/partner-misa-mxdr.svg',
-      alt: 'MISA',
-      width: '75',
+      img: '/logos/partner-seal-mpoy.svg',
+      alt: 'Partner of the Year Award',
     },
     {
-      img: '/logos/partner-mpoy.svg',
-      alt: 'Partner of the Year',
-    },
-    {
-      img: '/logos/partner-primepulse.svg',
-      alt: 'Member of Primepulse',
-      width: '75',
-      url: 'https://primepulse.com/',
-      target: '_blank',
+      img: '/logos/partner-seal-mssp.svg',
+      alt: 'Security MSSP of the Year',
     },
   ],
   brandLogos: [
@@ -80,11 +69,6 @@ const FooterData = {
       icon: 'fa-linkedin',
       url: 'https://www.linkedin.com/company/glueckkanja',
       title: 'LinkedIn',
-    },
-    {
-      icon: 'fa-xing',
-      url: 'https://www.xing.com/pages/glueckkanja',
-      title: 'Xing',
     },
     {
       icon: 'fa-github',
