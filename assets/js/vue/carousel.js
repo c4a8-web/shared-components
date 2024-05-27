@@ -16,6 +16,8 @@ const carouselItem = {
   },
 };
 
+// TODO add draggable option to move scroll left and right
+
 export default {
   components: {
     'carousel-item': carouselItem,

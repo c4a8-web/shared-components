@@ -38,6 +38,10 @@
   display: flex;
   white-space: nowrap;
   animation: scroll 50s linear infinite;
+
+  &:hover {
+    animation-play-state: paused;
+  }
 }
 
 .carousel__item-container {
