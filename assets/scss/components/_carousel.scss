@@ -38,6 +38,7 @@
   display: flex;
   white-space: nowrap;
   animation: scroll 50s linear infinite;
+  align-items: center;
 
   &:hover {
     animation-play-state: paused;

@@ -19,10 +19,10 @@ const carouselItem = {
 // TODO add draggable option to move scroll left and right
 
 export default {
+  tagName: 'carousel',
   components: {
     'carousel-item': carouselItem,
   },
-  tagName: 'carousel',
   computed: {
     jsonItems() {
       return Tools.getJSON(this.items);
