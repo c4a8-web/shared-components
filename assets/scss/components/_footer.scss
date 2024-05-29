@@ -256,6 +256,7 @@ footer {
 
 .footer__highlights {
   flex: 1 1 auto;
+  width: 100%;
 
   @include media-breakpoint-up('xl') {
     padding-left: var(--footer-content-spacing);
