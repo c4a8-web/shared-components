@@ -44,7 +44,7 @@
   display: flex;
   white-space: nowrap;
   position: relative;
-  animation: scroll 2s linear infinite;
+  animation: scroll 50s linear infinite;
 
   &:hover {
     animation-play-state: paused;
@@ -60,11 +60,11 @@
   > * {
     display: inline-block;
     flex-shrink: 0;
-    max-width: 40%;
+    max-width: 40vw;
     padding: 0 spacing(4);
 
     @include media-breakpoint-up('lg') {
-      max-width: 15vw;
+      max-width: 20vw;
     }
   }
 }

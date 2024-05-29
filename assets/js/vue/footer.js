@@ -105,7 +105,7 @@ export default {
                   :href="logo.url"
                   :target="logo.target"
                   aria-label="Front"
-                  :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-65 w-md-35 w-lg-100']"
+                  :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-75 w-md-35 w-lg-100']"
                 >
                   <v-img
                     cloudinary=true
@@ -160,7 +160,7 @@ export default {
               </ul>
 
               <template v-if="!isCorporate" v-for="(brandLogo, index) in dataValue.brandLogos">
-                <span v-if="brandLogo.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
+                <span v-if="brandLogo.title" class="d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
                 <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
                   <v-img
                     cloudinary=true
