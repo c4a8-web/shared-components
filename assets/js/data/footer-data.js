@@ -8,7 +8,7 @@ const FooterData = {
       img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
-      class: 'max-w-19rem',
+      class: 'max-w-23rem',
     },
   ],
   partners: [
