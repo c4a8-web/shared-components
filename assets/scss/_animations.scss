@@ -303,45 +303,11 @@ $transition-tween-t1: 0.2s ease-in-out;
   }
 }
 
-@keyframes scrollOLD {
-  0% {
-    // transform: translateX(0);
-    left: 100%;
-    // opacity: 1;
-  }
-  // 99% {
-  //   transform: translateX(-99%);
-  //   opacity: 0.95;
-  // }
-  // 80% {
-  //   transform: translateX(-80%);
-  //   opacity: 0.99;
-  // }
-  100% {
-    // transform: translateX(-100%);
-    left: -100%;
-    // opacity: 0;
-  }
-}
-
 @keyframes scroll {
   0% {
     transform: translateX(0);
-    // left: 100%;
-    // opacity: 1;
   }
-  // 99% {
-  //   transform: translateX(-99%);
-  //   opacity: 0.95;
-  // }
-  // 80% {
-  //   transform: translateX(-80%);
-  //   opacity: 0.99;
-  // }
   100% {
-    transform: translateX(-100%);
     transform: translateX(var(--animation-scroll-width));
-    // left: -100%;
-    // opacity: 0;
   }
 }

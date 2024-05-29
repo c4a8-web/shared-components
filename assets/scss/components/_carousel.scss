@@ -40,72 +40,11 @@
   position: relative;
 }
 
-.carousel__content {
-  display: flex;
-  white-space: nowrap;
-  animation: scroll 10s linear infinite;
-  // transition: opacity 12.5s ease-in-out;
-  // animation-fill-mode: none;
-  // transform: translateX(0);
-  // left: 100%;
-  position: relative;
-
-  // animation-delay: 10s;
-  // animation-iteration-count: infinite;
-  // animation-direction: normal;
-  // animation-fill-mode: none;
-  // animation-timing-function: ease;
-  // animation-play-state: running;
-
-  animation-direction: alternate;
-
-  align-items: center;
-  // opacity: 0;
-  // pointer-events: none;
-  // background-color: yellow;
-
-  &:nth-of-type(2) {
-    animation-delay: 5s;
-    opacity: 0.2;
-    background-color: green !important;
-    z-index: 1000;
-  }
-
-  // &:not(.carousel__content--spacer) {
-  //   position: absolute;
-  //   opacity: 1;
-  //   background-color: red;
-  //   width: 100%;
-  //   width: 1173px;
-  //   height: 100%;
-  //   pointer-events: all;
-  // }
-
-  &:hover {
-    animation-play-state: paused;
-  }
-}
-
-.carousel__item-container {
-  display: inline-block;
-  max-width: 40%;
-  padding: 0 spacing(4);
-  box-sizing: border-box;
-  text-align: center;
-  flex-grow: 1;
-  flex-shrink: 0;
-
-  @include media-breakpoint-up('lg') {
-    max-width: 25%;
-  }
-}
-
 .carousel__row {
   display: flex;
   white-space: nowrap;
   position: relative;
   animation: scroll 2s linear infinite;
-  // align-items: center;
 
   &:hover {
     animation-play-state: paused;
@@ -113,23 +52,15 @@
 }
 
 .carousel__row-section {
-  // display: flex;
   display: inline-block;
-  // background-color: red;
   white-space: nowrap;
   align-items: center;
   flex-shrink: 0;
 
-  // &:nth-of-type(2) {
-  //   background-color: green;
-  // }
-
   > * {
     display: inline-block;
-    // flex-grow: 1;
     flex-shrink: 0;
     max-width: 40%;
-    // background-color: yellow;
     padding: 0 spacing(4);
 
     @include media-breakpoint-up('lg') {

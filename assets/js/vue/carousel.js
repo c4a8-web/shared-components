@@ -78,50 +78,9 @@ export default {
             <carousel-item :item="item" v-for="(item, index) in jsonItems" :key="index" />
           </section>
           <section class="carousel__row-section">
-            <carousel-item :item="item"  v-for="(item, index) in jsonItems" :key="index" />
+            <carousel-item :item="item" v-for="(item, index) in jsonItems" :key="index" />
           </section>
         </div>
-        <div class="carousel__content" style="display:none">
-          <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-            <carousel-item :item="item" />
-          </section>
-          <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-            <carousel-item :item="item" />
-          </section>
-        </div>
-        <div style="display: none">
-          <div class="carousel__content">
-            <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-              <carousel-item :item="item" />
-            </section>
-            <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-              <carousel-item :item="item" />
-            </section>
-          </div>
-          <div class="carousel__content">
-            <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-              <carousel-item :item="item" />
-            </section>
-            <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-              <carousel-item :item="item" />
-            </section>
-          </div>
-          <div class="carousel__content carousel__content--spacer">
-            <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-              <carousel-item :item="item" />
-            </section>
-          </div>
-        </div>
-        <marquee
-          style="display: none"
-        >
-          <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-            <carousel-item :item="item" />
-          </section>
-          <section class="carousel__item-container" v-for="(item, index) in jsonItems" :key="index">
-            <carousel-item :item="item" />
-          </section>
-        </marquee>
       </div>
     </div>
   `,
