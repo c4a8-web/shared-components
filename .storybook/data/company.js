@@ -43,6 +43,10 @@ const Company = {
       img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
       alt: 'ISG Managed Services for Azure',
     },
+    {
+      img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
+      alt: 'ISG Microsoft 365 Services',
+    },
   ],
   socials: [
     {
