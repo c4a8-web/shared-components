@@ -38,7 +38,6 @@ export default {
       ];
     },
     isCorporate() {
-      console.log('🚀 ~ isCorporate ~ this.dataValue?.brandLogos:', this.dataValue?.brandLogos);
       return !this.dataValue?.brandLogos;
     },
     style() {

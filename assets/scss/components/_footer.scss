@@ -11,6 +11,12 @@ footer {
   padding-top: var(--footer-spacing-large);
 
   &.footer--corporate {
+    .footer__slider-container {
+      @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+        margin-top: var(--footer-content-spacing);
+      }
+    }
+
     .footer__highlights {
       @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
         display: flex;
