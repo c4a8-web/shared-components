@@ -7,7 +7,7 @@ const Company = {
       img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
-      class: 'max-w-19rem',
+      class: 'max-w-23rem',
     },
   ],
   partners: [
@@ -36,16 +36,28 @@ const Company = {
       target: '_blank',
     },
     {
-      img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
-      alt: 'ISG Microsoft 365 Services',
-    },
-    {
-      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
-      alt: 'ISG Managed Services for Azure',
+      img: '/logos/partner-misa-mxdr.svg',
+      alt: 'Microsoft Intelligent Security Association',
     },
     {
       img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
       alt: 'ISG Microsoft 365 Services',
+    },
+    {
+      img: '/logos/seal-mssp-modern-work.svg',
+      alt: 'MSSP Modern Work',
+    },
+    {
+      img: '/logos/seal-mssp-infrastructure.svg',
+      alt: 'MSSP Infrastructure Azure',
+    },
+    {
+      img: '/logos/seal-mssp-data-ai.svg',
+      alt: 'MSSP Data & AI Azure',
+    },
+    {
+      img: '/logos/seal-mssp-security.svg',
+      alt: 'MSSP Security',
     },
   ],
   socials: [

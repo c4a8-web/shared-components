@@ -27,7 +27,7 @@ const FooterData = {
       img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja AG',
       url: 'https://www.glueckkanja.com/de',
-      classes: 'w-50 w-sm-40 w-lg-60 w-xl-50',
+      classes: 'w-30 w-sm-40 w-lg-60 w-xl-50',
       target: '_blank',
     },
   ],
@@ -46,12 +46,28 @@ const FooterData = {
       target: '_blank',
     },
     {
+      img: '/logos/partner-misa-mxdr.svg',
+      alt: 'Microsoft Intelligent Security Association',
+    },
+    {
       img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
       alt: 'ISG Microsoft 365 Services',
     },
     {
-      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
-      alt: 'ISG Managed Services for Azure',
+      img: '/logos/seal-mssp-modern-work.svg',
+      alt: 'MSSP Modern Work',
+    },
+    {
+      img: '/logos/seal-mssp-infrastructure.svg',
+      alt: 'MSSP Infrastructure Azure',
+    },
+    {
+      img: '/logos/seal-mssp-data-ai.svg',
+      alt: 'MSSP Data & AI Azure',
+    },
+    {
+      img: '/logos/seal-mssp-security.svg',
+      alt: 'MSSP Security',
     },
   ],
   socials: [
