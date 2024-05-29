@@ -1,7 +1,8 @@
-import { getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings, getParams } from '../../.storybook/templates';
 import { includesfooterhtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
+  ...getParams({ page: true }),
   ...getDefaultSettings({
     component,
     argTypes: {
@@ -34,24 +35,7 @@ export const Product = {
   args: {
     noMargin: true,
     data: {
-      name: 'glueckkanja AG',
-      street: 'Kaiserstraße 39',
-      postalCode: 63065,
-      city: 'Offenbach',
-      country: 'Germany',
-      mail: null,
-      additionalLocations: [
-        {
-          name: 'glueckkanja Pacific Pty Ltd',
-          over: 'c/o WOTSO',
-          postalCode: '2022',
-          street: 'Level 1 9-13 Bronte Road',
-          city: 'Bondi Junction NSW',
-          country: 'Australia',
-          mail: 'info@glueckkanja.com',
-          postalReversed: true,
-        },
-      ],
+      mail: 'sales@radius-as-a-service.com',
       logos: [
         {
           img: '/mandrill/radius-logo-footer.svg',

@@ -1,40 +1,26 @@
 const Company = {
   bgColor: 'var(--color-blue-medium)',
-  number: '+49 69 4005520',
   mail: 'info@glueckkanja.com',
+  offices: ['Germany', 'Austria', 'Spain', 'Australia'],
   logos: [
     {
       img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
-      class: 'max-w-19rem',
-    },
-    {
-      img: '/v1623133806/logos/primepulse-endorsement-white.svg',
-      alt: 'glueckkanja Logo',
-      url: 'https://primepulse.com/',
-      target: '_blank',
-      classes: 'offset-lg-6',
+      class: 'max-w-23rem',
     },
   ],
   partners: [
     {
-      img: '/logos/msftLogos-Solutions-white.svg',
-      alt: 'Solutions Partner Designations',
+      img: '/logos/partner-seal-mpoy.svg',
+      alt: 'Partner of the Year Award',
     },
     {
-      img: '/logos/msftLogos-AdvanceSpecializations-white.svg',
-      alt: 'Advanced Specializations',
-    },
-    {
-      img: '/logos/msftLogos-PartnerOfTheYear-white.svg',
-      alt: 'Partner of the Year',
-    },
-    {
-      img: '/logos/msftLogos-MisaMXDR-transparent.png',
-      alt: 'MISA',
+      img: '/logos/partner-seal-mssp.svg',
+      alt: 'Security MSSP of the Year',
     },
   ],
+  brandLogos: null,
   highlights: [
     {
       img: '/logos/iso-27001-siegel.png',
@@ -50,12 +36,28 @@ const Company = {
       target: '_blank',
     },
     {
+      img: '/logos/partner-misa-mxdr.svg',
+      alt: 'Microsoft Intelligent Security Association',
+    },
+    {
       img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
       alt: 'ISG Microsoft 365 Services',
     },
     {
-      img: '/v1704785872/logos/isg-2023-managed-services-for-azure.svg',
-      alt: 'ISG Managed Services for Azure',
+      img: '/logos/seal-mssp-modern-work.svg',
+      alt: 'MSSP Modern Work',
+    },
+    {
+      img: '/logos/seal-mssp-infrastructure.svg',
+      alt: 'MSSP Infrastructure Azure',
+    },
+    {
+      img: '/logos/seal-mssp-data-ai.svg',
+      alt: 'MSSP Data & AI Azure',
+    },
+    {
+      img: '/logos/seal-mssp-security.svg',
+      alt: 'MSSP Security',
     },
   ],
   socials: [
@@ -73,11 +75,6 @@ const Company = {
       icon: 'fa-linkedin',
       url: 'https://www.linkedin.com/company/glueckkanja-gab',
       title: 'LinkedIn',
-    },
-    {
-      icon: 'fa-xing',
-      url: 'https://www.xing.com/pages/glueckkanja-gab',
-      title: 'Xing',
     },
     {
       icon: 'fa-github',
