@@ -22,6 +22,7 @@ const es = {
   search: 'Buscar en',
   apply: 'Aplicar',
   reset: 'Reiniciar',
+  jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
 };
 
 export default es;

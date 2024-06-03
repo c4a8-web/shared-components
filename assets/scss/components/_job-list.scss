@@ -6,6 +6,7 @@ $job-list-detail-transition-3-delay: 1.8s;
 
 .job-list {
   &.is-loading {
+    .job-list__message,
     .job-list__header,
     .job-list__meta,
     .job-list__entry {

@@ -63,6 +63,8 @@ export default {
 
       if (hasLanguageLoader) {
         hasLanguageLoader.then(() => {
+          this.translationData = window.i18n?.getTranslationData(['jobListEmpty']);
+
           method.bind(this)();
         });
       } else {
@@ -176,6 +178,10 @@ export default {
 
       this.entries = filteredList;
 
+      if (this.entries.length === 0) {
+        this.isEmpty = true;
+      }
+
       if (this.maxItems > 0 && data.objects?.length > this.maxItems) {
         this.showExpandButton();
       }
@@ -255,6 +261,7 @@ export default {
       entries: [],
       jobData: {},
       promises: [],
+      isEmpty: false,
     };
   },
   props: {
@@ -300,7 +307,10 @@ export default {
           <div class="job-list__subline">{{sublineText}}</div>
         </div>
         <div class="col-lg-12">
-          <div class="job-list__entries" >
+          <div class="job-list__entries">
+            <div class="job-list__message h3-font-size" v-if="isEmpty">
+              {{ translationData?.jobListEmpty }}
+            </div>
             <template v-for="entry in entries" :key="entry?.id">
               <job-list-entry
                 v-if="entry"
