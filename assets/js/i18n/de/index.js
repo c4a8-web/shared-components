@@ -23,6 +23,7 @@ const de = {
   search: 'Suche',
   apply: 'Anwenden',
   reset: 'Zurücksetzen',
+  jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
 };
 
 export default de;
