@@ -85,7 +85,7 @@
     {%- for post in posts -%}
       {% if post.cta.href %}
         {% assign blogRecentPostUrl = post.cta.href %}
-        {% assign blogRecentPostExternal = post.cta.external %}
+        {% assign blogRecentPostExternal = post.cta.external | default: false %}
       {% else %}
         {% assign blogRecentPostUrl = post.url %}
         {% assign blogRecentPostExternal = false %}
