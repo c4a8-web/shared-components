@@ -80,7 +80,7 @@ export const YellowWithImage = {
     category: 'Event Category',
     text: 'Die IT-Messe der Goethe-Universität Frankfurt, Campus Bockenheim, Neue Mensa',
     image: {
-      img: '/shared-components/card-sec-motion-dus.png',
+      img: '/events/event-thumb-tech-conf.jpg',
       alt: 'Event Image',
       cloudinary: true,
     },

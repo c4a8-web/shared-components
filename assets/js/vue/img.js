@@ -174,7 +174,7 @@ export default {
         this.dimensions = dimensions;
       };
 
-      img.src = link ? link : this.getCloudinaryBasePathLink();
+      img.src = link ? link : this.getCloudinaryLinkWithTransformation();
     },
     getTransformationString(preset) {
       const transformations = [];
