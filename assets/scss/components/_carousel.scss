@@ -1,5 +1,5 @@
 .carousel {
-  --color-carousel-background: rgb(227, 47, 47);
+  --color-carousel-background: rgba(255, 255, 255, 0);
 
   width: 100%;
   position: relative;
@@ -37,12 +37,13 @@
   /* prevents css bleeding edge */
   overflow: hidden;
   margin: 0 2px;
+  padding: 1px 0;
   position: relative;
 }
 
 .carousel__row {
   display: flex;
-  white-space: nowrap;
+  flex-wrap: nowrap;
   position: relative;
   animation: scroll 50s linear infinite;
 
@@ -60,11 +61,6 @@
   > * {
     display: inline-block;
     flex-shrink: 0;
-    max-width: 40vw;
     padding: 0 spacing(4);
-
-    @include media-breakpoint-up('lg') {
-      max-width: 20vw;
-    }
   }
 }

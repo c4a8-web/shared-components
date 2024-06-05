@@ -8,6 +8,7 @@ const carouselItem = {
       <v-img
         cloudinary=true
         v-bind="item"
+        :class="item.classes"
       ></v-img>
     </a>
   `,

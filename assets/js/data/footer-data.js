@@ -8,7 +8,7 @@ const FooterData = {
       img: '/logos/gk-Logo-sw.svg',
       alt: 'glueckkanja Logo',
       url: 'index.html',
-      class: 'max-w-19rem',
+      class: 'max-w-23rem',
     },
   ],
   partners: [
@@ -33,14 +33,14 @@ const FooterData = {
   ],
   highlights: [
     {
-      img: '/logos/iso-27001-siegel.png',
+      img: '/logos/iso27001.svg',
       alt: 'ISO 27001',
       url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
       target: '_blank',
-      classes: 'w-90',
+      classes: 'max-rem-10 max-lg-rem-11',
     },
     {
-      img: '/v1705390659/logos/kununu-compact.svg',
+      img: '/logos/kununu-compact.svg',
       alt: 'Kununu Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
@@ -50,7 +50,7 @@ const FooterData = {
       alt: 'Microsoft Intelligent Security Association',
     },
     {
-      img: '/v1704785947/logos/isg-2023-microsoft-365-services.svg',
+      img: '/logos/isg-2023-microsoft-365-services.svg',
       alt: 'ISG Microsoft 365 Services',
     },
     {

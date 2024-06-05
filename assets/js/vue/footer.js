@@ -160,7 +160,7 @@ export default {
               </ul>
 
               <template v-if="!isCorporate" v-for="(brandLogo, index) in dataValue.brandLogos">
-                <span v-if="brandLogo.title" class="d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
+                <span v-if="brandLogo.title" class="footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
                 <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
                   <v-img
                     cloudinary=true
