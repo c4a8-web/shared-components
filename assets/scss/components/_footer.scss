@@ -1,4 +1,5 @@
 $footer-orientation-breakpoint: 'lg';
+$footer-partner-orientation-breakpoint: 'sm';
 
 footer {
   --color-footer-border: var(--color-white-50);
@@ -75,6 +76,7 @@ footer {
   .footer__office-icon.icon {
     height: var(--footer-icon-width);
     width: var(--footer-icon-width);
+    margin-top: spacing(1);
 
     svg {
       width: 100%;
@@ -162,7 +164,6 @@ footer {
   width: 100%;
 
   @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
-    max-width: 300px;
     width: auto;
     height: 100%;
   }
@@ -174,8 +175,14 @@ footer {
   width: 100%;
   flex-direction: column;
 
-  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+  @include media-breakpoint-up(#{$footer-partner-orientation-breakpoint}) {
     flex-direction: row;
+    gap: spacing(4);
+  }
+
+  @include media-breakpoint-up('lg') {
+    gap: inherit;
+    justify-content: space-evenly;
   }
 }
 
@@ -184,12 +191,16 @@ footer {
   width: 100%;
   border-bottom: 1px solid var(--color-footer-border);
 
-  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+  @include media-breakpoint-up(#{$footer-partner-orientation-breakpoint}) {
     flex: 1 0 auto;
     position: relative;
     height: auto;
     width: auto;
     border-bottom: 0;
+  }
+
+  @include media-breakpoint-up('lg') {
+    flex-grow: 0;
   }
 }
 
@@ -201,8 +212,13 @@ footer {
   }
 }
 
+.footer__brand-logo-title {
+  color: var(--color-white-50);
+}
+
 .footer__brand-logo-link {
-  max-width: 300px;
+  max-width: 110px;
+
   img {
     width: 100%;
   }
@@ -243,6 +259,16 @@ footer {
     border-right: 1px solid var(--color-footer-border);
     border-bottom: 0;
     max-width: 25%;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
+
+.footer__locations {
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    flex-grow: 1;
   }
 }
 
