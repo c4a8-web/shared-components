@@ -151,7 +151,7 @@ export default {
                   <a class="footer__nav-link nav-link" :href="'mailto:' + location.mail">
                     <span class="d-flex">
                       <span class="streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex"><slot name='icon-mail'></slot></span>
-                      <span class="media-body">
+                      <span class="footer__mail media-body">
                         {{ location.mail }}
                       </span>
                     </span>
