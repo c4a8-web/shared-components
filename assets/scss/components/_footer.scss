@@ -322,3 +322,13 @@ footer {
   flex-wrap: wrap;
   max-width: 140px;
 }
+
+.footer__logos-link {
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    max-width: 220px;
+  }
+}
+
+.footer__mail {
+  white-space: nowrap;
+}
