@@ -86,7 +86,6 @@ footer {
 
   .streamline-site-mail {
     .streamline-icon {
-      // height: 0.94rem;
       width: var(--footer-icon-width);
     }
   }
@@ -258,8 +257,7 @@ footer {
     padding-bottom: 0;
     border-right: 1px solid var(--color-footer-border);
     border-bottom: 0;
-    max-width: 25%;
-
+    flex-shrink: 1;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
