@@ -35,7 +35,7 @@ export const Product = {
   args: {
     noMargin: true,
     data: {
-      mail: 'sales@radius-as-a-service.com',
+      mail: 'sales@radiusasaservice.com',
       logos: [
         {
           img: '/mandrill/radius-logo-footer.svg',
