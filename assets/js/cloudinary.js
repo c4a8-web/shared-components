@@ -88,6 +88,14 @@ const Cloudinary = {
       figure: 'never',
       loading: 'auto',
     },
+    eventThumb: {
+      min_width: 300,
+      max_width: 800,
+      steps: 3,
+      sizes: '(min-width: 50rem)',
+      figure: 'never',
+      loading: 'auto',
+    },
   },
 };
 

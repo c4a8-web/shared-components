@@ -100,7 +100,7 @@ export default {
           <p class="event__text">{{ textWithAmpersand }}</p>
         </div>
         <div class="event__image-container is-background" v-if="imageValue">
-          <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" lazy="true">
+          <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" lazy="true" preset="eventThumb">
         </div>
       </div>
     </article>
