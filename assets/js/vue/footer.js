@@ -1,11 +1,44 @@
 import Tools from '../tools.js';
 import FooterData from '../data/footer-data.js';
 
+const footerSlider = {
+  tagName: 'v-footer-slider',
+  template: `
+    <div class="footer__slider-container">
+      <carousel
+        :items="items"
+        :bg-color="bgColor"
+      >
+      </carousel>
+    </div>
+  `,
+  props: {
+    items: Array,
+    bgColor: String,
+  },
+};
+
 export default {
   tagName: 'v-footer',
+  components: {
+    'footer-slider': footerSlider,
+  },
+  data() {
+    return {
+      bgColorRgbaValue: null,
+    };
+  },
   computed: {
     classList() {
-      return ['footer text-white', !Tools.isTrue(this.noMargin) ? 'mt-8 mt-lg-11' : '', 'vue-component'];
+      return [
+        'footer text-white',
+        !Tools.isTrue(this.noMargin) ? 'mt-8 mt-lg-11' : '',
+        this.isCorporate ? 'footer--corporate' : '',
+        'vue-component',
+      ];
+    },
+    isCorporate() {
+      return !this.dataValue?.brandLogos;
     },
     style() {
       return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ''];
@@ -39,6 +72,21 @@ export default {
       return newLocations;
     },
   },
+  mounted() {
+    this.bgColorRgbaValue = this.bgColorRgba();
+  },
+  methods: {
+    bgColorRgba() {
+      const root = this.$refs.root;
+
+      if (!root) return null;
+
+      const bgColor = window.getComputedStyle(this.$refs.root).getPropertyValue('background-color');
+      const rgb = bgColor.replace(/[^\d,]/g, '').split(',');
+
+      return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
+    },
+  },
   props: {
     data: Object,
     noMargin: {
@@ -47,17 +95,17 @@ export default {
     lang: String,
   },
   template: `
-    <footer :class="classList" :style="style">
+    <footer :class="classList" :style="style" ref="root">
       <div class="container">
-        <div class="space-top-2 space-top-lg-3 space-bottom-1">
-          <div class="row">
-            <div :class="['col-lg-3', logo?.classes]" v-for="logo in dataValue.logos">
-              <div class="mb-6">
+        <div class="footer__content-row row">
+          <div class="footer__content col-lg-12">
+            <div class="footer__address">
+              <div :class="['mb-3', logo?.classes]" v-for="logo in dataValue.logos">
                 <a
                   :href="logo.url"
                   :target="logo.target"
                   aria-label="Front"
-                  :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-65 w-md-35 w-lg-90']"
+                  :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-75 w-md-35 w-lg-100']"
                 >
                   <v-img
                     cloudinary=true
@@ -65,20 +113,16 @@ export default {
                   ></v-img>
                 </a>
               </div>
-            </div>
-          </div>
-          <div class="row justify-content-lg-between">
-            <div class="col-lg-3 ml-lg-auto mb-2 mb-lg-0 footer__contacts">
-              <!-- Nav Link -->
-              <ul class="nav nav-sm nav-x-0 nav-white flex-column" v-for="location in locations">
-                <li class="nav-item">
+
+              <ul class="footer__locations nav nav-x-0 nav-white flex-column" v-for="location in locations">
+                <li class="nav-item" v-if="location.name">
                   {{ location.name }}
                 </li>
                 <li class="nav-item" v-if="location.over">{{ location.over }}</li>
-                <li class="nav-item">
+                <li class="nav-item" v-if="location.street">
                   {{ location.street }}
                 </li>
-                <li :class="['nav-item footer__address-block', location.postalReversed ? 'is-reversed' : '']">
+                <li v-if="location.city" :class="['nav-item footer__address-block', location.postalReversed ? 'is-reversed' : '']">
                   <span class="footer__postal-code">{{ location.postalCode }}</span>
                   <span class="footer__city">{{ location.city }}</span>
                   <span class="footer__country">{{ location.country }}</span>
@@ -93,10 +137,20 @@ export default {
                     </span>
                   </a>
                 </li>
+                <li v-if="dataValue.offices" class="footer__nav-item nav-item">
+                  <a class="footer__nav-link nav-link">
+                    <icon icon="world" class="footer__nav-icon footer__office-icon" />
+                    <div class="footer__offices">
+                      <span class="footer__office" v-for="(office, index) in dataValue.offices">
+                        {{ office }}<span v-if="index < dataValue.offices.length - 1">,&nbsp;</span>
+                      </span>
+                    </div>
+                  </a>
+                </li>
                 <li :class="['nav-item', locations.length > 1 ? 'pt-4' : '']" v-if="location.mail">
-                  <a class="nav-link media pt-0" :href="'mailto:' + location.mail">
-                    <span class="media">
-                      <span class="streamline-xs streamline-site-mail mt-1 mr-3 d-flex"><slot name='icon-mail'></slot></span>
+                  <a class="footer__nav-link nav-link" :href="'mailto:' + location.mail">
+                    <span class="d-flex">
+                      <span class="streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex"><slot name='icon-mail'></slot></span>
                       <span class="media-body">
                         {{ location.mail }}
                       </span>
@@ -104,38 +158,51 @@ export default {
                   </a>
                 </li>
               </ul>
-              <!-- End Nav Link -->
-              <template v-for="(highlight, index) in dataValue.highlights">
-                <span v-if="highlight.title" class="d-block space-top-2 mb-n7 w-90 w-lg-100 pr-6">{{ highlight.title }}</span>
-                <a :href="highlight.url" :target="highlight.target" :class="['footer__highlight-link d-block space-top-1', index === 0 ? 'mt-3': '', highlight.classes ? highlight.classes : 'w-90']">
+
+              <template v-if="!isCorporate" v-for="(brandLogo, index) in dataValue.brandLogos">
+                <span v-if="brandLogo.title" class="footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
+                <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
                   <v-img
                     cloudinary=true
-                    v-bind="highlight"
+                    v-bind="brandLogo"
                   ></v-img>
                 </a>
               </template>
-              <hr class="d-lg-none mt-5">
             </div>
 
-            <div class="col-lg-9">
-              <div class="row no-gutters ml-lg-4">
-                <div class="col-lg-12">
-                  <div class="w-lg-50 space-bottom-2" v-html="dataValue.introduction"></div>
-                </div>
-
-                <div :class="['footer__partner-images col-lg-6 w-90 w-lg-100 space-top-1', index === 1 ? 'pl-lg-5': 'pr-lg-5']" v-for="(partner, index) in dataValue.partners" :style="index === dataValue.partners.length-1 ? 'padding-left: 2rem !important;padding-right: 0rem !important;' : ''">
-                  <v-img
-                    cloudinary=true
-                    v-bind="partner"
-                    class="footer__partner-image"
-                  ></v-img>
-                </div>
+            <div class="footer__highlights">
+              <div class="footer__partners">
+                <template v-for="(partner, index) in dataValue.partners">
+                  <a :href="partner.url" :target="partner.target" class="footer__partner-images">
+                    <v-img
+                      cloudinary=true
+                      v-bind="partner"
+                      class="footer__partner-image"
+                    ></v-img>
+                  </a>
+                  <div class="footer__vertical-line" v-if="index < dataValue.partners.length-1"></div>
+                </template>
               </div>
+
+              <footer-slider
+                :items="dataValue.highlights"
+                :bg-color="bgColorRgbaValue"
+                v-if="!isCorporate"
+              />
             </div>
           </div>
         </div>
 
-        <hr class="mx-lg-3">
+        <div v-if="isCorporate" class="footer__content-row row">
+          <div class="footer__content col-lg-12">
+            <footer-slider
+              :items="dataValue.highlights"
+              :bg-color="bgColorRgbaValue"
+            />
+          </div>
+        </div>
+
+        <hr class="footer__divider mx-lg-3">
 
         <div class="mt-3">
           <div class="row align-items-md-center mb-3">
