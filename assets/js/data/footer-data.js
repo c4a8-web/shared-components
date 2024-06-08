@@ -69,7 +69,7 @@ const FooterData = {
       alt: 'ISG Microsoft Azure Large Enterprises',
     },
     {
-      img: '/logos/isg-2024-azure-midmarekt.svg',
+      img: '/logos/isg-2024-azure-midmarket.svg',
       alt: 'ISG Microsoft Azure Midmarket',
     },
     {
