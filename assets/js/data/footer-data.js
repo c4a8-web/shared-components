@@ -33,6 +33,46 @@ const FooterData = {
   ],
   highlights: [
     {
+      img: '/logos/partner-misa-mxdr.svg',
+      alt: 'Microsoft Intelligent Security Association',
+    },
+    {
+      img: '/logos/seal-mssp-infrastructure.svg',
+      alt: 'MSP Infrastructure Azure',
+    },
+    {
+      img: '/logos/seal-mssp-data-ai.svg',
+      alt: 'MSP Data & AI Azure',
+    },
+    {
+      img: '/logos/seal-msp-digital-app-innovation.svg',
+      alt: 'MSP Digital & App Innovation Azure',
+    },
+    {
+      img: '/logos/seal-mssp-modern-work.svg',
+      alt: 'MSP Modern Work',
+    },
+    {
+      img: '/logos/seal-mssp-security.svg',
+      alt: 'MSP Security',
+    },
+    {
+      img: '/logos/isg-2024-m365-services-large-enterprises.svg',
+      alt: 'ISG Microsoft 365 Services Large Enterprises',
+    },
+    {
+      img: '/logos/isg-2024-m365-services-midmarket.svg',
+      alt: 'ISG Microsoft 365 Services Midmarket',
+    },
+    {
+      img: '/logos/isg-2024-azure-large-enterprises.svg',
+      alt: 'ISG Microsoft Azure Large Enterprises',
+    },
+    {
+      img: '/logos/isg-2024-azure-midmarekt.svg',
+      alt: 'ISG Microsoft Azure Midmarket',
+    },
+    {
       img: '/logos/iso27001.svg',
       alt: 'ISO 27001',
       url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
@@ -44,31 +84,7 @@ const FooterData = {
       alt: 'Kununu Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
-    },
-    {
-      img: '/logos/partner-misa-mxdr.svg',
-      alt: 'Microsoft Intelligent Security Association',
-    },
-    {
-      img: '/logos/isg-2023-microsoft-365-services.svg',
-      alt: 'ISG Microsoft 365 Services',
-    },
-    {
-      img: '/logos/seal-mssp-modern-work.svg',
-      alt: 'MSSP Modern Work',
-    },
-    {
-      img: '/logos/seal-mssp-infrastructure.svg',
-      alt: 'MSSP Infrastructure Azure',
-    },
-    {
-      img: '/logos/seal-mssp-data-ai.svg',
-      alt: 'MSSP Data & AI Azure',
-    },
-    {
-      img: '/logos/seal-mssp-security.svg',
-      alt: 'MSSP Security',
-    },
+    }
   ],
   socials: [
     {
