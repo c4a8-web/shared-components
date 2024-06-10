@@ -30,3 +30,9 @@
   padding: spacing(1) 0 spacing(1) spacing(2);
   color: var(--hero-copy-overline-color);
 }
+
+.hero__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

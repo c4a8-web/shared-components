@@ -33,7 +33,14 @@ export default {
   },
   computed: {
     classList() {
-      return ['text-animation vue-component', this.isEnded ? State.END : ''];
+      return [
+        'text-animation vue-component',
+        this.isEnded ? State.END : '',
+        this.isFixed ? 'text-animation--fixed' : '',
+      ];
+    },
+    isFixed() {
+      return Tools.isTrue(this.fixed);
     },
     textClassList() {
       return ['text-animation__text', this.currentTextSize];

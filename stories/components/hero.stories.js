@@ -16,7 +16,6 @@ export const Careers = {
       bgColor: 'var(--color-blue-dark)',
       isLight: true,
       overline: 'Deine Karriere',
-      fixed: true,
       fullscreen: true,
       animation: {
         sequence: [
@@ -39,7 +38,6 @@ export const Careers = {
       },
       background: {
         icon: 'smile',
-        spacing: 'space-top-lg-4',
       },
       cta: {
         text: 'Zu den Stellenanzeigen',

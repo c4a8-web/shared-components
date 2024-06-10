@@ -7,16 +7,13 @@ export default {
       return ['hero vue-component', this.isLight ? 'is-light' : '', this.fullscreen ? 'hero--fullscreen' : ''];
     },
     contentClassList() {
-      return ['hero__content', this.spacing ? this.spacing : 'pt-4 pt-lg-5'];
+      return ['hero__content', this.spacing ? this.spacing : 'py-8 py-lg-10'];
     },
     style() {
       return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
     },
     cta() {
       return this.heroJson ? this.heroJson.cta : null;
-    },
-    fixed() {
-      return this.heroJson ? this.heroJson.fixed : false;
     },
     isLight() {
       return this.heroJson ? this.heroJson.isLight : false;
@@ -63,7 +60,6 @@ export default {
           <text-icon-animation
             v-if="animation"
             :animation="animation"
-            :fixed="fixed"
             :cta="cta"
             :icon="icon"
             classes="hero__animation"
