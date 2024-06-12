@@ -104,10 +104,13 @@ export default {
     hasBackground: {
       default: null,
     },
+    step: {
+      default: null,
+    },
   },
   template: `
     <span :class="classList" :style="parentStyle">
-      <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" />
+      <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
     </span>
     `,
 };

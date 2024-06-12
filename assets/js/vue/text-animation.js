@@ -133,15 +133,11 @@ export default {
       this.currentSublineSize = this.currentSequenceStep.sublineSize || this.defaultSublineSize;
       this.sublineValue = this.currentSubline;
 
-      if (this.step + 1 === this.sequenceData.length) {
-        // this.icon.classList.add(State.END);
-        console.log('ADD ICON END');
-        // EMIT EVENT TO parent to update icon??
-      } else {
+      if (this.step + 1 !== this.sequenceData.length) {
         this.isEnded = false;
       }
 
-      // TOdO requestanimation frame
+      this.$emit('text-animation-step', this.step);
 
       for (let i = 0; i < this.currentText.length; i++) {
         this.textTimeout = i * this.sizeBasedDelay + this.sizeBasedDelay;
@@ -187,7 +183,11 @@ export default {
     typeLetter(letter) {
       if (!letter) return;
 
-      this.textValue = this.textValue + letter;
+      const updateTextValue = () => {
+        this.textValue = this.textValue + letter;
+      };
+
+      requestAnimationFrame(updateTextValue);
     },
   },
   created() {

@@ -9,6 +9,11 @@ export default {
     cta: Object,
     classes: String,
   },
+  data() {
+    return {
+      textAnimationStep: 0,
+    };
+  },
   computed: {
     animationData() {
       return Tools.getJSON(this.animation);
@@ -22,6 +27,18 @@ export default {
     isFixed() {
       return Tools.isTrue(this.fixed);
     },
+    iconClassList() {
+      return `text-icon-animation__icon icon--step-${this.textAnimationStep}`;
+    },
+  },
+  methods: {
+    handleTextAnimationStep(event) {
+      console.log('🚀 ~ handleTextAnimationStep ~ event:', event);
+      this.textAnimationStep = event;
+    },
+    isTextAnimationEnded(event) {
+      return event === null;
+    },
   },
   template: `
     <div :class="classList">
@@ -30,11 +47,12 @@ export default {
           :sequence="sequence"
           :fixed="fixed"
           :cta="cta"
+          @text-animation-step="handleTextAnimationStep"
         >
         </text-animation>
       </div>
-      <div class="text-icon-animation__icon col-lg-4">
-        <icon :icon="icon" :animation="animationData"></icon>
+      <div class="text-icon-animation__icon-container col-lg-4">
+        <icon :icon="icon" :classes="iconClassList" :animation="animationData" :step="textAnimationStep"></icon>
       </div>
     </div>
   `,
