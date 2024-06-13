@@ -16,7 +16,7 @@ export default {
       return this.heroJson ? this.heroJson.cta : null;
     },
     isLight() {
-      return this.heroJson ? this.heroJson.isLight : false;
+      return this.heroJson ? this.heroJson.light : false;
     },
     bgColor() {
       return this.heroJson ? this.heroJson.bgColor : null;

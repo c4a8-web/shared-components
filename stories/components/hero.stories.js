@@ -13,8 +13,9 @@ export default {
 export const Careers = {
   args: {
     hero: {
+      v2: true,
       bgColor: 'var(--color-blue-dark)',
-      isLight: true,
+      light: true,
       overline: 'Deine Karriere',
       fullscreen: true,
       animation: {
@@ -45,3 +46,5 @@ export const Careers = {
     },
   },
 };
+
+// TODO sticky prob
