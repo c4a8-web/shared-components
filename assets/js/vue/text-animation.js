@@ -121,13 +121,6 @@ export default {
       this.step++;
 
       this.animate();
-
-      if (!this.icon) return;
-
-      // this.icon.classList.remove(`icon--step-${this.step - 1}`);
-      // this.icon.classList.add(`icon--step-${this.step}`);
-
-      // this.startIconSteps();
     },
     animateText() {
       this.currentSublineSize = this.currentSequenceStep.sublineSize || this.defaultSublineSize;
