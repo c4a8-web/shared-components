@@ -28,6 +28,7 @@ export default {
       currentSublineSize: null,
       currentTextSize: '',
       isEnded: false,
+      isSecondLast: false,
       showSubline: false,
     };
   },
@@ -55,7 +56,7 @@ export default {
       return ['text-animation__text', this.currentTextSize];
     },
     placeholderCtaClassList() {
-      return ['text-animation__cta', !this.isEnded ? State.INVISIBLE : ''];
+      return ['text-animation__cta', this.isSecondLast || this.isEnded ? '' : State.INVISIBLE];
     },
     ctaClassList() {
       return ['text-animation__cta', this.isEnded ? '' : State.INVISIBLE];
@@ -130,6 +131,10 @@ export default {
         this.isEnded = false;
       }
 
+      if (this.step === this.sequenceData.length - 1) {
+        this.isSecondLast = true;
+      }
+
       this.$emit('text-animation-step', this.step);
 
       for (let i = 0; i < this.currentText.length; i++) {
@@ -194,15 +199,15 @@ export default {
   template: `
     <div :class="classList">
       <div class="text-animation__placeholder">
-        <span :class="placeholderTextClassList" ref="placeholderText">{{ textValue }}</span>
-        <div :class="placeholderSublineClassList">{{ sublineValue }}</div>
+        <span :class="placeholderTextClassList" ref="placeholderText" v-html="currentText"></span>
+        <div :class="placeholderSublineClassList" v-html="sublineValue"></div>
         <div :class="placeholderCtaClassList" ref="placeholderCta" v-if="ctaData">
           <cta v-bind="ctaData"></cta>
         </div>
       </div>
       <div class="text-animation__visible">
-        <span :class="textClassList" ref="text">{{ textValue }}</span>
-        <div :class="sublineClassList">{{ sublineValue }}</div>
+        <span :class="textClassList" ref="text" v-html="textValue"></span>
+        <div :class="sublineClassList" v-html="sublineValue"></div>
         <div :class="ctaClassList" v-if="ctaData">
           <cta v-bind="ctaData"></cta>
         </div>
