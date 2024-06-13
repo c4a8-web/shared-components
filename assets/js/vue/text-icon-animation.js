@@ -33,11 +33,7 @@ export default {
   },
   methods: {
     handleTextAnimationStep(event) {
-      console.log('🚀 ~ handleTextAnimationStep ~ event:', event);
       this.textAnimationStep = event;
-    },
-    isTextAnimationEnded(event) {
-      return event === null;
     },
   },
   template: `
