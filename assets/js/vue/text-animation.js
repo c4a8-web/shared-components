@@ -114,6 +114,8 @@ export default {
     end() {
       this.isEnded = true;
 
+      this.$emit('text-animation-ended', this.isEnded);
+
       window.clearTimeout(this.timeout);
     },
     next() {
@@ -135,7 +137,7 @@ export default {
         this.isSecondLast = true;
       }
 
-      this.$emit('text-animation-step', this.step);
+      this.$emit('text-animation-state', { step: this.step, isSecondLast: this.isSecondLast });
 
       for (let i = 0; i < this.currentText.length; i++) {
         this.textTimeout = i * this.sizeBasedDelay + this.sizeBasedDelay;

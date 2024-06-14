@@ -12,6 +12,8 @@ export default {
   data() {
     return {
       textAnimationStep: 0,
+      isEnded: false,
+      isSecondLast: false,
     };
   },
   computed: {
@@ -22,7 +24,13 @@ export default {
       return this.animationData.sequence;
     },
     classList() {
-      return ['text-icon-animation row vue-component', this.classes, this.isFixed ? 'text-icon-animation--fixed' : ''];
+      return [
+        'text-icon-animation row vue-component',
+        this.classes,
+        this.isFixed ? 'text-icon-animation--fixed' : '',
+        this.isEnded ? 'text-icon-animation--ended' : '',
+        this.isSecondLast ? 'text-icon-animation--is-second-last' : '',
+      ];
     },
     isFixed() {
       return Tools.isTrue(this.fixed);
@@ -32,8 +40,12 @@ export default {
     },
   },
   methods: {
-    handleTextAnimationStep(event) {
-      this.textAnimationStep = event;
+    handleTextAnimationState(state) {
+      this.textAnimationStep = state?.step;
+      this.isSecondLast = state?.isSecondLast;
+    },
+    handleTextAnimationEnded(event) {
+      this.isEnded = event;
     },
   },
   template: `
@@ -43,7 +55,8 @@ export default {
           :sequence="sequence"
           :fixed="fixed"
           :cta="cta"
-          @text-animation-step="handleTextAnimationStep"
+          @text-animation-state="handleTextAnimationState"
+          @text-animation-ended="handleTextAnimationEnded"
         >
         </text-animation>
       </div>
