@@ -37,6 +37,7 @@ import GoogleMap from './vue/google-map.js';
 import GridList from './vue/grid-list.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
+import Hero from './vue/hero.js';
 import Icon from './vue/icon.js';
 import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
@@ -76,6 +77,8 @@ import SlotItems from './vue/slot-items.js';
 import TabList from './vue/tab-list.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
+import TextAnimation from './vue/text-animation.js';
+import TextIconAnimation from './vue/text-icon-animation.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
@@ -190,6 +193,7 @@ const addApp = () => {
     GridList,
     Header,
     Headline,
+    Hero,
     Icon,
     ImageBlock,
     ImageList,
@@ -256,6 +260,8 @@ const addApp = () => {
     TabList,
     Tag,
     TestimonialList,
+    TextAnimation,
+    TextIconAnimation,
     TextTeaser,
     Timeline,
     LBlock,

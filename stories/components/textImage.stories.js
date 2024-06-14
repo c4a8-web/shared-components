@@ -146,7 +146,7 @@ JobApplication.args = {
         },
         {
           type: 'file',
-          col: 6,
+          col: 12,
           rowStart: true,
           rowEnd: true,
           formAttachments: {

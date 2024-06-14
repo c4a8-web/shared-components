@@ -1,0 +1,8 @@
+<!-- Shared Hero Section -->
+{%- assign heroHero = page.hero | default: include.hero | default: hero -%}
+
+<hero
+  :hero="{{ heroHero | jsonify | escape }}"
+>
+</hero>
+<!-- Shared End Hero Section -->

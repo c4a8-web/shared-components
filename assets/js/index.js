@@ -98,11 +98,6 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
-  import('./components/text-animation.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
   import('./utility-animation.js')
     .then((module) => {
       return module.default;
@@ -142,7 +137,6 @@ const componentList = [
 //   // './components/tab-list.js',
 //   // './components/tag-cloud.js',
 //   // './components/testimonial-list.js',
-//   // './components/text-animation.js',
 //   // './components/video-frame.js',
 //   // './modal.js',
 //   // './pages/detail.js',

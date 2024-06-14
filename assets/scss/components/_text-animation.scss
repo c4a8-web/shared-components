@@ -1,13 +1,5 @@
 .text-animation {
   position: relative;
-
-  &.text-animation--fixed {
-    @include media-breakpoint-up(lg) {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-  }
 }
 
 .text-animation__subline {
