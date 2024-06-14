@@ -1,5 +1,26 @@
 {%- assign headSiteUrl = site.site_url_env | default: site.url -%}
 
+{%- if page.seoTitle -%}
+  {%- assign headMetaTitle = page.seoTitle -%}
+{%- else -%}
+  {%- assign headMetaTitle = page.title -%}
+{%- endif -%}
+
+{%- if page.excerpt -%}
+  {%- assign headMetaDescription = page.excerpt | strip_html -%}
+{%- else -%}
+  {%- assign headMetaDescription = site.excerpt | strip_html -%}
+{%- endif -%}
+
+{%- assign headMetaImage = "https://res.cloudinary.com/c4a8/image/upload/" | append: page.socialimg -%}
+{%- assign headMetaUrl = site.url | append: page.url -%}
+
+{%- if page.lang -%}
+  {%- assign headMetaLang = page.lang -%}
+{%- else -%}
+  {%- assign headMetaLang = site.lang -%}
+{%- endif -%}
+
 <!-- Shared Head Section -->
 <head>
   <meta charset="utf-8">
@@ -19,8 +40,8 @@
   <link rel="preconnect" href="//www.googletagmanager.com/">
 
   <!-- Plain Description -->
-  <title>{{ site.title | escape }}{% if page.title %} | {{ page.title | strip_html | escape }}{% endif %}</title>
-  <meta name="title" content="{{ site.title | escape }}{% if page.title %} | {{ page.title | escape }}{% endif %}">
+  <title>{{ headMetaTitle | escape }}</title>
+  <meta name="title" content="{{ headMetaTitle | escape }}">
   <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
   <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
   <meta name="author" content="{{ site.author.name }}">
@@ -28,31 +49,29 @@
     <meta name="google-site-verification" content="{{ site.webmaster.verification_code }}">
   {%- endif -%}
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | replace:'.html','' | prepend: site.url }}">
-  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-  <link rel="alternate icon" href="/favicon.ico">
-  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/favicon.ico" />
   {% if page.hreflang -%}
-    {% for pageLang in page.hreflang %}
+    {%- for pageLang in page.hreflang -%}
       <link rel="alternate" hreflang="{{ pageLang.lang }}" href="{{ headSiteUrl }}{{ pageLang.href }}" />
     {% endfor %}
   {%- endif %}
 
-  <!-- Facebook -->
+  <!-- OpenGraph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="{% if page.fulltitle %}{{ page.fulltitle }}{% else %}{{ page.title }} | {{ site.title }} {% endif %}">
-  <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
-  <meta property="og:image" content="https://res.cloudinary.com/c4a8/image/upload/{{ page.socialimg }}">
-  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:title" content="{{ headMetaTitle }}">
+  <meta property="og:description" content="{{ headMetaDescription }}">
+  <meta property="og:image" content="{{ headMetaImage }}">
+  <meta property="og:url" content="{{ headMetaUrl }}">
   <meta property="og:site_name" content="{{ site.title }}">
-  <meta property="og:locale" content="{% if page.lang %}{{ page.lang }}{% else %}{{ site.lang }}{% endif %}">
+  <meta property="og:locale" content="{{ headMetaLang }}">
   <meta property="article:author" content="{{ site.twitter.username }}">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="{% if page.fulltitle %}{{ page.fulltitle}}{% else %}{{ page.title}} | {{ site.title }} {% endif %}">
-  <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html }}{% else %}{{ site.excerpt | strip_html }}{% endif %}">
-  <meta name="twitter:image" content="https://res.cloudinary.com/c4a8/image/upload/{{ page.socialimg }}">
-  <meta name="twitter:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:title" content="{{ headMetaTitle }}">
+  <meta name="twitter:description" content="{{ headMetaDescription }}">
+  <meta name="twitter:image" content="{{ headMetaImage }}">
+  <meta name="twitter:url" content="{{ headMetaUrl }}">
   <meta name="twitter:creator" content="{{ site.twitter.username }}">
   <meta name="twitter:site" content="{{ site.twitter.username }}">
 

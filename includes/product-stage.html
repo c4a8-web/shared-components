@@ -1,15 +1,19 @@
 <!-- Shared Product Stage Section -->
-{%- assign props = page.stage -%}
+{%- assign props = page.stage | default: include.stage -%}
+{%- assign productStageDescription = props.description -%}
+{%- assign productStageAdditionalCopy = props.additionalCopy -%}
+{%- assign productStageTooltip = props.tooltip -%}
+{%- assign productStageModalId = props.modalId -%}
+
 {%- assign products = site.data.products.list -%}
-{% assign background = props.background %}
-{% assign headline = props.headline %}
-{% assign description = props.description %}
-{% assign bgColor = props.bgColor | default: 'var(--color-primary)' %}
-{% assign slider = props.slider %}
-{% assign buttons = props.buttons %}
-{% assign cards = props.cards %}
-{% assign shape = props.shape %}
-{% assign overlapping = cards and headline or description %}
+{%- assign background = props.background -%}
+{%- assign headline = props.headline -%}
+{%- assign bgColor = props.bgColor | default: 'var(--color-primary)' -%}
+{%- assign slider = props.slider -%}
+{%- assign buttons = props.buttons -%}
+{%- assign cards = props.cards -%}
+{%- assign shape = props.shape -%}
+{%- assign overlapping = cards and headline or productStageDescription -%}
 
 <section
   class="product-stage position-relative overflow-hidden"
@@ -33,22 +37,30 @@
   <div class="product-stage__content container position-relative">
     <div class="space-top-2 space-top-lg-4 space-top-xl-5 text-white space-bottom-1 space-bottom-lg-2">
       <h1>{{ headline }}</h1>
-      <p class="col-lg-8 lead mt-5 px-0">{{ description }}</p>
+      {% if productStageDescription %}
+        <p class="col-lg-8 lead mt-5 px-0">{{ productStageDescription }}</p>
+      {% endif %}
     </div>
 
     {% if slider and products %}
       {% include pricing-slider.html
         slider=slider
+        tooltip=productStageTooltip
+        modalId=productStageModalId
       %}
+    {% endif %}
+
+    {% if productStageAdditionalCopy %}
+      <div class="row justify-content-center py-6"><div class="text-center">{{ productStageAdditionalCopy }}</div></div>
     {% endif %}
 
     {% if buttons %}
       <div class="row justify-content-center py-6">
-      {%
-        include cta-list.html
-        list=buttons
-      %}
-    </div>
+        {%
+          include cta-list.html
+          list=buttons
+        %}
+      </div>
     {% else %}
       <div class="space-bottom-2 space-bottom-lg-3"></div>
     {% endif %}

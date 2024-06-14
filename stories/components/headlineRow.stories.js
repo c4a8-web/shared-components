@@ -21,3 +21,22 @@ h2.args = {
   text: 'Headline Level 2 space-top-2',
   spacing: 'space-top-2',
 };
+
+export const Centered = Template.bind({});
+
+Centered.args = {
+  centered: true,
+  level: 'h2',
+  text: 'Headline Level 2 space-top-2',
+  spacing: 'space-top-2',
+};
+
+export const LeftAlignment = Template.bind({});
+
+LeftAlignment.args = {
+  centered: true,
+  level: 'h2',
+  text: 'Headline Level 2 space-top-2',
+  classes: 'text-left',
+  spacing: 'space-top-2',
+};

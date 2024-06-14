@@ -58,7 +58,7 @@
 
       {% if eventOverviewEvent.cta -%}
         {% assign eventOverviewEventUrl = eventOverviewEvent.cta.href %}
-        {% assign eventOverviewEventExternal = true %}
+        {% assign eventOverviewEventExternal = eventOverviewEvent.cta.external | default: false %}
       {% else -%}
         {% assign eventOverviewEventUrl = eventOverviewEvent.url %}
         {% assign eventOverviewEventExternal = false %}

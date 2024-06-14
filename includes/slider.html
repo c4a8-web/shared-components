@@ -6,6 +6,8 @@
 {%- assign sliderHideBackground = include.hideBackground -%}
 {%- assign sliderBgColor = include.bgColor -%}
 {%- assign sliderSpacing = include.spacing -%}
+{%- assign sliderCenterPadding = include.centerPadding -%}
+{%- assign sliderOptions = include.options -%}
 
 <slider
   headline="{{ sliderRecentHeadline }}"
@@ -15,6 +17,8 @@
   hide-background="{{ sliderHideBackground }}"
   bg-color="{{ sliderBgColor }}"
   spacing="{{ sliderSpacing }}"
+  center-padding="{{ sliderCenterPadding }}"
+  options="{{ sliderOptions | jsonify | escape }}"
 >
   {{ sliderContent }}
 </slider>

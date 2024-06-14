@@ -75,7 +75,7 @@
             {% if contact.hasGreyBackground %} bg-grey{% else %} {% endif %} {% unless contactCollapsed %}space-bottom-2 utility-animation utility-animation--percentage-offset{% endunless %}"
             style="{% if contactBgColor %}--color-contact-background: {{ contactBgColor }}; --color-contact-quote-background: {{ contactBgColor }};{% endif %}
                     {% if contactColor %}--contact-copy-color: {{ contactColor }};{% endif %}
-                    {% if contactBoxBgColor %}--color-contact-quote-person: {{ contactBoxBgColor }};{% endif %}
+                    {% if contactBoxBgColor %}--color-contact-box-background: {{ contactBoxBgColor }};{% endif %}
                     {% if contactBoxColor %}--contact-box-copy-color: {{ contactBoxColor }};{% endif %}
 
             "
@@ -111,7 +111,7 @@
       </div>
 
       <div class="contact__box {% unless contactCollapsed %}fade-in-bottom{% endunless %} {{ contactBoxClass }} {{ contactBoxQuoteClass }}" data-utility-animation-step="1">
-        <div class="contact__person {{ contactLight }}" {% if contact.person.quoteBgColor %}style="--color-contact-person: {{ contact.person.quoteBgColor }}"{% endif %}>
+        <div class="contact__person {{ contactLight }}">
           {% if contactQuote %}
             <div class="contact__person-quote">
               <div class="contact__icon">
@@ -127,6 +127,7 @@
                     img=contact.person.image
                     cloudinary=contact.person.cloudinary
                     alt=contact.person.alt
+                    preset="cardSmall"
                     lazy=true
                   %}
                 </div>
@@ -144,6 +145,7 @@
                 img=contact.person.image
                 cloudinary=contact.person.cloudinary
                 alt=contact.person.alt
+                preset="cardSmall"
                 lazy=true
               %}
             </div>

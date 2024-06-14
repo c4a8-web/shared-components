@@ -70,17 +70,23 @@ class Modal {
 
         button?.addEventListener('click', this.handleOpen.bind(this));
       } else if (parent) {
-        const buttons = document.querySelectorAll(`[data-trigger-id='${this.modalId}']`);
-
-        buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
+        this.addTriggerListeners();
       }
 
       if (formInstance && formInstance.canHaveCustomSubmit()) {
         formInstance.customSubmit = this.handleApplicationSubmit.bind(this);
       }
+    } else if (this.root.dataset.modalId) {
+      this.addTriggerListeners();
     }
 
     document.addEventListener(Events.OPEN_MODAL, this.handleModalOpen.bind(this));
+  }
+
+  addTriggerListeners() {
+    const buttons = document.querySelectorAll(`[data-trigger-id='${this.modalId}']`);
+
+    buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
   }
 
   handleModalOpen(e) {

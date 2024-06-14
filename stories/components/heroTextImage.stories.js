@@ -1,5 +1,6 @@
 import { createComponent, getAssetPath } from '../../.storybook/templates';
 import heroTextImageTemplate from '!!raw-loader!./heroTextImage.html';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   title: 'Components/Hero Text Image',
@@ -121,25 +122,17 @@ const baseArgs = {
 
 const Template = (args) => createComponent(args, heroTextImageTemplate);
 
-export const HeroCareer = Template.bind({});
+// export const HeroTextImageCareerHand = Template.bind({});
 
-HeroCareer.args = {
-  hero: {
-    ...baseArgs,
-  },
-};
-
-export const HeroCareerHand = Template.bind({});
-
-HeroCareerHand.args = {
-  hero: {
-    ...baseArgs,
-    background: {
-      icon: 'hand',
-      spacing: 'space-top-lg-5',
-    },
-  },
-};
+// HeroTextImageCareerHand.args = {
+//   hero: {
+//     ...baseArgs,
+//     background: {
+//       icon: 'hand',
+//       spacing: 'space-top-lg-5',
+//     },
+//   },
+// };
 
 export const HeroTextImage = Template.bind({});
 
@@ -222,9 +215,9 @@ HeroTextShapeSticky.args = {
   },
 };
 
-export const HeroTextVideo = Template.bind({});
+export const HeroTextImageTextVideo = Template.bind({});
 
-HeroTextVideo.args = {
+HeroTextImageTextVideo.args = {
   hero: {
     variant: 'hero--security', // TODO refactor to hero--video
     light: true,
@@ -242,9 +235,9 @@ HeroTextVideo.args = {
   },
 };
 
-export const HeroSmall = Template.bind({});
+export const HeroTextImageSmall = Template.bind({});
 
-HeroSmall.args = {
+HeroTextImageSmall.args = {
   hero: {
     variant: 'hero--small',
     bgColor: 'var(--color-gigas)',
@@ -277,9 +270,9 @@ HeroTextImageSafety.args = {
   },
 };
 
-export const HeroText = Template.bind({});
+export const HeroTextImageText = Template.bind({});
 
-HeroText.args = {
+HeroTextImageText.args = {
   hero: {
     variant: 'hero--text',
     headline: 'Wenn Sie wissen, worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
@@ -301,5 +294,21 @@ HeroText.args = {
         icon: 'mail',
       },
     ],
+  },
+};
+
+export const HeroTextImageLottie = Template.bind({});
+
+HeroTextImageLottie.args = {
+  hero: {
+    overline: 'Lorem ipsum',
+    overlineBgColor: 'var(--color-gigas)',
+    overlineColor: 'var(--color-white)',
+    headline: 'Consulting Services',
+    subline:
+      'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+    background: {
+      lottie: lottie1,
+    },
   },
 };

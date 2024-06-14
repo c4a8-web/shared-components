@@ -1,5 +1,6 @@
 import { getDefaultSettings } from '../../.storybook/templates';
 import { includeseventteaserhtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   ...getDefaultSettings({
@@ -240,7 +241,7 @@ export const EventTeaserTraining = {
   args: {
     headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
     time: '1-4 Tage',
-    shapes: [
+    shape: [
       {
         color: 'var(--color-yellow)',
       },
@@ -275,5 +276,40 @@ export const EventTeaser = {
       skin: 'secondary is-light',
     },
     variant: 8,
+  },
+};
+
+export const EventTeaserWithAnimation = {
+  args: {
+    headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
+    content:
+      '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
+    moment: '16.02.2022',
+    time: '14-15 Uhr',
+    shapes: [
+      {
+        color: 'var(--color-green-blue)',
+      },
+      {
+        color: 'var(--color-summer-green)',
+      },
+    ],
+    webcast: true,
+    author: ['Nadine Kern', 'Max Mustermann'],
+    image: {
+      lottie: lottie1,
+      alt: 'lorem ipsum',
+    },
+    badge: {
+      text: 'Neuer Webcast',
+      icon: '',
+    },
+    cta: {
+      text: 'Jetzt anmelden',
+      href: 'https://www.google.com',
+      skin: 'primary',
+      external: true,
+    },
+    variant: 6,
   },
 };

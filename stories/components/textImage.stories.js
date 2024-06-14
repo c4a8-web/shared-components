@@ -1,5 +1,6 @@
 import { createComponent, getAssetPath } from '../../.storybook/templates';
 import { includestextimagehtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   title: 'Components/Text Image',
@@ -245,4 +246,31 @@ LeftFloatingBg.args = {
       target: '_blank',
     },
   ],
+};
+
+export const WithAnimation = Template.bind({});
+
+WithAnimation.args = {
+  lottie: lottie1,
+  alt: 'Consulting Services',
+  headline: 'Consulting Services',
+  offset: true,
+  list: [
+    {
+      ctaText: 'Modern Workplace',
+      ctaHref: '/de/modern-workplace/consulting-services',
+      link: true,
+    },
+    {
+      ctaText: 'Azure',
+      ctaHref: '/de/azure/azure-consulting',
+      link: true,
+    },
+    {
+      ctaText: 'Security',
+      ctaHref: '/de/security/security-consulting',
+      link: true,
+    },
+  ],
+  copy: 'Unsere Consulting Services konzentrieren sich auf die wichtigsten Themen für unsere Kunden: <strong>Modern Workplace, Azure Datacenter, Transformation Services und DevOps</strong>. Sie arbeiten Hand in Hand mit unseren Experten, die Ihnen die Best Practices und Richtlinien für eine erfolgreiche Implementierung aufzeigen. Mit unserer tiefen technischen Expertise sorgen wir dafür, dass Ihre Cloud-Umgebung effizient, sicher und leistungsstark ist.',
 };

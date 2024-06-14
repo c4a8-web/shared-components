@@ -31,31 +31,37 @@ export default {
       const diverseSocials = [
         `mailto:?subject=`,
         `https://www.linkedin.com/shareArticle?mini=true&url=`,
-        'https://www.xing.com/app/user?op=share;url=',
         'https://twitter.com/intent/tweet?text=&url=',
       ];
-      const diverseIcons = ['fas fa-envelope', 'fab fa-linkedin', 'fab fa-xing', 'fab fa-x-twitter'];
+      const diverseIcons = {
+        email: 'fas fa-envelope',
+        linkedin: 'fab fa-linkedin',
+        twitter: 'fab fa-x-twitter',
+      };
 
-      const authorList = [
+      const authorSocials = [
         {
-          link: this.author.twitter ? twitterUrl + this.author.twitter : '',
-          icon: diverseIcons[3],
+          link: this.author?.twitter ? twitterUrl + this.author.twitter : '',
+          icon: diverseIcons['twitter'],
         },
         {
-          link: this.author.linkedin ? linkedinUrl + this.author.linkedin : '',
-          icon: diverseIcons[1],
+          link: this.author?.linkedin ? linkedinUrl + this.author.linkedin : '',
+          icon: diverseIcons['linkedin'],
         },
       ];
 
-      const filteredAuthorsList = authorList.filter((obj) => obj.link !== '');
+      const filteredAuthorSocials = authorSocials.filter((obj) => obj.link !== '');
 
-      if (filteredAuthorsList.length > 0) return filteredAuthorsList;
+      if (filteredAuthorSocials.length > 0) return filteredAuthorSocials;
 
-      const socialsUrls = diverseSocials.map((item) => item + this.sharedUrl);
-      return socialsUrls.map((link, index) => {
+      const socialsUrls = diverseSocials.map((item) => item + this.shareUrl);
+
+      return socialsUrls?.map((link, index) => {
+        const socialName = Object.keys(diverseIcons)[index];
+
         return {
           link: link,
-          icon: diverseIcons[index],
+          icon: diverseIcons[socialName],
         };
       });
     },

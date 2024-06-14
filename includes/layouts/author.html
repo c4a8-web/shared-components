@@ -1,5 +1,6 @@
 {%- assign lang = page.lang | default: 'de' -%}
 {%- assign author = site.data.authors[page.name] -%}
+{%- assign authorSocialsTitle = site.data.lang[lang].socialsTitle -%}
 
 {%- if author -%}
   {%- assign imgUrl = author.avatar -%}
@@ -26,7 +27,7 @@
 
   <div class="container space-top-2 space-top-lg-4">
     <div class="author">
-      <div class="row mb-4 mb-lg-5">
+      <div class="row mb-4 mb-lg-5" style="display: none">
         {%
           include author-avatar.html
           imgUrl=imgUrl
@@ -41,6 +42,12 @@
         </div>
 
       </div>
+      {%
+        include author-header.html
+        imgUrl=imgUrl
+        author=author
+        postCount=postCount
+      %}
       <div class="author__intro-block row">
         <div class="author__intro font-size-2 col-lg-8 pl-lg-0">
           {% if lang != 'de' %}
@@ -56,7 +63,7 @@
             {%
               include services.html
               author=author
-              title="Lorem Ipsum"
+              title=authorSocialsTitle
             %}
           </div>
         {%- endif -%}

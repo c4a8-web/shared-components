@@ -1,12 +1,14 @@
 <!-- Shared Pricing Slider -->
 {%- assign pricingSliderSlider = include.slider -%}
+{%- assign pricingSliderTooltip = include.tooltip -%}
+{%- assign pricingSliderModalId = include.modalId -%}
 {%- assign pricingSliderRange = pricingSliderSlider.range -%}
 {% comment %}TODO refactor product-stage so that products is passed as a parameter{% endcomment %}
 {%- assign pricingSliderProducts = include.products -%}
 
 <div class="pricing-slider">
   {% if pricingSliderRange %}
-    <div class="js-slider-data" data-range="{{ pricingSliderRange | jsonify | xml_escape }}" data-products="{{ products | jsonify | xml_escape }}">
+    <div class="js-slider-data" data-range="{{ pricingSliderRange | jsonify | escape }}" data-products="{{ products | jsonify | escape }}">
       <!-- Range Slider -->
         <input class="js-ion-range-slider" type="text"
         data-hs-ion-range-slider-options='{
@@ -25,7 +27,9 @@
   <div class="product-stage__result-container">
     <div class="text-center text-midnight">
       <span class="font-size-5 js-result-price">0</span>
-      <span class="font-size-5">*</span>
+      <span class="pricing-slider__info font-size-5">
+        <icon icon="info" size="small" ></icon>
+      </span>
       <span>| {{ pricingSliderRange.resultPer }}</span>
     </div>
 
@@ -33,6 +37,19 @@
       <strong class="js-result-product"></strong>
       <span class="js-result-extra"></span>
     </div>
+
+    <modal
+    :slim="true"
+    :center="true"
+    class="pricing-slider__modal"
+    modal-id="{{ pricingSliderModalId }}"
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col">{{ pricingSliderTooltip }}</div>
+        </div>
+      </div>
+    </modal>
   </div>
 </div>
 <!-- End Shared Pricing Slider -->

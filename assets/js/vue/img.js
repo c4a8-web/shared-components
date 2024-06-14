@@ -26,13 +26,27 @@ export default {
   },
   computed: {
     classList() {
+      return ['v-img', 'vue-component', this.classListComponent];
+    },
+    classListComponent() {
       return [
-        'v-img',
-        'vue-component',
         this.isSvg() ? 'is-svg' : '',
         this.class ? this.class : '',
         this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
+    },
+    isLottie() {
+      return typeof this.jsonLottieData === 'object' ? true : false;
+    },
+    jsonLottieData() {
+      if (!this.lottie) return;
+
+      return typeof this.lottie !== 'object' ? Tools.getJSON(this.lottie) : this.lottie;
+    },
+    jsonLottieSettingsData() {
+      if (!this.lottie || !this.lottieSettings) return;
+
+      return typeof this.lottieSettings !== 'object' ? Tools.getJSON(this.lottieSettings) : this.lottieSettings;
     },
     isCloudinary() {
       return Tools.isTrue(this.cloudinary);
@@ -66,6 +80,11 @@ export default {
       return this.getCloudinaryBasePathLink(srcSets[srcSets.length - 1]);
     },
   },
+  watch: {
+    animated(newAnimated, oldAnimated) {
+      this.srcset = '';
+    },
+  },
   created() {
     if (this.canGenerateSrcSet()) return;
 
@@ -76,7 +95,7 @@ export default {
   },
   methods: {
     canGenerateSrcSet() {
-      return this.isCloudinary && !this.isGif();
+      return this.isCloudinary && !this.isGif() && !this.animated;
     },
     getSetup() {
       const preset = this.getPreset();
@@ -109,7 +128,7 @@ export default {
       return `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
     },
     getCloudinaryLink() {
-      return this.isGif() || this.isSvg()
+      return this.isGif() || this.isSvg() || this.animated
         ? this.getCloudinaryBasePathLink()
         : this.getCloudinaryLinkWithTransformation();
     },
@@ -155,7 +174,7 @@ export default {
         this.dimensions = dimensions;
       };
 
-      img.src = link ? link : this.getCloudinaryBasePathLink();
+      img.src = link ? link : this.getCloudinaryLinkWithTransformation();
     },
     getTransformationString(preset) {
       const transformations = [];
@@ -195,6 +214,8 @@ export default {
       this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
     },
     isGif() {
+      if (!this.img) return;
+
       const extension = this.img.split('.')[1];
 
       return extension.toLowerCase() === 'gif';
@@ -218,6 +239,9 @@ export default {
     lazy: Boolean,
     class: String,
     preset: String,
+    lottie: Object,
+    lottieSettings: Object,
+    animated: Boolean,
   },
   template: `
     <template v-if="hasPictureTag">
@@ -228,6 +252,7 @@ export default {
         </picture>
       </div>
     </template>
+    <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" v-bind="jsonLottieSettingsData" />
     <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `,
 };

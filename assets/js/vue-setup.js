@@ -10,8 +10,10 @@ import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
 import AuthorAvatar from './vue/author-avatar.js';
+import AuthorHeader from './vue/author-header.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
+import Carousel from './vue/carousel.js';
 import CheckCard from './vue/check-card.js';
 import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
@@ -48,6 +50,7 @@ import LetterSwitcher from './vue/letter-switcher.js';
 import LinkList from './vue/link-list.js';
 import ListContainer from './vue/list-container.js';
 import LogoList from './vue/logo-list.js';
+import Lottie from './vue/lottie.js';
 import Modal from './vue/modal.js';
 import PostTeaser from './vue/post-teaser.js';
 import PersonQuote from './vue/person-quote.js';
@@ -95,6 +98,7 @@ import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Hand from './vue/icons/hand.js';
+import Info from './vue/icons/info.js';
 import ListView from './vue/icons/list-view.js';
 import Magnifier from './vue/icons/magnifier.js';
 import Mail from './vue/icons/mail.js';
@@ -111,6 +115,7 @@ import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
 import TileView from './vue/icons/tile-view.js';
+import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
 
 // Shapes
@@ -160,13 +165,15 @@ const addApp = () => {
     AsideWrapper,
     Authors,
     AuthorAvatar,
+    AuthorHeader,
     BlogRecent,
     Card,
+    Carousel,
+    CheckCard,
     Cta,
     Dropdown,
     EventOverview,
     Event,
-    CheckCard,
     CheckMark,
     Faq,
     FeatureGridItem,
@@ -199,6 +206,7 @@ const addApp = () => {
     LinkList,
     ListContainer,
     LogoList,
+    Lottie,
     Modal,
     Plus,
     ScrollArrow,
@@ -230,6 +238,7 @@ const addApp = () => {
     EmailActionUnread,
     Expand,
     Hand,
+    Info,
     ListView,
     Menu,
     Magnifier,
@@ -261,6 +270,7 @@ const addApp = () => {
     Screenshot,
     PersonQuote,
     VideoInner,
+    World,
     XMark,
     Wrapper,
     WrapperSlotItems,

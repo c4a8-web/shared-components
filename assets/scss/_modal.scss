@@ -66,6 +66,46 @@
     }
   }
 
+  &.modal--center-slim {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+      text-align: left;
+      margin-bottom: spacing(5);
+    }
+
+    .modal__header {
+      position: relative;
+      padding-top: 0;
+      padding-bottom: 0;
+      padding-right: 0;
+    }
+
+    .modal__close {
+      position: absolute;
+      z-index: 1;
+      cursor: pointer;
+      margin-right: 0;
+      top: spacing(4);
+      right: spacing(4);
+      transition: transform 0.4s $animation-transition;
+
+      &:hover {
+        transform: scale(1.4);
+      }
+    }
+
+    .modal__body {
+      @include line-height('wide');
+
+      line-height: 2;
+      padding: spacing(8) 0;
+    }
+  }
+
   &.modal--notification {
     .modal-dialog {
       --modal-bottom-spacing: #{spacing(8)};

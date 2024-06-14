@@ -66,3 +66,10 @@ ServicesSocials.args = {
     ],
   },
 };
+
+export const ServicesNoSocials = Template.bind({});
+
+ServicesNoSocials.args = {
+  title: 'Lorem Ipsum',
+  author: {},
+};

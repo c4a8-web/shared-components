@@ -302,3 +302,12 @@ $transition-tween-t1: 0.2s ease-in-out;
     transform: translateY(0);
   }
 }
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--animation-scroll-width));
+  }
+}

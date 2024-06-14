@@ -1,4 +1,5 @@
 const en = {
+  posts: 'Posts',
   address: 'Address',
   follow: 'Follow',
   full_time: 'Full-Time',
@@ -22,6 +23,7 @@ const en = {
   search: 'Search',
   apply: 'Apply',
   reset: 'Reset',
+  jobListEmpty: 'We currently have no positions in this language.',
 };
 
 export default en;

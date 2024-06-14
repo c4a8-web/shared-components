@@ -1,4 +1,5 @@
 const es = {
+  posts: 'Entradas',
   address: 'Dirección',
   follow: 'Seguir',
   full_time: 'Tiempo completo',
@@ -22,6 +23,7 @@ const es = {
   search: 'Buscar en',
   apply: 'Aplicar',
   reset: 'Reiniciar',
+  jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
 };
 
 export default es;

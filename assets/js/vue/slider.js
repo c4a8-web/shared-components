@@ -2,7 +2,7 @@ import Tools from '../tools.js';
 import State from '../state.js';
 
 // TODO try to export this to the other components that use carousel options
-export const defaultOptions = ({ length }) => {
+export const defaultOptions = ({ length, centerPadding }) => {
   return {
     slidesToShow: 3,
     slidesToScroll: 3,
@@ -24,7 +24,7 @@ export const defaultOptions = ({ length }) => {
         settings: {
           centerMode: true,
           infinite: false,
-          centerPadding: '30px',
+          centerPadding: centerPadding ? centerPadding : '30px',
           slidesToShow: 2,
           slidesToScroll: 2,
           dots: length > 2 ? true : false,
@@ -35,7 +35,7 @@ export const defaultOptions = ({ length }) => {
         settings: {
           centerMode: true,
           infinite: false,
-          centerPadding: '20px',
+          centerPadding: centerPadding ? centerPadding : '20px',
           slidesToShow: 1,
           slidesToScroll: 1,
           dots: length > 1 ? true : false,
@@ -56,6 +56,9 @@ export default {
         'vue-component',
       ];
     },
+    jsonOptions() {
+      return Tools.getJSON(this.options);
+    },
     getSpacing() {
       return this.spacing ? this.spacing : '';
     },
@@ -65,21 +68,29 @@ export default {
     headlineClassesValue() {
       return `slider__headline ${this.headlineClasses ? this.headlineClasses : 'h3-font-size'}`;
     },
+    centerPaddingValue() {
+      return this.centerPadding ? this.centerPadding + 'px' : null;
+    },
     carouselOptions() {
       const childrenLength = this.childrenLength;
 
       if (childrenLength === 0) return null;
 
-      const options = defaultOptions({ length: childrenLength });
-      const slidesToShow = 1;
+      const options = this.jsonOptions
+        ? this.jsonOptions
+        : defaultOptions({ length: childrenLength, centerPadding: this.centerPaddingValue });
 
-      options.slidesToShow = options.slidesToScroll = slidesToShow;
-      options.dots = true;
+      if (!this.jsonOptions) {
+        const slidesToShow = 1;
 
-      options.responsive.forEach((breakpoint) => {
-        breakpoint.settings.dots = true;
-        breakpoint.settings.slidesToScroll = breakpoint.settings.slidesToShow = slidesToShow;
-      });
+        options.slidesToShow = options.slidesToScroll = slidesToShow;
+        options.dots = true;
+
+        options.responsive.forEach((breakpoint) => {
+          breakpoint.settings.dots = true;
+          breakpoint.settings.slidesToScroll = breakpoint.settings.slidesToShow = slidesToShow;
+        });
+      }
 
       return JSON.stringify(options);
     },
@@ -91,6 +102,9 @@ export default {
     },
     hideBackgroundValue() {
       return Tools.isTrue(this.hideBackground);
+    },
+    hideContainerValue() {
+      return Tools.isTrue(this.hideContainer);
     },
     backgroundClass() {
       return this.hideBackgroundValue === false ? State.HAS_BACKGROUND : '';
@@ -108,7 +122,6 @@ export default {
   },
   data() {
     return {
-      options: '',
       defaultBgColor: 'var(--color-bg-grey)',
     };
   },
@@ -124,6 +137,8 @@ export default {
       default: false,
     },
     bgColor: String,
+    centerPadding: Number,
+    options: Object,
   },
   // TODO move shape to a vue component and insert it here
   template: `
@@ -135,14 +150,14 @@ export default {
           </svg>
         </figure>
       </div>
-      <wrapper :hideContainer="hiddenContainer" classes="slider__wrapper" :style="style">
+      <wrapper :hideContainer="hideContainerValue" classes="slider__wrapper" :style="style">
         <div class="row" v-if="headline">
           <div class="slider__header col-lg-12 col-md-10 mt-6 mt-lg-8 mb-6 mb-lg-8 text-center">
             <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
             <span v-if="subline" :class="sublineClassesValue" >{{ subline }}</span>
           </div>
         </div>
-        <div class="slider__container js-slick-carousel" :data-hs-slick-carousel-options="carouselOptions" >
+        <div class="slider__container js-slick-carousel" :data-hs-slick-carousel-options="carouselOptions">
           <wrapper-slot-items :items="$slots.default"></wrapper-slot-items>
         </div>
       </wrapper>

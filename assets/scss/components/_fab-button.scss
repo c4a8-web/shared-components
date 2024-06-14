@@ -101,7 +101,9 @@ $fab-button-scroll-top: 200px;
   @include shadow('light');
 
   background-color: var(--color-fab-background);
-  transition: transform 0.7s $animation-transition, opacity 0.7s $animation-transition,
+  transition:
+    transform 0.7s $animation-transition,
+    opacity 0.7s $animation-transition,
     height 0.7s $animation-transition;
   right: 0;
   bottom: 0;
@@ -118,7 +120,7 @@ $fab-button-scroll-top: 200px;
   }
 
   .contact {
-    --color-contact-person: var(--color-fab-background);
+    --color-contact-box-background: var(--color-fab-background);
   }
 
   @include media-breakpoint-up(lg) {
