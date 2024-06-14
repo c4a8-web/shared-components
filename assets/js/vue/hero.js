@@ -1,10 +1,17 @@
 import Tools from '../tools.js';
+import StickyScroller from '../sticky-scroller.js';
 
 export default {
   tagName: 'hero',
   computed: {
     classList() {
-      return ['hero vue-component', this.isLight ? 'is-light' : '', this.fullscreen ? 'hero--fullscreen' : ''];
+      return [
+        'hero vue-component',
+        this.isLight ? 'is-light' : '',
+        this.fullscreen ? 'hero--fullscreen' : '',
+        this.animation ? 'hero--animation' : '',
+        this.hasStickyScroller ? StickyScroller.getRootClass() : '',
+      ];
     },
     contentClassList() {
       return ['hero__content', this.spacing ? this.spacing : 'py-8 py-lg-10'];
@@ -38,6 +45,9 @@ export default {
     },
     spacing() {
       return this.heroJson && this.heroJson.background ? this.heroJson.background.spacing : null;
+    },
+    hasStickyScroller() {
+      return this.heroJson ? this.heroJson.sticky : false;
     },
     heroJson() {
       return Tools.getJSON(this.hero);

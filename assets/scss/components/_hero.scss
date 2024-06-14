@@ -20,6 +20,16 @@
       min-height: inherit;
     }
   }
+
+  &.hero--animation {
+    .hero__content {
+      justify-content: flex-start;
+
+      @include media-breakpoint-up(lg) {
+        justify-content: center;
+      }
+    }
+  }
 }
 
 .hero__overline {
@@ -35,4 +45,8 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.hero__intro {
+  margin-bottom: spacing(6);
 }

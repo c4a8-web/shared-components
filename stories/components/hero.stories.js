@@ -16,6 +16,7 @@ export const Careers = {
       v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
+      sticky: true,
       overline: 'Deine Karriere',
       fullscreen: true,
       animation: {
