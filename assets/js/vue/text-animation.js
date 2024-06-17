@@ -27,15 +27,21 @@ export default {
       currentSubline: '',
       currentSublineSize: null,
       currentTextSize: '',
+      currentText: '',
       isEnded: false,
       isSecondLast: false,
       showSubline: false,
+      sublineValue: null,
+      isCalculated: false,
+      calculationStep: 0,
+      calculatedMaxHeight: 0,
     };
   },
   computed: {
     classList() {
       return [
         'text-animation vue-component',
+        this.isCalculated ? '' : State.INVISIBLE,
         this.isEnded ? State.END : '',
         this.isFixed ? 'text-animation--fixed' : '',
       ];
@@ -168,7 +174,6 @@ export default {
       this.nextStep = this.sequenceData[this.step + 1] || this.sequenceData[0];
 
       this.currentTextSize = this.nextStep.textSize || this.defaultTextSize;
-
       this.currentSublineSize = this.nextStep.sublineSize || this.defaultSublineSize;
     },
     animate() {
@@ -189,18 +194,72 @@ export default {
 
       requestAnimationFrame(updateTextValue);
     },
+    calculateNextMaxHeight() {
+      const step = this.sequenceData[this.calculationStep];
+
+      if (!step) return (this.isCalculated = true);
+
+      this.currentText = null;
+      this.sublineValue = null;
+      this.ctaData = null;
+
+      this.currentTextSize = step.textSize || this.defaultTextSize;
+      this.currentText = step.text;
+
+      if (step.subline) {
+        this.currentSublineSize = step.sublineSize || this.defaultSublineSize;
+        this.sublineValue = step.subline;
+      }
+
+      this.calculationStep++;
+    },
+    handleResize() {
+      this.calculatedMaxHeight = null;
+
+      const placeholder = this.$refs.placeholder;
+
+      this.calculatedMaxHeight = placeholder.offsetHeight;
+    },
+  },
+  updated() {
+    if (!this.isCalculated) {
+      const placeholder = this.$refs.placeholder;
+
+      this.$refs.placeholderCta.style.display = 'none';
+
+      this.calculatedMaxHeight =
+        placeholder.offsetHeight > this.calculatedMaxHeight ? placeholder.offsetHeight : this.calculatedMaxHeight;
+
+      this.calculateNextMaxHeight();
+
+      this.$refs.placeholderCta.style.display = '';
+    }
   },
   created() {
     this.text = this.$refs.text;
 
     this.sizeBasedDelay = this.letterDelay;
   },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   mounted() {
-    this.animate();
+    window.addEventListener('resize', this.handleResize);
+
+    this.calculateNextMaxHeight();
+  },
+  watch: {
+    isCalculated(newValue) {
+      if (!newValue) return;
+
+      this.$refs.placeholder.style.minHeight = this.calculatedMaxHeight + 'px';
+
+      this.animate();
+    },
   },
   template: `
     <div :class="classList">
-      <div class="text-animation__placeholder">
+      <div class="text-animation__placeholder" ref="placeholder">
         <span :class="placeholderTextClassList" ref="placeholderText" v-html="currentText"></span>
         <div :class="placeholderSublineClassList" v-html="sublineValue"></div>
         <div :class="placeholderCtaClassList" ref="placeholderCta" v-if="ctaData">

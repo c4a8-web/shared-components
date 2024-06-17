@@ -10,14 +10,14 @@ export default {
   title: 'Components/Hero',
 };
 
-export const Careers = {
+export const Career = {
   args: {
     hero: {
       v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
       sticky: true,
-      overline: 'Deine Karriere',
+      overline: 'Karriere',
       fullscreen: true,
       animation: {
         sequence: [
@@ -48,4 +48,29 @@ export const Careers = {
   },
 };
 
-// TODO sticky prob
+export const CareerHand = {
+  args: {
+    hero: {
+      v2: true,
+      bgColor: 'var(--color-blue-dark)',
+      light: true,
+      overline: 'Karriere',
+      fullscreen: true,
+      animation: {
+        sequence: [
+          {
+            text: 'Young Professionals',
+            subline:
+              'Willkommen in einem Arbeitsumfeld, das Vertrauen und Flexibilität großschreibt. Hier zählt dein Input genauso wie der unserer IT-Expertinnen und IT-Experten. Beginne deine IT-Reise mit uns!',
+          },
+        ],
+      },
+      background: {
+        icon: 'hand',
+      },
+      cta: {
+        text: 'Zu den Stellenanzeigen',
+      },
+    },
+  },
+};
