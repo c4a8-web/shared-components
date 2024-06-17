@@ -122,18 +122,6 @@ const baseArgs = {
 
 const Template = (args) => createComponent(args, heroTextImageTemplate);
 
-// export const HeroTextImageCareerHand = Template.bind({});
-
-// HeroTextImageCareerHand.args = {
-//   hero: {
-//     ...baseArgs,
-//     background: {
-//       icon: 'hand',
-//       spacing: 'space-top-lg-5',
-//     },
-//   },
-// };
-
 export const HeroTextImage = Template.bind({});
 
 HeroTextImage.args = {

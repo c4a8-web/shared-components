@@ -10,7 +10,7 @@ export default {
   title: 'Components/Hero',
 };
 
-export const Careers = {
+export const Career = {
   args: {
     hero: {
       v2: true,
@@ -48,4 +48,40 @@ export const Careers = {
   },
 };
 
-// TODO sticky prob
+export const CareerHand = {
+  args: {
+    hero: {
+      v2: true,
+      bgColor: 'var(--color-blue-dark)',
+      light: true,
+      sticky: true,
+      overline: 'Karriere',
+      fullscreen: true,
+      animation: {
+        sequence: [
+          {
+            text: 'HEY,',
+            textSize: 'font-size-7',
+          },
+          {
+            text: 'Wo bin ich denn hier gelandet?',
+          },
+          {
+            text: 'Da, wo eine neue Welt entsteht',
+          },
+          {
+            text: 'Gemeinsam',
+            subline:
+              'wollen wir nichts weniger als die Welt verändern: die Dinge neu denken, die Revolution des Digitalen, einen Entwicklungssprung für unsere Kunden. Dafür braucht es Menschen, die nicht nach einem bloßen Job, sondern nach einer echten Aufgabe suchen. Menschen, die eine Vision haben. Menschen, die Utopien Realität werden lassen wollen.',
+          },
+        ],
+      },
+      background: {
+        icon: 'hand',
+      },
+      cta: {
+        text: 'Zu den Stellenanzeigen',
+      },
+    },
+  },
+};
