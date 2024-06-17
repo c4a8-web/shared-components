@@ -14,7 +14,7 @@ export default {
       ];
     },
     contentClassList() {
-      return ['hero__content', this.spacing ? this.spacing : 'py-8 py-lg-10'];
+      return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-8 py-lg-10'];
     },
     style() {
       return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
@@ -53,7 +53,6 @@ export default {
       return Tools.getJSON(this.hero);
     },
   },
-  methods: {},
   props: {
     hero: Object,
   },

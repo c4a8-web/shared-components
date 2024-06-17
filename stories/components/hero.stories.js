@@ -54,25 +54,14 @@ export const CareerHand = {
       v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
-      sticky: true,
       overline: 'Karriere',
       fullscreen: true,
       animation: {
         sequence: [
           {
-            text: 'HEY,',
-            textSize: 'font-size-7',
-          },
-          {
-            text: 'Wo bin ich denn hier gelandet?',
-          },
-          {
-            text: 'Da, wo eine neue Welt entsteht',
-          },
-          {
-            text: 'Gemeinsam',
+            text: 'Young Professionals',
             subline:
-              'wollen wir nichts weniger als die Welt verändern: die Dinge neu denken, die Revolution des Digitalen, einen Entwicklungssprung für unsere Kunden. Dafür braucht es Menschen, die nicht nach einem bloßen Job, sondern nach einer echten Aufgabe suchen. Menschen, die eine Vision haben. Menschen, die Utopien Realität werden lassen wollen.',
+              'Willkommen in einem Arbeitsumfeld, das Vertrauen und Flexibilität großschreibt. Hier zählt dein Input genauso wie der unserer IT-Expertinnen und IT-Experten. Beginne deine IT-Reise mit uns!',
           },
         ],
       },

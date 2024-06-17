@@ -19,6 +19,16 @@
     .hero__content {
       min-height: inherit;
     }
+
+    .hero__content {
+      padding: spacing(10) 0;
+    }
+
+    @include media-breakpoint-up(lg) {
+      .hero__content {
+        padding: spacing(64) 0;
+      }
+    }
   }
 
   &.hero--animation {

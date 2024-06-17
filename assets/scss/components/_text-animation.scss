@@ -12,7 +12,11 @@
   pointer-events: none;
 
   @include media-breakpoint-up(lg) {
-    max-height: 300px;
+    min-height: 300px;
+  }
+
+  @include media-breakpoint-down(md) {
+    min-height: none !important;
   }
 }
 
