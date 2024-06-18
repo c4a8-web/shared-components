@@ -1,4 +1,4 @@
-import { getDefaultSettings, getParams } from '../../.storybook/templates';
+import { getDefaultSettings, getParams, getAssetPath } from '../../.storybook/templates';
 import { includesherohtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
@@ -16,6 +16,7 @@ export const Career = {
       v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
+      lightOverline: false,
       sticky: true,
       overline: 'Karriere',
       fullscreen: true,
@@ -54,6 +55,7 @@ export const CareerHand = {
       v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
+      lightOverline: false,
       overline: 'Karriere',
       fullscreen: true,
       animation: {
@@ -70,6 +72,25 @@ export const CareerHand = {
       },
       cta: {
         text: 'Zu den Stellenanzeigen',
+      },
+    },
+  },
+};
+
+export const TextImage = {
+  args: {
+    hero: {
+      v2: true,
+      bgColor: 'var(--color-blue-dark)',
+      light: true,
+      headline: 'Komm zu uns. Finde deinen Platz.',
+      overline:
+        'Karriere bei einem der führenden Microsoft Gold Partner. Lorem ipsum dolor sit two lines would need to fit.',
+      subline: 'Entdecke all die guten Gründe, warum es sich lohnt, bei glueckkanja zu arbeiten',
+      background: {
+        img: 'b_rgb:000000,bo_0px_solid_rgb:000,c_crop,g_custom,o_60/people/hessisch-bayrische-hochzeit.jpg',
+        cloudinary: true,
+        alt: 'Shape',
       },
     },
   },
