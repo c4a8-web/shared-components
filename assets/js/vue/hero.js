@@ -18,7 +18,7 @@ export default {
       ];
     },
     contentClassList() {
-      return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-12'];
+      return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
     },
     style() {
       return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
@@ -90,7 +90,7 @@ export default {
             <div class="hero__intro-col col">
               <span class="hero__overline" v-if="overline">{{ overline }}</span>
               <headline class="hero__headline" v-if="headline" :level="level">{{ headline }}</headline>
-              <p class="hero__subline" v-if="subline" v-html="subline"></p>
+              <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
             </div>
           </div>
           <text-icon-animation

@@ -54,6 +54,10 @@
       }
     }
   }
+
+  .hero__headline {
+    margin-bottom: spacing(10);
+  }
 }
 
 .hero__overline {
@@ -103,4 +107,12 @@
 
 .hero__headline {
   --color--headlines: var(--hero-copy-color);
+}
+
+.hero__subline {
+  @include font-size-2;
+
+  .highlight {
+    @include text-highlight;
+  }
 }
