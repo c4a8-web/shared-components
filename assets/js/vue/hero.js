@@ -3,6 +3,7 @@ import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
 // TODO add cta list
+// TODO add shape + positions
 
 export default {
   tagName: 'hero',
@@ -10,6 +11,7 @@ export default {
     classList() {
       return [
         'hero vue-component',
+        this.variant,
         this.isLight ? 'is-light' : '',
         this.isLightOverline ? 'is-light-overline' : '',
         this.fullscreen ? 'hero--fullscreen' : '',
@@ -69,6 +71,9 @@ export default {
     },
     hasStickyScroller() {
       return this.heroJson ? this.heroJson.sticky : false;
+    },
+    variant() {
+      return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
     },
     heroJson() {
       return Tools.getJSON(this.hero);
