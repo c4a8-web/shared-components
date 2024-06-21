@@ -124,3 +124,7 @@
     @include text-highlight;
   }
 }
+
+.hero__background-shape {
+  grid-area: intro-right;
+}

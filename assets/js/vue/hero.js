@@ -72,6 +72,12 @@ export default {
     hasStickyScroller() {
       return this.heroJson ? this.heroJson.sticky : false;
     },
+    showShape() {
+      return this.shape.img || this.shape.lottie;
+    },
+    shape() {
+      return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
+    },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
     },
@@ -106,6 +112,18 @@ export default {
             classes="hero__animation"
           >
           </text-icon-animation>
+          <div class="hero__background-shape" v-if="shape">
+            <v-img
+              v-if="showShape"
+              :cloudinary="shape.cloudinary"
+              :img="shape.img"
+              :alt="shape.alt"
+              :lottie="shape.lottie"
+              :lottie-settings="shape.lottieSettings"
+            >
+            </v-img>
+
+          </div>
         </main>
       </div>
     </div>

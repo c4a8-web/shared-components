@@ -1,5 +1,6 @@
 import { getDefaultSettings, getParams, getAssetPath } from '../../.storybook/templates';
 import { includesherohtml as component } from '../../.storybook/generatedIncludes';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   ...getParams({ page: true }),
@@ -89,7 +90,29 @@ export const TextImage = {
       background: {
         img: 'b_rgb:000000,bo_0px_solid_rgb:000,c_crop,g_custom,o_60/people/hessisch-bayrische-hochzeit.jpg',
         cloudinary: true,
+        alt: 'Lorem ipsum',
+      },
+      shape: {
+        img: getAssetPath('svg/shapes/shape-career.svg'),
         alt: 'Shape',
+      },
+    },
+  },
+};
+
+export const Lottie = {
+  args: {
+    hero: {
+      v2: true,
+      headline: 'Consulting Services',
+      overline: 'Lorem ipsum',
+      // overlineBgColor: 'var(--color-gigas)', // TODO make them work again
+      // overlineColor: 'var(--color-white)',
+      subline:
+        'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+      shape: {
+        alt: 'Shape',
+        lottie: lottie1,
       },
     },
   },
