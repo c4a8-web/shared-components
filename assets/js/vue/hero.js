@@ -16,6 +16,7 @@ export default {
         this.isLightOverline ? 'is-light-overline' : '',
         this.fullscreen ? 'hero--fullscreen' : '',
         this.animation ? 'hero--animation' : '',
+        this.textShadow ? 'hero--text-shadow' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
     },
@@ -56,6 +57,9 @@ export default {
     },
     headline() {
       return this.heroJson ? this.heroJson.headline : null;
+    },
+    textShadow() {
+      return this.heroJson ? this.heroJson.textShadow : null;
     },
     level() {
       return this.heroJson && this.heroJson.level ? this.heroJson.level : 'h1';

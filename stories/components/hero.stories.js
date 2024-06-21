@@ -100,6 +100,28 @@ export const TextImage = {
   },
 };
 
+export const TextImagePattern = {
+  args: {
+    hero: {
+      v2: true,
+      headline: 'RADIUSaaS',
+      subline: 'Authentication service for your network',
+      textShadow: true,
+      background: {
+        img: '/products/radius/radius-hero-screen.png',
+        alt: 'Home',
+        cloudinary: true,
+        // spacing: 'space-top-lg-4',
+      },
+      cta: {
+        text: 'Try RADIUSaas now',
+        href: 'start-now/#try',
+        skin: 'primary is-cutoff',
+      },
+    },
+  },
+};
+
 export const Lottie = {
   args: {
     hero: {
