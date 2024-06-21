@@ -106,8 +106,8 @@ export const Lottie = {
       v2: true,
       headline: 'Consulting Services',
       overline: 'Lorem ipsum',
-      // overlineBgColor: 'var(--color-gigas)', // TODO make them work again
-      // overlineColor: 'var(--color-white)',
+      overlineBgColor: 'var(--color-gigas)',
+      lightOverline: true,
       subline:
         'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
       shape: {

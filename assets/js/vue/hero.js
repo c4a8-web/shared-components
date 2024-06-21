@@ -23,7 +23,10 @@ export default {
       return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
     },
     style() {
-      return [this.bgColor ? `--hero-background-color: ${this.bgColor};` : ''];
+      return [
+        this.bgColor ? `--hero-background-color: ${this.bgColor};` : '',
+        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
+      ];
     },
     cta() {
       return this.heroJson ? this.heroJson.cta : null;
@@ -44,6 +47,9 @@ export default {
     },
     overline() {
       return this.heroJson ? this.heroJson.overline : null;
+    },
+    overlineBgColor() {
+      return this.heroJson ? this.heroJson.overlineBgColor : null;
     },
     subline() {
       return this.heroJson ? this.heroJson.subline : null;
@@ -122,7 +128,6 @@ export default {
               :lottie-settings="shape.lottieSettings"
             >
             </v-img>
-
           </div>
         </main>
       </div>
