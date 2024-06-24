@@ -104,6 +104,7 @@ export const TextImagePattern = {
   args: {
     hero: {
       v2: true,
+      pattern: true,
       headline: 'RADIUSaaS',
       subline: 'Authentication service for your network',
       textShadow: true,

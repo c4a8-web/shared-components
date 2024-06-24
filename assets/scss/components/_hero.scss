@@ -116,6 +116,10 @@
 }
 
 .hero__background-img {
+  @include z-index;
+
+  opacity: 0.1;
+
   position: absolute;
   top: 0;
   left: 0;
@@ -131,6 +135,8 @@
 .hero__subline {
   @include font-size-2;
 
+  display: inline;
+
   .highlight {
     @include text-highlight;
   }
@@ -138,4 +144,19 @@
 
 .hero__background-shape {
   grid-area: intro-right;
+}
+
+.hero__pattern {
+  @include z-index;
+
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.hero__container {
+  @include z-index;
+
+  position: relative;
 }
