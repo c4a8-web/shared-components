@@ -2,8 +2,8 @@ import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
-// TODO add cta list
-// TODO add shape + positions
+// TODO add shape mobile positions
+// TODO add small variant
 
 const heroPattern = {
   tagName: 'hero-pattern',
@@ -60,6 +60,8 @@ export default {
         this.variant,
         this.isLight ? 'is-light' : '',
         this.isLightOverline ? 'is-light-overline' : '',
+        this.shapeBottom ? 'hero--shape-bottom' : '',
+        this.shapeTop ? 'hero--shape-top' : '',
         this.fullscreen ? 'hero--fullscreen' : '',
         this.animation ? 'hero--animation' : '',
         this.textShadow ? 'hero--text-shadow' : '',
@@ -134,6 +136,12 @@ export default {
     shape() {
       return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
     },
+    shapeBottom() {
+      return (this.shape && this.shape.bottom) || null;
+    },
+    shapeTop() {
+      return (this.shape && this.shape.top) || null;
+    },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
     },
@@ -186,18 +194,18 @@ export default {
             classes="hero__animation"
           >
           </text-icon-animation>
-          <div class="hero__background-shape" v-if="shape">
-            <v-img
-              v-if="showShape"
-              :cloudinary="shape.cloudinary"
-              :img="shape.img"
-              :alt="shape.alt"
-              :lottie="shape.lottie"
-              :lottie-settings="shape.lottieSettings"
-            >
-            </v-img>
-          </div>
         </main>
+      </div>
+      <div class="hero__background-shape" v-if="shape">
+        <v-img
+          v-if="showShape"
+          :cloudinary="shape.cloudinary"
+          :img="shape.img"
+          :alt="shape.alt"
+          :lottie="shape.lottie"
+          :lottie-settings="shape.lottieSettings"
+        >
+        </v-img>
       </div>
     </div>
   `,

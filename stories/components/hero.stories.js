@@ -95,6 +95,7 @@ export const TextImage = {
       shape: {
         img: getAssetPath('svg/shapes/shape-career.svg'),
         alt: 'Shape',
+        bottom: true,
       },
     },
   },
@@ -108,16 +109,15 @@ export const TextImagePattern = {
       headline: 'RADIUSaaS',
       subline: 'Authentication service for your network',
       textShadow: true,
-      background: {
-        img: '/products/radius/radius-hero-screen.png',
-        alt: 'Home',
-        cloudinary: true,
-        // spacing: 'space-top-lg-4',
-      },
       cta: {
         text: 'Try RADIUSaas now',
         href: 'start-now/#try',
         skin: 'primary is-cutoff',
+      },
+      shape: {
+        img: '/products/radius/radius-hero-screen.png',
+        alt: 'Home',
+        cloudinary: true,
       },
     },
   },
