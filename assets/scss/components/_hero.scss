@@ -158,6 +158,14 @@
 
 .hero__background-shape {
   @include z-index;
+
+  max-height: 60%;
+  display: flex;
+
+  > * {
+    object-fit: contain;
+    object-position: right;
+  }
 }
 
 .hero__pattern {

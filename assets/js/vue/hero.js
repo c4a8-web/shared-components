@@ -4,6 +4,8 @@ import StickyScroller from '../sticky-scroller.js';
 // TODO add back button
 // TODO add shape mobile positions
 // TODO add small variant
+// TODO add background color percentage fill for case study
+// TODO fix bug with lottie center positioning
 
 const heroPattern = {
   tagName: 'hero-pattern',
