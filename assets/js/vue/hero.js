@@ -140,6 +140,11 @@ export default {
     pattern() {
       return this.heroJson && this.heroJson.pattern ? this.heroJson.pattern : null;
     },
+    ctaList() {
+      if (!this.heroJson || this.animation || (!this.heroJson.cta && !this.heroJson.ctaList)) return null;
+
+      return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
+    },
     heroJson() {
       return Tools.getJSON(this.hero);
     },
@@ -165,6 +170,12 @@ export default {
               <span class="hero__overline" v-if="overline">{{ overline }}</span>
               <headline class="hero__headline" v-if="headline" :level="level">{{ headline }}</headline>
               <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
+              <cta-list
+                v-if="ctaList"
+                classes="hero__cta-list"
+                :list="ctaList"
+              >
+              </cta-list>
             </div>
           </div>
           <text-icon-animation
