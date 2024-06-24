@@ -10,6 +10,17 @@ export default {
       return Tools.getJSON(this.list);
     },
   },
+  methods: {
+    text(cta) {
+      return cta.text || cta.ctaText;
+    },
+    href(cta) {
+      return cta.href || cta.ctaHref;
+    },
+    type(cta) {
+      return cta.type || cta.ctaType;
+    },
+  },
   props: {
     list: Array,
     classes: String,
@@ -19,9 +30,9 @@ export default {
       <div v-for="cta in ctaList" class="cta-list__item d-inline-block mr-3 mb-2">
         <cta
           v-bind="cta"
-          :text="cta.ctaText"
-          :href="cta.ctaHref"
-          :type="cta.ctaType"
+          :text="text(cta)"
+          :href="href(cta)"
+          :type="type(cta)"
         ></cta>
       </div>
     </div>
