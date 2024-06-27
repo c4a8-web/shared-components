@@ -132,6 +132,15 @@ export default {
     hasStickyScroller() {
       return this.heroJson ? this.heroJson.sticky : false;
     },
+    lottieSettings() {
+      if (!this.shape || !this.shape.lottie) return;
+
+      return {
+        ...this.shape.lottieSettings,
+        width: 'auto',
+        height: 'auto',
+      };
+    },
     showShape() {
       return this.shape.img || this.shape.lottie;
     },
@@ -205,7 +214,7 @@ export default {
           :img="shape.img"
           :alt="shape.alt"
           :lottie="shape.lottie"
-          :lottie-settings="shape.lottieSettings"
+          :lottie-settings="lottieSettings"
         >
         </v-img>
       </div>

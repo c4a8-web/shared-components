@@ -159,12 +159,22 @@
 .hero__background-shape {
   @include z-index;
 
-  max-height: 60%;
+  max-height: unquote('min(40vw, 60%)');
   display: flex;
 
   > * {
     object-fit: contain;
     object-position: right;
+
+    &.lottie {
+      display: inline-flex;
+      justify-content: flex-end;
+    }
+
+    .lottie__container {
+      width: auto;
+      height: auto;
+    }
   }
 }
 
