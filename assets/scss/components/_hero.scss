@@ -193,6 +193,10 @@
   @include media-breakpoint-up(lg) {
     max-height: unquote('min(40vw, 60%)');
   }
+
+  @include media-breakpoint-up(xl) {
+    max-height: unquote('min(45vw, 85%)');
+  }
 }
 
 .hero__pattern {
