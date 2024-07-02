@@ -2,10 +2,9 @@ import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
-// TODO add shape mobile positions
 // TODO add small variant
 // TODO add background color percentage fill for case study
-// TODO fix bug with lottie center positioning
+// TODO add shape in content like the eye
 
 const heroPattern = {
   tagName: 'hero-pattern',
@@ -62,8 +61,7 @@ export default {
         this.variant,
         this.isLight ? 'is-light' : '',
         this.isLightOverline ? 'is-light-overline' : '',
-        this.shapeBottom ? 'hero--shape-bottom' : '',
-        this.shapeTop ? 'hero--shape-top' : '',
+        this.shapePosition,
         this.fullscreen ? 'hero--fullscreen' : '',
         this.animation ? 'hero--animation' : '',
         this.textShadow ? 'hero--text-shadow' : '',
@@ -152,6 +150,11 @@ export default {
     },
     shapeTop() {
       return (this.shape && this.shape.top) || null;
+    },
+    shapePosition() {
+      if (!this.shape) return null;
+
+      return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;

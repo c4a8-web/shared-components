@@ -82,6 +82,19 @@
     }
   }
 
+  &.hero--shape-center {
+    .hero__background-shape {
+      top: 0;
+      bottom: auto;
+      transform: translateY(0);
+
+      @include media-breakpoint-up(lg) {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+    }
+  }
+
   // &.hero--small {
   // }
 
@@ -159,7 +172,7 @@
 .hero__background-shape {
   @include z-index;
 
-  max-height: unquote('min(40vw, 60%)');
+  max-height: unquote('min(23vw, 30%)');
   display: flex;
 
   > * {
@@ -175,6 +188,10 @@
       width: auto;
       height: auto;
     }
+  }
+
+  @include media-breakpoint-up(lg) {
+    max-height: unquote('min(40vw, 60%)');
   }
 }
 
