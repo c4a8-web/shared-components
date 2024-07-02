@@ -123,19 +123,21 @@ export const TextImagePattern = {
   },
 };
 
-export const Lottie = {
+export const Casestudy = {
   args: {
     hero: {
       v2: true,
-      headline: 'Consulting Services',
-      overline: 'Lorem ipsum',
-      overlineBgColor: 'var(--color-gigas)',
-      lightOverline: true,
+      back: true,
+      bgColor: 'var(--color-hero-study-background)',
+      bgWidth: 60,
+      headline: 'Pöppelmann Case',
       subline:
-        'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+        '<span class="highlight">Lorem ipsum dolor</span> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
       shape: {
-        alt: 'Shape',
-        lottie: lottie1,
+        img: '/casestudies/casestudy-demo.png',
+        alt: 'Casestudy',
+        cloudinary: true,
+        bottom: true,
       },
     },
   },
@@ -156,6 +158,24 @@ export const ShapeSticky = {
         alt: 'Shape',
         img: getAssetPath('svg/shapes/s-block.svg'),
         top: true,
+      },
+    },
+  },
+};
+
+export const Lottie = {
+  args: {
+    hero: {
+      v2: true,
+      headline: 'Consulting Services',
+      overline: 'Lorem ipsum',
+      overlineBgColor: 'var(--color-gigas)',
+      lightOverline: true,
+      subline:
+        'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+      shape: {
+        alt: 'Shape',
+        lottie: lottie1,
       },
     },
   },
