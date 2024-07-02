@@ -1,11 +1,11 @@
 import { getDefaultSettings, getParams, getAssetPath } from '../../.storybook/templates';
-import { includesherohtml as component } from '../../.storybook/generatedIncludes';
+import heroTemplate from '!!raw-loader!./hero.html';
 import lottie1 from '../data/lottie1.json';
 
 export default {
   ...getParams({ page: true }),
   ...getDefaultSettings({
-    component,
+    component: heroTemplate,
     argTypes: {},
   }),
   title: 'Components/Hero',
