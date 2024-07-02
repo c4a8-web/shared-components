@@ -140,3 +140,23 @@ export const Lottie = {
     },
   },
 };
+
+export const ShapeSticky = {
+  args: {
+    hero: {
+      v2: true,
+      sticky: true,
+      headline: 'Consulting Services',
+      overline: 'Lorem ipsum',
+      overlineBgColor: 'var(--color-gigas)',
+      lightOverline: true,
+      subline:
+        'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
+      shape: {
+        alt: 'Shape',
+        img: getAssetPath('svg/shapes/s-block.svg'),
+        top: true,
+      },
+    },
+  },
+};
