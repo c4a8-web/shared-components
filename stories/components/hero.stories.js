@@ -201,6 +201,33 @@ export const Small = {
   },
 };
 
+export const Text = {
+  args: {
+    hero: {
+      // variant: 'hero--text',
+      headline: 'Wenn Sie wissen, worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
+      light: true,
+      overline: 'Preventive Service',
+      overlineBgColor: 'var(--color-orange)',
+      bgColor: 'var(--color-gigas)',
+      ctaList: [
+        {
+          ctaText: 'Jump on the Phone',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary',
+          icon: 'phone',
+        },
+        {
+          ctaText: 'Mail us',
+          ctaHref: 'javascript:void(0);',
+          skin: 'secondary',
+          icon: 'mail',
+        },
+      ],
+    },
+  },
+};
+
 export const Lottie = {
   args: {
     hero: {
