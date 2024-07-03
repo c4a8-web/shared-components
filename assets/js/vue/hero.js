@@ -2,7 +2,7 @@ import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
-// TODO add video variant
+// TODO text variant
 // TODO add shape in content like the eye
 
 const heroPattern = {
@@ -63,6 +63,8 @@ export default {
   },
   methods: {
     setIntroStyle() {
+      if (!this.isCentered) return;
+
       const intro = this.$refs['intro'];
 
       if (!intro) return;
