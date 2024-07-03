@@ -1,5 +1,6 @@
 import State from '../state.js';
 import Tools from '../tools.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'letter-switcher',
@@ -90,10 +91,12 @@ export default {
       const endText = this.$refs['end-text'];
       const end = this.$refs['end'];
 
-      if (!endText || !end) return;
+      if (!endText || !end) return this.emitEnded();
 
       endText.style.width = '0px';
       end.classList.remove(State.COLLAPSED);
+
+      this.emitEnded();
     },
     switchOverline(callback) {
       const overline = this.$refs['overline'];
@@ -108,6 +111,9 @@ export default {
       });
 
       overline.style.opacity = 0;
+    },
+    emitEnded() {
+      this.$emit(Events.ENDED);
     },
   },
   props: {

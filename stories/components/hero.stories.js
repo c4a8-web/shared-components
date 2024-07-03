@@ -163,6 +163,28 @@ export const ShapeSticky = {
   },
 };
 
+export const LetterSwitcher = {
+  args: {
+    hero: {
+      light: true,
+      letterSwitcher: {
+        textEnd: 'beste Testlücke!',
+        overlineStart: 'Start Lorem ipsum',
+        overlineEnd: 'End Lorem ipsum',
+      },
+      fullscreen: true,
+      subline: 'Schützen Sie Ihre IT jetzt gegen Angriffe von außen: mit unserem professionellen Security Check!',
+      sublineClass: 'hero-video__animation text-center',
+      cta: {
+        text: 'Jetzt anmelden',
+        href: '/#checks',
+        skin: 'primary',
+      },
+      bgColor: 'var(--color-gigas)',
+    },
+  },
+};
+
 export const Small = {
   args: {
     hero: {

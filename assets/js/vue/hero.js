@@ -53,6 +53,33 @@ export default {
   components: {
     'hero-pattern': heroPattern,
   },
+  data() {
+    return {
+      introHeight: null,
+    };
+  },
+  mounted() {
+    this.setIntroStyle();
+  },
+  methods: {
+    setIntroStyle() {
+      const intro = this.$refs['intro'];
+
+      if (!intro) return;
+
+      this.introHeight = intro.offsetHeight;
+
+      intro.style.height = `0`;
+    },
+    handleLetterSwitcherEnded() {
+      const intro = this.$refs['intro'];
+
+      if (!intro) return;
+
+      intro.style.height = `${this.introHeight}px`;
+      intro.style.opacity = 1;
+    },
+  },
   computed: {
     classList() {
       return [
@@ -65,6 +92,7 @@ export default {
         this.animation ? 'hero--animation' : '',
         this.textShadow ? 'hero--text-shadow' : '',
         this.bgWidth ? 'hero--bg-width' : '',
+        this.isCentered ? 'hero--centered' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
     },
@@ -118,6 +146,9 @@ export default {
     },
     animation() {
       return this.heroJson ? this.heroJson.animation : null;
+    },
+    letterSwitcher() {
+      return this.heroJson ? this.heroJson.letterSwitcher : null;
     },
     icon() {
       return this.heroJson && this.background ? this.background.icon : null;
@@ -174,6 +205,9 @@ export default {
     hideShapeContainer() {
       return this.showShape && !this.bgWidth && !this.isSmall;
     },
+    isCentered() {
+      return this.letterSwitcher ? true : false;
+    },
     isSmall() {
       return this.variant === 'hero--small';
     },
@@ -197,7 +231,14 @@ export default {
       </v-img>
       <div class="hero__container container">
         <main :class="contentClassList">
-          <div class="hero__intro row" v-if="overline || headline">
+          <letter-switcher
+            v-if="letterSwitcher"
+            v-bind="letterSwitcher"
+            class="hero__letter-switcher"
+            @ended="handleLetterSwitcherEnded"
+          >
+          </letter-switcher>
+          <div class="hero__intro row" v-if="overline || headline || subline" ref="intro">
             <div class="hero__intro-col col">
               <span class="hero__overline" v-if="overline">{{ overline }}</span>
               <headline class="hero__headline" v-if="headline" :level="level">{{ headline }}</headline>

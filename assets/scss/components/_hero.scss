@@ -161,6 +161,32 @@
     }
   }
 
+  &.hero--centered {
+    .hero__intro {
+      --hero-intro-delay: 1.7s;
+
+      grid-column: content-left / content-right;
+      text-align: center;
+      margin: 0 auto;
+      transition:
+        height 0.7s var(--hero-intro-delay) $animation-transition,
+        opacity 1.6s var(--hero-intro-delay) $animation-transition;
+
+      @include media-breakpoint-up(lg) {
+        width: 55%;
+      }
+    }
+
+    .hero__intro {
+      opacity: 0;
+      overflow: hidden;
+    }
+
+    .hero__letter-switcher {
+      grid-column: intro-left / intro-right;
+    }
+  }
+
   .hero__headline {
     margin-bottom: spacing(10);
   }
