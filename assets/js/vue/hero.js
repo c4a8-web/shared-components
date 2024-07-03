@@ -172,6 +172,9 @@ export default {
 
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
+    hideShapeContainer() {
+      return this.showShape && !this.bgWidth;
+    },
     heroJson() {
       return Tools.getJSON(this.hero);
     },
@@ -215,17 +218,19 @@ export default {
           </text-icon-animation>
         </main>
       </div>
-      <div class="hero__background-shape" v-if="shape">
-        <v-img
-          v-if="showShape"
-          :cloudinary="shape.cloudinary"
-          :img="shape.img"
-          :alt="shape.alt"
-          :lottie="shape.lottie"
-          :lottie-settings="lottieSettings"
-        >
-        </v-img>
-      </div>
+      <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="hideShapeContainer">
+        <div class="hero__background-shape">
+          <v-img
+            v-if="showShape"
+            :cloudinary="shape.cloudinary"
+            :img="shape.img"
+            :alt="shape.alt"
+            :lottie="shape.lottie"
+            :lottie-settings="lottieSettings"
+          >
+          </v-img>
+        </div>
+      </wrapper>
     </div>
   `,
 };

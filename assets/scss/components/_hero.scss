@@ -99,7 +99,11 @@
 
   &.hero--bg-width {
     .hero__background-shape {
-      @include z-index;
+      position: initial;
+    }
+
+    .hero__subline {
+      @include font-size-2;
     }
 
     @include media-breakpoint-up(lg) {
@@ -108,6 +112,11 @@
         var(--hero-background-color) var(--hero-background-width-middle),
         transparent var(--hero-background-width-middle)
       );
+
+      .hero__background-shape {
+        position: absolute;
+        width: 50%;
+      }
 
       .hero__content {
         background: linear-gradient(
@@ -244,4 +253,19 @@
 
 .hero__cta-list {
   padding-top: spacing(6);
+}
+
+.hero__background-shape-wrapper {
+  @include z-index;
+
+  margin-top: spacing($size: 14, $negative: true);
+
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 0;
+  }
 }
