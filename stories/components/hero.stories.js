@@ -129,7 +129,7 @@ export const Casestudy = {
       v2: true,
       back: true,
       bgColor: 'var(--color-hero-study-background)',
-      bgWidth: 60,
+      bgWidth: 70,
       headline: 'Pöppelmann Case',
       subline:
         '<span class="highlight">Lorem ipsum dolor</span> sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',

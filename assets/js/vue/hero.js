@@ -65,6 +65,7 @@ export default {
         this.fullscreen ? 'hero--fullscreen' : '',
         this.animation ? 'hero--animation' : '',
         this.textShadow ? 'hero--text-shadow' : '',
+        this.bgWidth ? 'hero--bg-width' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
     },
@@ -74,6 +75,7 @@ export default {
     style() {
       return [
         this.bgColor ? `--hero-background-color: ${this.bgColor};` : '',
+        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
         this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
       ];
     },
@@ -93,6 +95,9 @@ export default {
     },
     bgColor() {
       return this.heroJson ? this.heroJson.bgColor : null;
+    },
+    bgWidth() {
+      return this.heroJson ? this.heroJson.bgWidth : null;
     },
     overline() {
       return this.heroJson ? this.heroJson.overline : null;

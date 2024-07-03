@@ -3,8 +3,10 @@
   --hero-copy-color: var(--color-copy);
   --hero-copy-overline-color: var(--color-copy);
   --hero-overline-background-color: var(--color-secondary);
+  --hero-background-width: 100%;
+  --hero-background-width-middle: 50%;
 
-  background-color: var(--hero-background-color);
+  background: var(--hero-background-color);
   color: var(--hero-copy-color);
   position: relative;
 
@@ -91,6 +93,29 @@
       @include media-breakpoint-up(lg) {
         top: 50%;
         transform: translateY(-50%);
+      }
+    }
+  }
+
+  &.hero--bg-width {
+    .hero__background-shape {
+      @include z-index;
+    }
+
+    @include media-breakpoint-up(lg) {
+      background: linear-gradient(
+        to right,
+        var(--hero-background-color) var(--hero-background-width-middle),
+        transparent var(--hero-background-width-middle)
+      );
+
+      .hero__content {
+        background: linear-gradient(
+          to right,
+          var(--hero-background-color) var(--hero-background-width),
+          transparent var(--hero-background-width)
+        );
+        grid-template-columns: 1fr 1fr;
       }
     }
   }
