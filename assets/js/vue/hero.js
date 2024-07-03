@@ -2,8 +2,7 @@ import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
-// TODO add small variant
-// TODO add background color percentage fill for case study
+// TODO add video variant
 // TODO add shape in content like the eye
 
 const heroPattern = {
@@ -173,7 +172,10 @@ export default {
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
     hideShapeContainer() {
-      return this.showShape && !this.bgWidth;
+      return this.showShape && !this.bgWidth && !this.isSmall;
+    },
+    isSmall() {
+      return this.variant === 'hero--small';
     },
     heroJson() {
       return Tools.getJSON(this.hero);

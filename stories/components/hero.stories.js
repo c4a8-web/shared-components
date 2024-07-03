@@ -163,6 +163,22 @@ export const ShapeSticky = {
   },
 };
 
+export const Small = {
+  args: {
+    hero: {
+      variant: 'hero--small',
+      bgColor: 'var(--color-gigas)',
+      headline: 'Danke!',
+      light: true,
+      shape: {
+        img: getAssetPath('svg/shapes/event-confirmation-message.svg'),
+        top: true,
+        alt: 'Success Message',
+      },
+    },
+  },
+};
+
 export const Lottie = {
   args: {
     hero: {
