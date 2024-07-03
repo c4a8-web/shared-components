@@ -100,8 +100,10 @@
   &.hero--bg-width,
   &.hero--small {
     @include media-breakpoint-up(lg) {
-      .hero__background-shape {
-        position: absolute;
+      .hero__background-shape-wrapper {
+        .hero__background-shape {
+          position: absolute;
+        }
       }
     }
   }
