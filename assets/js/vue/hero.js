@@ -2,8 +2,8 @@ import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
-// TODO text variant
 // TODO add shape in content like the eye
+// TODO add lottie fullscreen option + make sure it overlaps behind the navigation
 
 const heroPattern = {
   tagName: 'hero-pattern',
@@ -91,6 +91,7 @@ export default {
         this.isLightOverline ? 'is-light-overline' : '',
         this.shapePosition,
         this.fullscreen ? 'hero--fullscreen' : '',
+        this.shapeFullscreen ? 'hero--shape-fullscreen' : '',
         this.animation ? 'hero--animation' : '',
         this.textShadow ? 'hero--text-shadow' : '',
         this.bgWidth ? 'hero--bg-width' : '',
@@ -140,6 +141,12 @@ export default {
     headline() {
       return this.heroJson ? this.heroJson.headline : null;
     },
+    headlineClasses() {
+      return this.heroJson ? this.heroJson.headlineClasses : null;
+    },
+    headlineClassList() {
+      return ['hero__headline', this.headlineClasses];
+    },
     textShadow() {
       return this.heroJson ? this.heroJson.textShadow : null;
     },
@@ -170,10 +177,12 @@ export default {
     lottieSettings() {
       if (!this.shape || !this.shape.lottie) return;
 
+      const height = this.shapeFullscreen ? '100%' : 'auto';
+
       return {
         ...this.shape.lottieSettings,
         width: 'auto',
-        height: 'auto',
+        height,
       };
     },
     showShape() {
@@ -181,6 +190,9 @@ export default {
     },
     shape() {
       return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
+    },
+    shapeFullscreen() {
+      return this.shape && this.shape.fullscreen ? this.shape.fullscreen : false;
     },
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
@@ -190,6 +202,8 @@ export default {
     },
     shapePosition() {
       if (!this.shape) return null;
+
+      if (this.shapeFullscreen) return 'hero--shape-top';
 
       return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
@@ -243,7 +257,7 @@ export default {
           <div class="hero__intro row" v-if="overline || headline || subline" ref="intro">
             <div class="hero__intro-col col">
               <span class="hero__overline" v-if="overline">{{ overline }}</span>
-              <headline class="hero__headline" v-if="headline" :level="level">{{ headline }}</headline>
+              <headline :class="headlineClassList" v-if="headline" :level="level">{{ headline }}</headline>
               <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
               <cta-list
                 v-if="ctaList"
