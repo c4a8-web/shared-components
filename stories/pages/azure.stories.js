@@ -11,9 +11,6 @@ export default {
 const Template = (args) => createTemplate(args, azureTemplate);
 
 const baseArgs = {
-  // firstTeaser: {
-  //   ...Right?.args,
-  // },
   ...HeaderLight.args,
   ...LottieFullscreen.args,
   blendMode: false,
