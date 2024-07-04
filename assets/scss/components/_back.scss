@@ -1,6 +1,6 @@
 .back {
   position: relative;
-  display: inline-flex;
+  display: none;
   width: spacing(9);
   height: spacing(9);
   cursor: pointer;
@@ -9,6 +9,10 @@
   .icon {
     width: 100%;
     height: 100%;
+  }
+
+  &.show {
+    display: inline-flex;
   }
 
   &:not(.back--animated) {

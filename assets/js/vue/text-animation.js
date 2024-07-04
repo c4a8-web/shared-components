@@ -192,7 +192,7 @@ export default {
         this.textValue = this.textValue + letter;
       };
 
-      requestAnimationFrame(updateTextValue);
+      updateTextValue();
     },
     calculateNextMaxHeight() {
       const step = this.sequenceData[this.calculationStep];

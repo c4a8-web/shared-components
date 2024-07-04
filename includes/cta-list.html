@@ -2,29 +2,9 @@
 {%- assign ctaListList = include.list -%}
 {%- assign ctaListClasses = include.classes -%}
 
-{% for cta in ctaListList %}
-  <div class="{% if ctaListClasses %}{{ ctaListClasses }}{% else %}cta-list d-inline-block mr-3 mb-2{% endif %}">
-    {%
-      include cta.html
-      text=cta.ctaText
-      analytics=cta.analytics
-      skin=cta.skin
-      link=cta.link
-      grow=cta.grow
-      href=cta.ctaHref
-      target=cta.target
-      button=cta.button
-      alternativeHref=cta.alternativeHref
-      type=cta.ctaType
-      trigger=cta.trigger
-      external=cta.external
-      icon=cta.icon
-      download=cta.download
-      reversed=cta.reversed
-      monochrome=cta.monochrome
-      active=cta.active
-      classes=cta.classes
-    %}
-  </div>
-{% endfor %}
+<cta-list
+  :list="{{ ctaListList | jsonify | escape }}"
+  classes="{{ ctaListClasses }}"
+>
+</cta-list>
 <!-- End Shared Cta List Section -->
