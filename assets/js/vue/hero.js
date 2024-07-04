@@ -1,7 +1,7 @@
 import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
-// TODO add back button
+// TODO add back button position + visibility
 
 const heroPattern = {
   tagName: 'hero-pattern',
@@ -229,6 +229,9 @@ export default {
     isSmall() {
       return this.variant === 'hero--small';
     },
+    hasBack() {
+      return this.heroJson && this.heroJson.back ? this.heroJson.back : false;
+    },
     heroJson() {
       return Tools.getJSON(this.hero);
     },
@@ -249,6 +252,17 @@ export default {
       </v-img>
       <div class="hero__container container">
         <main :class="contentClassList">
+          <div class="hero__back-col col" v-if="hasBack">
+            <div class="hero__back-btn back">
+              <icon
+                icon="arrow"
+                classes="hero__back-btn-icon"
+                direction="left"
+                :hover="true"
+                :circle="true">
+              </icon>
+            </div>
+          </div>
           <letter-switcher
             v-if="letterSwitcher"
             v-bind="letterSwitcher"
