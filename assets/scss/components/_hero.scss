@@ -209,6 +209,14 @@
   .hero__headline {
     margin-bottom: spacing(10);
   }
+
+  .hero__cta-list {
+    padding-top: spacing(12);
+
+    @include media-breakpoint-up(lg) {
+      padding-top: spacing(20);
+    }
+  }
 }
 
 .hero__overline {
