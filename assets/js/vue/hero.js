@@ -182,8 +182,13 @@ export default {
         height,
       };
     },
+    lottieFileData() {
+      if (!this.shape) return null;
+
+      return this.shape.lottie ? this.shape.lottie : this.lottieData ? Tools.getJSON(this.lottieData) : null;
+    },
     showShape() {
-      return this.shape.img || this.shape.lottie;
+      return this.shape.img || this.shape.lottie || this.lottieFileData;
     },
     shape() {
       return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
@@ -236,6 +241,7 @@ export default {
   },
   props: {
     hero: Object,
+    lottieData: String,
   },
   template: `
     <div :class="classList" :style="style">
@@ -280,7 +286,7 @@ export default {
                   :cloudinary="shape.cloudinary"
                   :img="shape.img"
                   :alt="shape.alt"
-                  :lottie="shape.lottie"
+                  :lottie="lottieFileData"
                   :lottie-settings="lottieSettings"
                 >
                 </v-img>
@@ -312,7 +318,7 @@ export default {
               :cloudinary="shape.cloudinary"
               :img="shape.img"
               :alt="shape.alt"
-              :lottie="shape.lottie"
+              :lottie="lottieFileData"
               :lottie-settings="lottieSettings"
             >
             </v-img>
