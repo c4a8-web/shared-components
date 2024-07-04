@@ -2,8 +2,6 @@ import Tools from '../tools.js';
 import StickyScroller from '../sticky-scroller.js';
 
 // TODO add back button
-// TODO add shape in content like the eye
-// TODO add lottie fullscreen option + make sure it overlaps behind the navigation
 
 const heroPattern = {
   tagName: 'hero-pattern',
@@ -96,6 +94,7 @@ export default {
         this.textShadow ? 'hero--text-shadow' : '',
         this.bgWidth ? 'hero--bg-width' : '',
         this.isCentered ? 'hero--centered' : '',
+        this.shapeInContent ? 'hero--shape-in-content' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
     },
@@ -207,6 +206,9 @@ export default {
 
       return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
+    shapeInContent() {
+      return this.shape && this.shape.inContent ? this.shape.inContent : false;
+    },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
     },
@@ -218,8 +220,8 @@ export default {
 
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
-    hideShapeContainer() {
-      return this.showShape && !this.bgWidth && !this.isSmall;
+    showShapeContainer() {
+      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContent);
     },
     isCentered() {
       return this.letterSwitcher ? true : false;
@@ -258,6 +260,17 @@ export default {
             <div class="hero__intro-col col">
               <span class="hero__overline" v-if="overline">{{ overline }}</span>
               <headline :class="headlineClassList" v-if="headline" :level="level">{{ headline }}</headline>
+              <div class="hero__content-shape" v-if="shapeInContent">
+                <v-img
+                  v-if="showShape"
+                  :cloudinary="shape.cloudinary"
+                  :img="shape.img"
+                  :alt="shape.alt"
+                  :lottie="shape.lottie"
+                  :lottie-settings="lottieSettings"
+                >
+                </v-img>
+              </div>
               <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
               <cta-list
                 v-if="ctaList"
@@ -277,18 +290,20 @@ export default {
           </text-icon-animation>
         </main>
       </div>
-      <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="hideShapeContainer">
-        <div class="hero__background-shape">
-          <v-img
-            v-if="showShape"
-            :cloudinary="shape.cloudinary"
-            :img="shape.img"
-            :alt="shape.alt"
-            :lottie="shape.lottie"
-            :lottie-settings="lottieSettings"
-          >
-          </v-img>
-        </div>
+      <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
+        <wrapper class="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
+          <div class="hero__background-shape">
+            <v-img
+              v-if="showShape"
+              :cloudinary="shape.cloudinary"
+              :img="shape.img"
+              :alt="shape.alt"
+              :lottie="shape.lottie"
+              :lottie-settings="lottieSettings"
+            >
+            </v-img>
+          </div>
+        </wrapper>
       </wrapper>
     </div>
   `,

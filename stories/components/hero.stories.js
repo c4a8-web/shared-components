@@ -269,3 +269,21 @@ export const LottieFullscreen = {
     },
   },
 };
+
+export const ShapeInContent = {
+  args: {
+    hero: {
+      v2: true,
+      light: true,
+      headline: 'Cloud Security Operations Center',
+      bgColor: 'var(--color-gigas)',
+      subline:
+        'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
+      shape: {
+        alt: 'Shape',
+        img: getAssetPath('svg/shapes/shape-security-eye.svg'),
+        inContent: true,
+      },
+    },
+  },
+};
