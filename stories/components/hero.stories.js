@@ -204,7 +204,7 @@ export const Small = {
 export const Text = {
   args: {
     hero: {
-      // variant: 'hero--text',
+      variant: 'hero--text',
       headline: 'Wenn Sie wissen, worauf Angreifer aus sind, wissen Sie auch, was Sie am besten schützen müssen',
       light: true,
       overline: 'Preventive Service',

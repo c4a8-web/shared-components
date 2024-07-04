@@ -187,6 +187,18 @@
     }
   }
 
+  &.hero--text {
+    .hero__headline {
+      @include font-style($style: 'h2-font-size', $line: 'thin', $weight: 'light');
+    }
+
+    .hero__content {
+      @include media-breakpoint-up(lg) {
+        grid-template-columns: 6fr 1fr;
+      }
+    }
+  }
+
   .hero__headline {
     margin-bottom: spacing(10);
   }
