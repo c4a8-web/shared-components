@@ -127,6 +127,7 @@
 
       .hero__background-shape {
         width: 50%;
+        padding-left: spacing(4);
       }
 
       .hero__content {
@@ -240,6 +241,21 @@
 
   .hero__headline {
     margin-bottom: spacing(10);
+  }
+
+  .hero__back {
+    top: spacing($size: 10, $negative: true);
+
+    @include media-breakpoint-up(lg) {
+      top: spacing(26);
+    }
+  }
+}
+
+.hero__back-row {
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    top: 0;
   }
 }
 
