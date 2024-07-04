@@ -2,11 +2,14 @@ export default {
   tagName: 'wrapper',
   computed: {
     classList() {
-      return ['wrapper container vue-component', this.classes ? this.classes : null];
+      return ['wrapper vue-component', this.classes ? this.classes : null, this.hideContainerClass ? '' : 'container'];
     },
   },
   props: {
     hideContainer: {
+      default: false,
+    },
+    hideContainerClass: {
       default: false,
     },
     classes: {
