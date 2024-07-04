@@ -1,6 +1,7 @@
 import { getDefaultSettings, getParams, getAssetPath } from '../../.storybook/templates';
 import heroTemplate from '!!raw-loader!./hero.html';
 import lottie1 from '../data/lottie1.json';
+import lottieAzure from '../data/lottie-azure.json';
 
 export default {
   ...getParams({ page: true }),
@@ -111,7 +112,7 @@ export const TextImagePattern = {
       textShadow: true,
       cta: {
         text: 'Try RADIUSaas now',
-        href: 'start-now/#try',
+        href: 'javascript:void(0);',
         skin: 'primary is-cutoff',
       },
       shape: {
@@ -241,6 +242,29 @@ export const Lottie = {
       shape: {
         alt: 'Shape',
         lottie: lottie1,
+      },
+    },
+  },
+};
+
+export const LottieFullscreen = {
+  args: {
+    hero: {
+      v2: true,
+      light: true,
+      bgColor: 'var(--color-blue-medium)',
+      headline: 'Ihre Cloud Strategie',
+      headlineClasses: 'h2-font-size bold',
+      lightOverline: true,
+      subline: 'Microsoft stellt die Technologie, wir die Expertise. Sie brauchen nur noch den Erfolg zu ernten.',
+      shape: {
+        alt: 'Shape',
+        lottie: lottieAzure,
+        fullscreen: true,
+      },
+      cta: {
+        text: 'Kontakt aufnehmen',
+        href: 'javascript:void(0);',
       },
     },
   },

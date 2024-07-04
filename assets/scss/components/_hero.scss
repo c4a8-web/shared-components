@@ -199,6 +199,13 @@
     }
   }
 
+  &.hero--shape-fullscreen {
+    .hero__background-shape {
+      max-height: none;
+      height: 100%;
+    }
+  }
+
   .hero__headline {
     margin-bottom: spacing(10);
   }
@@ -326,6 +333,7 @@
   @include z-index;
 
   margin-top: spacing($size: 14, $negative: true);
+  pointer-events: none;
 
   @include media-breakpoint-up(lg) {
     position: absolute;
