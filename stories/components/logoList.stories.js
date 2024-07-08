@@ -1,11 +1,12 @@
 import { createComponent } from '../../.storybook/templates';
+import logoListTemplate from '!!raw-loader!./logo-list.html';
 import { includeslogolisthtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
   title: 'Components/Logo List',
 };
 
-const Template = (args) => createComponent(args, component);
+const Template = (args) => createComponent(args, logoListTemplate);
 
 const baseArgs = {
   logoList: [
@@ -109,6 +110,15 @@ customColumns.args.logoList.push(
     title: 'SWB',
   }
 );
+
+export const oneRow = Template.bind({});
+
+oneRow.args = {
+  ...baseArgs,
+  overlapping: true,
+  bgColor: '#0C7BCD',
+  // columns: -1,
+};
 
 export const aspectRatio = Template.bind({});
 

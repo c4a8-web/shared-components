@@ -10,7 +10,11 @@ export default {
         this.aspectRatio ? 'logo-list--aspect-ratio' : '',
         Tools.isTrue(this.sticky) ? 'is-sticky-scroller' : '',
         this.spacing ? this.spacing : 'py-4',
+        this.isOverlapping ? 'logo-list--is-overlapping' : '',
       ];
+    },
+    isOverlapping() {
+      return Tools.isTrue(this.overlapping);
     },
     columnsValue() {
       const defaultColumn = 4;
@@ -28,7 +32,11 @@ export default {
       return `--aspect-ratio-width: ${aspectRatio[0]}; --aspect-ratio-height: ${aspectRatio[1]}`;
     },
     styles() {
-      return [this.columnsValue, this.aspectRatioValue].join('; ');
+      return [
+        this.columnsValue,
+        this.aspectRatioValue,
+        this.bgColor ? `--logo-list-background: ${this.bgColor}` : '',
+      ].join('; ');
     },
   },
   methods: {
@@ -52,16 +60,21 @@ export default {
     aspectRatio: {
       default: false,
     },
+    overlapping: {
+      default: false,
+    },
+    bgColor: String,
   },
+  // TODO check if flex-wrap is wanted or not.
   template: `
-    <div :class="classValue" :style="this.styles">
+    <div :class="classValue" :style="styles">
       <div class="row">
-        <div class="col d-flex flex-wrap">
+        <div :class="['logo-list__col col d-flex flex-wrap', { 'flex-wrap': !isOverlapping }]">
           <component v-for="(item, index) in list" :is="getItemComponent(item)"
             :href="item.url"
             target="_blank"
             rel="noopener"
-            class="logo-list__item py-8 px-4 mb-3 d-flex justify-content-center align-items-center fade-in-bottom"
+            :class="['logo-list__item d-flex justify-content-center align-items-center fade-in-bottom', { 'py-8 px-4 mb-3': !isOverlapping }]"
             :title="item.title"
             data-utility-animation-step="1"
             :style="getDelay(index)"
