@@ -232,6 +232,11 @@ export default {
     isSmall() {
       return this.variant === 'hero--small';
     },
+    imgSrcSets() {
+      if (!this.bgWidth) return null;
+
+      return 'heroStudy';
+    },
     hasBack() {
       return this.heroJson && this.heroJson.back ? this.heroJson.back : false;
     },
@@ -288,6 +293,7 @@ export default {
                   :alt="shape.alt"
                   :lottie="lottieFileData"
                   :lottie-settings="lottieSettings"
+                  :img-src-sets="imgSrcSets"
                 >
                 </v-img>
               </div>
@@ -320,6 +326,7 @@ export default {
               :alt="shape.alt"
               :lottie="lottieFileData"
               :lottie-settings="lottieSettings"
+              :img-src-sets="imgSrcSets"
             >
             </v-img>
           </div>
