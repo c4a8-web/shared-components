@@ -110,6 +110,8 @@
   }
 
   &.hero--bg-width {
+    overflow: hidden;
+
     .hero__background-shape {
       position: initial;
     }
@@ -126,8 +128,10 @@
       );
 
       .hero__background-shape {
-        width: 50%;
         padding-left: spacing(4);
+        left: 50%;
+        right: auto;
+        max-width: none;
       }
 
       .hero__content {
