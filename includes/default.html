@@ -23,7 +23,11 @@
       {% endif %}
 
       <main class="page-content" aria-label="Content">
-        {% if page.hero %}
+        {% if page.hero and page.hero.v2 %}
+          {%
+            include hero.html
+          %}
+        {% elsif page.hero %}
           {%
             include hero-text-image.html
           %}

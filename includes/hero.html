@@ -1,0 +1,15 @@
+<!-- Shared Hero Section -->
+{%- assign heroHero = page.hero | default: include.hero | default: hero -%}
+{%- assign heroLottieFile = heroHero.shape.lottieFile | default: null -%}
+{%- assign heroLottieData = null -%}
+
+{%- if heroLottieFile -%}
+  {%- assign heroLottieData = site.data[heroLottieFile] -%}
+{%- endif -%}
+
+<hero
+  :hero="{{ heroHero | jsonify | escape }}"
+  :lottie-data="{{ heroLottieData | jsonify | escape }}"
+>
+</hero>
+<!-- Shared End Hero Section -->
