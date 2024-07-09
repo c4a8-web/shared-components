@@ -1,6 +1,9 @@
 $service-overview-offset: $grid-gutter-half-width;
 
 .service-overview {
+  @include z-index;
+
+  position: relative;
   margin-bottom: spacing(10);
 
   @include media-breakpoint-up(lg) {
@@ -43,11 +46,8 @@ $service-overview-offset: $grid-gutter-half-width;
 }
 
 .service-overview__logo {
-  @include z-index;
-
   background-color: var(--color-white);
   padding: spacing(3) spacing(4) spacing(3) #{$service-overview-offset};
-  margin-left: -#{$service-overview-offset};
   transform: translateY(-99%);
   position: absolute;
 

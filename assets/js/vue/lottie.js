@@ -69,7 +69,7 @@ export default {
       };
     },
     getSize(size) {
-      return size.indexOf('px') === -1 && size.indexOf('%') === -1 ? `${size}px` : size;
+      return !size.indexOf || (size.indexOf('px') === -1 && size.indexOf('%') === -1) ? `${size}px` : size;
     },
     loadAnimation() {
       let anim = lottie.then((lottieModule) => {
@@ -108,7 +108,7 @@ export default {
   },
   template: `
     <div :class="classList">
-      <div :style="style" ref="animContainer"></div>
+      <div class="lottie__container" :style="style" ref="animContainer"></div>
     </div>
   `,
 };

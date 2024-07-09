@@ -7,11 +7,9 @@ const config = {
     disableTelemetry: true,
   },
   features: {
-    postcss: false,
-    storyStoreV7: false,
-    legacyMdx1: true, // 👈 Enables MDX v1 support
+    postcss: false
   },
-  stories: ['../stories/**/*.mdx', '../stories/**/*.stories.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ['../stories/**/*.mdx', '../stories/**/*.mdx', '../stories/**/*.stories.@(js|jsx|ts|tsx)'],
   addons: [
     '@storybook/addon-webpack5-compiler-swc',
     '@storybook/addon-links',

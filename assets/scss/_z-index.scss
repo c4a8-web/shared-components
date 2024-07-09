@@ -1,4 +1,9 @@
 $z-indexed-elements: (
+  '.hero__pattern',
+  '.hero__background-img',
+  '.hero__background-shape',
+  '.hero__container',
+  '.hero__background-shape-wrapper',
   '.dropdown__background-shim',
   '.dropdown',
   '.dropdown__items',
@@ -6,7 +11,7 @@ $z-indexed-elements: (
   '.hero-text-image__icon.icon',
   '.event-overview.event-overview--overlap',
   '.scroll-arrow',
-  '.service-overview__logo',
+  '.service-overview',
   '.event-list',
   '.people-square.people-square--absolute',
   '.back-to-top',

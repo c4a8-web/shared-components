@@ -1,4 +1,5 @@
 const en = {
+  posts: 'Posts',
   address: 'Address',
   follow: 'Follow',
   full_time: 'Full-Time',

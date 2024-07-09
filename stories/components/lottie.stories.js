@@ -10,12 +10,12 @@ export default {
   title: 'Components/Lottie',
 };
 
-export const AnimationHero = {
+export const DimensionsAndBackground = {
   args: {
     width: 600,
     height: 600,
     data: lottie1,
-    background: '#ff0000',
+    background: '#aaaaaa',
   },
 };
 
