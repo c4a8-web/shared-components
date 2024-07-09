@@ -13,7 +13,7 @@
     background-color: var(--logo-list-background);
     position: absolute;
     left: 50%;
-    transform: translateX(-50%) translateY(spacing($size: 14, $negative: true));
+    transform: translateX(-50%) translateY(spacing($size: 12, $negative: true));
 
     .logo-list__col {
       gap: spacing(4);
@@ -31,7 +31,7 @@
 
       img {
         // min-height: 40px;
-        max-height: 40px;
+        max-height: spacing(10);
       }
 
       &:hover {
