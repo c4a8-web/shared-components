@@ -274,7 +274,8 @@ class Tools {
 
   static getYoutubeThumbnail(videoURL) {
     let videoId;
-    const regExp1 = videoURL.match(/youtube\.com.*(\?v=|vi=)(.{11})/);
+
+    const regExp1 = videoURL.match(/youtube\.com.*(\?v=|vi=|\/live\/)(.{11})/);
     const regExp2 = videoURL.match(/youtu\.be\/(.{11})/);
 
     if (regExp1) {
