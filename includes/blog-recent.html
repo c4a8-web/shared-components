@@ -98,12 +98,18 @@
       {% endif %}
 
       {%- if post.layout == 'casestudies' -%}
+        {% if post.hero.v2 %}
+          {% assign blogRecentTitlePic = post.hero.shape.img %}
+        {% else %}
+          {% assign blogRecentTitlePic = post.hero.background.img %}
+        {% endif %}
+
         {
           "url": "{{ blogRecentPostUrl }}",
           "layout": "{{ post.layout }}",
           "title": "{{ post.title | strip_html }}",
           "date": "{{ blogRecentPostDate }}",
-          "blogtitlepic": "{{ post.hero.background.img }}",
+          "blogtitlepic": "{{ blogRecentTitlePic }}",
           "external": {{ blogRecentPostExternal }},
           "excerpt": "{{ post.hero.subline | strip_html | strip_newlines | escape }}"
         }{% unless forloop.last %},{% endunless -%}
