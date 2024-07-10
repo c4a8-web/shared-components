@@ -37,7 +37,8 @@ export default {
     bgColor: String,
   },
   template: `
-    <div class="grid container vue-component" :style="style">
+    <div class="grid has-background vue-component" :style="style">
+      <div class="grid__container container">
       <div class="grid__row row">
         <div class="grid__col col">
           <headline :text="headline" :level="headlineLevelValue" :classes="headlineClassesValue" />
@@ -48,6 +49,7 @@ export default {
             </div>
           </div>
         </div>
+      </div>
       </div>
     </div>
   `,
