@@ -34,6 +34,7 @@ import Footer from './vue/footer.js';
 import GoogleMapEntry from './vue/google-map-entry.js';
 import GoogleMap from './vue/google-map.js';
 import GridList from './vue/grid-list.js';
+import Grid from './vue/grid.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Icon from './vue/icon.js';
@@ -186,6 +187,7 @@ const addApp = () => {
     GoogleMapEntry,
     GoogleMap,
     GridList,
+    Grid,
     Header,
     Headline,
     Icon,

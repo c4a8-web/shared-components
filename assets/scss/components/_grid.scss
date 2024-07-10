@@ -1,0 +1,42 @@
+.grid {
+  color: var(--color-copy);
+}
+
+.grid__title {
+  margin-bottom: spacing(10);
+}
+
+.grid__items {
+  display: grid;
+
+  @include media-breakpoint-up(md) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: spacing(6);
+
+    > *:not(:last-child) {
+      border-right: 1px solid #ccc;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(auto-fit, minmax(0, 1fr));
+  }
+}
+
+.grid__item {
+  @include media-breakpoint-up(md) {
+    padding-right: spacing(6);
+  }
+}
+
+.grid__item-title {
+  @include h3;
+
+  margin-bottom: spacing(10);
+}
+
+.grid__item-text {
+  @include font-style($style: 'font-size-1', $weight: 'light');
+
+  margin-bottom: spacing(10);
+}
