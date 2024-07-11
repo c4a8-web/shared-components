@@ -293,6 +293,10 @@ class StickyScroller {
       this.instances.push(new this(element));
     });
   }
+
+  static getRootClass() {
+    return this.rootSelector.substring(1);
+  }
 }
 
 export default StickyScroller;

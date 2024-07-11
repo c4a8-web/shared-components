@@ -10,10 +10,12 @@ import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
 import AuthorAvatar from './vue/author-avatar.js';
+import AuthorHeader from './vue/author-header.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import Carousel from './vue/carousel.js';
 import CheckCard from './vue/check-card.js';
+import CtaList from './vue/cta-list.js';
 import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
 import EventOverview from './vue/event-overview.js';
@@ -37,6 +39,7 @@ import GridList from './vue/grid-list.js';
 import Grid from './vue/grid.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
+import Hero from './vue/hero.js';
 import Icon from './vue/icon.js';
 import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
@@ -76,6 +79,8 @@ import SlotItems from './vue/slot-items.js';
 import TabList from './vue/tab-list.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
+import TextAnimation from './vue/text-animation.js';
+import TextIconAnimation from './vue/text-icon-animation.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
@@ -162,10 +167,12 @@ const addApp = () => {
     AsideWrapper,
     Authors,
     AuthorAvatar,
+    AuthorHeader,
     BlogRecent,
     Card,
     Carousel,
     CheckCard,
+    CtaList,
     Cta,
     Dropdown,
     EventOverview,
@@ -190,6 +197,7 @@ const addApp = () => {
     Grid,
     Header,
     Headline,
+    Hero,
     Icon,
     ImageBlock,
     ImageList,
@@ -256,6 +264,8 @@ const addApp = () => {
     TabList,
     Tag,
     TestimonialList,
+    TextAnimation,
+    TextIconAnimation,
     TextTeaser,
     Timeline,
     LBlock,

@@ -1,9 +1,9 @@
 import { getDefaultSettings } from '../../.storybook/templates';
-import { includesfabbuttonhtml as component } from '../../.storybook/generatedIncludes';
+import fabButtonTemplate from '!!raw-loader!./fabButton.html';
 
 export default {
   ...getDefaultSettings({
-    component,
+    component: fabButtonTemplate,
     argTypes: {
       icon: {
         description: 'Fab Button Icon',
