@@ -218,6 +218,10 @@ class UtilityAnimation {
 
     this.addObserver(instance);
   }
+
+  static getIndexStyle(index) {
+    return `--utility-animation-index: ${index}`;
+  }
 }
 
 export default UtilityAnimation;
