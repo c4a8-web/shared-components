@@ -26,6 +26,11 @@ export default {
       return Tools.getJSON(this.items);
     },
   },
+  methods: {
+    getItemStyle(index) {
+      return UtilityAnimation.getIndexStyle(index);
+    },
+  },
   props: {
     items: String,
     headline: String,
@@ -37,19 +42,20 @@ export default {
     bgColor: String,
   },
   template: `
-    <div class="grid has-background vue-component" :style="style">
+    <div class="grid has-background utility-animation vue-component" :style="style">
       <div class="grid__container container">
-      <div class="grid__row row">
-        <div class="grid__col col">
-          <headline :text="headline" :level="headlineLevelValue" :classes="headlineClassesValue" />
-          <div class="grid__items">
-            <div class="grid__item" v-for="(item, index) in itemsValue" :key="index">
-              <span class="grid__item-title">{{ item.title }}</span>
-              <p class="grid__item-text">{{ item.text }}</p>
+        <div class="grid__row row">
+          <div class="grid__col col">
+            <headline :text="headline" :level="headlineLevelValue" :classes="headlineClassesValue" />
+            <div class="grid__items">
+              <div class="grid__item fade-in-bottom" v-for="(item, index) in itemsValue" :key="index" :style="getItemStyle(index)" data-utility-animation-step="1">
+                <span class="grid__item-title" v-if="item.title">{{ item.title }}</span>
+                <v-img class="grid__item-img" :img="item.img" :alt="item.alt" v-if="item.img" :cloudinary="item.cloudinary" />
+                <p class="grid__item-text">{{ item.text }}</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
       </div>
     </div>
   `,

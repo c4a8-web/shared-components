@@ -1,4 +1,4 @@
-import { getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings, getAssetPath } from '../../.storybook/templates';
 import { includesgridhtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
@@ -25,6 +25,28 @@ export const ThreeItemsLight = {
       },
       {
         title: '0%',
+        text: 'Wir wollen unsere Prozesse in die Cloud ziehen aber stehen noch ganz am Anfang.',
+      },
+    ],
+  },
+};
+
+export const ThreeItemsLightIcons = {
+  args: {
+    bgColor: 'var(--color-career-background)',
+    headline: 'Wo stehen Sie im Moment?',
+    light: true,
+    items: [
+      {
+        img: getAssetPath('svg/icons/flexibilitaet.svg'),
+        text: 'Wir nutzen die Cloud vollständig und möchten nun Aufwände reduzieren.',
+      },
+      {
+        img: getAssetPath('svg/icons/flexibilitaet.svg'),
+        text: 'Wir sind bereits in der Cloud aber es funktioniert noch nicht so richtig.',
+      },
+      {
+        img: getAssetPath('svg/icons/flexibilitaet.svg'),
         text: 'Wir wollen unsere Prozesse in die Cloud ziehen aber stehen noch ganz am Anfang.',
       },
     ],
