@@ -1,7 +1,48 @@
 import Tools from '../tools.js';
 
+const logoListItems = {
+  tagName: 'logo-list-items',
+  computed: {},
+  methods: {
+    getItemComponent(item) {
+      return item?.url ? 'a' : 'span';
+    },
+    getDelay(index) {
+      const localIndex = this.getIndex(index);
+      const miliseconds = localIndex > 0 ? 100 : 0;
+      const delay = `${localIndex * miliseconds}ms`;
+
+      return `--utility-animation-delay: ${delay};`;
+    },
+    getIndex(index) {
+      return this.isClone ? this.list.length + index : index;
+    },
+  },
+  template: `
+    <component v-for="(item, index) in list" :is="getItemComponent(item)"
+      :href="item.url"
+      target="_blank"
+      rel="noopener"
+      :class="['logo-list__item justify-content-center align-items-center fade-in-bottom', { 'py-8 px-4 mb-3': !isOverlapping, 'logo-list--clone': isClone }]"
+      :title="item.title"
+      data-utility-animation-step="1"
+      :style="getDelay(index)"
+    >
+      <v-img :img="item.img" :alt="item.alt" preset="logoList" cloudinary=true />
+    </component>
+  `,
+  props: {
+    list: Array,
+    isOverlapping: Boolean,
+    isClone: Boolean,
+  },
+};
+
 export default {
   tagName: 'logo-list',
+  components: {
+    'logo-list-items': logoListItems,
+  },
   computed: {
     defaultSpacing() {},
     classValue() {
@@ -39,17 +80,6 @@ export default {
       ].join('; ');
     },
   },
-  methods: {
-    getItemComponent(item) {
-      return item?.url ? 'a' : 'span';
-    },
-    getDelay(index) {
-      const miliseconds = index > 0 ? 100 : 0;
-      const delay = `${index * miliseconds}ms`;
-
-      return `--utility-animation-delay: ${delay};`;
-    },
-  },
   props: {
     list: Array,
     sticky: {
@@ -67,20 +97,13 @@ export default {
   },
   template: `
     <div :class="classValue" :style="styles">
-      <div class="row">
-        <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
-          <component v-for="(item, index) in list" :is="getItemComponent(item)"
-            :href="item.url"
-            target="_blank"
-            rel="noopener"
-            :class="['logo-list__item d-flex justify-content-center align-items-center fade-in-bottom', { 'py-8 px-4 mb-3': !isOverlapping }]"
-            :title="item.title"
-            data-utility-animation-step="1"
-            :style="getDelay(index)"
-          >
-            <v-img :img="item.img" :alt="item.alt" preset="logoList" cloudinary=true />
-          </component>
-        </div>
+      <div class="logo-list__row row">
+        <wrapper classes="logo-list__scroller" :hide-container="!isOverlapping" :hide-container-class="true">
+          <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
+            <logo-list-items :list="list" :is-overlapping="isOverlapping" />
+            <logo-list-items :list="list" is-clone="true" :is-overlapping="isOverlapping" v-if="isOverlapping" />
+          </div>
+        </wrapper>
       </div>
     </div>
   `,
