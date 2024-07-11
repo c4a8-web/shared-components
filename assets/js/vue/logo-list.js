@@ -65,11 +65,10 @@ export default {
     },
     bgColor: String,
   },
-  // TODO check if flex-wrap is wanted or not.
   template: `
     <div :class="classValue" :style="styles">
       <div class="row">
-        <div :class="['logo-list__col col d-flex flex-wrap', { 'flex-wrap': !isOverlapping }]">
+        <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
           <component v-for="(item, index) in list" :is="getItemComponent(item)"
             :href="item.url"
             target="_blank"

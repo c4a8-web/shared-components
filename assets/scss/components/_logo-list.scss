@@ -9,6 +9,7 @@
 
   &.logo-list--is-overlapping {
     @include shadow('light');
+    @include z-index;
 
     background-color: var(--logo-list-background);
     position: absolute;
