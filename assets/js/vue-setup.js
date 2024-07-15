@@ -15,6 +15,7 @@ import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import Carousel from './vue/carousel.js';
 import CheckCard from './vue/check-card.js';
+import ContentScroller from './vue/content-scroller.js';
 import CtaList from './vue/cta-list.js';
 import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
@@ -172,6 +173,7 @@ const addApp = () => {
     Card,
     Carousel,
     CheckCard,
+    ContentScroller,
     CtaList,
     Cta,
     Dropdown,

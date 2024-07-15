@@ -1,0 +1,16 @@
+.content-scroller__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.content-scroller__content {
+  background-color: greenyellow;
+}
+
+.content-scroller__blocks {
+  background-color: goldenrod;
+}
