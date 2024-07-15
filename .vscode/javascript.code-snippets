@@ -2,18 +2,20 @@
   "storybook-component": {
     "prefix": "storybook-component",
     "body": [
-      "import { getTitle, createStory, getArgTypes } from '../../.storybook/templates';",
+      "import { getDefaultSettings } from '../../.storybook/templates';",
       "import { includes$1html as component } from '../../.storybook/generatedIncludes';\n",
-      "const options = getTitle({",
-      "  title: '$2',",
-      "});\n",
-      "export default getArgTypes({",
-      "  ...options,",
-	  "  argTypes: {",
-	  "  },",
-      "});\n",
-      "export const $3 = createStory(component, {\n",
-      "});\n"
+      "export default {",
+      "  ...getDefaultSettings({",
+      "    component,",
+      "    argTypes: {",
+      "    },",
+      "  }),",
+      "  title: 'Components/$2',",
+      "};\n",
+      "export const $3 = {",
+      "  args: {",
+      "  },",
+      "};\n"
     ]
   }
 }
