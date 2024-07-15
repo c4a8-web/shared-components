@@ -40,14 +40,17 @@ export default {
             </div>
             <div class="content-scroller__blocks">
               <section class="content-scroller__block" v-for="(block, index) in blocksValue" :key="index">
-                <headline
-                  v-if="block.headline"
-                  v-bind="block.headline"
-                  :level="block.headline.level || 'h3'"
-                  classes="content-scroller__block-headline"
-                />
-                <p class="content-scroller__block-content">{{ block.content }}</p>
+                <main>
+                  <headline
+                    v-if="block.headline"
+                    v-bind="block.headline"
+                    :level="block.headline.level || 'h3'"
+                    classes="content-scroller__block-headline"
+                  />
+                  <p class="content-scroller__block-content">{{ block.content }}</p>
+                </main>
               </section>
+              <section class="content-scroller__block"><main>LAST</main></section>
             </div>
           </div>
         </div>
