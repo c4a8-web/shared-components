@@ -32,6 +32,7 @@
 
   @include media-breakpoint-up(md) {
     grid-template-columns: repeat(2, 1fr);
+
     > *:not(:last-child) {
       border-bottom: 0;
     }
