@@ -69,7 +69,7 @@
 }
 
 .grid__item-text {
-  @include font-style($style: 'font-size-1', $weight: 'light');
+  @include font-style($style: 'font-size-2', $weight: 'light');
 
   margin-bottom: spacing(10);
 }
