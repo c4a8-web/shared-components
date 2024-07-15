@@ -1,12 +1,11 @@
 import { createComponent } from '../../.storybook/templates';
-import logoListTemplate from '!!raw-loader!./logoList.html';
-import { includeslogolisthtml as component } from '../../.storybook/generatedIncludes';
+import component from '!!raw-loader!./logoList.html';
 
 export default {
   title: 'Components/Logo List',
 };
 
-const Template = (args) => createComponent(args, logoListTemplate);
+const Template = (args) => createComponent(args, component);
 
 const baseArgs = {
   logoList: [
