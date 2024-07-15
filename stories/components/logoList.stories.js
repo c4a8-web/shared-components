@@ -1,5 +1,5 @@
 import { createComponent } from '../../.storybook/templates';
-import logoListTemplate from '!!raw-loader!./logo-list.html';
+import logoListTemplate from '!!raw-loader!./logoList.html';
 import { includeslogolisthtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
