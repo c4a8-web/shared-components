@@ -33,8 +33,9 @@ export const ContentScroller = {
         headline: {
           text: 'Von der Planung bis zum Betrieb',
         },
-        content:
-          'Wir beraten Sie nicht nur bei dem Aufbau Ihrer Cloud-Strategie oder der Auswahl der passenden Microsoft Technologien. Wir implementieren diese auch in Ihr Unternehmen und stellen als Managed Service eine optimale Nutzung sicher.',
+        content: '123',
+        // content:
+        // 'Wir beraten Sie nicht nur bei dem Aufbau Ihrer Cloud-Strategie oder der Auswahl der passenden Microsoft Technologien. Wir implementieren diese auch in Ihr Unternehmen und stellen als Managed Service eine optimale Nutzung sicher.',
       },
       {
         headline: {

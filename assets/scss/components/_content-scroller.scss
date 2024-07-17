@@ -14,6 +14,8 @@
 
   .content-scroller__block-content {
     @include font-style($style: 'font-size-1', $weight: 'light');
+
+    margin-bottom: 0;
   }
 }
 
@@ -22,6 +24,10 @@
   grid-template-columns: 1fr;
   height: 100%;
 
+  //TEST copy
+  position: relative;
+  // min-height: 120vh;
+
   @include media-breakpoint-up(lg) {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -29,6 +35,13 @@
 
 .content-scroller__content {
   margin-top: calc(var(--content-scroller-spacing) * 2);
+
+  //TEST copy
+
+  position: sticky;
+  top: 20vh;
+
+  height: calc(100vh - 20vh);
 }
 
 .content-scroller__content-wrapper {
@@ -37,6 +50,15 @@
   position: sticky;
   top: 0;
   height: 100vh;
+
+  //TEST copy
+
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-self: start;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .content-scroller__blocks {
@@ -47,85 +69,90 @@
 
   // height: 200vh;
 
-  // height: 150vh;
+  // height: 100vh;
 
   // height: 300vh;
-  height: 125vh;
+  // height: 125vh;
+  // height: 140vh;
+
+  // height: calc(100vh + 867px);
+
+  //TEST copy
+
+  width: 100%;
+  height: 100%;
+}
+
+.content-scroller__blocks-content {
+  //TEST copy
+
+  // top: 20vh;
+  // top: 0;
+  // position: sticky;
+  // height: calc(100vh - 20vh);
+  height: 100%;
+
+  // height: 300vh;
 }
 
 .content-scroller__block {
   top: 0;
   position: sticky;
-  // height: 25vh;
-  // height: 100vh;
-
-  // height: 5%;
-
-  // height: 33vh;
-  height: 100vh;
-  height: 25vh;
-
-  // height: 100%;
-  padding-top: var(--content-scroller-spacing);
+  // background-color: rgba(255, 255, 0, 0.4);
+  margin-bottom: calc(100vh - 128px + var(--content-scroller-spacing));
 
   > main {
     position: relative;
     top: 0;
   }
+
+  // &:not(:first-child) {
+  //   opacity: 0;
+  // }
+
   &:nth-child(2) {
-    // top: 200px;
+    // background-color: rgba(55, 55, 240, 0.4);
+    // TODO middle is the height of the element
+    margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
 
     > main {
-      top: 200px;
-      // top: -25vh;
-      // margin-top: -25vh;
+      top: 128px;
     }
   }
 
   &:nth-child(3) {
-    // top: 400px;
+    // background-color: rgba(55, 55, 240, 0.4);
+    margin-bottom: calc(100vh - 51px + var(--content-scroller-spacing));
 
     > main {
-      top: 400px;
-      // top: -50vh;
+      top: 230px;
     }
   }
 
   &:nth-child(4) {
-    // top: 600px;
-    // height: 125vh;
+    // background-color: rgba(55, 255, 40, 0.4);
+    margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
 
     > main {
-      top: 600px;
-      // top: -75vh;
-    }
-
-    // &::after {
-    //   content: '';
-    //   display: block;
-    //   position: relative;
-    //   // top: 0;
-    //   // right: 0;
-    //   // bottom: 0;
-    //   // left: 0;
-    //   width: 100%;
-    //   height: 100vh;
-    //   background-color: red;
-    //   opacity: 0.5;
-    //   // z-index: -1;
-    // }
-  }
-
-  &:nth-child(5) {
-    display: none;
-    // top: 600px;
-    height: 100vh;
-    position: relative;
-
-    > main {
-      top: 800px;
+      top: 281px;
     }
   }
+
+  // &:nth-child(5) {
+  //   display: none;
+  //   height: 500vh;
+  //   position: relative;
+
+  //   > main {
+  //     // top: 800px;
+  //   }
+  // }
+}
+
+.content-scroller__block-spacer {
+  height: 10vh;
+  background-color: green;
+  display: none;
 }
 
 .content-scroller__background {
@@ -138,3 +165,19 @@
   height: 100%;
   z-index: -1;
 }
+
+.content-scroller__spacer {
+  display: none;
+  height: 50vh;
+  height: 648px;
+
+  height: 30vh;
+
+  position: relative;
+  opacity: 0.1;
+  background-color: red;
+  width: 100%;
+  pointer-events: none;
+}
+
+// height of all contents are 632px so 16px off
