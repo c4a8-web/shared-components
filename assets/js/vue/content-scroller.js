@@ -1,11 +1,15 @@
 import Tools from '../tools.js';
 
+// TODO calculate the height of the left block somehow
+// TODO make a mobile version of the component
+
 export default {
   tagName: 'content-scroller',
   data() {
     return {
       totalBlockHeight: 0,
       blockHeights: [],
+      blockPositions: [],
     };
   },
   computed: {
@@ -54,10 +58,13 @@ export default {
         const blockList = this.$refs['block'];
         const newBlockHeights = [];
 
-        blockList.reduce((_, block, index) => {
+        blockList.reduce((total, block, index) => {
           const blockHeight = block.offsetHeight;
 
           newBlockHeights[index] = blockHeight;
+          this.blockPositions[index] = total;
+
+          return total + blockHeight;
         }, 0);
 
         this.blockHeights = newBlockHeights;
@@ -76,6 +83,14 @@ export default {
           }, 0) + 'px';
       });
     },
+    calculateBlockStyle(index) {
+      return [
+        {
+          '--content-scroller-block-height': this.blockHeights[index] + 'px',
+          '--content-scroller-block-position': this.blockPositions[index] + 'px',
+        },
+      ];
+    },
   },
   template: `
     <div :class="['content-scroller vue-component', overlappingSizeValue]" :style="[{'--content-scroller-total-block-height': this.totalBlockHeight}]">
@@ -92,15 +107,17 @@ export default {
             </div>
             <div class="content-scroller__blocks">
               <div class="content-scroller__blocks-content">
-                <section class="content-scroller__block" v-for="(block, index) in blocksValue" :key="index" ref="block" :style="[{'--content-scroller-block-height': blockHeights[index] + 'px'}]">
+                <section class="content-scroller__block" v-for="(block, index) in blocksValue" :key="index" ref="block" :style="calculateBlockStyle(index)">
                   <main>
-                    <headline
-                      v-if="block.headline"
-                      v-bind="block.headline"
-                      :level="block.headline.level || 'h3'"
-                      classes="content-scroller__block-headline"
-                    />
-                    <p class="content-scroller__block-content">{{ block.content }}</p>
+                    <div class="content-scroller__block-space">
+                      <headline
+                        v-if="block.headline"
+                        v-bind="block.headline"
+                        :level="block.headline.level || 'h3'"
+                        classes="content-scroller__block-headline"
+                      />
+                      <p class="content-scroller__block-content">{{ block.content }}</p>
+                    </div>
                   </main>
                 </section>
               </div>

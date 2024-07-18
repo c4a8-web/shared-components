@@ -63,6 +63,13 @@
   height: var(--content-scroller-total-block-height);
 }
 
+.content-scroller__block-space {
+  // padding-top: var(--content-scroller-spacing);
+
+  // TODO make sure the first padding is added somewhere else statically. and the spacing between the items is calculated from the height or take a fixed spacing like
+  // the example site.
+}
+
 .content-scroller__block {
   // background-color: rgba(255, 255, 0, 0.4);
   top: 0;
@@ -71,34 +78,19 @@
 
   > main {
     position: relative;
-    top: 0;
+    top: var(--content-scroller-block-position);
   }
 
   &:nth-child(2) {
     // background-color: rgba(55, 55, 240, 0.4);
-    // margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
-
-    > main {
-      top: 128px;
-    }
   }
 
   &:nth-child(3) {
     // background-color: rgba(55, 55, 240, 0.4);
-    // margin-bottom: calc(100vh - 51px + var(--content-scroller-spacing));
-
-    > main {
-      top: 230px;
-    }
   }
 
   &:nth-child(4) {
     // background-color: rgba(55, 255, 40, 0.4);
-    // margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
-
-    > main {
-      top: 281px;
-    }
   }
 }
 
