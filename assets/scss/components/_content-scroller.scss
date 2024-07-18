@@ -26,7 +26,12 @@
 
   //TEST copy
   position: relative;
-  // min-height: 120vh;
+  // min-height: 200vh;
+  min-height: calc(100vh + 409px + var(--content-scroller-spacing));
+
+  // min-height: 125vh;
+
+  min-height: calc(200vh);
 
   @include media-breakpoint-up(lg) {
     grid-template-columns: repeat(2, 1fr);
@@ -96,24 +101,25 @@
 }
 
 .content-scroller__block {
+  --content-scroller-height: 128px;
+
+  // background-color: rgba(255, 255, 0, 0.4);
   top: 0;
   position: sticky;
-  // background-color: rgba(255, 255, 0, 0.4);
-  margin-bottom: calc(100vh - 128px + var(--content-scroller-spacing));
+  // margin-bottom: calc(100vh - var(--content-scroller-height) + var(--content-scroller-spacing));
+
+  margin-bottom: calc(25vh - var(--content-scroller-height) + var(--content-scroller-spacing));
 
   > main {
     position: relative;
     top: 0;
   }
 
-  // &:not(:first-child) {
-  //   opacity: 0;
-  // }
-
   &:nth-child(2) {
+    --content-scroller-height: 102px;
+
     // background-color: rgba(55, 55, 240, 0.4);
-    // TODO middle is the height of the element
-    margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
+    // margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
 
     > main {
       top: 128px;
@@ -121,8 +127,10 @@
   }
 
   &:nth-child(3) {
+    --content-scroller-height: 51px;
+
     // background-color: rgba(55, 55, 240, 0.4);
-    margin-bottom: calc(100vh - 51px + var(--content-scroller-spacing));
+    // margin-bottom: calc(100vh - 51px + var(--content-scroller-spacing));
 
     > main {
       top: 230px;
@@ -130,8 +138,10 @@
   }
 
   &:nth-child(4) {
+    --content-scroller-height: 128px;
+
     // background-color: rgba(55, 255, 40, 0.4);
-    margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
+    // margin-bottom: calc(100vh - 102px + var(--content-scroller-spacing));
 
     > main {
       top: 281px;
@@ -166,8 +176,12 @@
   z-index: -1;
 }
 
-.content-scroller__spacer {
+.content-scroller__grid > .content-scroller__spacer {
   display: none;
+}
+
+.content-scroller__spacer {
+  // display: none;
   height: 50vh;
   height: 648px;
 

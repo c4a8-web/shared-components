@@ -53,6 +53,7 @@ export default {
                   <div class="content-scroller__block-spacer">spacer</div>
                 </section>
               </div>
+              <div class="content-scroller__spacer">SPACER</div>
             </div>
             <div class="content-scroller__spacer">SPACER</div>
           </div>
