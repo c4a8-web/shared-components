@@ -64,7 +64,7 @@
 }
 
 .content-scroller__block-space {
-  // padding-top: var(--content-scroller-spacing);
+  padding-top: var(--content-scroller-spacing);
 
   // TODO make sure the first padding is added somewhere else statically. and the spacing between the items is calculated from the height or take a fixed spacing like
   // the example site.
