@@ -4,9 +4,8 @@ export default {
   tagName: 'content-scroller',
   data() {
     return {
-      scrollPosition: 0,
-      intersectionRatio: '100vh',
-      totalBlockHeight: 0, // New data property to store total block height
+      totalBlockHeight: 0,
+      blockHeights: [],
     };
   },
   computed: {
@@ -34,53 +33,52 @@ export default {
     overlappingSize: String,
   },
   mounted() {
-    this.createIntersectionObserver();
-    this.calculateTotalBlockHeight(); // Calculate height at the start
-    window.addEventListener('resize', this.calculateTotalBlockHeight); // Add resize event listener
+    this.calculateBlockHeight();
+
+    window.addEventListener('resize', this.handleResize);
   },
   beforeDestroy() {
-    if (this.observer) {
-      this.observer.disconnect();
-    }
-    window.removeEventListener('resize', this.calculateTotalBlockHeight); // Remove resize event listener
+    window.removeEventListener('resize', this.handleResize);
+  },
+  watch: {
+    blockHeights() {
+      this.calculateTotalBlockHeight();
+    },
   },
   methods: {
-    createIntersectionObserver() {
-      const options = {
-        root: null,
-        rootMargin: '0px',
-        threshold: Array.from({ length: 101 }, (_, i) => i / 100),
-      };
+    handleResize() {
+      this.calculateBlockHeight();
+    },
+    calculateBlockHeight() {
+      this.$nextTick(() => {
+        const blockList = this.$refs['block'];
+        const newBlockHeights = [];
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          const boundingRect = entry.boundingClientRect;
-          const rootRect = entry.rootBounds || { top: 0 };
-          this.scrollPosition = boundingRect.top - rootRect.top;
+        blockList.reduce((_, block, index) => {
+          const blockHeight = block.offsetHeight;
 
-          // Calculate the intersection ratio
-          this.intersectionRatio = (entry.intersectionRatio * 100).toFixed(2) + '%';
-          console.log(`Intersection ratio: ${this.intersectionRatio}`);
-          // this.$el.style.setProperty('--content-scroller-intersection-ratio', `${this.intersectionRatio}%`);
-        });
-      }, options);
+          newBlockHeights[index] = blockHeight;
+        }, 0);
 
-      observer.observe(this.$el);
+        this.blockHeights = newBlockHeights;
+      });
     },
     calculateTotalBlockHeight() {
       this.$nextTick(() => {
-        const blocks = this.$el.querySelectorAll('.content-scroller__block');
-        this.totalBlockHeight = Array.from(blocks).reduce((total, block) => {
-          const style = window.getComputedStyle(block);
-          const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
-          return total + block.offsetHeight + margin;
-        }, 0);
-        console.log(`Total block height including margins: ${this.totalBlockHeight}px`);
+        const blockList = this.$refs['block'];
+
+        this.totalBlockHeight =
+          blockList.reduce((total, block, index) => {
+            const style = window.getComputedStyle(block);
+            const margin = parseFloat(style.marginTop) + parseFloat(style.marginBottom);
+
+            return total + this.blockHeights[index] + margin;
+          }, 0) + 'px';
       });
     },
   },
   template: `
-    <div :class="['content-scroller vue-component', overlappingSizeValue]" :style="[{'--content-scroller-intersection-ratio': intersectionRatio}]">
+    <div :class="['content-scroller vue-component', overlappingSizeValue]" :style="[{'--content-scroller-total-block-height': this.totalBlockHeight}]">
       <div style="position: fixed">{{ totalBlockHeight }}</div>
       <wrapper class="content-scroller__wrapper">
         <div class="content-scroller__row">
@@ -94,7 +92,7 @@ export default {
             </div>
             <div class="content-scroller__blocks">
               <div class="content-scroller__blocks-content">
-                <section class="content-scroller__block" v-for="(block, index) in blocksValue" :key="index">
+                <section class="content-scroller__block" v-for="(block, index) in blocksValue" :key="index" ref="block" :style="[{'--content-scroller-block-height': blockHeights[index] + 'px'}]">
                   <main>
                     <headline
                       v-if="block.headline"
@@ -104,12 +102,9 @@ export default {
                     />
                     <p class="content-scroller__block-content">{{ block.content }}</p>
                   </main>
-                  <div class="content-scroller__block-spacer">spacer</div>
                 </section>
               </div>
-              <div class="content-scroller__spacer">SPACER</div>
             </div>
-            <div class="content-scroller__spacer">SPACER</div>
           </div>
         </div>
       </wrapper>
