@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     handleScroll() {
-      this.getScrollDistancePercentage();
+      this.calcScrollDistancePercentage();
       this.updateBlocks();
     },
     handleResize() {
@@ -139,9 +139,7 @@ export default {
     getViewportHeight() {
       return window.innerHeight;
     },
-    getScrollDistancePercentage() {
-      // gets the scroll distance in percentage the user has scrolled over this component
-
+    calcScrollDistancePercentage() {
       const root = this.$el;
       const scrollPosition = window.scrollY;
       const componentTop = root.getBoundingClientRect().top + window.scrollY;
@@ -155,13 +153,6 @@ export default {
 
         scrollDistancePercentage = (scrolledPastComponent / componentHeightHalf) * 100;
       }
-
-      const viewPortOverflow = root.offsetHeight - window.innerHeight;
-      // const scrollTop = window.scrollY; // Updated from window.pageYOffset
-      // console.log('🚀 ~ getScrollDistancePercentage ~ scrollTop:', scrollTop);
-      // const componentHeight = this.$el.offsetHeight;
-      // console.log('🚀 ~ getScrollDistancePercentage ~ componentHeight:', componentHeight);
-      // const scrollDistancePercentage = (scrollTop / (this.totalBlockHeight - componentHeight)) * 100;
 
       this.scrollDistancePercentage = scrollDistancePercentage;
     },
@@ -184,8 +175,7 @@ export default {
 
       if (!placeholder) return;
 
-      this.minHeight =
-        this.getViewportHeight() > placeholder.offsetHeight ? this.getViewportHeight() : placeholder.offsetHeight;
+      this.minHeight = placeholder.offsetHeight;
     },
   },
   template: `

@@ -40,7 +40,7 @@ $content-scroller-orientatio-breakpoint: 'md';
   margin-top: calc(var(--content-scroller-spacing) * 2);
   position: sticky;
   top: var(--content-scroller-top-offset);
-  height: calc(max(100vh, var(--content-scroller-min-height)) - var(--content-scroller-top-offset));
+  height: calc(max(100vh - var(--content-scroller-top-offset), var(--content-scroller-min-height)));
 }
 
 .content-scroller__content-wrapper {
