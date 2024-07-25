@@ -1,18 +1,14 @@
 import Tools from '../tools.js';
 
-// TODO calc the height of the left block somehow
 // TODO make a mobile version of the component
 
 export default {
   tagName: 'content-scroller',
   data() {
     return {
-      totalBlockHeight: 0,
-      blockHeights: [],
-      blockPositions: [],
       blockScrollPercentage: [],
       scrollDistancePercentage: 0,
-      placeholderHeight: 0,
+      minHeight: 0,
       blockCount: 0,
       isScrolledUpOut: false,
       isScrolledDownOut: false,
@@ -33,6 +29,11 @@ export default {
     },
     overlappingSizeValue() {
       return this.overlappingSize || 'mt-lg-n10';
+    },
+    style() {
+      return {
+        '--content-scroller-min-height': `${this.minHeight}px`,
+      };
     },
   },
   props: {
@@ -62,6 +63,7 @@ export default {
       this.updateBlocks();
     },
     handleResize() {
+      this.calcMinHeight();
       this.handleScroll();
     },
     resetIsScrolledUpOut() {
@@ -177,10 +179,17 @@ export default {
         },
       ];
     },
+    calcMinHeight() {
+      const placeholder = this.$refs['placeholder'];
+
+      if (!placeholder) return;
+
+      this.minHeight =
+        this.getViewportHeight() > placeholder.offsetHeight ? this.getViewportHeight() : placeholder.offsetHeight;
+    },
   },
   template: `
-    <div :class="['content-scroller vue-component', overlappingSizeValue]">
-      <div style="display: none; position: fixed;top: 0;left: 0; right: 0;background-color: white; border: 1px solid black;">{{ totalBlockHeight }}#scroll: {{ scrollDistancePercentage }}</div>
+    <div :class="['content-scroller vue-component', overlappingSizeValue]" :style="style">
       <wrapper class="content-scroller__wrapper">
         <div class="content-scroller__row">
           <div class="content-scroller__grid col">
