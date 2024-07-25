@@ -1,8 +1,12 @@
+// TODO add min height for a very small viewport
+// TODO mobile layout
+
 .content-scroller {
   @include z-index;
 
   --content-scroller-spacing: #{spacing(15)};
   --content-scroller-background: var(--color-surface-background);
+  --content-scroller-top-offset: 20vh;
 
   position: relative;
 
@@ -34,12 +38,12 @@
 .content-scroller__content {
   margin-top: calc(var(--content-scroller-spacing) * 2);
   position: sticky;
-  top: 20vh;
-  height: calc(100vh - 20vh);
+  top: var(--content-scroller-top-offset);
+  height: calc(100vh - var(--content-scroller-top-offset));
 }
 
 .content-scroller__content-wrapper {
-  padding: var(--content-scroller-spacing) calc(var(--content-scroller-spacing) * 2) var(--content-scroller-spacing) 0;
+  padding: var(--content-scroller-spacing) calc(var(--content-scroller-spacing) * 2) 0 0;
   top: 0;
   position: relative;
   height: 100%;
@@ -51,47 +55,38 @@
 
 .content-scroller__blocks {
   position: relative;
-  // padding: var(--content-scroller-spacing) 0 spacing(10) var(--content-scroller-spacing);
   padding-left: var(--content-scroller-spacing);
-  // padding-top: var(--content-scroller-spacing);
-
   width: 100%;
   height: 100%;
 }
 
-.content-scroller__blocks-content {
-  height: var(--content-scroller-total-block-height);
+.content-scroller__blocks-frame {
+  top: calc(-1 * var(--content-scroller-spacing));
+  position: relative;
+  margin-top: calc(var(--content-scroller-spacing) * 3);
+
+  // height: calc(100%);
+  // height: calc(100vh - 20vh);
 }
 
 .content-scroller__block-space {
-  padding-top: var(--content-scroller-spacing);
-
-  // TODO make sure the first padding is added somewhere else statically. and the spacing between the items is calculated from the height or take a fixed spacing like
-  // the example site.
+  // padding-top: var(--content-scroller-spacing);
 }
 
 .content-scroller__block {
-  // background-color: rgba(255, 255, 0, 0.4);
-  top: 0;
-  position: sticky;
-  margin-bottom: calc(25vh - var(--content-scroller-block-height) + var(--content-scroller-spacing));
+  --content-scroller-block-start-position: 10rem;
+  --content-scroller-block-position: calc(
+    var(--content-scroller-block-start-position) -
+      (var(--content-scroller-block-start-position) * (var(--content-scroller-block-scroll-percentage) / 100))
+  );
 
-  > main {
-    position: relative;
-    top: var(--content-scroller-block-position);
-  }
+  --content-scroller-block-scroll-opacity: calc(var(--content-scroller-block-scroll-percentage) / 100);
 
-  &:nth-child(2) {
-    // background-color: rgba(55, 55, 240, 0.4);
-  }
-
-  &:nth-child(3) {
-    // background-color: rgba(55, 55, 240, 0.4);
-  }
-
-  &:nth-child(4) {
-    // background-color: rgba(55, 255, 40, 0.4);
-  }
+  transform: translate3d(0px, var(--content-scroller-block-position), 0px);
+  opacity: var(--content-scroller-block-scroll-opacity);
+  position: relative;
+  width: 100%;
+  will-change: transform, opacity;
 }
 
 .content-scroller__background {
@@ -103,4 +98,20 @@
   width: calc(50vw - 2 * (#{$grid-gutter-half-width}));
   height: 100%;
   z-index: -1;
+}
+
+.content-scroller__blocks-placeholder {
+  position: sticky;
+  margin-top: calc(var(--content-scroller-spacing) * 3);
+  top: calc(var(--content-scroller-top-offset));
+  height: calc(100vh - var(--content-scroller-top-offset));
+
+  .content-scroller__block {
+    position: initial;
+    margin-bottom: calc(var(--content-scroller-spacing));
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
 }
