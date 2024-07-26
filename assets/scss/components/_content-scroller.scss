@@ -83,7 +83,8 @@ $content-scroller-orientatio-breakpoint: 'md';
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
     padding-left: var(--content-scroller-spacing);
     position: relative;
-    min-height: none;
+    min-height: auto;
+    top: auto;
   }
 }
 
