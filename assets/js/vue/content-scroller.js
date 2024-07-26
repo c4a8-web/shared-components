@@ -28,7 +28,7 @@ export default {
       };
     },
     overlappingSizeValue() {
-      return this.overlappingSize || 'mt-lg-n10';
+      return this.overlappingSize || 'mt-md-n10';
     },
     style() {
       return {

@@ -9,6 +9,7 @@ $content-scroller-orientatio-breakpoint: 'md';
   --content-scroller-spacing-small: #{spacing(10)};
   --content-scroller-background: var(--color-surface-background);
   --content-scroller-top-offset: 20vh;
+  --content-scroller-block-offset-xs: 40vh;
 
   position: relative;
 
@@ -21,6 +22,10 @@ $content-scroller-orientatio-breakpoint: 'md';
 
     margin-bottom: 0;
   }
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    border-top: 1px solid transparent;
+  }
 }
 
 .content-scroller__grid {
@@ -28,10 +33,10 @@ $content-scroller-orientatio-breakpoint: 'md';
   grid-template-columns: 1fr;
   height: 100%;
   position: relative;
-  min-height: calc(200vh + 30px);
-  margin-top: var(--content-scroller-spacing);
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    min-height: calc(200vh + 30px);
+    margin-top: var(--content-scroller-spacing);
     grid-template-columns: repeat(2, 1fr);
   }
 }
@@ -40,52 +45,77 @@ $content-scroller-orientatio-breakpoint: 'md';
   margin-top: calc(var(--content-scroller-spacing) * 2);
   position: sticky;
   top: var(--content-scroller-top-offset);
-  height: calc(max(100vh - var(--content-scroller-top-offset), var(--content-scroller-min-height)));
+  height: 65vh;
+  // height: 25vh;
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    height: calc(max(100vh - var(--content-scroller-top-offset), var(--content-scroller-min-height)));
+  }
 }
 
 .content-scroller__content-wrapper {
-  padding: var(--content-scroller-spacing) calc(var(--content-scroller-spacing) * 2) 0 0;
   top: 0;
   position: relative;
-  height: 100%;
+  height: 150vh;
   display: flex;
   align-self: start;
   justify-content: center;
   align-items: flex-start;
+  // background-color: red;
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    height: 100%;
+    padding: var(--content-scroller-spacing) calc(var(--content-scroller-spacing) * 2) 0 0;
+  }
 }
 
 .content-scroller__blocks {
-  position: relative;
-  padding-left: var(--content-scroller-spacing);
+  position: absolute;
   width: 100%;
   height: 100%;
+  min-height: 200vh;
+  top: var(--content-scroller-block-offset-xs);
+
+  // top: 70vh;
+
+  // background-color: green;
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    padding-left: var(--content-scroller-spacing);
+    position: relative;
+    min-height: none;
+  }
 }
 
 .content-scroller__blocks-frame {
-  top: calc(-1 * var(--content-scroller-spacing));
   position: relative;
-  margin-top: calc(var(--content-scroller-spacing) * 3);
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    top: calc(-1 * var(--content-scroller-spacing));
+    margin-top: calc(var(--content-scroller-spacing) * 3);
+  }
 }
 
 .content-scroller__block-space {
-  padding-bottom: var(--content-scroller-spacing-small);
-  border-bottom: 1px solid var(--color-primary-accent);
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    padding-bottom: var(--content-scroller-spacing-small);
+    border-bottom: 1px solid var(--color-primary-accent);
+  }
 }
 
 .content-scroller__block {
-  --content-scroller-block-start-position: 10rem;
-  --content-scroller-block-position: calc(
-    var(--content-scroller-block-start-position) -
-      (var(--content-scroller-block-start-position) * (var(--content-scroller-block-scroll-percentage) / 100))
-  );
-
-  --content-scroller-block-scroll-opacity: calc(var(--content-scroller-block-scroll-percentage) / 100);
-
-  transform: translate3d(0px, var(--content-scroller-block-position), 0px);
   opacity: var(--content-scroller-block-scroll-opacity);
   width: 100%;
   will-change: transform, opacity;
   margin-bottom: calc(var(--content-scroller-spacing-small));
+  position: sticky;
+  top: var(--content-scroller-block-offset-xs);
+  // top: 75vh;
+  background-color: var(--content-scroller-background);
+  // min-height: 40vh;
+
+  // min-height: 25vh;
+  height: 25vh;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -94,6 +124,21 @@ $content-scroller-orientatio-breakpoint: 'md';
       border-bottom: 0;
       padding-bottom: 0;
     }
+  }
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    --content-scroller-block-start-position: 10rem;
+    --content-scroller-block-position: calc(
+      var(--content-scroller-block-start-position) -
+        (var(--content-scroller-block-start-position) * (var(--content-scroller-block-scroll-percentage) / 100))
+    );
+    --content-scroller-block-scroll-opacity: calc(var(--content-scroller-block-scroll-percentage) / 100);
+
+    transform: translate3d(0px, var(--content-scroller-block-position), 0px);
+    position: initial;
+    background-color: transparent;
+    min-height: none;
+    height: auto;
   }
 }
 
@@ -106,11 +151,22 @@ $content-scroller-orientatio-breakpoint: 'md';
   width: calc(50vw - 2 * (#{$grid-gutter-half-width}));
   height: 100%;
   z-index: -1;
+  display: none;
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    display: block;
+  }
 }
 
 .content-scroller__blocks-placeholder {
   position: sticky;
-  margin-top: calc(var(--content-scroller-spacing) * 3);
-  top: calc(var(--content-scroller-top-offset));
-  min-height: calc(100vh - var(--content-scroller-top-offset));
+  top: auto;
+  bottom: 30vh;
+
+  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+    margin-top: calc(var(--content-scroller-spacing) * 3);
+    top: calc(var(--content-scroller-top-offset));
+    min-height: calc(100vh - var(--content-scroller-top-offset));
+    bottom: auto;
+  }
 }
