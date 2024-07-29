@@ -11,8 +11,9 @@ export default {
         'timeline--headline-sticky has-headline-sticky',
         this.isReady ? State.READY : '',
         this.expanded ? State.EXPANDED : '',
-        'vue-component',
         this.spacing,
+        this.simpleValue ? 'timeline--simple' : '',
+        'vue-component',
       ];
     },
     copyColor() {
@@ -31,6 +32,9 @@ export default {
     },
     lineEndStyle() {
       return `--timeline-line-position: ${this.entries?.length}`;
+    },
+    simpleValue() {
+      return Tools.isTrue(this.simple);
     },
   },
   mounted() {
@@ -182,6 +186,10 @@ export default {
       default: null,
     },
     spacing: String,
+    simple: {
+      default: null,
+    },
+    subline: String,
   },
   template: `
     <div :class="classList" :style="style" ref="root">
@@ -200,14 +208,26 @@ export default {
                 <div :class="getEntryContainerClasses(index)" v-for="(entry, index) in entries" :style="getEntryContainerStyle(index)">
                   <div class="timeline__entry" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text" v-html="entry"></div>
+                      <div class="timeline__entry-inner-text">
+                        <template v-if="entry.title">
+                          <div class="timeline__entry-title">{{ entry.title }}</span>
+                          <p class="timeline__entry-text">{{ entry.text }}</p>
+                        </template>
+                        <template v-else v-html="entry"></template>
+                      </div>
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
                   <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text" v-html="entry"></div>
+                      <div class="timeline__entry-inner-text">
+                        <template v-if="entry.title">
+                          <div class="timeline__entry-title">{{ entry.title }}</span>
+                          <p class="timeline__entry-text">{{ entry.text }}</p>
+                        </template>
+                        <template v-else v-html="entry"></template>
+                      </div>
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
