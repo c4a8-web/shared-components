@@ -1,4 +1,5 @@
 import Events from '../events.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'tab-list',
@@ -17,6 +18,9 @@ export default {
     this.currentTabId = this.list[0].id;
   },
   computed: {
+    leftValue() {
+      return Tools.isTrue(this.left) === true;
+    },
     columnClassList() {
       const maxColumns = 12;
       const breakpointClass = !this.tabs ? 'lg-' : '';
@@ -31,6 +35,7 @@ export default {
       return [
         'tab-list vue-component',
         this.tabs ? 'px-4 px-lg-0' : '',
+        this.leftValue ? 'tab-list--left' : '',
         this.variantClass,
         this.showLeftArrow ? 'show-left-arrow' : '',
         this.showRightArrow ? 'show-right-arrow' : '',
@@ -171,6 +176,9 @@ export default {
   props: {
     list: Array,
     tabs: Boolean,
+    left: {
+      default: null,
+    },
     variant: String,
   },
   template: `

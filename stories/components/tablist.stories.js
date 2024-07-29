@@ -7,6 +7,35 @@ export default {
 
 const Template = (args) => createComponent(args, component);
 
+export const LeftAligned = Template.bind({});
+
+LeftAligned.args = {
+  left: true,
+  list: [
+    {
+      title: 'Über Uns',
+      id: 'tab1',
+      link: {
+        href: '#tab1',
+      },
+    },
+    {
+      title: 'Unsere Werte',
+      id: 'tab2',
+      link: {
+        href: '#tab2',
+      },
+    },
+    {
+      title: 'Lorem ipsum',
+      id: 'tab3',
+      link: {
+        href: '#tab3',
+      },
+    },
+  ],
+};
+
 export const ThreeEntries = Template.bind({});
 
 ThreeEntries.args = {
