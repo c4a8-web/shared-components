@@ -35,7 +35,7 @@ export default {
       return [
         'tab-list vue-component',
         this.tabs ? 'px-4 px-lg-0' : '',
-        this.leftValue ? 'tab-list--left' : '',
+        this.leftValue ? 'container tab-list--left' : '',
         this.variantClass,
         this.showLeftArrow ? 'show-left-arrow' : '',
         this.showRightArrow ? 'show-right-arrow' : '',
