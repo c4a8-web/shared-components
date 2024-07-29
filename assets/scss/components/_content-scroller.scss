@@ -10,8 +10,12 @@ $content-scroller-orientatio-breakpoint: 'md';
   --content-scroller-background: var(--color-surface-background);
   --content-scroller-top-offset: 20vh;
   --content-scroller-block-offset-xs: 40vh;
+  --content-scroller-bottom-spacer: 38vh;
+  --content-scroller-content-background: var(--color-white);
 
   position: relative;
+  padding-bottom: var(--content-scroller-bottom-spacer);
+  background-color: var(--content-scroller-background);
 
   .content-scroller__block-headline {
     @include font-style($style: 'font-size-1', $weight: 'bold');
@@ -25,6 +29,8 @@ $content-scroller-orientatio-breakpoint: 'md';
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
     border-top: 1px solid transparent;
+    padding-bottom: 0;
+    background-color: transparent;
   }
 }
 
@@ -45,8 +51,7 @@ $content-scroller-orientatio-breakpoint: 'md';
   margin-top: calc(var(--content-scroller-spacing) * 2);
   position: sticky;
   top: var(--content-scroller-top-offset);
-  height: 65vh;
-  // height: 25vh;
+  height: 25vh;
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
     height: calc(max(100vh - var(--content-scroller-top-offset), var(--content-scroller-min-height)));
@@ -56,12 +61,24 @@ $content-scroller-orientatio-breakpoint: 'md';
 .content-scroller__content-wrapper {
   top: 0;
   position: relative;
-  height: 150vh;
   display: flex;
   align-self: start;
   justify-content: center;
   align-items: flex-start;
-  // background-color: red;
+  height: calc(var(--content-scroller-min-height) + 31.75vh);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100%;
+    background-color: var(--content-scroller-content-background);
+    z-index: -1;
+    grid-column: 1 / -1;
+  }
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
     height: 100%;
@@ -74,14 +91,11 @@ $content-scroller-orientatio-breakpoint: 'md';
   width: 100%;
   height: 100%;
   min-height: 200vh;
-  top: var(--content-scroller-block-offset-xs);
-
-  // top: 70vh;
-
-  // background-color: green;
+  top: 70vh;
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
     padding-left: var(--content-scroller-spacing);
+    padding-top: 0;
     position: relative;
     min-height: auto;
     top: auto;
@@ -98,9 +112,42 @@ $content-scroller-orientatio-breakpoint: 'md';
 }
 
 .content-scroller__block-space {
+  padding-top: var(--content-scroller-spacing-small);
+  padding-bottom: var(--content-scroller-spacing-small);
+  height: 50vh;
+  position: relative;
+
+  &::after,
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    background-color: var(--content-scroller-background);
+    z-index: -1;
+    grid-column: 1 / -1;
+  }
+
+  &::before {
+    height: 100%;
+  }
+
+  &::after {
+    height: 1px;
+    background-color: var(--color-primary-accent);
+  }
+
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
-    padding-bottom: var(--content-scroller-spacing-small);
+    height: auto;
+    padding-top: 0;
     border-bottom: 1px solid var(--color-primary-accent);
+
+    &::after,
+    &::before {
+      display: none;
+    }
   }
 }
 
@@ -108,24 +155,9 @@ $content-scroller-orientatio-breakpoint: 'md';
   opacity: var(--content-scroller-block-scroll-opacity);
   width: 100%;
   will-change: transform, opacity;
-  margin-bottom: calc(var(--content-scroller-spacing-small));
   position: sticky;
-  top: var(--content-scroller-block-offset-xs);
-  // top: 75vh;
   background-color: var(--content-scroller-background);
-  // min-height: 40vh;
-
-  // min-height: 25vh;
-  height: 25vh;
-
-  &:last-of-type {
-    margin-bottom: 0;
-
-    .content-scroller__block-space {
-      border-bottom: 0;
-      padding-bottom: 0;
-    }
-  }
+  top: 50vh;
 
   @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
     --content-scroller-block-start-position: 10rem;
@@ -135,11 +167,21 @@ $content-scroller-orientatio-breakpoint: 'md';
     );
     --content-scroller-block-scroll-opacity: calc(var(--content-scroller-block-scroll-percentage) / 100);
 
+    margin-bottom: calc(var(--content-scroller-spacing-small));
     transform: translate3d(0px, var(--content-scroller-block-position), 0px);
     position: initial;
     background-color: transparent;
     min-height: none;
     height: auto;
+
+    &:last-of-type {
+      margin-bottom: 0;
+
+      .content-scroller__block-space {
+        border-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
   }
 }
 
