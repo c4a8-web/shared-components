@@ -4,6 +4,7 @@
 {%- assign timelineColor = include.color -%}
 {%- assign timelineEntries = include.entries -%}
 {%- assign timelineExpanded = include.expanded -%}
+{%- assign timelineSpacing = include.spacing -%}
 
 <timeline
   :headline="{{ timelineHeadline | jsonify | escape  }}"
@@ -11,6 +12,7 @@
   color="{{ timelineColor }}"
   :entries="{{ timelineEntries | jsonify | escape }}"
   :expanded="{{ timelineExpanded }}"
+  spacing="{{ timelineSpacing }}"
 >
 </timeline>
 <!-- End Shared Text Animation Section -->

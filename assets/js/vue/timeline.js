@@ -12,6 +12,7 @@ export default {
         this.isReady ? State.READY : '',
         this.expanded ? State.EXPANDED : '',
         'vue-component',
+        this.spacing,
       ];
     },
     copyColor() {
@@ -180,6 +181,7 @@ export default {
     expanded: {
       default: null,
     },
+    spacing: String,
   },
   template: `
     <div :class="classList" :style="style" ref="root">
@@ -198,18 +200,14 @@ export default {
                 <div :class="getEntryContainerClasses(index)" v-for="(entry, index) in entries" :style="getEntryContainerStyle(index)">
                   <div class="timeline__entry" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text">
-                        {{ entry }}
-                      </div>
+                      <div class="timeline__entry-inner-text" v-html="entry"></div>
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
                   <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text">
-                        {{ entry }}
-                      </div>
+                      <div class="timeline__entry-inner-text" v-html="entry"></div>
                       <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
