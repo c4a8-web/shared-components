@@ -111,12 +111,12 @@ const FooterData = {
   links: [
     {
       title: 'Datenschutz',
-      url: 'https://www.glueckkanja.com/en/imprint',
+      url: 'https://www.glueckkanja.com/de/datenschutz',
       target: '_blank',
     },
     {
       title: 'Impressum',
-      url: 'https://www.glueckkanja.com/en/imprint',
+      url: 'https://www.glueckkanja.com/de/impressum',
       target: '_blank',
     },
   ],
@@ -128,7 +128,7 @@ const FooterData = {
     },
     {
       title: 'Imprint',
-      url: 'https://www.glueckkanja.com/en/privacy',
+      url: 'https://www.glueckkanja.com/en/imprint',
       target: '_blank',
     },
   ],
