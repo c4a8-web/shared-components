@@ -117,6 +117,7 @@ import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
+import StrategySplit from './vue/icons/strategy-split.js';
 import TileView from './vue/icons/tile-view.js';
 import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
@@ -259,6 +260,7 @@ const addApp = () => {
     Quotes,
     Rocket,
     Smile,
+    StrategySplit,
     TileView,
     SBlock,
     TBlock,
