@@ -1,8 +1,29 @@
 import State from '../state.js';
 import Tools from '../tools.js';
 
+const timelineEntryInnerText = {
+  tagName: 'timeline-entry-inner-text',
+  computed: {},
+  template: `
+    <div :class="['timeline__entry-inner-text', { 'timeline__entry-inner-text--simple': simple }]">
+      <template v-if="entry.title">
+        <div class="timeline__entry-title">{{ entry.title }}</div>
+        <p class="timeline__entry-text">{{ entry.text }}</p>
+      </template>
+      <template v-else><span v-html="entry"></span></template>
+    </div>
+  `,
+  props: {
+    entry: Object,
+    simple: Boolean,
+  },
+};
+
 export default {
   tagName: 'timeline',
+  components: {
+    'timeline-entry-inner-text': timelineEntryInnerText,
+  },
   computed: {
     classList() {
       return [
@@ -35,6 +56,9 @@ export default {
     },
     simpleValue() {
       return Tools.isTrue(this.simple);
+    },
+    iconName() {
+      return 'strategy-split';
     },
   },
   mounted() {
@@ -196,7 +220,15 @@ export default {
       <div class="container">
         <div class="timeline__row row">
           <div class="timeline__col col">
-            <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+            <template v-if="subline">
+              <div class="timeline__header">
+                <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+                <div class="timeline__subline" v-if="subline">{{ subline }}</div>
+              </div>
+            </template>
+            <template v-else>
+              <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+            </template>
 
             <div class="timeline__content">
               <div class="timeline__line">
@@ -208,27 +240,19 @@ export default {
                 <div :class="getEntryContainerClasses(index)" v-for="(entry, index) in entries" :style="getEntryContainerStyle(index)">
                   <div class="timeline__entry" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text">
-                        <template v-if="entry.title">
-                          <div class="timeline__entry-title">{{ entry.title }}</span>
-                          <p class="timeline__entry-text">{{ entry.text }}</p>
-                        </template>
-                        <template v-else v-html="entry"></template>
+                      <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
+                      <div class="timeline__entry-inner-line">
+                        <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
-                      <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
                   <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text">
-                        <template v-if="entry.title">
-                          <div class="timeline__entry-title">{{ entry.title }}</span>
-                          <p class="timeline__entry-text">{{ entry.text }}</p>
-                        </template>
-                        <template v-else v-html="entry"></template>
+                      <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
+                      <div class="timeline__entry-inner-line">
+                        <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
-                      <div class="timeline__entry-inner-line"></div>
                     </div>
                   </div>
                 </div>
