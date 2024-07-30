@@ -244,3 +244,10 @@ World.args = {
   icon: 'world',
   size: 'xxl',
 };
+
+export const StrategySplit = Template.bind({});
+
+StrategySplit.args = {
+  icon: 'strategy-split',
+  size: 'xxl',
+};
