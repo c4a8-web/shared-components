@@ -27,6 +27,19 @@ $timeline-top-spacing: spacing(16);
       }
     }
 
+    .timeline__header {
+      .timeline__headline {
+        height: auto;
+      }
+    }
+
+    .timeline__headline {
+      &.headline-sticky__target {
+        position: inherit;
+        top: auto;
+      }
+    }
+
     .timeline__entry-text {
       margin-bottom: 0;
     }
@@ -37,11 +50,6 @@ $timeline-top-spacing: spacing(16);
 
     .timeline__headline {
       padding-bottom: 0;
-
-      &.headline-sticky__target {
-        position: inherit;
-        top: auto;
-      }
     }
 
     .timeline__content {
@@ -174,6 +182,26 @@ $timeline-top-spacing: spacing(16);
       .timeline__entry-inner {
         &:first-of-type {
           margin-top: 0;
+        }
+      }
+
+      .timeline__headline {
+        height: 50vh;
+
+        &.headline-sticky__target {
+          position: sticky;
+          top: var(--scroll-top);
+        }
+      }
+
+      .timeline__header {
+        .timeline__headline {
+          height: auto;
+
+          &.headline-sticky__target {
+            position: inherit;
+            top: auto;
+          }
         }
       }
     }
