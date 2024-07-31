@@ -151,6 +151,10 @@ $timeline-top-spacing: spacing(16);
     @include media-breakpoint-up(lg) {
       --timeline-circle-size: 7rem;
 
+      .timeline__entry-container {
+        margin-top: 0;
+      }
+
       .timeline__row {
         padding-top: spacing(30);
         padding-bottom: spacing(30);
