@@ -65,7 +65,7 @@
            "annual": {{ additionalUsersFee.annual }}
           }'
         >
-          {{ additionalUsersFee.annual }}
+          {{ additionalUsersFee[site.data.products.pricing.defaultPlan] }}
         </span>
       </span>
       <span class="font-size-1 text-muted d-inline-block ml-1">| {{ price.per }}</span>
