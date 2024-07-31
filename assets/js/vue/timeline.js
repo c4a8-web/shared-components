@@ -251,6 +251,7 @@ export default {
                       <div class="timeline__entry-inner-line">
                         <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
+                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
@@ -260,6 +261,7 @@ export default {
                       <div class="timeline__entry-inner-line">
                         <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
+                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
                     </div>
                   </div>
                 </div>

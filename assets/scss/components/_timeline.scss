@@ -27,6 +27,10 @@ $timeline-top-spacing: spacing(16);
       }
     }
 
+    .timeline__entry-text {
+      margin-bottom: 0;
+    }
+
     .timeline__entry-line {
       display: none;
     }
@@ -45,6 +49,18 @@ $timeline-top-spacing: spacing(16);
     }
 
     .timeline__entry-container {
+      margin-top: spacing(16);
+
+      & + .timeline__entry-container {
+        margin-top: 0;
+      }
+
+      &:nth-child(2) {
+        .timeline__entry-inner {
+          margin-top: 0;
+        }
+      }
+
       &[style*='--timeline-entry-container-percentage: 0'] {
         .timeline__entry-inner-text {
           &.timeline__entry-inner-text--simple {
@@ -71,6 +87,7 @@ $timeline-top-spacing: spacing(16);
       border: 2px solid var(--color-timeline-dot);
       border-radius: 100%;
       padding: spacing(6);
+      grid-area: circle;
 
       &[style*='--timeline-entry-container-percentage: 1'] {
         border-color: var(--color-timeline-dot);
@@ -93,14 +110,16 @@ $timeline-top-spacing: spacing(16);
     }
 
     .timeline__entry-inner {
-      flex-direction: row-reverse;
       justify-content: normal;
       align-items: flex-start;
-      margin-bottom: spacing(10);
-
-      &:first-of-type {
-        margin-top: spacing(16);
-      }
+      margin-bottom: 0;
+      margin-top: 0;
+      display: inline-grid;
+      grid-template-columns: auto 1fr;
+      grid-template-rows: auto auto;
+      grid-template-areas:
+        'circle text'
+        'line text';
     }
 
     .timeline__entry {
@@ -116,8 +135,18 @@ $timeline-top-spacing: spacing(16);
       display: none;
     }
 
+    .timeline__entry-inner-text {
+      padding-bottom: 0;
+      grid-area: text;
+    }
+
     @include media-breakpoint-up(lg) {
       --timeline-circle-size: 7rem;
+
+      .timeline__row {
+        padding-top: spacing(30);
+        padding-bottom: spacing(30);
+      }
 
       .timeline__entry,
       .timeline__entry-spacer {
@@ -143,8 +172,6 @@ $timeline-top-spacing: spacing(16);
       }
 
       .timeline__entry-inner {
-        margin-bottom: spacing(20);
-
         &:first-of-type {
           margin-top: 0;
         }
@@ -646,4 +673,20 @@ $timeline-top-spacing: spacing(16);
 
 .timeline__subline {
   @include font-style($style: 'font-size-3', $weight: 'light');
+}
+
+.timeline__entry-vertical-line {
+  height: 100%;
+  grid-area: line;
+  margin: -1px 0 -1px calc(var(--timeline-circle-size) / 2);
+
+  &::after {
+    content: '';
+    display: block;
+    width: 3px;
+    opacity: 1;
+    height: spacing(40);
+    background-color: var(--color-timeline-line);
+    border-radius: 4px;
+  }
 }
