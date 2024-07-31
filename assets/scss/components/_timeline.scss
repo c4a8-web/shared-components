@@ -12,6 +12,7 @@ $timeline-top-spacing: spacing(16);
   --timeline-animation-step-3-duration: 0.45s;
   --timeline-animation-timing-function: linear;
   --timeline-animation-scroll-step-duration: 0.9s;
+  --timeline-animation-simple-transition-duration: 0.4s;
 
   background-color: var(--color-timeline-background);
   color: var(--color-timeline-color);
@@ -96,6 +97,8 @@ $timeline-top-spacing: spacing(16);
       border-radius: 100%;
       padding: spacing(6);
       grid-area: circle;
+      will-change: border-color;
+      transition: border-color var(--timeline-animation-simple-transition-duration) linear;
 
       &[style*='--timeline-entry-container-percentage: 1'] {
         border-color: var(--color-timeline-dot);
@@ -643,6 +646,8 @@ $timeline-top-spacing: spacing(16);
     flex-direction: column;
     align-items: flex-start;
     padding-top: 0;
+    transition: color var(--timeline-animation-simple-transition-duration) linear;
+    will-change: color;
   }
 
   @include media-breakpoint-up(lg) {
