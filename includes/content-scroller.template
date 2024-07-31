@@ -1,0 +1,9 @@
+{%- assign contentScrollerHeadline = include.headline -%}
+{%- assign contentScrollerBlocks = include.blocks -%}
+{%- assign contentScrollerOverlappingSize = include.overlappingSize -%}
+
+<content-scroller
+  :headline="{{ contentScrollerHeadline | jsonify | escape }}"
+  :blocks="{{ contentScrollerBlocks | jsonify | escape }}"
+  overlapping-size="{{ contentScrollerOverlappingSize }}"
+></content-scroller>
