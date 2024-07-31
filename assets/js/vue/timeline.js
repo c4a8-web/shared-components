@@ -72,7 +72,6 @@ export default {
       startDelay: 500,
       isVisible: false,
       percentageInViewport: 40,
-      // minPercentage: 0,
       minPercentage: -10,
       maxPercentage: 100,
       entryContainerStates: [],
@@ -122,14 +121,7 @@ export default {
       }
     },
     showEntryByPercent(percentage) {
-      // const minIndex = 0;
       const stepSize = this.maxPercentage / this.entries.length;
-
-      // let index = Math.floor(percentage / stepSize);
-
-      // if (index < minIndex) {
-      //   index = minIndex;
-      // }
 
       for (let i = 0; i < this.entries.length; i++) {
         this.updateNextStep(i, percentage, stepSize);
@@ -138,6 +130,7 @@ export default {
     updateNextStep(index, percentage, stepSize) {
       this.entryContainerStates[index] = State.SHOW;
 
+      const minPercentage = 0;
       const startPercentage = stepSize * index;
       const endPercentage = stepSize * (index + 1);
 
@@ -148,16 +141,24 @@ export default {
         const localPercentage = percentage - startPercentage;
         const showThreshold = 60;
 
-        currentPercentage = 100 - Math.ceil((localPercentage * 100) / end);
+        currentPercentage = this.maxPercentage - Math.ceil((localPercentage * 100) / end);
 
         if (currentPercentage < showThreshold) {
           this.entryContainerStates[index] = [State.SHOW, 'timeline__entry-container--visible'];
         }
       } else if (percentage > endPercentage) {
-        currentPercentage = 0;
+        currentPercentage = minPercentage;
         this.entryContainerStates[index] = [State.SHOW, State.IS_FULL];
       } else {
-        currentPercentage = 100;
+        currentPercentage = this.maxPercentage;
+      }
+
+      if (this.simpleValue) {
+        if (currentPercentage < this.maxPercentage && currentPercentage > minPercentage) {
+          currentPercentage = 1;
+        } else {
+          currentPercentage = 0;
+        }
       }
 
       this.entryContainerStyles[index] = `${currentPercentage}`;
@@ -166,7 +167,13 @@ export default {
       return ['timeline__entry-container', this.entryContainerStates[index]];
     },
     getEntryContainerStyle(index) {
-      const percentage = this.entryContainerStyles[index] ? this.entryContainerStyles[index] : 100;
+      const minPercentage = 0;
+
+      const percentage = this.entryContainerStyles[index]
+        ? this.entryContainerStyles[index]
+        : this.simpleValue
+          ? minPercentage
+          : this.maxPercentage;
 
       return `--timeline-entry-container-percentage: ${percentage}`;
     },
@@ -244,6 +251,7 @@ export default {
                       <div class="timeline__entry-inner-line">
                         <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
+                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
@@ -253,6 +261,7 @@ export default {
                       <div class="timeline__entry-inner-line">
                         <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
+                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
                     </div>
                   </div>
                 </div>
