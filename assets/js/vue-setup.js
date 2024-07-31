@@ -15,6 +15,7 @@ import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
 import Carousel from './vue/carousel.js';
 import CheckCard from './vue/check-card.js';
+import ContentScroller from './vue/content-scroller.js';
 import CtaList from './vue/cta-list.js';
 import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
@@ -36,6 +37,7 @@ import Footer from './vue/footer.js';
 import GoogleMapEntry from './vue/google-map-entry.js';
 import GoogleMap from './vue/google-map.js';
 import GridList from './vue/grid-list.js';
+import Grid from './vue/grid.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
 import Hero from './vue/hero.js';
@@ -115,6 +117,7 @@ import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
+import StrategySplit from './vue/icons/strategy-split.js';
 import TileView from './vue/icons/tile-view.js';
 import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
@@ -171,6 +174,7 @@ const addApp = () => {
     Card,
     Carousel,
     CheckCard,
+    ContentScroller,
     CtaList,
     Cta,
     Dropdown,
@@ -193,6 +197,7 @@ const addApp = () => {
     GoogleMapEntry,
     GoogleMap,
     GridList,
+    Grid,
     Header,
     Headline,
     Hero,
@@ -255,6 +260,7 @@ const addApp = () => {
     Quotes,
     Rocket,
     Smile,
+    StrategySplit,
     TileView,
     SBlock,
     TBlock,

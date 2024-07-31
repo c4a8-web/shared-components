@@ -10,6 +10,17 @@
     pointer-events: all;
   }
 
+  &.tab-list--left.tab-list--small,
+  &.tab-list--left {
+    .tab-list__list {
+      flex-wrap: nowrap;
+
+      @include media-breakpoint-up(sm) {
+        justify-content: flex-start;
+      }
+    }
+  }
+
   &.tab-list--small {
     .tab-list__list {
       flex-wrap: nowrap;

@@ -1,4 +1,5 @@
 import Events from '../events.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'tab-list',
@@ -17,6 +18,9 @@ export default {
     this.currentTabId = this.list[0].id;
   },
   computed: {
+    leftValue() {
+      return Tools.isTrue(this.left) === true;
+    },
     columnClassList() {
       const maxColumns = 12;
       const breakpointClass = !this.tabs ? 'lg-' : '';
@@ -31,6 +35,7 @@ export default {
       return [
         'tab-list vue-component',
         this.tabs ? 'px-4 px-lg-0' : '',
+        this.leftValue ? 'tab-list--left' : '',
         this.variantClass,
         this.showLeftArrow ? 'show-left-arrow' : '',
         this.showRightArrow ? 'show-right-arrow' : '',
@@ -41,6 +46,9 @@ export default {
     },
     isSmall() {
       return this.variantClass === this.smallVariant;
+    },
+    hideContainer() {
+      return !this.leftValue;
     },
   },
   methods: {
@@ -171,43 +179,48 @@ export default {
   props: {
     list: Array,
     tabs: Boolean,
+    left: {
+      default: null,
+    },
     variant: String,
   },
   template: `
     <div :class="classList">
-      <div class="tab-list__controls">
-        <div class="tab-list__left" @click="scrollToPrevious" ref="left">
-          <div class="tab-list__arrow-icon"></div>
+      <wrapper :hide-container="hideContainer">
+        <div class="tab-list__controls">
+          <div class="tab-list__left" @click="scrollToPrevious" ref="left">
+            <div class="tab-list__arrow-icon"></div>
+          </div>
+          <div class="tab-list__right" @click="scrollToNext">
+            <div class="tab-list__arrow-icon"></div>
+          </div>
         </div>
-        <div class="tab-list__right" @click="scrollToNext">
-          <div class="tab-list__arrow-icon"></div>
-        </div>
-      </div>
-      <ul :class="listClassList" role="tablist" ref="tabList" @scroll="handleScroll">
-        <li v-for="(tab, index) in list" :class="columnClassList" ref="tab">
-          <a v-bind="linkAttributes(tab, index)"
-            :class="tabClassList(index)" @click="handleClick" ref="tabLink">
-            <div class="tab-list__content">
-              <div :class="boxClassList(tab)">
-                <div class="d-flex flex-column align-items-center position-relative z-index-2">
-                  <h2 class="tab-list__text mb-4 mb-md-6 text-center" v-if="tab.title">
-                    {{ tab.title }}
-                  </h2>
-                  <p class="mb-6 flex-grow-1" v-if="tab.description">{{ tab.description }}</p>
-                    <cta
-                      text=tab.cta.text
-                      href=tab.cta.href
-                      target=tab.cta.target
-                      skin=tab.cta.skin
-                      classes="align-self-center z-index-2"
-                      v-if="tab.cta != tab.href"
-                    ></cta>
+        <ul :class="listClassList" role="tablist" ref="tabList" @scroll="handleScroll">
+          <li v-for="(tab, index) in list" :class="columnClassList" ref="tab">
+            <a v-bind="linkAttributes(tab, index)"
+              :class="tabClassList(index)" @click="handleClick" ref="tabLink">
+              <div class="tab-list__content">
+                <div :class="boxClassList(tab)">
+                  <div class="d-flex flex-column align-items-center position-relative z-index-2">
+                    <h2 class="tab-list__text mb-4 mb-md-6 text-center" v-if="tab.title">
+                      {{ tab.title }}
+                    </h2>
+                    <p class="mb-6 flex-grow-1" v-if="tab.description">{{ tab.description }}</p>
+                      <cta
+                        text=tab.cta.text
+                        href=tab.cta.href
+                        target=tab.cta.target
+                        skin=tab.cta.skin
+                        classes="align-self-center z-index-2"
+                        v-if="tab.cta != tab.href"
+                      ></cta>
+                  </div>
                 </div>
               </div>
-            </div>
-          </a>
-        </li>
-      </ul>
+            </a>
+          </li>
+        </ul>
+      </wrapper>
     </div>
   `,
 };

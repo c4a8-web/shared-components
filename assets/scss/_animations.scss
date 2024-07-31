@@ -311,3 +311,9 @@ $transition-tween-t1: 0.2s ease-in-out;
     transform: translateX(var(--animation-scroll-width));
   }
 }
+
+@keyframes scroll-infinite {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}

@@ -1,5 +1,5 @@
 import { createComponent } from '../../.storybook/templates';
-import { includeslogolisthtml as component } from '../../.storybook/generatedIncludes';
+import component from '!!raw-loader!./logoList.html';
 
 export default {
   title: 'Components/Logo List',
@@ -109,6 +109,65 @@ customColumns.args.logoList.push(
     title: 'SWB',
   }
 );
+
+export const oneRow = Template.bind({});
+
+oneRow.args = {
+  ...baseArgs,
+  overlapping: true,
+  bgColor: '#0C7BCD',
+};
+
+oneRow.args.logoList = [
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-dbschenker.png',
+    alt: 'DB Schenker',
+    url: 'https://youtu.be/ABUieErMHLU',
+    title: 'DB Schenker',
+  },
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-dmgmori.png',
+    alt: 'DMG MORI',
+    url: 'https://de.dmgmori.com/',
+    title: 'DMG MORI',
+  },
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-ewe-netz.png',
+    alt: 'EWE',
+    url: 'https://www.ewe-netz.de/',
+    title: 'EWE',
+  },
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-enbw.png',
+    alt: 'EnBW',
+    url: 'https://www.enbw.com/',
+    title: 'EnBW',
+  },
+  {
+    img: '/c_lpad,h_120,w_180/logos/cust-fuchs.png',
+    alt: 'Fuchs Schmierstoffe',
+    url: 'https://youtu.be/U2ExmypuUvs',
+    title: 'Fuchs Schmierstoffe',
+  },
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-freudenberg.png',
+    alt: 'Freudenberg',
+    url: 'https://www.freudenberg.com/',
+    title: 'Freudenberg',
+  },
+  {
+    img: '/c_lpad,h_60,w_180/logos/cust-gft.png',
+    alt: 'GFT',
+    url: 'https://www.gft.com/de/de/',
+    title: 'GFT',
+  },
+  {
+    img: '/c_lpad,h_100,w_180/logos/cust-uniper.png',
+    alt: 'Uniper',
+    url: 'https://youtu.be/ThxpyUOz2R8',
+    title: 'Uniper',
+  },
+];
 
 export const aspectRatio = Template.bind({});
 
