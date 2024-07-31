@@ -2,7 +2,7 @@ const Products = {
   pricing: {
     format: 'de-DE',
     currency: 'EUR',
-    defaultPlan: 'annual',
+    defaultPlan: 'monthly',
   },
   list: [
     {
