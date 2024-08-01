@@ -1,3 +1,21 @@
+{%- if page.scripts.sticky or page.layout == 'post' or page.layout == 'testimonial' or page.layout == 'event' or page.layout == 'casestudies' -%}
+  {%- assign loadSticky = true -%}
+{%- else -%}
+  {%- assign loadSticky = false -%}
+{%- endif -%}
+
+{%- if page.scripts.slick or page.layout == 'post' or page.scripts.team or page.layout == 'casestudies' -%}
+  {%- assign loadSlick = true -%}
+{%- else -%}
+  {%- assign loadSlick = false -%}
+{%- endif -%}
+
+{%- if page.scripts.lightbox or page.layout == 'post' or page.layout == 'casestudies' or layout.scripts.lightbox -%}
+  {%- assign loadLightbox = true -%}
+{%- else -%}
+  {%- assign loadLightbox = false -%}
+{%- endif -%}
+
 {% if site.shared_bundle and (jekyll.environment == "production" or jekyll.environment == "staging") -%}
   <script src="/_includes/shared-components/storybook-static/js/bundle/vendor.js"></script>
   <script
@@ -6,25 +24,6 @@
     id="appjs"
     src="/_includes/shared-components/assets/js/production-app.js"></script>
 {%- else -%}
-
-  {%- if page.scripts.sticky or page.layout == 'post' or page.layout == 'testimonial' or page.layout == 'event' or page.layout == 'casestudies' -%}
-    {%- assign loadSticky = true -%}
-  {%- else -%}
-    {%- assign loadSticky = false -%}
-  {%- endif -%}
-
-  {%- if page.scripts.slick or page.layout == 'post' or page.scripts.team or page.layout == 'casestudies' -%}
-    {%- assign loadSlick = true -%}
-  {%- else -%}
-    {%- assign loadSlick = false -%}
-  {%- endif -%}
-
-  {%- if page.scripts.lightbox or page.layout == 'post' or page.layout == 'casestudies' or layout.scripts.lightbox -%}
-    {%- assign loadLightbox = true -%}
-  {%- else -%}
-    {%- assign loadLightbox = false -%}
-  {%- endif -%}
-
   <!-- SCRIPTS SECTION -->
 
   <!-- JS Global Compulsory -->
