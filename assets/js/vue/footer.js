@@ -47,10 +47,16 @@ export default {
       return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
     },
     links() {
-      if (this.lang === 'en') {
-        return this.dataValue.linksEn;
-      } else {
+      const lowerCaseLang = this.lang.toLowerCase();
+
+      if (lowerCaseLang === 'de' || lowerCaseLang === '') {
         return this.dataValue.links;
+      } else {
+        const capitalizedLang = Tools.capitalize(this.lang);
+
+        const links = this.dataValue[`links${capitalizedLang}`];
+
+        return links ? links : this.dataValue.links;
       }
     },
     locations() {
