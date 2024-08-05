@@ -284,7 +284,7 @@ export default {
           <div class="hero__intro row" v-if="overline || headline || subline" ref="intro">
             <div class="hero__intro-col col">
               <span class="hero__overline" v-if="overline">{{ overline }}</span>
-              <headline :class="headlineClassList" v-if="headline" :level="level">{{ headline }}</headline>
+              <headline :class="headlineClassList" v-if="headline" :level="level" v-html="headline"></headline>
               <div class="hero__content-shape" v-if="shapeInContent">
                 <v-img
                   v-if="showShape"

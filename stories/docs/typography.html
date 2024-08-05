@@ -1,7 +1,9 @@
 <!-- Shared Typography Section -->
 {%- assign typographyTypes = include.types | default: types -%}
 
-<div style="display: flex; grid-gap: 10px; flex-direction: column;">
+<headline>Headline Sizes:</headline>
+
+<div class="space-top-2" style="display: flex; grid-gap: 10px; flex-direction: column;">
   {% for typeValues in typographyTypes %}
     <div>
       <div class="typography__item {{ typeValues.class }} {% if typeValues.light %}light{% elsif typeValues.bold %}bold{% endif %}" style="">
@@ -18,6 +20,37 @@
       </div>
     </div>
   {% endfor %}
+</div>
+
+<div class="space-top-2">
+  <headline>Text Highlights:</headline>
+
+  <div class="space-top-1">
+    <div class="space-top-1">
+      <headline level="h4">&lt;span class="highlight"&gt;</headline>
+      <p>Lorem ipsum dolor sit amet, <span class="highlight">consetetur sadipscing elitr</span>, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est <span class="highlight">Lorem ipsum dolor</span> sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    </div>
+    <div class="space-top-1">
+      <headline level="h4">&lt;span class="highlight-orange"&gt;</headline>
+      <p>Lorem ipsum dolor sit amet, <span class="highlight-orange">consetetur sadipscing elitr</span>, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est <span class="highlight-orange">Lorem ipsum dolor</span> sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    </div>
+    <div class="space-top-1">
+      <headline level="h4">&lt;span class="highlight-yellow"&gt;</headline>
+      <p>Lorem ipsum dolor sit amet, <span class="highlight-yellow">consetetur sadipscing elitr</span>, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est <span class="highlight-yellow">Lorem ipsum dolor</span> sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    </div>
+    <div class="space-top-1">
+      <headline level="h4">&lt;span class="highlight-underline"&gt;</headline>
+      <p>Lorem ipsum dolor sit amet, <span class="highlight-underline">consetetur sadipscing elitr</span>, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+      <headline level="h4">&lt;span style="--color-highlight-underline: var(--color-primary)" class="highlight-underline"&gt;</headline>
+      <p>Stet clita kasd gubergren, no sea takimata sanctus est <span style="--color-highlight-underline: var(--color-primary)" class="highlight-underline">Lorem ipsum dolor</span> sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    </div>
+    <div class="space-top-1">
+      <headline level="h4">&lt;span class="highlight-animated"&gt;</headline>
+      <p>Lorem ipsum dolor sit amet, <span class="highlight-animated">consetetur sadipscing elitr</span>, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.</p>
+      <headline level="h4">&lt;span style="--color-highlight-animated: var(--color-primary)" class="highlight-animated"&gt;</headline>
+      <p>Stet clita kasd gubergren, no sea takimata sanctus est <span style="--color-highlight-animated: var(--color-primary)" class="highlight-animated">Lorem ipsum dolor</span> sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
+    </div>
+  </div>
 </div>
 
 <!-- End Shared Typography Section -->
