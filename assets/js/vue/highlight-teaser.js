@@ -2,6 +2,11 @@
 
 export default {
   tagName: 'highlight-teaser',
+  data() {
+    return {
+      index: 0,
+    };
+  },
   computed: {
     classList() {
       return ['highlight-teaser', this.spacing, 'vue-component'];
@@ -13,6 +18,18 @@ export default {
 
       return limit > 0 ? limit : defaultLimit;
     },
+    activeEntry() {
+      return this.entries[this.index];
+    },
+    currentPage() {
+      return this.index + 1;
+    },
+    lastPage() {
+      return this.entries.length;
+    },
+    pagination() {
+      return this.entries.length > 1;
+    },
   },
   methods: {},
   props: {
@@ -22,10 +39,19 @@ export default {
   },
   template: `
     <div :class="classList">
-      <div class="highlight-teaser__entry" v-for="(entry, index) in entries.slice(0, limitValue)" :key="index">
-        <h2 class="highlight-teaser__title">{{ entry.title }}</h2>
-        <p class="highlight-teaser__description">{{ entry.description }}</p>
-        <a :href="entry.link" class="highlight-teaser__link">Read more</a>
+      <div class="highlight-teaser__container">
+        <div class="highlight-teaser__content-container">
+          <div class="highlight-teaser__entry" v-for="(entry, index) in entries.slice(0, limitValue)" :key="index">
+            <v-img :img="entry.image.img" :alt="entry.image.alt" :cloudinary="entry.image.cloudinary" class="highlight-teaser__image" />
+          </div>
+        </div>
+        <div class="highlight-teaser__infos">
+          <div class="highlight-teaser__pagination" v-if="pagination"> {{ currentPage }} / {{ lastPage }}</div>
+          {{ activeEntry.logo  }}
+          {{ activeEntry.headline  }}
+          {{ activeEntry.subline }}
+          {{ activeEntry.ctaList.map(cta => cta.ctaText).join(', ')}}
+        </div>
       </div>
     </div>
   `,
