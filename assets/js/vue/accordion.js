@@ -30,6 +30,9 @@ export default {
     columnClasses() {
       return ['col', Tools.isTrue(this.left) ? null : 'text-center'];
     },
+    headlineClasses() {
+      return `accordion__headline  ${this.accordion?.headlineClasses}`;
+    },
   },
   mounted() {
     if (!this.accordion.tabs) return;
@@ -167,7 +170,7 @@ export default {
         <div :class="columnClasses">
           <headline
             :text="accordion.headline"
-            :classes="accordion.headlineClasses"
+            :classes="headlineClasses"
           />
           <div class="accordion__subline font-size-2" v-if="accordion.subline">{{ accordion.subline }}</div>
         </div>
