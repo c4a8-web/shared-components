@@ -475,6 +475,18 @@ $font-style-map: (
     padding: 0 0 3px;
   }
 
+  .highlight-underline {
+    @include text-highlight;
+  }
+
+  .highlight-animated {
+    @include background-grow($color: var(--color-highlight-animated), $spacing: spacing(0));
+
+    &::before {
+      max-width: 100%;
+    }
+  }
+
   .lead {
     font-size: $font-size-lg;
   }

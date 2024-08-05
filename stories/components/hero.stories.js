@@ -253,7 +253,7 @@ export const LottieFullscreen = {
       v2: true,
       light: true,
       bgColor: 'var(--color-blue-medium)',
-      headline: 'Ihre Cloud Strategie',
+      headline: '<span class="highlight">Ihre Cloud Strategie</span>',
       headlineClasses: 'h2-font-size bold',
       lightOverline: true,
       subline: 'Microsoft stellt die Technologie, wir die Expertise. Sie brauchen nur noch den Erfolg zu ernten.',
