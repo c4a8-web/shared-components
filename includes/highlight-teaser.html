@@ -1,0 +1,11 @@
+<!-- Shared Highlight Teaser Section -->
+{%- assign highlightTeaserEntries = include.entries -%}
+{%- assign highlightTeaserLimit = inlcude.limit -%}
+
+<highlight-teaser
+  :entries="{{ highlightTeaserEntries | jsonify | escape }}"
+  spacing="{{ accordionSpacing }}"
+  limit="{{ highlightTeaserLimit }}"
+>
+</highlight-teaser>
+<!-- End Shared Highlight Teaser Section -->
