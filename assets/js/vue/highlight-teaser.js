@@ -1,19 +1,17 @@
 const highlightTeaserInfos = {
   tagName: 'highlight-teaser-infos',
-  // data() {
-  //   return {
-  //     maxTags: 3,
-  //   };
-  // },
-  // computed: {
-  // },
+  computed: {
+    logo() {
+      return this.entry ? this.entry.logo : null;
+    },
+  },
   template: `
     <div class="highlight-teaser__infos" >
-      <div class="highlight-teaser__pagination" v-if="pagination"> {{ currentPage }} / {{ lastPage }}</div>
-      {{ entry.logo  }}
-      {{ entry.headline  }}
-      {{ entry.subline }}
-      {{ entry.ctaList.map(cta => cta.ctaText).join(', ')}}
+      <div class="highlight-teaser__infos-pagination" v-if="pagination"> {{ currentPage }} / {{ lastPage }}</div>
+      <v-img v-if="logo" class="highlight-teaser__infos-logo" v-bind="logo" />
+      <div class="highlight-teaser__infos-title">{{ entry.title  }}</div>
+      <p class="highlight-teaser__infos-subline">{{ entry.subline }}</p>
+      <cta-list :list="entry.ctaList" classes="highlight-teaser__infos-cta-list" />
     </div>
   `,
   props: {
@@ -64,20 +62,11 @@ export default {
       return {
         slidesToShow: 1,
         slidesToScroll: 1,
-        // prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
-        // nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
-        dots: true,
+        // dots: true,
         centerMode: false,
         // fade: true,
         dotsClass: 'slick-pagination is-default',
         responsive: [
-          // {
-          //   breakpoint: 1200,
-          //   settings: {
-          //     slidesToShow: 1,
-          //     slidesToScroll: 1,
-          //   },
-          // },
           {
             breakpoint: 1024,
             settings: {
@@ -112,14 +101,13 @@ export default {
     limit: Number,
     spacing: String,
   },
-  // TODO implement slider and give options to it. have desktop have an overlay with the infos being stuck to the right and the "real" infos under that as hidden
   template: `
     <div :class="classList">
       <div class="highlight-teaser__container">
         <slider :options="sliderOptions" :hide-background="true">
           <div class="highlight-teaser__entry" v-for="(entry, index) in limitedEntries" :key="index">
             <v-img :img="entry.image.img" :alt="entry.image.alt" :cloudinary="entry.image.cloudinary" class="highlight-teaser__image" />
-            <highlight-teaser-infos :pagination="pagination" :current-page="currentPage" :last-page="lastPage" :entry="entry" />
+            <highlight-teaser-infos :pagination="pagination" :current-page="index + 1" :last-page="lastPage" :entry="entry" />
           </div>
         </slider>
 
@@ -128,21 +116,6 @@ export default {
             <div class="highlight-teaser__overlay-infos">
               <highlight-teaser-infos :pagination="pagination" :current-page="currentPage" :last-page="lastPage" :entry="activeEntry" />
             </div>
-          </div>
-        </div>
-
-        <div class="highlight-teaser__content-container">
-          <div class="highlight-teaser__entry" v-for="(entry, index) in limitedEntries" :key="index">
-            <v-img :img="entry.image.img" :alt="entry.image.alt" :cloudinary="entry.image.cloudinary" class="highlight-teaser__image" />
-          </div>
-        </div>
-        <div class="highlight-teaser__infos-container">
-          <div class="highlight-teaser__infos" >
-            <div class="highlight-teaser__pagination" v-if="pagination"> {{ currentPage }} / {{ lastPage }}</div>
-            {{ activeEntry.logo  }}
-            {{ activeEntry.headline  }}
-            {{ activeEntry.subline }}
-            {{ activeEntry.ctaList.map(cta => cta.ctaText).join(', ')}}
           </div>
         </div>
       </div>

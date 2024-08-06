@@ -2,5 +2,6 @@ $spacing-content-default: spacing(12);
 
 :root {
   --spacing-medium: #{spacing(10)};
+  --spacing-medium-large: #{spacing(15)};
   --spacing-large: #{spacing(20)};
 }

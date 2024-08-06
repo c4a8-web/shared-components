@@ -25,6 +25,7 @@ export const HighlightTeaser = {
           img: '/w_140/logos/cust-dekra.png',
           url: 'https://www.dekra.com/',
           alt: 'DEKRA',
+          cloudinary: true,
         },
         ctaList: [
           {
@@ -46,6 +47,7 @@ export const HighlightTeaser = {
         logo: {
           img: '/w_180/logos/cust-brz.png',
           alt: 'BRZ',
+          cloudinary: true,
         },
         ctaList: [
           {
@@ -68,6 +70,7 @@ export const HighlightTeaser = {
           img: '/w_140/logos/cust-dekra.png',
           url: 'https://www.dekra.com/',
           alt: 'DEKRA',
+          cloudinary: true,
         },
         ctaList: [
           {
@@ -97,6 +100,7 @@ export const OneEntry = {
           img: '/w_140/logos/cust-dekra.png',
           url: 'https://www.dekra.com/',
           alt: 'DEKRA',
+          cloudinary: true,
         },
         ctaList: [
           {
