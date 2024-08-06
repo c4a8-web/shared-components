@@ -1,7 +1,8 @@
-import { getDefaultSettings } from '../../.storybook/templates';
+import { getParams, getDefaultSettings } from '../../.storybook/templates';
 import { includeshighlightteaserhtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
+  ...getParams({ page: true }),
   ...getDefaultSettings({
     component,
     argTypes: {},

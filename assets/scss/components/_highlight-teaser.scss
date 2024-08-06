@@ -1,5 +1,12 @@
 .highlight-teaser {
   container-type: inline-size;
+
+  @include media-breakpoint-up(lg) {
+    .highlight-teaser__overlay-infos,
+    .slider .wrapper-slot-items__item {
+      padding: 0 spacing(4);
+    }
+  }
 }
 
 .highlight-teaser__container {
@@ -8,6 +15,10 @@
   display: grid;
   grid-template-columns: 1fr;
 }
+
+// bild legt sich dfrüber
+
+// text fadet sich zeitlich versetzt ein
 
 .highlight-teaser__content-container {
   background-color: red;
@@ -19,17 +30,89 @@
 }
 
 .highlight-teaser__entry {
-  opacity: 0.2;
+  // opacity: 0.7;
 }
 
-@container (min-width: 900px) {
-  .highlight-teaser__container {
+.highlight-teaser__entry {
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-teaser__image {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.highlight-teaser__overlay-infos {
+  // position: absolute;
+  // opacity: 0.7;
+  // background-color: green;
+}
+
+.highlight-teaser__overlay-container {
+  display: none;
+  // background-color: red;
+  // display: grid;
+  // grid-template-columns: 2fr 1fr;
+  position: absolute;
+  opacity: 0.6;
+  pointer-events: none;
+
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+
+  .highlight-teaser__overlay-infos {
+    display: flex;
+    justify-content: flex-end;
+    height: inherit;
+  }
+
+  .highlight-teaser__infos {
+    width: 33.33%;
+    height: inherit;
+  }
+}
+
+@container (min-width: 1024px) {
+  // .highlight-teaser__entry {
+  //   flex-direction: row;
+  // }
+  .highlight-teaser__overlay-container {
+    display: block;
+  }
+
+  .highlight-teaser__entry {
+    display: grid;
     grid-template-columns: 2fr 1fr;
   }
+
+  .highlight-teaser__entry .highlight-teaser__infos {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  // .highlight-teaser__infos {
+  //   min-width: 300px;
+  // }
+
+  // .highlight-teaser__container {
+  //   grid-template-columns: 2fr 1fr;
+  // }
 }
 
 @container (min-width: 1100px) {
+  // .highlight-teaser__entry {
+  //   flex-direction: row;
+  // }
+
   .highlight-teaser__container {
     --highlight-spacing: var(--spacing-large);
   }
+}
+
+.highlight-teaser__content-container,
+.highlight-teaser__infos-container {
+  display: none;
 }
