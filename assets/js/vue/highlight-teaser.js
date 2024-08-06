@@ -62,9 +62,9 @@ export default {
       return {
         slidesToShow: 1,
         slidesToScroll: 1,
-        // dots: true,
+        dots: true,
         centerMode: false,
-        // fade: true,
+        fade: true,
         dotsClass: 'slick-pagination is-default',
         responsive: [
           {

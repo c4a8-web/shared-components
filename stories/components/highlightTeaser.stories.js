@@ -23,7 +23,7 @@ export const HighlightTeaser = {
         },
         logo: {
           img: '/w_140/logos/cust-dekra.png',
-          url: 'https://www.dekra.com/',
+          url: 'javascript:void(0);',
           alt: 'DEKRA',
           cloudinary: true,
         },
@@ -59,17 +59,18 @@ export const HighlightTeaser = {
         ],
       },
       {
-        title: 'Azure @ DEKRA',
-        subline: 'Effiziente Umsetzung der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)',
+        title: 'Enercron',
+        subline:
+          'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: {
-          img: '/casestudies/casestudy-dekra-v2.png',
-          alt: 'Dekra Casestudy',
+          img: '/casestudies/casestudy-enercon.jpg',
+          alt: 'Enercron Casestudy',
           cloudinary: true,
         },
         logo: {
-          img: '/w_140/logos/cust-dekra.png',
-          url: 'https://www.dekra.com/',
-          alt: 'DEKRA',
+          img: '/w_180/logos/cust-enercon.png',
+          url: 'javascript:void(0);',
+          alt: 'Enercron',
           cloudinary: true,
         },
         ctaList: [
