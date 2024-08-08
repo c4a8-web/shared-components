@@ -225,3 +225,9 @@
     }
   }
 }
+
+.accordion__headline {
+  + .accordion__subline {
+    margin-top: spacing(6);
+  }
+}
