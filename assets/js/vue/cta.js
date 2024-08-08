@@ -27,6 +27,7 @@ export default {
         Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : '',
         this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : '',
         Tools.isTrue(this.loading) ? State.LOADING : '',
+        Tools.isTrue(this.hasBackground) === true ? 'cta--has-background' : '',
         'vue-component',
       ];
     },
@@ -116,6 +117,9 @@ export default {
       type: String,
     },
     loading: {
+      default: null,
+    },
+    hasBackground: {
       default: null,
     },
   },

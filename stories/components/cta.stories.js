@@ -117,6 +117,10 @@ export default {
         description: 'Sets the active State of the Cta',
         type: 'boolean',
       },
+      hasBackground: {
+        description: 'Sets a semi transparent background for the secondary skin',
+        type: 'boolean',
+      },
       classes: {
         description: 'Adds classes:',
         table: {
@@ -148,6 +152,15 @@ export const SecondaryButtonCutoff = {
     text: 'Secondary Button Cutoff',
     href: 'javascript:void(0)',
     skin: 'secondary is-cutoff',
+  },
+};
+
+export const SecondaryButtonHasBackground = {
+  args: {
+    text: 'Secondary Button Cutoff',
+    href: 'javascript:void(0)',
+    skin: 'secondary is-cutoff',
+    hasBackground: true,
   },
 };
 
