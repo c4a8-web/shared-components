@@ -1,0 +1,203 @@
+.highlight-teaser {
+  --highlight-teaser-box-shadow: -20px 0px 80px 0px rgba(0, 0, 0, 0.5);
+
+  container-type: inline-size;
+
+  .slick-slide {
+    margin-bottom: spacing(10);
+  }
+
+  @include media-breakpoint-up(lg) {
+    .highlight-teaser__overlay-infos,
+    .slider .wrapper-slot-items__item {
+      padding: 0 spacing(4);
+    }
+  }
+}
+
+.highlight-teaser__container {
+  --highlight-spacing: var(--spacing-medium);
+
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.highlight-teaser__infos {
+  background-color: var(--color-surface-background);
+  padding: var(--highlight-spacing) var(--spacing-medium) var(--highlight-spacing) var(--highlight-spacing);
+  flex: 1;
+
+  &.highlight-teaser__infos--fade-out {
+    .highlight-teaser__infos-content {
+      opacity: 0;
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.highlight-teaser__infos--fade-in {
+    .highlight-teaser__infos-content {
+      opacity: 1;
+      transition-delay: 0.2s;
+    }
+  }
+}
+
+.highlight-teaser__infos-content {
+  transition: opacity 1.8s #{$animation-transition};
+}
+
+.highlight-teaser__entry {
+  height: 100%;
+}
+
+.highlight-teaser__entry {
+  @include hover-scale;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.highlight-teaser__image {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+.highlight-teaser__infos-current {
+  &::selection {
+    background-color: inherit;
+    color: inherit;
+  }
+}
+
+.highlight-teaser__infos-title {
+  @include h3;
+
+  line-height: 1em;
+  margin-bottom: spacing(6);
+}
+
+.highlight-teaser__infos-subline {
+  @include font-size-2;
+
+  margin-bottom: spacing(6);
+}
+
+.highlight-teaser__overlay-container {
+  display: none;
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 100%;
+
+  .highlight-teaser__overlay-infos {
+    display: flex;
+    justify-content: flex-end;
+    height: inherit;
+  }
+
+  .highlight-teaser__infos {
+    width: 33.33%;
+    height: inherit;
+    position: relative;
+    pointer-events: all;
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+    flex: 0 0 33.33%;
+
+    &::after {
+      position: absolute;
+      content: '';
+      display: block;
+      width: 50vw;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      background-color: var(--color-surface-background);
+      box-shadow: var(--highlight-teaser-box-shadow);
+    }
+  }
+}
+
+.highlight-teaser__infos-logo {
+  margin-bottom: spacing(6);
+}
+
+.highlight-teaser__infos-cta-list {
+  margin-top: auto;
+}
+
+.highlight-teaser__infos-pagination {
+  display: none;
+  gap: spacing(6);
+  place-items: center;
+  margin-bottom: 30%;
+
+  .icon {
+    cursor: pointer;
+  }
+
+  &.highlight-teaser__infos-pagination--last .highlight-teaser__infos-icon-next,
+  &.highlight-teaser__infos-pagination--first .highlight-teaser__infos-icon-prev {
+    pointer-events: none;
+    opacity: 0.2;
+  }
+}
+
+@container (min-width: 1024px) {
+  .highlight-teaser__container {
+    .slick-slide {
+      margin-bottom: 0;
+      opacity: 1 !important;
+      transition:
+        transform 1.2s #{$animation-transition},
+        opacity 0.6s ease-in-out !important;
+      z-index: 1 !important;
+
+      &.slick-active {
+        transform: translateX(0%);
+
+        ~ .slick-slide {
+          transform: translateX(100%);
+          opacity: 0.4 !important;
+          z-index: 2 !important;
+        }
+      }
+    }
+
+    .slick-list {
+      pointer-events: none;
+    }
+
+    .highlight-teaser__infos-pagination {
+      display: inline-flex;
+    }
+  }
+
+  .highlight-teaser__overlay-container {
+    display: block;
+  }
+
+  .highlight-teaser__entry {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: auto;
+  }
+
+  .highlight-teaser__entry .highlight-teaser__infos {
+    pointer-events: none;
+    opacity: 0;
+  }
+}
+
+@container (min-width: 1100px) {
+  .highlight-teaser__container {
+    --highlight-spacing: var(--spacing-medium-large);
+
+    position: relative;
+    overflow: hidden;
+  }
+}
