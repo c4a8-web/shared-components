@@ -168,6 +168,10 @@
       }
     }
 
+    .slick-list {
+      pointer-events: none;
+    }
+
     .highlight-teaser__infos-pagination {
       display: inline-flex;
     }
