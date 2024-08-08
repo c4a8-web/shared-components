@@ -27,4 +27,8 @@ export const THEME_LIST = {
     name: 'UnifiedContacts',
     type: 'unifiedcontacts',
   },
+  terraprovider: {
+    name: 'TerraProvider',
+    type: 'terraprovider',
+  },
 };
