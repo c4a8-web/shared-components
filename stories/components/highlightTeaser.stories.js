@@ -51,7 +51,7 @@ export const HighlightTeaser = {
         },
         ctaList: [
           {
-            ctaText: 'Zur Casestudy',
+            ctaText: 'Zur Casestudy 2',
             ctaHref: 'javascript:void(0);',
             skin: 'primary',
             link: true,
@@ -75,7 +75,7 @@ export const HighlightTeaser = {
         },
         ctaList: [
           {
-            ctaText: 'Zur Casestudy',
+            ctaText: 'Zur Casestudy 3',
             ctaHref: 'javascript:void(0);',
             skin: 'primary',
             link: true,

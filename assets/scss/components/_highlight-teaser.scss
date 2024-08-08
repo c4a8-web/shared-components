@@ -48,6 +48,13 @@
   @include h3;
 
   line-height: 1em;
+  margin-bottom: spacing(6);
+}
+
+.highlight-teaser__infos-subline {
+  @include font-size-2;
+
+  margin-bottom: spacing(6);
 }
 
 .highlight-teaser__overlay-container {
@@ -90,8 +97,25 @@
   }
 }
 
+.highlight-teaser__infos-logo {
+  margin-bottom: spacing(6);
+}
+
 .highlight-teaser__infos-cta-list {
   margin-top: auto;
+}
+
+.highlight-teaser__infos-pagination {
+  display: none;
+  gap: spacing(6);
+  place-items: center;
+  margin-bottom: 30%;
+
+  &.highlight-teaser__infos-pagination--last .highlight-teaser__infos-icon-next,
+  &.highlight-teaser__infos-pagination--first .highlight-teaser__infos-icon-prev {
+    pointer-events: none;
+    opacity: 0.2;
+  }
 }
 
 @container (min-width: 1024px) {
@@ -113,6 +137,10 @@
           z-index: 2 !important;
         }
       }
+    }
+
+    .highlight-teaser__infos-pagination {
+      display: inline-flex;
     }
   }
 
