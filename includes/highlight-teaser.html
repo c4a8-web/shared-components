@@ -1,10 +1,11 @@
 <!-- Shared Highlight Teaser Section -->
 {%- assign highlightTeaserEntries = include.entries -%}
 {%- assign highlightTeaserLimit = inlcude.limit -%}
+{%- assign highlightTeaserSpacing = include.spacing -%}
 
 <highlight-teaser
   :entries="{{ highlightTeaserEntries | jsonify | escape }}"
-  spacing="{{ accordionSpacing }}"
+  spacing="{{ highlightTeaserSpacing }}"
   limit="{{ highlightTeaserLimit }}"
 >
 </highlight-teaser>

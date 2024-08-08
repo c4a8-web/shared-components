@@ -88,6 +88,7 @@ export const HighlightTeaser = {
 
 export const OneEntry = {
   args: {
+    spacing: 'space-top-3',
     entries: [
       {
         title: 'Azure @ DEKRA',
