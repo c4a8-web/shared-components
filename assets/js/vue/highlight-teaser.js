@@ -1,12 +1,24 @@
 const highlightTeaserInfos = {
   tagName: 'highlight-teaser-infos',
+  data() {
+    return {
+      isFadingOut: false,
+      isFadingIn: false,
+      currentIndex: 0,
+      timeout: null,
+      timeoutDelay: 700,
+    };
+  },
   computed: {
     logo() {
-      return this.entry ? this.entry.logo : null;
+      return this.currentEntry ? this.currentEntry.logo : null;
+    },
+    currentEntry() {
+      return this.entries ? this.entries[this.currentIndex] : this.entry;
     },
   },
   template: `
-    <div class="highlight-teaser__infos">
+    <div :class="['highlight-teaser__infos', { 'highlight-teaser__infos--fade-out': isFadingOut, 'highlight-teaser__infos--fade-in': isFadingIn }]" ref="infos">
       <div
         :class="[
           'highlight-teaser__infos-pagination',
@@ -20,17 +32,75 @@ const highlightTeaserInfos = {
         </div>
         <icon class="highlight-teaser__infos-icon-next" icon="arrow" @click="next" />
       </div>
-      <v-img v-if="logo" class="highlight-teaser__infos-logo" v-bind="logo" />
-      <div class="highlight-teaser__infos-title">{{ entry.title  }}</div>
-      <p class="highlight-teaser__infos-subline">{{ entry.subline }}</p>
-      <cta-list :list="entry.ctaList" classes="highlight-teaser__infos-cta-list" />
+      <div class="highlight-teaser__infos-content" ref="content">
+        <v-img v-if="logo" class="highlight-teaser__infos-logo" v-bind="logo" />
+        <div class="highlight-teaser__infos-title">{{ currentEntry.title  }}</div>
+        <p class="highlight-teaser__infos-subline">{{ currentEntry.subline }}</p>
+        <cta-list :list="currentEntry.ctaList" classes="highlight-teaser__infos-cta-list" />
+      </div>
     </div>
   `,
+  mounted() {
+    const content = this.$refs.content;
+
+    this.currentIndex = this.index;
+
+    if (!content) return;
+
+    content.addEventListener('transitionend', this.handleTransitionEnd);
+  },
+  beforeDestroy() {
+    const content = this.$refs.content;
+
+    if (!content) return;
+
+    content.removeEventListener('transitionend', this.handleTransitionEnd);
+  },
+  methods: {
+    resetTransitions() {
+      this.isFadingIn = false;
+      this.isFadingOut = false;
+    },
+    handleTransitionEnd() {
+      if (this.isFadingOut) {
+        this.isFadingOut = false;
+        this.isFadingIn = true;
+
+        this.currentIndex = this.index;
+      } else {
+        this.resetTransitions();
+      }
+    },
+    resetTranstitionsFallback() {
+      this.timeout = setTimeout(() => {
+        this.resetTransitions();
+      }, this.timeoutDelay);
+    },
+  },
+  watch: {
+    index() {
+      window.clearTimeout(this.timeout);
+
+      this.resetTransitions();
+
+      this.currentIndex = this.lastIndex;
+
+      this.$nextTick(() => {
+        this.isFadingOut = true;
+        this.isFadingIn = false;
+
+        this.resetTranstitionsFallback();
+      });
+    },
+  },
   props: {
     pagination: Boolean,
+    lastIndex: Number,
+    index: Number,
     currentPage: Number,
     lastPage: Number,
     entry: Object,
+    entries: Array,
     prev: Function,
     next: Function,
     isFirstEntry: Boolean,
@@ -46,6 +116,7 @@ export default {
   data() {
     return {
       index: 0,
+      lastIndex: 0,
     };
   },
   computed: {
@@ -121,21 +192,14 @@ export default {
     next() {
       if (this.isLastEntry) return;
 
-      // trigger slick and wait for index update
-
-      this.index++;
-
-      this.setSliderToSlide();
+      this.switchSlide(true);
     },
     prev() {
       if (this.isFirstEntry) return;
 
-      // trigger slick and wait for index update
-      this.index--;
-
-      this.setSliderToSlide();
+      this.switchSlide(false);
     },
-    setSliderToSlide() {
+    switchSlide(next) {
       const container = this.$refs.container;
 
       if (!container) return;
@@ -143,6 +207,14 @@ export default {
       const slickCarousel = container.querySelector('.js-slick-carousel');
 
       if (!slickCarousel) return;
+
+      this.lastIndex = this.index;
+
+      if (next) {
+        this.index++;
+      } else {
+        this.index--;
+      }
 
       $(slickCarousel).slick('slickGoTo', this.index);
     },
@@ -170,10 +242,14 @@ export default {
                 :current-page="currentPage"
                 :last-page="lastPage"
                 :entry="activeEntry"
+                :entries="entries"
                 :next="next"
                 :prev="prev"
                 :is-first-entry="isFirstEntry"
                 :is-last-entry="isLastEntry"
+                :is-changing="isChanging"
+                :index="index"
+                :last-index="lastIndex"
               />
             </div>
           </div>

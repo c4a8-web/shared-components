@@ -26,6 +26,24 @@
   background-color: var(--color-surface-background);
   padding: var(--highlight-spacing) var(--spacing-medium) var(--highlight-spacing) var(--highlight-spacing);
   flex: 1;
+
+  &.highlight-teaser__infos--fade-out {
+    .highlight-teaser__infos-content {
+      opacity: 0;
+      transition-duration: 0.2s;
+    }
+  }
+
+  &.highlight-teaser__infos--fade-in {
+    .highlight-teaser__infos-content {
+      opacity: 1;
+      transition-delay: 0.2s;
+    }
+  }
+}
+
+.highlight-teaser__infos-content {
+  transition: opacity 1.8s #{$animation-transition};
 }
 
 .highlight-teaser__entry {
@@ -42,6 +60,13 @@
 .highlight-teaser__image {
   aspect-ratio: 1/1;
   object-fit: cover;
+}
+
+.highlight-teaser__infos-current {
+  &::selection {
+    background-color: inherit;
+    color: inherit;
+  }
 }
 
 .highlight-teaser__infos-title {
@@ -110,6 +135,10 @@
   gap: spacing(6);
   place-items: center;
   margin-bottom: 30%;
+
+  .icon {
+    cursor: pointer;
+  }
 
   &.highlight-teaser__infos-pagination--last .highlight-teaser__infos-icon-next,
   &.highlight-teaser__infos-pagination--first .highlight-teaser__infos-icon-prev {
