@@ -304,10 +304,21 @@ export const TextShadow = {
         lottie: lottieAzure,
         fullscreen: true,
       },
-      cta: {
-        text: 'Kontakt aufnehmen',
-        href: 'javascript:void(0);',
-      },
+      ctaList: [
+        {
+          ctaText: 'Kontakt aufnehmen',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary',
+          icon: 'phone',
+        },
+        {
+          ctaText: 'Mail us',
+          ctaHref: 'javascript:void(0);',
+          skin: 'secondary',
+          icon: 'mail',
+          hasBackground: true,
+        },
+      ],
     },
   },
 };

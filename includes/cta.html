@@ -19,6 +19,7 @@
 {%- assign ctaActive = include.active | default: false -%}
 {%- assign ctaClasses = include.classes -%}
 {%- assign ctaLoading = include.loading -%}
+{%- assign ctaHasBackground = include.hasBackground -%}
 
 <cta
       text="{{ ctaText }}"
@@ -41,6 +42,7 @@
       classes="{{ ctaClasses }}"
       :active="{{ active }}"
       :loading="{{ ctaLoading }}"
+      :has-background="{{ ctaHasBackground }}"
 >
 </cta>
 <!-- End Shared Cta Section -->
