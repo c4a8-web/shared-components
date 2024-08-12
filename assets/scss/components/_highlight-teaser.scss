@@ -31,19 +31,63 @@
     .highlight-teaser__infos-content {
       opacity: 0;
       transition-duration: 0.2s;
+
+      > * {
+        opacity: 0;
+      }
+
+      img,
+      .highlight-teaser__infos-title,
+      .highlight-teaser__infos-subline,
+      .highlight-teaser__infos-cta-list {
+        transition-delay: 0s;
+        transition-duration: 0s;
+      }
     }
   }
 
   &.highlight-teaser__infos--fade-in {
     .highlight-teaser__infos-content {
       opacity: 1;
-      transition-delay: 0.2s;
+      transition-delay: 0.3s;
+
+      > * {
+        opacity: 1;
+      }
     }
   }
 }
 
 .highlight-teaser__infos-content {
+  --highlight-teaser-content-delay: 0.2s;
+
   transition: opacity 1.8s #{$animation-transition};
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+
+  img,
+  .highlight-teaser__infos-title,
+  .highlight-teaser__infos-subline,
+  .highlight-teaser__infos-cta-list {
+    transition: opacity 1.8s #{$animation-transition};
+  }
+
+  img {
+    transition-delay: var(--highlight-teaser-content-delay);
+  }
+
+  .highlight-teaser__infos-title {
+    transition-delay: calc(var(--highlight-teaser-content-delay) + 0.1s);
+  }
+
+  .highlight-teaser__infos-subline {
+    transition-delay: calc(var(--highlight-teaser-content-delay) + 0.2s);
+  }
+
+  .highlight-teaser__infos-cta-list {
+    transition-delay: calc(var(--highlight-teaser-content-delay) + 0.3s);
+  }
 }
 
 .highlight-teaser__entry {
@@ -136,8 +180,13 @@
   place-items: center;
   margin-bottom: 30%;
 
-  .icon {
-    cursor: pointer;
+  .highlight-teaser__infos-icon-prev,
+  .highlight-teaser__infos-icon-next {
+    &.icon {
+      cursor: pointer;
+      width: spacing(9);
+      height: spacing(9);
+    }
   }
 
   &.highlight-teaser__infos-pagination--last .highlight-teaser__infos-icon-next,
@@ -164,6 +213,7 @@
           transform: translateX(100%);
           opacity: 0.4 !important;
           z-index: 2 !important;
+          transition-duration: 2.1s, 1.9s !important;
         }
       }
     }
