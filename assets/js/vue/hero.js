@@ -101,7 +101,9 @@ export default {
     },
     style() {
       return [
-        this.bgColor ? `--hero-background-color: ${this.bgColor};` : '',
+        this.bgColor
+          ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${Tools.hexToRgb(this.bgColor)}`
+          : '',
         this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
         this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
       ];

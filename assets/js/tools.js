@@ -493,6 +493,25 @@ class Tools {
     return parseInt(hex.substring(5, 7), 16);
   }
 
+  static hexToRgb(hex) {
+    let rootHex;
+
+    if (hex.startsWith('--') || hex.startsWith('var(')) {
+      const cleanedHex = hex.replace(/--|var\(/, '').replace(/\)$/, '');
+      const rootStyles = getComputedStyle(document.documentElement);
+
+      rootHex = rootStyles.getPropertyValue(cleanedHex).trim();
+    }
+
+    const localHex = rootHex ? rootHex : hex;
+
+    const red = Tools.red(localHex);
+    const green = Tools.green(localHex);
+    const blue = Tools.blue(localHex);
+
+    return `${red}, ${green}, ${blue}`;
+  }
+
   static getHash() {
     return window.location.hash;
   }

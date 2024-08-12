@@ -59,12 +59,21 @@
 
   &.hero--text-shadow {
     .hero__headline {
-      @include light-text-shadow;
+      display: inline;
+    }
+
+    .hero__headline,
+    .hero__subline {
+      background-color: rgba(var(--hero-background-color-rgb), 0.5);
     }
 
     .hero__subline {
-      text-shadow: 0px 0px 2px rgba(255, 255, 255, 0.9);
-      background-color: rgba(255, 255, 255, 0.57);
+      &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: spacing(10);
+      }
     }
   }
 

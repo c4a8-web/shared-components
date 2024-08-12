@@ -287,3 +287,38 @@ export const ShapeInContent = {
     },
   },
 };
+
+export const TextShadow = {
+  args: {
+    hero: {
+      v2: true,
+      light: true,
+      bgColor: 'var(--color-blue-medium)',
+      headline: 'Ihre Cloud Strategie',
+      headlineClasses: 'h2-font-size bold',
+      lightOverline: true,
+      subline: 'Microsoft stellt die Technologie, wir die Expertise. Sie brauchen nur noch den Erfolg zu ernten.',
+      textShadow: true,
+      shape: {
+        alt: 'Shape',
+        lottie: lottieAzure,
+        fullscreen: true,
+      },
+      ctaList: [
+        {
+          ctaText: 'Kontakt aufnehmen',
+          ctaHref: 'javascript:void(0);',
+          skin: 'primary',
+          icon: 'phone',
+        },
+        {
+          ctaText: 'Mail us',
+          ctaHref: 'javascript:void(0);',
+          skin: 'secondary',
+          icon: 'mail',
+          hasBackground: true,
+        },
+      ],
+    },
+  },
+};
