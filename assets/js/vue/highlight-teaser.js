@@ -130,6 +130,11 @@ export default {
         Tools.isTrue(this.reduceAnimationnimation) ? 'highlight-teaser--reduce-animation' : '',
       ];
     },
+    style() {
+      return `--highlight-teaser-animation-color: ${
+        this.animationColor != '' ? this.animationColor : 'var(--color-primary)'
+      };`;
+    },
     limitValue() {
       const defaultLimit = 3;
       const radix = 10;
@@ -231,19 +236,24 @@ export default {
     limit: Number,
     spacing: String,
     reduceAnimationn: Boolean,
+    animationColor: String,
   },
   template: `
-    <div :class="classList">
+    <div :class="classList" :style="style">
       <div class="highlight-teaser__container" ref="container">
-        <slider :options="sliderOptions" :hide-background="true">
-          <div class="highlight-teaser__entry" v-for="(entry, index) in limitedEntries" :key="index">
-            <v-img :img="entry.image.img" :alt="entry.image.alt" :cloudinary="entry.image.cloudinary" class="highlight-teaser__image" />
-            <highlight-teaser-infos :pagination="pagination" :current-page="index + 1" :last-page="lastPage" :entry="entry" />
-          </div>
-        </slider>
+        <div class="highlight-teaser__slider-container">
+          <slider :options="sliderOptions" :hide-background="true" class="highlight-teaser__slider">
+            <div class="highlight-teaser__entry" v-for="(entry, index) in limitedEntries" :key="index">
+              <div class="highlight-teaser__entry-image">
+                <v-img :img="entry.image.img" :alt="entry.image.alt" :cloudinary="entry.image.cloudinary" class="highlight-teaser__image" img-src-sets="highlightTeaser" />
+              </div>
+              <highlight-teaser-infos :pagination="pagination" :current-page="index + 1" :last-page="lastPage" :entry="entry" />
+            </div>
+          </slider>
+        </div>
 
         <div class="highlight-teaser__overlay">
-          <div class="highlight-teaser__overlay-container container">
+          <div class="highlight-teaser__overlay-container">
             <div class="highlight-teaser__overlay-infos">
               <highlight-teaser-infos
                 :pagination="pagination"

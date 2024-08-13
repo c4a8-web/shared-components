@@ -12,12 +12,13 @@ export default {
 
 export const HighlightTeaser = {
   args: {
+    // animationColor: 'var(--color-secondary)',
     entries: [
       {
         title: 'Azure @ DEKRA',
         subline: 'Effiziente Umsetzung der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)',
         image: {
-          img: '/casestudies/casestudy-dekra-v2.png',
+          img: 'casestudies/casestudy-fuchs.png',
           alt: 'Dekra Casestudy',
           cloudinary: true,
         },
@@ -40,7 +41,7 @@ export const HighlightTeaser = {
         title: 'BRZ',
         subline: 'lorem ipsum dolor sit',
         image: {
-          img: '/casestudies/casestudy-brz.png',
+          img: 'casestudies/casestudy-brz.png',
           alt: 'BRZ Casestudy',
           cloudinary: true,
         },
@@ -63,7 +64,7 @@ export const HighlightTeaser = {
         subline:
           'lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
         image: {
-          img: '/casestudies/casestudy-enercon.jpg',
+          img: 'casestudies/casestudy-enercon.jpg',
           alt: 'Enercron Casestudy',
           cloudinary: true,
         },
