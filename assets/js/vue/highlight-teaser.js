@@ -1,3 +1,5 @@
+import Tools from '../tools.js';
+
 const highlightTeaserInfos = {
   tagName: 'highlight-teaser-infos',
   data() {
@@ -121,7 +123,12 @@ export default {
   },
   computed: {
     classList() {
-      return ['highlight-teaser', this.spacing, 'vue-component'];
+      return [
+        'highlight-teaser',
+        this.spacing,
+        'vue-component',
+        Tools.isTrue(this.reduceAnimationnimation) ? 'highlight-teaser--reduce-animation' : '',
+      ];
     },
     limitValue() {
       const defaultLimit = 3;
@@ -223,6 +230,7 @@ export default {
     entries: Array,
     limit: Number,
     spacing: String,
+    reduceAnimationn: Boolean,
   },
   template: `
     <div :class="classList">
