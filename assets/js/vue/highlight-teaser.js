@@ -8,7 +8,9 @@ const highlightTeaserInfos = {
       isFadingIn: false,
       currentIndex: 0,
       timeout: null,
-      timeoutDelay: 700,
+      timeoutDelay: 1600,
+      reducedTimeoutDelay: 700,
+      skipTransitionEnd: false,
     };
   },
   computed: {
@@ -47,6 +49,10 @@ const highlightTeaserInfos = {
 
     this.currentIndex = this.index;
 
+    if (this.reduceAnimation) {
+      this.timeoutDelay = this.reducedTimeoutDelay;
+    }
+
     if (!content) return;
 
     content.addEventListener('transitionend', this.handleTransitionEnd);
@@ -64,6 +70,8 @@ const highlightTeaserInfos = {
       this.isFadingOut = false;
     },
     handleTransitionEnd() {
+      if (this.skipTransitionEnd) return;
+
       if (this.isFadingOut) {
         this.isFadingOut = false;
         this.isFadingIn = true;
@@ -74,15 +82,13 @@ const highlightTeaserInfos = {
       }
     },
     resetTranstitionsFallback() {
+      window.clearTimeout(this.timeout);
+
       this.timeout = setTimeout(() => {
         this.resetTransitions();
       }, this.timeoutDelay);
     },
-  },
-  watch: {
-    index() {
-      window.clearTimeout(this.timeout);
-
+    update(forced = false) {
       this.resetTransitions();
 
       this.currentIndex = this.lastIndex;
@@ -92,7 +98,28 @@ const highlightTeaserInfos = {
         this.isFadingIn = false;
 
         this.resetTranstitionsFallback();
+
+        if (forced) {
+          this.handleTransitionEnd();
+        }
       });
+    },
+  },
+  watch: {
+    index() {
+      window.clearTimeout(this.timeout);
+
+      if (this.isFadingIn || this.isFadingOut) {
+        this.skipTransitionEnd = true;
+
+        this.$nextTick(() => {
+          this.skipTransitionEnd = false;
+          this.update(true);
+        });
+      } else {
+        this.update();
+        console.log('update');
+      }
     },
   },
   props: {
@@ -107,6 +134,7 @@ const highlightTeaserInfos = {
     next: Function,
     isFirstEntry: Boolean,
     isLastEntry: Boolean,
+    reducedAnimation: Boolean,
   },
 };
 
@@ -127,13 +155,16 @@ export default {
         'highlight-teaser',
         this.spacing,
         'vue-component',
-        Tools.isTrue(this.reduceAnimationnimation) ? 'highlight-teaser--reduce-animation' : '',
+        this.reducedAnimationValue ? 'highlight-teaser--reduce-animation' : '',
       ];
     },
     style() {
       return `--highlight-teaser-animation-color: ${
         this.animationColor != '' ? this.animationColor : 'var(--color-primary)'
       };`;
+    },
+    reducedAnimationValue() {
+      return Tools.isTrue(this.reduceAnimation);
     },
     limitValue() {
       const defaultLimit = 3;
@@ -235,7 +266,9 @@ export default {
     entries: Array,
     limit: Number,
     spacing: String,
-    reduceAnimationn: Boolean,
+    reduceAnimation: {
+      default: null,
+    },
     animationColor: String,
   },
   template: `
@@ -268,6 +301,7 @@ export default {
                 :is-changing="isChanging"
                 :index="index"
                 :last-index="lastIndex"
+                :reduced-animation="reducedAnimationValue"
               />
             </div>
           </div>

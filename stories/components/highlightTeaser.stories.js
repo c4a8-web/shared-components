@@ -12,13 +12,13 @@ export default {
 
 export const HighlightTeaser = {
   args: {
-    // animationColor: 'var(--color-secondary)',
+    animationColor: 'var(--color-secondary)',
     entries: [
       {
         title: 'Azure @ DEKRA',
         subline: 'Effiziente Umsetzung der DEKRA Cloud First Journey mit DevOps und Infrastructure as Code (IaC)',
         image: {
-          img: 'casestudies/casestudy-fuchs.png',
+          img: '/casestudies/casestudy-dekra-v2.png',
           alt: 'Dekra Casestudy',
           cloudinary: true,
         },
