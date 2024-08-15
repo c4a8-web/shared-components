@@ -24,6 +24,7 @@ const en = {
   apply: 'Apply',
   reset: 'Reset',
   jobListEmpty: 'We currently have no positions in this language.',
+  imageCredits: 'Picture Credits',
 };
 
 export default en;

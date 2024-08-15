@@ -24,6 +24,7 @@ const de = {
   apply: 'Anwenden',
   reset: 'Zurücksetzen',
   jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
+  imageCredits: 'Bildnachweis',
 };
 
 export default de;

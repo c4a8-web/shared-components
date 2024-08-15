@@ -21,6 +21,7 @@ import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
 import EventOverview from './vue/event-overview.js';
 import Event from './vue/event.js';
+import FabHint from './vue/fab-hint.js';
 import Faq from './vue/faq.js';
 import FeatureGridItem from './vue/feature-grid-item.js';
 import FeatureList from './vue/feature-list.js';
@@ -102,6 +103,7 @@ import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Hand from './vue/icons/hand.js';
+import ImageCredits from './vue/icons/image-credits.js';
 import Info from './vue/icons/info.js';
 import ListView from './vue/icons/list-view.js';
 import Magnifier from './vue/icons/magnifier.js';
@@ -181,6 +183,7 @@ const addApp = () => {
     Dropdown,
     EventOverview,
     Event,
+    FabHint,
     CheckMark,
     Faq,
     FeatureGridItem,
@@ -247,6 +250,7 @@ const addApp = () => {
     EmailActionUnread,
     Expand,
     Hand,
+    ImageCredits,
     Info,
     ListView,
     Menu,
