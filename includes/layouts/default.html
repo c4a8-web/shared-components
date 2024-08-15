@@ -1,10 +1,20 @@
 {%- assign lang = page.lang | default: site.lang | default: "de" -%}
+{%- if page.backToTop or layout.backToTop -%}
+  {%- assign hasBackToTop = true -%}
+{%- else -%}
+  {%- assign hasBackToTop = false -%}
+{%- endif -%}
+{%- assign hasFabHint = page.fabHint -%}
+
 <!DOCTYPE html>
 <html lang="{{ lang }}" data-shared-components="v">
 
   {%- include head.html -%}
 
-  <body id="page-top" class="shared-components {{ site.shared_theme }}">
+  <body id="page-top" class="shared-components {{ site.shared_theme }}
+    {% if hasBackToTop %}has-back-to-top{% endif %}
+    {% if hasFabHint %}has-fab-hint{% endif %}
+  ">
     {% include body.html %}
 
     <div id="app">
@@ -16,7 +26,18 @@
         blendMode=page.blendMode
       %}
 
-      {% if page.backToTop or layout.backToTop %}
+      {% if hasFabHint %}
+        {%
+          include fab-hint.html
+          icon=page.fabHint.icon
+          iconColor=page.fabHint.iconColor
+          bgColor=page.fabHint.bgColor
+          text=page.fabHint.text
+          title=page.fabHint.title
+        %}
+      {% endif %}
+
+      {% if hasBackToTop %}
         {%
           include back-to-top.html
         %}
