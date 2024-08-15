@@ -251,3 +251,10 @@ StrategySplit.args = {
   icon: 'strategy-split',
   size: 'xxl',
 };
+
+export const ImageCredits = Template.bind({});
+
+ImageCredits.args = {
+  icon: 'image-credits',
+  size: 'xxl',
+};

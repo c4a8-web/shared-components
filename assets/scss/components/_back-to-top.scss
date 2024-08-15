@@ -54,7 +54,7 @@ $back-to-top-bottom-offset-xs: 32px;
 .back-to-top__wrapper {
   position: relative;
   margin-left: auto;
-  right: spacing(4);
+  right: spacing(7);
   top: calc(100vh - (#{$back-to-top-size} + #{$back-to-top-bottom-offset-lg})) !important;
 }
 
