@@ -239,6 +239,9 @@ export default {
 
       return 'heroStudy';
     },
+    badges() {
+      return this.heroJson && this.heroJson.badges ? this.heroJson.badges : false;
+    },
     hasBack() {
       return this.heroJson && this.heroJson.back ? this.heroJson.back : false;
     },
@@ -306,6 +309,15 @@ export default {
                 :list="ctaList"
               >
               </cta-list>
+              <div class="hero__badges" v-if="badges">
+                <div class="hero__badge-container" v-for="badge in badges">
+                  <v-img
+                    cloudinary=true
+                    v-bind="badge"
+                    class="hero__badge-image"
+                  ></v-img>
+                </div>
+              </div>
             </div>
           </div>
           <text-icon-animation

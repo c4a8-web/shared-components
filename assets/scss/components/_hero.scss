@@ -426,3 +426,25 @@
     display: none;
   }
 }
+
+.hero__badges {
+  padding-top: spacing(8);
+  display: flex;
+  gap: spacing(8);
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+
+  > * {
+    flex: 0 1 auto;
+    width: auto;
+  }
+
+  @include media-breakpoint-up(md) {
+    flex-direction: row;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: spacing(16);
+  }
+}
