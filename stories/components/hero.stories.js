@@ -319,6 +319,16 @@ export const TextShadow = {
           hasBackground: true,
         },
       ],
+      badges: [
+        {
+          img: '/logos/partner-seal-mpoy.svg',
+          alt: 'Partner of the Year Award',
+        },
+        {
+          img: '/logos/partner-seal-mssp.svg',
+          alt: 'Security MSSP of the Year',
+        },
+      ],
     },
   },
 };
