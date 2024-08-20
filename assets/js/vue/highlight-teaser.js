@@ -74,6 +74,11 @@ const highlightTeaserInfos = {
     content.removeEventListener('transitionend', this.handleTransitionEnd);
   },
   methods: {
+    emitTransitionEnd() {
+      if (!this.isFadingIn && !this.isFadingOut) return;
+
+      this.$emit('transitionsEnd');
+    },
     resetTransitions() {
       this.isFadingIn = false;
       this.isFadingOut = false;
@@ -87,6 +92,7 @@ const highlightTeaserInfos = {
 
         this.currentIndex = this.index;
       } else {
+        this.emitTransitionEnd();
         this.resetTransitions();
       }
     },
@@ -94,6 +100,7 @@ const highlightTeaserInfos = {
       window.clearTimeout(this.timeout);
 
       this.timeout = setTimeout(() => {
+        this.emitTransitionEnd();
         this.resetTransitions();
       }, this.timeoutDelay);
     },
@@ -155,6 +162,7 @@ export default {
     return {
       index: 0,
       lastIndex: 0,
+      inAnimation: false,
     };
   },
   computed: {
@@ -244,6 +252,9 @@ export default {
     },
   },
   methods: {
+    handleTransitionsEnd() {
+      this.inAnimation = false;
+    },
     next() {
       if (this.isLastEntry) return;
 
@@ -271,6 +282,8 @@ export default {
         this.index--;
       }
 
+      this.inAnimation = true;
+
       $(slickCarousel).slick('slickGoTo', this.index);
     },
   },
@@ -287,7 +300,9 @@ export default {
     <div :class="classList" :style="style">
       <div class="highlight-teaser__container" ref="container">
         <div class="highlight-teaser__slider-container">
-          <div class="highlight-teaser__slider-blur"></div>
+          <div :class="['highlight-teaser__slider-blur', {'highlight-teaser__slider-blur--in-animation': inAnimation}]">
+            <v-img :img="activeEntry.image.img" :alt="activeEntry.image.alt" :cloudinary="activeEntry.image.cloudinary" class="highlight-teaser__blur-image" img-src-sets="highlightTeaser" />
+          </div>
           <slider :options="sliderOptions" :hide-background="true" class="highlight-teaser__slider">
             <div class="highlight-teaser__entry" v-for="(entry, index) in limitedEntries" :key="index">
               <div class="highlight-teaser__entry-image">
@@ -315,6 +330,7 @@ export default {
                 :index="index"
                 :last-index="lastIndex"
                 :reduced-animation="reducedAnimationValue"
+                @transitions-end="handleTransitionsEnd"
               />
             </div>
           </div>
