@@ -1,5 +1,4 @@
 .highlight-teaser {
-  --highlight-teaser-box-shadow: -20px 0px 80px 0px rgba(0, 0, 0, 0.5);
   --highlight-teaser-start-position: 200%;
 
   container-type: inline-size;
@@ -240,7 +239,6 @@
       left: 0;
       z-index: -1;
       background-color: var(--color-surface-background);
-      box-shadow: var(--highlight-teaser-box-shadow);
     }
   }
 }
