@@ -2,11 +2,15 @@
 {%- assign highlightTeaserEntries = include.entries -%}
 {%- assign highlightTeaserLimit = inlcude.limit -%}
 {%- assign highlightTeaserSpacing = include.spacing -%}
+{%- assign highlightTeaserReduceAnimationn = include.reduceAnimation -%}
+{%- assign highlightTeaserAnimationColor = include.animationColor -%}
 
 <highlight-teaser
   :entries="{{ highlightTeaserEntries | jsonify | escape }}"
   spacing="{{ highlightTeaserSpacing }}"
   limit="{{ highlightTeaserLimit }}"
+  :reduce-animation="{{ highlightTeaserReduceAnimationn }}"
+  animation-color="{{ highlightTeaserAnimationColor }}"
 >
 </highlight-teaser>
 <!-- End Shared Highlight Teaser Section -->
