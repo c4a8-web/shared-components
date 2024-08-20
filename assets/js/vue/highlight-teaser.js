@@ -20,14 +20,23 @@ const highlightTeaserInfos = {
     currentEntry() {
       return this.entries ? this.entries[this.currentIndex] : this.entry;
     },
+    isInAnimation() {
+      return this.isFadingOut || this.isFadingIn;
+    },
+    isFirstEntryOrInAnimation() {
+      return this.isInAnimation || this.isFirstEntry;
+    },
+    isLastEntryOrInAnimation() {
+      return this.isInAnimation || this.isLastEntry;
+    },
   },
   template: `
     <div :class="['highlight-teaser__infos', { 'highlight-teaser__infos--fade-out': isFadingOut, 'highlight-teaser__infos--fade-in': isFadingIn }]" ref="infos">
       <div
         :class="[
           'highlight-teaser__infos-pagination',
-          { 'highlight-teaser__infos-pagination--first': isFirstEntry },
-          { 'highlight-teaser__infos-pagination--last': isLastEntry }
+          { 'highlight-teaser__infos-pagination--first': isFirstEntryOrInAnimation },
+          { 'highlight-teaser__infos-pagination--last': isLastEntryOrInAnimation }
         ]"
         v-if="pagination">
         <icon class="highlight-teaser__infos-icon-prev" icon="arrow" direction="left" @click="prev" />
@@ -118,7 +127,6 @@ const highlightTeaserInfos = {
         });
       } else {
         this.update();
-        console.log('update');
       }
     },
   },
@@ -155,6 +163,7 @@ export default {
         'highlight-teaser',
         this.spacing,
         'vue-component',
+        this.rightDirection ? 'highlight-teaser--right-direction' : '',
         this.reducedAnimationValue ? 'highlight-teaser--reduce-animation' : '',
       ];
     },
@@ -230,6 +239,9 @@ export default {
         ],
       };
     },
+    rightDirection() {
+      return !this.lastIndex || this.lastIndex < this.index;
+    },
   },
   methods: {
     next() {
@@ -275,6 +287,7 @@ export default {
     <div :class="classList" :style="style">
       <div class="highlight-teaser__container" ref="container">
         <div class="highlight-teaser__slider-container">
+          <div class="highlight-teaser__slider-blur"></div>
           <slider :options="sliderOptions" :hide-background="true" class="highlight-teaser__slider">
             <div class="highlight-teaser__entry" v-for="(entry, index) in limitedEntries" :key="index">
               <div class="highlight-teaser__entry-image">
