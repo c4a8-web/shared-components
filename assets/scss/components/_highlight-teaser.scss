@@ -1,5 +1,6 @@
 .highlight-teaser {
   --highlight-teaser-start-position: 200%;
+  --highlight-teaser-animation-duration: 1.5s;
 
   container-type: inline-size;
 
@@ -20,7 +21,7 @@
         &.highlight-teaser__infos--fade-in {
           .highlight-teaser__infos-content {
             transition-delay: 1s;
-            transition-duration: 2.3s;
+            transition-duration: calc(var(--highlight-teaser-animation-duration) + 0.1s);
           }
         }
       }
@@ -30,7 +31,7 @@
           .slick-active {
             .highlight-teaser__entry-image {
               transform: translateX(var(--highlight-teaser-start-position));
-              animation: reveal 2.2s 0s ease-in-out forwards;
+              animation: reveal var(--highlight-teaser-animation-duration) 0s ease-in-out forwards;
             }
 
             ~ .slick-slide {
@@ -57,7 +58,7 @@
           .highlight-teaser__entry-image {
             position: relative;
             transform: translateX(calc(-1 * (var(--highlight-teaser-start-position))));
-            animation: reveal-reverse 2.2s 0s ease-in-out forwards;
+            animation: reveal-reverse var(--highlight-teaser-animation-duration) 0s ease-in-out forwards;
 
             &::before {
               opacity: 1;
