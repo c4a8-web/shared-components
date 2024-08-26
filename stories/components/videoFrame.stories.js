@@ -41,7 +41,7 @@ CornerImg.args = {
 export const FullWidth = Template.bind({});
 
 FullWidth.args = {
-  thumb: 'shared-components/teaser-dekra.png',
+  thumb: 'thumbs/career-corporate-video.png',
   alt: 'Video Casestudy Uniper',
   id: 'ThxpyUOz2R8',
   fullWidth: true,
