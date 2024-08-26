@@ -21,6 +21,7 @@ import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
 import EventOverview from './vue/event-overview.js';
 import Event from './vue/event.js';
+import FabButton from './vue/fab-button.js';
 import Faq from './vue/faq.js';
 import FeatureGridItem from './vue/feature-grid-item.js';
 import FeatureList from './vue/feature-list.js';
@@ -181,6 +182,7 @@ const addApp = () => {
     EventOverview,
     Event,
     CheckMark,
+    FabButton,
     Faq,
     FeatureGridItem,
     FeatureList,

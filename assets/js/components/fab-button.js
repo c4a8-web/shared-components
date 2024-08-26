@@ -33,7 +33,15 @@ class FabButton extends BaseComponent {
   }
 
   bindEvents() {
+    console.log('🚀 ~ FabButton ~ bindEvents ~ this.icon:', this.icon);
+    console.log('🚀 ~ FabButton ~ bindEvents ~ this.modal:', this.modal);
+    console.log('🚀 ~ FabButton ~ bindEvents ~ this.hasTrigger():', this.hasTrigger());
     if (!this.icon || !this.modal || this.hasTrigger()) return this.bindTriggerEvent();
+
+    console.log('weida no trigger');
+    console.log('🚀 ~ FabButton ~ this.link.forEach ~ this.link:', this.link);
+
+    return;
 
     this.link.forEach((link) => {
       link.addEventListener('click', this.handleClick.bind(this));
@@ -50,14 +58,13 @@ class FabButton extends BaseComponent {
   }
 
   bindTriggerEvent() {
-    this.icon.addEventListener('click', this.handleTriggerClick.bind(this));
+    // this.icon.addEventListener('click', this.handleTriggerClick.bind(this));
   }
 
   handleTriggerClick(e) {
-    const target = e.currentTarget;
-    const triggerId = target.dataset.triggerId;
-
-    document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
+    // const target = e.currentTarget;
+    // const triggerId = target.dataset.triggerId;
+    // document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
   }
 
   handleOutsideClick(e) {

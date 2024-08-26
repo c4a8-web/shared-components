@@ -1,11 +1,35 @@
 <!-- Shared Fab button Section -->
-{%- assign fabButtonIcon = include.icon | default: 'phone-mail' -%}
-{%- assign fabButtonModal = include.modal -%}
-{%- assign fabButtonNoSticky = include.noSticky -%}
-{%- assign fabButtonBgColor = include.bgColor -%}
-{%- assign fabButtonIconColor = include.iconColor -%}
-{%- assign fabButtonTrigger = include.trigger -%}
+{% assign fabButtonIcon = include.icon | default: 'phone-mail' %}
+{% assign fabButtonModal = include.modal %}
+{% assign fabButtonNoSticky = include.noSticky %}
+{% assign fabButtonBgColor = include.bgColor %}
+{% assign fabButtonIconColor = include.iconColor %}
+{% assign fabButtonTrigger = include.trigger %}
 
+<fab-button
+  icon="{{ fabButtonIcon }}"
+  :modal="{{ fabButtonModal | jsonify | escape }}"
+  no-sticky="{{ fabButtonNoSticky }}"
+  bg-color="{{ fabButtonBgColor }}"
+  icon-color="{{ fabButtonIconColor }}"
+  trigger="{{ fabButtonTrigger }}"
+>
+  <template v-slot:contact>
+    {% comment %}
+      TODO move contact to vue
+    {% endcomment %}
+    {%
+      include contact.html
+      infos=fabButtonModal.contact.infos
+      collapsed=true
+      ajax=true
+    %}
+  </template>
+</fab-button>
+<!-- End Shared Fab Button Section -->
+
+
+{% comment %}
 <div class="fab-button {% unless fabButtonNoSticky %}fab-button--sticky{% endunless %}{% if fabButtonTrigger %} fab-button--has-trigger{% endif %}">
   <div class="fab-button__start"></div>
   <div class="fab-button__wrapper {% unless fabButtonNoSticky %}js-sticky-block{% endunless %}"
@@ -53,4 +77,5 @@
   </div>
   <div class="fab-button__end"></div>
 </div>
+{% endcomment %}
 <!-- End Shared Fab Button Section -->
