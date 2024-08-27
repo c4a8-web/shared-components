@@ -1,11 +1,15 @@
 <!-- Shared Fab button Section -->
-{% assign fabButtonIcon = include.icon | default: 'phone-mail' %}
-{% assign fabButtonModal = include.modal %}
-{% assign fabButtonNoSticky = include.noSticky %}
-{% assign fabButtonBgColor = include.bgColor %}
-{% assign fabButtonIconColor = include.iconColor %}
-{% assign fabButtonTrigger = include.trigger %}
+{%- assign fabButtonIcon = include.icon -%}
+{%- assign fabButtonModal = include.modal -%}
+{%- assign fabButtonNoSticky = include.noSticky -%}
+{%- assign fabButtonBgColor = include.bgColor -%}
+{%- assign fabButtonIconColor = include.iconColor -%}
+{%- assign fabButtonTrigger = include.trigger -%}
+{%- assign fabButtonScrollStart = include.scrollStart -%}
 
+{% if fabButtonScrollStart %}
+<div class="fab-button__scroll-start"></div>
+{% else %}
 <fab-button
   icon="{{ fabButtonIcon }}"
   :modal="{{ fabButtonModal | jsonify | escape }}"
@@ -26,4 +30,5 @@
     %}
   </template>
 </fab-button>
+{% endif %}
 <!-- End Shared Fab Button Section -->

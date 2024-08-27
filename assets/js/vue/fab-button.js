@@ -9,14 +9,23 @@ export default {
       resetDelay: 300,
       rootSelector: '.fab-button',
       fabTriggerSelector: '.fab-trigger',
+      scrollStartSelector: '.fab-button__scroll-start',
+      scrollDistancePercentage: 0,
+      maxPercentage: 100,
+      hasScrollStarter: false,
       isExpanded: false,
+      closedAfterScrolledInto: false,
     };
   },
   computed: {
     classList() {
       return [
         'fab-button vue-component',
-        { 'fab-button--sticky': !this.isNotSticky, 'fab-button--has-trigger': this.hasTrigger },
+        {
+          'fab-button--sticky': !this.isNotSticky,
+          'fab-button--has-trigger': this.hasTrigger,
+          'fab-button--has-scroll-starter': this.hasScrollStarter,
+        },
         `${this.isExpanded ? State.EXPANDED : ''}`,
       ];
     },
@@ -51,12 +60,40 @@ export default {
     shouldBindTriggerEvent() {
       return !this.modal || this.hasTrigger;
     },
+    iconValue() {
+      return this.icon !== '' ? this.icon : 'phone-mail';
+    },
+    scrollStarter() {
+      return document.querySelector(this.scrollStartSelector);
+    },
+    style() {
+      if (this.scrollDistancePercentage <= 0) return;
+
+      return [
+        {
+          '--fab-button-scroll-percentage': this.scrollDistancePercentage + '%',
+        },
+      ];
+    },
   },
   mounted() {
+    this.hasScrollStarter = this.scrollStarter ? true : false;
+
     this.bindEvents();
+  },
+  beforeDestroy() {
+    if (!this.hasScrollStarter) return;
+
+    window.removeEventListener('scroll', this.handleScroll);
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
     bindEvents() {
+      if (this.hasScrollStarter) {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+      }
+
       if (this.shouldBindTriggerEvent) return;
 
       this.bindLinkTriggers();
@@ -73,6 +110,14 @@ export default {
       document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit.bind(this));
       window.addEventListener('click', this.handleOutsideClick.bind(this));
     },
+    handleScroll() {
+      console.log('scrolling');
+
+      this.calcScrollDistancePercentage();
+    },
+    handleResize() {
+      console.log('resizing');
+    },
     handleTriggerClick(e) {
       if (!e) return console.error('no event provided');
 
@@ -85,6 +130,8 @@ export default {
       this.isExpanded = !this.isExpanded;
     },
     handleClose() {
+      // TODO if user is in scrolled into modal state set closedAfterScrolledInto to true and never scroll open the modal again
+
       this.handleClick();
 
       setTimeout(() => {
@@ -103,11 +150,28 @@ export default {
     handleSubmit() {
       this.handleClose();
     },
+    calcScrollDistancePercentage() {
+      const scrollStarter = this.scrollStarter;
+      const modal = this.$refs.modal;
+      const scrollPosition = window.scrollY;
+      const componentTop = scrollStarter.getBoundingClientRect().top + scrollPosition - window.innerHeight;
+      const modalHeight = modal.offsetHeight;
+
+      let scrollDistancePercentage = 0;
+
+      if (scrollPosition >= componentTop) {
+        const scrolledPastComponent = scrollPosition - componentTop;
+
+        scrollDistancePercentage = (scrolledPastComponent / modalHeight) * 100;
+      }
+
+      this.scrollDistancePercentage =
+        scrollDistancePercentage > this.maxPercentage ? this.maxPercentage : scrollDistancePercentage;
+    },
   },
   props: {
     icon: {
       type: String,
-      default: 'phone-mail',
     },
     modal: Object,
     noSticky: {
@@ -123,18 +187,20 @@ export default {
     <div :class="classList">
       <div class="fab-button__start"></div>
       <div :class="wrapperClassList" :data-hs-sticky-block-options="options">
-        <div v-if="modal" :class="modalClassList">
-          <div class="fab-button__close" @click="handleClose">
-            <icon icon="close" :circle="true" :hover="true" size="medium" />
+        <div class="fab-button__wrapper-inner" :style="style">
+          <div v-if="modal" :class="modalClassList" ref="modal">
+            <div class="fab-button__close" @click="handleClose">
+              <icon icon="close" :circle="true" :hover="true" size="medium" />
+            </div>
+            <slot name="contact" v-if="modal.contact"></slot>
           </div>
-          <slot name="contact" v-if="modal.contact"></slot>
-        </div>
-        <div class="fab-button__icon"
-          :style="buttonStyles"
-          @click="shouldBindTriggerEvent ? handleTriggerClick($event): handleClick()"
-          :data-trigger-id="trigger"
-        >
-          <icon :icon="icon" size="large" />
+          <div class="fab-button__icon"
+            :style="buttonStyles"
+            @click="shouldBindTriggerEvent ? handleTriggerClick($event): handleClick()"
+            :data-trigger-id="trigger"
+          >
+            <icon :icon="iconValue" size="large" />
+          </div>
         </div>
       </div>
       <div class="fab-button__end"></div>
