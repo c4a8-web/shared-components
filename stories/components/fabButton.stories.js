@@ -1,4 +1,4 @@
-import { getDefaultSettings } from '../../.storybook/templates';
+import { getDefaultSettings, getAssetPath } from '../../.storybook/templates';
 import fabButtonTemplate from '!!raw-loader!./fabButton.html';
 
 export default {
@@ -64,7 +64,7 @@ export const Contact = {
               skin: 'primary is-light',
             },
             method: 'post',
-            action: '/mock/fabButton.json',
+            action: getAssetPath('/mock/fabButton.json'),
             fields: [
               {
                 label: 'Vorname',
@@ -151,7 +151,7 @@ export const Emergency = {
               skin: 'primary is-light',
             },
             method: 'post',
-            action: '/mock/fabButton.json',
+            action: getAssetPath('/mock/fabButton.json'),
             fields: [
               {
                 label: 'Vorname',
