@@ -36,7 +36,6 @@ export default {
       return Tools.isTrue(this.noSticky);
     },
     hasTrigger() {
-      console.log('🚀 ~ hasTrigger ~ Tools.isTrue(this.trigger):', Tools.isTrue(this.trigger));
       return this.trigger !== '';
     },
     options() {
