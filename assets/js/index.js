@@ -67,11 +67,6 @@ const componentList = [
       return module.default;
     })
     .catch(handleLoadingError),
-  import('./components/fab-button.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
   Form,
   import('./components/google-maps.js')
     .then((module) => {
