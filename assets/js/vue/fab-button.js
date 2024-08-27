@@ -1,11 +1,13 @@
 import Tools from '../tools.js';
 import State from '../state.js';
+import Events from '../events.js';
 
 export default {
   tagName: 'fab-button',
   data() {
     return {
       resetDelay: 300,
+      rootSelector: '.fab-button',
       fabTriggerSelector: '.fab-trigger',
       isExpanded: false,
     };
@@ -18,7 +20,10 @@ export default {
         `${this.isExpanded ? State.EXPANDED : ''}`,
       ];
     },
-    wrapperClasses() {
+    modalClassList() {
+      return ['fab-button__modal', !this.isExpanded ? State.OFF_SCREEN : ''];
+    },
+    wrapperClassList() {
       return ['fab-button__wrapper', this.isNotSticky ? '' : 'js-sticky-block'];
     },
     buttonStyles() {
@@ -65,6 +70,9 @@ export default {
       links.forEach((link) => {
         link.addEventListener('click', this.handleClick.bind(this));
       });
+
+      document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit.bind(this));
+      window.addEventListener('click', this.handleOutsideClick.bind(this));
     },
     handleTriggerClick(e) {
       if (!e) return console.error('no event provided');
@@ -75,16 +83,26 @@ export default {
       document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
     },
     handleClick() {
-      console.log('handle click');
-
       this.isExpanded = !this.isExpanded;
-      console.log('🚀 ~ handleClick ~ this.isExpanded:', this.isExpanded);
-      // this.root.classList.toggle(State.EXPANDED);
-      // this.modal.classList.toggle(State.OFF_SCREEN);
+    },
+    handleClose() {
+      this.handleClick();
 
-      // if (this.modal.classList.contains(State.OFF_SCREEN)) {
-      //   this.modal.style = '';
-      // }
+      setTimeout(() => {
+        document.dispatchEvent(new CustomEvent(Events.FAB_BUTTON_CLOSE, { detail: { target: this.root } }));
+      }, this.resetDelay);
+    },
+    handleOutsideClick(e) {
+      if (
+        this.isExpanded &&
+        Tools.isOutsideOf(this.rootSelector.substring(1), e) &&
+        Tools.isOutsideOf(this.fabTriggerSelector.substring(1), e)
+      ) {
+        this.handleClose();
+      }
+    },
+    handleSubmit() {
+      this.handleClose();
     },
   },
   props: {
@@ -105,16 +123,16 @@ export default {
   template: `
     <div :class="classList">
       <div class="fab-button__start"></div>
-      <div :class="wrapperClasses" :data-hs-sticky-block-options="options">
-        <div v-if="modal" class="fab-button__modal is-off-screen">
-          <div class="fab-button__close">
+      <div :class="wrapperClassList" :data-hs-sticky-block-options="options">
+        <div v-if="modal" :class="modalClassList">
+          <div class="fab-button__close" @click="handleClose">
             <icon icon="close" :circle="true" :hover="true" size="medium" />
           </div>
           <slot name="contact" v-if="modal.contact"></slot>
         </div>
         <div class="fab-button__icon"
           :style="buttonStyles"
-          @click="shouldBindTriggerEvent ? handleTriggerClick($event): null"
+          @click="shouldBindTriggerEvent ? handleTriggerClick($event): handleClick()"
           :data-trigger-id="trigger"
         >
           <icon :icon="icon" size="large" />
