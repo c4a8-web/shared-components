@@ -80,6 +80,7 @@ export default {
       return [
         {
           '--fab-button-scroll-percentage': this.scrollDistancePercentage + '%',
+          '--fab-button-scroll-percentage-clean': this.scrollDistancePercentage,
         },
       ];
     },

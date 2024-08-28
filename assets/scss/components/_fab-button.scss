@@ -7,6 +7,7 @@ $fab-button-scroll-top: 200px;
   @include z-index;
 
   --fab-button-scroll-factor: 8;
+  --fab-button-icon-size: #{$fab-button-icon-size};
 
   position: relative;
   width: 100%;
@@ -14,8 +15,8 @@ $fab-button-scroll-top: 200px;
   &.fab-button--has-scroll-starter {
     &:not(.fab-button--closed-after-scrolled-into) {
       .fab-button__icon {
-        will-change: transform, border-radius, height, width, bottom, right;
-        transition-property: transform, border-radius, height, width, bottom, right;
+        will-change: transform, right;
+        transition-property: transform, right;
         transition-duration: 0.7s;
         transition-timing-function: $animation-transition;
         bottom: -#{$fab-button-icon-size};
@@ -29,8 +30,14 @@ $fab-button-scroll-top: 200px;
         .fab-button__icon {
           pointer-events: none;
           border-radius: 0;
-          height: var(--fab-button-modal-height);
-          width: var(--fab-button-modal-width);
+          width: calc(
+            var(--fab-button-icon-size) + (var(--fab-button-scroll-percentage-clean) / 100) *
+              (var(--fab-button-modal-width) - var(--fab-button-icon-size))
+          );
+          height: calc(
+            var(--fab-button-icon-size) + (var(--fab-button-scroll-percentage-clean) / 100) *
+              (var(--fab-button-modal-height) - var(--fab-button-icon-size))
+          );
           right: spacing($size: 4, $negative: true);
           transform-origin: bottom right;
           transition-timing-function: $animation-transition, ease-in;
