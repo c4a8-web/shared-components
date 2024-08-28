@@ -142,7 +142,6 @@ export default {
     },
     handleClose() {
       // TODO transition from circle to square/rectangle
-      // TODO after a while reverse the animation and remove the contact modal
 
       this.handleClick();
 
@@ -172,9 +171,19 @@ export default {
       let scrollDistancePercentage = 0;
 
       if (scrollPosition >= componentTop) {
+        const reverseAnimationPercentage = 225;
         const scrolledPastComponent = scrollPosition - componentTop;
 
         scrollDistancePercentage = (scrolledPastComponent / modalHeight) * 100;
+
+        if (scrollDistancePercentage >= reverseAnimationPercentage) {
+          let newScrollDistancePercentage = reverseAnimationPercentage + 100 - scrollDistancePercentage;
+
+          const minPercentage = 0;
+
+          scrollDistancePercentage =
+            newScrollDistancePercentage < minPercentage ? minPercentage : newScrollDistancePercentage;
+        }
       }
 
       this.scrollDistancePercentage =
