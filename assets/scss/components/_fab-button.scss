@@ -12,19 +12,21 @@ $fab-button-scroll-top: 200px;
   width: 100%;
 
   &.fab-button--has-scroll-starter {
-    .fab-button__icon {
-      transition: transform 0.7s $animation-transition;
-    }
-
-    .fab-button__wrapper-inner[style] {
+    &:not(.fab-button--closed-after-scrolled-into) {
       .fab-button__icon {
-        pointer-events: none;
-        transform: translateX(calc(var(--fab-button-scroll-percentage) * var(--fab-button-scroll-factor)));
+        transition: transform 0.7s $animation-transition;
       }
 
-      .fab-button__modal {
-        opacity: 1;
-        transform: translateX(calc(100% - var(--fab-button-scroll-percentage)));
+      .fab-button__wrapper-inner[style] {
+        .fab-button__icon {
+          pointer-events: none;
+          transform: translateX(calc(var(--fab-button-scroll-percentage) * var(--fab-button-scroll-factor)));
+        }
+
+        .fab-button__modal {
+          opacity: 1;
+          transform: translateX(calc(100% - var(--fab-button-scroll-percentage)));
+        }
       }
     }
   }

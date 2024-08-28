@@ -25,6 +25,7 @@ export default {
           'fab-button--sticky': !this.isNotSticky,
           'fab-button--has-trigger': this.hasTrigger,
           'fab-button--has-scroll-starter': this.hasScrollStarter,
+          'fab-button--closed-after-scrolled-into': this.closedAfterScrolledInto,
         },
         `${this.isExpanded ? State.EXPANDED : ''}`,
       ];
@@ -129,8 +130,19 @@ export default {
     handleClick() {
       this.isExpanded = !this.isExpanded;
     },
+    handleButtonClose() {
+      if (this.hasScrollStarter && this.isBetweenScrollAnimation()) {
+        this.closedAfterScrolledInto = true;
+      } else {
+        this.handleClose();
+      }
+    },
+    isBetweenScrollAnimation() {
+      return this.scrollDistancePercentage > 0 && this.scrollDistancePercentage <= this.maxPercentage;
+    },
     handleClose() {
-      // TODO if user is in scrolled into modal state set closedAfterScrolledInto to true and never scroll open the modal again
+      // TODO transition from circle to square/rectangle
+      // TODO after a while reverse the animation and remove the contact modal
 
       this.handleClick();
 
@@ -189,7 +201,7 @@ export default {
       <div :class="wrapperClassList" :data-hs-sticky-block-options="options">
         <div class="fab-button__wrapper-inner" :style="style">
           <div v-if="modal" :class="modalClassList" ref="modal">
-            <div class="fab-button__close" @click="handleClose">
+            <div class="fab-button__close" @click="handleButtonClose">
               <icon icon="close" :circle="true" :hover="true" size="medium" />
             </div>
             <slot name="contact" v-if="modal.contact"></slot>
