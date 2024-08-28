@@ -15,6 +15,9 @@ export default {
       hasScrollStarter: false,
       isExpanded: false,
       closedAfterScrolledInto: false,
+      modalDimensionsSaved: false,
+      modalWidth: null,
+      modalHeight: null,
     };
   },
   computed: {
@@ -37,9 +40,13 @@ export default {
       return ['fab-button__wrapper', this.isNotSticky ? '' : 'js-sticky-block'];
     },
     buttonStyles() {
+      const showModalWidth = this.scrollDistancePercentage > 0;
+
       return {
         '--color-fab-background': this.bgColor,
         color: this.iconColor,
+        '--fab-button-modal-width': showModalWidth ? this.modalWidth : null,
+        '--fab-button-modal-height': showModalWidth ? this.modalHeight : null,
       };
     },
     isNotSticky() {
@@ -89,6 +96,19 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    getModalDimensions() {
+      if (this.modalDimensionsSaved) return;
+
+      const modal = this.$refs.modal;
+
+      this.modalDimensionsSaved = true;
+
+      // TODO this is still buggy sometimes so fix the calculation
+      this.$nextTick(() => {
+        this.modalWidth = modal.offsetWidth + 'px';
+        this.modalHeight = modal.offsetHeight + 'px';
+      });
+    },
     bindEvents() {
       if (this.hasScrollStarter) {
         window.addEventListener('scroll', this.handleScroll);
@@ -112,11 +132,10 @@ export default {
       window.addEventListener('click', this.handleOutsideClick.bind(this));
     },
     handleScroll() {
-      console.log('scrolling');
-
       this.calcScrollDistancePercentage();
     },
     handleResize() {
+      this.modalDimensionsSaved = false;
       console.log('resizing');
     },
     handleTriggerClick(e) {
@@ -142,6 +161,7 @@ export default {
     },
     handleClose() {
       // TODO transition from circle to square/rectangle
+      // TODO handle resize
 
       this.handleClick();
 
@@ -171,6 +191,8 @@ export default {
       let scrollDistancePercentage = 0;
 
       if (scrollPosition >= componentTop) {
+        this.getModalDimensions();
+
         const reverseAnimationPercentage = 225;
         const scrolledPastComponent = scrollPosition - componentTop;
 
