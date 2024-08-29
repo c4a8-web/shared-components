@@ -221,7 +221,7 @@ export default {
         dotsClass: 'slick-pagination is-default',
         responsive: [
           {
-            breakpoint: 1024,
+            breakpoint: 992,
             settings: {
               centerMode: true,
               infinite: false,

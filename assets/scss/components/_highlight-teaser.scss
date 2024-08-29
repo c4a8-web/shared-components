@@ -276,10 +276,11 @@
 
 @container (min-width: 1024px) {
   .highlight-teaser__container {
-    --highlight-teaser-max-height: 1100px;
+    --highlight-teaser-max-height: min(900px, 90vh);
 
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+    // display: grid;
+    // grid-template-columns: 2fr 1fr;
+    display: flex;
 
     .highlight-teaser__entry {
       height: 100%;
@@ -332,10 +333,18 @@
     display: none;
   }
 
+  .highlight-teaser__overlay {
+    flex-grow: 1;
+    max-width: 50vw;
+    width: 50vw;
+  }
+
   .highlight-teaser__slider-container {
     place-self: flex-end;
     overflow: hidden;
-    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+    width: auto;
     display: flex;
 
     .container {
