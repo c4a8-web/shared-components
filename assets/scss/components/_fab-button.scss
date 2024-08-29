@@ -17,6 +17,8 @@ $fab-button-scroll-top: 200px;
       .fab-button__icon {
         will-change: transform, right;
         transition-property: transform, right;
+        // will-change: transform, right, height, width;
+        // transition-property: transform, right, height, width;
         transition-duration: 0.7s;
         transition-timing-function: $animation-transition;
         bottom: -#{$fab-button-icon-size};
@@ -38,6 +40,9 @@ $fab-button-scroll-top: 200px;
             var(--fab-button-icon-size) + (var(--fab-button-scroll-percentage-clean) / 100) *
               (var(--fab-button-modal-height) - var(--fab-button-icon-size))
           );
+
+          // width: var(--fab-button-modal-width);
+          // height: var(--fab-button-modal-height);
           right: spacing($size: 4, $negative: true);
           transform-origin: bottom right;
           transition-timing-function: $animation-transition, ease-in;
