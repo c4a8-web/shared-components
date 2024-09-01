@@ -39,3 +39,56 @@ Expanded.args = {
     'Blueprint Matching',
   ],
 };
+
+export const Simple = Template.bind({});
+
+Simple.args = {
+  simple: true,
+  headline: {
+    text: 'Lorem was sie erwartet',
+    level: 'h3',
+  },
+  entries: [
+    {
+      title: 'Title 1',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+    {
+      title: 'Title 2',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+    {
+      title: 'Title 3',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+    {
+      title: 'Title 4',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+  ],
+};
+
+export const SimpleWithSubline = Template.bind({});
+
+SimpleWithSubline.args = {
+  simple: true,
+  headline: {
+    text: 'Lorem was sie erwartet',
+    level: 'h3',
+  },
+  subline: 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. ',
+  entries: [
+    {
+      title: 'Title 1',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+    {
+      title: 'Title 2',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+    {
+      title: 'Title 3',
+      text: 'Lorem ipsum dolor sit amet, consectet',
+    },
+  ],
+};

@@ -1,4 +1,5 @@
 const de = {
+  posts: 'Einträge',
   address: 'Adresse',
   follow: 'Folgen',
   full_time: 'Vollzeit',
@@ -22,6 +23,8 @@ const de = {
   search: 'Suche',
   apply: 'Anwenden',
   reset: 'Zurücksetzen',
+  jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
+  imageCredits: 'Bildnachweis',
 };
 
 export default de;

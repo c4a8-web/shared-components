@@ -1,0 +1,18 @@
+<!-- Shared Grid Section -->
+{%- assign gridItems = include.items -%}
+{%- assign gridHeadline = include.headline -%}
+{%- assign gridHeadlineLevel = include.headlineLevel -%}
+{%- assign gridHeadlineClasses = include.headlineClasses -%}
+{%- assign gridLight = include.light -%}
+{%- assign gridBgColor = include.bgColor -%}
+
+<grid
+  :items="{{ gridItems | jsonify | escape }}"
+  headline="{{ gridHeadline }}"
+  headline-level="{{ gridHeadlineLevel }}"
+  headline-classes="{{ gridHeadlineClasses }}"
+  light="{{ gridLight }}"
+  bg-color="{{ gridBgColor }}"
+>
+</grid>
+<!-- End Shared Grid Section -->

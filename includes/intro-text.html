@@ -4,6 +4,7 @@
 {%- assign introTextHeadline = include.headline -%}
 {%- assign introTextSpacing = include.spacing -%}
 {%- assign introTextHeadlineClasses = include.headlineClasses | default: 'text-center' -%}
+{%- assign introTextCopyClasses = include.copyClasses -%}
 
 <figure class="intro-text utility-animation {{ introTextVariant }} {{ introTextSpacing }}">
   <div class="container space-lg-2">
@@ -19,7 +20,7 @@
     {% endif %}
     <div class="row">
       <div class="col">
-        <p class="intro-text__copy fade-in-bottom" data-utility-animation-step="1">
+        <p class="intro-text__copy fade-in-bottom {{ introTextCopyClasses }}" data-utility-animation-step="1">
           {{ introTextCopy }}
         </p>
       </div>

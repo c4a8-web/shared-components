@@ -121,6 +121,17 @@ $header-border-size: 1px;
         box-shadow: none;
         color: var(--color-copy-light);
 
+        &::before {
+          position: absolute;
+          content: '';
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          z-index: -1;
+          backdrop-filter: blur(60px);
+        }
+
         .header__link {
           color: inherit;
 

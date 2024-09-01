@@ -13,7 +13,6 @@ const baseArgs = {};
 export const Typography = Template.bind({});
 
 const settings = {
-  'Headline Sizes': null,
   'h1-font-size': {
     breakpoints: ['sm', 'lg', ''],
     variant: 'light',

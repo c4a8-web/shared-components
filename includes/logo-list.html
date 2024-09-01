@@ -4,6 +4,8 @@
 {%- assign logoListSpacing = include.spacing -%}
 {%- assign logoListColumns = include.columns -%}
 {%- assign logoListAspectRatio = include.aspectRatio -%}
+{%- assign logoListOverlapping = include.overlapping -%}
+{%- assign logoListBgColor = include.bgColor -%}
 
 <logo-list
   :list="{{ logoList | jsonify | escape }}"
@@ -11,6 +13,8 @@
   spacing="{{ logoListSpacing }}"
   :columns="{{ logoListColumns }}"
   aspect-ratio="{{ logoListAspectRatio }}"
+  overlapping="{{ logoListOverlapping }}"
+  bg-color="{{ logoListBgColor }}"
 >
 </logo-list>
 <!-- End Shared Logo List Section -->

@@ -44,6 +44,16 @@
   --color-primary-accent: var(--color-emergency-accent);
 }
 
+.is-basic-link {
+  text-decoration: none !important;
+  color: inherit !important;
+
+  &:hover {
+    text-decoration: underline !important;
+    color: var(--color-copy-hover) !important;
+  }
+}
+
 .is-copy-link {
   text-decoration: underline !important;
   color: inherit !important;
@@ -77,6 +87,12 @@
   margin-top: spacing($size: 48, $negative: true);
 }
 
+@for $i from 1 through 20 {
+  .max-rem-#{$i} {
+    max-width: $i * 1rem !important;
+  }
+}
+
 @include media-breakpoint-up(lg) {
   .is--desktop {
     display: block;
@@ -88,5 +104,24 @@
 
   .mt-lg-n48 {
     margin-top: spacing($size: 48, $negative: true);
+  }
+
+  $i: 5;
+  @while $i <= 30 {
+    .max-lg-w-#{$i} {
+      max-width: $i * 1% !important;
+    }
+
+    .max-lg-vw-#{$i} {
+      max-width: $i * 1vw !important;
+    }
+
+    $i: $i + 5;
+  }
+
+  @for $i from 1 through 20 {
+    .max-lg-rem-#{$i} {
+      max-width: $i * 1rem !important;
+    }
   }
 }

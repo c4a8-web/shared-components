@@ -1,8 +1,29 @@
 import State from '../state.js';
 import Tools from '../tools.js';
 
+const timelineEntryInnerText = {
+  tagName: 'timeline-entry-inner-text',
+  computed: {},
+  template: `
+    <div :class="['timeline__entry-inner-text', { 'timeline__entry-inner-text--simple': simple }]">
+      <template v-if="entry.title">
+        <div class="timeline__entry-title">{{ entry.title }}</div>
+        <p class="timeline__entry-text">{{ entry.text }}</p>
+      </template>
+      <template v-else><span v-html="entry"></span></template>
+    </div>
+  `,
+  props: {
+    entry: Object,
+    simple: Boolean,
+  },
+};
+
 export default {
   tagName: 'timeline',
+  components: {
+    'timeline-entry-inner-text': timelineEntryInnerText,
+  },
   computed: {
     classList() {
       return [
@@ -11,6 +32,8 @@ export default {
         'timeline--headline-sticky has-headline-sticky',
         this.isReady ? State.READY : '',
         this.expanded ? State.EXPANDED : '',
+        this.spacing,
+        this.simpleValue ? 'timeline--simple' : '',
         'vue-component',
       ];
     },
@@ -31,6 +54,12 @@ export default {
     lineEndStyle() {
       return `--timeline-line-position: ${this.entries?.length}`;
     },
+    simpleValue() {
+      return Tools.isTrue(this.simple);
+    },
+    iconName() {
+      return 'strategy-split';
+    },
   },
   mounted() {
     this.bindEvents();
@@ -43,7 +72,6 @@ export default {
       startDelay: 500,
       isVisible: false,
       percentageInViewport: 40,
-      // minPercentage: 0,
       minPercentage: -10,
       maxPercentage: 100,
       entryContainerStates: [],
@@ -93,14 +121,7 @@ export default {
       }
     },
     showEntryByPercent(percentage) {
-      // const minIndex = 0;
       const stepSize = this.maxPercentage / this.entries.length;
-
-      // let index = Math.floor(percentage / stepSize);
-
-      // if (index < minIndex) {
-      //   index = minIndex;
-      // }
 
       for (let i = 0; i < this.entries.length; i++) {
         this.updateNextStep(i, percentage, stepSize);
@@ -109,6 +130,7 @@ export default {
     updateNextStep(index, percentage, stepSize) {
       this.entryContainerStates[index] = State.SHOW;
 
+      const minPercentage = 0;
       const startPercentage = stepSize * index;
       const endPercentage = stepSize * (index + 1);
 
@@ -119,16 +141,24 @@ export default {
         const localPercentage = percentage - startPercentage;
         const showThreshold = 60;
 
-        currentPercentage = 100 - Math.ceil((localPercentage * 100) / end);
+        currentPercentage = this.maxPercentage - Math.ceil((localPercentage * 100) / end);
 
         if (currentPercentage < showThreshold) {
           this.entryContainerStates[index] = [State.SHOW, 'timeline__entry-container--visible'];
         }
       } else if (percentage > endPercentage) {
-        currentPercentage = 0;
+        currentPercentage = minPercentage;
         this.entryContainerStates[index] = [State.SHOW, State.IS_FULL];
       } else {
-        currentPercentage = 100;
+        currentPercentage = this.maxPercentage;
+      }
+
+      if (this.simpleValue) {
+        if (currentPercentage < this.maxPercentage && currentPercentage > minPercentage) {
+          currentPercentage = 1;
+        } else {
+          currentPercentage = 0;
+        }
       }
 
       this.entryContainerStyles[index] = `${currentPercentage}`;
@@ -137,7 +167,13 @@ export default {
       return ['timeline__entry-container', this.entryContainerStates[index]];
     },
     getEntryContainerStyle(index) {
-      const percentage = this.entryContainerStyles[index] ? this.entryContainerStyles[index] : 100;
+      const minPercentage = 0;
+
+      const percentage = this.entryContainerStyles[index]
+        ? this.entryContainerStyles[index]
+        : this.simpleValue
+          ? minPercentage
+          : this.maxPercentage;
 
       return `--timeline-entry-container-percentage: ${percentage}`;
     },
@@ -180,13 +216,26 @@ export default {
     expanded: {
       default: null,
     },
+    spacing: String,
+    simple: {
+      default: null,
+    },
+    subline: String,
   },
   template: `
     <div :class="classList" :style="style" ref="root">
       <div class="container">
         <div class="timeline__row row">
           <div class="timeline__col col">
-            <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+            <template v-if="subline">
+              <div class="timeline__header">
+                <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+                <div class="timeline__subline" v-if="subline">{{ subline }}</div>
+              </div>
+            </template>
+            <template v-else>
+              <headline :text="headline?.text" :level="headline?.level" :classes="headlineClasses" />
+            </template>
 
             <div class="timeline__content">
               <div class="timeline__line">
@@ -198,19 +247,21 @@ export default {
                 <div :class="getEntryContainerClasses(index)" v-for="(entry, index) in entries" :style="getEntryContainerStyle(index)">
                   <div class="timeline__entry" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text">
-                        {{ entry }}
+                      <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
+                      <div class="timeline__entry-inner-line">
+                        <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
-                      <div class="timeline__entry-inner-line"></div>
+                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
                     </div>
                   </div>
                   <div class="timeline__entry-line" :style="getEntryLineStyle(index)" ref="entry-line"></div>
                   <div class="timeline__entry-spacer" :style="getEntryLineStyle(index)">
                     <div class="timeline__entry-inner">
-                      <div class="timeline__entry-inner-text">
-                        {{ entry }}
+                      <timeline-entry-inner-text :entry="entry" :simple="simpleValue" />
+                      <div class="timeline__entry-inner-line">
+                        <icon :icon="iconName" class="timeline__entry-inner-line-icon" v-if="simpleValue" />
                       </div>
-                      <div class="timeline__entry-inner-line"></div>
+                      <div class="timeline__entry-vertical-line" v-if="simpleValue"></div>
                     </div>
                   </div>
                 </div>

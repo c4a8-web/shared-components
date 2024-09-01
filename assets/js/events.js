@@ -14,6 +14,7 @@ const Events = {
   DROPDOWN_CHANGED: 'dropdown-changed',
   DROPDOWN_OPENED: 'dropdown-opened',
   CARD_TAG_CLICKED: 'card-tag-clicked',
+  ENDED: 'ended',
 };
 
 export default Events;

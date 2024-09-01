@@ -274,7 +274,8 @@ class Tools {
 
   static getYoutubeThumbnail(videoURL) {
     let videoId;
-    const regExp1 = videoURL.match(/youtube\.com.*(\?v=|vi=)(.{11})/);
+
+    const regExp1 = videoURL.match(/youtube\.com.*(\?v=|vi=|\/live\/)(.{11})/);
     const regExp2 = videoURL.match(/youtu\.be\/(.{11})/);
 
     if (regExp1) {
@@ -490,6 +491,25 @@ class Tools {
 
   static blue(hex) {
     return parseInt(hex.substring(5, 7), 16);
+  }
+
+  static hexToRgb(hex) {
+    let rootHex;
+
+    if (hex.startsWith('--') || hex.startsWith('var(')) {
+      const cleanedHex = hex.replace(/--|var\(/, '').replace(/\)$/, '');
+      const rootStyles = getComputedStyle(document.documentElement);
+
+      rootHex = rootStyles.getPropertyValue(cleanedHex).trim();
+    }
+
+    const localHex = rootHex ? rootHex : hex;
+
+    const red = Tools.red(localHex);
+    const green = Tools.green(localHex);
+    const blue = Tools.blue(localHex);
+
+    return `${red}, ${green}, ${blue}`;
   }
 
   static getHash() {

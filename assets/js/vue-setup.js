@@ -10,13 +10,18 @@ import AdBlockInfo from './vue/ad-block-info.js';
 import AsideWrapper from './vue/aside-wrapper.js';
 import Authors from './vue/authors.js';
 import AuthorAvatar from './vue/author-avatar.js';
+import AuthorHeader from './vue/author-header.js';
 import BlogRecent from './vue/blog-recent.js';
 import Card from './vue/card.js';
+import Carousel from './vue/carousel.js';
 import CheckCard from './vue/check-card.js';
+import ContentScroller from './vue/content-scroller.js';
+import CtaList from './vue/cta-list.js';
 import Cta from './vue/cta.js';
 import Dropdown from './vue/dropdown.js';
 import EventOverview from './vue/event-overview.js';
 import Event from './vue/event.js';
+import FabHint from './vue/fab-hint.js';
 import Faq from './vue/faq.js';
 import FeatureGridItem from './vue/feature-grid-item.js';
 import FeatureList from './vue/feature-list.js';
@@ -33,8 +38,10 @@ import Footer from './vue/footer.js';
 import GoogleMapEntry from './vue/google-map-entry.js';
 import GoogleMap from './vue/google-map.js';
 import GridList from './vue/grid-list.js';
+import Grid from './vue/grid.js';
 import Header from './vue/header.js';
 import Headline from './vue/headline.js';
+import Hero from './vue/hero.js';
 import Icon from './vue/icon.js';
 import ImageBlock from './vue/image-block.js';
 import ImageList from './vue/image-list.js';
@@ -74,6 +81,8 @@ import SlotItems from './vue/slot-items.js';
 import TabList from './vue/tab-list.js';
 import Tag from './vue/tag.js';
 import TestimonialList from './vue/testimonial-list.js';
+import TextAnimation from './vue/text-animation.js';
+import TextIconAnimation from './vue/text-icon-animation.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
@@ -93,6 +102,7 @@ import EmailActionUnread from './vue/icons/email-action-unread.js';
 import Emergency from './vue/icons/emergency.js';
 import Expand from './vue/icons/expand.js';
 import Hand from './vue/icons/hand.js';
+import ImageCredits from './vue/icons/image-credits.js';
 import Info from './vue/icons/info.js';
 import ListView from './vue/icons/list-view.js';
 import Magnifier from './vue/icons/magnifier.js';
@@ -109,7 +119,9 @@ import Plus from './vue/icons/plus.js';
 import Quotes from './vue/icons/quotes.js';
 import Rocket from './vue/icons/rocket.js';
 import Smile from './vue/icons/smile.js';
+import StrategySplit from './vue/icons/strategy-split.js';
 import TileView from './vue/icons/tile-view.js';
+import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
 
 // Shapes
@@ -159,13 +171,18 @@ const addApp = () => {
     AsideWrapper,
     Authors,
     AuthorAvatar,
+    AuthorHeader,
     BlogRecent,
     Card,
+    Carousel,
+    CheckCard,
+    ContentScroller,
+    CtaList,
     Cta,
     Dropdown,
     EventOverview,
     Event,
-    CheckCard,
+    FabHint,
     CheckMark,
     Faq,
     FeatureGridItem,
@@ -183,8 +200,10 @@ const addApp = () => {
     GoogleMapEntry,
     GoogleMap,
     GridList,
+    Grid,
     Header,
     Headline,
+    Hero,
     Icon,
     ImageBlock,
     ImageList,
@@ -229,6 +248,7 @@ const addApp = () => {
     EmailActionUnread,
     Expand,
     Hand,
+    ImageCredits,
     Info,
     ListView,
     Menu,
@@ -244,6 +264,7 @@ const addApp = () => {
     Quotes,
     Rocket,
     Smile,
+    StrategySplit,
     TileView,
     SBlock,
     TBlock,
@@ -251,6 +272,8 @@ const addApp = () => {
     TabList,
     Tag,
     TestimonialList,
+    TextAnimation,
+    TextIconAnimation,
     TextTeaser,
     Timeline,
     LBlock,
@@ -259,6 +282,7 @@ const addApp = () => {
     Screenshot,
     PersonQuote,
     VideoInner,
+    World,
     XMark,
     Wrapper,
     WrapperSlotItems,

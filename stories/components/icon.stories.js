@@ -237,3 +237,24 @@ Info.args = {
   icon: 'info',
   size: 'xxl',
 };
+
+export const World = Template.bind({});
+
+World.args = {
+  icon: 'world',
+  size: 'xxl',
+};
+
+export const StrategySplit = Template.bind({});
+
+StrategySplit.args = {
+  icon: 'strategy-split',
+  size: 'xxl',
+};
+
+export const ImageCredits = Template.bind({});
+
+ImageCredits.args = {
+  icon: 'image-credits',
+  size: 'xxl',
+};
