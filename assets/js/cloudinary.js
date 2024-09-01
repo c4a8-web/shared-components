@@ -46,6 +46,16 @@ const Cloudinary = {
       figure: 'never',
       loading: 'auto',
     },
+    fullscreen4k: {
+      min_width: 480,
+      max_width: 3840,
+      fallback_max_width: 3840,
+      steps: 6,
+      sizes:
+        '(max-width: 30rem) 40rem, (max-width: 40rem) 50rem, (max-width: 50rem) 60rem, (max-width: 70rem) 80rem, (max-width: 90rem) 100rem, 200vw',
+      figure: 'never',
+      loading: 'auto',
+    },
     thumb: {
       min_width: 320,
       max_width: 1600,
