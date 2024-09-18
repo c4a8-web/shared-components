@@ -1,9 +1,0 @@
-<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" width="218px" height="218px" viewbox="0 0 436 669" version="1.1">
-	<g id="Group-3" transform="translate(0 0)">
-		<g id="Group-2-Copy" transform="translate(217 233); scale(2, 2)">
-			<path d="M0 0L218 0L218 218L0 218L0 0Z" id="Rectangle" fill="#FCD116" fill-rule="evenodd" stroke="none" />
-			<path d="M0 83.2472L109.596 1.33864e-12L109.596 103.78L0 187.027L0 83.2472Z" transform="translate(0 30.972677)" id="Rectangle" fill="#FFFFFF" fill-rule="evenodd" stroke="none" />
-			<path d="M0 83.2472L108.404 1.33864e-12L108.404 93.6996L108.404 103.78L0 187.027L0 83.2472Z" transform="matrix(-1 0 0 1 218 30.972677)" id="Rectangle-Copy-2" fill="#0072C6" fill-rule="evenodd" stroke="none" />
-		</g>
-	</g>
-</svg>

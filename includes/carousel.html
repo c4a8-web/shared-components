@@ -1,8 +1,0 @@
-{%- assign carouselItems = include.items -%}
-{%- assign carouselBgColor = include.bgColor -%}
-
-<carousel
-  items="{{ carouselItems | jsonify | escape }}"
-  bg-color="{{ carouselBgColor }}"
->
-</carousel>

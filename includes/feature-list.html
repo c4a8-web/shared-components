@@ -1,6 +1,0 @@
-{%- assign featureList = include.featureList -%}
-{%- assign featureListItems = include.items | default: featureList.items -%}
-
-<feature-list
-  :items="{{ featureListItems | jsonify | escape }}"
-></feature-list>

@@ -1,0 +1,481 @@
+// @use 'sass:math'; // still not working for some reason
+
+@function breakpoint-next(
+  $name,
+  $breakpoints: $grid-breakpoints,
+  $breakpoint-names: map-keys($breakpoints)
+) {
+  $n: index($breakpoint-names, $name);
+
+  @return if(
+    $n != null and $n < length($breakpoint-names),
+    nth($breakpoint-names, $n + 1),
+    null
+  );
+}
+
+@function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
+  $min: map-get($breakpoints, $name);
+
+  @return if($min != 0, $min, null);
+}
+
+@function breakpoint-max($name, $breakpoints: $grid-breakpoints) {
+  $next: breakpoint-next($name, $breakpoints);
+
+  @return if($next, breakpoint-min($next, $breakpoints) - 0.02, null);
+}
+
+@function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
+  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+}
+
+@mixin bulletpoints() {
+  $dash-size: 20px;
+
+  li {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      display: inline-flex;
+      height: 2px;
+      width: $dash-size;
+      top: 12px;
+      left: -$dash-size;
+      background-color: var(--color-primary);
+      padding-right: $dash-size;
+      transform: translateX(-100%);
+    }
+  }
+}
+
+@mixin media-breakpoint-up($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+
+  @if $min {
+    @media (min-width: $min) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-down($name, $breakpoints: $grid-breakpoints) {
+  $max: breakpoint-max($name, $breakpoints);
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-between(
+  $lower,
+  $upper,
+  $breakpoints: $grid-breakpoints
+) {
+  $min: breakpoint-min($lower, $breakpoints);
+  $max: breakpoint-max($upper, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($lower, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($upper, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin media-breakpoint-only($name, $breakpoints: $grid-breakpoints) {
+  $min: breakpoint-min($name, $breakpoints);
+  $max: breakpoint-max($name, $breakpoints);
+
+  @if $min != null and $max != null {
+    @media (min-width: $min) and (max-width: $max) {
+      @content;
+    }
+  } @else if $max == null {
+    @include media-breakpoint-up($name, $breakpoints) {
+      @content;
+    }
+  } @else if $min == null {
+    @include media-breakpoint-down($name, $breakpoints) {
+      @content;
+    }
+  }
+}
+
+@mixin link-hover {
+  position: relative;
+  display: inline-block;
+
+  &:hover,
+  &:active,
+  &:focus {
+    font-weight: bold;
+  }
+
+  &::after {
+    display: block;
+    content: attr(data-title);
+    font-weight: bold;
+    height: 0;
+    width: auto;
+    overflow: hidden;
+    visibility: hidden;
+    margin-left: 0;
+    transition: none;
+  }
+}
+
+@mixin link-active {
+  position: relative;
+
+  &.active {
+    color: inherit;
+
+    &::before {
+      background-color: var(--color-secondary);
+      content: "";
+      height: 8px;
+      left: 50%;
+      position: absolute;
+      top: 57%;
+      transform: translateX(-50%);
+      width: calc(100% - (#{$header-nav-link-padding-x} * 2) + 8px);
+      z-index: -1;
+    }
+  }
+}
+
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+
+  &:before {
+    content: "";
+    display: block;
+    width: 100%;
+    padding-top: calc((#{$height} / #{$width}) * 100%);
+  }
+
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+@mixin text-highlight {
+  background-position-x: 1em;
+  background-position-y: 0.6em;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  background-image: linear-gradient(
+    to bottom,
+    var(--color-highlight-underline) 0%,
+    var(--color-highlight-underline) 100%
+  );
+  background-repeat: repeat-x;
+}
+
+@function get-container-width($name, $with-padding: true) {
+  $width: map-get($container-widths, $name);
+
+  @if ($with-padding) {
+    @return calc(#{$width} - (2 * #{$header-floating-inner-padding-x}));
+  } @else {
+    @return $width;
+  }
+}
+
+@function get-container-max-width($name) {
+  $width: map-get($container-max-widths, $name);
+
+  @return $width;
+}
+
+@mixin safari {
+  .safari & {
+    @content;
+  }
+}
+
+@function shared-assets($url) {
+  @return url("#{$url}");
+}
+
+@function assets($url) {
+  @if ($shared-components) {
+    @return shared-assets($url);
+  } @else {
+    @return static-assets($url);
+  }
+}
+
+@function spacing($size, $negative: false) {
+  $value: $size * 0.25;
+
+  $prefix: "";
+
+  @if $negative {
+    $prefix: "-";
+  }
+
+  @return #{$prefix}#{$value}rem;
+}
+
+@function fa-content($fa-var) {
+  // prettier-ignore
+  @return unquote("\"#{ $fa-var }\"");
+}
+
+@mixin icon($name, $font: "", $weight: 300, $after: true) {
+  $selector: "before";
+
+  @if ($after) {
+    $selector: "after";
+  }
+
+  $icon: map-get($icons, $name);
+
+  $icon-font: $icon-font-free;
+
+  @if ($font == "brand") {
+    $icon-font: $icon-font-brand;
+  }
+
+  &::#{$selector} {
+    font-family: $icon-font;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: $weight;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1;
+    text-rendering: auto;
+    content: fa-content($icon);
+
+    @content;
+  }
+}
+
+@mixin underline($color, $selector: null) {
+  @if ($selector) {
+  } @else {
+    $selector: "&";
+  }
+
+  #{$selector} {
+    text-decoration: none;
+    background-image: linear-gradient($color, $color);
+    background-repeat: no-repeat;
+    background-position: bottom left;
+    background-size: 0% 3px;
+    transition: background-size 0.4s ease-in-out;
+  }
+
+  &:hover {
+    #{$selector} {
+      background-size: 100% 3px;
+    }
+  }
+}
+
+@function get-full-column-width($container, $columns, $with-padding: false) {
+  $container-width: get-container-width($container, $with-padding);
+  $percentage: calc(100 / #{$grid-columns} * #{$columns} / 100);
+
+  @return calc(
+    ((100vw - #{$container-width}) / 2) + (#{$container-width} * #{$percentage})
+  );
+}
+
+@function to-string($list, $separator: "", $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+
+    @if type-of($e) == list {
+      $sublist: to-string($e, $separator, true);
+      $result: if($result == null, $sublist, $result + $sublist);
+    } @else {
+      $result: if($result == null, $e, $result + $separator + $e);
+    }
+  }
+
+  @return if($result == null, "", $result);
+}
+
+@mixin shadow($size: "medium", $x-offset: 0) {
+  @if ($size == "medium") {
+    box-shadow: #{$x-offset} 0 15px rgba(0, 0, 0, 0.45);
+  } @else if ($size == "light") {
+    box-shadow: #{$x-offset} 0 10px rgba(0, 0, 0, 0.25);
+  } @else if ($size == "medium-light") {
+    box-shadow: #{$x-offset} 0 7px rgba(0, 0, 0, 0.25);
+  } @else if ($size == "super-light") {
+    box-shadow: #{$x-offset} 0 5px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@mixin is-invisible {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+}
+
+@mixin vue-loading {
+  display: none;
+}
+
+@mixin light-text-shadow {
+  text-shadow: 0 0 14px var(--color-white);
+}
+
+@mixin hover-scale-transform {
+  $scale-factor: 1.025;
+  $scale-duration-initial: 1.3s;
+  $scale-duration-return: 0.4s;
+
+  .is-foreground :is(img, svg, .lottie),
+  .is-background {
+    transition-property: transform;
+    transition-timing-function: $animation-transition;
+    transition-duration: $scale-duration-return;
+  }
+
+  &:hover {
+    .is-foreground :is(img, svg, .lottie),
+    .is-background {
+      transform: scale($scale-factor);
+      transition-duration: $scale-duration-initial;
+    }
+  }
+}
+
+@mixin hover-scale {
+  @include shadow("super-light");
+  @include hover-scale-transform;
+
+  transition: box-shadow 1.5s $animation-transition;
+
+  &:hover {
+    @include shadow("medium-light");
+  }
+}
+
+@mixin richtext-width {
+  @container (min-width: 600px) {
+    width: $content-width-xxl;
+  }
+}
+
+@mixin utility-animation-options(
+  $distance: null,
+  $duration: null,
+  $delay: null,
+  $delay-offset: 0ms,
+  $selector: null,
+  $group: null
+) {
+  #{$selector}[data-utility-animation-step] {
+    @if $distance {
+      --utility-animation-distance: #{$distance};
+    }
+
+    &.is-starting {
+      @if $delay {
+        @if $group {
+          animation-delay: calc(
+            (
+                (
+                    var(--utility-animation-index) - var(
+                        --utility-animation-items-loaded
+                      )
+                  ) *
+                  #{$delay}
+              ) +
+              #{$delay-offset}
+          );
+        } @else {
+          animation-delay: calc(
+            (var(--utility-animation-index) * #{$delay}) + #{$delay-offset}
+          );
+        }
+      }
+
+      @if $duration {
+        animation-duration: $duration;
+      }
+    }
+  }
+}
+
+@mixin utility-animation-in-viewport {
+  &[data-utility-animation-in-viewport="true"] {
+    @content;
+  }
+}
+
+@mixin scrollbar {
+  --scrollbar-background-color: var(--color-athens-gray);
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  &::-webkit-scrollbar-button {
+    width: 0px;
+    height: 0px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-background-color);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    // background: #ac6411;
+  }
+
+  &::-webkit-scrollbar-thumb:active {
+    // background: #17a63a;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track:hover {
+    // background: #666666;
+  }
+
+  &::-webkit-scrollbar-track:active {
+    // background: #333333;
+  }
+
+  &::-webkit-scrollbar-corner {
+    // background: transparent;
+  }
+}

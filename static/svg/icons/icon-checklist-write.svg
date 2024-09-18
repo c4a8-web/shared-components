@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="98" height="98" overflow="visible">
-	<circle id="HG_2_" cx="49" cy="49" r="49" fill="#5cbbff" opacity=".7" />
-	<g id="checklist-write_Kopie">
-		<path d="M46.1 72.3H29.9c-1.1 0-2-.9-2-2V31.8c0-1.1.9-2 2-2H34M58.3 29.7h4.1c1.1 0 2 .9 2 2V46M50.2 29.7c0-2.2-1.8-4.1-4.1-4.1-2.2 0-4.1 1.8-4.1 4.1h-4v6.1h16.2v-6.1h-4z" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
-		<path d="M60.3 46V34.8c0-.6-.5-1-1-1h-5.1M38 33.8h-5c-.6 0-1 .5-1 1v32.4c0 .6.5 1 1 1h13.2M38 41.9h16.2M38 48h16.2M38 54.1h8.1M58.7 69.9l-8.5 2.4 2.4-8.5 14.6-14.6c1.7-1.7 4.4-1.7 6.1 0 1.7 1.7 1.7 4.4 0 6.1L58.7 69.9zM65.4 51.1l6.1 6.1M52.6 63.8l6.1 6.1" fill="none" stroke="#111" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" />
-	</g>
-</svg>

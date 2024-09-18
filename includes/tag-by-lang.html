@@ -1,7 +1,0 @@
-{%- assign tagByLangTag = include.tag -%}
-
-{%- if lang == 'de' -%}
-  {% assign tagByLang = site.tags[tag] | where_exp: 'item', 'item.lang == lang or item.lang == null' %}
-{%- else -%}
-  {% assign tagByLang = site.tags[tag] | where_exp: 'item', 'item.lang == lang or item.lang == "en"' %}
-{%- endif -%}

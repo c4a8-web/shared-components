@@ -1,0 +1,22 @@
+{
+  "textMedia": {
+    "isCentered": false,
+    "heading": {
+      "isCentered": false,
+      "headline": { "text": "Willkommen im myMewa Kundenportal", "level": 1 },
+      "hasPreline": false
+    },
+    "copy": {
+      "text": "&lt;p&gt;Ob vom Laptop, Tablet oder Smartphone – gehen Sie jederzeit online und verwalten Sie Ihr pers&amp;ouml;nliches Kundenkonto in unserem Kundenportal myMewa. Hier k&amp;ouml;nnen Sie jederzeit Ihre Daten einsehen, Unterlagen herunterladen und Ihre Serviceanfragen jederzeit mit einem Klick digital verwalten.&lt;/p&gt;"
+    },
+    "buttonTop": {
+      "label": "Mehr erfahren",
+      "href": "/de/registrationbenefits",
+      "appearance": "text",
+      "target": "_self",
+      "isReversed": false
+    }
+  },
+  "hasBackground": false,
+  "anchor": null
+}
