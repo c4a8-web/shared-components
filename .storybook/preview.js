@@ -1,6 +1,25 @@
+import { setup } from '@storybook/vue3';
 import '../src/assets/scss/index.scss';
 // TODO add theme support
 import '../src/assets/scss/themes/_gk.scss';
+
+// register all js components
+const components = import.meta.glob('../src/components/**/*.js', {
+  eager: true,
+});
+
+setup((app) => {
+  Object.entries(components).forEach(([path, component]) => {
+    const componentName =
+      component.default.name ||
+      path
+        .split('/')
+        .pop()
+        .replace(/\.\w+$/, '');
+
+    app.component(componentName, component.default);
+  });
+});
 
 export const decorators = [
   (story, params) => {
