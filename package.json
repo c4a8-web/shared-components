@@ -1,7 +1,7 @@
 {
   "name": "@gk/shared-components",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "dist/shared-components.umd.js",
   "module": "dist/shared-components.es.js",
   "files": [
