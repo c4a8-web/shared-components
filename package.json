@@ -1,14 +1,30 @@
 {
-  "name": "shared-components-vue",
+  "name": "@gk/shared-components",
   "private": true,
   "version": "0.0.0",
+  "main": "dist/shared-components.umd.js",
+  "module": "dist/shared-components.es.js",
+  "files": [
+    "dist"
+  ],
   "type": "module",
+  "keywords": [
+    "vue",
+    "library",
+    "vite",
+    "component"
+  ],
+  "license": "BSD 3-Clause",
+  "author": "glueckkanja AG",
   "scripts": {
     "dev": "storybook dev -p 6006",
     "start": "storybook dev -p 6006",
     "build": "vite build",
     "preview": "vite preview",
     "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "vue": "^3.4.37"
   },
   "dependencies": {
     "vue": "^3.4.37"
