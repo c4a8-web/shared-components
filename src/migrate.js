@@ -34,7 +34,7 @@ const handleAdBlockerError = function (error) {
   document.dispatchEvent(customEvent);
 };
 
-const Form = import('./components/form.js')
+const Form = import('./assets/js/components/form.js')
   .then((module) => {
     return module.default;
   })
