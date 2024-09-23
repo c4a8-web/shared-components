@@ -1,260 +1,244 @@
 export default {
   tagName: 'text-image',
-  migrate: true,
-  template: `
-        text-image
-    `,
-};
+  props: {
+    spacing: { type: String, default: 'space-top-2' },
+    image: String,
+    imageClasses: String,
+    imagePreset: String,
+    lottie: Object,
+    float: Boolean,
+    overline: String,
+    headline: String,
+    subline: String,
+    left: Boolean,
+    alt: String,
+    cloudinary: Boolean,
+    offset: Boolean,
+    white: Boolean,
+    copy: String,
+    list: Array,
+    bgColor: String,
+    copyClasses: String,
+    copyLight: String,
+    background: String,
+    firstColWidth: Number,
+    secondColWidth: Number,
+    reduceSpacing: { type: Boolean, default: false },
+    cta: Object,
+    modal: Object,
+    href: String,
+    badge: Object,
+    sticky: Boolean,
+    noAnimation: Boolean,
+    index: Number,
+    noGutters: { type: Boolean, default: false },
+    level: { type: String, default: 'h3' },
+    headlineClasses: String,
+  },
+  computed: {
+    textImageLightText() {
+      return this.copyLight ? 'text-light' : '';
+    },
+    textImageFirstColWidthXl() {
+      return this.firstColWidth || 4;
+    },
+    textImageFirstColWidthComputed() {
+      return this.firstColWidth || 6;
+    },
+    textImageSecondColWidthXl() {
+      return this.secondColWidth || 8;
+    },
+    textImageSecondColWidthComputed() {
+      return this.secondColWidth || 6;
+    },
+    textImageHeadlineClassesComputed() {
+      let classes = `${this.headlineClasses || ''} ${this.textImageLightText} mb-2 mb-lg-4`;
 
-// export default {
-//   tagName: 'text-image',
-//   props: {
-//     spacing: {
-//       type: String,
-//       default: 'space-top-2',
-//     },
-//     image: String,
-//     imageClasses: String,
-//     imagePreset: String,
-//     lottie: String,
-//     float: Boolean,
-//     overline: String,
-//     headline: String,
-//     subline: String,
-//     left: Boolean,
-//     alt: String,
-//     cloudinary: Boolean,
-//     offset: Boolean,
-//     white: Boolean,
-//     copy: String,
-//     list: Array,
-//     bgColor: String,
-//     copyClasses: {
-//       type: String,
-//       default: '',
-//     },
-//     copyLight: {
-//       type: Boolean,
-//       default: false,
-//     },
-//     background: String,
-//     firstColWidth: Number,
-//     secondColWidth: Number,
-//     reduceSpacing: {
-//       type: Boolean,
-//       default: false,
-//     },
-//     cta: Object,
-//     modal: Object,
-//     href: String,
-//     badge: Object,
-//     sticky: Boolean,
-//     noAnimation: {
-//       type: Boolean,
-//       default: false,
-//     },
-//     index: Number,
-//     noGutters: {
-//       type: Boolean,
-//       default: false,
-//     },
-//     level: {
-//       type: String,
-//       default: 'h3',
-//     },
-//     headlineClasses: String,
-//     siteData: Object, // Pass site data as a prop or import it if available
-//   },
-//   data() {
-//     return {
-//       textImageModalApiKey: this.modal?.apiKey || process.env.VUE_APP_PERSONIO_API_KEY,
-//     };
-//   },
-//   computed: {
-//     textImageLightText() {
-//       return this.copyLight ? 'text-light' : '';
-//     },
-//     computedFirstColWidth() {
-//       return this.firstColWidth || 6;
-//     },
-//     computedFirstColWidthXl() {
-//       return this.firstColWidth || 4;
-//     },
-//     computedSecondColWidth() {
-//       return this.secondColWidth || 6;
-//     },
-//     computedSecondColWidthXl() {
-//       return this.secondColWidth || 8;
-//     },
-//     imageClassesComputed() {
-//       let classes = this.imageClasses || '';
-//       if (this.subline) {
-//         classes += ' text-image__img--mobile';
-//       }
-//       return classes;
-//     },
-//     headlineClassesComputed() {
-//       let classes = `${this.headlineClasses || ''} ${this.textImageLightText} mb-2 mb-lg-4`;
-//       if (!this.headlineClasses) {
-//         classes += this.float ? ' h3-font-size' : ' h4-font-size font-weight-normal';
-//       }
-//       return classes;
-//     },
-//     computedImgSrcSets() {
-//       if (this.float) {
-//         return (
-//           (this.siteData?.imgSrcSets && this.siteData.imgSrcSets[this.imagePreset]) ||
-//           (this.siteData?.imgSrcSets && this.siteData.imgSrcSets.textImageFloatingSmall) ||
-//           null
-//         );
-//       } else {
-//         return (this.siteData?.imgSrcSets && this.siteData.imgSrcSets[this.imagePreset]) || null;
-//       }
-//     },
-//     computedPreset() {
-//       if (this.float) {
-//         return this.imagePreset || 'textImageFloatingSmall';
-//       } else {
-//         return this.imagePreset || null;
-//       }
-//     },
-//     offsetValue() {
-//       return this.left ? 0 : 1;
-//     },
-//     secondColClasses() {
-//       let classes = [];
-//       if (this.noGutters) {
-//         classes.push('no-gutters');
-//       } else {
-//         classes.push('pt-2', 'pt-lg-4');
-//       }
-//       classes.push(`col-lg-${this.computedSecondColWidth}`);
-//       if (!this.noAnimation) {
-//         classes.push('fade-in-bottom');
-//       }
-//       if (this.white) {
-//         classes.push('text-white');
-//       }
-//       if (this.reduceSpacing) {
-//         classes.push(this.reduceSpacing);
-//       } else {
-//         classes.push(`${this.left ? 'pr-lg-' : 'pl-lg-'}${this.computedSecondColWidth}`);
-//       }
-//       if (this.float) {
-//         classes.push(`col-xl-${this.computedSecondColWidthXl}`);
-//       }
-//       if (!this.float && this.left && this.offset) {
-//         classes.push('offset-lg-1');
-//       }
-//       return classes.join(' ');
-//     },
-//   },
-//   methods: {
-//     navigateToHref() {
-//       if (this.href) {
-//         window.location.href = this.href;
-//       }
-//     },
-//   },
-//   template: `
-//       <!-- Shared Text Image Section -->
-//       <div
-//         class="text-image is-component"
-//         :class="[
-//           spacing,
-//           bgColor ? 'text-image--bg-color' : '',
-//           sticky ? 'is-sticky-scroller' : '',
-//           !noAnimation ? 'utility-animation utility-animation--enter-exit' : '',
-//           float ? 'text-image--float' : '',
-//         ]"
-//         :style="{
-//           backgroundColor: bgColor || null,
-//           '--utility-animation-index': index || null,
-//           backgroundImage: background ? \`url('\${background}')\` : null,
-//         }"
-//       >
-//         <div class="container">
-//           <div :class="['row', left ? 'flex-row-reverse' : '']">
-//             <!-- Floating Image Column -->
-//             <div
-//               v-if="float"
-//               class="text-image__floating-col justify-content-end text-image__floating-img position-absolute top-0 right-0"
-//               :class="[
-//                 \`col-lg-\${computedFirstColWidth}\`,
-//                 float ? \`col-xl-\${computedFirstColWidthXl}\` : '',
-//               ]"
-//               @click="navigateToHref"
-//               v-if="href"
-//               style="cursor: pointer;"
-//             >
-//               <!-- Include your ImgComponent here -->
-//             </div>
-//             <!-- First Column -->
-//             <div
-//               class="text-image__first-col d-flex text-image__img justify-content-center"
-//               :class="[
-//                 imageClassesComputed,
-//                 \`col-lg-\${computedFirstColWidth}\`,
-//                 float ? \`col-xl-\${computedFirstColWidthXl} text-image__img--floating\` : '',
-//                 offset && !float ? \`offset-lg-\${offsetValue}\` : '',
-//               ]"
-//               @click="navigateToHref"
-//               v-if="href"
-//               style="cursor: pointer;"
-//             >
-//               <div
-//                 class="text-image__first-col-wrapper"
-//                 :class="!noAnimation ? 'fade-in-bottom' : ''"
-//                 data-utility-animation-step="1"
-//               >
-//                 <!-- Include your ImgComponent here -->
-//               </div>
-//             </div>
-//             <!-- Second Column -->
-//             <div
-//               class="text-image__second-col"
-//               :class="secondColClasses"
-//               data-utility-animation-step="1"
-//             >
-//               <!-- Badge -->
-//               <div v-if="badge">
-//                 <!-- Include your BadgeComponent here -->
-//               </div>
-//               <!-- Overline -->
-//               <span v-if="overline" class="text-image__overline d-inline-block mb-2 font-size-2">
-//                 {{ overline }}
-//               </span>
-//               <!-- Headline -->
-//               <div v-if="headline">
-//                 <!-- Include your HeadlineComponent here -->
-//               </div>
-//               <!-- Subline and Image -->
-//               <template v-if="subline">
-//                 <span class="richtext">{{ subline }}</span>
-//                 <div class="text-image__img text-image__img--subline mb-5 mt-5">
-//                   <!-- Include your ImgComponent here -->
-//                 </div>
-//               </template>
-//               <!-- Copy -->
-//               <div :class="[copyClasses, textImageLightText]">
-//                 <span v-html="copy"></span>
-//               </div>
-//               <!-- List -->
-//               <div v-if="list" class="pt-4 pt-lg-6 pb-6">
-//                 <!-- Include your CtaListComponent here -->
-//               </div>
-//             </div>
-//             <!-- CTA -->
-//             <div v-if="cta" class="text-image__cta col-lg-12">
-//               <!-- Include your CtaComponent here -->
-//             </div>
-//           </div>
-//         </div>
-//         <!-- Modal -->
-//         <div v-if="modal">
-//           <!-- Include your ModalComponent here -->
-//         </div>
-//       </div>
-//       <!-- End Shared Text Image Section -->
-//     `,
-// };
+      if (!this.headlineClasses) {
+        classes += this.float ? ' h3-font-size' : ' h4-font-size font-weight-normal';
+      }
+
+      return classes.trim();
+    },
+    textImageImgSrcSets() {
+      if (this.float) {
+        return this.imagePreset ? this.imagePreset : 'textImageFloatingSmall';
+      } else {
+        return this.imagePreset ? this.imagePreset : null;
+      }
+    },
+    textImagePreset() {
+      if (this.float) {
+        return this.imagePreset || 'textImageFloatingSmall';
+      } else {
+        return this.imagePreset || false;
+      }
+    },
+    textImageClass() {
+      return [
+        'text-image',
+        'is-component',
+        this.spacing,
+        { 'text-image--bg-color': this.bgColor },
+        { 'is-sticky-scroller': this.sticky },
+        { 'utility-animation utility-animation--enter-exit': !this.noAnimation },
+        { 'text-image--float': this.float },
+        'vue-component',
+      ];
+    },
+    textImageStyle() {
+      return {
+        'background-color': this.bgColor,
+        '--utility-animation-index': this.index,
+        'background-image': this.background ? `url('${this.background}')` : undefined,
+      };
+    },
+    textImageFirstColClasses() {
+      const classes = [
+        'text-image__first-col',
+        'd-flex',
+        'text-image__img',
+        'justify-content-center',
+        this.imageClasses,
+        `col-lg-${
+          this.float
+            ? this.textImageFirstColWidthComputed
+            : this.offset
+            ? this.textImageFirstColWidthComputed - 1
+            : this.textImageFirstColWidthComputed
+        }`,
+      ];
+      if (this.float) {
+        classes.push(`col-xl-${this.textImageFirstColWidthXl}`, 'text-image__img--floating');
+      } else if (this.offset && !this.left) {
+        classes.push('offset-lg-1');
+      }
+      return classes;
+    },
+    textImageSecondColClasses() {
+      const classes = [
+        'text-image__second-col',
+        { 'no-gutters': this.noGutters },
+        { 'pt-2 pt-lg-4': !this.noGutters },
+        `col-lg-${this.textImageSecondColWidthComputed}`,
+        { 'fade-in-bottom': !this.noAnimation },
+        { 'text-white': this.white },
+        { [this.reduceSpacing]: this.reduceSpacing },
+      ];
+
+      if (!this.reduceSpacing) {
+        classes.push(`${this.left ? 'pr-lg-' : 'pl-lg-'}${this.textImageSecondColWidthComputed}`);
+      }
+
+      if (this.float) {
+        classes.push(`col-xl-${this.textImageSecondColWidthXl}`);
+      } else if (this.left && this.offset) {
+        classes.push('offset-lg-1');
+      }
+
+      return classes;
+    },
+    textImageLightTextClass() {
+      return [this.copyClasses || '', this.textImageLightText];
+    },
+  },
+  methods: {
+    handleClick() {
+      if (this.href) {
+        document.location.href = this.href;
+      }
+    },
+  },
+  template: `
+    <div :class="textImageClass" :style="textImageStyle">
+      <div class="container">
+        <div class="row" :class="{ 'flex-row-reverse': left }">
+          <div
+            v-if="float"
+            :class="['text-image__floating-col', 'justify-content-end', 'text-image__floating-img', 'position-absolute', 'top-0', 'right-0', 'col-lg-' + textImageFirstColWidthComputed, 'col-xl-' + textImageFirstColWidthXl]"
+            @click="handleClick"
+            :style="{ cursor: href ? 'pointer' : undefined }"
+          >
+            <v-img
+              :img="image"
+              :cloudinary="cloudinary"
+              :alt="alt"
+              imgSrcSets="textImageFloating"
+              preset="textImageFloating"
+              :lottie="lottie"
+            />
+          </div>
+          <div
+            :class="textImageFirstColClasses"
+            @click="handleClick"
+            :style="{ cursor: href ? 'pointer' : undefined }"
+          >
+            <div class="text-image__first-col-wrapper" :class="{ 'fade-in-bottom': !noAnimation }" data-utility-animation-step="1">
+
+              <v-img
+                :img="image"
+                :cloudinary="cloudinary"
+                :imgSrcSets="textImageImgSrcSets"
+                :preset="textImagePreset"
+                :alt="alt"
+                :lottie="lottie"
+              />
+            </div>
+          </div>
+          <div :class="textImageSecondColClasses" data-utility-animation-step="1">
+            <badge
+              v-if="badge"
+              :text="badge.text"
+              :icon="badge.icon"
+              :uppercase="!badge.noUppercase"
+              classes="text-image__badge"
+            />
+            <span v-if="overline" class="text-image__overline d-inline-block mb-2 font-size-2">
+              {{ overline }}
+            </span>
+            <headline
+              v-if="headline"
+              :level="level"
+              :text="headline"
+              :classes="textImageHeadlineClassesComputed"
+            />
+            <span v-if="subline" class="richtext">{{ subline }}</span>
+            <div v-if="subline" class="text-image__img text-image__img--subline mb-5 mt-5">
+              <v-img
+                :img="image"
+                :cloudinary="cloudinary"
+                :imgSrcSets="textImageImgSrcSets"
+                :preset="textImagePreset"
+                :alt="alt"
+                :lottie="lottie"
+              />
+            </div>
+            <div :class="textImageLightTextClass" v-html="copy"></div>
+            <div v-if="list" class="pt-4 pt-lg-6 pb-6">
+              <cta-list :list="list" />
+            </div>
+          </div>
+          <div v-if="cta" class="text-image__cta col-lg-12">
+            <cta
+              :text="cta.text"
+              button
+              :href="cta.href"
+              :trigger="cta.trigger"
+            />
+          </div>
+        </div>
+      </div>
+      <modal
+        v-if="modal"
+        :form="modal.form"
+        :success="modal.success"
+        :error="modal.error"
+        application
+        :clientName="modal.clientName"
+        :jobId="modal.jobId"
+        :apiUrl="modal.apiUrl"
+        :apiKey="modal.apiKey"
+      />
+    </div>
+  `,
+};
