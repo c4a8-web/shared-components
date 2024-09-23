@@ -233,7 +233,7 @@ export default {
         :form="modal.form"
         :success="modal.success"
         :error="modal.error"
-        application
+        :application="true"
         :clientName="modal.clientName"
         :jobId="modal.jobId"
         :apiUrl="modal.apiUrl"
