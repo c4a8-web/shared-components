@@ -1,60 +1,53 @@
-import Tools from "../assets/js/tools.js";
-import Form from "../components/form.js";
+import Tools from '../assets/js/tools.js';
+import Form from '../assets/js/components/form.js';
 
 export default {
-  tagName: "formular",
+  tagName: 'formular',
   data() {
     return {
-      originalAction: "",
-      formAction: "",
+      originalAction: '',
+      formAction: '',
     };
   },
   computed: {
     classList() {
       return [
-        "form",
-        `${Tools.isTrue(this.light) === true ? "is-light" : ""}`,
-        `${Tools.isTrue(this.ajax) === true ? "form--ajax" : ""}`,
-        `${Tools.isTrue(this.container) === true ? "container" : ""}`,
-        `${Tools.isTrue(this.customValidation) === true ? "form--custom-validation" : ""}`,
-        this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : "",
-        "vue-component",
+        'form',
+        `${Tools.isTrue(this.light) === true ? 'is-light' : ''}`,
+        `${Tools.isTrue(this.ajax) === true ? 'form--ajax' : ''}`,
+        `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
+        `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
+        this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
+        'vue-component',
       ];
     },
     hasAnimationValue() {
       return Tools.isTrue(this.hasAnimation);
     },
     rowClassList() {
-      return ["form__row", `${this.container ? "row" : ""}`];
+      return ['form__row', `${this.container ? 'row' : ''}`];
     },
     wrapperClassList() {
-      return [`${this.container ? "col-md-11 col-lg-10" : ""}`];
+      return [`${this.container ? 'col-md-11 col-lg-10' : ''}`];
     },
     headlineClassList() {
       return [
-        "container headline-row",
-        `${this.space ? this.space : "space-top-2"}`,
-        this.hasAnimationValue ? "utility-animation fade-in-bottom" : "",
+        'container headline-row',
+        `${this.space ? this.space : 'space-top-2'}`,
+        this.hasAnimationValue ? 'utility-animation fade-in-bottom' : '',
       ];
     },
     sublineClassList() {
-      return [
-        "text-center",
-        `${this.form.sublineClasses ? this.form.sublineClasses : ""}`,
-      ];
+      return ['text-center', `${this.form.sublineClasses ? this.form.sublineClasses : ''}`];
     },
     formClassList() {
-      return ["form__submit mt-5", `${this.positionValue}`];
+      return ['form__submit mt-5', `${this.positionValue}`];
     },
     positionValue() {
-      return this.form.ctaPosition
-        ? this.form.ctaPosition
-        : Tools.isTrue(this.uncentered)
-          ? ""
-          : "justify-content-end";
+      return this.form.ctaPosition ? this.form.ctaPosition : Tools.isTrue(this.uncentered) ? '' : 'justify-content-end';
     },
     method() {
-      return this.form.method ? this.form.method : "post";
+      return this.form.method ? this.form.method : 'post';
     },
     preparedBlocks() {
       const blocks = [];
@@ -99,15 +92,13 @@ export default {
   },
   methods: {
     getOptions(field) {
-      return typeof field.options === "string"
-        ? this.options[field.options]
-        : field.options;
+      return typeof field.options === 'string' ? this.options[field.options] : field.options;
     },
     getBlockClassList(block) {
-      return ["row mx-n3", `${block?.rowClass ? block.rowClass : ""}`];
+      return ['row mx-n3', `${block?.rowClass ? block.rowClass : ''}`];
     },
     getFieldClassList(field) {
-      return ["px-3", `${field.col ? "col-md-" + field.col : "col-md-12"}`];
+      return ['px-3', `${field.col ? 'col-md-' + field.col : 'col-md-12'}`];
     },
     getId(field) {
       const groupField = field?.radios || field?.checkboxes;

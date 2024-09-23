@@ -57,6 +57,7 @@ declare module 'vue' {
     FormRadio: typeof import('./src/components/form-radio.js')['default']
     FormRadios: typeof import('./src/components/form-radios.js')['default']
     FormSelect: typeof import('./src/components/form-select.js')['default']
+    Formular: typeof import('./src/components/formular.js')['default']
     Globals: typeof import('./src/components/globals.js')['default']
     GoogleMap: typeof import('./src/components/google-map.js')['default']
     GoogleMapEntry: typeof import('./src/components/google-map-entry.js')['default']
