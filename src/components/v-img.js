@@ -1,10 +1,10 @@
-import DefaultPresets from "../assets/js/default-presets.js";
-import TransformationOptions from "../assets/js/transformation-options.js";
-import Cloudinary from "../assets/js/cloudinary.js";
-import Tools from "../assets/js/tools.js";
-import ImgSrcSets from "../data/img-src-sets.js";
+import DefaultPresets from '../assets/js/default-presets.js';
+import TransformationOptions from '../assets/js/transformation-options.js';
+import Cloudinary from '../assets/js/cloudinary.js';
+import Tools from '../assets/js/tools.js';
+import ImgSrcSets from '../data/img-src-sets.js';
 
-const basePath = "https://res.cloudinary.com/c4a8/image/upload/";
+const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
 /*
  Known Issues:
@@ -12,8 +12,8 @@ const basePath = "https://res.cloudinary.com/c4a8/image/upload/";
 */
 
 export default {
-  name: "VImg",
-  tagName: "v-img",
+  name: 'VImg',
+  tagName: 'v-img',
   data() {
     return {
       dimensions: {
@@ -22,60 +22,52 @@ export default {
       },
       dimStack: {},
       previousImg: null,
-      srcset: "",
+      srcset: '',
+      noCloudinary: null,
+      sizes: null,
     };
   },
   computed: {
     classList() {
-      return ["v-img", "vue-component", this.classListComponent];
+      return ['v-img', 'vue-component', this.classListComponent];
     },
     classListComponent() {
       return [
-        this.isSvg() ? "is-svg" : "",
-        this.class ? this.class : "",
-        this.canGenerateSrcSet() ? `no-small img-responsive` : "",
+        this.isSvg() ? 'is-svg' : '',
+        this.class ? this.class : '',
+        this.canGenerateSrcSet() ? `no-small img-responsive` : '',
       ];
     },
     isLottie() {
-      return typeof this.jsonLottieData === "object" ? true : false;
+      return typeof this.jsonLottieData === 'object' ? true : false;
     },
     jsonLottieData() {
       if (!this.lottie) return;
 
-      return typeof this.lottie !== "object"
-        ? Tools.getJSON(this.lottie)
-        : this.lottie;
+      return typeof this.lottie !== 'object' ? Tools.getJSON(this.lottie) : this.lottie;
     },
     jsonLottieSettingsData() {
       if (!this.lottie || !this.lottieSettings) return;
 
-      return typeof this.lottieSettings !== "object"
-        ? Tools.getJSON(this.lottieSettings)
-        : this.lottieSettings;
+      return typeof this.lottieSettings !== 'object' ? Tools.getJSON(this.lottieSettings) : this.lottieSettings;
     },
     isCloudinary() {
       return Tools.isTrue(this.cloudinary);
     },
     source() {
-      return this.isCloudinary
-        ? this.noCloudinary || this.getCloudinaryLink()
-        : this.noCloudinary;
+      return this.isCloudinary ? this.noCloudinary || this.getCloudinaryLink() : this.noCloudinary;
     },
     loading() {
-      return this.lazy ? "lazy" : null;
+      return this.lazy ? 'lazy' : null;
     },
     crossOriginValue() {
-      return this.isCloudinary
-        ? this.crossorigin
-          ? this.crossorigin
-          : "anonymous"
-        : null;
+      return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
     hasPictureTag() {
       return this.isCloudinary && this.imgSrcSets;
     },
     pictureWrapperClassList() {
-      return ["img__picture-wrapper", this.imgSrcSetValue?.ratioClasses];
+      return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];
     },
     imgSrcSetValue() {
       return ImgSrcSets[this.imgSrcSets];
@@ -93,7 +85,7 @@ export default {
   },
   watch: {
     animated(newAnimated, oldAnimated) {
-      this.srcset = "";
+      this.srcset = '';
     },
   },
   created() {
@@ -116,36 +108,27 @@ export default {
     },
     getPreset() {
       try {
-        if (!this.preset)
-          return { ...DefaultPresets, ...Cloudinary["presets"]["default"] };
+        if (!this.preset) return { ...DefaultPresets, ...Cloudinary['presets']['default'] };
 
-        const presetExists =
-          Cloudinary["presets"] && Cloudinary["presets"][this.preset];
+        const presetExists = Cloudinary['presets'] && Cloudinary['presets'][this.preset];
 
-        return presetExists
-          ? Object.assign(DefaultPresets, Cloudinary["presets"][this.preset])
-          : DefaultPresets;
+        return presetExists ? Object.assign(DefaultPresets, Cloudinary['presets'][this.preset]) : DefaultPresets;
       } catch (e) {
         console.error(e);
       }
     },
     hasProtocol() {
-      const regex =
-        /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
+      const regex = /(http|https):\/\/[\w-]+(\.[\w-]+)+([\w.,@?^=%&:\/~+#-]*[\w@?^=%&\/~+#-])?/;
 
       return regex.test(this.img);
     },
     getBaseAssetPath() {
       if (Tools.isTestingStorybook()) return this.img;
 
-      return this.img?.indexOf("/assets/") !== -1
-        ? this.img
-        : this.hasProtocol()
-          ? this.img
-          : `/assets/${this.img}`;
+      return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink(srcSet) {
-      return `${basePath}${srcSet ? srcSet.params : ""}${this.img}`;
+      return `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
     },
     getCloudinaryLink() {
       return this.isGif() || this.isSvg() || this.animated
@@ -158,14 +141,12 @@ export default {
       const base = basePath + transformationsString;
       const end = `/${this.img}`;
 
-      return hasWidth
-        ? `${base}${end}`
-        : `${base},w_${preset.fallback_max_width}${end}`;
+      return hasWidth ? `${base}${end}` : `${base},w_${preset.fallback_max_width}${end}`;
     },
     loadImage(link) {
       if (!this.canGenerateSrcSet()) return;
 
-      const img = document.createElement("img");
+      const img = document.createElement('img');
 
       img.onload = () => {
         const height = img?.naturalHeight;
@@ -209,13 +190,13 @@ export default {
 
       const transformationsIsNotEmpty = transformations.length > 0;
 
-      return transformationsIsNotEmpty ? transformations.join(",") : "";
+      return transformationsIsNotEmpty ? transformations.join(',') : '';
     },
     buildSrcSet(preset, transformationsString) {
       const srcsetArray = [];
-      const steps = preset["steps"];
-      const minWidth = preset["min_width"];
-      const maxWidth = preset["max_width"];
+      const steps = preset['steps'];
+      const minWidth = preset['min_width'];
+      const maxWidth = preset['max_width'];
       const stepWidth = (maxWidth - minWidth) / (steps - 1);
       const { naturalWidth } = this.dimensions;
 
@@ -233,21 +214,19 @@ export default {
         if (!isWithinNaturalWidth) break;
       }
 
-      this.srcset = naturalWidth < minWidth ? "" : srcsetArray.join(", \n");
+      this.srcset = naturalWidth < minWidth ? '' : srcsetArray.join(', \n');
     },
     isGif() {
       if (!this.img) return;
 
-      const extension = this.img.split(".")[1];
+      const extension = this.img.split('.')[1];
 
-      return extension.toLowerCase() === "gif";
+      return extension.toLowerCase() === 'gif';
     },
     isSvg() {
       const extension = Tools.getExtension(this.getCloudinaryBasePathLink());
 
-      return (
-        extension.toLowerCase() === "svg" || this.img?.indexOf(".svg") !== -1
-      );
+      return extension.toLowerCase() === 'svg' || this.img?.indexOf('.svg') !== -1;
     },
   },
   props: {
