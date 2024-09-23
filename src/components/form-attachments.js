@@ -1,9 +1,9 @@
-import Tools from "../assets/js/tools.js";
-import State from "../assets/js/state.js";
-import Events from "../assets/js/events.js";
+import Tools from '../assets/js/tools.js';
+import State from '../assets/js/state.js';
+import Events from '../assets/js/events.js';
 
 export default {
-  tagName: "form-attachments",
+  tagName: 'form-attachments',
   data() {
     return {
       isDragging: false,
@@ -18,27 +18,23 @@ export default {
 
       const filesArray = Array.from(this.files.files);
 
-      if (this.filesLength > this.maxFilesValue)
-        return filesArray.slice(0, this.maxFilesValue);
+      if (this.filesLength > this.maxFilesValue) return filesArray.slice(0, this.maxFilesValue);
 
       return filesArray;
     },
     classList() {
       return [
-        "form-attachments",
-        this.hasError === true ? "has-error" : "",
-        this.isDragging ? State.DRAGGING : "",
-        "vue-component",
+        'form-attachments',
+        this.hasError === true ? 'has-error' : '',
+        this.isDragging ? State.DRAGGING : '',
+        'vue-component',
       ];
     },
     interactableClassList() {
-      return [
-        "form-attachments__interactable",
-        this.hasErrors ? State.HAS_ERROR : "",
-      ];
+      return ['form-attachments__interactable', this.hasErrors ? State.HAS_ERROR : ''];
     },
     required() {
-      return this.required ? "required" : null;
+      return this.required ? 'required' : null;
     },
     maxSizeMb() {
       return this.maxSize / 1000000;
@@ -48,25 +44,18 @@ export default {
 
       return this.maxFiles ? this.maxFiles : defaultMaxFiles;
     },
-    extensionCollection() {
-      return this.extensions.split
-        ? this.extensions.split(",")
-        : this.extensions;
-    },
     extensionList() {
-      const capitalized = this.extensionCollection.map((extension) => {
+      const capitalized = this.extensions.map((extension) => {
         return Tools.capitalize(extension);
       });
 
-      return capitalized?.join(", ");
+      return capitalized?.join(', ');
     },
     extensionListText() {
       return `${this.extensionList} max. ${this.maxSizeMb} MB`;
     },
     acceptList() {
-      return this.extensionCollection
-        .map((extension) => `.${extension}`)
-        .join(",");
+      return this.extensions.map((extension) => `.${extension}`).join(',');
     },
   },
   props: {
@@ -82,72 +71,48 @@ export default {
     required: {
       default: null,
     },
-    extensions: String,
+    extensions: Array,
     id: String,
     maxFiles: Number,
   },
   mounted() {
-    this.root = this.$refs["root"];
-    this.interactable = this.$refs["interactable"];
-    this.button = this.$refs["button"];
-    this.textElement = this.$refs["text"];
-    this.file = this.$refs["file"];
-    this.error = this.$refs["error"];
-    this.base64 = this.$refs["base64"];
+    this.root = this.$refs['root'];
+    this.interactable = this.$refs['interactable'];
+    this.button = this.$refs['button'];
+    this.textElement = this.$refs['text'];
+    this.file = this.$refs['file'];
+    this.error = this.$refs['error'];
+    this.base64 = this.$refs['base64'];
 
     this.bindEvents();
 
     window.i18n?.loader?.then(() => {
-      this.wrongTypeText = window.i18n?.translate("formAttachmentsWrongType");
-      this.maxFilesText = window.i18n?.translate(
-        "formAttachmentsMaxFiles",
-        this.maxFilesValue
-      );
-      this.maxSizeText = window.i18n?.translate("formAttachmentsMaxSize");
+      this.wrongTypeText = window.i18n?.translate('formAttachmentsWrongType');
+      this.maxFilesText = window.i18n?.translate('formAttachmentsMaxFiles', this.maxFilesValue);
+      this.maxSizeText = window.i18n?.translate('formAttachmentsMaxSize');
     });
   },
   methods: {
     bindEvents() {
-      this.interactable.addEventListener(
-        "drag",
-        this.handleDragStart.bind(this)
-      );
-      this.interactable.addEventListener(
-        "dragstart",
-        this.handleDragStart.bind(this)
-      );
+      this.interactable.addEventListener('drag', this.handleDragStart.bind(this));
+      this.interactable.addEventListener('dragstart', this.handleDragStart.bind(this));
 
-      this.interactable.addEventListener(
-        "dragover",
-        this.handleDragOver.bind(this)
-      );
-      this.interactable.addEventListener(
-        "dragenter",
-        this.handleDragOver.bind(this)
-      );
+      this.interactable.addEventListener('dragover', this.handleDragOver.bind(this));
+      this.interactable.addEventListener('dragenter', this.handleDragOver.bind(this));
 
-      this.interactable.addEventListener("drop", this.handleDrop.bind(this));
-      this.interactable.addEventListener(
-        "dragleave",
-        this.handleDrop.bind(this)
-      );
-      this.interactable.addEventListener("dragend", this.handleDrop.bind(this));
+      this.interactable.addEventListener('drop', this.handleDrop.bind(this));
+      this.interactable.addEventListener('dragleave', this.handleDrop.bind(this));
+      this.interactable.addEventListener('dragend', this.handleDrop.bind(this));
 
-      this.interactable.addEventListener(
-        "click",
-        this.handleAddAttachment.bind(this)
-      );
+      this.interactable.addEventListener('click', this.handleAddAttachment.bind(this));
 
-      document.addEventListener(
-        Events.FORM_ATTACHMENT_ERROR,
-        this.handleFormAttachmentError.bind(this)
-      );
+      document.addEventListener(Events.FORM_ATTACHMENT_ERROR, this.handleFormAttachmentError.bind(this));
 
-      const parent = Tools.getParent(this.root, "form");
+      const parent = Tools.getParent(this.root, 'form');
 
       if (!parent) return;
 
-      parent.addEventListener("reset", this.reset.bind(this));
+      parent.addEventListener('reset', this.reset.bind(this));
     },
     handleFormAttachmentError(e) {
       this.showError(this.maxSizeText);
@@ -173,7 +138,7 @@ export default {
       this.dropTimeout = window.setTimeout(() => {
         this.isDragging = false;
 
-        if (e.type !== "drop") return;
+        if (e.type !== 'drop') return;
 
         this.handleDroppedFiles(droppedFiles);
       }, 50);
@@ -181,8 +146,8 @@ export default {
     isAllowedFileExtension(file) {
       if (!file) return;
 
-      const accept = this.file.getAttribute("accept")?.toLowerCase();
-      const allowedExtensions = accept?.split(",") || [];
+      const accept = this.file.getAttribute('accept')?.toLowerCase();
+      const allowedExtensions = accept?.split(',') || [];
       const fileExtension = Tools.getExtension(file.name);
 
       return allowedExtensions.includes(`.${fileExtension}`);
@@ -237,24 +202,19 @@ export default {
       this.appendFiles(droppedFiles);
     },
     areFilesAllowed(files) {
-      return Array.from(files).every((file) =>
-        this.isAllowedFileExtension(file)
-      );
+      return Array.from(files).every((file) => this.isAllowedFileExtension(file));
     },
     getErrors(files) {
       if (!this.areFilesAllowed(files)) return this.wrongTypeText;
 
-      if (this.files.files.length + files.length > this.maxFilesValue)
-        return this.maxFilesText;
+      if (this.files.files.length + files.length > this.maxFilesValue) return this.maxFilesText;
 
-      if (!Array.from(files).every((file) => this.isUnderMaxSize(file)))
-        return this.maxSizeText;
+      if (!Array.from(files).every((file) => this.isUnderMaxSize(file))) return this.maxSizeText;
 
       return;
     },
     appendFiles(files) {
-      if (this.files.files.length >= this.maxFilesValue)
-        return this.showError(this.maxFilesText);
+      if (this.files.files.length >= this.maxFilesValue) return this.showError(this.maxFilesText);
 
       Array.from(files).forEach((file) => {
         this.files.items.add(file);
