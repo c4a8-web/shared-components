@@ -1,14 +1,14 @@
-import BaseComponent from "./base-component.js";
-import FormAttachments from "./form-attachments.js";
-import Tools from "../tools.js";
-import State from "../state.js";
-import Events from "../events.js";
+import BaseComponent from './base-component.js';
+import FormAttachments from './form-attachments.js';
+import Tools from '../tools.js';
+import State from '../state.js';
+import Events from '../events.js';
 
 class Form extends BaseComponent {
-  static rootSelector = ".form";
+  static rootSelector = '.form';
   static instances = [];
-  static delimiter = "-formHelper-";
-  static noCustomSubmitClass = "form--no-custom-submit";
+  static delimiter = '-formHelper-';
+  static noCustomSubmitClass = 'form--no-custom-submit';
   static regularExpression =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/;
 
@@ -19,8 +19,8 @@ class Form extends BaseComponent {
 
     this.root = root;
 
-    this.formSelector = ".form__form";
-    this.gotchaSelector = ".form__super-field";
+    this.formSelector = '.form__form';
+    this.gotchaSelector = '.form__super-field';
     this.attachmentSelector = 'input[type="file"][required]';
     this.subjectSelector = 'input[name="_subject"]';
     this.companySelector = 'input[id="company"]';
@@ -61,7 +61,7 @@ class Form extends BaseComponent {
   }
 
   hasUrlParameter() {
-    if (window.location.search === "") return;
+    if (window.location.search === '') return;
 
     return true;
   }
@@ -79,9 +79,7 @@ class Form extends BaseComponent {
 
     if (!form) return;
 
-    const input = form.querySelector(
-      `input[name="${name}"],textarea[name="${name}"]`
-    );
+    const input = form.querySelector(`input[name="${name}"],textarea[name="${name}"]`);
 
     if (!input) return;
 
@@ -89,27 +87,22 @@ class Form extends BaseComponent {
   }
 
   hasCustomValidation() {
-    return this.root.classList.contains("form--custom-validation");
+    return this.root.classList.contains('form--custom-validation');
   }
 
   hasAjaxSubmit() {
-    return this.root.classList.contains("form--ajax");
+    return this.root.classList.contains('form--ajax');
   }
 
   bindEvents() {
-    if (
-      Object.keys(this.groups).length ||
-      this.hasCustomValidation() ||
-      this.hasAjaxSubmit() ||
-      this.isCompanyForm()
-    ) {
-      this.form.addEventListener("submit", this.handleSubmit.bind(this));
-      this.form.addEventListener("reset", this.handleReset.bind(this));
+    if (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) {
+      this.form.addEventListener('submit', this.handleSubmit.bind(this));
+      this.form.addEventListener('reset', this.handleReset.bind(this));
     }
   }
 
   addSubjectListener() {
-    this.form.addEventListener("submit", this.handleSubmit.bind(this));
+    this.form.addEventListener('submit', this.handleSubmit.bind(this));
   }
 
   handleReset() {
@@ -139,7 +132,7 @@ class Form extends BaseComponent {
   updateSubject() {
     if (!this.subject || !this.company) return;
 
-    this.subject.value = this.subject.value + ": " + this.company.value;
+    this.subject.value = this.subject.value + ': ' + this.company.value;
   }
 
   submit(e) {
@@ -178,25 +171,21 @@ class Form extends BaseComponent {
     const data = [];
 
     for (let fieldData of formData) {
-      data.push(
-        encodeURIComponent(fieldData[0]) +
-          "=" +
-          encodeURIComponent(fieldData[1])
-      );
+      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
     }
 
-    return data.join("&");
+    return data.join('&');
   }
 
   ajaxSubmit() {
     const data = Form.getFormData(this.form);
 
     fetch(this.form.action, {
-      method: this.form.method || "POST",
+      method: this.form.method || 'POST',
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      redirect: "follow",
+      redirect: 'follow',
       body: data,
     }).then((response) => {
       if (response.status === 200 || response.status === 302) {
@@ -221,8 +210,8 @@ class Form extends BaseComponent {
     if (window.$) {
       const form = $(this.form);
 
-      if (typeof form.validate !== "function") {
-        console.error("form.validate is not a function");
+      if (typeof form.validate !== 'function') {
+        console.error('form.validate is not a function');
 
         return true;
       }
@@ -272,29 +261,23 @@ class Form extends BaseComponent {
   validateAttachments() {
     let result = true;
 
-    [].forEach.call(
-      this.form.querySelectorAll(FormAttachments.base64Selector),
-      (base64) => {
-        if (!base64.value) {
-          result = false;
-        }
+    [].forEach.call(this.form.querySelectorAll(FormAttachments.base64Selector), (base64) => {
+      if (!base64.value) {
+        result = false;
       }
-    );
+    });
 
     if (result) return result;
 
     result = true;
 
-    [].forEach.call(
-      this.form.querySelectorAll(this.attachmentSelector),
-      (attachment) => {
-        if (attachment.files.length === 0) {
-          result = false;
+    [].forEach.call(this.form.querySelectorAll(this.attachmentSelector), (attachment) => {
+      if (attachment.files.length === 0) {
+        result = false;
 
-          this.addAttachmentError(attachment);
-        }
+        this.addAttachmentError(attachment);
       }
-    );
+    });
 
     return result;
   }
@@ -330,10 +313,10 @@ class Form extends BaseComponent {
     if (element && !element.classList.contains(State.ERROR)) {
       element.classList.add(State.ERROR);
 
-      const error = document.createElement("div");
+      const error = document.createElement('div');
 
       error.innerHTML = element.dataset.msg;
-      error.classList.add("invalid-feedback");
+      error.classList.add('invalid-feedback');
 
       element.parentNode.insertBefore(error, element.nextSibling);
     }
@@ -367,18 +350,14 @@ class Form extends BaseComponent {
     for (let i = 0; i < length; i++) {
       const element = group[i];
 
-      if (element.type === "checkbox" && element.checked) {
+      if (element.type === 'checkbox' && element.checked) {
         isValid = true;
-      } else if (element.type === "radio" && element.checked) {
+      } else if (element.type === 'radio' && element.checked) {
         isValid = true;
       } else {
         const otherField = element.closest('input[type="text"]');
 
-        if (
-          otherField &&
-          !isValid &&
-          otherField.value.length >= this.minLengthOther
-        ) {
+        if (otherField && !isValid && otherField.value.length >= this.minLengthOther) {
           isValid = true;
         }
       }
@@ -394,42 +373,34 @@ class Form extends BaseComponent {
   addValidation() {
     if (!this.form) return;
 
-    [].forEach.call(
-      this.form.querySelectorAll("[data-form-group]"),
-      (input) => {
-        if (input.dataset.formGroup) {
-          this.addGroupValidation(input);
-          this.addLiveValidation(input);
-        }
+    [].forEach.call(this.form.querySelectorAll('[data-form-group]'), (input) => {
+      if (input.dataset.formGroup) {
+        this.addGroupValidation(input);
+        this.addLiveValidation(input);
       }
-    );
+    });
   }
 
   isRadio(element) {
-    return element?.getAttribute("type") === "radio" ? true : false;
+    return element?.getAttribute('type') === 'radio' ? true : false;
   }
 
   isCheckbox(element) {
-    return element?.getAttribute("type") === "checkbox" ? true : false;
+    return element?.getAttribute('type') === 'checkbox' ? true : false;
   }
 
   addLiveValidation(element) {
     if (element) {
       if (this.isCheckbox(element) || this.isRadio(element)) {
-        element.addEventListener(
-          "change",
-          this.handleLiveValidation.bind(this)
-        );
+        element.addEventListener('change', this.handleLiveValidation.bind(this));
       } else {
-        element.addEventListener("keyup", this.handleLiveValidation.bind(this));
+        element.addEventListener('keyup', this.handleLiveValidation.bind(this));
       }
     }
   }
 
   groupFilter(group, type) {
-    return group
-      ? group.filter((obj) => obj.getAttribute("type") === type)
-      : null;
+    return group ? group.filter((obj) => obj.getAttribute('type') === type) : null;
   }
 
   handleGroupError(element, group) {
@@ -448,12 +419,12 @@ class Form extends BaseComponent {
 
       if (!group) return;
 
-      const checkboxes = this.groupFilter(group, "checkbox");
-      const radios = this.groupFilter(group, "radio");
+      const checkboxes = this.groupFilter(group, 'checkbox');
+      const radios = this.groupFilter(group, 'radio');
 
-      if (element.getAttribute("type") === "checkbox") {
+      if (element.getAttribute('type') === 'checkbox') {
         this.handleGroupError(element, checkboxes);
-      } else if (element.getAttribute("type") === "radio") {
+      } else if (element.getAttribute('type') === 'radio') {
         this.handleGroupError(element, radios);
       } else {
         if (this.isValidGroup(group)) {
@@ -466,7 +437,7 @@ class Form extends BaseComponent {
   }
 
   getGroupParent(element) {
-    return element.closest(".js-form-message")?.querySelector("[data-msg]");
+    return element.closest('.js-form-message')?.querySelector('[data-msg]');
   }
 
   addGroupValidation(element) {
@@ -490,25 +461,18 @@ class Form extends BaseComponent {
   }
 
   canHaveCustomSubmit() {
-    return this.root.classList.contains(Form.noCustomSubmitClass)
-      ? false
-      : true;
+    return this.root.classList.contains(Form.noCustomSubmitClass) ? false : true;
   }
 
   static isOptionalInputInvisible(input) {
-    return (
-      input?.parentNode?.classList.contains("form-field--show-in") &&
-      input.offsetParent === null
-    );
+    return input?.parentNode?.classList.contains('form-field--show-in') && input.offsetParent === null;
   }
 
   static getFormData(form) {
     if (form === null || form === undefined) return [];
 
     // TODO refactor with select
-    const inputs = form.querySelectorAll(
-      'input[type="text"], input[type="email"], textarea'
-    );
+    const inputs = form.querySelectorAll('input[type="text"], input[type="email"], textarea');
     const data = [];
 
     for (let i = 0; i < inputs.length; i++) {
@@ -518,11 +482,7 @@ class Form extends BaseComponent {
 
       let value;
 
-      if (
-        input.type === "text" ||
-        input.type === "email" ||
-        input.tagName === "TEXTAREA"
-      ) {
+      if (input.type === 'text' || input.type === 'email' || input.tagName === 'TEXTAREA') {
         value = input.value;
       } else {
         // TODO handle select
