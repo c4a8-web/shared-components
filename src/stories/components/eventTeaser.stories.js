@@ -1,5 +1,5 @@
-import lottie1 from '../../data/lottie1.json';
-import EventTeaserComponent from '../../../components/event-teaser';
+import lottie1 from '../data/lottie1.json';
+import EventTeaserComponent from '../../components/event-teaser';
 
 export default {
   component: EventTeaserComponent,

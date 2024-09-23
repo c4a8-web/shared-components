@@ -1,24 +1,31 @@
-import { createComponent } from '../../.storybook/templates';
-import { includescardhtml as cardComponent } from '../../.storybook/generatedIncludes';
+import CardComponent from '../../components/card';
 import { BlogPost } from '../components/card.stories';
-import { includeseventteaserhtml as eventTeaserComponent } from '../../.storybook/generatedIncludes';
+import EventTeaserComponent from '../../components/event-teaser';
 import { EventTeaserWebcast } from '../components/eventTeaser.stories';
 
 export default {
   title: 'Context/Teaser',
 };
 
-const CardTemplate = (args) => createComponent(args, cardComponent);
-
-export const Card = CardTemplate.bind({});
+export const Card = (args) => ({
+  components: { CardComponent },
+  setup() {
+    return { args };
+  },
+  template: '<CardComponent v-bind="args" />',
+});
 
 Card.args = {
   ...BlogPost?.args,
 };
 
-const EventTeaserTemplate = (args) => createComponent(args, eventTeaserComponent);
-
-export const EventTeaser = EventTeaserTemplate.bind({});
+export const EventTeaser = (args) => ({
+  components: { EventTeaserComponent },
+  setup() {
+    return { args };
+  },
+  template: '<EventTeaserComponent v-bind="args" />',
+});
 
 EventTeaser.args = {
   ...EventTeaserWebcast?.args,
