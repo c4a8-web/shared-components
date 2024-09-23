@@ -1,7 +1,8 @@
-import HeaderComponent from "../../components/header";
+import HeaderComponent from '../../components/header';
+import HeaderData from '../../../.storybook/data/header';
 
 export default {
-  title: "Components/Header",
+  title: 'Components/Header',
   component: HeaderComponent,
 };
 
@@ -15,94 +16,105 @@ const Template = (args) => ({
 
 export const Header = Template.bind({});
 
-Header.args = {};
+Header.args = {
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
+};
 
 export const HeaderLight = Template.bind({});
 
 HeaderLight.args = {
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
   light: true,
   blendMode: true,
-  bgColor: "var(--color-blue-dark)",
+  bgColor: 'var(--color-blue-dark)',
 };
 
 export const HeaderEN = Template.bind({});
 
 HeaderEN.args = {
-  lang: "en",
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
+  lang: 'en',
 };
 
 export const HeaderES = Template.bind({});
 
 HeaderES.args = {
-  lang: "es",
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
+  lang: 'es',
 };
 
 const productArgs = {
-  lang: "en",
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
+  lang: 'en',
   product: true,
   button: {
-    text: "Start now",
-    href: "/start-now/",
-    skin: "primary is-cutoff",
+    text: 'Start now',
+    href: '/start-now/',
+    skin: 'primary is-cutoff',
   },
   home: {
-    name: "home",
-    imgLight: "/logos/radius-logo-white.svg",
-    img: "/logos/radius-logo-green.svg",
+    name: 'home',
+    imgLight: '/logos/radius-logo-white.svg',
+    img: '/logos/radius-logo-green.svg',
     languages: {
       en: {
-        title: "Home EN",
-        url: "",
-        alt: "alt text EN",
+        title: 'Home EN',
+        url: '',
+        alt: 'alt text EN',
       },
     },
   },
   navigation: [
     {
-      name: "home",
+      name: 'home',
       languages: {
         de: {
-          title: "Home",
-          url: "",
+          title: 'Home',
+          url: '',
         },
         en: {
-          title: "Home EN",
-          url: "",
+          title: 'Home EN',
+          url: '',
         },
       },
     },
     {
-      name: "pricing",
+      name: 'pricing',
       languages: {
         en: {
-          title: "Pricing EN",
-          url: "",
+          title: 'Pricing EN',
+          url: '',
           active: true,
         },
       },
     },
     {
-      name: "partner",
+      name: 'partner',
       languages: {
         en: {
-          title: "Partner EN",
-          url: "",
+          title: 'Partner EN',
+          url: '',
         },
       },
     },
     {
-      name: "docs",
+      name: 'docs',
       languages: {
         en: {
-          title: "Docs",
-          url: "https://docs.radiusaas.com/",
-          target: "_blank",
+          title: 'Docs',
+          url: 'https://docs.radiusaas.com/',
+          target: '_blank',
         },
       },
     },
   ],
-  meta: " ",
-  contact: " ",
+  meta: ' ',
+  contact: ' ',
 };
 
 export const HeaderProduct = Template.bind({});
@@ -122,6 +134,8 @@ HeaderProductLight.args = {
 export const HeaderSearch = Template.bind({});
 
 HeaderSearch.args = {
-  lang: "en",
+  home: HeaderData.home,
+  navigation: HeaderData.navigation,
+  lang: 'en',
   search: true,
 };

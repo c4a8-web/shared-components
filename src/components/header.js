@@ -1,33 +1,33 @@
-import Tools from "../assets/js/tools.js";
-import State from "../assets/js/state.js";
-import Events from "../assets/js/events.js";
+import Tools from '../assets/js/tools.js';
+import State from '../assets/js/state.js';
+import Events from '../assets/js/events.js';
 
 export default {
-  tagName: "v-header",
+  tagName: 'v-header',
   computed: {
     classList() {
       return [
-        "header",
-        this.isScrolled ? State.IS_SCROLLED : "",
-        this.isLight ? "header--light" : "",
-        Tools.isTrue(this.hover) ? State.HOVERING : "",
-        Tools.isTrue(this.product) ? "header--product" : "",
-        !Tools.isTrue(this.closed) ? State.EXPANDED : "",
-        Tools.isTrue(this.blendMode) ? "header--blending" : "",
-        "vue-component",
+        'header',
+        this.isScrolled ? State.IS_SCROLLED : '',
+        this.isLight ? 'header--light' : '',
+        Tools.isTrue(this.hover) ? State.HOVERING : '',
+        Tools.isTrue(this.product) ? 'header--product' : '',
+        !Tools.isTrue(this.closed) ? State.EXPANDED : '',
+        Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        'vue-component',
       ];
     },
     headerContainerClassList() {
-      return ["header__container", this.containerClass];
+      return ['header__container', this.containerClass];
     },
     containerClass() {
-      return Tools.isTrue(this.product) ? "container" : "container-xxl";
+      return Tools.isTrue(this.product) ? 'container' : 'container-xxl';
     },
     homeObj() {
       return this.home?.languages[this.lowerLang];
     },
     lowerLang() {
-      return this.lang.toLowerCase();
+      return this.lang ? this.lang.toLowerCase() : this.defaultLang;
     },
     searchValue() {
       return Tools.isTrue(this.search);
@@ -39,9 +39,7 @@ export default {
       };
     },
     spacerBgColor() {
-      const color = this.bgColor
-        ? this.bgColor
-        : "var(--color-header-background)";
+      const color = this.bgColor ? this.bgColor : 'var(--color-header-background)';
 
       return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
@@ -79,32 +77,27 @@ export default {
   },
   methods: {
     setLinkWidth() {
-      const links = this.$refs["link"];
+      const links = this.$refs['link'];
 
       if (!links) return;
 
       for (let i = 0; i < links.length; i++) {
         const link = links[i];
-        const textWidth = link.querySelector(
-          ".header__link-text-spacer"
-        )?.clientWidth;
+        const textWidth = link.querySelector('.header__link-text-spacer')?.clientWidth;
 
-        link.style.setProperty("--header-link-text-width", textWidth + "px");
+        link.style.setProperty('--header-link-text-width', textWidth + 'px');
       }
     },
     showFlyoutBlock(children) {
       return children.length > this.maxLinkListsInFlyout ? false : true;
     },
     isLowerBreakpoint() {
-      return Tools.isBelowBreakpoint("md");
+      return Tools.isBelowBreakpoint('md');
     },
     bindEvents() {
-      window.addEventListener("scroll", this.handleScroll.bind(this));
+      window.addEventListener('scroll', this.handleScroll.bind(this));
 
-      document.addEventListener(
-        Events.WINDOW_RESIZE,
-        this.handleResize.bind(this)
-      );
+      document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
     },
     handleResize() {
       this.reset();
@@ -163,7 +156,7 @@ export default {
         detail: {},
       });
 
-      this.$refs["list"].dispatchEvent(customEvent);
+      this.$refs['list'].dispatchEvent(customEvent);
     },
     getId(item, index) {
       return `${item.name}_${index}`;
@@ -184,7 +177,7 @@ export default {
       if (this.hoverHeader || this.isScrolled) {
         this.ctaClassList = false;
       } else {
-        this.ctaClassList = "is-light-lg";
+        this.ctaClassList = 'is-light-lg';
       }
     },
     handleMouseOver(item, index) {
@@ -209,7 +202,7 @@ export default {
       flyout.classList.add(State.EXPANDED);
     },
     handleMouseOut(event) {
-      if (event.relatedTarget?.closest(".header__flyout")) return;
+      if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
 
@@ -230,37 +223,37 @@ export default {
 
       this.hover = true;
 
-      const languageSwitch = this.$refs["languageSwitch"];
+      const languageSwitch = this.$refs['languageSwitch'];
 
       if (!languageSwitch) return;
 
       languageSwitch.classList.add(State.EXPANDED);
     },
     handleLanguageOut(event) {
-      if (event.relatedTarget?.closest(".header__flyout")) return;
+      if (event.relatedTarget?.closest('.header__flyout')) return;
 
       this.hover = false;
 
-      const languageSwitch = this.$refs["languageSwitch"];
+      const languageSwitch = this.$refs['languageSwitch'];
 
       if (!languageSwitch) return;
 
       languageSwitch.classList.remove(State.EXPANDED);
     },
     resetAllFlyouts() {
-      this.$refs["link"]?.forEach((link) => {
+      this.$refs['link']?.forEach((link) => {
         link.classList.remove(State.EXPANDED);
       });
 
-      this.$refs["flyout"]?.forEach((flyout) => {
+      this.$refs['flyout']?.forEach((flyout) => {
         flyout.classList.remove(State.EXPANDED);
       });
     },
     getFlyoutRef(refName) {
-      return this.getRef("flyout", refName);
+      return this.getRef('flyout', refName);
     },
     getLinkRef(refName) {
-      return this.getRef("link", refName);
+      return this.getRef('link', refName);
     },
     getRef(name, refName) {
       const ref = this.$refs[name][refName];
@@ -270,9 +263,7 @@ export default {
       return ref;
     },
     getHref(item) {
-      return item.children
-        ? "javascript:void(0);"
-        : item.languages[this.lowerLang]?.url;
+      return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
       const target = item.languages[this.lowerLang]?.target;
@@ -296,11 +287,9 @@ export default {
     },
     handleLanguageSwitch(nextLang) {
       const activeUrl = this.getActiveUrlByLang(nextLang);
-      const gotoUrl = activeUrl
-        ? activeUrl
-        : this.home.languages[nextLang]?.url;
+      const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
 
-      Tools.storageSave("preferedLanguage", nextLang, false);
+      Tools.storageSave('preferedLanguage', nextLang, false);
 
       document.location.href = gotoUrl;
     },
@@ -311,18 +300,14 @@ export default {
     },
     getActiveUrlByLang(lang, update) {
       const currentPath = this.getCurrentPath();
-      const lastCharacter = "/";
+      const lastCharacter = '/';
 
       const matcher = (obj, parentKey) => {
         if (!obj?.title) return;
 
         let url = obj?.url;
 
-        if (
-          currentPath[currentPath?.length - 1] === lastCharacter &&
-          url &&
-          url[url?.length - 1] !== lastCharacter
-        ) {
+        if (currentPath[currentPath?.length - 1] === lastCharacter && url && url[url?.length - 1] !== lastCharacter) {
           url = url + lastCharacter;
         }
 
@@ -362,8 +347,7 @@ export default {
       return parent[lang]?.url;
     },
     getTranslatedUrl(currentPath, lang) {
-      if (this.isBlogTagsUrl(currentPath))
-        return this.getBlogTagsUrl(lang, currentPath);
+      if (this.isBlogTagsUrl(currentPath)) return this.getBlogTagsUrl(lang, currentPath);
 
       const segment = this.getFolderSwitchSegment(currentPath);
 
@@ -376,9 +360,7 @@ export default {
 
       if (!folderSwitch) return null;
 
-      const foundSegment = folderSwitch.find((segment) =>
-        currentPath.includes(segment)
-      );
+      const foundSegment = folderSwitch.find((segment) => currentPath.includes(segment));
 
       return foundSegment || null;
     },
@@ -390,7 +372,7 @@ export default {
       if (lang === this.defaultLang) {
         const regex = new RegExp(`/${this.lowerLang}/`);
 
-        newPath = currentPath.replace(regex, "/");
+        newPath = currentPath.replace(regex, '/');
       } else {
         newPath = currentPath.replace(segment, `${lang}/${segment}`);
       }
@@ -405,14 +387,11 @@ export default {
     getBlogTagsUrl(lang, currentPath) {
       let newPath;
 
-      const tagsIdentifier = "tags";
+      const tagsIdentifier = 'tags';
 
       switch (lang) {
-        case "en":
-          newPath = currentPath.replace(
-            tagsIdentifier,
-            `${tagsIdentifier}-${lang}`
-          );
+        case 'en':
+          newPath = currentPath.replace(tagsIdentifier, `${tagsIdentifier}-${lang}`);
           break;
         default:
         case this.defaultLang:
@@ -429,7 +408,7 @@ export default {
 
       if (!hrefLang) return;
 
-      return hrefLang.getAttribute("href");
+      return hrefLang.getAttribute('href');
     },
     getParentLink(key) {
       const navi = this.navigation[key];
@@ -440,10 +419,7 @@ export default {
       this.getActiveUrlByLang(this.lowerLang, true);
     },
     headerItemClasses(item) {
-      return [
-        "header__item",
-        item.languages[this.lowerLang]?.active ? State.ACTIVE : "",
-      ];
+      return ['header__item', item.languages[this.lowerLang]?.active ? State.ACTIVE : ''];
     },
     isLinkListHidden(item, index) {
       const id = this.getId(item, index);
@@ -451,31 +427,25 @@ export default {
       return !this.linkLists[id] ? true : false;
     },
     headerLinkClasses(item, index) {
-      return this.getListClasses(item, index, ["header__link custom"]);
+      return this.getListClasses(item, index, ['header__link custom']);
     },
     headerProductListClasses(item, index) {
-      return this.getListClasses(item, index, [
-        "header__product-list",
-        this.inTransition ? State.IN_TRANSITION : "",
-      ]);
+      return this.getListClasses(item, index, ['header__product-list', this.inTransition ? State.IN_TRANSITION : '']);
     },
     getListClasses(item, index, classes) {
       const isLinkListHidden = this.isLinkListHidden(item, index);
 
-      return [...classes, isLinkListHidden ? "" : State.EXPANDED];
+      return [...classes, isLinkListHidden ? '' : State.EXPANDED];
     },
     updateProductListHeight() {
-      const productList = this.$refs["product-list"];
+      const productList = this.$refs['product-list'];
 
       if (!productList) return;
 
       for (let i = 0; i < productList.length; i++) {
         const list = productList[i];
         const isExpanded = list.classList.contains(State.EXPANDED);
-        const newHeight =
-          !isExpanded || list.style.height !== ""
-            ? ""
-            : list.scrollHeight + "px";
+        const newHeight = !isExpanded || list.style.height !== '' ? '' : list.scrollHeight + 'px';
 
         list.style.height = newHeight;
       }
@@ -483,12 +453,10 @@ export default {
     navHighlightClasses(item, index) {
       const isHidden = this.isLinkListHidden(item, index);
 
-      return ["header__nav-highlight custom", isHidden ? "is-hidden" : ""];
+      return ['header__nav-highlight custom', isHidden ? 'is-hidden' : ''];
     },
     hasContactLink(item) {
-      return (
-        this.contact?.languages && !item.languages[this.lowerLang]?.emergency
-      );
+      return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
     },
   },
   props: {
@@ -518,7 +486,7 @@ export default {
     return {
       inUpdate: false,
       inTransition: false,
-      defaultLang: "de",
+      defaultLang: 'de',
       closed: true,
       hover: false,
       headerHover: false,
@@ -538,8 +506,8 @@ export default {
           <div class="header__col col">
             <div class="header__logo">
               <a :href="homeObj?.url">
-                <v-img :img="home.imgLight" class="header__logo-light" :cloudinary="true" />
-                <v-img :img="home.img" class="header__logo-default" :cloudinary="true" />
+                <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" />
+                <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" />
               </a>
             </div>
             <div class="header__menu" v-on:click="handleCloseClick">
