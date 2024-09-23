@@ -1,7 +1,7 @@
-import Tools from "../assets/js/tools.js";
+import Tools from '../assets/js/tools.js';
 
 export default {
-  tagName: "event",
+  tagName: 'event',
   data() {
     return {
       hasMultipleDays: false,
@@ -10,13 +10,13 @@ export default {
   computed: {
     style() {
       return `
-                --color-event-background: ${this.bgColor ? this.bgColor : "var(--color-green-blue)"};
-                --color-event-copy: ${this.color ? this.color : "var(--color-copy-light)"};
-                --color-event-time: ${this.timeColor ? this.timeColor : "var(--color-green-blue)"};
+                --color-event-background: ${this.bgColor ? this.bgColor : 'var(--color-green-blue)'};
+                --color-event-copy: ${this.color ? this.color : 'var(--color-copy-light)'};
+                --color-event-time: ${this.timeColor ? this.timeColor : 'var(--color-green-blue)'};
             `;
     },
     textWithAmpersand() {
-      return this.text.replace(/&amp;/g, "&");
+      return this.text.replace(/&amp;/g, '&');
     },
     validDate() {
       let date = new Date(this.date);
@@ -42,7 +42,7 @@ export default {
       if (!this.validDate) return;
 
       const month = this.validDate.toLocaleDateString(undefined, {
-        month: "short",
+        month: 'short',
       });
 
       return month.slice(0, 3);
@@ -51,7 +51,7 @@ export default {
       if (!this.validDate) return;
 
       const weekDay = this.validDate.toLocaleDateString(undefined, {
-        weekday: "short",
+        weekday: 'short',
       });
 
       return weekDay.slice(0, 2);
@@ -60,19 +60,15 @@ export default {
       return Tools.getJSON(this.image);
     },
     cloudinary() {
-      return this.imageValue && this.imageValue.cloudinary
-        ? this.imageValue.cloudinary
-        : true;
+      return this.imageValue && this.imageValue.cloudinary ? this.imageValue.cloudinary : true;
     },
     timeValue() {
-      return !this.hasMultipleDays
-        ? Tools.standardizeTimeFormat(this.time)
-        : this.date;
+      return !this.hasMultipleDays ? Tools.standardizeTimeFormat(this.time) : this.date;
     },
   },
   methods: {
     handleClick() {
-      if (this.external) return window.open(this.url, "_blank");
+      if (this.external) return window.open(this.url, '_blank');
 
       document.location.href = this.url;
     },
@@ -108,7 +104,7 @@ export default {
           <p class="event__text">{{ textWithAmpersand }}</p>
         </div>
         <div class="event__image-container is-background" v-if="imageValue">
-          <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" lazy="true" preset="eventThumb">
+          <v-img class="event__image" :cloudinary="cloudinary" v-bind="imageValue" :lazy="true" preset="eventThumb">
         </div>
       </div>
     </article>

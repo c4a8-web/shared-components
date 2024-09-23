@@ -1,37 +1,34 @@
-import Tools from "../assets/js/tools.js";
-import State from "../assets/js/state.js";
+import Tools from '../assets/js/tools.js';
+import State from '../assets/js/state.js';
 
 export default {
-  tagName: "accordion",
+  tagName: 'accordion',
   computed: {
     imageWrapperClasses() {
-      return [
-        "accordion__floating-image-wrapper",
-        Tools.isTrue(this.shadowless) === true ? null : "drop-shadow",
-      ];
+      return ['accordion__floating-image-wrapper', Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow'];
     },
     containerClasses() {
       return [
-        "accordion__container utility-animation container vue-component",
+        'accordion__container utility-animation container vue-component',
         this.spacing,
-        this.accordion.image ? "accordion--has-image" : null,
+        this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
     accordionClasses() {
       return [
-        "accordion utility-animation container mt-6 mb-4 my-lg-8 vue-component",
-        this.accordion.image ? "accordion--has-image" : null,
+        'accordion utility-animation container mt-6 mb-4 my-lg-8 vue-component',
+        this.accordion.image ? 'accordion--has-image' : null,
       ];
     },
     fallbackImageClasses() {
       return [
-        "accordion__fallback-image-wrapper",
-        Tools.isTrue(this.shadowless) === true ? null : "drop-shadow",
+        'accordion__fallback-image-wrapper',
+        Tools.isTrue(this.shadowless) === true ? null : 'drop-shadow',
         this.showOutsideImage ? State.SHOW : null,
       ];
     },
     columnClasses() {
-      return ["col", Tools.isTrue(this.left) ? null : "text-center"];
+      return ['col', Tools.isTrue(this.left) ? null : 'text-center'];
     },
     headlineClasses() {
       return `accordion__headline  ${this.accordion?.headlineClasses}`;
@@ -53,16 +50,14 @@ export default {
   },
   methods: {
     isUpperBreakpoint() {
-      return !Tools.isBelowBreakpoint("md");
+      return !Tools.isBelowBreakpoint('md');
     },
     selectFallbackImage() {
       if (!this.fallbackImage) {
         const activeTab = this.getActiveTab();
 
         this.fallbackImage = this.accordion.image || activeTab?.image;
-        this.fallbackAnimated = this.accordion.image
-          ? this.accordion.animated
-          : activeTab.animated;
+        this.fallbackAnimated = this.accordion.image ? this.accordion.animated : activeTab.animated;
       }
     },
     getActiveTab() {
@@ -99,7 +94,7 @@ export default {
       this.outsideAnimated = tab?.image ? tab.animated : this.fallbackAnimated;
     },
     getTabByIndex(index) {
-      if (typeof index === "undefined") return this.getActiveTab();
+      if (typeof index === 'undefined') return this.getActiveTab();
 
       return this.accordion?.tabs[index];
     },
@@ -113,24 +108,21 @@ export default {
       return `${name}${accordion.id}${index}`;
     },
     isExpanded(tab) {
-      return tab.expanded ? "true" : "false";
+      return tab.expanded ? 'true' : 'false';
     },
     buttonClasses(tab) {
       return [
-        "accordion__btn btn btn-link btn-block d-flex justify-content-between",
-        !tab.expanded ? "collapsed" : null,
+        'accordion__btn btn btn-link btn-block d-flex justify-content-between',
+        !tab.expanded ? 'collapsed' : null,
       ];
     },
     contentClasses(tab) {
-      return [
-        "accordion__content collapse position-static",
-        tab.expanded ? "show" : null,
-      ];
+      return ['accordion__content collapse position-static', tab.expanded ? 'show' : null];
     },
     cardClasses(index) {
       const state = this.getStateByIndex(index);
 
-      return ["accordion__card", state ? State.EXPANDED : null];
+      return ['accordion__card', state ? State.EXPANDED : null];
     },
     cardStyle(index) {
       return `--utility-animation-index: ${index}`;
@@ -190,12 +182,12 @@ export default {
     <section :class="accordionClasses">
       <div class="row position-relative">
         <div class="accordion__image-spacer col-lg-6">
-          <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" :animated="outsideAnimated" v-if="outsideImage" />
+          <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" :lazy="true" :alt="accordion.alt" :animated="outsideAnimated" v-if="outsideImage" />
         </div>
         <div class="col-lg-6 position-static" :id="accordion.id">
           <div class="accordion__fallback-container mb-4 col-lg-6" v-if="outsideImage">
             <div :class="fallbackImageClasses">
-              <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" lazy="true" :alt="accordion.alt" :animated="outsideAnimated" />
+              <v-img :img="outsideImage" :cloudinary="cloudinary(accordion)" :lazy="true" :alt="accordion.alt" :animated="outsideAnimated" />
             </div>
           </div>
           <div :class="cardClasses(index)" v-for="(tab, index) in accordion.tabs" :style="cardStyle(index)">
@@ -218,7 +210,7 @@ export default {
               <div class="accordion__richtext richtext richtext__small card-body">
                 <div class="mb-4 col-lg-6 accordion__floating-container">
                   <div :class="imageWrapperClasses" v-if="getImage(tab)">
-                    <v-img :img="getImage(tab)" :cloudinary="cloudinary(tab)" lazy="true" :alt="tab.alt" :animated="getTab(tab).animated" />
+                    <v-img :img="getImage(tab)" :cloudinary="cloudinary(tab)" :lazy="true" :alt="tab.alt" :animated="getTab(tab).animated" />
                   </div>
                 </div>
                 <div class="accordion__text" v-html="tab.content"></div>
