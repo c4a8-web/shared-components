@@ -1,4 +1,4 @@
-import Tools from "../assets/js/tools.js";
+import Tools from '../tools.js';
 
 class i18n {
   constructor() {
@@ -19,9 +19,7 @@ class i18n {
 
   translate(key, args) {
     if (this.translations && this.translations[key]) {
-      return args
-        ? this.translations[key].replace("%s", args)
-        : this.translations[key];
+      return args ? this.translations[key].replace('%s', args) : this.translations[key];
     }
 
     return `Translation key ${key} not found in ${this.lang} lang File`;

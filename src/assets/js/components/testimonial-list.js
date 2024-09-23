@@ -1,23 +1,19 @@
-import BaseComponent from "./base-component.js";
-import State from "../assets/js/state.js";
-import Tools from "../assets/js/tools.js";
+import BaseComponent from './base-component.js';
+import State from '../state.js';
+import Tools from '../tools.js';
 
 // TODO move to vue component
 
 class TestimonialList extends BaseComponent {
-  static rootSelector = ".testimonial-list";
+  static rootSelector = '.testimonial-list';
 
   constructor(root, options) {
     super(root, options);
 
     this.root = root;
 
-    this.testimonialContainer = this.root.querySelector(
-      ".testimonial-list__contents"
-    );
-    this.testimonials = this.root.querySelectorAll(
-      ".testimonial-list__content"
-    );
+    this.testimonialContainer = this.root.querySelector('.testimonial-list__contents');
+    this.testimonials = this.root.querySelectorAll('.testimonial-list__content');
     this.viewPortPercentageAtScroll = 30;
     this.viewPortPercentageAtLoad = 5;
 
@@ -25,14 +21,10 @@ class TestimonialList extends BaseComponent {
   }
 
   handleScrollEvent() {
-    this.hiddenTestimonials = this.root.querySelectorAll(
-      `.testimonial-list__content:not(.${State.SHOW})`
-    );
+    this.hiddenTestimonials = this.root.querySelectorAll(`.testimonial-list__content:not(.${State.SHOW})`);
 
     this.hiddenTestimonials.forEach((testimonial) => {
-      if (
-        Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtScroll)
-      ) {
+      if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtScroll)) {
         testimonial.classList.add(State.SHOW);
       }
     });
@@ -40,9 +32,7 @@ class TestimonialList extends BaseComponent {
 
   currentlyInViewPort() {
     this.testimonials.forEach((testimonial) => {
-      if (
-        Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtLoad)
-      ) {
+      if (Tools.isInViewportPercent(testimonial, this.viewPortPercentageAtLoad)) {
         testimonial.classList.add(State.SHOW);
       }
     });
@@ -51,7 +41,7 @@ class TestimonialList extends BaseComponent {
   start() {
     this.currentlyInViewPort();
 
-    document.addEventListener("scroll", this.handleScrollEvent.bind(this));
+    document.addEventListener('scroll', this.handleScrollEvent.bind(this));
   }
 }
 

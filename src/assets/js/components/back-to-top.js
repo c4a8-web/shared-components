@@ -1,8 +1,8 @@
-import Tools from "../assets/js/tools.js";
-import BaseComponent from "./base-component.js";
+import Tools from '../tools.js';
+import BaseComponent from './base-component.js';
 
 class BackToTop extends BaseComponent {
-  static rootSelector = ".back-to-top";
+  static rootSelector = '.back-to-top';
 
   constructor(root, options) {
     super(root, options);
@@ -15,7 +15,7 @@ class BackToTop extends BaseComponent {
   }
 
   bindEvents() {
-    this.root.addEventListener("click", this.handleClick.bind(this));
+    this.root.addEventListener('click', this.handleClick.bind(this));
   }
 
   handleClick() {

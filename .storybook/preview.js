@@ -3,6 +3,8 @@ import '../src/assets/scss/index.scss';
 // TODO add theme support
 import '../src/assets/scss/themes/_gk.scss';
 
+import globals from '../src/components/globals';
+
 // register all js components
 const components = import.meta.glob('../src/components/**/*.js', {
   eager: true,
@@ -35,6 +37,10 @@ export const decorators = [
 
     return story();
   },
+  (story) => ({
+    components: { story, globals },
+    template: '<globals><story /></globals>',
+  }),
 ];
 
 /** @type { import('@storybook/vue3').Preview } */

@@ -1,27 +1,27 @@
-import BaseComponent from "../components/base-component.js";
-import State from "../assets/js/state.js";
-import Events from "../assets/js/events.js";
-import Tools from "../assets/js/tools.js";
+import BaseComponent from '../components/base-component.js';
+import State from '../state.js';
+import Events from '../events.js';
+import Tools from '../tools.js';
 
 class PageDetail extends BaseComponent {
-  static rootSelector = ".page-detail";
+  static rootSelector = '.page-detail';
 
   constructor(root, options) {
     super(root, options);
 
     this.root = root;
 
-    this.containerSelector = ".page-detail__container";
-    this.headlineSelector = ".page-detail__headline";
-    this.ctaSelector = ".page-detail__cta .cta";
-    this.introSelector = ".page-detail__intro";
-    this.descriptionSelector = ".page-detail__description";
-    this.shapeSelector = ".page-detail__shape";
-    this.introContentSelector = ".page-detail__intro-content";
-    this.badgeSelector = ".page-detail__badge";
-    this.detailsSelector = ".page-detail__details";
+    this.containerSelector = '.page-detail__container';
+    this.headlineSelector = '.page-detail__headline';
+    this.ctaSelector = '.page-detail__cta .cta';
+    this.introSelector = '.page-detail__intro';
+    this.descriptionSelector = '.page-detail__description';
+    this.shapeSelector = '.page-detail__shape';
+    this.introContentSelector = '.page-detail__intro-content';
+    this.badgeSelector = '.page-detail__badge';
+    this.detailsSelector = '.page-detail__details';
 
-    this.hasBackClass = "page-detail--has-back";
+    this.hasBackClass = 'page-detail--has-back';
 
     this.shape = root.querySelector(this.shapeSelector);
 
@@ -59,23 +59,18 @@ class PageDetail extends BaseComponent {
   }
 
   setStickyPosition() {
-    if (!this.hasShape() || !this.isInViewport() || !Tools.isUpperBreakpoint())
-      return;
+    if (!this.hasShape() || !this.isInViewport() || !Tools.isUpperBreakpoint()) return;
 
-    const heightOffset = Tools.isBelowBreakpoint("lg") ? 10 : -40;
-    const badgeHeight =
-      this.introContent.querySelector(this.badgeSelector)?.offsetHeight || 0;
-    const detailsHeight =
-      this.introContent.querySelector(this.detailsSelector)?.offsetHeight || 0;
-    const headlineHeight =
-      this.introContent.querySelector(this.headlineSelector)?.offsetHeight || 0;
+    const heightOffset = Tools.isBelowBreakpoint('lg') ? 10 : -40;
+    const badgeHeight = this.introContent.querySelector(this.badgeSelector)?.offsetHeight || 0;
+    const detailsHeight = this.introContent.querySelector(this.detailsSelector)?.offsetHeight || 0;
+    const headlineHeight = this.introContent.querySelector(this.headlineSelector)?.offsetHeight || 0;
 
-    this.stickyPosition =
-      badgeHeight + detailsHeight + headlineHeight - heightOffset;
+    this.stickyPosition = badgeHeight + detailsHeight + headlineHeight - heightOffset;
   }
 
   isVueComponent() {
-    return this.root.classList.contains("vue-component");
+    return this.root.classList.contains('vue-component');
   }
 
   stopLoading() {
@@ -94,14 +89,8 @@ class PageDetail extends BaseComponent {
   bindEvents() {
     this.queryElements();
 
-    document.addEventListener(
-      Events.SCROLL_UPDATE,
-      this.handleScroll.bind(this)
-    );
-    document.addEventListener(
-      Events.WINDOW_RESIZE,
-      this.handleResize.bind(this)
-    );
+    document.addEventListener(Events.SCROLL_UPDATE, this.handleScroll.bind(this));
+    document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
   }
 
   handleScroll() {
@@ -116,7 +105,7 @@ class PageDetail extends BaseComponent {
       this.handleStickyShapeEnd();
     } else if (this.isSticky()) {
       this.shape.classList.add(State.STICKY);
-      this.shape.style.top = -this.stickyPosition + "px";
+      this.shape.style.top = -this.stickyPosition + 'px';
     } else {
       this.resetShape();
     }
@@ -126,13 +115,12 @@ class PageDetail extends BaseComponent {
     if (this.isStickyEnd()) {
       this.shape.classList.add(State.STICKY);
 
-      this.shape.style.top =
-        -this.stickyPosition - this.getRelativePosition() + "px";
+      this.shape.style.top = -this.stickyPosition - this.getRelativePosition() + 'px';
     }
   }
 
   getRelativePosition() {
-    const introTop = this.intro?.style.top.replace("px", "") || 0;
+    const introTop = this.intro?.style.top.replace('px', '') || 0;
 
     return introTop >= 0
       ? this.getStickyOffsetTop() - Math.abs(introTop)
@@ -141,7 +129,7 @@ class PageDetail extends BaseComponent {
 
   resetShape() {
     this.shape.classList.remove(State.STICKY);
-    this.shape.style.top = "";
+    this.shape.style.top = '';
     this.isStickyEndReached = false;
   }
 
@@ -172,7 +160,7 @@ class PageDetail extends BaseComponent {
   }
 
   isStickyEnd() {
-    return this.intro?.style.top !== this.getStickyOffsetTop() + "px";
+    return this.intro?.style.top !== this.getStickyOffsetTop() + 'px';
   }
 
   isInViewport() {

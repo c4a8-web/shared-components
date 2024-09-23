@@ -1,18 +1,18 @@
-import BaseComponent from "./base-component.js";
-import State from "../assets/js/state.js";
-import Events from "../assets/js/events.js";
-import Tools from "../assets/js/tools.js";
+import BaseComponent from './base-component.js';
+import State from '../state.js';
+import Events from '../events.js';
+import Tools from '../tools.js';
 
 class FabButton extends BaseComponent {
-  static rootSelector = ".fab-button";
+  static rootSelector = '.fab-button';
 
   constructor(root, options) {
     super(root, options);
 
-    this.iconSelector = ".fab-button__icon";
-    this.linkSelector = ".fab-trigger";
-    this.modalSelector = ".fab-button__modal";
-    this.closeSelector = ".fab-button__close";
+    this.iconSelector = '.fab-button__icon';
+    this.linkSelector = '.fab-trigger';
+    this.modalSelector = '.fab-button__modal';
+    this.closeSelector = '.fab-button__close';
 
     this.icon = this.root.querySelector(this.iconSelector);
     this.link = document.querySelectorAll(this.linkSelector);
@@ -29,41 +29,35 @@ class FabButton extends BaseComponent {
   }
 
   hasTrigger() {
-    return this.root.classList.contains("fab-button--has-trigger");
+    return this.root.classList.contains('fab-button--has-trigger');
   }
 
   bindEvents() {
-    if (!this.icon || !this.modal || this.hasTrigger())
-      return this.bindTriggerEvent();
+    if (!this.icon || !this.modal || this.hasTrigger()) return this.bindTriggerEvent();
 
     this.link.forEach((link) => {
-      link.addEventListener("click", this.handleClick.bind(this));
+      link.addEventListener('click', this.handleClick.bind(this));
     });
-    this.icon.addEventListener("click", this.handleClick.bind(this));
-    this.close?.addEventListener("click", this.handleClose.bind(this));
+    this.icon.addEventListener('click', this.handleClick.bind(this));
+    this.close?.addEventListener('click', this.handleClose.bind(this));
 
-    document.addEventListener(
-      Events.FORM_AJAX_SUBMIT,
-      this.handleSubmit.bind(this)
-    );
-    window.addEventListener("click", this.handleOutsideClick.bind(this));
+    document.addEventListener(Events.FORM_AJAX_SUBMIT, this.handleSubmit.bind(this));
+    window.addEventListener('click', this.handleOutsideClick.bind(this));
 
     // force redraw
-    this.modal.style = "opacity: 1";
-    this.modal.style = "";
+    this.modal.style = 'opacity: 1';
+    this.modal.style = '';
   }
 
   bindTriggerEvent() {
-    this.icon.addEventListener("click", this.handleTriggerClick.bind(this));
+    this.icon.addEventListener('click', this.handleTriggerClick.bind(this));
   }
 
   handleTriggerClick(e) {
     const target = e.currentTarget;
     const triggerId = target.dataset.triggerId;
 
-    document.dispatchEvent(
-      new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } })
-    );
+    document.dispatchEvent(new CustomEvent(Events.OPEN_MODAL, { detail: { id: triggerId } }));
   }
 
   handleOutsideClick(e) {
@@ -97,7 +91,7 @@ class FabButton extends BaseComponent {
     this.modal.classList.toggle(State.OFF_SCREEN);
 
     if (this.modal.classList.contains(State.OFF_SCREEN)) {
-      this.modal.style = "";
+      this.modal.style = '';
     }
   }
 }

@@ -1,8 +1,8 @@
-import BaseComponent from "./base-component.js";
-import State from "../assets/js/state.js";
+import BaseComponent from './base-component.js';
+import State from '../state.js';
 
 class Back extends BaseComponent {
-  static rootSelector = ".back";
+  static rootSelector = '.back';
 
   constructor(root, options) {
     super(root, options);
@@ -19,7 +19,7 @@ class Back extends BaseComponent {
   }
 
   bindEvents() {
-    this.root.addEventListener("click", this.handleClick.bind(this));
+    this.root.addEventListener('click', this.handleClick.bind(this));
   }
 
   canGoBack() {

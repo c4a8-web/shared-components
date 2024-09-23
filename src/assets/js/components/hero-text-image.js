@@ -1,16 +1,16 @@
-import State from "../assets/js/state.js";
-import Tools from "../assets/js/tools.js";
-import BaseComponent from "./base-component.js";
+import State from '../state.js';
+import Tools from '../tools.js';
+import BaseComponent from './base-component.js';
 
 class HeroTextImage extends BaseComponent {
-  static rootSelector = ".hero-text-image";
+  static rootSelector = '.hero-text-image';
 
   constructor(root, options) {
     super(root, options);
 
-    this.videoSelector = ".hero-text-image__video video";
-    this.videoAnimatinoSelector = ".hero-video__animation";
-    this.ctaSelector = ".cta";
+    this.videoSelector = '.hero-text-image__video video';
+    this.videoAnimatinoSelector = '.hero-video__animation';
+    this.ctaSelector = '.cta';
 
     this.videos = this.root.querySelectorAll(this.videoSelector);
     this.ctaList = this.root.querySelectorAll(this.ctaSelector);
@@ -27,11 +27,11 @@ class HeroTextImage extends BaseComponent {
   }
 
   isSecurity() {
-    return this.classList.contains("hero--security");
+    return this.classList.contains('hero--security');
   }
 
   isCareer() {
-    return this.classList.contains("hero--career");
+    return this.classList.contains('hero--career');
   }
 
   bindEvents() {
@@ -40,17 +40,17 @@ class HeroTextImage extends BaseComponent {
     if (!this.ctaList || !hasCareerOrSecurity) return;
 
     this.ctaList.forEach((cta) => {
-      cta.addEventListener("click", this.handleClick.bind(this));
+      cta.addEventListener('click', this.handleClick.bind(this));
     });
   }
 
   isValidSelector(href) {
-    return href.indexOf("#") === -1 ? false : true;
+    return href.indexOf('#') === -1 ? false : true;
   }
 
   handleClick(e) {
     const element = e.currentTarget;
-    const href = element.getAttribute("href");
+    const href = element.getAttribute('href');
 
     if (!this.isValidSelector(href)) return;
 
@@ -66,13 +66,10 @@ class HeroTextImage extends BaseComponent {
 
   playDelayed() {
     setTimeout(() => {
-      [].forEach.call(
-        this.root.querySelectorAll(this.videoAnimatinoSelector),
-        (animation) => {
-          animation.classList.add(State.SHOW);
-          animation.style.height = animation.scrollHeight + "px";
-        }
-      );
+      [].forEach.call(this.root.querySelectorAll(this.videoAnimatinoSelector), (animation) => {
+        animation.classList.add(State.SHOW);
+        animation.style.height = animation.scrollHeight + 'px';
+      });
     }, this.animationDelay);
   }
 }

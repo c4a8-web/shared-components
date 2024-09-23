@@ -1,181 +1,181 @@
-import EventListComponent from "../../components/event-list";
+import EventListComponent from '../../../components/event-list';
 
 export default {
   component: EventListComponent,
   argTypes: {
     list: {
-      description: "List of Events",
-      type: "array",
+      description: 'List of Events',
+      type: 'array',
     },
     settings: {
-      description: "Event Teaser Variant/Size",
-      type: "array",
+      description: 'Event Teaser Variant/Size',
+      type: 'array',
     },
   },
-  title: "Components/Event List",
+  title: 'Components/Event List',
 };
 
 export const EventList = {
   args: {
     list: [
       {
-        url: "javascript:void(0)",
-        headline: "Neue Headline 2. Thema, maximal 2 Zeilig",
+        url: 'javascript:void(0)',
+        headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
         content:
-          "Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was",
-        moment: "16.02.2022",
-        time: "14-15 Uhr",
+          'Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was',
+        moment: '16.02.2022',
+        time: '14-15 Uhr',
         shapes: [
           {
-            color: "var(--color-green-blue)",
+            color: 'var(--color-green-blue)',
           },
           {
-            color: "var(--color-yellow)",
+            color: 'var(--color-yellow)',
           },
         ],
         webcast: true,
-        author: ["Nadine Kern", "Max Mustermann"],
+        author: ['Nadine Kern', 'Max Mustermann'],
         image: {
-          img: "/demo/authors-demo.png",
-          alt: "lorem ipsum",
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
         },
         badge: {
-          text: "Neuer Webcast",
-          icon: "",
+          text: 'Neuer Webcast',
+          icon: '',
         },
         cta: {
-          text: "Jetzt anmelden",
-          href: "javascript:void(0)",
-          skin: "primary",
+          text: 'Jetzt anmelden',
+          href: 'javascript:void(0)',
+          skin: 'primary',
           button: true,
           external: true,
         },
       },
       {
-        url: "javascript:void(0)",
-        headline: "Neue Headline 2. Thema, maximal 2 Zeilig",
+        url: 'javascript:void(0)',
+        headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
         content:
-          "<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>",
-        moment: "16.02.2022",
-        time: "14-15 Uhr",
+          '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
+        moment: '16.02.2022',
+        time: '14-15 Uhr',
         shapes: [
           {
-            color: "var(--color-green)",
+            color: 'var(--color-green)',
           },
         ],
         webcast: true,
-        author: ["Nadine Kern", "Max Mustermann"],
+        author: ['Nadine Kern', 'Max Mustermann'],
         image: {
-          img: "/demo/authors-demo.png",
-          alt: "lorem ipsum",
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
         },
         badge: {
-          text: "Neuer Webcast",
-          icon: "",
+          text: 'Neuer Webcast',
+          icon: '',
         },
         cta: {
-          text: "Jetzt anmelden",
-          href: "javascript:void(0)",
-          skin: "primary",
+          text: 'Jetzt anmelden',
+          href: 'javascript:void(0)',
+          skin: 'primary',
           button: true,
           external: true,
         },
       },
       {
-        url: "javascript:void(0)",
-        headline: "Microsoft 365 Holistic Workplace Security via Teams Meeting",
-        time: "1-4 Tage",
+        url: 'javascript:void(0)',
+        headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+        time: '1-4 Tage',
         shapes: [
           {
-            color: "var(--color-yellow)",
+            color: 'var(--color-yellow)',
           },
           {
-            color: "var(--color-blue-medium)",
+            color: 'var(--color-blue-medium)',
           },
         ],
-        author: ["Nadine Kern", "Max Mustermann"],
+        author: ['Nadine Kern', 'Max Mustermann'],
         image: {
-          img: "/demo/authors-demo.png",
-          alt: "lorem ipsum",
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
         },
         badge: {
-          text: "Training",
-          textColor: "var(--color-black)",
-          color: "var(--color-sunglow)",
+          text: 'Training',
+          textColor: 'var(--color-black)',
+          color: 'var(--color-sunglow)',
         },
-        price: "Kostenlos",
+        price: 'Kostenlos',
       },
       {
-        url: "javascript:void(0)",
-        headline: "Microsoft 365 Holistic Workplace Security via Teams Meeting",
-        time: "1-4 Tage",
+        url: 'javascript:void(0)',
+        headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+        time: '1-4 Tage',
         shapes: [
           {
-            color: "var(--color-yellow)",
+            color: 'var(--color-yellow)',
           },
           {
-            color: "var(--color-blue-medium)",
+            color: 'var(--color-blue-medium)',
           },
         ],
-        author: ["Nadine Kern", "Max Mustermann"],
+        author: ['Nadine Kern', 'Max Mustermann'],
         image: {
-          img: "/demo/authors-demo.png",
-          alt: "lorem ipsum",
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
         },
         badge: {
-          text: "Training",
-          textColor: "var(--color-black)",
-          color: "var(--color-sunglow)",
+          text: 'Training',
+          textColor: 'var(--color-black)',
+          color: 'var(--color-sunglow)',
         },
-        price: "Kostenlos",
+        price: 'Kostenlos',
       },
       {
-        url: "javascript:void(0)",
-        headline: "Microsoft 365 Holistic Workplace Security via Teams Meeting",
-        time: "1-4 Tage",
+        url: 'javascript:void(0)',
+        headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+        time: '1-4 Tage',
         shapes: [
           {
-            color: "var(--color-yellow)",
+            color: 'var(--color-yellow)',
           },
           {
-            color: "var(--color-blue-medium)",
+            color: 'var(--color-blue-medium)',
           },
         ],
-        author: ["Nadine Kern", "Max Mustermann"],
+        author: ['Nadine Kern', 'Max Mustermann'],
         image: {
-          img: "/demo/authors-demo.png",
-          alt: "lorem ipsum",
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
         },
         badge: {
-          text: "Training",
-          textColor: "var(--color-black)",
-          color: "var(--color-sunglow)",
+          text: 'Training',
+          textColor: 'var(--color-black)',
+          color: 'var(--color-sunglow)',
         },
-        price: "Kostenlos",
+        price: 'Kostenlos',
       },
       {
-        url: "javascript:void(0)",
-        headline: "Microsoft 365 Holistic Workplace Security via Teams Meeting",
-        time: "1-4 Tage",
+        url: 'javascript:void(0)',
+        headline: 'Microsoft 365 Holistic Workplace Security via Teams Meeting',
+        time: '1-4 Tage',
         shapes: [
           {
-            color: "var(--color-yellow)",
+            color: 'var(--color-yellow)',
           },
           {
-            color: "var(--color-blue-medium)",
+            color: 'var(--color-blue-medium)',
           },
         ],
-        author: ["Nadine Kern", "Max Mustermann"],
+        author: ['Nadine Kern', 'Max Mustermann'],
         image: {
-          img: "/demo/authors-demo.png",
-          alt: "lorem ipsum",
+          img: '/demo/authors-demo.png',
+          alt: 'lorem ipsum',
         },
         badge: {
-          text: "Training",
-          textColor: "var(--color-black)",
-          color: "var(--color-sunglow)",
+          text: 'Training',
+          textColor: 'var(--color-black)',
+          color: 'var(--color-sunglow)',
         },
-        price: "Kostenlos",
+        price: 'Kostenlos',
       },
     ],
     settings: [
@@ -184,15 +184,14 @@ export const EventList = {
       {
         variant: 8,
         teaser: {
-          url: "javascript:void(0)",
+          url: 'javascript:void(0)',
           teaser: true,
-          headline:
-            "Eigenes Training Lorem Ipsum dolor Lorem ipsum dolor sit amet, consectetuer adipiscing elit.",
+          headline: 'Eigenes Training Lorem Ipsum dolor Lorem ipsum dolor sit amet, consectetuer adipiscing elit.',
           content:
-            "<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>",
+            '<ul><li>I always had an optimism that was hard for others</li><li>Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was</li></ul>',
           cta: {
-            text: "Schulungen anfragen",
-            skin: "secondary is-light",
+            text: 'Schulungen anfragen',
+            skin: 'secondary is-light',
             button: true,
           },
         },

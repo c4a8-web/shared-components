@@ -1,23 +1,21 @@
-import BaseComponent from "./base-component.js";
-import Animate from "../animate.js";
-import Tools from "../assets/js/tools.js";
-import Events from "../assets/js/events.js";
+import BaseComponent from './base-component.js';
+import Animate from '../animate.js';
+import Tools from '../tools.js';
+import Events from '../events.js';
 
 class TagCloud extends BaseComponent {
-  static rootSelector = ".tag-cloud";
+  static rootSelector = '.tag-cloud';
 
   constructor(root, options) {
     super(root, options);
 
     this.root = root;
-    this.container = root.querySelector(".tag-cloud__container");
-    this.itemsContainer = root.querySelector(".tag-cloud__items");
-    this.itemLinkClass = "tag-cloud__item-link";
-    this.slider = root.querySelector(".tag-cloud__slider");
+    this.container = root.querySelector('.tag-cloud__container');
+    this.itemsContainer = root.querySelector('.tag-cloud__items');
+    this.itemLinkClass = 'tag-cloud__item-link';
+    this.slider = root.querySelector('.tag-cloud__slider');
 
-    this.items = this.itemsContainer?.dataset.items
-      ? JSON.parse(this.itemsContainer?.dataset.items)
-      : [];
+    this.items = this.itemsContainer?.dataset.items ? JSON.parse(this.itemsContainer?.dataset.items) : [];
 
     this.maxCoordinate = 40;
     this.itemsPerOuterRow = 3;
@@ -54,55 +52,46 @@ class TagCloud extends BaseComponent {
       this.addScrollAnimation();
     }
 
-    document.dispatchEvent(
-      new CustomEvent(Events.DIMENSIONS_CHANGED, { detail: this.root })
-    );
+    document.dispatchEvent(new CustomEvent(Events.DIMENSIONS_CHANGED, { detail: this.root }));
 
     this.bindEvents();
   }
 
   hasScrollAnimation() {
-    return (
-      Tools.isBelowBreakpoint("md") &&
-      Tools.isInViewportPercent(this.root, this.percentageInViewport)
-    );
+    return Tools.isBelowBreakpoint('md') && Tools.isInViewportPercent(this.root, this.percentageInViewport);
   }
 
   bindEvents() {
-    this.itemsContainer
-      .querySelectorAll(`.${this.itemLinkClass}`)
-      .forEach((item) => {
-        item.addEventListener("mouseover", (e) => {
-          this.handleMouseOver(e?.currentTarget);
-        });
+    this.itemsContainer.querySelectorAll(`.${this.itemLinkClass}`).forEach((item) => {
+      item.addEventListener('mouseover', (e) => {
+        this.handleMouseOver(e?.currentTarget);
       });
+    });
 
-    this.itemsContainer
-      .querySelectorAll(`.${this.itemLinkClass}`)
-      .forEach((item) => {
-        item.addEventListener("mouseout", (e) => {
-          this.handleMouseOut(e?.currentTarget);
-        });
+    this.itemsContainer.querySelectorAll(`.${this.itemLinkClass}`).forEach((item) => {
+      item.addEventListener('mouseout', (e) => {
+        this.handleMouseOut(e?.currentTarget);
       });
+    });
 
-    window.addEventListener("resize", () => {
+    window.addEventListener('resize', () => {
       this.handleScroll();
       this.endPosition = this.slider.scrollWidth - this.slider.clientWidth;
       this.setDuration();
     });
 
-    document.addEventListener("scroll", () => {
+    document.addEventListener('scroll', () => {
       this.handleScroll();
     });
 
-    this.slider.addEventListener("touchstart", () => {
+    this.slider.addEventListener('touchstart', () => {
       if (this.hasScrollAnimation()) {
         clearTimeout(this.timeout);
         this.handleTouchStart();
       }
     });
 
-    this.slider.addEventListener("touchend", () => {
+    this.slider.addEventListener('touchend', () => {
       if (this.hasScrollAnimation()) {
         this.timeout = setTimeout(() => {
           this.addScrollAnimation();
@@ -130,9 +119,7 @@ class TagCloud extends BaseComponent {
     const startPosition = currentPosition;
     const endPosition = distance ? this.startPosition : this.endPosition;
     const reverse = distance ? true : false;
-    const scaleDiff =
-      Math.abs(startPosition - endPosition) /
-      Math.abs(this.startPosition - this.endPosition);
+    const scaleDiff = Math.abs(startPosition - endPosition) / Math.abs(this.startPosition - this.endPosition);
     const duration = this.duration * scaleDiff;
 
     this.moveTo(startPosition, endPosition, duration, timing, reverse);
@@ -140,12 +127,12 @@ class TagCloud extends BaseComponent {
 
   handleMouseOut(element) {
     window.cancelAnimationFrame(this.animate.requestId);
-    element.style.setProperty("filter", null);
+    element.style.setProperty('filter', null);
   }
 
   handleMouseOver(element) {
     const style = window.getComputedStyle(element);
-    const blur = style?.filter.replace("blur(", "").replace("px)", "");
+    const blur = style?.filter.replace('blur(', '').replace('px)', '');
     const duration = 900;
 
     this.animate.start({
@@ -154,7 +141,7 @@ class TagCloud extends BaseComponent {
       draw: (progress) => {
         const newBlur = blur - blur * progress;
 
-        element.style.setProperty("filter", `blur(${newBlur}px)`, "important");
+        element.style.setProperty('filter', `blur(${newBlur}px)`, 'important');
       },
     });
   }
@@ -188,25 +175,13 @@ class TagCloud extends BaseComponent {
       duration: duration,
       timing: timing,
       draw: (progress) => {
-        const stepAfterDrag = reverse
-          ? currentPosition - limitDiff * progress
-          : currentPosition + limitDiff * progress;
-        const stepBeforeDrag = reverse
-          ? limitDiff * (1 - progress)
-          : limitDiff * progress;
-        this.slider.scrollLeft = this.gotDragged
-          ? stepAfterDrag
-          : stepBeforeDrag;
+        const stepAfterDrag = reverse ? currentPosition - limitDiff * progress : currentPosition + limitDiff * progress;
+        const stepBeforeDrag = reverse ? limitDiff * (1 - progress) : limitDiff * progress;
+        this.slider.scrollLeft = this.gotDragged ? stepAfterDrag : stepBeforeDrag;
 
         if (progress === 1) {
           this.gotDragged = false;
-          this.moveTo(
-            this.startPosition,
-            this.endPosition,
-            duration,
-            timing,
-            !reverse
-          );
+          this.moveTo(this.startPosition, this.endPosition, duration, timing, !reverse);
         }
       },
     });
@@ -219,8 +194,7 @@ class TagCloud extends BaseComponent {
       const item = this.items[i];
 
       const weight = Math.ceil(item.title.length / weightThreshold);
-      this.items[i].weighting =
-        weight > this.maxWeight ? this.maxWeight : weight;
+      this.items[i].weighting = weight > this.maxWeight ? this.maxWeight : weight;
     }
   }
 
@@ -268,10 +242,7 @@ class TagCloud extends BaseComponent {
   getRandomCoordinate() {
     const slowThreshold = 1.1;
     const speedLimit = 2;
-    let value = this.getRandomNumberBetween(
-      this.minCoordinate,
-      this.maxCoordinate
-    );
+    let value = this.getRandomNumberBetween(this.minCoordinate, this.maxCoordinate);
     let tempValue = value;
     let sign = Math.random() > 0.5 ? -1 * value : value;
 
@@ -298,49 +269,31 @@ class TagCloud extends BaseComponent {
     for (let i = 0; i < this.items.length; i++) {
       const item = this.items[i];
       const groupSize = 2;
-      const newElement = document.createElement("li");
+      const newElement = document.createElement('li');
 
-      newElement.classList.add("tag-cloud__item");
-      newElement.setAttribute("data-weight", item.weighting);
+      newElement.classList.add('tag-cloud__item');
+      newElement.setAttribute('data-weight', item.weighting);
 
       if (item.title) {
-        const link = document.createElement("a");
+        const link = document.createElement('a');
 
         let isEven = i % groupSize === 0 ? true : false;
         const groupIdentifier = isEven ? 2 : 1;
-        link.setAttribute("groupIdentifier", groupIdentifier);
+        link.setAttribute('groupIdentifier', groupIdentifier);
 
         //x-Values
-        link.style.setProperty(
-          "--blurry-x1",
-          `${this.getRandomCoordinate()}px`
-        );
-        link.style.setProperty(
-          "--blurry-x2",
-          `${this.getRandomCoordinate()}px`
-        );
-        link.style.setProperty(
-          "--blurry-x3",
-          `${this.getRandomCoordinate()}px`
-        );
+        link.style.setProperty('--blurry-x1', `${this.getRandomCoordinate()}px`);
+        link.style.setProperty('--blurry-x2', `${this.getRandomCoordinate()}px`);
+        link.style.setProperty('--blurry-x3', `${this.getRandomCoordinate()}px`);
 
         //y-Values
-        link.style.setProperty(
-          "--blurry-y1",
-          `${this.getRandomCoordinate()}px`
-        );
-        link.style.setProperty(
-          "--blurry-y2",
-          `${this.getRandomCoordinate()}px`
-        );
-        link.style.setProperty(
-          "--blurry-y3",
-          `${this.getRandomCoordinate()}px`
-        );
+        link.style.setProperty('--blurry-y1', `${this.getRandomCoordinate()}px`);
+        link.style.setProperty('--blurry-y2', `${this.getRandomCoordinate()}px`);
+        link.style.setProperty('--blurry-y3', `${this.getRandomCoordinate()}px`);
 
         //Blur-Values
-        link.style.setProperty("--blurry-delay", `${this.getRandomStart()}ms`);
-        link.style.setProperty("--blurry-blur", `${this.getRandomBlur()}px`);
+        link.style.setProperty('--blurry-delay', `${this.getRandomStart()}ms`);
+        link.style.setProperty('--blurry-blur', `${this.getRandomBlur()}px`);
 
         link.innerText = item.title;
         link.classList.add(this.itemLinkClass);

@@ -1,16 +1,16 @@
-import BaseComponent from "./base-component.js";
-import State from "../assets/js/state.js";
-import Events from "../assets/js/events.js";
+import BaseComponent from './base-component.js';
+import State from '../state.js';
+import Events from '../events.js';
 
 class Contact extends BaseComponent {
-  static rootSelector = ".contact.is-collapsed";
+  static rootSelector = '.contact.is-collapsed';
 
   constructor(root, options) {
     super(root, options);
 
     this.mailSelector = 'a[href^="mailto:"]';
-    this.formSelector = ".contact__form";
-    this.boxSelector = ".contact__box";
+    this.formSelector = '.contact__form';
+    this.boxSelector = '.contact__box';
 
     this.mail = this.root.querySelector(this.mailSelector);
     this.form = this.root.querySelector(this.formSelector);
@@ -26,7 +26,7 @@ class Contact extends BaseComponent {
   bindEvents() {
     if (!this.mail || !this.form || !this.box) return;
 
-    this.mail.addEventListener("click", this.handleClick.bind(this));
+    this.mail.addEventListener('click', this.handleClick.bind(this));
 
     document.addEventListener(Events.FAB_BUTTON_CLOSE, this.reset.bind(this));
   }
@@ -35,7 +35,7 @@ class Contact extends BaseComponent {
     e.preventDefault();
 
     const height = this.root.offsetHeight;
-    const heightWithUnits = height + "px";
+    const heightWithUnits = height + 'px';
 
     this.root.classList.add(State.SHOW);
 
@@ -47,7 +47,7 @@ class Contact extends BaseComponent {
     if (formHeight < height) return;
 
     const formHeightOffset = 40;
-    const formHeightWithUnits = formHeight + formHeightOffset + "px";
+    const formHeightWithUnits = formHeight + formHeightOffset + 'px';
 
     this.root.style.height = formHeightWithUnits;
     this.form.style.height = formHeightWithUnits;
@@ -55,10 +55,10 @@ class Contact extends BaseComponent {
 
   reset() {
     this.root.classList.remove(State.SHOW);
-    this.form.style.height = "";
-    this.root.style.height = "";
+    this.form.style.height = '';
+    this.root.style.height = '';
 
-    this.form.querySelector("form")?.reset();
+    this.form.querySelector('form')?.reset();
   }
 }
 

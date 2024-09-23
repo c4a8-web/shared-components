@@ -1,9 +1,9 @@
-import { getAssetPath } from "../../../../.storybook/templates";
-import lottie1 from "../../data/lottie1.json";
-import PeopleSquareComponent from "../../components/people-square";
+import { getAssetPath } from '../../../../.storybook/templates';
+import lottie1 from '../../data/lottie1.json';
+import PeopleSquareComponent from '../../../components/people-square';
 
 export default {
-  title: "Components/People Square",
+  title: 'Components/People Square',
   component: PeopleSquareComponent,
 };
 
@@ -15,25 +15,25 @@ export const TwoByTwo = {
     grid: [
       {
         number: 410,
-        text: "Kunden",
+        text: 'Kunden',
         shape: {
-          src: getAssetPath("./svg/shapes/shape-career-3.svg"),
+          src: getAssetPath('./svg/shapes/shape-career-3.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-2.jpg"),
+          src: getAssetPath('img/image-placeholder-2.jpg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-4.jpg"),
+          src: getAssetPath('img/image-placeholder-4.jpg'),
         },
       },
       {
-        color: "var(--color-yellow)",
+        color: 'var(--color-yellow)',
         number: 140,
-        text: "Mitarbeiter",
+        text: 'Mitarbeiter',
       },
     ],
   },
@@ -44,26 +44,26 @@ export const ThreeByThree = {
     grid: [
       {
         number: 410,
-        text: "Kunden",
+        text: 'Kunden',
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-3.svg"),
+          src: getAssetPath('svg/shapes/shape-career-3.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-1.jpg"),
+          src: getAssetPath('img/image-placeholder-1.jpg'),
         },
         rowStart: 1,
         rowEnd: 2,
       },
       {
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-2.svg"),
+          src: getAssetPath('svg/shapes/shape-career-2.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-2.jpg"),
+          src: getAssetPath('img/image-placeholder-2.jpg'),
         },
         rowStart: 3,
         rowEnd: 3,
@@ -71,23 +71,23 @@ export const ThreeByThree = {
         colEnd: 2,
       },
       {
-        color: "var(--color-primary-accent)",
+        color: 'var(--color-primary-accent)',
         number: 140,
-        text: "Mitarbeiter",
+        text: 'Mitarbeiter',
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-3.jpg"),
+          src: getAssetPath('img/image-placeholder-3.jpg'),
         },
       },
       {
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-4.svg"),
+          src: getAssetPath('svg/shapes/shape-career-4.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-4.jpg"),
+          src: getAssetPath('img/image-placeholder-4.jpg'),
         },
       },
     ],
@@ -102,24 +102,24 @@ export const FourByFour = {
     grid: [
       {
         number: 410,
-        text: "Kunden",
+        text: 'Kunden',
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-3.svg"),
+          src: getAssetPath('svg/shapes/shape-career-3.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-1.jpg"),
+          src: getAssetPath('img/image-placeholder-1.jpg'),
         },
       },
       {
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-2.svg"),
+          src: getAssetPath('svg/shapes/shape-career-2.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-2.jpg"),
+          src: getAssetPath('img/image-placeholder-2.jpg'),
         },
         rowStart: 1,
         rowEnd: 2,
@@ -127,13 +127,13 @@ export const FourByFour = {
         colEnd: 3,
       },
       {
-        color: "var(--color-primary-accent)",
+        color: 'var(--color-primary-accent)',
         number: 140,
-        text: "Mitarbeiter",
+        text: 'Mitarbeiter',
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-3.jpg"),
+          src: getAssetPath('img/image-placeholder-3.jpg'),
         },
         rowStart: 4,
         rowEnd: 4,
@@ -142,17 +142,17 @@ export const FourByFour = {
       },
       {
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-4.svg"),
+          src: getAssetPath('svg/shapes/shape-career-4.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-1.jpg"),
+          src: getAssetPath('img/image-placeholder-1.jpg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-4.jpg"),
+          src: getAssetPath('img/image-placeholder-4.jpg'),
         },
         rowStart: 3,
         rowEnd: 4,
@@ -168,14 +168,14 @@ export const WithAnimation = {
     grid: [
       {
         number: 410,
-        text: "Kunden",
+        text: 'Kunden',
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-3.svg"),
+          src: getAssetPath('svg/shapes/shape-career-3.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-1.jpg"),
+          src: getAssetPath('img/image-placeholder-1.jpg'),
         },
         rowStart: 1,
         rowEnd: 2,
@@ -187,7 +187,7 @@ export const WithAnimation = {
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-2.jpg"),
+          src: getAssetPath('img/image-placeholder-2.jpg'),
         },
         rowStart: 3,
         rowEnd: 3,
@@ -195,23 +195,23 @@ export const WithAnimation = {
         colEnd: 2,
       },
       {
-        color: "var(--color-primary-accent)",
+        color: 'var(--color-primary-accent)',
         number: 140,
-        text: "Mitarbeiter",
+        text: 'Mitarbeiter',
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-3.jpg"),
+          src: getAssetPath('img/image-placeholder-3.jpg'),
         },
       },
       {
         shape: {
-          src: getAssetPath("svg/shapes/shape-career-4.svg"),
+          src: getAssetPath('svg/shapes/shape-career-4.svg'),
         },
       },
       {
         img: {
-          src: getAssetPath("img/image-placeholder-4.jpg"),
+          src: getAssetPath('img/image-placeholder-4.jpg'),
         },
       },
     ],

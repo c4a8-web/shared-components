@@ -1,7 +1,7 @@
-import IconBlocksTemplate from "../../components/icon-blocks";
+import IconBlocksTemplate from '../../../components/icon-blocks';
 
 export default {
-  title: "Components/Icon Blocks",
+  title: 'Components/Icon Blocks',
   component: IconBlocksTemplate,
 };
 
@@ -10,40 +10,40 @@ export const IconBlocks = {
     iconBlocks: {
       items: [
         {
-          image: "svg/logos/logo-windows10.svg",
-          alt: "Windows 10",
-          headline: "Windows 10",
-          copy: "",
+          image: 'svg/logos/logo-windows10.svg',
+          alt: 'Windows 10',
+          headline: 'Windows 10',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-azure-ad.svg",
-          alt: "Azure Active Directory",
-          headline: "Azure Active Directory",
-          copy: "",
+          image: 'svg/icons-large/icon-azure-ad.svg',
+          alt: 'Azure Active Directory',
+          headline: 'Azure Active Directory',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-msft-defender-for-endpoint-org.svg",
-          alt: "Microsoft Defender for Endpoint",
-          headline: "Microsoft Defender<br />for Endpoint",
-          copy: "",
+          image: 'svg/icons-large/icon-msft-defender-for-endpoint-org.svg',
+          alt: 'Microsoft Defender for Endpoint',
+          headline: 'Microsoft Defender<br />for Endpoint',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-endpoint-manager.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "Endpoint Manager",
-          copy: "",
+          image: 'svg/icons-large/icon-endpoint-manager.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'Endpoint Manager',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-m365-apps.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "Microsoft 365 Apps<br />for Enterprise",
-          copy: "",
+          image: 'svg/icons-large/icon-m365-apps.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'Microsoft 365 Apps<br />for Enterprise',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-realmjoin.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "RealmJoin",
-          copy: "",
+          image: 'svg/icons-large/icon-realmjoin.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'RealmJoin',
+          copy: '',
         },
       ],
     },
@@ -53,50 +53,50 @@ export const IconBlocks = {
 export const CustomColumnCount = {
   args: {
     columns: 4,
-    classes: "h3-font-size",
+    classes: 'h3-font-size',
     iconBlocks: {
       cta: {
-        text: "Button",
-        href: "javascript:void(0)",
-        skin: "primary",
+        text: 'Button',
+        href: 'javascript:void(0)',
+        skin: 'primary',
         button: true,
       },
       items: [
         {
-          image: "svg/logos/logo-windows10.svg",
-          alt: "Windows 10",
-          headline: "Windows 10",
-          copy: "",
+          image: 'svg/logos/logo-windows10.svg',
+          alt: 'Windows 10',
+          headline: 'Windows 10',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-azure-ad.svg",
-          alt: "Azure Active Directory",
-          headline: "Azure Active Directory",
-          copy: "",
+          image: 'svg/icons-large/icon-azure-ad.svg',
+          alt: 'Azure Active Directory',
+          headline: 'Azure Active Directory',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-msft-defender-for-endpoint-org.svg",
-          alt: "Microsoft Defender for Endpoint",
-          headline: "Microsoft Defender<br />for Endpoint",
-          copy: "",
+          image: 'svg/icons-large/icon-msft-defender-for-endpoint-org.svg',
+          alt: 'Microsoft Defender for Endpoint',
+          headline: 'Microsoft Defender<br />for Endpoint',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-endpoint-manager.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "Endpoint Manager",
-          copy: "",
+          image: 'svg/icons-large/icon-endpoint-manager.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'Endpoint Manager',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-m365-apps.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "Microsoft 365 Apps<br />for Enterprise",
-          copy: "",
+          image: 'svg/icons-large/icon-m365-apps.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'Microsoft 365 Apps<br />for Enterprise',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-realmjoin.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "RealmJoin",
-          copy: "",
+          image: 'svg/icons-large/icon-realmjoin.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'RealmJoin',
+          copy: '',
         },
       ],
     },
@@ -106,45 +106,45 @@ export const CustomColumnCount = {
 export const HeadlineAndSticky = {
   args: {
     columns: 4,
-    classes: "font-size-1 bold",
+    classes: 'font-size-1 bold',
     sticky: true,
     iconBlocks: {
       items: [
         {
-          image: "svg/logos/logo-windows10.svg",
-          alt: "Windows 10",
-          headline: "Windows 10",
-          copy: "",
+          image: 'svg/logos/logo-windows10.svg',
+          alt: 'Windows 10',
+          headline: 'Windows 10',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-azure-ad.svg",
-          alt: "Azure Active Directory",
-          headline: "Azure Active Directory",
-          copy: "",
+          image: 'svg/icons-large/icon-azure-ad.svg',
+          alt: 'Azure Active Directory',
+          headline: 'Azure Active Directory',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-msft-defender-for-endpoint-org.svg",
-          alt: "Microsoft Defender for Endpoint",
-          headline: "Microsoft Defender<br />for Endpoint",
-          copy: "",
+          image: 'svg/icons-large/icon-msft-defender-for-endpoint-org.svg',
+          alt: 'Microsoft Defender for Endpoint',
+          headline: 'Microsoft Defender<br />for Endpoint',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-endpoint-manager.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "Endpoint Manager",
-          copy: "",
+          image: 'svg/icons-large/icon-endpoint-manager.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'Endpoint Manager',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-m365-apps.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "Microsoft 365 Apps<br />for Enterprise",
-          copy: "",
+          image: 'svg/icons-large/icon-m365-apps.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'Microsoft 365 Apps<br />for Enterprise',
+          copy: '',
         },
         {
-          image: "svg/icons-large/icon-realmjoin.svg",
-          alt: "Endpoint gk-SecOfferingMDATPOnePager",
-          headline: "RealmJoin",
-          copy: "",
+          image: 'svg/icons-large/icon-realmjoin.svg',
+          alt: 'Endpoint gk-SecOfferingMDATPOnePager',
+          headline: 'RealmJoin',
+          copy: '',
         },
       ],
     },
@@ -156,9 +156,9 @@ export const List = {
     iconBlocks: {
       items: [
         {
-          image: "svg/logos/logo-windows10.svg",
-          alt: "Windows 10",
-          headline: "Windows 10",
+          image: 'svg/logos/logo-windows10.svg',
+          alt: 'Windows 10',
+          headline: 'Windows 10',
           copy: `
             <ul class="dashed">
               <li>Lorem Ipsum </li>
@@ -168,9 +168,9 @@ export const List = {
           `,
         },
         {
-          image: "svg/logos/logo-windows10.svg",
-          alt: "Windows 11",
-          headline: "Windows 11",
+          image: 'svg/logos/logo-windows10.svg',
+          alt: 'Windows 11',
+          headline: 'Windows 11',
           copy: `
             <ul class="dashed">
               <li>Lorem Ipsum </li>

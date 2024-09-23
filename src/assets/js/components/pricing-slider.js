@@ -1,8 +1,8 @@
-import BaseComponent from "./base-component.js";
-import Modal from "../assets/js/modal.js";
+import BaseComponent from './base-component.js';
+import Modal from '../modal.js';
 
 class PricingSlider extends BaseComponent {
-  static rootSelector = ".pricing-slider";
+  static rootSelector = '.pricing-slider';
 
   constructor(root, options) {
     super(root, options);
@@ -12,18 +12,17 @@ class PricingSlider extends BaseComponent {
     this.range = null;
 
     // TODO move to a product related component
-    const parsePricingData =
-      document.querySelector("[data-pricing]")?.dataset.pricing;
+    const parsePricingData = document.querySelector('[data-pricing]')?.dataset.pricing;
     const pricingData = parsePricingData
       ? JSON.parse(parsePricingData)
       : {
-          format: "de-DE",
-          currency: "EUR",
-          defaultPlan: "monthly",
+          format: 'de-DE',
+          currency: 'EUR',
+          defaultPlan: 'monthly',
         };
 
     this.priceFormatter = new Intl.NumberFormat(pricingData.format, {
-      style: "currency",
+      style: 'currency',
       currency: pricingData.currency,
       maximumFractionDigits: 0,
     });
@@ -34,28 +33,25 @@ class PricingSlider extends BaseComponent {
     //   maximumFractionDigits: 2,
     // });
 
-    this.selectedPlan = ["monthly", "annual"].includes(pricingData.defaultPlan)
+    this.selectedPlan = ['monthly', 'annual'].includes(pricingData.defaultPlan)
       ? pricingData.defaultPlan
-      : console.error(
-          'Please provide a valid plan in site.data.products.pricing.defaultPlan: "annual" or "monthly"!'
-        );
+      : console.error('Please provide a valid plan in site.data.products.pricing.defaultPlan: "annual" or "monthly"!');
     this.currentPrice = 0;
 
     this.init();
   }
 
   init() {
-    if (window.handleChange)
-      return console.error("remove handleChange from app.js");
+    if (window.handleChange) return console.error('remove handleChange from app.js');
 
     this.bindEvents();
   }
 
   bindEvents() {
-    const info = this.root.querySelector(".pricing-slider__info");
+    const info = this.root.querySelector('.pricing-slider__info');
 
     if (info) {
-      info.addEventListener("click", this.handleInfoClick.bind(this));
+      info.addEventListener('click', this.handleInfoClick.bind(this));
     }
 
     // TODO rename after global migration
@@ -65,7 +61,7 @@ class PricingSlider extends BaseComponent {
   }
 
   handleInfoClick() {
-    const modal = this.root.querySelector(".pricing-slider__modal");
+    const modal = this.root.querySelector('.pricing-slider__modal');
 
     Modal.open(modal);
   }
@@ -91,11 +87,7 @@ class PricingSlider extends BaseComponent {
 
     this.currentPrice = price;
 
-    this.updateElements(
-      this.priceFormatter.format(price),
-      product.title,
-      this.formatExtraUsers(extraUsers)
-    );
+    this.updateElements(this.priceFormatter.format(price), product.title, this.formatExtraUsers(extraUsers));
   }
 
   getRecommendedProduct(selectedValue) {
@@ -122,14 +114,14 @@ class PricingSlider extends BaseComponent {
     const unit = this.range.unit;
 
     if (extraUsers > 0) {
-      return "+ " + extraUsers + " " + unit;
+      return '+ ' + extraUsers + ' ' + unit;
     } else {
-      return "";
+      return '';
     }
   }
 
   prepare(slider) {
-    const dataElement = document.querySelector(".js-slider-data");
+    const dataElement = document.querySelector('.js-slider-data');
     const timeout = 5;
 
     this.products = JSON.parse(dataElement.dataset.products);
@@ -143,21 +135,18 @@ class PricingSlider extends BaseComponent {
   }
 
   fixText() {
-    const sliderTextElement = document.querySelector(".irs-single");
+    const sliderTextElement = document.querySelector('.irs-single');
     const currentSliderContent = sliderTextElement.innerHTML;
 
     if (!currentSliderContent.includes(this.range.unit)) {
-      sliderTextElement.innerHTML = [
-        currentSliderContent,
-        this.range.unit,
-      ].join(" ");
+      sliderTextElement.innerHTML = [currentSliderContent, this.range.unit].join(' ');
     }
   }
 
   updateElements(price, product, extra) {
-    const priceElement = document.querySelector(".js-result-price");
-    const productElement = document.querySelector(".js-result-product");
-    const extraElement = document.querySelector(".js-result-extra");
+    const priceElement = document.querySelector('.js-result-price');
+    const productElement = document.querySelector('.js-result-product');
+    const extraElement = document.querySelector('.js-result-extra');
 
     priceElement.innerHTML = price;
     productElement.innerHTML = product;
