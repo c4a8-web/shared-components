@@ -6,3 +6,27 @@
     }
   }
 }
+
+.streamline-icon {
+  max-width: 200px;
+}
+
+.streamline-sm {
+  .streamline-icon {
+    width: 2rem;
+    vertical-align: middle;
+  }
+}
+
+.streamline-xs {
+  .streamline-icon {
+    width: 1.4rem;
+    vertical-align: unset;
+  }
+}
+
+svg {
+  &.streamline-icon {
+    margin-bottom: 0;
+  }
+}

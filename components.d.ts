@@ -128,6 +128,7 @@ declare module 'vue' {
     ShapeSemiCircle: typeof import('./src/components/shape-semi-circle.js')['default']
     ShapeSquareCircle: typeof import('./src/components/shape-square-circle.js')['default']
     ShapeTrianglesToCenter: typeof import('./src/components/shape-triangles-to-center.js')['default']
+    SiteIcons: typeof import('./src/components/site-icons.js')['default']
     Slider: typeof import('./src/components/slider.js')['default']
     SlotItems: typeof import('./src/components/slot-items.js')['default']
     Smile: typeof import('./src/components/icons/smile.js')['default']
