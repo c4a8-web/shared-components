@@ -71,7 +71,7 @@ export default {
       if (this.float) {
         return this.imagePreset || 'textImageFloatingSmall';
       } else {
-        return this.imagePreset || false;
+        return this.imagePreset || null;
       }
     },
     textImageClass() {

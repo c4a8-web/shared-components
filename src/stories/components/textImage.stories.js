@@ -1,8 +1,6 @@
 import TextImageComponent from '../../components/text-image';
 import lottie1 from '../data/lottie1.json';
 
-console.log('process');
-
 export default {
   title: 'Components/Text Image',
   component: TextImageComponent,
