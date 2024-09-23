@@ -10,7 +10,7 @@ export default {
   template: `
       <div class="modal__application">
         <div class="modal__body-default">
-          <Form
+          <formular
             :form="form"
             :space="' '"
             :container="true"
@@ -22,20 +22,20 @@ export default {
           <div class="modal__success-row row">
             <div class="modal__success-content col-lg-8">
               <div class="modal__success-headline">
-                <Headline
+                <headline
                   :text="success.headline.text"
                   :level="'h2'"
                   :classes="success.headline.classes"
                 />
               </div>
               <div class="modal__success-icon">
-                <Icon :icon="'rocket'" />
+                <icon icon="rocket" />
               </div>
               <div class="modal__success-subline">
                 {{ success.subline }}
               </div>
               <div class="modal__success-subheadline">
-                <Headline
+                <headline
                   :text="success.subheadline.text"
                   :level="'h4'"
                   :classes="success.subheadline.classes"
@@ -45,7 +45,7 @@ export default {
                 {{ success.text }}
               </div>
               <div class="modal__success-close">
-                <Cta :text="success.cta.text" />
+                <cta :text="success.cta.text" />
               </div>
             </div>
           </div>
