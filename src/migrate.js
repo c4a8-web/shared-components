@@ -1,8 +1,25 @@
+import '../src/assets/front/dist/assets/vendor/jquery/dist/jquery.min.js';
+import '../src/assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js';
+import '../src/assets/front/dist/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js';
+import '../src/assets/front/dist/assets/vendor/jquery-validation/dist/jquery.validate.min.js';
+import '../src/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js';
+import '../src/assets/front/dist/assets/js/theme.min.js';
+import '../src/assets/front/dist/assets/js/hs.validation.js';
+// TODO look for a leaflet dependency
+// import '../src/assets/front/dist/assets/vendor/leaflet/dist/leaflet.js';
+import '../src/assets/front/dist/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js';
+import '../src/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js';
+
+import '../src/assets/front/dist/assets/vendor/leaflet/dist/leaflet.css';
+import '../src/assets/front/dist/assets/css/theme.min.css';
+import '../src/assets/front/dist/assets/vendor/slick-carousel/slick/slick.css';
+import '../src/assets/front/dist/assets/vendor/fontawesome/css/all.min.css';
+import '../src/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
+
 import i18n from './assets/js/i18n/index.js';
-// import VueSetup from './vue-setup.js';
 
 import Events from './assets/js/events.js';
-import State from './assets/js/state.js';
+// import State from './assets/js/state.js';
 import Tools from './assets/js/tools.js';
 
 const handleLoadingError = function (error) {
@@ -120,42 +137,16 @@ const componentList = [
     .catch(handleLoadingError),
 ];
 
-// TODO figure out why this does not work in storybook but works in jekyll
-// const componentPathList = [
-//   // './anchor.js',
-//   // './data-an.js',
-//   // './sticky-scroller.js',
-//   // './toggle-switch.js',
-//   // './components/back.js',
-//   // './components/back-to-top.js',
-//   // './components/contact.js',
-//   // './components/fab-button.js',
-//   // './components/form-attachments.js',
-//   // './components/google-maps.js',
-//   // './components/hero-text-image.js',
-//   // './components/pricing-slider.js',
-//   // './components/tab-list.js',
-//   // './components/tag-cloud.js',
-//   // './components/testimonial-list.js',
-//   // './components/video-frame.js',
-//   // './modal.js',
-//   // './pages/detail.js',
-// ];
-
-// componentPathList.forEach((path) => {
-//   componentList.push(
-//     import(path)
-//       .then((module) => {
-//         return module.default;
-//       })
-//       .catch(handleLoadingError)
-//   );
-// });
-
 let lastBodyHeight = document.body.clientHeight;
 
 const triggerResizeEvent = () => {
   const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
+
+  document.dispatchEvent(customEvent);
+};
+
+const triggerVueMounted = () => {
+  const customEvent = new CustomEvent('VUE_IS_MOUNTED', {});
 
   document.dispatchEvent(customEvent);
 };
@@ -241,19 +232,21 @@ document.addEventListener('DOMContentLoaded', (e) => {
   initSharedComponents();
 });
 
-// document.addEventListener('VUE_IS_MOUNTED', (e) => {
-//   loadComponents();
-//   captureBodyMutation();
-// });
+document.addEventListener('VUE_IS_MOUNTED', (e) => {
+  loadComponents();
+  captureBodyMutation();
+});
 
-// window.addEventListener('scroll', () => {
-//   const customEvent = new CustomEvent(Events.SCROLL_UPDATE, {});
+window.addEventListener('scroll', () => {
+  const customEvent = new CustomEvent(Events.SCROLL_UPDATE, {});
 
-//   document.dispatchEvent(customEvent);
-// });
+  document.dispatchEvent(customEvent);
+});
 
-// window.addEventListener('resize', () => {
-//   triggerResizeEvent();
-// });
+window.addEventListener('resize', () => {
+  triggerResizeEvent();
+});
 
 // export { Form, initSharedComponents, initComponentList, State };
+
+export { triggerVueMounted };
