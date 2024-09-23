@@ -1,42 +1,40 @@
-import Modal from "../assets/js/modal.js";
-import Events from "../assets/js/events.js";
-import Tools from "../assets/js/tools.js";
-import State from "../assets/js/state.js";
-import Form from "../components/form.js";
+import Modal from '../assets/js/modal.js';
+import Events from '../assets/js/events.js';
+import Tools from '../assets/js/tools.js';
+import State from '../assets/js/state.js';
+import Form from '../assets/js/components/form.js';
 
 export default {
-  tagName: "modal",
+  tagName: 'modal',
   computed: {
     modalErrorValue() {
       return Tools.getJSON(this.modalError);
     },
     classList() {
       return [
-        "modal fade",
-        this.slimValue ? "modal--slim" : "",
-        this.notificationValue ? "modal--notification" : "",
-        this.isCenterSlim ? "modal--center-slim" : "",
-        "vue-component",
+        'modal fade',
+        this.slimValue ? 'modal--slim' : '',
+        this.notificationValue ? 'modal--notification' : '',
+        this.isCenterSlim ? 'modal--center-slim' : '',
+        'vue-component',
       ];
     },
     dialogClassList() {
       return [
-        "modal-dialog",
-        `${this.slimValue ? "modal-lg" : "modal-xl"}`,
-        `${this.centerValue ? "modal-dialog-centered" : ""}`,
+        'modal-dialog',
+        `${this.slimValue ? 'modal-lg' : 'modal-xl'}`,
+        `${this.centerValue ? 'modal-dialog-centered' : ''}`,
       ];
     },
     settings() {
       return {
-        "data-client-name": this.clientName ? this.clientName : null,
-        "data-api-url": this.apiUrl ? this.apiUrl : null,
-        "data-job-id": this.jobId ? this.jobId : null,
-        "data-modal-id": this.modalId ? this.modalId : null,
-        "data-api-key": this.apiKey ? this.apiKey : null,
-        "data-mock-apply-url": this.mockApplyUrl ? this.mockApplyUrl : null,
-        "data-mock-documents-url": this.mockDocumentsUrl
-          ? this.mockDocumentsUrl
-          : null,
+        'data-client-name': this.clientName ? this.clientName : null,
+        'data-api-url': this.apiUrl ? this.apiUrl : null,
+        'data-job-id': this.jobId ? this.jobId : null,
+        'data-modal-id': this.modalId ? this.modalId : null,
+        'data-api-key': this.apiKey ? this.apiKey : null,
+        'data-mock-apply-url': this.mockApplyUrl ? this.mockApplyUrl : null,
+        'data-mock-documents-url': this.mockDocumentsUrl ? this.mockDocumentsUrl : null,
       };
     },
     isCenterSlim() {
@@ -58,7 +56,7 @@ export default {
       return Tools.isTrue(this.notification);
     },
     size() {
-      return this.slimValue || this.notificationValue ? "small" : null;
+      return this.slimValue || this.notificationValue ? 'small' : null;
     },
     hasCircleAndHover() {
       return this.isCenterSlim || this.notificationValue ? false : true;
@@ -70,7 +68,7 @@ export default {
       return this.hasCircleAndHover;
     },
     bodyClasses() {
-      return ["modal__body", this.loading ? State.LOADING : null];
+      return ['modal__body', this.loading ? State.LOADING : null];
     },
   },
   mounted() {
@@ -87,10 +85,10 @@ export default {
   },
   methods: {
     isModalOpen() {
-      return document.body.classList.contains("modal-open") ? true : false;
+      return document.body.classList.contains('modal-open') ? true : false;
     },
     setModalMode(mode) {
-      const html = document.querySelector("html");
+      const html = document.querySelector('html');
 
       if (mode) {
         html.classList.add(State.MODAL_OPEN);
@@ -101,7 +99,7 @@ export default {
       }
     },
     handleClose() {
-      const modal = this.$refs["modal"];
+      const modal = this.$refs['modal'];
       const form = modal.querySelector(Form.rootSelector);
 
       if (!form) return;
@@ -135,7 +133,7 @@ export default {
       const openDelay = 70;
 
       setTimeout(() => {
-        Modal.open(this.$refs["modal"]);
+        Modal.open(this.$refs['modal']);
       }, openDelay);
     },
   },
@@ -143,10 +141,13 @@ export default {
     return {
       observer: null,
       loading: false,
-      blabla: "text",
+      blabla: 'text',
     };
   },
   props: {
+    application: Boolean,
+    form: Object,
+    success: Object,
     clientName: String,
     apiUrl: String,
     jobId: String,
@@ -167,6 +168,7 @@ export default {
     mockApplyUrl: String,
     mockDocumentsUrl: String,
     modalError: Object,
+    content: String,
   },
   template: `
     <div :class="classList" tabindex="-1" aria-hidden="true" :data-loading="loadingValue" style="--color-icon-hover-color: var(--color-white)" ref="modal"
@@ -179,6 +181,12 @@ export default {
             </div>
           </div>
           <div :class="bodyClasses">
+            <modal-application v-if="application" :form="form" :success="success" />
+            <div class="container" v-else-if="content">
+              <div class="row">
+                <div class="col" v-html="content"></div>
+              </div>
+            </div>
             <slot></slot>
             <div class="modal__error container" v-if="modalErrorValue">
               <div class="modal__error-row row">

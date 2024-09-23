@@ -1,26 +1,25 @@
-import State from "./state.js";
-import Events from "./events.js";
-import Form from "./components/form.js";
-import FormAttachments from "./components/form-attachments.js";
-import JobListings from "./job-listings.js";
-import Tools from "./tools.js";
-import StatusCodes from "./statusCodes.js";
+import State from './state.js';
+import Events from './events.js';
+import Form from './components/form.js';
+import FormAttachments from './components/form-attachments.js';
+import JobListings from './job-listings.js';
+import StatusCodes from './statusCodes.js';
 
 class Modal {
-  static rootSelector = ".modal";
+  static rootSelector = '.modal';
   static instances = [];
 
   constructor(root, options) {
     this.root = root;
     this.options = options;
 
-    this.closeSelector = ".modal__close";
-    this.successCloseSelector = ".modal__success-close .cta";
-    this.errorCloseSelector = ".modal__error-close .cta";
-    this.applicationSelector = ".modal__application";
-    this.modalSuccessHeadlineSelector = ".modal__success-headline > *";
+    this.closeSelector = '.modal__close';
+    this.successCloseSelector = '.modal__success-close .cta';
+    this.errorCloseSelector = '.modal__error-close .cta';
+    this.applicationSelector = '.modal__application';
+    this.modalSuccessHeadlineSelector = '.modal__success-headline > *';
     this.buttonSelector = '[data-trigger="modal"]';
-    this.formSelector = ".form";
+    this.formSelector = '.form';
 
     this.close = this.root.querySelector(this.closeSelector);
     this.successClose = this.root.querySelector(this.successCloseSelector);
@@ -53,13 +52,13 @@ class Modal {
   }
 
   isNotVueApp(parent) {
-    return parent.getAttribute("data-v-app") === null;
+    return parent.getAttribute('data-v-app') === null;
   }
 
   bindEvents() {
-    this.close?.addEventListener("click", this.handleClose.bind(this));
-    this.successClose?.addEventListener("click", this.handleClose.bind(this));
-    this.errorClose?.addEventListener("click", this.handleClose.bind(this));
+    this.close?.addEventListener('click', this.handleClose.bind(this));
+    this.successClose?.addEventListener('click', this.handleClose.bind(this));
+    this.errorClose?.addEventListener('click', this.handleClose.bind(this));
 
     if (this.application) {
       const parent = this.root.parentNode;
@@ -68,7 +67,7 @@ class Modal {
       if (parent && this.isNotVueApp(parent)) {
         const button = parent.querySelector(this.buttonSelector);
 
-        button?.addEventListener("click", this.handleOpen.bind(this));
+        button?.addEventListener('click', this.handleOpen.bind(this));
       } else if (parent) {
         this.addTriggerListeners();
       }
@@ -80,20 +79,13 @@ class Modal {
       this.addTriggerListeners();
     }
 
-    document.addEventListener(
-      Events.OPEN_MODAL,
-      this.handleModalOpen.bind(this)
-    );
+    document.addEventListener(Events.OPEN_MODAL, this.handleModalOpen.bind(this));
   }
 
   addTriggerListeners() {
-    const buttons = document.querySelectorAll(
-      `[data-trigger-id='${this.modalId}']`
-    );
+    const buttons = document.querySelectorAll(`[data-trigger-id='${this.modalId}']`);
 
-    buttons.forEach((button) =>
-      button.addEventListener("click", this.handleOpen.bind(this))
-    );
+    buttons.forEach((button) => button.addEventListener('click', this.handleOpen.bind(this)));
   }
 
   handleModalOpen(e) {
@@ -137,9 +129,7 @@ class Modal {
   }
 
   setLoading(mode) {
-    document.dispatchEvent(
-      new CustomEvent(Events.LOAD_MODAL, { detail: mode })
-    );
+    document.dispatchEvent(new CustomEvent(Events.LOAD_MODAL, { detail: mode }));
   }
 
   handleApplicationRequest(fields, fileData, base64Value) {
@@ -167,9 +157,7 @@ class Modal {
   handleApplicationSuccess(fields) {
     this.root.classList.add(State.SUCCESS);
 
-    const modalSuccessHeadline = this.root.querySelector(
-      this.modalSuccessHeadlineSelector
-    );
+    const modalSuccessHeadline = this.root.querySelector(this.modalSuccessHeadlineSelector);
     if (modalSuccessHeadline) {
       if (!modalSuccessHeadline.dataset.text) {
         modalSuccessHeadline.dataset.text = modalSuccessHeadline.innerText;
@@ -182,15 +170,12 @@ class Modal {
   }
 
   handleError(e) {
-    if (!e) return console.error("handle generic error");
+    if (!e) return console.error('handle generic error');
 
-    const message = typeof e === "string" ? e : e.message ? e.message : e;
-    const statusCode =
-      typeof e === "object" && e.statusCode
-        ? e.statusCode
-        : StatusCodes.INTERNAL_SERVER_ERROR;
+    const message = typeof e === 'string' ? e : e.message ? e.message : e;
+    const statusCode = typeof e === 'object' && e.statusCode ? e.statusCode : StatusCodes.INTERNAL_SERVER_ERROR;
 
-    console.error("Modal Error", message);
+    console.error('Modal Error', message);
 
     if (statusCode === StatusCodes.PAYLOAD_TOO_LARGE) {
       this.handlePayloadTooLarge(e);
@@ -200,9 +185,7 @@ class Modal {
   }
 
   handlePayloadTooLarge(e) {
-    document.dispatchEvent(
-      new CustomEvent(Events.FORM_ATTACHMENT_ERROR, { detail: e })
-    );
+    document.dispatchEvent(new CustomEvent(Events.FORM_ATTACHMENT_ERROR, { detail: e }));
   }
 
   handleClose(e) {
@@ -228,13 +211,13 @@ class Modal {
   static open(element) {
     if (element && window.$) {
       // TODO replace with custom event trigger ?
-      $(element).modal("show");
+      $(element).modal('show');
     }
   }
 
   static close(element) {
     if (element && window.$) {
-      $(element).modal("hide");
+      $(element).modal('hide');
 
       Modal.resetModal(element);
     }
@@ -242,7 +225,7 @@ class Modal {
 
   static resetModal(element) {
     setTimeout(function () {
-      const form = element.querySelector("form");
+      const form = element.querySelector('form');
 
       form?.reset();
 
@@ -257,12 +240,9 @@ class Modal {
     const selectedElement = element || document;
     const notReadySelector = `${this.rootSelector}:not(.${State.READY})`;
 
-    [].forEach.call(
-      selectedElement.querySelectorAll(notReadySelector),
-      (element) => {
-        this.initElement(element);
-      }
-    );
+    [].forEach.call(selectedElement.querySelectorAll(notReadySelector), (element) => {
+      this.initElement(element);
+    });
   }
 }
 
