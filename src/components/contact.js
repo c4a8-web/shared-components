@@ -108,28 +108,28 @@ export default {
                   <div v-for="(detail, index) in contact.person.details" :key="index" class="contact__detail w-100 px-5 d-flex align-items-center" :class="{'mb-3 mb-lg-4': !index === contact.person.details.length - 1}">
                     <a :href="detail.href" class="d-flex custom">
                       <span class="streamline-sm mr-4">
-                        <site-icon v-if="detail.icon === 'site/mail'" icon="site/mail" />
-                        <site-icon v-else icon="site/phone" />
+                        <site-icons v-if="detail.icon === 'site/mail'" icon="site/mail" />
+                        <site-icons v-else icon="site/phone" />
                       </span>
                       <span class="contact__detail-text">{{ detail.text }}</span>
                     </a>
                     <div v-if="detail.notes" class="contact__notes">
                       <span class="contact__notes-spacing streamline-sm mr-4">
-                        <site-icon v-if="detail.icon === 'site/mail'" icon="site/mail" />
-                        <site-icon v-else icon="site/phone" />
+                        <site-icons v-if="detail.icon === 'site/mail'" icon="site/mail" />
+                        <site-icons v-else icon="site/phone" />
                       </span>
                       {{ detail.notes }}
                     </div>
                   </div>
                   <div v-if="contact.person.number" class="contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4">
                     <a :href="'tel:' + contact.person.number" class="custom">
-                      <site-icon icon="site/phone" />
+                      <site-icons icon="site/phone" />
                       {{ contact.person.number }}
                     </a>
                   </div>
                   <div v-if="contact.person.mail" class="contact__mail w-100 px-5 d-flex align-items-center">
                     <a :href="'mailto:' + contact.person.mail" class="custom">
-                      <site-icon icon="site/mail" />
+                      <site-icons icon="site/mail" />
                       {{ contact.person.mail }}
                     </a>
                   </div>
@@ -142,15 +142,15 @@ export default {
               <div v-for="(detail, index) in contact.person.details" :key="index" class="contact__detail font-size-2 w-100 d-flex align-items-center" :class="{'mb-3 mb-lg-4': !index === contact.person.details.length - 1}">
                 <a :href="detail.href" class="custom">
                   <span class="streamline-sm mr-4">
-                    <site-icon v-if="detail.icon === 'site/mail'" icon="site/mail" />
-                    <site-icon v-else icon="site/phone" />
+                    <site-icons v-if="detail.icon === 'site/mail'" icon="site/mail" />
+                    <site-icons v-else icon="site/phone" />
                   </span>
                   {{ detail.text }}
                 </a>
                 <div v-if="detail.notes" class="contact__notes">
                   <span class="contact__notes-spacing streamline-sm mr-4">
-                    <site-icon v-if="detail.icon === 'site/mail'" icon="site/mail" />
-                    <site-icon v-else icon="site/phone" />
+                    <site-icons v-if="detail.icon === 'site/mail'" icon="site/mail" />
+                    <site-icons v-else icon="site/phone" />
                   </span>
                   {{ detail.notes }}
                 </div>
