@@ -1,58 +1,43 @@
-// TODO: Add lottie package
-// const lottie = import("../lib/lottie.min.js").then((module) => {
-//   return module.default || window.lottie;
-// });
-
-import Tools from "../assets/js/tools.js";
+import { Vue3Lottie } from 'vue3-lottie';
 
 export default {
-  tagName: "lottie",
+  tagName: 'lottie',
+  components: {
+    Vue3Lottie,
+  },
   computed: {
     classList() {
-      return ["lottie", "vue-component"];
-    },
-    jsonData() {
-      return Tools.getJSON(this.data);
+      return ['lottie', 'vue-component'];
     },
     widthValue() {
-      return this.width && this.width !== "" ? this.width : "100%";
+      return this.width && this.width !== '' ? this.width : '100%';
     },
     heightValue() {
-      return this.height && this.height !== "" ? this.height : "100%";
+      return this.height && this.height !== '' ? this.height : '100%';
     },
     backgroundValue() {
-      return this.background && this.background !== ""
-        ? this.background
-        : "transparent";
+      return this.background && this.background !== '' ? this.background : 'transparent';
     },
     loopValue() {
-      return this.loop && this.loop !== "" ? this.loop : true;
+      return this.loop && this.loop !== '' ? this.loop : true;
     },
     autoplayValue() {
-      return this.autoplay && this.autoplay !== "" ? this.autoplay : true;
+      return this.autoplay && this.autoplay !== '' ? this.autoplay : true;
     },
     nameValue() {
-      return this.name && this.name !== ""
-        ? this.name
-        : "lottie-" + Math.random();
+      return this.name && this.name !== '' ? this.name : 'lottie-' + Math.random();
     },
     rendererValue() {
-      return this.renderer && this.renderer !== "" ? this.renderer : "svg";
-    },
-    pathValue() {
-      return this.path && this.path !== "" ? this.path : null;
+      return this.renderer && this.renderer !== '' ? this.renderer : 'svg';
     },
     options() {
       return {
-        container: this.$refs.animContainer,
-        name: this.nameValue,
         renderer: this.rendererValue,
         loop: this.loopValue,
         autoplay: this.autoplayValue,
         width: this.getSize(this.widthValue),
         height: this.getSize(this.heightValue),
-        path: this.pathValue,
-        animationData: this.jsonData,
+        animationData: this.data,
       };
     },
   },
@@ -63,7 +48,6 @@ export default {
   },
   mounted() {
     this.initStyle();
-    this.loadAnimation();
   },
   methods: {
     initStyle() {
@@ -74,17 +58,7 @@ export default {
       };
     },
     getSize(size) {
-      return !size.indexOf ||
-        (size.indexOf("px") === -1 && size.indexOf("%") === -1)
-        ? `${size}px`
-        : size;
-    },
-    loadAnimation() {
-      let anim = lottie.then((lottieModule) => {
-        lottieModule.loadAnimation(this.options);
-
-        this.$emit("animControl", anim);
-      });
+      return !size.indexOf || (size.indexOf('px') === -1 && size.indexOf('%') === -1) ? `${size}px` : size;
     },
   },
   props: {
@@ -110,13 +84,10 @@ export default {
     renderer: {
       type: String,
     },
-    path: {
-      type: String,
-    },
   },
   template: `
     <div :class="classList">
-      <div class="lottie__container" :style="style" ref="animContainer"></div>
+      <Vue3Lottie class="lottie__container" v-bind="options" :style="style" />
     </div>
   `,
 };

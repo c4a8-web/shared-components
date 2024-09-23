@@ -1636,6 +1636,11 @@ express@^4.19.2:
     utils-merge "1.0.1"
     vary "~1.1.2"
 
+fast-deep-equal@^3.1.3:
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/fast-deep-equal/-/fast-deep-equal-3.1.3.tgz#3a7d56b559d6cbc3eb512325244e619a65c6c525"
+  integrity sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==
+
 fast-glob@^3.3.2:
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/fast-glob/-/fast-glob-3.3.2.tgz#a904501e57cfdd2ffcded45e99a54fef55e46129"
@@ -2015,6 +2020,11 @@ jstransformer@1.0.0:
     is-promise "^2.0.0"
     promise "^7.0.1"
 
+klona@^2.0.6:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/klona/-/klona-2.0.6.tgz#85bffbf819c03b2f53270412420a4555ef882e22"
+  integrity sha512-dhG34DXATL5hSxJbIexCft8FChFXtmskoZYnoPWjXQuebWYCNkVeV3KkGegCK9CP1oswI/vQibS2GY7Em/sJJA==
+
 local-pkg@^0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/local-pkg/-/local-pkg-0.5.0.tgz#093d25a346bae59a99f80e75f6e9d36d7e8c925c"
@@ -2041,6 +2051,16 @@ loose-envify@^1.1.0:
   integrity sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==
   dependencies:
     js-tokens "^3.0.0 || ^4.0.0"
+
+lottie-web@5.12.2:
+  version "5.12.2"
+  resolved "https://registry.yarnpkg.com/lottie-web/-/lottie-web-5.12.2.tgz#579ca9fe6d3fd9e352571edd3c0be162492f68e5"
+  integrity sha512-uvhvYPC8kGPjXT3MyKMrL3JitEAmDMp30lVkuq/590Mw9ok6pWcFCwXJveo0t5uqYw1UREQHofD+jVpdjBv8wg==
+
+lottie@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/lottie/-/lottie-0.0.1.tgz#f7a4d2a1f93006e60f1b1c6218cfba9cd1cc5f16"
+  integrity sha512-WdqM3pbQLzxOojtuxL9tqDgR1AeOFDLT43+dmjXl0/dhiNjf3PFzqwg7Sw4tME+DTG0DcXfAN3b1Z+HfdMf6oA==
 
 loupe@^3.1.0, loupe@^3.1.1:
   version "3.1.1"
@@ -2996,6 +3016,15 @@ vue-inbrowser-compiler-independent-utils@^4.69.0:
   version "4.71.1"
   resolved "https://registry.yarnpkg.com/vue-inbrowser-compiler-independent-utils/-/vue-inbrowser-compiler-independent-utils-4.71.1.tgz#dc6830b204f7cfdc30ffc4f31ba81b0c72c52136"
   integrity sha512-K3wt3iVmNGaFEOUR4JIThQRWfqokxLfnPslD41FDZB2ajXp789+wCqJyGYlIFsvEQ2P61PInw6/ph5iiqg51gg==
+
+vue3-lottie@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/vue3-lottie/-/vue3-lottie-3.3.1.tgz#df8ab61f5a8f7e03442fe5153fa766d879691037"
+  integrity sha512-60uQmx4eefi3FdPjAxWnblrgJJjnVTXUA6e4BAI3jGzgOSR76pyzL1rrWDiyPmMFo4mTw4wGTW6Gbkg3HR1mYw==
+  dependencies:
+    fast-deep-equal "^3.1.3"
+    klona "^2.0.6"
+    lottie-web "5.12.2"
 
 vue@^3.4.37:
   version "3.5.6"
