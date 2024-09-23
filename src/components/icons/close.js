@@ -11,7 +11,7 @@ export default {
     },
   },
   props: {
-    padding: String,
+    padding: Number,
     viewBoxWidth: String,
     settings: Object,
     color: String,
