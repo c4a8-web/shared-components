@@ -94,6 +94,7 @@ declare module 'vue' {
     Menu: typeof import('./src/components/icons/menu.js')['default']
     Minus: typeof import('./src/components/icons/minus.js')['default']
     Modal: typeof import('./src/components/modal.js')['default']
+    ModalApplication: typeof import('./src/components/modal-application.js')['default']
     NativeIndex: typeof import('./src/components/native-index.js')['default']
     PeopleSquare: typeof import('./src/components/people-square.js')['default']
     PersonQuote: typeof import('./src/components/person-quote.js')['default']
