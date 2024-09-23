@@ -2,6 +2,8 @@ import Tools from '../assets/js/tools.js';
 import State from '../assets/js/state.js';
 import Events from '../assets/js/events.js';
 
+// TODO fix hasError and check what is the matter with hasErrors? this could potentially be hasUserError instead
+
 export default {
   tagName: 'form-attachments',
   data() {
@@ -33,7 +35,7 @@ export default {
     interactableClassList() {
       return ['form-attachments__interactable', this.hasErrors ? State.HAS_ERROR : ''];
     },
-    required() {
+    requiredValue() {
       return this.required ? 'required' : null;
     },
     maxSizeMb() {
@@ -257,7 +259,7 @@ export default {
             icon='close'
             circle=true
             hover=true
-            padding=10
+            :padding="10"
           />
         </div>
         <div class="form-attachments__content">
@@ -278,7 +280,7 @@ export default {
       <div class="form-attachments__files">
         <input type="file" class="form-attachments__file" ref="file"
           multiple
-          :required="required"
+          :required="requiredValue"
           :id="id"
           :name="id"
           :accept="acceptList"
