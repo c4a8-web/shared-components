@@ -1,14 +1,14 @@
-import '../src/assets/front/dist/assets/vendor/jquery/dist/jquery.min.js';
-import '../src/assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js';
-import '../src/assets/front/dist/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js';
-import '../src/assets/front/dist/assets/vendor/jquery-validation/dist/jquery.validate.min.js';
-import '../src/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js';
-import '../src/assets/front/dist/assets/js/theme.min.js';
-import '../src/assets/front/dist/assets/js/hs.validation.js';
-// TODO look for a leaflet dependency
-// import '../src/assets/front/dist/assets/vendor/leaflet/dist/leaflet.js';
-import '../src/assets/front/dist/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js';
-import '../src/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js';
+// import '../src/assets/front/dist/assets/vendor/jquery/dist/jquery.min.js';
+// import '../src/assets/front/dist/assets/vendor/jquery-migrate/dist/jquery-migrate.min.js';
+// import '../src/assets/front/dist/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js';
+// import '../src/assets/front/dist/assets/vendor/jquery-validation/dist/jquery.validate.min.js';
+// import '../src/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js';
+// import '../src/assets/front/dist/assets/js/theme.min.js';
+// import '../src/assets/front/dist/assets/js/hs.validation.js';
+// // TODO look for a leaflet dependency
+// // import '../src/assets/front/dist/assets/vendor/leaflet/dist/leaflet.js';
+// import '../src/assets/front/dist/assets/vendor/hs-sticky-block/dist/hs-sticky-block.min.js';
+// import '../src/assets/front/dist/assets/vendor/slick-carousel/slick/slick.min.js';
 
 import '../src/assets/front/dist/assets/vendor/leaflet/dist/leaflet.css';
 import '../src/assets/front/dist/assets/css/theme.min.css';
