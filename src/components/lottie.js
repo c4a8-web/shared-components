@@ -1,10 +1,11 @@
-import { Vue3Lottie } from 'vue3-lottie';
+// TODO use a differentn lib that does't use defineComponent
+// import { Vue3Lottie } from 'vue3-lottie';
 
 export default {
   tagName: 'lottie',
-  components: {
-    Vue3Lottie,
-  },
+  // components: {
+  //   Vue3Lottie,
+  // },
   computed: {
     classList() {
       return ['lottie', 'vue-component'];
@@ -87,7 +88,6 @@ export default {
   },
   template: `
     <div :class="classList">
-      <Vue3Lottie class="lottie__container" v-bind="options" :style="style" />
     </div>
   `,
 };

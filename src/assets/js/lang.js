@@ -63,6 +63,7 @@ const LangData = {
   },
 };
 
-const Lang = LangData[Tools.getLang()];
+// const Lang = LangData[Tools.getLang()];
+const Lang = LangData;
 
 export default Lang;

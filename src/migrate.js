@@ -16,11 +16,11 @@ import '../src/assets/front/dist/assets/vendor/slick-carousel/slick/slick.css';
 import '../src/assets/front/dist/assets/vendor/fontawesome/css/all.min.css';
 import '../src/assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 
-import i18n from './assets/js/i18n/index.js';
-
-import Events from './assets/js/events.js';
-// import State from './assets/js/state.js';
-import Tools from './assets/js/tools.js';
+let i18n,
+  Events,
+  Tools,
+  componentLoadingList,
+  lastBodyHeight = 0;
 
 const handleLoadingError = function (error) {
   console.error('There was an issue loading a component. It might be blocked by an Adblock Script.', error);
@@ -33,111 +33,6 @@ const handleAdBlockerError = function (error) {
 
   document.dispatchEvent(customEvent);
 };
-
-const Form = import('./assets/js/components/form.js')
-  .then((module) => {
-    return module.default;
-  })
-  .catch(handleLoadingError);
-
-let componentLoadingList;
-
-const componentList = [
-  // This is disabled for now because we want to check if users will complain or not
-  // import('./analytics.js')
-  //   .then((module) => {
-  //     return module.default;
-  //   })
-  //   .catch(handleAdBlockerError),
-  import('./assets/js/anchor.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/data-an.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/sticky-scroller.js') // needs to load early
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/toggle-switch.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/back.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/back-to-top.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/contact.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/fab-button.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  Form,
-  import('./assets/js/components/google-maps.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/hero-text-image.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/pricing-slider.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/tag-cloud.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/testimonial-list.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/utility-animation.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/components/video-frame.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/modal.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-  import('./assets/js/pages/detail.js')
-    .then((module) => {
-      return module.default;
-    })
-    .catch(handleLoadingError),
-];
-
-let lastBodyHeight = document.body.clientHeight;
 
 const triggerResizeEvent = () => {
   const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
@@ -215,6 +110,107 @@ const initComponentList = function (element) {
 };
 
 const loadComponents = function () {
+  const Form = import('./assets/js/components/form.js')
+    .then((module) => {
+      return module.default;
+    })
+    .catch(handleLoadingError);
+
+  const componentList = [
+    // This is disabled for now because we want to check if users will complain or not
+    // import('./analytics.js')
+    //   .then((module) => {
+    //     return module.default;
+    //   })
+    //   .catch(handleAdBlockerError),
+    import('./assets/js/anchor.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/data-an.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/sticky-scroller.js') // needs to load early
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/toggle-switch.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/back.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/back-to-top.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/contact.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/fab-button.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    Form,
+    import('./assets/js/components/google-maps.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/hero-text-image.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/pricing-slider.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/tag-cloud.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/testimonial-list.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/utility-animation.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/components/video-frame.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/modal.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/pages/detail.js')
+      .then((module) => {
+        return module.default;
+      })
+      .catch(handleLoadingError),
+  ];
+
   Promise.all(componentList).then((data) => {
     componentLoadingList = data;
 
@@ -222,31 +218,48 @@ const loadComponents = function () {
   });
 };
 
-const initSharedComponents = function () {
-  window.i18n = new i18n();
+const initGlobalComponents = () => {
+  lastBodyHeight = document.body.clientHeight;
 
-  VueSetup();
+  return Promise.all([
+    import('./assets/js/i18n/index.js')
+      .then((module) => {
+        i18n = module.default;
+        window.i18n = new i18n();
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/events.js')
+      .then((module) => {
+        Events = module.default;
+      })
+      .catch(handleLoadingError),
+    import('./assets/js/tools.js')
+      .then((module) => {
+        Tools = module.default;
+      })
+      .catch(handleLoadingError),
+  ]);
 };
 
-document.addEventListener('DOMContentLoaded', (e) => {
-  initSharedComponents();
-});
+const addDocumentAndWindowEvents = () => {
+  document.addEventListener('VUE_IS_MOUNTED', (e) => {
+    initGlobalComponents().then(() => {
+      loadComponents();
+      captureBodyMutation();
+    });
+  });
 
-document.addEventListener('VUE_IS_MOUNTED', (e) => {
-  loadComponents();
-  captureBodyMutation();
-});
+  window.addEventListener('scroll', () => {
+    const customEvent = new CustomEvent(Events.SCROLL_UPDATE, {});
 
-window.addEventListener('scroll', () => {
-  const customEvent = new CustomEvent(Events.SCROLL_UPDATE, {});
+    document.dispatchEvent(customEvent);
+  });
 
-  document.dispatchEvent(customEvent);
-});
-
-window.addEventListener('resize', () => {
-  triggerResizeEvent();
-});
+  window.addEventListener('resize', () => {
+    triggerResizeEvent();
+  });
+};
 
 // export { Form, initSharedComponents, initComponentList, State };
 
-export { triggerVueMounted };
+export { triggerVueMounted, addDocumentAndWindowEvents };

@@ -56,7 +56,7 @@ class Tools {
   }
 
   static getLang() {
-    return (document.querySelector('html').getAttribute('lang') || defaultLang).toLowerCase();
+    return (document.querySelector('html').getAttribute('lang') || this.defaultLang).toLowerCase();
   }
 
   static isNotDefaultLang() {
