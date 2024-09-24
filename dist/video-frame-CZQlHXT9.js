@@ -1,7 +1,7 @@
 var s = Object.defineProperty;
 var r = (t, e, i) => e in t ? s(t, e, { enumerable: !0, configurable: !0, writable: !0, value: i }) : t[e] = i;
 var o = (t, e, i) => r(t, typeof e != "symbol" ? e + "" : e, i);
-import { B as a, Y as l } from "./index-5mjWNQB_.js";
+import { B as a, Y as l } from "./index-DA50CDZe.js";
 class n extends a {
   constructor(e) {
     super(e), this.root = e, this.options = e.dataset.hsVideoPlayerOptions, this.options && (this.options = JSON.parse(this.options), this.videoFrameSelector = this.options.targetSelector, this.parentSelector = this.options.parentSelector, this.videoFrame = this.root.querySelector(this.videoFrameSelector), this.parent = document.querySelector(this.parentSelector), this.videoFrame && this.init());
