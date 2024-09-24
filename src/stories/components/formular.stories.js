@@ -1,5 +1,6 @@
 import FormularComponent from '../../components/formular';
 import { analytics } from '../globalArgTypes';
+import options from '../../../.storybook/data/options';
 
 export default {
   component: FormularComponent,
@@ -209,7 +210,7 @@ export const WithCheckboxes = {
           placeholder: 'Select country',
           col: 6,
           rowStart: true,
-          options: 'options',
+          options: options.list,
         },
         {
           label: 'Do you have a Microsoft Teams Phone System License?',
@@ -238,7 +239,7 @@ export const WithCheckboxes = {
           placeholder: 'lorem ipsum',
           col: 6,
           rowStart: true,
-          options: 'options',
+          options: options.list,
         },
         {
           label: 'lorem ipsum',
@@ -395,7 +396,7 @@ export const WithAnimation = {
           placeholder: 'Select country',
           col: 6,
           rowStart: true,
-          options: 'options',
+          options: options.list,
         },
         {
           label: 'Do you have a Microsoft Teams Phone System License?',
@@ -424,7 +425,7 @@ export const WithAnimation = {
           placeholder: 'lorem ipsum',
           col: 6,
           rowStart: true,
-          options: 'options',
+          options: options.list,
         },
         {
           label: 'lorem ipsum',
