@@ -1,3 +1,6 @@
+import './assets/scss/index.scss';
+import './assets/scss/themes/_gk.scss';
+
 const components = import.meta.glob('./components/**/*.{vue,js}', {
   eager: true,
 });
