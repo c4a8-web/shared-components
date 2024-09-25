@@ -2,13 +2,19 @@
   "name": "gk-shared-components",
   "private": false,
   "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/c4a8/shared-components.git"
+  },
   "description": "Shared Vue.js components for use on the product page",
-  "main": "dist/shared-components.umd.js",
-  "module": "dist/shared-components.es.js",
+  "type": "module",
+  "module": "dist/shared-components.js",
   "files": [
     "dist"
   ],
-  "type": "module",
+  "publishConfig": {
+    "@mihailtd:registry": "https://npm.pkg.github.com"
+  },
   "keywords": [
     "vue",
     "library",
@@ -21,6 +27,7 @@
     "dev": "storybook dev -p 6006",
     "start": "storybook dev -p 6006",
     "build": "vite build && node ./scripts/copy-layouts.js",
+    "build:module": "vite build",
     "preview": "vite preview",
     "build-storybook": "storybook build"
   },

@@ -5,11 +5,11 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: {
-    alias: {
-      vue: 'vue/dist/vue.esm-bundler.js', // Alias to use the Vue build with the template compiler
-    },
-  },
+  // resolve: {
+  //   alias: {
+  //     vue: 'vue/dist/vue.esm-bundler.js', // Alias to use the Vue build with the template compiler
+  //   },
+  // },
   plugins: [
     vue(),
     Components({
@@ -18,17 +18,19 @@ export default defineConfig({
     }),
   ],
   build: {
+    emptyOutDir: false,
     lib: {
-      entry: 'src/index.js',
+      entry: resolve(__dirname, 'src/index.js'),
+      formats: ['es'],
       name: 'SharedComponents', // Global variable name for UMD/IIFE build
-      fileName: (format) => `shared-components.${format}.js`, // Output file name pattern
+      // fileName: (format) => `shared-components.${format}.js`, // Output file name pattern
     },
     rollupOptions: {
       // Ensure to externalize dependencies that shouldn't be bundled
       external: ['vue'],
       output: {
         globals: {
-          vue: 'Vue',
+          Vue: 'vue',
         },
       },
     },
