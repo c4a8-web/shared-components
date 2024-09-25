@@ -27,7 +27,7 @@ export default {
   title: 'Components/Footer',
 };
 
-export const Corporate = { args: {} };
+export const Corporate = { args: { lang: 'de' } };
 
 export const Product = {
   args: {
@@ -60,5 +60,6 @@ export const Product = {
         },
       ],
     },
+    lang: 'en',
   },
 };
