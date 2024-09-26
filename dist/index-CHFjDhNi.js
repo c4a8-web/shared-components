@@ -1,4 +1,4 @@
-import { T as r } from "./index-CZuV85cm.js";
+import { T as r } from "./index-BacVDjzF.js";
 const a = (i, t, n) => {
   const e = i[t];
   return e ? typeof e == "function" ? e() : Promise.resolve(e) : new Promise((o, s) => {

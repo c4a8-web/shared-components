@@ -246,8 +246,8 @@ let n = (m = class {
   static hexToRgb(e) {
     let s;
     if (e.startsWith("--") || e.startsWith("var(")) {
-      const c = e.replace(/--|var\(/, "").replace(/\)$/, "");
-      s = getComputedStyle(document.documentElement).getPropertyValue(c).trim();
+      const c = e.replace(/--|var\(/, "").replace(/\)$/, ""), d = getComputedStyle(document.documentElement), h = 4;
+      s = d.getPropertyValue(c).trim(), s.length === h && (s = `#${s[1]}${s[1]}${s[2]}${s[2]}${s[3]}${s[3]}`);
     }
     const i = s || e, r = m.red(i), a = m.green(i), o = m.blue(i);
     return `${r}, ${a}, ${o}`;
@@ -792,10 +792,10 @@ const _ = class _ extends ct {
   }
 };
 p(_, "rootSelector", ".form"), p(_, "instances", []), p(_, "delimiter", "-formHelper-"), p(_, "noCustomSubmitClass", "form--no-custom-submit"), p(_, "regularExpression", /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/);
-let x = _;
+let D = _;
 const Rt = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: x
+  default: D
 }, Symbol.toStringTag, { value: "Module" }));
 class zt {
   constructor(e) {
@@ -1174,8 +1174,8 @@ class pt {
     return [...s, ...i];
   }
   getFormData(e) {
-    const s = x.getFormData(e);
-    return this.api.getFormPayload(s, x);
+    const s = D.getFormData(e);
+    return this.api.getFormPayload(s, D);
   }
   applyFileData(e, s, i) {
     return this.api.applyFileData(e, s, i);
@@ -1184,8 +1184,8 @@ class pt {
     return this.api.handleApply(e);
   }
 }
-var T;
-let Q = (T = class {
+var E;
+let Q = (E = class {
   constructor(e, s) {
     this.root = e, this.options = s, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(l.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new pt({
       ...this.jobId && { jobId: this.jobId },
@@ -1202,7 +1202,7 @@ let Q = (T = class {
   bindEvents() {
     var e, s, i;
     if ((e = this.close) == null || e.addEventListener("click", this.handleClose.bind(this)), (s = this.successClose) == null || s.addEventListener("click", this.handleClose.bind(this)), (i = this.errorClose) == null || i.addEventListener("click", this.handleClose.bind(this)), this.application) {
-      const r = this.root.parentNode, a = x.getInstance(this.form);
+      const r = this.root.parentNode, a = D.getInstance(this.form);
       if (r && this.isNotVueApp(r)) {
         const o = r.querySelector(this.buttonSelector);
         o == null || o.addEventListener("click", this.handleOpen.bind(this));
@@ -1266,10 +1266,10 @@ let Q = (T = class {
     document.dispatchEvent(new CustomEvent(f.FORM_ATTACHMENT_ERROR, { detail: e }));
   }
   handleClose(e) {
-    e.preventDefault(), T.close(this.root);
+    e.preventDefault(), E.close(this.root);
   }
   handleOpen(e) {
-    e.preventDefault(), T.open(this.root);
+    e.preventDefault(), E.open(this.root);
   }
   static initElement(e, s) {
     const i = new this(e, s);
@@ -1279,7 +1279,7 @@ let Q = (T = class {
     e && window.$ && $(e).modal("show");
   }
   static close(e) {
-    e && window.$ && ($(e).modal("hide"), T.resetModal(e));
+    e && window.$ && ($(e).modal("hide"), E.resetModal(e));
   }
   static resetModal(e) {
     setTimeout(function() {
@@ -1294,7 +1294,7 @@ let Q = (T = class {
       this.initElement(r);
     });
   }
-}, p(T, "rootSelector", ".modal"), p(T, "instances", []), T);
+}, p(E, "rootSelector", ".modal"), p(E, "instances", []), E);
 const Ut = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
   default: Q
@@ -3210,10 +3210,10 @@ const oe = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   }
 };
 p(v, "rootSelector", ".utility-animation"), p(v, "inViewportDataset", "data-utility-animation-in-viewport"), p(v, "endDataset", "data-utility-animation-end"), p(v, "instances", []), p(v, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
-let E = v;
+let x = v;
 const Se = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
   __proto__: null,
-  default: E
+  default: x
 }, Symbol.toStringTag, { value: "Module" })), ke = {
   tagName: "dropdown",
   props: {
@@ -3257,7 +3257,7 @@ const Se = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
       this.activeSelection = this.filteredItems.filter((t) => t.checked);
     },
     updateUtilityAnimation() {
-      this.hasAnimation && E.observeElementIfNotAlready(this.$refs.label);
+      this.hasAnimation && x.observeElementIfNotAlready(this.$refs.label);
     },
     resetSelection() {
       this.activeSelection = [];
@@ -4734,7 +4734,7 @@ const Se = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
         `${n.isTrue(this.ajax) === !0 ? "form--ajax" : ""}`,
         `${n.isTrue(this.container) === !0 ? "container" : ""}`,
         `${n.isTrue(this.customValidation) === !0 ? "form--custom-validation" : ""}`,
-        ((t = this.form) == null ? void 0 : t.noCustomSubmit) === !0 ? x.noCustomSubmitClass : "",
+        ((t = this.form) == null ? void 0 : t.noCustomSubmit) === !0 ? D.noCustomSubmitClass : "",
         "vue-component"
       ];
     },
@@ -4794,7 +4794,7 @@ const Se = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProperty({
     },
     getId(t) {
       const e = (t == null ? void 0 : t.radios) || (t == null ? void 0 : t.checkboxes), s = e ? e[0].id : t == null ? void 0 : t.id;
-      return n.isTrue(this.hasUuid) ? x.getId(s) : s;
+      return n.isTrue(this.hasUuid) ? D.getId(s) : s;
     },
     updateAction(t) {
       t ? this.formAction = t : this.formAction = this.originalAction;
@@ -4905,30 +4905,30 @@ const g = function(t) {
     //     return module.default;
     //   })
     //   .catch(handleAdBlockerError),
-    import("./anchor-CZU2aNon.js").then((s) => s.default).catch(g),
-    import("./data-an-CMJo89-K.js").then((s) => s.default).catch(g),
+    import("./anchor-CS_5KeJz.js").then((s) => s.default).catch(g),
+    import("./data-an-CO8dGqsQ.js").then((s) => s.default).catch(g),
     Promise.resolve().then(() => oe).then((s) => s.default).catch(g),
-    import("./toggle-switch-4EInXOh1.js").then((s) => s.default).catch(g),
-    import("./back-BVcZ5upM.js").then((s) => s.default).catch(g),
-    import("./back-to-top-DM7d0TIo.js").then((s) => s.default).catch(g),
-    import("./contact-LQiNUkF2.js").then((s) => s.default).catch(g),
-    import("./fab-button-B6Iw2mfg.js").then((s) => s.default).catch(g),
+    import("./toggle-switch-KvtFmdba.js").then((s) => s.default).catch(g),
+    import("./back-DBZ7Q7gy.js").then((s) => s.default).catch(g),
+    import("./back-to-top-DGjfJNpu.js").then((s) => s.default).catch(g),
+    import("./contact-CptrTmgy.js").then((s) => s.default).catch(g),
+    import("./fab-button-D6WXrkYI.js").then((s) => s.default).catch(g),
     t,
-    import("./google-maps-CQzoqZGb.js").then((s) => s.default).catch(g),
-    import("./hero-text-image-BMccV_ZC.js").then((s) => s.default).catch(g),
-    import("./pricing-slider-Cw7rf68B.js").then((s) => s.default).catch(g),
-    import("./tag-cloud-CJ70zZXj.js").then((s) => s.default).catch(g),
-    import("./testimonial-list-CpZMXe9Z.js").then((s) => s.default).catch(g),
+    import("./google-maps-C9ilvYLS.js").then((s) => s.default).catch(g),
+    import("./hero-text-image-BUvn7KBM.js").then((s) => s.default).catch(g),
+    import("./pricing-slider-BHJUhB5N.js").then((s) => s.default).catch(g),
+    import("./tag-cloud-Cx_0ste6.js").then((s) => s.default).catch(g),
+    import("./testimonial-list-Cx90aHX8.js").then((s) => s.default).catch(g),
     Promise.resolve().then(() => Se).then((s) => s.default).catch(g),
-    import("./video-frame-DpWtWa5K.js").then((s) => s.default).catch(g),
+    import("./video-frame-By3HZ_im.js").then((s) => s.default).catch(g),
     Promise.resolve().then(() => Ut).then((s) => s.default).catch(g),
-    import("./detail-DcauR3qj.js").then((s) => s.default).catch(g)
+    import("./detail-D64a_too.js").then((s) => s.default).catch(g)
   ];
   Promise.all(e).then((s) => {
     ht = s, Ze();
   });
 }, Xe = () => (Y = document.body.clientHeight, Promise.all([
-  import("./index-Bz1EiUqn.js").then((t) => {
+  import("./index-CHFjDhNi.js").then((t) => {
     ut = t.default, window.i18n = new ut();
   }).catch(g),
   Promise.resolve().then(() => Vt).then((t) => {
@@ -5072,7 +5072,7 @@ const g = function(t) {
   },
   methods: {
     getItemStyle(t) {
-      return E.getIndexStyle(t);
+      return x.getIndexStyle(t);
     }
   },
   props: {
@@ -5138,11 +5138,11 @@ const g = function(t) {
   methods: {
     resetUtilityAnimation() {
       setTimeout(() => {
-        E.resetGroup(this.$refs.group);
+        x.resetGroup(this.$refs.group);
       }, 100);
     },
     reinitUtilityAnimation() {
-      !this.$refs.items || !this.$refs.items.length === 0 || (E.instances = [], E.init(Array.from(this.$refs.items)), E.addObserver());
+      !this.$refs.items || !this.$refs.items.length === 0 || (x.instances = [], x.init(Array.from(this.$refs.items)), x.addObserver());
     },
     blogImgUrl(t) {
       const e = "blog/heads/";
@@ -5894,7 +5894,7 @@ const g = function(t) {
     }
   },
   mounted() {
-    E.init([this.$refs.root]);
+    x.init([this.$refs.root]);
   },
   props: {
     copy: String,
@@ -7521,10 +7521,10 @@ const bs = {
       t ? e.classList.add(l.MODAL_OPEN) : (e.classList.remove(l.MODAL_OPEN), this.handleClose());
     },
     handleClose() {
-      const e = this.$refs.modal.querySelector(x.rootSelector);
+      const e = this.$refs.modal.querySelector(D.rootSelector);
       if (!e) return;
-      const s = x.getInstance(e);
-      s || x.reset(s.form);
+      const s = D.getInstance(e);
+      s || D.reset(s.form);
     },
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation), setTimeout(() => {
@@ -10199,7 +10199,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
 
       </g>
     </g>`
-}, hi = "0s", D = "1s", W = "0.01s", G = "0.01s", St = "shape-four-triangles", pi = {
+}, hi = "0s", T = "1s", W = "0.01s", G = "0.01s", St = "shape-four-triangles", pi = {
   tagName: St,
   computed: {
     begin() {
@@ -10304,7 +10304,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           name: "triangleBottomLeft",
           moveTo1: {
             start: !0,
-            delay: D,
+            delay: T,
             from: "-200 0",
             to: "-200 0",
             keyTimes: "0;1",
@@ -10314,7 +10314,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           },
           motion: {
             start: !0,
-            delay: D,
+            delay: T,
             path: "M200 400 C200,400 200,200 200,200 C200,200 200,200 200,200",
             keyPoints: "0;1;1",
             keyTimes: "0;0.333333;1",
@@ -10323,7 +10323,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           },
           transformRotate: {
             start: !0,
-            delay: D,
+            delay: T,
             from: "90",
             to: "0",
             values: "90;90;0;0",
@@ -10341,7 +10341,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           name: "triangleUpperLeft",
           moveTo1: {
             start: !0,
-            delay: D,
+            delay: T,
             from: "-200 0",
             to: "-200 0",
             keyTimes: "0;1",
@@ -10351,7 +10351,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           },
           motion: {
             start: !0,
-            delay: D,
+            delay: T,
             keyTimes: "0;0.666667;0.95;1",
             path: "M200 200 C200,200 200,200 200,200 C200,200 400,200 400,200 C400,200 400,200 400,200",
             keySplines: "0.167 0.167 0.833 0.833;0.167 0.167 0.833 0.833;0 0 0 0",
@@ -10360,7 +10360,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           },
           transformRotate: {
             start: !0,
-            delay: D,
+            delay: T,
             from: "90",
             to: "0",
             values: "90;90;0;0",
@@ -10378,7 +10378,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           name: "triangleUpperRight",
           moveTo1: {
             start: !0,
-            delay: D,
+            delay: T,
             from: "-100 -100",
             to: "-100 -100",
             keyTimes: "0;1",
@@ -10388,7 +10388,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           },
           motion: {
             start: !0,
-            delay: D,
+            delay: T,
             keyTimes: "0;0.522222;0.855556;1",
             keySplines: "0.333 0 0.667 1;0.333 0 0.667 1;0 0 0 0",
             path: "M300 100 C300,100 300,100 300,100 C300,100 100,100 100,100 C100,100 100,100 100,100",
@@ -10405,7 +10405,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           name: "triangleBottomRight",
           moveTo1: {
             start: !0,
-            delay: D,
+            delay: T,
             from: "-100 -100",
             to: "-100 -100",
             keyTimes: "0;1",
@@ -10415,7 +10415,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
           },
           motion: {
             start: !0,
-            delay: D,
+            delay: T,
             keyTimes: "0;0.333333;1",
             keySplines: "0.167 0.167 0.833 0.833;0 0 0 0",
             path: "M300 300 C300,300 300,100 300,100 C300,100 300,100 300,100",
@@ -12481,21 +12481,33 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
     }
   },
   props: {
-    icon: String
+    icon: String,
+    noSpan: Boolean
   },
   template: `
-    <span v-if="icon == 'site/mail'" :class="classList">
-      <svg class="streamline-icon" viewbox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
+    <template v-if="icon === 'site/mail' && noSpan === true" :class="classList">
+      <svg class="streamline-icon" viewBox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
         <title>{{ icon }}</title>
         <g id="envelope">
-          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a" />
-          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a" />
-          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a" />
-          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a" />
+          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path>
+          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path>
+          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path>
+          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path>
+        </g>
+      </svg>
+    </template>
+    <span v-else-if="icon == 'site/mail'" :class="classList">
+      <svg class="streamline-icon" viewBox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
+        <title>{{ icon }}</title>
+        <g id="envelope">
+          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path>
+          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path>
+          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path>
+          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path>
         </g>
       </svg>
     </span>
-    <span v-if="icon == 'site/phone'" :class="classList">
+    <span v-else-if="icon == 'site/phone'" :class="classList">
       <svg class="streamline-icon" viewbox="0 0 39 39" xmlns="http://www.w3.org/2000/svg">
         <title>{{ icon }}</title>
         <g id="phone" transform="matrix(0.9848077 0.17364818 -0.17364818 0.9848077 5.730377 0)">
@@ -13787,30 +13799,16 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
       return [this.copyClasses || "", this.textImageLightText];
     }
   },
+  mounted() {
+    x.init([this.$refs.root]);
+  },
   methods: {
     handleClick() {
       this.href && (document.location.href = this.href);
     }
   },
   template: `
-    <div :class="textImageClass" :style="textImageStyle">
-    text image blaaa
-
-      <modal
-        v-if="modal"
-        :form="modal.form"
-        :success="modal.success"
-        :error="modal.error"
-        :application="true"
-        :clientName="modal.clientName"
-        :jobId="modal.jobId"
-        :apiUrl="modal.apiUrl"
-        :apiKey="modal.apiKey"
-      />
-    </div>
-  `,
-  templateReal: `
-    <div :class="textImageClass" :style="textImageStyle">
+    <div :class="textImageClass" :style="textImageStyle" ref="root">
       <div class="container">
         <div class="row" :class="{ 'flex-row-reverse': left }">
           <div
@@ -14459,7 +14457,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
                 <li class="nav-item" v-if="location.number">
                   <a class="nav-link media" :href="'tel:' + location.number">
                     <span class="media">
-                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
+                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><site-icons icon="site/mail" :no-span="true" /></span>
                       <span class="media-body">
                         {{ location.number }}
                       </span>
@@ -14479,7 +14477,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
                 <li :class="['nav-item', locations.length > 1 ? 'pt-4' : '']" v-if="location.mail">
                   <a class="footer__nav-link nav-link" :href="'mailto:' + location.mail">
                     <span class="d-flex">
-                      <span class="streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex"><slot name='icon-mail'></slot></span>
+                      <span class="streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex"><site-icons icon="site/mail" :no-span="true" /></span>
                       <span class="footer__mail media-body">
                         {{ location.mail }}
                       </span>
@@ -15913,7 +15911,7 @@ export {
   ce as C,
   ke as D,
   f as E,
-  x as F,
+  D as F,
   _e as G,
   xe as H,
   Le as I,

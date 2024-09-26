@@ -68,6 +68,7 @@ declare module 'vue' {
     HeroTextImage: typeof import('./src/components/hero-text-image.js')['default']
     Icon: typeof import('./src/components/icon.js')['default']
     IconBlocks: typeof import('./src/components/icon-blocks.js')['default']
+    IconStreamline: typeof import('./src/components/icon-streamline.js')['default']
     ImageBlock: typeof import('./src/components/image-block.js')['default']
     ImageCredits: typeof import('./src/components/icons/image-credits.js')['default']
     ImageList: typeof import('./src/components/image-list.js')['default']

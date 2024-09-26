@@ -1,7 +1,7 @@
 var S = Object.defineProperty;
 var d = (i, t, e) => t in i ? S(i, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : i[t] = e;
 var r = (i, t, e) => d(i, typeof t != "symbol" ? t + "" : t, e);
-import { B as k, T as s, S as o, E as c } from "./index-CZuV85cm.js";
+import { B as k, T as s, S as o, E as c } from "./index-BacVDjzF.js";
 class y extends k {
   constructor(t, e) {
     super(t, e), this.root = t, this.containerSelector = ".page-detail__container", this.headlineSelector = ".page-detail__headline", this.ctaSelector = ".page-detail__cta .cta", this.introSelector = ".page-detail__intro", this.descriptionSelector = ".page-detail__description", this.shapeSelector = ".page-detail__shape", this.introContentSelector = ".page-detail__intro-content", this.badgeSelector = ".page-detail__badge", this.detailsSelector = ".page-detail__details", this.hasBackClass = "page-detail--has-back", this.shape = t.querySelector(this.shapeSelector), this.hasShape() && (this.introContent = t.querySelector(this.introContentSelector), this.intro = t.querySelector(this.introSelector)), this.loadingDelay = 300, this.percentageInViewport = 1, this.init();
