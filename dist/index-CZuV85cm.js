@@ -4905,30 +4905,30 @@ const g = function(t) {
     //     return module.default;
     //   })
     //   .catch(handleAdBlockerError),
-    import("./anchor-iw5JKg9Z.js").then((s) => s.default).catch(g),
-    import("./data-an-DDIBtPZD.js").then((s) => s.default).catch(g),
+    import("./anchor-CZU2aNon.js").then((s) => s.default).catch(g),
+    import("./data-an-CMJo89-K.js").then((s) => s.default).catch(g),
     Promise.resolve().then(() => oe).then((s) => s.default).catch(g),
-    import("./toggle-switch-Csyhru5c.js").then((s) => s.default).catch(g),
-    import("./back-BmmIEBMd.js").then((s) => s.default).catch(g),
-    import("./back-to-top-Dbwou6EN.js").then((s) => s.default).catch(g),
-    import("./contact-BFSZO9EX.js").then((s) => s.default).catch(g),
-    import("./fab-button-CST9tSF6.js").then((s) => s.default).catch(g),
+    import("./toggle-switch-4EInXOh1.js").then((s) => s.default).catch(g),
+    import("./back-BVcZ5upM.js").then((s) => s.default).catch(g),
+    import("./back-to-top-DM7d0TIo.js").then((s) => s.default).catch(g),
+    import("./contact-LQiNUkF2.js").then((s) => s.default).catch(g),
+    import("./fab-button-B6Iw2mfg.js").then((s) => s.default).catch(g),
     t,
-    import("./google-maps-CHwr4yRT.js").then((s) => s.default).catch(g),
-    import("./hero-text-image-hLxC3cph.js").then((s) => s.default).catch(g),
-    import("./pricing-slider-BhjsN7Q2.js").then((s) => s.default).catch(g),
-    import("./tag-cloud-CzNm6Zyn.js").then((s) => s.default).catch(g),
-    import("./testimonial-list-ClfF1Gi7.js").then((s) => s.default).catch(g),
+    import("./google-maps-CQzoqZGb.js").then((s) => s.default).catch(g),
+    import("./hero-text-image-BMccV_ZC.js").then((s) => s.default).catch(g),
+    import("./pricing-slider-Cw7rf68B.js").then((s) => s.default).catch(g),
+    import("./tag-cloud-CJ70zZXj.js").then((s) => s.default).catch(g),
+    import("./testimonial-list-CpZMXe9Z.js").then((s) => s.default).catch(g),
     Promise.resolve().then(() => Se).then((s) => s.default).catch(g),
-    import("./video-frame-BSAq5BBV.js").then((s) => s.default).catch(g),
+    import("./video-frame-DpWtWa5K.js").then((s) => s.default).catch(g),
     Promise.resolve().then(() => Ut).then((s) => s.default).catch(g),
-    import("./detail-DNXezGuC.js").then((s) => s.default).catch(g)
+    import("./detail-DcauR3qj.js").then((s) => s.default).catch(g)
   ];
   Promise.all(e).then((s) => {
     ht = s, Ze();
   });
 }, Xe = () => (Y = document.body.clientHeight, Promise.all([
-  import("./index-DeVWyFws.js").then((t) => {
+  import("./index-Bz1EiUqn.js").then((t) => {
     ut = t.default, window.i18n = new ut();
   }).catch(g),
   Promise.resolve().then(() => Vt).then((t) => {
@@ -13794,6 +13794,23 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
   },
   template: `
     <div :class="textImageClass" :style="textImageStyle">
+    text image blaaa
+
+      <modal
+        v-if="modal"
+        :form="modal.form"
+        :success="modal.success"
+        :error="modal.error"
+        :application="true"
+        :clientName="modal.clientName"
+        :jobId="modal.jobId"
+        :apiUrl="modal.apiUrl"
+        :apiKey="modal.apiKey"
+      />
+    </div>
+  `,
+  templateReal: `
+    <div :class="textImageClass" :style="textImageStyle">
       <div class="container">
         <div class="row" :class="{ 'flex-row-reverse': left }">
           <div
@@ -14475,7 +14492,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
                 <span v-if="brandLogo.title" class="footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
                 <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
                   <v-img
-                    cloudinary="true"
+                    :cloudinary="true"
                     v-bind="brandLogo"
                   ></v-img>
                 </a>
@@ -14487,7 +14504,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
                 <template v-for="(partner, index) in dataValue.partners">
                   <a :href="partner.url" :target="partner.target" class="footer__partner-images">
                     <v-img
-                      cloudinary="true"
+                      :cloudinary="true"
                       v-bind="partner"
                       class="footer__partner-image"
                     ></v-img>
@@ -14677,7 +14694,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
       this.hoverHeader = !1, this.setCtaClasses();
     },
     setCtaClasses() {
-      this.isLight && (this.hoverHeader || this.isScrolled ? this.ctaClassList = !1 : this.ctaClassList = "is-light-lg");
+      this.isLight && (this.hoverHeader || this.isScrolled ? this.ctaClassList = null : this.ctaClassList = "is-light-lg");
     },
     handleMouseOver(t, e) {
       if (!t.children) return;
@@ -14893,7 +14910,7 @@ const ri = "0.1s", rt = "7s", P = "0.05s", yt = "shape-circle-within-square", oi
       linkLists: {},
       scrollThreshold: 10,
       isScrolled: !1,
-      ctaClassList: !1,
+      ctaClassList: null,
       maxLinkListsInFlyout: 3
     };
   },
