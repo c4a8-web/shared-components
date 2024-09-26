@@ -1,8 +1,8 @@
-import Tools from "../assets/js/tools.js";
-import StickyScroller from "../assets/js/sticky-scroller.js";
+import Tools from '../assets/js/tools.js';
+import StickyScroller from '../assets/js/sticky-scroller.js';
 
 const heroPattern = {
-  tagName: "hero-pattern",
+  tagName: 'hero-pattern',
   template: `
     <svg width="1393" height="696" viewBox="0 0 1393 696" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M616 13L1194 103L1242 606L636 696L616 13Z" fill="#D1D9DD" />
@@ -45,9 +45,9 @@ const heroPattern = {
 };
 
 export default {
-  tagName: "hero",
+  tagName: 'hero',
   components: {
-    "hero-pattern": heroPattern,
+    'hero-pattern': heroPattern,
   },
   data() {
     return {
@@ -61,7 +61,7 @@ export default {
     setIntroStyle() {
       if (!this.isCentered) return;
 
-      const intro = this.$refs["intro"];
+      const intro = this.$refs['intro'];
 
       if (!intro) return;
 
@@ -70,7 +70,7 @@ export default {
       intro.style.height = `0`;
     },
     handleLetterSwitcherEnded() {
-      const intro = this.$refs["intro"];
+      const intro = this.$refs['intro'];
 
       if (!intro) return;
 
@@ -81,36 +81,31 @@ export default {
   computed: {
     classList() {
       return [
-        "hero vue-component",
+        'hero vue-component',
         this.variant,
-        this.isLight ? "is-light" : "",
-        this.isLightOverline ? "is-light-overline" : "",
+        this.isLight ? 'is-light' : '',
+        this.isLightOverline ? 'is-light-overline' : '',
         this.shapePosition,
-        this.fullscreen ? "hero--fullscreen" : "",
-        this.shapeFullscreen ? "hero--shape-fullscreen" : "",
-        this.animation ? "hero--animation" : "",
-        this.textShadow ? "hero--text-shadow" : "",
-        this.bgWidth ? "hero--bg-width" : "",
-        this.isCentered ? "hero--centered" : "",
-        this.shapeInContent ? "hero--shape-in-content" : "",
-        this.hasStickyScroller ? StickyScroller.getRootClass() : "",
+        this.fullscreen ? 'hero--fullscreen' : '',
+        this.shapeFullscreen ? 'hero--shape-fullscreen' : '',
+        this.animation ? 'hero--animation' : '',
+        this.textShadow ? 'hero--text-shadow' : '',
+        this.bgWidth ? 'hero--bg-width' : '',
+        this.isCentered ? 'hero--centered' : '',
+        this.shapeInContent ? 'hero--shape-in-content' : '',
+        this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
     },
     contentClassList() {
-      return [
-        "hero__content",
-        this.spacing ? this.spacing : this.animation ? "" : "py-10 py-lg-11",
-      ];
+      return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
     },
     style() {
       return [
         this.bgColor
           ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${Tools.hexToRgb(this.bgColor)}`
-          : "",
-        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : "",
-        this.overlineBgColor
-          ? `--hero-overline-background-color: ${this.overlineBgColor};`
-          : "",
+          : '',
+        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
+        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
       ];
     },
     cta() {
@@ -120,14 +115,12 @@ export default {
       return this.heroJson ? this.heroJson.light : false;
     },
     isLightOverline() {
-      return this.heroJson && typeof this.heroJson.lightOverline !== "undefined"
+      return this.heroJson && typeof this.heroJson.lightOverline !== 'undefined'
         ? this.heroJson.lightOverline
         : this.isLight;
     },
     background() {
-      return this.heroJson && this.heroJson.background
-        ? this.heroJson.background
-        : null;
+      return this.heroJson && this.heroJson.background ? this.heroJson.background : null;
     },
     bgColor() {
       return this.heroJson ? this.heroJson.bgColor : null;
@@ -151,13 +144,13 @@ export default {
       return this.heroJson ? this.heroJson.headlineClasses : null;
     },
     headlineClassList() {
-      return ["hero__headline", this.headlineClasses];
+      return ['hero__headline', this.headlineClasses];
     },
     textShadow() {
       return this.heroJson ? this.heroJson.textShadow : null;
     },
     level() {
-      return this.heroJson && this.heroJson.level ? this.heroJson.level : "h1";
+      return this.heroJson && this.heroJson.level ? this.heroJson.level : 'h1';
     },
     animation() {
       return this.heroJson ? this.heroJson.animation : null;
@@ -169,9 +162,7 @@ export default {
       return this.heroJson && this.background ? this.background.icon : null;
     },
     fullscreen() {
-      return this.heroJson && this.heroJson.fullscreen
-        ? this.heroJson.fullscreen
-        : false;
+      return this.heroJson && this.heroJson.fullscreen ? this.heroJson.fullscreen : false;
     },
     spacing() {
       return this.heroJson && this.background ? this.background.spacing : null;
@@ -185,22 +176,18 @@ export default {
     lottieSettings() {
       if (!this.shape || !this.shape.lottie) return;
 
-      const height = this.shapeFullscreen ? "100%" : "auto";
+      const height = this.shapeFullscreen ? '100%' : 'auto';
 
       return {
         ...this.shape.lottieSettings,
-        width: "auto",
+        width: 'auto',
         height,
       };
     },
     lottieFileData() {
       if (!this.shape) return null;
 
-      return this.shape.lottie
-        ? this.shape.lottie
-        : this.lottieData
-          ? Tools.getJSON(this.lottieData)
-          : null;
+      return this.shape.lottie ? this.shape.lottie : this.lottieData ? Tools.getJSON(this.lottieData) : null;
     },
     showShape() {
       return this.shape.img || this.shape.lottie || this.lottieFileData;
@@ -209,9 +196,7 @@ export default {
       return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
     },
     shapeFullscreen() {
-      return this.shape && this.shape.fullscreen
-        ? this.shape.fullscreen
-        : false;
+      return this.shape && this.shape.fullscreen ? this.shape.fullscreen : false;
     },
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
@@ -222,57 +207,40 @@ export default {
     shapePosition() {
       if (!this.shape) return null;
 
-      if (this.shapeFullscreen) return "hero--shape-top";
+      if (this.shapeFullscreen) return 'hero--shape-top';
 
-      return this.shapeTop
-        ? "hero--shape-top"
-        : this.shapeBottom
-          ? "hero--shape-bottom"
-          : "hero--shape-center";
+      return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
     shapeInContent() {
       return this.shape && this.shape.inContent ? this.shape.inContent : false;
     },
     variant() {
-      return this.heroJson && this.heroJson.variant
-        ? this.heroJson.variant
-        : null;
+      return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
     },
     pattern() {
-      return this.heroJson && this.heroJson.pattern
-        ? this.heroJson.pattern
-        : null;
+      return this.heroJson && this.heroJson.pattern ? this.heroJson.pattern : null;
     },
     ctaList() {
-      if (
-        !this.heroJson ||
-        this.animation ||
-        (!this.heroJson.cta && !this.heroJson.ctaList)
-      )
-        return null;
+      if (!this.heroJson || this.animation || (!this.heroJson.cta && !this.heroJson.ctaList)) return null;
 
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
     showShapeContainer() {
-      return (
-        this.bgWidth || this.isSmall || (this.showShape && this.shapeInContent)
-      );
+      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContent);
     },
     isCentered() {
       return this.letterSwitcher ? true : false;
     },
     isSmall() {
-      return this.variant === "hero--small";
+      return this.variant === 'hero--small';
     },
     imgSrcSets() {
       if (!this.bgWidth) return null;
 
-      return "heroStudy";
+      return 'heroStudy';
     },
     badges() {
-      return this.heroJson && this.heroJson.badges
-        ? this.heroJson.badges
-        : false;
+      return this.heroJson && this.heroJson.badges ? this.heroJson.badges : false;
     },
     hasBack() {
       return this.heroJson && this.heroJson.back ? this.heroJson.back : false;
@@ -344,7 +312,7 @@ export default {
               <div class="hero__badges" v-if="badges">
                 <div class="hero__badge-container" v-for="badge in badges">
                   <v-img
-                    cloudinary=true
+                    :cloudinary="true"
                     v-bind="badge"
                     class="hero__badge-image"
                   ></v-img>

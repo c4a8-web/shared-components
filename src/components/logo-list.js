@@ -1,11 +1,11 @@
-import Tools from "../assets/js/tools.js";
+import Tools from '../assets/js/tools.js';
 
 const logoListItems = {
-  tagName: "logo-list-items",
+  tagName: 'logo-list-items',
   computed: {},
   methods: {
     getItemComponent(item) {
-      return item?.url ? "a" : "span";
+      return item?.url ? 'a' : 'span';
     },
     getDelay(index) {
       const localIndex = this.getIndex(index);
@@ -28,7 +28,7 @@ const logoListItems = {
       data-utility-animation-step="1"
       :style="getDelay(index)"
     >
-      <v-img :img="item.img" :alt="item.alt" preset="logoList" cloudinary=true />
+      <v-img :img="item.img" :alt="item.alt" preset="logoList" :cloudinary="true" />
     </component>
   `,
   props: {
@@ -39,19 +39,19 @@ const logoListItems = {
 };
 
 export default {
-  tagName: "logo-list",
+  tagName: 'logo-list',
   components: {
-    "logo-list-items": logoListItems,
+    'logo-list-items': logoListItems,
   },
   computed: {
     defaultSpacing() {},
     classValue() {
       return [
-        "logo-list container utility-animation vue-component",
-        this.aspectRatio ? "logo-list--aspect-ratio" : "",
-        Tools.isTrue(this.sticky) ? "is-sticky-scroller" : "",
-        this.spacing ? this.spacing : "py-4",
-        this.isOverlapping ? "logo-list--is-overlapping" : "",
+        'logo-list container utility-animation vue-component',
+        this.aspectRatio ? 'logo-list--aspect-ratio' : '',
+        Tools.isTrue(this.sticky) ? 'is-sticky-scroller' : '',
+        this.spacing ? this.spacing : 'py-4',
+        this.isOverlapping ? 'logo-list--is-overlapping' : '',
       ];
     },
     isOverlapping() {
@@ -60,16 +60,15 @@ export default {
     columnsValue() {
       const defaultColumn = 4;
       const columnParam = parseInt(this.columns);
-      const columnPercentage =
-        100 / (Number.isNaN(columnParam) ? defaultColumn : columnParam);
-      const columnWidth = "--column-width: ";
+      const columnPercentage = 100 / (Number.isNaN(columnParam) ? defaultColumn : columnParam);
+      const columnWidth = '--column-width: ';
       const gap = 3;
 
       return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
     },
     aspectRatioValue() {
-      const aspectRatio = this.aspectRatio.split("/");
-      if (aspectRatio.length != 2) return "";
+      const aspectRatio = this.aspectRatio.split('/');
+      if (aspectRatio.length != 2) return '';
 
       return `--aspect-ratio-width: ${aspectRatio[0]}; --aspect-ratio-height: ${aspectRatio[1]}`;
     },
@@ -77,8 +76,8 @@ export default {
       return [
         this.columnsValue,
         this.aspectRatioValue,
-        this.bgColor ? `--logo-list-background: ${this.bgColor}` : "",
-      ].join("; ");
+        this.bgColor ? `--logo-list-background: ${this.bgColor}` : '',
+      ].join('; ');
     },
   },
   props: {

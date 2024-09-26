@@ -1,12 +1,12 @@
-import Tools from "../assets/js/tools.js";
-import State from "../assets/js/state.js";
+import Tools from '../assets/js/tools.js';
+import State from '../assets/js/state.js';
 
 const carouselItem = {
-  tagName: "carousel-item",
+  tagName: 'carousel-item',
   template: `
     <a :href="item.url" :target="item.target" class="carousel__item">
       <v-img
-        cloudinary=true
+        :cloudinary="true"
         v-bind="item"
         :class="item.classes"
       ></v-img>
@@ -18,9 +18,9 @@ const carouselItem = {
 };
 
 export default {
-  tagName: "carousel",
+  tagName: 'carousel',
   components: {
-    "carousel-item": carouselItem,
+    'carousel-item': carouselItem,
   },
   data() {
     return {
@@ -33,22 +33,17 @@ export default {
       return Tools.getJSON(this.items);
     },
     classList() {
-      return [
-        "carousel vue-component",
-        this.bgColor ? State.HAS_BACKGROUND : "",
-      ];
+      return ['carousel vue-component', this.bgColor ? State.HAS_BACKGROUND : ''];
     },
     style() {
       return [
-        this.bgColor ? `--color-carousel-background: ${this.bgColor};` : "",
-        this.clientWidth
-          ? `--animation-scroll-width: -${this.clientWidth}px;`
-          : "",
+        this.bgColor ? `--color-carousel-background: ${this.bgColor};` : '',
+        this.clientWidth ? `--animation-scroll-width: -${this.clientWidth}px;` : '',
       ];
     },
   },
   mounted() {
-    const rowSection = this.$refs["row-section"];
+    const rowSection = this.$refs['row-section'];
 
     this.resizeObserver = new ResizeObserver((entries) => {
       for (let entry of entries) {
@@ -62,14 +57,14 @@ export default {
 
     this.resizeObserver.observe(rowSection);
 
-    window.addEventListener("resize", this.updateClientWidth);
+    window.addEventListener('resize', this.updateClientWidth);
   },
   beforeDestroy() {
-    window.removeEventListener("resize", this.updateClientWidth);
+    window.removeEventListener('resize', this.updateClientWidth);
   },
   methods: {
     updateClientWidth() {
-      this.clientWidth = this.$refs["row-section"]?.clientWidth;
+      this.clientWidth = this.$refs['row-section']?.clientWidth;
     },
   },
   props: {
