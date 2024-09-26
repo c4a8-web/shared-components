@@ -1,8 +1,8 @@
-import Tools from "../assets/js/tools.js";
-import FooterData from "../data/footer-data.js";
+import Tools from '../assets/js/tools.js';
+import FooterData from '../data/footer-data.js';
 
 const footerSlider = {
-  tagName: "v-footer-slider",
+  tagName: 'v-footer-slider',
   template: `
     <div class="footer__slider-container">
       <carousel
@@ -19,9 +19,9 @@ const footerSlider = {
 };
 
 export default {
-  tagName: "v-footer",
+  tagName: 'v-footer',
   components: {
-    "footer-slider": footerSlider,
+    'footer-slider': footerSlider,
   },
   data() {
     return {
@@ -31,31 +31,25 @@ export default {
   computed: {
     classList() {
       return [
-        "footer text-white",
-        !Tools.isTrue(this.noMargin) ? "mt-8 mt-lg-11" : "",
-        this.isCorporate ? "footer--corporate" : "",
-        "vue-component",
+        'footer text-white',
+        !Tools.isTrue(this.noMargin) ? 'mt-8 mt-lg-11' : '',
+        this.isCorporate ? 'footer--corporate' : '',
+        'vue-component',
       ];
     },
     isCorporate() {
       return !this.dataValue?.brandLogos;
     },
     style() {
-      return [
-        this.dataValue?.bgColor
-          ? `background-color: ${this.dataValue.bgColor};`
-          : "",
-      ];
+      return [this.dataValue?.bgColor ? `background-color: ${this.dataValue.bgColor};` : ''];
     },
     dataValue() {
-      return this.data
-        ? { ...FooterData, ...Tools.getJSON(this.data) }
-        : { ...FooterData };
+      return this.data ? { ...FooterData, ...Tools.getJSON(this.data) } : { ...FooterData };
     },
     links() {
       const lowerCaseLang = this.lang.toLowerCase();
 
-      if (lowerCaseLang === "de" || lowerCaseLang === "") {
+      if (lowerCaseLang === 'de' || lowerCaseLang === '') {
         return this.dataValue.links;
       } else {
         const capitalizedLang = Tools.capitalize(this.lang);
@@ -77,10 +71,7 @@ export default {
         mail: this.dataValue.mail,
       });
 
-      if (
-        this.dataValue.additionalLocations &&
-        this.dataValue.additionalLocations.length
-      ) {
+      if (this.dataValue.additionalLocations && this.dataValue.additionalLocations.length) {
         newLocations.push(...this.dataValue.additionalLocations);
       }
 
@@ -96,10 +87,8 @@ export default {
 
       if (!root) return null;
 
-      const bgColor = window
-        .getComputedStyle(this.$refs.root)
-        .getPropertyValue("background-color");
-      const rgb = bgColor.replace(/[^\d,]/g, "").split(",");
+      const bgColor = window.getComputedStyle(this.$refs.root).getPropertyValue('background-color');
+      const rgb = bgColor.replace(/[^\d,]/g, '').split(',');
 
       return `rgba(${rgb[0]}, ${rgb[1]}, ${rgb[2]}, 1)`;
     },
@@ -125,7 +114,7 @@ export default {
                   :class="['footer__logos-link d-block pr-6', logo.linkClasses ? logo.linkClasses : 'w-75 w-md-35 w-lg-100']"
                 >
                   <v-img
-                    cloudinary=true
+                    :cloudinary="true"
                     v-bind="logo"
                   ></v-img>
                 </a>
@@ -180,7 +169,7 @@ export default {
                 <span v-if="brandLogo.title" class="footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
                 <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
                   <v-img
-                    cloudinary=true
+                    cloudinary="true"
                     v-bind="brandLogo"
                   ></v-img>
                 </a>
@@ -192,7 +181,7 @@ export default {
                 <template v-for="(partner, index) in dataValue.partners">
                   <a :href="partner.url" :target="partner.target" class="footer__partner-images">
                     <v-img
-                      cloudinary=true
+                      cloudinary="true"
                       v-bind="partner"
                       class="footer__partner-image"
                     ></v-img>
