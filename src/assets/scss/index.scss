@@ -23,7 +23,7 @@
 @import 'pages/index';
 
 html,
-body {
+html body {
   --scroll-top: 80px;
   --utility-animation-index: 1;
   --utility-animation-distance: 25%;
@@ -48,7 +48,7 @@ body {
   }
 }
 
-body {
+html body {
   line-height: var(--type-default-line-height);
   background-color: var(--color-background);
 }
