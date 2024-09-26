@@ -169,7 +169,7 @@ export default {
                 <span v-if="brandLogo.title" class="footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6">{{ brandLogo.title }}</span>
                 <a :href="brandLogo.url" :target="brandLogo.target" :class="['footer__brand-logo-link d-block space-top-1', index === 0 ? 'mt-3': '', brandLogo.classes ? brandLogo.classes : 'w-90']">
                   <v-img
-                    cloudinary="true"
+                    :cloudinary="true"
                     v-bind="brandLogo"
                   ></v-img>
                 </a>
@@ -181,7 +181,7 @@ export default {
                 <template v-for="(partner, index) in dataValue.partners">
                   <a :href="partner.url" :target="partner.target" class="footer__partner-images">
                     <v-img
-                      cloudinary="true"
+                      :cloudinary="true"
                       v-bind="partner"
                       class="footer__partner-image"
                     ></v-img>
