@@ -46,6 +46,9 @@ footer {
 
   .footer__nav-link {
     &.nav-link {
+      display: flex;
+      align-items: flex-start;
+
       &:not(.active) {
         color: var(--color-white-80);
 
@@ -305,11 +308,6 @@ footer {
 .footer__slider {
   width: 100%;
   flex: 0 0 100%;
-}
-
-.footer__nav-link {
-  display: flex;
-  align-items: flex-start;
 }
 
 .footer__nav-icon {
