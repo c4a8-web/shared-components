@@ -1,3 +1,5 @@
+import UtilityAnimation from '../assets/js/utility-animation.js';
+
 export default {
   tagName: 'text-image',
   props: {
@@ -142,6 +144,9 @@ export default {
       return [this.copyClasses || '', this.textImageLightText];
     },
   },
+  mounted() {
+    UtilityAnimation.init([this.$refs.root]);
+  },
   methods: {
     handleClick() {
       if (this.href) {
@@ -150,7 +155,7 @@ export default {
     },
   },
   template: `
-    <div :class="textImageClass" :style="textImageStyle">
+    <div :class="textImageClass" :style="textImageStyle" ref="root">
       <div class="container">
         <div class="row" :class="{ 'flex-row-reverse': left }">
           <div
