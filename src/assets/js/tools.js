@@ -499,8 +499,13 @@ class Tools {
     if (hex.startsWith('--') || hex.startsWith('var(')) {
       const cleanedHex = hex.replace(/--|var\(/, '').replace(/\)$/, '');
       const rootStyles = getComputedStyle(document.documentElement);
+      const shortHandLength = 4;
 
       rootHex = rootStyles.getPropertyValue(cleanedHex).trim();
+
+      if (rootHex.length === shortHandLength) {
+        rootHex = `#${rootHex[1]}${rootHex[1]}${rootHex[2]}${rootHex[2]}${rootHex[3]}${rootHex[3]}`;
+      }
     }
 
     const localHex = rootHex ? rootHex : hex;
