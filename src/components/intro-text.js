@@ -1,9 +1,14 @@
+import UtilityAnimation from '../assets/js/utility-animation.js';
+
 export default {
   tagName: 'intro-text',
   computed: {
     classList() {
       return ['intro-text', 'utility-animation', 'vue-component', this.variant, this.spacing];
     },
+  },
+  mounted() {
+    UtilityAnimation.init([this.$refs.root]);
   },
   props: {
     copy: String,
@@ -17,7 +22,7 @@ export default {
     copyClasses: String,
   },
   template: `
-    <figure :class="classList">
+    <figure :class="classList" ref="root">
       <div class="container space-lg-2">
         <div v-if="headline" class="row mb-9 mt-9">
           <div :class="['col', headlineClasses, 'fade-in-bottom']" data-utility-animation-step="1">
