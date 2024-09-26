@@ -3,8 +3,7 @@
   "private": false,
   "version": "0.1.0",
   "description": "Shared Vue.js components for use on the product page",
-  "main": "dist/shared-components.umd.js",
-  "module": "dist/shared-components.es.js",
+  "module": "dist/gk-shared-components.js",
   "files": [
     "dist"
   ],
@@ -21,6 +20,7 @@
     "dev": "storybook dev -p 6006",
     "start": "storybook dev -p 6006",
     "build": "vite build && node ./scripts/copy-layouts.js",
+    "build:module": "vite build",
     "preview": "vite preview",
     "build-storybook": "storybook build"
   },
