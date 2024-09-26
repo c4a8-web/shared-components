@@ -175,7 +175,7 @@ export default {
       if (!this.isLight) return;
 
       if (this.hoverHeader || this.isScrolled) {
-        this.ctaClassList = false;
+        this.ctaClassList = null;
       } else {
         this.ctaClassList = 'is-light-lg';
       }
@@ -494,7 +494,7 @@ export default {
       linkLists: {},
       scrollThreshold: 10,
       isScrolled: false,
-      ctaClassList: false,
+      ctaClassList: null,
       maxLinkListsInFlyout: 3,
     };
   },
