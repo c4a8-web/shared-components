@@ -19,7 +19,7 @@
   "scripts": {
     "dev": "storybook dev -p 6006",
     "start": "storybook dev -p 6006",
-    "build": "vite build && node ./scripts/copy-layouts.js",
+    "build": "vite build && node ./scripts/copy-assets.js",
     "build:module": "vite build",
     "preview": "vite preview",
     "build-storybook": "storybook build"

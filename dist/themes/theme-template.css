@@ -1,0 +1,30 @@
+/* gk theme related styling here */
+
+:root {
+  --site: 'themename';
+  /* Theme colors */
+  --color-headlines: red;
+  --color-copy: red;
+  --color-primary: red;
+  --color-primary-accent: red;
+  --color-primary-accent-light: red;
+  --color-secondary: red;
+  --color-secondary-accent: red;
+  --color-copy-highlight: red;
+
+  /* Element colors */
+  --color-bg-grey: red;
+  --color-bg-dark-grey: red;
+  --color-svg-icon: red;
+  --color-svg-icon--hover: red;
+  --color-bg-checkbox: red;
+  --color-border: red;
+  --color-loading: red;
+  --color-loading--1: var(--color-primary);
+  --color-loading--2: var(--color-yellow);
+  --color-loading--3: var(--color-conifer);
+  --color-loading--4: var(--color-orange);
+
+  /* fonts */
+  --font-family: 'Miriam Libre', sans-serif;
+}

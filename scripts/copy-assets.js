@@ -17,4 +17,17 @@ fs.readdirSync(srcDir).forEach((file) => {
   fs.copyFileSync(srcFile, destFile);
 });
 
-console.log('Layouts folder copied to dist directory.');
+console.log('Layouts copied to dist directory.');
+
+const srcThemesDir = path.resolve(__dirname, '../src/assets/css/themes');
+const destThemesDir = path.resolve(__dirname, '../dist/themes');
+
+fs.mkdirSync(destThemesDir, { recursive: true });
+
+fs.readdirSync(srcThemesDir).forEach((file) => {
+  const srcFile = path.join(srcThemesDir, file);
+  const destFile = path.join(destThemesDir, file);
+  fs.copyFileSync(srcFile, destFile);
+});
+
+console.log('Themes copied to dist directory.');
