@@ -115,8 +115,7 @@
       height: 100%;
       background: var(--color-primary);
       transform-origin: center;
-      animation:
-        ctaLoadingStart var(--cta-loading-start-duration) forwards var(--cta-loading-delay),
+      animation: ctaLoadingStart var(--cta-loading-start-duration) forwards var(--cta-loading-delay),
         ctaLoadingLoop calc(var(--cta-loading-start-duration) - 0.1s) ease-in-out infinite
           calc(var(--cta-loading-delay) + var(--cta-loading-start-duration) - 0.2s);
     }
@@ -332,6 +331,7 @@
       background-color: var(--color-primary);
       color: var(--color-white);
       border: 0;
+      border-radius: 0;
 
       &:not(label.btn):not([href]) {
         background-color: var(--color-primary);
