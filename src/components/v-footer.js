@@ -136,7 +136,7 @@ export default {
                 <li class="nav-item" v-if="location.number">
                   <a class="nav-link media" :href="'tel:' + location.number">
                     <span class="media">
-                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><slot name='icon-phone'></slot></span>
+                      <span class="streamline-xs streamline-site-phone mr-3 d-flex"><site-icons icon="site/mail" :no-span="true" /></span>
                       <span class="media-body">
                         {{ location.number }}
                       </span>
@@ -156,7 +156,7 @@ export default {
                 <li :class="['nav-item', locations.length > 1 ? 'pt-4' : '']" v-if="location.mail">
                   <a class="footer__nav-link nav-link" :href="'mailto:' + location.mail">
                     <span class="d-flex">
-                      <span class="streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex"><slot name='icon-mail'></slot></span>
+                      <span class="streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex"><site-icons icon="site/mail" :no-span="true" /></span>
                       <span class="footer__mail media-body">
                         {{ location.mail }}
                       </span>
