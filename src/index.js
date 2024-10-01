@@ -73,7 +73,7 @@ import Cta from './components/cta.vue';
 // import Grid from './components/grid.js';
 // import GridList from './components/grid-list.js';
 // import Hand from './components/icons/hand.js';
-// import Headline from './components/headline.js';
+import Headline from './components/headline.vue';
 // import HeadlineRow from './components/headline-row.js';
 import Hero from './components/hero.vue';
 // import HeroTextImage from './components/hero-text-image.js';
@@ -229,7 +229,7 @@ export {
   // Grid,
   // GridList,
   // Hand,
-  // Headline,
+  Headline,
   // HeadlineRow,
   Hero,
   // HeroTextImage,
@@ -387,7 +387,7 @@ export default {
     // app.component('Grid', Grid);
     // app.component('GridList', GridList);
     // app.component('Hand', Hand);
-    // app.component('Headline', Headline);
+    app.component('Headline', Headline);
     // app.component('HeadlineRow', HeadlineRow);
     app.component('Hero', Hero);
     // app.component('HeroTextImage', HeroTextImage);
