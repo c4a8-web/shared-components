@@ -7,7 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Accordion: typeof import('./src/components/accordion.js')['default']
+    Accordion: typeof import('./src/components/accordion.vue')['default']
     AdBlockInfo: typeof import('./src/components/ad-block-info.js')['default']
     Arrow: typeof import('./src/components/icons/arrow.js')['default']
     ArrowCurl: typeof import('./src/components/icons/arrow-curl.js')['default']
@@ -68,7 +68,6 @@ declare module 'vue' {
     HeroTextImage: typeof import('./src/components/hero-text-image.js')['default']
     Icon: typeof import('./src/components/icon.js')['default']
     IconBlocks: typeof import('./src/components/icon-blocks.js')['default']
-    IconStreamline: typeof import('./src/components/icon-streamline.js')['default']
     ImageBlock: typeof import('./src/components/image-block.js')['default']
     ImageCredits: typeof import('./src/components/icons/image-credits.js')['default']
     ImageList: typeof import('./src/components/image-list.js')['default']
@@ -108,6 +107,8 @@ declare module 'vue' {
     ProductStage: typeof import('./src/components/product-stage.js')['default']
     Quotes: typeof import('./src/components/quotes.js')['default']
     Rocket: typeof import('./src/components/icons/rocket.js')['default']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
     SBlock: typeof import('./src/components/shapes/s-block.js')['default']
     Screenshot: typeof import('./src/components/screenshot.js')['default']
     ScrollArrow: typeof import('./src/components/scroll-arrow.js')['default']
@@ -140,6 +141,7 @@ declare module 'vue' {
     TagCloud: typeof import('./src/components/tag-cloud.js')['default']
     TBlock: typeof import('./src/components/shapes/t-block.js')['default']
     Teaser: typeof import('./src/components/teaser.js')['default']
+    Test: typeof import('./src/components/test.vue')['default']
     TestimonialList: typeof import('./src/components/testimonial-list.js')['default']
     TestimonialsDetail: typeof import('./src/components/testimonials-detail.js')['default']
     TestimonialsSlider: typeof import('./src/components/testimonials-slider.js')['default']

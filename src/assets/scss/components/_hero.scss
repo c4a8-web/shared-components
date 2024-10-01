@@ -9,6 +9,7 @@
   background: var(--hero-background-color);
   color: var(--hero-copy-color);
   position: relative;
+  z-index: 0;
 
   &.is-light {
     --hero-copy-color: var(--color-copy-light);
@@ -184,8 +185,7 @@
       grid-column: content-left / content-right;
       text-align: center;
       margin: 0 auto;
-      transition:
-        height 0.7s var(--hero-intro-delay) $animation-transition,
+      transition: height 0.7s var(--hero-intro-delay) $animation-transition,
         opacity 1.6s var(--hero-intro-delay) $animation-transition;
 
       @include media-breakpoint-up(lg) {
