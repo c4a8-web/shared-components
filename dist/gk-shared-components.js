@@ -1,20 +1,20 @@
-var bt = Object.defineProperty;
-var xt = (s, t, e) => t in s ? bt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
-var y = (s, t, e) => xt(s, typeof t != "symbol" ? t + "" : t, e);
-import { openBlock as n, createElementBlock as h, Fragment as L, createBlock as C, resolveDynamicComponent as Lt, normalizeClass as v, withCtx as et, createElementVNode as l, toDisplayString as S, createCommentVNode as f, createTextVNode as it, resolveComponent as _t, normalizeStyle as W, createVNode as b, mergeProps as B, renderList as E } from "vue";
-const w = class w {
+var Lt = Object.defineProperty;
+var kt = (s, t, e) => t in s ? Lt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
+var b = (s, t, e) => kt(s, typeof t != "symbol" ? t + "" : t, e);
+import { resolveComponent as mt, openBlock as r, createElementBlock as l, normalizeClass as _, normalizeStyle as N, createElementVNode as o, Fragment as L, renderList as A, createBlock as w, createCommentVNode as m, createVNode as S, toDisplayString as v, createTextVNode as H, resolveDynamicComponent as lt, withCtx as Z, renderSlot as Et, mergeProps as j, createStaticVNode as yt } from "vue";
+const x = class x {
   static isInViewportPercent(t, e) {
-    const r = t.getBoundingClientRect(), a = window.innerHeight || document.documentElement.clientHeight, i = window.innerWidth || document.documentElement.clientWidth, o = { x: r.x, y: r.y, width: r.width, height: r.height }, d = { x: 0, y: 0, width: i, height: a }, g = o.width * o.height, p = w.intersection(o, d);
+    const a = t.getBoundingClientRect(), n = window.innerHeight || document.documentElement.clientHeight, i = window.innerWidth || document.documentElement.clientWidth, c = { x: a.x, y: a.y, width: a.width, height: a.height }, d = { x: 0, y: 0, width: i, height: n }, g = c.width * c.height, p = x.intersection(c, d);
     return e <= p / g * 100;
   }
   static getScrollTop(t) {
     if (!t) return;
-    const e = document.querySelector("header"), r = e ? (e == null ? void 0 : e.offsetHeight) + 40 : 0;
-    return t.getBoundingClientRect().top - r + window.scrollY;
+    const e = document.querySelector("header"), a = e ? (e == null ? void 0 : e.offsetHeight) + 40 : 0;
+    return t.getBoundingClientRect().top - a + window.scrollY;
   }
   static scrollIntoView(t, e) {
     t && window.scrollTo({
-      top: w.getScrollTop(t),
+      top: x.getScrollTop(t),
       behavior: e ? "smooth" : "auto"
     });
   }
@@ -25,74 +25,74 @@ const w = class w {
     return this.getLang() !== this.defaultLang;
   }
   static scrollToTop() {
-    w.scrollIntoView(document.querySelector("body"), !0);
+    x.scrollIntoView(document.querySelector("body"), !0);
   }
   static getParentComponent(t) {
-    return w.getParent(t, ".is-component");
+    return x.getParent(t, ".is-component");
   }
   static getParent(t, e) {
-    var a;
-    const r = t.parentNode;
-    return r === null || r.tagName === "body" ? null : (a = r.parentNode) != null && a.querySelector(e) ? r : w.getParent(r, e);
+    var n;
+    const a = t.parentNode;
+    return a === null || a.tagName === "body" ? null : (n = a.parentNode) != null && n.querySelector(e) ? a : x.getParent(a, e);
   }
   static append(t, e) {
     if (t) {
-      const r = document.createElement("div");
-      r.innerHTML = e != null && e.nodeType ? e.outerHTML : e;
-      const a = r == null ? void 0 : r.children[0];
-      if (a)
-        return t.appendChild(a);
+      const a = document.createElement("div");
+      a.innerHTML = e != null && e.nodeType ? e.outerHTML : e;
+      const n = a == null ? void 0 : a.children[0];
+      if (n)
+        return t.appendChild(n);
     }
     return null;
   }
   static replace(t, e) {
     t && e && (t.innerHTML = e.innerHTML);
   }
-  static generateUrl(t, e, r) {
-    let a;
-    return t && e && (a = t.toLowerCase().replace(/\s/g, "-").replace(/[&\/\\#,+()$~%.'":*?<>{}!]/g, "").replace(/\u00dc/, "ue").replace(/\u00c4/, "ae").replace(/\u00d6/, "oe").replace(/\u00fc/, "ue").replace(/\u00e4/, "ae").replace(/\u00f6/, "oe").replace(/\u00df/, "ss"), a = e + w.urlSeperator + a.replace(/-+$/, "") + "-" + r), a;
+  static generateUrl(t, e, a) {
+    let n;
+    return t && e && (n = t.toLowerCase().replace(/\s/g, "-").replace(/[&\/\\#,+()$~%.'":*?<>{}!]/g, "").replace(/\u00dc/, "ue").replace(/\u00c4/, "ae").replace(/\u00d6/, "oe").replace(/\u00fc/, "ue").replace(/\u00e4/, "ae").replace(/\u00f6/, "oe").replace(/\u00df/, "ss"), n = e + x.urlSeperator + n.replace(/-+$/, "") + "-" + a), n;
   }
   static toBase64(t) {
-    return new Promise((e, r) => {
-      const a = new FileReader();
-      a.readAsDataURL(t), a.onload = () => {
-        const i = a.result.split(",")[1];
+    return new Promise((e, a) => {
+      const n = new FileReader();
+      n.readAsDataURL(t), n.onload = () => {
+        const i = n.result.split(",")[1];
         e(i);
-      }, a.onerror = (i) => r(i);
+      }, n.onerror = (i) => a(i);
     });
   }
   static toSize(t) {
     const e = ["Bytes", "KB", "MB", "GB", "TB"];
     if (t == 0) return "0 Byte";
-    const r = parseInt(Math.floor(Math.log(t) / Math.log(1024)));
-    return (t / Math.pow(1024, r)).toFixed(1) + " " + e[r];
+    const a = parseInt(Math.floor(Math.log(t) / Math.log(1024)));
+    return (t / Math.pow(1024, a)).toFixed(1) + " " + e[a];
   }
   static camalCaseToSnakeCase(t) {
     return t.replace(/[A-Z]/g, (e) => `_${e.toLowerCase()}`);
   }
-  static animateValue(t, e, r, a, i = w.priceFormatter) {
-    let o = null;
+  static animateValue(t, e, a, n, i = x.priceFormatter) {
+    let c = null;
     const d = (g) => {
-      o || (o = g);
-      const p = Math.min((g - o) / a, 1), c = p * (r - e) + e, x = i.format(c);
-      t.innerHTML = x, p < 1 && window.requestAnimationFrame(d);
+      c || (c = g);
+      const p = Math.min((g - c) / n, 1), h = p * (a - e) + e, k = i.format(h);
+      t.innerHTML = k, p < 1 && window.requestAnimationFrame(d);
     };
     window.requestAnimationFrame(d);
   }
   static isOutsideOf(t, e) {
-    const r = e.composedPath ? e.composedPath() : e.path;
-    return r ? !r.some((a) => a.className && a.className.includes && a.className.includes(t)) : !1;
+    const a = e.composedPath ? e.composedPath() : e.path;
+    return a ? !a.some((n) => n.className && n.className.includes && n.className.includes(t)) : !1;
   }
   static getExtension(t) {
     return t.split(".").pop();
   }
   static validateVueProps(t) {
     var i;
-    const e = (i = t == null ? void 0 : t.$) == null ? void 0 : i.propsOptions[0], r = t == null ? void 0 : t.$props, a = { props: {} };
-    return Object.keys(r).map((o) => {
-      let d = r[o];
-      d === "" && (d = e[o].default), a.props[o] = d;
-    }), a;
+    const e = (i = t == null ? void 0 : t.$) == null ? void 0 : i.propsOptions[0], a = t == null ? void 0 : t.$props, n = { props: {} };
+    return Object.keys(a).map((c) => {
+      let d = a[c];
+      d === "" && (d = e[c].default), n.props[c] = d;
+    }), n;
   }
   static isTrue(t) {
     return t === !0 || t === "true";
@@ -107,29 +107,29 @@ const w = class w {
     return Math.floor(Math.random() * (e - t + 1) + t);
   }
   static uuid() {
-    const t = Date.now().toString(16) + Math.random().toString(4) + "0".repeat(16), e = w.randomRange(0, 8), r = w.randomRange(0, 16);
-    return "u" + [t.substring(e, e + 8), t.substring(r, r + 4)].join("-").replaceAll(".", "9");
+    const t = Date.now().toString(16) + Math.random().toString(4) + "0".repeat(16), e = x.randomRange(0, 8), a = x.randomRange(0, 16);
+    return "u" + [t.substring(e, e + 8), t.substring(a, a + 4)].join("-").replaceAll(".", "9");
   }
   static getBreakpoint() {
     return getComputedStyle(document.body).getPropertyValue("--breakpoint").trim();
   }
   static isBelowBreakpoint(t) {
     let e = ["xs", "sm", "md", "lg", "xl", "xxl"];
-    const r = w.getBreakpoint();
-    return e.indexOf(t) >= e.indexOf(r);
+    const a = x.getBreakpoint();
+    return e.indexOf(t) >= e.indexOf(a);
   }
   static isUpperBreakpoint() {
-    return !w.isBelowBreakpoint("md");
+    return !x.isBelowBreakpoint("md");
   }
   static getYoutubeThumbnail(t) {
     let e;
-    const r = t.match(/youtube\.com.*(\?v=|vi=|\/live\/)(.{11})/), a = t.match(/youtu\.be\/(.{11})/);
-    return r ? e = r[2] : a && (e = a[1]), `https://i1.ytimg.com/vi/${e}/maxresdefault.jpg`;
+    const a = t.match(/youtube\.com.*(\?v=|vi=|\/live\/)(.{11})/), n = t.match(/youtu\.be\/(.{11})/);
+    return a ? e = a[2] : n && (e = n[1]), `https://i1.ytimg.com/vi/${e}/maxresdefault.jpg`;
   }
   static truncateWords(t, e) {
     if (!t) return;
-    const r = t.split(" "), a = r.slice(0, e).join(" ");
-    return r.length > e ? a + " ..." : a;
+    const a = t.split(" "), n = a.slice(0, e).join(" ");
+    return a.length > e ? n + " ..." : n;
   }
   static stripHtml(t) {
     if (t)
@@ -142,33 +142,33 @@ const w = class w {
     return window.STORYBOOK_ENV === "HTML";
   }
   static isTestingStorybook() {
-    return document.location.pathname.indexOf(w.storybookPath) !== -1;
+    return document.location.pathname.indexOf(x.storybookPath) !== -1;
   }
   static getSiteAssetPath(t) {
-    return w.isTestingStorybook() ? `${w.storybookPath}${t}` : t;
+    return x.isTestingStorybook() ? `${x.storybookPath}${t}` : t;
   }
   static getAssetPath(t) {
-    return w.isStorybook() ? `../assets/${t}` : `/_includes/shared-components/assets/${t}`;
+    return x.isStorybook() ? `../assets/${t}` : `/_includes/shared-components/assets/${t}`;
   }
-  static findRecursive(t, e, r) {
-    let a = !1, i, o, d;
-    function g(p, c, x, k) {
-      if (!a) {
-        if (c(p, o)) {
-          a = !0, i = k(p, x);
+  static findRecursive(t, e, a) {
+    let n = !1, i, c, d;
+    function g(p, h, k, C) {
+      if (!n) {
+        if (h(p, c)) {
+          n = !0, i = C(p, k);
           return;
         }
-        for (let T in p)
-          typeof p[T] == "object" && (p === d && (o = T), g(p[T], c, p, k));
+        for (let E in p)
+          typeof p[E] == "object" && (p === d && (c = E), g(p[E], h, p, C));
       }
     }
-    return d = t, g(t, e, t, r), i;
+    return d = t, g(t, e, t, a), i;
   }
-  static storageSave(t, e, r = !0) {
-    localStorage.setItem(w.storagePrefix + t, r ? JSON.stringify(e) : e);
+  static storageSave(t, e, a = !0) {
+    localStorage.setItem(x.storagePrefix + t, a ? JSON.stringify(e) : e);
   }
   static storageGet(t) {
-    return localStorage.getItem(w.storagePrefix + t);
+    return localStorage.getItem(x.storagePrefix + t);
   }
   static getJSON(t) {
     var e;
@@ -192,16 +192,16 @@ const w = class w {
   static standardizeTimeFormat(t) {
     if (!this.isValidTimeFormat(t)) return t;
     const e = "Uhr";
-    let r = t.split("-"), a = r[0].trim();
-    a.includes(":") || (a += ":00"), a.length === 4 && (a = "0" + a);
-    let i = r[1].trim().replace(` ${e}`, "");
-    return i.includes(":") || (i += ":00"), i.length === 4 && (i = "0" + i), `${a} - ${i} ${e}`;
+    let a = t.split("-"), n = a[0].trim();
+    n.includes(":") || (n += ":00"), n.length === 4 && (n = "0" + n);
+    let i = a[1].trim().replace(` ${e}`, "");
+    return i.includes(":") || (i += ":00"), i.length === 4 && (i = "0" + i), `${n} - ${i} ${e}`;
   }
   static convertToDate(t) {
     const e = t.match(/^(\d{1,2})\.-\d{1,2}\.(\d{1,2})\.(\d{4})$/);
     if (e) {
-      const a = parseInt(e[1], 10), i = parseInt(e[2], 10) - 1, o = parseInt(e[3], 10);
-      return new Date(o, i, a);
+      const n = parseInt(e[1], 10), i = parseInt(e[2], 10) - 1, c = parseInt(e[3], 10);
+      return new Date(c, i, n);
     }
     return null;
   }
@@ -210,23 +210,23 @@ const w = class w {
     if (t.nodeType === Node.ELEMENT_NODE) {
       if (t.attributes.length > 0) {
         e["@attributes"] = {};
-        for (let r = 0; r < t.attributes.length; r++) {
-          const a = t.attributes.item(r);
-          e["@attributes"][a.nodeName] = a.nodeValue;
+        for (let a = 0; a < t.attributes.length; a++) {
+          const n = t.attributes.item(a);
+          e["@attributes"][n.nodeName] = n.nodeValue;
         }
       }
     } else (t.nodeType === Node.TEXT_NODE || t.nodeType === Node.CDATA_SECTION_NODE) && (e = t.nodeValue);
     if (t.hasChildNodes())
-      for (let r = 0; r < t.childNodes.length; r++) {
-        const a = t.childNodes.item(r), i = a.nodeName;
+      for (let a = 0; a < t.childNodes.length; a++) {
+        const n = t.childNodes.item(a), i = n.nodeName;
         if (typeof e[i] > "u")
-          e[i] = this.XMLtoJSON(a);
+          e[i] = this.XMLtoJSON(n);
         else {
           if (typeof e[i].push > "u") {
-            const o = e[i];
-            e[i] = [], e[i].push(o);
+            const c = e[i];
+            e[i] = [], e[i].push(c);
           }
-          e[i].push(this.XMLtoJSON(a));
+          e[i].push(this.XMLtoJSON(n));
         }
       }
     return e;
@@ -249,137 +249,32 @@ const w = class w {
       const d = t.replace(/--|var\(/, "").replace(/\)$/, ""), g = getComputedStyle(document.documentElement), p = 4;
       e = g.getPropertyValue(d).trim(), e.length === p && (e = `#${e[1]}${e[1]}${e[2]}${e[2]}${e[3]}${e[3]}`);
     }
-    const r = e || t, a = w.red(r), i = w.green(r), o = w.blue(r);
-    return `${a}, ${i}, ${o}`;
+    const a = e || t, n = x.red(a), i = x.green(a), c = x.blue(a);
+    return `${n}, ${i}, ${c}`;
   }
   static getHash() {
     return window.location.hash;
   }
 };
-y(w, "defaultLang", "de"), y(w, "urlSeperator", "#"), y(w, "priceFormatter", new Intl.NumberFormat("de-DE", {
+b(x, "defaultLang", "de"), b(x, "urlSeperator", "#"), b(x, "priceFormatter", new Intl.NumberFormat("de-DE", {
   style: "decimal",
   maximumFractionDigits: 0
-})), y(w, "storagePrefix", "@gab_"), // if you change this you need to change this in the index.html as well
-y(w, "storybookPath", "/shared-components"), y(w, "decodeHTML", (t) => new DOMParser().parseFromString(t, "text/html").documentElement.textContent), y(w, "intersection", (t, e) => {
-  const r = Math.max(0, Math.min(t.x + t.width, e.x + e.width) - Math.max(t.x, e.x)), a = Math.max(0, Math.min(t.y + t.height, e.y + e.height) - Math.max(t.y, e.y));
-  return r * a;
-}), y(w, "debounce", function(t, e, r) {
-  let a;
+})), b(x, "storagePrefix", "@gab_"), // if you change this you need to change this in the index.html as well
+b(x, "storybookPath", "/shared-components"), b(x, "decodeHTML", (t) => new DOMParser().parseFromString(t, "text/html").documentElement.textContent), b(x, "intersection", (t, e) => {
+  const a = Math.max(0, Math.min(t.x + t.width, e.x + e.width) - Math.max(t.x, e.x)), n = Math.max(0, Math.min(t.y + t.height, e.y + e.height) - Math.max(t.y, e.y));
+  return a * n;
+}), b(x, "debounce", function(t, e, a) {
+  let n;
   return function() {
-    const i = this, o = arguments;
+    const i = this, c = arguments;
     var d = function() {
-      a = null, r || t.apply(i, o);
-    }, g = r && !a;
-    clearTimeout(a), a = setTimeout(d, e), g && t.apply(i, o);
+      n = null, a || t.apply(i, c);
+    }, g = a && !n;
+    clearTimeout(n), n = setTimeout(d, e), g && t.apply(i, c);
   };
 });
-let u = w;
-const rt = {
-  tagName: "icon",
-  data() {
-    return u.validateVueProps(this);
-  },
-  computed: {
-    classList() {
-      return [
-        "icon",
-        `${this.classes ? this.classes : ""}`,
-        `${this.props.hasBackground ? "icon--has-background" : ""}`,
-        `icon--${this.props.direction}`,
-        `icon--${this.props.icon}`,
-        `${this.props.animation ? "js-text-animation__icon" : ""}`,
-        `${this.props.circle ? "icon--circle" : ""}`,
-        `${this.props.hover ? "icon--hover" : ""}`,
-        "vue-component"
-      ];
-    },
-    innerSize() {
-      var s;
-      switch (this.props.size) {
-        case "xxl":
-          s = "200px";
-          break;
-        case "xl":
-          s = "120px";
-          break;
-        case "medium":
-          s = "28px";
-          break;
-        case "small":
-          s = "18px";
-          break;
-        case "xs":
-          s = "10px";
-          break;
-        default:
-        case "large":
-          s = "48px";
-          break;
-      }
-      return s;
-    },
-    parentStyle() {
-      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.rotation}`;
-    },
-    rotation() {
-      return this.props.direction === "left" ? "180deg" : this.props.direction === "clockwise" ? "90deg" : "0deg";
-    },
-    settings() {
-      return {
-        width: this.innerSize,
-        height: this.innerSize,
-        padding: this.props.padding,
-        "xml:space": "preserve",
-        version: "1.1",
-        xmlns: "http://www.w3.org/2000/svg",
-        "xmlns:link": "http://www.w3.org/1999/xlink"
-      };
-    }
-  },
-  props: {
-    icon: {
-      default: "close"
-    },
-    color: {
-      default: "currentColor"
-    },
-    direction: {
-      default: "right"
-    },
-    size: {
-      default: "large"
-    },
-    circle: {
-      default: null
-    },
-    hover: {
-      default: null
-    },
-    padding: {
-      default: 6
-    },
-    animation: {
-      default: null
-    },
-    classes: {
-      default: ""
-    },
-    closed: {
-      default: null
-    },
-    hasBackground: {
-      default: null
-    },
-    step: {
-      default: null
-    }
-  },
-  template: `
-    <span :class="classList" :style="parentStyle">
-      <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
-    </span>
-    `
-}, m = {
+let u = x;
+const f = {
   ACTIVE: "active",
   READY: "is-ready",
   ERROR: "is-invalid",
@@ -408,470 +303,146 @@ const rt = {
   STICKY: "is-sticky",
   IN_TRANSITION: "in-transition",
   IS_STARTING: "is-starting"
-}, z = (s, t) => {
+}, O = (s, t) => {
   const e = s.__vccOpts || s;
-  for (const [r, a] of t)
-    e[r] = a;
+  for (const [a, n] of t)
+    e[a] = n;
   return e;
-}, Ct = {
-  tagName: "cta",
-  computed: {
-    tag() {
-      return this.href || this.alternativeHref || this.target ? "a" : "button";
-    },
-    hasIcon() {
-      return this.link || this.externalValue || this.icon || this.downloadValue;
-    },
-    externalValue() {
-      return u.isTrue(this.external);
-    },
-    downloadValue() {
-      return u.isTrue(this.download);
-    },
-    classList() {
-      return [
-        `${this.baseClass} ${this.innerSkin}`,
-        this.classes ? this.classes : "",
-        this.download ? "cta--download" : "",
-        this.external ? "cta--external" : "",
-        this.icon ? `cta--has-icon cta--icon-${this.icon}` : "",
-        u.isTrue(this.reversed) === !0 ? "cta--reversed" : "",
-        u.isTrue(this.monochrome) === !0 ? "cta--monochrome" : "",
-        this.link && u.isTrue(this.active) === !0 ? m.ACTIVE : "",
-        u.isTrue(this.loading) ? m.LOADING : "",
-        u.isTrue(this.hasBackground) === !0 ? "cta--has-background" : "",
-        "vue-component"
-      ];
-    },
-    innerSkin() {
-      return this.link ? this.skin ? this.skin : "" : this.skin ? `btn-${this.skin}` : "btn-primary";
-    },
-    innerWidth() {
-      return this.width ? this.width : `w-100 ${this.grow ? "" : "w-lg-auto"}`;
-    },
-    baseClass() {
-      let s = this.$.type.tagName;
-      return this.link ? s += " link" : s += " btn " + this.innerWidth, s;
-    },
-    iconName() {
-      let s;
-      return this.icon ? s = this.icon : this.externalValue || this.downloadValue ? s = "arrow-external" : this.link && (s = "arrow"), s;
-    },
-    targetValue() {
-      return this.externalValue ? "_blank" : this.target;
-    },
-    sizeValue() {
-      return "medium";
-    }
-  },
-  props: {
-    href: {
-      default: null
-    },
-    button: Boolean,
-    text: String,
-    analytics: {
-      default: null
-    },
-    link: Boolean,
-    external: {
-      default: null
-    },
-    skin: String,
-    width: String,
-    grow: Boolean,
-    type: String,
-    target: String,
-    alternativeHref: {
-      default: null
-    },
-    trigger: String,
-    icon: String,
-    download: {
-      default: null
-    },
-    reversed: {
-      default: null
-    },
-    monochrome: {
-      default: null
-    },
-    active: {
-      default: null
-    },
-    classes: {
-      default: "",
-      type: String
-    },
-    loading: {
-      default: null
-    },
-    hasBackground: {
-      default: null
-    }
-  }
-}, kt = { class: "cta__text" };
-function Et(s, t, e, r, a, i) {
-  const o = rt;
-  return n(), h(L, null, [
-    (n(), C(Lt(i.tag), {
-      role: "button",
-      class: v(i.classList),
-      "data-text": e.text,
-      href: e.href ? e.href : null,
-      "data-analytics": e.analytics ? e.analytics : null,
-      type: e.type ? e.type : null,
-      target: i.targetValue ? i.targetValue : null,
-      "data-alternative-href": e.alternativeHref ? e.alternativeHref : null,
-      "data-trigger": e.trigger ? e.trigger : null
-    }, {
-      default: et(() => [
-        l("span", kt, S(e.text), 1),
-        i.hasIcon ? (n(), C(o, {
-          key: 0,
-          icon: i.iconName,
-          size: i.sizeValue
-        }, null, 8, ["icon", "size"])) : f("", !0)
-      ]),
-      _: 1
-    }, 8, ["class", "data-text", "href", "data-analytics", "type", "target", "data-alternative-href", "data-trigger"])),
-    t[0] || (t[0] = it("` "))
-  ], 64);
-}
-const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
-  tagName: "wrapper",
-  computed: {
-    classList() {
-      return ["wrapper vue-component", this.classes ? this.classes : null, this.hideContainerClass ? "" : "container"];
-    }
-  },
-  props: {
-    hideContainer: {
-      default: !1
-    },
-    hideContainerClass: {
-      default: !1
-    },
-    classes: {
-      default: ""
-    }
-  },
-  template: `
-    <template v-if="!hideContainer">
-      <div :class="classList">
-        <slot></slot>
-      </div>
-    </template>
-
-    <template v-else>
-      <slot></slot>
-    </template>
-  `
 }, At = {
-  tagName: "text-icon-animation",
+  tagName: "carousel-item",
+  template: `
+    <a :href="item.url" :target="item.target" class="carousel__item">
+      <v-img
+        :cloudinary="true"
+        v-bind="item"
+        :class="item.classes"
+      ></v-img>
+    </a>
+  `,
   props: {
-    animation: Object,
-    icon: String,
-    fixed: Boolean,
-    cta: Object,
-    classes: String
+    item: Object
+  }
+}, Ot = {
+  tagName: "carousel",
+  components: {
+    "carousel-item": At
   },
   data() {
     return {
-      textAnimationStep: 0,
-      isEnded: !1,
-      isSecondLast: !1
+      clientWidth: null,
+      resizeObserver: null
     };
   },
   computed: {
-    animationData() {
-      return u.getJSON(this.animation);
-    },
-    sequence() {
-      return this.animationData.sequence;
+    jsonItems() {
+      return u.getJSON(this.items);
     },
     classList() {
+      return ["carousel vue-component", this.bgColor ? f.HAS_BACKGROUND : ""];
+    },
+    style() {
       return [
-        "text-icon-animation row vue-component",
-        this.classes,
-        this.isFixed ? "text-icon-animation--fixed" : "",
-        this.isEnded ? "text-icon-animation--ended" : "",
-        this.isSecondLast ? "text-icon-animation--is-second-last" : ""
-      ];
-    },
-    isFixed() {
-      return u.isTrue(this.fixed);
-    },
-    iconClassList() {
-      return `text-icon-animation__icon icon--step-${this.textAnimationStep}`;
-    }
-  },
-  methods: {
-    handleTextAnimationState(s) {
-      this.textAnimationStep = s == null ? void 0 : s.step, this.isSecondLast = s == null ? void 0 : s.isSecondLast;
-    },
-    handleTextAnimationEnded(s) {
-      this.isEnded = s;
-    }
-  },
-  template: `
-    <div :class="classList">
-      <div class="text-icon-animation__animation col-lg-8">
-        <text-animation
-          :sequence="sequence"
-          :fixed="fixed"
-          :cta="cta"
-          @text-animation-state="handleTextAnimationState"
-          @text-animation-ended="handleTextAnimationEnded"
-        >
-        </text-animation>
-      </div>
-      <div class="text-icon-animation__icon-container col-lg-4">
-        <icon :icon="icon" :classes="iconClassList" :animation="animationData" :step="textAnimationStep"></icon>
-      </div>
-    </div>
-  `
-}, yt = {
-  tagName: "cta-list",
-  computed: {
-    classList() {
-      return ["cta-list vue-component", this.classes ? this.classes : ""];
-    },
-    ctaList() {
-      return u.getJSON(this.list);
-    }
-  },
-  methods: {
-    text(s) {
-      return s.text || s.ctaText;
-    },
-    href(s) {
-      return s.href || s.ctaHref;
-    },
-    type(s) {
-      return s.type || s.ctaType;
-    }
-  },
-  props: {
-    list: Array,
-    classes: String
-  },
-  template: `
-    <div :class="classList">
-      <div v-for="cta in ctaList" class="cta-list__item d-inline-block mr-3 mb-2">
-        <cta
-          v-bind="cta"
-          :text="text(cta)"
-          :href="href(cta)"
-          :type="type(cta)"
-        ></cta>
-      </div>
-    </div>
-  `
-}, dt = {
-  tagName: "headline",
-  computed: {
-    tag() {
-      return this.level ? this.level : "h2";
-    },
-    classList() {
-      return `${this.classes && u.hasFontSizeClass(this.classes) ? this.classes : `${this.tag}-font-size ${this.classes ? this.classes : ""}`} headline vue-component`;
-    },
-    dataUtilityAnimationStep() {
-      return this.utilityAnimationStep ? this.utilityAnimationStep : null;
-    }
-  },
-  props: { text: String, level: String, classes: String, utilityAnimationStep: Number },
-  template: `
-    <component
-      :is="tag"
-      :class="classList"
-      v-html="text"
-      v-if="text"
-      :data-utility-animation-step="dataUtilityAnimationStep"
-    >
-    </component>
-    <component :is="tag" :class="classList" v-else :data-utility-animation-step="dataUtilityAnimationStep">
-      <slot></slot>
-    </component>
-`
-}, P = {
-  REFRESH_ANIMATE_NUMBERS: "refresh-animate-numbers",
-  FAB_BUTTON_CLOSE: "fab-button-close",
-  FORM_AJAX_SUBMIT: "form-ajax-submit",
-  FORM_RESET: "form-reset",
-  FORM_ATTACHMENT_ERROR: "form-attachment-error",
-  CHILD_HAS_UPDATE: "child-has-update",
-  AD_BLOCK_INFO: "ad-block-info",
-  DIMENSIONS_CHANGED: "dimensions-changed",
-  SCROLL_UPDATE: "scroll-update",
-  WINDOW_RESIZE: "window-resize",
-  OPEN_MODAL: "open-modal",
-  LOAD_MODAL: "load-modal",
-  DROPDOWN_CHANGED: "dropdown-changed",
-  DROPDOWN_OPENED: "dropdown-opened",
-  CARD_TAG_CLICKED: "card-tag-clicked",
-  ENDED: "ended"
-}, Tt = {
-  tagName: "letter-switcher",
-  data() {
-    return {
-      show: !1,
-      end: !1,
-      overline: "",
-      endDelay: 3400,
-      startDelay: 900,
-      isLower: null
-    };
-  },
-  computed: {
-    classList() {
-      return [
-        "letter-switch",
-        `${this.show ? m.SHOW : ""}`,
-        `${this.end ? m.END : ""}`,
-        "vue-component"
-      ];
-    },
-    fontSize() {
-      return this.isLower ? "font-size-5" : "font-size-6 bold";
-    },
-    letterSwitchEndClassList() {
-      return ["letter-switcher__end-animation", this.fontSize];
-    },
-    letterSwitchAnimationClassList() {
-      return [
-        "letter-switcher__animation",
-        this.fontSize,
-        "justify-content-center",
-        `${this.isLower ? "flex-column" : ""}`
+        this.bgColor ? `--color-carousel-background: ${this.bgColor};` : "",
+        this.clientWidth ? `--animation-scroll-width: -${this.clientWidth}px;` : ""
       ];
     }
   },
   mounted() {
-    this.overline = this.overlineStart, this.isLower = this.isLowerBreakpoint(), this.bindEvents(), setTimeout(() => {
-      this.setHeight(), this.startAnimation();
-    }, this.startDelay);
+    const s = this.$refs["row-section"];
+    this.resizeObserver = new ResizeObserver((t) => {
+      for (let e of t)
+        e.target === s && (this.clientWidth = e.contentRect.width);
+    }), s && (this.resizeObserver.observe(s), window.addEventListener("resize", this.updateClientWidth));
+  },
+  beforeDestroy() {
+    window.removeEventListener("resize", this.updateClientWidth);
   },
   methods: {
-    bindEvents() {
-      window.addEventListener("resize", () => {
-        this.handleResize();
-      });
-    },
-    handleResize() {
-      this.isLower = this.isLowerBreakpoint(), this.setHeight();
-    },
-    isLowerBreakpoint() {
-      return u.isBelowBreakpoint("sm");
-    },
-    setHeight() {
-      this.show = !1;
-      const s = this.$refs.animation;
-      if (!s) return;
-      const t = s.querySelector(".letter-switcher__letter"), e = this.isLower ? t.offsetHeight * 2 : t.offsetHeight;
-      s.style.height = e + "px", this.show = !0;
-    },
-    startAnimation() {
-      [].forEach.call(
-        this.$refs.root.querySelectorAll(".letter-switcher__group"),
-        (e, r) => {
-          const a = r * 0.3, i = 0.07 * e.children.length;
-          e.style.animation = `letter-switch ${i}s ${a}s ease-out forwards`;
-        }
-      ), setTimeout(() => {
-        this.end = !0, this.switchOverline(this.showEndAnimation);
-      }, this.endDelay);
-    },
-    showEndAnimation() {
-      const s = this.$refs["end-text"], t = this.$refs.end;
-      if (!s || !t) return this.emitEnded();
-      s.style.width = "0px", t.classList.remove(m.COLLAPSED), this.emitEnded();
-    },
-    switchOverline(s) {
-      const t = this.$refs.overline;
-      t && (t.addEventListener("transitionend", () => {
-        this.overline = this.overlineEnd, t.style.opacity = 1, s();
-      }), t.style.opacity = 0);
-    },
-    emitEnded() {
-      this.$emit(P.ENDED);
+    updateClientWidth() {
+      var s;
+      this.clientWidth = (s = this.$refs["row-section"]) == null ? void 0 : s.clientWidth;
     }
   },
   props: {
-    textStart: String,
-    textEnd: String,
-    overlineStart: String,
-    overlineEnd: String
+    items: Array,
+    bgColor: String
+  }
+}, It = { class: "carousel__container" }, Tt = { class: "carousel__row" }, Pt = {
+  class: "carousel__row-section",
+  ref: "row-section"
+}, Nt = { class: "carousel__row-section" };
+function Dt(s, t, e, a, n, i) {
+  const c = mt("carousel-item");
+  return r(), l("div", {
+    class: _(i.classList),
+    ref: "carousel",
+    style: N(i.style)
+  }, [
+    o("div", It, [
+      o("div", Tt, [
+        o("section", Pt, [
+          (r(!0), l(L, null, A(i.jsonItems, (d, g) => (r(), w(c, {
+            item: d,
+            key: g
+          }, null, 8, ["item"]))), 128))
+        ], 512),
+        o("section", Nt, [
+          (r(!0), l(L, null, A(i.jsonItems, (d, g) => (r(), w(c, {
+            item: d,
+            key: g
+          }, null, 8, ["item"]))), 128))
+        ])
+      ])
+    ])
+  ], 6);
+}
+const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
+  tagName: "site-icons",
+  computed: {
+    svgTemplate() {
+      return templates[this.icon] || "";
+    },
+    classList() {
+      return "streamline-sm mr-4";
+    }
+  },
+  props: {
+    icon: String,
+    noSpan: Boolean
   },
   template: `
-    <div :class="classList" ref="root">
-      <div class="letter-switcher__overline font-size-5 light" ref="overline">{{ overline }}</div>
-      <div class="letter-switcher__container">
-        <div :class="letterSwitchAnimationClassList" ref="animation">
-          <div class="letter-switcher__container-animation">
-            <span>S</span><div class="letter-switcher__group" ref="group">
-              <span class="letter-switcher__letter letter-switcher__letter-end">i</span>
-              <span class="letter-switcher__letter letter-switcher__middle">h</span>
-              <span class="letter-switcher__letter letter-switcher__middle">g</span>
-              <span class="letter-switcher__letter letter-switcher__middle">f</span>
-              <span class="letter-switcher__letter letter-switcher__middle">e</span>
-              <span class="letter-switcher__letter letter-switcher__middle">d</span>
-              <span class="letter-switcher__letter letter-switcher__middle">c</span>
-              <span class="letter-switcher__letter letter-switcher__middle">b</span>
-              <span class="letter-switcher__letter letter-switcher__middle">a</span>
-              <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>cherhei<div class="letter-switcher__group" ref="group">
-              <span class="letter-switcher__letter letter-switcher__letter-end">t</span>
-              <span class="letter-switcher__letter letter-switcher__middle">s</span>
-              <span class="letter-switcher__letter letter-switcher__middle">r</span>
-              <span class="letter-switcher__letter letter-switcher__middle">q</span>
-              <span class="letter-switcher__letter letter-switcher__middle">p</span>
-              <span class="letter-switcher__letter letter-switcher__middle">o</span>
-              <span class="letter-switcher__letter letter-switcher__middle">n</span>
-              <span class="letter-switcher__letter letter-switcher__middle">m</span>
-              <span class="letter-switcher__letter letter-switcher__middle">l</span>
-              <span class="letter-switcher__letter letter-switcher__middle">k</span>
-              <span class="letter-switcher__letter letter-switcher__middle">j</span>
-              <span class="letter-switcher__letter letter-switcher__middle">i</span>
-              <span class="letter-switcher__letter letter-switcher__middle">h</span>
-              <span class="letter-switcher__letter letter-switcher__middle">g</span>
-              <span class="letter-switcher__letter letter-switcher__middle">f</span>
-              <span class="letter-switcher__letter letter-switcher__middle">e</span>
-              <span class="letter-switcher__letter letter-switcher__middle">d</span>
-              <span class="letter-switcher__letter letter-switcher__middle">c</span>
-              <span class="letter-switcher__letter letter-switcher__middle">b</span>
-              <span class="letter-switcher__letter letter-switcher__middle">a</span>
-              <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>s<template v-if="isLower">-<br/></template>
-          </div>
-          <div class="letter-switcher__container-animation">
-          lüc<div class="letter-switcher__group" ref="group">
-              <span class="letter-switcher__letter letter-switcher__letter-end">k</span>
-              <span class="letter-switcher__letter letter-switcher__middle">j</span>
-              <span class="letter-switcher__letter letter-switcher__middle">i</span>
-              <span class="letter-switcher__letter letter-switcher__middle">h</span>
-              <span class="letter-switcher__letter letter-switcher__middle">g</span>
-              <span class="letter-switcher__letter letter-switcher__middle">f</span>
-              <span class="letter-switcher__letter letter-switcher__middle">e</span>
-              <span class="letter-switcher__letter letter-switcher__middle">d</span>
-              <span class="letter-switcher__letter letter-switcher__middle">c</span>
-              <span class="letter-switcher__letter letter-switcher__middle">b</span>
-              <span class="letter-switcher__letter letter-switcher__middle">a</span>
-              <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>e!
-          </div>
-        </div>
-        <div :class="letterSwitchEndClassList">
-          <div class="letter-switcher__spacer">
-            <div class="letter-switcher__end is-collapsed" ref="end" >{{ textEnd }}</div>
-            <div class="letter-switcher__end-text" ref="end-text"></div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <template v-if="icon === 'site/mail' && noSpan === true" :class="classList">
+      <svg class="streamline-icon" viewBox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
+        <title>{{ icon }}</title>
+        <g id="envelope">
+          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path>
+          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path>
+          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path>
+          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path>
+        </g>
+      </svg>
+    </template>
+    <span v-else-if="icon == 'site/mail'" :class="classList">
+      <svg class="streamline-icon" viewBox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
+        <title>{{ icon }}</title>
+        <g id="envelope">
+          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path>
+          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path>
+          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path>
+          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path>
+        </g>
+      </svg>
+    </span>
+    <span v-else-if="icon == 'site/phone'" :class="classList">
+      <svg class="streamline-icon" viewbox="0 0 39 39" xmlns="http://www.w3.org/2000/svg">
+        <title>{{ icon }}</title>
+        <g id="phone" transform="matrix(0.9848077 0.17364818 -0.17364818 0.9848077 5.730377 0)">
+          <path d="M25.076 32C23.9878 32 22.9343 31.6841 22.0326 31.0871C13.6133 25.4928 6.50909 18.3887 0.914793 9.97086C-0.531095 7.79022 -0.237464 4.86645 1.61478 3.0184L3.48511 1.14529C4.22405 0.406349 5.20653 0 6.25303 0C7.29952 0 8.282 0.406349 9.02095 1.14529L12.436 4.55612C13.9598 6.08271 13.9598 8.56534 12.4374 10.0919L11.7457 10.785C14.6097 14.2069 17.7937 17.3923 21.2157 20.2576L21.9059 19.5674C22.6532 18.8243 23.6329 18.4207 24.6738 18.4207C25.7203 18.4207 26.7028 18.8284 27.4418 19.5674L30.8568 22.9824C32.382 24.509 32.3806 26.9916 30.8554 28.5168L28.9837 30.3899C27.9441 31.428 26.5567 32 25.076 32ZM6.25303 1.39161C5.5781 1.39161 4.94491 1.65323 4.46898 2.12916L2.59865 4.00226C1.21399 5.38413 0.994115 7.57034 2.0754 9.19991C7.56532 17.4633 14.5387 24.4366 22.8021 29.9265C23.4757 30.3732 24.2619 30.6084 25.0774 30.6084C26.1851 30.6084 27.2247 30.1812 28.0026 29.4047L29.8743 27.5329C30.8582 26.5491 30.8582 24.9501 29.8757 23.9663C29.8757 23.9663 26.4607 20.5513 26.4607 20.5513C25.9847 20.0753 25.3516 19.8123 24.678 19.8123C24.0045 19.8123 23.3713 20.0739 22.8954 20.5499L21.7556 21.6896C21.6248 21.8204 21.4495 21.8928 21.263 21.8928C21.103 21.8928 20.9457 21.8371 20.8218 21.7341C16.981 18.5738 13.4324 15.0238 10.272 11.1816C10.0438 10.9032 10.0633 10.5025 10.3165 10.2478L11.4549 9.10668C12.4374 8.12281 12.4374 6.52107 11.4549 5.5372L8.03847 2.12916C7.56254 1.65323 6.92796 1.39161 6.25303 1.39161Z" transform="translate(0.17733586 0.59690577)" class="a" />
+        </g>
+      </svg>
+    </span>
   `
-}, R = {
+}, F = {
   min_width: 320,
   max_width: 1200,
   fallback_max_width: 1200,
@@ -907,7 +478,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
   density: !1,
   flags: !1,
   transformation: !1
-}, vt = {
+}, Ct = {
   height: "h",
   crop: "c",
   aspect_ratio: "ar",
@@ -934,7 +505,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
   density: "dn",
   flags: "fl",
   transformation: "t"
-}, M = {
+}, U = {
   cloud_name: "c4a8",
   developer_mode: !1,
   origin_url: "",
@@ -1042,7 +613,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
       loading: "auto"
     }
   }
-}, wt = {
+}, xt = {
   heroStudy: {
     srcSets: [
       {
@@ -1215,7 +786,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
       }
     ]
   }
-}, nt = "https://res.cloudinary.com/c4a8/image/upload/", at = {
+}, ct = "https://res.cloudinary.com/c4a8/image/upload/", nt = {
   name: "VImg",
   tagName: "v-img",
   data() {
@@ -1273,7 +844,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
       return ["img__picture-wrapper", (s = this.imgSrcSetValue) == null ? void 0 : s.ratioClasses];
     },
     imgSrcSetValue() {
-      return wt[this.imgSrcSets];
+      return xt[this.imgSrcSets];
     },
     imgSrcSetSources() {
       var s, t;
@@ -1291,7 +862,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
     }
   },
   created() {
-    this.canGenerateSrcSet() || this.isCloudinary || (this.noCloudinary = this.getBaseAssetPath(), this.sizes = R.sizes);
+    this.canGenerateSrcSet() || this.isCloudinary || (this.noCloudinary = this.getBaseAssetPath(), this.sizes = F.sizes);
   },
   methods: {
     canGenerateSrcSet() {
@@ -1303,7 +874,7 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
     },
     getPreset() {
       try {
-        return this.preset ? M.presets && M.presets[this.preset] ? Object.assign(R, M.presets[this.preset]) : R : { ...R, ...M.presets.default };
+        return this.preset ? U.presets && U.presets[this.preset] ? Object.assign(F, U.presets[this.preset]) : F : { ...F, ...U.presets.default };
       } catch (s) {
         console.error(s);
       }
@@ -1316,49 +887,49 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
       return u.isTestingStorybook() ? this.img : ((s = this.img) == null ? void 0 : s.indexOf("/assets/")) !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink(s) {
-      return `${nt}${s ? s.params : ""}${this.img}`;
+      return `${ct}${s ? s.params : ""}${this.img}`;
     },
     getCloudinaryLink() {
       return this.isGif() || this.isSvg() || this.animated ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
-      const { preset: s, transformationsString: t } = this.getSetup(), e = /w_\d+/.test(this.img), r = nt + t, a = `/${this.img}`;
-      return e ? `${r}${a}` : `${r},w_${s.fallback_max_width}${a}`;
+      const { preset: s, transformationsString: t } = this.getSetup(), e = /w_\d+/.test(this.img), a = ct + t, n = `/${this.img}`;
+      return e ? `${a}${n}` : `${a},w_${s.fallback_max_width}${n}`;
     },
     loadImage(s) {
       if (!this.canGenerateSrcSet()) return;
       const t = document.createElement("img");
       t.onload = () => {
-        const e = t == null ? void 0 : t.naturalHeight, r = t == null ? void 0 : t.naturalWidth;
-        let a;
+        const e = t == null ? void 0 : t.naturalHeight, a = t == null ? void 0 : t.naturalWidth;
+        let n;
         if (this.isSvg())
-          a = {
+          n = {
             naturalHeight: e,
-            naturalWidth: r
+            naturalWidth: a
           };
         else {
-          const { preset: i, transformationsString: o } = this.getSetup();
-          this.sizes = i == null ? void 0 : i.sizes, a = {
+          const { preset: i, transformationsString: c } = this.getSetup();
+          this.sizes = i == null ? void 0 : i.sizes, n = {
             naturalHeight: e || (i == null ? void 0 : i.fallback_max_width),
-            naturalWidth: r || (i == null ? void 0 : i.fallback_max_width)
-          }, e && r && !this.isSvg() && this.buildSrcSet(i, o);
+            naturalWidth: a || (i == null ? void 0 : i.fallback_max_width)
+          }, e && a && !this.isSvg() && this.buildSrcSet(i, c);
         }
-        this.dimensions = a;
+        this.dimensions = n;
       }, t.src = s || this.getCloudinaryLinkWithTransformation();
     },
     getTransformationString(s) {
       const t = [];
-      for (const [r, a] of Object.entries(vt))
-        s[r] && t.push(`${a}_${s[r]}`);
+      for (const [a, n] of Object.entries(Ct))
+        s[a] && t.push(`${n}_${s[a]}`);
       return t.length > 0 ? t.join(",") : "";
     },
     buildSrcSet(s, t) {
-      const e = [], r = s.steps, a = s.min_width, o = (s.max_width - a) / (r - 1), { naturalWidth: d } = this.dimensions;
-      for (let g = 1; g <= r; g++) {
-        const p = a + (g - 1) * o, c = p <= d, x = c ? p : d, T = `${this.hasPictureTag ? this.imgSrcSetImg : `${nt}${t},w_${x}/${this.img}`} ${x}w`;
-        if (e.push(T), !c) break;
+      const e = [], a = s.steps, n = s.min_width, c = (s.max_width - n) / (a - 1), { naturalWidth: d } = this.dimensions;
+      for (let g = 1; g <= a; g++) {
+        const p = n + (g - 1) * c, h = p <= d, k = h ? p : d, E = `${this.hasPictureTag ? this.imgSrcSetImg : `${ct}${t},w_${k}/${this.img}`} ${k}w`;
+        if (e.push(E), !h) break;
       }
-      this.srcset = d < a ? "" : e.join(`, 
+      this.srcset = d < n ? "" : e.join(`, 
 `);
     },
     isGif() {
@@ -1398,13 +969,1420 @@ const It = /* @__PURE__ */ z(Ct, [["render", Et]]), Ot = {
     <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" v-bind="jsonLottieSettingsData" />
     <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `
+}, rt = {
+  tagName: "icon",
+  data() {
+    return u.validateVueProps(this);
+  },
+  computed: {
+    classList() {
+      return [
+        "icon",
+        `${this.classes ? this.classes : ""}`,
+        `${this.props.hasBackground ? "icon--has-background" : ""}`,
+        `icon--${this.props.direction}`,
+        `icon--${this.props.icon}`,
+        `${this.props.animation ? "js-text-animation__icon" : ""}`,
+        `${this.props.circle ? "icon--circle" : ""}`,
+        `${this.props.hover ? "icon--hover" : ""}`,
+        "vue-component"
+      ];
+    },
+    innerSize() {
+      var s;
+      switch (this.props.size) {
+        case "xxl":
+          s = "200px";
+          break;
+        case "xl":
+          s = "120px";
+          break;
+        case "medium":
+          s = "28px";
+          break;
+        case "small":
+          s = "18px";
+          break;
+        case "xs":
+          s = "10px";
+          break;
+        default:
+        case "large":
+          s = "48px";
+          break;
+      }
+      return s;
+    },
+    parentStyle() {
+      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.rotation}`;
+    },
+    rotation() {
+      return this.props.direction === "left" ? "180deg" : this.props.direction === "clockwise" ? "90deg" : "0deg";
+    },
+    settings() {
+      return {
+        width: this.innerSize,
+        height: this.innerSize,
+        padding: this.props.padding,
+        "xml:space": "preserve",
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        "xmlns:link": "http://www.w3.org/1999/xlink"
+      };
+    }
+  },
+  props: {
+    icon: {
+      default: "close"
+    },
+    color: {
+      default: "currentColor"
+    },
+    direction: {
+      default: "right"
+    },
+    size: {
+      default: "large"
+    },
+    circle: {
+      default: null
+    },
+    hover: {
+      default: null
+    },
+    padding: {
+      default: 6
+    },
+    animation: {
+      default: null
+    },
+    classes: {
+      default: ""
+    },
+    closed: {
+      default: null
+    },
+    hasBackground: {
+      default: null
+    },
+    step: {
+      default: null
+    }
+  },
+  template: `
+    <span :class="classList" :style="parentStyle">
+      <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
+    </span>
+    `
+}, ot = {
+  tagName: "cta-list",
+  computed: {
+    classList() {
+      return ["cta-list vue-component", this.classes ? this.classes : ""];
+    },
+    ctaList() {
+      return u.getJSON(this.list);
+    }
+  },
+  methods: {
+    text(s) {
+      return s.text || s.ctaText;
+    },
+    href(s) {
+      return s.href || s.ctaHref;
+    },
+    type(s) {
+      return s.type || s.ctaType;
+    }
+  },
+  props: {
+    list: Array,
+    classes: String
+  },
+  template: `
+    <div :class="classList">
+      <div v-for="cta in ctaList" class="cta-list__item d-inline-block mr-3 mb-2">
+        <cta
+          v-bind="cta"
+          :text="text(cta)"
+          :href="href(cta)"
+          :type="type(cta)"
+        ></cta>
+      </div>
+    </div>
+  `
+}, B = class B {
+  constructor(t, e) {
+    var a;
+    t && (this.root = t, this.options = e, (a = this.options) != null && a.noInit || this.root.classList.add(f.INITIALIZED));
+  }
+  static getInstancesKey() {
+    return this.rootSelector.substring(1);
+  }
+  static expose(t) {
+    window[B.namespacePrefix] || (window[B.namespacePrefix] = {});
+    const e = this.getInstancesKey();
+    window[B.namespacePrefix][e] || (window[B.namespacePrefix][e] = []), window[B.namespacePrefix][e].push(t);
+  }
+  static getInstance(t) {
+    const a = window[B.namespacePrefix][this.getInstancesKey()].filter((n) => (n == null ? void 0 : n.root) === t);
+    return a ? a[0] : null;
+  }
+  static initElement(t, e) {
+    const a = new this(t, e);
+    return this.instances.push(a), this.expose(a), a;
+  }
+  static init(t) {
+    this.instances = [];
+    const e = t || document, a = `${this.rootSelector}:not(.${f.INITIALIZED})`;
+    [].forEach.call(
+      e.querySelectorAll(a),
+      (n) => {
+        this.initElement(n);
+      }
+    );
+  }
 };
-class lt {
+b(B, "rootSelector", ""), b(B, "instances", []), b(B, "namespacePrefix", "baseComponents");
+let dt = B;
+class it {
+}
+b(it, "rootSelector", ".form-attachments"), b(it, "base64Selector", ".form-attachments__base64");
+const D = {
+  REFRESH_ANIMATE_NUMBERS: "refresh-animate-numbers",
+  FAB_BUTTON_CLOSE: "fab-button-close",
+  FORM_AJAX_SUBMIT: "form-ajax-submit",
+  FORM_RESET: "form-reset",
+  FORM_ATTACHMENT_ERROR: "form-attachment-error",
+  CHILD_HAS_UPDATE: "child-has-update",
+  AD_BLOCK_INFO: "ad-block-info",
+  DIMENSIONS_CHANGED: "dimensions-changed",
+  SCROLL_UPDATE: "scroll-update",
+  WINDOW_RESIZE: "window-resize",
+  OPEN_MODAL: "open-modal",
+  LOAD_MODAL: "load-modal",
+  DROPDOWN_CHANGED: "dropdown-changed",
+  DROPDOWN_OPENED: "dropdown-opened",
+  CARD_TAG_CLICKED: "card-tag-clicked",
+  ENDED: "ended"
+}, R = class R extends dt {
+  constructor(t, e) {
+    var a;
+    super(t, e), t && (this.root = t, this.formSelector = ".form__form", this.gotchaSelector = ".form__super-field", this.attachmentSelector = 'input[type="file"][required]', this.subjectSelector = 'input[name="_subject"]', this.companySelector = 'input[id="company"]', this.form = t.querySelector(this.formSelector), this.subject = t.querySelector(this.subjectSelector), this.company = t.querySelector(this.companySelector), this.groups = {}, this.minLengthOther = 1, this.options = e, this.addCustomValidationRules(), this.updateGotcha(), this.addValidation(), this.form && this.subject && this.hasUrlParameter() && this.prefillFormValues(), (a = this.options) != null && a.noEvents ? this.isCompanyForm() && this.addSubjectListener() : this.bindEvents());
+  }
+  addCustomValidationRules() {
+    window.$ && $.validator && ($.validator.methods.email = function(t, e) {
+      return this.optional(e) || R.regularExpression.test(t);
+    });
+  }
+  isCompanyForm() {
+    return !!(this.form && this.subject && this.company);
+  }
+  hasUrlParameter() {
+    if (window.location.search !== "")
+      return !0;
+  }
+  prefillFormValues() {
+    const t = new URLSearchParams(window.location.search);
+    for (const [e, a] of t.entries())
+      this.prefillFormValue(e, a);
+  }
+  prefillFormValue(t, e) {
+    const a = this.form;
+    if (!a) return;
+    const n = a.querySelector(`input[name="${t}"],textarea[name="${t}"]`);
+    n && (n.value = e);
+  }
+  hasCustomValidation() {
+    return this.root.classList.contains("form--custom-validation");
+  }
+  hasAjaxSubmit() {
+    return this.root.classList.contains("form--ajax");
+  }
+  bindEvents() {
+    (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) && (this.form.addEventListener("submit", this.handleSubmit.bind(this)), this.form.addEventListener("reset", this.handleReset.bind(this)));
+  }
+  addSubjectListener() {
+    this.form.addEventListener("submit", this.handleSubmit.bind(this));
+  }
+  handleReset() {
+    R.reset(this.form);
+  }
+  static reset(t) {
+    !t || !t.reset || (t.reset(), [].forEach.call(t.querySelectorAll(`.${f.VALID}`), (e) => {
+      e.classList.remove(f.VALID);
+    }), [].forEach.call(t.querySelectorAll(`.${f.ERROR}`), (e) => {
+      e.classList.remove(f.ERROR);
+    }));
+  }
+  handleSubmit(t) {
+    this.validate(t) && this.submit(t);
+  }
+  updateSubject() {
+    !this.subject || !this.company || (this.subject.value = this.subject.value + ": " + this.company.value);
+  }
+  submit(t) {
+    t.stopImmediatePropagation(), t.preventDefault(), this.updateSubject(), this.customSubmit ? this.customSubmit(t) : this.hasAjaxSubmit() ? this.ajaxSubmit() : this.form.submit();
+  }
+  static getId(t) {
+    return u.uuid() + this.delimiter + t;
+  }
+  static getName(t) {
+    if (t.includes(this.delimiter)) {
+      const e = t.indexOf(this.delimiter);
+      return t.slice(e + this.delimiter.length);
+    }
+    return t;
+  }
+  static getFormData(t) {
+    const e = new FormData(t), a = [];
+    for (let n of e)
+      a.push(encodeURIComponent(n[0]) + "=" + encodeURIComponent(n[1]));
+    return a.join("&");
+  }
+  ajaxSubmit() {
+    const t = R.getFormData(this.form);
+    fetch(this.form.action, {
+      method: this.form.method || "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      redirect: "follow",
+      body: t
+    }).then((e) => {
+      (e.status === 200 || e.status === 302) && this.ajaxSubmitCompleted();
+    });
+  }
+  ajaxSubmitCompleted() {
+    document.dispatchEvent(
+      new CustomEvent(D.FORM_AJAX_SUBMIT, {
+        detail: { target: this.root }
+      })
+    );
+  }
+  triggerExternalValidation() {
+    let t = !1;
+    if (window.$) {
+      const e = $(this.form);
+      if (typeof e.validate != "function")
+        return console.error("form.validate is not a function"), !0;
+      t = e.validate().form();
+    }
+    return t;
+  }
+  validate(t) {
+    let e = this.triggerExternalValidation();
+    return (!this.isValid(t) || e === !1) && (t.stopImmediatePropagation(), t.preventDefault(), e = !1), e;
+  }
+  isValid(t) {
+    t.stopImmediatePropagation();
+    let e = !0, a = !0;
+    this.hasAttachments() && (e = this.validateAttachments());
+    for (const [n, i] of Object.entries(this.groups))
+      this.isValidGroup(i) || (e = !1, this.addGroupError(i, a), a = !1);
+    return e;
+  }
+  validateAttachments() {
+    let t = !0;
+    return [].forEach.call(this.form.querySelectorAll(it.base64Selector), (e) => {
+      e.value || (t = !1);
+    }), t || (t = !0, [].forEach.call(this.form.querySelectorAll(this.attachmentSelector), (e) => {
+      e.files.length === 0 && (t = !1, this.addAttachmentError(e));
+    }), t);
+  }
+  addAttachmentError(t) {
+    const e = u.getParent(t, it.rootSelector);
+    e !== null && e.classList.add(f.HAS_ERROR);
+  }
+  hasAttachments() {
+    return this.form.querySelector(this.attachmentSelector);
+  }
+  addGroupError(t, e) {
+    for (let a = 0; a < t.length; a++) {
+      const n = this.getGroupParent(t[a]);
+      t[a].classList.add(f.ERROR), n && (e && u.scrollIntoView(n), this.addErrorMessage(n));
+    }
+  }
+  addErrorMessage(t) {
+    if (t && !t.classList.contains(f.ERROR)) {
+      t.classList.add(f.ERROR);
+      const e = document.createElement("div");
+      e.innerHTML = t.dataset.msg, e.classList.add("invalid-feedback"), t.parentNode.insertBefore(e, t.nextSibling);
+    }
+  }
+  delErrorMessage(t) {
+    t && t.classList.contains(f.ERROR) && (t.classList.remove(f.ERROR), t.nextSibling.remove());
+  }
+  delGroupError(t) {
+    for (let e = 0; e < t.length; e++) {
+      const a = this.getGroupParent(t[e]);
+      t[e].classList.remove(f.ERROR), a && this.delErrorMessage(a);
+    }
+  }
+  isValidGroup(t) {
+    const e = t.length;
+    let a = !1;
+    for (let n = 0; n < e; n++) {
+      const i = t[n];
+      if (i.type === "checkbox" && i.checked)
+        a = !0;
+      else if (i.type === "radio" && i.checked)
+        a = !0;
+      else {
+        const c = i.closest('input[type="text"]');
+        c && !a && c.value.length >= this.minLengthOther && (a = !0);
+      }
+    }
+    return a;
+  }
+  getGroupByName(t) {
+    return this.groups[t];
+  }
+  addValidation() {
+    this.form && [].forEach.call(this.form.querySelectorAll("[data-form-group]"), (t) => {
+      t.dataset.formGroup && (this.addGroupValidation(t), this.addLiveValidation(t));
+    });
+  }
+  isRadio(t) {
+    return (t == null ? void 0 : t.getAttribute("type")) === "radio";
+  }
+  isCheckbox(t) {
+    return (t == null ? void 0 : t.getAttribute("type")) === "checkbox";
+  }
+  addLiveValidation(t) {
+    t && (this.isCheckbox(t) || this.isRadio(t) ? t.addEventListener("change", this.handleLiveValidation.bind(this)) : t.addEventListener("keyup", this.handleLiveValidation.bind(this)));
+  }
+  groupFilter(t, e) {
+    return t ? t.filter((a) => a.getAttribute("type") === e) : null;
+  }
+  handleGroupError(t, e) {
+    t.checked ? this.delGroupError(e) : this.isValidGroup(e) || this.addGroupError(e);
+  }
+  handleLiveValidation(t) {
+    const e = t.currentTarget;
+    if (e) {
+      const a = this.getGroupByName(e.dataset.formGroup);
+      if (!a) return;
+      const n = this.groupFilter(a, "checkbox"), i = this.groupFilter(a, "radio");
+      e.getAttribute("type") === "checkbox" ? this.handleGroupError(e, n) : e.getAttribute("type") === "radio" ? this.handleGroupError(e, i) : this.isValidGroup(a) ? this.delGroupError(a) : this.addGroupError(a);
+    }
+  }
+  getGroupParent(t) {
+    var e;
+    return (e = t.closest(".js-form-message")) == null ? void 0 : e.querySelector("[data-msg]");
+  }
+  addGroupValidation(t) {
+    if (this.getGroupParent(t)) {
+      const a = t.dataset.formGroup;
+      this.groups[a] || (this.groups[a] = []), this.groups[a].push(t);
+    }
+  }
+  updateGotcha() {
+    const t = this.root.querySelector(this.gotchaSelector);
+    t == null || t.classList.add(f.HIDDEN);
+  }
+  canHaveCustomSubmit() {
+    return !this.root.classList.contains(R.noCustomSubmitClass);
+  }
+  static isOptionalInputInvisible(t) {
+    var e;
+    return ((e = t == null ? void 0 : t.parentNode) == null ? void 0 : e.classList.contains("form-field--show-in")) && t.offsetParent === null;
+  }
+  static getFormData(t) {
+    if (t == null) return [];
+    const e = t.querySelectorAll('input[type="text"], input[type="email"], textarea'), a = [];
+    for (let n = 0; n < e.length; n++) {
+      const i = e[n];
+      if (this.isOptionalInputInvisible(i)) continue;
+      let c;
+      (i.type === "text" || i.type === "email" || i.tagName === "TEXTAREA") && (c = i.value), a.push({
+        input: i,
+        value: c
+      });
+    }
+    return a;
+  }
+};
+b(R, "rootSelector", ".form"), b(R, "instances", []), b(R, "delimiter", "-formHelper-"), b(R, "noCustomSubmitClass", "form--no-custom-submit"), b(R, "regularExpression", /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/);
+let z = R;
+const Bt = {
+  tagName: "formular",
+  data() {
+    return {
+      originalAction: "",
+      formAction: ""
+    };
+  },
+  computed: {
+    classList() {
+      var s;
+      return [
+        "form",
+        `${u.isTrue(this.light) === !0 ? "is-light" : ""}`,
+        `${u.isTrue(this.ajax) === !0 ? "form--ajax" : ""}`,
+        `${u.isTrue(this.container) === !0 ? "container" : ""}`,
+        `${u.isTrue(this.customValidation) === !0 ? "form--custom-validation" : ""}`,
+        ((s = this.form) == null ? void 0 : s.noCustomSubmit) === !0 ? z.noCustomSubmitClass : "",
+        "vue-component"
+      ];
+    },
+    hasAnimationValue() {
+      return u.isTrue(this.hasAnimation);
+    },
+    rowClassList() {
+      return ["form__row", `${this.container ? "row" : ""}`];
+    },
+    wrapperClassList() {
+      return [`${this.container ? "col-md-11 col-lg-10" : ""}`];
+    },
+    headlineClassList() {
+      return [
+        "container headline-row",
+        `${this.space ? this.space : "space-top-2"}`,
+        this.hasAnimationValue ? "utility-animation fade-in-bottom" : ""
+      ];
+    },
+    sublineClassList() {
+      return ["text-center", `${this.form.sublineClasses ? this.form.sublineClasses : ""}`];
+    },
+    formClassList() {
+      return ["form__submit mt-5", `${this.positionValue}`];
+    },
+    positionValue() {
+      return this.form.ctaPosition ? this.form.ctaPosition : u.isTrue(this.uncentered) ? "" : "justify-content-end";
+    },
+    method() {
+      return this.form.method ? this.form.method : "post";
+    },
+    preparedBlocks() {
+      const s = [];
+      let t = 0, e = [];
+      return this.form.fields.forEach((a) => {
+        if (a.rowStart || a.rowEnd)
+          a.rowStart ? (s[t] = e, e.push(a), a.rowEnd && (e = [], t++)) : a.rowEnd && (e.push(a), e = [], t++);
+        else {
+          if (e.push(a), s[t]) return;
+          s[t] = e, e = [], t++;
+        }
+      }), s;
+    }
+  },
+  beforeMount() {
+    this.originalAction = this.formAction = this.form.action;
+  },
+  methods: {
+    getOptions(s) {
+      return typeof s.options == "string" ? this.options[s.options] : s.options;
+    },
+    getBlockClassList(s) {
+      return ["row mx-n3", `${s != null && s.rowClass ? s.rowClass : ""}`];
+    },
+    getFieldClassList(s) {
+      return ["px-3", `${s.col ? "col-md-" + s.col : "col-md-12"}`];
+    },
+    getId(s) {
+      const t = (s == null ? void 0 : s.radios) || (s == null ? void 0 : s.checkboxes), e = t ? t[0].id : s == null ? void 0 : s.id;
+      return u.isTrue(this.hasUuid) ? z.getId(e) : e;
+    },
+    updateAction(s) {
+      s ? this.formAction = s : this.formAction = this.originalAction;
+    }
+  },
+  props: {
+    form: Object,
+    light: {
+      default: null
+    },
+    analytics: {
+      default: null
+    },
+    space: String,
+    container: {
+      default: null
+    },
+    ajax: {
+      default: null
+    },
+    uncentered: {
+      default: null
+    },
+    replaceValue: {
+      default: null
+    },
+    customValidation: {
+      default: null
+    },
+    options: Object,
+    hasUuid: {
+      default: null
+    },
+    hasAnimation: {
+      default: null
+    }
+  },
+  template: `
+    <div :class="classList">
+      <div :class="rowClassList">
+        <div :class="wrapperClassList">
+          <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1">
+            <div class="row">
+              <div class="col-sm-12">
+                <headline :text="form.headline" :level="form.level" :id="form.id" classes="text-center" />
+                <p :class="sublineClassList" v-html="form.subline"></p>
+              </div>
+            </div>
+          </div>
+          <form class="form__form js-validate mt-6" :method="method" :action="formAction">
+            <template v-for="block in preparedBlocks">
+              <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
+                <div :class="getFieldClassList(field)" v-for="field in block">
+                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" @action-changed="updateAction" />
+                </div>
+              </div>
+            </template>
+            <div :class="formClassList">
+              <cta :text="form.ctaText" type="submit" :button="true" :skin="form.cta.skin" :width="form.cta.width" :analytics="analytics" />
+            </div>
+            <input type="text" class="form__super-field" name="_gotcha">
+          </form>
+        </div>
+      </div>
+    </div>
+  `
+}, X = {
+  tagName: "headline",
+  computed: {
+    tag() {
+      return this.level ? this.level : "h2";
+    },
+    classList() {
+      return `${this.classes && u.hasFontSizeClass(this.classes) ? this.classes : `${this.tag}-font-size ${this.classes ? this.classes : ""}`} headline vue-component`;
+    },
+    dataUtilityAnimationStep() {
+      return this.utilityAnimationStep ? this.utilityAnimationStep : null;
+    }
+  },
+  props: { text: String, level: String, classes: String, utilityAnimationStep: Number },
+  template: `
+    <component
+      :is="tag"
+      :class="classList"
+      v-html="text"
+      v-if="text"
+      :data-utility-animation-step="dataUtilityAnimationStep"
+    >
+    </component>
+    <component :is="tag" :class="classList" v-else :data-utility-animation-step="dataUtilityAnimationStep">
+      <slot></slot>
+    </component>
+`
+}, Rt = {
+  props: {
+    tagName: "svg-shape",
+    align: {
+      type: String,
+      default: "bottom"
+    },
+    peak: {
+      type: String,
+      default: "right"
+    },
+    color: {
+      type: String,
+      default: "var(--color-white)"
+    },
+    obliquity: {
+      type: Number,
+      default: 10
+    },
+    classes: {
+      type: String,
+      default: ""
+    },
+    height: {
+      type: Number,
+      default: 100
+    }
+  },
+  computed: {
+    svgShapeAlign() {
+      return this.align;
+    },
+    svgShapePeak() {
+      return this.peak;
+    },
+    svgShapeColor() {
+      return this.color;
+    },
+    svgShapeObliquity() {
+      return this.obliquity;
+    },
+    svgShapeClasses() {
+      return this.classes;
+    },
+    svgShapeHeight() {
+      return this.height;
+    },
+    basePoints() {
+      return this.svgShapeAlign === "top" ? `0,0 ${this.svgShapeHeight},0` : `0,${this.svgShapeObliquity} ${this.svgShapeHeight},${this.svgShapeObliquity}`;
+    },
+    peakPointY() {
+      return this.svgShapeAlign === "top" ? this.svgShapeObliquity : 0;
+    },
+    peakPointX() {
+      return this.svgShapePeak === "left" ? 0 : this.svgShapeHeight;
+    },
+    points() {
+      return `${this.basePoints} ${this.peakPointX},${this.peakPointY}`;
+    },
+    translateStyle() {
+      return this.svgShapeAlign !== "top" ? "transform: translateY(2px);" : "";
+    }
+  },
+  template: `
+    <figure :class="'svgshape ' + svgShapeClasses" :style="'pointer-events: all;' + translateStyle">
+      <svg preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" :viewBox="'0 0 ' + svgShapeHeight + ' ' + svgShapeObliquity">
+        <polygon :fill="svgShapeColor" :points="points"/>
+      </svg>
+    </figure>
+  `
+}, Mt = {
+  tagName: "contact",
+  props: {
+    contact: Object,
+    collapsed: Boolean,
+    ajax: Boolean,
+    spacing: String,
+    quote: {
+      type: Boolean,
+      default: !1
+    },
+    bgColor: String,
+    color: String,
+    boxBgColor: String,
+    boxColor: String,
+    level: String,
+    headline: String,
+    subline: String,
+    form: Object,
+    buttons: Array,
+    svgShape: Object,
+    person: Object,
+    noTopSpacing: Boolean
+  },
+  computed: {
+    classList() {
+      var s;
+      return [
+        "contact",
+        this.contactVariantClass,
+        "vue-component",
+        this.collapsed ? "" : "space-bottom-2 utility-animation utility-animation--percentage-offset",
+        { "bg-grey": this.contact.hasGreyBackground },
+        this.noTopSpacing || (s = this.contact) != null && s.svgShape || this.collapsed ? "" : this.spacing
+      ];
+    },
+    contactVariantClass() {
+      return [
+        this.contact.svgShape && !this.quote ? "contact--has-shape" : "",
+        this.quote ? "contact--quote" : "",
+        this.collapsed ? f.COLLAPSED : ""
+      ];
+    },
+    contactLight() {
+      return this.contact.light ? "contact__person--light" : "";
+    },
+    contactBoxClass() {
+      return this.collapsed ? "" : "col-md-10 col-lg-5 offset-lg-1 order-2";
+    },
+    contactFormClass() {
+      return this.collapsed ? "" : "col-md-10 col-lg-6 order-1";
+    },
+    contactContainerClass() {
+      return this.collapsed ? "" : "container pt-8 pt-lg-10";
+    },
+    contactRowClass() {
+      return this.collapsed ? "" : "row justify-content-center";
+    },
+    styleObject() {
+      return {
+        "--color-contact-background": this.bgColor || this.contact.bgColor,
+        "--contact-copy-color": this.color || this.contact.color,
+        "--color-contact-box-background": this.boxBgColor || this.contact.boxBgColor,
+        "--contact-box-copy-color": this.boxColor || this.contact.boxColor
+      };
+    }
+  }
+}, Ht = { class: "contact__subline font-weight-bold font-size-2" }, jt = {
+  key: 1,
+  class: "pt-4 pt-lg-6 pb-6"
+}, zt = {
+  key: 0,
+  class: "contact__person-quote"
+}, Ft = { class: "contact__icon" }, $t = { class: "contact__image-quote" }, Ut = { class: "contact__image-spacer" }, Gt = { class: "contact__quote font-size-3 middle font-weight-light" }, Wt = { class: "d-flex flex-column" }, qt = { class: "font-weight-light" }, Jt = { class: "contact__image" }, Zt = { class: "contact__name font-size-4 my-6 mx-5" }, Xt = { class: "contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap" }, Kt = ["href"], Yt = { class: "streamline-sm mr-4" }, Qt = { class: "contact__detail-text" }, te = {
+  key: 0,
+  class: "contact__notes"
+}, ee = { class: "contact__notes-spacing streamline-sm mr-4" }, se = {
+  key: 0,
+  class: "contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"
+}, ie = ["href"], ae = {
+  key: 1,
+  class: "contact__mail w-100 px-5 d-flex align-items-center"
+}, ne = ["href"], re = {
+  key: 0,
+  class: "contact__detail-quote"
+}, oe = ["href"], le = { class: "streamline-sm mr-4" }, ce = {
+  key: 0,
+  class: "contact__notes"
+}, he = { class: "contact__notes-spacing streamline-sm mr-4" };
+function de(s, t, e, a, n, i) {
+  const c = Rt, d = X, g = Bt, p = ot, h = rt, k = nt, C = bt;
+  return r(), l(L, null, [
+    e.contact.svgShape ? (r(), w(c, {
+      key: 0,
+      align: e.contact.svgShape.align,
+      peak: e.contact.svgShape.peak,
+      spacing: "mt-8 mt-lg-10",
+      color: "var(--color-bg-grey)"
+    }, null, 8, ["align", "peak"])) : m("", !0),
+    o("div", {
+      class: _(i.classList),
+      style: N(i.styleObject)
+    }, [
+      o("div", {
+        class: _(i.contactContainerClass)
+      }, [
+        o("div", {
+          class: _(i.contactRowClass)
+        }, [
+          e.collapsed ? m("", !0) : (r(), l("div", {
+            key: 0,
+            class: _(["contact__form", i.contactFormClass]),
+            "data-utility-animation-step": "1"
+          }, [
+            S(d, {
+              text: e.contact.headline,
+              classes: e.contact.headlineClasses,
+              level: e.level
+            }, null, 8, ["text", "classes", "level"]),
+            o("span", Ht, v(e.contact.subline), 1),
+            e.contact.form ? (r(), w(g, {
+              key: 0,
+              form: e.contact.form,
+              ajax: e.ajax,
+              uncentered: "false"
+            }, null, 8, ["form", "ajax"])) : m("", !0),
+            e.contact.buttons ? (r(), l("div", jt, [
+              S(p, {
+                list: e.contact.buttons
+              }, null, 8, ["list"])
+            ])) : m("", !0)
+          ], 2)),
+          o("div", {
+            class: _(["contact__box", i.contactBoxClass]),
+            "data-utility-animation-step": "1"
+          }, [
+            o("div", {
+              class: _(["contact__person", i.contactLight])
+            }, [
+              e.quote ? (r(), l("div", zt, [
+                o("div", Ft, [
+                  S(h, { icon: "quotes" })
+                ]),
+                o("div", $t, [
+                  o("div", Ut, [
+                    S(k, {
+                      img: e.contact.person.image,
+                      cloudinary: e.contact.person.cloudinary,
+                      alt: e.contact.person.alt,
+                      preset: "cardSmall",
+                      lazy: ""
+                    }, null, 8, ["img", "cloudinary", "alt"])
+                  ])
+                ]),
+                o("div", Gt, v(e.contact.person.quote), 1),
+                o("div", Wt, [
+                  o("span", null, v(e.contact.person.quotee), 1),
+                  o("span", qt, v(e.contact.person.quoteeTitle), 1)
+                ])
+              ])) : (r(), l(L, { key: 1 }, [
+                o("div", Jt, [
+                  S(k, {
+                    img: e.contact.person.image,
+                    cloudinary: e.contact.person.cloudinary,
+                    alt: e.contact.person.alt,
+                    preset: "cardSmall",
+                    lazy: ""
+                  }, null, 8, ["img", "cloudinary", "alt"])
+                ]),
+                o("div", Zt, v(e.contact.person.name), 1),
+                o("div", Xt, [
+                  (r(!0), l(L, null, A(e.contact.person.details, (E, M) => (r(), l("div", {
+                    key: M,
+                    class: _(["contact__detail w-100 px-5 d-flex align-items-center", { "mb-3 mb-lg-4": !M === e.contact.person.details.length - 1 }])
+                  }, [
+                    o("a", {
+                      href: E.href,
+                      class: "d-flex custom"
+                    }, [
+                      o("span", Yt, [
+                        E.icon === "site/mail" ? (r(), w(C, {
+                          key: 0,
+                          icon: "site/mail"
+                        })) : (r(), w(C, {
+                          key: 1,
+                          icon: "site/phone"
+                        }))
+                      ]),
+                      o("span", Qt, v(E.text), 1)
+                    ], 8, Kt),
+                    E.notes ? (r(), l("div", te, [
+                      o("span", ee, [
+                        E.icon === "site/mail" ? (r(), w(C, {
+                          key: 0,
+                          icon: "site/mail"
+                        })) : (r(), w(C, {
+                          key: 1,
+                          icon: "site/phone"
+                        }))
+                      ]),
+                      H(" " + v(E.notes), 1)
+                    ])) : m("", !0)
+                  ], 2))), 128)),
+                  e.contact.person.number ? (r(), l("div", se, [
+                    o("a", {
+                      href: "tel:" + e.contact.person.number,
+                      class: "custom"
+                    }, [
+                      S(C, { icon: "site/phone" }),
+                      H(" " + v(e.contact.person.number), 1)
+                    ], 8, ie)
+                  ])) : m("", !0),
+                  e.contact.person.mail ? (r(), l("div", ae, [
+                    o("a", {
+                      href: "mailto:" + e.contact.person.mail,
+                      class: "custom"
+                    }, [
+                      S(C, { icon: "site/mail" }),
+                      H(" " + v(e.contact.person.mail), 1)
+                    ], 8, ne)
+                  ])) : m("", !0)
+                ])
+              ], 64))
+            ], 2),
+            e.quote ? (r(), l("div", re, [
+              S(d, {
+                text: e.contact.person.detailsHeader,
+                level: "h4",
+                classes: "contact__detail-headline"
+              }, null, 8, ["text"]),
+              (r(!0), l(L, null, A(e.contact.person.details, (E, M) => (r(), l("div", {
+                key: M,
+                class: _(["contact__detail font-size-2 w-100 d-flex align-items-center", { "mb-3 mb-lg-4": !M === e.contact.person.details.length - 1 }])
+              }, [
+                o("a", {
+                  href: E.href,
+                  class: "custom"
+                }, [
+                  o("span", le, [
+                    E.icon === "site/mail" ? (r(), w(C, {
+                      key: 0,
+                      icon: "site/mail"
+                    })) : (r(), w(C, {
+                      key: 1,
+                      icon: "site/phone"
+                    }))
+                  ]),
+                  H(" " + v(E.text), 1)
+                ], 8, oe),
+                E.notes ? (r(), l("div", ce, [
+                  o("span", he, [
+                    E.icon === "site/mail" ? (r(), w(C, {
+                      key: 0,
+                      icon: "site/mail"
+                    })) : (r(), w(C, {
+                      key: 1,
+                      icon: "site/phone"
+                    }))
+                  ]),
+                  H(" " + v(E.notes), 1)
+                ])) : m("", !0)
+              ], 2))), 128))
+            ])) : m("", !0)
+          ], 2)
+        ], 2)
+      ], 2)
+    ], 6)
+  ], 64);
+}
+const ue = /* @__PURE__ */ O(Mt, [["render", de]]), ge = {
+  tagName: "cta",
+  computed: {
+    tag() {
+      return this.href || this.alternativeHref || this.target ? "a" : "button";
+    },
+    hasIcon() {
+      return this.link || this.externalValue || this.icon || this.downloadValue;
+    },
+    externalValue() {
+      return u.isTrue(this.external);
+    },
+    downloadValue() {
+      return u.isTrue(this.download);
+    },
+    classList() {
+      return [
+        `${this.baseClass} ${this.innerSkin}`,
+        this.classes ? this.classes : "",
+        this.download ? "cta--download" : "",
+        this.external ? "cta--external" : "",
+        this.icon ? `cta--has-icon cta--icon-${this.icon}` : "",
+        u.isTrue(this.reversed) === !0 ? "cta--reversed" : "",
+        u.isTrue(this.monochrome) === !0 ? "cta--monochrome" : "",
+        this.link && u.isTrue(this.active) === !0 ? f.ACTIVE : "",
+        u.isTrue(this.loading) ? f.LOADING : "",
+        u.isTrue(this.hasBackground) === !0 ? "cta--has-background" : "",
+        "vue-component"
+      ];
+    },
+    innerSkin() {
+      return this.link ? this.skin ? this.skin : "" : this.skin ? `btn-${this.skin}` : "btn-primary";
+    },
+    innerWidth() {
+      return this.width ? this.width : `w-100 ${this.grow ? "" : "w-lg-auto"}`;
+    },
+    baseClass() {
+      let s = this.$.type.tagName;
+      return this.link ? s += " link" : s += " btn " + this.innerWidth, s;
+    },
+    iconName() {
+      let s;
+      return this.icon ? s = this.icon : this.externalValue || this.downloadValue ? s = "arrow-external" : this.link && (s = "arrow"), s;
+    },
+    targetValue() {
+      return this.externalValue ? "_blank" : this.target;
+    },
+    sizeValue() {
+      return "medium";
+    }
+  },
+  props: {
+    href: {
+      default: null
+    },
+    button: Boolean,
+    text: String,
+    analytics: {
+      default: null
+    },
+    link: Boolean,
+    external: {
+      default: null
+    },
+    skin: String,
+    width: String,
+    grow: Boolean,
+    type: String,
+    target: String,
+    alternativeHref: {
+      default: null
+    },
+    trigger: String,
+    icon: String,
+    download: {
+      default: null
+    },
+    reversed: {
+      default: null
+    },
+    monochrome: {
+      default: null
+    },
+    active: {
+      default: null
+    },
+    classes: {
+      default: "",
+      type: String
+    },
+    loading: {
+      default: null
+    },
+    hasBackground: {
+      default: null
+    }
+  }
+}, me = { class: "cta__text" };
+function pe(s, t, e, a, n, i) {
+  const c = rt;
+  return r(), w(lt(i.tag), {
+    role: "button",
+    class: _(i.classList),
+    "data-text": e.text,
+    href: e.href ? e.href : null,
+    "data-analytics": e.analytics ? e.analytics : null,
+    type: e.type ? e.type : null,
+    target: i.targetValue ? i.targetValue : null,
+    "data-alternative-href": e.alternativeHref ? e.alternativeHref : null,
+    "data-trigger": e.trigger ? e.trigger : null
+  }, {
+    default: Z(() => [
+      o("span", me, v(e.text), 1),
+      i.hasIcon ? (r(), w(c, {
+        key: 0,
+        icon: i.iconName,
+        size: i.sizeValue
+      }, null, 8, ["icon", "size"])) : m("", !0)
+    ]),
+    _: 1
+  }, 8, ["class", "data-text", "href", "data-analytics", "type", "target", "data-alternative-href", "data-trigger"]);
+}
+const fe = /* @__PURE__ */ O(ge, [["render", pe]]), _e = {
+  tagName: "headline",
+  computed: {
+    tag() {
+      return this.level ? this.level : "h2";
+    },
+    classList() {
+      return `${this.classes && u.hasFontSizeClass(this.classes) ? this.classes : `${this.tag}-font-size ${this.classes ? this.classes : ""}`} headline vue-component`;
+    },
+    dataUtilityAnimationStep() {
+      return this.utilityAnimationStep ? this.utilityAnimationStep : null;
+    }
+  },
+  props: { text: String, level: String, classes: String, utilityAnimationStep: Number }
+};
+function ve(s, t, e, a, n, i) {
+  return e.text ? (r(), w(lt(i.tag), {
+    key: 0,
+    class: _(i.classList),
+    innerHTML: e.text,
+    "data-utility-animation-step": i.dataUtilityAnimationStep
+  }, null, 8, ["class", "innerHTML", "data-utility-animation-step"])) : (r(), w(lt(i.tag), {
+    key: 1,
+    class: _(i.classList),
+    "data-utility-animation-step": i.dataUtilityAnimationStep
+  }, {
+    default: Z(() => [
+      Et(s.$slots, "default")
+    ]),
+    _: 3
+  }, 8, ["class", "data-utility-animation-step"]));
+}
+const ye = /* @__PURE__ */ O(_e, [["render", ve]]), Se = {
+  tagName: "headline-row",
+  props: {
+    centered: Boolean,
+    level: {
+      type: String,
+      default: "h2"
+    },
+    text: String,
+    spacing: {
+      type: String,
+      default: "space-top-3"
+    },
+    hasAnimation: Boolean,
+    classes: String,
+    headlineClasses: String,
+    noContainer: Boolean
+  },
+  computed: {
+    headlineRowClassesValue() {
+      return this.classes && this.classes.includes("text-") ? this.classes : this.centered ? "text-center" : "";
+    },
+    containerClass() {
+      return this.noContainer ? "" : "container";
+    },
+    animationClass() {
+      return this.hasAnimation ? "utility-animation" : "";
+    },
+    animationStepClass() {
+      return this.hasAnimation ? "fade-in-bottom" : "";
+    },
+    classList() {
+      return [`${this.containerClass} ${this.spacing} headline-row`, this.animationClass];
+    }
+  }
+}, we = { class: "row" };
+function be(s, t, e, a, n, i) {
+  const c = X;
+  return r(), l("div", {
+    class: _(i.classList)
+  }, [
+    o("div", we, [
+      o("div", {
+        class: _(["col-sm-12", i.animationStepClass, i.headlineRowClassesValue]),
+        "data-utility-animation-step": "1"
+      }, [
+        S(c, {
+          level: e.level,
+          text: e.text,
+          classes: e.headlineClasses
+        }, null, 8, ["level", "text", "classes"])
+      ], 2)
+    ])
+  ], 2);
+}
+const Ce = /* @__PURE__ */ O(Se, [["render", be]]), xe = {
+  tagName: "wrapper",
+  computed: {
+    classList() {
+      return ["wrapper vue-component", this.classes ? this.classes : null, this.hideContainerClass ? "" : "container"];
+    }
+  },
+  props: {
+    hideContainer: {
+      default: !1
+    },
+    hideContainerClass: {
+      default: !1
+    },
+    classes: {
+      default: ""
+    }
+  },
+  template: `
+    <template v-if="!hideContainer">
+      <div :class="classList">
+        <slot></slot>
+      </div>
+    </template>
+
+    <template v-else>
+      <slot></slot>
+    </template>
+  `
+}, Le = {
+  tagName: "text-icon-animation",
+  props: {
+    animation: Object,
+    icon: String,
+    fixed: Boolean,
+    cta: Object,
+    classes: String
+  },
+  data() {
+    return {
+      textAnimationStep: 0,
+      isEnded: !1,
+      isSecondLast: !1
+    };
+  },
+  computed: {
+    animationData() {
+      return u.getJSON(this.animation);
+    },
+    sequence() {
+      return this.animationData.sequence;
+    },
+    classList() {
+      return [
+        "text-icon-animation row vue-component",
+        this.classes,
+        this.isFixed ? "text-icon-animation--fixed" : "",
+        this.isEnded ? "text-icon-animation--ended" : "",
+        this.isSecondLast ? "text-icon-animation--is-second-last" : ""
+      ];
+    },
+    isFixed() {
+      return u.isTrue(this.fixed);
+    },
+    iconClassList() {
+      return `text-icon-animation__icon icon--step-${this.textAnimationStep}`;
+    }
+  },
+  methods: {
+    handleTextAnimationState(s) {
+      this.textAnimationStep = s == null ? void 0 : s.step, this.isSecondLast = s == null ? void 0 : s.isSecondLast;
+    },
+    handleTextAnimationEnded(s) {
+      this.isEnded = s;
+    }
+  },
+  template: `
+    <div :class="classList">
+      <div class="text-icon-animation__animation col-lg-8">
+        <text-animation
+          :sequence="sequence"
+          :fixed="fixed"
+          :cta="cta"
+          @text-animation-state="handleTextAnimationState"
+          @text-animation-ended="handleTextAnimationEnded"
+        >
+        </text-animation>
+      </div>
+      <div class="text-icon-animation__icon-container col-lg-4">
+        <icon :icon="icon" :classes="iconClassList" :animation="animationData" :step="textAnimationStep"></icon>
+      </div>
+    </div>
+  `
+}, ke = {
+  tagName: "letter-switcher",
+  data() {
+    return {
+      show: !1,
+      end: !1,
+      overline: "",
+      endDelay: 3400,
+      startDelay: 900,
+      isLower: null
+    };
+  },
+  computed: {
+    classList() {
+      return [
+        "letter-switch",
+        `${this.show ? f.SHOW : ""}`,
+        `${this.end ? f.END : ""}`,
+        "vue-component"
+      ];
+    },
+    fontSize() {
+      return this.isLower ? "font-size-5" : "font-size-6 bold";
+    },
+    letterSwitchEndClassList() {
+      return ["letter-switcher__end-animation", this.fontSize];
+    },
+    letterSwitchAnimationClassList() {
+      return [
+        "letter-switcher__animation",
+        this.fontSize,
+        "justify-content-center",
+        `${this.isLower ? "flex-column" : ""}`
+      ];
+    }
+  },
+  mounted() {
+    this.overline = this.overlineStart, this.isLower = this.isLowerBreakpoint(), this.bindEvents(), setTimeout(() => {
+      this.setHeight(), this.startAnimation();
+    }, this.startDelay);
+  },
+  methods: {
+    bindEvents() {
+      window.addEventListener("resize", () => {
+        this.handleResize();
+      });
+    },
+    handleResize() {
+      this.isLower = this.isLowerBreakpoint(), this.setHeight();
+    },
+    isLowerBreakpoint() {
+      return u.isBelowBreakpoint("sm");
+    },
+    setHeight() {
+      this.show = !1;
+      const s = this.$refs.animation;
+      if (!s) return;
+      const t = s.querySelector(".letter-switcher__letter"), e = this.isLower ? t.offsetHeight * 2 : t.offsetHeight;
+      s.style.height = e + "px", this.show = !0;
+    },
+    startAnimation() {
+      [].forEach.call(
+        this.$refs.root.querySelectorAll(".letter-switcher__group"),
+        (e, a) => {
+          const n = a * 0.3, i = 0.07 * e.children.length;
+          e.style.animation = `letter-switch ${i}s ${n}s ease-out forwards`;
+        }
+      ), setTimeout(() => {
+        this.end = !0, this.switchOverline(this.showEndAnimation);
+      }, this.endDelay);
+    },
+    showEndAnimation() {
+      const s = this.$refs["end-text"], t = this.$refs.end;
+      if (!s || !t) return this.emitEnded();
+      s.style.width = "0px", t.classList.remove(f.COLLAPSED), this.emitEnded();
+    },
+    switchOverline(s) {
+      const t = this.$refs.overline;
+      t && (t.addEventListener("transitionend", () => {
+        this.overline = this.overlineEnd, t.style.opacity = 1, s();
+      }), t.style.opacity = 0);
+    },
+    emitEnded() {
+      this.$emit(D.ENDED);
+    }
+  },
+  props: {
+    textStart: String,
+    textEnd: String,
+    overlineStart: String,
+    overlineEnd: String
+  },
+  template: `
+    <div :class="classList" ref="root">
+      <div class="letter-switcher__overline font-size-5 light" ref="overline">{{ overline }}</div>
+      <div class="letter-switcher__container">
+        <div :class="letterSwitchAnimationClassList" ref="animation">
+          <div class="letter-switcher__container-animation">
+            <span>S</span><div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">i</span>
+              <span class="letter-switcher__letter letter-switcher__middle">h</span>
+              <span class="letter-switcher__letter letter-switcher__middle">g</span>
+              <span class="letter-switcher__letter letter-switcher__middle">f</span>
+              <span class="letter-switcher__letter letter-switcher__middle">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>cherhei<div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">t</span>
+              <span class="letter-switcher__letter letter-switcher__middle">s</span>
+              <span class="letter-switcher__letter letter-switcher__middle">r</span>
+              <span class="letter-switcher__letter letter-switcher__middle">q</span>
+              <span class="letter-switcher__letter letter-switcher__middle">p</span>
+              <span class="letter-switcher__letter letter-switcher__middle">o</span>
+              <span class="letter-switcher__letter letter-switcher__middle">n</span>
+              <span class="letter-switcher__letter letter-switcher__middle">m</span>
+              <span class="letter-switcher__letter letter-switcher__middle">l</span>
+              <span class="letter-switcher__letter letter-switcher__middle">k</span>
+              <span class="letter-switcher__letter letter-switcher__middle">j</span>
+              <span class="letter-switcher__letter letter-switcher__middle">i</span>
+              <span class="letter-switcher__letter letter-switcher__middle">h</span>
+              <span class="letter-switcher__letter letter-switcher__middle">g</span>
+              <span class="letter-switcher__letter letter-switcher__middle">f</span>
+              <span class="letter-switcher__letter letter-switcher__middle">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>s<template v-if="isLower">-<br/></template>
+          </div>
+          <div class="letter-switcher__container-animation">
+          lüc<div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">k</span>
+              <span class="letter-switcher__letter letter-switcher__middle">j</span>
+              <span class="letter-switcher__letter letter-switcher__middle">i</span>
+              <span class="letter-switcher__letter letter-switcher__middle">h</span>
+              <span class="letter-switcher__letter letter-switcher__middle">g</span>
+              <span class="letter-switcher__letter letter-switcher__middle">f</span>
+              <span class="letter-switcher__letter letter-switcher__middle">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>e!
+          </div>
+        </div>
+        <div :class="letterSwitchEndClassList">
+          <div class="letter-switcher__spacer">
+            <div class="letter-switcher__end is-collapsed" ref="end" >{{ textEnd }}</div>
+            <div class="letter-switcher__end-text" ref="end-text"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `
+};
+class ut {
   constructor(t) {
     this.root = t, this.setOffsets(), this.setMarginTop(), this.firstChild = document.querySelector("main > *:first-child"), this.isUpdating = !1, this.maxPercentage = 100, this.lastPercentage = !1, this.header = document.querySelector("header"), this.headerSpacer = document.querySelector(".header__spacer"), this.main = document.querySelector("main"), this.setup(), this.bindEvents(), this.setStickyPosition();
   }
   bindEvents() {
-    window.addEventListener("scroll", this.handleScroll.bind(this)), document.addEventListener(P.WINDOW_RESIZE, this.handleResize.bind(this)), document.addEventListener(P.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
+    window.addEventListener("scroll", this.handleScroll.bind(this)), document.addEventListener(D.WINDOW_RESIZE, this.handleResize.bind(this)), document.addEventListener(D.DIMENSIONS_CHANGED, this.handleDimensionsChanged.bind(this));
   }
   addDebugPositions() {
     this.topPosition = document.createElement("div"), this.bottomPosition = document.createElement("div");
@@ -1446,7 +2424,7 @@ class lt {
     return this.firstChild === t;
   }
   isSticky() {
-    return this.root.classList.contains(m.STICKY);
+    return this.root.classList.contains(f.STICKY);
   }
   setPositions() {
     this.setTopPosition(), this.setBottomPosition();
@@ -1463,47 +2441,47 @@ class lt {
   }
   getPercentage(t, e) {
     this.calculatedOffsetTop = this.currentTopPosition - e - this.marginTop + this.getMainOffsetTop(), this.calculatedOffsetBottom = this.currentBottomPosition - e + this.getMainOffsetTop(), this.marginTop < 0 && (this.calculatedOffsetBottom -= this.marginTop);
-    let r = t, a;
-    if (this.calculatedOffsetBottom >= r) {
+    let a = t, n;
+    if (this.calculatedOffsetBottom >= a) {
       let i = this.root.offsetHeight / 100;
-      this.calculatedOffsetTop < 0 ? a = r / i : a = (r - this.calculatedOffsetTop) / i;
+      this.calculatedOffsetTop < 0 ? n = a / i : n = (a - this.calculatedOffsetTop) / i;
     } else
-      a = this.maxPercentage;
-    return parseFloat(a.toFixed(2));
+      n = this.maxPercentage;
+    return parseFloat(n.toFixed(2));
   }
   isOutOfViewport(t) {
     return t >= this.maxPercentage || t < 0;
   }
   setStickyPosition() {
-    const t = this.getHeaderHeight(), e = window.scrollY, r = this.root.offsetHeight - window.innerHeight, a = r > 0 ? this.offsetBottom : this.offsetBottom - t;
-    let i = r > 0 ? -r : 0;
+    const t = this.getHeaderHeight(), e = window.scrollY, a = this.root.offsetHeight - window.innerHeight, n = a > 0 ? this.offsetBottom : this.offsetBottom - t;
+    let i = a > 0 ? -a : 0;
     i = i - this.marginTop;
-    const o = this.getPercentage(e, i), d = this.isOutOfViewport(o), g = e > a - window.innerHeight;
-    !d && g ? (this.spacer.style.height || (this.fixScrollPosition = !0, this.spacer.style.marginTop = this.marginTop + "px", this.spacer.style.height = this.height + "px", this.root.style.width = this.spacer.style.width = this.width + "px", this.root.style.height = this.height + "px", this.root.style.left = "50%", this.root.style.transform = "translateX(-50%)"), this.root.style.top = i + "px", this.root.classList.remove(m.OFF_SCREEN), this.root.classList.add(m.STICKY), this.updateClipPath(o)) : o === 0 ? (this.isUpdating = !1, this.root.classList.remove(m.OFF_SCREEN)) : this.disableStickyness(), this.updateDebugPositions();
+    const c = this.getPercentage(e, i), d = this.isOutOfViewport(c), g = e > n - window.innerHeight;
+    !d && g ? (this.spacer.style.height || (this.fixScrollPosition = !0, this.spacer.style.marginTop = this.marginTop + "px", this.spacer.style.height = this.height + "px", this.root.style.width = this.spacer.style.width = this.width + "px", this.root.style.height = this.height + "px", this.root.style.left = "50%", this.root.style.transform = "translateX(-50%)"), this.root.style.top = i + "px", this.root.classList.remove(f.OFF_SCREEN), this.root.classList.add(f.STICKY), this.updateClipPath(c)) : c === 0 ? (this.isUpdating = !1, this.root.classList.remove(f.OFF_SCREEN)) : this.disableStickyness(), this.updateDebugPositions();
   }
   disableStickyness() {
-    this.root.classList.remove(m.STICKY), this.root.classList.add(m.OFF_SCREEN), this.root.style.top = "", this.root.style.clipPath = "", this.root.style.width = "", this.root.style.height = "", this.spacer.style.height = "", this.spacer.style.marginTop = "", this.root.style.left = "", this.root.style.transform = "", this.isUpdating = !1;
+    this.root.classList.remove(f.STICKY), this.root.classList.add(f.OFF_SCREEN), this.root.style.top = "", this.root.style.clipPath = "", this.root.style.width = "", this.root.style.height = "", this.spacer.style.height = "", this.spacer.style.marginTop = "", this.root.style.left = "", this.root.style.transform = "", this.isUpdating = !1;
   }
   setup() {
     const t = this.root.parentNode;
     this.spacer = document.createElement("div"), t && (this.spacer.classList.add("sticky-scroller__spacer"), this.setDimensions(), t.insertBefore(this.spacer, this.root.nextSibling), this.root.dataset.stickyScroller = !0, this.setPositions(), this.setNextElementColor());
   }
   hasBackground() {
-    return this.root.classList.contains(m.HAS_BACKGROUND) || u.getElementBgColor(this.root);
+    return this.root.classList.contains(f.HAS_BACKGROUND) || u.getElementBgColor(this.root);
   }
   setNextElementColor() {
     if (!this.hasBackground()) return;
     const t = this.spacer.nextSibling, e = "--color-sticky-scroller";
     if (!t) return;
-    const r = u.getElementBgColor(t) || u.getElementBgColor(t.firstChild);
-    this.spacer.style.setProperty(e, r), this.spacer.classList.add(m.HAS_BACKGROUND);
+    const a = u.getElementBgColor(t) || u.getElementBgColor(t.firstChild);
+    this.spacer.style.setProperty(e, a), this.spacer.classList.add(f.HAS_BACKGROUND);
   }
   setDimensions() {
     const t = document.body.getBoundingClientRect().width;
     this.width = this.root.clientWidth > t ? t : this.root.clientWidth, this.height = this.root.clientHeight, this.spacer.style.width = this.width + "px";
   }
   resetElements() {
-    this.root.style.top = "", this.spacer.style.marginTop = "", this.root.style.height = this.root.style.width = this.spacer.style.width = this.spacer.style.height = "", this.root.style.clipPath = "", this.root.classList.remove(m.STICKY);
+    this.root.style.top = "", this.spacer.style.marginTop = "", this.root.style.height = this.root.style.width = this.spacer.style.width = this.spacer.style.height = "", this.root.style.clipPath = "", this.root.classList.remove(f.STICKY);
   }
   static init() {
     this.instances = [], [].forEach.call(document.querySelectorAll(this.rootSelector), (t) => {
@@ -1514,8 +2492,8 @@ class lt {
     return this.rootSelector.substring(1);
   }
 }
-y(lt, "rootSelector", ".is-sticky-scroller"), y(lt, "instances", []);
-const Pt = {
+b(ut, "rootSelector", ".is-sticky-scroller"), b(ut, "instances", []);
+const Ee = {
   tagName: "hero-pattern",
   template: `
     <svg width="1393" height="696" viewBox="0 0 1393 696" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -1556,10 +2534,10 @@ const Pt = {
       </defs>
     </svg>
   `
-}, Dt = {
+}, Ae = {
   tagName: "hero",
   components: {
-    "hero-pattern": Pt
+    "hero-pattern": Ee
   },
   data() {
     return {
@@ -1595,7 +2573,7 @@ const Pt = {
         this.bgWidth ? "hero--bg-width" : "",
         this.isCentered ? "hero--centered" : "",
         this.shapeInContent ? "hero--shape-in-content" : "",
-        this.hasStickyScroller ? lt.getRootClass() : ""
+        this.hasStickyScroller ? ut.getRootClass() : ""
       ];
     },
     contentClassList() {
@@ -1739,52 +2717,52 @@ const Pt = {
     hero: Object,
     lottieData: String
   }
-}, Nt = { class: "hero__container container" }, Vt = {
+}, Oe = { class: "hero__container container" }, Ie = {
   key: 0,
   class: "hero__back-row row"
-}, Bt = { class: "hero__back-col col" }, Rt = { class: "hero__back back" }, Mt = {
+}, Te = { class: "hero__back-col col" }, Pe = { class: "hero__back back" }, Ne = {
   key: 2,
   class: "hero__intro row",
   ref: "intro"
-}, Ht = { class: "hero__intro-col col" }, Ft = {
+}, De = { class: "hero__intro-col col" }, Ve = {
   key: 0,
   class: "hero__overline"
-}, jt = {
+}, Be = {
   key: 2,
   class: "hero__content-shape"
-}, zt = ["innerHTML"], Ut = {
+}, Re = ["innerHTML"], Me = {
   key: 5,
   class: "hero__badges"
-}, Gt = { class: "hero__badge-container" }, Wt = { class: "hero__background-shape" };
-function Jt(s, t, e, r, a, i) {
-  const o = _t("hero-pattern"), d = at, g = rt, p = Tt, c = dt, x = yt, k = At, T = Ot;
-  return n(), h("div", {
-    class: v(i.classList),
-    style: W(i.style)
+}, He = { class: "hero__badge-container" }, je = { class: "hero__background-shape" };
+function ze(s, t, e, a, n, i) {
+  const c = mt("hero-pattern"), d = nt, g = rt, p = ke, h = X, k = ot, C = Le, E = xe;
+  return r(), l("div", {
+    class: _(i.classList),
+    style: N(i.style)
   }, [
-    i.pattern ? (n(), C(o, {
+    i.pattern ? (r(), w(c, {
       key: 0,
       class: "hero__pattern"
-    })) : f("", !0),
-    i.img ? (n(), C(d, {
+    })) : m("", !0),
+    i.img ? (r(), w(d, {
       key: 1,
       class: "hero__background-img",
       cloudinary: i.background.cloudinary,
       img: i.img
     }, {
-      default: et(() => t[0] || (t[0] = [
-        it(" > ")
+      default: Z(() => t[0] || (t[0] = [
+        H(" > ")
       ])),
       _: 1
-    }, 8, ["cloudinary", "img"])) : f("", !0),
-    l("div", Nt, [
-      l("main", {
-        class: v(i.contentClassList)
+    }, 8, ["cloudinary", "img"])) : m("", !0),
+    o("div", Oe, [
+      o("main", {
+        class: _(i.contentClassList)
       }, [
-        i.hasBack ? (n(), h("div", Vt, [
-          l("div", Bt, [
-            l("div", Rt, [
-              b(g, {
+        i.hasBack ? (r(), l("div", Ie, [
+          o("div", Te, [
+            o("div", Pe, [
+              S(g, {
                 icon: "arrow",
                 classes: "hero__back-icon",
                 direction: "left",
@@ -1793,22 +2771,22 @@ function Jt(s, t, e, r, a, i) {
               })
             ])
           ])
-        ])) : f("", !0),
-        i.letterSwitcher ? (n(), C(p, B({ key: 1 }, i.letterSwitcher, {
+        ])) : m("", !0),
+        i.letterSwitcher ? (r(), w(p, j({ key: 1 }, i.letterSwitcher, {
           class: "hero__letter-switcher",
           onEnded: i.handleLetterSwitcherEnded
-        }), null, 16, ["onEnded"])) : f("", !0),
-        i.overline || i.headlineText || i.subline ? (n(), h("div", Mt, [
-          l("div", Ht, [
-            i.overline ? (n(), h("span", Ft, S(i.overline), 1)) : f("", !0),
-            i.headlineText ? (n(), C(c, {
+        }), null, 16, ["onEnded"])) : m("", !0),
+        i.overline || i.headlineText || i.subline ? (r(), l("div", Ne, [
+          o("div", De, [
+            i.overline ? (r(), l("span", Ve, v(i.overline), 1)) : m("", !0),
+            i.headlineText ? (r(), w(h, {
               key: 1,
-              class: v(i.headlineClassList),
+              class: _(i.headlineClassList),
               level: i.level,
               innerHTML: i.headlineText
-            }, null, 8, ["class", "level", "innerHTML"])) : f("", !0),
-            i.shapeInContent ? (n(), h("div", jt, [
-              i.showShape ? (n(), C(d, {
+            }, null, 8, ["class", "level", "innerHTML"])) : m("", !0),
+            i.shapeInContent ? (r(), l("div", Be, [
+              i.showShape ? (r(), w(d, {
                 key: 0,
                 cloudinary: i.shape.cloudinary,
                 img: i.shape.img,
@@ -1816,51 +2794,51 @@ function Jt(s, t, e, r, a, i) {
                 lottie: i.lottieFileData,
                 "lottie-settings": i.lottieSettings,
                 "img-src-sets": i.imgSrcSets
-              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : f("", !0)
-            ])) : f("", !0),
-            i.subline ? (n(), h("p", {
+              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : m("", !0)
+            ])) : m("", !0),
+            i.subline ? (r(), l("p", {
               key: 3,
               class: "hero__subline lead",
               innerHTML: i.subline
-            }, null, 8, zt)) : f("", !0),
-            i.ctaList ? (n(), C(x, {
+            }, null, 8, Re)) : m("", !0),
+            i.ctaList ? (r(), w(k, {
               key: 4,
               classes: "hero__cta-list",
               list: i.ctaList
-            }, null, 8, ["list"])) : f("", !0),
-            i.badges ? (n(), h("div", Ut, [
-              (n(!0), h(L, null, E(i.badges, (tt) => (n(), h("div", Gt, [
-                b(d, B({
+            }, null, 8, ["list"])) : m("", !0),
+            i.badges ? (r(), l("div", Me, [
+              (r(!0), l(L, null, A(i.badges, (M) => (r(), l("div", He, [
+                S(d, j({
                   cloudinary: !0,
                   ref_for: !0
-                }, tt, { class: "hero__badge-image" }), null, 16)
+                }, M, { class: "hero__badge-image" }), null, 16)
               ]))), 256))
-            ])) : f("", !0)
+            ])) : m("", !0)
           ])
-        ], 512)) : f("", !0),
-        i.animation ? (n(), C(k, {
+        ], 512)) : m("", !0),
+        i.animation ? (r(), w(C, {
           key: 3,
           animation: i.animation,
           cta: i.cta,
           icon: i.icon,
           classes: "hero__animation"
-        }, null, 8, ["animation", "cta", "icon"])) : f("", !0)
+        }, null, 8, ["animation", "cta", "icon"])) : m("", !0)
       ], 2)
     ]),
-    i.shape ? (n(), C(T, {
+    i.shape ? (r(), w(E, {
       key: 2,
       class: "hero__background-shape-wrapper",
       hideContainer: !i.showShapeContainer
     }, {
-      default: et(() => [
-        b(T, {
+      default: Z(() => [
+        S(E, {
           class: "hero__background-shape-content",
           hideContainer: !i.showShapeContainer,
           hideContainerClass: !0
         }, {
-          default: et(() => [
-            l("div", Wt, [
-              i.showShape ? (n(), C(d, {
+          default: Z(() => [
+            o("div", je, [
+              i.showShape ? (r(), w(d, {
                 key: 0,
                 cloudinary: i.shape.cloudinary,
                 img: i.shape.img,
@@ -1868,53 +2846,166 @@ function Jt(s, t, e, r, a, i) {
                 lottie: i.lottieFileData,
                 "lottie-settings": i.lottieSettings,
                 "img-src-sets": i.imgSrcSets
-              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : f("", !0)
+              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : m("", !0)
             ])
           ]),
           _: 1
         }, 8, ["hideContainer"])
       ]),
       _: 1
-    }, 8, ["hideContainer"])) : f("", !0)
+    }, 8, ["hideContainer"])) : m("", !0)
   ], 6);
 }
-const qt = /* @__PURE__ */ z(Dt, [["render", Jt]]), O = class O {
+const Fe = /* @__PURE__ */ O(Ae, [["render", ze]]), $e = {
+  tagName: "icon",
+  data() {
+    return u.validateVueProps(this);
+  },
+  computed: {
+    classList() {
+      return [
+        "icon",
+        `${this.classes ? this.classes : ""}`,
+        `${this.props.hasBackground ? "icon--has-background" : ""}`,
+        `icon--${this.props.direction}`,
+        `icon--${this.props.icon}`,
+        `${this.props.animation ? "js-text-animation__icon" : ""}`,
+        `${this.props.circle ? "icon--circle" : ""}`,
+        `${this.props.hover ? "icon--hover" : ""}`,
+        "vue-component"
+      ];
+    },
+    innerSize() {
+      var s;
+      switch (this.props.size) {
+        case "xxl":
+          s = "200px";
+          break;
+        case "xl":
+          s = "120px";
+          break;
+        case "medium":
+          s = "28px";
+          break;
+        case "small":
+          s = "18px";
+          break;
+        case "xs":
+          s = "10px";
+          break;
+        default:
+        case "large":
+          s = "48px";
+          break;
+      }
+      return s;
+    },
+    parentStyle() {
+      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.rotation}`;
+    },
+    rotation() {
+      return this.props.direction === "left" ? "180deg" : this.props.direction === "clockwise" ? "90deg" : "0deg";
+    },
+    settings() {
+      return {
+        width: this.innerSize,
+        height: this.innerSize,
+        padding: this.props.padding,
+        "xml:space": "preserve",
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        "xmlns:link": "http://www.w3.org/1999/xlink"
+      };
+    }
+  },
+  props: {
+    icon: {
+      default: "close"
+    },
+    color: {
+      default: "currentColor"
+    },
+    direction: {
+      default: "right"
+    },
+    size: {
+      default: "large"
+    },
+    circle: {
+      default: null
+    },
+    hover: {
+      default: null
+    },
+    padding: {
+      default: 6
+    },
+    animation: {
+      default: null
+    },
+    classes: {
+      default: ""
+    },
+    closed: {
+      default: null
+    },
+    hasBackground: {
+      default: null
+    },
+    step: {
+      default: null
+    }
+  }
+};
+function Ue(s, t, e, a, n, i) {
+  return r(), l("span", {
+    class: _(i.classList),
+    style: N(i.parentStyle)
+  }, [
+    (r(), w(lt(e.icon), j(i.settings, {
+      color: s.props.color,
+      closed: e.closed,
+      step: e.step
+    }), null, 16, ["color", "closed", "step"]))
+  ], 6);
+}
+const Ge = /* @__PURE__ */ O($e, [["render", Ue]]), T = class T {
   constructor(t) {
     this.root = t, this.count = 1, this.selector = this.getCurrentSelector(), this.currentElements = this.root.querySelectorAll(this.selector), this.root.matches(this.selector) && (this.currentElements = this.mergeNodes(this.root, this.currentElements)), this.resetAnimation(), this.initialize();
   }
   resetAnimation() {
-    this.root.querySelectorAll(`.${m.IS_STARTING}`).forEach((t) => {
-      t.classList.remove(m.IS_STARTING);
+    this.root.querySelectorAll(`.${f.IS_STARTING}`).forEach((t) => {
+      t.classList.remove(f.IS_STARTING);
     });
   }
   mergeNodes(t, e) {
-    const r = Array.from(e);
-    return r.unshift(t), r;
+    const a = Array.from(e);
+    return a.unshift(t), a;
   }
   getCurrentSelector() {
     return `[data-utility-animation-step="${this.count}"]`;
   }
   updateCurrentElement(t) {
     const e = [];
-    this.currentElements.forEach((r) => {
-      t.srcElement !== r && e.push(r);
+    this.currentElements.forEach((a) => {
+      t.srcElement !== a && e.push(a);
     }), this.currentElements = e;
   }
   handleAnimationEnd(t) {
-    const e = O.getGroup(t.srcElement);
+    const e = T.getGroup(t.srcElement);
     if (e) {
-      const r = parseInt(e.style.getPropertyValue(O.groupItemsLoadedProperty), 10) || 0;
-      O.setGroupItemsLoaded(e, r + 1);
+      const a = parseInt(e.style.getPropertyValue(T.groupItemsLoadedProperty), 10) || 0;
+      T.setGroupItemsLoaded(e, a + 1);
     }
     this.updateCurrentElement(t), !(this.currentElements.length > 0) && (this.count++, this.currentElements = this.root.querySelectorAll(this.getCurrentSelector()), this.currentElements !== null && this.currentElements.length > 0 ? this.startStepAnimation(this.currentElements) : this.setEnd());
   }
   startStepAnimation(t) {
     t.forEach((e) => {
-      e.classList.add(m.IS_STARTING);
+      e.classList.add(f.IS_STARTING);
     });
   }
   setEnd() {
-    this.root.setAttribute(O.endDataset, !0);
+    this.root.setAttribute(T.endDataset, !0);
   }
   startAnimation() {
     this.startStepAnimation(this.currentElements);
@@ -1926,9 +3017,9 @@ const qt = /* @__PURE__ */ z(Dt, [["render", Jt]]), O = class O {
     this.root.addEventListener("animationend", (e) => {
       this.handleAnimationEnd(e);
     }), new MutationObserver((e) => {
-      e.forEach((r) => {
-        var a;
-        r.type === "attributes" && r.attributeName.startsWith(O.inViewportDataset) && ((a = r.target) == null ? void 0 : a.getAttribute(O.inViewportDataset)) === "true" && this.startAnimation();
+      e.forEach((a) => {
+        var n;
+        a.type === "attributes" && a.attributeName.startsWith(T.inViewportDataset) && ((n = a.target) == null ? void 0 : n.getAttribute(T.inViewportDataset)) === "true" && this.startAnimation();
       });
     }).observe(this.root, { attributes: !0 });
   }
@@ -1942,35 +3033,35 @@ const qt = /* @__PURE__ */ z(Dt, [["render", Jt]]), O = class O {
     return t.root.classList.contains("utility-animation--small-offset");
   }
   static addObserver(t) {
-    const a = (p) => {
-      p.forEach((c) => {
-        c.isIntersecting ? c.target.setAttribute(this.inViewportDataset, !0) : c.target.classList.contains("utility-animation--enter-exit") && c.target.removeAttribute(this.inViewportDataset);
+    const n = (p) => {
+      p.forEach((h) => {
+        h.isIntersecting ? h.target.setAttribute(this.inViewportDataset, !0) : h.target.classList.contains("utility-animation--enter-exit") && h.target.removeAttribute(this.inViewportDataset);
       });
-    }, i = new IntersectionObserver(a, {
+    }, i = new IntersectionObserver(n, {
       rootMargin: "0px 0px -200px 0px",
       threshold: 0
-    }), o = new IntersectionObserver(a, {
+    }), c = new IntersectionObserver(n, {
       rootMargin: "0px 0px 0px 0px",
       threshold: 0.4
-    }), d = new IntersectionObserver(a, {
+    }), d = new IntersectionObserver(n, {
       rootMargin: "0px 0px -100px 0px",
       threshold: 0
     });
     (t ? [t] : this.instances).forEach((p) => {
-      O.hasSmallOffset(p) ? d.observe(p.root) : O.hasPercentageOffset(p) ? o.observe(p.root) : i.observe(p.root);
+      T.hasSmallOffset(p) ? d.observe(p.root) : T.hasPercentageOffset(p) ? c.observe(p.root) : i.observe(p.root);
     });
   }
   static resetGroup(t) {
     this.setGroupItemsLoaded(t, 0), this.instances.forEach((e) => {
       if (this.getGroup(e.root) === t) {
-        const a = e.root;
-        e.currentElements = [a], a.removeAttribute("data-utility-animation-end"), e.startAnimation();
+        const n = e.root;
+        e.currentElements = [n], n.removeAttribute("data-utility-animation-end"), e.startAnimation();
       }
     });
   }
   static initElement(t) {
-    const e = t.$el ? t.$el : t, r = new this(e);
-    return this.instances.push(r), r;
+    const e = t.$el ? t.$el : t, a = new this(e);
+    return this.instances.push(a), a;
   }
   static init(t) {
     this.instances = [], [].forEach.call(t || document.querySelectorAll(this.rootSelector), (e) => {
@@ -1988,9 +3079,9 @@ const qt = /* @__PURE__ */ z(Dt, [["render", Jt]]), O = class O {
     return `--utility-animation-index: ${t}`;
   }
 };
-y(O, "rootSelector", ".utility-animation"), y(O, "inViewportDataset", "data-utility-animation-in-viewport"), y(O, "endDataset", "data-utility-animation-end"), y(O, "instances", []), y(O, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
-let st = O;
-const $t = {
+b(T, "rootSelector", ".utility-animation"), b(T, "inViewportDataset", "data-utility-animation-in-viewport"), b(T, "endDataset", "data-utility-animation-end"), b(T, "instances", []), b(T, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
+let at = T;
+const We = {
   tagName: "intro-text",
   computed: {
     classList() {
@@ -1998,7 +3089,7 @@ const $t = {
     }
   },
   mounted() {
-    this.$refs.root && st.init([this.$refs.root]);
+    this.$refs.root && at.init([this.$refs.root]);
   },
   props: {
     copy: String,
@@ -2011,322 +3102,539 @@ const $t = {
     },
     copyClasses: String
   }
-}, Xt = { class: "container space-lg-2" }, Kt = {
+}, qe = { class: "container space-lg-2" }, Je = {
   key: 0,
   class: "row mb-9 mt-9"
-}, Zt = { class: "row" }, Yt = { class: "col" }, Qt = ["innerHTML"];
-function te(s, t, e, r, a, i) {
-  const o = dt;
-  return n(), h("figure", {
-    class: v(i.classList),
+}, Ze = { class: "row" }, Xe = { class: "col" }, Ke = ["innerHTML"];
+function Ye(s, t, e, a, n, i) {
+  const c = X;
+  return r(), l("figure", {
+    class: _(i.classList),
     ref: "root"
   }, [
-    l("div", Xt, [
-      e.headline ? (n(), h("div", Kt, [
-        l("div", {
-          class: v(["col", e.headlineClasses, "fade-in-bottom"]),
+    o("div", qe, [
+      e.headline ? (r(), l("div", Je, [
+        o("div", {
+          class: _(["col", e.headlineClasses, "fade-in-bottom"]),
           "data-utility-animation-step": "1"
         }, [
-          b(o, { text: e.headline }, null, 8, ["text"])
+          S(c, { text: e.headline }, null, 8, ["text"])
         ], 2)
-      ])) : f("", !0),
-      l("div", Zt, [
-        l("div", Yt, [
-          l("p", {
-            class: v(["intro-text__copy fade-in-bottom", e.copyClasses]),
+      ])) : m("", !0),
+      o("div", Ze, [
+        o("div", Xe, [
+          o("p", {
+            class: _(["intro-text__copy fade-in-bottom", e.copyClasses]),
             "data-utility-animation-step": "1",
             innerHTML: e.copy
-          }, null, 10, Qt)
+          }, null, 10, Ke)
         ])
       ])
     ])
   ], 2);
 }
-const ee = /* @__PURE__ */ z($t, [["render", te]]), N = class N {
-  constructor(t, e) {
-    var r;
-    t && (this.root = t, this.options = e, (r = this.options) != null && r.noInit || this.root.classList.add(m.INITIALIZED));
-  }
-  static getInstancesKey() {
-    return this.rootSelector.substring(1);
-  }
-  static expose(t) {
-    window[N.namespacePrefix] || (window[N.namespacePrefix] = {});
-    const e = this.getInstancesKey();
-    window[N.namespacePrefix][e] || (window[N.namespacePrefix][e] = []), window[N.namespacePrefix][e].push(t);
-  }
-  static getInstance(t) {
-    const r = window[N.namespacePrefix][this.getInstancesKey()].filter((a) => (a == null ? void 0 : a.root) === t);
-    return r ? r[0] : null;
-  }
-  static initElement(t, e) {
-    const r = new this(t, e);
-    return this.instances.push(r), this.expose(r), r;
-  }
-  static init(t) {
-    this.instances = [];
-    const e = t || document, r = `${this.rootSelector}:not(.${m.INITIALIZED})`;
-    [].forEach.call(
-      e.querySelectorAll(r),
-      (a) => {
-        this.initElement(a);
-      }
-    );
+const Qe = /* @__PURE__ */ O(We, [["render", Ye]]), ts = {
+  computed: {
+    classList() {
+      return ["test"];
+    }
+  },
+  mounted() {
+  },
+  props: {
+    copy: String,
+    text: String
   }
 };
-y(N, "rootSelector", ""), y(N, "instances", []), y(N, "namespacePrefix", "baseComponents");
-let ct = N;
-class Q {
+function es(s, t, e, a, n, i) {
+  const c = X;
+  return r(), l("div", {
+    class: _(i.classList),
+    ref: "root"
+  }, [
+    H(" copy: " + v(e.copy) + " && headline: " + v(e.text) + " ", 1),
+    S(c, null, {
+      default: Z(() => [
+        H(v(e.text), 1)
+      ]),
+      _: 1
+    })
+  ], 2);
 }
-y(Q, "rootSelector", ".form-attachments"), y(Q, "base64Selector", ".form-attachments__base64");
-const V = class V extends ct {
-  constructor(t, e) {
-    var r;
-    super(t, e), t && (this.root = t, this.formSelector = ".form__form", this.gotchaSelector = ".form__super-field", this.attachmentSelector = 'input[type="file"][required]', this.subjectSelector = 'input[name="_subject"]', this.companySelector = 'input[id="company"]', this.form = t.querySelector(this.formSelector), this.subject = t.querySelector(this.subjectSelector), this.company = t.querySelector(this.companySelector), this.groups = {}, this.minLengthOther = 1, this.options = e, this.addCustomValidationRules(), this.updateGotcha(), this.addValidation(), this.form && this.subject && this.hasUrlParameter() && this.prefillFormValues(), (r = this.options) != null && r.noEvents ? this.isCompanyForm() && this.addSubjectListener() : this.bindEvents());
-  }
-  addCustomValidationRules() {
-    window.$ && $.validator && ($.validator.methods.email = function(t, e) {
-      return this.optional(e) || V.regularExpression.test(t);
-    });
-  }
-  isCompanyForm() {
-    return !!(this.form && this.subject && this.company);
-  }
-  hasUrlParameter() {
-    if (window.location.search !== "")
-      return !0;
-  }
-  prefillFormValues() {
-    const t = new URLSearchParams(window.location.search);
-    for (const [e, r] of t.entries())
-      this.prefillFormValue(e, r);
-  }
-  prefillFormValue(t, e) {
-    const r = this.form;
-    if (!r) return;
-    const a = r.querySelector(`input[name="${t}"],textarea[name="${t}"]`);
-    a && (a.value = e);
-  }
-  hasCustomValidation() {
-    return this.root.classList.contains("form--custom-validation");
-  }
-  hasAjaxSubmit() {
-    return this.root.classList.contains("form--ajax");
-  }
-  bindEvents() {
-    (Object.keys(this.groups).length || this.hasCustomValidation() || this.hasAjaxSubmit() || this.isCompanyForm()) && (this.form.addEventListener("submit", this.handleSubmit.bind(this)), this.form.addEventListener("reset", this.handleReset.bind(this)));
-  }
-  addSubjectListener() {
-    this.form.addEventListener("submit", this.handleSubmit.bind(this));
-  }
-  handleReset() {
-    V.reset(this.form);
-  }
-  static reset(t) {
-    !t || !t.reset || (t.reset(), [].forEach.call(t.querySelectorAll(`.${m.VALID}`), (e) => {
-      e.classList.remove(m.VALID);
-    }), [].forEach.call(t.querySelectorAll(`.${m.ERROR}`), (e) => {
-      e.classList.remove(m.ERROR);
-    }));
-  }
-  handleSubmit(t) {
-    this.validate(t) && this.submit(t);
-  }
-  updateSubject() {
-    !this.subject || !this.company || (this.subject.value = this.subject.value + ": " + this.company.value);
-  }
-  submit(t) {
-    t.stopImmediatePropagation(), t.preventDefault(), this.updateSubject(), this.customSubmit ? this.customSubmit(t) : this.hasAjaxSubmit() ? this.ajaxSubmit() : this.form.submit();
-  }
-  static getId(t) {
-    return u.uuid() + this.delimiter + t;
-  }
-  static getName(t) {
-    if (t.includes(this.delimiter)) {
-      const e = t.indexOf(this.delimiter);
-      return t.slice(e + this.delimiter.length);
+const ss = /* @__PURE__ */ O(ts, [["render", es]]), is = {
+  tagName: "lottie",
+  // components: {
+  //   Vue3Lottie,
+  // },
+  computed: {
+    classList() {
+      return ["lottie", "vue-component"];
+    },
+    widthValue() {
+      return this.width && this.width !== "" ? this.width : "100%";
+    },
+    heightValue() {
+      return this.height && this.height !== "" ? this.height : "100%";
+    },
+    backgroundValue() {
+      return this.background && this.background !== "" ? this.background : "transparent";
+    },
+    loopValue() {
+      return this.loop && this.loop !== "" ? this.loop : !0;
+    },
+    autoplayValue() {
+      return this.autoplay && this.autoplay !== "" ? this.autoplay : !0;
+    },
+    nameValue() {
+      return this.name && this.name !== "" ? this.name : "lottie-" + Math.random();
+    },
+    rendererValue() {
+      return this.renderer && this.renderer !== "" ? this.renderer : "svg";
+    },
+    options() {
+      return {
+        renderer: this.rendererValue,
+        loop: this.loopValue,
+        autoplay: this.autoplayValue,
+        width: this.getSize(this.widthValue),
+        height: this.getSize(this.heightValue),
+        animationData: this.data
+      };
     }
-    return t;
-  }
-  static getFormData(t) {
-    const e = new FormData(t), r = [];
-    for (let a of e)
-      r.push(encodeURIComponent(a[0]) + "=" + encodeURIComponent(a[1]));
-    return r.join("&");
-  }
-  ajaxSubmit() {
-    const t = V.getFormData(this.form);
-    fetch(this.form.action, {
-      method: this.form.method || "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      redirect: "follow",
-      body: t
-    }).then((e) => {
-      (e.status === 200 || e.status === 302) && this.ajaxSubmitCompleted();
-    });
-  }
-  ajaxSubmitCompleted() {
-    document.dispatchEvent(
-      new CustomEvent(P.FORM_AJAX_SUBMIT, {
-        detail: { target: this.root }
-      })
-    );
-  }
-  triggerExternalValidation() {
-    let t = !1;
-    if (window.$) {
-      const e = $(this.form);
-      if (typeof e.validate != "function")
-        return console.error("form.validate is not a function"), !0;
-      t = e.validate().form();
+  },
+  data() {
+    return {
+      style: {}
+    };
+  },
+  mounted() {
+    this.initStyle();
+  },
+  methods: {
+    initStyle() {
+      this.style = {
+        width: this.getSize(this.widthValue),
+        height: this.getSize(this.heightValue),
+        background: this.backgroundValue
+      };
+    },
+    getSize(s) {
+      return !s.indexOf || s.indexOf("px") === -1 && s.indexOf("%") === -1 ? `${s}px` : s;
     }
-    return t;
-  }
-  validate(t) {
-    let e = this.triggerExternalValidation();
-    return (!this.isValid(t) || e === !1) && (t.stopImmediatePropagation(), t.preventDefault(), e = !1), e;
-  }
-  isValid(t) {
-    t.stopImmediatePropagation();
-    let e = !0, r = !0;
-    this.hasAttachments() && (e = this.validateAttachments());
-    for (const [a, i] of Object.entries(this.groups))
-      this.isValidGroup(i) || (e = !1, this.addGroupError(i, r), r = !1);
-    return e;
-  }
-  validateAttachments() {
-    let t = !0;
-    return [].forEach.call(this.form.querySelectorAll(Q.base64Selector), (e) => {
-      e.value || (t = !1);
-    }), t || (t = !0, [].forEach.call(this.form.querySelectorAll(this.attachmentSelector), (e) => {
-      e.files.length === 0 && (t = !1, this.addAttachmentError(e));
-    }), t);
-  }
-  addAttachmentError(t) {
-    const e = u.getParent(t, Q.rootSelector);
-    e !== null && e.classList.add(m.HAS_ERROR);
-  }
-  hasAttachments() {
-    return this.form.querySelector(this.attachmentSelector);
-  }
-  addGroupError(t, e) {
-    for (let r = 0; r < t.length; r++) {
-      const a = this.getGroupParent(t[r]);
-      t[r].classList.add(m.ERROR), a && (e && u.scrollIntoView(a), this.addErrorMessage(a));
+  },
+  props: {
+    data: Object,
+    name: {
+      type: String
+    },
+    width: {
+      type: [String, Number]
+    },
+    height: {
+      type: [String, Number]
+    },
+    background: {
+      type: String
+    },
+    loop: {
+      type: [Boolean, Number]
+    },
+    autoplay: {
+      type: Boolean
+    },
+    renderer: {
+      type: String
     }
-  }
-  addErrorMessage(t) {
-    if (t && !t.classList.contains(m.ERROR)) {
-      t.classList.add(m.ERROR);
-      const e = document.createElement("div");
-      e.innerHTML = t.dataset.msg, e.classList.add("invalid-feedback"), t.parentNode.insertBefore(e, t.nextSibling);
-    }
-  }
-  delErrorMessage(t) {
-    t && t.classList.contains(m.ERROR) && (t.classList.remove(m.ERROR), t.nextSibling.remove());
-  }
-  delGroupError(t) {
-    for (let e = 0; e < t.length; e++) {
-      const r = this.getGroupParent(t[e]);
-      t[e].classList.remove(m.ERROR), r && this.delErrorMessage(r);
-    }
-  }
-  isValidGroup(t) {
-    const e = t.length;
-    let r = !1;
-    for (let a = 0; a < e; a++) {
-      const i = t[a];
-      if (i.type === "checkbox" && i.checked)
-        r = !0;
-      else if (i.type === "radio" && i.checked)
-        r = !0;
-      else {
-        const o = i.closest('input[type="text"]');
-        o && !r && o.value.length >= this.minLengthOther && (r = !0);
-      }
-    }
-    return r;
-  }
-  getGroupByName(t) {
-    return this.groups[t];
-  }
-  addValidation() {
-    this.form && [].forEach.call(this.form.querySelectorAll("[data-form-group]"), (t) => {
-      t.dataset.formGroup && (this.addGroupValidation(t), this.addLiveValidation(t));
-    });
-  }
-  isRadio(t) {
-    return (t == null ? void 0 : t.getAttribute("type")) === "radio";
-  }
-  isCheckbox(t) {
-    return (t == null ? void 0 : t.getAttribute("type")) === "checkbox";
-  }
-  addLiveValidation(t) {
-    t && (this.isCheckbox(t) || this.isRadio(t) ? t.addEventListener("change", this.handleLiveValidation.bind(this)) : t.addEventListener("keyup", this.handleLiveValidation.bind(this)));
-  }
-  groupFilter(t, e) {
-    return t ? t.filter((r) => r.getAttribute("type") === e) : null;
-  }
-  handleGroupError(t, e) {
-    t.checked ? this.delGroupError(e) : this.isValidGroup(e) || this.addGroupError(e);
-  }
-  handleLiveValidation(t) {
-    const e = t.currentTarget;
-    if (e) {
-      const r = this.getGroupByName(e.dataset.formGroup);
-      if (!r) return;
-      const a = this.groupFilter(r, "checkbox"), i = this.groupFilter(r, "radio");
-      e.getAttribute("type") === "checkbox" ? this.handleGroupError(e, a) : e.getAttribute("type") === "radio" ? this.handleGroupError(e, i) : this.isValidGroup(r) ? this.delGroupError(r) : this.addGroupError(r);
-    }
-  }
-  getGroupParent(t) {
-    var e;
-    return (e = t.closest(".js-form-message")) == null ? void 0 : e.querySelector("[data-msg]");
-  }
-  addGroupValidation(t) {
-    if (this.getGroupParent(t)) {
-      const r = t.dataset.formGroup;
-      this.groups[r] || (this.groups[r] = []), this.groups[r].push(t);
-    }
-  }
-  updateGotcha() {
-    const t = this.root.querySelector(this.gotchaSelector);
-    t == null || t.classList.add(m.HIDDEN);
-  }
-  canHaveCustomSubmit() {
-    return !this.root.classList.contains(V.noCustomSubmitClass);
-  }
-  static isOptionalInputInvisible(t) {
-    var e;
-    return ((e = t == null ? void 0 : t.parentNode) == null ? void 0 : e.classList.contains("form-field--show-in")) && t.offsetParent === null;
-  }
-  static getFormData(t) {
-    if (t == null) return [];
-    const e = t.querySelectorAll('input[type="text"], input[type="email"], textarea'), r = [];
-    for (let a = 0; a < e.length; a++) {
-      const i = e[a];
-      if (this.isOptionalInputInvisible(i)) continue;
-      let o;
-      (i.type === "text" || i.type === "email" || i.tagName === "TEXTAREA") && (o = i.value), r.push({
-        input: i,
-        value: o
-      });
-    }
-    return r;
   }
 };
-y(V, "rootSelector", ".form"), y(V, "instances", []), y(V, "delimiter", "-formHelper-"), y(V, "noCustomSubmitClass", "form--no-custom-submit"), y(V, "regularExpression", /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/);
-let H = V;
-class se {
+function as(s, t, e, a, n, i) {
+  return r(), l("div", {
+    class: _(i.classList)
+  }, null, 2);
+}
+const ns = /* @__PURE__ */ O(is, [["render", as]]), pt = {
+  tagName: "cta",
+  computed: {
+    tag() {
+      return this.href || this.alternativeHref || this.target ? "a" : "button";
+    },
+    hasIcon() {
+      return this.link || this.externalValue || this.icon || this.downloadValue;
+    },
+    externalValue() {
+      return u.isTrue(this.external);
+    },
+    downloadValue() {
+      return u.isTrue(this.download);
+    },
+    classList() {
+      return [
+        `${this.baseClass} ${this.innerSkin}`,
+        this.classes ? this.classes : "",
+        this.download ? "cta--download" : "",
+        this.external ? "cta--external" : "",
+        this.icon ? `cta--has-icon cta--icon-${this.icon}` : "",
+        u.isTrue(this.reversed) === !0 ? "cta--reversed" : "",
+        u.isTrue(this.monochrome) === !0 ? "cta--monochrome" : "",
+        this.link && u.isTrue(this.active) === !0 ? f.ACTIVE : "",
+        u.isTrue(this.loading) ? f.LOADING : "",
+        u.isTrue(this.hasBackground) === !0 ? "cta--has-background" : "",
+        "vue-component"
+      ];
+    },
+    innerSkin() {
+      return this.link ? this.skin ? this.skin : "" : this.skin ? `btn-${this.skin}` : "btn-primary";
+    },
+    innerWidth() {
+      return this.width ? this.width : `w-100 ${this.grow ? "" : "w-lg-auto"}`;
+    },
+    baseClass() {
+      let s = this.$.type.tagName;
+      return this.link ? s += " link" : s += " btn " + this.innerWidth, s;
+    },
+    iconName() {
+      let s;
+      return this.icon ? s = this.icon : this.externalValue || this.downloadValue ? s = "arrow-external" : this.link && (s = "arrow"), s;
+    },
+    targetValue() {
+      return this.externalValue ? "_blank" : this.target;
+    },
+    sizeValue() {
+      return "medium";
+    }
+  },
+  props: {
+    href: {
+      default: null
+    },
+    button: Boolean,
+    text: String,
+    analytics: {
+      default: null
+    },
+    link: Boolean,
+    external: {
+      default: null
+    },
+    skin: String,
+    width: String,
+    grow: Boolean,
+    type: String,
+    target: String,
+    alternativeHref: {
+      default: null
+    },
+    trigger: String,
+    icon: String,
+    download: {
+      default: null
+    },
+    reversed: {
+      default: null
+    },
+    monochrome: {
+      default: null
+    },
+    active: {
+      default: null
+    },
+    classes: {
+      default: "",
+      type: String
+    },
+    loading: {
+      default: null
+    },
+    hasBackground: {
+      default: null
+    }
+  },
+  template: `
+    <component :is='tag' role="button"
+               :class="classList"
+               :data-text="text"
+               :href="href ? href : null"
+               :data-analytics="analytics ? analytics : null"
+               :type="type ? type : null"
+               :target="targetValue ? targetValue : null"
+               :data-alternative-href="alternativeHref ? alternativeHref : null"
+               :data-trigger="trigger ? trigger : null"
+    >
+      <span class="cta__text">{{ text }}</span>
+      <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
+    </component>`
+}, rs = {
+  tagName: "headline-row",
+  props: {
+    centered: Boolean,
+    level: {
+      type: String,
+      default: "h2"
+    },
+    text: String,
+    spacing: {
+      type: String,
+      default: "space-top-3"
+    },
+    hasAnimation: Boolean,
+    classes: String,
+    headlineClasses: String,
+    noContainer: Boolean
+  },
+  computed: {
+    headlineRowClassesValue() {
+      return this.classes && this.classes.includes("text-") ? this.classes : this.centered ? "text-center" : "";
+    },
+    containerClass() {
+      return this.noContainer ? "" : "container";
+    },
+    animationClass() {
+      return this.hasAnimation ? "utility-animation" : "";
+    },
+    animationStepClass() {
+      return this.hasAnimation ? "fade-in-bottom" : "";
+    },
+    classList() {
+      return [`${this.containerClass} ${this.spacing} headline-row`, this.animationClass];
+    }
+  },
+  template: `
+    <div :class="classList">
+      <div class="row">
+        <div :class="['col-sm-12', animationStepClass, headlineRowClassesValue]" data-utility-animation-step="1">
+          <headline :level="level" :text="text" :classes="headlineClasses" />
+        </div>
+      </div>
+    </div>
+  `
+}, os = {
+  props: {
+    productBlocks: Object,
+    cta: Object,
+    headline: String
+  },
+  computed: {
+    backgroundColorStyle() {
+      return { backgroundColor: this.productBlocks.bgColor };
+    }
+  },
+  methods: {
+    animationStyle(s) {
+      return { "--utility-animation-index": s };
+    }
+  },
+  mounted() {
+    this.$refs.root && at.init([this.$refs.root]);
+  }
+}, ls = { class: "container space-2" }, cs = { class: "row" }, hs = { class: "product-blocks__content" }, ds = ["innerHTML"], us = { class: "product-blocks__buttons" };
+function gs(s, t, e, a, n, i) {
+  const c = rs, d = ot, g = pt;
+  return r(), l("div", {
+    class: "product-blocks utility-animation container-fluid",
+    style: N(i.backgroundColorStyle),
+    ref: "root"
+  }, [
+    o("div", ls, [
+      e.headline ? (r(), l("div", {
+        key: 0,
+        class: "container pb-4 pb-lg-6 fade-in-bottom",
+        "data-utility-animation-step": "1",
+        style: N(i.animationStyle(1))
+      }, [
+        S(c, {
+          text: e.headline,
+          centered: !0
+        }, null, 8, ["text"])
+      ], 4)) : m("", !0),
+      o("div", cs, [
+        (r(!0), l(L, null, A(e.productBlocks.items, (p, h) => (r(), l("div", {
+          key: h,
+          class: "product-blocks__item col-md-6 mb-5 mb-md-0 space-1 fade-in-bottom",
+          "data-utility-animation-step": "1",
+          style: N(i.animationStyle(h + 1))
+        }, [
+          o("div", {
+            class: _(["product-blocks__block", { "text-center": p.copy === "" }, "pl-lg-3 pr-lg-8"])
+          }, [
+            o("div", hs, [
+              o("figure", {
+                class: _(["product-blocks__img", { "mx-auto": p.copy === "" }, "mb-4"])
+              }, null, 2),
+              o("h3", null, v(p.headline), 1),
+              o("p", {
+                innerHTML: p.copy
+              }, null, 8, ds)
+            ]),
+            o("div", us, [
+              p.list ? (r(), w(d, {
+                key: 0,
+                list: p.list
+              }, null, 8, ["list"])) : p.ctaText ? (r(), w(g, {
+                key: 1,
+                text: p.ctaText,
+                href: p.ctaHref,
+                link: p.link,
+                target: p.target,
+                type: p.type
+              }, null, 8, ["text", "href", "link", "target", "type"])) : m("", !0)
+            ])
+          ], 2)
+        ], 4))), 128))
+      ])
+    ])
+  ], 4);
+}
+const ms = /* @__PURE__ */ O(os, [["render", gs]]), ps = {
+  tagName: "site-icons",
+  computed: {
+    svgTemplate() {
+      return templates[this.icon] || "";
+    },
+    classList() {
+      return "streamline-sm mr-4";
+    }
+  },
+  props: {
+    icon: String,
+    noSpan: Boolean
+  }
+}, fs = {
+  key: 0,
+  class: "streamline-icon",
+  viewBox: "0 0 42 28",
+  xmlns: "http://www.w3.org/2000/svg"
+}, _s = {
+  class: "streamline-icon",
+  viewBox: "0 0 42 28",
+  xmlns: "http://www.w3.org/2000/svg"
+}, vs = {
+  class: "streamline-icon",
+  viewbox: "0 0 39 39",
+  xmlns: "http://www.w3.org/2000/svg"
+};
+function ys(s, t, e, a, n, i) {
+  return e.icon === "site/mail" && e.noSpan === !0 ? (r(), l("svg", fs, [
+    o("title", null, v(e.icon), 1),
+    t[0] || (t[0] = yt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
+  ])) : e.icon == "site/mail" ? (r(), l("span", {
+    key: 1,
+    class: _(i.classList)
+  }, [
+    (r(), l("svg", _s, [
+      o("title", null, v(e.icon), 1),
+      t[1] || (t[1] = yt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
+    ]))
+  ], 2)) : e.icon == "site/phone" ? (r(), l("span", {
+    key: 2,
+    class: _(i.classList)
+  }, [
+    (r(), l("svg", vs, [
+      o("title", null, v(e.icon), 1),
+      t[2] || (t[2] = o("g", {
+        id: "phone",
+        transform: "matrix(0.9848077 0.17364818 -0.17364818 0.9848077 5.730377 0)"
+      }, [
+        o("path", {
+          d: "M25.076 32C23.9878 32 22.9343 31.6841 22.0326 31.0871C13.6133 25.4928 6.50909 18.3887 0.914793 9.97086C-0.531095 7.79022 -0.237464 4.86645 1.61478 3.0184L3.48511 1.14529C4.22405 0.406349 5.20653 0 6.25303 0C7.29952 0 8.282 0.406349 9.02095 1.14529L12.436 4.55612C13.9598 6.08271 13.9598 8.56534 12.4374 10.0919L11.7457 10.785C14.6097 14.2069 17.7937 17.3923 21.2157 20.2576L21.9059 19.5674C22.6532 18.8243 23.6329 18.4207 24.6738 18.4207C25.7203 18.4207 26.7028 18.8284 27.4418 19.5674L30.8568 22.9824C32.382 24.509 32.3806 26.9916 30.8554 28.5168L28.9837 30.3899C27.9441 31.428 26.5567 32 25.076 32ZM6.25303 1.39161C5.5781 1.39161 4.94491 1.65323 4.46898 2.12916L2.59865 4.00226C1.21399 5.38413 0.994115 7.57034 2.0754 9.19991C7.56532 17.4633 14.5387 24.4366 22.8021 29.9265C23.4757 30.3732 24.2619 30.6084 25.0774 30.6084C26.1851 30.6084 27.2247 30.1812 28.0026 29.4047L29.8743 27.5329C30.8582 26.5491 30.8582 24.9501 29.8757 23.9663C29.8757 23.9663 26.4607 20.5513 26.4607 20.5513C25.9847 20.0753 25.3516 19.8123 24.678 19.8123C24.0045 19.8123 23.3713 20.0739 22.8954 20.5499L21.7556 21.6896C21.6248 21.8204 21.4495 21.8928 21.263 21.8928C21.103 21.8928 20.9457 21.8371 20.8218 21.7341C16.981 18.5738 13.4324 15.0238 10.272 11.1816C10.0438 10.9032 10.0633 10.5025 10.3165 10.2478L11.4549 9.10668C12.4374 8.12281 12.4374 6.52107 11.4549 5.5372L8.03847 2.12916C7.56254 1.65323 6.92796 1.39161 6.25303 1.39161Z",
+          transform: "translate(0.17733586 0.59690577)",
+          class: "a"
+        })
+      ], -1))
+    ]))
+  ], 2)) : m("", !0);
+}
+const Ss = /* @__PURE__ */ O(ps, [["render", ys]]), ws = {
+  props: {
+    tagName: "svg-shape",
+    align: {
+      type: String,
+      default: "bottom"
+    },
+    peak: {
+      type: String,
+      default: "right"
+    },
+    color: {
+      type: String,
+      default: "var(--color-white)"
+    },
+    obliquity: {
+      type: Number,
+      default: 10
+    },
+    classes: {
+      type: String,
+      default: ""
+    },
+    height: {
+      type: Number,
+      default: 100
+    }
+  },
+  computed: {
+    svgShapeAlign() {
+      return this.align;
+    },
+    svgShapePeak() {
+      return this.peak;
+    },
+    svgShapeColor() {
+      return this.color;
+    },
+    svgShapeObliquity() {
+      return this.obliquity;
+    },
+    svgShapeClasses() {
+      return this.classes;
+    },
+    svgShapeHeight() {
+      return this.height;
+    },
+    basePoints() {
+      return this.svgShapeAlign === "top" ? `0,0 ${this.svgShapeHeight},0` : `0,${this.svgShapeObliquity} ${this.svgShapeHeight},${this.svgShapeObliquity}`;
+    },
+    peakPointY() {
+      return this.svgShapeAlign === "top" ? this.svgShapeObliquity : 0;
+    },
+    peakPointX() {
+      return this.svgShapePeak === "left" ? 0 : this.svgShapeHeight;
+    },
+    points() {
+      return `${this.basePoints} ${this.peakPointX},${this.peakPointY}`;
+    },
+    translateStyle() {
+      return this.svgShapeAlign !== "top" ? "transform: translateY(2px);" : "";
+    }
+  }
+}, bs = ["viewBox"], Cs = ["fill", "points"];
+function xs(s, t, e, a, n, i) {
+  return r(), l("figure", {
+    class: _("svgshape " + i.svgShapeClasses),
+    style: N("pointer-events: all;" + i.translateStyle)
+  }, [
+    (r(), l("svg", {
+      preserveAspectRatio: "none",
+      xmlns: "http://www.w3.org/2000/svg",
+      x: "0px",
+      y: "0px",
+      viewBox: "0 0 " + i.svgShapeHeight + " " + i.svgShapeObliquity
+    }, [
+      o("polygon", {
+        fill: i.svgShapeColor,
+        points: i.points
+      }, null, 8, Cs)
+    ], 8, bs))
+  ], 6);
+}
+const Ls = /* @__PURE__ */ O(ws, [["render", xs]]);
+class ks {
   constructor(t) {
-    var r;
+    var a;
     this.position = t;
-    const e = (r = window.i18n) == null ? void 0 : r.loader;
+    const e = (a = window.i18n) == null ? void 0 : a.loader;
     e && e.then(() => {
-      var a;
-      this.translationData = (a = window.i18n) == null ? void 0 : a.getTranslationData([
+      var n;
+      this.translationData = (n = window.i18n) == null ? void 0 : n.getTranslationData([
         "positionTypePermanently",
         "positionTypeInternship",
         "positionTypeTraining",
@@ -2341,11 +3649,11 @@ class se {
   hasStartingHtmlTag(t) {
     return /^\s*<[^>]+>/.test(t);
   }
-  getEnhanchedDescription(t, e, r) {
-    const a = t > 0 && e && e["#text"] ? `<h4>${this.trimNewlines(e["#text"])}</h4>` : "";
-    let i = r.replace(/<\/?span[^>]*>/g, ""), o = 0;
+  getEnhanchedDescription(t, e, a) {
+    const n = t > 0 && e && e["#text"] ? `<h4>${this.trimNewlines(e["#text"])}</h4>` : "";
+    let i = a.replace(/<\/?span[^>]*>/g, ""), c = 0;
     const d = 5, g = 2;
-    return t === 0 ? i = i.replace(new RegExp("(?<=<\\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)", "g"), (p, c) => c.length > d && /^\s*$/.test(c) ? c : o < g && c.length > d && c[0] !== "," ? (o++, "<p>" + c.trim() + "</p>") : c).replace(/<\/p><br>/g, "<br></p>") : !this.hasStartingHtmlTag(i) && i.length > d && (i = "<p>" + i + "</p>"), `${a}${i}`.replace(/<\/p><br><p>/g, "</p><p>");
+    return t === 0 ? i = i.replace(new RegExp("(?<=<\\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)", "g"), (p, h) => h.length > d && /^\s*$/.test(h) ? h : c < g && h.length > d && h[0] !== "," ? (c++, "<p>" + h.trim() + "</p>") : h).replace(/<\/p><br>/g, "<br></p>") : !this.hasStartingHtmlTag(i) && i.length > d && (i = "<p>" + i + "</p>"), `${n}${i}`.replace(/<\/p><br><p>/g, "</p><p>");
   }
   get id() {
     return this.getValue("id").replace(/\s/g, "");
@@ -2365,10 +3673,10 @@ class se {
     if (!t) return;
     let e = t;
     if (e.includes("/")) {
-      const r = e.split(" / "), a = r[0], i = r[1], o = "CSOC", d = "Managed Services", g = "Products";
-      if (a === d && i !== o)
+      const a = e.split(" / "), n = a[0], i = a[1], c = "CSOC", d = "Managed Services", g = "Products";
+      if (n === d && i !== c)
         e = d;
-      else if (a === g)
+      else if (n === g)
         e = `${g} ${i}`;
       else
         switch (i) {
@@ -2378,7 +3686,7 @@ class se {
           case "M365 Architecture":
             e = "Workplace";
             break;
-          case o:
+          case c:
             e = "Security";
             break;
           default:
@@ -2404,17 +3712,17 @@ class se {
     };
   }
   get positionType() {
-    var e, r, a, i;
+    var e, a, n, i;
     let t = this.getValue("employmentType");
     switch (t) {
       case "permanent":
         t = (e = window.i18n) == null ? void 0 : e.translate("positionTypePermanently");
         break;
       case "intern":
-        t = (r = window.i18n) == null ? void 0 : r.translate("positionTypeInternship");
+        t = (a = window.i18n) == null ? void 0 : a.translate("positionTypeInternship");
         break;
       case "trainee":
-        t = (a = window.i18n) == null ? void 0 : a.translate("positionTypeTraining");
+        t = (n = window.i18n) == null ? void 0 : n.translate("positionTypeTraining");
         break;
       case "working_student":
         t = (i = window.i18n) == null ? void 0 : i.translate("positionTypeStudent");
@@ -2428,7 +3736,7 @@ class se {
     return t;
   }
   get order() {
-    const t = this.tags.find((a) => a.includes("ORDER_"));
+    const t = this.tags.find((n) => n.includes("ORDER_"));
     if (!t) return null;
     const e = t.split("_")[1];
     return parseInt(e, 10);
@@ -2440,7 +3748,7 @@ class se {
     return this.position && this.position[t] ? this.trimNewlines(this.position[t][`#${e}`]) : null;
   }
 }
-const G = {
+const J = {
   VALID: 200,
   CREATED: 201,
   NO_CONTENT: 204,
@@ -2451,35 +3759,35 @@ const G = {
   PAYLOAD_TOO_LARGE: 413,
   INTERNAL_SERVER_ERROR: 500
 };
-class ie {
+class Es {
   constructor(t) {
-    y(this, "defaultLang", "de");
-    y(this, "types", {
+    b(this, "defaultLang", "de");
+    b(this, "types", {
       OPENINGS: "openings",
       APPLICATIONS: "applications",
       DOCUMENTS: "documents"
     });
-    y(this, "recruitingChannels", {
+    b(this, "recruitingChannels", {
       CAREER_PAGE: 1610421
     });
-    y(this, "phaseIds", {
+    b(this, "phaseIds", {
       NEW_APPLICATION: 890494
     });
-    y(this, "responseTypes", {
+    b(this, "responseTypes", {
       XML: "xml",
       JSON: "json"
     });
-    y(this, "defaultClientName", "c4a8");
-    y(this, "mockApplyUrl", "mock/jobApply.json");
-    y(this, "mockDocumentsUrl", "mock/jobDocuments.json");
+    b(this, "defaultClientName", "c4a8");
+    b(this, "mockApplyUrl", "mock/jobApply.json");
+    b(this, "mockDocumentsUrl", "mock/jobDocuments.json");
     this.options = t, (!this.options.client_name || this.options.client_name === "glueckkanja") && (this.options.client_name = this.defaultClientName), this.lang = this.defaultLang, this.jobId = null, this.apiUrl = "https://api.personio.de/v1", this.openingsUrl = `https://${this.options.client_name}.jobs.personio.de/xml`, this.applicationsUrl = "https://apim-c4a8-recruiting-prd-weu.azure-api.net/applications", this.documentsUrl = "https://apim-c4a8-recruiting-prd-weu.azure-api.net/applications/documents";
   }
   getUrl(t) {
-    var a;
+    var n;
     let e;
-    t !== this.types.OPENINGS && ((a = this.options.apiUrl) != null && a.match(/.xml$/)) ? t === this.types.APPLICATIONS ? e = this.options.mockApplyUrl ? this.options.mockApplyUrl : this.mockApplyUrl : e = this.options.mockDocumentsUrl ? this.options.mockDocumentsUrl : this.mockDocumentsUrl : e = this.options.apiUrl ? this.options.apiUrl : this[`${t}Url`];
-    const r = this.lang !== this.defaultLang ? this.options.apiUrl ? "" : `?language=${this.lang}` : "";
-    return `${e}${r}`;
+    t !== this.types.OPENINGS && ((n = this.options.apiUrl) != null && n.match(/.xml$/)) ? t === this.types.APPLICATIONS ? e = this.options.mockApplyUrl ? this.options.mockApplyUrl : this.mockApplyUrl : e = this.options.mockDocumentsUrl ? this.options.mockDocumentsUrl : this.mockDocumentsUrl : e = this.options.apiUrl ? this.options.apiUrl : this[`${t}Url`];
+    const a = this.lang !== this.defaultLang ? this.options.apiUrl ? "" : `?language=${this.lang}` : "";
+    return `${e}${a}`;
   }
   setLang(t) {
     this.lang = t;
@@ -2496,89 +3804,89 @@ class ie {
   }
   convertPosition(t) {
     var i;
-    const e = new se(t), r = (i = this.options) == null ? void 0 : i.jobId;
-    return e.description === null || r && e.id !== r || !this.filterPosition(e) ? null : {
+    const e = new ks(t), a = (i = this.options) == null ? void 0 : i.jobId;
+    return e.description === null || a && e.id !== a || !this.filterPosition(e) ? null : {
       ...e.data,
       lang: this.lang
     };
   }
   filterPosition(t) {
-    var e, r;
-    return !((r = (e = this.filter) == null ? void 0 : e.tags) != null && r.length) || this.filter.tags.some((a) => t.tags.map((i) => i.toLowerCase()).includes(a.toLowerCase())) ? t : null;
+    var e, a;
+    return !((a = (e = this.filter) == null ? void 0 : e.tags) != null && a.length) || this.filter.tags.some((n) => t.tags.map((i) => i.toLowerCase()).includes(n.toLowerCase())) ? t : null;
   }
   convertData(t) {
-    var i, o;
-    const e = t, r = "workzag-jobs", a = (i = t[r]) == null ? void 0 : i.position;
-    return e.objects = a.length ? (o = t[r]) == null ? void 0 : o.position.map((d) => this.convertPosition(d)).filter(Boolean) : [this.convertPosition(a)].filter(Boolean), e.meta = { offset: 0, limit: 20, total: 10 }, e;
+    var i, c;
+    const e = t, a = "workzag-jobs", n = (i = t[a]) == null ? void 0 : i.position;
+    return e.objects = n.length ? (c = t[a]) == null ? void 0 : c.position.map((d) => this.convertPosition(d)).filter(Boolean) : [this.convertPosition(n)].filter(Boolean), e.meta = { offset: 0, limit: 20, total: 10 }, e;
   }
   getConvertedJson(t) {
-    const r = new DOMParser().parseFromString(t, "application/xml"), a = u.XMLtoJSON(r);
-    return this.convertData(a);
+    const a = new DOMParser().parseFromString(t, "application/xml"), n = u.XMLtoJSON(a);
+    return this.convertData(n);
   }
   fetchXML(t) {
-    return new Promise((e, r) => {
-      t.then((a) => a.text()).then((a) => {
+    return new Promise((e, a) => {
+      t.then((n) => n.text()).then((n) => {
         e({
-          json: () => this.getConvertedJson(a)
+          json: () => this.getConvertedJson(n)
         });
-      }).catch((a) => {
-        console.error("Personio fetchXML Error:", a), r("Personio fetchXML Error");
+      }).catch((n) => {
+        console.error("Personio fetchXML Error:", n), a("Personio fetchXML Error");
       });
     });
   }
-  fetch(t, e, r) {
-    return new Promise((a, i) => {
-      var o;
-      if ((o = this.options) != null && o.client_name) {
-        const d = fetch(t, e), g = r === this.responseTypes.XML ? this.fetchXML(d) : d;
-        a(g);
+  fetch(t, e, a) {
+    return new Promise((n, i) => {
+      var c;
+      if ((c = this.options) != null && c.client_name) {
+        const d = fetch(t, e), g = a === this.responseTypes.XML ? this.fetchXML(d) : d;
+        n(g);
       } else
         i("no client_name specified");
     });
   }
   async uploadDocuments(t) {
-    const e = t.length > 0 ? t : [t], r = [];
-    return Array.from(e).forEach((a) => {
-      r.push(this.uploadDocument(a));
-    }), Promise.all(r);
+    const e = t.length > 0 ? t : [t], a = [];
+    return Array.from(e).forEach((n) => {
+      a.push(this.uploadDocument(n));
+    }), Promise.all(a);
   }
   async uploadDocument(t) {
-    const e = this.getUrl(this.types.DOCUMENTS), r = new FormData();
-    return r.append(
+    const e = this.getUrl(this.types.DOCUMENTS), a = new FormData();
+    return a.append(
       "file",
       new File([t], t.name, {
         type: t.type
       })
     ), this.fetch(e, {
       method: "POST",
-      body: r,
+      body: a,
       headers: {
         ...this.getHeaders()
       }
     });
   }
-  async applyFileData(t, e, r) {
-    return new Promise((a, i) => {
-      this.uploadDocuments(t).then((o) => {
-        if (this.hasValidResponseCodes(o)) return this.addFilesToFields(o, r, a, i);
-        const d = o[0];
+  async applyFileData(t, e, a) {
+    return new Promise((n, i) => {
+      this.uploadDocuments(t).then((c) => {
+        if (this.hasValidResponseCodes(c)) return this.addFilesToFields(c, a, n, i);
+        const d = c[0];
         d.json().then((g) => {
           if (g.errors) return i({ statusCode: d.status, errors: g.errors });
         }).catch((g) => i(g));
-      }).catch((o) => i(o));
+      }).catch((c) => i(c));
     });
   }
-  addFilesToFields(t, e, r, a) {
+  addFilesToFields(t, e, a, n) {
     const i = e;
     i.files = [];
-    const o = t.map((d) => d.json().then((g) => {
+    const c = t.map((d) => d.json().then((g) => {
       i.files.push({
         uuid: g.uuid,
         original_filename: g.original_filename,
         category: "cv"
       });
     }));
-    return Promise.all(o).then(() => r(i)).catch((d) => a(d));
+    return Promise.all(c).then(() => a(i)).catch((d) => n(d));
   }
   getMappedFieldName(t) {
     let e;
@@ -2602,23 +3910,23 @@ class ie {
     return e;
   }
   isValidResponseCode(t) {
-    return this.options.apiUrl ? t.status === G.VALID : t.status === G.VALID || t.status === G.CREATED || t.status === G.NO_CONTENT;
+    return this.options.apiUrl ? t.status === J.VALID : t.status === J.VALID || t.status === J.CREATED || t.status === J.NO_CONTENT;
   }
   hasValidResponseCodes(t) {
     return t.every((e) => this.isValidResponseCode(e));
   }
   handleApply(t) {
-    return new Promise((e, r) => {
-      this.apply({ fields: t }).then((a) => {
-        if (this.isValidResponseCode(a)) return e();
-        a.json().then((i) => {
-          if (i.errors) return r({ statusCode: a.status, errors: i.errors });
-        }).catch((i) => r(i));
-      }).catch((a) => r(a));
+    return new Promise((e, a) => {
+      this.apply({ fields: t }).then((n) => {
+        if (this.isValidResponseCode(n)) return e();
+        n.json().then((i) => {
+          if (i.errors) return a({ statusCode: n.status, errors: i.errors });
+        }).catch((i) => a(i));
+      }).catch((n) => a(n));
     });
   }
   getFormPayload(t, e) {
-    const r = {
+    const a = {
       job_position_id: parseInt(this.options.jobId),
       attributes: [],
       phase: {
@@ -2626,15 +3934,15 @@ class ie {
         id: this.phaseIds.NEW_APPLICATION
       },
       recruiting_channel_id: this.recruitingChannels.CAREER_PAGE
-    }, a = { first_name: !0, last_name: !0, email: !0, message: !0 };
+    }, n = { first_name: !0, last_name: !0, email: !0, message: !0 };
     for (let i = 0; i < t.length; i++) {
       const d = t[i].input, g = e.getName(d.name), p = u.camalCaseToSnakeCase(g);
-      a.hasOwnProperty(p) ? r[p] = d.value : p !== "_gotcha" && r.attributes.push({
+      n.hasOwnProperty(p) ? a[p] = d.value : p !== "_gotcha" && a.attributes.push({
         id: this.getMappedFieldName(p),
         value: d.value
       });
     }
-    return r;
+    return a;
   }
   getHeaders() {
     return {
@@ -2653,10 +3961,10 @@ class ie {
     });
   }
 }
-class re {
+class As {
   constructor(t) {
-    y(this, "jobDataUrl", "/assets/data/jobs/");
-    this.options = t, this.api = new ie(this.options), this.jobDataUrl = u.getSiteAssetPath(this.jobDataUrl);
+    b(this, "jobDataUrl", "/assets/data/jobs/");
+    this.options = t, this.api = new Es(this.options), this.jobDataUrl = u.getSiteAssetPath(this.jobDataUrl);
   }
   setLang(t) {
     this.api.setLang(t);
@@ -2670,8 +3978,8 @@ class re {
   getOpening(t) {
     return this.api.getOpening(t);
   }
-  getUrl(t, e, r) {
-    return this.api.getUrl(t, e, r);
+  getUrl(t, e, a) {
+    return this.api.getUrl(t, e, a);
   }
   fetch(t, e) {
     return this.api.fetch(t, e);
@@ -2684,31 +3992,31 @@ class re {
     const e = window.location.hash;
     if (e)
       if (e.indexOf("-") !== -1) {
-        const r = e.split("-");
-        t = r[r.length - 1];
+        const a = e.split("-");
+        t = a[a.length - 1];
       } else
         t = e.substring(1);
     else this.options.jobId && (t = this.options.jobId);
     return t;
   }
   getOrderedList(t) {
-    const e = t.filter((a) => a.order !== void 0).sort((a, i) => i.order - a.order), r = t.filter((a) => a.order === void 0);
-    return [...e, ...r];
+    const e = t.filter((n) => n.order !== void 0).sort((n, i) => i.order - n.order), a = t.filter((n) => n.order === void 0);
+    return [...e, ...a];
   }
   getFormData(t) {
-    const e = H.getFormData(t);
-    return this.api.getFormPayload(e, H);
+    const e = z.getFormData(t);
+    return this.api.getFormPayload(e, z);
   }
-  applyFileData(t, e, r) {
-    return this.api.applyFileData(t, e, r);
+  applyFileData(t, e, a) {
+    return this.api.applyFileData(t, e, a);
   }
   handleApply(t) {
     return this.api.handleApply(t);
   }
 }
-const j = class j {
+const W = class W {
   constructor(t, e) {
-    this.root = t, this.options = e, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(m.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new re({
+    this.root = t, this.options = e, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(f.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new As({
       ...this.jobId && { jobId: this.jobId },
       ...this.apiUrl && { apiUrl: this.apiUrl },
       client_name: this.clientName,
@@ -2721,104 +4029,104 @@ const j = class j {
     return t.getAttribute("data-v-app") === null;
   }
   bindEvents() {
-    var t, e, r;
-    if ((t = this.close) == null || t.addEventListener("click", this.handleClose.bind(this)), (e = this.successClose) == null || e.addEventListener("click", this.handleClose.bind(this)), (r = this.errorClose) == null || r.addEventListener("click", this.handleClose.bind(this)), this.application) {
-      const a = this.root.parentNode, i = H.getInstance(this.form);
-      if (a && this.isNotVueApp(a)) {
-        const o = a.querySelector(this.buttonSelector);
-        o == null || o.addEventListener("click", this.handleOpen.bind(this));
-      } else a && this.addTriggerListeners();
+    var t, e, a;
+    if ((t = this.close) == null || t.addEventListener("click", this.handleClose.bind(this)), (e = this.successClose) == null || e.addEventListener("click", this.handleClose.bind(this)), (a = this.errorClose) == null || a.addEventListener("click", this.handleClose.bind(this)), this.application) {
+      const n = this.root.parentNode, i = z.getInstance(this.form);
+      if (n && this.isNotVueApp(n)) {
+        const c = n.querySelector(this.buttonSelector);
+        c == null || c.addEventListener("click", this.handleOpen.bind(this));
+      } else n && this.addTriggerListeners();
       i && i.canHaveCustomSubmit() && (i.customSubmit = this.handleApplicationSubmit.bind(this));
     } else this.root.dataset.modalId && this.addTriggerListeners();
-    document.addEventListener(P.OPEN_MODAL, this.handleModalOpen.bind(this));
+    document.addEventListener(D.OPEN_MODAL, this.handleModalOpen.bind(this));
   }
   addTriggerListeners() {
     document.querySelectorAll(`[data-trigger-id='${this.modalId}']`).forEach((e) => e.addEventListener("click", this.handleOpen.bind(this)));
   }
   handleModalOpen(t) {
-    var r;
+    var a;
     t.stopImmediatePropagation();
-    const e = (r = t == null ? void 0 : t.detail) == null ? void 0 : r.id;
+    const e = (a = t == null ? void 0 : t.detail) == null ? void 0 : a.id;
     !e || e !== this.modalId || this.handleOpen(t);
   }
   handleApplicationSubmit(t) {
     t.preventDefault(), t.stopImmediatePropagation(), this.setLoading(!0);
-    const e = this.form.querySelector(Q.base64Selector), r = e == null ? void 0 : e.value;
-    let a = this.api.getFormData(this.form), i;
-    if (r)
+    const e = this.form.querySelector(it.base64Selector), a = e == null ? void 0 : e.value;
+    let n = this.api.getFormData(this.form), i;
+    if (a)
       i = {
         name: e.dataset.fileName
       };
     else {
-      const o = this.form.querySelector('input[type="file"]');
-      i = o == null ? void 0 : o.files;
+      const c = this.form.querySelector('input[type="file"]');
+      i = c == null ? void 0 : c.files;
     }
-    i ? this.handleApplicationRequest(a, i, r) : this.handleError();
+    i ? this.handleApplicationRequest(n, i, a) : this.handleError();
   }
   setLoading(t) {
-    document.dispatchEvent(new CustomEvent(P.LOAD_MODAL, { detail: t }));
+    document.dispatchEvent(new CustomEvent(D.LOAD_MODAL, { detail: t }));
   }
-  handleApplicationRequest(t, e, r) {
-    this.api.applyFileData(e, r, t).then((a) => {
-      this.api.handleApply(a).then(() => {
-        this.setLoading(!1), this.handleApplicationSuccess(a);
+  handleApplicationRequest(t, e, a) {
+    this.api.applyFileData(e, a, t).then((n) => {
+      this.api.handleApply(n).then(() => {
+        this.setLoading(!1), this.handleApplicationSuccess(n);
       }).catch((i) => {
         this.setLoading(!1), this.handleError(i);
       });
-    }).catch((a) => {
-      this.setLoading(!1), this.handleError(a);
+    }).catch((n) => {
+      this.setLoading(!1), this.handleError(n);
     });
   }
   handleApplicationSuccess(t) {
-    this.root.classList.add(m.SUCCESS);
+    this.root.classList.add(f.SUCCESS);
     const e = this.root.querySelector(this.modalSuccessHeadlineSelector);
     if (e) {
       e.dataset.text || (e.dataset.text = e.innerText);
-      const r = t.first_name;
-      e.innerText = `${e.dataset.text} ${r}`;
+      const a = t.first_name;
+      e.innerText = `${e.dataset.text} ${a}`;
     }
   }
   handleError(t) {
     if (!t) return console.error("handle generic error");
-    const e = typeof t == "string" ? t : t.message ? t.message : t, r = typeof t == "object" && t.statusCode ? t.statusCode : G.INTERNAL_SERVER_ERROR;
-    console.error("Modal Error", e), r === G.PAYLOAD_TOO_LARGE ? this.handlePayloadTooLarge(t) : this.root.classList.add(m.ERROR);
+    const e = typeof t == "string" ? t : t.message ? t.message : t, a = typeof t == "object" && t.statusCode ? t.statusCode : J.INTERNAL_SERVER_ERROR;
+    console.error("Modal Error", e), a === J.PAYLOAD_TOO_LARGE ? this.handlePayloadTooLarge(t) : this.root.classList.add(f.ERROR);
   }
   handlePayloadTooLarge(t) {
-    document.dispatchEvent(new CustomEvent(P.FORM_ATTACHMENT_ERROR, { detail: t }));
+    document.dispatchEvent(new CustomEvent(D.FORM_ATTACHMENT_ERROR, { detail: t }));
   }
   handleClose(t) {
-    t.preventDefault(), j.close(this.root);
+    t.preventDefault(), W.close(this.root);
   }
   handleOpen(t) {
-    t.preventDefault(), j.open(this.root);
+    t.preventDefault(), W.open(this.root);
   }
   static initElement(t, e) {
-    const r = new this(t, e);
-    return this.instances.push(r), r;
+    const a = new this(t, e);
+    return this.instances.push(a), a;
   }
   static open(t) {
     t && window.$ && $(t).modal("show");
   }
   static close(t) {
-    t && window.$ && ($(t).modal("hide"), j.resetModal(t));
+    t && window.$ && ($(t).modal("hide"), W.resetModal(t));
   }
   static resetModal(t) {
     setTimeout(function() {
       const e = t.querySelector("form");
-      e == null || e.reset(), t.classList.remove(m.SUCCESS), t.classList.remove(m.ERROR);
+      e == null || e.reset(), t.classList.remove(f.SUCCESS), t.classList.remove(f.ERROR);
     }, 200);
   }
   static init(t) {
     this.instances = [];
-    const e = t || document, r = `${this.rootSelector}:not(.${m.READY})`;
-    [].forEach.call(e.querySelectorAll(r), (a) => {
-      this.initElement(a);
+    const e = t || document, a = `${this.rootSelector}:not(.${f.READY})`;
+    [].forEach.call(e.querySelectorAll(a), (n) => {
+      this.initElement(n);
     });
   }
 };
-y(j, "rootSelector", ".modal"), y(j, "instances", []);
-let ht = j;
-const ae = {
+b(W, "rootSelector", ".modal"), b(W, "instances", []);
+let gt = W;
+const Os = {
   tagName: "modal",
   computed: {
     modalErrorValue() {
@@ -2882,14 +4190,14 @@ const ae = {
       return this.hasCircleAndHover;
     },
     bodyClasses() {
-      return ["modal__body", this.loading ? m.LOADING : null];
+      return ["modal__body", this.loading ? f.LOADING : null];
     }
   },
   mounted() {
     this.bindEvents(), this.show === !0 && this.openModal();
   },
   unmounted() {
-    this.observer.disconnect(), document.removeEventListener(P.LOAD_MODAL, this.handleLoading);
+    this.observer.disconnect(), document.removeEventListener(D.LOAD_MODAL, this.handleLoading);
   },
   methods: {
     isModalOpen() {
@@ -2897,18 +4205,18 @@ const ae = {
     },
     setModalMode(s) {
       const t = document.querySelector("html");
-      s ? t.classList.add(m.MODAL_OPEN) : (t.classList.remove(m.MODAL_OPEN), this.handleClose());
+      s ? t.classList.add(f.MODAL_OPEN) : (t.classList.remove(f.MODAL_OPEN), this.handleClose());
     },
     handleClose() {
-      const t = this.$refs.modal.querySelector(H.rootSelector);
+      const t = this.$refs.modal.querySelector(z.rootSelector);
       if (!t) return;
-      const e = H.getInstance(t);
-      e || H.reset(e.form);
+      const e = z.getInstance(t);
+      e || z.reset(e.form);
     },
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation), setTimeout(() => {
         this.observer.observe(document.body, { attributes: !0 });
-      }, 200), document.addEventListener(P.LOAD_MODAL, this.handleLoading);
+      }, 200), document.addEventListener(D.LOAD_MODAL, this.handleLoading);
     },
     handleMutation() {
       this.setModalMode(this.isModalOpen());
@@ -2919,7 +4227,7 @@ const ae = {
     },
     openModal() {
       setTimeout(() => {
-        ht.open(this.$refs.modal);
+        gt.open(this.$refs.modal);
       }, 70);
     }
   },
@@ -3016,118 +4324,7 @@ const ae = {
         </div>
       </div>
     </div>`
-}, St = {
-  tagName: "cta",
-  computed: {
-    tag() {
-      return this.href || this.alternativeHref || this.target ? "a" : "button";
-    },
-    hasIcon() {
-      return this.link || this.externalValue || this.icon || this.downloadValue;
-    },
-    externalValue() {
-      return u.isTrue(this.external);
-    },
-    downloadValue() {
-      return u.isTrue(this.download);
-    },
-    classList() {
-      return [
-        `${this.baseClass} ${this.innerSkin}`,
-        this.classes ? this.classes : "",
-        this.download ? "cta--download" : "",
-        this.external ? "cta--external" : "",
-        this.icon ? `cta--has-icon cta--icon-${this.icon}` : "",
-        u.isTrue(this.reversed) === !0 ? "cta--reversed" : "",
-        u.isTrue(this.monochrome) === !0 ? "cta--monochrome" : "",
-        this.link && u.isTrue(this.active) === !0 ? m.ACTIVE : "",
-        u.isTrue(this.loading) ? m.LOADING : "",
-        u.isTrue(this.hasBackground) === !0 ? "cta--has-background" : "",
-        "vue-component"
-      ];
-    },
-    innerSkin() {
-      return this.link ? this.skin ? this.skin : "" : this.skin ? `btn-${this.skin}` : "btn-primary";
-    },
-    innerWidth() {
-      return this.width ? this.width : `w-100 ${this.grow ? "" : "w-lg-auto"}`;
-    },
-    baseClass() {
-      let s = this.$.type.tagName;
-      return this.link ? s += " link" : s += " btn " + this.innerWidth, s;
-    },
-    iconName() {
-      let s;
-      return this.icon ? s = this.icon : this.externalValue || this.downloadValue ? s = "arrow-external" : this.link && (s = "arrow"), s;
-    },
-    targetValue() {
-      return this.externalValue ? "_blank" : this.target;
-    },
-    sizeValue() {
-      return "medium";
-    }
-  },
-  props: {
-    href: {
-      default: null
-    },
-    button: Boolean,
-    text: String,
-    analytics: {
-      default: null
-    },
-    link: Boolean,
-    external: {
-      default: null
-    },
-    skin: String,
-    width: String,
-    grow: Boolean,
-    type: String,
-    target: String,
-    alternativeHref: {
-      default: null
-    },
-    trigger: String,
-    icon: String,
-    download: {
-      default: null
-    },
-    reversed: {
-      default: null
-    },
-    monochrome: {
-      default: null
-    },
-    active: {
-      default: null
-    },
-    classes: {
-      default: "",
-      type: String
-    },
-    loading: {
-      default: null
-    },
-    hasBackground: {
-      default: null
-    }
-  },
-  template: `
-    <component :is='tag' role="button"
-               :class="classList"
-               :data-text="text"
-               :href="href ? href : null"
-               :data-analytics="analytics ? analytics : null"
-               :type="type ? type : null"
-               :target="targetValue ? targetValue : null"
-               :data-alternative-href="alternativeHref ? alternativeHref : null"
-               :data-trigger="trigger ? trigger : null"
-    >
-      <span class="cta__text">{{ text }}</span>
-      <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
-    </component>`
-}, ne = {
+}, Is = {
   tagName: "badge",
   props: {
     text: String,
@@ -3171,7 +4368,7 @@ const ae = {
       </div>
     </div>
   `
-}, oe = {
+}, Ts = {
   tagName: "text-image",
   props: {
     spacing: { type: String, default: "space-top-2" },
@@ -3281,43 +4478,43 @@ const ae = {
     }
   },
   mounted() {
-    this.$refs.root && st.init([this.$refs.root]);
+    this.$refs.root && at.init([this.$refs.root]);
   },
   methods: {
     handleClick() {
       this.href && (document.location.href = this.href);
     }
   }
-}, le = { class: "container" }, ce = {
+}, Ps = { class: "container" }, Ns = {
   key: 1,
   class: "text-image__overline d-inline-block mb-2 font-size-2"
-}, he = {
+}, Ds = {
   key: 3,
   class: "richtext"
-}, de = {
+}, Vs = {
   key: 4,
   class: "text-image__img text-image__img--subline mb-5 mt-5"
-}, ue = ["innerHTML"], ge = {
+}, Bs = ["innerHTML"], Rs = {
   key: 5,
   class: "pt-4 pt-lg-6 pb-6"
-}, me = {
+}, Ms = {
   key: 1,
   class: "text-image__cta col-lg-12"
 };
-function fe(s, t, e, r, a, i) {
-  const o = at, d = ne, g = dt, p = yt, c = St, x = ae;
-  return n(), h("div", {
-    class: v(i.textImageClass),
-    style: W(i.textImageStyle),
+function Hs(s, t, e, a, n, i) {
+  const c = nt, d = Is, g = X, p = ot, h = pt, k = Os;
+  return r(), l("div", {
+    class: _(i.textImageClass),
+    style: N(i.textImageStyle),
     ref: "root"
   }, [
-    l("div", le, [
-      l("div", {
-        class: v(["row", { "flex-row-reverse": e.left }])
+    o("div", Ps, [
+      o("div", {
+        class: _(["row", { "flex-row-reverse": e.left }])
       }, [
-        e.float ? (n(), h("div", {
+        e.float ? (r(), l("div", {
           key: 0,
-          class: v([
+          class: _([
             "text-image__floating-col",
             "justify-content-end",
             "text-image__floating-img",
@@ -3327,10 +4524,10 @@ function fe(s, t, e, r, a, i) {
             "col-lg-" + i.textImageFirstColWidthComputed,
             "col-xl-" + i.textImageFirstColWidthXl
           ]),
-          onClick: t[0] || (t[0] = (...k) => i.handleClick && i.handleClick(...k)),
-          style: W({ cursor: e.href ? "pointer" : void 0 })
+          onClick: t[0] || (t[0] = (...C) => i.handleClick && i.handleClick(...C)),
+          style: N({ cursor: e.href ? "pointer" : void 0 })
         }, [
-          b(o, {
+          S(c, {
             img: e.image,
             cloudinary: e.cloudinary,
             alt: e.alt,
@@ -3338,17 +4535,17 @@ function fe(s, t, e, r, a, i) {
             preset: "textImageFloating",
             lottie: e.lottie
           }, null, 8, ["img", "cloudinary", "alt", "lottie"])
-        ], 6)) : f("", !0),
-        l("div", {
-          class: v(i.textImageFirstColClasses),
-          onClick: t[1] || (t[1] = (...k) => i.handleClick && i.handleClick(...k)),
-          style: W({ cursor: e.href ? "pointer" : void 0 })
+        ], 6)) : m("", !0),
+        o("div", {
+          class: _(i.textImageFirstColClasses),
+          onClick: t[1] || (t[1] = (...C) => i.handleClick && i.handleClick(...C)),
+          style: N({ cursor: e.href ? "pointer" : void 0 })
         }, [
-          l("div", {
-            class: v(["text-image__first-col-wrapper", { "fade-in-bottom": !e.noAnimation }]),
+          o("div", {
+            class: _(["text-image__first-col-wrapper", { "fade-in-bottom": !e.noAnimation }]),
             "data-utility-animation-step": "1"
           }, [
-            b(o, {
+            S(c, {
               img: e.image,
               cloudinary: e.cloudinary,
               imgSrcSets: i.textImageImgSrcSets,
@@ -3358,27 +4555,27 @@ function fe(s, t, e, r, a, i) {
             }, null, 8, ["img", "cloudinary", "imgSrcSets", "preset", "alt", "lottie"])
           ], 2)
         ], 6),
-        l("div", {
-          class: v(i.textImageSecondColClasses),
+        o("div", {
+          class: _(i.textImageSecondColClasses),
           "data-utility-animation-step": "1"
         }, [
-          e.badge ? (n(), C(d, {
+          e.badge ? (r(), w(d, {
             key: 0,
             text: e.badge.text,
             icon: e.badge.icon,
             uppercase: !e.badge.noUppercase,
             classes: "text-image__badge"
-          }, null, 8, ["text", "icon", "uppercase"])) : f("", !0),
-          e.overline ? (n(), h("span", ce, S(e.overline), 1)) : f("", !0),
-          e.headline ? (n(), C(g, {
+          }, null, 8, ["text", "icon", "uppercase"])) : m("", !0),
+          e.overline ? (r(), l("span", Ns, v(e.overline), 1)) : m("", !0),
+          e.headline ? (r(), w(g, {
             key: 2,
             level: e.level,
             text: e.headline,
             classes: i.textImageHeadlineClassesComputed
-          }, null, 8, ["level", "text", "classes"])) : f("", !0),
-          e.subline ? (n(), h("span", he, S(e.subline), 1)) : f("", !0),
-          e.subline ? (n(), h("div", de, [
-            b(o, {
+          }, null, 8, ["level", "text", "classes"])) : m("", !0),
+          e.subline ? (r(), l("span", Ds, v(e.subline), 1)) : m("", !0),
+          e.subline ? (r(), l("div", Vs, [
+            S(c, {
               img: e.image,
               cloudinary: e.cloudinary,
               imgSrcSets: i.textImageImgSrcSets,
@@ -3386,26 +4583,26 @@ function fe(s, t, e, r, a, i) {
               alt: e.alt,
               lottie: e.lottie
             }, null, 8, ["img", "cloudinary", "imgSrcSets", "preset", "alt", "lottie"])
-          ])) : f("", !0),
-          l("div", {
-            class: v(i.textImageLightTextClass),
+          ])) : m("", !0),
+          o("div", {
+            class: _(i.textImageLightTextClass),
             innerHTML: e.copy
-          }, null, 10, ue),
-          e.list ? (n(), h("div", ge, [
-            b(p, { list: e.list }, null, 8, ["list"])
-          ])) : f("", !0)
+          }, null, 10, Bs),
+          e.list ? (r(), l("div", Rs, [
+            S(p, { list: e.list }, null, 8, ["list"])
+          ])) : m("", !0)
         ], 2),
-        e.cta ? (n(), h("div", me, [
-          b(c, {
+        e.cta ? (r(), l("div", Ms, [
+          S(h, {
             text: e.cta.text,
             button: "",
             href: e.cta.href,
             trigger: e.cta.trigger
           }, null, 8, ["text", "href", "trigger"])
-        ])) : f("", !0)
+        ])) : m("", !0)
       ], 2)
     ]),
-    e.modal ? (n(), C(x, {
+    e.modal ? (r(), w(k, {
       key: 0,
       form: e.modal.form,
       success: e.modal.success,
@@ -3415,56 +4612,10 @@ function fe(s, t, e, r, a, i) {
       jobId: e.modal.jobId,
       apiUrl: e.modal.apiUrl,
       apiKey: e.modal.apiKey
-    }, null, 8, ["form", "success", "error", "clientName", "jobId", "apiUrl", "apiKey"])) : f("", !0)
+    }, null, 8, ["form", "success", "error", "clientName", "jobId", "apiUrl", "apiKey"])) : m("", !0)
   ], 6);
 }
-const pe = /* @__PURE__ */ z(oe, [["render", fe]]), _e = {
-  tagName: "site-icons",
-  computed: {
-    svgTemplate() {
-      return templates[this.icon] || "";
-    },
-    classList() {
-      return "streamline-sm mr-4";
-    }
-  },
-  props: {
-    icon: String,
-    noSpan: Boolean
-  },
-  template: `
-    <template v-if="icon === 'site/mail' && noSpan === true" :class="classList">
-      <svg class="streamline-icon" viewBox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
-        <title>{{ icon }}</title>
-        <g id="envelope">
-          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path>
-          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path>
-          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path>
-          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path>
-        </g>
-      </svg>
-    </template>
-    <span v-else-if="icon == 'site/mail'" :class="classList">
-      <svg class="streamline-icon" viewBox="0 0 42 28" xmlns="http://www.w3.org/2000/svg">
-        <title>{{ icon }}</title>
-        <g id="envelope">
-          <path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path>
-          <path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path>
-          <path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path>
-          <path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path>
-        </g>
-      </svg>
-    </span>
-    <span v-else-if="icon == 'site/phone'" :class="classList">
-      <svg class="streamline-icon" viewbox="0 0 39 39" xmlns="http://www.w3.org/2000/svg">
-        <title>{{ icon }}</title>
-        <g id="phone" transform="matrix(0.9848077 0.17364818 -0.17364818 0.9848077 5.730377 0)">
-          <path d="M25.076 32C23.9878 32 22.9343 31.6841 22.0326 31.0871C13.6133 25.4928 6.50909 18.3887 0.914793 9.97086C-0.531095 7.79022 -0.237464 4.86645 1.61478 3.0184L3.48511 1.14529C4.22405 0.406349 5.20653 0 6.25303 0C7.29952 0 8.282 0.406349 9.02095 1.14529L12.436 4.55612C13.9598 6.08271 13.9598 8.56534 12.4374 10.0919L11.7457 10.785C14.6097 14.2069 17.7937 17.3923 21.2157 20.2576L21.9059 19.5674C22.6532 18.8243 23.6329 18.4207 24.6738 18.4207C25.7203 18.4207 26.7028 18.8284 27.4418 19.5674L30.8568 22.9824C32.382 24.509 32.3806 26.9916 30.8554 28.5168L28.9837 30.3899C27.9441 31.428 26.5567 32 25.076 32ZM6.25303 1.39161C5.5781 1.39161 4.94491 1.65323 4.46898 2.12916L2.59865 4.00226C1.21399 5.38413 0.994115 7.57034 2.0754 9.19991C7.56532 17.4633 14.5387 24.4366 22.8021 29.9265C23.4757 30.3732 24.2619 30.6084 25.0774 30.6084C26.1851 30.6084 27.2247 30.1812 28.0026 29.4047L29.8743 27.5329C30.8582 26.5491 30.8582 24.9501 29.8757 23.9663C29.8757 23.9663 26.4607 20.5513 26.4607 20.5513C25.9847 20.0753 25.3516 19.8123 24.678 19.8123C24.0045 19.8123 23.3713 20.0739 22.8954 20.5499L21.7556 21.6896C21.6248 21.8204 21.4495 21.8928 21.263 21.8928C21.103 21.8928 20.9457 21.8371 20.8218 21.7341C16.981 18.5738 13.4324 15.0238 10.272 11.1816C10.0438 10.9032 10.0633 10.5025 10.3165 10.2478L11.4549 9.10668C12.4374 8.12281 12.4374 6.52107 11.4549 5.5372L8.03847 2.12916C7.56254 1.65323 6.92796 1.39161 6.25303 1.39161Z" transform="translate(0.17733586 0.59690577)" class="a" />
-        </g>
-      </svg>
-    </span>
-  `
-}, ft = {
+const js = /* @__PURE__ */ O(Ts, [["render", Hs]]), St = {
   bgColor: "var(--color-midnight)",
   mail: "info@glueckkanja.com",
   offices: ["Germany", "Austria", "Spain", "Australia"],
@@ -3598,7 +4749,7 @@ const pe = /* @__PURE__ */ z(oe, [["render", fe]]), _e = {
       target: "_blank"
     }
   ]
-}, ye = {
+}, zs = {
   tagName: "v-footer-slider",
   template: `
     <div class="footer__slider-container">
@@ -3613,10 +4764,10 @@ const pe = /* @__PURE__ */ z(oe, [["render", fe]]), _e = {
     items: Array,
     bgColor: String
   }
-}, ve = {
+}, Fs = {
   tagName: "v-footer",
   components: {
-    "footer-slider": ye
+    "footer-slider": zs
   },
   data() {
     return {
@@ -3641,7 +4792,7 @@ const pe = /* @__PURE__ */ z(oe, [["render", fe]]), _e = {
       return [(s = this.dataValue) != null && s.bgColor ? `background-color: ${this.dataValue.bgColor};` : ""];
     },
     dataValue() {
-      return this.data ? { ...ft, ...u.getJSON(this.data) } : { ...ft };
+      return this.data ? { ...St, ...u.getJSON(this.data) } : { ...St };
     },
     links() {
       const s = this.lang.toLowerCase();
@@ -3681,214 +4832,214 @@ const pe = /* @__PURE__ */ z(oe, [["render", fe]]), _e = {
     },
     lang: String
   }
-}, we = { class: "container" }, Se = { class: "footer__content-row row" }, be = { class: "footer__content col-lg-12" }, xe = { class: "footer__address" }, Le = ["href", "target"], Ce = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, ke = {
+}, $s = { class: "container" }, Us = { class: "footer__content-row row" }, Gs = { class: "footer__content col-lg-12" }, Ws = { class: "footer__address" }, qs = ["href", "target"], Js = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, Zs = {
   key: 0,
   class: "nav-item"
-}, Ee = {
+}, Xs = {
   key: 1,
   class: "nav-item"
-}, Ie = {
+}, Ks = {
   key: 2,
   class: "nav-item"
-}, Oe = { class: "footer__postal-code" }, Ae = { class: "footer__city" }, Te = { class: "footer__country" }, Pe = {
+}, Ys = { class: "footer__postal-code" }, Qs = { class: "footer__city" }, ti = { class: "footer__country" }, ei = {
   key: 4,
   class: "nav-item"
-}, De = ["href"], Ne = { class: "media" }, Ve = { class: "streamline-xs streamline-site-phone mr-3 d-flex" }, Be = { class: "media-body" }, Re = {
+}, si = ["href"], ii = { class: "media" }, ai = { class: "streamline-xs streamline-site-phone mr-3 d-flex" }, ni = { class: "media-body" }, ri = {
   key: 5,
   class: "footer__nav-item nav-item"
-}, Me = { class: "footer__nav-link nav-link" }, He = { class: "footer__offices" }, Fe = { class: "footer__office" }, je = { key: 0 }, ze = ["href"], Ue = { class: "d-flex" }, Ge = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, We = { class: "footer__mail media-body" }, Je = {
+}, oi = { class: "footer__nav-link nav-link" }, li = { class: "footer__offices" }, ci = { class: "footer__office" }, hi = { key: 0 }, di = ["href"], ui = { class: "d-flex" }, gi = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, mi = { class: "footer__mail media-body" }, pi = {
   key: 0,
   class: "footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6"
-}, qe = ["href", "target"], $e = { class: "footer__highlights" }, Xe = { class: "footer__partners" }, Ke = ["href", "target"], Ze = {
+}, fi = ["href", "target"], _i = { class: "footer__highlights" }, vi = { class: "footer__partners" }, yi = ["href", "target"], Si = {
   key: 0,
   class: "footer__vertical-line"
-}, Ye = {
+}, wi = {
   key: 0,
   class: "footer__content-row row"
-}, Qe = { class: "footer__content col-lg-12" }, ts = { class: "mt-3" }, es = { class: "row align-items-md-center mb-3" }, ss = { class: "col-md-8 mb-4 mb-md-0" }, is = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, rs = { class: "nav-item mr-6 footer__links" }, as = ["href"], ns = { class: "col-md-4 text-md-right" }, os = { class: "list-inline mb-0 footer__socials" }, ls = { class: "list-inline-item" }, cs = ["title", "href"], hs = { class: "row pb-2" }, ds = { class: "col" }, us = { class: "text-white small" };
-function gs(s, t, e, r, a, i) {
-  const o = at, d = _e, g = rt, p = _t("footer-slider");
-  return n(), h("footer", {
-    class: v(i.classList),
-    style: W(i.style),
+}, bi = { class: "footer__content col-lg-12" }, Ci = { class: "mt-3" }, xi = { class: "row align-items-md-center mb-3" }, Li = { class: "col-md-8 mb-4 mb-md-0" }, ki = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, Ei = { class: "nav-item mr-6 footer__links" }, Ai = ["href"], Oi = { class: "col-md-4 text-md-right" }, Ii = { class: "list-inline mb-0 footer__socials" }, Ti = { class: "list-inline-item" }, Pi = ["title", "href"], Ni = { class: "row pb-2" }, Di = { class: "col" }, Vi = { class: "text-white small" };
+function Bi(s, t, e, a, n, i) {
+  const c = nt, d = bt, g = rt, p = mt("footer-slider");
+  return r(), l("footer", {
+    class: _(i.classList),
+    style: N(i.style),
     ref: "root"
   }, [
-    l("div", we, [
-      l("div", Se, [
-        l("div", be, [
-          l("div", xe, [
-            (n(!0), h(L, null, E(i.dataValue.logos, (c) => (n(), h("div", {
-              class: v(["mb-3", c == null ? void 0 : c.classes])
+    o("div", $s, [
+      o("div", Us, [
+        o("div", Gs, [
+          o("div", Ws, [
+            (r(!0), l(L, null, A(i.dataValue.logos, (h) => (r(), l("div", {
+              class: _(["mb-3", h == null ? void 0 : h.classes])
             }, [
-              l("a", {
-                href: c.url,
-                target: c.target,
+              o("a", {
+                href: h.url,
+                target: h.target,
                 "aria-label": "Front",
-                class: v([
+                class: _([
                   "footer__logos-link d-block pr-6",
-                  c.linkClasses ? c.linkClasses : "w-75 w-md-35 w-lg-100"
+                  h.linkClasses ? h.linkClasses : "w-75 w-md-35 w-lg-100"
                 ])
               }, [
-                b(o, B({
+                S(c, j({
                   cloudinary: !0,
                   ref_for: !0
-                }, c), null, 16)
-              ], 10, Le)
+                }, h), null, 16)
+              ], 10, qs)
             ], 2))), 256)),
-            (n(!0), h(L, null, E(i.locations, (c) => (n(), h("ul", Ce, [
-              c.name ? (n(), h("li", ke, S(c.name), 1)) : f("", !0),
-              c.over ? (n(), h("li", Ee, S(c.over), 1)) : f("", !0),
-              c.street ? (n(), h("li", Ie, S(c.street), 1)) : f("", !0),
-              c.city ? (n(), h("li", {
+            (r(!0), l(L, null, A(i.locations, (h) => (r(), l("ul", Js, [
+              h.name ? (r(), l("li", Zs, v(h.name), 1)) : m("", !0),
+              h.over ? (r(), l("li", Xs, v(h.over), 1)) : m("", !0),
+              h.street ? (r(), l("li", Ks, v(h.street), 1)) : m("", !0),
+              h.city ? (r(), l("li", {
                 key: 3,
-                class: v(["nav-item footer__address-block", c.postalReversed ? "is-reversed" : ""])
+                class: _(["nav-item footer__address-block", h.postalReversed ? "is-reversed" : ""])
               }, [
-                l("span", Oe, S(c.postalCode), 1),
-                l("span", Ae, S(c.city), 1),
-                l("span", Te, S(c.country), 1)
-              ], 2)) : f("", !0),
-              c.number ? (n(), h("li", Pe, [
-                l("a", {
+                o("span", Ys, v(h.postalCode), 1),
+                o("span", Qs, v(h.city), 1),
+                o("span", ti, v(h.country), 1)
+              ], 2)) : m("", !0),
+              h.number ? (r(), l("li", ei, [
+                o("a", {
                   class: "nav-link media",
-                  href: "tel:" + c.number
+                  href: "tel:" + h.number
                 }, [
-                  l("span", Ne, [
-                    l("span", Ve, [
-                      b(d, {
+                  o("span", ii, [
+                    o("span", ai, [
+                      S(d, {
                         icon: "site/mail",
                         "no-span": !0
                       })
                     ]),
-                    l("span", Be, S(c.number), 1)
+                    o("span", ni, v(h.number), 1)
                   ])
-                ], 8, De)
-              ])) : f("", !0),
-              i.dataValue.offices ? (n(), h("li", Re, [
-                l("a", Me, [
-                  b(g, {
+                ], 8, si)
+              ])) : m("", !0),
+              i.dataValue.offices ? (r(), l("li", ri, [
+                o("a", oi, [
+                  S(g, {
                     icon: "world",
                     class: "footer__nav-icon footer__office-icon"
                   }),
-                  l("div", He, [
-                    (n(!0), h(L, null, E(i.dataValue.offices, (x, k) => (n(), h("span", Fe, [
-                      it(S(x), 1),
-                      k < i.dataValue.offices.length - 1 ? (n(), h("span", je, ", ")) : f("", !0)
+                  o("div", li, [
+                    (r(!0), l(L, null, A(i.dataValue.offices, (k, C) => (r(), l("span", ci, [
+                      H(v(k), 1),
+                      C < i.dataValue.offices.length - 1 ? (r(), l("span", hi, ", ")) : m("", !0)
                     ]))), 256))
                   ])
                 ])
-              ])) : f("", !0),
-              c.mail ? (n(), h("li", {
+              ])) : m("", !0),
+              h.mail ? (r(), l("li", {
                 key: 6,
-                class: v(["nav-item", i.locations.length > 1 ? "pt-4" : ""])
+                class: _(["nav-item", i.locations.length > 1 ? "pt-4" : ""])
               }, [
-                l("a", {
+                o("a", {
                   class: "footer__nav-link nav-link",
-                  href: "mailto:" + c.mail
+                  href: "mailto:" + h.mail
                 }, [
-                  l("span", Ue, [
-                    l("span", Ge, [
-                      b(d, {
+                  o("span", ui, [
+                    o("span", gi, [
+                      S(d, {
                         icon: "site/mail",
                         "no-span": !0
                       })
                     ]),
-                    l("span", We, S(c.mail), 1)
+                    o("span", mi, v(h.mail), 1)
                   ])
-                ], 8, ze)
-              ], 2)) : f("", !0)
+                ], 8, di)
+              ], 2)) : m("", !0)
             ]))), 256)),
-            i.isCorporate ? f("", !0) : (n(!0), h(L, { key: 0 }, E(i.dataValue.brandLogos, (c, x) => (n(), h(L, null, [
-              c.title ? (n(), h("span", Je, S(c.title), 1)) : f("", !0),
-              l("a", {
-                href: c.url,
-                target: c.target,
-                class: v([
+            i.isCorporate ? m("", !0) : (r(!0), l(L, { key: 0 }, A(i.dataValue.brandLogos, (h, k) => (r(), l(L, null, [
+              h.title ? (r(), l("span", pi, v(h.title), 1)) : m("", !0),
+              o("a", {
+                href: h.url,
+                target: h.target,
+                class: _([
                   "footer__brand-logo-link d-block space-top-1",
-                  x === 0 ? "mt-3" : "",
-                  c.classes ? c.classes : "w-90"
+                  k === 0 ? "mt-3" : "",
+                  h.classes ? h.classes : "w-90"
                 ])
               }, [
-                b(o, B({
+                S(c, j({
                   cloudinary: !0,
                   ref_for: !0
-                }, c), null, 16)
-              ], 10, qe)
+                }, h), null, 16)
+              ], 10, fi)
             ], 64))), 256))
           ]),
-          l("div", $e, [
-            l("div", Xe, [
-              (n(!0), h(L, null, E(i.dataValue.partners, (c, x) => (n(), h(L, null, [
-                l("a", {
-                  href: c.url,
-                  target: c.target,
+          o("div", _i, [
+            o("div", vi, [
+              (r(!0), l(L, null, A(i.dataValue.partners, (h, k) => (r(), l(L, null, [
+                o("a", {
+                  href: h.url,
+                  target: h.target,
                   class: "footer__partner-images"
                 }, [
-                  b(o, B({
+                  S(c, j({
                     cloudinary: !0,
                     ref_for: !0
-                  }, c, { class: "footer__partner-image" }), null, 16)
-                ], 8, Ke),
-                x < i.dataValue.partners.length - 1 ? (n(), h("div", Ze)) : f("", !0)
+                  }, h, { class: "footer__partner-image" }), null, 16)
+                ], 8, yi),
+                k < i.dataValue.partners.length - 1 ? (r(), l("div", Si)) : m("", !0)
               ], 64))), 256))
             ]),
-            i.isCorporate ? f("", !0) : (n(), C(p, {
+            i.isCorporate ? m("", !0) : (r(), w(p, {
               key: 0,
               items: i.dataValue.highlights,
-              "bg-color": a.bgColorRgbaValue
+              "bg-color": n.bgColorRgbaValue
             }, null, 8, ["items", "bg-color"]))
           ])
         ])
       ]),
-      i.isCorporate ? (n(), h("div", Ye, [
-        l("div", Qe, [
-          b(p, {
+      i.isCorporate ? (r(), l("div", wi, [
+        o("div", bi, [
+          S(p, {
             items: i.dataValue.highlights,
-            "bg-color": a.bgColorRgbaValue
+            "bg-color": n.bgColorRgbaValue
           }, null, 8, ["items", "bg-color"])
         ])
-      ])) : f("", !0),
-      t[0] || (t[0] = l("hr", { class: "footer__divider mx-lg-3" }, null, -1)),
-      l("div", ts, [
-        l("div", es, [
-          l("div", ss, [
-            l("ul", is, [
-              (n(!0), h(L, null, E(i.links, (c) => (n(), h("li", rs, [
-                l("a", B({
+      ])) : m("", !0),
+      t[0] || (t[0] = o("hr", { class: "footer__divider mx-lg-3" }, null, -1)),
+      o("div", Ci, [
+        o("div", xi, [
+          o("div", Li, [
+            o("ul", ki, [
+              (r(!0), l(L, null, A(i.links, (h) => (r(), l("li", Ei, [
+                o("a", j({
                   class: "nav-link",
-                  href: c.url,
+                  href: h.url,
                   ref_for: !0
-                }, c), S(c.title), 17, as)
+                }, h), v(h.title), 17, Ai)
               ]))), 256))
             ])
           ]),
-          l("div", ns, [
-            l("ul", os, [
-              (n(!0), h(L, null, E(i.dataValue.socials, (c) => (n(), h("li", ls, [
-                l("a", {
+          o("div", Oi, [
+            o("ul", Ii, [
+              (r(!0), l(L, null, A(i.dataValue.socials, (h) => (r(), l("li", Ti, [
+                o("a", {
                   class: "btn btn-xs btn-icon btn-soft-light",
-                  title: c.title,
-                  href: c.url,
+                  title: h.title,
+                  href: h.url,
                   target: "_blank",
                   rel: "noopener"
                 }, [
-                  l("i", {
-                    class: v(["fab", c.icon])
+                  o("i", {
+                    class: _(["fab", h.icon])
                   }, null, 2)
-                ], 8, cs)
+                ], 8, Pi)
               ]))), 256))
             ])
           ])
         ]),
-        l("div", hs, [
-          l("div", ds, [
-            l("p", us, "Copyright © " + S(i.dataValue.copyright), 1)
+        o("div", Ni, [
+          o("div", Di, [
+            o("p", Vi, "Copyright © " + v(i.dataValue.copyright), 1)
           ])
         ])
       ])
     ])
   ], 6);
 }
-const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
+const Ri = /* @__PURE__ */ O(Fs, [["render", Bi]]), wt = {}, Mi = {
   tagName: "search",
   computed: {
     classList() {
@@ -3935,8 +5086,8 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
     },
     initSearchEngine() {
       const s = this.store, { results: t, weights: e } = s;
-      if (!pt) return;
-      const r = {
+      if (!wt) return;
+      const a = {
         includeScore: !0,
         ignoreLocation: !0,
         findAllMatches: !0,
@@ -3945,7 +5096,7 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
         threshold: 0.2,
         keys: e
       };
-      this.searchEngine = new pt(t, r);
+      this.searchEngine = new wt(t, a);
     },
     handleSearchBar() {
       this.searchExpanded = !this.searchExpanded, window.addEventListener("click", this.handleOutsideClick.bind(this));
@@ -3978,16 +5129,16 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       </div>
     </div>
   `
-}, ps = {
+}, Hi = {
   tagName: "link-list",
   computed: {
     classList() {
       return [
         "link-list",
         this.hasNoAnimation ? "" : "utility-animation",
-        `${this.isExpanded ? m.EXPANDED : ""}`,
-        `${this.isExpandable() ? m.EXPANDABLE : ""}`,
-        `${this.hasActiveItem ? m.ACTIVE : ""}`,
+        `${this.isExpanded ? f.EXPANDED : ""}`,
+        `${this.isExpandable() ? f.EXPANDABLE : ""}`,
+        `${this.hasActiveItem ? f.ACTIVE : ""}`,
         `${this.isHidden ? "link-list--hidden" : ""}`,
         `${this.inTransition ? "link-list--in-transition" : ""}`,
         this.classes,
@@ -4035,7 +5186,7 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
   methods: {
     bindEvents() {
       this.parentOfParent = this.$refs.root.parentNode.parentNode, this.parentOfParent.addEventListener(
-        P.CHILD_HAS_UPDATE,
+        D.CHILD_HAS_UPDATE,
         this.handleUpdate.bind(this)
       );
     },
@@ -4061,7 +5212,7 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       this.isExpanded = !this.isExpanded;
       const t = this.$refs.root;
       if (s) {
-        const e = new CustomEvent(P.CHILD_HAS_UPDATE, {
+        const e = new CustomEvent(D.CHILD_HAS_UPDATE, {
           detail: {
             root: t
           }
@@ -4111,17 +5262,17 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       </ul>
     </figure>
   `
-}, _s = {
+}, ji = {
   tagName: "v-header",
   computed: {
     classList() {
       return [
         "header",
-        this.isScrolled ? m.IS_SCROLLED : "",
+        this.isScrolled ? f.IS_SCROLLED : "",
         this.isLight ? "header--light" : "",
-        u.isTrue(this.hover) ? m.HOVERING : "",
+        u.isTrue(this.hover) ? f.HOVERING : "",
         u.isTrue(this.product) ? "header--product" : "",
-        u.isTrue(this.closed) ? "" : m.EXPANDED,
+        u.isTrue(this.closed) ? "" : f.EXPANDED,
         u.isTrue(this.blendMode) ? "header--blending" : "",
         "vue-component"
       ];
@@ -4180,8 +5331,8 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       const s = this.$refs.link;
       if (s)
         for (let e = 0; e < s.length; e++) {
-          const r = s[e], a = (t = r.querySelector(".header__link-text-spacer")) == null ? void 0 : t.clientWidth;
-          r.style.setProperty("--header-link-text-width", a + "px");
+          const a = s[e], n = (t = a == null ? void 0 : a.querySelector(".header__link-text-spacer")) == null ? void 0 : t.clientWidth;
+          a.style.setProperty("--header-link-text-width", n + "px");
         }
     },
     showFlyoutBlock(s) {
@@ -4191,7 +5342,7 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       return u.isBelowBreakpoint("md");
     },
     bindEvents() {
-      window.addEventListener("scroll", this.handleScroll.bind(this)), document.addEventListener(P.WINDOW_RESIZE, this.handleResize.bind(this));
+      window.addEventListener("scroll", this.handleScroll.bind(this)), document.addEventListener(D.WINDOW_RESIZE, this.handleResize.bind(this));
     },
     handleResize() {
       this.reset(), this.setLinkWidth();
@@ -4221,7 +5372,7 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       });
     },
     closeAllChildren() {
-      const s = new CustomEvent(P.CHILD_HAS_UPDATE, {
+      const s = new CustomEvent(D.CHILD_HAS_UPDATE, {
         detail: {}
       });
       this.$refs.list.dispatchEvent(s);
@@ -4243,38 +5394,38 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       this.resetAllFlyouts(), this.hover = !0;
       const e = this.getLinkRef(t);
       if (!e) return;
-      e.classList.add(m.EXPANDED);
-      const r = this.getFlyoutRef(t);
-      r && (this.flyoutIndex = t, r.classList.add(m.EXPANDED));
+      e.classList.add(f.EXPANDED);
+      const a = this.getFlyoutRef(t);
+      a && (this.flyoutIndex = t, a.classList.add(f.EXPANDED));
     },
     handleMouseOut(s) {
-      var r;
-      if ((r = s.relatedTarget) != null && r.closest(".header__flyout")) return;
+      var a;
+      if ((a = s.relatedTarget) != null && a.closest(".header__flyout")) return;
       this.hover = !1;
       const t = this.getLinkRef(this.flyoutIndex);
       if (!t) return;
-      t.classList.remove(m.EXPANDED);
+      t.classList.remove(f.EXPANDED);
       const e = this.getFlyoutRef(this.flyoutIndex);
-      e && e.classList.remove(m.EXPANDED);
+      e && e.classList.remove(f.EXPANDED);
     },
     handleLanguageOver() {
       this.resetAllFlyouts(), this.hover = !0;
       const s = this.$refs.languageSwitch;
-      s && s.classList.add(m.EXPANDED);
+      s && s.classList.add(f.EXPANDED);
     },
     handleLanguageOut(s) {
       var e;
       if ((e = s.relatedTarget) != null && e.closest(".header__flyout")) return;
       this.hover = !1;
       const t = this.$refs.languageSwitch;
-      t && t.classList.remove(m.EXPANDED);
+      t && t.classList.remove(f.EXPANDED);
     },
     resetAllFlyouts() {
       var s, t;
       (s = this.$refs.link) == null || s.forEach((e) => {
-        e.classList.remove(m.EXPANDED);
+        e.classList.remove(f.EXPANDED);
       }), (t = this.$refs.flyout) == null || t.forEach((e) => {
-        e.classList.remove(m.EXPANDED);
+        e.classList.remove(f.EXPANDED);
       });
     },
     getFlyoutRef(s) {
@@ -4302,13 +5453,13 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       if (!s) return;
       const t = Object.keys(s);
       if (!t.length) return;
-      const e = t.filter((r) => r !== this.lowerLang);
+      const e = t.filter((a) => a !== this.lowerLang);
       if (e.length)
         return e[0];
     },
     handleLanguageSwitch(s) {
-      var r;
-      const t = this.getActiveUrlByLang(s), e = t || ((r = this.home.languages[s]) == null ? void 0 : r.url);
+      var a;
+      const t = this.getActiveUrlByLang(s), e = t || ((a = this.home.languages[s]) == null ? void 0 : a.url);
       u.storageSave("preferedLanguage", s, !1), document.location.href = e;
     },
     getCurrentPath() {
@@ -4317,19 +5468,19 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
     },
     getActiveUrlByLang(s, t) {
       var d;
-      const e = this.getCurrentPath(), r = "/", a = (g, p) => {
+      const e = this.getCurrentPath(), a = "/", n = (g, p) => {
         if (!(g != null && g.title)) return;
-        let c = g == null ? void 0 : g.url;
-        e[(e == null ? void 0 : e.length) - 1] === r && c && c[(c == null ? void 0 : c.length) - 1] !== r && (c = c + r);
-        const x = c === e, k = this.getParentLink(p);
-        return t && x ? (g.active = !0, k && (k.active = !0)) : (g.active = !1, k && (k.active = !1)), x;
+        let h = g == null ? void 0 : g.url;
+        e[(e == null ? void 0 : e.length) - 1] === a && h && h[(h == null ? void 0 : h.length) - 1] !== a && (h = h + a);
+        const k = h === e, C = this.getParentLink(p);
+        return t && k ? (g.active = !0, C && (C.active = !0)) : (g.active = !1, C && (C.active = !1)), k;
       }, i = (g, p) => p;
-      let o = u.findRecursive(this.navigation, a, i);
-      if (o || (o = u.findRecursive(this.meta, a, i)), o || (o = u.findRecursive(this.contact, a, i)), !o) {
+      let c = u.findRecursive(this.navigation, n, i);
+      if (c || (c = u.findRecursive(this.meta, n, i)), c || (c = u.findRecursive(this.contact, n, i)), !c) {
         const g = this.getHrefLang(s);
         return g || this.getTranslatedUrl(e, s);
       }
-      return (d = o[s]) == null ? void 0 : d.url;
+      return (d = c[s]) == null ? void 0 : d.url;
     },
     getTranslatedUrl(s, t) {
       if (this.isBlogTagsUrl(s)) return this.getBlogTagsUrl(t, s);
@@ -4338,38 +5489,38 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
     },
     getFolderSwitchSegment(s) {
       const t = this.home.folderSwitch;
-      return t && t.find((r) => s.includes(r)) || null;
+      return t && t.find((a) => s.includes(a)) || null;
     },
     getFolderSwitchUrl(s, t, e) {
       if (!e) return t;
-      let r;
+      let a;
       if (s === this.defaultLang) {
-        const a = new RegExp(`/${this.lowerLang}/`);
-        r = t.replace(a, "/");
+        const n = new RegExp(`/${this.lowerLang}/`);
+        a = t.replace(n, "/");
       } else
-        r = t.replace(e, `${s}/${e}`);
-      return r;
+        a = t.replace(e, `${s}/${e}`);
+      return a;
     },
     isBlogTagsUrl(s) {
       return /\/blog\/tags/.test(s);
     },
     getBlogTagsUrl(s, t) {
       let e;
-      const r = "tags";
+      const a = "tags";
       switch (s) {
         case "en":
-          e = t.replace(r, `${r}-${s}`);
+          e = t.replace(a, `${a}-${s}`);
           break;
         default:
         case this.defaultLang:
-          const a = new RegExp(`${r}-..`);
-          e = t.replace(a, r);
+          const n = new RegExp(`${a}-..`);
+          e = t.replace(n, a);
           break;
       }
       return e + document.location.search;
     },
     getHrefLang(s) {
-      const t = document.querySelector(`link[hreflang=${s}]`);
+      const t = document == null ? void 0 : document.querySelector(`link[hreflang=${s}]`);
       if (t)
         return t.getAttribute("href");
     },
@@ -4381,7 +5532,7 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
     },
     headerItemClasses(s) {
       var t;
-      return ["header__item", (t = s.languages[this.lowerLang]) != null && t.active ? m.ACTIVE : ""];
+      return ["header__item", (t = s.languages[this.lowerLang]) != null && t.active ? f.ACTIVE : ""];
     },
     isLinkListHidden(s, t) {
       const e = this.getId(s, t);
@@ -4391,18 +5542,18 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       return this.getListClasses(s, t, ["header__link custom"]);
     },
     headerProductListClasses(s, t) {
-      return this.getListClasses(s, t, ["header__product-list", this.inTransition ? m.IN_TRANSITION : ""]);
+      return this.getListClasses(s, t, ["header__product-list", this.inTransition ? f.IN_TRANSITION : ""]);
     },
     getListClasses(s, t, e) {
-      const r = this.isLinkListHidden(s, t);
-      return [...e, r ? "" : m.EXPANDED];
+      const a = this.isLinkListHidden(s, t);
+      return [...e, a ? "" : f.EXPANDED];
     },
     updateProductListHeight() {
       const s = this.$refs["product-list"];
       if (s)
         for (let t = 0; t < s.length; t++) {
-          const e = s[t], a = !e.classList.contains(m.EXPANDED) || e.style.height !== "" ? "" : e.scrollHeight + "px";
-          e.style.height = a;
+          const e = s[t], n = !e.classList.contains(f.EXPANDED) || e.style.height !== "" ? "" : e.scrollHeight + "px";
+          e.style.height = n;
         }
     },
     navHighlightClasses(s, t) {
@@ -4452,307 +5603,307 @@ const ms = /* @__PURE__ */ z(ve, [["render", gs]]), pt = {}, fs = {
       maxLinkListsInFlyout: 3
     };
   }
-}, ys = { class: "header__row row" }, vs = { class: "header__col col" }, ws = { class: "header__logo" }, Ss = ["href"], bs = {
+}, zi = { class: "header__row row" }, Fi = { class: "header__col col" }, $i = { class: "header__logo" }, Ui = ["href"], Gi = {
   class: "header__list",
   ref: "list"
-}, xs = ["href", "target", "onClick"], Ls = ["onMouseover"], Cs = { class: "header__link-text" }, ks = { class: "header__link-text-spacer" }, Es = ["href", "target"], Is = { class: "header__product-list-data" }, Os = { class: "header__product-list-title font-size-8 bold" }, As = { class: "header__product-list-subtitle" }, Ts = ["href"], Ps = { class: "header__footer" }, Ds = {
+}, Wi = ["href", "target", "onClick"], qi = ["onMouseover"], Ji = { class: "header__link-text" }, Zi = { class: "header__link-text-spacer" }, Xi = ["href", "target"], Ki = { class: "header__product-list-data" }, Yi = { class: "header__product-list-title font-size-8 bold" }, Qi = { class: "header__product-list-subtitle" }, ta = ["href"], ea = { class: "header__footer" }, sa = {
   key: 1,
   class: "header__contact header__contact--mobile"
-}, Ns = ["href"], Vs = { class: "header__contact-text" }, Bs = { class: "header__contact-title" }, Rs = {
+}, ia = ["href"], aa = { class: "header__contact-text" }, na = { class: "header__contact-title" }, ra = {
   key: 2,
   class: "header__button"
-}, Ms = {
+}, oa = {
   key: 3,
   class: "header__language-switch"
-}, Hs = ["onClick"], Fs = {
+}, la = ["onClick"], ca = {
   key: 0,
   class: "header__button"
-}, js = { class: "header__link-text" }, zs = { class: "header__link-text-spacer" }, Us = {
+}, ha = { class: "header__link-text" }, da = { class: "header__link-text-spacer" }, ua = {
   class: "header__language-switch-flyout",
   ref: "languageSwitchFlyout"
-}, Gs = ["onClick"], Ws = { class: "row" }, Js = { class: "col" }, qs = {
+}, ga = ["onClick"], ma = { class: "row" }, pa = { class: "col" }, fa = {
   key: 0,
   class: "header__flyout-items"
-}, $s = {
+}, _a = {
   key: 0,
   class: "header__flyout-block"
-}, Xs = { class: "header__flyout-caption" }, Ks = ["innerHTML"], Zs = ["href"], Ys = { class: "header__contact-title" }, Qs = {
+}, va = { class: "header__flyout-caption" }, ya = ["innerHTML"], Sa = ["href"], wa = { class: "header__contact-title" }, ba = {
   key: 1,
   class: "header__highlight-cta has-emergency-colors"
-}, ti = {
+}, Ca = {
   key: 1,
   class: "header__product-list is-expanded"
-}, ei = ["href", "target"], si = { class: "header__product-list-data" }, ii = { class: "header__product-list-title font-size-8 bold" }, ri = { class: "header__product-list-subtitle" };
-function ai(s, t, e, r, a, i) {
-  var x, k, T, tt, ut, gt;
-  const o = at, d = rt, g = ps, p = St, c = fs;
-  return n(), h(L, null, [
-    l("div", {
+}, xa = ["href", "target"], La = { class: "header__product-list-data" }, ka = { class: "header__product-list-title font-size-8 bold" }, Ea = { class: "header__product-list-subtitle" };
+function Aa(s, t, e, a, n, i) {
+  var k, C, E, M, ft, _t;
+  const c = nt, d = rt, g = Hi, p = pt, h = Mi;
+  return r(), l(L, null, [
+    o("div", {
       class: "header__spacer",
-      style: W(i.spacerBgColor)
+      style: N(i.spacerBgColor)
     }, null, 4),
-    l("header", {
-      class: v(i.classList),
-      onMouseover: t[5] || (t[5] = (..._) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(..._)),
-      onMouseout: t[6] || (t[6] = (..._) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(..._))
+    o("header", {
+      class: _(i.classList),
+      onMouseover: t[5] || (t[5] = (...y) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(...y)),
+      onMouseout: t[6] || (t[6] = (...y) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...y))
     }, [
-      l("div", {
-        class: v(i.headerContainerClassList)
+      o("div", {
+        class: _(i.headerContainerClassList)
       }, [
-        l("div", ys, [
-          l("div", vs, [
-            l("div", ws, [
-              l("a", {
-                href: (x = i.homeObj) == null ? void 0 : x.url
+        o("div", zi, [
+          o("div", Fi, [
+            o("div", $i, [
+              o("a", {
+                href: (k = i.homeObj) == null ? void 0 : k.url
               }, [
-                b(o, {
-                  img: (k = e.home) == null ? void 0 : k.imgLight,
+                S(c, {
+                  img: (C = e.home) == null ? void 0 : C.imgLight,
                   class: "header__logo-light",
                   cloudinary: !0
                 }, null, 8, ["img"]),
-                b(o, {
-                  img: (T = e.home) == null ? void 0 : T.img,
+                S(c, {
+                  img: (E = e.home) == null ? void 0 : E.img,
                   class: "header__logo-default",
                   cloudinary: !0
                 }, null, 8, ["img"])
-              ], 8, Ss)
+              ], 8, Ui)
             ]),
-            l("div", {
+            o("div", {
               class: "header__menu",
-              onClick: t[0] || (t[0] = (..._) => i.handleCloseClick && i.handleCloseClick(..._))
+              onClick: t[0] || (t[0] = (...y) => i.handleCloseClick && i.handleCloseClick(...y))
             }, [
-              b(d, {
+              S(d, {
                 icon: "menu",
                 class: "header__menu-icon",
-                closed: a.closed
+                closed: n.closed
               }, null, 8, ["closed"])
             ]),
-            l("nav", {
+            o("nav", {
               class: "header__nav",
-              onMouseout: t[1] || (t[1] = (..._) => i.handleMouseOut && i.handleMouseOut(..._))
+              onMouseout: t[1] || (t[1] = (...y) => i.handleMouseOut && i.handleMouseOut(...y))
             }, [
-              l("ul", bs, [
-                (n(!0), h(L, null, E(i.activeNavigation, (_, I) => {
-                  var F, J, q, X, K, U;
-                  return n(), h("li", {
-                    class: v(i.headerItemClasses(_))
+              o("ul", Gi, [
+                (r(!0), l(L, null, A(i.activeNavigation, (y, I) => {
+                  var G, K, Y, Q, tt, q;
+                  return r(), l("li", {
+                    class: _(i.headerItemClasses(y))
                   }, [
-                    _ != null && _.languages ? (n(), h("a", {
+                    y != null && y.languages ? (r(), l("a", {
                       key: 0,
-                      class: v(i.headerLinkClasses(_, I)),
-                      href: i.getHref(_),
-                      target: i.getTarget(_),
-                      onClick: (D) => i.handleClick(_, I),
+                      class: _(i.headerLinkClasses(y, I)),
+                      href: i.getHref(y),
+                      target: i.getTarget(y),
+                      onClick: (V) => i.handleClick(y, I),
                       ref_for: !0,
                       ref: "link"
                     }, [
-                      l("div", {
+                      o("div", {
                         class: "header__link-content",
-                        onMouseover: (D) => i.handleMouseOver(_, I, D)
+                        onMouseover: (V) => i.handleMouseOver(y, I, V)
                       }, [
-                        l("span", Cs, S((F = _.languages[i.lowerLang]) == null ? void 0 : F.title), 1),
-                        l("span", ks, S((J = _.languages[i.lowerLang]) == null ? void 0 : J.title), 1),
-                        _.children ? (n(), C(d, {
+                        o("span", Ji, v((G = y.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
+                        o("span", Zi, v((K = y.languages[i.lowerLang]) == null ? void 0 : K.title), 1),
+                        y.children ? (r(), w(d, {
                           key: 0,
                           class: "header__link-icon",
                           icon: "expand",
                           size: "small"
-                        })) : f("", !0)
-                      ], 40, Ls)
-                    ], 10, xs)) : f("", !0),
-                    (n(!0), h(L, null, E(_.children, (D) => (n(), h(L, null, [
-                      _.children && !D.products ? (n(), C(g, {
+                        })) : m("", !0)
+                      ], 40, qi)
+                    ], 10, Wi)) : m("", !0),
+                    (r(!0), l(L, null, A(y.children, (V) => (r(), l(L, null, [
+                      y.children && !V.products ? (r(), w(g, {
                         key: 0,
-                        list: D,
+                        list: V,
                         lang: i.lowerLang,
-                        hidden: i.isLinkListHidden(_, I),
+                        hidden: i.isLinkListHidden(y, I),
                         classes: "header__link-list",
                         "no-animation": !0
-                      }, null, 8, ["list", "lang", "hidden"])) : (n(), h("div", {
+                      }, null, 8, ["list", "lang", "hidden"])) : (r(), l("div", {
                         key: 1,
-                        class: v(i.headerProductListClasses(_, I)),
+                        class: _(i.headerProductListClasses(y, I)),
                         ref_for: !0,
                         ref: "product-list"
                       }, [
-                        (n(!0), h(L, null, E(D.children, (A) => {
-                          var Z, Y, mt;
-                          return n(), h("a", {
-                            href: (Z = A == null ? void 0 : A.languages[i.lowerLang]) == null ? void 0 : Z.url,
-                            target: A.target,
+                        (r(!0), l(L, null, A(V.children, (P) => {
+                          var et, st, vt;
+                          return r(), l("a", {
+                            href: (et = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : et.url,
+                            target: P.target,
                             class: "header__product-list-item custom"
                           }, [
-                            b(o, {
-                              img: A.img,
+                            S(c, {
+                              img: P.img,
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            l("div", Is, [
-                              l("div", Os, S((Y = A == null ? void 0 : A.languages[i.lowerLang]) == null ? void 0 : Y.title), 1),
-                              l("div", As, S((mt = A == null ? void 0 : A.languages[i.lowerLang]) == null ? void 0 : mt.subtitle), 1)
+                            o("div", Ki, [
+                              o("div", Yi, v((st = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : st.title), 1),
+                              o("div", Qi, v((vt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : vt.subtitle), 1)
                             ])
-                          ], 8, Es);
+                          ], 8, Xi);
                         }), 256))
                       ], 2))
                     ], 64))), 256)),
-                    (q = _.languages[i.lowerLang]) != null && q.emergency ? (n(), h("a", {
+                    (Y = y.languages[i.lowerLang]) != null && Y.emergency ? (r(), l("a", {
                       key: 1,
-                      href: (X = _.languages[i.lowerLang]) == null ? void 0 : X.emergency.href,
-                      class: v(i.navHighlightClasses(_, I))
+                      href: (Q = y.languages[i.lowerLang]) == null ? void 0 : Q.emergency.href,
+                      class: _(i.navHighlightClasses(y, I))
                     }, [
-                      b(d, {
-                        icon: (K = _.languages[i.lowerLang]) == null ? void 0 : K.emergency.icon,
+                      S(d, {
+                        icon: (tt = y.languages[i.lowerLang]) == null ? void 0 : tt.emergency.icon,
                         size: "medium"
                       }, null, 8, ["icon"]),
-                      it(" " + S((U = _.languages[i.lowerLang]) == null ? void 0 : U.emergency.text), 1)
-                    ], 10, Ts)) : f("", !0)
+                      H(" " + v((q = y.languages[i.lowerLang]) == null ? void 0 : q.emergency.text), 1)
+                    ], 10, ta)) : m("", !0)
                   ], 2);
                 }), 256))
               ], 512),
-              l("div", Ps, [
-                i.hasMeta ? (n(), C(g, {
+              o("div", ea, [
+                i.hasMeta ? (r(), w(g, {
                   key: 0,
                   list: i.metaList,
                   lang: i.lowerLang,
                   classes: "header__meta-list",
                   "no-animation": !0
-                }, null, 8, ["list", "lang"])) : f("", !0),
-                i.hasContact ? (n(), h("div", Ds, [
-                  (tt = e.contact) != null && tt.languages ? (n(), h("a", {
+                }, null, 8, ["list", "lang"])) : m("", !0),
+                i.hasContact ? (r(), l("div", sa, [
+                  (M = e.contact) != null && M.languages ? (r(), l("a", {
                     key: 0,
                     class: "header__contact-link custom",
-                    href: (ut = e.contact.languages[i.lowerLang]) == null ? void 0 : ut.url
+                    href: (ft = e.contact.languages[i.lowerLang]) == null ? void 0 : ft.url
                   }, [
-                    l("div", Vs, [
-                      b(d, {
+                    o("div", aa, [
+                      S(d, {
                         icon: "phone-mail",
                         size: "medium"
                       }),
-                      l("span", Bs, S((gt = e.contact.languages[i.lowerLang]) == null ? void 0 : gt.title), 1)
+                      o("span", na, v((_t = e.contact.languages[i.lowerLang]) == null ? void 0 : _t.title), 1)
                     ])
-                  ], 8, Ns)) : f("", !0)
-                ])) : f("", !0),
-                e.button ? (n(), h("div", Rs, [
-                  b(p, {
+                  ], 8, ia)) : m("", !0)
+                ])) : m("", !0),
+                e.button ? (r(), l("div", ra, [
+                  S(p, {
                     text: e.button.text,
                     href: e.button.href,
                     target: e.button.target,
                     skin: e.button.skin,
-                    classes: a.ctaClassList
+                    classes: n.ctaClassList
                   }, null, 8, ["text", "href", "target", "skin", "classes"])
-                ])) : f("", !0),
-                i.hasLangSwitch ? (n(), h("div", Ms, [
-                  (n(!0), h(L, null, E(e.home.languages, (_, I) => (n(), h("a", {
-                    class: v({ "header__language-link custom": !0, active: I === i.lowerLang }),
-                    onClick: (F) => i.handleLanguageSwitch(I)
-                  }, S(I), 11, Hs))), 256))
-                ])) : f("", !0)
+                ])) : m("", !0),
+                i.hasLangSwitch ? (r(), l("div", oa, [
+                  (r(!0), l(L, null, A(e.home.languages, (y, I) => (r(), l("a", {
+                    class: _({ "header__language-link custom": !0, active: I === i.lowerLang }),
+                    onClick: (G) => i.handleLanguageSwitch(I)
+                  }, v(I), 11, la))), 256))
+                ])) : m("", !0)
               ])
             ], 32),
-            e.button ? (n(), h("div", Fs, [
-              b(p, {
+            e.button ? (r(), l("div", ca, [
+              S(p, {
                 text: e.button.text,
                 href: e.button.href,
                 target: e.button.target,
                 skin: e.button.skin,
-                classes: a.ctaClassList
+                classes: n.ctaClassList
               }, null, 8, ["text", "href", "target", "skin", "classes"])
-            ])) : f("", !0),
-            i.searchValue ? (n(), C(c, {
+            ])) : m("", !0),
+            i.searchValue ? (r(), w(h, {
               key: 1,
               class: "header__search",
               language: "de",
               placeholder: "search"
-            })) : f("", !0),
-            i.hasLangSwitch ? (n(), h("div", {
+            })) : m("", !0),
+            i.hasLangSwitch ? (r(), l("div", {
               key: 2,
               class: "header__language-switch",
-              onMouseover: t[2] || (t[2] = (..._) => i.handleLanguageOver && i.handleLanguageOver(..._)),
-              onMouseout: t[3] || (t[3] = (..._) => i.handleLanguageOut && i.handleLanguageOut(..._)),
+              onMouseover: t[2] || (t[2] = (...y) => i.handleLanguageOver && i.handleLanguageOver(...y)),
+              onMouseout: t[3] || (t[3] = (...y) => i.handleLanguageOut && i.handleLanguageOut(...y)),
               ref: "languageSwitch"
             }, [
-              l("span", js, S(e.lang), 1),
-              l("span", zs, S(e.lang), 1),
-              b(d, {
+              o("span", ha, v(e.lang), 1),
+              o("span", da, v(e.lang), 1),
+              S(d, {
                 class: "header__link-icon",
                 icon: "expand",
                 size: "small"
               }),
-              l("div", Us, [
-                (n(!0), h(L, null, E(e.home.languages, (_, I) => (n(), h("a", {
-                  class: v({ "header__language-link custom": !0, "d-none": I === i.lowerLang }),
-                  onClick: (F) => i.handleLanguageSwitch(I)
-                }, S(I), 11, Gs))), 256))
+              o("div", ua, [
+                (r(!0), l(L, null, A(e.home.languages, (y, I) => (r(), l("a", {
+                  class: _({ "header__language-link custom": !0, "d-none": I === i.lowerLang }),
+                  onClick: (G) => i.handleLanguageSwitch(I)
+                }, v(I), 11, ga))), 256))
               ], 512)
-            ], 544)) : f("", !0)
+            ], 544)) : m("", !0)
           ])
         ])
       ], 2),
-      l("div", {
+      o("div", {
         class: "header__flyout",
-        onMouseout: t[4] || (t[4] = (..._) => i.handleMouseOut && i.handleMouseOut(..._))
+        onMouseout: t[4] || (t[4] = (...y) => i.handleMouseOut && i.handleMouseOut(...y))
       }, [
-        l("div", {
-          class: v(i.containerClass)
+        o("div", {
+          class: _(i.containerClass)
         }, [
-          l("div", Ws, [
-            l("div", Js, [
-              (n(!0), h(L, null, E(i.activeNavigation, (_, I) => {
-                var F, J, q, X, K;
-                return n(), h("div", {
+          o("div", ma, [
+            o("div", pa, [
+              (r(!0), l(L, null, A(i.activeNavigation, (y, I) => {
+                var G, K, Y, Q, tt;
+                return r(), l("div", {
                   class: "header__flyout-content",
                   ref_for: !0,
                   ref: "flyout"
                 }, [
-                  _.children ? (n(), h("div", qs, [
-                    i.showFlyoutBlock(_.children) ? (n(), h("figure", $s, [
-                      l("figcaption", Xs, S((F = _.languages[i.lowerLang]) == null ? void 0 : F.title), 1),
-                      l("div", {
+                  y.children ? (r(), l("div", fa, [
+                    i.showFlyoutBlock(y.children) ? (r(), l("figure", _a, [
+                      o("figcaption", va, v((G = y.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
+                      o("div", {
                         class: "header__flyout-description font-size-1 thin",
-                        innerHTML: (J = _.languages[i.lowerLang]) == null ? void 0 : J.description
-                      }, null, 8, Ks),
-                      i.hasContactLink(_) ? (n(), h("a", {
+                        innerHTML: (K = y.languages[i.lowerLang]) == null ? void 0 : K.description
+                      }, null, 8, ya),
+                      i.hasContactLink(y) ? (r(), l("a", {
                         key: 0,
                         class: "header__link custom",
-                        href: (q = e.contact.languages[i.lowerLang]) == null ? void 0 : q.url
+                        href: (Y = e.contact.languages[i.lowerLang]) == null ? void 0 : Y.url
                       }, [
-                        b(d, {
+                        S(d, {
                           icon: "phone-mail",
                           size: "medium"
                         }),
-                        l("span", Ys, S((X = e.contact.languages[i.lowerLang]) == null ? void 0 : X.title), 1)
-                      ], 8, Zs)) : f("", !0),
-                      (K = _.languages[i.lowerLang]) != null && K.emergency ? (n(), h("div", Qs, [
-                        b(p, B({ ref_for: !0 }, _.languages[i.lowerLang].emergency), null, 16)
-                      ])) : f("", !0)
-                    ])) : f("", !0),
-                    (n(!0), h(L, null, E(_.children, (U) => (n(), h(L, null, [
-                      _.children && !U.products ? (n(), C(g, {
+                        o("span", wa, v((Q = e.contact.languages[i.lowerLang]) == null ? void 0 : Q.title), 1)
+                      ], 8, Sa)) : m("", !0),
+                      (tt = y.languages[i.lowerLang]) != null && tt.emergency ? (r(), l("div", ba, [
+                        S(p, j({ ref_for: !0 }, y.languages[i.lowerLang].emergency), null, 16)
+                      ])) : m("", !0)
+                    ])) : m("", !0),
+                    (r(!0), l(L, null, A(y.children, (q) => (r(), l(L, null, [
+                      y.children && !q.products ? (r(), w(g, {
                         key: 0,
-                        list: U,
+                        list: q,
                         lang: i.lowerLang,
                         "no-animation": !0
-                      }, null, 8, ["list", "lang"])) : (n(), h("div", ti, [
-                        (n(!0), h(L, null, E(U.children, (D) => {
-                          var A, Z, Y;
-                          return n(), h("a", {
-                            href: (A = D.languages[i.lowerLang]) == null ? void 0 : A.url,
-                            target: D.target,
+                      }, null, 8, ["list", "lang"])) : (r(), l("div", Ca, [
+                        (r(!0), l(L, null, A(q.children, (V) => {
+                          var P, et, st;
+                          return r(), l("a", {
+                            href: (P = V.languages[i.lowerLang]) == null ? void 0 : P.url,
+                            target: V.target,
                             class: "header__product-list-item custom"
                           }, [
-                            b(o, {
-                              img: D.img,
+                            S(c, {
+                              img: V.img,
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            l("div", si, [
-                              l("div", ii, S((Z = D.languages[i.lowerLang]) == null ? void 0 : Z.title), 1),
-                              l("div", ri, S((Y = D.languages[i.lowerLang]) == null ? void 0 : Y.subtitle), 1)
+                            o("div", La, [
+                              o("div", ka, v((et = V.languages[i.lowerLang]) == null ? void 0 : et.title), 1),
+                              o("div", Ea, v((st = V.languages[i.lowerLang]) == null ? void 0 : st.subtitle), 1)
                             ])
-                          ], 8, ei);
+                          ], 8, xa);
                         }), 256))
                       ]))
                     ], 64))), 256))
-                  ])) : f("", !0)
+                  ])) : m("", !0)
                 ], 512);
               }), 256))
             ])
@@ -4762,7 +5913,7 @@ function ai(s, t, e, r, a, i) {
     ], 34)
   ], 64);
 }
-const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
+const Oa = /* @__PURE__ */ O(ji, [["render", Aa]]), Ia = {
   tagName: "lottie",
   // components: {
   //   Vue3Lottie,
@@ -4851,7 +6002,7 @@ const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
     <div :class="classList">
     </div>
   `
-}, ot = "https://res.cloudinary.com/c4a8/image/upload/", li = {
+}, ht = "https://res.cloudinary.com/c4a8/image/upload/", Ta = {
   tagName: "v-img",
   data() {
     return {
@@ -4908,7 +6059,7 @@ const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
       return ["img__picture-wrapper", (s = this.imgSrcSetValue) == null ? void 0 : s.ratioClasses];
     },
     imgSrcSetValue() {
-      return wt[this.imgSrcSets];
+      return xt[this.imgSrcSets];
     },
     imgSrcSetSources() {
       var s, t;
@@ -4926,7 +6077,7 @@ const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
     }
   },
   created() {
-    this.canGenerateSrcSet() || this.isCloudinary || (this.noCloudinary = this.getBaseAssetPath(), this.sizes = R.sizes);
+    this.canGenerateSrcSet() || this.isCloudinary || (this.noCloudinary = this.getBaseAssetPath(), this.sizes = F.sizes);
   },
   methods: {
     canGenerateSrcSet() {
@@ -4938,7 +6089,7 @@ const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
     },
     getPreset() {
       try {
-        return this.preset ? M.presets && M.presets[this.preset] ? Object.assign(R, M.presets[this.preset]) : R : { ...R, ...M.presets.default };
+        return this.preset ? U.presets && U.presets[this.preset] ? Object.assign(F, U.presets[this.preset]) : F : { ...F, ...U.presets.default };
       } catch (s) {
         console.error(s);
       }
@@ -4951,49 +6102,49 @@ const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
       return u.isTestingStorybook() ? this.img : ((s = this.img) == null ? void 0 : s.indexOf("/assets/")) !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink(s) {
-      return `${ot}${s ? s.params : ""}${this.img}`;
+      return `${ht}${s ? s.params : ""}${this.img}`;
     },
     getCloudinaryLink() {
       return this.isGif() || this.isSvg() || this.animated ? this.getCloudinaryBasePathLink() : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
-      const { preset: s, transformationsString: t } = this.getSetup(), e = /w_\d+/.test(this.img), r = ot + t, a = `/${this.img}`;
-      return e ? `${r}${a}` : `${r},w_${s.fallback_max_width}${a}`;
+      const { preset: s, transformationsString: t } = this.getSetup(), e = /w_\d+/.test(this.img), a = ht + t, n = `/${this.img}`;
+      return e ? `${a}${n}` : `${a},w_${s.fallback_max_width}${n}`;
     },
     loadImage(s) {
       if (!this.canGenerateSrcSet()) return;
       const t = document.createElement("img");
       t.onload = () => {
-        const e = t == null ? void 0 : t.naturalHeight, r = t == null ? void 0 : t.naturalWidth;
-        let a;
+        const e = t == null ? void 0 : t.naturalHeight, a = t == null ? void 0 : t.naturalWidth;
+        let n;
         if (this.isSvg())
-          a = {
+          n = {
             naturalHeight: e,
-            naturalWidth: r
+            naturalWidth: a
           };
         else {
-          const { preset: i, transformationsString: o } = this.getSetup();
-          this.sizes = i == null ? void 0 : i.sizes, a = {
+          const { preset: i, transformationsString: c } = this.getSetup();
+          this.sizes = i == null ? void 0 : i.sizes, n = {
             naturalHeight: e || (i == null ? void 0 : i.fallback_max_width),
-            naturalWidth: r || (i == null ? void 0 : i.fallback_max_width)
-          }, e && r && !this.isSvg() && this.buildSrcSet(i, o);
+            naturalWidth: a || (i == null ? void 0 : i.fallback_max_width)
+          }, e && a && !this.isSvg() && this.buildSrcSet(i, c);
         }
-        this.dimensions = a;
+        this.dimensions = n;
       }, t.src = s || this.getCloudinaryLinkWithTransformation();
     },
     getTransformationString(s) {
       const t = [];
-      for (const [r, a] of Object.entries(vt))
-        s[r] && t.push(`${a}_${s[r]}`);
+      for (const [a, n] of Object.entries(Ct))
+        s[a] && t.push(`${n}_${s[a]}`);
       return t.length > 0 ? t.join(",") : "";
     },
     buildSrcSet(s, t) {
-      const e = [], r = s.steps, a = s.min_width, o = (s.max_width - a) / (r - 1), { naturalWidth: d } = this.dimensions;
-      for (let g = 1; g <= r; g++) {
-        const p = a + (g - 1) * o, c = p <= d, x = c ? p : d, T = `${this.hasPictureTag ? this.imgSrcSetImg : `${ot}${t},w_${x}/${this.img}`} ${x}w`;
-        if (e.push(T), !c) break;
+      const e = [], a = s.steps, n = s.min_width, c = (s.max_width - n) / (a - 1), { naturalWidth: d } = this.dimensions;
+      for (let g = 1; g <= a; g++) {
+        const p = n + (g - 1) * c, h = p <= d, k = h ? p : d, E = `${this.hasPictureTag ? this.imgSrcSetImg : `${ht}${t},w_${k}/${this.img}`} ${k}w`;
+        if (e.push(E), !h) break;
       }
-      this.srcset = d < a ? "" : e.join(`, 
+      this.srcset = d < n ? "" : e.join(`, 
 `);
     },
     isGif() {
@@ -5024,64 +6175,138 @@ const ni = /* @__PURE__ */ z(_s, [["render", ai]]), oi = {
     lottieSettings: Object,
     animated: Boolean
   }
-}, ci = ["media", "srcset"], hi = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], di = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
-function ui(s, t, e, r, a, i) {
-  const o = oi;
-  return i.hasPictureTag ? (n(), h("div", {
+}, Pa = ["media", "srcset"], Na = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], Da = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
+function Va(s, t, e, a, n, i) {
+  const c = Ia;
+  return i.hasPictureTag ? (r(), l("div", {
     key: 0,
-    class: v(i.pictureWrapperClassList)
+    class: _(i.pictureWrapperClassList)
   }, [
-    l("picture", null, [
-      (n(!0), h(L, null, E(i.imgSrcSetSources, (d) => (n(), h("source", {
+    o("picture", null, [
+      (r(!0), l(L, null, A(i.imgSrcSetSources, (d) => (r(), l("source", {
         key: d.params,
         media: d.media,
         srcset: i.getCloudinaryBasePathLink(d)
-      }, null, 8, ci))), 128)),
-      l("img", {
+      }, null, 8, Pa))), 128)),
+      o("img", {
         onLoad: t[0] || (t[0] = (d) => i.loadImage(i.imgSrcSetImg)),
         ref: "image",
         src: i.imgSrcSetImg,
         loading: i.loading,
-        class: v(i.classList),
+        class: _(i.classList),
         alt: e.alt,
-        width: a.dimensions.naturalWidth,
-        height: a.dimensions.naturalHeight,
-        srcset: a.srcset,
-        sizes: a.sizes,
+        width: n.dimensions.naturalWidth,
+        height: n.dimensions.naturalHeight,
+        srcset: n.srcset,
+        sizes: n.sizes,
         crossorigin: i.crossOriginValue
-      }, null, 42, hi)
+      }, null, 42, Na)
     ])
-  ], 2)) : i.isLottie ? (n(), C(o, B({
+  ], 2)) : i.isLottie ? (r(), w(c, j({
     key: 1,
     data: i.jsonLottieData,
     class: i.classListComponent
-  }, i.jsonLottieSettingsData), null, 16, ["data", "class"])) : (n(), h("img", {
+  }, i.jsonLottieSettingsData), null, 16, ["data", "class"])) : (r(), l("img", {
     key: 2,
     onLoad: t[1] || (t[1] = (d) => i.loadImage()),
     ref: "image",
     src: i.source,
     loading: i.loading,
-    class: v(i.classList),
+    class: _(i.classList),
     alt: e.alt,
-    width: a.dimensions.naturalWidth,
-    height: a.dimensions.naturalHeight,
-    srcset: a.srcset,
-    sizes: a.sizes,
+    width: n.dimensions.naturalWidth,
+    height: n.dimensions.naturalHeight,
+    srcset: n.srcset,
+    sizes: n.sizes,
     crossorigin: i.crossOriginValue
-  }, null, 42, di));
+  }, null, 42, Da));
 }
-const gi = /* @__PURE__ */ z(li, [["render", ui]]), pi = {
+const Ba = /* @__PURE__ */ O(Ta, [["render", Va]]), Ra = {
+  tagName: "world",
+  computed: {
+    style() {
+      return "scale(var(--icon-scale));";
+    },
+    stroke() {
+      return this.color;
+    }
+  },
+  props: {
+    settings: Object,
+    color: String
+  }
+}, Ma = { "clip-path": "url(#icon-world-mask)" }, Ha = ["stroke"], ja = ["stroke"], za = ["stroke"], Fa = ["stroke"], $a = { id: "icon-world-mask" }, Ua = ["fill"];
+function Ga(s, t, e, a, n, i) {
+  return r(), l("svg", j(e.settings, {
+    style: i.style,
+    fill: "none",
+    viewBox: "0 0 20 20"
+  }), [
+    o("g", Ma, [
+      o("path", {
+        d: "M19.583 9.95083C19.5836 11.2135 19.3356 12.4639 18.853 13.6307C18.3704 14.7975 17.6627 15.8578 16.7703 16.7511C15.878 17.6444 14.8184 18.3532 13.6521 18.837C12.4858 19.3208 11.2356 19.5702 9.97298 19.5708C7.41074 19.5283 4.96901 18.4754 3.17921 16.6415C1.38941 14.8075 0.396399 12.3408 0.416309 9.77833C0.41836 7.32895 1.37927 4.97771 3.09332 3.22799C4.80737 1.47828 7.13832 0.46915 9.58714 0.416661C9.72548 0.410828 9.86381 0.408328 10.0038 0.408328C11.2606 0.401511 12.5063 0.643413 13.6692 1.1201C14.832 1.59679 15.8891 2.29884 16.7795 3.18582C17.6699 4.0728 18.376 5.12718 18.8572 6.28823C19.3383 7.44927 19.585 8.69404 19.583 9.95083Z",
+        stroke: i.stroke,
+        "stroke-opacity": "0.8",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, null, 8, Ha),
+      o("path", {
+        d: "M9.58789 0.416672C4.58789 5.83334 4.58789 12.9 9.58789 19.5667",
+        stroke: i.stroke,
+        "stroke-opacity": "0.8",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, null, 8, ja),
+      o("path", {
+        d: "M10.4209 0.416672C15.4209 5.83334 15.4209 12.8975 10.4209 19.5642",
+        stroke: i.stroke,
+        "stroke-opacity": "0.8",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, null, 8, za),
+      o("path", {
+        d: "M0.418945 9.57001H19.5831",
+        stroke: i.stroke,
+        "stroke-opacity": "0.8",
+        "stroke-linecap": "round",
+        "stroke-linejoin": "round"
+      }, null, 8, Fa)
+    ]),
+    o("defs", null, [
+      o("clipPath", $a, [
+        o("rect", {
+          width: "20",
+          height: "20",
+          fill: i.stroke
+        }, null, 8, Ua)
+      ])
+    ])
+  ], 16);
+}
+const Wa = /* @__PURE__ */ O(Ra, [["render", Ga]]), Za = {
   install(s) {
-    s.component("Cta", It), s.component("Hero", qt), s.component("IntroText", ee), s.component("TextImage", pe), s.component("VFooter", ms), s.component("VHeader", ni), s.component("VImg", gi);
+    s.component("Carousel", Vt), s.component("Contact", ue), s.component("Cta", fe), s.component("CtaList", ot), s.component("Headline", ye), s.component("HeadlineRow", Ce), s.component("Hero", Fe), s.component("Icon", Ge), s.component("Test", ss), s.component("IntroText", Qe), s.component("Lottie", ns), s.component("ProductBlocks", ms), s.component("SiteIcons", Ss), s.component("SvgShape", Ls), s.component("TextImage", js), s.component("VFooter", Ri), s.component("VHeader", Oa), s.component("VImg", Ba), s.component("World", Wa);
   }
 };
 export {
-  It as Cta,
-  qt as Hero,
-  ee as IntroText,
-  pe as TextImage,
-  ms as VFooter,
-  ni as VHeader,
-  gi as VImg,
-  pi as default
+  Vt as Carousel,
+  ue as Contact,
+  fe as Cta,
+  ot as CtaList,
+  ye as Headline,
+  Ce as HeadlineRow,
+  Fe as Hero,
+  Ge as Icon,
+  Qe as IntroText,
+  ns as Lottie,
+  ms as ProductBlocks,
+  Ss as SiteIcons,
+  Ls as SvgShape,
+  ss as Test,
+  js as TextImage,
+  Ri as VFooter,
+  Oa as VHeader,
+  Ba as VImg,
+  Wa as World,
+  Za as default
 };

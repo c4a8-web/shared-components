@@ -286,7 +286,7 @@ export default {
 
       for (let i = 0; i < links.length; i++) {
         const link = links[i];
-        const textWidth = link.querySelector('.header__link-text-spacer')?.clientWidth;
+        const textWidth = link?.querySelector('.header__link-text-spacer')?.clientWidth;
 
         link.style.setProperty('--header-link-text-width', textWidth + 'px');
       }
@@ -616,7 +616,7 @@ export default {
       return newPath + document.location.search;
     },
     getHrefLang(lang) {
-      const hrefLang = document.querySelector(`link[hreflang=${lang}]`);
+      const hrefLang = document?.querySelector(`link[hreflang=${lang}]`);
 
       if (!hrefLang) return;
 

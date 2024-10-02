@@ -8,6 +8,8 @@ export default {
     },
   },
   mounted() {
+    if (!this.$refs.root) return;
+
     UtilityAnimation.init([this.$refs.root]);
   },
   props: {

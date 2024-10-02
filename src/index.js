@@ -1,3 +1,9 @@
+import './assets/front/dist/assets/vendor/leaflet/dist/leaflet.css';
+import './assets/front/dist/assets/css/theme.min.css';
+import './assets/front/dist/assets/vendor/slick-carousel/slick/slick.css';
+import './assets/front/dist/assets/vendor/fontawesome/css/all.min.css';
+import './assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
+import './assets/front/dist/assets/vendor/ion-range-slider/ion.rangeSlider.min.css';
 import './assets/front/dist/assets/css/theme.min.css';
 import './assets/scss/index.scss';
 import './assets/scss/themes/_gk.scss';
@@ -35,16 +41,16 @@ import './assets/scss/themes/_gk.scss';
 // import Blog from './components/blog.js';
 // import BlogRecent from './components/blog-recent.js';
 // import Card from './components/card.js';
-// import Carousel from './components/carousel.js';
+import Carousel from './components/carousel.vue';
 // import Check from './components/icons/check.js';
 // import CheckCard from './components/check-card.js';
 // import CheckMark from './components/icons/check-mark.js';
 // import Close from './components/icons/close.js';
 // import ComputerShield from './components/icons/computer-shield.js';
-// import Contact from './components/contact.js';
+import Contact from './components/contact.vue';
 // import ContentScroller from './components/content-scroller.js';
 import Cta from './components/cta.vue';
-// import CtaList from './components/cta-list.js';
+import CtaList from './components/cta-list.js';
 // import Dropdown from './components/dropdown.js';
 // import EmailActionUnread from './components/icons/email-action-unread.js';
 // import Emergency from './components/icons/emergency.js';
@@ -74,10 +80,10 @@ import Cta from './components/cta.vue';
 // import GridList from './components/grid-list.js';
 // import Hand from './components/icons/hand.js';
 import Headline from './components/headline.vue';
-// import HeadlineRow from './components/headline-row.js';
+import HeadlineRow from './components/headline-row.vue';
 import Hero from './components/hero.vue';
 // import HeroTextImage from './components/hero-text-image.js';
-// import Icon from './components/icon.js';
+import Icon from './components/icon.vue';
 // import IconBlocks from './components/icon-blocks.js';
 // import ImageBlock from './components/image-block.js';
 // import ImageCredits from './components/icons/image-credits.js';
@@ -86,7 +92,7 @@ import Hero from './components/hero.vue';
 // import ImgFilter from './components/img-filter.js';
 // import Info from './components/icons/info.js';
 import IntroText from './components/intro-text.vue';
-// import Test from './components/test.vue';
+import Test from './components/test.vue';
 // import JobList from './components/job-list.js';
 // import JobListDetail from './components/job-list-detail.js';
 // import JobListEntry from './components/job-list-entry.js';
@@ -97,7 +103,7 @@ import IntroText from './components/intro-text.vue';
 // import ListContainer from './components/list-container.js';
 // import ListView from './components/icons/list-view.js';
 // import LogoList from './components/logo-list.js';
-// import Lottie from './components/lottie.js';
+import Lottie from './components/lottie.vue';
 // import Magnifier from './components/icons/magnifier.js';
 // import Mail from './components/icons/mail.js';
 // import Meerkat from './components/icons/meerkat.js';
@@ -115,7 +121,7 @@ import IntroText from './components/intro-text.vue';
 // import PlusMinus from './components/icons/plus-minus.js';
 // import PostTeaser from './components/post-teaser.js';
 // import PricingProduct from './components/pricing-product.js';
-// import ProductBlocks from './components/product-blocks.js';
+import ProductBlocks from './components/product-blocks.vue';
 // import ProductStage from './components/product-stage.js';
 // import Quotes from './components/quotes.js';
 // import Rocket from './components/icons/rocket.js';
@@ -136,7 +142,7 @@ import IntroText from './components/intro-text.vue';
 // import ShapeSemiCircle from './components/shape-semi-circle.js';
 // import ShapeSquareCircle from './components/shape-square-circle.js';
 // import ShapeTrianglesToCenter from './components/shape-triangles-to-center.js';
-// import SiteIcons from './components/site-icons.js';
+import SiteIcons from './components/site-icons.vue';
 // import Slider from './components/slider.js';
 // import SlotItems from './components/slot-items.js';
 // import Smile from './components/icons/smile.js';
@@ -145,7 +151,7 @@ import IntroText from './components/intro-text.vue';
 // import StepList from './components/step-list.js';
 // import StrategySplit from './components/icons/strategy-split.js';
 // import SuccessStory from './components/success-story.js';
-// import SvgShape from './components/svg-shape.js';
+import SvgShape from './components/svg-shape.vue';
 // import TabList from './components/tab-list.js';
 // import Tag from './components/tag.js';
 // import TagCloud from './components/tag-cloud.js';
@@ -168,7 +174,7 @@ import VHeader from './components/v-header.vue';
 // import VideoFrame from './components/video-frame.js';
 // import VideoInner from './components/video-inner.js';
 import VImg from './components/v-img.vue';
-// import World from './components/icons/world.js';
+import World from './components/icons/world.vue';
 // import Wrapper from './components/wrapper.js';
 // import WrapperSlotItems from './components/wrapper-slot-items.js';
 // import XMark from './components/icons/x-mark.js';
@@ -191,16 +197,16 @@ export {
   // Blog,
   // BlogRecent,
   // Card,
-  // Carousel,
+  Carousel,
   // Check,
   // CheckCard,
   // CheckMark,
   // Close,
   // ComputerShield,
-  // Contact,
+  Contact,
   // ContentScroller,
   Cta,
-  // CtaList,
+  CtaList,
   // Dropdown,
   // EmailActionUnread,
   // Emergency,
@@ -230,10 +236,10 @@ export {
   // GridList,
   // Hand,
   Headline,
-  // HeadlineRow,
+  HeadlineRow,
   Hero,
   // HeroTextImage,
-  // Icon,
+  Icon,
   // IconBlocks,
   // ImageBlock,
   // ImageCredits,
@@ -241,7 +247,7 @@ export {
   // Img,
   // ImgFilter,
   // Info,
-  // Test,
+  Test,
   IntroText,
   // JobList,
   // JobListDetail,
@@ -253,7 +259,7 @@ export {
   // ListContainer,
   // ListView,
   // LogoList,
-  // Lottie,
+  Lottie,
   // Magnifier,
   // Mail,
   // Meerkat,
@@ -271,7 +277,7 @@ export {
   // PlusMinus,
   // PostTeaser,
   // PricingProduct,
-  // ProductBlocks,
+  ProductBlocks,
   // ProductStage,
   // Quotes,
   // Rocket,
@@ -292,7 +298,7 @@ export {
   // ShapeSemiCircle,
   // ShapeSquareCircle,
   // ShapeTrianglesToCenter,
-  // SiteIcons,
+  SiteIcons,
   // Slider,
   // SlotItems,
   // Smile,
@@ -301,7 +307,7 @@ export {
   // StepList,
   // StrategySplit,
   // SuccessStory,
-  // SvgShape,
+  SvgShape,
   // TabList,
   // Tag,
   // TagCloud,
@@ -324,7 +330,7 @@ export {
   // VideoFrame,
   // VideoInner,
   VImg,
-  // World,
+  World,
   // Wrapper,
   // WrapperSlotItems,
   // XMark,
@@ -349,16 +355,16 @@ export default {
     // app.component('Blog', Blog);
     // app.component('BlogRecent', BlogRecent);
     // app.component('Card', Card);
-    // app.component('Carousel', Carousel);
+    app.component('Carousel', Carousel);
     // app.component('Check', Check);
     // app.component('CheckCard', CheckCard);
     // app.component('CheckMark', CheckMark);
     // app.component('Close', Close);
     // app.component('ComputerShield', ComputerShield);
-    // app.component('Contact', Contact);
+    app.component('Contact', Contact);
     // app.component('ContentScroller', ContentScroller);
     app.component('Cta', Cta);
-    // app.component('CtaList', CtaList);
+    app.component('CtaList', CtaList);
     // app.component('Dropdown', Dropdown);
     // app.component('EmailActionUnread', EmailActionUnread);
     // app.component('Emergency', Emergency);
@@ -388,10 +394,10 @@ export default {
     // app.component('GridList', GridList);
     // app.component('Hand', Hand);
     app.component('Headline', Headline);
-    // app.component('HeadlineRow', HeadlineRow);
+    app.component('HeadlineRow', HeadlineRow);
     app.component('Hero', Hero);
     // app.component('HeroTextImage', HeroTextImage);
-    // app.component('Icon', Icon);
+    app.component('Icon', Icon);
     // app.component('IconBlocks', IconBlocks);
     // app.component('ImageBlock', ImageBlock);
     // app.component('ImageCredits', ImageCredits);
@@ -399,7 +405,7 @@ export default {
     // app.component('Img', Img);
     // app.component('ImgFilter', ImgFilter);
     // app.component('Info', Info);
-    // app.component('Test', Test);
+    app.component('Test', Test);
     app.component('IntroText', IntroText);
     // app.component('JobList', JobList);
     // app.component('JobListDetail', JobListDetail);
@@ -411,7 +417,7 @@ export default {
     // app.component('ListContainer', ListContainer);
     // app.component('ListView', ListView);
     // app.component('LogoList', LogoList);
-    // app.component('Lottie', Lottie);
+    app.component('Lottie', Lottie);
     // app.component('Magnifier', Magnifier);
     // app.component('Mail', Mail);
     // app.component('Meerkat', Meerkat);
@@ -429,7 +435,7 @@ export default {
     // app.component('PlusMinus', PlusMinus);
     // app.component('PostTeaser', PostTeaser);
     // app.component('PricingProduct', PricingProduct);
-    // app.component('ProductBlocks', ProductBlocks);
+    app.component('ProductBlocks', ProductBlocks);
     // app.component('ProductStage', ProductStage);
     // app.component('Quotes', Quotes);
     // app.component('Rocket', Rocket);
@@ -450,7 +456,7 @@ export default {
     // app.component('ShapeSemiCircle', ShapeSemiCircle);
     // app.component('ShapeSquareCircle', ShapeSquareCircle);
     // app.component('ShapeTrianglesToCenter', ShapeTrianglesToCenter);
-    // app.component('SiteIcons', SiteIcons);
+    app.component('SiteIcons', SiteIcons);
     // app.component('Slider', Slider);
     // app.component('SlotItems', SlotItems);
     // app.component('Smile', Smile);
@@ -459,7 +465,7 @@ export default {
     // app.component('StepList', StepList);
     // app.component('StrategySplit', StrategySplit);
     // app.component('SuccessStory', SuccessStory);
-    // app.component('SvgShape', SvgShape);
+    app.component('SvgShape', SvgShape);
     // app.component('TabList', TabList);
     // app.component('Tag', Tag);
     // app.component('TagCloud', TagCloud);
@@ -482,7 +488,7 @@ export default {
     // app.component('VideoFrame', VideoFrame);
     // app.component('VideoInner', VideoInner);
     app.component('VImg', VImg);
-    // app.component('World', World);
+    app.component('World', World);
     // app.component('Wrapper', Wrapper);
     // app.component('WrapperSlotItems', WrapperSlotItems);
     // app.component('XMark', XMark);

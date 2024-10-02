@@ -12,8 +12,8 @@
     :data-trigger="trigger ? trigger : null"
   >
     <span class="cta__text">{{ text }}</span>
-    <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" /> </component
-  >`
+    <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
+  </component>
 </template>
 
 <script>
