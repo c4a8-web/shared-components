@@ -255,6 +255,8 @@ class Tools {
   }
 
   static getBreakpoint() {
+    if (typeof getComputedStyle !== 'function') return '';
+
     const styles = getComputedStyle(document.body);
 
     return styles.getPropertyValue('--breakpoint').trim();
@@ -384,9 +386,10 @@ class Tools {
   }
 
   static getElementBgColor(element) {
+    if (typeof getComputedStyle !== 'function') return '';
     if (!element || element.nodeType !== Node.ELEMENT_NODE) return;
 
-    const color = window.getComputedStyle(element).backgroundColor;
+    const color = getComputedStyle(element).backgroundColor;
 
     return color === 'rgba(0, 0, 0, 0)' ? null : color;
   }
@@ -494,6 +497,8 @@ class Tools {
   }
 
   static hexToRgb(hex) {
+    if (typeof getComputedStyle !== 'function') return '';
+
     let rootHex;
 
     if (hex.startsWith('--') || hex.startsWith('var(')) {
