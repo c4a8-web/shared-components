@@ -47,8 +47,8 @@
         </text-icon-animation>
       </main>
     </div>
-    <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
-      <wrapper class="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
+    <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
+      <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
         <div class="hero__background-shape">
           <v-img
             v-if="showShape"
