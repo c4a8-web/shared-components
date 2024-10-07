@@ -159,7 +159,7 @@ declare module 'vue' {
     VideoInner: typeof import('./src/components/video-inner.js')['default']
     VImg: typeof import('./src/components/v-img.js')['default']
     World: typeof import('./src/components/icons/world.js')['default']
-    Wrapper: typeof import('./src/components/wrapper.js')['default']
+    Wrapper: typeof import('./src/components/wrapper.vue')['default']
     WrapperSlotItems: typeof import('./src/components/wrapper-slot-items.js')['default']
     XMark: typeof import('./src/components/icons/x-mark.js')['default']
   }

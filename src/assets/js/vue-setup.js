@@ -85,7 +85,7 @@ import TextAnimation from './vue/text-animation.js';
 import TextIconAnimation from './vue/text-icon-animation.js';
 import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
-import Wrapper from './vue/wrapper.js';
+// import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
 
 // Icons
