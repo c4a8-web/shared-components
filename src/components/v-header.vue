@@ -246,10 +246,13 @@ export default {
 
       return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
+    clonedNavigation() {
+      return JSON.parse(JSON.stringify(this.navigation));
+    },
     activeNavigation() {
       this.setActiveLinks();
 
-      return this.navigation;
+      return this.clonedNavigation;
     },
     isLight() {
       return Tools.isTrue(this.light) === true;
@@ -540,7 +543,7 @@ export default {
         return parent;
       };
 
-      let parent = Tools.findRecursive(this.navigation, matcher, callback);
+      let parent = Tools.findRecursive(this.clonedNavigation, matcher, callback);
 
       if (!parent) {
         parent = Tools.findRecursive(this.meta, matcher, callback);
@@ -623,7 +626,7 @@ export default {
       return hrefLang.getAttribute('href');
     },
     getParentLink(key) {
-      const navi = this.navigation[key];
+      const navi = this.clonedNavigation[key];
 
       return navi.languages[this.lowerLang];
     },
