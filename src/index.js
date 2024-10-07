@@ -72,7 +72,7 @@ import CtaList from './components/cta-list.js';
 // import FormRadio from './components/form-radio.js';
 // import FormRadios from './components/form-radios.js';
 // import FormSelect from './components/form-select.js';
-// import Formular from './components/formular.js';
+import Formular from './components/formular.vue';
 // import Globals from './components/globals.js';
 // import GoogleMap from './components/google-map.js';
 // import GoogleMapEntry from './components/google-map-entry.js';
@@ -228,7 +228,7 @@ export {
   // FormRadio,
   // FormRadios,
   // FormSelect,
-  // Formular,
+  Formular,
   // Globals,
   // GoogleMap,
   // GoogleMapEntry,
@@ -386,7 +386,7 @@ export default {
     // app.component('FormRadio', FormRadio);
     // app.component('FormRadios', FormRadios);
     // app.component('FormSelect', FormSelect);
-    // app.component('Formular', Formular);
+    app.component('Formular', Formular);
     // app.component('Globals', Globals);
     // app.component('GoogleMap', GoogleMap);
     // app.component('GoogleMapEntry', GoogleMapEntry);

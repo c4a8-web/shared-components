@@ -1,3 +1,47 @@
+<template>
+  <div :class="classList">
+    <div :class="rowClassList">
+      <div :class="wrapperClassList">
+        <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1">
+          <div class="row">
+            <div class="col-sm-12">
+              <headline :text="form.headline" :level="form.level" :id="form.id" classes="text-center" />
+              <p :class="sublineClassList" v-html="form.subline"></p>
+            </div>
+          </div>
+        </div>
+        <form class="form__form js-validate mt-6" :method="method" :action="formAction">
+          <template v-for="block in preparedBlocks">
+            <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
+              <div :class="getFieldClassList(field)" v-for="field in block">
+                <form-fields
+                  :field="field"
+                  :options="getOptions(field)"
+                  :replace-value="replaceValue"
+                  :id="getId(field)"
+                  :has-animation="hasAnimationValue"
+                  @action-changed="updateAction"
+                />
+              </div>
+            </div>
+          </template>
+          <div :class="formClassList">
+            <cta
+              :text="form.ctaText"
+              type="submit"
+              :button="true"
+              :skin="form.cta.skin"
+              :width="form.cta.width"
+              :analytics="analytics"
+            />
+          </div>
+          <input type="text" class="form__super-field" name="_gotcha" />
+        </form>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
 import Tools from '../assets/js/tools.js';
 import Form from '../assets/js/components/form.js';
 
@@ -148,33 +192,5 @@ export default {
       default: null,
     },
   },
-  template: `
-    <div :class="classList">
-      <div :class="rowClassList">
-        <div :class="wrapperClassList">
-          <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1">
-            <div class="row">
-              <div class="col-sm-12">
-                <headline :text="form.headline" :level="form.level" :id="form.id" classes="text-center" />
-                <p :class="sublineClassList" v-html="form.subline"></p>
-              </div>
-            </div>
-          </div>
-          <form class="form__form js-validate mt-6" :method="method" :action="formAction">
-            <template v-for="block in preparedBlocks">
-              <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
-                <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" @action-changed="updateAction" />
-                </div>
-              </div>
-            </template>
-            <div :class="formClassList">
-              <cta :text="form.ctaText" type="submit" :button="true" :skin="form.cta.skin" :width="form.cta.width" :analytics="analytics" />
-            </div>
-            <input type="text" class="form__super-field" name="_gotcha">
-          </form>
-        </div>
-      </div>
-    </div>
-  `,
 };
+</script>
