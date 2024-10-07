@@ -121,12 +121,23 @@ export default {
   data() {
     return {
       introHeight: null,
+      style: null,
     };
   },
   mounted() {
     this.setIntroStyle();
+    this.setStyle();
   },
   methods: {
+    setStyle() {
+      this.style = [
+        this.bgColor
+          ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${Tools.hexToRgb(this.bgColor)}`
+          : '',
+        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
+        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
+      ];
+    },
     setIntroStyle() {
       if (!this.isCentered) return;
 
@@ -167,15 +178,6 @@ export default {
     },
     contentClassList() {
       return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
-    },
-    style() {
-      return [
-        this.bgColor
-          ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${Tools.hexToRgb(this.bgColor)}`
-          : '',
-        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : '',
-        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : '',
-      ];
     },
     cta() {
       return this.heroJson ? this.heroJson.cta : null;
