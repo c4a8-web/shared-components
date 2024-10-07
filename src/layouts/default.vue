@@ -2,7 +2,7 @@
   <div id="app" :class="computedClass">
     <v-header v-bind="headerData" :lang="lang"></v-header>
     <main class="page-content" aria-label="Content">
-      <hero v-bind="heroData"></hero>
+      <hero v-bind="heroData" v-if="heroEnabled"></hero>
       <slot />
     </main>
     <contact v-if="pageData?.contact" v-bind="pageData?.contact" :contact="pageData?.contact" />
@@ -12,6 +12,9 @@
 </template>
 
 <script setup>
+// TODO figure out why this is not rendered on ssr correctly
+const heroEnabled = false;
+
 const props = defineProps({
   headerData: Object,
   footerData: Object,
