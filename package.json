@@ -1,9 +1,9 @@
 {
-  "name": "gk-shared-components",
+  "name": "shared-components",
   "private": false,
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Shared Vue.js components for use on the product page",
-  "module": "dist/gk-shared-components.js",
+  "module": "dist/shared-components.js",
   "files": [
     "dist"
   ],
