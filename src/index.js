@@ -175,7 +175,7 @@ import VHeader from './components/v-header.vue';
 // import VideoInner from './components/video-inner.js';
 import VImg from './components/v-img.vue';
 import World from './components/icons/world.vue';
-// import Wrapper from './components/wrapper.js';
+import Wrapper from './components/wrapper.vue';
 // import WrapperSlotItems from './components/wrapper-slot-items.js';
 // import XMark from './components/icons/x-mark.js';
 
@@ -331,7 +331,7 @@ export {
   // VideoInner,
   VImg,
   World,
-  // Wrapper,
+  Wrapper,
   // WrapperSlotItems,
   // XMark,
 };
@@ -489,7 +489,7 @@ export default {
     // app.component('VideoInner', VideoInner);
     app.component('VImg', VImg);
     app.component('World', World);
-    // app.component('Wrapper', Wrapper);
+    app.component('Wrapper', Wrapper);
     // app.component('WrapperSlotItems', WrapperSlotItems);
     // app.component('XMark', XMark);
   },
