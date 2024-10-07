@@ -1,4 +1,4 @@
-import HeaderComponent from '../../components/v-header';
+import HeaderComponent from '../../components/v-header.vue';
 import HeaderData from '../../../.storybook/data/header';
 
 export default {

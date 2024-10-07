@@ -28,6 +28,11 @@ $header-border-size: 1px;
 .header {
   --header-vertical-spacing: #{spacing(5)};
 
+  &.is-loading {
+    opacity: 0;
+    pointer-events: none;
+  }
+
   &.vue-component {
     position: fixed;
     display: flex;

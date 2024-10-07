@@ -217,6 +217,7 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.activeNavigation.length > 0 ? '' : State.LOADING,
         'vue-component',
       ];
     },
@@ -249,11 +250,6 @@ export default {
     clonedNavigation() {
       return JSON.parse(JSON.stringify(this.navigation));
     },
-    activeNavigation() {
-      this.setActiveLinks();
-
-      return this.clonedNavigation;
-    },
     isLight() {
       return Tools.isTrue(this.light) === true;
     },
@@ -268,6 +264,8 @@ export default {
     },
   },
   mounted() {
+    this.setActiveNavigation();
+
     this.bindEvents();
 
     this.setCtaClasses();
@@ -282,6 +280,11 @@ export default {
     }
   },
   methods: {
+    setActiveNavigation() {
+      this.setActiveLinks();
+
+      this.activeNavigation = this.clonedNavigation;
+    },
     setLinkWidth() {
       const links = this.$refs['link'];
 
@@ -502,9 +505,9 @@ export default {
     getCurrentPath() {
       let path = '/';
 
-      if (process.server) {
+      if (typeof process !== 'undefined' && process.server) {
         path = this.$route.fullPath;
-      } else if (process.client) {
+      } else {
         path = window.location.pathname;
       }
 
@@ -711,6 +714,7 @@ export default {
       isScrolled: false,
       ctaClassList: null,
       maxLinkListsInFlyout: 3,
+      activeNavigation: {},
     };
   },
 };
