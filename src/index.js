@@ -26,7 +26,7 @@ import './assets/scss/themes/_gk.scss';
 
 // import Accordion from './components/accordion.js';
 // import AdBlockInfo from './components/ad-block-info.js';
-// import Arrow from './components/icons/arrow.js';
+import Arrow from './components/icons/arrow.vue';
 // import ArrowCurl from './components/icons/arrow-curl.js';
 // import ArrowExternal from './components/icons/arrow-external.js';
 // import ArrowNarrow from './components/icons/arrow-narrow.js';
@@ -182,7 +182,7 @@ import Wrapper from './components/wrapper.vue';
 export {
   // Accordion,
   // AdBlockInfo,
-  // Arrow,
+  Arrow,
   // ArrowCurl,
   // ArrowExternal,
   // ArrowNarrow,
@@ -340,7 +340,7 @@ export default {
   install(app) {
     // app.component('Accordion', Accordion);
     // app.component('AdBlockInfo', AdBlockInfo);
-    // app.component('Arrow', Arrow);
+    app.component('Arrow', Arrow);
     // app.component('ArrowCurl', ArrowCurl);
     // app.component('ArrowExternal', ArrowExternal);
     // app.component('ArrowNarrow', ArrowNarrow);

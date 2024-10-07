@@ -53,7 +53,12 @@
           <span v-if="overline" class="text-image__overline d-inline-block mb-2 font-size-2">
             {{ overline }}
           </span>
-          <headline v-if="headline" :level="level" :text="headline" :classes="textImageHeadlineClassesComputed" />
+          <headline
+            v-if="headlineText"
+            :level="level"
+            :text="headlineText"
+            :classes="textImageHeadlineClassesComputed"
+          />
           <span v-if="subline" class="richtext">{{ subline }}</span>
           <div v-if="subline" class="text-image__img text-image__img--subline mb-5 mt-5">
             <v-img
@@ -101,7 +106,7 @@ export default {
     lottie: Object,
     float: Boolean,
     overline: String,
-    headline: String,
+    headlineText: String,
     subline: String,
     left: Boolean,
     alt: String,

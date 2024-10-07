@@ -1,4 +1,4 @@
-import TextImageComponent from '../../components/text-image';
+import TextImageComponent from '../../components/text-image.vue';
 import lottie1 from '../data/lottie1.json';
 
 export default {
@@ -10,7 +10,7 @@ export const Right = {
   args: {
     image: 'svg/icons/icon-products.svg',
     alt: 'Consulting Services',
-    headline: 'Consulting Services',
+    headlineText: 'Consulting Services',
     offset: true,
     list: [
       {
@@ -38,7 +38,7 @@ export const WithoutAnimation = {
     noAnimation: true,
     image: 'svg/icons/icon-consulting-services.svg',
     alt: 'Consulting Services',
-    headline: 'Consulting Services',
+    headlineText: 'Consulting Services',
     offset: true,
     list: [
       {
@@ -81,7 +81,7 @@ export const JobApplication = {
       apiKey: import.meta.env.STORYBOOK_PERSONIO_API_KEY,
       modalId: 'bewerbung1',
       form: {
-        headline: 'Bewerbungsformular (m/w/d)',
+        headlineText: 'Bewerbungsformular (m/w/d)',
         cta: {
           skin: 'primary',
           width: 'w-100 w-lg-30',
@@ -171,12 +171,12 @@ export const JobApplication = {
           width: 'w-100 w-lg-30',
           text: 'Schließen',
         },
-        headline: {
+        headlineText: {
           text: 'Vielen Dank',
         },
         subline:
           'Inhaltlich: Deine Bewerbung ist bei uns eingegangen. Super, wir freuen uns.  Eine Bestätigunsmail solltest du in deinem Postfach von dir angegebne Adresse finden.',
-        subheadline: {
+        subheadlineText: {
           text: 'So geht es nun weiter',
         },
         text: 'Text sollte beinhalten dass die Bewerbungsunterlagen sorgfältig geprüft werden und dass der Bewerber in der Regel innerhalb einer Woche Feedback erwarten kann',
@@ -192,7 +192,7 @@ export const LeftFloating = {
     image: 'svg/products/protection-shield.svg',
     imagePreset: 'textImageFloatingSmallSquare',
     imageClasses: 'center',
-    headline: 'Why authenticate with certificates to access the network?',
+    headlineText: 'Why authenticate with certificates to access the network?',
     level: 'h2',
     spacing: 'space-bottom-2 space-bottom-lg-3',
     left: true,
@@ -214,7 +214,7 @@ export const WithBadge = {
     image: 'svg/products/protection-shield.svg',
     imagePreset: 'textImageFloatingSmallSquare',
     imageClasses: 'center',
-    headline: 'Why authenticate with certificates to access the network?',
+    headlineText: 'Why authenticate with certificates to access the network?',
     level: 'h2',
     left: true,
     float: true,
@@ -229,7 +229,7 @@ export const LeftFloatingBg = {
     alt: 'Calling with teams',
     cloudinary: true,
     bgColor: '#f5f5f5',
-    headline: 'Workplace Ninja Virtual Edition',
+    headlineText: 'Workplace Ninja Virtual Edition',
     level: 'h2',
     left: true,
     float: true,
@@ -250,7 +250,7 @@ export const WithAnimation = {
   args: {
     lottie: lottie1,
     alt: 'Consulting Services',
-    headline: 'Consulting Services',
+    headlineText: 'Consulting Services',
     offset: true,
     list: [
       {

@@ -20,10 +20,10 @@
           <div :class="['product-blocks__block', { 'text-center': item.copy === '' }, 'pl-lg-3 pr-lg-8']">
             <div class="product-blocks__content">
               <figure :class="['product-blocks__img', { 'mx-auto': item.copy === '' }, 'mb-4']">
-                <!-- <v-img :img="item.image" :cloudinary="item.cloudinary" :alt="item.alt" /> -->
+                <v-img :img="item.image" :cloudinary="item.cloudinary" :alt="item.alt" v-if="item.image" />
               </figure>
-              <h3>{{ item.headline }}</h3>
-              <p v-html="item.copy"></p>
+              <h3 v-if="item - headline">{{ item.headline }}</h3>
+              <p v-html="item.copy" />
             </div>
             <div class="product-blocks__buttons">
               <cta-list v-if="item.list" :list="item.list" />
@@ -49,7 +49,6 @@ import UtilityAnimation from '../assets/js/utility-animation.js';
 export default {
   props: {
     productBlocks: Object,
-    cta: Object,
     headline: String,
   },
   computed: {

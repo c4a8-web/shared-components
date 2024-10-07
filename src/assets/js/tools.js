@@ -313,6 +313,8 @@ class Tools {
   }
 
   static isTestingStorybook() {
+    if (typeof document === 'undefined') return false;
+
     return document.location.pathname.indexOf(Tools.storybookPath) !== -1;
   }
 
