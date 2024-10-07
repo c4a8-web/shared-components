@@ -2830,12 +2830,12 @@ function ze(s, t, e, a, n, i) {
     ]),
     i.shape ? (r(), w(E, {
       key: 2,
-      class: "hero__background-shape-wrapper",
+      classes: "hero__background-shape-wrapper",
       hideContainer: !i.showShapeContainer
     }, {
       default: et(() => [
         S(E, {
-          class: "hero__background-shape-content",
+          classes: "hero__background-shape-content",
           hideContainer: !i.showShapeContainer,
           hideContainerClass: !0
         }, {

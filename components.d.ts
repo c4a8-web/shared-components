@@ -64,7 +64,7 @@ declare module 'vue' {
     Hand: typeof import('./src/components/icons/hand.js')['default']
     Headline: typeof import('./src/components/headline.js')['default']
     HeadlineRow: typeof import('./src/components/headline-row.js')['default']
-    Hero: typeof import('./src/components/hero.js')['default']
+    Hero: typeof import('./src/components/hero.vue')['default']
     HeroTextImage: typeof import('./src/components/hero-text-image.js')['default']
     Icon: typeof import('./src/components/icon.js')['default']
     IconBlocks: typeof import('./src/components/icon-blocks.js')['default']
