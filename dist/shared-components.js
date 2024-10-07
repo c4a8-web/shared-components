@@ -1,7 +1,7 @@
-var Lt = Object.defineProperty;
-var kt = (s, t, e) => t in s ? Lt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
-var b = (s, t, e) => kt(s, typeof t != "symbol" ? t + "" : t, e);
-import { resolveComponent as mt, openBlock as r, createElementBlock as l, normalizeClass as _, normalizeStyle as N, createElementVNode as o, Fragment as L, renderList as A, createBlock as w, createCommentVNode as m, createVNode as S, toDisplayString as y, createTextVNode as z, resolveDynamicComponent as lt, withCtx as et, renderSlot as Et, mergeProps as H, createStaticVNode as yt } from "vue";
+var kt = Object.defineProperty;
+var Et = (s, t, e) => t in s ? kt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
+var b = (s, t, e) => Et(s, typeof t != "symbol" ? t + "" : t, e);
+import { resolveComponent as pt, openBlock as r, createElementBlock as l, normalizeClass as _, normalizeStyle as N, createElementVNode as o, Fragment as L, renderList as O, createBlock as w, createCommentVNode as m, createVNode as S, toDisplayString as v, createTextVNode as z, resolveDynamicComponent as lt, withCtx as et, renderSlot as dt, mergeProps as H, createStaticVNode as St } from "vue";
 const x = class x {
   static isInViewportPercent(t, e) {
     const a = t.getBoundingClientRect(), n = window.innerHeight || document.documentElement.clientHeight, i = window.innerWidth || document.documentElement.clientWidth, c = { x: a.x, y: a.y, width: a.width, height: a.height }, d = { x: 0, y: 0, width: i, height: n }, g = c.width * c.height, p = x.intersection(c, d);
@@ -111,7 +111,7 @@ const x = class x {
     return "u" + [t.substring(e, e + 8), t.substring(a, a + 4)].join("-").replaceAll(".", "9");
   }
   static getBreakpoint() {
-    return getComputedStyle(document.body).getPropertyValue("--breakpoint").trim();
+    return typeof getComputedStyle != "function" ? "" : getComputedStyle(document.body).getPropertyValue("--breakpoint").trim();
   }
   static isBelowBreakpoint(t) {
     let e = ["xs", "sm", "md", "lg", "xl", "xxl"];
@@ -182,8 +182,9 @@ const x = class x {
       }
   }
   static getElementBgColor(t) {
+    if (typeof getComputedStyle != "function") return "";
     if (!t || t.nodeType !== Node.ELEMENT_NODE) return;
-    const e = window.getComputedStyle(t).backgroundColor;
+    const e = getComputedStyle(t).backgroundColor;
     return e === "rgba(0, 0, 0, 0)" ? null : e;
   }
   static isValidTimeFormat(t) {
@@ -244,6 +245,7 @@ const x = class x {
     return parseInt(t.substring(5, 7), 16);
   }
   static hexToRgb(t) {
+    if (typeof getComputedStyle != "function") return "";
     let e;
     if (t.startsWith("--") || t.startsWith("var(")) {
       const d = t.replace(/--|var\(/, "").replace(/\)$/, ""), g = getComputedStyle(document.documentElement), p = 4;
@@ -303,12 +305,12 @@ const f = {
   STICKY: "is-sticky",
   IN_TRANSITION: "in-transition",
   IS_STARTING: "is-starting"
-}, O = (s, t) => {
+}, A = (s, t) => {
   const e = s.__vccOpts || s;
   for (const [a, n] of t)
     e[a] = n;
   return e;
-}, At = {
+}, Ot = {
   tagName: "carousel-item",
   template: `
     <a :href="item.url" :target="item.target" class="carousel__item">
@@ -322,10 +324,10 @@ const f = {
   props: {
     item: Object
   }
-}, Ot = {
+}, At = {
   tagName: "carousel",
   components: {
-    "carousel-item": At
+    "carousel-item": Ot
   },
   data() {
     return {
@@ -372,7 +374,7 @@ const f = {
   ref: "row-section"
 }, Nt = { class: "carousel__row-section" };
 function Dt(s, t, e, a, n, i) {
-  const c = mt("carousel-item");
+  const c = pt("carousel-item");
   return r(), l("div", {
     class: _(i.classList),
     ref: "carousel",
@@ -381,13 +383,13 @@ function Dt(s, t, e, a, n, i) {
     o("div", It, [
       o("div", Tt, [
         o("section", Pt, [
-          (r(!0), l(L, null, A(i.jsonItems, (d, g) => (r(), w(c, {
+          (r(!0), l(L, null, O(i.jsonItems, (d, g) => (r(), w(c, {
             item: d,
             key: g
           }, null, 8, ["item"]))), 128))
         ], 512),
         o("section", Nt, [
-          (r(!0), l(L, null, A(i.jsonItems, (d, g) => (r(), w(c, {
+          (r(!0), l(L, null, O(i.jsonItems, (d, g) => (r(), w(c, {
             item: d,
             key: g
           }, null, 8, ["item"]))), 128))
@@ -396,7 +398,7 @@ function Dt(s, t, e, a, n, i) {
     ])
   ], 6);
 }
-const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
+const Vt = /* @__PURE__ */ A(At, [["render", Dt]]), Ct = {
   tagName: "site-icons",
   computed: {
     svgTemplate() {
@@ -478,7 +480,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
   density: !1,
   flags: !1,
   transformation: !1
-}, Ct = {
+}, xt = {
   height: "h",
   crop: "c",
   aspect_ratio: "ar",
@@ -613,7 +615,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
       loading: "auto"
     }
   }
-}, xt = {
+}, Lt = {
   heroStudy: {
     srcSets: [
       {
@@ -844,7 +846,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
       return ["img__picture-wrapper", (s = this.imgSrcSetValue) == null ? void 0 : s.ratioClasses];
     },
     imgSrcSetValue() {
-      return xt[this.imgSrcSets];
+      return Lt[this.imgSrcSets];
     },
     imgSrcSetSources() {
       var s, t;
@@ -919,7 +921,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
     },
     getTransformationString(s) {
       const t = [];
-      for (const [a, n] of Object.entries(Ct))
+      for (const [a, n] of Object.entries(xt))
         s[a] && t.push(`${n}_${s[a]}`);
       return t.length > 0 ? t.join(",") : "";
     },
@@ -1144,7 +1146,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
   }
 };
 b(B, "rootSelector", ""), b(B, "instances", []), b(B, "namespacePrefix", "baseComponents");
-let dt = B;
+let ut = B;
 class st {
 }
 b(st, "rootSelector", ".form-attachments"), b(st, "base64Selector", ".form-attachments__base64");
@@ -1165,7 +1167,7 @@ const D = {
   DROPDOWN_OPENED: "dropdown-opened",
   CARD_TAG_CLICKED: "card-tag-clicked",
   ENDED: "ended"
-}, R = class R extends dt {
+}, R = class R extends ut {
   constructor(t, e) {
     var a;
     super(t, e), t && (this.root = t, this.formSelector = ".form__form", this.gotchaSelector = ".form__super-field", this.attachmentSelector = 'input[type="file"][required]', this.subjectSelector = 'input[name="_subject"]', this.companySelector = 'input[id="company"]', this.form = t.querySelector(this.formSelector), this.subject = t.querySelector(this.subjectSelector), this.company = t.querySelector(this.companySelector), this.groups = {}, this.minLengthOther = 1, this.options = e, this.addCustomValidationRules(), this.updateGotcha(), this.addValidation(), this.form && this.subject && this.hasUrlParameter() && this.prefillFormValues(), (a = this.options) != null && a.noEvents ? this.isCompanyForm() && this.addSubjectListener() : this.bindEvents());
@@ -1719,7 +1721,7 @@ const Bt = {
 }, zt = {
   key: 0,
   class: "contact__person-quote"
-}, Ft = { class: "contact__icon" }, $t = { class: "contact__image-quote" }, Ut = { class: "contact__image-spacer" }, Gt = { class: "contact__quote font-size-3 middle font-weight-light" }, Wt = { class: "d-flex flex-column" }, qt = { class: "font-weight-light" }, Jt = { class: "contact__image" }, Zt = { class: "contact__name font-size-4 my-6 mx-5" }, Xt = { class: "contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap" }, Kt = ["href"], Yt = { class: "streamline-sm mr-4" }, Qt = { class: "contact__detail-text" }, te = {
+}, Ft = { class: "contact__icon" }, $t = { class: "contact__image-quote" }, Ut = { class: "contact__image-spacer" }, Gt = { class: "contact__quote font-size-3 middle font-weight-light" }, Wt = { class: "d-flex flex-column" }, Jt = { class: "font-weight-light" }, qt = { class: "contact__image" }, Zt = { class: "contact__name font-size-4 my-6 mx-5" }, Xt = { class: "contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap" }, Kt = ["href"], Yt = { class: "streamline-sm mr-4" }, Qt = { class: "contact__detail-text" }, te = {
   key: 0,
   class: "contact__notes"
 }, ee = { class: "contact__notes-spacing streamline-sm mr-4" }, se = {
@@ -1736,7 +1738,7 @@ const Bt = {
   class: "contact__notes"
 }, he = { class: "contact__notes-spacing streamline-sm mr-4" };
 function de(s, t, e, a, n, i) {
-  const c = Rt, d = ot, g = Bt, p = rt, h = nt, k = at, C = bt;
+  const c = Rt, d = ot, g = Bt, p = rt, h = nt, k = at, C = Ct;
   return r(), l(L, null, [
     e.contact.svgShape ? (r(), w(c, {
       key: 0,
@@ -1765,7 +1767,7 @@ function de(s, t, e, a, n, i) {
               classes: e.contact.headlineClasses,
               level: e.level
             }, null, 8, ["text", "classes", "level"]),
-            o("span", Ht, y(e.contact.subline), 1),
+            o("span", Ht, v(e.contact.subline), 1),
             e.contact.form ? (r(), w(g, {
               key: 0,
               form: e.contact.form,
@@ -1800,13 +1802,13 @@ function de(s, t, e, a, n, i) {
                     }, null, 8, ["img", "cloudinary", "alt"])
                   ])
                 ]),
-                o("div", Gt, y(e.contact.person.quote), 1),
+                o("div", Gt, v(e.contact.person.quote), 1),
                 o("div", Wt, [
-                  o("span", null, y(e.contact.person.quotee), 1),
-                  o("span", qt, y(e.contact.person.quoteeTitle), 1)
+                  o("span", null, v(e.contact.person.quotee), 1),
+                  o("span", Jt, v(e.contact.person.quoteeTitle), 1)
                 ])
               ])) : (r(), l(L, { key: 1 }, [
-                o("div", Jt, [
+                o("div", qt, [
                   S(k, {
                     img: e.contact.person.image,
                     cloudinary: e.contact.person.cloudinary,
@@ -1815,9 +1817,9 @@ function de(s, t, e, a, n, i) {
                     lazy: ""
                   }, null, 8, ["img", "cloudinary", "alt"])
                 ]),
-                o("div", Zt, y(e.contact.person.name), 1),
+                o("div", Zt, v(e.contact.person.name), 1),
                 o("div", Xt, [
-                  (r(!0), l(L, null, A(e.contact.person.details, (E, M) => (r(), l("div", {
+                  (r(!0), l(L, null, O(e.contact.person.details, (E, M) => (r(), l("div", {
                     key: M,
                     class: _(["contact__detail w-100 px-5 d-flex align-items-center", { "mb-3 mb-lg-4": !M === e.contact.person.details.length - 1 }])
                   }, [
@@ -1834,7 +1836,7 @@ function de(s, t, e, a, n, i) {
                           icon: "site/phone"
                         }))
                       ]),
-                      o("span", Qt, y(E.text), 1)
+                      o("span", Qt, v(E.text), 1)
                     ], 8, Kt),
                     E.notes ? (r(), l("div", te, [
                       o("span", ee, [
@@ -1846,7 +1848,7 @@ function de(s, t, e, a, n, i) {
                           icon: "site/phone"
                         }))
                       ]),
-                      z(" " + y(E.notes), 1)
+                      z(" " + v(E.notes), 1)
                     ])) : m("", !0)
                   ], 2))), 128)),
                   e.contact.person.number ? (r(), l("div", se, [
@@ -1855,7 +1857,7 @@ function de(s, t, e, a, n, i) {
                       class: "custom"
                     }, [
                       S(C, { icon: "site/phone" }),
-                      z(" " + y(e.contact.person.number), 1)
+                      z(" " + v(e.contact.person.number), 1)
                     ], 8, ie)
                   ])) : m("", !0),
                   e.contact.person.mail ? (r(), l("div", ae, [
@@ -1864,7 +1866,7 @@ function de(s, t, e, a, n, i) {
                       class: "custom"
                     }, [
                       S(C, { icon: "site/mail" }),
-                      z(" " + y(e.contact.person.mail), 1)
+                      z(" " + v(e.contact.person.mail), 1)
                     ], 8, ne)
                   ])) : m("", !0)
                 ])
@@ -1876,7 +1878,7 @@ function de(s, t, e, a, n, i) {
                 level: "h4",
                 classes: "contact__detail-headline"
               }, null, 8, ["text"]),
-              (r(!0), l(L, null, A(e.contact.person.details, (E, M) => (r(), l("div", {
+              (r(!0), l(L, null, O(e.contact.person.details, (E, M) => (r(), l("div", {
                 key: M,
                 class: _(["contact__detail font-size-2 w-100 d-flex align-items-center", { "mb-3 mb-lg-4": !M === e.contact.person.details.length - 1 }])
               }, [
@@ -1893,7 +1895,7 @@ function de(s, t, e, a, n, i) {
                       icon: "site/phone"
                     }))
                   ]),
-                  z(" " + y(E.text), 1)
+                  z(" " + v(E.text), 1)
                 ], 8, oe),
                 E.notes ? (r(), l("div", ce, [
                   o("span", he, [
@@ -1905,7 +1907,7 @@ function de(s, t, e, a, n, i) {
                       icon: "site/phone"
                     }))
                   ]),
-                  z(" " + y(E.notes), 1)
+                  z(" " + v(E.notes), 1)
                 ])) : m("", !0)
               ], 2))), 128))
             ])) : m("", !0)
@@ -1915,7 +1917,7 @@ function de(s, t, e, a, n, i) {
     ], 6)
   ], 64);
 }
-const ue = /* @__PURE__ */ O(Mt, [["render", de]]), ge = {
+const ue = /* @__PURE__ */ A(Mt, [["render", de]]), ge = {
   tagName: "cta",
   computed: {
     tag() {
@@ -2027,7 +2029,7 @@ function pe(s, t, e, a, n, i) {
     "data-trigger": e.trigger ? e.trigger : null
   }, {
     default: et(() => [
-      o("span", me, y(e.text), 1),
+      o("span", me, v(e.text), 1),
       i.hasIcon ? (r(), w(c, {
         key: 0,
         icon: i.iconName,
@@ -2037,7 +2039,7 @@ function pe(s, t, e, a, n, i) {
     _: 1
   }, 8, ["class", "data-text", "href", "data-analytics", "type", "target", "data-alternative-href", "data-trigger"]);
 }
-const fe = /* @__PURE__ */ O(ge, [["render", pe]]), _e = {
+const fe = /* @__PURE__ */ A(ge, [["render", pe]]), _e = {
   tagName: "headline",
   computed: {
     tag() {
@@ -2052,7 +2054,7 @@ const fe = /* @__PURE__ */ O(ge, [["render", pe]]), _e = {
   },
   props: { text: String, level: String, classes: String, utilityAnimationStep: Number }
 };
-function ve(s, t, e, a, n, i) {
+function ye(s, t, e, a, n, i) {
   return e.text ? (r(), w(lt(i.tag), {
     key: 0,
     class: _(i.classList),
@@ -2064,12 +2066,12 @@ function ve(s, t, e, a, n, i) {
     "data-utility-animation-step": i.dataUtilityAnimationStep
   }, {
     default: et(() => [
-      Et(s.$slots, "default")
+      dt(s.$slots, "default")
     ]),
     _: 3
   }, 8, ["class", "data-utility-animation-step"]));
 }
-const ye = /* @__PURE__ */ O(_e, [["render", ve]]), Se = {
+const ve = /* @__PURE__ */ A(_e, [["render", ye]]), Se = {
   tagName: "headline-row",
   props: {
     centered: Boolean,
@@ -2124,7 +2126,7 @@ function be(s, t, e, a, n, i) {
     ])
   ], 2);
 }
-const Ce = /* @__PURE__ */ O(Se, [["render", be]]), xe = {
+const Ce = /* @__PURE__ */ A(Se, [["render", be]]), xe = {
   tagName: "wrapper",
   computed: {
     classList() {
@@ -2377,7 +2379,7 @@ const Ce = /* @__PURE__ */ O(Se, [["render", be]]), xe = {
     </div>
   `
 };
-class ut {
+class gt {
   constructor(t) {
     this.root = t, this.setOffsets(), this.setMarginTop(), this.firstChild = document.querySelector("main > *:first-child"), this.isUpdating = !1, this.maxPercentage = 100, this.lastPercentage = !1, this.header = document.querySelector("header"), this.headerSpacer = document.querySelector(".header__spacer"), this.main = document.querySelector("main"), this.setup(), this.bindEvents(), this.setStickyPosition();
   }
@@ -2492,7 +2494,7 @@ class ut {
     return this.rootSelector.substring(1);
   }
 }
-b(ut, "rootSelector", ".is-sticky-scroller"), b(ut, "instances", []);
+b(gt, "rootSelector", ".is-sticky-scroller"), b(gt, "instances", []);
 const Ee = {
   tagName: "hero-pattern",
   template: `
@@ -2534,20 +2536,28 @@ const Ee = {
       </defs>
     </svg>
   `
-}, Ae = {
+}, Oe = {
   tagName: "hero",
   components: {
     "hero-pattern": Ee
   },
   data() {
     return {
-      introHeight: null
+      introHeight: null,
+      style: null
     };
   },
   mounted() {
-    this.setIntroStyle();
+    this.setIntroStyle(), this.setStyle();
   },
   methods: {
+    setStyle() {
+      this.style = [
+        this.bgColor ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${u.hexToRgb(this.bgColor)}` : "",
+        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : "",
+        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : ""
+      ];
+    },
     setIntroStyle() {
       if (!this.isCentered) return;
       const s = this.$refs.intro;
@@ -2573,18 +2583,11 @@ const Ee = {
         this.bgWidth ? "hero--bg-width" : "",
         this.isCentered ? "hero--centered" : "",
         this.shapeInContent ? "hero--shape-in-content" : "",
-        this.hasStickyScroller ? ut.getRootClass() : ""
+        this.hasStickyScroller ? gt.getRootClass() : ""
       ];
     },
     contentClassList() {
       return ["hero__content", this.spacing ? this.spacing : this.animation ? "" : "py-10 py-lg-11"];
-    },
-    style() {
-      return [
-        this.bgColor ? `--hero-background-color: ${this.bgColor}; --hero-background-color-rgb: ${u.hexToRgb(this.bgColor)}` : "",
-        this.bgWidth ? `--hero-background-width: ${this.bgWidth}%;` : "",
-        this.overlineBgColor ? `--hero-overline-background-color: ${this.overlineBgColor};` : ""
-      ];
     },
     cta() {
       return this.heroJson ? this.heroJson.cta : null;
@@ -2717,7 +2720,7 @@ const Ee = {
     hero: Object,
     lottieData: String
   }
-}, Oe = { class: "hero__container container" }, Ie = {
+}, Ae = { class: "hero__container container" }, Ie = {
   key: 0,
   class: "hero__back-row row"
 }, Te = { class: "hero__back-col col" }, Pe = { class: "hero__back back" }, Ne = {
@@ -2735,10 +2738,10 @@ const Ee = {
   class: "hero__badges"
 }, He = { class: "hero__badge-container" }, je = { class: "hero__background-shape" };
 function ze(s, t, e, a, n, i) {
-  const c = mt("hero-pattern"), d = at, g = nt, p = ke, h = ot, k = rt, C = Le, E = xe;
+  const c = pt("hero-pattern"), d = at, g = nt, p = ke, h = ot, k = rt, C = Le, E = xe;
   return r(), l("div", {
     class: _(i.classList),
-    style: N(i.style)
+    style: N(n.style)
   }, [
     i.pattern ? (r(), w(c, {
       key: 0,
@@ -2755,7 +2758,7 @@ function ze(s, t, e, a, n, i) {
       ])),
       _: 1
     }, 8, ["cloudinary", "img"])) : m("", !0),
-    o("div", Oe, [
+    o("div", Ae, [
       o("main", {
         class: _(i.contentClassList)
       }, [
@@ -2778,7 +2781,7 @@ function ze(s, t, e, a, n, i) {
         }), null, 16, ["onEnded"])) : m("", !0),
         i.overline || i.headlineText || i.subline ? (r(), l("div", Ne, [
           o("div", De, [
-            i.overline ? (r(), l("span", Ve, y(i.overline), 1)) : m("", !0),
+            i.overline ? (r(), l("span", Ve, v(i.overline), 1)) : m("", !0),
             i.headlineText ? (r(), w(h, {
               key: 1,
               class: _(i.headlineClassList),
@@ -2807,7 +2810,7 @@ function ze(s, t, e, a, n, i) {
               list: i.ctaList
             }, null, 8, ["list"])) : m("", !0),
             i.badges ? (r(), l("div", Me, [
-              (r(!0), l(L, null, A(i.badges, (M) => (r(), l("div", He, [
+              (r(!0), l(L, null, O(i.badges, (M) => (r(), l("div", He, [
                 S(d, H({
                   cloudinary: !0,
                   ref_for: !0
@@ -2856,7 +2859,7 @@ function ze(s, t, e, a, n, i) {
     }, 8, ["hideContainer"])) : m("", !0)
   ], 6);
 }
-const Fe = /* @__PURE__ */ O(Ae, [["render", ze]]), $e = {
+const Fe = /* @__PURE__ */ A(Oe, [["render", ze]]), $e = {
   tagName: "icon",
   data() {
     return u.validateVueProps(this);
@@ -2969,7 +2972,7 @@ function Ue(s, t, e, a, n, i) {
     }), null, 16, ["color", "closed", "step"]))
   ], 6);
 }
-const Ge = /* @__PURE__ */ O($e, [["render", Ue]]), T = class T {
+const Ge = /* @__PURE__ */ A($e, [["render", Ue]]), T = class T {
   constructor(t) {
     this.root = t, this.count = 1, this.selector = this.getCurrentSelector(), this.currentElements = this.root.querySelectorAll(this.selector), this.root.matches(this.selector) && (this.currentElements = this.mergeNodes(this.root, this.currentElements)), this.resetAnimation(), this.initialize();
   }
@@ -3102,7 +3105,7 @@ const We = {
     },
     copyClasses: String
   }
-}, qe = { class: "container space-lg-2" }, Je = {
+}, Je = { class: "container space-lg-2" }, qe = {
   key: 0,
   class: "row mb-9 mt-9"
 }, Ze = { class: "row" }, Xe = { class: "col" }, Ke = ["innerHTML"];
@@ -3112,8 +3115,8 @@ function Ye(s, t, e, a, n, i) {
     class: _(i.classList),
     ref: "root"
   }, [
-    o("div", qe, [
-      e.headline ? (r(), l("div", Je, [
+    o("div", Je, [
+      e.headline ? (r(), l("div", qe, [
         o("div", {
           class: _(["col", e.headlineClasses, "fade-in-bottom"]),
           "data-utility-animation-step": "1"
@@ -3133,7 +3136,7 @@ function Ye(s, t, e, a, n, i) {
     ])
   ], 2);
 }
-const Qe = /* @__PURE__ */ O(We, [["render", Ye]]), ts = {
+const Qe = /* @__PURE__ */ A(We, [["render", Ye]]), ts = {
   tagName: "lottie",
   // components: {
   //   Vue3Lottie,
@@ -3224,7 +3227,7 @@ function es(s, t, e, a, n, i) {
     class: _(i.classList)
   }, null, 2);
 }
-const ss = /* @__PURE__ */ O(ts, [["render", es]]), pt = {
+const ss = /* @__PURE__ */ A(ts, [["render", es]]), ft = {
   tagName: "cta",
   computed: {
     tag() {
@@ -3400,7 +3403,7 @@ const ss = /* @__PURE__ */ O(ts, [["render", es]]), pt = {
   }
 }, ns = { class: "container space-2" }, rs = { class: "row" }, os = { class: "product-blocks__content" }, ls = ["innerHTML"], cs = { class: "product-blocks__buttons" };
 function hs(s, t, e, a, n, i) {
-  const c = is, d = rt, g = pt;
+  const c = is, d = rt, g = ft;
   return r(), l("div", {
     class: "product-blocks utility-animation container-fluid",
     style: N(i.backgroundColorStyle),
@@ -3419,7 +3422,7 @@ function hs(s, t, e, a, n, i) {
         }, null, 8, ["text"])
       ], 4)) : m("", !0),
       o("div", rs, [
-        (r(!0), l(L, null, A(e.productBlocks.items, (p, h) => (r(), l("div", {
+        (r(!0), l(L, null, O(e.productBlocks.items, (p, h) => (r(), l("div", {
           key: h,
           class: "product-blocks__item col-md-6 mb-5 mb-md-0 space-1 fade-in-bottom",
           "data-utility-animation-step": "1",
@@ -3432,7 +3435,7 @@ function hs(s, t, e, a, n, i) {
               o("figure", {
                 class: _(["product-blocks__img", { "mx-auto": p.copy === "" }, "mb-4"])
               }, null, 2),
-              o("h3", null, y(p.headline), 1),
+              o("h3", null, v(p.headline), 1),
               o("p", {
                 innerHTML: p.copy
               }, null, 8, ls)
@@ -3456,7 +3459,7 @@ function hs(s, t, e, a, n, i) {
     ])
   ], 4);
 }
-const ds = /* @__PURE__ */ O(as, [["render", hs]]), us = {
+const ds = /* @__PURE__ */ A(as, [["render", hs]]), us = {
   tagName: "site-icons",
   computed: {
     svgTemplate() {
@@ -3486,22 +3489,22 @@ const ds = /* @__PURE__ */ O(as, [["render", hs]]), us = {
 };
 function fs(s, t, e, a, n, i) {
   return e.icon === "site/mail" && e.noSpan === !0 ? (r(), l("svg", gs, [
-    o("title", null, y(e.icon), 1),
-    t[0] || (t[0] = yt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
+    o("title", null, v(e.icon), 1),
+    t[0] || (t[0] = St('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
   ])) : e.icon == "site/mail" ? (r(), l("span", {
     key: 1,
     class: _(i.classList)
   }, [
     (r(), l("svg", ms, [
-      o("title", null, y(e.icon), 1),
-      t[1] || (t[1] = yt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
+      o("title", null, v(e.icon), 1),
+      t[1] || (t[1] = St('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
     ]))
   ], 2)) : e.icon == "site/phone" ? (r(), l("span", {
     key: 2,
     class: _(i.classList)
   }, [
     (r(), l("svg", ps, [
-      o("title", null, y(e.icon), 1),
+      o("title", null, v(e.icon), 1),
       t[2] || (t[2] = o("g", {
         id: "phone",
         transform: "matrix(0.9848077 0.17364818 -0.17364818 0.9848077 5.730377 0)"
@@ -3515,7 +3518,7 @@ function fs(s, t, e, a, n, i) {
     ]))
   ], 2)) : m("", !0);
 }
-const _s = /* @__PURE__ */ O(us, [["render", fs]]), vs = {
+const _s = /* @__PURE__ */ A(us, [["render", fs]]), ys = {
   props: {
     tagName: "svg-shape",
     align: {
@@ -3578,7 +3581,7 @@ const _s = /* @__PURE__ */ O(us, [["render", fs]]), vs = {
       return this.svgShapeAlign !== "top" ? "transform: translateY(2px);" : "";
     }
   }
-}, ys = ["viewBox"], Ss = ["fill", "points"];
+}, vs = ["viewBox"], Ss = ["fill", "points"];
 function ws(s, t, e, a, n, i) {
   return r(), l("figure", {
     class: _("svgshape " + i.svgShapeClasses),
@@ -3595,10 +3598,10 @@ function ws(s, t, e, a, n, i) {
         fill: i.svgShapeColor,
         points: i.points
       }, null, 8, Ss)
-    ], 8, ys))
+    ], 8, vs))
   ], 6);
 }
-const bs = /* @__PURE__ */ O(vs, [["render", ws]]);
+const bs = /* @__PURE__ */ A(ys, [["render", ws]]);
 class Cs {
   constructor(t) {
     var a;
@@ -3720,7 +3723,7 @@ class Cs {
     return this.position && this.position[t] ? this.trimNewlines(this.position[t][`#${e}`]) : null;
   }
 }
-const J = {
+const q = {
   VALID: 200,
   CREATED: 201,
   NO_CONTENT: 204,
@@ -3882,7 +3885,7 @@ class xs {
     return e;
   }
   isValidResponseCode(t) {
-    return this.options.apiUrl ? t.status === J.VALID : t.status === J.VALID || t.status === J.CREATED || t.status === J.NO_CONTENT;
+    return this.options.apiUrl ? t.status === q.VALID : t.status === q.VALID || t.status === q.CREATED || t.status === q.NO_CONTENT;
   }
   hasValidResponseCodes(t) {
     return t.every((e) => this.isValidResponseCode(e));
@@ -4060,8 +4063,8 @@ const W = class W {
   }
   handleError(t) {
     if (!t) return console.error("handle generic error");
-    const e = typeof t == "string" ? t : t.message ? t.message : t, a = typeof t == "object" && t.statusCode ? t.statusCode : J.INTERNAL_SERVER_ERROR;
-    console.error("Modal Error", e), a === J.PAYLOAD_TOO_LARGE ? this.handlePayloadTooLarge(t) : this.root.classList.add(f.ERROR);
+    const e = typeof t == "string" ? t : t.message ? t.message : t, a = typeof t == "object" && t.statusCode ? t.statusCode : q.INTERNAL_SERVER_ERROR;
+    console.error("Modal Error", e), a === q.PAYLOAD_TOO_LARGE ? this.handlePayloadTooLarge(t) : this.root.classList.add(f.ERROR);
   }
   handlePayloadTooLarge(t) {
     document.dispatchEvent(new CustomEvent(D.FORM_ATTACHMENT_ERROR, { detail: t }));
@@ -4097,7 +4100,7 @@ const W = class W {
   }
 };
 b(W, "rootSelector", ".modal"), b(W, "instances", []);
-let gt = W;
+let mt = W;
 const ks = {
   tagName: "modal",
   computed: {
@@ -4199,7 +4202,7 @@ const ks = {
     },
     openModal() {
       setTimeout(() => {
-        gt.open(this.$refs.modal);
+        mt.open(this.$refs.modal);
       }, 70);
     }
   },
@@ -4340,7 +4343,7 @@ const ks = {
       </div>
     </div>
   `
-}, As = {
+}, Os = {
   tagName: "text-image",
   props: {
     spacing: { type: String, default: "space-top-2" },
@@ -4457,7 +4460,7 @@ const ks = {
       this.href && (document.location.href = this.href);
     }
   }
-}, Os = { class: "container" }, Is = {
+}, As = { class: "container" }, Is = {
   key: 1,
   class: "text-image__overline d-inline-block mb-2 font-size-2"
 }, Ts = {
@@ -4474,13 +4477,13 @@ const ks = {
   class: "text-image__cta col-lg-12"
 };
 function Bs(s, t, e, a, n, i) {
-  const c = at, d = Es, g = ot, p = rt, h = pt, k = ks;
+  const c = at, d = Es, g = ot, p = rt, h = ft, k = ks;
   return r(), l("div", {
     class: _(i.textImageClass),
     style: N(i.textImageStyle),
     ref: "root"
   }, [
-    o("div", Os, [
+    o("div", As, [
       o("div", {
         class: _(["row", { "flex-row-reverse": e.left }])
       }, [
@@ -4538,14 +4541,14 @@ function Bs(s, t, e, a, n, i) {
             uppercase: !e.badge.noUppercase,
             classes: "text-image__badge"
           }, null, 8, ["text", "icon", "uppercase"])) : m("", !0),
-          e.overline ? (r(), l("span", Is, y(e.overline), 1)) : m("", !0),
+          e.overline ? (r(), l("span", Is, v(e.overline), 1)) : m("", !0),
           e.headline ? (r(), w(g, {
             key: 2,
             level: e.level,
             text: e.headline,
             classes: i.textImageHeadlineClassesComputed
           }, null, 8, ["level", "text", "classes"])) : m("", !0),
-          e.subline ? (r(), l("span", Ts, y(e.subline), 1)) : m("", !0),
+          e.subline ? (r(), l("span", Ts, v(e.subline), 1)) : m("", !0),
           e.subline ? (r(), l("div", Ps, [
             S(c, {
               img: e.image,
@@ -4587,7 +4590,7 @@ function Bs(s, t, e, a, n, i) {
     }, null, 8, ["form", "success", "error", "clientName", "jobId", "apiUrl", "apiKey"])) : m("", !0)
   ], 6);
 }
-const Rs = /* @__PURE__ */ O(As, [["render", Bs]]), St = {
+const Rs = /* @__PURE__ */ A(Os, [["render", Bs]]), wt = {
   bgColor: "var(--color-midnight)",
   mail: "info@glueckkanja.com",
   offices: ["Germany", "Austria", "Spain", "Australia"],
@@ -4764,7 +4767,7 @@ const Rs = /* @__PURE__ */ O(As, [["render", Bs]]), St = {
       return [(s = this.dataValue) != null && s.bgColor ? `background-color: ${this.dataValue.bgColor};` : ""];
     },
     dataValue() {
-      return this.data ? { ...St, ...u.getJSON(this.data) } : { ...St };
+      return this.data ? { ...wt, ...u.getJSON(this.data) } : { ...wt };
     },
     links() {
       const s = this.lang.toLowerCase();
@@ -4807,10 +4810,10 @@ const Rs = /* @__PURE__ */ O(As, [["render", Bs]]), St = {
 }, js = { class: "container" }, zs = { class: "footer__content-row row" }, Fs = { class: "footer__content col-lg-12" }, $s = { class: "footer__address" }, Us = ["href", "target"], Gs = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, Ws = {
   key: 0,
   class: "nav-item"
-}, qs = {
+}, Js = {
   key: 1,
   class: "nav-item"
-}, Js = {
+}, qs = {
   key: 2,
   class: "nav-item"
 }, Zs = { class: "footer__postal-code" }, Xs = { class: "footer__city" }, Ks = { class: "footer__country" }, Ys = {
@@ -4825,12 +4828,12 @@ const Rs = /* @__PURE__ */ O(As, [["render", Bs]]), St = {
 }, gi = ["href", "target"], mi = { class: "footer__highlights" }, pi = { class: "footer__partners" }, fi = ["href", "target"], _i = {
   key: 0,
   class: "footer__vertical-line"
-}, vi = {
+}, yi = {
   key: 0,
   class: "footer__content-row row"
-}, yi = { class: "footer__content col-lg-12" }, Si = { class: "mt-3" }, wi = { class: "row align-items-md-center mb-3" }, bi = { class: "col-md-8 mb-4 mb-md-0" }, Ci = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, xi = { class: "nav-item mr-6 footer__links" }, Li = ["href"], ki = { class: "col-md-4 text-md-right" }, Ei = { class: "list-inline mb-0 footer__socials" }, Ai = { class: "list-inline-item" }, Oi = ["title", "href"], Ii = { class: "row pb-2" }, Ti = { class: "col" }, Pi = { class: "text-white small" };
+}, vi = { class: "footer__content col-lg-12" }, Si = { class: "mt-3" }, wi = { class: "row align-items-md-center mb-3" }, bi = { class: "col-md-8 mb-4 mb-md-0" }, Ci = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, xi = { class: "nav-item mr-6 footer__links" }, Li = ["href"], ki = { class: "col-md-4 text-md-right" }, Ei = { class: "list-inline mb-0 footer__socials" }, Oi = { class: "list-inline-item" }, Ai = ["title", "href"], Ii = { class: "row pb-2" }, Ti = { class: "col" }, Pi = { class: "text-white small" };
 function Ni(s, t, e, a, n, i) {
-  const c = at, d = bt, g = nt, p = mt("footer-slider");
+  const c = at, d = Ct, g = nt, p = pt("footer-slider");
   return r(), l("footer", {
     class: _(i.classList),
     style: N(i.style),
@@ -4840,7 +4843,7 @@ function Ni(s, t, e, a, n, i) {
       o("div", zs, [
         o("div", Fs, [
           o("div", $s, [
-            (r(!0), l(L, null, A(i.dataValue.logos, (h) => (r(), l("div", {
+            (r(!0), l(L, null, O(i.dataValue.logos, (h) => (r(), l("div", {
               class: _(["mb-3", h == null ? void 0 : h.classes])
             }, [
               o("a", {
@@ -4858,17 +4861,17 @@ function Ni(s, t, e, a, n, i) {
                 }, h), null, 16)
               ], 10, Us)
             ], 2))), 256)),
-            (r(!0), l(L, null, A(i.locations, (h) => (r(), l("ul", Gs, [
-              h.name ? (r(), l("li", Ws, y(h.name), 1)) : m("", !0),
-              h.over ? (r(), l("li", qs, y(h.over), 1)) : m("", !0),
-              h.street ? (r(), l("li", Js, y(h.street), 1)) : m("", !0),
+            (r(!0), l(L, null, O(i.locations, (h) => (r(), l("ul", Gs, [
+              h.name ? (r(), l("li", Ws, v(h.name), 1)) : m("", !0),
+              h.over ? (r(), l("li", Js, v(h.over), 1)) : m("", !0),
+              h.street ? (r(), l("li", qs, v(h.street), 1)) : m("", !0),
               h.city ? (r(), l("li", {
                 key: 3,
                 class: _(["nav-item footer__address-block", h.postalReversed ? "is-reversed" : ""])
               }, [
-                o("span", Zs, y(h.postalCode), 1),
-                o("span", Xs, y(h.city), 1),
-                o("span", Ks, y(h.country), 1)
+                o("span", Zs, v(h.postalCode), 1),
+                o("span", Xs, v(h.city), 1),
+                o("span", Ks, v(h.country), 1)
               ], 2)) : m("", !0),
               h.number ? (r(), l("li", Ys, [
                 o("a", {
@@ -4882,7 +4885,7 @@ function Ni(s, t, e, a, n, i) {
                         "no-span": !0
                       })
                     ]),
-                    o("span", si, y(h.number), 1)
+                    o("span", si, v(h.number), 1)
                   ])
                 ], 8, Qs)
               ])) : m("", !0),
@@ -4893,8 +4896,8 @@ function Ni(s, t, e, a, n, i) {
                     class: "footer__nav-icon footer__office-icon"
                   }),
                   o("div", ni, [
-                    (r(!0), l(L, null, A(i.dataValue.offices, (k, C) => (r(), l("span", ri, [
-                      z(y(k), 1),
+                    (r(!0), l(L, null, O(i.dataValue.offices, (k, C) => (r(), l("span", ri, [
+                      z(v(k), 1),
                       C < i.dataValue.offices.length - 1 ? (r(), l("span", oi, ", ")) : m("", !0)
                     ]))), 256))
                   ])
@@ -4915,13 +4918,13 @@ function Ni(s, t, e, a, n, i) {
                         "no-span": !0
                       })
                     ]),
-                    o("span", di, y(h.mail), 1)
+                    o("span", di, v(h.mail), 1)
                   ])
                 ], 8, li)
               ], 2)) : m("", !0)
             ]))), 256)),
-            i.isCorporate ? m("", !0) : (r(!0), l(L, { key: 0 }, A(i.dataValue.brandLogos, (h, k) => (r(), l(L, null, [
-              h.title ? (r(), l("span", ui, y(h.title), 1)) : m("", !0),
+            i.isCorporate ? m("", !0) : (r(!0), l(L, { key: 0 }, O(i.dataValue.brandLogos, (h, k) => (r(), l(L, null, [
+              h.title ? (r(), l("span", ui, v(h.title), 1)) : m("", !0),
               o("a", {
                 href: h.url,
                 target: h.target,
@@ -4940,7 +4943,7 @@ function Ni(s, t, e, a, n, i) {
           ]),
           o("div", mi, [
             o("div", pi, [
-              (r(!0), l(L, null, A(i.dataValue.partners, (h, k) => (r(), l(L, null, [
+              (r(!0), l(L, null, O(i.dataValue.partners, (h, k) => (r(), l(L, null, [
                 o("a", {
                   href: h.url,
                   target: h.target,
@@ -4962,8 +4965,8 @@ function Ni(s, t, e, a, n, i) {
           ])
         ])
       ]),
-      i.isCorporate ? (r(), l("div", vi, [
-        o("div", yi, [
+      i.isCorporate ? (r(), l("div", yi, [
+        o("div", vi, [
           S(p, {
             items: i.dataValue.highlights,
             "bg-color": n.bgColorRgbaValue
@@ -4975,18 +4978,18 @@ function Ni(s, t, e, a, n, i) {
         o("div", wi, [
           o("div", bi, [
             o("ul", Ci, [
-              (r(!0), l(L, null, A(i.links, (h) => (r(), l("li", xi, [
+              (r(!0), l(L, null, O(i.links, (h) => (r(), l("li", xi, [
                 o("a", H({
                   class: "nav-link",
                   href: h.url,
                   ref_for: !0
-                }, h), y(h.title), 17, Li)
+                }, h), v(h.title), 17, Li)
               ]))), 256))
             ])
           ]),
           o("div", ki, [
             o("ul", Ei, [
-              (r(!0), l(L, null, A(i.dataValue.socials, (h) => (r(), l("li", Ai, [
+              (r(!0), l(L, null, O(i.dataValue.socials, (h) => (r(), l("li", Oi, [
                 o("a", {
                   class: "btn btn-xs btn-icon btn-soft-light",
                   title: h.title,
@@ -4997,21 +5000,21 @@ function Ni(s, t, e, a, n, i) {
                   o("i", {
                     class: _(["fab", h.icon])
                   }, null, 2)
-                ], 8, Oi)
+                ], 8, Ai)
               ]))), 256))
             ])
           ])
         ]),
         o("div", Ii, [
           o("div", Ti, [
-            o("p", Pi, "Copyright © " + y(i.dataValue.copyright), 1)
+            o("p", Pi, "Copyright © " + v(i.dataValue.copyright), 1)
           ])
         ])
       ])
     ])
   ], 6);
 }
-const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
+const Di = /* @__PURE__ */ A(Hs, [["render", Ni]]), bt = {}, Vi = {
   tagName: "search",
   computed: {
     classList() {
@@ -5058,7 +5061,7 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
     },
     initSearchEngine() {
       const s = this.store, { results: t, weights: e } = s;
-      if (!wt) return;
+      if (!bt) return;
       const a = {
         includeScore: !0,
         ignoreLocation: !0,
@@ -5068,7 +5071,7 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
         threshold: 0.2,
         keys: e
       };
-      this.searchEngine = new wt(t, a);
+      this.searchEngine = new bt(t, a);
     },
     handleSearchBar() {
       this.searchExpanded = !this.searchExpanded, window.addEventListener("click", this.handleOutsideClick.bind(this));
@@ -5274,8 +5277,11 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
     spacerBgColor() {
       return `--color-header-spacer-background: ${this.bgColor ? this.bgColor : "var(--color-header-background)"}; background-color: var(--color-header-spacer-background);`;
     },
+    clonedNavigation() {
+      return JSON.parse(JSON.stringify(this.navigation));
+    },
     activeNavigation() {
-      return this.setActiveLinks(), this.navigation;
+      return this.setActiveLinks(), this.clonedNavigation;
     },
     isLight() {
       return u.isTrue(this.light) === !0;
@@ -5447,7 +5453,7 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
         const k = h === e, C = this.getParentLink(p);
         return t && k ? (g.active = !0, C && (C.active = !0)) : (g.active = !1, C && (C.active = !1)), k;
       }, i = (g, p) => p;
-      let c = u.findRecursive(this.navigation, n, i);
+      let c = u.findRecursive(this.clonedNavigation, n, i);
       if (c || (c = u.findRecursive(this.meta, n, i)), c || (c = u.findRecursive(this.contact, n, i)), !c) {
         const g = this.getHrefLang(s);
         return g || this.getTranslatedUrl(e, s);
@@ -5497,7 +5503,7 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
         return t.getAttribute("href");
     },
     getParentLink(s) {
-      return this.navigation[s].languages[this.lowerLang];
+      return this.clonedNavigation[s].languages[this.lowerLang];
     },
     setActiveLinks() {
       this.getActiveUrlByLang(this.lowerLang, !0);
@@ -5578,7 +5584,7 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
 }, Mi = { class: "header__row row" }, Hi = { class: "header__col col" }, ji = { class: "header__logo" }, zi = ["href"], Fi = {
   class: "header__list",
   ref: "list"
-}, $i = ["href", "target", "onClick"], Ui = ["onMouseover"], Gi = { class: "header__link-text" }, Wi = { class: "header__link-text-spacer" }, qi = ["href", "target"], Ji = { class: "header__product-list-data" }, Zi = { class: "header__product-list-title font-size-8 bold" }, Xi = { class: "header__product-list-subtitle" }, Ki = ["href"], Yi = { class: "header__footer" }, Qi = {
+}, $i = ["href", "target", "onClick"], Ui = ["onMouseover"], Gi = { class: "header__link-text" }, Wi = { class: "header__link-text-spacer" }, Ji = ["href", "target"], qi = { class: "header__product-list-data" }, Zi = { class: "header__product-list-title font-size-8 bold" }, Xi = { class: "header__product-list-subtitle" }, Ki = ["href"], Yi = { class: "header__footer" }, Qi = {
   key: 1,
   class: "header__contact header__contact--mobile"
 }, ta = ["href"], ea = { class: "header__contact-text" }, sa = { class: "header__contact-title" }, ia = {
@@ -5599,7 +5605,7 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
 }, ma = {
   key: 0,
   class: "header__flyout-block"
-}, pa = { class: "header__flyout-caption" }, fa = ["innerHTML"], _a = ["href"], va = { class: "header__contact-title" }, ya = {
+}, pa = { class: "header__flyout-caption" }, fa = ["innerHTML"], _a = ["href"], ya = { class: "header__contact-title" }, va = {
   key: 1,
   class: "header__highlight-cta has-emergency-colors"
 }, Sa = {
@@ -5607,8 +5613,8 @@ const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
   class: "header__product-list is-expanded"
 }, wa = ["href", "target"], ba = { class: "header__product-list-data" }, Ca = { class: "header__product-list-title font-size-8 bold" }, xa = { class: "header__product-list-subtitle" };
 function La(s, t, e, a, n, i) {
-  var k, C, E, M, ft, _t;
-  const c = at, d = nt, g = Bi, p = pt, h = Vi;
+  var k, C, E, M, _t, yt;
+  const c = at, d = nt, g = Bi, p = ft, h = Vi;
   return r(), l(L, null, [
     o("div", {
       class: "header__spacer",
@@ -5616,8 +5622,8 @@ function La(s, t, e, a, n, i) {
     }, null, 4),
     o("header", {
       class: _(i.classList),
-      onMouseover: t[5] || (t[5] = (...v) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(...v)),
-      onMouseout: t[6] || (t[6] = (...v) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...v))
+      onMouseover: t[5] || (t[5] = (...y) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(...y)),
+      onMouseout: t[6] || (t[6] = (...y) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...y))
     }, [
       o("div", {
         class: _(i.headerContainerClassList)
@@ -5642,7 +5648,7 @@ function La(s, t, e, a, n, i) {
             ]),
             o("div", {
               class: "header__menu",
-              onClick: t[0] || (t[0] = (...v) => i.handleCloseClick && i.handleCloseClick(...v))
+              onClick: t[0] || (t[0] = (...y) => i.handleCloseClick && i.handleCloseClick(...y))
             }, [
               S(d, {
                 icon: "menu",
@@ -5652,30 +5658,30 @@ function La(s, t, e, a, n, i) {
             ]),
             o("nav", {
               class: "header__nav",
-              onMouseout: t[1] || (t[1] = (...v) => i.handleMouseOut && i.handleMouseOut(...v))
+              onMouseout: t[1] || (t[1] = (...y) => i.handleMouseOut && i.handleMouseOut(...y))
             }, [
               o("ul", Fi, [
-                (r(!0), l(L, null, A(i.activeNavigation, (v, I) => {
-                  var G, Z, X, K, Y, q;
+                (r(!0), l(L, null, O(i.activeNavigation, (y, I) => {
+                  var G, Z, X, K, Y, J;
                   return r(), l("li", {
-                    class: _(i.headerItemClasses(v))
+                    class: _(i.headerItemClasses(y))
                   }, [
-                    v != null && v.languages ? (r(), l("a", {
+                    y != null && y.languages ? (r(), l("a", {
                       key: 0,
-                      class: _(i.headerLinkClasses(v, I)),
-                      href: i.getHref(v),
-                      target: i.getTarget(v),
-                      onClick: (V) => i.handleClick(v, I),
+                      class: _(i.headerLinkClasses(y, I)),
+                      href: i.getHref(y),
+                      target: i.getTarget(y),
+                      onClick: (V) => i.handleClick(y, I),
                       ref_for: !0,
                       ref: "link"
                     }, [
                       o("div", {
                         class: "header__link-content",
-                        onMouseover: (V) => i.handleMouseOver(v, I, V)
+                        onMouseover: (V) => i.handleMouseOver(y, I, V)
                       }, [
-                        o("span", Gi, y((G = v.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
-                        o("span", Wi, y((Z = v.languages[i.lowerLang]) == null ? void 0 : Z.title), 1),
-                        v.children ? (r(), w(d, {
+                        o("span", Gi, v((G = y.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
+                        o("span", Wi, v((Z = y.languages[i.lowerLang]) == null ? void 0 : Z.title), 1),
+                        y.children ? (r(), w(d, {
                           key: 0,
                           class: "header__link-icon",
                           icon: "expand",
@@ -5683,21 +5689,21 @@ function La(s, t, e, a, n, i) {
                         })) : m("", !0)
                       ], 40, Ui)
                     ], 10, $i)) : m("", !0),
-                    (r(!0), l(L, null, A(v.children, (V) => (r(), l(L, null, [
-                      v.children && !V.products ? (r(), w(g, {
+                    (r(!0), l(L, null, O(y.children, (V) => (r(), l(L, null, [
+                      y.children && !V.products ? (r(), w(g, {
                         key: 0,
                         list: V,
                         lang: i.lowerLang,
-                        hidden: i.isLinkListHidden(v, I),
+                        hidden: i.isLinkListHidden(y, I),
                         classes: "header__link-list",
                         "no-animation": !0
                       }, null, 8, ["list", "lang", "hidden"])) : (r(), l("div", {
                         key: 1,
-                        class: _(i.headerProductListClasses(v, I)),
+                        class: _(i.headerProductListClasses(y, I)),
                         ref_for: !0,
                         ref: "product-list"
                       }, [
-                        (r(!0), l(L, null, A(V.children, (P) => {
+                        (r(!0), l(L, null, O(V.children, (P) => {
                           var Q, tt, vt;
                           return r(), l("a", {
                             href: (Q = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : Q.url,
@@ -5709,24 +5715,24 @@ function La(s, t, e, a, n, i) {
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            o("div", Ji, [
-                              o("div", Zi, y((tt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : tt.title), 1),
-                              o("div", Xi, y((vt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : vt.subtitle), 1)
+                            o("div", qi, [
+                              o("div", Zi, v((tt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : tt.title), 1),
+                              o("div", Xi, v((vt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : vt.subtitle), 1)
                             ])
-                          ], 8, qi);
+                          ], 8, Ji);
                         }), 256))
                       ], 2))
                     ], 64))), 256)),
-                    (X = v.languages[i.lowerLang]) != null && X.emergency ? (r(), l("a", {
+                    (X = y.languages[i.lowerLang]) != null && X.emergency ? (r(), l("a", {
                       key: 1,
-                      href: (K = v.languages[i.lowerLang]) == null ? void 0 : K.emergency.href,
-                      class: _(i.navHighlightClasses(v, I))
+                      href: (K = y.languages[i.lowerLang]) == null ? void 0 : K.emergency.href,
+                      class: _(i.navHighlightClasses(y, I))
                     }, [
                       S(d, {
-                        icon: (Y = v.languages[i.lowerLang]) == null ? void 0 : Y.emergency.icon,
+                        icon: (Y = y.languages[i.lowerLang]) == null ? void 0 : Y.emergency.icon,
                         size: "medium"
                       }, null, 8, ["icon"]),
-                      z(" " + y((q = v.languages[i.lowerLang]) == null ? void 0 : q.emergency.text), 1)
+                      z(" " + v((J = y.languages[i.lowerLang]) == null ? void 0 : J.emergency.text), 1)
                     ], 10, Ki)) : m("", !0)
                   ], 2);
                 }), 256))
@@ -5743,14 +5749,14 @@ function La(s, t, e, a, n, i) {
                   (M = e.contact) != null && M.languages ? (r(), l("a", {
                     key: 0,
                     class: "header__contact-link custom",
-                    href: (ft = e.contact.languages[i.lowerLang]) == null ? void 0 : ft.url
+                    href: (_t = e.contact.languages[i.lowerLang]) == null ? void 0 : _t.url
                   }, [
                     o("div", ea, [
                       S(d, {
                         icon: "phone-mail",
                         size: "medium"
                       }),
-                      o("span", sa, y((_t = e.contact.languages[i.lowerLang]) == null ? void 0 : _t.title), 1)
+                      o("span", sa, v((yt = e.contact.languages[i.lowerLang]) == null ? void 0 : yt.title), 1)
                     ])
                   ], 8, ta)) : m("", !0)
                 ])) : m("", !0),
@@ -5764,10 +5770,10 @@ function La(s, t, e, a, n, i) {
                   }, null, 8, ["text", "href", "target", "skin", "classes"])
                 ])) : m("", !0),
                 i.hasLangSwitch ? (r(), l("div", aa, [
-                  (r(!0), l(L, null, A(e.home.languages, (v, I) => (r(), l("a", {
+                  (r(!0), l(L, null, O(e.home.languages, (y, I) => (r(), l("a", {
                     class: _({ "header__language-link custom": !0, active: I === i.lowerLang }),
                     onClick: (G) => i.handleLanguageSwitch(I)
-                  }, y(I), 11, na))), 256))
+                  }, v(I), 11, na))), 256))
                 ])) : m("", !0)
               ])
             ], 32),
@@ -5789,22 +5795,22 @@ function La(s, t, e, a, n, i) {
             i.hasLangSwitch ? (r(), l("div", {
               key: 2,
               class: "header__language-switch",
-              onMouseover: t[2] || (t[2] = (...v) => i.handleLanguageOver && i.handleLanguageOver(...v)),
-              onMouseout: t[3] || (t[3] = (...v) => i.handleLanguageOut && i.handleLanguageOut(...v)),
+              onMouseover: t[2] || (t[2] = (...y) => i.handleLanguageOver && i.handleLanguageOver(...y)),
+              onMouseout: t[3] || (t[3] = (...y) => i.handleLanguageOut && i.handleLanguageOut(...y)),
               ref: "languageSwitch"
             }, [
-              o("span", oa, y(e.lang), 1),
-              o("span", la, y(e.lang), 1),
+              o("span", oa, v(e.lang), 1),
+              o("span", la, v(e.lang), 1),
               S(d, {
                 class: "header__link-icon",
                 icon: "expand",
                 size: "small"
               }),
               o("div", ca, [
-                (r(!0), l(L, null, A(e.home.languages, (v, I) => (r(), l("a", {
+                (r(!0), l(L, null, O(e.home.languages, (y, I) => (r(), l("a", {
                   class: _({ "header__language-link custom": !0, "d-none": I === i.lowerLang }),
                   onClick: (G) => i.handleLanguageSwitch(I)
-                }, y(I), 11, ha))), 256))
+                }, v(I), 11, ha))), 256))
               ], 512)
             ], 544)) : m("", !0)
           ])
@@ -5812,28 +5818,28 @@ function La(s, t, e, a, n, i) {
       ], 2),
       o("div", {
         class: "header__flyout",
-        onMouseout: t[4] || (t[4] = (...v) => i.handleMouseOut && i.handleMouseOut(...v))
+        onMouseout: t[4] || (t[4] = (...y) => i.handleMouseOut && i.handleMouseOut(...y))
       }, [
         o("div", {
           class: _(i.containerClass)
         }, [
           o("div", da, [
             o("div", ua, [
-              (r(!0), l(L, null, A(i.activeNavigation, (v, I) => {
+              (r(!0), l(L, null, O(i.activeNavigation, (y, I) => {
                 var G, Z, X, K, Y;
                 return r(), l("div", {
                   class: "header__flyout-content",
                   ref_for: !0,
                   ref: "flyout"
                 }, [
-                  v.children ? (r(), l("div", ga, [
-                    i.showFlyoutBlock(v.children) ? (r(), l("figure", ma, [
-                      o("figcaption", pa, y((G = v.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
+                  y.children ? (r(), l("div", ga, [
+                    i.showFlyoutBlock(y.children) ? (r(), l("figure", ma, [
+                      o("figcaption", pa, v((G = y.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
                       o("div", {
                         class: "header__flyout-description font-size-1 thin",
-                        innerHTML: (Z = v.languages[i.lowerLang]) == null ? void 0 : Z.description
+                        innerHTML: (Z = y.languages[i.lowerLang]) == null ? void 0 : Z.description
                       }, null, 8, fa),
-                      i.hasContactLink(v) ? (r(), l("a", {
+                      i.hasContactLink(y) ? (r(), l("a", {
                         key: 0,
                         class: "header__link custom",
                         href: (X = e.contact.languages[i.lowerLang]) == null ? void 0 : X.url
@@ -5842,20 +5848,20 @@ function La(s, t, e, a, n, i) {
                           icon: "phone-mail",
                           size: "medium"
                         }),
-                        o("span", va, y((K = e.contact.languages[i.lowerLang]) == null ? void 0 : K.title), 1)
+                        o("span", ya, v((K = e.contact.languages[i.lowerLang]) == null ? void 0 : K.title), 1)
                       ], 8, _a)) : m("", !0),
-                      (Y = v.languages[i.lowerLang]) != null && Y.emergency ? (r(), l("div", ya, [
-                        S(p, H({ ref_for: !0 }, v.languages[i.lowerLang].emergency), null, 16)
+                      (Y = y.languages[i.lowerLang]) != null && Y.emergency ? (r(), l("div", va, [
+                        S(p, H({ ref_for: !0 }, y.languages[i.lowerLang].emergency), null, 16)
                       ])) : m("", !0)
                     ])) : m("", !0),
-                    (r(!0), l(L, null, A(v.children, (q) => (r(), l(L, null, [
-                      v.children && !q.products ? (r(), w(g, {
+                    (r(!0), l(L, null, O(y.children, (J) => (r(), l(L, null, [
+                      y.children && !J.products ? (r(), w(g, {
                         key: 0,
-                        list: q,
+                        list: J,
                         lang: i.lowerLang,
                         "no-animation": !0
                       }, null, 8, ["list", "lang"])) : (r(), l("div", Sa, [
-                        (r(!0), l(L, null, A(q.children, (V) => {
+                        (r(!0), l(L, null, O(J.children, (V) => {
                           var P, Q, tt;
                           return r(), l("a", {
                             href: (P = V.languages[i.lowerLang]) == null ? void 0 : P.url,
@@ -5868,8 +5874,8 @@ function La(s, t, e, a, n, i) {
                               cloudinary: !0
                             }, null, 8, ["img"]),
                             o("div", ba, [
-                              o("div", Ca, y((Q = V.languages[i.lowerLang]) == null ? void 0 : Q.title), 1),
-                              o("div", xa, y((tt = V.languages[i.lowerLang]) == null ? void 0 : tt.subtitle), 1)
+                              o("div", Ca, v((Q = V.languages[i.lowerLang]) == null ? void 0 : Q.title), 1),
+                              o("div", xa, v((tt = V.languages[i.lowerLang]) == null ? void 0 : tt.subtitle), 1)
                             ])
                           ], 8, wa);
                         }), 256))
@@ -5885,7 +5891,7 @@ function La(s, t, e, a, n, i) {
     ], 34)
   ], 64);
 }
-const ka = /* @__PURE__ */ O(Ri, [["render", La]]), Ea = {
+const ka = /* @__PURE__ */ A(Ri, [["render", La]]), Ea = {
   tagName: "lottie",
   // components: {
   //   Vue3Lottie,
@@ -5974,7 +5980,7 @@ const ka = /* @__PURE__ */ O(Ri, [["render", La]]), Ea = {
     <div :class="classList">
     </div>
   `
-}, ht = "https://res.cloudinary.com/c4a8/image/upload/", Aa = {
+}, ht = "https://res.cloudinary.com/c4a8/image/upload/", Oa = {
   tagName: "v-img",
   data() {
     return {
@@ -6031,7 +6037,7 @@ const ka = /* @__PURE__ */ O(Ri, [["render", La]]), Ea = {
       return ["img__picture-wrapper", (s = this.imgSrcSetValue) == null ? void 0 : s.ratioClasses];
     },
     imgSrcSetValue() {
-      return xt[this.imgSrcSets];
+      return Lt[this.imgSrcSets];
     },
     imgSrcSetSources() {
       var s, t;
@@ -6106,7 +6112,7 @@ const ka = /* @__PURE__ */ O(Ri, [["render", La]]), Ea = {
     },
     getTransformationString(s) {
       const t = [];
-      for (const [a, n] of Object.entries(Ct))
+      for (const [a, n] of Object.entries(xt))
         s[a] && t.push(`${n}_${s[a]}`);
       return t.length > 0 ? t.join(",") : "";
     },
@@ -6147,7 +6153,7 @@ const ka = /* @__PURE__ */ O(Ri, [["render", La]]), Ea = {
     lottieSettings: Object,
     animated: Boolean
   }
-}, Oa = ["media", "srcset"], Ia = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], Ta = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
+}, Aa = ["media", "srcset"], Ia = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], Ta = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
 function Pa(s, t, e, a, n, i) {
   const c = Ea;
   return i.hasPictureTag ? (r(), l("div", {
@@ -6155,11 +6161,11 @@ function Pa(s, t, e, a, n, i) {
     class: _(i.pictureWrapperClassList)
   }, [
     o("picture", null, [
-      (r(!0), l(L, null, A(i.imgSrcSetSources, (d) => (r(), l("source", {
+      (r(!0), l(L, null, O(i.imgSrcSetSources, (d) => (r(), l("source", {
         key: d.params,
         media: d.media,
         srcset: i.getCloudinaryBasePathLink(d)
-      }, null, 8, Oa))), 128)),
+      }, null, 8, Aa))), 128)),
       o("img", {
         onLoad: t[0] || (t[0] = (d) => i.loadImage(i.imgSrcSetImg)),
         ref: "image",
@@ -6193,7 +6199,7 @@ function Pa(s, t, e, a, n, i) {
     crossorigin: i.crossOriginValue
   }, null, 42, Ta));
 }
-const Na = /* @__PURE__ */ O(Aa, [["render", Pa]]), Da = {
+const Na = /* @__PURE__ */ A(Oa, [["render", Pa]]), Da = {
   tagName: "world",
   computed: {
     style() {
@@ -6255,9 +6261,36 @@ function Fa(s, t, e, a, n, i) {
     ])
   ], 16);
 }
-const $a = /* @__PURE__ */ O(Da, [["render", Fa]]), Wa = {
+const $a = /* @__PURE__ */ A(Da, [["render", Fa]]), Ua = {
+  tagName: "wrapper",
+  computed: {
+    classList() {
+      return ["wrapper vue-component", this.classes ? this.classes : null, this.hideContainerClass ? "" : "container"];
+    }
+  },
+  props: {
+    hideContainer: {
+      default: !1
+    },
+    hideContainerClass: {
+      default: !1
+    },
+    classes: {
+      default: ""
+    }
+  }
+};
+function Ga(s, t, e, a, n, i) {
+  return e.hideContainer ? dt(s.$slots, "default", { key: 1 }) : (r(), l("div", {
+    key: 0,
+    class: _(i.classList)
+  }, [
+    dt(s.$slots, "default")
+  ], 2));
+}
+const Wa = /* @__PURE__ */ A(Ua, [["render", Ga]]), Za = {
   install(s) {
-    s.component("Carousel", Vt), s.component("Contact", ue), s.component("Cta", fe), s.component("CtaList", rt), s.component("Headline", ye), s.component("HeadlineRow", Ce), s.component("Hero", Fe), s.component("Icon", Ge), s.component("IntroText", Qe), s.component("Lottie", ss), s.component("ProductBlocks", ds), s.component("SiteIcons", _s), s.component("SvgShape", bs), s.component("TextImage", Rs), s.component("VFooter", Di), s.component("VHeader", ka), s.component("VImg", Na), s.component("World", $a);
+    s.component("Carousel", Vt), s.component("Contact", ue), s.component("Cta", fe), s.component("CtaList", rt), s.component("Headline", ve), s.component("HeadlineRow", Ce), s.component("Hero", Fe), s.component("Icon", Ge), s.component("IntroText", Qe), s.component("Lottie", ss), s.component("ProductBlocks", ds), s.component("SiteIcons", _s), s.component("SvgShape", bs), s.component("TextImage", Rs), s.component("VFooter", Di), s.component("VHeader", ka), s.component("VImg", Na), s.component("World", $a), s.component("Wrapper", Wa);
   }
 };
 export {
@@ -6265,7 +6298,7 @@ export {
   ue as Contact,
   fe as Cta,
   rt as CtaList,
-  ye as Headline,
+  ve as Headline,
   Ce as HeadlineRow,
   Fe as Hero,
   Ge as Icon,
@@ -6279,5 +6312,6 @@ export {
   ka as VHeader,
   Na as VImg,
   $a as World,
-  Wa as default
+  Wa as Wrapper,
+  Za as default
 };
