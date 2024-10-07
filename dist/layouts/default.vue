@@ -5,7 +5,7 @@
       <hero v-bind="heroData"></hero>
       <slot />
     </main>
-    <contact v-if="pageData.contact" v-bind="pageData.contact" :contact="pageData.contact" />
+    <contact v-if="pageData?.contact" v-bind="pageData?.contact" :contact="pageData?.contact" />
 
     <v-footer v-bind="footerData" :lang="lang"></v-footer>
   </div>

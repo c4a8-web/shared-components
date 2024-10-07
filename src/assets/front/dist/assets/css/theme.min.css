@@ -20071,7 +20071,7 @@ a:hover .text-hover-primary {
   opacity: 0;
 }
 .slick {
-  background: url(../svg/components/circle-preloader.svg) no-repeat 50% 50%;
+  /* background: url(../svg/components/circle-preloader.svg) no-repeat 50% 50%; */
 }
 .slick .js-next,
 .slick .js-prev {
