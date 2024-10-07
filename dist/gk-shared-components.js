@@ -1,7 +1,7 @@
 var Lt = Object.defineProperty;
 var kt = (s, t, e) => t in s ? Lt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
 var b = (s, t, e) => kt(s, typeof t != "symbol" ? t + "" : t, e);
-import { resolveComponent as mt, openBlock as r, createElementBlock as l, normalizeClass as _, normalizeStyle as N, createElementVNode as o, Fragment as L, renderList as A, createBlock as w, createCommentVNode as m, createVNode as S, toDisplayString as v, createTextVNode as H, resolveDynamicComponent as lt, withCtx as Z, renderSlot as Et, mergeProps as j, createStaticVNode as yt } from "vue";
+import { resolveComponent as mt, openBlock as r, createElementBlock as l, normalizeClass as _, normalizeStyle as N, createElementVNode as o, Fragment as L, renderList as A, createBlock as w, createCommentVNode as m, createVNode as S, toDisplayString as y, createTextVNode as z, resolveDynamicComponent as lt, withCtx as et, renderSlot as Et, mergeProps as H, createStaticVNode as yt } from "vue";
 const x = class x {
   static isInViewportPercent(t, e) {
     const a = t.getBoundingClientRect(), n = window.innerHeight || document.documentElement.clientHeight, i = window.innerWidth || document.documentElement.clientWidth, c = { x: a.x, y: a.y, width: a.width, height: a.height }, d = { x: 0, y: 0, width: i, height: n }, g = c.width * c.height, p = x.intersection(c, d);
@@ -786,7 +786,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
       }
     ]
   }
-}, ct = "https://res.cloudinary.com/c4a8/image/upload/", nt = {
+}, ct = "https://res.cloudinary.com/c4a8/image/upload/", at = {
   name: "VImg",
   tagName: "v-img",
   data() {
@@ -969,7 +969,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
     <lottie v-else-if="isLottie" :data="jsonLottieData" :class="classListComponent" v-bind="jsonLottieSettingsData" />
     <img v-else @load="loadImage()" ref="image" :src="source" :loading="loading" :class="classList" :alt="alt" :width="dimensions.naturalWidth" :height="dimensions.naturalHeight" :srcset="srcset" :sizes="sizes" :crossorigin="crossOriginValue">
   `
-}, rt = {
+}, nt = {
   tagName: "icon",
   data() {
     return u.validateVueProps(this);
@@ -1074,7 +1074,7 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
       <component :is="icon" v-bind="settings" :color="props.color" :closed="closed" :step="step" />
     </span>
     `
-}, ot = {
+}, rt = {
   tagName: "cta-list",
   computed: {
     classList() {
@@ -1145,9 +1145,9 @@ const Vt = /* @__PURE__ */ O(Ot, [["render", Dt]]), bt = {
 };
 b(B, "rootSelector", ""), b(B, "instances", []), b(B, "namespacePrefix", "baseComponents");
 let dt = B;
-class it {
+class st {
 }
-b(it, "rootSelector", ".form-attachments"), b(it, "base64Selector", ".form-attachments__base64");
+b(st, "rootSelector", ".form-attachments"), b(st, "base64Selector", ".form-attachments__base64");
 const D = {
   REFRESH_ANIMATE_NUMBERS: "refresh-animate-numbers",
   FAB_BUTTON_CLOSE: "fab-button-close",
@@ -1284,14 +1284,14 @@ const D = {
   }
   validateAttachments() {
     let t = !0;
-    return [].forEach.call(this.form.querySelectorAll(it.base64Selector), (e) => {
+    return [].forEach.call(this.form.querySelectorAll(st.base64Selector), (e) => {
       e.value || (t = !1);
     }), t || (t = !0, [].forEach.call(this.form.querySelectorAll(this.attachmentSelector), (e) => {
       e.files.length === 0 && (t = !1, this.addAttachmentError(e));
     }), t);
   }
   addAttachmentError(t) {
-    const e = u.getParent(t, it.rootSelector);
+    const e = u.getParent(t, st.rootSelector);
     e !== null && e.classList.add(f.HAS_ERROR);
   }
   hasAttachments() {
@@ -1404,7 +1404,7 @@ const D = {
   }
 };
 b(R, "rootSelector", ".form"), b(R, "instances", []), b(R, "delimiter", "-formHelper-"), b(R, "noCustomSubmitClass", "form--no-custom-submit"), b(R, "regularExpression", /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/);
-let z = R;
+let j = R;
 const Bt = {
   tagName: "formular",
   data() {
@@ -1422,7 +1422,7 @@ const Bt = {
         `${u.isTrue(this.ajax) === !0 ? "form--ajax" : ""}`,
         `${u.isTrue(this.container) === !0 ? "container" : ""}`,
         `${u.isTrue(this.customValidation) === !0 ? "form--custom-validation" : ""}`,
-        ((s = this.form) == null ? void 0 : s.noCustomSubmit) === !0 ? z.noCustomSubmitClass : "",
+        ((s = this.form) == null ? void 0 : s.noCustomSubmit) === !0 ? j.noCustomSubmitClass : "",
         "vue-component"
       ];
     },
@@ -1482,7 +1482,7 @@ const Bt = {
     },
     getId(s) {
       const t = (s == null ? void 0 : s.radios) || (s == null ? void 0 : s.checkboxes), e = t ? t[0].id : s == null ? void 0 : s.id;
-      return u.isTrue(this.hasUuid) ? z.getId(e) : e;
+      return u.isTrue(this.hasUuid) ? j.getId(e) : e;
     },
     updateAction(s) {
       s ? this.formAction = s : this.formAction = this.originalAction;
@@ -1549,7 +1549,7 @@ const Bt = {
       </div>
     </div>
   `
-}, X = {
+}, ot = {
   tagName: "headline",
   computed: {
     tag() {
@@ -1736,7 +1736,7 @@ const Bt = {
   class: "contact__notes"
 }, he = { class: "contact__notes-spacing streamline-sm mr-4" };
 function de(s, t, e, a, n, i) {
-  const c = Rt, d = X, g = Bt, p = ot, h = rt, k = nt, C = bt;
+  const c = Rt, d = ot, g = Bt, p = rt, h = nt, k = at, C = bt;
   return r(), l(L, null, [
     e.contact.svgShape ? (r(), w(c, {
       key: 0,
@@ -1765,7 +1765,7 @@ function de(s, t, e, a, n, i) {
               classes: e.contact.headlineClasses,
               level: e.level
             }, null, 8, ["text", "classes", "level"]),
-            o("span", Ht, v(e.contact.subline), 1),
+            o("span", Ht, y(e.contact.subline), 1),
             e.contact.form ? (r(), w(g, {
               key: 0,
               form: e.contact.form,
@@ -1800,10 +1800,10 @@ function de(s, t, e, a, n, i) {
                     }, null, 8, ["img", "cloudinary", "alt"])
                   ])
                 ]),
-                o("div", Gt, v(e.contact.person.quote), 1),
+                o("div", Gt, y(e.contact.person.quote), 1),
                 o("div", Wt, [
-                  o("span", null, v(e.contact.person.quotee), 1),
-                  o("span", qt, v(e.contact.person.quoteeTitle), 1)
+                  o("span", null, y(e.contact.person.quotee), 1),
+                  o("span", qt, y(e.contact.person.quoteeTitle), 1)
                 ])
               ])) : (r(), l(L, { key: 1 }, [
                 o("div", Jt, [
@@ -1815,7 +1815,7 @@ function de(s, t, e, a, n, i) {
                     lazy: ""
                   }, null, 8, ["img", "cloudinary", "alt"])
                 ]),
-                o("div", Zt, v(e.contact.person.name), 1),
+                o("div", Zt, y(e.contact.person.name), 1),
                 o("div", Xt, [
                   (r(!0), l(L, null, A(e.contact.person.details, (E, M) => (r(), l("div", {
                     key: M,
@@ -1834,7 +1834,7 @@ function de(s, t, e, a, n, i) {
                           icon: "site/phone"
                         }))
                       ]),
-                      o("span", Qt, v(E.text), 1)
+                      o("span", Qt, y(E.text), 1)
                     ], 8, Kt),
                     E.notes ? (r(), l("div", te, [
                       o("span", ee, [
@@ -1846,7 +1846,7 @@ function de(s, t, e, a, n, i) {
                           icon: "site/phone"
                         }))
                       ]),
-                      H(" " + v(E.notes), 1)
+                      z(" " + y(E.notes), 1)
                     ])) : m("", !0)
                   ], 2))), 128)),
                   e.contact.person.number ? (r(), l("div", se, [
@@ -1855,7 +1855,7 @@ function de(s, t, e, a, n, i) {
                       class: "custom"
                     }, [
                       S(C, { icon: "site/phone" }),
-                      H(" " + v(e.contact.person.number), 1)
+                      z(" " + y(e.contact.person.number), 1)
                     ], 8, ie)
                   ])) : m("", !0),
                   e.contact.person.mail ? (r(), l("div", ae, [
@@ -1864,7 +1864,7 @@ function de(s, t, e, a, n, i) {
                       class: "custom"
                     }, [
                       S(C, { icon: "site/mail" }),
-                      H(" " + v(e.contact.person.mail), 1)
+                      z(" " + y(e.contact.person.mail), 1)
                     ], 8, ne)
                   ])) : m("", !0)
                 ])
@@ -1893,7 +1893,7 @@ function de(s, t, e, a, n, i) {
                       icon: "site/phone"
                     }))
                   ]),
-                  H(" " + v(E.text), 1)
+                  z(" " + y(E.text), 1)
                 ], 8, oe),
                 E.notes ? (r(), l("div", ce, [
                   o("span", he, [
@@ -1905,7 +1905,7 @@ function de(s, t, e, a, n, i) {
                       icon: "site/phone"
                     }))
                   ]),
-                  H(" " + v(E.notes), 1)
+                  z(" " + y(E.notes), 1)
                 ])) : m("", !0)
               ], 2))), 128))
             ])) : m("", !0)
@@ -2014,7 +2014,7 @@ const ue = /* @__PURE__ */ O(Mt, [["render", de]]), ge = {
   }
 }, me = { class: "cta__text" };
 function pe(s, t, e, a, n, i) {
-  const c = rt;
+  const c = nt;
   return r(), w(lt(i.tag), {
     role: "button",
     class: _(i.classList),
@@ -2026,8 +2026,8 @@ function pe(s, t, e, a, n, i) {
     "data-alternative-href": e.alternativeHref ? e.alternativeHref : null,
     "data-trigger": e.trigger ? e.trigger : null
   }, {
-    default: Z(() => [
-      o("span", me, v(e.text), 1),
+    default: et(() => [
+      o("span", me, y(e.text), 1),
       i.hasIcon ? (r(), w(c, {
         key: 0,
         icon: i.iconName,
@@ -2063,7 +2063,7 @@ function ve(s, t, e, a, n, i) {
     class: _(i.classList),
     "data-utility-animation-step": i.dataUtilityAnimationStep
   }, {
-    default: Z(() => [
+    default: et(() => [
       Et(s.$slots, "default")
     ]),
     _: 3
@@ -2106,7 +2106,7 @@ const ye = /* @__PURE__ */ O(_e, [["render", ve]]), Se = {
   }
 }, we = { class: "row" };
 function be(s, t, e, a, n, i) {
-  const c = X;
+  const c = ot;
   return r(), l("div", {
     class: _(i.classList)
   }, [
@@ -2735,7 +2735,7 @@ const Ee = {
   class: "hero__badges"
 }, He = { class: "hero__badge-container" }, je = { class: "hero__background-shape" };
 function ze(s, t, e, a, n, i) {
-  const c = mt("hero-pattern"), d = nt, g = rt, p = ke, h = X, k = ot, C = Le, E = xe;
+  const c = mt("hero-pattern"), d = at, g = nt, p = ke, h = ot, k = rt, C = Le, E = xe;
   return r(), l("div", {
     class: _(i.classList),
     style: N(i.style)
@@ -2750,8 +2750,8 @@ function ze(s, t, e, a, n, i) {
       cloudinary: i.background.cloudinary,
       img: i.img
     }, {
-      default: Z(() => t[0] || (t[0] = [
-        H(" > ")
+      default: et(() => t[0] || (t[0] = [
+        z(" > ")
       ])),
       _: 1
     }, 8, ["cloudinary", "img"])) : m("", !0),
@@ -2772,13 +2772,13 @@ function ze(s, t, e, a, n, i) {
             ])
           ])
         ])) : m("", !0),
-        i.letterSwitcher ? (r(), w(p, j({ key: 1 }, i.letterSwitcher, {
+        i.letterSwitcher ? (r(), w(p, H({ key: 1 }, i.letterSwitcher, {
           class: "hero__letter-switcher",
           onEnded: i.handleLetterSwitcherEnded
         }), null, 16, ["onEnded"])) : m("", !0),
         i.overline || i.headlineText || i.subline ? (r(), l("div", Ne, [
           o("div", De, [
-            i.overline ? (r(), l("span", Ve, v(i.overline), 1)) : m("", !0),
+            i.overline ? (r(), l("span", Ve, y(i.overline), 1)) : m("", !0),
             i.headlineText ? (r(), w(h, {
               key: 1,
               class: _(i.headlineClassList),
@@ -2808,7 +2808,7 @@ function ze(s, t, e, a, n, i) {
             }, null, 8, ["list"])) : m("", !0),
             i.badges ? (r(), l("div", Me, [
               (r(!0), l(L, null, A(i.badges, (M) => (r(), l("div", He, [
-                S(d, j({
+                S(d, H({
                   cloudinary: !0,
                   ref_for: !0
                 }, M, { class: "hero__badge-image" }), null, 16)
@@ -2830,13 +2830,13 @@ function ze(s, t, e, a, n, i) {
       class: "hero__background-shape-wrapper",
       hideContainer: !i.showShapeContainer
     }, {
-      default: Z(() => [
+      default: et(() => [
         S(E, {
           class: "hero__background-shape-content",
           hideContainer: !i.showShapeContainer,
           hideContainerClass: !0
         }, {
-          default: Z(() => [
+          default: et(() => [
             o("div", je, [
               i.showShape ? (r(), w(d, {
                 key: 0,
@@ -2962,7 +2962,7 @@ function Ue(s, t, e, a, n, i) {
     class: _(i.classList),
     style: N(i.parentStyle)
   }, [
-    (r(), w(lt(e.icon), j(i.settings, {
+    (r(), w(lt(e.icon), H(i.settings, {
       color: s.props.color,
       closed: e.closed,
       step: e.step
@@ -3080,7 +3080,7 @@ const Ge = /* @__PURE__ */ O($e, [["render", Ue]]), T = class T {
   }
 };
 b(T, "rootSelector", ".utility-animation"), b(T, "inViewportDataset", "data-utility-animation-in-viewport"), b(T, "endDataset", "data-utility-animation-end"), b(T, "instances", []), b(T, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
-let at = T;
+let it = T;
 const We = {
   tagName: "intro-text",
   computed: {
@@ -3089,7 +3089,7 @@ const We = {
     }
   },
   mounted() {
-    this.$refs.root && at.init([this.$refs.root]);
+    this.$refs.root && it.init([this.$refs.root]);
   },
   props: {
     copy: String,
@@ -3107,7 +3107,7 @@ const We = {
   class: "row mb-9 mt-9"
 }, Ze = { class: "row" }, Xe = { class: "col" }, Ke = ["innerHTML"];
 function Ye(s, t, e, a, n, i) {
-  const c = X;
+  const c = ot;
   return r(), l("figure", {
     class: _(i.classList),
     ref: "root"
@@ -3134,34 +3134,6 @@ function Ye(s, t, e, a, n, i) {
   ], 2);
 }
 const Qe = /* @__PURE__ */ O(We, [["render", Ye]]), ts = {
-  computed: {
-    classList() {
-      return ["test"];
-    }
-  },
-  mounted() {
-  },
-  props: {
-    copy: String,
-    text: String
-  }
-};
-function es(s, t, e, a, n, i) {
-  const c = X;
-  return r(), l("div", {
-    class: _(i.classList),
-    ref: "root"
-  }, [
-    H(" copy: " + v(e.copy) + " && headline: " + v(e.text) + " ", 1),
-    S(c, null, {
-      default: Z(() => [
-        H(v(e.text), 1)
-      ]),
-      _: 1
-    })
-  ], 2);
-}
-const ss = /* @__PURE__ */ O(ts, [["render", es]]), is = {
   tagName: "lottie",
   // components: {
   //   Vue3Lottie,
@@ -3247,12 +3219,12 @@ const ss = /* @__PURE__ */ O(ts, [["render", es]]), is = {
     }
   }
 };
-function as(s, t, e, a, n, i) {
+function es(s, t, e, a, n, i) {
   return r(), l("div", {
     class: _(i.classList)
   }, null, 2);
 }
-const ns = /* @__PURE__ */ O(is, [["render", as]]), pt = {
+const ss = /* @__PURE__ */ O(ts, [["render", es]]), pt = {
   tagName: "cta",
   computed: {
     tag() {
@@ -3363,7 +3335,7 @@ const ns = /* @__PURE__ */ O(is, [["render", as]]), pt = {
       <span class="cta__text">{{ text }}</span>
       <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
     </component>`
-}, rs = {
+}, is = {
   tagName: "headline-row",
   props: {
     centered: Boolean,
@@ -3407,7 +3379,7 @@ const ns = /* @__PURE__ */ O(is, [["render", as]]), pt = {
       </div>
     </div>
   `
-}, os = {
+}, as = {
   props: {
     productBlocks: Object,
     cta: Object,
@@ -3424,17 +3396,17 @@ const ns = /* @__PURE__ */ O(is, [["render", as]]), pt = {
     }
   },
   mounted() {
-    this.$refs.root && at.init([this.$refs.root]);
+    this.$refs.root && it.init([this.$refs.root]);
   }
-}, ls = { class: "container space-2" }, cs = { class: "row" }, hs = { class: "product-blocks__content" }, ds = ["innerHTML"], us = { class: "product-blocks__buttons" };
-function gs(s, t, e, a, n, i) {
-  const c = rs, d = ot, g = pt;
+}, ns = { class: "container space-2" }, rs = { class: "row" }, os = { class: "product-blocks__content" }, ls = ["innerHTML"], cs = { class: "product-blocks__buttons" };
+function hs(s, t, e, a, n, i) {
+  const c = is, d = rt, g = pt;
   return r(), l("div", {
     class: "product-blocks utility-animation container-fluid",
     style: N(i.backgroundColorStyle),
     ref: "root"
   }, [
-    o("div", ls, [
+    o("div", ns, [
       e.headline ? (r(), l("div", {
         key: 0,
         class: "container pb-4 pb-lg-6 fade-in-bottom",
@@ -3446,7 +3418,7 @@ function gs(s, t, e, a, n, i) {
           centered: !0
         }, null, 8, ["text"])
       ], 4)) : m("", !0),
-      o("div", cs, [
+      o("div", rs, [
         (r(!0), l(L, null, A(e.productBlocks.items, (p, h) => (r(), l("div", {
           key: h,
           class: "product-blocks__item col-md-6 mb-5 mb-md-0 space-1 fade-in-bottom",
@@ -3456,16 +3428,16 @@ function gs(s, t, e, a, n, i) {
           o("div", {
             class: _(["product-blocks__block", { "text-center": p.copy === "" }, "pl-lg-3 pr-lg-8"])
           }, [
-            o("div", hs, [
+            o("div", os, [
               o("figure", {
                 class: _(["product-blocks__img", { "mx-auto": p.copy === "" }, "mb-4"])
               }, null, 2),
-              o("h3", null, v(p.headline), 1),
+              o("h3", null, y(p.headline), 1),
               o("p", {
                 innerHTML: p.copy
-              }, null, 8, ds)
+              }, null, 8, ls)
             ]),
-            o("div", us, [
+            o("div", cs, [
               p.list ? (r(), w(d, {
                 key: 0,
                 list: p.list
@@ -3484,7 +3456,7 @@ function gs(s, t, e, a, n, i) {
     ])
   ], 4);
 }
-const ms = /* @__PURE__ */ O(os, [["render", gs]]), ps = {
+const ds = /* @__PURE__ */ O(as, [["render", hs]]), us = {
   tagName: "site-icons",
   computed: {
     svgTemplate() {
@@ -3498,38 +3470,38 @@ const ms = /* @__PURE__ */ O(os, [["render", gs]]), ps = {
     icon: String,
     noSpan: Boolean
   }
-}, fs = {
+}, gs = {
   key: 0,
   class: "streamline-icon",
   viewBox: "0 0 42 28",
   xmlns: "http://www.w3.org/2000/svg"
-}, _s = {
+}, ms = {
   class: "streamline-icon",
   viewBox: "0 0 42 28",
   xmlns: "http://www.w3.org/2000/svg"
-}, vs = {
+}, ps = {
   class: "streamline-icon",
   viewbox: "0 0 39 39",
   xmlns: "http://www.w3.org/2000/svg"
 };
-function ys(s, t, e, a, n, i) {
-  return e.icon === "site/mail" && e.noSpan === !0 ? (r(), l("svg", fs, [
-    o("title", null, v(e.icon), 1),
+function fs(s, t, e, a, n, i) {
+  return e.icon === "site/mail" && e.noSpan === !0 ? (r(), l("svg", gs, [
+    o("title", null, y(e.icon), 1),
     t[0] || (t[0] = yt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
   ])) : e.icon == "site/mail" ? (r(), l("span", {
     key: 1,
     class: _(i.classList)
   }, [
-    (r(), l("svg", _s, [
-      o("title", null, v(e.icon), 1),
+    (r(), l("svg", ms, [
+      o("title", null, y(e.icon), 1),
       t[1] || (t[1] = yt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
     ]))
   ], 2)) : e.icon == "site/phone" ? (r(), l("span", {
     key: 2,
     class: _(i.classList)
   }, [
-    (r(), l("svg", vs, [
-      o("title", null, v(e.icon), 1),
+    (r(), l("svg", ps, [
+      o("title", null, y(e.icon), 1),
       t[2] || (t[2] = o("g", {
         id: "phone",
         transform: "matrix(0.9848077 0.17364818 -0.17364818 0.9848077 5.730377 0)"
@@ -3543,7 +3515,7 @@ function ys(s, t, e, a, n, i) {
     ]))
   ], 2)) : m("", !0);
 }
-const Ss = /* @__PURE__ */ O(ps, [["render", ys]]), ws = {
+const _s = /* @__PURE__ */ O(us, [["render", fs]]), vs = {
   props: {
     tagName: "svg-shape",
     align: {
@@ -3606,8 +3578,8 @@ const Ss = /* @__PURE__ */ O(ps, [["render", ys]]), ws = {
       return this.svgShapeAlign !== "top" ? "transform: translateY(2px);" : "";
     }
   }
-}, bs = ["viewBox"], Cs = ["fill", "points"];
-function xs(s, t, e, a, n, i) {
+}, ys = ["viewBox"], Ss = ["fill", "points"];
+function ws(s, t, e, a, n, i) {
   return r(), l("figure", {
     class: _("svgshape " + i.svgShapeClasses),
     style: N("pointer-events: all;" + i.translateStyle)
@@ -3622,12 +3594,12 @@ function xs(s, t, e, a, n, i) {
       o("polygon", {
         fill: i.svgShapeColor,
         points: i.points
-      }, null, 8, Cs)
-    ], 8, bs))
+      }, null, 8, Ss)
+    ], 8, ys))
   ], 6);
 }
-const Ls = /* @__PURE__ */ O(ws, [["render", xs]]);
-class ks {
+const bs = /* @__PURE__ */ O(vs, [["render", ws]]);
+class Cs {
   constructor(t) {
     var a;
     this.position = t;
@@ -3759,7 +3731,7 @@ const J = {
   PAYLOAD_TOO_LARGE: 413,
   INTERNAL_SERVER_ERROR: 500
 };
-class Es {
+class xs {
   constructor(t) {
     b(this, "defaultLang", "de");
     b(this, "types", {
@@ -3804,7 +3776,7 @@ class Es {
   }
   convertPosition(t) {
     var i;
-    const e = new ks(t), a = (i = this.options) == null ? void 0 : i.jobId;
+    const e = new Cs(t), a = (i = this.options) == null ? void 0 : i.jobId;
     return e.description === null || a && e.id !== a || !this.filterPosition(e) ? null : {
       ...e.data,
       lang: this.lang
@@ -3961,10 +3933,10 @@ class Es {
     });
   }
 }
-class As {
+class Ls {
   constructor(t) {
     b(this, "jobDataUrl", "/assets/data/jobs/");
-    this.options = t, this.api = new Es(this.options), this.jobDataUrl = u.getSiteAssetPath(this.jobDataUrl);
+    this.options = t, this.api = new xs(this.options), this.jobDataUrl = u.getSiteAssetPath(this.jobDataUrl);
   }
   setLang(t) {
     this.api.setLang(t);
@@ -4004,8 +3976,8 @@ class As {
     return [...e, ...a];
   }
   getFormData(t) {
-    const e = z.getFormData(t);
-    return this.api.getFormPayload(e, z);
+    const e = j.getFormData(t);
+    return this.api.getFormPayload(e, j);
   }
   applyFileData(t, e, a) {
     return this.api.applyFileData(t, e, a);
@@ -4016,7 +3988,7 @@ class As {
 }
 const W = class W {
   constructor(t, e) {
-    this.root = t, this.options = e, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(f.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new As({
+    this.root = t, this.options = e, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(f.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new Ls({
       ...this.jobId && { jobId: this.jobId },
       ...this.apiUrl && { apiUrl: this.apiUrl },
       client_name: this.clientName,
@@ -4031,7 +4003,7 @@ const W = class W {
   bindEvents() {
     var t, e, a;
     if ((t = this.close) == null || t.addEventListener("click", this.handleClose.bind(this)), (e = this.successClose) == null || e.addEventListener("click", this.handleClose.bind(this)), (a = this.errorClose) == null || a.addEventListener("click", this.handleClose.bind(this)), this.application) {
-      const n = this.root.parentNode, i = z.getInstance(this.form);
+      const n = this.root.parentNode, i = j.getInstance(this.form);
       if (n && this.isNotVueApp(n)) {
         const c = n.querySelector(this.buttonSelector);
         c == null || c.addEventListener("click", this.handleOpen.bind(this));
@@ -4051,7 +4023,7 @@ const W = class W {
   }
   handleApplicationSubmit(t) {
     t.preventDefault(), t.stopImmediatePropagation(), this.setLoading(!0);
-    const e = this.form.querySelector(it.base64Selector), a = e == null ? void 0 : e.value;
+    const e = this.form.querySelector(st.base64Selector), a = e == null ? void 0 : e.value;
     let n = this.api.getFormData(this.form), i;
     if (a)
       i = {
@@ -4126,7 +4098,7 @@ const W = class W {
 };
 b(W, "rootSelector", ".modal"), b(W, "instances", []);
 let gt = W;
-const Os = {
+const ks = {
   tagName: "modal",
   computed: {
     modalErrorValue() {
@@ -4208,10 +4180,10 @@ const Os = {
       s ? t.classList.add(f.MODAL_OPEN) : (t.classList.remove(f.MODAL_OPEN), this.handleClose());
     },
     handleClose() {
-      const t = this.$refs.modal.querySelector(z.rootSelector);
+      const t = this.$refs.modal.querySelector(j.rootSelector);
       if (!t) return;
-      const e = z.getInstance(t);
-      e || z.reset(e.form);
+      const e = j.getInstance(t);
+      e || j.reset(e.form);
     },
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation), setTimeout(() => {
@@ -4324,7 +4296,7 @@ const Os = {
         </div>
       </div>
     </div>`
-}, Is = {
+}, Es = {
   tagName: "badge",
   props: {
     text: String,
@@ -4368,7 +4340,7 @@ const Os = {
       </div>
     </div>
   `
-}, Ts = {
+}, As = {
   tagName: "text-image",
   props: {
     spacing: { type: String, default: "space-top-2" },
@@ -4478,37 +4450,37 @@ const Os = {
     }
   },
   mounted() {
-    this.$refs.root && at.init([this.$refs.root]);
+    this.$refs.root && it.init([this.$refs.root]);
   },
   methods: {
     handleClick() {
       this.href && (document.location.href = this.href);
     }
   }
-}, Ps = { class: "container" }, Ns = {
+}, Os = { class: "container" }, Is = {
   key: 1,
   class: "text-image__overline d-inline-block mb-2 font-size-2"
-}, Ds = {
+}, Ts = {
   key: 3,
   class: "richtext"
-}, Vs = {
+}, Ps = {
   key: 4,
   class: "text-image__img text-image__img--subline mb-5 mt-5"
-}, Bs = ["innerHTML"], Rs = {
+}, Ns = ["innerHTML"], Ds = {
   key: 5,
   class: "pt-4 pt-lg-6 pb-6"
-}, Ms = {
+}, Vs = {
   key: 1,
   class: "text-image__cta col-lg-12"
 };
-function Hs(s, t, e, a, n, i) {
-  const c = nt, d = Is, g = X, p = ot, h = pt, k = Os;
+function Bs(s, t, e, a, n, i) {
+  const c = at, d = Es, g = ot, p = rt, h = pt, k = ks;
   return r(), l("div", {
     class: _(i.textImageClass),
     style: N(i.textImageStyle),
     ref: "root"
   }, [
-    o("div", Ps, [
+    o("div", Os, [
       o("div", {
         class: _(["row", { "flex-row-reverse": e.left }])
       }, [
@@ -4566,15 +4538,15 @@ function Hs(s, t, e, a, n, i) {
             uppercase: !e.badge.noUppercase,
             classes: "text-image__badge"
           }, null, 8, ["text", "icon", "uppercase"])) : m("", !0),
-          e.overline ? (r(), l("span", Ns, v(e.overline), 1)) : m("", !0),
+          e.overline ? (r(), l("span", Is, y(e.overline), 1)) : m("", !0),
           e.headline ? (r(), w(g, {
             key: 2,
             level: e.level,
             text: e.headline,
             classes: i.textImageHeadlineClassesComputed
           }, null, 8, ["level", "text", "classes"])) : m("", !0),
-          e.subline ? (r(), l("span", Ds, v(e.subline), 1)) : m("", !0),
-          e.subline ? (r(), l("div", Vs, [
+          e.subline ? (r(), l("span", Ts, y(e.subline), 1)) : m("", !0),
+          e.subline ? (r(), l("div", Ps, [
             S(c, {
               img: e.image,
               cloudinary: e.cloudinary,
@@ -4587,12 +4559,12 @@ function Hs(s, t, e, a, n, i) {
           o("div", {
             class: _(i.textImageLightTextClass),
             innerHTML: e.copy
-          }, null, 10, Bs),
-          e.list ? (r(), l("div", Rs, [
+          }, null, 10, Ns),
+          e.list ? (r(), l("div", Ds, [
             S(p, { list: e.list }, null, 8, ["list"])
           ])) : m("", !0)
         ], 2),
-        e.cta ? (r(), l("div", Ms, [
+        e.cta ? (r(), l("div", Vs, [
           S(h, {
             text: e.cta.text,
             button: "",
@@ -4615,7 +4587,7 @@ function Hs(s, t, e, a, n, i) {
     }, null, 8, ["form", "success", "error", "clientName", "jobId", "apiUrl", "apiKey"])) : m("", !0)
   ], 6);
 }
-const js = /* @__PURE__ */ O(Ts, [["render", Hs]]), St = {
+const Rs = /* @__PURE__ */ O(As, [["render", Bs]]), St = {
   bgColor: "var(--color-midnight)",
   mail: "info@glueckkanja.com",
   offices: ["Germany", "Austria", "Spain", "Australia"],
@@ -4749,7 +4721,7 @@ const js = /* @__PURE__ */ O(Ts, [["render", Hs]]), St = {
       target: "_blank"
     }
   ]
-}, zs = {
+}, Ms = {
   tagName: "v-footer-slider",
   template: `
     <div class="footer__slider-container">
@@ -4764,10 +4736,10 @@ const js = /* @__PURE__ */ O(Ts, [["render", Hs]]), St = {
     items: Array,
     bgColor: String
   }
-}, Fs = {
+}, Hs = {
   tagName: "v-footer",
   components: {
-    "footer-slider": zs
+    "footer-slider": Ms
   },
   data() {
     return {
@@ -4832,42 +4804,42 @@ const js = /* @__PURE__ */ O(Ts, [["render", Hs]]), St = {
     },
     lang: String
   }
-}, $s = { class: "container" }, Us = { class: "footer__content-row row" }, Gs = { class: "footer__content col-lg-12" }, Ws = { class: "footer__address" }, qs = ["href", "target"], Js = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, Zs = {
+}, js = { class: "container" }, zs = { class: "footer__content-row row" }, Fs = { class: "footer__content col-lg-12" }, $s = { class: "footer__address" }, Us = ["href", "target"], Gs = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, Ws = {
   key: 0,
   class: "nav-item"
-}, Xs = {
+}, qs = {
   key: 1,
   class: "nav-item"
-}, Ks = {
+}, Js = {
   key: 2,
   class: "nav-item"
-}, Ys = { class: "footer__postal-code" }, Qs = { class: "footer__city" }, ti = { class: "footer__country" }, ei = {
+}, Zs = { class: "footer__postal-code" }, Xs = { class: "footer__city" }, Ks = { class: "footer__country" }, Ys = {
   key: 4,
   class: "nav-item"
-}, si = ["href"], ii = { class: "media" }, ai = { class: "streamline-xs streamline-site-phone mr-3 d-flex" }, ni = { class: "media-body" }, ri = {
+}, Qs = ["href"], ti = { class: "media" }, ei = { class: "streamline-xs streamline-site-phone mr-3 d-flex" }, si = { class: "media-body" }, ii = {
   key: 5,
   class: "footer__nav-item nav-item"
-}, oi = { class: "footer__nav-link nav-link" }, li = { class: "footer__offices" }, ci = { class: "footer__office" }, hi = { key: 0 }, di = ["href"], ui = { class: "d-flex" }, gi = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, mi = { class: "footer__mail media-body" }, pi = {
+}, ai = { class: "footer__nav-link nav-link" }, ni = { class: "footer__offices" }, ri = { class: "footer__office" }, oi = { key: 0 }, li = ["href"], ci = { class: "d-flex" }, hi = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, di = { class: "footer__mail media-body" }, ui = {
   key: 0,
   class: "footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6"
-}, fi = ["href", "target"], _i = { class: "footer__highlights" }, vi = { class: "footer__partners" }, yi = ["href", "target"], Si = {
+}, gi = ["href", "target"], mi = { class: "footer__highlights" }, pi = { class: "footer__partners" }, fi = ["href", "target"], _i = {
   key: 0,
   class: "footer__vertical-line"
-}, wi = {
+}, vi = {
   key: 0,
   class: "footer__content-row row"
-}, bi = { class: "footer__content col-lg-12" }, Ci = { class: "mt-3" }, xi = { class: "row align-items-md-center mb-3" }, Li = { class: "col-md-8 mb-4 mb-md-0" }, ki = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, Ei = { class: "nav-item mr-6 footer__links" }, Ai = ["href"], Oi = { class: "col-md-4 text-md-right" }, Ii = { class: "list-inline mb-0 footer__socials" }, Ti = { class: "list-inline-item" }, Pi = ["title", "href"], Ni = { class: "row pb-2" }, Di = { class: "col" }, Vi = { class: "text-white small" };
-function Bi(s, t, e, a, n, i) {
-  const c = nt, d = bt, g = rt, p = mt("footer-slider");
+}, yi = { class: "footer__content col-lg-12" }, Si = { class: "mt-3" }, wi = { class: "row align-items-md-center mb-3" }, bi = { class: "col-md-8 mb-4 mb-md-0" }, Ci = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, xi = { class: "nav-item mr-6 footer__links" }, Li = ["href"], ki = { class: "col-md-4 text-md-right" }, Ei = { class: "list-inline mb-0 footer__socials" }, Ai = { class: "list-inline-item" }, Oi = ["title", "href"], Ii = { class: "row pb-2" }, Ti = { class: "col" }, Pi = { class: "text-white small" };
+function Ni(s, t, e, a, n, i) {
+  const c = at, d = bt, g = nt, p = mt("footer-slider");
   return r(), l("footer", {
     class: _(i.classList),
     style: N(i.style),
     ref: "root"
   }, [
-    o("div", $s, [
-      o("div", Us, [
-        o("div", Gs, [
-          o("div", Ws, [
+    o("div", js, [
+      o("div", zs, [
+        o("div", Fs, [
+          o("div", $s, [
             (r(!0), l(L, null, A(i.dataValue.logos, (h) => (r(), l("div", {
               class: _(["mb-3", h == null ? void 0 : h.classes])
             }, [
@@ -4880,50 +4852,50 @@ function Bi(s, t, e, a, n, i) {
                   h.linkClasses ? h.linkClasses : "w-75 w-md-35 w-lg-100"
                 ])
               }, [
-                S(c, j({
+                S(c, H({
                   cloudinary: !0,
                   ref_for: !0
                 }, h), null, 16)
-              ], 10, qs)
+              ], 10, Us)
             ], 2))), 256)),
-            (r(!0), l(L, null, A(i.locations, (h) => (r(), l("ul", Js, [
-              h.name ? (r(), l("li", Zs, v(h.name), 1)) : m("", !0),
-              h.over ? (r(), l("li", Xs, v(h.over), 1)) : m("", !0),
-              h.street ? (r(), l("li", Ks, v(h.street), 1)) : m("", !0),
+            (r(!0), l(L, null, A(i.locations, (h) => (r(), l("ul", Gs, [
+              h.name ? (r(), l("li", Ws, y(h.name), 1)) : m("", !0),
+              h.over ? (r(), l("li", qs, y(h.over), 1)) : m("", !0),
+              h.street ? (r(), l("li", Js, y(h.street), 1)) : m("", !0),
               h.city ? (r(), l("li", {
                 key: 3,
                 class: _(["nav-item footer__address-block", h.postalReversed ? "is-reversed" : ""])
               }, [
-                o("span", Ys, v(h.postalCode), 1),
-                o("span", Qs, v(h.city), 1),
-                o("span", ti, v(h.country), 1)
+                o("span", Zs, y(h.postalCode), 1),
+                o("span", Xs, y(h.city), 1),
+                o("span", Ks, y(h.country), 1)
               ], 2)) : m("", !0),
-              h.number ? (r(), l("li", ei, [
+              h.number ? (r(), l("li", Ys, [
                 o("a", {
                   class: "nav-link media",
                   href: "tel:" + h.number
                 }, [
-                  o("span", ii, [
-                    o("span", ai, [
+                  o("span", ti, [
+                    o("span", ei, [
                       S(d, {
                         icon: "site/mail",
                         "no-span": !0
                       })
                     ]),
-                    o("span", ni, v(h.number), 1)
+                    o("span", si, y(h.number), 1)
                   ])
-                ], 8, si)
+                ], 8, Qs)
               ])) : m("", !0),
-              i.dataValue.offices ? (r(), l("li", ri, [
-                o("a", oi, [
+              i.dataValue.offices ? (r(), l("li", ii, [
+                o("a", ai, [
                   S(g, {
                     icon: "world",
                     class: "footer__nav-icon footer__office-icon"
                   }),
-                  o("div", li, [
-                    (r(!0), l(L, null, A(i.dataValue.offices, (k, C) => (r(), l("span", ci, [
-                      H(v(k), 1),
-                      C < i.dataValue.offices.length - 1 ? (r(), l("span", hi, ", ")) : m("", !0)
+                  o("div", ni, [
+                    (r(!0), l(L, null, A(i.dataValue.offices, (k, C) => (r(), l("span", ri, [
+                      z(y(k), 1),
+                      C < i.dataValue.offices.length - 1 ? (r(), l("span", oi, ", ")) : m("", !0)
                     ]))), 256))
                   ])
                 ])
@@ -4936,20 +4908,20 @@ function Bi(s, t, e, a, n, i) {
                   class: "footer__nav-link nav-link",
                   href: "mailto:" + h.mail
                 }, [
-                  o("span", ui, [
-                    o("span", gi, [
+                  o("span", ci, [
+                    o("span", hi, [
                       S(d, {
                         icon: "site/mail",
                         "no-span": !0
                       })
                     ]),
-                    o("span", mi, v(h.mail), 1)
+                    o("span", di, y(h.mail), 1)
                   ])
-                ], 8, di)
+                ], 8, li)
               ], 2)) : m("", !0)
             ]))), 256)),
             i.isCorporate ? m("", !0) : (r(!0), l(L, { key: 0 }, A(i.dataValue.brandLogos, (h, k) => (r(), l(L, null, [
-              h.title ? (r(), l("span", pi, v(h.title), 1)) : m("", !0),
+              h.title ? (r(), l("span", ui, y(h.title), 1)) : m("", !0),
               o("a", {
                 href: h.url,
                 target: h.target,
@@ -4959,27 +4931,27 @@ function Bi(s, t, e, a, n, i) {
                   h.classes ? h.classes : "w-90"
                 ])
               }, [
-                S(c, j({
+                S(c, H({
                   cloudinary: !0,
                   ref_for: !0
                 }, h), null, 16)
-              ], 10, fi)
+              ], 10, gi)
             ], 64))), 256))
           ]),
-          o("div", _i, [
-            o("div", vi, [
+          o("div", mi, [
+            o("div", pi, [
               (r(!0), l(L, null, A(i.dataValue.partners, (h, k) => (r(), l(L, null, [
                 o("a", {
                   href: h.url,
                   target: h.target,
                   class: "footer__partner-images"
                 }, [
-                  S(c, j({
+                  S(c, H({
                     cloudinary: !0,
                     ref_for: !0
                   }, h, { class: "footer__partner-image" }), null, 16)
-                ], 8, yi),
-                k < i.dataValue.partners.length - 1 ? (r(), l("div", Si)) : m("", !0)
+                ], 8, fi),
+                k < i.dataValue.partners.length - 1 ? (r(), l("div", _i)) : m("", !0)
               ], 64))), 256))
             ]),
             i.isCorporate ? m("", !0) : (r(), w(p, {
@@ -4990,8 +4962,8 @@ function Bi(s, t, e, a, n, i) {
           ])
         ])
       ]),
-      i.isCorporate ? (r(), l("div", wi, [
-        o("div", bi, [
+      i.isCorporate ? (r(), l("div", vi, [
+        o("div", yi, [
           S(p, {
             items: i.dataValue.highlights,
             "bg-color": n.bgColorRgbaValue
@@ -4999,22 +4971,22 @@ function Bi(s, t, e, a, n, i) {
         ])
       ])) : m("", !0),
       t[0] || (t[0] = o("hr", { class: "footer__divider mx-lg-3" }, null, -1)),
-      o("div", Ci, [
-        o("div", xi, [
-          o("div", Li, [
-            o("ul", ki, [
-              (r(!0), l(L, null, A(i.links, (h) => (r(), l("li", Ei, [
-                o("a", j({
+      o("div", Si, [
+        o("div", wi, [
+          o("div", bi, [
+            o("ul", Ci, [
+              (r(!0), l(L, null, A(i.links, (h) => (r(), l("li", xi, [
+                o("a", H({
                   class: "nav-link",
                   href: h.url,
                   ref_for: !0
-                }, h), v(h.title), 17, Ai)
+                }, h), y(h.title), 17, Li)
               ]))), 256))
             ])
           ]),
-          o("div", Oi, [
-            o("ul", Ii, [
-              (r(!0), l(L, null, A(i.dataValue.socials, (h) => (r(), l("li", Ti, [
+          o("div", ki, [
+            o("ul", Ei, [
+              (r(!0), l(L, null, A(i.dataValue.socials, (h) => (r(), l("li", Ai, [
                 o("a", {
                   class: "btn btn-xs btn-icon btn-soft-light",
                   title: h.title,
@@ -5025,21 +4997,21 @@ function Bi(s, t, e, a, n, i) {
                   o("i", {
                     class: _(["fab", h.icon])
                   }, null, 2)
-                ], 8, Pi)
+                ], 8, Oi)
               ]))), 256))
             ])
           ])
         ]),
-        o("div", Ni, [
-          o("div", Di, [
-            o("p", Vi, "Copyright © " + v(i.dataValue.copyright), 1)
+        o("div", Ii, [
+          o("div", Ti, [
+            o("p", Pi, "Copyright © " + y(i.dataValue.copyright), 1)
           ])
         ])
       ])
     ])
   ], 6);
 }
-const Ri = /* @__PURE__ */ O(Fs, [["render", Bi]]), wt = {}, Mi = {
+const Di = /* @__PURE__ */ O(Hs, [["render", Ni]]), wt = {}, Vi = {
   tagName: "search",
   computed: {
     classList() {
@@ -5129,7 +5101,7 @@ const Ri = /* @__PURE__ */ O(Fs, [["render", Bi]]), wt = {}, Mi = {
       </div>
     </div>
   `
-}, Hi = {
+}, Bi = {
   tagName: "link-list",
   computed: {
     classList() {
@@ -5262,7 +5234,7 @@ const Ri = /* @__PURE__ */ O(Fs, [["render", Bi]]), wt = {}, Mi = {
       </ul>
     </figure>
   `
-}, ji = {
+}, Ri = {
   tagName: "v-header",
   computed: {
     classList() {
@@ -5603,40 +5575,40 @@ const Ri = /* @__PURE__ */ O(Fs, [["render", Bi]]), wt = {}, Mi = {
       maxLinkListsInFlyout: 3
     };
   }
-}, zi = { class: "header__row row" }, Fi = { class: "header__col col" }, $i = { class: "header__logo" }, Ui = ["href"], Gi = {
+}, Mi = { class: "header__row row" }, Hi = { class: "header__col col" }, ji = { class: "header__logo" }, zi = ["href"], Fi = {
   class: "header__list",
   ref: "list"
-}, Wi = ["href", "target", "onClick"], qi = ["onMouseover"], Ji = { class: "header__link-text" }, Zi = { class: "header__link-text-spacer" }, Xi = ["href", "target"], Ki = { class: "header__product-list-data" }, Yi = { class: "header__product-list-title font-size-8 bold" }, Qi = { class: "header__product-list-subtitle" }, ta = ["href"], ea = { class: "header__footer" }, sa = {
+}, $i = ["href", "target", "onClick"], Ui = ["onMouseover"], Gi = { class: "header__link-text" }, Wi = { class: "header__link-text-spacer" }, qi = ["href", "target"], Ji = { class: "header__product-list-data" }, Zi = { class: "header__product-list-title font-size-8 bold" }, Xi = { class: "header__product-list-subtitle" }, Ki = ["href"], Yi = { class: "header__footer" }, Qi = {
   key: 1,
   class: "header__contact header__contact--mobile"
-}, ia = ["href"], aa = { class: "header__contact-text" }, na = { class: "header__contact-title" }, ra = {
+}, ta = ["href"], ea = { class: "header__contact-text" }, sa = { class: "header__contact-title" }, ia = {
   key: 2,
   class: "header__button"
-}, oa = {
+}, aa = {
   key: 3,
   class: "header__language-switch"
-}, la = ["onClick"], ca = {
+}, na = ["onClick"], ra = {
   key: 0,
   class: "header__button"
-}, ha = { class: "header__link-text" }, da = { class: "header__link-text-spacer" }, ua = {
+}, oa = { class: "header__link-text" }, la = { class: "header__link-text-spacer" }, ca = {
   class: "header__language-switch-flyout",
   ref: "languageSwitchFlyout"
-}, ga = ["onClick"], ma = { class: "row" }, pa = { class: "col" }, fa = {
+}, ha = ["onClick"], da = { class: "row" }, ua = { class: "col" }, ga = {
   key: 0,
   class: "header__flyout-items"
-}, _a = {
+}, ma = {
   key: 0,
   class: "header__flyout-block"
-}, va = { class: "header__flyout-caption" }, ya = ["innerHTML"], Sa = ["href"], wa = { class: "header__contact-title" }, ba = {
+}, pa = { class: "header__flyout-caption" }, fa = ["innerHTML"], _a = ["href"], va = { class: "header__contact-title" }, ya = {
   key: 1,
   class: "header__highlight-cta has-emergency-colors"
-}, Ca = {
+}, Sa = {
   key: 1,
   class: "header__product-list is-expanded"
-}, xa = ["href", "target"], La = { class: "header__product-list-data" }, ka = { class: "header__product-list-title font-size-8 bold" }, Ea = { class: "header__product-list-subtitle" };
-function Aa(s, t, e, a, n, i) {
+}, wa = ["href", "target"], ba = { class: "header__product-list-data" }, Ca = { class: "header__product-list-title font-size-8 bold" }, xa = { class: "header__product-list-subtitle" };
+function La(s, t, e, a, n, i) {
   var k, C, E, M, ft, _t;
-  const c = nt, d = rt, g = Hi, p = pt, h = Mi;
+  const c = at, d = nt, g = Bi, p = pt, h = Vi;
   return r(), l(L, null, [
     o("div", {
       class: "header__spacer",
@@ -5644,15 +5616,15 @@ function Aa(s, t, e, a, n, i) {
     }, null, 4),
     o("header", {
       class: _(i.classList),
-      onMouseover: t[5] || (t[5] = (...y) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(...y)),
-      onMouseout: t[6] || (t[6] = (...y) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...y))
+      onMouseover: t[5] || (t[5] = (...v) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(...v)),
+      onMouseout: t[6] || (t[6] = (...v) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...v))
     }, [
       o("div", {
         class: _(i.headerContainerClassList)
       }, [
-        o("div", zi, [
-          o("div", Fi, [
-            o("div", $i, [
+        o("div", Mi, [
+          o("div", Hi, [
+            o("div", ji, [
               o("a", {
                 href: (k = i.homeObj) == null ? void 0 : k.url
               }, [
@@ -5666,11 +5638,11 @@ function Aa(s, t, e, a, n, i) {
                   class: "header__logo-default",
                   cloudinary: !0
                 }, null, 8, ["img"])
-              ], 8, Ui)
+              ], 8, zi)
             ]),
             o("div", {
               class: "header__menu",
-              onClick: t[0] || (t[0] = (...y) => i.handleCloseClick && i.handleCloseClick(...y))
+              onClick: t[0] || (t[0] = (...v) => i.handleCloseClick && i.handleCloseClick(...v))
             }, [
               S(d, {
                 icon: "menu",
@@ -5680,55 +5652,55 @@ function Aa(s, t, e, a, n, i) {
             ]),
             o("nav", {
               class: "header__nav",
-              onMouseout: t[1] || (t[1] = (...y) => i.handleMouseOut && i.handleMouseOut(...y))
+              onMouseout: t[1] || (t[1] = (...v) => i.handleMouseOut && i.handleMouseOut(...v))
             }, [
-              o("ul", Gi, [
-                (r(!0), l(L, null, A(i.activeNavigation, (y, I) => {
-                  var G, K, Y, Q, tt, q;
+              o("ul", Fi, [
+                (r(!0), l(L, null, A(i.activeNavigation, (v, I) => {
+                  var G, Z, X, K, Y, q;
                   return r(), l("li", {
-                    class: _(i.headerItemClasses(y))
+                    class: _(i.headerItemClasses(v))
                   }, [
-                    y != null && y.languages ? (r(), l("a", {
+                    v != null && v.languages ? (r(), l("a", {
                       key: 0,
-                      class: _(i.headerLinkClasses(y, I)),
-                      href: i.getHref(y),
-                      target: i.getTarget(y),
-                      onClick: (V) => i.handleClick(y, I),
+                      class: _(i.headerLinkClasses(v, I)),
+                      href: i.getHref(v),
+                      target: i.getTarget(v),
+                      onClick: (V) => i.handleClick(v, I),
                       ref_for: !0,
                       ref: "link"
                     }, [
                       o("div", {
                         class: "header__link-content",
-                        onMouseover: (V) => i.handleMouseOver(y, I, V)
+                        onMouseover: (V) => i.handleMouseOver(v, I, V)
                       }, [
-                        o("span", Ji, v((G = y.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
-                        o("span", Zi, v((K = y.languages[i.lowerLang]) == null ? void 0 : K.title), 1),
-                        y.children ? (r(), w(d, {
+                        o("span", Gi, y((G = v.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
+                        o("span", Wi, y((Z = v.languages[i.lowerLang]) == null ? void 0 : Z.title), 1),
+                        v.children ? (r(), w(d, {
                           key: 0,
                           class: "header__link-icon",
                           icon: "expand",
                           size: "small"
                         })) : m("", !0)
-                      ], 40, qi)
-                    ], 10, Wi)) : m("", !0),
-                    (r(!0), l(L, null, A(y.children, (V) => (r(), l(L, null, [
-                      y.children && !V.products ? (r(), w(g, {
+                      ], 40, Ui)
+                    ], 10, $i)) : m("", !0),
+                    (r(!0), l(L, null, A(v.children, (V) => (r(), l(L, null, [
+                      v.children && !V.products ? (r(), w(g, {
                         key: 0,
                         list: V,
                         lang: i.lowerLang,
-                        hidden: i.isLinkListHidden(y, I),
+                        hidden: i.isLinkListHidden(v, I),
                         classes: "header__link-list",
                         "no-animation": !0
                       }, null, 8, ["list", "lang", "hidden"])) : (r(), l("div", {
                         key: 1,
-                        class: _(i.headerProductListClasses(y, I)),
+                        class: _(i.headerProductListClasses(v, I)),
                         ref_for: !0,
                         ref: "product-list"
                       }, [
                         (r(!0), l(L, null, A(V.children, (P) => {
-                          var et, st, vt;
+                          var Q, tt, vt;
                           return r(), l("a", {
-                            href: (et = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : et.url,
+                            href: (Q = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : Q.url,
                             target: P.target,
                             class: "header__product-list-item custom"
                           }, [
@@ -5737,29 +5709,29 @@ function Aa(s, t, e, a, n, i) {
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            o("div", Ki, [
-                              o("div", Yi, v((st = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : st.title), 1),
-                              o("div", Qi, v((vt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : vt.subtitle), 1)
+                            o("div", Ji, [
+                              o("div", Zi, y((tt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : tt.title), 1),
+                              o("div", Xi, y((vt = P == null ? void 0 : P.languages[i.lowerLang]) == null ? void 0 : vt.subtitle), 1)
                             ])
-                          ], 8, Xi);
+                          ], 8, qi);
                         }), 256))
                       ], 2))
                     ], 64))), 256)),
-                    (Y = y.languages[i.lowerLang]) != null && Y.emergency ? (r(), l("a", {
+                    (X = v.languages[i.lowerLang]) != null && X.emergency ? (r(), l("a", {
                       key: 1,
-                      href: (Q = y.languages[i.lowerLang]) == null ? void 0 : Q.emergency.href,
-                      class: _(i.navHighlightClasses(y, I))
+                      href: (K = v.languages[i.lowerLang]) == null ? void 0 : K.emergency.href,
+                      class: _(i.navHighlightClasses(v, I))
                     }, [
                       S(d, {
-                        icon: (tt = y.languages[i.lowerLang]) == null ? void 0 : tt.emergency.icon,
+                        icon: (Y = v.languages[i.lowerLang]) == null ? void 0 : Y.emergency.icon,
                         size: "medium"
                       }, null, 8, ["icon"]),
-                      H(" " + v((q = y.languages[i.lowerLang]) == null ? void 0 : q.emergency.text), 1)
-                    ], 10, ta)) : m("", !0)
+                      z(" " + y((q = v.languages[i.lowerLang]) == null ? void 0 : q.emergency.text), 1)
+                    ], 10, Ki)) : m("", !0)
                   ], 2);
                 }), 256))
               ], 512),
-              o("div", ea, [
+              o("div", Yi, [
                 i.hasMeta ? (r(), w(g, {
                   key: 0,
                   list: i.metaList,
@@ -5767,22 +5739,22 @@ function Aa(s, t, e, a, n, i) {
                   classes: "header__meta-list",
                   "no-animation": !0
                 }, null, 8, ["list", "lang"])) : m("", !0),
-                i.hasContact ? (r(), l("div", sa, [
+                i.hasContact ? (r(), l("div", Qi, [
                   (M = e.contact) != null && M.languages ? (r(), l("a", {
                     key: 0,
                     class: "header__contact-link custom",
                     href: (ft = e.contact.languages[i.lowerLang]) == null ? void 0 : ft.url
                   }, [
-                    o("div", aa, [
+                    o("div", ea, [
                       S(d, {
                         icon: "phone-mail",
                         size: "medium"
                       }),
-                      o("span", na, v((_t = e.contact.languages[i.lowerLang]) == null ? void 0 : _t.title), 1)
+                      o("span", sa, y((_t = e.contact.languages[i.lowerLang]) == null ? void 0 : _t.title), 1)
                     ])
-                  ], 8, ia)) : m("", !0)
+                  ], 8, ta)) : m("", !0)
                 ])) : m("", !0),
-                e.button ? (r(), l("div", ra, [
+                e.button ? (r(), l("div", ia, [
                   S(p, {
                     text: e.button.text,
                     href: e.button.href,
@@ -5791,15 +5763,15 @@ function Aa(s, t, e, a, n, i) {
                     classes: n.ctaClassList
                   }, null, 8, ["text", "href", "target", "skin", "classes"])
                 ])) : m("", !0),
-                i.hasLangSwitch ? (r(), l("div", oa, [
-                  (r(!0), l(L, null, A(e.home.languages, (y, I) => (r(), l("a", {
+                i.hasLangSwitch ? (r(), l("div", aa, [
+                  (r(!0), l(L, null, A(e.home.languages, (v, I) => (r(), l("a", {
                     class: _({ "header__language-link custom": !0, active: I === i.lowerLang }),
                     onClick: (G) => i.handleLanguageSwitch(I)
-                  }, v(I), 11, la))), 256))
+                  }, y(I), 11, na))), 256))
                 ])) : m("", !0)
               ])
             ], 32),
-            e.button ? (r(), l("div", ca, [
+            e.button ? (r(), l("div", ra, [
               S(p, {
                 text: e.button.text,
                 href: e.button.href,
@@ -5817,22 +5789,22 @@ function Aa(s, t, e, a, n, i) {
             i.hasLangSwitch ? (r(), l("div", {
               key: 2,
               class: "header__language-switch",
-              onMouseover: t[2] || (t[2] = (...y) => i.handleLanguageOver && i.handleLanguageOver(...y)),
-              onMouseout: t[3] || (t[3] = (...y) => i.handleLanguageOut && i.handleLanguageOut(...y)),
+              onMouseover: t[2] || (t[2] = (...v) => i.handleLanguageOver && i.handleLanguageOver(...v)),
+              onMouseout: t[3] || (t[3] = (...v) => i.handleLanguageOut && i.handleLanguageOut(...v)),
               ref: "languageSwitch"
             }, [
-              o("span", ha, v(e.lang), 1),
-              o("span", da, v(e.lang), 1),
+              o("span", oa, y(e.lang), 1),
+              o("span", la, y(e.lang), 1),
               S(d, {
                 class: "header__link-icon",
                 icon: "expand",
                 size: "small"
               }),
-              o("div", ua, [
-                (r(!0), l(L, null, A(e.home.languages, (y, I) => (r(), l("a", {
+              o("div", ca, [
+                (r(!0), l(L, null, A(e.home.languages, (v, I) => (r(), l("a", {
                   class: _({ "header__language-link custom": !0, "d-none": I === i.lowerLang }),
                   onClick: (G) => i.handleLanguageSwitch(I)
-                }, v(I), 11, ga))), 256))
+                }, y(I), 11, ha))), 256))
               ], 512)
             ], 544)) : m("", !0)
           ])
@@ -5840,51 +5812,51 @@ function Aa(s, t, e, a, n, i) {
       ], 2),
       o("div", {
         class: "header__flyout",
-        onMouseout: t[4] || (t[4] = (...y) => i.handleMouseOut && i.handleMouseOut(...y))
+        onMouseout: t[4] || (t[4] = (...v) => i.handleMouseOut && i.handleMouseOut(...v))
       }, [
         o("div", {
           class: _(i.containerClass)
         }, [
-          o("div", ma, [
-            o("div", pa, [
-              (r(!0), l(L, null, A(i.activeNavigation, (y, I) => {
-                var G, K, Y, Q, tt;
+          o("div", da, [
+            o("div", ua, [
+              (r(!0), l(L, null, A(i.activeNavigation, (v, I) => {
+                var G, Z, X, K, Y;
                 return r(), l("div", {
                   class: "header__flyout-content",
                   ref_for: !0,
                   ref: "flyout"
                 }, [
-                  y.children ? (r(), l("div", fa, [
-                    i.showFlyoutBlock(y.children) ? (r(), l("figure", _a, [
-                      o("figcaption", va, v((G = y.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
+                  v.children ? (r(), l("div", ga, [
+                    i.showFlyoutBlock(v.children) ? (r(), l("figure", ma, [
+                      o("figcaption", pa, y((G = v.languages[i.lowerLang]) == null ? void 0 : G.title), 1),
                       o("div", {
                         class: "header__flyout-description font-size-1 thin",
-                        innerHTML: (K = y.languages[i.lowerLang]) == null ? void 0 : K.description
-                      }, null, 8, ya),
-                      i.hasContactLink(y) ? (r(), l("a", {
+                        innerHTML: (Z = v.languages[i.lowerLang]) == null ? void 0 : Z.description
+                      }, null, 8, fa),
+                      i.hasContactLink(v) ? (r(), l("a", {
                         key: 0,
                         class: "header__link custom",
-                        href: (Y = e.contact.languages[i.lowerLang]) == null ? void 0 : Y.url
+                        href: (X = e.contact.languages[i.lowerLang]) == null ? void 0 : X.url
                       }, [
                         S(d, {
                           icon: "phone-mail",
                           size: "medium"
                         }),
-                        o("span", wa, v((Q = e.contact.languages[i.lowerLang]) == null ? void 0 : Q.title), 1)
-                      ], 8, Sa)) : m("", !0),
-                      (tt = y.languages[i.lowerLang]) != null && tt.emergency ? (r(), l("div", ba, [
-                        S(p, j({ ref_for: !0 }, y.languages[i.lowerLang].emergency), null, 16)
+                        o("span", va, y((K = e.contact.languages[i.lowerLang]) == null ? void 0 : K.title), 1)
+                      ], 8, _a)) : m("", !0),
+                      (Y = v.languages[i.lowerLang]) != null && Y.emergency ? (r(), l("div", ya, [
+                        S(p, H({ ref_for: !0 }, v.languages[i.lowerLang].emergency), null, 16)
                       ])) : m("", !0)
                     ])) : m("", !0),
-                    (r(!0), l(L, null, A(y.children, (q) => (r(), l(L, null, [
-                      y.children && !q.products ? (r(), w(g, {
+                    (r(!0), l(L, null, A(v.children, (q) => (r(), l(L, null, [
+                      v.children && !q.products ? (r(), w(g, {
                         key: 0,
                         list: q,
                         lang: i.lowerLang,
                         "no-animation": !0
-                      }, null, 8, ["list", "lang"])) : (r(), l("div", Ca, [
+                      }, null, 8, ["list", "lang"])) : (r(), l("div", Sa, [
                         (r(!0), l(L, null, A(q.children, (V) => {
-                          var P, et, st;
+                          var P, Q, tt;
                           return r(), l("a", {
                             href: (P = V.languages[i.lowerLang]) == null ? void 0 : P.url,
                             target: V.target,
@@ -5895,11 +5867,11 @@ function Aa(s, t, e, a, n, i) {
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            o("div", La, [
-                              o("div", ka, v((et = V.languages[i.lowerLang]) == null ? void 0 : et.title), 1),
-                              o("div", Ea, v((st = V.languages[i.lowerLang]) == null ? void 0 : st.subtitle), 1)
+                            o("div", ba, [
+                              o("div", Ca, y((Q = V.languages[i.lowerLang]) == null ? void 0 : Q.title), 1),
+                              o("div", xa, y((tt = V.languages[i.lowerLang]) == null ? void 0 : tt.subtitle), 1)
                             ])
-                          ], 8, xa);
+                          ], 8, wa);
                         }), 256))
                       ]))
                     ], 64))), 256))
@@ -5913,7 +5885,7 @@ function Aa(s, t, e, a, n, i) {
     ], 34)
   ], 64);
 }
-const Oa = /* @__PURE__ */ O(ji, [["render", Aa]]), Ia = {
+const ka = /* @__PURE__ */ O(Ri, [["render", La]]), Ea = {
   tagName: "lottie",
   // components: {
   //   Vue3Lottie,
@@ -6002,7 +5974,7 @@ const Oa = /* @__PURE__ */ O(ji, [["render", Aa]]), Ia = {
     <div :class="classList">
     </div>
   `
-}, ht = "https://res.cloudinary.com/c4a8/image/upload/", Ta = {
+}, ht = "https://res.cloudinary.com/c4a8/image/upload/", Aa = {
   tagName: "v-img",
   data() {
     return {
@@ -6175,9 +6147,9 @@ const Oa = /* @__PURE__ */ O(ji, [["render", Aa]]), Ia = {
     lottieSettings: Object,
     animated: Boolean
   }
-}, Pa = ["media", "srcset"], Na = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], Da = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
-function Va(s, t, e, a, n, i) {
-  const c = Ia;
+}, Oa = ["media", "srcset"], Ia = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], Ta = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
+function Pa(s, t, e, a, n, i) {
+  const c = Ea;
   return i.hasPictureTag ? (r(), l("div", {
     key: 0,
     class: _(i.pictureWrapperClassList)
@@ -6187,7 +6159,7 @@ function Va(s, t, e, a, n, i) {
         key: d.params,
         media: d.media,
         srcset: i.getCloudinaryBasePathLink(d)
-      }, null, 8, Pa))), 128)),
+      }, null, 8, Oa))), 128)),
       o("img", {
         onLoad: t[0] || (t[0] = (d) => i.loadImage(i.imgSrcSetImg)),
         ref: "image",
@@ -6200,9 +6172,9 @@ function Va(s, t, e, a, n, i) {
         srcset: n.srcset,
         sizes: n.sizes,
         crossorigin: i.crossOriginValue
-      }, null, 42, Na)
+      }, null, 42, Ia)
     ])
-  ], 2)) : i.isLottie ? (r(), w(c, j({
+  ], 2)) : i.isLottie ? (r(), w(c, H({
     key: 1,
     data: i.jsonLottieData,
     class: i.classListComponent
@@ -6219,9 +6191,9 @@ function Va(s, t, e, a, n, i) {
     srcset: n.srcset,
     sizes: n.sizes,
     crossorigin: i.crossOriginValue
-  }, null, 42, Da));
+  }, null, 42, Ta));
 }
-const Ba = /* @__PURE__ */ O(Ta, [["render", Va]]), Ra = {
+const Na = /* @__PURE__ */ O(Aa, [["render", Pa]]), Da = {
   tagName: "world",
   computed: {
     style() {
@@ -6235,78 +6207,77 @@ const Ba = /* @__PURE__ */ O(Ta, [["render", Va]]), Ra = {
     settings: Object,
     color: String
   }
-}, Ma = { "clip-path": "url(#icon-world-mask)" }, Ha = ["stroke"], ja = ["stroke"], za = ["stroke"], Fa = ["stroke"], $a = { id: "icon-world-mask" }, Ua = ["fill"];
-function Ga(s, t, e, a, n, i) {
-  return r(), l("svg", j(e.settings, {
+}, Va = { "clip-path": "url(#icon-world-mask)" }, Ba = ["stroke"], Ra = ["stroke"], Ma = ["stroke"], Ha = ["stroke"], ja = { id: "icon-world-mask" }, za = ["fill"];
+function Fa(s, t, e, a, n, i) {
+  return r(), l("svg", H(e.settings, {
     style: i.style,
     fill: "none",
     viewBox: "0 0 20 20"
   }), [
-    o("g", Ma, [
+    o("g", Va, [
       o("path", {
         d: "M19.583 9.95083C19.5836 11.2135 19.3356 12.4639 18.853 13.6307C18.3704 14.7975 17.6627 15.8578 16.7703 16.7511C15.878 17.6444 14.8184 18.3532 13.6521 18.837C12.4858 19.3208 11.2356 19.5702 9.97298 19.5708C7.41074 19.5283 4.96901 18.4754 3.17921 16.6415C1.38941 14.8075 0.396399 12.3408 0.416309 9.77833C0.41836 7.32895 1.37927 4.97771 3.09332 3.22799C4.80737 1.47828 7.13832 0.46915 9.58714 0.416661C9.72548 0.410828 9.86381 0.408328 10.0038 0.408328C11.2606 0.401511 12.5063 0.643413 13.6692 1.1201C14.832 1.59679 15.8891 2.29884 16.7795 3.18582C17.6699 4.0728 18.376 5.12718 18.8572 6.28823C19.3383 7.44927 19.585 8.69404 19.583 9.95083Z",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, Ha),
+      }, null, 8, Ba),
       o("path", {
         d: "M9.58789 0.416672C4.58789 5.83334 4.58789 12.9 9.58789 19.5667",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, ja),
+      }, null, 8, Ra),
       o("path", {
         d: "M10.4209 0.416672C15.4209 5.83334 15.4209 12.8975 10.4209 19.5642",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, za),
+      }, null, 8, Ma),
       o("path", {
         d: "M0.418945 9.57001H19.5831",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, Fa)
+      }, null, 8, Ha)
     ]),
     o("defs", null, [
-      o("clipPath", $a, [
+      o("clipPath", ja, [
         o("rect", {
           width: "20",
           height: "20",
           fill: i.stroke
-        }, null, 8, Ua)
+        }, null, 8, za)
       ])
     ])
   ], 16);
 }
-const Wa = /* @__PURE__ */ O(Ra, [["render", Ga]]), Za = {
+const $a = /* @__PURE__ */ O(Da, [["render", Fa]]), Wa = {
   install(s) {
-    s.component("Carousel", Vt), s.component("Contact", ue), s.component("Cta", fe), s.component("CtaList", ot), s.component("Headline", ye), s.component("HeadlineRow", Ce), s.component("Hero", Fe), s.component("Icon", Ge), s.component("Test", ss), s.component("IntroText", Qe), s.component("Lottie", ns), s.component("ProductBlocks", ms), s.component("SiteIcons", Ss), s.component("SvgShape", Ls), s.component("TextImage", js), s.component("VFooter", Ri), s.component("VHeader", Oa), s.component("VImg", Ba), s.component("World", Wa);
+    s.component("Carousel", Vt), s.component("Contact", ue), s.component("Cta", fe), s.component("CtaList", rt), s.component("Headline", ye), s.component("HeadlineRow", Ce), s.component("Hero", Fe), s.component("Icon", Ge), s.component("IntroText", Qe), s.component("Lottie", ss), s.component("ProductBlocks", ds), s.component("SiteIcons", _s), s.component("SvgShape", bs), s.component("TextImage", Rs), s.component("VFooter", Di), s.component("VHeader", ka), s.component("VImg", Na), s.component("World", $a);
   }
 };
 export {
   Vt as Carousel,
   ue as Contact,
   fe as Cta,
-  ot as CtaList,
+  rt as CtaList,
   ye as Headline,
   Ce as HeadlineRow,
   Fe as Hero,
   Ge as Icon,
   Qe as IntroText,
-  ns as Lottie,
-  ms as ProductBlocks,
-  Ss as SiteIcons,
-  Ls as SvgShape,
-  ss as Test,
-  js as TextImage,
-  Ri as VFooter,
-  Oa as VHeader,
-  Ba as VImg,
-  Wa as World,
-  Za as default
+  ss as Lottie,
+  ds as ProductBlocks,
+  _s as SiteIcons,
+  bs as SvgShape,
+  Rs as TextImage,
+  Di as VFooter,
+  ka as VHeader,
+  Na as VImg,
+  $a as World,
+  Wa as default
 };

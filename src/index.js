@@ -92,7 +92,7 @@ import Icon from './components/icon.vue';
 // import ImgFilter from './components/img-filter.js';
 // import Info from './components/icons/info.js';
 import IntroText from './components/intro-text.vue';
-import Test from './components/test.vue';
+// import Test from './components/test.vue';
 // import JobList from './components/job-list.js';
 // import JobListDetail from './components/job-list-detail.js';
 // import JobListEntry from './components/job-list-entry.js';
@@ -247,7 +247,7 @@ export {
   // Img,
   // ImgFilter,
   // Info,
-  Test,
+  // Test,
   IntroText,
   // JobList,
   // JobListDetail,
@@ -405,7 +405,7 @@ export default {
     // app.component('Img', Img);
     // app.component('ImgFilter', ImgFilter);
     // app.component('Info', Info);
-    app.component('Test', Test);
+    // app.component('Test', Test);
     app.component('IntroText', IntroText);
     // app.component('JobList', JobList);
     // app.component('JobListDetail', JobListDetail);

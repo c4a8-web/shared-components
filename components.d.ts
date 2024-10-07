@@ -7,7 +7,7 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Accordion: typeof import('./src/components/accordion.vue')['default']
+    Accordion: typeof import('./src/components/accordion.js')['default']
     AdBlockInfo: typeof import('./src/components/ad-block-info.js')['default']
     Arrow: typeof import('./src/components/icons/arrow.js')['default']
     ArrowCurl: typeof import('./src/components/icons/arrow-curl.js')['default']
@@ -141,7 +141,6 @@ declare module 'vue' {
     TagCloud: typeof import('./src/components/tag-cloud.js')['default']
     TBlock: typeof import('./src/components/shapes/t-block.js')['default']
     Teaser: typeof import('./src/components/teaser.js')['default']
-    Test: typeof import('./src/components/test.vue')['default']
     TestimonialList: typeof import('./src/components/testimonial-list.js')['default']
     TestimonialsDetail: typeof import('./src/components/testimonials-detail.js')['default']
     TestimonialsSlider: typeof import('./src/components/testimonials-slider.js')['default']
