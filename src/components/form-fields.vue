@@ -60,12 +60,12 @@
           :readonly="readonly"
         />
       </template>
+      <div :id="errorId" class="invalid-feedback" v-if="hasError">{{ getRequiredMsg(field) }}</div>
     </div>
   </template>
 </template>
 <script>
 import UtilityAnimation from '../assets/js/utility-animation.js';
-// import Events from '../assets/js/events.js';
 
 export default {
   tagName: 'form-fields',
@@ -97,6 +97,9 @@ export default {
       } else {
         return '';
       }
+    },
+    errorId() {
+      return `${this.id}-error`;
     },
     readonly() {
       return this.field.readonly ? 'readonly' : null;
@@ -163,6 +166,7 @@ export default {
     hasAnimation: {
       default: null,
     },
+    hasError: Boolean,
   },
 };
 </script>

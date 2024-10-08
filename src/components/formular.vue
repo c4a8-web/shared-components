@@ -10,7 +10,13 @@
             </div>
           </div>
         </div>
-        <form class="form__form js-validate mt-6" :method="method" :action="formAction">
+        <form
+          class="form__form js-validate mt-6"
+          :method="method"
+          :action="formAction"
+          :novalidate="novalidate"
+          @submit="handleSubmit"
+        >
           <template v-for="block in preparedBlocks">
             <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
               <div :class="getFieldClassList(field)" v-for="field in block">
@@ -21,6 +27,7 @@
                   :id="getId(field)"
                   :has-animation="hasAnimationValue"
                   @action-changed="updateAction"
+                  :has-error="hasError(field)"
                 />
               </div>
             </div>
@@ -42,6 +49,7 @@
   </div>
 </template>
 <script>
+import State from '../assets/js/state.js';
 import Tools from '../assets/js/tools.js';
 import Form from '../assets/js/components/form.js';
 import UtilityAnimation from '../assets/js/utility-animation.js';
@@ -53,6 +61,8 @@ export default {
       originalAction: '',
       formAction: '',
       formInstance: null,
+      novalidateValue: null,
+      errors: [],
     };
   },
   computed: {
@@ -66,6 +76,9 @@ export default {
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
         'vue-component',
       ];
+    },
+    novalidate() {
+      return this.novalidateValue;
     },
     hasAnimationValue() {
       return Tools.isTrue(this.hasAnimation);
@@ -139,11 +152,16 @@ export default {
   mounted() {
     this.formInstance = new Form(this.$refs.root);
 
+    this.novalidateValue = 'novalidate';
+
     if (!this.$refs.headline) return;
 
     UtilityAnimation.init([this.$refs.headline]);
   },
   methods: {
+    hasError(field) {
+      return this.errors[field.id];
+    },
     getOptions(field) {
       return typeof field.options === 'string' ? this.options[field.options] : field.options;
     },
@@ -167,6 +185,70 @@ export default {
       } else {
         this.formAction = this.originalAction;
       }
+    },
+    handleSubmit(e) {
+      if (!this.validate()) return e.preventDefault();
+
+      console.log('handle submit vue');
+    },
+    validateField(field) {
+      const value = field.value;
+      const type = field.getAttribute('type');
+      const isRequired = field.hasAttribute('required');
+
+      this.removeFieldError(field);
+
+      if (type === 'checkbox') {
+        const isChecked = field.checked;
+
+        if (isRequired && !isChecked) {
+          this.addFieldError(field);
+
+          return false;
+        }
+      } else {
+        if (isRequired && !value) {
+          this.addFieldError(field);
+
+          return false;
+        }
+
+        const isValidEmail = (email) => /\S+@\S+\.\S+/.test(email);
+
+        if (type === 'email' && !isValidEmail(value)) {
+          this.addFieldError(field);
+
+          return false;
+        }
+      }
+
+      return true;
+    },
+    removeFieldError(field) {
+      delete this.errors[field.id];
+
+      field.classList.remove(State.ERROR);
+    },
+    addFieldError(field) {
+      this.errors[field.id] = true;
+
+      field.classList.add(State.ERROR);
+    },
+    validate() {
+      const formFields = this.$refs.root.querySelectorAll(
+        `.form-field:not(.${State.HIDDEN}) .form-control[required],
+        .form-field:not(.${State.HIDDEN}) .form__checkbox[required]`
+      );
+
+      let allValid = true;
+
+      for (const formField of formFields) {
+        if (!this.validateField(formField)) {
+          allValid = false;
+        }
+      }
+
+      return allValid;
     },
   },
   props: {

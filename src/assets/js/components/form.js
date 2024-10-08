@@ -15,7 +15,6 @@ class Form extends BaseComponent {
   constructor(root, options) {
     super(root, options);
 
-    console.log('🚀 ~ Form ~ constructor ~ root:', root);
     if (!root) return;
 
     this.root = root;
@@ -38,8 +37,6 @@ class Form extends BaseComponent {
     this.updateGotcha();
     this.addValidation();
 
-    console.log('form', this.form);
-
     if (this.form && this.subject && this.hasUrlParameter()) {
       this.prefillFormValues();
     }
@@ -52,6 +49,7 @@ class Form extends BaseComponent {
   }
 
   addCustomValidationRules() {
+    // TODO remove this or incorporate in the new validation logic
     if (window.$ && $.validator) {
       $.validator.methods.email = function (value, element) {
         return this.optional(element) || Form.regularExpression.test(value);
@@ -124,6 +122,12 @@ class Form extends BaseComponent {
     [].forEach.call(form.querySelectorAll(`.${State.ERROR}`), (element) => {
       element.classList.remove(State.ERROR);
     });
+  }
+
+  handleDefaultSubmit(e) {
+    e.preventDefault();
+
+    console.log('default submit');
   }
 
   handleSubmit(e) {
