@@ -2,7 +2,7 @@
   <div :class="classList">
     <div :class="rowClassList">
       <div :class="wrapperClassList">
-        <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1">
+        <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
               <headline :text="form.headline" :level="form.level" :id="form.id" classes="text-center" />
@@ -44,6 +44,7 @@
 <script>
 import Tools from '../assets/js/tools.js';
 import Form from '../assets/js/components/form.js';
+import UtilityAnimation from '../assets/js/utility-animation.js';
 
 export default {
   tagName: 'formular',
@@ -133,6 +134,11 @@ export default {
   },
   beforeMount() {
     this.originalAction = this.formAction = this.form.action;
+  },
+  mounted() {
+    if (!this.$refs.headline) return;
+
+    UtilityAnimation.init([this.$refs.headline]);
   },
   methods: {
     getOptions(field) {

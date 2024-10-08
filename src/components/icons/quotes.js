@@ -1,3 +1,4 @@
+// TODO rename it to quote instead of quotes
 export default {
   tagName: 'quotes',
   computed: {

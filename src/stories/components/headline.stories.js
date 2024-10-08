@@ -1,4 +1,4 @@
-import HeadlineComponent from '../../components/Headline';
+import HeadlineComponent from '../../components/headline.vue';
 
 export default {
   title: 'Components/Headline',

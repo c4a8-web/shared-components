@@ -23,7 +23,12 @@
                 <v-img :img="item.image" :cloudinary="item.cloudinary" :alt="item.alt" v-if="item.image" />
               </figure>
               <h3 v-if="item - headline">{{ item.headline }}</h3>
-              <p v-html="item.copy" />
+              <p v-if="item.copy">{{ item.copy }}</p>
+              <ul v-if="item.bulletList" class="dashed">
+                <li v-for="(bulletListItem, bulletListIndex) in item.bulletList" :key="bulletListIndex">
+                  {{ bulletListItem }}
+                </li>
+              </ul>
             </div>
             <div class="product-blocks__buttons">
               <cta-list v-if="item.list" :list="item.list" />

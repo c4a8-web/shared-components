@@ -1,4 +1,4 @@
-import FormularComponent from '../../components/formular';
+import FormularComponent from '../../components/formular.vue';
 import { analytics } from '../globalArgTypes';
 import options from '../../../.storybook/data/options';
 

@@ -37,6 +37,8 @@ class Form extends BaseComponent {
     this.updateGotcha();
     this.addValidation();
 
+    console.log('form', this.form);
+
     if (this.form && this.subject && this.hasUrlParameter()) {
       this.prefillFormValues();
     }

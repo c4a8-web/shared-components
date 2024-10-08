@@ -1,3 +1,10 @@
+<template>
+  <label class="form__label input-label" :data-msg="message">{{ field?.label }}</label>
+  <template v-for="checkbox in field?.checkboxes">
+    <form-checkbox :checkbox="checkbox" :group="groupId" :id="field.id + checkbox.id" />
+  </template>
+</template>
+<script>
 export default {
   tagName: 'form-checkboxes',
   computed: {
@@ -17,10 +24,5 @@ export default {
       default: null,
     },
   },
-  template: `
-    <label class="form__label input-label" :data-msg="message" >{{ field?.label }}</label>
-    <template v-for="checkbox in field?.checkboxes">
-      <form-checkbox :checkbox="checkbox" :group="groupId" :id="field.id + checkbox.id" />
-    </template>
-  `,
 };
+</script>
