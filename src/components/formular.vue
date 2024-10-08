@@ -1,5 +1,5 @@
 <template>
-  <div :class="classList">
+  <div :class="classList" ref="root">
     <div :class="rowClassList">
       <div :class="wrapperClassList">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
@@ -52,6 +52,7 @@ export default {
     return {
       originalAction: '',
       formAction: '',
+      formInstance: null,
     };
   },
   computed: {
@@ -136,6 +137,8 @@ export default {
     this.originalAction = this.formAction = this.form.action;
   },
   mounted() {
+    this.formInstance = new Form(this.$refs.root);
+
     if (!this.$refs.headline) return;
 
     UtilityAnimation.init([this.$refs.headline]);

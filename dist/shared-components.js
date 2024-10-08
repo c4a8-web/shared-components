@@ -2224,7 +2224,7 @@ S(ot, "rootSelector", ".form-attachments"), S(ot, "base64Selector", ".form-attac
 const B = class B extends gt {
   constructor(t, e) {
     var r;
-    super(t, e), t && (this.root = t, this.formSelector = ".form__form", this.gotchaSelector = ".form__super-field", this.attachmentSelector = 'input[type="file"][required]', this.subjectSelector = 'input[name="_subject"]', this.companySelector = 'input[id="company"]', this.form = t.querySelector(this.formSelector), this.subject = t.querySelector(this.subjectSelector), this.company = t.querySelector(this.companySelector), this.groups = {}, this.minLengthOther = 1, this.options = e, this.addCustomValidationRules(), this.updateGotcha(), this.addValidation(), console.log("form", this.form), this.form && this.subject && this.hasUrlParameter() && this.prefillFormValues(), (r = this.options) != null && r.noEvents ? this.isCompanyForm() && this.addSubjectListener() : this.bindEvents());
+    super(t, e), console.log("🚀 ~ Form ~ constructor ~ root:", t), t && (this.root = t, this.formSelector = ".form__form", this.gotchaSelector = ".form__super-field", this.attachmentSelector = 'input[type="file"][required]', this.subjectSelector = 'input[name="_subject"]', this.companySelector = 'input[id="company"]', this.form = t.querySelector(this.formSelector), this.subject = t.querySelector(this.subjectSelector), this.company = t.querySelector(this.companySelector), this.groups = {}, this.minLengthOther = 1, this.options = e, this.addCustomValidationRules(), this.updateGotcha(), this.addValidation(), console.log("form", this.form), this.form && this.subject && this.hasUrlParameter() && this.prefillFormValues(), (r = this.options) != null && r.noEvents ? this.isCompanyForm() && this.addSubjectListener() : this.bindEvents());
   }
   addCustomValidationRules() {
     window.$ && $.validator && ($.validator.methods.email = function(t, e) {
@@ -2466,7 +2466,8 @@ const ts = {
   data() {
     return {
       originalAction: "",
-      formAction: ""
+      formAction: "",
+      formInstance: null
     };
   },
   computed: {
@@ -2527,7 +2528,7 @@ const ts = {
     this.originalAction = this.formAction = this.form.action;
   },
   mounted() {
-    this.$refs.headline && U.init([this.$refs.headline]);
+    this.formInstance = new H(this.$refs.root), this.$refs.headline && U.init([this.$refs.headline]);
   },
   methods: {
     getOptions(s) {
@@ -2583,7 +2584,8 @@ const ts = {
 function as(s, t, e, r, a, i) {
   const c = W, d = Ot, u = Y;
   return n(), l("div", {
-    class: f(i.classList)
+    class: f(i.classList),
+    ref: "root"
   }, [
     o("div", {
       class: f(i.rowClassList)
@@ -5634,7 +5636,7 @@ const Mr = /* @__PURE__ */ O(zi, [["render", Rr]]), kt = {}, Fr = {
     }
   },
   mounted() {
-    this.setActiveNavigation(), this.bindEvents(), this.setLinkWidth(), console.log("handle scroll"), this.handleScroll();
+    this.setActiveNavigation(), this.bindEvents(), this.setCtaClasses(), this.setLinkWidth(), this.handleScroll();
   },
   updated() {
     this.inUpdate && (this.updateProductListHeight(), this.inUpdate = !1, this.inTransition = !1);
@@ -5963,8 +5965,7 @@ function Aa(s, t, e, r, a, i) {
     o("header", {
       class: f(i.classList),
       onMouseover: t[5] || (t[5] = (...v) => i.handleHeaderMouseOver && i.handleHeaderMouseOver(...v)),
-      onMouseout: t[6] || (t[6] = (...v) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...v)),
-      "data-update": "test"
+      onMouseout: t[6] || (t[6] = (...v) => i.handleHeaderMouseOut && i.handleHeaderMouseOut(...v))
     }, [
       o("div", {
         class: f(i.headerContainerClassList)

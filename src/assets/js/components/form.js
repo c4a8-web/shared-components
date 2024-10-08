@@ -15,6 +15,7 @@ class Form extends BaseComponent {
   constructor(root, options) {
     super(root, options);
 
+    console.log('🚀 ~ Form ~ constructor ~ root:', root);
     if (!root) return;
 
     this.root = root;
