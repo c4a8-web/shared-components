@@ -270,6 +270,7 @@ export default {
 
     this.setCtaClasses();
     this.setLinkWidth();
+    this.handleScroll();
   },
   updated() {
     if (this.inUpdate) {
