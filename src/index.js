@@ -36,7 +36,7 @@ import Arrow from './components/icons/arrow.vue';
 // import Authors from './components/authors.vue';
 // import Awards from './components/awards.vue';
 // import BackToTop from './components/back-to-top.vue';
-// import Badge from './components/badge.vue';
+import Badge from './components/badge.vue';
 // import Bin from './components/icons/bin.vue';
 // import Blog from './components/blog.vue';
 // import BlogRecent from './components/blog-recent.vue';
@@ -123,6 +123,7 @@ import Lottie from './components/lottie.vue';
 // import PricingProduct from './components/pricing-product.vue';
 import ProductBlocks from './components/product-blocks.vue';
 import ProductStage from './components/product-stage.vue';
+import Quote from './components/icons/quote.vue';
 // import Quotes from './components/quotes.vue';
 // import Rocket from './components/icons/rocket.vue';
 // import SBlock from './components/shapes/s-block.vue';
@@ -192,7 +193,7 @@ export {
   // Authors,
   // Awards,
   // BackToTop,
-  // Badge,
+  Badge,
   // Bin,
   // Blog,
   // BlogRecent,
@@ -279,6 +280,7 @@ export {
   // PricingProduct,
   ProductBlocks,
   ProductStage,
+  Quote,
   // Quotes,
   // Rocket,
   // SBlock,
@@ -350,7 +352,7 @@ export default {
     // app.component('Authors', Authors);
     // app.component('Awards', Awards);
     // app.component('BackToTop', BackToTop);
-    // app.component('Badge', Badge);
+    app.component('Badge', Badge);
     // app.component('Bin', Bin);
     // app.component('Blog', Blog);
     // app.component('BlogRecent', BlogRecent);
@@ -437,6 +439,7 @@ export default {
     // app.component('PricingProduct', PricingProduct);
     app.component('ProductBlocks', ProductBlocks);
     app.component('ProductStage', ProductStage);
+    app.component('Quote', Quote);
     // app.component('Quotes', Quotes);
     // app.component('Rocket', Rocket);
     // app.component('SBlock', SBlock);

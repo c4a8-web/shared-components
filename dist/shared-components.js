@@ -1,13 +1,13 @@
-var Pt = Object.defineProperty;
-var Vt = (s, t, e) => t in s ? Pt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
-var S = (s, t, e) => Vt(s, typeof t != "symbol" ? t + "" : t, e);
-import { openBlock as n, createElementBlock as l, mergeProps as R, createElementVNode as o, resolveComponent as ut, normalizeClass as g, normalizeStyle as N, Fragment as w, renderList as A, createBlock as b, toDisplayString as y, createStaticVNode as gt, createCommentVNode as m, resolveDynamicComponent as dt, withCtx as K, createVNode as x, renderSlot as ft, createTextVNode as j } from "vue";
+var Vt = Object.defineProperty;
+var Mt = (s, t, e) => t in s ? Vt(s, t, { enumerable: !0, configurable: !0, writable: !0, value: e }) : s[t] = e;
+var S = (s, t, e) => Mt(s, typeof t != "symbol" ? t + "" : t, e);
+import { openBlock as n, createElementBlock as l, mergeProps as M, createElementVNode as o, normalizeClass as g, normalizeStyle as D, createBlock as b, resolveDynamicComponent as dt, toDisplayString as y, createVNode as x, createCommentVNode as u, resolveComponent as ut, Fragment as w, renderList as A, createStaticVNode as gt, withCtx as Y, renderSlot as ft, createTextVNode as j } from "vue";
 const O = (s, t) => {
   const e = s.__vccOpts || s;
   for (const [r, a] of t)
     e[r] = a;
   return e;
-}, Mt = {
+}, Rt = {
   tagName: "arrow",
   computed: {
     style() {
@@ -19,8 +19,8 @@ const O = (s, t) => {
     color: String
   }
 };
-function Rt(s, t, e, r, a, i) {
-  return n(), l("svg", R(e.settings, {
+function Ft(s, t, e, r, a, i) {
+  return n(), l("svg", M(e.settings, {
     style: i.style,
     viewBox: "0 0 28 17"
   }), t[0] || (t[0] = [
@@ -46,10 +46,10 @@ function Rt(s, t, e, r, a, i) {
     ], -1)
   ]), 16);
 }
-const Ft = /* @__PURE__ */ O(Mt, [["render", Rt]]), E = class E {
+const Bt = /* @__PURE__ */ O(Rt, [["render", Ft]]), E = class E {
   static isInViewportPercent(t, e) {
-    const r = t.getBoundingClientRect(), a = window.innerHeight || document.documentElement.clientHeight, i = window.innerWidth || document.documentElement.clientWidth, h = { x: r.x, y: r.y, width: r.width, height: r.height }, d = { x: 0, y: 0, width: i, height: a }, u = h.width * h.height, _ = E.intersection(h, d);
-    return e <= _ / u * 100;
+    const r = t.getBoundingClientRect(), a = window.innerHeight || document.documentElement.clientHeight, i = window.innerWidth || document.documentElement.clientWidth, h = { x: r.x, y: r.y, width: r.width, height: r.height }, d = { x: 0, y: 0, width: i, height: a }, m = h.width * h.height, _ = E.intersection(h, d);
+    return e <= _ / m * 100;
   }
   static getScrollTop(t) {
     if (!t) return;
@@ -116,9 +116,9 @@ const Ft = /* @__PURE__ */ O(Mt, [["render", Rt]]), E = class E {
   }
   static animateValue(t, e, r, a, i = E.priceFormatter) {
     let h = null;
-    const d = (u) => {
-      h || (h = u);
-      const _ = Math.min((u - h) / a, 1), c = _ * (r - e) + e, C = i.format(c);
+    const d = (m) => {
+      h || (h = m);
+      const _ = Math.min((m - h) / a, 1), c = _ * (r - e) + e, C = i.format(c);
       t.innerHTML = C, _ < 1 && window.requestAnimationFrame(d);
     };
     window.requestAnimationFrame(d);
@@ -196,17 +196,17 @@ const Ft = /* @__PURE__ */ O(Mt, [["render", Rt]]), E = class E {
   }
   static findRecursive(t, e, r) {
     let a = !1, i, h, d;
-    function u(_, c, C, k) {
+    function m(_, c, C, k) {
       if (!a) {
         if (c(_, h)) {
           a = !0, i = k(_, C);
           return;
         }
         for (let L in _)
-          typeof _[L] == "object" && (_ === d && (h = L), u(_[L], c, _, k));
+          typeof _[L] == "object" && (_ === d && (h = L), m(_[L], c, _, k));
       }
     }
-    return d = t, u(t, e, t, r), i;
+    return d = t, m(t, e, t, r), i;
   }
   static storageSave(t, e, r = !0) {
     localStorage.setItem(E.storagePrefix + t, r ? JSON.stringify(e) : e);
@@ -292,8 +292,8 @@ const Ft = /* @__PURE__ */ O(Mt, [["render", Rt]]), E = class E {
     if (typeof getComputedStyle != "function") return "";
     let e;
     if (t.startsWith("--") || t.startsWith("var(")) {
-      const d = t.replace(/--|var\(/, "").replace(/\)$/, ""), u = getComputedStyle(document.documentElement), _ = 4;
-      e = u.getPropertyValue(d).trim(), e.length === _ && (e = `#${e[1]}${e[1]}${e[2]}${e[2]}${e[3]}${e[3]}`);
+      const d = t.replace(/--|var\(/, "").replace(/\)$/, ""), m = getComputedStyle(document.documentElement), _ = 4;
+      e = m.getPropertyValue(d).trim(), e.length === _ && (e = `#${e[1]}${e[1]}${e[2]}${e[2]}${e[3]}${e[3]}`);
     }
     const r = e || t, a = E.red(r), i = E.green(r), h = E.blue(r);
     return `${a}, ${i}, ${h}`;
@@ -315,12 +315,181 @@ S(E, "storybookPath", "/shared-components"), S(E, "decodeHTML", (t) => new DOMPa
     const i = this, h = arguments;
     var d = function() {
       a = null, r || t.apply(i, h);
-    }, u = r && !a;
-    clearTimeout(a), a = setTimeout(d, e), u && t.apply(i, h);
+    }, m = r && !a;
+    clearTimeout(a), a = setTimeout(d, e), m && t.apply(i, h);
   };
 });
 let f = E;
-const p = {
+const Ht = {
+  tagName: "icon",
+  data() {
+    return f.validateVueProps(this);
+  },
+  computed: {
+    classList() {
+      return [
+        "icon",
+        `${this.classes ? this.classes : ""}`,
+        `${this.props.hasBackground ? "icon--has-background" : ""}`,
+        `icon--${this.props.direction}`,
+        `icon--${this.props.icon}`,
+        `${this.props.animation ? "js-text-animation__icon" : ""}`,
+        `${this.props.circle ? "icon--circle" : ""}`,
+        `${this.props.hover ? "icon--hover" : ""}`,
+        "vue-component"
+      ];
+    },
+    innerSize() {
+      var s;
+      switch (this.props.size) {
+        case "xxl":
+          s = "200px";
+          break;
+        case "xl":
+          s = "120px";
+          break;
+        case "medium":
+          s = "28px";
+          break;
+        case "small":
+          s = "18px";
+          break;
+        case "xs":
+          s = "10px";
+          break;
+        default:
+        case "large":
+          s = "48px";
+          break;
+      }
+      return s;
+    },
+    parentStyle() {
+      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.rotation}`;
+    },
+    rotation() {
+      return this.props.direction === "left" ? "180deg" : this.props.direction === "clockwise" ? "90deg" : "0deg";
+    },
+    settings() {
+      return {
+        width: this.innerSize,
+        height: this.innerSize,
+        padding: this.props.padding,
+        "xml:space": "preserve",
+        version: "1.1",
+        xmlns: "http://www.w3.org/2000/svg",
+        "xmlns:link": "http://www.w3.org/1999/xlink"
+      };
+    }
+  },
+  props: {
+    icon: {
+      default: "close"
+    },
+    color: {
+      default: "currentColor"
+    },
+    direction: {
+      default: "right"
+    },
+    size: {
+      default: "large"
+    },
+    circle: {
+      default: null
+    },
+    hover: {
+      default: null
+    },
+    padding: {
+      default: 6
+    },
+    animation: {
+      default: null
+    },
+    classes: {
+      default: ""
+    },
+    closed: {
+      default: null
+    },
+    hasBackground: {
+      default: null
+    },
+    step: {
+      default: null
+    }
+  }
+};
+function jt(s, t, e, r, a, i) {
+  return n(), l("span", {
+    class: g(i.classList),
+    style: D(i.parentStyle)
+  }, [
+    (n(), b(dt(e.icon), M(i.settings, {
+      color: s.props.color,
+      closed: e.closed,
+      step: e.step
+    }), null, 16, ["color", "closed", "step"]))
+  ], 6);
+}
+const G = /* @__PURE__ */ O(Ht, [["render", jt]]), zt = {
+  tagName: "badge",
+  props: {
+    text: String,
+    overlapping: Boolean,
+    icon: String,
+    color: {
+      type: String,
+      default: "var(--color-badge-background)"
+    },
+    textColor: {
+      type: String,
+      default: "var(--color-badge-icon)"
+    },
+    uppercase: Boolean,
+    classes: String
+  },
+  computed: {
+    classList() {
+      return [
+        "badge",
+        "badge--normal",
+        "font-size-1",
+        "normal",
+        { "badge--overlapping": this.overlapping },
+        { "badge--uppercase": this.uppercase },
+        this.classes
+      ];
+    },
+    style() {
+      return {
+        backgroundColor: this.color,
+        color: this.textColor
+      };
+    }
+  }
+}, qt = { class: "badge__text" }, Ut = {
+  key: 0,
+  class: "badge__icon"
+};
+function Gt(s, t, e, r, a, i) {
+  const h = G;
+  return n(), l("div", {
+    class: g(i.classList),
+    style: D(i.style)
+  }, [
+    o("div", qt, y(e.text), 1),
+    e.icon ? (n(), l("div", Ut, [
+      x(h, {
+        icon: e.icon,
+        color: "var(--color-badge-icon)",
+        size: "medium"
+      }, null, 8, ["icon"])
+    ])) : u("", !0)
+  ], 6);
+}
+const Lt = /* @__PURE__ */ O(zt, [["render", Gt]]), p = {
   ACTIVE: "active",
   READY: "is-ready",
   ERROR: "is-invalid",
@@ -349,7 +518,7 @@ const p = {
   STICKY: "is-sticky",
   IN_TRANSITION: "in-transition",
   IS_STARTING: "is-starting"
-}, Bt = {
+}, Wt = {
   tagName: "carousel-item",
   template: `
     <a :href="item.url" :target="item.target" class="carousel__item">
@@ -363,10 +532,10 @@ const p = {
   props: {
     item: Object
   }
-}, Ht = {
+}, Jt = {
   tagName: "carousel",
   components: {
-    "carousel-item": Bt
+    "carousel-item": Wt
   },
   data() {
     return {
@@ -408,36 +577,36 @@ const p = {
     items: Array,
     bgColor: String
   }
-}, jt = { class: "carousel__container" }, zt = { class: "carousel__row" }, qt = {
+}, $t = { class: "carousel__container" }, Xt = { class: "carousel__row" }, Zt = {
   class: "carousel__row-section",
   ref: "row-section"
-}, Ut = { class: "carousel__row-section" };
-function Gt(s, t, e, r, a, i) {
+}, Kt = { class: "carousel__row-section" };
+function Yt(s, t, e, r, a, i) {
   const h = ut("carousel-item");
   return n(), l("div", {
     class: g(i.classList),
     ref: "carousel",
-    style: N(i.style)
+    style: D(i.style)
   }, [
-    o("div", jt, [
-      o("div", zt, [
-        o("section", qt, [
-          (n(!0), l(w, null, A(i.jsonItems, (d, u) => (n(), b(h, {
+    o("div", $t, [
+      o("div", Xt, [
+        o("section", Zt, [
+          (n(!0), l(w, null, A(i.jsonItems, (d, m) => (n(), b(h, {
             item: d,
-            key: u
+            key: m
           }, null, 8, ["item"]))), 128))
         ], 512),
-        o("section", Ut, [
-          (n(!0), l(w, null, A(i.jsonItems, (d, u) => (n(), b(h, {
+        o("section", Kt, [
+          (n(!0), l(w, null, A(i.jsonItems, (d, m) => (n(), b(h, {
             item: d,
-            key: u
+            key: m
           }, null, 8, ["item"]))), 128))
         ])
       ])
     ])
   ], 6);
 }
-const Wt = /* @__PURE__ */ O(Ht, [["render", Gt]]), Jt = {
+const Qt = /* @__PURE__ */ O(Jt, [["render", Yt]]), te = {
   tagName: "site-icons",
   computed: {
     svgTemplate() {
@@ -451,29 +620,29 @@ const Wt = /* @__PURE__ */ O(Ht, [["render", Gt]]), Jt = {
     icon: String,
     noSpan: Boolean
   }
-}, $t = {
+}, ee = {
   key: 0,
   class: "streamline-icon",
   viewBox: "0 0 42 28",
   xmlns: "http://www.w3.org/2000/svg"
-}, Xt = {
+}, se = {
   class: "streamline-icon",
   viewBox: "0 0 42 28",
   xmlns: "http://www.w3.org/2000/svg"
-}, Zt = {
+}, ie = {
   class: "streamline-icon",
   viewbox: "0 0 39 39",
   xmlns: "http://www.w3.org/2000/svg"
 };
-function Kt(s, t, e, r, a, i) {
-  return e.icon === "site/mail" && e.noSpan === !0 ? (n(), l("svg", $t, [
+function re(s, t, e, r, a, i) {
+  return e.icon === "site/mail" && e.noSpan === !0 ? (n(), l("svg", ee, [
     o("title", null, y(e.icon), 1),
     t[0] || (t[0] = gt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
   ])) : e.icon == "site/mail" ? (n(), l("span", {
     key: 1,
     class: g(i.classList)
   }, [
-    (n(), l("svg", Xt, [
+    (n(), l("svg", se, [
       o("title", null, y(e.icon), 1),
       t[1] || (t[1] = gt('<g id="envelope"><path d="M3.5 28C1.56975 28 0 26.4303 0 24.5L0 3.5C0 1.56975 1.56975 0 3.5 0L38.5 0C40.4303 0 42 1.56975 42 3.5L42 24.5C42 26.4303 40.4303 28 38.5 28L3.5 28ZM3.5 1.75C2.53575 1.75 1.75 2.53575 1.75 3.5L1.75 24.5C1.75 25.466 2.53575 26.25 3.5 26.25L38.5 26.25C39.466 26.25 40.25 25.466 40.25 24.5L40.25 3.5C40.25 2.53575 39.466 1.75 38.5 1.75L3.5 1.75Z" class="a"></path><path d="M15.9999 11C15.8292 11 15.6621 10.9526 15.5181 10.8646L0.405689 1.55692C0.206584 1.43338 0.0697 1.24385 0.0199238 1.02385C-0.0298524 0.803846 0.0145906 0.575385 0.142587 0.385846C0.307915 0.143846 0.587017 0 0.889229 0C1.05989 0 1.227 0.0473846 1.37099 0.135385L15.9999 9.14523L30.6287 0.135385C30.7709 0.0473846 30.938 0 31.1105 0C31.4127 0 31.6918 0.143846 31.8571 0.385846C31.9869 0.577077 32.0296 0.802154 31.9798 1.02385C31.93 1.24554 31.7931 1.43338 31.594 1.55692L16.4834 10.8646C16.3376 10.9526 16.1705 11 15.9999 11Z" transform="translate(5 7)" class="a"></path><path d="M0.888628 5C0.57038 5 0.273466 4.83833 0.117008 4.58C-0.126568 4.18167 0.0227782 3.67167 0.447703 3.44333L6.67045 0.11C6.80379 0.0383333 6.95669 0 7.11137 0C7.42962 0 7.72653 0.16 7.88299 0.42C8.12657 0.818333 7.97722 1.32833 7.5523 1.55667L1.32955 4.89C1.19621 4.96167 1.04331 5 0.888628 5Z" transform="translate(5 17)" class="a"></path><path d="M7.11141 5C6.95673 5 6.80382 4.96167 6.67048 4.89L0.447659 1.55667C0.241417 1.44667 0.0938478 1.26667 0.0316196 1.05333C-0.0306086 0.838333 -0.000383478 0.613333 0.116961 0.42C0.275198 0.16 0.570338 0 0.888591 0C1.04327 0 1.19618 0.0383333 1.3313 0.11L7.55234 3.44333C7.75858 3.55333 7.90615 3.73333 7.96838 3.94667C8.03061 4.16167 8.00038 4.38667 7.88304 4.58C7.7248 4.83833 7.42966 5 7.11141 5Z" transform="translate(29 17)" class="a"></path></g>', 1))
     ]))
@@ -481,7 +650,7 @@ function Kt(s, t, e, r, a, i) {
     key: 2,
     class: g(i.classList)
   }, [
-    (n(), l("svg", Zt, [
+    (n(), l("svg", ie, [
       o("title", null, y(e.icon), 1),
       t[2] || (t[2] = o("g", {
         id: "phone",
@@ -494,9 +663,9 @@ function Kt(s, t, e, r, a, i) {
         })
       ], -1))
     ]))
-  ], 2)) : m("", !0);
+  ], 2)) : u("", !0);
 }
-const vt = /* @__PURE__ */ O(Jt, [["render", Kt]]), Yt = {
+const vt = /* @__PURE__ */ O(te, [["render", re]]), ae = {
   tagName: "lottie",
   // components: {
   //   Vue3Lottie,
@@ -582,12 +751,12 @@ const vt = /* @__PURE__ */ O(Jt, [["render", Kt]]), Yt = {
     }
   }
 };
-function Qt(s, t, e, r, a, i) {
+function ne(s, t, e, r, a, i) {
   return n(), l("div", {
     class: g(i.classList)
   }, null, 2);
 }
-const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
+const Et = /* @__PURE__ */ O(ae, [["render", ne]]), ct = {
   min_width: 320,
   max_width: 1200,
   fallback_max_width: 1200,
@@ -623,7 +792,7 @@ const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
   density: !1,
   flags: !1,
   transformation: !1
-}, te = {
+}, oe = {
   height: "h",
   crop: "c",
   aspect_ratio: "ar",
@@ -758,7 +927,7 @@ const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
       loading: "auto"
     }
   }
-}, ee = {
+}, le = {
   heroStudy: {
     srcSets: [
       {
@@ -931,7 +1100,7 @@ const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
       }
     ]
   }
-}, mt = "https://res.cloudinary.com/c4a8/image/upload/", se = {
+}, mt = "https://res.cloudinary.com/c4a8/image/upload/", ce = {
   tagName: "v-img",
   data() {
     return {
@@ -988,7 +1157,7 @@ const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
       return ["img__picture-wrapper", (s = this.imgSrcSetValue) == null ? void 0 : s.ratioClasses];
     },
     imgSrcSetValue() {
-      return ee[this.imgSrcSets];
+      return le[this.imgSrcSets];
     },
     imgSrcSetSources() {
       var s, t;
@@ -1063,14 +1232,14 @@ const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
     },
     getTransformationString(s) {
       const t = [];
-      for (const [r, a] of Object.entries(te))
+      for (const [r, a] of Object.entries(oe))
         s[r] && t.push(`${a}_${s[r]}`);
       return t.length > 0 ? t.join(",") : "";
     },
     buildSrcSet(s, t) {
       const e = [], r = s.steps, a = s.min_width, h = (s.max_width - a) / (r - 1), { naturalWidth: d } = this.dimensions;
-      for (let u = 1; u <= r; u++) {
-        const _ = a + (u - 1) * h, c = _ <= d, C = c ? _ : d, L = `${this.hasPictureTag ? this.imgSrcSetImg : `${mt}${t},w_${C}/${this.img}`} ${C}w`;
+      for (let m = 1; m <= r; m++) {
+        const _ = a + (m - 1) * h, c = _ <= d, C = c ? _ : d, L = `${this.hasPictureTag ? this.imgSrcSetImg : `${mt}${t},w_${C}/${this.img}`} ${C}w`;
         if (e.push(L), !c) break;
       }
       this.srcset = d < a ? "" : e.join(`, 
@@ -1104,9 +1273,9 @@ const Lt = /* @__PURE__ */ O(Yt, [["render", Qt]]), ct = {
     lottieSettings: Object,
     animated: Boolean
   }
-}, ie = ["media", "srcset"], re = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], ae = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
-function ne(s, t, e, r, a, i) {
-  const h = Lt;
+}, he = ["media", "srcset"], de = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"], ue = ["src", "loading", "alt", "width", "height", "srcset", "sizes", "crossorigin"];
+function me(s, t, e, r, a, i) {
+  const h = Et;
   return i.hasPictureTag ? (n(), l("div", {
     key: 0,
     class: g(i.pictureWrapperClassList)
@@ -1116,7 +1285,7 @@ function ne(s, t, e, r, a, i) {
         key: d.params,
         media: d.media,
         srcset: i.getCloudinaryBasePathLink(d)
-      }, null, 8, ie))), 128)),
+      }, null, 8, he))), 128)),
       o("img", {
         onLoad: t[0] || (t[0] = (d) => i.loadImage(i.imgSrcSetImg)),
         ref: "image",
@@ -1129,9 +1298,9 @@ function ne(s, t, e, r, a, i) {
         srcset: a.srcset,
         sizes: a.sizes,
         crossorigin: i.crossOriginValue
-      }, null, 42, re)
+      }, null, 42, de)
     ])
-  ], 2)) : i.isLottie ? (n(), b(h, R({
+  ], 2)) : i.isLottie ? (n(), b(h, M({
     key: 1,
     data: i.jsonLottieData,
     class: i.classListComponent
@@ -1148,122 +1317,9 @@ function ne(s, t, e, r, a, i) {
     srcset: a.srcset,
     sizes: a.sizes,
     crossorigin: i.crossOriginValue
-  }, null, 42, ae));
+  }, null, 42, ue));
 }
-const G = /* @__PURE__ */ O(se, [["render", ne]]), oe = {
-  tagName: "icon",
-  data() {
-    return f.validateVueProps(this);
-  },
-  computed: {
-    classList() {
-      return [
-        "icon",
-        `${this.classes ? this.classes : ""}`,
-        `${this.props.hasBackground ? "icon--has-background" : ""}`,
-        `icon--${this.props.direction}`,
-        `icon--${this.props.icon}`,
-        `${this.props.animation ? "js-text-animation__icon" : ""}`,
-        `${this.props.circle ? "icon--circle" : ""}`,
-        `${this.props.hover ? "icon--hover" : ""}`,
-        "vue-component"
-      ];
-    },
-    innerSize() {
-      var s;
-      switch (this.props.size) {
-        case "xxl":
-          s = "200px";
-          break;
-        case "xl":
-          s = "120px";
-          break;
-        case "medium":
-          s = "28px";
-          break;
-        case "small":
-          s = "18px";
-          break;
-        case "xs":
-          s = "10px";
-          break;
-        default:
-        case "large":
-          s = "48px";
-          break;
-      }
-      return s;
-    },
-    parentStyle() {
-      return `--color-icon: ${this.props.color}; --icon-rotation: ${this.rotation}`;
-    },
-    rotation() {
-      return this.props.direction === "left" ? "180deg" : this.props.direction === "clockwise" ? "90deg" : "0deg";
-    },
-    settings() {
-      return {
-        width: this.innerSize,
-        height: this.innerSize,
-        padding: this.props.padding,
-        "xml:space": "preserve",
-        version: "1.1",
-        xmlns: "http://www.w3.org/2000/svg",
-        "xmlns:link": "http://www.w3.org/1999/xlink"
-      };
-    }
-  },
-  props: {
-    icon: {
-      default: "close"
-    },
-    color: {
-      default: "currentColor"
-    },
-    direction: {
-      default: "right"
-    },
-    size: {
-      default: "large"
-    },
-    circle: {
-      default: null
-    },
-    hover: {
-      default: null
-    },
-    padding: {
-      default: 6
-    },
-    animation: {
-      default: null
-    },
-    classes: {
-      default: ""
-    },
-    closed: {
-      default: null
-    },
-    hasBackground: {
-      default: null
-    },
-    step: {
-      default: null
-    }
-  }
-};
-function le(s, t, e, r, a, i) {
-  return n(), l("span", {
-    class: g(i.classList),
-    style: N(i.parentStyle)
-  }, [
-    (n(), b(dt(e.icon), R(i.settings, {
-      color: s.props.color,
-      closed: e.closed,
-      step: e.step
-    }), null, 16, ["color", "closed", "step"]))
-  ], 6);
-}
-const Y = /* @__PURE__ */ O(oe, [["render", le]]), ce = {
+const W = /* @__PURE__ */ O(ce, [["render", me]]), ge = {
   tagName: "cta",
   computed: {
     tag() {
@@ -1360,9 +1416,9 @@ const Y = /* @__PURE__ */ O(oe, [["render", le]]), ce = {
       default: null
     }
   }
-}, he = { class: "cta__text" };
-function de(s, t, e, r, a, i) {
-  const h = Y;
+}, fe = { class: "cta__text" };
+function _e(s, t, e, r, a, i) {
+  const h = G;
   return n(), b(dt(i.tag), {
     role: "button",
     class: g(i.classList),
@@ -1374,18 +1430,18 @@ function de(s, t, e, r, a, i) {
     "data-alternative-href": e.alternativeHref ? e.alternativeHref : null,
     "data-trigger": e.trigger ? e.trigger : null
   }, {
-    default: K(() => [
-      o("span", he, y(e.text), 1),
+    default: Y(() => [
+      o("span", fe, y(e.text), 1),
       i.hasIcon ? (n(), b(h, {
         key: 0,
         icon: i.iconName,
         size: i.sizeValue
-      }, null, 8, ["icon", "size"])) : m("", !0)
+      }, null, 8, ["icon", "size"])) : u("", !0)
     ]),
     _: 1
   }, 8, ["class", "data-text", "href", "data-analytics", "type", "target", "data-alternative-href", "data-trigger"]);
 }
-const W = /* @__PURE__ */ O(ce, [["render", de]]), ue = {
+const J = /* @__PURE__ */ O(ge, [["render", _e]]), pe = {
   tagName: "cta-list",
   computed: {
     classList() {
@@ -1410,14 +1466,14 @@ const W = /* @__PURE__ */ O(ce, [["render", de]]), ue = {
     list: Array,
     classes: String
   }
-}, me = { class: "cta-list__item d-inline-block mr-3 mb-2" };
-function ge(s, t, e, r, a, i) {
-  const h = W;
+}, ye = { class: "cta-list__item d-inline-block mr-3 mb-2" };
+function ve(s, t, e, r, a, i) {
+  const h = J;
   return n(), l("div", {
     class: g(i.classList)
   }, [
-    (n(!0), l(w, null, A(i.ctaList, (d) => (n(), l("div", me, [
-      x(h, R({ ref_for: !0 }, d, {
+    (n(!0), l(w, null, A(i.ctaList, (d) => (n(), l("div", ye, [
+      x(h, M({ ref_for: !0 }, d, {
         text: i.text(d),
         href: i.href(d),
         type: i.type(d)
@@ -1425,7 +1481,7 @@ function ge(s, t, e, r, a, i) {
     ]))), 256))
   ], 2);
 }
-const Q = /* @__PURE__ */ O(ue, [["render", ge]]), fe = {
+const Q = /* @__PURE__ */ O(pe, [["render", ve]]), be = {
   tagName: "form-select",
   computed: {
     required() {
@@ -1438,26 +1494,26 @@ const Q = /* @__PURE__ */ O(ue, [["render", ge]]), fe = {
     field: Object,
     id: String
   }
-}, _e = ["for"], pe = ["name", "required"], ye = { value: "" }, ve = ["value"];
-function be(s, t, e, r, a, i) {
+}, we = ["for"], xe = ["name", "required"], Se = { value: "" }, ke = ["value"];
+function Ce(s, t, e, r, a, i) {
   return n(), l(w, null, [
     o("label", {
       class: "input-label",
       for: e.id
-    }, y(e.field.label), 9, _e),
+    }, y(e.field.label), 9, we),
     o("select", {
       class: "form-control custom-select text-muted",
       name: e.id,
       required: i.required
     }, [
-      o("option", ye, y(e.field.placeholder), 1),
+      o("option", Se, y(e.field.placeholder), 1),
       (n(!0), l(w, null, A(e.options, (h) => (n(), l("option", {
         value: h.value
-      }, y(h.text), 9, ve))), 256))
-    ], 8, pe)
+      }, y(h.text), 9, ke))), 256))
+    ], 8, xe)
   ], 64);
 }
-const Et = /* @__PURE__ */ O(fe, [["render", be]]), P = {
+const At = /* @__PURE__ */ O(be, [["render", Ce]]), P = {
   REFRESH_ANIMATE_NUMBERS: "refresh-animate-numbers",
   FAB_BUTTON_CLOSE: "fab-button-close",
   FORM_AJAX_SUBMIT: "form-ajax-submit",
@@ -1474,7 +1530,7 @@ const Et = /* @__PURE__ */ O(fe, [["render", be]]), P = {
   DROPDOWN_OPENED: "dropdown-opened",
   CARD_TAG_CLICKED: "card-tag-clicked",
   ENDED: "ended"
-}, we = {
+}, Le = {
   tagName: "form-attachments",
   data() {
     return {
@@ -1680,7 +1736,7 @@ const Et = /* @__PURE__ */ O(fe, [["render", be]]), P = {
       </div>
     </div>
   `
-}, xe = {
+}, Ee = {
   tagName: "form-radio",
   computed: {
     otherId() {
@@ -1705,10 +1761,10 @@ const Et = /* @__PURE__ */ O(fe, [["render", be]]), P = {
       this.$emit("action-changed", s.changeAction || null);
     }
   }
-}, Se = { class: "form__radio-control mb-1 vue-component" }, ke = ["data-form-group", "required", "name", "id"], Ce = ["for"], Le = ["name", "id", "placeholder", "data-form-group"], Ee = ["name", "id", "data-form-group", "required"], Ae = ["for", "innerHTML"];
-function Oe(s, t, e, r, a, i) {
-  var h, d, u;
-  return n(), l("div", Se, [
+}, Ae = { class: "form__radio-control mb-1 vue-component" }, Oe = ["data-form-group", "required", "name", "id"], Te = ["for"], Ie = ["name", "id", "placeholder", "data-form-group"], De = ["name", "id", "data-form-group", "required"], Ne = ["for", "innerHTML"];
+function Pe(s, t, e, r, a, i) {
+  var h, d, m;
+  return n(), l("div", Ae, [
     (h = e.radio) != null && h.placeholder ? (n(), l(w, { key: 0 }, [
       o("input", {
         class: "form__radio",
@@ -1717,11 +1773,11 @@ function Oe(s, t, e, r, a, i) {
         required: i.required,
         name: i.otherId,
         id: i.otherId
-      }, null, 8, ke),
+      }, null, 8, Oe),
       o("label", {
         class: "form__radio-label",
         for: i.otherId
-      }, null, 8, Ce),
+      }, null, 8, Te),
       o("input", {
         class: "form__input form-control form-control-sm",
         type: "text",
@@ -1729,7 +1785,7 @@ function Oe(s, t, e, r, a, i) {
         id: i.idValue,
         placeholder: (d = e.radio) == null ? void 0 : d.placeholder,
         "data-form-group": e.group
-      }, null, 8, Le)
+      }, null, 8, Ie)
     ], 64)) : (n(), l(w, { key: 1 }, [
       o("input", {
         class: "form__radio",
@@ -1739,16 +1795,16 @@ function Oe(s, t, e, r, a, i) {
         "data-form-group": e.group,
         required: i.required,
         onChange: t[0] || (t[0] = (_) => i.changed(e.radio))
-      }, null, 40, Ee),
+      }, null, 40, De),
       o("label", {
         class: "form__radio-label",
         for: i.idValue,
-        innerHTML: (u = e.radio) == null ? void 0 : u.label
-      }, null, 8, Ae)
+        innerHTML: (m = e.radio) == null ? void 0 : m.label
+      }, null, 8, Ne)
     ], 64))
   ]);
 }
-const bt = /* @__PURE__ */ O(xe, [["render", Oe]]), Te = {
+const bt = /* @__PURE__ */ O(Ee, [["render", Pe]]), Ve = {
   tagName: "form-radios",
   computed: {
     otherId() {
@@ -1768,17 +1824,17 @@ const bt = /* @__PURE__ */ O(xe, [["render", Oe]]), Te = {
       default: null
     }
   }
-}, Ie = ["data-msg"], De = { class: "d-flex flex-wrap" };
-function Ne(s, t, e, r, a, i) {
-  var d, u;
+}, Me = ["data-msg"], Re = { class: "d-flex flex-wrap" };
+function Fe(s, t, e, r, a, i) {
+  var d, m;
   const h = bt;
   return n(), l(w, null, [
     o("label", {
       class: "form__label input-label",
       "data-msg": i.message
-    }, y((d = e.field) == null ? void 0 : d.label), 9, Ie),
-    o("div", De, [
-      (n(!0), l(w, null, A((u = e.field) == null ? void 0 : u.radios, (_) => (n(), b(h, {
+    }, y((d = e.field) == null ? void 0 : d.label), 9, Me),
+    o("div", Re, [
+      (n(!0), l(w, null, A((m = e.field) == null ? void 0 : m.radios, (_) => (n(), b(h, {
         class: "pr-10",
         radio: _,
         group: e.id,
@@ -1789,7 +1845,7 @@ function Ne(s, t, e, r, a, i) {
     ])
   ], 64);
 }
-const At = /* @__PURE__ */ O(Te, [["render", Ne]]), Pe = {
+const Ot = /* @__PURE__ */ O(Ve, [["render", Fe]]), Be = {
   tagName: "form-checkbox",
   computed: {
     otherId() {
@@ -1808,10 +1864,10 @@ const At = /* @__PURE__ */ O(Te, [["render", Ne]]), Pe = {
     group: String,
     id: String
   }
-}, Ve = { class: "form__checkbox-control custom-control custom-checkbox mb-1 vue-component" }, Me = ["data-form-group", "required", "name", "id"], Re = ["for"], Fe = ["name", "id", "placeholder", "data-form-group"], Be = ["name", "id", "data-form-group", "required"], He = ["for", "innerHTML"];
-function je(s, t, e, r, a, i) {
-  var h, d, u;
-  return n(), l("div", Ve, [
+}, He = { class: "form__checkbox-control custom-control custom-checkbox mb-1 vue-component" }, je = ["data-form-group", "required", "name", "id"], ze = ["for"], qe = ["name", "id", "placeholder", "data-form-group"], Ue = ["name", "id", "data-form-group", "required"], Ge = ["for", "innerHTML"];
+function We(s, t, e, r, a, i) {
+  var h, d, m;
+  return n(), l("div", He, [
     (h = e.checkbox) != null && h.placeholder ? (n(), l(w, { key: 0 }, [
       o("input", {
         class: "form__checkbox form-check-input custom-control-input",
@@ -1820,11 +1876,11 @@ function je(s, t, e, r, a, i) {
         required: i.required,
         name: i.otherId,
         id: i.otherId
-      }, null, 8, Me),
+      }, null, 8, je),
       o("label", {
         class: "form__checkbox-label custom-control-label",
         for: i.otherId
-      }, null, 8, Re),
+      }, null, 8, ze),
       o("input", {
         class: "form__input form-control form-control-sm",
         type: "text",
@@ -1832,7 +1888,7 @@ function je(s, t, e, r, a, i) {
         id: i.idValue,
         placeholder: (d = e.checkbox) == null ? void 0 : d.placeholder,
         "data-form-group": e.group
-      }, null, 8, Fe)
+      }, null, 8, qe)
     ], 64)) : (n(), l(w, { key: 1 }, [
       o("input", {
         class: "form__checkbox form-check-input custom-control-input",
@@ -1841,16 +1897,16 @@ function je(s, t, e, r, a, i) {
         id: i.idValue,
         "data-form-group": e.group,
         required: i.required
-      }, null, 8, Be),
+      }, null, 8, Ue),
       o("label", {
         class: "form__checkbox-label custom-control-label",
         for: i.idValue,
-        innerHTML: (u = e.checkbox) == null ? void 0 : u.label
-      }, null, 8, He)
+        innerHTML: (m = e.checkbox) == null ? void 0 : m.label
+      }, null, 8, Ge)
     ], 64))
   ]);
 }
-const wt = /* @__PURE__ */ O(Pe, [["render", je]]), ze = {
+const wt = /* @__PURE__ */ O(Be, [["render", We]]), Je = {
   tagName: "form-checkboxes",
   computed: {
     required() {
@@ -1870,23 +1926,23 @@ const wt = /* @__PURE__ */ O(Pe, [["render", je]]), ze = {
       default: null
     }
   }
-}, qe = ["data-msg"];
-function Ue(s, t, e, r, a, i) {
-  var d, u;
+}, $e = ["data-msg"];
+function Xe(s, t, e, r, a, i) {
+  var d, m;
   const h = wt;
   return n(), l(w, null, [
     o("label", {
       class: "form__label input-label",
       "data-msg": i.message
-    }, y((d = e.field) == null ? void 0 : d.label), 9, qe),
-    (n(!0), l(w, null, A((u = e.field) == null ? void 0 : u.checkboxes, (_) => (n(), b(h, {
+    }, y((d = e.field) == null ? void 0 : d.label), 9, $e),
+    (n(!0), l(w, null, A((m = e.field) == null ? void 0 : m.checkboxes, (_) => (n(), b(h, {
       checkbox: _,
       group: i.groupId,
       id: e.field.id + _.id
     }, null, 8, ["checkbox", "group", "id"]))), 256))
   ], 64);
 }
-const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), I = class I {
+const Tt = /* @__PURE__ */ O(Je, [["render", Xe]]), I = class I {
   constructor(t) {
     this.root = t, this.count = 1, this.selector = this.getCurrentSelector(), this.currentElements = this.root.querySelectorAll(this.selector), this.root.matches(this.selector) && (this.currentElements = this.mergeNodes(this.root, this.currentElements)), this.resetAnimation(), this.initialize();
   }
@@ -1998,7 +2054,7 @@ const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), I = class I {
 };
 S(I, "rootSelector", ".utility-animation"), S(I, "inViewportDataset", "data-utility-animation-in-viewport"), S(I, "endDataset", "data-utility-animation-end"), S(I, "instances", []), S(I, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
 let U = I;
-const Ge = {
+const Ze = {
   tagName: "form-fields",
   data() {
     return {
@@ -2069,10 +2125,10 @@ const Ge = {
       default: null
     }
   }
-}, We = ["for"], Je = ["id", "name", "placeholder", "required", "readonly", "data-msg"], $e = ["name", "value"], Xe = ["for"], Ze = ["type", "id", "name", "data-msg", "value", "placeholder", "required", "readonly"];
-function Ke(s, t, e, r, a, i) {
+}, Ke = ["for"], Ye = ["id", "name", "placeholder", "required", "readonly", "data-msg"], Qe = ["name", "value"], ts = ["for"], es = ["type", "id", "name", "data-msg", "value", "placeholder", "required", "readonly"];
+function ss(s, t, e, r, a, i) {
   var k, L, V, tt, et, v;
-  const h = wt, d = Ot, u = bt, _ = At, c = we, C = Et;
+  const h = wt, d = Tt, m = bt, _ = Ot, c = Le, C = At;
   return e.field.id !== "_gotcha" ? (n(), l("div", {
     key: 0,
     class: g(i.classList),
@@ -2083,7 +2139,7 @@ function Ke(s, t, e, r, a, i) {
       o("label", {
         class: "input-label",
         for: e.id
-      }, y(e.field.label), 9, We),
+      }, y(e.field.label), 9, Ke),
       o("textarea", {
         class: "form-control form-textarea",
         id: e.id,
@@ -2093,7 +2149,7 @@ function Ke(s, t, e, r, a, i) {
         required: i.required,
         readonly: i.readonly,
         "data-msg": i.getRequiredMsg(e.field)
-      }, null, 8, Je)
+      }, null, 8, Ye)
     ], 64)) : e.field.type === "checkbox" ? (n(), b(h, {
       key: 1,
       checkbox: e.field,
@@ -2103,11 +2159,11 @@ function Ke(s, t, e, r, a, i) {
       type: "hidden",
       name: e.id,
       value: i.value
-    }, null, 8, $e)) : e.field.checkboxes ? (n(), b(d, {
+    }, null, 8, Qe)) : e.field.checkboxes ? (n(), b(d, {
       key: 3,
       field: e.field,
       id: e.id
-    }, null, 8, ["field", "id"])) : e.field.type === "radio" ? (n(), b(u, {
+    }, null, 8, ["field", "id"])) : e.field.type === "radio" ? (n(), b(m, {
       key: 4,
       radio: e.field,
       id: e.id
@@ -2134,7 +2190,7 @@ function Ke(s, t, e, r, a, i) {
       o("label", {
         class: "input-label",
         for: e.id
-      }, y(e.field.label), 9, Xe),
+      }, y(e.field.label), 9, ts),
       o("input", {
         ref: "input",
         onChange: t[1] || (t[1] = (...T) => i.handleChange && i.handleChange(...T)),
@@ -2148,11 +2204,11 @@ function Ke(s, t, e, r, a, i) {
         placeholder: i.placeholder,
         required: i.required,
         readonly: i.readonly
-      }, null, 40, Ze)
-    ], 64)) : m("", !0)
-  ], 2)) : m("", !0);
+      }, null, 40, es)
+    ], 64)) : u("", !0)
+  ], 2)) : u("", !0);
 }
-const Tt = /* @__PURE__ */ O(Ge, [["render", Ke]]), Ye = {
+const It = /* @__PURE__ */ O(Ze, [["render", ss]]), is = {
   tagName: "headline",
   computed: {
     tag() {
@@ -2167,7 +2223,7 @@ const Tt = /* @__PURE__ */ O(Ge, [["render", Ke]]), Ye = {
   },
   props: { text: String, level: String, classes: String, utilityAnimationStep: Number }
 };
-function Qe(s, t, e, r, a, i) {
+function rs(s, t, e, r, a, i) {
   return e.text ? (n(), b(dt(i.tag), {
     key: 0,
     class: g(i.classList),
@@ -2178,13 +2234,13 @@ function Qe(s, t, e, r, a, i) {
     class: g(i.classList),
     "data-utility-animation-step": i.dataUtilityAnimationStep
   }, {
-    default: K(() => [
+    default: Y(() => [
       ft(s.$slots, "default")
     ]),
     _: 3
   }, 8, ["class", "data-utility-animation-step"]));
 }
-const J = /* @__PURE__ */ O(Ye, [["render", Qe]]), F = class F {
+const X = /* @__PURE__ */ O(is, [["render", rs]]), F = class F {
   constructor(t, e) {
     var r;
     t && (this.root = t, this.options = e, (r = this.options) != null && r.noInit || this.root.classList.add(p.INITIALIZED));
@@ -2461,7 +2517,7 @@ const B = class B extends _t {
 };
 S(B, "rootSelector", ".form"), S(B, "instances", []), S(B, "delimiter", "-formHelper-"), S(B, "noCustomSubmitClass", "form--no-custom-submit"), S(B, "regularExpression", /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/);
 let H = B;
-const ts = {
+const as = {
   tagName: "formular",
   data() {
     return {
@@ -2580,9 +2636,9 @@ const ts = {
       default: null
     }
   }
-}, es = { class: "row" }, ss = { class: "col-sm-12" }, is = ["innerHTML"], rs = ["method", "action"];
-function as(s, t, e, r, a, i) {
-  const h = J, d = Tt, u = W;
+}, ns = { class: "row" }, os = { class: "col-sm-12" }, ls = ["innerHTML"], cs = ["method", "action"];
+function hs(s, t, e, r, a, i) {
+  const h = X, d = It, m = J;
   return n(), l("div", {
     class: g(i.classList),
     ref: "root"
@@ -2599,8 +2655,8 @@ function as(s, t, e, r, a, i) {
           "data-utility-animation-step": "1",
           ref: "headline"
         }, [
-          o("div", es, [
-            o("div", ss, [
+          o("div", ns, [
+            o("div", os, [
               x(h, {
                 text: e.form.headline,
                 level: e.form.level,
@@ -2610,10 +2666,10 @@ function as(s, t, e, r, a, i) {
               o("p", {
                 class: g(i.sublineClassList),
                 innerHTML: e.form.subline
-              }, null, 10, is)
+              }, null, 10, ls)
             ])
           ])
-        ], 2)) : m("", !0),
+        ], 2)) : u("", !0),
         o("form", {
           class: "form__form js-validate mt-6",
           method: i.method,
@@ -2636,12 +2692,12 @@ function as(s, t, e, r, a, i) {
                   onActionChanged: i.updateAction
                 }, null, 8, ["field", "options", "replace-value", "id", "has-animation", "onActionChanged"])
               ], 2))), 256))
-            ], 2)) : m("", !0)
+            ], 2)) : u("", !0)
           ], 64))), 256)),
           o("div", {
             class: g(i.formClassList)
           }, [
-            x(u, {
+            x(m, {
               text: e.form.ctaText,
               type: "submit",
               button: !0,
@@ -2655,12 +2711,12 @@ function as(s, t, e, r, a, i) {
             class: "form__super-field",
             name: "_gotcha"
           }, null, -1))
-        ], 8, rs)
+        ], 8, cs)
       ], 2)
     ], 2)
   ], 2);
 }
-const It = /* @__PURE__ */ O(ts, [["render", as]]), ns = {
+const Dt = /* @__PURE__ */ O(as, [["render", hs]]), ds = {
   props: {
     tagName: "svg-shape",
     align: {
@@ -2723,11 +2779,11 @@ const It = /* @__PURE__ */ O(ts, [["render", as]]), ns = {
       return this.svgShapeAlign !== "top" ? "transform: translateY(2px);" : "";
     }
   }
-}, os = ["viewBox"], ls = ["fill", "points"];
-function cs(s, t, e, r, a, i) {
+}, us = ["viewBox"], ms = ["fill", "points"];
+function gs(s, t, e, r, a, i) {
   return n(), l("figure", {
     class: g("svgshape " + i.svgShapeClasses),
-    style: N("pointer-events: all;" + i.translateStyle)
+    style: D("pointer-events: all;" + i.translateStyle)
   }, [
     (n(), l("svg", {
       preserveAspectRatio: "none",
@@ -2739,11 +2795,11 @@ function cs(s, t, e, r, a, i) {
       o("polygon", {
         fill: i.svgShapeColor,
         points: i.points
-      }, null, 8, ls)
-    ], 8, os))
+      }, null, 8, ms)
+    ], 8, us))
   ], 6);
 }
-const xt = /* @__PURE__ */ O(ns, [["render", cs]]), hs = {
+const xt = /* @__PURE__ */ O(ds, [["render", gs]]), fs = {
   tagName: "contact",
   props: {
     contact: Object,
@@ -2810,30 +2866,30 @@ const xt = /* @__PURE__ */ O(ns, [["render", cs]]), hs = {
       };
     }
   }
-}, ds = { class: "contact__subline font-weight-bold font-size-2" }, us = {
+}, _s = { class: "contact__subline font-weight-bold font-size-2" }, ps = {
   key: 1,
   class: "pt-4 pt-lg-6 pb-6"
-}, ms = {
+}, ys = {
   key: 0,
   class: "contact__person-quote"
-}, gs = { class: "contact__icon" }, fs = { class: "contact__image-quote" }, _s = { class: "contact__image-spacer" }, ps = { class: "contact__quote font-size-3 middle font-weight-light" }, ys = { class: "d-flex flex-column" }, vs = { class: "font-weight-light" }, bs = { class: "contact__image" }, ws = { class: "contact__name font-size-4 my-6 mx-5" }, xs = { class: "contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap" }, Ss = ["href"], ks = { class: "streamline-sm mr-4" }, Cs = { class: "contact__detail-text" }, Ls = {
+}, vs = { class: "contact__icon" }, bs = { class: "contact__image-quote" }, ws = { class: "contact__image-spacer" }, xs = { class: "contact__quote font-size-3 middle font-weight-light" }, Ss = { class: "d-flex flex-column" }, ks = { class: "font-weight-light" }, Cs = { class: "contact__image" }, Ls = { class: "contact__name font-size-4 my-6 mx-5" }, Es = { class: "contact__details font-size-2 position-relative py-2 d-flex align-items-center flex-wrap" }, As = ["href"], Os = { class: "streamline-sm mr-4" }, Ts = { class: "contact__detail-text" }, Is = {
   key: 0,
   class: "contact__notes"
-}, Es = { class: "contact__notes-spacing streamline-sm mr-4" }, As = {
+}, Ds = { class: "contact__notes-spacing streamline-sm mr-4" }, Ns = {
   key: 0,
   class: "contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"
-}, Os = ["href"], Ts = {
+}, Ps = ["href"], Vs = {
   key: 1,
   class: "contact__mail w-100 px-5 d-flex align-items-center"
-}, Is = ["href"], Ds = {
+}, Ms = ["href"], Rs = {
   key: 0,
   class: "contact__detail-quote"
-}, Ns = ["href"], Ps = { class: "streamline-sm mr-4" }, Vs = {
+}, Fs = ["href"], Bs = { class: "streamline-sm mr-4" }, Hs = {
   key: 0,
   class: "contact__notes"
-}, Ms = { class: "contact__notes-spacing streamline-sm mr-4" };
-function Rs(s, t, e, r, a, i) {
-  const h = xt, d = J, u = It, _ = Q, c = Y, C = G, k = vt;
+}, js = { class: "contact__notes-spacing streamline-sm mr-4" };
+function zs(s, t, e, r, a, i) {
+  const h = xt, d = X, m = Dt, _ = Q, c = G, C = W, k = vt;
   return n(), l(w, null, [
     e.contact.svgShape ? (n(), b(h, {
       key: 0,
@@ -2841,10 +2897,10 @@ function Rs(s, t, e, r, a, i) {
       peak: e.contact.svgShape.peak,
       spacing: "mt-8 mt-lg-10",
       color: "var(--color-bg-grey)"
-    }, null, 8, ["align", "peak"])) : m("", !0),
+    }, null, 8, ["align", "peak"])) : u("", !0),
     o("div", {
       class: g(i.classList),
-      style: N(i.styleObject)
+      style: D(i.styleObject)
     }, [
       o("div", {
         class: g(i.contactContainerClass)
@@ -2852,7 +2908,7 @@ function Rs(s, t, e, r, a, i) {
         o("div", {
           class: g(i.contactRowClass)
         }, [
-          e.collapsed ? m("", !0) : (n(), l("div", {
+          e.collapsed ? u("", !0) : (n(), l("div", {
             key: 0,
             class: g(["contact__form", i.contactFormClass]),
             "data-utility-animation-step": "1"
@@ -2862,18 +2918,18 @@ function Rs(s, t, e, r, a, i) {
               classes: e.contact.headlineClasses,
               level: e.level
             }, null, 8, ["text", "classes", "level"]),
-            o("span", ds, y(e.contact.subline), 1),
-            e.contact.form ? (n(), b(u, {
+            o("span", _s, y(e.contact.subline), 1),
+            e.contact.form ? (n(), b(m, {
               key: 0,
               form: e.contact.form,
               ajax: e.ajax,
               uncentered: "false"
-            }, null, 8, ["form", "ajax"])) : m("", !0),
-            e.contact.buttons ? (n(), l("div", us, [
+            }, null, 8, ["form", "ajax"])) : u("", !0),
+            e.contact.buttons ? (n(), l("div", ps, [
               x(_, {
                 list: e.contact.buttons
               }, null, 8, ["list"])
-            ])) : m("", !0)
+            ])) : u("", !0)
           ], 2)),
           o("div", {
             class: g(["contact__box", i.contactBoxClass]),
@@ -2882,12 +2938,12 @@ function Rs(s, t, e, r, a, i) {
             o("div", {
               class: g(["contact__person", i.contactLight])
             }, [
-              e.quote ? (n(), l("div", ms, [
-                o("div", gs, [
-                  x(c, { icon: "quotes" })
+              e.quote ? (n(), l("div", ys, [
+                o("div", vs, [
+                  x(c, { icon: "quote" })
                 ]),
-                o("div", fs, [
-                  o("div", _s, [
+                o("div", bs, [
+                  o("div", ws, [
                     x(C, {
                       img: e.contact.person.image,
                       cloudinary: e.contact.person.cloudinary,
@@ -2897,13 +2953,13 @@ function Rs(s, t, e, r, a, i) {
                     }, null, 8, ["img", "cloudinary", "alt"])
                   ])
                 ]),
-                o("div", ps, y(e.contact.person.quote), 1),
-                o("div", ys, [
+                o("div", xs, y(e.contact.person.quote), 1),
+                o("div", Ss, [
                   o("span", null, y(e.contact.person.quotee), 1),
-                  o("span", vs, y(e.contact.person.quoteeTitle), 1)
+                  o("span", ks, y(e.contact.person.quoteeTitle), 1)
                 ])
               ])) : (n(), l(w, { key: 1 }, [
-                o("div", bs, [
+                o("div", Cs, [
                   x(C, {
                     img: e.contact.person.image,
                     cloudinary: e.contact.person.cloudinary,
@@ -2912,8 +2968,8 @@ function Rs(s, t, e, r, a, i) {
                     lazy: ""
                   }, null, 8, ["img", "cloudinary", "alt"])
                 ]),
-                o("div", ws, y(e.contact.person.name), 1),
-                o("div", xs, [
+                o("div", Ls, y(e.contact.person.name), 1),
+                o("div", Es, [
                   (n(!0), l(w, null, A(e.contact.person.details, (L, V) => (n(), l("div", {
                     key: V,
                     class: g(["contact__detail w-100 px-5 d-flex align-items-center", { "mb-3 mb-lg-4": !V === e.contact.person.details.length - 1 }])
@@ -2922,7 +2978,7 @@ function Rs(s, t, e, r, a, i) {
                       href: L.href,
                       class: "d-flex custom"
                     }, [
-                      o("span", ks, [
+                      o("span", Os, [
                         L.icon === "site/mail" ? (n(), b(k, {
                           key: 0,
                           icon: "site/mail"
@@ -2931,10 +2987,10 @@ function Rs(s, t, e, r, a, i) {
                           icon: "site/phone"
                         }))
                       ]),
-                      o("span", Cs, y(L.text), 1)
-                    ], 8, Ss),
-                    L.notes ? (n(), l("div", Ls, [
-                      o("span", Es, [
+                      o("span", Ts, y(L.text), 1)
+                    ], 8, As),
+                    L.notes ? (n(), l("div", Is, [
+                      o("span", Ds, [
                         L.icon === "site/mail" ? (n(), b(k, {
                           key: 0,
                           icon: "site/mail"
@@ -2944,30 +3000,30 @@ function Rs(s, t, e, r, a, i) {
                         }))
                       ]),
                       j(" " + y(L.notes), 1)
-                    ])) : m("", !0)
+                    ])) : u("", !0)
                   ], 2))), 128)),
-                  e.contact.person.number ? (n(), l("div", As, [
+                  e.contact.person.number ? (n(), l("div", Ns, [
                     o("a", {
                       href: "tel:" + e.contact.person.number,
                       class: "custom"
                     }, [
                       x(k, { icon: "site/phone" }),
                       j(" " + y(e.contact.person.number), 1)
-                    ], 8, Os)
-                  ])) : m("", !0),
-                  e.contact.person.mail ? (n(), l("div", Ts, [
+                    ], 8, Ps)
+                  ])) : u("", !0),
+                  e.contact.person.mail ? (n(), l("div", Vs, [
                     o("a", {
                       href: "mailto:" + e.contact.person.mail,
                       class: "custom"
                     }, [
                       x(k, { icon: "site/mail" }),
                       j(" " + y(e.contact.person.mail), 1)
-                    ], 8, Is)
-                  ])) : m("", !0)
+                    ], 8, Ms)
+                  ])) : u("", !0)
                 ])
               ], 64))
             ], 2),
-            e.quote ? (n(), l("div", Ds, [
+            e.quote ? (n(), l("div", Rs, [
               x(d, {
                 text: e.contact.person.detailsHeader,
                 level: "h4",
@@ -2981,7 +3037,7 @@ function Rs(s, t, e, r, a, i) {
                   href: L.href,
                   class: "custom"
                 }, [
-                  o("span", Ps, [
+                  o("span", Bs, [
                     L.icon === "site/mail" ? (n(), b(k, {
                       key: 0,
                       icon: "site/mail"
@@ -2991,9 +3047,9 @@ function Rs(s, t, e, r, a, i) {
                     }))
                   ]),
                   j(" " + y(L.text), 1)
-                ], 8, Ns),
-                L.notes ? (n(), l("div", Vs, [
-                  o("span", Ms, [
+                ], 8, Fs),
+                L.notes ? (n(), l("div", Hs, [
+                  o("span", js, [
                     L.icon === "site/mail" ? (n(), b(k, {
                       key: 0,
                       icon: "site/mail"
@@ -3003,16 +3059,16 @@ function Rs(s, t, e, r, a, i) {
                     }))
                   ]),
                   j(" " + y(L.notes), 1)
-                ])) : m("", !0)
+                ])) : u("", !0)
               ], 2))), 128))
-            ])) : m("", !0)
+            ])) : u("", !0)
           ], 2)
         ], 2)
       ], 2)
     ], 6)
   ], 64);
 }
-const Fs = /* @__PURE__ */ O(hs, [["render", Rs]]), Bs = {
+const qs = /* @__PURE__ */ O(fs, [["render", zs]]), Us = {
   tagName: "headline-row",
   props: {
     centered: Boolean,
@@ -3047,13 +3103,13 @@ const Fs = /* @__PURE__ */ O(hs, [["render", Rs]]), Bs = {
       return [`${this.containerClass} ${this.spacing} headline-row`, this.animationClass];
     }
   }
-}, Hs = { class: "row" };
-function js(s, t, e, r, a, i) {
-  const h = J;
+}, Gs = { class: "row" };
+function Ws(s, t, e, r, a, i) {
+  const h = X;
   return n(), l("div", {
     class: g(i.classList)
   }, [
-    o("div", Hs, [
+    o("div", Gs, [
       o("div", {
         class: g(["col-sm-12", i.animationStepClass, i.headlineRowClassesValue]),
         "data-utility-animation-step": "1"
@@ -3067,7 +3123,7 @@ function js(s, t, e, r, a, i) {
     ])
   ], 2);
 }
-const Dt = /* @__PURE__ */ O(Bs, [["render", js]]), zs = {
+const Nt = /* @__PURE__ */ O(Us, [["render", Ws]]), Js = {
   tagName: "wrapper",
   computed: {
     classList() {
@@ -3086,7 +3142,7 @@ const Dt = /* @__PURE__ */ O(Bs, [["render", js]]), zs = {
     }
   }
 };
-function qs(s, t, e, r, a, i) {
+function $s(s, t, e, r, a, i) {
   return e.hideContainer ? ft(s.$slots, "default", { key: 1 }) : (n(), l("div", {
     key: 0,
     class: g(i.classList)
@@ -3094,7 +3150,7 @@ function qs(s, t, e, r, a, i) {
     ft(s.$slots, "default")
   ], 2));
 }
-const Nt = /* @__PURE__ */ O(zs, [["render", qs]]), Us = {
+const Pt = /* @__PURE__ */ O(Js, [["render", $s]]), Xs = {
   tagName: "text-icon-animation",
   props: {
     animation: Object,
@@ -3158,7 +3214,7 @@ const Nt = /* @__PURE__ */ O(zs, [["render", qs]]), Us = {
       </div>
     </div>
   `
-}, Gs = {
+}, Zs = {
   tagName: "letter-switcher",
   data() {
     return {
@@ -3397,8 +3453,8 @@ class pt {
     const t = this.getHeaderHeight(), e = window.scrollY, r = this.root.offsetHeight - window.innerHeight, a = r > 0 ? this.offsetBottom : this.offsetBottom - t;
     let i = r > 0 ? -r : 0;
     i = i - this.marginTop;
-    const h = this.getPercentage(e, i), d = this.isOutOfViewport(h), u = e > a - window.innerHeight;
-    !d && u ? (this.spacer.style.height || (this.fixScrollPosition = !0, this.spacer.style.marginTop = this.marginTop + "px", this.spacer.style.height = this.height + "px", this.root.style.width = this.spacer.style.width = this.width + "px", this.root.style.height = this.height + "px", this.root.style.left = "50%", this.root.style.transform = "translateX(-50%)"), this.root.style.top = i + "px", this.root.classList.remove(p.OFF_SCREEN), this.root.classList.add(p.STICKY), this.updateClipPath(h)) : h === 0 ? (this.isUpdating = !1, this.root.classList.remove(p.OFF_SCREEN)) : this.disableStickyness(), this.updateDebugPositions();
+    const h = this.getPercentage(e, i), d = this.isOutOfViewport(h), m = e > a - window.innerHeight;
+    !d && m ? (this.spacer.style.height || (this.fixScrollPosition = !0, this.spacer.style.marginTop = this.marginTop + "px", this.spacer.style.height = this.height + "px", this.root.style.width = this.spacer.style.width = this.width + "px", this.root.style.height = this.height + "px", this.root.style.left = "50%", this.root.style.transform = "translateX(-50%)"), this.root.style.top = i + "px", this.root.classList.remove(p.OFF_SCREEN), this.root.classList.add(p.STICKY), this.updateClipPath(h)) : h === 0 ? (this.isUpdating = !1, this.root.classList.remove(p.OFF_SCREEN)) : this.disableStickyness(), this.updateDebugPositions();
   }
   disableStickyness() {
     this.root.classList.remove(p.STICKY), this.root.classList.add(p.OFF_SCREEN), this.root.style.top = "", this.root.style.clipPath = "", this.root.style.width = "", this.root.style.height = "", this.spacer.style.height = "", this.spacer.style.marginTop = "", this.root.style.left = "", this.root.style.transform = "", this.isUpdating = !1;
@@ -3434,7 +3490,7 @@ class pt {
   }
 }
 S(pt, "rootSelector", ".is-sticky-scroller"), S(pt, "instances", []);
-const Ws = {
+const Ks = {
   tagName: "hero-pattern",
   template: `
     <svg width="1393" height="696" viewBox="0 0 1393 696" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3475,10 +3531,10 @@ const Ws = {
       </defs>
     </svg>
   `
-}, Js = {
+}, Ys = {
   tagName: "hero",
   components: {
-    "hero-pattern": Ws
+    "hero-pattern": Ks
   },
   data() {
     return {
@@ -3659,52 +3715,52 @@ const Ws = {
     hero: Object,
     lottieData: String
   }
-}, $s = { class: "hero__container container" }, Xs = {
+}, Qs = { class: "hero__container container" }, ti = {
   key: 0,
   class: "hero__back-row row"
-}, Zs = { class: "hero__back-col col" }, Ks = { class: "hero__back back" }, Ys = {
+}, ei = { class: "hero__back-col col" }, si = { class: "hero__back back" }, ii = {
   key: 2,
   class: "hero__intro row",
   ref: "intro"
-}, Qs = { class: "hero__intro-col col" }, ti = {
+}, ri = { class: "hero__intro-col col" }, ai = {
   key: 0,
   class: "hero__overline"
-}, ei = {
+}, ni = {
   key: 2,
   class: "hero__content-shape"
-}, si = ["innerHTML"], ii = {
+}, oi = ["innerHTML"], li = {
   key: 5,
   class: "hero__badges"
-}, ri = { class: "hero__badge-container" }, ai = { class: "hero__background-shape" };
-function ni(s, t, e, r, a, i) {
-  const h = ut("hero-pattern"), d = G, u = Y, _ = Gs, c = J, C = Q, k = Us, L = Nt;
+}, ci = { class: "hero__badge-container" }, hi = { class: "hero__background-shape" };
+function di(s, t, e, r, a, i) {
+  const h = ut("hero-pattern"), d = W, m = G, _ = Zs, c = X, C = Q, k = Xs, L = Pt;
   return n(), l("div", {
     class: g(i.classList),
-    style: N(a.style)
+    style: D(a.style)
   }, [
     i.pattern ? (n(), b(h, {
       key: 0,
       class: "hero__pattern"
-    })) : m("", !0),
+    })) : u("", !0),
     i.img ? (n(), b(d, {
       key: 1,
       class: "hero__background-img",
       cloudinary: i.background.cloudinary,
       img: i.img
     }, {
-      default: K(() => t[0] || (t[0] = [
+      default: Y(() => t[0] || (t[0] = [
         j(" > ")
       ])),
       _: 1
-    }, 8, ["cloudinary", "img"])) : m("", !0),
-    o("div", $s, [
+    }, 8, ["cloudinary", "img"])) : u("", !0),
+    o("div", Qs, [
       o("main", {
         class: g(i.contentClassList)
       }, [
-        i.hasBack ? (n(), l("div", Xs, [
-          o("div", Zs, [
-            o("div", Ks, [
-              x(u, {
+        i.hasBack ? (n(), l("div", ti, [
+          o("div", ei, [
+            o("div", si, [
+              x(m, {
                 icon: "arrow",
                 classes: "hero__back-icon",
                 direction: "left",
@@ -3713,21 +3769,21 @@ function ni(s, t, e, r, a, i) {
               })
             ])
           ])
-        ])) : m("", !0),
-        i.letterSwitcher ? (n(), b(_, R({ key: 1 }, i.letterSwitcher, {
+        ])) : u("", !0),
+        i.letterSwitcher ? (n(), b(_, M({ key: 1 }, i.letterSwitcher, {
           class: "hero__letter-switcher",
           onEnded: i.handleLetterSwitcherEnded
-        }), null, 16, ["onEnded"])) : m("", !0),
-        i.overline || i.headlineText || i.subline ? (n(), l("div", Ys, [
-          o("div", Qs, [
-            i.overline ? (n(), l("span", ti, y(i.overline), 1)) : m("", !0),
+        }), null, 16, ["onEnded"])) : u("", !0),
+        i.overline || i.headlineText || i.subline ? (n(), l("div", ii, [
+          o("div", ri, [
+            i.overline ? (n(), l("span", ai, y(i.overline), 1)) : u("", !0),
             i.headlineText ? (n(), b(c, {
               key: 1,
               class: g(i.headlineClassList),
               level: i.level,
               innerHTML: i.headlineText
-            }, null, 8, ["class", "level", "innerHTML"])) : m("", !0),
-            i.shapeInContent ? (n(), l("div", ei, [
+            }, null, 8, ["class", "level", "innerHTML"])) : u("", !0),
+            i.shapeInContent ? (n(), l("div", ni, [
               i.showShape ? (n(), b(d, {
                 key: 0,
                 cloudinary: i.shape.cloudinary,
@@ -3736,35 +3792,35 @@ function ni(s, t, e, r, a, i) {
                 lottie: i.lottieFileData,
                 "lottie-settings": i.lottieSettings,
                 "img-src-sets": i.imgSrcSets
-              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : m("", !0)
-            ])) : m("", !0),
+              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : u("", !0)
+            ])) : u("", !0),
             i.subline ? (n(), l("p", {
               key: 3,
               class: "hero__subline lead",
               innerHTML: i.subline
-            }, null, 8, si)) : m("", !0),
+            }, null, 8, oi)) : u("", !0),
             i.ctaList ? (n(), b(C, {
               key: 4,
               classes: "hero__cta-list",
               list: i.ctaList
-            }, null, 8, ["list"])) : m("", !0),
-            i.badges ? (n(), l("div", ii, [
-              (n(!0), l(w, null, A(i.badges, (V) => (n(), l("div", ri, [
-                x(d, R({
+            }, null, 8, ["list"])) : u("", !0),
+            i.badges ? (n(), l("div", li, [
+              (n(!0), l(w, null, A(i.badges, (V) => (n(), l("div", ci, [
+                x(d, M({
                   cloudinary: !0,
                   ref_for: !0
                 }, V, { class: "hero__badge-image" }), null, 16)
               ]))), 256))
-            ])) : m("", !0)
+            ])) : u("", !0)
           ])
-        ], 512)) : m("", !0),
+        ], 512)) : u("", !0),
         i.animation ? (n(), b(k, {
           key: 3,
           animation: i.animation,
           cta: i.cta,
           icon: i.icon,
           classes: "hero__animation"
-        }, null, 8, ["animation", "cta", "icon"])) : m("", !0)
+        }, null, 8, ["animation", "cta", "icon"])) : u("", !0)
       ], 2)
     ]),
     i.shape ? (n(), b(L, {
@@ -3772,14 +3828,14 @@ function ni(s, t, e, r, a, i) {
       classes: "hero__background-shape-wrapper",
       hideContainer: !i.showShapeContainer
     }, {
-      default: K(() => [
+      default: Y(() => [
         x(L, {
           classes: "hero__background-shape-content",
           hideContainer: !i.showShapeContainer,
           hideContainerClass: !0
         }, {
-          default: K(() => [
-            o("div", ai, [
+          default: Y(() => [
+            o("div", hi, [
               i.showShape ? (n(), b(d, {
                 key: 0,
                 cloudinary: i.shape.cloudinary,
@@ -3788,17 +3844,17 @@ function ni(s, t, e, r, a, i) {
                 lottie: i.lottieFileData,
                 "lottie-settings": i.lottieSettings,
                 "img-src-sets": i.imgSrcSets
-              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : m("", !0)
+              }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : u("", !0)
             ])
           ]),
           _: 1
         }, 8, ["hideContainer"])
       ]),
       _: 1
-    }, 8, ["hideContainer"])) : m("", !0)
+    }, 8, ["hideContainer"])) : u("", !0)
   ], 6);
 }
-const oi = /* @__PURE__ */ O(Js, [["render", ni]]), li = {
+const ui = /* @__PURE__ */ O(Ys, [["render", di]]), mi = {
   tagName: "intro-text",
   computed: {
     classList() {
@@ -3819,38 +3875,38 @@ const oi = /* @__PURE__ */ O(Js, [["render", ni]]), li = {
     },
     copyClasses: String
   }
-}, ci = { class: "container space-lg-2" }, hi = {
+}, gi = { class: "container space-lg-2" }, fi = {
   key: 0,
   class: "row mb-9 mt-9"
-}, di = { class: "row" }, ui = { class: "col" }, mi = ["innerHTML"];
-function gi(s, t, e, r, a, i) {
-  const h = J;
+}, _i = { class: "row" }, pi = { class: "col" }, yi = ["innerHTML"];
+function vi(s, t, e, r, a, i) {
+  const h = X;
   return n(), l("figure", {
     class: g(i.classList),
     ref: "root"
   }, [
-    o("div", ci, [
-      e.headline ? (n(), l("div", hi, [
+    o("div", gi, [
+      e.headline ? (n(), l("div", fi, [
         o("div", {
           class: g(["col", e.headlineClasses, "fade-in-bottom"]),
           "data-utility-animation-step": "1"
         }, [
           x(h, { text: e.headline }, null, 8, ["text"])
         ], 2)
-      ])) : m("", !0),
-      o("div", di, [
-        o("div", ui, [
+      ])) : u("", !0),
+      o("div", _i, [
+        o("div", pi, [
           o("p", {
             class: g(["intro-text__copy fade-in-bottom", e.copyClasses]),
             "data-utility-animation-step": "1",
             innerHTML: e.copy
-          }, null, 10, mi)
+          }, null, 10, yi)
         ])
       ])
     ])
   ], 2);
 }
-const fi = /* @__PURE__ */ O(li, [["render", gi]]), _i = {
+const bi = /* @__PURE__ */ O(mi, [["render", vi]]), wi = {
   props: {
     productBlocks: Object,
     headline: String
@@ -3868,40 +3924,40 @@ const fi = /* @__PURE__ */ O(li, [["render", gi]]), _i = {
   mounted() {
     this.$refs.root && U.init([this.$refs.root]);
   }
-}, pi = { class: "container space-2" }, yi = { class: "row" }, vi = { class: "product-blocks__content" }, bi = { key: 0 }, wi = { key: 1 }, xi = {
+}, xi = { class: "container space-2" }, Si = { class: "row" }, ki = { class: "product-blocks__content" }, Ci = { key: 0 }, Li = { key: 1 }, Ei = {
   key: 2,
   class: "dashed"
-}, Si = { class: "product-blocks__buttons" };
-function ki(s, t, e, r, a, i) {
-  const h = Dt, d = G, u = Q, _ = W;
+}, Ai = { class: "product-blocks__buttons" };
+function Oi(s, t, e, r, a, i) {
+  const h = Nt, d = W, m = Q, _ = J;
   return n(), l("div", {
     class: "product-blocks utility-animation container-fluid",
-    style: N(i.backgroundColorStyle),
+    style: D(i.backgroundColorStyle),
     ref: "root"
   }, [
-    o("div", pi, [
+    o("div", xi, [
       e.headline ? (n(), l("div", {
         key: 0,
         class: "container pb-4 pb-lg-6 fade-in-bottom",
         "data-utility-animation-step": "1",
-        style: N(i.animationStyle(1))
+        style: D(i.animationStyle(1))
       }, [
         x(h, {
           text: e.headline,
           centered: !0
         }, null, 8, ["text"])
-      ], 4)) : m("", !0),
-      o("div", yi, [
+      ], 4)) : u("", !0),
+      o("div", Si, [
         (n(!0), l(w, null, A(e.productBlocks.items, (c, C) => (n(), l("div", {
           key: C,
           class: "product-blocks__item col-md-6 mb-5 mb-md-0 space-1 fade-in-bottom",
           "data-utility-animation-step": "1",
-          style: N(i.animationStyle(C + 1))
+          style: D(i.animationStyle(C + 1))
         }, [
           o("div", {
             class: g(["product-blocks__block", { "text-center": c.copy === "" }, "pl-lg-3 pr-lg-8"])
           }, [
-            o("div", vi, [
+            o("div", ki, [
               o("figure", {
                 class: g(["product-blocks__img", { "mx-auto": c.copy === "" }, "mb-4"])
               }, [
@@ -3910,16 +3966,16 @@ function ki(s, t, e, r, a, i) {
                   img: c.image,
                   cloudinary: c.cloudinary,
                   alt: c.alt
-                }, null, 8, ["img", "cloudinary", "alt"])) : m("", !0)
+                }, null, 8, ["img", "cloudinary", "alt"])) : u("", !0)
               ], 2),
-              c - e.headline ? (n(), l("h3", bi, y(c.headline), 1)) : m("", !0),
-              c.copy ? (n(), l("p", wi, y(c.copy), 1)) : m("", !0),
-              c.bulletList ? (n(), l("ul", xi, [
+              c - e.headline ? (n(), l("h3", Ci, y(c.headline), 1)) : u("", !0),
+              c.copy ? (n(), l("p", Li, y(c.copy), 1)) : u("", !0),
+              c.bulletList ? (n(), l("ul", Ei, [
                 (n(!0), l(w, null, A(c.bulletList, (k, L) => (n(), l("li", { key: L }, y(k), 1))), 128))
-              ])) : m("", !0)
+              ])) : u("", !0)
             ]),
-            o("div", Si, [
-              c.list ? (n(), b(u, {
+            o("div", Ai, [
+              c.list ? (n(), b(m, {
                 key: 0,
                 list: c.list
               }, null, 8, ["list"])) : c.ctaText ? (n(), b(_, {
@@ -3929,7 +3985,7 @@ function ki(s, t, e, r, a, i) {
                 link: c.link,
                 target: c.target,
                 type: c.type
-              }, null, 8, ["text", "href", "link", "target", "type"])) : m("", !0)
+              }, null, 8, ["text", "href", "link", "target", "type"])) : u("", !0)
             ])
           ], 2)
         ], 4))), 128))
@@ -3937,7 +3993,7 @@ function ki(s, t, e, r, a, i) {
     ])
   ], 4);
 }
-const Ci = /* @__PURE__ */ O(_i, [["render", ki]]), Li = {
+const Ti = /* @__PURE__ */ O(wi, [["render", Oi]]), Ii = {
   tagName: "product-stage",
   props: {
     stage: Object,
@@ -3960,52 +4016,52 @@ const Ci = /* @__PURE__ */ O(_i, [["render", ki]]), Li = {
       return this.cards && this.stage.headline || this.stage.description;
     }
   }
-}, Ei = { class: "product-stage__content container position-relative" }, Ai = { class: "space-top-2 space-top-lg-4 space-top-xl-5 text-white space-bottom-1 space-bottom-lg-2" }, Oi = ["innerHTML"], Ti = {
+}, Di = { class: "product-stage__content container position-relative" }, Ni = { class: "space-top-2 space-top-lg-4 space-top-xl-5 text-white space-bottom-1 space-bottom-lg-2" }, Pi = ["innerHTML"], Vi = {
   key: 1,
   class: "row justify-content-center py-6"
-}, Ii = ["innerHTML"], Di = {
+}, Mi = ["innerHTML"], Ri = {
   key: 2,
   class: "row justify-content-center py-6"
-}, Ni = {
+}, Fi = {
   key: 3,
   class: "space-bottom-2 space-bottom-lg-3"
-}, Pi = ["href", "target", "id", "aria-controls", "aria-selected"], Vi = { class: "d-flex flex-column align-items-center position-relative z-index-2" }, Mi = {
+}, Bi = ["href", "target", "id", "aria-controls", "aria-selected"], Hi = { class: "d-flex flex-column align-items-center position-relative z-index-2" }, ji = {
   key: 1,
   class: "mb-6 flex-grow-1"
 };
-function Ri(s, t, e, r, a, i) {
-  const h = ut("pricing-slider"), d = Q, u = W, _ = xt;
+function zi(s, t, e, r, a, i) {
+  const h = ut("pricing-slider"), d = Q, m = J, _ = xt;
   return n(), l("section", {
     class: "product-stage position-relative overflow-hidden",
-    style: N({ backgroundColor: i.bgColor })
+    style: D({ backgroundColor: i.bgColor })
   }, [
     t[0] || (t[0] = gt('<div class="svg-shape-animation"><svg class="position-absolute" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.0591615" fill-rule="evenodd" clip-rule="evenodd" d="M0 0L316 695L1441 965L0 840V0Z" fill="url(#paint0_linear)"></path><path opacity="0.0339753" fill-rule="evenodd" clip-rule="evenodd" d="M747 147L1439 965L1440 0H340L747 147Z" fill="black"></path><path opacity="0.174464" fill-rule="evenodd" clip-rule="evenodd" d="M646 0L1261 222L1368 685L628 890L646 0Z" fill="white"></path><defs><linearGradient id="paint0_linear" x1="-327.295" y1="767.888" x2="135.719" y2="1396.04" gradientUnits="userSpaceOnUse"><stop></stop><stop offset="1" stop-color="white" stop-opacity="0.01"></stop></linearGradient></defs></svg></div>', 1)),
-    o("div", Ei, [
-      o("div", Ai, [
+    o("div", Di, [
+      o("div", Ni, [
         o("h1", null, y(e.stage.headline), 1),
         e.stage.description ? (n(), l("p", {
           key: 0,
           class: "col-lg-8 lead mt-5 px-0",
           innerHTML: e.stage.description
-        }, null, 8, Oi)) : m("", !0)
+        }, null, 8, Pi)) : u("", !0)
       ]),
       e.stage.slider && e.products ? (n(), b(h, {
         key: 0,
         slider: e.stage.slider,
         tooltip: e.stage.tooltip,
         "modal-id": e.stage.modalId
-      }, null, 8, ["slider", "tooltip", "modal-id"])) : m("", !0),
-      e.stage.additionalCopy ? (n(), l("div", Ti, [
+      }, null, 8, ["slider", "tooltip", "modal-id"])) : u("", !0),
+      e.stage.additionalCopy ? (n(), l("div", Vi, [
         o("div", {
           class: "text-center",
           innerHTML: e.stage.additionalCopy
-        }, null, 8, Ii)
-      ])) : m("", !0),
-      e.stage.buttons ? (n(), l("div", Di, [
+        }, null, 8, Mi)
+      ])) : u("", !0),
+      e.stage.buttons ? (n(), l("div", Ri, [
         x(d, {
           list: e.stage.buttons
         }, null, 8, ["list"])
-      ])) : (n(), l("div", Ni)),
+      ])) : (n(), l("div", Fi)),
       i.cards ? (n(), l("ul", {
         key: 4,
         class: g(["row nav nav-pills", { "px-1 px-lg-0": i.cards.tabs }]),
@@ -4035,26 +4091,26 @@ function Ri(s, t, e, r, a, i) {
               o("div", {
                 class: g(["rounded", { "p-2 p-lg-8": c.link, "p-8 bg-white shadow-lg": !c.link }])
               }, [
-                o("div", Vi, [
+                o("div", Hi, [
                   c.title ? (n(), l("h2", {
                     key: 0,
                     class: g(["font-size-3 mb-2 mb-md-6 text-center", { "text-primary": c.link }])
-                  }, y(c.title), 3)) : m("", !0),
-                  c.description ? (n(), l("p", Mi, y(c.description), 1)) : m("", !0),
-                  c.cta !== c.href ? (n(), b(u, {
+                  }, y(c.title), 3)) : u("", !0),
+                  c.description ? (n(), l("p", ji, y(c.description), 1)) : u("", !0),
+                  c.cta !== c.href ? (n(), b(m, {
                     key: 2,
                     text: c.cta.text,
                     href: c.cta.href,
                     target: c.cta.target,
                     skin: c.cta.skin,
                     classes: "align-self-center z-index-2"
-                  }, null, 8, ["text", "href", "target", "skin"])) : m("", !0)
+                  }, null, 8, ["text", "href", "target", "skin"])) : u("", !0)
                 ])
               ], 2)
             ], 2)
-          ], 10, Pi)) : m("", !0)
+          ], 10, Bi)) : u("", !0)
         ], 2))), 128))
-      ], 2)) : m("", !0)
+      ], 2)) : u("", !0)
     ]),
     i.shape ? (n(), l(w, { key: 0 }, [
       i.shape.isActive !== !1 ? (n(), b(_, {
@@ -4064,12 +4120,37 @@ function Ri(s, t, e, r, a, i) {
         obliquity: 4,
         classes: i.shapeClasses,
         color: i.shape.color
-      }, null, 8, ["classes", "color"])) : m("", !0)
-    ], 64)) : m("", !0)
+      }, null, 8, ["classes", "color"])) : u("", !0)
+    ], 64)) : u("", !0)
   ], 4);
 }
-const Fi = /* @__PURE__ */ O(Li, [["render", Ri]]);
-class Bi {
+const qi = /* @__PURE__ */ O(Ii, [["render", zi]]), Ui = {
+  tagName: "quote",
+  computed: {
+    style() {
+      return `fill: ${this.color}; transform: rotate(var(--icon-rotation)) scale(var(--icon-scale));`;
+    }
+  },
+  props: {
+    settings: Object,
+    color: String
+  }
+};
+function Gi(s, t, e, r, a, i) {
+  return n(), l("svg", M(e.settings, {
+    style: i.style,
+    viewBox: "0 0 40 38",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }), t[0] || (t[0] = [
+    o("path", {
+      d: "M14.3178 0C15.8159 2.397 16.9074 4.79401 17.5923 7.19101C18.32 9.58801 18.6838 11.985 18.6838 14.382C18.6838 18.6624 17.5923 22.7501 15.4093 26.6453C13.2691 30.5404 10.1659 34.1359 6.09952 37.4318L1.1557 34.4141C0.727662 34.1573 0.428037 33.8363 0.256822 33.451C0.0856075 33.1086 0 32.7662 0 32.4238C0 31.6105 0.278224 30.9256 0.834671 30.3692C1.39112 29.7271 1.96897 28.9995 2.56822 28.1862C3.21027 27.3729 3.78812 26.4527 4.30177 25.4254C4.81541 24.3981 5.22204 23.2852 5.52167 22.0867C5.8641 20.8882 6.03531 19.6041 6.03531 18.2344C6.03531 16.779 5.79989 15.2381 5.32905 13.6116C4.85821 11.9422 4.06635 10.1873 2.95345 8.34671C2.56822 7.79026 2.3756 7.21241 2.3756 6.61316C2.3756 5.24344 3.16747 4.28036 4.7512 3.72392L14.3178 0ZM35.634 0C37.1322 2.397 38.2236 4.79401 38.9085 7.19101C39.6362 9.58801 40 11.985 40 14.382C40 18.6624 38.9085 22.7501 36.7255 26.6453C34.5853 30.5404 31.4821 34.1359 27.4157 37.4318L22.4719 34.4141C22.0439 34.1573 21.7442 33.8363 21.573 33.451C21.4018 33.1086 21.3162 32.7662 21.3162 32.4238C21.3162 31.6105 21.5944 30.9256 22.1509 30.3692C22.7073 29.7271 23.2852 28.9995 23.8844 28.1862C24.5265 27.3729 25.1043 26.4527 25.618 25.4254C26.1316 24.3981 26.5383 23.2852 26.8379 22.0867C27.1803 20.8882 27.3515 19.6041 27.3515 18.2344C27.3515 16.779 27.1161 15.2381 26.6453 13.6116C26.1744 11.9422 25.3826 10.1873 24.2697 8.34671C23.8844 7.79026 23.6918 7.21241 23.6918 6.61316C23.6918 5.24344 24.4837 4.28036 26.0674 3.72392L35.634 0Z",
+      fill: "#FCD116"
+    }, null, -1)
+  ]), 16);
+}
+const Wi = /* @__PURE__ */ O(Ui, [["render", Gi]]);
+class Ji {
   constructor(t) {
     var r;
     this.position = t;
@@ -4094,8 +4175,8 @@ class Bi {
   getEnhanchedDescription(t, e, r) {
     const a = t > 0 && e && e["#text"] ? `<h4>${this.trimNewlines(e["#text"])}</h4>` : "";
     let i = r.replace(/<\/?span[^>]*>/g, ""), h = 0;
-    const d = 5, u = 2;
-    return t === 0 ? i = i.replace(new RegExp("(?<=<\\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)", "g"), (_, c) => c.length > d && /^\s*$/.test(c) ? c : h < u && c.length > d && c[0] !== "," ? (h++, "<p>" + c.trim() + "</p>") : c).replace(/<\/p><br>/g, "<br></p>") : !this.hasStartingHtmlTag(i) && i.length > d && (i = "<p>" + i + "</p>"), `${a}${i}`.replace(/<\/p><br><p>/g, "</p><p>");
+    const d = 5, m = 2;
+    return t === 0 ? i = i.replace(new RegExp("(?<=<\\/[^>]+>|^|<br>)([^<]+)(?=<[^>]+>|$|<br>)", "g"), (_, c) => c.length > d && /^\s*$/.test(c) ? c : h < m && c.length > d && c[0] !== "," ? (h++, "<p>" + c.trim() + "</p>") : c).replace(/<\/p><br>/g, "<br></p>") : !this.hasStartingHtmlTag(i) && i.length > d && (i = "<p>" + i + "</p>"), `${a}${i}`.replace(/<\/p><br><p>/g, "</p><p>");
   }
   get id() {
     return this.getValue("id").replace(/\s/g, "");
@@ -4115,11 +4196,11 @@ class Bi {
     if (!t) return;
     let e = t;
     if (e.includes("/")) {
-      const r = e.split(" / "), a = r[0], i = r[1], h = "CSOC", d = "Managed Services", u = "Products";
+      const r = e.split(" / "), a = r[0], i = r[1], h = "CSOC", d = "Managed Services", m = "Products";
       if (a === d && i !== h)
         e = d;
-      else if (a === u)
-        e = `${u} ${i}`;
+      else if (a === m)
+        e = `${m} ${i}`;
       else
         switch (i) {
           case "Azure Architecture":
@@ -4190,7 +4271,7 @@ class Bi {
     return this.position && this.position[t] ? this.trimNewlines(this.position[t][`#${e}`]) : null;
   }
 }
-const Z = {
+const K = {
   VALID: 200,
   CREATED: 201,
   NO_CONTENT: 204,
@@ -4201,7 +4282,7 @@ const Z = {
   PAYLOAD_TOO_LARGE: 413,
   INTERNAL_SERVER_ERROR: 500
 };
-class Hi {
+class $i {
   constructor(t) {
     S(this, "defaultLang", "de");
     S(this, "types", {
@@ -4246,7 +4327,7 @@ class Hi {
   }
   convertPosition(t) {
     var i;
-    const e = new Bi(t), r = (i = this.options) == null ? void 0 : i.jobId;
+    const e = new Ji(t), r = (i = this.options) == null ? void 0 : i.jobId;
     return e.description === null || r && e.id !== r || !this.filterPosition(e) ? null : {
       ...e.data,
       lang: this.lang
@@ -4280,8 +4361,8 @@ class Hi {
     return new Promise((a, i) => {
       var h;
       if ((h = this.options) != null && h.client_name) {
-        const d = fetch(t, e), u = r === this.responseTypes.XML ? this.fetchXML(d) : d;
-        a(u);
+        const d = fetch(t, e), m = r === this.responseTypes.XML ? this.fetchXML(d) : d;
+        a(m);
       } else
         i("no client_name specified");
     });
@@ -4312,19 +4393,19 @@ class Hi {
       this.uploadDocuments(t).then((h) => {
         if (this.hasValidResponseCodes(h)) return this.addFilesToFields(h, r, a, i);
         const d = h[0];
-        d.json().then((u) => {
-          if (u.errors) return i({ statusCode: d.status, errors: u.errors });
-        }).catch((u) => i(u));
+        d.json().then((m) => {
+          if (m.errors) return i({ statusCode: d.status, errors: m.errors });
+        }).catch((m) => i(m));
       }).catch((h) => i(h));
     });
   }
   addFilesToFields(t, e, r, a) {
     const i = e;
     i.files = [];
-    const h = t.map((d) => d.json().then((u) => {
+    const h = t.map((d) => d.json().then((m) => {
       i.files.push({
-        uuid: u.uuid,
-        original_filename: u.original_filename,
+        uuid: m.uuid,
+        original_filename: m.original_filename,
         category: "cv"
       });
     }));
@@ -4352,7 +4433,7 @@ class Hi {
     return e;
   }
   isValidResponseCode(t) {
-    return this.options.apiUrl ? t.status === Z.VALID : t.status === Z.VALID || t.status === Z.CREATED || t.status === Z.NO_CONTENT;
+    return this.options.apiUrl ? t.status === K.VALID : t.status === K.VALID || t.status === K.CREATED || t.status === K.NO_CONTENT;
   }
   hasValidResponseCodes(t) {
     return t.every((e) => this.isValidResponseCode(e));
@@ -4378,7 +4459,7 @@ class Hi {
       recruiting_channel_id: this.recruitingChannels.CAREER_PAGE
     }, a = { first_name: !0, last_name: !0, email: !0, message: !0 };
     for (let i = 0; i < t.length; i++) {
-      const d = t[i].input, u = e.getName(d.name), _ = f.camalCaseToSnakeCase(u);
+      const d = t[i].input, m = e.getName(d.name), _ = f.camalCaseToSnakeCase(m);
       a.hasOwnProperty(_) ? r[_] = d.value : _ !== "_gotcha" && r.attributes.push({
         id: this.getMappedFieldName(_),
         value: d.value
@@ -4403,10 +4484,10 @@ class Hi {
     });
   }
 }
-class ji {
+class Xi {
   constructor(t) {
     S(this, "jobDataUrl", "/assets/data/jobs/");
-    this.options = t, this.api = new Hi(this.options), this.jobDataUrl = f.getSiteAssetPath(this.jobDataUrl);
+    this.options = t, this.api = new $i(this.options), this.jobDataUrl = f.getSiteAssetPath(this.jobDataUrl);
   }
   setLang(t) {
     this.api.setLang(t);
@@ -4458,7 +4539,7 @@ class ji {
 }
 const q = class q {
   constructor(t, e) {
-    this.root = t, this.options = e, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(p.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new ji({
+    this.root = t, this.options = e, this.closeSelector = ".modal__close", this.successCloseSelector = ".modal__success-close .cta", this.errorCloseSelector = ".modal__error-close .cta", this.applicationSelector = ".modal__application", this.modalSuccessHeadlineSelector = ".modal__success-headline > *", this.buttonSelector = '[data-trigger="modal"]', this.formSelector = ".form", this.close = this.root.querySelector(this.closeSelector), this.successClose = this.root.querySelector(this.successCloseSelector), this.errorClose = this.root.querySelector(this.errorCloseSelector), this.application = this.root.querySelector(this.applicationSelector), this.form = this.root.querySelector(this.formSelector), this.modalId = this.root.dataset.modalId, this.root.classList.add(p.READY), this.application && (this.clientName = this.root.dataset.clientName, this.apiUrl = this.root.dataset.apiUrl, this.jobId = this.root.dataset.jobId, this.apiKey = this.root.dataset.apiKey, this.mockApplyUrl = this.root.dataset.mockApplyUrl, this.mockDocumentsUrl = this.root.dataset.mockDocumentsUrl, this.api = new Xi({
       ...this.jobId && { jobId: this.jobId },
       ...this.apiUrl && { apiUrl: this.apiUrl },
       client_name: this.clientName,
@@ -4530,8 +4611,8 @@ const q = class q {
   }
   handleError(t) {
     if (!t) return console.error("handle generic error");
-    const e = typeof t == "string" ? t : t.message ? t.message : t, r = typeof t == "object" && t.statusCode ? t.statusCode : Z.INTERNAL_SERVER_ERROR;
-    console.error("Modal Error", e), r === Z.PAYLOAD_TOO_LARGE ? this.handlePayloadTooLarge(t) : this.root.classList.add(p.ERROR);
+    const e = typeof t == "string" ? t : t.message ? t.message : t, r = typeof t == "object" && t.statusCode ? t.statusCode : K.INTERNAL_SERVER_ERROR;
+    console.error("Modal Error", e), r === K.PAYLOAD_TOO_LARGE ? this.handlePayloadTooLarge(t) : this.root.classList.add(p.ERROR);
   }
   handlePayloadTooLarge(t) {
     document.dispatchEvent(new CustomEvent(P.FORM_ATTACHMENT_ERROR, { detail: t }));
@@ -4568,7 +4649,7 @@ const q = class q {
 };
 S(q, "rootSelector", ".modal"), S(q, "instances", []);
 let yt = q;
-const zi = {
+const Zi = {
   tagName: "modal",
   computed: {
     modalErrorValue() {
@@ -4766,51 +4847,7 @@ const zi = {
         </div>
       </div>
     </div>`
-}, qi = {
-  tagName: "badge",
-  props: {
-    text: String,
-    overlapping: Boolean,
-    icon: String,
-    color: {
-      type: String,
-      default: "var(--color-badge-background)"
-    },
-    textColor: {
-      type: String,
-      default: "var(--color-badge-icon)"
-    },
-    uppercase: Boolean,
-    classes: String
-  },
-  computed: {
-    classList() {
-      return [
-        "badge",
-        "badge--normal",
-        "font-size-1",
-        "normal",
-        { "badge--overlapping": this.overlapping },
-        { "badge--uppercase": this.uppercase },
-        this.classes
-      ];
-    },
-    style() {
-      return {
-        backgroundColor: this.color,
-        color: this.textColor
-      };
-    }
-  },
-  template: `
-    <div :class="classList" :style="style">
-      <div class="badge__text">{{ text }}</div>
-      <div v-if="icon" class="badge__icon">
-        <icon :icon="icon" color="var(--color-badge-icon)" size="medium" />
-      </div>
-    </div>
-  `
-}, Ui = {
+}, Ki = {
   tagName: "text-image",
   props: {
     spacing: { type: String, default: "space-top-2" },
@@ -4927,30 +4964,30 @@ const zi = {
       this.href && (document.location.href = this.href);
     }
   }
-}, Gi = { class: "container" }, Wi = {
+}, Yi = { class: "container" }, Qi = {
   key: 1,
   class: "text-image__overline d-inline-block mb-2 font-size-2"
-}, Ji = {
+}, tr = {
   key: 3,
   class: "richtext"
-}, $i = {
+}, er = {
   key: 4,
   class: "text-image__img text-image__img--subline mb-5 mt-5"
-}, Xi = ["innerHTML"], Zi = {
+}, sr = ["innerHTML"], ir = {
   key: 5,
   class: "pt-4 pt-lg-6 pb-6"
-}, Ki = {
+}, rr = {
   key: 1,
   class: "text-image__cta col-lg-12"
 };
-function Yi(s, t, e, r, a, i) {
-  const h = G, d = qi, u = J, _ = Q, c = W, C = zi;
+function ar(s, t, e, r, a, i) {
+  const h = W, d = Lt, m = X, _ = Q, c = J, C = Zi;
   return n(), l("div", {
     class: g(i.textImageClass),
-    style: N(i.textImageStyle),
+    style: D(i.textImageStyle),
     ref: "root"
   }, [
-    o("div", Gi, [
+    o("div", Yi, [
       o("div", {
         class: g(["row", { "flex-row-reverse": e.left }])
       }, [
@@ -4967,7 +5004,7 @@ function Yi(s, t, e, r, a, i) {
             "col-xl-" + i.textImageFirstColWidthXl
           ]),
           onClick: t[0] || (t[0] = (...k) => i.handleClick && i.handleClick(...k)),
-          style: N({ cursor: e.href ? "pointer" : void 0 })
+          style: D({ cursor: e.href ? "pointer" : void 0 })
         }, [
           x(h, {
             img: e.image,
@@ -4977,11 +5014,11 @@ function Yi(s, t, e, r, a, i) {
             preset: "textImageFloating",
             lottie: e.lottie
           }, null, 8, ["img", "cloudinary", "alt", "lottie"])
-        ], 6)) : m("", !0),
+        ], 6)) : u("", !0),
         o("div", {
           class: g(i.textImageFirstColClasses),
           onClick: t[1] || (t[1] = (...k) => i.handleClick && i.handleClick(...k)),
-          style: N({ cursor: e.href ? "pointer" : void 0 })
+          style: D({ cursor: e.href ? "pointer" : void 0 })
         }, [
           o("div", {
             class: g(["text-image__first-col-wrapper", { "fade-in-bottom": !e.noAnimation }]),
@@ -5007,20 +5044,20 @@ function Yi(s, t, e, r, a, i) {
             icon: e.badge.icon,
             uppercase: !e.badge.noUppercase,
             classes: "text-image__badge"
-          }, null, 8, ["text", "icon", "uppercase"])) : m("", !0),
-          e.overline ? (n(), l("span", Wi, y(e.overline), 1)) : m("", !0),
-          e.headlineText ? (n(), b(u, {
+          }, null, 8, ["text", "icon", "uppercase"])) : u("", !0),
+          e.overline ? (n(), l("span", Qi, y(e.overline), 1)) : u("", !0),
+          e.headlineText ? (n(), b(m, {
             key: 2,
             level: e.level,
             classes: i.textImageHeadlineClassesComputed
           }, {
-            default: K(() => [
+            default: Y(() => [
               j(y(e.headlineText), 1)
             ]),
             _: 1
-          }, 8, ["level", "classes"])) : m("", !0),
-          e.subline ? (n(), l("span", Ji, y(e.subline), 1)) : m("", !0),
-          e.subline ? (n(), l("div", $i, [
+          }, 8, ["level", "classes"])) : u("", !0),
+          e.subline ? (n(), l("span", tr, y(e.subline), 1)) : u("", !0),
+          e.subline ? (n(), l("div", er, [
             x(h, {
               img: e.image,
               cloudinary: e.cloudinary,
@@ -5029,23 +5066,23 @@ function Yi(s, t, e, r, a, i) {
               alt: e.alt,
               lottie: e.lottie
             }, null, 8, ["img", "cloudinary", "imgSrcSets", "preset", "alt", "lottie"])
-          ])) : m("", !0),
+          ])) : u("", !0),
           o("div", {
             class: g(i.textImageLightTextClass),
             innerHTML: e.copy
-          }, null, 10, Xi),
-          e.list ? (n(), l("div", Zi, [
+          }, null, 10, sr),
+          e.list ? (n(), l("div", ir, [
             x(_, { list: e.list }, null, 8, ["list"])
-          ])) : m("", !0)
+          ])) : u("", !0)
         ], 2),
-        e.cta ? (n(), l("div", Ki, [
+        e.cta ? (n(), l("div", rr, [
           x(c, {
             text: e.cta.text,
             button: "",
             href: e.cta.href,
             trigger: e.cta.trigger
           }, null, 8, ["text", "href", "trigger"])
-        ])) : m("", !0)
+        ])) : u("", !0)
       ], 2)
     ]),
     e.modal ? (n(), b(C, {
@@ -5058,10 +5095,10 @@ function Yi(s, t, e, r, a, i) {
       jobId: e.modal.jobId,
       apiUrl: e.modal.apiUrl,
       apiKey: e.modal.apiKey
-    }, null, 8, ["form", "success", "error", "clientName", "jobId", "apiUrl", "apiKey"])) : m("", !0)
+    }, null, 8, ["form", "success", "error", "clientName", "jobId", "apiUrl", "apiKey"])) : u("", !0)
   ], 6);
 }
-const Qi = /* @__PURE__ */ O(Ui, [["render", Yi]]), kt = {
+const nr = /* @__PURE__ */ O(Ki, [["render", ar]]), kt = {
   bgColor: "var(--color-midnight)",
   mail: "info@glueckkanja.com",
   offices: ["Germany", "Austria", "Spain", "Australia"],
@@ -5195,7 +5232,7 @@ const Qi = /* @__PURE__ */ O(Ui, [["render", Yi]]), kt = {
       target: "_blank"
     }
   ]
-}, tr = {
+}, or = {
   tagName: "v-footer-slider",
   template: `
     <div class="footer__slider-container">
@@ -5210,10 +5247,10 @@ const Qi = /* @__PURE__ */ O(Ui, [["render", Yi]]), kt = {
     items: Array,
     bgColor: String
   }
-}, er = {
+}, lr = {
   tagName: "v-footer",
   components: {
-    "footer-slider": tr
+    "footer-slider": or
   },
   data() {
     return {
@@ -5278,42 +5315,42 @@ const Qi = /* @__PURE__ */ O(Ui, [["render", Yi]]), kt = {
     },
     lang: String
   }
-}, sr = { class: "container" }, ir = { class: "footer__content-row row" }, rr = { class: "footer__content col-lg-12" }, ar = { class: "footer__address" }, nr = ["href", "target"], or = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, lr = {
+}, cr = { class: "container" }, hr = { class: "footer__content-row row" }, dr = { class: "footer__content col-lg-12" }, ur = { class: "footer__address" }, mr = ["href", "target"], gr = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, fr = {
   key: 0,
   class: "nav-item"
-}, cr = {
+}, _r = {
   key: 1,
   class: "nav-item"
-}, hr = {
+}, pr = {
   key: 2,
   class: "nav-item"
-}, dr = { class: "footer__postal-code" }, ur = { class: "footer__city" }, mr = { class: "footer__country" }, gr = {
+}, yr = { class: "footer__postal-code" }, vr = { class: "footer__city" }, br = { class: "footer__country" }, wr = {
   key: 4,
   class: "nav-item"
-}, fr = ["href"], _r = { class: "media" }, pr = { class: "streamline-xs streamline-site-phone mr-3 d-flex" }, yr = { class: "media-body" }, vr = {
+}, xr = ["href"], Sr = { class: "media" }, kr = { class: "streamline-xs streamline-site-phone mr-3 d-flex" }, Cr = { class: "media-body" }, Lr = {
   key: 5,
   class: "footer__nav-item nav-item"
-}, br = { class: "footer__nav-link nav-link" }, wr = { class: "footer__offices" }, xr = { class: "footer__office" }, Sr = { key: 0 }, kr = ["href"], Cr = { class: "d-flex" }, Lr = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, Er = { class: "footer__mail media-body" }, Ar = {
+}, Er = { class: "footer__nav-link nav-link" }, Ar = { class: "footer__offices" }, Or = { class: "footer__office" }, Tr = { key: 0 }, Ir = ["href"], Dr = { class: "d-flex" }, Nr = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, Pr = { class: "footer__mail media-body" }, Vr = {
   key: 0,
   class: "footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6"
-}, Or = ["href", "target"], Tr = { class: "footer__highlights" }, Ir = { class: "footer__partners" }, Dr = ["href", "target"], Nr = {
+}, Mr = ["href", "target"], Rr = { class: "footer__highlights" }, Fr = { class: "footer__partners" }, Br = ["href", "target"], Hr = {
   key: 0,
   class: "footer__vertical-line"
-}, Pr = {
+}, jr = {
   key: 0,
   class: "footer__content-row row"
-}, Vr = { class: "footer__content col-lg-12" }, Mr = { class: "mt-3" }, Rr = { class: "row align-items-md-center mb-3" }, Fr = { class: "col-md-8 mb-4 mb-md-0" }, Br = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, Hr = { class: "nav-item mr-6 footer__links" }, jr = ["href"], zr = { class: "col-md-4 text-md-right" }, qr = { class: "list-inline mb-0 footer__socials" }, Ur = { class: "list-inline-item" }, Gr = ["title", "href"], Wr = { class: "row pb-2" }, Jr = { class: "col" }, $r = { class: "text-white small" };
-function Xr(s, t, e, r, a, i) {
-  const h = G, d = vt, u = Y, _ = ut("footer-slider");
+}, zr = { class: "footer__content col-lg-12" }, qr = { class: "mt-3" }, Ur = { class: "row align-items-md-center mb-3" }, Gr = { class: "col-md-8 mb-4 mb-md-0" }, Wr = { class: "nav nav-sm nav-white nav-x-0 align-items-center" }, Jr = { class: "nav-item mr-6 footer__links" }, $r = ["href"], Xr = { class: "col-md-4 text-md-right" }, Zr = { class: "list-inline mb-0 footer__socials" }, Kr = { class: "list-inline-item" }, Yr = ["title", "href"], Qr = { class: "row pb-2" }, ta = { class: "col" }, ea = { class: "text-white small" };
+function sa(s, t, e, r, a, i) {
+  const h = W, d = vt, m = G, _ = ut("footer-slider");
   return n(), l("footer", {
     class: g(i.classList),
-    style: N(i.style),
+    style: D(i.style),
     ref: "root"
   }, [
-    o("div", sr, [
-      o("div", ir, [
-        o("div", rr, [
-          o("div", ar, [
+    o("div", cr, [
+      o("div", hr, [
+        o("div", dr, [
+          o("div", ur, [
             (n(!0), l(w, null, A(i.dataValue.logos, (c) => (n(), l("div", {
               class: g(["mb-3", c == null ? void 0 : c.classes])
             }, [
@@ -5326,54 +5363,54 @@ function Xr(s, t, e, r, a, i) {
                   c.linkClasses ? c.linkClasses : "w-75 w-md-35 w-lg-100"
                 ])
               }, [
-                x(h, R({
+                x(h, M({
                   cloudinary: !0,
                   ref_for: !0
                 }, c), null, 16)
-              ], 10, nr)
+              ], 10, mr)
             ], 2))), 256)),
-            (n(!0), l(w, null, A(i.locations, (c) => (n(), l("ul", or, [
-              c.name ? (n(), l("li", lr, y(c.name), 1)) : m("", !0),
-              c.over ? (n(), l("li", cr, y(c.over), 1)) : m("", !0),
-              c.street ? (n(), l("li", hr, y(c.street), 1)) : m("", !0),
+            (n(!0), l(w, null, A(i.locations, (c) => (n(), l("ul", gr, [
+              c.name ? (n(), l("li", fr, y(c.name), 1)) : u("", !0),
+              c.over ? (n(), l("li", _r, y(c.over), 1)) : u("", !0),
+              c.street ? (n(), l("li", pr, y(c.street), 1)) : u("", !0),
               c.city ? (n(), l("li", {
                 key: 3,
                 class: g(["nav-item footer__address-block", c.postalReversed ? "is-reversed" : ""])
               }, [
-                o("span", dr, y(c.postalCode), 1),
-                o("span", ur, y(c.city), 1),
-                o("span", mr, y(c.country), 1)
-              ], 2)) : m("", !0),
-              c.number ? (n(), l("li", gr, [
+                o("span", yr, y(c.postalCode), 1),
+                o("span", vr, y(c.city), 1),
+                o("span", br, y(c.country), 1)
+              ], 2)) : u("", !0),
+              c.number ? (n(), l("li", wr, [
                 o("a", {
                   class: "nav-link media",
                   href: "tel:" + c.number
                 }, [
-                  o("span", _r, [
-                    o("span", pr, [
+                  o("span", Sr, [
+                    o("span", kr, [
                       x(d, {
                         icon: "site/mail",
                         "no-span": !0
                       })
                     ]),
-                    o("span", yr, y(c.number), 1)
+                    o("span", Cr, y(c.number), 1)
                   ])
-                ], 8, fr)
-              ])) : m("", !0),
-              i.dataValue.offices ? (n(), l("li", vr, [
-                o("a", br, [
-                  x(u, {
+                ], 8, xr)
+              ])) : u("", !0),
+              i.dataValue.offices ? (n(), l("li", Lr, [
+                o("a", Er, [
+                  x(m, {
                     icon: "world",
                     class: "footer__nav-icon footer__office-icon"
                   }),
-                  o("div", wr, [
-                    (n(!0), l(w, null, A(i.dataValue.offices, (C, k) => (n(), l("span", xr, [
+                  o("div", Ar, [
+                    (n(!0), l(w, null, A(i.dataValue.offices, (C, k) => (n(), l("span", Or, [
                       j(y(C), 1),
-                      k < i.dataValue.offices.length - 1 ? (n(), l("span", Sr, ", ")) : m("", !0)
+                      k < i.dataValue.offices.length - 1 ? (n(), l("span", Tr, ", ")) : u("", !0)
                     ]))), 256))
                   ])
                 ])
-              ])) : m("", !0),
+              ])) : u("", !0),
               c.mail ? (n(), l("li", {
                 key: 6,
                 class: g(["nav-item", i.locations.length > 1 ? "pt-4" : ""])
@@ -5382,20 +5419,20 @@ function Xr(s, t, e, r, a, i) {
                   class: "footer__nav-link nav-link",
                   href: "mailto:" + c.mail
                 }, [
-                  o("span", Cr, [
-                    o("span", Lr, [
+                  o("span", Dr, [
+                    o("span", Nr, [
                       x(d, {
                         icon: "site/mail",
                         "no-span": !0
                       })
                     ]),
-                    o("span", Er, y(c.mail), 1)
+                    o("span", Pr, y(c.mail), 1)
                   ])
-                ], 8, kr)
-              ], 2)) : m("", !0)
+                ], 8, Ir)
+              ], 2)) : u("", !0)
             ]))), 256)),
-            i.isCorporate ? m("", !0) : (n(!0), l(w, { key: 0 }, A(i.dataValue.brandLogos, (c, C) => (n(), l(w, null, [
-              c.title ? (n(), l("span", Ar, y(c.title), 1)) : m("", !0),
+            i.isCorporate ? u("", !0) : (n(!0), l(w, { key: 0 }, A(i.dataValue.brandLogos, (c, C) => (n(), l(w, null, [
+              c.title ? (n(), l("span", Vr, y(c.title), 1)) : u("", !0),
               o("a", {
                 href: c.url,
                 target: c.target,
@@ -5405,30 +5442,30 @@ function Xr(s, t, e, r, a, i) {
                   c.classes ? c.classes : "w-90"
                 ])
               }, [
-                x(h, R({
+                x(h, M({
                   cloudinary: !0,
                   ref_for: !0
                 }, c), null, 16)
-              ], 10, Or)
+              ], 10, Mr)
             ], 64))), 256))
           ]),
-          o("div", Tr, [
-            o("div", Ir, [
+          o("div", Rr, [
+            o("div", Fr, [
               (n(!0), l(w, null, A(i.dataValue.partners, (c, C) => (n(), l(w, null, [
                 o("a", {
                   href: c.url,
                   target: c.target,
                   class: "footer__partner-images"
                 }, [
-                  x(h, R({
+                  x(h, M({
                     cloudinary: !0,
                     ref_for: !0
                   }, c, { class: "footer__partner-image" }), null, 16)
-                ], 8, Dr),
-                C < i.dataValue.partners.length - 1 ? (n(), l("div", Nr)) : m("", !0)
+                ], 8, Br),
+                C < i.dataValue.partners.length - 1 ? (n(), l("div", Hr)) : u("", !0)
               ], 64))), 256))
             ]),
-            i.isCorporate ? m("", !0) : (n(), b(_, {
+            i.isCorporate ? u("", !0) : (n(), b(_, {
               key: 0,
               items: i.dataValue.highlights,
               "bg-color": a.bgColorRgbaValue
@@ -5436,31 +5473,31 @@ function Xr(s, t, e, r, a, i) {
           ])
         ])
       ]),
-      i.isCorporate ? (n(), l("div", Pr, [
-        o("div", Vr, [
+      i.isCorporate ? (n(), l("div", jr, [
+        o("div", zr, [
           x(_, {
             items: i.dataValue.highlights,
             "bg-color": a.bgColorRgbaValue
           }, null, 8, ["items", "bg-color"])
         ])
-      ])) : m("", !0),
+      ])) : u("", !0),
       t[0] || (t[0] = o("hr", { class: "footer__divider mx-lg-3" }, null, -1)),
-      o("div", Mr, [
-        o("div", Rr, [
-          o("div", Fr, [
-            o("ul", Br, [
-              (n(!0), l(w, null, A(i.links, (c) => (n(), l("li", Hr, [
-                o("a", R({
+      o("div", qr, [
+        o("div", Ur, [
+          o("div", Gr, [
+            o("ul", Wr, [
+              (n(!0), l(w, null, A(i.links, (c) => (n(), l("li", Jr, [
+                o("a", M({
                   class: "nav-link",
                   href: c.url,
                   ref_for: !0
-                }, c), y(c.title), 17, jr)
+                }, c), y(c.title), 17, $r)
               ]))), 256))
             ])
           ]),
-          o("div", zr, [
-            o("ul", qr, [
-              (n(!0), l(w, null, A(i.dataValue.socials, (c) => (n(), l("li", Ur, [
+          o("div", Xr, [
+            o("ul", Zr, [
+              (n(!0), l(w, null, A(i.dataValue.socials, (c) => (n(), l("li", Kr, [
                 o("a", {
                   class: "btn btn-xs btn-icon btn-soft-light",
                   title: c.title,
@@ -5471,21 +5508,21 @@ function Xr(s, t, e, r, a, i) {
                   o("i", {
                     class: g(["fab", c.icon])
                   }, null, 2)
-                ], 8, Gr)
+                ], 8, Yr)
               ]))), 256))
             ])
           ])
         ]),
-        o("div", Wr, [
-          o("div", Jr, [
-            o("p", $r, "Copyright © " + y(i.dataValue.copyright), 1)
+        o("div", Qr, [
+          o("div", ta, [
+            o("p", ea, "Copyright © " + y(i.dataValue.copyright), 1)
           ])
         ])
       ])
     ])
   ], 6);
 }
-const Zr = /* @__PURE__ */ O(er, [["render", Xr]]), Ct = {}, Kr = {
+const ia = /* @__PURE__ */ O(lr, [["render", sa]]), Ct = {}, ra = {
   tagName: "search",
   computed: {
     classList() {
@@ -5575,7 +5612,7 @@ const Zr = /* @__PURE__ */ O(er, [["render", Xr]]), Ct = {}, Kr = {
       </div>
     </div>
   `
-}, Yr = {
+}, aa = {
   tagName: "link-list",
   computed: {
     classList() {
@@ -5708,7 +5745,7 @@ const Zr = /* @__PURE__ */ O(er, [["render", Xr]]), Ct = {}, Kr = {
       </ul>
     </figure>
   `
-}, Qr = {
+}, na = {
   tagName: "v-header",
   computed: {
     classList() {
@@ -5918,17 +5955,17 @@ const Zr = /* @__PURE__ */ O(er, [["render", Xr]]), Ct = {}, Kr = {
     },
     getActiveUrlByLang(s, t) {
       var d;
-      const e = this.getCurrentPath(), r = "/", a = (u, _) => {
-        if (!(u != null && u.title)) return;
-        let c = u == null ? void 0 : u.url;
+      const e = this.getCurrentPath(), r = "/", a = (m, _) => {
+        if (!(m != null && m.title)) return;
+        let c = m == null ? void 0 : m.url;
         e[(e == null ? void 0 : e.length) - 1] === r && c && c[(c == null ? void 0 : c.length) - 1] !== r && (c = c + r);
         const C = c === e, k = this.getParentLink(_);
-        return t && C ? (u.active = !0, k && (k.active = !0)) : (u.active = !1, k && (k.active = !1)), C;
-      }, i = (u, _) => _;
+        return t && C ? (m.active = !0, k && (k.active = !0)) : (m.active = !1, k && (k.active = !1)), C;
+      }, i = (m, _) => _;
       let h = f.findRecursive(this.clonedNavigation, a, i);
       if (h || (h = f.findRecursive(this.meta, a, i)), h || (h = f.findRecursive(this.contact, a, i)), !h) {
-        const u = this.getHrefLang(s);
-        return u || this.getTranslatedUrl(e, s);
+        const m = this.getHrefLang(s);
+        return m || this.getTranslatedUrl(e, s);
       }
       return (d = h[s]) == null ? void 0 : d.url;
     },
@@ -6054,44 +6091,44 @@ const Zr = /* @__PURE__ */ O(er, [["render", Xr]]), Ct = {}, Kr = {
       activeNavigation: {}
     };
   }
-}, ta = { class: "header__row row" }, ea = { class: "header__col col" }, sa = { class: "header__logo" }, ia = ["href"], ra = {
+}, oa = { class: "header__row row" }, la = { class: "header__col col" }, ca = { class: "header__logo" }, ha = ["href"], da = {
   class: "header__list",
   ref: "list"
-}, aa = ["href", "target", "onClick"], na = ["onMouseover"], oa = { class: "header__link-text" }, la = { class: "header__link-text-spacer" }, ca = ["href", "target"], ha = { class: "header__product-list-data" }, da = { class: "header__product-list-title font-size-8 bold" }, ua = { class: "header__product-list-subtitle" }, ma = ["href"], ga = { class: "header__footer" }, fa = {
+}, ua = ["href", "target", "onClick"], ma = ["onMouseover"], ga = { class: "header__link-text" }, fa = { class: "header__link-text-spacer" }, _a = ["href", "target"], pa = { class: "header__product-list-data" }, ya = { class: "header__product-list-title font-size-8 bold" }, va = { class: "header__product-list-subtitle" }, ba = ["href"], wa = { class: "header__footer" }, xa = {
   key: 1,
   class: "header__contact header__contact--mobile"
-}, _a = ["href"], pa = { class: "header__contact-text" }, ya = { class: "header__contact-title" }, va = {
+}, Sa = ["href"], ka = { class: "header__contact-text" }, Ca = { class: "header__contact-title" }, La = {
   key: 2,
   class: "header__button"
-}, ba = {
+}, Ea = {
   key: 3,
   class: "header__language-switch"
-}, wa = ["onClick"], xa = {
+}, Aa = ["onClick"], Oa = {
   key: 0,
   class: "header__button"
-}, Sa = { class: "header__link-text" }, ka = { class: "header__link-text-spacer" }, Ca = {
+}, Ta = { class: "header__link-text" }, Ia = { class: "header__link-text-spacer" }, Da = {
   class: "header__language-switch-flyout",
   ref: "languageSwitchFlyout"
-}, La = ["onClick"], Ea = { class: "row" }, Aa = { class: "col" }, Oa = {
+}, Na = ["onClick"], Pa = { class: "row" }, Va = { class: "col" }, Ma = {
   key: 0,
   class: "header__flyout-items"
-}, Ta = {
+}, Ra = {
   key: 0,
   class: "header__flyout-block"
-}, Ia = { class: "header__flyout-caption" }, Da = ["innerHTML"], Na = ["href"], Pa = { class: "header__contact-title" }, Va = {
+}, Fa = { class: "header__flyout-caption" }, Ba = ["innerHTML"], Ha = ["href"], ja = { class: "header__contact-title" }, za = {
   key: 1,
   class: "header__highlight-cta has-emergency-colors"
-}, Ma = {
+}, qa = {
   key: 1,
   class: "header__product-list is-expanded"
-}, Ra = ["href", "target"], Fa = { class: "header__product-list-data" }, Ba = { class: "header__product-list-title font-size-8 bold" }, Ha = { class: "header__product-list-subtitle" };
-function ja(s, t, e, r, a, i) {
+}, Ua = ["href", "target"], Ga = { class: "header__product-list-data" }, Wa = { class: "header__product-list-title font-size-8 bold" }, Ja = { class: "header__product-list-subtitle" };
+function $a(s, t, e, r, a, i) {
   var C, k, L, V, tt, et;
-  const h = G, d = Y, u = Yr, _ = W, c = Kr;
+  const h = W, d = G, m = aa, _ = J, c = ra;
   return n(), l(w, null, [
     o("div", {
       class: "header__spacer",
-      style: N(i.spacerBgColor)
+      style: D(i.spacerBgColor)
     }, null, 4),
     o("header", {
       class: g(i.classList),
@@ -6101,9 +6138,9 @@ function ja(s, t, e, r, a, i) {
       o("div", {
         class: g(i.headerContainerClassList)
       }, [
-        o("div", ta, [
-          o("div", ea, [
-            o("div", sa, [
+        o("div", oa, [
+          o("div", la, [
+            o("div", ca, [
               o("a", {
                 href: (C = i.homeObj) == null ? void 0 : C.url
               }, [
@@ -6117,7 +6154,7 @@ function ja(s, t, e, r, a, i) {
                   class: "header__logo-default",
                   cloudinary: !0
                 }, null, 8, ["img"])
-              ], 8, ia)
+              ], 8, ha)
             ]),
             o("div", {
               class: "header__menu",
@@ -6133,9 +6170,9 @@ function ja(s, t, e, r, a, i) {
               class: "header__nav",
               onMouseout: t[1] || (t[1] = (...v) => i.handleMouseOut && i.handleMouseOut(...v))
             }, [
-              o("ul", ra, [
+              o("ul", da, [
                 (n(!0), l(w, null, A(a.activeNavigation, (v, T) => {
-                  var z, st, it, rt, at, X;
+                  var z, st, it, rt, at, Z;
                   return n(), l("li", {
                     class: g(i.headerItemClasses(v))
                   }, [
@@ -6144,28 +6181,28 @@ function ja(s, t, e, r, a, i) {
                       class: g(i.headerLinkClasses(v, T)),
                       href: i.getHref(v),
                       target: i.getTarget(v),
-                      onClick: (M) => i.handleClick(v, T),
+                      onClick: (R) => i.handleClick(v, T),
                       ref_for: !0,
                       ref: "link"
                     }, [
                       o("div", {
                         class: "header__link-content",
-                        onMouseover: (M) => i.handleMouseOver(v, T, M)
+                        onMouseover: (R) => i.handleMouseOver(v, T, R)
                       }, [
-                        o("span", oa, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
-                        o("span", la, y((st = v.languages[i.lowerLang]) == null ? void 0 : st.title), 1),
+                        o("span", ga, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
+                        o("span", fa, y((st = v.languages[i.lowerLang]) == null ? void 0 : st.title), 1),
                         v.children ? (n(), b(d, {
                           key: 0,
                           class: "header__link-icon",
                           icon: "expand",
                           size: "small"
-                        })) : m("", !0)
-                      ], 40, na)
-                    ], 10, aa)) : m("", !0),
-                    (n(!0), l(w, null, A(v.children, (M) => (n(), l(w, null, [
-                      v.children && !M.products ? (n(), b(u, {
+                        })) : u("", !0)
+                      ], 40, ma)
+                    ], 10, ua)) : u("", !0),
+                    (n(!0), l(w, null, A(v.children, (R) => (n(), l(w, null, [
+                      v.children && !R.products ? (n(), b(m, {
                         key: 0,
-                        list: M,
+                        list: R,
                         lang: i.lowerLang,
                         hidden: i.isLinkListHidden(v, T),
                         classes: "header__link-list",
@@ -6176,23 +6213,23 @@ function ja(s, t, e, r, a, i) {
                         ref_for: !0,
                         ref: "product-list"
                       }, [
-                        (n(!0), l(w, null, A(M.children, (D) => {
+                        (n(!0), l(w, null, A(R.children, (N) => {
                           var nt, ot, St;
                           return n(), l("a", {
-                            href: (nt = D == null ? void 0 : D.languages[i.lowerLang]) == null ? void 0 : nt.url,
-                            target: D.target,
+                            href: (nt = N == null ? void 0 : N.languages[i.lowerLang]) == null ? void 0 : nt.url,
+                            target: N.target,
                             class: "header__product-list-item custom"
                           }, [
                             x(h, {
-                              img: D.img,
+                              img: N.img,
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            o("div", ha, [
-                              o("div", da, y((ot = D == null ? void 0 : D.languages[i.lowerLang]) == null ? void 0 : ot.title), 1),
-                              o("div", ua, y((St = D == null ? void 0 : D.languages[i.lowerLang]) == null ? void 0 : St.subtitle), 1)
+                            o("div", pa, [
+                              o("div", ya, y((ot = N == null ? void 0 : N.languages[i.lowerLang]) == null ? void 0 : ot.title), 1),
+                              o("div", va, y((St = N == null ? void 0 : N.languages[i.lowerLang]) == null ? void 0 : St.subtitle), 1)
                             ])
-                          ], 8, ca);
+                          ], 8, _a);
                         }), 256))
                       ], 2))
                     ], 64))), 256)),
@@ -6205,35 +6242,35 @@ function ja(s, t, e, r, a, i) {
                         icon: (at = v.languages[i.lowerLang]) == null ? void 0 : at.emergency.icon,
                         size: "medium"
                       }, null, 8, ["icon"]),
-                      j(" " + y((X = v.languages[i.lowerLang]) == null ? void 0 : X.emergency.text), 1)
-                    ], 10, ma)) : m("", !0)
+                      j(" " + y((Z = v.languages[i.lowerLang]) == null ? void 0 : Z.emergency.text), 1)
+                    ], 10, ba)) : u("", !0)
                   ], 2);
                 }), 256))
               ], 512),
-              o("div", ga, [
-                i.hasMeta ? (n(), b(u, {
+              o("div", wa, [
+                i.hasMeta ? (n(), b(m, {
                   key: 0,
                   list: i.metaList,
                   lang: i.lowerLang,
                   classes: "header__meta-list",
                   "no-animation": !0
-                }, null, 8, ["list", "lang"])) : m("", !0),
-                i.hasContact ? (n(), l("div", fa, [
+                }, null, 8, ["list", "lang"])) : u("", !0),
+                i.hasContact ? (n(), l("div", xa, [
                   (V = e.contact) != null && V.languages ? (n(), l("a", {
                     key: 0,
                     class: "header__contact-link custom",
                     href: (tt = e.contact.languages[i.lowerLang]) == null ? void 0 : tt.url
                   }, [
-                    o("div", pa, [
+                    o("div", ka, [
                       x(d, {
                         icon: "phone-mail",
                         size: "medium"
                       }),
-                      o("span", ya, y((et = e.contact.languages[i.lowerLang]) == null ? void 0 : et.title), 1)
+                      o("span", Ca, y((et = e.contact.languages[i.lowerLang]) == null ? void 0 : et.title), 1)
                     ])
-                  ], 8, _a)) : m("", !0)
-                ])) : m("", !0),
-                e.button ? (n(), l("div", va, [
+                  ], 8, Sa)) : u("", !0)
+                ])) : u("", !0),
+                e.button ? (n(), l("div", La, [
                   x(_, {
                     text: e.button.text,
                     href: e.button.href,
@@ -6241,16 +6278,16 @@ function ja(s, t, e, r, a, i) {
                     skin: e.button.skin,
                     classes: a.ctaClassList
                   }, null, 8, ["text", "href", "target", "skin", "classes"])
-                ])) : m("", !0),
-                i.hasLangSwitch ? (n(), l("div", ba, [
+                ])) : u("", !0),
+                i.hasLangSwitch ? (n(), l("div", Ea, [
                   (n(!0), l(w, null, A(e.home.languages, (v, T) => (n(), l("a", {
                     class: g({ "header__language-link custom": !0, active: T === i.lowerLang }),
                     onClick: (z) => i.handleLanguageSwitch(T)
-                  }, y(T), 11, wa))), 256))
-                ])) : m("", !0)
+                  }, y(T), 11, Aa))), 256))
+                ])) : u("", !0)
               ])
             ], 32),
-            e.button ? (n(), l("div", xa, [
+            e.button ? (n(), l("div", Oa, [
               x(_, {
                 text: e.button.text,
                 href: e.button.href,
@@ -6258,13 +6295,13 @@ function ja(s, t, e, r, a, i) {
                 skin: e.button.skin,
                 classes: a.ctaClassList
               }, null, 8, ["text", "href", "target", "skin", "classes"])
-            ])) : m("", !0),
+            ])) : u("", !0),
             i.searchValue ? (n(), b(c, {
               key: 1,
               class: "header__search",
               language: "de",
               placeholder: "search"
-            })) : m("", !0),
+            })) : u("", !0),
             i.hasLangSwitch ? (n(), l("div", {
               key: 2,
               class: "header__language-switch",
@@ -6272,20 +6309,20 @@ function ja(s, t, e, r, a, i) {
               onMouseout: t[3] || (t[3] = (...v) => i.handleLanguageOut && i.handleLanguageOut(...v)),
               ref: "languageSwitch"
             }, [
-              o("span", Sa, y(e.lang), 1),
-              o("span", ka, y(e.lang), 1),
+              o("span", Ta, y(e.lang), 1),
+              o("span", Ia, y(e.lang), 1),
               x(d, {
                 class: "header__link-icon",
                 icon: "expand",
                 size: "small"
               }),
-              o("div", Ca, [
+              o("div", Da, [
                 (n(!0), l(w, null, A(e.home.languages, (v, T) => (n(), l("a", {
                   class: g({ "header__language-link custom": !0, "d-none": T === i.lowerLang }),
                   onClick: (z) => i.handleLanguageSwitch(T)
-                }, y(T), 11, La))), 256))
+                }, y(T), 11, Na))), 256))
               ], 512)
-            ], 544)) : m("", !0)
+            ], 544)) : u("", !0)
           ])
         ])
       ], 2),
@@ -6296,8 +6333,8 @@ function ja(s, t, e, r, a, i) {
         o("div", {
           class: g(i.containerClass)
         }, [
-          o("div", Ea, [
-            o("div", Aa, [
+          o("div", Pa, [
+            o("div", Va, [
               (n(!0), l(w, null, A(a.activeNavigation, (v, T) => {
                 var z, st, it, rt, at;
                 return n(), l("div", {
@@ -6305,13 +6342,13 @@ function ja(s, t, e, r, a, i) {
                   ref_for: !0,
                   ref: "flyout"
                 }, [
-                  v.children ? (n(), l("div", Oa, [
-                    i.showFlyoutBlock(v.children) ? (n(), l("figure", Ta, [
-                      o("figcaption", Ia, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
+                  v.children ? (n(), l("div", Ma, [
+                    i.showFlyoutBlock(v.children) ? (n(), l("figure", Ra, [
+                      o("figcaption", Fa, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
                       o("div", {
                         class: "header__flyout-description font-size-1 thin",
                         innerHTML: (st = v.languages[i.lowerLang]) == null ? void 0 : st.description
-                      }, null, 8, Da),
+                      }, null, 8, Ba),
                       i.hasContactLink(v) ? (n(), l("a", {
                         key: 0,
                         class: "header__link custom",
@@ -6321,40 +6358,40 @@ function ja(s, t, e, r, a, i) {
                           icon: "phone-mail",
                           size: "medium"
                         }),
-                        o("span", Pa, y((rt = e.contact.languages[i.lowerLang]) == null ? void 0 : rt.title), 1)
-                      ], 8, Na)) : m("", !0),
-                      (at = v.languages[i.lowerLang]) != null && at.emergency ? (n(), l("div", Va, [
-                        x(_, R({ ref_for: !0 }, v.languages[i.lowerLang].emergency), null, 16)
-                      ])) : m("", !0)
-                    ])) : m("", !0),
-                    (n(!0), l(w, null, A(v.children, (X) => (n(), l(w, null, [
-                      v.children && !X.products ? (n(), b(u, {
+                        o("span", ja, y((rt = e.contact.languages[i.lowerLang]) == null ? void 0 : rt.title), 1)
+                      ], 8, Ha)) : u("", !0),
+                      (at = v.languages[i.lowerLang]) != null && at.emergency ? (n(), l("div", za, [
+                        x(_, M({ ref_for: !0 }, v.languages[i.lowerLang].emergency), null, 16)
+                      ])) : u("", !0)
+                    ])) : u("", !0),
+                    (n(!0), l(w, null, A(v.children, (Z) => (n(), l(w, null, [
+                      v.children && !Z.products ? (n(), b(m, {
                         key: 0,
-                        list: X,
+                        list: Z,
                         lang: i.lowerLang,
                         "no-animation": !0
-                      }, null, 8, ["list", "lang"])) : (n(), l("div", Ma, [
-                        (n(!0), l(w, null, A(X.children, (M) => {
-                          var D, nt, ot;
+                      }, null, 8, ["list", "lang"])) : (n(), l("div", qa, [
+                        (n(!0), l(w, null, A(Z.children, (R) => {
+                          var N, nt, ot;
                           return n(), l("a", {
-                            href: (D = M.languages[i.lowerLang]) == null ? void 0 : D.url,
-                            target: M.target,
+                            href: (N = R.languages[i.lowerLang]) == null ? void 0 : N.url,
+                            target: R.target,
                             class: "header__product-list-item custom"
                           }, [
                             x(h, {
-                              img: M.img,
+                              img: R.img,
                               class: "header__product-list-image",
                               cloudinary: !0
                             }, null, 8, ["img"]),
-                            o("div", Fa, [
-                              o("div", Ba, y((nt = M.languages[i.lowerLang]) == null ? void 0 : nt.title), 1),
-                              o("div", Ha, y((ot = M.languages[i.lowerLang]) == null ? void 0 : ot.subtitle), 1)
+                            o("div", Ga, [
+                              o("div", Wa, y((nt = R.languages[i.lowerLang]) == null ? void 0 : nt.title), 1),
+                              o("div", Ja, y((ot = R.languages[i.lowerLang]) == null ? void 0 : ot.subtitle), 1)
                             ])
-                          ], 8, Ra);
+                          ], 8, Ua);
                         }), 256))
                       ]))
                     ], 64))), 256))
-                  ])) : m("", !0)
+                  ])) : u("", !0)
                 ], 512);
               }), 256))
             ])
@@ -6364,7 +6401,7 @@ function ja(s, t, e, r, a, i) {
     ], 34)
   ], 64);
 }
-const za = /* @__PURE__ */ O(Qr, [["render", ja]]), qa = {
+const Xa = /* @__PURE__ */ O(na, [["render", $a]]), Za = {
   tagName: "world",
   computed: {
     style() {
@@ -6378,87 +6415,89 @@ const za = /* @__PURE__ */ O(Qr, [["render", ja]]), qa = {
     settings: Object,
     color: String
   }
-}, Ua = { "clip-path": "url(#icon-world-mask)" }, Ga = ["stroke"], Wa = ["stroke"], Ja = ["stroke"], $a = ["stroke"], Xa = { id: "icon-world-mask" }, Za = ["fill"];
-function Ka(s, t, e, r, a, i) {
-  return n(), l("svg", R(e.settings, {
+}, Ka = { "clip-path": "url(#icon-world-mask)" }, Ya = ["stroke"], Qa = ["stroke"], tn = ["stroke"], en = ["stroke"], sn = { id: "icon-world-mask" }, rn = ["fill"];
+function an(s, t, e, r, a, i) {
+  return n(), l("svg", M(e.settings, {
     style: i.style,
     fill: "none",
     viewBox: "0 0 20 20"
   }), [
-    o("g", Ua, [
+    o("g", Ka, [
       o("path", {
         d: "M19.583 9.95083C19.5836 11.2135 19.3356 12.4639 18.853 13.6307C18.3704 14.7975 17.6627 15.8578 16.7703 16.7511C15.878 17.6444 14.8184 18.3532 13.6521 18.837C12.4858 19.3208 11.2356 19.5702 9.97298 19.5708C7.41074 19.5283 4.96901 18.4754 3.17921 16.6415C1.38941 14.8075 0.396399 12.3408 0.416309 9.77833C0.41836 7.32895 1.37927 4.97771 3.09332 3.22799C4.80737 1.47828 7.13832 0.46915 9.58714 0.416661C9.72548 0.410828 9.86381 0.408328 10.0038 0.408328C11.2606 0.401511 12.5063 0.643413 13.6692 1.1201C14.832 1.59679 15.8891 2.29884 16.7795 3.18582C17.6699 4.0728 18.376 5.12718 18.8572 6.28823C19.3383 7.44927 19.585 8.69404 19.583 9.95083Z",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, Ga),
+      }, null, 8, Ya),
       o("path", {
         d: "M9.58789 0.416672C4.58789 5.83334 4.58789 12.9 9.58789 19.5667",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, Wa),
+      }, null, 8, Qa),
       o("path", {
         d: "M10.4209 0.416672C15.4209 5.83334 15.4209 12.8975 10.4209 19.5642",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, Ja),
+      }, null, 8, tn),
       o("path", {
         d: "M0.418945 9.57001H19.5831",
         stroke: i.stroke,
         "stroke-opacity": "0.8",
         "stroke-linecap": "round",
         "stroke-linejoin": "round"
-      }, null, 8, $a)
+      }, null, 8, en)
     ]),
     o("defs", null, [
-      o("clipPath", Xa, [
+      o("clipPath", sn, [
         o("rect", {
           width: "20",
           height: "20",
           fill: i.stroke
-        }, null, 8, Za)
+        }, null, 8, rn)
       ])
     ])
   ], 16);
 }
-const Ya = /* @__PURE__ */ O(qa, [["render", Ka]]), en = {
+const nn = /* @__PURE__ */ O(Za, [["render", an]]), cn = {
   install(s) {
-    s.component("Arrow", Ft), s.component("Carousel", Wt), s.component("Contact", Fs), s.component("Cta", W), s.component("CtaList", Q), s.component("FormCheckbox", wt), s.component("FormCheckboxes", Ot), s.component("FormFields", Tt), s.component("FormRadio", bt), s.component("FormRadios", At), s.component("FormSelect", Et), s.component("Formular", It), s.component("Headline", J), s.component("HeadlineRow", Dt), s.component("Hero", oi), s.component("Icon", Y), s.component("IntroText", fi), s.component("Lottie", Lt), s.component("ProductBlocks", Ci), s.component("ProductStage", Fi), s.component("SiteIcons", vt), s.component("SvgShape", xt), s.component("TextImage", Qi), s.component("VFooter", Zr), s.component("VHeader", za), s.component("VImg", G), s.component("World", Ya), s.component("Wrapper", Nt);
+    s.component("Arrow", Bt), s.component("Badge", Lt), s.component("Carousel", Qt), s.component("Contact", qs), s.component("Cta", J), s.component("CtaList", Q), s.component("FormCheckbox", wt), s.component("FormCheckboxes", Tt), s.component("FormFields", It), s.component("FormRadio", bt), s.component("FormRadios", Ot), s.component("FormSelect", At), s.component("Formular", Dt), s.component("Headline", X), s.component("HeadlineRow", Nt), s.component("Hero", ui), s.component("Icon", G), s.component("IntroText", bi), s.component("Lottie", Et), s.component("ProductBlocks", Ti), s.component("ProductStage", qi), s.component("Quote", Wi), s.component("SiteIcons", vt), s.component("SvgShape", xt), s.component("TextImage", nr), s.component("VFooter", ia), s.component("VHeader", Xa), s.component("VImg", W), s.component("World", nn), s.component("Wrapper", Pt);
   }
 };
 export {
-  Ft as Arrow,
-  Wt as Carousel,
-  Fs as Contact,
-  W as Cta,
+  Bt as Arrow,
+  Lt as Badge,
+  Qt as Carousel,
+  qs as Contact,
+  J as Cta,
   Q as CtaList,
   wt as FormCheckbox,
-  Ot as FormCheckboxes,
-  Tt as FormFields,
+  Tt as FormCheckboxes,
+  It as FormFields,
   bt as FormRadio,
-  At as FormRadios,
-  Et as FormSelect,
-  It as Formular,
-  J as Headline,
-  Dt as HeadlineRow,
-  oi as Hero,
-  Y as Icon,
-  fi as IntroText,
-  Lt as Lottie,
-  Ci as ProductBlocks,
-  Fi as ProductStage,
+  Ot as FormRadios,
+  At as FormSelect,
+  Dt as Formular,
+  X as Headline,
+  Nt as HeadlineRow,
+  ui as Hero,
+  G as Icon,
+  bi as IntroText,
+  Et as Lottie,
+  Ti as ProductBlocks,
+  qi as ProductStage,
+  Wi as Quote,
   vt as SiteIcons,
   xt as SvgShape,
-  Qi as TextImage,
-  Zr as VFooter,
-  za as VHeader,
-  G as VImg,
-  Ya as World,
-  Nt as Wrapper,
-  en as default
+  nr as TextImage,
+  ia as VFooter,
+  Xa as VHeader,
+  W as VImg,
+  nn as World,
+  Pt as Wrapper,
+  cn as default
 };

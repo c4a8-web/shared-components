@@ -176,7 +176,7 @@ export const WithShape = {
 export const WithQuote = {
   args: {
     quote: true,
-    infos: {
+    contact: {
       headline: 'Jetzt Gesprächstermin vereinbaren',
       level: 'h2',
       person: {

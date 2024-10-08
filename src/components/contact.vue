@@ -1,12 +1,12 @@
 <template>
   <svg-shape
-    v-if="contact.svgShape"
-    :align="contact.svgShape.align"
-    :peak="contact.svgShape.peak"
+    v-if="svgShape"
+    :align="svgShape.align"
+    :peak="svgShape.peak"
     spacing="mt-8 mt-lg-10"
     color="var(--color-bg-grey)"
   />
-  <div :class="classList" :style="styleObject">
+  <div :class="classList" :style="styleObject" v-if="contact">
     <div :class="contactContainerClass">
       <div :class="contactRowClass">
         <div :class="['contact__form', contactFormClass]" v-if="!collapsed" data-utility-animation-step="1">
@@ -23,7 +23,7 @@
             <template v-if="quote">
               <div class="contact__person-quote">
                 <div class="contact__icon">
-                  <icon icon="quotes" />
+                  <icon icon="quote" />
                 </div>
                 <div class="contact__image-quote">
                   <div class="contact__image-spacer">
@@ -147,7 +147,6 @@ export default {
     subline: String,
     form: Object,
     buttons: Array,
-    svgShape: Object,
     person: Object,
     noTopSpacing: Boolean,
   },
@@ -158,13 +157,16 @@ export default {
         this.contactVariantClass,
         'vue-component',
         !this.collapsed ? 'space-bottom-2 utility-animation utility-animation--percentage-offset' : '',
-        { 'bg-grey': this.contact.hasGreyBackground },
-        !(this.noTopSpacing || this.contact?.svgShape || this.collapsed) ? this.spacing : '',
+        { 'bg-grey': this.contact?.hasGreyBackground },
+        !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
       ];
+    },
+    svgShape() {
+      return this.contact && this.contact.svgShape ? this.contact.svgShape : null;
     },
     contactVariantClass() {
       return [
-        this.contact.svgShape && !this.quote ? 'contact--has-shape' : '',
+        this.svgShape && !this.quote ? 'contact--has-shape' : '',
         this.quote ? 'contact--quote' : '',
         this.collapsed ? State.COLLAPSED : '',
       ];
@@ -186,10 +188,10 @@ export default {
     },
     styleObject() {
       return {
-        '--color-contact-background': this.bgColor || this.contact.bgColor,
-        '--contact-copy-color': this.color || this.contact.color,
-        '--color-contact-box-background': this.boxBgColor || this.contact.boxBgColor,
-        '--contact-box-copy-color': this.boxColor || this.contact.boxColor,
+        '--color-contact-background': this.bgColor || this.contact?.bgColor,
+        '--contact-copy-color': this.color || this.contact?.color,
+        '--color-contact-box-background': this.boxBgColor || this.contact?.boxBgColor,
+        '--contact-box-copy-color': this.boxColor || this.contact?.boxColor,
       };
     },
   },

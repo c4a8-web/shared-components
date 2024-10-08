@@ -101,9 +101,9 @@ export const ComputerShield = {
   },
 };
 
-export const Quotes = {
+export const Quote = {
   args: {
-    icon: 'quotes',
+    icon: 'quote',
     size: 'large',
   },
 };

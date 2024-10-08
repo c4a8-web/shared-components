@@ -6,7 +6,7 @@ import '../src/assets/scss/themes/_gk.scss';
 import globals from '../src/components/globals';
 
 // register all js components
-const components = import.meta.glob('../src/components/**/*.js', {
+const components = import.meta.glob('../src/components/**/*.{vue,js}', {
   eager: true,
 });
 
