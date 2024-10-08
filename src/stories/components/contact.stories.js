@@ -1,4 +1,4 @@
-import ContactComponent from '../../components/contact';
+import ContactComponent from '../../components/contact.vue';
 import Contact from '../../../.storybook/data/contact.js';
 
 export default {

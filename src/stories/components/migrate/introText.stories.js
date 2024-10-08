@@ -1,4 +1,4 @@
-import IntroText from '../../../components/intro-text';
+import IntroText from '../../../components/intro-text.vue';
 
 export default {
   title: 'Components/Intro Text',

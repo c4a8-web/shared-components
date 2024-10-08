@@ -1,25 +1,25 @@
-import SvgShape from "../../components/svg-shape";
+import SvgShape from '../../components/svg-shape.vue';
 
 export default {
-  title: "Components/Svg Shape",
+  title: 'Components/Svg Shape',
   component: SvgShape,
 };
 
 export const Yellow = {
   args: {
-    color: "var(--color-yellow)",
+    color: 'var(--color-yellow)',
   },
 };
 
 export const Blue = {
   args: {
-    color: "var(--color-blue-medium)",
+    color: 'var(--color-blue-medium)',
   },
 };
 
 export const PrimaryAccent = {
   args: {
-    color: "var(--color-primary-accent)",
-    peak: "left",
+    color: 'var(--color-primary-accent)',
+    peak: 'left',
   },
 };

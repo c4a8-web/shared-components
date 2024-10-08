@@ -1,5 +1,5 @@
 import { getParams } from '../../../.storybook/templates';
-import FooterComponent from '../../components/v-footer';
+import FooterComponent from '../../components/v-footer.vue';
 
 export default {
   ...getParams({ page: true }),
