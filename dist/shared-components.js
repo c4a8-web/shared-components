@@ -1748,7 +1748,7 @@ function Oe(s, t, e, r, a, i) {
     ], 64))
   ]);
 }
-const bt = /* @__PURE__ */ O(xe, [["render", Oe]]), Ie = {
+const bt = /* @__PURE__ */ O(xe, [["render", Oe]]), Te = {
   tagName: "form-radios",
   computed: {
     otherId() {
@@ -1768,7 +1768,7 @@ const bt = /* @__PURE__ */ O(xe, [["render", Oe]]), Ie = {
       default: null
     }
   }
-}, Te = ["data-msg"], De = { class: "d-flex flex-wrap" };
+}, Ie = ["data-msg"], De = { class: "d-flex flex-wrap" };
 function Ne(s, t, e, r, a, i) {
   var d, u;
   const h = bt;
@@ -1776,7 +1776,7 @@ function Ne(s, t, e, r, a, i) {
     o("label", {
       class: "form__label input-label",
       "data-msg": i.message
-    }, y((d = e.field) == null ? void 0 : d.label), 9, Te),
+    }, y((d = e.field) == null ? void 0 : d.label), 9, Ie),
     o("div", De, [
       (n(!0), l(w, null, A((u = e.field) == null ? void 0 : u.radios, (_) => (n(), b(h, {
         class: "pr-10",
@@ -1789,7 +1789,7 @@ function Ne(s, t, e, r, a, i) {
     ])
   ], 64);
 }
-const At = /* @__PURE__ */ O(Ie, [["render", Ne]]), Pe = {
+const At = /* @__PURE__ */ O(Te, [["render", Ne]]), Pe = {
   tagName: "form-checkbox",
   computed: {
     otherId() {
@@ -1886,7 +1886,7 @@ function Ue(s, t, e, r, a, i) {
     }, null, 8, ["checkbox", "group", "id"]))), 256))
   ], 64);
 }
-const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), T = class T {
+const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), I = class I {
   constructor(t) {
     this.root = t, this.count = 1, this.selector = this.getCurrentSelector(), this.currentElements = this.root.querySelectorAll(this.selector), this.root.matches(this.selector) && (this.currentElements = this.mergeNodes(this.root, this.currentElements)), this.resetAnimation(), this.initialize();
   }
@@ -1909,10 +1909,10 @@ const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), T = class T {
     }), this.currentElements = e;
   }
   handleAnimationEnd(t) {
-    const e = T.getGroup(t.srcElement);
+    const e = I.getGroup(t.srcElement);
     if (e) {
-      const r = parseInt(e.style.getPropertyValue(T.groupItemsLoadedProperty), 10) || 0;
-      T.setGroupItemsLoaded(e, r + 1);
+      const r = parseInt(e.style.getPropertyValue(I.groupItemsLoadedProperty), 10) || 0;
+      I.setGroupItemsLoaded(e, r + 1);
     }
     this.updateCurrentElement(t), !(this.currentElements.length > 0) && (this.count++, this.currentElements = this.root.querySelectorAll(this.getCurrentSelector()), this.currentElements !== null && this.currentElements.length > 0 ? this.startStepAnimation(this.currentElements) : this.setEnd());
   }
@@ -1922,7 +1922,7 @@ const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), T = class T {
     });
   }
   setEnd() {
-    this.root.setAttribute(T.endDataset, !0);
+    this.root.setAttribute(I.endDataset, !0);
   }
   startAnimation() {
     this.startStepAnimation(this.currentElements);
@@ -1936,7 +1936,7 @@ const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), T = class T {
     }), new MutationObserver((e) => {
       e.forEach((r) => {
         var a;
-        r.type === "attributes" && r.attributeName.startsWith(T.inViewportDataset) && ((a = r.target) == null ? void 0 : a.getAttribute(T.inViewportDataset)) === "true" && this.startAnimation();
+        r.type === "attributes" && r.attributeName.startsWith(I.inViewportDataset) && ((a = r.target) == null ? void 0 : a.getAttribute(I.inViewportDataset)) === "true" && this.startAnimation();
       });
     }).observe(this.root, { attributes: !0 });
   }
@@ -1965,7 +1965,7 @@ const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), T = class T {
       threshold: 0
     });
     (t ? [t] : this.instances).forEach((_) => {
-      T.hasSmallOffset(_) ? d.observe(_.root) : T.hasPercentageOffset(_) ? h.observe(_.root) : i.observe(_.root);
+      I.hasSmallOffset(_) ? d.observe(_.root) : I.hasPercentageOffset(_) ? h.observe(_.root) : i.observe(_.root);
     });
   }
   static resetGroup(t) {
@@ -1996,8 +1996,8 @@ const Ot = /* @__PURE__ */ O(ze, [["render", Ue]]), T = class T {
     return `--utility-animation-index: ${t}`;
   }
 };
-S(T, "rootSelector", ".utility-animation"), S(T, "inViewportDataset", "data-utility-animation-in-viewport"), S(T, "endDataset", "data-utility-animation-end"), S(T, "instances", []), S(T, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
-let U = T;
+S(I, "rootSelector", ".utility-animation"), S(I, "inViewportDataset", "data-utility-animation-in-viewport"), S(I, "endDataset", "data-utility-animation-end"), S(I, "instances", []), S(I, "groupItemsLoadedProperty", "--utility-animation-items-loaded");
+let U = I;
 const Ge = {
   tagName: "form-fields",
   data() {
@@ -2115,7 +2115,7 @@ function Ke(s, t, e, r, a, i) {
       key: 5,
       field: e.field,
       id: e.id,
-      onActionChanged: t[0] || (t[0] = (I) => s.$emit("action-changed", I))
+      onActionChanged: t[0] || (t[0] = (T) => s.$emit("action-changed", T))
     }, null, 8, ["field", "id"])) : e.field.type === "file" ? (n(), b(c, {
       key: 6,
       description: (k = e.field.formAttachments) == null ? void 0 : k.description,
@@ -2137,8 +2137,8 @@ function Ke(s, t, e, r, a, i) {
       }, y(e.field.label), 9, Xe),
       o("input", {
         ref: "input",
-        onChange: t[1] || (t[1] = (...I) => i.handleChange && i.handleChange(...I)),
-        onKeyup: t[2] || (t[2] = (...I) => i.handleChange && i.handleChange(...I)),
+        onChange: t[1] || (t[1] = (...T) => i.handleChange && i.handleChange(...T)),
+        onKeyup: t[2] || (t[2] = (...T) => i.handleChange && i.handleChange(...T)),
         type: e.field.type,
         id: e.id,
         name: e.id,
@@ -2152,7 +2152,7 @@ function Ke(s, t, e, r, a, i) {
     ], 64)) : m("", !0)
   ], 2)) : m("", !0);
 }
-const It = /* @__PURE__ */ O(Ge, [["render", Ke]]), Ye = {
+const Tt = /* @__PURE__ */ O(Ge, [["render", Ke]]), Ye = {
   tagName: "headline",
   computed: {
     tag() {
@@ -2582,7 +2582,7 @@ const ts = {
   }
 }, es = { class: "row" }, ss = { class: "col-sm-12" }, is = ["innerHTML"], rs = ["method", "action"];
 function as(s, t, e, r, a, i) {
-  const h = J, d = It, u = W;
+  const h = J, d = Tt, u = W;
   return n(), l("div", {
     class: g(i.classList),
     ref: "root"
@@ -2660,7 +2660,7 @@ function as(s, t, e, r, a, i) {
     ], 2)
   ], 2);
 }
-const Tt = /* @__PURE__ */ O(ts, [["render", as]]), ns = {
+const It = /* @__PURE__ */ O(ts, [["render", as]]), ns = {
   props: {
     tagName: "svg-shape",
     align: {
@@ -2822,10 +2822,10 @@ const xt = /* @__PURE__ */ O(ns, [["render", cs]]), hs = {
 }, Es = { class: "contact__notes-spacing streamline-sm mr-4" }, As = {
   key: 0,
   class: "contact__number w-100 px-5 d-flex align-items-center mb-3 mb-lg-4"
-}, Os = ["href"], Is = {
+}, Os = ["href"], Ts = {
   key: 1,
   class: "contact__mail w-100 px-5 d-flex align-items-center"
-}, Ts = ["href"], Ds = {
+}, Is = ["href"], Ds = {
   key: 0,
   class: "contact__detail-quote"
 }, Ns = ["href"], Ps = { class: "streamline-sm mr-4" }, Vs = {
@@ -2833,7 +2833,7 @@ const xt = /* @__PURE__ */ O(ns, [["render", cs]]), hs = {
   class: "contact__notes"
 }, Ms = { class: "contact__notes-spacing streamline-sm mr-4" };
 function Rs(s, t, e, r, a, i) {
-  const h = xt, d = J, u = Tt, _ = Q, c = Y, C = G, k = vt;
+  const h = xt, d = J, u = It, _ = Q, c = Y, C = G, k = vt;
   return n(), l(w, null, [
     e.contact.svgShape ? (n(), b(h, {
       key: 0,
@@ -2955,14 +2955,14 @@ function Rs(s, t, e, r, a, i) {
                       j(" " + y(e.contact.person.number), 1)
                     ], 8, Os)
                   ])) : m("", !0),
-                  e.contact.person.mail ? (n(), l("div", Is, [
+                  e.contact.person.mail ? (n(), l("div", Ts, [
                     o("a", {
                       href: "mailto:" + e.contact.person.mail,
                       class: "custom"
                     }, [
                       x(k, { icon: "site/mail" }),
                       j(" " + y(e.contact.person.mail), 1)
-                    ], 8, Ts)
+                    ], 8, Is)
                   ])) : m("", !0)
                 ])
               ], 64))
@@ -3941,27 +3941,29 @@ const Ci = /* @__PURE__ */ O(_i, [["render", ki]]), Li = {
   tagName: "product-stage",
   props: {
     stage: Object,
-    products: Object,
-    background: String,
-    bgColor: {
-      type: String,
-      default: "var(--color-primary)"
-    },
-    slider: Object,
-    buttons: Array,
-    cards: Object,
-    shape: Object,
-    overlapping: Boolean
+    products: Object
   },
   computed: {
     shapeClasses() {
       return this.overlapping ? "position-absolute bottom-0 left-0 z-index-1 w-100" : "position-relative z-index-1";
+    },
+    bgColor() {
+      return this.stage.bgColor || "var(--color-primary)";
+    },
+    shape() {
+      return this.stage.shape || null;
+    },
+    cards() {
+      return this.stage.cards || null;
+    },
+    overlapping() {
+      return this.cards && this.stage.headline || this.stage.description;
     }
   }
-}, Ei = { class: "product-stage__content container position-relative" }, Ai = { class: "space-top-2 space-top-lg-4 space-top-xl-5 text-white space-bottom-1 space-bottom-lg-2" }, Oi = ["innerHTML"], Ii = {
+}, Ei = { class: "product-stage__content container position-relative" }, Ai = { class: "space-top-2 space-top-lg-4 space-top-xl-5 text-white space-bottom-1 space-bottom-lg-2" }, Oi = ["innerHTML"], Ti = {
   key: 1,
   class: "row justify-content-center py-6"
-}, Ti = { class: "text-center" }, Di = {
+}, Ii = ["innerHTML"], Di = {
   key: 2,
   class: "row justify-content-center py-6"
 }, Ni = {
@@ -3975,7 +3977,7 @@ function Ri(s, t, e, r, a, i) {
   const h = ut("pricing-slider"), d = Q, u = W, _ = xt;
   return n(), l("section", {
     class: "product-stage position-relative overflow-hidden",
-    style: N({ backgroundColor: e.bgColor })
+    style: N({ backgroundColor: i.bgColor })
   }, [
     t[0] || (t[0] = gt('<div class="svg-shape-animation"><svg class="position-absolute" width="100%" height="100%" preserveAspectRatio="none" viewBox="0 0 1440 965" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.0591615" fill-rule="evenodd" clip-rule="evenodd" d="M0 0L316 695L1441 965L0 840V0Z" fill="url(#paint0_linear)"></path><path opacity="0.0339753" fill-rule="evenodd" clip-rule="evenodd" d="M747 147L1439 965L1440 0H340L747 147Z" fill="black"></path><path opacity="0.174464" fill-rule="evenodd" clip-rule="evenodd" d="M646 0L1261 222L1368 685L628 890L646 0Z" fill="white"></path><defs><linearGradient id="paint0_linear" x1="-327.295" y1="767.888" x2="135.719" y2="1396.04" gradientUnits="userSpaceOnUse"><stop></stop><stop offset="1" stop-color="white" stop-opacity="0.01"></stop></linearGradient></defs></svg></div>', 1)),
     o("div", Ei, [
@@ -3987,43 +3989,48 @@ function Ri(s, t, e, r, a, i) {
           innerHTML: e.stage.description
         }, null, 8, Oi)) : m("", !0)
       ]),
-      e.slider && e.products ? (n(), b(h, {
+      e.stage.slider && e.products ? (n(), b(h, {
         key: 0,
-        slider: e.slider,
+        slider: e.stage.slider,
         tooltip: e.stage.tooltip,
         "modal-id": e.stage.modalId
       }, null, 8, ["slider", "tooltip", "modal-id"])) : m("", !0),
-      e.stage.additionalCopy ? (n(), l("div", Ii, [
-        o("div", Ti, y(e.stage.additionalCopy), 1)
+      e.stage.additionalCopy ? (n(), l("div", Ti, [
+        o("div", {
+          class: "text-center",
+          innerHTML: e.stage.additionalCopy
+        }, null, 8, Ii)
       ])) : m("", !0),
-      e.buttons ? (n(), l("div", Di, [
-        x(d, { list: e.buttons }, null, 8, ["list"])
+      e.stage.buttons ? (n(), l("div", Di, [
+        x(d, {
+          list: e.stage.buttons
+        }, null, 8, ["list"])
       ])) : (n(), l("div", Ni)),
-      e.cards ? (n(), l("ul", {
+      i.cards ? (n(), l("ul", {
         key: 4,
-        class: g(["row nav nav-pills", { "px-1 px-lg-0": e.cards.tabs }]),
+        class: g(["row nav nav-pills", { "px-1 px-lg-0": i.cards.tabs }]),
         role: "tablist"
       }, [
-        (n(!0), l(w, null, A(e.cards.list, (c, C) => (n(), l("li", {
+        (n(!0), l(w, null, A(i.cards.list, (c, C) => (n(), l("li", {
           key: C,
           class: g([
-            "col-lg-" + 12 / e.cards.list.length,
-            { "px-1 px-lg-3 nav-item": e.cards.tabs, "mb-6 mb-md-8 mb-lg-0": !e.cards.tabs }
+            "col-lg-" + 12 / i.cards.list.length,
+            { "px-1 px-lg-3 nav-item": i.cards.tabs, "mb-6 mb-md-8 mb-lg-0": !i.cards.tabs }
           ])
         }, [
           c.link ? (n(), l("a", {
             key: 0,
             href: c.link.href,
             target: c.link.target,
-            class: g(["product-stage__tab h-100 rounded position-relative d-block", { active: e.cards.tabs && C === 0 }]),
+            class: g(["product-stage__tab h-100 rounded position-relative d-block", { active: i.cards.tabs && C === 0 }]),
             id: c.id ? c.id + "-tab" : "",
             "data-toggle": "pill",
             role: "tab",
             "aria-controls": c.id,
-            "aria-selected": e.cards.tabs && C === 0
+            "aria-selected": i.cards.tabs && C === 0
           }, [
             o("div", {
-              class: g(["product-stage__tab-content position-relative h-100", { "product-stage__tab-content--alternative-border": e.cards.tabs }])
+              class: g(["product-stage__tab-content position-relative h-100", { "product-stage__tab-content--alternative-border": i.cards.tabs }])
             }, [
               o("div", {
                 class: g(["rounded", { "p-2 p-lg-8": c.link, "p-8 bg-white shadow-lg": !c.link }])
@@ -4049,14 +4056,14 @@ function Ri(s, t, e, r, a, i) {
         ], 2))), 128))
       ], 2)) : m("", !0)
     ]),
-    e.shape ? (n(), l(w, { key: 0 }, [
-      e.shape.isActive !== !1 ? (n(), b(_, {
+    i.shape ? (n(), l(w, { key: 0 }, [
+      i.shape.isActive !== !1 ? (n(), b(_, {
         key: 0,
         align: "bottom",
         peak: "left",
         obliquity: 4,
         classes: i.shapeClasses,
-        color: e.shape.color
+        color: i.shape.color
       }, null, 8, ["classes", "color"])) : m("", !0)
     ], 64)) : m("", !0)
   ], 4);
@@ -5289,7 +5296,7 @@ const Qi = /* @__PURE__ */ O(Ui, [["render", Yi]]), kt = {
 }, br = { class: "footer__nav-link nav-link" }, wr = { class: "footer__offices" }, xr = { class: "footer__office" }, Sr = { key: 0 }, kr = ["href"], Cr = { class: "d-flex" }, Lr = { class: "streamline-xs footer__nav-icon streamline-site-mail mr-3 d-flex" }, Er = { class: "footer__mail media-body" }, Ar = {
   key: 0,
   class: "footer__brand-logo-title d-block space-top-1 mb-n7 w-90 w-lg-100 pr-6"
-}, Or = ["href", "target"], Ir = { class: "footer__highlights" }, Tr = { class: "footer__partners" }, Dr = ["href", "target"], Nr = {
+}, Or = ["href", "target"], Tr = { class: "footer__highlights" }, Ir = { class: "footer__partners" }, Dr = ["href", "target"], Nr = {
   key: 0,
   class: "footer__vertical-line"
 }, Pr = {
@@ -5405,8 +5412,8 @@ function Xr(s, t, e, r, a, i) {
               ], 10, Or)
             ], 64))), 256))
           ]),
-          o("div", Ir, [
-            o("div", Tr, [
+          o("div", Tr, [
+            o("div", Ir, [
               (n(!0), l(w, null, A(i.dataValue.partners, (c, C) => (n(), l(w, null, [
                 o("a", {
                   href: c.url,
@@ -6068,10 +6075,10 @@ const Zr = /* @__PURE__ */ O(er, [["render", Xr]]), Ct = {}, Kr = {
 }, La = ["onClick"], Ea = { class: "row" }, Aa = { class: "col" }, Oa = {
   key: 0,
   class: "header__flyout-items"
-}, Ia = {
+}, Ta = {
   key: 0,
   class: "header__flyout-block"
-}, Ta = { class: "header__flyout-caption" }, Da = ["innerHTML"], Na = ["href"], Pa = { class: "header__contact-title" }, Va = {
+}, Ia = { class: "header__flyout-caption" }, Da = ["innerHTML"], Na = ["href"], Pa = { class: "header__contact-title" }, Va = {
   key: 1,
   class: "header__highlight-cta has-emergency-colors"
 }, Ma = {
@@ -6127,23 +6134,23 @@ function ja(s, t, e, r, a, i) {
               onMouseout: t[1] || (t[1] = (...v) => i.handleMouseOut && i.handleMouseOut(...v))
             }, [
               o("ul", ra, [
-                (n(!0), l(w, null, A(a.activeNavigation, (v, I) => {
+                (n(!0), l(w, null, A(a.activeNavigation, (v, T) => {
                   var z, st, it, rt, at, X;
                   return n(), l("li", {
                     class: g(i.headerItemClasses(v))
                   }, [
                     v != null && v.languages ? (n(), l("a", {
                       key: 0,
-                      class: g(i.headerLinkClasses(v, I)),
+                      class: g(i.headerLinkClasses(v, T)),
                       href: i.getHref(v),
                       target: i.getTarget(v),
-                      onClick: (M) => i.handleClick(v, I),
+                      onClick: (M) => i.handleClick(v, T),
                       ref_for: !0,
                       ref: "link"
                     }, [
                       o("div", {
                         class: "header__link-content",
-                        onMouseover: (M) => i.handleMouseOver(v, I, M)
+                        onMouseover: (M) => i.handleMouseOver(v, T, M)
                       }, [
                         o("span", oa, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
                         o("span", la, y((st = v.languages[i.lowerLang]) == null ? void 0 : st.title), 1),
@@ -6160,12 +6167,12 @@ function ja(s, t, e, r, a, i) {
                         key: 0,
                         list: M,
                         lang: i.lowerLang,
-                        hidden: i.isLinkListHidden(v, I),
+                        hidden: i.isLinkListHidden(v, T),
                         classes: "header__link-list",
                         "no-animation": !0
                       }, null, 8, ["list", "lang", "hidden"])) : (n(), l("div", {
                         key: 1,
-                        class: g(i.headerProductListClasses(v, I)),
+                        class: g(i.headerProductListClasses(v, T)),
                         ref_for: !0,
                         ref: "product-list"
                       }, [
@@ -6192,7 +6199,7 @@ function ja(s, t, e, r, a, i) {
                     (it = v.languages[i.lowerLang]) != null && it.emergency ? (n(), l("a", {
                       key: 1,
                       href: (rt = v.languages[i.lowerLang]) == null ? void 0 : rt.emergency.href,
-                      class: g(i.navHighlightClasses(v, I))
+                      class: g(i.navHighlightClasses(v, T))
                     }, [
                       x(d, {
                         icon: (at = v.languages[i.lowerLang]) == null ? void 0 : at.emergency.icon,
@@ -6236,10 +6243,10 @@ function ja(s, t, e, r, a, i) {
                   }, null, 8, ["text", "href", "target", "skin", "classes"])
                 ])) : m("", !0),
                 i.hasLangSwitch ? (n(), l("div", ba, [
-                  (n(!0), l(w, null, A(e.home.languages, (v, I) => (n(), l("a", {
-                    class: g({ "header__language-link custom": !0, active: I === i.lowerLang }),
-                    onClick: (z) => i.handleLanguageSwitch(I)
-                  }, y(I), 11, wa))), 256))
+                  (n(!0), l(w, null, A(e.home.languages, (v, T) => (n(), l("a", {
+                    class: g({ "header__language-link custom": !0, active: T === i.lowerLang }),
+                    onClick: (z) => i.handleLanguageSwitch(T)
+                  }, y(T), 11, wa))), 256))
                 ])) : m("", !0)
               ])
             ], 32),
@@ -6273,10 +6280,10 @@ function ja(s, t, e, r, a, i) {
                 size: "small"
               }),
               o("div", Ca, [
-                (n(!0), l(w, null, A(e.home.languages, (v, I) => (n(), l("a", {
-                  class: g({ "header__language-link custom": !0, "d-none": I === i.lowerLang }),
-                  onClick: (z) => i.handleLanguageSwitch(I)
-                }, y(I), 11, La))), 256))
+                (n(!0), l(w, null, A(e.home.languages, (v, T) => (n(), l("a", {
+                  class: g({ "header__language-link custom": !0, "d-none": T === i.lowerLang }),
+                  onClick: (z) => i.handleLanguageSwitch(T)
+                }, y(T), 11, La))), 256))
               ], 512)
             ], 544)) : m("", !0)
           ])
@@ -6291,7 +6298,7 @@ function ja(s, t, e, r, a, i) {
         }, [
           o("div", Ea, [
             o("div", Aa, [
-              (n(!0), l(w, null, A(a.activeNavigation, (v, I) => {
+              (n(!0), l(w, null, A(a.activeNavigation, (v, T) => {
                 var z, st, it, rt, at;
                 return n(), l("div", {
                   class: "header__flyout-content",
@@ -6299,8 +6306,8 @@ function ja(s, t, e, r, a, i) {
                   ref: "flyout"
                 }, [
                   v.children ? (n(), l("div", Oa, [
-                    i.showFlyoutBlock(v.children) ? (n(), l("figure", Ia, [
-                      o("figcaption", Ta, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
+                    i.showFlyoutBlock(v.children) ? (n(), l("figure", Ta, [
+                      o("figcaption", Ia, y((z = v.languages[i.lowerLang]) == null ? void 0 : z.title), 1),
                       o("div", {
                         class: "header__flyout-description font-size-1 thin",
                         innerHTML: (st = v.languages[i.lowerLang]) == null ? void 0 : st.description
@@ -6421,7 +6428,7 @@ function Ka(s, t, e, r, a, i) {
 }
 const Ya = /* @__PURE__ */ O(qa, [["render", Ka]]), en = {
   install(s) {
-    s.component("Arrow", Ft), s.component("Carousel", Wt), s.component("Contact", Fs), s.component("Cta", W), s.component("CtaList", Q), s.component("FormCheckbox", wt), s.component("FormCheckboxes", Ot), s.component("FormFields", It), s.component("FormRadio", bt), s.component("FormRadios", At), s.component("FormSelect", Et), s.component("Formular", Tt), s.component("Headline", J), s.component("HeadlineRow", Dt), s.component("Hero", oi), s.component("Icon", Y), s.component("IntroText", fi), s.component("Lottie", Lt), s.component("ProductBlocks", Ci), s.component("ProductStage", Fi), s.component("SiteIcons", vt), s.component("SvgShape", xt), s.component("TextImage", Qi), s.component("VFooter", Zr), s.component("VHeader", za), s.component("VImg", G), s.component("World", Ya), s.component("Wrapper", Nt);
+    s.component("Arrow", Ft), s.component("Carousel", Wt), s.component("Contact", Fs), s.component("Cta", W), s.component("CtaList", Q), s.component("FormCheckbox", wt), s.component("FormCheckboxes", Ot), s.component("FormFields", Tt), s.component("FormRadio", bt), s.component("FormRadios", At), s.component("FormSelect", Et), s.component("Formular", It), s.component("Headline", J), s.component("HeadlineRow", Dt), s.component("Hero", oi), s.component("Icon", Y), s.component("IntroText", fi), s.component("Lottie", Lt), s.component("ProductBlocks", Ci), s.component("ProductStage", Fi), s.component("SiteIcons", vt), s.component("SvgShape", xt), s.component("TextImage", Qi), s.component("VFooter", Zr), s.component("VHeader", za), s.component("VImg", G), s.component("World", Ya), s.component("Wrapper", Nt);
   }
 };
 export {
@@ -6432,11 +6439,11 @@ export {
   Q as CtaList,
   wt as FormCheckbox,
   Ot as FormCheckboxes,
-  It as FormFields,
+  Tt as FormFields,
   bt as FormRadio,
   At as FormRadios,
   Et as FormSelect,
-  Tt as Formular,
+  It as Formular,
   J as Headline,
   Dt as HeadlineRow,
   oi as Hero,

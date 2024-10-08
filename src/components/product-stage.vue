@@ -53,14 +53,19 @@
         <p v-if="stage.description" class="col-lg-8 lead mt-5 px-0" v-html="stage.description"></p>
       </div>
 
-      <pricing-slider v-if="slider && products" :slider="slider" :tooltip="stage.tooltip" :modal-id="stage.modalId" />
+      <pricing-slider
+        v-if="stage.slider && products"
+        :slider="stage.slider"
+        :tooltip="stage.tooltip"
+        :modal-id="stage.modalId"
+      />
 
       <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
-        <div class="text-center">{{ stage.additionalCopy }}</div>
+        <div class="text-center" v-html="stage.additionalCopy"></div>
       </div>
 
-      <div v-if="buttons" class="row justify-content-center py-6">
-        <cta-list :list="buttons" />
+      <div v-if="stage.buttons" class="row justify-content-center py-6">
+        <cta-list :list="stage.buttons" />
       </div>
       <div v-else class="space-bottom-2 space-bottom-lg-3"></div>
 
@@ -132,20 +137,22 @@ export default {
   props: {
     stage: Object,
     products: Object,
-    background: String,
-    bgColor: {
-      type: String,
-      default: 'var(--color-primary)',
-    },
-    slider: Object,
-    buttons: Array,
-    cards: Object,
-    shape: Object,
-    overlapping: Boolean,
   },
   computed: {
     shapeClasses() {
       return this.overlapping ? 'position-absolute bottom-0 left-0 z-index-1 w-100' : 'position-relative z-index-1';
+    },
+    bgColor() {
+      return this.stage.bgColor || 'var(--color-primary)';
+    },
+    shape() {
+      return this.stage.shape || null;
+    },
+    cards() {
+      return this.stage.cards || null;
+    },
+    overlapping() {
+      return (this.cards && this.stage.headline) || this.stage.description;
     },
   },
 };
