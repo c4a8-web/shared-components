@@ -104,7 +104,7 @@ declare module 'vue' {
     PostTeaser: typeof import('./src/components/post-teaser.js')['default']
     PricingProduct: typeof import('./src/components/pricing-product.js')['default']
     ProductBlocks: typeof import('./src/components/product-blocks.vue')['default']
-    ProductStage: typeof import('./src/components/product-stage.js')['default']
+    ProductStage: typeof import('./src/components/product-stage.vue')['default']
     Quotes: typeof import('./src/components/quotes.js')['default']
     Rocket: typeof import('./src/components/icons/rocket.js')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

@@ -1,10 +1,10 @@
-import LottieComponent from "../../components/lottie";
-import lottie1 from "../data/lottie1.json";
+import LottieComponent from '../../components/lottie.vue';
+import lottie1 from '../data/lottie1.json';
 
 export default {
   component: LottieComponent,
   argTypes: {},
-  title: "Components/Lottie",
+  title: 'Components/Lottie',
 };
 
 export const DimensionsAndBackground = {
@@ -12,7 +12,7 @@ export const DimensionsAndBackground = {
     width: 600,
     height: 600,
     data: lottie1,
-    background: "#aaaaaa",
+    background: '#aaaaaa',
   },
 };
 

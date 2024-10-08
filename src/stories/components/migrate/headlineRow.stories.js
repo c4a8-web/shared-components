@@ -1,4 +1,4 @@
-import HeadlineRowComponent from '../../../components/headline-row';
+import HeadlineRowComponent from '../../../components/headline-row.vue';
 
 export default {
   title: 'Components/Headline Row',

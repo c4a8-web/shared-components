@@ -122,7 +122,7 @@ import Lottie from './components/lottie.vue';
 // import PostTeaser from './components/post-teaser.vue';
 // import PricingProduct from './components/pricing-product.vue';
 import ProductBlocks from './components/product-blocks.vue';
-// import ProductStage from './components/product-stage.vue';
+import ProductStage from './components/product-stage.vue';
 // import Quotes from './components/quotes.vue';
 // import Rocket from './components/icons/rocket.vue';
 // import SBlock from './components/shapes/s-block.vue';
@@ -278,7 +278,7 @@ export {
   // PostTeaser,
   // PricingProduct,
   ProductBlocks,
-  // ProductStage,
+  ProductStage,
   // Quotes,
   // Rocket,
   // SBlock,
@@ -436,7 +436,7 @@ export default {
     // app.component('PostTeaser', PostTeaser);
     // app.component('PricingProduct', PricingProduct);
     app.component('ProductBlocks', ProductBlocks);
-    // app.component('ProductStage', ProductStage);
+    app.component('ProductStage', ProductStage);
     // app.component('Quotes', Quotes);
     // app.component('Rocket', Rocket);
     // app.component('SBlock', SBlock);
