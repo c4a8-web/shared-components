@@ -2120,6 +2120,10 @@ const Zt = {
       const t = i.currentTarget.value;
       this.edited = !0, this.userValue = t, this.$emit(O.FORM_FIELD_UPDATED, { value: t, id: this.id });
     },
+    handleChangeTextarea(i) {
+      const t = i.currentTarget.value;
+      this.$emit(O.FORM_FIELD_UPDATED, { value: t, id: this.id });
+    },
     handleReset() {
       this.edited = !1, this.userValue = null;
     },
@@ -2158,6 +2162,8 @@ function is(i, e, t, r, n, s) {
       }, y(t.field.label), 9, Yt),
       l("textarea", {
         class: "form-control form-textarea",
+        onChange: e[0] || (e[0] = (...D) => s.handleChangeTextarea && s.handleChangeTextarea(...D)),
+        onKeyup: e[1] || (e[1] = (...D) => s.handleChangeTextarea && s.handleChangeTextarea(...D)),
         id: t.id,
         name: t.id,
         rows: "4",
@@ -2165,12 +2171,12 @@ function is(i, e, t, r, n, s) {
         required: s.required,
         readonly: s.readonly,
         "data-msg": s.getRequiredMsg(t.field)
-      }, null, 8, Qt)
+      }, null, 40, Qt)
     ], 64)) : t.field.type === "checkbox" ? (a(), b(d, {
       key: 1,
       checkbox: t.field,
       id: t.id,
-      onFormFieldUpdated: e[0] || (e[0] = (D) => s.handleFormFieldUpdate(D))
+      onFormFieldUpdated: e[2] || (e[2] = (D) => s.handleFormFieldUpdate(D))
     }, null, 8, ["checkbox", "id"])) : t.field.type === "hidden" ? (a(), o("input", {
       key: 2,
       type: "hidden",
@@ -2188,7 +2194,7 @@ function is(i, e, t, r, n, s) {
       key: 5,
       field: t.field,
       id: t.id,
-      onActionChanged: e[1] || (e[1] = (D) => i.$emit("action-changed", D))
+      onActionChanged: e[3] || (e[3] = (D) => i.$emit("action-changed", D))
     }, null, 8, ["field", "id"])) : t.field.type === "file" ? (a(), b(c, {
       key: 6,
       description: (C = t.field.formAttachments) == null ? void 0 : C.description,
@@ -2210,8 +2216,8 @@ function is(i, e, t, r, n, s) {
       }, y(t.field.label), 9, es),
       l("input", {
         ref: "input",
-        onChange: e[2] || (e[2] = (...D) => s.handleChange && s.handleChange(...D)),
-        onKeyup: e[3] || (e[3] = (...D) => s.handleChange && s.handleChange(...D)),
+        onChange: e[4] || (e[4] = (...D) => s.handleChange && s.handleChange(...D)),
+        onKeyup: e[5] || (e[5] = (...D) => s.handleChange && s.handleChange(...D)),
         type: t.field.type,
         id: t.id,
         name: t.id,
@@ -2665,7 +2671,7 @@ const as = {
       delete this.errors[i.id], i.classList.remove(_.ERROR);
     },
     addFieldError(i) {
-      this.errors[i.id] = !0, i.classList.add(_.ERROR);
+      this.errors[i.id] = !0, i.classList.remove(_.VALID), i.classList.add(_.ERROR);
     },
     validate() {
       const i = this.$refs.root.querySelectorAll(

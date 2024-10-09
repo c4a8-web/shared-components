@@ -5,6 +5,8 @@
         <label class="input-label" :for="id">{{ field.label }}</label>
         <textarea
           class="form-control form-textarea"
+          @change="handleChangeTextarea"
+          @keyup="handleChangeTextarea"
           :id="id"
           :name="id"
           rows="4"
@@ -149,6 +151,12 @@ export default {
 
       this.edited = true;
       this.userValue = value;
+
+      this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.id });
+    },
+    handleChangeTextarea(e) {
+      const currentTarget = e.currentTarget;
+      const value = currentTarget.value;
 
       this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.id });
     },

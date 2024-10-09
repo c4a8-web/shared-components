@@ -245,6 +245,7 @@ export default {
     addFieldError(field) {
       this.errors[field.id] = true;
 
+      field.classList.remove(State.VALID);
       field.classList.add(State.ERROR);
     },
     validate() {
