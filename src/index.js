@@ -4,7 +4,6 @@ import './assets/front/dist/assets/vendor/slick-carousel/slick/slick.css';
 import './assets/front/dist/assets/vendor/fontawesome/css/all.min.css';
 import './assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 import './assets/front/dist/assets/vendor/ion-range-slider/ion.rangeSlider.min.css';
-import './assets/front/dist/assets/css/theme.min.css';
 import './assets/scss/index.scss';
 import './assets/scss/themes/_gk.scss';
 

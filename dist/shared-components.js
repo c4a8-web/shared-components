@@ -6203,7 +6203,7 @@ const Nn = /* @__PURE__ */ L(Fr, [["render", In]]), Ce = {}, Pn = {
         p.isTrue(this.product) ? "header--product" : "",
         p.isTrue(this.closed) ? "" : _.EXPANDED,
         p.isTrue(this.blendMode) ? "header--blending" : "",
-        // this.activeNavigation.length > 0 ? '' : State.LOADING,
+        this.activeNavigation.length > 0 ? "" : _.LOADING,
         "vue-component"
       ];
     },
