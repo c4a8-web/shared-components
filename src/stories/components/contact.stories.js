@@ -38,7 +38,7 @@ export default {
 export const Expanded = {
   args: {
     contact: Contact.infos,
-    light: true,
+    // light: true,
   },
 };
 
@@ -129,46 +129,44 @@ export const WithShape = {
   args: {
     contact: {
       ...Contact.infos,
-      ...{
-        headline: 'What do you want to do next?',
-        level: 'h2',
-        person: {
-          image: '/people/people-sophie-luna.jpg',
-          cloudinary: true,
-          alt: 'Sophie Luna',
-          name: 'Sophie Luna',
-          mail: 'sales@RADIUSaaS.com',
-        },
-        hasGreyBackground: true,
-        svgShape: {
-          align: 'bottom',
-          peak: 'left',
-        },
-        buttons: [
-          {
-            ctaText: 'Try RADIUSaas',
-            ctaHref: 'start-now/#try',
-            skin: 'primary is-cutoff',
-          },
-          {
-            ctaText: 'Drop us a question',
-            ctaHref: 'drop-a-question',
-            skin: 'secondary is-cutoff',
-          },
-          {
-            ctaText: 'Get a quote',
-            ctaHref: 'start-now/#quote',
-            skin: 'secondary is-cutoff',
-          },
-          {
-            ctaText: 'Buy RADIUSaas',
-            ctaHref: 'start-now',
-            skin: 'secondary is-cutoff',
-          },
-        ],
-        form: null,
-        subline: null,
+      headline: 'What do you want to do next?',
+      level: 'h2',
+      person: {
+        image: '/people/people-sophie-luna.jpg',
+        cloudinary: true,
+        alt: 'Sophie Luna',
+        name: 'Sophie Luna',
+        mail: 'sales@RADIUSaaS.com',
       },
+      buttons: [
+        {
+          ctaText: 'Try RADIUSaas',
+          ctaHref: 'start-now/#try',
+          skin: 'primary is-cutoff',
+        },
+        {
+          ctaText: 'Drop us a question',
+          ctaHref: 'drop-a-question',
+          skin: 'secondary is-cutoff',
+        },
+        {
+          ctaText: 'Get a quote',
+          ctaHref: 'start-now/#quote',
+          skin: 'secondary is-cutoff',
+        },
+        {
+          ctaText: 'Buy RADIUSaas',
+          ctaHref: 'start-now',
+          skin: 'secondary is-cutoff',
+        },
+      ],
+      form: null,
+      subline: null,
+    },
+    hasGreyBackground: true,
+    svgShape: {
+      align: 'bottom',
+      peak: 'left',
     },
   },
 };

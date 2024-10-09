@@ -31,6 +31,7 @@ declare module 'vue' {
     Close: typeof import('./src/components/icons/close.js')['default']
     ComputerShield: typeof import('./src/components/icons/computer-shield.js')['default']
     Contact: typeof import('./src/components/contact.vue')['default']
+    Content: typeof import('./src/components/content.vue')['default']
     ContentScroller: typeof import('./src/components/content-scroller.js')['default']
     Cta: typeof import('./src/components/cta.vue')['default']
     CtaList: typeof import('./src/components/cta-list.vue')['default']

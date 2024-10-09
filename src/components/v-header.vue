@@ -516,8 +516,6 @@ export default {
         path += '/';
       }
 
-      console.log('🚀 ~ getCurrentPath ~ path:', path);
-
       return path;
     },
     getActiveUrlByLang(lang, update) {

@@ -48,6 +48,7 @@ import Carousel from './components/carousel.vue';
 // import Close from './components/icons/close.vue';
 // import ComputerShield from './components/icons/computer-shield.vue';
 import Contact from './components/contact.vue';
+import Content from './components/content.vue';
 // import ContentScroller from './components/content-scroller.vue';
 import Cta from './components/cta.vue';
 import CtaList from './components/cta-list.vue';
@@ -205,6 +206,7 @@ export {
   // Close,
   // ComputerShield,
   Contact,
+  Content,
   // ContentScroller,
   Cta,
   CtaList,
@@ -364,6 +366,7 @@ export default {
     // app.component('Close', Close);
     // app.component('ComputerShield', ComputerShield);
     app.component('Contact', Contact);
+    app.component('Content', Content);
     // app.component('ContentScroller', ContentScroller);
     app.component('Cta', Cta);
     app.component('CtaList', CtaList);

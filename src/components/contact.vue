@@ -149,6 +149,9 @@ export default {
     buttons: Array,
     person: Object,
     noTopSpacing: Boolean,
+    light: Boolean,
+    hasGreyBackground: Boolean,
+    svgShape: Object,
   },
   computed: {
     classList() {
@@ -157,12 +160,9 @@ export default {
         this.contactVariantClass,
         'vue-component',
         !this.collapsed ? 'space-bottom-2 utility-animation utility-animation--percentage-offset' : '',
-        { 'bg-grey': this.contact?.hasGreyBackground },
+        { 'bg-grey': this.hasGreyBackground },
         !(this.noTopSpacing || this.svgShape || this.collapsed) ? this.spacing : '',
       ];
-    },
-    svgShape() {
-      return this.contact && this.contact.svgShape ? this.contact.svgShape : null;
     },
     contactVariantClass() {
       return [
@@ -172,7 +172,7 @@ export default {
       ];
     },
     contactLight() {
-      return this.contact.light ? 'contact__person--light' : '';
+      return this.light ? 'contact__person--light' : '';
     },
     contactBoxClass() {
       return this.collapsed ? '' : `col-md-10 col-lg-5 offset-lg-1 order-2`;
