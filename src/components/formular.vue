@@ -28,6 +28,7 @@
                   :has-animation="hasAnimationValue"
                   @action-changed="updateAction"
                   :has-error="hasError(field)"
+                  @form-field-updated="handleFormFieldUpdate($event)"
                 />
               </div>
             </div>
@@ -146,7 +147,7 @@ export default {
       return blocks;
     },
   },
-  beforeMount() {
+  created() {
     this.originalAction = this.formAction = this.form.action;
   },
   mounted() {
@@ -188,8 +189,15 @@ export default {
     },
     handleSubmit(e) {
       if (!this.validate()) return e.preventDefault();
+    },
+    handleFormFieldUpdate(e) {
+      if (!e.id) return;
 
-      console.log('handle submit vue');
+      const field = document.getElementById(e.id);
+
+      if (!field) return;
+
+      this.validateField(field);
     },
     validateField(field) {
       const value = field.value;
@@ -222,7 +230,12 @@ export default {
         }
       }
 
+      this.addFieldValid(field);
+
       return true;
+    },
+    addFieldValid(field) {
+      field.classList.add(State.VALID);
     },
     removeFieldError(field) {
       delete this.errors[field.id];

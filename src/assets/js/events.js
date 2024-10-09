@@ -4,6 +4,7 @@ const Events = {
   FORM_AJAX_SUBMIT: 'form-ajax-submit',
   FORM_RESET: 'form-reset',
   FORM_ATTACHMENT_ERROR: 'form-attachment-error',
+  FORM_FIELD_UPDATED: 'form-field-updated',
   CHILD_HAS_UPDATE: 'child-has-update',
   AD_BLOCK_INFO: 'ad-block-info',
   DIMENSIONS_CHANGED: 'dimensions-changed',

@@ -107,7 +107,7 @@ import Lottie from './components/lottie.vue';
 // import Magnifier from './components/icons/magnifier.vue';
 // import Mail from './components/icons/mail.vue';
 // import Meerkat from './components/icons/meerkat.vue';
-// import Menu from './components/icons/menu.vue';
+import Menu from './components/icons/menu.vue';
 // import Minus from './components/icons/minus.vue';
 // import Modal from './components/modal.vue';
 // import ModalApplication from './components/modal-application.vue';
@@ -264,7 +264,7 @@ export {
   // Magnifier,
   // Mail,
   // Meerkat,
-  // Menu,
+  Menu,
   // Minus,
   // Modal,
   // ModalApplication,
@@ -423,7 +423,7 @@ export default {
     // app.component('Magnifier', Magnifier);
     // app.component('Mail', Mail);
     // app.component('Meerkat', Meerkat);
-    // app.component('Menu', Menu);
+    app.component('Menu', Menu);
     // app.component('Minus', Minus);
     // app.component('Modal', Modal);
     // app.component('ModalApplication', ModalApplication);

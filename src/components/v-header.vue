@@ -511,6 +511,7 @@ export default {
       } else {
         path = window.location.pathname;
       }
+      console.log('🚀 ~ getCurrentPath ~ path:', path);
 
       return path;
     },

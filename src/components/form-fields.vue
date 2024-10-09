@@ -15,7 +15,7 @@
         ></textarea>
       </template>
       <template v-else-if="field.type === 'checkbox'">
-        <form-checkbox :checkbox="field" :id="id" />
+        <form-checkbox :checkbox="field" :id="id" @form-field-updated="handleFormFieldUpdate($event)" />
       </template>
       <template v-else-if="field.type === 'hidden'">
         <input type="hidden" :name="id" :value="value" />
@@ -65,6 +65,7 @@
   </template>
 </template>
 <script>
+import Events from '../assets/js/events.js';
 import UtilityAnimation from '../assets/js/utility-animation.js';
 
 export default {
@@ -148,10 +149,15 @@ export default {
 
       this.edited = true;
       this.userValue = value;
+
+      this.$emit(Events.FORM_FIELD_UPDATED, { value, id: this.id });
     },
     handleReset() {
       this.edited = false;
       this.userValue = null;
+    },
+    handleFormFieldUpdate(e) {
+      this.$emit(Events.FORM_FIELD_UPDATED, e);
     },
   },
   props: {

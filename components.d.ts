@@ -89,7 +89,7 @@ declare module 'vue' {
     Magnifier: typeof import('./src/components/icons/magnifier.js')['default']
     Mail: typeof import('./src/components/icons/mail.js')['default']
     Meerkat: typeof import('./src/components/icons/meerkat.js')['default']
-    Menu: typeof import('./src/components/icons/menu.js')['default']
+    Menu: typeof import('./src/components/icons/menu.vue')['default']
     Minus: typeof import('./src/components/icons/minus.js')['default']
     Modal: typeof import('./src/components/modal.js')['default']
     ModalApplication: typeof import('./src/components/modal-application.js')['default']
