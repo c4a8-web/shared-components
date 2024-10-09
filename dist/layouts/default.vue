@@ -7,9 +7,6 @@
 </template>
 
 <script setup>
-// TODO figure out why this is not rendered on ssr correctly
-const heroEnabled = false;
-
 const props = defineProps({
   headerData: Object,
   footerData: Object,
@@ -22,10 +19,6 @@ const props = defineProps({
   theme: String,
   hasBackToTop: Boolean,
   hasFabHint: Boolean,
-});
-
-const contactData = computed(() => {
-  return props.pageData?.contact;
 });
 
 const computedClass = computed(() => {

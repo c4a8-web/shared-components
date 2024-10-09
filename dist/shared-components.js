@@ -2920,9 +2920,6 @@ const we = /* @__PURE__ */ L(us, [["render", fs]]), _s = {
         this.noTopSpacing || this.svgShape || this.collapsed ? "" : this.spacing
       ];
     },
-    // svgShape() {
-    //   return this.contact && this.contact.svgShape ? this.contact.svgShape : null;
-    // },
     contactVariantClass() {
       return [
         this.svgShape && !this.quote ? "contact--has-shape" : "",
@@ -3160,11 +3157,9 @@ function qs(i, e, t, r, n, s) {
 }
 const Us = /* @__PURE__ */ L(_s, [["render", qs]]), Gs = {
   tagName: "content",
-  props: {
-    classList: String
-  }
+  props: {}
 }, Ws = {
-  class: "page-content main",
+  class: "page-content",
   "aria-label": "Content"
 };
 function Js(i, e, t, r, n, s) {
@@ -6208,7 +6203,7 @@ const Nn = /* @__PURE__ */ L(Fr, [["render", In]]), Ce = {}, Pn = {
         p.isTrue(this.product) ? "header--product" : "",
         p.isTrue(this.closed) ? "" : _.EXPANDED,
         p.isTrue(this.blendMode) ? "header--blending" : "",
-        this.activeNavigation.length > 0 ? "" : _.LOADING,
+        // this.activeNavigation.length > 0 ? '' : State.LOADING,
         "vue-component"
       ];
     },
