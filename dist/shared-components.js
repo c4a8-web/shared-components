@@ -6593,12 +6593,14 @@ function ka(i, e, t, r, n, s) {
                 w(d, {
                   img: (C = t.home) == null ? void 0 : C.imgLight,
                   class: "header__logo-light",
-                  cloudinary: !0
+                  cloudinary: !0,
+                  alt: "logo"
                 }, null, 8, ["img"]),
                 w(d, {
                   img: (E = t.home) == null ? void 0 : E.img,
                   class: "header__logo-default",
-                  cloudinary: !0
+                  cloudinary: !0,
+                  alt: "logo"
                 }, null, 8, ["img"])
               ], 8, Hn)
             ]),

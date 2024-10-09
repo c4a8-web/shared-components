@@ -6,8 +6,8 @@
         <div class="header__col col">
           <div class="header__logo">
             <a :href="homeObj?.url">
-              <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" />
+              <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
+              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
