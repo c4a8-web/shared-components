@@ -6383,7 +6383,7 @@ const An = /* @__PURE__ */ L(Nr, [["render", Tn]]), Ce = {}, Dn = {
     },
     getCurrentPath() {
       let i = "/";
-      return typeof process < "u" && process.server ? i = this.$route.fullPath : i = window.location.pathname, console.log("🚀 ~ getCurrentPath ~ path:", i), i;
+      return typeof process < "u" && process.server ? i = this.$route.fullPath : i = window.location.pathname, i[i.length - 1] !== "/" && (i += "/"), console.log("🚀 ~ getCurrentPath ~ path:", i), i;
     },
     getActiveUrlByLang(i, e) {
       var h;

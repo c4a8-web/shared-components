@@ -511,6 +511,11 @@ export default {
       } else {
         path = window.location.pathname;
       }
+
+      if (path[path.length - 1] !== '/') {
+        path += '/';
+      }
+
       console.log('🚀 ~ getCurrentPath ~ path:', path);
 
       return path;
