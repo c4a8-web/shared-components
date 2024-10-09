@@ -1,7 +1,7 @@
 var Ve = Object.defineProperty;
 var Me = (i, e, t) => e in i ? Ve(i, e, { enumerable: !0, configurable: !0, writable: !0, value: t }) : i[e] = t;
 var S = (i, e, t) => Me(i, typeof e != "symbol" ? e + "" : e, t);
-import { openBlock as a, createElementBlock as o, mergeProps as V, createElementVNode as l, normalizeClass as f, normalizeStyle as N, createBlock as b, resolveDynamicComponent as ue, toDisplayString as y, createVNode as w, createCommentVNode as u, resolveComponent as me, Fragment as x, renderList as A, createStaticVNode as fe, withCtx as Y, renderSlot as oe, createTextVNode as z } from "vue";
+import { openBlock as a, createElementBlock as o, mergeProps as V, createElementVNode as l, normalizeClass as f, normalizeStyle as N, createBlock as b, resolveDynamicComponent as ue, toDisplayString as y, createVNode as w, createCommentVNode as u, resolveComponent as me, Fragment as x, renderList as A, createStaticVNode as fe, withCtx as Y, renderSlot as oe, createTextVNode as H } from "vue";
 const L = (i, e) => {
   const t = i.__vccOpts || i;
   for (const [r, n] of e)
@@ -320,7 +320,7 @@ S(T, "storybookPath", "/shared-components"), S(T, "decodeHTML", (e) => new DOMPa
   };
 });
 let p = T;
-const He = {
+const ze = {
   tagName: "icon",
   data() {
     return p.validateVueProps(this);
@@ -421,7 +421,7 @@ const He = {
     }
   }
 };
-function ze(i, e, t, r, n, s) {
+function He(i, e, t, r, n, s) {
   return a(), o("span", {
     class: f(s.classList),
     style: N(s.parentStyle)
@@ -433,7 +433,7 @@ function ze(i, e, t, r, n, s) {
     }), null, 16, ["color", "closed", "step"]))
   ], 6);
 }
-const G = /* @__PURE__ */ L(He, [["render", ze]]), je = {
+const G = /* @__PURE__ */ L(ze, [["render", He]]), je = {
   tagName: "badge",
   props: {
     text: String,
@@ -1871,10 +1871,10 @@ const Ae = /* @__PURE__ */ L(Vt, [["render", Rt]]), Bt = {
     group: String,
     id: String
   }
-}, Ht = { class: "form__checkbox-control custom-control custom-checkbox mb-1 vue-component" }, zt = ["data-form-group", "required", "name", "id"], jt = ["for"], qt = ["name", "id", "placeholder", "data-form-group"], Ut = ["name", "id", "data-form-group", "required"], Gt = ["for", "innerHTML"];
+}, zt = { class: "form__checkbox-control custom-control custom-checkbox mb-1 vue-component" }, Ht = ["data-form-group", "required", "name", "id"], jt = ["for"], qt = ["name", "id", "placeholder", "data-form-group"], Ut = ["name", "id", "data-form-group", "required"], Gt = ["for", "innerHTML"];
 function Wt(i, e, t, r, n, s) {
   var d, h, m;
-  return a(), o("div", Ht, [
+  return a(), o("div", zt, [
     (d = t.checkbox) != null && d.placeholder ? (a(), o(x, { key: 0 }, [
       l("input", {
         class: "form__checkbox form-check-input custom-control-input",
@@ -1884,7 +1884,7 @@ function Wt(i, e, t, r, n, s) {
         name: s.otherId,
         id: s.otherId,
         onChange: e[0] || (e[0] = (...g) => s.handleChange && s.handleChange(...g))
-      }, null, 40, zt),
+      }, null, 40, Ht),
       l("label", {
         class: "form__checkbox-label custom-control-label",
         for: s.otherId
@@ -2547,7 +2547,7 @@ const B = class B extends _e {
   }
 };
 S(B, "rootSelector", ".form"), S(B, "instances", []), S(B, "delimiter", "-formHelper-"), S(B, "noCustomSubmitClass", "form--no-custom-submit"), S(B, "regularExpression", /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/);
-let H = B;
+let z = B;
 const as = {
   tagName: "formular",
   data() {
@@ -2568,7 +2568,7 @@ const as = {
         `${p.isTrue(this.ajax) === !0 ? "form--ajax" : ""}`,
         `${p.isTrue(this.container) === !0 ? "container" : ""}`,
         `${p.isTrue(this.customValidation) === !0 ? "form--custom-validation" : ""}`,
-        ((i = this.form) == null ? void 0 : i.noCustomSubmit) === !0 ? H.noCustomSubmitClass : "",
+        ((i = this.form) == null ? void 0 : i.noCustomSubmit) === !0 ? z.noCustomSubmitClass : "",
         "vue-component"
       ];
     },
@@ -2620,7 +2620,7 @@ const as = {
     this.originalAction = this.formAction = this.form.action;
   },
   mounted() {
-    this.formInstance = new H(this.$refs.root), this.novalidateValue = "novalidate", this.$refs.headline && U.init([this.$refs.headline]);
+    this.formInstance = new z(this.$refs.root), this.novalidateValue = "novalidate", this.$refs.headline && U.init([this.$refs.headline]);
   },
   methods: {
     hasError(i) {
@@ -2637,7 +2637,7 @@ const as = {
     },
     getId(i) {
       const e = (i == null ? void 0 : i.radios) || (i == null ? void 0 : i.checkboxes), t = e ? e[0].id : i == null ? void 0 : i.id;
-      return p.isTrue(this.hasUuid) ? H.getId(t) : t;
+      return p.isTrue(this.hasUuid) ? z.getId(t) : t;
     },
     updateAction(i) {
       i ? this.formAction = i : this.formAction = this.originalAction;
@@ -2970,7 +2970,7 @@ const we = /* @__PURE__ */ L(us, [["render", fs]]), _s = {
 }, Fs = ["href"], Rs = {
   key: 0,
   class: "contact__detail-quote"
-}, Bs = ["href"], Hs = { class: "streamline-sm mr-4" }, zs = {
+}, Bs = ["href"], zs = { class: "streamline-sm mr-4" }, Hs = {
   key: 0,
   class: "contact__notes"
 }, js = { class: "contact__notes-spacing streamline-sm mr-4" };
@@ -3086,7 +3086,7 @@ function qs(i, e, t, r, n, s) {
                           icon: "site/phone"
                         }))
                       ]),
-                      z(" " + y(E.notes), 1)
+                      H(" " + y(E.notes), 1)
                     ])) : u("", !0)
                   ], 2))), 128)),
                   t.contact.person.number ? (a(), o("div", Ps, [
@@ -3095,7 +3095,7 @@ function qs(i, e, t, r, n, s) {
                       class: "custom"
                     }, [
                       w(C, { icon: "site/phone" }),
-                      z(" " + y(t.contact.person.number), 1)
+                      H(" " + y(t.contact.person.number), 1)
                     ], 8, Vs)
                   ])) : u("", !0),
                   t.contact.person.mail ? (a(), o("div", Ms, [
@@ -3104,7 +3104,7 @@ function qs(i, e, t, r, n, s) {
                       class: "custom"
                     }, [
                       w(C, { icon: "site/mail" }),
-                      z(" " + y(t.contact.person.mail), 1)
+                      H(" " + y(t.contact.person.mail), 1)
                     ], 8, Fs)
                   ])) : u("", !0)
                 ])
@@ -3124,7 +3124,7 @@ function qs(i, e, t, r, n, s) {
                   href: E.href,
                   class: "custom"
                 }, [
-                  l("span", Hs, [
+                  l("span", zs, [
                     E.icon === "site/mail" ? (a(), b(C, {
                       key: 0,
                       icon: "site/mail"
@@ -3133,9 +3133,9 @@ function qs(i, e, t, r, n, s) {
                       icon: "site/phone"
                     }))
                   ]),
-                  z(" " + y(E.text), 1)
+                  H(" " + y(E.text), 1)
                 ], 8, Bs),
-                E.notes ? (a(), o("div", zs, [
+                E.notes ? (a(), o("div", Hs, [
                   l("span", js, [
                     E.icon === "site/mail" ? (a(), b(C, {
                       key: 0,
@@ -3145,7 +3145,7 @@ function qs(i, e, t, r, n, s) {
                       icon: "site/phone"
                     }))
                   ]),
-                  z(" " + y(E.notes), 1)
+                  H(" " + y(E.notes), 1)
                 ])) : u("", !0)
               ], 2))), 128))
             ])) : u("", !0)
@@ -3851,7 +3851,7 @@ function _i(i, e, t, r, n, s) {
       img: s.img
     }, {
       default: Y(() => e[0] || (e[0] = [
-        z(" > ")
+        H(" > ")
       ])),
       _: 1
     }, 8, ["cloudinary", "img"])) : u("", !0),
@@ -3945,7 +3945,8 @@ function _i(i, e, t, r, n, s) {
                 alt: s.shape.alt,
                 lottie: s.lottieFileData,
                 "lottie-settings": s.lottieSettings,
-                "img-src-sets": s.imgSrcSets
+                "img-src-sets": s.imgSrcSets,
+                lazy: !0
               }, null, 8, ["cloudinary", "img", "alt", "lottie", "lottie-settings", "img-src-sets"])) : u("", !0)
             ])
           ]),
@@ -4097,7 +4098,7 @@ const Ci = /* @__PURE__ */ L(yi, [["render", ki]]), Li = {
       keyTimes: "0;1"
     };
   }
-}, Ei = ["x1", "x2", "y1", "y2", "stroke-width"], Ti = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ai = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Di = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Oi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ii = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ni = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Pi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Vi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Mi = ["x1", "x2", "y1", "y2", "stroke-width"], Fi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ri = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Bi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Hi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], zi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], ji = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], qi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ui = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Gi = ["x1", "x2", "y1", "y2", "stroke-width"], Wi = ["begin", "from", "keyTimes", "keySplines"], Ji = ["begin", "to", "keyTimes", "keySplines"];
+}, Ei = ["x1", "x2", "y1", "y2", "stroke-width"], Ti = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ai = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Di = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Oi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ii = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ni = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Pi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Vi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Mi = ["x1", "x2", "y1", "y2", "stroke-width"], Fi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ri = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Bi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], zi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Hi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], ji = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], qi = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Ui = ["begin", "dur", "from", "to", "keyTimes", "keySplines"], Gi = ["x1", "x2", "y1", "y2", "stroke-width"], Wi = ["begin", "from", "keyTimes", "keySplines"], Ji = ["begin", "to", "keyTimes", "keySplines"];
 function Ki(i, e, t, r, n, s) {
   return a(), o("svg", V(t.settings, {
     style: s.style,
@@ -4265,7 +4266,7 @@ function Ki(i, e, t, r, n, s) {
         calcMode: "spline",
         keyTimes: n.keyTimes,
         keySplines: s.effectiveKeySplines
-      }, null, 8, Hi),
+      }, null, 8, zi),
       l("animate", {
         class: "closed",
         attributeName: "x1",
@@ -4277,7 +4278,7 @@ function Ki(i, e, t, r, n, s) {
         calcMode: "spline",
         keyTimes: n.keyTimes,
         keySplines: s.effectiveKeySplines
-      }, null, 8, zi),
+      }, null, 8, Hi),
       l("animate", {
         class: "closed",
         attributeName: "x2",
@@ -4973,8 +4974,8 @@ class kr {
     return [...t, ...r];
   }
   getFormData(e) {
-    const t = H.getFormData(e);
-    return this.api.getFormPayload(t, H);
+    const t = z.getFormData(e);
+    return this.api.getFormPayload(t, z);
   }
   applyFileData(e, t, r) {
     return this.api.applyFileData(e, t, r);
@@ -5000,7 +5001,7 @@ const q = class q {
   bindEvents() {
     var e, t, r;
     if ((e = this.close) == null || e.addEventListener("click", this.handleClose.bind(this)), (t = this.successClose) == null || t.addEventListener("click", this.handleClose.bind(this)), (r = this.errorClose) == null || r.addEventListener("click", this.handleClose.bind(this)), this.application) {
-      const n = this.root.parentNode, s = H.getInstance(this.form);
+      const n = this.root.parentNode, s = z.getInstance(this.form);
       if (n && this.isNotVueApp(n)) {
         const d = n.querySelector(this.buttonSelector);
         d == null || d.addEventListener("click", this.handleOpen.bind(this));
@@ -5177,10 +5178,10 @@ const Cr = {
       i ? e.classList.add(_.MODAL_OPEN) : (e.classList.remove(_.MODAL_OPEN), this.handleClose());
     },
     handleClose() {
-      const e = this.$refs.modal.querySelector(H.rootSelector);
+      const e = this.$refs.modal.querySelector(z.rootSelector);
       if (!e) return;
-      const t = H.getInstance(e);
-      t || H.reset(t.form);
+      const t = z.getInstance(e);
+      t || z.reset(t.form);
     },
     bindEvents() {
       this.observer = new MutationObserver(this.handleMutation), setTimeout(() => {
@@ -5498,7 +5499,7 @@ function Pr(i, e, t, r, n, s) {
             classes: s.textImageHeadlineClassesComputed
           }, {
             default: Y(() => [
-              z(y(t.headlineText), 1)
+              H(y(t.headlineText), 1)
             ]),
             _: 1
           }, 8, ["level", "classes"])) : u("", !0),
@@ -5761,7 +5762,7 @@ const Vr = /* @__PURE__ */ L(Lr, [["render", Pr]]), ke = {
     },
     lang: String
   }
-}, Rr = { class: "container" }, Br = { class: "footer__content-row row" }, Hr = { class: "footer__content col-lg-12" }, zr = { class: "footer__address" }, jr = ["href", "target"], qr = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, Ur = {
+}, Rr = { class: "container" }, Br = { class: "footer__content-row row" }, zr = { class: "footer__content col-lg-12" }, Hr = { class: "footer__address" }, jr = ["href", "target"], qr = { class: "footer__locations nav nav-x-0 nav-white flex-column" }, Ur = {
   key: 0,
   class: "nav-item"
 }, Gr = {
@@ -5795,8 +5796,8 @@ function In(i, e, t, r, n, s) {
   }, [
     l("div", Rr, [
       l("div", Br, [
-        l("div", Hr, [
-          l("div", zr, [
+        l("div", zr, [
+          l("div", Hr, [
             (a(!0), o(x, null, A(s.dataValue.logos, (c) => (a(), o("div", {
               class: f(["mb-3", c == null ? void 0 : c.classes])
             }, [
@@ -5851,7 +5852,7 @@ function In(i, e, t, r, n, s) {
                   }),
                   l("div", rn, [
                     (a(!0), o(x, null, A(s.dataValue.offices, (k, C) => (a(), o("span", nn, [
-                      z(y(k), 1),
+                      H(y(k), 1),
                       C < s.dataValue.offices.length - 1 ? (a(), o("span", an, ", ")) : u("", !0)
                     ]))), 256))
                   ])
@@ -6537,7 +6538,7 @@ const Nn = /* @__PURE__ */ L(Fr, [["render", In]]), Ce = {}, Pn = {
       activeNavigation: {}
     };
   }
-}, Fn = { class: "header__row row" }, Rn = { class: "header__col col" }, Bn = { class: "header__logo" }, Hn = ["href"], zn = {
+}, Fn = { class: "header__row row" }, Rn = { class: "header__col col" }, Bn = { class: "header__logo" }, zn = ["href"], Hn = {
   class: "header__list",
   ref: "list"
 }, jn = ["href", "target", "onClick"], qn = ["onMouseover"], Un = { class: "header__link-text" }, Gn = { class: "header__link-text-spacer" }, Wn = ["href", "target"], Jn = { class: "header__product-list-data" }, Kn = { class: "header__product-list-title font-size-8 bold" }, Xn = { class: "header__product-list-subtitle" }, Zn = ["href"], Yn = { class: "header__footer" }, Qn = {
@@ -6602,7 +6603,7 @@ function ka(i, e, t, r, n, s) {
                   cloudinary: !0,
                   alt: "logo"
                 }, null, 8, ["img"])
-              ], 8, Hn)
+              ], 8, zn)
             ]),
             l("div", {
               class: "header__menu",
@@ -6618,7 +6619,7 @@ function ka(i, e, t, r, n, s) {
               class: "header__nav",
               onMouseout: e[1] || (e[1] = (...v) => s.handleMouseOut && s.handleMouseOut(...v))
             }, [
-              l("ul", zn, [
+              l("ul", Hn, [
                 (a(!0), o(x, null, A(n.activeNavigation, (v, D) => {
                   var j, se, ie, re, ne, X;
                   return a(), o("li", {
@@ -6690,7 +6691,7 @@ function ka(i, e, t, r, n, s) {
                         icon: (ne = v.languages[s.lowerLang]) == null ? void 0 : ne.emergency.icon,
                         size: "medium"
                       }, null, 8, ["icon"]),
-                      z(" " + y((X = v.languages[s.lowerLang]) == null ? void 0 : X.emergency.text), 1)
+                      H(" " + y((X = v.languages[s.lowerLang]) == null ? void 0 : X.emergency.text), 1)
                     ], 10, Zn)) : u("", !0)
                   ], 2);
                 }), 256))

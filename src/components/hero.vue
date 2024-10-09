@@ -58,6 +58,7 @@
             :lottie="lottieFileData"
             :lottie-settings="lottieSettings"
             :img-src-sets="imgSrcSets"
+            :lazy="true"
           >
           </v-img>
         </div>
