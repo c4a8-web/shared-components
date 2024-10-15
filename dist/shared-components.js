@@ -4149,7 +4149,7 @@ const qi = /* @__PURE__ */ L(Mi, [["render", ji]]), Ve = {
     const s = this.items(), e = [];
     return s.forEach((t, r) => {
       var n;
-      (n = t == null ? void 0 : t.props) != null && n.style || (t.props.style = `--utility-animation-index: ${r + 1}`), e.push(t);
+      t.props && !((n = t == null ? void 0 : t.props) != null && n.style) && (t.props.style = `--utility-animation-index: ${r + 1}`), e.push(t);
     }), e;
   }
 }, Ui = {
@@ -5754,14 +5754,13 @@ const Fe = /* @__PURE__ */ L(Xr, [["render", rn]]), nn = {
     headlineColor: String,
     headlineSticky: Boolean,
     bgColor: {
-      type: [String, Boolean],
-      default: !1
+      type: String
     },
     spacing: String
   },
   methods: {
     isLeft(s) {
-      return s % 2 === 0;
+      return s % 2 === 1;
     }
   },
   computed: {
@@ -5786,14 +5785,14 @@ function an(s, e, t, r, n, i) {
         key: m,
         image: u.image,
         alt: u.alt,
-        headline: u.headline,
+        "headline-text": u.headline,
         copy: u.copy,
         offset: !0,
         left: i.isLeft(m),
         spacing: u.spacing || "space-top-lg-2",
         index: m + 1,
         list: u.list
-      }, null, 8, ["image", "alt", "headline", "copy", "left", "spacing", "index", "list"]))), 128))
+      }, null, 8, ["image", "alt", "headline-text", "copy", "left", "spacing", "index", "list"]))), 128))
     ]),
     _: 1
   }, 8, ["classes", "headline", "level", "bg-color", "headline-color", "headline-sticky", "spacing"]);

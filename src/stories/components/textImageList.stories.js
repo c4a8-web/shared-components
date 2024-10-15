@@ -47,7 +47,7 @@ export const Default = {
     ],
   },
 };
-/*
+
 export const StickyHeadline = {
   args: {
     level: 'h3',
@@ -95,4 +95,3 @@ export const StickyHeadline = {
     ],
   },
 };
-*/

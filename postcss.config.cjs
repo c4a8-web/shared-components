@@ -1,5 +1,5 @@
 const config = {
-  plugins: [require('autoprefixer'), require('postcss-nested'), require('postcss-merge-rules')],
+  plugins: [require('autoprefixer'), require('postcss-nested')],
 };
 
 module.exports = config;
