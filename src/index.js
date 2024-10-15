@@ -4,6 +4,7 @@ import './assets/front/dist/assets/vendor/slick-carousel/slick/slick.css';
 import './assets/front/dist/assets/vendor/fontawesome/css/all.min.css';
 import './assets/front/dist/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css';
 import './assets/front/dist/assets/vendor/ion-range-slider/ion.rangeSlider.min.css';
+
 import './assets/scss/index.scss';
 import './assets/scss/themes/_gk.scss';
 
@@ -60,7 +61,7 @@ import CtaList from './components/cta-list.vue';
 // import Expand from './components/icons/expand.vue';
 // import FabButton from './components/fab-button.vue';
 // import FabHint from './components/fab-hint.vue';
-// import Faq from './components/faq.vue';
+import Faq from './components/faq.vue';
 // import FeatureGrid from './components/feature-grid.vue';
 // import FeatureGridItem from './components/feature-grid-item.vue';
 // import FeatureList from './components/feature-list.vue';
@@ -100,7 +101,7 @@ import IntroText from './components/intro-text.vue';
 // import LetterSwitcher from './components/letter-switcher.vue';
 // import LinkList from './components/link-list.vue';
 // import List from './components/list.vue';
-// import ListContainer from './components/list-container.vue';
+import ListContainer from './components/list-container.vue';
 // import ListView from './components/icons/list-view.vue';
 // import LogoList from './components/logo-list.vue';
 import Lottie from './components/lottie.vue';
@@ -145,7 +146,7 @@ import Quote from './components/icons/quote.vue';
 // import ShapeTrianglesToCenter from './components/shape-triangles-to-center.vue';
 import SiteIcons from './components/site-icons.vue';
 // import Slider from './components/slider.vue';
-// import SlotItems from './components/slot-items.vue';
+import SlotItems from './components/slot-items.vue';
 // import Smile from './components/icons/smile.vue';
 // import Socials from './components/socials.vue';
 // import Square from './components/shapes/square.vue';
@@ -165,7 +166,7 @@ import SvgShape from './components/svg-shape.vue';
 // import TextAnimation from './components/text-animation.vue';
 // import TextIconAnimation from './components/text-icon-animation.vue';
 import TextImage from './components/text-image.vue';
-// import TextImageList from './components/text-image-list.vue';
+import TextImageList from './components/text-image-list.vue';
 // import TextTeaser from './components/text-teaser.vue';
 // import TileView from './components/icons/tile-view.vue';
 // import Timeline from './components/timeline.vue';
@@ -218,7 +219,7 @@ export {
   // Expand,
   // FabButton,
   // FabHint,
-  // Faq,
+  Faq,
   // FeatureGrid,
   // FeatureGridItem,
   // FeatureList,
@@ -258,7 +259,7 @@ export {
   // LetterSwitcher,
   // LinkList,
   // List,
-  // ListContainer,
+  ListContainer,
   // ListView,
   // LogoList,
   Lottie,
@@ -303,7 +304,7 @@ export {
   // ShapeTrianglesToCenter,
   SiteIcons,
   // Slider,
-  // SlotItems,
+  SlotItems,
   // Smile,
   // Socials,
   // Square,
@@ -323,7 +324,7 @@ export {
   // TextAnimation,
   // TextIconAnimation,
   TextImage,
-  // TextImageList,
+  TextImageList,
   // TextTeaser,
   // TileView,
   // Timeline,
@@ -378,7 +379,7 @@ export default {
     // app.component('Expand', Expand);
     // app.component('FabButton', FabButton);
     // app.component('FabHint', FabHint);
-    // app.component('Faq', Faq);
+    app.component('Faq', Faq);
     // app.component('FeatureGrid', FeatureGrid);
     // app.component('FeatureGridItem', FeatureGridItem);
     // app.component('FeatureList', FeatureList);
@@ -418,7 +419,7 @@ export default {
     // app.component('LetterSwitcher', LetterSwitcher);
     // app.component('LinkList', LinkList);
     // app.component('List', List);
-    // app.component('ListContainer', ListContainer);
+    app.component('ListContainer', ListContainer);
     // app.component('ListView', ListView);
     // app.component('LogoList', LogoList);
     app.component('Lottie', Lottie);
@@ -463,7 +464,7 @@ export default {
     // app.component('ShapeTrianglesToCenter', ShapeTrianglesToCenter);
     app.component('SiteIcons', SiteIcons);
     // app.component('Slider', Slider);
-    // app.component('SlotItems', SlotItems);
+    app.component('SlotItems', SlotItems);
     // app.component('Smile', Smile);
     // app.component('Socials', Socials);
     // app.component('Square', Square);
@@ -483,7 +484,7 @@ export default {
     // app.component('TextAnimation', TextAnimation);
     // app.component('TextIconAnimation', TextIconAnimation);
     app.component('TextImage', TextImage);
-    // app.component('TextImageList', TextImageList);
+    app.component('TextImageList', TextImageList);
     // app.component('TextTeaser', TextTeaser);
     // app.component('TileView', TileView);
     // app.component('Timeline', Timeline);

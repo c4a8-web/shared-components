@@ -1,3 +1,4 @@
+<script>
 export default {
   tagName: 'slot-items',
   props: {
@@ -12,7 +13,7 @@ export default {
     const renderList = [];
 
     items.forEach((item, index) => {
-      if (!item?.props?.style) {
+      if (item.props && !item?.props?.style) {
         item.props.style = `--utility-animation-index: ${index + 1}`;
       }
 
@@ -22,3 +23,4 @@ export default {
     return renderList;
   },
 };
+</script>

@@ -217,7 +217,7 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
-        this.activeNavigation.length > 0 ? '' : State.LOADING,
+        // this.activeNavigation.length > 0 ? '' : State.LOADING,
         'vue-component',
       ];
     },
@@ -263,9 +263,10 @@ export default {
       return this.meta && this.meta.length > 0;
     },
   },
-  mounted() {
+  created() {
     this.setActiveNavigation();
-
+  },
+  mounted() {
     this.bindEvents();
 
     this.setCtaClasses();
