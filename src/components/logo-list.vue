@@ -1,3 +1,16 @@
+<template>
+  <div :class="classValue" :style="styles">
+    <div class="logo-list__row row">
+      <wrapper classes="logo-list__scroller" :hide-container="!isOverlapping" :hide-container-class="true">
+        <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
+          <logo-list-items :list="list" :is-overlapping="isOverlapping" />
+          <logo-list-items :list="list" is-clone="true" :is-overlapping="isOverlapping" v-if="isOverlapping" />
+        </div>
+      </wrapper>
+    </div>
+  </div>
+</template>
+<script>
 import Tools from '../assets/js/tools.js';
 
 const logoListItems = {
@@ -67,7 +80,10 @@ export default {
       return columnWidth + `calc(${columnPercentage}% - ${gap}px)`;
     },
     aspectRatioValue() {
+      if (!this.aspectRatio) return '';
+
       const aspectRatio = this.aspectRatio.split('/');
+
       if (aspectRatio.length != 2) return '';
 
       return `--aspect-ratio-width: ${aspectRatio[0]}; --aspect-ratio-height: ${aspectRatio[1]}`;
@@ -95,16 +111,5 @@ export default {
     },
     bgColor: String,
   },
-  template: `
-    <div :class="classValue" :style="styles">
-      <div class="logo-list__row row">
-        <wrapper classes="logo-list__scroller" :hide-container="!isOverlapping" :hide-container-class="true">
-          <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
-            <logo-list-items :list="list" :is-overlapping="isOverlapping" />
-            <logo-list-items :list="list" is-clone="true" :is-overlapping="isOverlapping" v-if="isOverlapping" />
-          </div>
-        </wrapper>
-      </div>
-    </div>
-  `,
 };
+</script>

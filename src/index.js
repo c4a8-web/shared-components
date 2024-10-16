@@ -24,6 +24,8 @@ import './assets/scss/themes/_gk.scss';
 //   },
 // };
 
+// import { ClientOnly } from './components/nuxt-components.js';
+
 // import Accordion from './components/accordion.vue';
 // import AdBlockInfo from './components/ad-block-info.vue';
 import Arrow from './components/icons/arrow.vue';
@@ -99,11 +101,11 @@ import IntroText from './components/intro-text.vue';
 // import JobListEntry from './components/job-list-entry.vue';
 // import LBlock from './components/shapes/l-block.vue';
 // import LetterSwitcher from './components/letter-switcher.vue';
-// import LinkList from './components/link-list.vue';
+import LinkList from './components/link-list.vue';
 // import List from './components/list.vue';
 import ListContainer from './components/list-container.vue';
 // import ListView from './components/icons/list-view.vue';
-// import LogoList from './components/logo-list.vue';
+import LogoList from './components/logo-list.vue';
 import Lottie from './components/lottie.vue';
 // import Magnifier from './components/icons/magnifier.vue';
 // import Mail from './components/icons/mail.vue';
@@ -182,6 +184,8 @@ import Wrapper from './components/wrapper.vue';
 // import XMark from './components/icons/x-mark.vue';
 
 export {
+  // ClientOnly,
+
   // Accordion,
   // AdBlockInfo,
   Arrow,
@@ -257,11 +261,11 @@ export {
   // JobListEntry,
   // LBlock,
   // LetterSwitcher,
-  // LinkList,
+  LinkList,
   // List,
   ListContainer,
   // ListView,
-  // LogoList,
+  LogoList,
   Lottie,
   // Magnifier,
   // Mail,
@@ -342,6 +346,8 @@ export {
 
 export default {
   install(app) {
+    // app.component('ClientOnly', ClientOnly);
+
     // app.component('Accordion', Accordion);
     // app.component('AdBlockInfo', AdBlockInfo);
     app.component('Arrow', Arrow);
@@ -417,11 +423,11 @@ export default {
     // app.component('JobListEntry', JobListEntry);
     // app.component('LBlock', LBlock);
     // app.component('LetterSwitcher', LetterSwitcher);
-    // app.component('LinkList', LinkList);
+    app.component('LinkList', LinkList);
     // app.component('List', List);
     app.component('ListContainer', ListContainer);
     // app.component('ListView', ListView);
-    // app.component('LogoList', LogoList);
+    app.component('LogoList', LogoList);
     app.component('Lottie', Lottie);
     // app.component('Magnifier', Magnifier);
     // app.component('Mail', Mail);

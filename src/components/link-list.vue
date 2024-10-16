@@ -1,3 +1,26 @@
+<template>
+  <figure :class="classList" v-if="list" ref="root">
+    <figcaption :class="classListTitle" data-utility-animation-step="1" v-if="list?.languages" v-on:click="handleClick">
+      {{ list.languages[lang]?.title }}
+      <icon class="link-list__icon" icon="expand" size="small" />
+    </figcaption>
+    <ul :class="classListList" data-utility-animation-step="1">
+      <template v-for="subChild in list.children">
+        <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]">
+          <cta
+            :href="subChild.languages[lang].url"
+            :text="subChild.languages[lang].title"
+            :active="subChild.languages[lang].active"
+            :link="true"
+            reversed="true"
+            monochrome="true"
+          />
+        </li>
+      </template>
+    </ul>
+  </figure>
+</template>
+<script>
 import Tools from '../assets/js/tools.js';
 import State from '../assets/js/state.js';
 import Events from '../assets/js/events.js';
@@ -121,26 +144,5 @@ export default {
       parentOfParent: null,
     };
   },
-  template: `
-    <figure :class="classList" v-if="list" ref="root">
-      <figcaption :class="classListTitle" data-utility-animation-step="1" v-if="list?.languages" v-on:click="handleClick">
-        {{ list.languages[lang]?.title }}
-        <icon class="link-list__icon" icon="expand" size="small" />
-      </figcaption>
-      <ul :class="classListList" data-utility-animation-step="1">
-        <template v-for="subChild in list.children">
-          <li class="link-list__item" v-if="subChild.languages && subChild.languages[lang]">
-            <cta
-              :href="subChild.languages[lang].url"
-              :text="subChild.languages[lang].title"
-              :active="subChild.languages[lang].active"
-              :link="true"
-              reversed=true
-              monochrome=true
-            />
-          </li>
-        </template>
-      </ul>
-    </figure>
-  `,
 };
+</script>
