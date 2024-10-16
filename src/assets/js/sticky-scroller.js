@@ -286,10 +286,10 @@ class StickyScroller {
     this.root.classList.remove(State.STICKY);
   }
 
-  static init() {
+  static init(elements) {
     this.instances = [];
 
-    [].forEach.call(document.querySelectorAll(this.rootSelector), (element) => {
+    [].forEach.call(elements || document.querySelectorAll(this.rootSelector), (element) => {
       this.instances.push(new this(element));
     });
   }

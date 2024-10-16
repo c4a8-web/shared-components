@@ -1,5 +1,5 @@
 <template>
-  <div :class="classValue" :style="styles">
+  <div :class="classList" :style="styles" ref="root">
     <div class="logo-list__row row">
       <wrapper classes="logo-list__scroller" :hide-container="!isOverlapping" :hide-container-class="true">
         <div :class="['logo-list__col col d-flex', { 'flex-wrap': !isOverlapping }]">
@@ -11,6 +11,8 @@
   </div>
 </template>
 <script>
+import StickyScroller from '../assets/js/sticky-scroller.js';
+import UtilityAnimation from '../assets/js/utility-animation.js';
 import Tools from '../assets/js/tools.js';
 
 const logoListItems = {
@@ -56,13 +58,22 @@ export default {
   components: {
     'logo-list-items': logoListItems,
   },
+  mounted() {
+    if (!this.$refs.root) return;
+
+    if (this.sticky) {
+      StickyScroller.init([this.$refs.root]);
+    }
+
+    UtilityAnimation.init([this.$refs.root]);
+  },
   computed: {
     defaultSpacing() {},
-    classValue() {
+    classList() {
       return [
         'logo-list container utility-animation vue-component',
         this.aspectRatio ? 'logo-list--aspect-ratio' : '',
-        Tools.isTrue(this.sticky) ? 'is-sticky-scroller' : '',
+        this.sticky ? 'is-sticky-scroller' : '',
         this.spacing ? this.spacing : 'py-4',
         this.isOverlapping ? 'logo-list--is-overlapping' : '',
       ];

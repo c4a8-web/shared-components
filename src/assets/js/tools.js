@@ -309,7 +309,7 @@ class Tools {
   }
 
   static isStorybook() {
-    return window.STORYBOOK_ENV === 'HTML' ? true : false;
+    return Boolean(typeof window !== 'undefined' && window.__STORYBOOK_ADDONS_CHANNEL__);
   }
 
   static isTestingStorybook() {
