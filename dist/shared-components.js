@@ -6331,16 +6331,10 @@ const ra = /* @__PURE__ */ L(cn, [["render", ia]]), Ce = {}, na = {
       return p.isTrue(this.noAnimation);
     },
     classListTitle() {
-      return [
-        "link-list__title font-size-8 bold",
-        this.hasNoAnimation ? "" : "fade-in-bottom"
-      ];
+      return ["link-list__title font-size-8 bold", this.hasNoAnimation ? "" : "fade-in-bottom"];
     },
     classListList() {
-      return [
-        "link-list__list header__list--expanded",
-        this.hasNoAnimation ? "" : "fade-in-bottom"
-      ];
+      return ["link-list__list header__list--expanded", this.hasNoAnimation ? "" : "fade-in-bottom"];
     },
     hasActiveItem() {
       const s = this.list.children;
@@ -6367,10 +6361,7 @@ const ra = /* @__PURE__ */ L(cn, [["render", ia]]), Ce = {}, na = {
   },
   methods: {
     bindEvents() {
-      this.parentOfParent = this.$refs.root.parentNode.parentNode, this.parentOfParent.addEventListener(
-        I.CHILD_HAS_UPDATE,
-        this.handleUpdate.bind(this)
-      );
+      this.parentOfParent = this.$refs.root.parentNode.parentNode, this.parentOfParent.addEventListener(I.CHILD_HAS_UPDATE, this.handleUpdate.bind(this));
     },
     handleUpdate(s) {
       const e = s.detail.root;
@@ -6435,7 +6426,7 @@ const ra = /* @__PURE__ */ L(cn, [["render", ia]]), Ce = {}, na = {
               :href="subChild.languages[lang].url"
               :text="subChild.languages[lang].title"
               :active="subChild.languages[lang].active"
-              link=true
+              :link="true"
               reversed=true
               monochrome=true
             />

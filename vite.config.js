@@ -5,13 +5,14 @@ import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: `@debug "vite config"; @import "src/assets/scss/_globals.scss";`,
-      },
-    },
-  },
+  // TODO has issues with fonts and assets paths
+  // css: {
+  //   preprocessorOptions: {
+  //     scss: {
+  //       additionalData: `@debug "vite config"; @import "src/assets/scss/_globals.scss";`,
+  //     },
+  //   },
+  // },
   plugins: [
     vue(),
     Components({
