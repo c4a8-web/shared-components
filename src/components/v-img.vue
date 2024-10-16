@@ -5,7 +5,7 @@
         <source
           v-for="srcSet in imgSrcSetSources"
           :key="srcSet.params"
-          :media="srcSet.media"
+          :media="getSourceSetMedia(srcSet)"
           :srcset="getCloudinaryBasePathLink(srcSet)"
         />
         <img
@@ -107,16 +107,16 @@ export default {
       return this.isCloudinary ? (this.crossorigin ? this.crossorigin : 'anonymous') : null;
     },
     hasPictureTag() {
-      return this.isCloudinary && this.imgSrcSets;
+      return this.imgSrcSets;
     },
     pictureWrapperClassList() {
       return ['img__picture-wrapper', this.imgSrcSetValue?.ratioClasses];
     },
     imgSrcSetValue() {
-      return ImgSrcSets[this.imgSrcSets];
+      return typeof this.imgSrcSets === 'string' ? ImgSrcSets[this.imgSrcSets] : this.imgSrcSets;
     },
     imgSrcSetSources() {
-      return this.imgSrcSetValue?.srcSets?.filter((item) => item.media);
+      return this.imgSrcSetValue?.srcSets?.filter((item) => item.media || item.src);
     },
     imgSrcSetImg() {
       const srcSets = this.imgSrcSetValue?.srcSets;
@@ -140,6 +140,9 @@ export default {
     this.sizes = DefaultPresets.sizes;
   },
   methods: {
+    getSourceSetMedia(srcSet) {
+      return srcSet.width ? `(min-width: ${srcSet.width}px)` : srcSet.media;
+    },
     canGenerateSrcSet() {
       return this.isCloudinary && !this.isGif() && !this.animated;
     },
@@ -171,7 +174,7 @@ export default {
       return this.img?.indexOf('/assets/') !== -1 ? this.img : this.hasProtocol() ? this.img : `/assets/${this.img}`;
     },
     getCloudinaryBasePathLink(srcSet) {
-      return `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
+      return srcSet && srcSet.src ? `${srcSet.src}` : `${basePath}${srcSet ? srcSet.params : ''}${this.img}`;
     },
     getCloudinaryLink() {
       return this.isGif() || this.isSvg() || this.animated
@@ -275,7 +278,7 @@ export default {
   props: {
     // TODO handle img src set and correct all the places where it is not used correctly
     imgSrcSets: {
-      type: String,
+      type: [String, Object],
       default: null,
     },
     img: String,

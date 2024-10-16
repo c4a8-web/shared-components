@@ -64,8 +64,8 @@ import CtaList from './components/cta-list.vue';
 // import FabButton from './components/fab-button.vue';
 // import FabHint from './components/fab-hint.vue';
 import Faq from './components/faq.vue';
-// import FeatureGrid from './components/feature-grid.vue';
-// import FeatureGridItem from './components/feature-grid-item.vue';
+import FeatureGrid from './components/feature-grid.vue';
+import FeatureGridItem from './components/feature-grid-item.vue';
 // import FeatureList from './components/feature-list.vue';
 // import FilterBar from './components/filter-bar.vue';
 // import FormAttachments from './components/form-attachments.vue';
@@ -224,8 +224,8 @@ export {
   // FabButton,
   // FabHint,
   Faq,
-  // FeatureGrid,
-  // FeatureGridItem,
+  FeatureGrid,
+  FeatureGridItem,
   // FeatureList,
   // FilterBar,
   // FormAttachments,
@@ -386,8 +386,8 @@ export default {
     // app.component('FabButton', FabButton);
     // app.component('FabHint', FabHint);
     app.component('Faq', Faq);
-    // app.component('FeatureGrid', FeatureGrid);
-    // app.component('FeatureGridItem', FeatureGridItem);
+    app.component('FeatureGrid', FeatureGrid);
+    app.component('FeatureGridItem', FeatureGridItem);
     // app.component('FeatureList', FeatureList);
     // app.component('FilterBar', FilterBar);
     // app.component('FormAttachments', FormAttachments);
