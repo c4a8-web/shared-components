@@ -91,6 +91,7 @@
   </div>
 </template>
 <script>
+import StickyScroller from '../assets/js/sticky-scroller.js';
 import UtilityAnimation from '../assets/js/utility-animation.js';
 
 export default {
@@ -239,6 +240,10 @@ export default {
   },
   mounted() {
     if (!this.$refs.root) return;
+
+    if (this.sticky) {
+      StickyScroller.init([this.$refs.root]);
+    }
 
     UtilityAnimation.init([this.$refs.root]);
   },
