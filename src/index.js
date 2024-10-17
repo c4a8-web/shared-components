@@ -26,6 +26,7 @@ import './assets/scss/themes/_gk.scss';
 
 // import { ClientOnly } from './components/nuxt-components.js';
 
+import MarkdownFiles from './components/markdown-files.vue';
 // import Accordion from './components/accordion.vue';
 // import AdBlockInfo from './components/ad-block-info.vue';
 import Arrow from './components/icons/arrow.vue';
@@ -42,7 +43,7 @@ import Badge from './components/badge.vue';
 // import Bin from './components/icons/bin.vue';
 // import Blog from './components/blog.vue';
 import BlogRecent from './components/blog-recent.vue';
-// import Card from './components/card.vue';
+import Card from './components/card.vue';
 import Carousel from './components/carousel.vue';
 // import Check from './components/icons/check.vue';
 // import CheckCard from './components/check-card.vue';
@@ -185,6 +186,7 @@ import Wrapper from './components/wrapper.vue';
 
 export {
   // ClientOnly,
+  MarkdownFiles,
 
   // Accordion,
   // AdBlockInfo,
@@ -202,7 +204,7 @@ export {
   // Bin,
   // Blog,
   BlogRecent,
-  // Card,
+  Card,
   Carousel,
   // Check,
   // CheckCard,
@@ -347,6 +349,7 @@ export {
 export default {
   install(app) {
     // app.component('ClientOnly', ClientOnly);
+    app.component('MarkdownFiles', MarkdownFiles);
 
     // app.component('Accordion', Accordion);
     // app.component('AdBlockInfo', AdBlockInfo);
@@ -364,7 +367,7 @@ export default {
     // app.component('Bin', Bin);
     // app.component('Blog', Blog);
     app.component('BlogRecent', BlogRecent);
-    // app.component('Card', Card);
+    app.component('Card', Card);
     app.component('Carousel', Carousel);
     // app.component('Check', Check);
     // app.component('CheckCard', CheckCard);

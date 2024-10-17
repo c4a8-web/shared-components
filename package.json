@@ -1,7 +1,7 @@
 {
   "name": "shared-components",
   "private": false,
-  "version": "0.1.31",
+  "version": "0.1.32",
   "description": "Shared Vue.js components for use on the product page",
   "module": "dist/shared-components.js",
   "files": [
@@ -31,6 +31,7 @@
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "cssnano-preset-advanced": "^7.0.6",
+    "node-html-parser": "^6.1.13",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
     "vue": "^3.4.37",

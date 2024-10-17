@@ -1,6 +1,6 @@
 <template>
   <template v-if="postsArray.length > 0">
-    <div :class="classList">
+    <div :class="classList" ref="root">
       <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
       <wrapper :hideContainer="hiddenContainer">
         <div class="row" v-if="headline">
@@ -17,11 +17,9 @@
           <template v-for="(post, index) in postsArray">
             <div :class="itemClass" v-if="index <= limit">
               <card
-                :url="post.url"
-                :title="post.title"
+                v-bind="post"
                 :blog-title-pic="blogTitleUrl(post)"
                 :youtube-url="post.youtubeUrl"
-                :excerpt="post.excerpt"
                 :date="post.date"
                 :author="post.author"
                 :target="target(post)"
@@ -32,14 +30,14 @@
             </div>
           </template>
         </div>
-        <div class="blog-recent__cta-row row col-lg-12" v-if="ctaParse">
+        <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
           <cta
-            :text="ctaParse?.text"
-            :button="ctaParse?.button"
-            :target="ctaParse?.target"
-            :width="ctaParse?.width"
-            :href="ctaParse?.href"
-            :external="ctaParse?.external"
+            :text="cta?.text"
+            :button="cta?.button"
+            :target="cta?.target"
+            :width="cta?.width"
+            :href="cta?.href"
+            :external="cta?.external"
           />
         </div>
       </wrapper>
@@ -50,6 +48,7 @@
 import Tools from '../assets/js/tools.js';
 import State from '../assets/js/state.js';
 import StickyScroller from '../assets/js/sticky-scroller.js';
+import UtilityAnimation from '../assets/js/utility-animation.js';
 
 export default {
   tagName: 'blog-recent',
@@ -59,8 +58,8 @@ export default {
         'blog-recent utility-animation utility-animation--percentage-offset',
         `${this.hasBackground}`,
         `${this.skinClass}`,
-        `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
-        `${Tools.isTrue(this.sticky) === true ? StickyScroller.rootSelector.substring(1) : ''}`,
+        this.hideContainer === true ? '' : this.getSpacing,
+        this.sticky === true ? StickyScroller.rootSelector.substring(1) : '',
         'vue-component',
       ];
     },
@@ -73,29 +72,24 @@ export default {
     blogRecentContainerClass() {
       return [
         'blog-recent__container fade-in-bottom',
-        `${Tools.isTrue(this.slider) === true ? 'js-slick-carousel' : 'row mb-3'}`,
+        this.slider === true ? 'js-slick-carousel' : 'row mb-3',
         'vue-component',
       ];
     },
     hiddenContainer() {
-      return Tools.isTrue(this.slider) === false ? Tools.isTrue(this.hideContainer) : false;
+      return this.slider === false ? this.hideContainer : false;
     },
     skinClass() {
-      return `${Tools.isTrue(this.slider) === true ? 'has-slider' : ''}`;
+      return `${this.slider === true ? 'has-slider' : ''}`;
     },
     itemClass() {
-      return `${
-        Tools.isTrue(this.slider) === true ? 'mb-6 mb-lg-0 blog-recent__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'
-      }`;
+      return `${this.slider === true ? 'mb-6 mb-lg-0 blog-recent__slide' : 'col-sm-6 col-lg-4 mb-3 mb-sm-8'}`;
     },
     postsArray() {
-      return this.posts ? JSON.parse(this.posts) : [];
-    },
-    ctaParse() {
-      return this.cta ? JSON.parse(this.cta) : null;
+      return typeof this.posts === 'string' ? JSON.parse(this.posts) : this.posts;
     },
     caseStudies() {
-      return Tools.isTrue(this.caseStudies) === true ? true : false;
+      return this.caseStudies === true ? true : false;
     },
     carouselOptions() {
       const obj = {
@@ -156,12 +150,18 @@ export default {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
   },
+  mounted() {
+    if (!this.$refs.root) return;
+
+    if (this.sticky) {
+      StickyScroller.init([this.$refs.root]);
+    }
+
+    UtilityAnimation.init([this.$refs.root]);
+  },
   methods: {
     event(post) {
       return post.layout === 'post' ? false : true;
-    },
-    isTrue(value) {
-      return Tools.isTrue(value);
     },
     blogTitleUrl(post) {
       return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
@@ -179,7 +179,10 @@ export default {
     subline: String,
     sublineClasses: String,
     spacing: String,
-    posts: String,
+    posts: {
+      type: [Array, String],
+      default: [],
+    },
     cta: {
       default: null,
     },

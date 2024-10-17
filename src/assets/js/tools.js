@@ -1,3 +1,5 @@
+import { parse } from 'node-html-parser';
+
 class Tools {
   static defaultLang = 'de';
   static urlSeperator = '#';
@@ -9,9 +11,10 @@ class Tools {
   static storybookPath = '/shared-components';
 
   static decodeHTML = (input) => {
-    const document = new DOMParser().parseFromString(input, 'text/html');
+    const document = parse(input, 'text/html');
+    console.log('🚀 ~ Tools ~ document:', document);
 
-    return document.documentElement.textContent;
+    return document.textContent;
   };
 
   static intersection = (r1, r2) => {
@@ -56,6 +59,9 @@ class Tools {
   }
 
   static getLang() {
+    // TODO solve this via nuxt or i18n
+    return 'en';
+
     return (document.querySelector('html').getAttribute('lang') || this.defaultLang).toLowerCase();
   }
 
