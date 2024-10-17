@@ -41,7 +41,7 @@ import Arrow from './components/icons/arrow.vue';
 import Badge from './components/badge.vue';
 // import Bin from './components/icons/bin.vue';
 // import Blog from './components/blog.vue';
-// import BlogRecent from './components/blog-recent.vue';
+import BlogRecent from './components/blog-recent.vue';
 // import Card from './components/card.vue';
 import Carousel from './components/carousel.vue';
 // import Check from './components/icons/check.vue';
@@ -201,7 +201,7 @@ export {
   Badge,
   // Bin,
   // Blog,
-  // BlogRecent,
+  BlogRecent,
   // Card,
   Carousel,
   // Check,
@@ -363,7 +363,7 @@ export default {
     app.component('Badge', Badge);
     // app.component('Bin', Bin);
     // app.component('Blog', Blog);
-    // app.component('BlogRecent', BlogRecent);
+    app.component('BlogRecent', BlogRecent);
     // app.component('Card', Card);
     app.component('Carousel', Carousel);
     // app.component('Check', Check);

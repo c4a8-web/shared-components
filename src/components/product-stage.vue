@@ -48,8 +48,10 @@
     </div>
 
     <div class="product-stage__content container position-relative">
-      <div class="space-top-2 space-top-lg-4 space-top-xl-5 text-white space-bottom-1 space-bottom-lg-2">
-        <h1>{{ stage.headline }}</h1>
+      <div
+        :class="['space-top-2 space-top-lg-4 space-top-xl-5 space-bottom-1 space-bottom-lg-2', { 'text-white': light }]"
+      >
+        <headline :classes="stage.headlineClasses" :level="stage.headlineLevel || 'h1'">{{ stage.headline }}</headline>
         <p v-if="stage.description" class="col-lg-8 lead mt-5 px-0" v-html="stage.description"></p>
       </div>
 
@@ -137,6 +139,10 @@ export default {
   props: {
     stage: Object,
     products: Object,
+    light: {
+      type: Boolean,
+      default: true,
+    },
   },
   computed: {
     shapeClasses() {

@@ -22,7 +22,7 @@ declare module 'vue' {
     Badge: typeof import('./src/components/badge.vue')['default']
     Bin: typeof import('./src/components/icons/bin.js')['default']
     Blog: typeof import('./src/components/blog.js')['default']
-    BlogRecent: typeof import('./src/components/blog-recent.js')['default']
+    BlogRecent: typeof import('./src/components/blog-recent.vue')['default']
     Card: typeof import('./src/components/card.js')['default']
     Carousel: typeof import('./src/components/carousel.vue')['default']
     Check: typeof import('./src/components/icons/check.js')['default']
