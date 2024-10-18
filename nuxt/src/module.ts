@@ -12,12 +12,14 @@ export default defineNuxtModule<ModuleOptions>({
     // prefix: 'shared'
   },
   setup(_options, _nuxt) {
-    const resolver = createResolver(import.meta.url);
+    const { resolve } = createResolver(import.meta.url);
 
-    // addPlugin(resolver.resolve('./runtime/plugin'));
+    // addPlugin(resolve('./runtime/plugin'));
+
+    _nuxt.options.css.push(resolve('./styles/index.min.css'));
 
     addComponentsDir({
-      path: resolver.resolve('./runtime/components'),
+      path: resolve('./runtime/components'),
     });
   },
 });

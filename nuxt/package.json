@@ -16,8 +16,8 @@
     "preview": "nuxt preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "module:prepare": "node scripts/prepare-modules.js",
-    "module:build": "node scripts/copy-modules.js && nuxt-module-build build"
+    "module:after-build": "node scripts/prepare-styles.js",
+    "module:build": "node scripts/copy-modules.js && nuxt-module-build build && npm run module:after-build"
   },
   "dependencies": {
     "@nuxt/module-builder": "^0.8.4",

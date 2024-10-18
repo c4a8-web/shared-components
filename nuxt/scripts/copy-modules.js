@@ -24,7 +24,6 @@ directories.forEach(({ source, destination, extension }) => {
   }
 
   fs.readdir(source, (err, files) => {
-    console.log('🚀 ~ fs.readdir ~ files:', files);
     if (err) {
       console.error(`Error reading source directory ${source}:`, err);
       return;
