@@ -1,13 +1,13 @@
-import Test from './test.vue';
+import TestComponent from './test.vue';
 
 const meta = {
   title: 'Example/Test',
-  component: Test,
+  component: TestComponent,
   tags: ['autodocs'],
 };
 
 export default meta;
 
-export const TestStory = {
+export const Test = {
   args: {},
 };

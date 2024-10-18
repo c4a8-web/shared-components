@@ -1,0 +1,8 @@
+{
+  "name": "shared-components-nuxt",
+  "configKey": "sharedComponentsNuxt",
+  "builder": {
+    "@nuxt/module-builder": "0.8.4",
+    "unbuild": "2.0.0"
+  }
+}

@@ -2,13 +2,18 @@
   "name": "shared-components-nuxt",
   "private": true,
   "type": "module",
-  "types": "./dist/module.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/module.d.ts",
-      "import": "./dist/module.mjs"
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
     }
   },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
@@ -17,9 +22,11 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "module:after-build": "node scripts/prepare-styles.js",
-    "module:build": "node scripts/copy-modules.js && nuxt-module-build build && npm run module:after-build"
+    "module:build": "node scripts/copy-components.js && nuxt-module-build build && npm run module:after-build",
+    "temp": "npm run module:build && node scripts/move-module.js"
   },
   "dependencies": {
+    "@nuxt/kit": "^3.13.2",
     "@nuxt/module-builder": "^0.8.4",
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",

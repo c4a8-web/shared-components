@@ -1,13 +1,21 @@
 {
   "name": "shared-components",
   "private": false,
-  "version": "0.1.32",
+  "version": "0.1.33",
   "description": "Shared Vue.js components for use on the product page",
-  "module": "dist/shared-components.js",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/types.d.ts",
+      "import": "./dist/module.mjs",
+      "require": "./dist/module.cjs"
+    }
+  },
+  "main": "./dist/module.cjs",
+  "types": "./dist/types.d.ts",
   "files": [
     "dist"
   ],
-  "type": "module",
   "keywords": [
     "vue",
     "library",
@@ -31,7 +39,6 @@
     "autoprefixer": "^10.4.20",
     "cssnano": "^7.0.6",
     "cssnano-preset-advanced": "^7.0.6",
-    "node-html-parser": "^6.1.13",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
     "vue": "^3.4.37",
@@ -39,6 +46,7 @@
     "vue3-lottie": "^3.3.1"
   },
   "devDependencies": {
+    "@nuxt/kit": "^3.13.2",
     "@chromatic-com/storybook": "^1.9.0",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",

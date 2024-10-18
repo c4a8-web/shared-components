@@ -1,0 +1,52 @@
+html,
+html body {
+  --scroll-top: 80px;
+  --utility-animation-index: 1;
+  --utility-animation-distance: 25%;
+  --utility-animation-to-opacity: 1;
+  --utility-animation-items-loaded: 0;
+  --icon-scale: 1;
+  font-size: 32px;
+}
+
+.html {
+  opacity: 0.9;
+}
+
+body {
+  opacity: 0.9;
+}
+
+:root {
+  --color-primary: #007bff;
+  --color-primary-dark: #0056b3;
+  --color-primary-light: #b8d9e5;
+  --color-primary-accent: #6610f2;
+  --color-secondary: #28a745;
+  --color-secondary-dark: #218838;
+  --color-secondary-light: #c3e6cb;
+  --color-tertiary: #343a40;
+  --color-tertiary-dark: #212529;
+  --color-tertiary-light: #e9ecef;
+  --color-gray-dark: #343a40;
+  --color-gray: #f8f9fa;
+  --color-gray-light: #e9ecef;
+}
+
+:root {
+  --color-black: #000000;
+  --color-white: #ffffff;
+  --color-blue-dark: #007bff;
+  --color-blue-medium: #0069d9;
+  --color-blue-light: #4caf50;
+  --color-blue-lighter: #8bc34a;
+  --color-blue-jeans: #2196f3;
+  --color-ziggurat: #b0bec5;
+  --color-conifer: #ffeb3b;
+  --color-green: #4caf50;
+  --color-frost: #e0f2f1;
+  --color-sushi: #809f3e;
+  --color-manatee: #999ba6;
+}
+
+/*# sourceMappingURL=index.css.map */
