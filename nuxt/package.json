@@ -1,0 +1,42 @@
+{
+  "name": "shared-components-nuxt",
+  "private": true,
+  "type": "module",
+  "types": "./dist/module.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/module.d.ts",
+      "import": "./dist/module.mjs"
+    }
+  },
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "module:prepare": "node scripts/prepare-modules.js",
+    "module:build": "node scripts/copy-modules.js && nuxt-module-build build"
+  },
+  "dependencies": {
+    "@nuxt/module-builder": "^0.8.4",
+    "autoprefixer": "^10.4.20",
+    "cssnano": "^7.0.6",
+    "nuxt": "3.13.2",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "sass": "^1.80.2",
+    "vue": "3.5.11",
+    "vue-router": "4.4.5"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "2.0.2",
+    "@nuxtjs/storybook": "latest",
+    "@storybook/addon-essentials": "8.3.0",
+    "@storybook/addon-links": "8.3.0",
+    "@storybook/blocks": "8.3.0",
+    "@storybook/test": "8.3.0",
+    "storybook": "8.3.0"
+  }
+}

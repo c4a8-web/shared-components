@@ -1,0 +1,35 @@
+@charset 'UTF-8';
+
+// @import 'colors';
+// @import 'user-variables-type';
+// @import 'user-variables';
+// @import 'animations';
+// @import 'mixins';
+// @import 'type';
+// @import 'fonts';
+// @import 'spacings';
+// @import 'theme';
+// @import 'bootstrap/bootstrap';
+// @import 'bootstrap-helper';
+// @import 'z-index';
+// @import 'helper';
+// @import 'loading';
+// @import 'modal';
+// @import 'richtext';
+// @import 'slick';
+// @import 'streamline-icon';
+
+// @import 'components/index';
+// @import 'pages/index';
+
+html,
+html body {
+  --scroll-top: 80px;
+  --utility-animation-index: 1;
+  --utility-animation-distance: 25%;
+  --utility-animation-to-opacity: 1;
+  --utility-animation-items-loaded: 0;
+  --icon-scale: 1;
+
+  font-size: 32px;
+}
