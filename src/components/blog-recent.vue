@@ -1,47 +1,49 @@
 <template>
   <template v-if="postsArray.length > 0">
-    <div :class="classList" ref="root">
-      <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
-      <wrapper :hideContainer="hiddenContainer">
-        <div class="row" v-if="headline">
-          <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 fade-in-bottom" data-utility-animation-step="1">
-            <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
-            <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
-          </div>
-        </div>
-        <div
-          :class="blogRecentContainerClass"
-          :data-hs-slick-carousel-options="carouselOptions"
-          data-utility-animation-step="1"
-        >
-          <template v-for="(post, index) in postsArray">
-            <div :class="itemClass" v-if="index <= limit">
-              <card
-                v-bind="post"
-                :blog-title-pic="blogTitleUrl(post)"
-                :youtube-url="post.youtubeUrl"
-                :date="post.date"
-                :author="post.author"
-                :target="target(post)"
-                :event="event(post)"
-                :dataAuthors="dataAuthors"
-                :external-language="post.externalLanguage"
-              />
+    <markdown-files :list="postsArray" v-slot="{ files }">
+      <div :class="classList" ref="root">
+        <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
+        <wrapper :hideContainer="hiddenContainer">
+          <div class="row" v-if="headline">
+            <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 fade-in-bottom" data-utility-animation-step="1">
+              <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+              <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
             </div>
-          </template>
-        </div>
-        <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
-          <cta
-            :text="cta?.text"
-            :button="cta?.button"
-            :target="cta?.target"
-            :width="cta?.width"
-            :href="cta?.href"
-            :external="cta?.external"
-          />
-        </div>
-      </wrapper>
-    </div>
+          </div>
+          <div
+            :class="blogRecentContainerClass"
+            :data-hs-slick-carousel-options="carouselOptions"
+            data-utility-animation-step="1"
+          >
+            <template v-for="(post, index) in files">
+              <div :class="itemClass" v-if="index <= limit">
+                <card
+                  v-bind="post"
+                  :blog-title-pic="blogTitleUrl(post)"
+                  :youtube-url="post.youtubeUrl"
+                  :date="post.date"
+                  :author="post.author"
+                  :target="target(post)"
+                  :event="event(post)"
+                  :dataAuthors="dataAuthors"
+                  :external-language="post.externalLanguage"
+                />
+              </div>
+            </template>
+          </div>
+          <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
+            <cta
+              :text="cta?.text"
+              :button="cta?.button"
+              :target="cta?.target"
+              :width="cta?.width"
+              :href="cta?.href"
+              :external="cta?.external"
+            />
+          </div>
+        </wrapper>
+      </div>
+    </markdown-files>
   </template>
 </template>
 <script>
@@ -49,8 +51,10 @@ import Tools from '../assets/js/tools.js';
 import State from '../assets/js/state.js';
 import StickyScroller from '../assets/js/sticky-scroller.js';
 import UtilityAnimation from '../assets/js/utility-animation.js';
+import markdownFiles from './markdown-files.vue';
 
 export default {
+  components: { markdownFiles },
   tagName: 'blog-recent',
   computed: {
     classList() {
@@ -149,6 +153,10 @@ export default {
     sublineClassesValue() {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
+    imgUrl() {
+      // TODO placeholder before this is used from useRuntimeConfig();
+      return 'blog/heads/';
+    },
   },
   mounted() {
     if (!this.$refs.root) return;
@@ -189,9 +197,9 @@ export default {
     hideContainer: {
       default: false,
     },
-    imgUrl: {
-      default: null,
-    },
+    // imgUrl: {
+    //   default: null,
+    // },
     limit: {
       default: null,
     },

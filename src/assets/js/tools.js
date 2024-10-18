@@ -12,7 +12,6 @@ class Tools {
 
   static decodeHTML = (input) => {
     const document = parse(input, 'text/html');
-    console.log('🚀 ~ Tools ~ document:', document);
 
     return document.textContent;
   };
