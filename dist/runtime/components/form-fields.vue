@@ -67,8 +67,8 @@
   </template>
 </template>
 <script>
-import Events from '../assets/js/events.js';
-import UtilityAnimation from '../assets/js/utility-animation.js';
+import Events from '../utils/events.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   tagName: 'form-fields',

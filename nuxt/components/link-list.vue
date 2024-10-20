@@ -21,9 +21,9 @@
   </figure>
 </template>
 <script>
-import Tools from '../assets/js/tools.js';
-import State from '../assets/js/state.js';
-import Events from '../assets/js/events.js';
+import Tools from '../utils/tools.js';
+import State from '../utils/state.js';
+import Events from '../utils/events.js';
 
 export default {
   tagName: 'link-list',

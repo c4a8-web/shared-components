@@ -1,0 +1,39 @@
+.hover__parent:hover .scroll-arrow__button svg,
+.shared-components .scroll-arrow__button svg:hover {
+  animation: moveRightLeft;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
+}
+
+.scroll-arrow {
+  @include z-index;
+
+  margin-top: spacing(10);
+  margin-bottom: spacing(10);
+  position: relative;
+  overflow: hidden;
+
+  .icon svg {
+    width: spacing(20);
+    height: spacing(20);
+
+    @include media-breakpoint-up(lg) {
+      width: spacing(30);
+      height: spacing(30);
+    }
+  }
+}
+
+.scroll-arrow__button {
+  transform: rotate(90deg);
+
+  svg {
+    cursor: pointer;
+    color: var(--color-scroll-arrow);
+
+    > * {
+      stroke-width: 1px;
+    }
+  }
+}

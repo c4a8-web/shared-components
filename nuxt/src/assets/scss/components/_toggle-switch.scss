@@ -1,0 +1,33 @@
+.toggle-switch {
+  @include utility-animation-options($delay: 100ms, $selector: '&');
+
+  cursor: default;
+
+  .toggle-switch-label,
+  .toggle-switch-input:checked + .toggle-switch-label {
+    background: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .toggle-switch-indicator {
+    background-color: var(--color-toggle-switch-indicator);
+  }
+  .toggle-switch__text {
+    @include font-style($style: 'font-size-1', $line: 'thin');
+  }
+
+  .toggle-switch__text--right {
+    text-align: right;
+  }
+
+  .toggle-switch__hint {
+    top: -150%;
+    left: 33%;
+    min-width: 140px;
+  }
+
+  .toggle-switch__hint-text {
+    margin-left: spacing(0.5);
+    margin-bottom: spacing(2);
+  }
+}

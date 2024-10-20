@@ -1,0 +1,32 @@
+.hover__parent:hover .link,
+.hover__parent:hover a,
+.shared-components .link:hover,
+.shared-components a:hover {
+  &:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
+    color: var(--color-primary-accent);
+  }
+}
+
+.shared-components {
+  .link,
+  a {
+    &:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
+      color: var(--color-primary);
+
+      // TODO style the lighter version of a link
+      // &.is-light {
+      //   &:hover {
+      //     color: var(--color-blue-lighter);
+      //   }
+
+      //   &.yellow {
+      //     color: var(--color-yellow);
+
+      //     &:hover {
+      //       color: var(--color-yellow-medium);
+      //     }
+      //   }
+      // }
+    }
+  }
+}

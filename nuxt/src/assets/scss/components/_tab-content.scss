@@ -1,0 +1,5 @@
+.tab-content {
+  p {
+    @include font-style('font-size-2');
+  }
+}

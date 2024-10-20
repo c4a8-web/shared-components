@@ -1,7 +1,7 @@
 <template>
   <div :class="classList">
     <badge text="badge text" icon="computer-shield"></badge
-    ><NuxtLink to="https://www.glueckkanja.com">nuxtlink</NuxtLink><br />Test component 777
+    ><NuxtLink to="https://www.glueckkanja.com">nuxtlink</NuxtLink><br />Test component header
   </div>
 </template>
 

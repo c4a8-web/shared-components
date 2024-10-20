@@ -1,0 +1,23 @@
+.testimonial-list__content-block {
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(15);
+  }
+}
+
+.testimonial-list__content {
+  display: flex;
+  justify-content: center;
+
+  &.show {
+    visibility: visible;
+    animation: slideIn 2s forwards;
+  }
+
+  &:not(.show) {
+    visibility: hidden;
+  }
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: spacing(10);
+  }
+}

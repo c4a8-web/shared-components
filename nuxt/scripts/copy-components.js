@@ -16,13 +16,13 @@ const directories = [
     source: path.join(__dirname, '../composables'),
     destination: path.join(__dirname, '../src/runtime/composables'),
     extension: '.js',
-    recursive: false,
+    recursive: true,
   },
   {
     source: path.join(__dirname, '../utils'),
     destination: path.join(__dirname, '../src/runtime/utils'),
     extension: '.js',
-    recursive: false,
+    recursive: true,
   },
 ];
 

@@ -47,10 +47,10 @@
   </template>
 </template>
 <script>
-import Tools from '../assets/js/tools.js';
-import State from '../assets/js/state.js';
-import StickyScroller from '../assets/js/sticky-scroller.js';
-import UtilityAnimation from '../assets/js/utility-animation.js';
+import Tools from '../utils/tools.js';
+import State from '../utils/state.js';
+import StickyScroller from '../utils/sticky-scroller.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 import markdownFiles from './markdown-files.vue';
 
 export default {

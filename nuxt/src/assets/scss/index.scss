@@ -1,26 +1,26 @@
 @charset 'UTF-8';
 
-// @import 'colors';
-// @import 'user-variables-type';
-// @import 'user-variables';
-// @import 'animations';
-// @import 'mixins';
-// @import 'type';
-// @import 'fonts';
-// @import 'spacings';
-// @import 'theme';
-// @import 'bootstrap/bootstrap';
-// @import 'bootstrap-helper';
-// @import 'z-index';
-// @import 'helper';
-// @import 'loading';
-// @import 'modal';
-// @import 'richtext';
-// @import 'slick';
-// @import 'streamline-icon';
+@import 'colors';
+@import 'user-variables-type';
+@import 'user-variables';
+@import 'animations';
+@import 'mixins';
+@import 'type';
+@import 'fonts';
+@import 'spacings';
+@import 'theme';
+@import 'bootstrap/bootstrap';
+@import 'bootstrap-helper';
+@import 'z-index';
+@import 'helper';
+@import 'loading';
+@import 'modal';
+@import 'richtext';
+@import 'slick';
+@import 'streamline-icon';
 
-// @import 'components/index';
-// @import 'pages/index';
+@import 'components/index';
+@import 'pages/index';
 
 html,
 html body {
@@ -31,45 +31,73 @@ html body {
   --utility-animation-items-loaded: 0;
   --icon-scale: 1;
 
-  font-size: 32px;
+  font-family: var(--font-family);
+  color: var(--color-copy);
+  // overflow-x: hidden; // removing this might have side-effects so we might need to enable it again
+
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    @include media-breakpoint-up($breakpoint) {
+      --container-width: #{get-container-width($name: $breakpoint, $with-padding: true)};
+      --container-width-no-padding: #{get-container-width($name: $breakpoint, $with-padding: false)};
+      --breakpoint: #{$breakpoint};
+    }
+  }
+
+  @include media-breakpoint-up('md') {
+    --scroll-top: 100px;
+  }
 }
 
-.html {
-  opacity: 0.9;
+html body {
+  line-height: var(--type-default-line-height);
+  background-color: var(--color-background);
 }
 
-body {
-  opacity: 0.9;
+.other {
+  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Roboto Mono', monospace;
 }
 
-:root {
-  --color-primary: #007bff;
-  --color-primary-dark: #0056b3;
-  --color-primary-light: #b8d9e5;
-  --color-primary-accent: #6610f2;
-  --color-secondary: #28a745;
-  --color-secondary-dark: #218838;
-  --color-secondary-light: #c3e6cb;
-  --color-tertiary: #343a40;
-  --color-tertiary-dark: #212529;
-  --color-tertiary-light: #e9ecef;
-  --color-gray-dark: #343a40;
-  --color-gray: #f8f9fa;
-  --color-gray-light: #e9ecef;
+img {
+  height: auto;
+  max-width: 100%;
 }
 
-:root {
-  --color-black: #000000;
-  --color-white: #ffffff;
-  --color-blue-dark: #007bff;
-  --color-blue-medium: #0069d9;
-  --color-blue-light: #4caf50;
-  --color-blue-lighter: #8bc34a;
-  --color-blue-jeans: #2196f3;
-  --color-ziggurat: #b0bec5;
-  --color-conifer: #ffeb3b;
-  --color-green: #4caf50;
-  --color-frost: #e0f2f1;
-  --color-sushi: #809f3e;
-  --color-manatee: #999ba6;
+/* Banner */
+.navbar-banner {
+  background-size: 289px 180px; // reset cover
+  background-position: center center; // top cover
+}
+
+.navbar-banner::after {
+  background-color: transparent; // reset background-color
+}
+
+ul.dashed {
+  list-style-type: none;
+}
+
+ul {
+  &.dashed {
+    @include bulletpoints;
+  }
+}
+.drop-shadow {
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.2));
+}
+
+.text-shadow {
+  text-shadow: 7px 5px 7px #ffffff;
+}
+
+strong[id] {
+  &:target {
+    &::before {
+      content: '';
+      display: block;
+      height: var(--scroll-top);
+      margin: calc(-1 * (var(--scroll-top))) 0 0;
+    }
+  }
 }

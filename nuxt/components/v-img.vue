@@ -42,11 +42,11 @@
 </template>
 
 <script>
-import DefaultPresets from '../assets/js/default-presets.js';
-import TransformationOptions from '../assets/js/transformation-options.js';
-import Cloudinary from '../assets/js/cloudinary.js';
-import Tools from '../assets/js/tools.js';
-import ImgSrcSets from '../data/img-src-sets.js';
+import DefaultPresets from '../utils/default-presets.js';
+import TransformationOptions from '../utils/transformation-options.js';
+import Cloudinary from '../utils/cloudinary.js';
+import Tools from '../utils/tools.js';
+import ImgSrcSets from '../utils/data/img-src-sets.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 

@@ -1,0 +1,127 @@
+.is-invisible {
+  @include is-invisible;
+}
+
+.has-background + .has-background {
+  margin-top: 0 !important;
+}
+
+.is-sticky {
+  position: fixed !important;
+}
+
+.has-headline-sticky {
+  .headline-sticky__target {
+    position: sticky;
+    top: var(--scroll-top);
+    z-index: 1;
+    background-color: var(--headline-sticky-bg-color);
+
+    &::after,
+    &::before {
+      display: none;
+      content: '';
+      position: absolute;
+      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      overflow: hidden;
+      z-index: -1;
+    }
+
+    &::before {
+      background-color: inherit;
+    }
+
+    &::after {
+      background: linear-gradient(var(--headline-sticky-bg-color), rgba(255, 255, 255, 0));
+    }
+  }
+}
+
+.has-emergency-colors {
+  --color-primary: var(--color-emergency);
+  --color-primary-accent: var(--color-emergency-accent);
+}
+
+.is-basic-link {
+  text-decoration: none !important;
+  color: inherit !important;
+
+  &:hover {
+    text-decoration: underline !important;
+    color: var(--color-copy-hover) !important;
+  }
+}
+
+.is-copy-link {
+  text-decoration: underline !important;
+  color: inherit !important;
+
+  &:hover {
+    color: var(--color-copy-hover) !important;
+  }
+}
+
+.is-centered {
+  text-align: center;
+}
+
+.is-uppercase {
+  text-transform: uppercase;
+}
+
+.has-card-background {
+  background-color: var(--color-card-background);
+}
+
+.full-width-container {
+  overflow-x: hidden;
+}
+
+.is--desktop {
+  display: none;
+}
+
+.mt-n48 {
+  margin-top: spacing($size: 48, $negative: true);
+}
+
+@for $i from 1 through 20 {
+  .max-rem-#{$i} {
+    max-width: $i * 1rem !important;
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .is--desktop {
+    display: block;
+  }
+
+  .is--mobile {
+    display: none;
+  }
+
+  .mt-lg-n48 {
+    margin-top: spacing($size: 48, $negative: true);
+  }
+
+  $i: 5;
+  @while $i <= 30 {
+    .max-lg-w-#{$i} {
+      max-width: $i * 1% !important;
+    }
+
+    .max-lg-vw-#{$i} {
+      max-width: $i * 1vw !important;
+    }
+
+    $i: $i + 5;
+  }
+
+  @for $i from 1 through 20 {
+    .max-lg-rem-#{$i} {
+      max-width: $i * 1rem !important;
+    }
+  }
+}

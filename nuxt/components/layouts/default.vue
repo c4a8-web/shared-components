@@ -1,12 +1,12 @@
 <template>
   <div id="app" :class="computedClass">
+    <v-header v-bind="headerData" :lang="lang"></v-header>
     <slot />
   </div>
 </template>
 
 <script setup>
 /*
-<v-header v-bind="headerData" :lang="lang"></v-header>
 <v-footer v-bind="footerData" :lang="lang"></v-footer>
 */
 const props = defineProps({

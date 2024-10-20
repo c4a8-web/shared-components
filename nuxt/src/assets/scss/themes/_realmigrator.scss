@@ -1,0 +1,30 @@
+// realmigrator theme related styling here
+
+:root {
+  --site: 'realmigrator';
+  // Theme colors
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
+  --color-primary: var(--color-gigas);
+  --color-primary-accent: var(--color-jacarta);
+  --color-primary-accent-light: var(--color-wistful);
+  --color-secondary: var(--color-wax-flower);
+  --color-secondary-accent: var(--color-wax-flower);
+  --color-copy-highlight: red;
+
+  // Element colors
+  --color-bg-grey: var(--color-porcelain);
+  --color-bg-dark-grey: var(--color-regent-grey);
+  --color-svg-icon: var(--color-primary);
+  --color-svg-icon--hover: var(--color-primary-accent);
+  --color-bg-checkbox: var(--color-blue-medium);
+  --color-border: var(--color-porcelain);
+  --color-loading: var(--color-primary);
+  --color-loading--1: var(--color-primary);
+  --color-loading--2: var(--color-yellow);
+  --color-loading--3: var(--color-conifer);
+  --color-loading--4: var(--color-orange);
+
+  // fonts
+  --font-family: 'Miriam Libre', sans-serif;
+}

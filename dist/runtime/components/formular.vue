@@ -50,10 +50,10 @@
   </div>
 </template>
 <script>
-import State from '../assets/js/state.js';
-import Tools from '../assets/js/tools.js';
-import Form from '../assets/js/components/form.js';
-import UtilityAnimation from '../assets/js/utility-animation.js';
+import State from '../utils/state.js';
+import Tools from '../utils/tools.js';
+import Form from '../utils/components/form.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   tagName: 'formular',

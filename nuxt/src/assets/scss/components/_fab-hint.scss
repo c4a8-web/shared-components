@@ -1,0 +1,126 @@
+.fab-hint {
+  @include z-index;
+
+  --fab-hint-icon-size: #{spacing(18)};
+  --fab-hint-bg-color: var(--color-fab-background);
+  --fab-hint-icon-color: var(--color-copy);
+  --fab-hint-bottom-position: #{spacing(20)};
+  --fab-hint-highlight-underline-color: var(--color-orange);
+
+  position: relative;
+  width: 100%;
+  pointer-events: none;
+  opacity: 0;
+
+  .has-back-to-top & {
+    --fab-hint-bottom-position: #{spacing(40)};
+
+    &[style^='height'] {
+      transition-delay: 0.2s;
+
+      .fab-hint__icon {
+        transition-delay: inherit;
+      }
+    }
+  }
+
+  &.is-expanded {
+    .fab-hint__content {
+      transform: translateX(0);
+      pointer-events: all;
+    }
+  }
+
+  &[style^='height'] {
+    pointer-events: all;
+    opacity: 1;
+    transition: opacity 0.8s $animation-transition;
+
+    .fab-hint__icon {
+      transform: translateY(0);
+    }
+  }
+
+  .fab-hint__icon {
+    .icon {
+      width: inherit;
+      height: inherit;
+    }
+  }
+}
+
+.fab-hint__start {
+  position: absolute;
+  top: 200vh;
+}
+
+.fab-hint__wrapper {
+  position: relative;
+  margin-left: auto;
+  right: spacing(4);
+  top: calc(100vh - var(--fab-hint-bottom-position)) !important;
+}
+
+.fab-hint__icon {
+  @include shadow;
+
+  position: absolute;
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--fab-hint-bg-color);
+  border-radius: 100%;
+  padding: spacing(3);
+  width: var(--fab-hint-icon-size);
+  height: var(--fab-hint-icon-size);
+  transition: transform 0.8s $animation-transition;
+  transform: translateY(100%);
+  right: 0;
+  overflow: hidden;
+
+  svg {
+    width: 50%;
+    color: var(--fab-hint-icon-color);
+  }
+}
+
+.fab-hint__content {
+  @include z-index;
+
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  pointer-events: none;
+  background-color: var(--fab-hint-bg-color);
+  padding: spacing(10);
+  width: 100vw;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+
+  @include media-breakpoint-up('lg') {
+    width: 360px;
+  }
+}
+
+.fab-hint__close {
+  position: absolute;
+  top: spacing(6);
+  right: spacing(6);
+  padding: spacing(1);
+
+  &.icon.icon--circle svg {
+    width: 80%;
+  }
+}
+
+.fab-hint__title {
+  @include h4;
+
+  --color-highlight-underline: var(--fab-hint-highlight-underline-color);
+
+  margin-bottom: spacing(5);
+  margin-right: spacing(10);
+  line-height: 1em;
+  display: inline-block;
+}

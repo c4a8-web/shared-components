@@ -1,0 +1,221 @@
+// https://chir.ag/projects/name-that-color/
+
+$color-blue-dark: #000520;
+$color-blue-medium: #0072c6;
+
+$white-30: rgba(255, 255, 255, 0.3);
+$white-50: rgba(255, 255, 255, 0.5);
+$white-80: rgba(255, 255, 255, 0.8);
+$color-primary-accent: $color-blue-medium;
+$color-copy: $color-blue-dark;
+
+// plain copies
+$gray-600: #8c98a4;
+
+:root {
+  --color-black: #000000;
+  --color-black-85: #262626;
+  --color-black-70: #4c4c4c;
+  --color-black-50: #7f7f7f;
+  --color-black-40: #999;
+  --color-black-30: #b2b2b2;
+  --color-black-15: #d9d9d9;
+  --color-black-4: #f5f5f5;
+  --color-black-2: #fbfbfb;
+
+  --color-white-30: #{$white-30};
+  --color-white-50: #{$white-50};
+  --color-white-80: #{$white-80};
+
+  --color-manatee: #999ba6;
+  --color-blue-dark: #{$color-blue-dark};
+  --color-blue-medium: #{$color-blue-medium};
+  --color-blue-light: #5cbbff;
+  --color-blue-lighter: #77c6ff;
+  --color-blue-jeans: #24a1fa;
+  --color-ziggurat: #bfdfe1;
+  --color-conifer: #acd653;
+  --color-green: #acd653;
+  --color-frost: #edf5db;
+  --color-sushi: #809f3e;
+  --color-green-blue: #008187;
+  --color-yellow-medium: #dab61d;
+  --color-yellow: #fcd116;
+  --color-orange: #f8842c;
+  --color-red: #e44418;
+  --color-french-rose: #ed4c78;
+  --color-trout: #4c5062;
+  --color-porcelain: #f3f5f6;
+  --color-bon-jour: #e5e2e2;
+  --color-deep-sea: #008774;
+  --color-mint-green: #80f785;
+  --color-midnight: #011e33;
+  --color-regent-grey: #808e99;
+  --color-geyser: #d1d9dd;
+  --color-macaroni-and-cheese: #fcb975;
+  --color-nevada: #60727f;
+  --color-edgewater: #c2deda;
+  --color-link-water: #cce3f4;
+  --color-summer-green: #8ebeb2;
+  --color-ripe-lemon: #f7cb0b;
+  --color-sunglow: #ffd233;
+  --color-cold-purple: #a09edb;
+  --color-biloba-flower: #bd90ea;
+  --color-lavender: #ad76e5;
+  --color-perfume: #ddc3f7;
+  --color-varden: #fff8dc;
+  --color-sahara: #bd9d11;
+  --color-gigas: #543b9c;
+  --color-portage: #9898f9;
+  --color-sahara-sand: #f6ee8c;
+  --color-sunflower: #e1d429;
+  --color-piper: #c66a23;
+  --color-cream-can: #f5c663;
+  --color-cyprus: #004144;
+  --color-wax-flower: #ffbb9a;
+  --color-manhatten: #f3b394;
+  --color-jacarta: #19122f;
+  --color-wistful: #b2a7d2;
+  --color-lochmara: #007ac8;
+  --color-polar: #f6f9fd;
+  --color-ghost: #cccdd2;
+  --color-athens-gray: #e5e6e9;
+  --color-bombay: #b3b4bc;
+  --color-cornflower-blue: #666979;
+  --color-waterloo: #80828f;
+
+  --color-white: #fff;
+
+  --color-headlines: var(--color-blue-dark);
+  --color-copy: var(--color-blue-dark);
+  --color-copy-light: var(--color-white);
+  --color-copy-lowlight: var(--color-black-30);
+  --color-copy-reduced: var(--color-black-50);
+  --color-copy-hover: var(--color-black-70);
+
+  --color-active: var(--color-primary);
+
+  // more abstract color assignments
+  --color-surface-background: var(--color-black-4);
+  --color-background: var(--color-white);
+
+  // rules that default to everything
+
+  --color-border-default: var(--color-black-30);
+  --color-border-light: var(--color-black-15);
+
+  --color-service-overview-border: var(--color-border-default);
+
+  --color-services-border: var(--color-service-overview-border);
+  --color-services-labels: var(--color-trout);
+
+  --color-page-detail-border: var(--color-border-default);
+  --color-page-detail-copy: var(--color-black-85);
+  --color-page-detail-shape: var(--color-yellow);
+  --color-page-detail-details: var(--color-orange);
+
+  --color-job-list-border: var(--color-border-default);
+
+  --color-job-list-detail: var(--color-yellow);
+  --color-job-list-detail-copy: var(--color-black-85);
+
+  --color-person-quote-detail: var(--color-yellow);
+
+  --color-icon-hover-background: var(--color-black-85);
+  --color-icon-hover-color: var(--color-white);
+
+  --color-icon-check-background: var(--color-link-water);
+
+  --color-modal-background: var(--color-white);
+
+  --color-form-background: var(--color-porcelain);
+  --color-form-background-light: var(--color-white);
+  --color-form-error: var(--color-red);
+  --color-form-success: var(--color-deep-sea);
+  --color-form-border: var(--color-bon-jour);
+  --color-form-border-hover: var(--color-border-default);
+
+  --color-google-maps-popup-background: var(--color-blue-dark);
+
+  --color-hero-icon: var(--color-yellow);
+  --color-hero-study-background: var(--color-primary);
+  --color-hero-study-copy: var(--color-copy);
+  --color-hero-image-content-grid-overline-text: var(--color-blue-dark);
+  --color-hero-text-overline-text: var(--color-orange);
+
+  --color-people-square-copy: var(--color-white);
+
+  --color-step-list-highlight: var(--color-yellow);
+  --color-step-list-highlight-copy: var(--color-copy);
+  --color-step-list-border: var(--color-border-light);
+
+  --color-career-background: var(--color-blue-dark);
+
+  --color-text-image-background: var(--color-career-background);
+
+  --color-pricing-product-border: var(--color-manatee);
+
+  --color-fab-background: var(--color-yellow);
+
+  --color-testimonials: var(--color-blue-jeans);
+
+  --color-event-teaser-timing: var(--color-manatee);
+  --color-event-teaser-timing-highlight: var(--color-orange);
+  --color-event-teaser-background: var(--color-black-2);
+  --color-event-teaser-teaser-background: var(--color-green-blue);
+  --color-event-teaser-teaser-copy: var(--color-white);
+
+  --color-event-detail: var(--color-surface-background);
+  --color-event-detail-shape: var(--color-yellow);
+
+  --color-badge-icon: var(--color-white);
+  --color-badge-background: var(--color-orange);
+
+  --color-card-background: var(--color-surface-background);
+  --color-card-highlight: var(--color-orange);
+
+  --color-back-to-top-border: var(--color-border-default);
+  --color-back-to-top-hover-background: var(--color-blue-dark);
+  --color-back-to-top-hover-foreground: var(--color-white);
+
+  --color-faq-border: var(--color-trout);
+
+  --color-modal-error-title: var(--color-red);
+  --color-modal-error-contact: var(--color-black);
+
+  --color-letter-switcher-highlight: var(--color-lochmara);
+  --color-letter-switcher-copy: var(--color-copy-light);
+  --color-letter-switcher-overline: var(--color-yellow);
+  --color-letter-switcher-underline: var(--color-orange);
+
+  --color-scroll-arrow: var(--color-orange);
+
+  --color-header-background: var(--color-white);
+  --color-header-border: var(--color-ghost);
+  --color-header-container-border: var(--color-athens-gray);
+  --color-header-contact-background: var(--color-polar);
+  --color-header-active: var(--color-active);
+  --color-header-product-subtitle: var(--color-cornflower-blue);
+
+  --color-link-list-border: var(--color-ghost);
+  --color-link-list-icon: var(--color-bombay);
+  --color-link-list-title: var(--color-trout);
+  --color-link-list-active: var(--color-active);
+
+  --color-toggle-switch-indicator: var(--color-midnight);
+
+  --color-accordion-hover-background: var(--color-surface-background);
+  --color-table-mark: var(--color-yellow);
+
+  --color-emergency: var(--color-orange);
+  --color-emergency-accent: var(--color-piper);
+
+  --color-input-placeholder: var(--color-bombay);
+
+  --color-highlight-underline: var(--color-secondary);
+  --color-highlight-animated: var(--color-secondary);
+}
+
+.bg-grey {
+  background-color: var(--color-bg-grey);
+}

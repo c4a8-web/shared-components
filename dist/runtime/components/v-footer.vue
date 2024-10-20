@@ -156,7 +156,7 @@
   </footer>
 </template>
 <script>
-import Tools from '../assets/js/tools.js';
+import Tools from '../utils/tools.js';
 import FooterData from '../data/footer-data.js';
 
 const footerSlider = {

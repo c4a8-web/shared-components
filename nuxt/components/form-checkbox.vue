@@ -35,7 +35,7 @@
   </div>
 </template>
 <script>
-import Events from '../assets/js/events.js';
+import Events from '../utils/events.js';
 
 export default {
   tagName: 'form-checkbox',

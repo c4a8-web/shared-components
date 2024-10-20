@@ -1,0 +1,33 @@
+export default UtilityAnimation;
+declare class UtilityAnimation {
+    static rootSelector: string;
+    static inViewportDataset: string;
+    static endDataset: string;
+    static instances: any[];
+    static groupItemsLoadedProperty: string;
+    static getGroup(element: any): any;
+    static setGroupItemsLoaded(group: any, count: any): void;
+    static hasPercentageOffset(instance: any): any;
+    static hasSmallOffset(instance: any): any;
+    static addObserver(instance: any): void;
+    static resetGroup(group: any): void;
+    static initElement(element: any): UtilityAnimation;
+    static init(elements: any): void;
+    static isElementObserved(element: any): boolean;
+    static observeElementIfNotAlready(element: any): void;
+    static getIndexStyle(index: any): string;
+    constructor(root: any);
+    root: any;
+    count: number;
+    selector: string;
+    currentElements: any;
+    resetAnimation(): void;
+    mergeNodes(Node: any, NodeList: any): any[];
+    getCurrentSelector(): string;
+    updateCurrentElement(event: any): void;
+    handleAnimationEnd(event: any): void;
+    startStepAnimation(elements: any): void;
+    setEnd(): void;
+    startAnimation(): void;
+    initialize(): void;
+}

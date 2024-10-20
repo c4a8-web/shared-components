@@ -1,0 +1,171 @@
+.form-attachments {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  > * {
+    flex: 0 0 100%;
+    width: 100%;
+
+    @include media-breakpoint-up(md) {
+      flex: 0 0 calc(50% - #{spacing(4)});
+      width: calc(50% - #{spacing(4)});
+    }
+  }
+
+  &.is-dragging {
+    .form-attachments__interactable {
+      background-color: transparent;
+
+      .icon {
+        transform: scale(1.5);
+
+        svg {
+          --icon-rotation: 135deg;
+        }
+      }
+    }
+  }
+
+  &.has-error {
+    border-color: var(--color-form-error);
+
+    .form-attachments__text {
+      margin-bottom: spacing(3.5);
+    }
+
+    .form-attachments__error {
+      display: block;
+    }
+  }
+
+  .form-attachments__button {
+    .icon {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    flex-wrap: nowrap;
+  }
+}
+
+.form-attachments__files-list {
+  @include font-style($style: 'font-size-sm');
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  padding: spacing(6) 0;
+
+  @include media-breakpoint-up(md) {
+    padding-left: 0;
+    padding-right: spacing(6);
+  }
+}
+
+.form-attachments__files-list-item {
+  display: flex;
+  justify-content: space-between;
+  place-items: center;
+  align-items: center;
+  padding-top: spacing(1);
+  color: var(--color-copy-reduced);
+  width: 100%;
+}
+
+.form-attachments__file-details {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1 1 auto;
+}
+
+.form-attachments__file-size {
+  white-space: nowrap;
+}
+
+.form-attachments__delete {
+  padding: spacing(1) 0 spacing(1) spacing(2);
+  cursor: pointer;
+  color: var(--color-primary);
+  flex: 0 0 auto;
+
+  &:hover {
+    color: var(--color-primary-accent);
+  }
+}
+
+.form-attachments__interactable {
+  cursor: pointer;
+  padding: spacing(6);
+  border: 2px dashed var(--color-primary);
+  background-color: var(--color-form-background);
+  display: flex;
+  align-items: center;
+  transition: background-color 0.5s $animation-transition;
+
+  &:hover {
+    .form-attachments__text {
+      color: var(--color-primary-accent);
+    }
+
+    .form-attachments__button .icon {
+      --color-icon-hover-background: var(--color-primary-accent);
+
+      background-color: var(--color-icon-hover-background);
+      color: var(--color-icon-hover-color);
+    }
+  }
+
+  .is-light & {
+    background-color: var(--color-form-background-light);
+  }
+}
+
+.form-attachments__button {
+  width: spacing(11);
+  height: spacing(11);
+  margin-right: spacing(6);
+  color: var(--color-form-background);
+  flex: 0 0 auto;
+
+  .icon {
+    background-color: var(--color-primary);
+    transition: transform 0.5s $animation-transition;
+
+    svg {
+      transition: transform 0.5s $animation-transition;
+      --icon-rotation: 45deg;
+    }
+  }
+}
+
+.form-attachments__description {
+  @include font-style($style: 'font-size-1', $weight: 'bold');
+
+  margin-bottom: spacing(2);
+}
+
+.form-attachments__description,
+.form-attachments__text {
+  color: var(--color-primary);
+}
+
+.form-attachments__text {
+  @include font-style($style: 'font-size-sm');
+
+  cursor: pointer;
+  text-decoration: underline;
+  margin-bottom: spacing(10);
+}
+
+.form-attachments__extensions {
+  color: var(--color-copy-lowlight);
+}
+
+.form-attachments__error,
+.form-attachments__file {
+  display: none;
+}

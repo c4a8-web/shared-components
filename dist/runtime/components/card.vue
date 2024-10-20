@@ -144,8 +144,8 @@
   </article>
 </template>
 <script>
-import Tools from '../assets/js/tools.js';
-import Events from '../assets/js/events.js';
+import Tools from '../utils/tools.js';
+import Events from '../utils/events.js';
 
 const cardFooter = {
   tagName: 'card-footer',

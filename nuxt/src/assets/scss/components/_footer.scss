@@ -1,0 +1,332 @@
+$footer-orientation-breakpoint: 'lg';
+$footer-partner-orientation-breakpoint: 'sm';
+
+footer {
+  --color-footer-border: var(--color-white-50);
+  --footer-spacing: #{spacing(10)};
+  --footer-spacing-large: #{spacing(15)};
+  --footer-partner-spacing: #{spacing(6)};
+  --footer-content-spacing: var(--footer-spacing);
+  --footer-icon-width: 22px;
+
+  padding-top: var(--footer-spacing-large);
+
+  &.footer--corporate {
+    .footer__slider-container {
+      @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+        margin-top: var(--footer-content-spacing);
+      }
+    }
+
+    .footer__highlights {
+      @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+
+  &:not(.footer--corporate) {
+    @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+      .footer__partners {
+        margin-bottom: var(--footer-spacing-large);
+      }
+    }
+  }
+
+  .footer__socials {
+    .fab {
+      font-size: 1.6em;
+    }
+  }
+
+  hr {
+    border-color: var(--color-footer-border);
+  }
+
+  .footer__nav-link {
+    &.nav-link {
+      display: flex;
+      align-items: flex-start;
+
+      &:not(.active) {
+        color: var(--color-white-80);
+
+        &:not([href]) {
+          &:hover {
+            color: var(--color-white-80);
+          }
+        }
+
+        &[href] {
+          &:hover {
+            color: var(--color-white);
+          }
+        }
+      }
+    }
+  }
+
+  .streamline-site-phone {
+    &.streamline-xs {
+      .streamline-icon {
+        width: 1.3rem;
+        height: 1.3rem;
+      }
+    }
+  }
+
+  .footer__office-icon.icon {
+    height: var(--footer-icon-width);
+    width: var(--footer-icon-width);
+    margin-top: spacing(1);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .streamline-site-mail {
+    .streamline-icon {
+      width: var(--footer-icon-width);
+    }
+  }
+
+  .nav {
+    + .nav {
+      margin-top: spacing(4);
+    }
+  }
+
+  @include media-breakpoint-up('xl') {
+    --footer-content-spacing: var(--footer-spacing-large);
+
+    padding-top: spacing(20);
+  }
+}
+
+.footer__links {
+  text-decoration: underline;
+}
+
+.footer__contacts {
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    border-right: 1px solid var(--color-white-30);
+  }
+}
+
+.footer__address-block {
+  &.is-reversed {
+    display: inline-flex;
+    flex-wrap: wrap;
+
+    > * {
+      flex: 0 auto;
+    }
+
+    .footer__city {
+      order: 1;
+
+      &::after {
+        content: '\00A0';
+        display: inline-block;
+      }
+    }
+
+    .footer__postal-code {
+      order: 2;
+
+      &::after {
+        display: none;
+      }
+    }
+
+    .footer__country {
+      order: 3;
+    }
+  }
+}
+
+.footer__postal-code {
+  &::after {
+    content: '\00A0';
+    display: inline-block;
+  }
+}
+
+.footer__contacts {
+  .footer__country {
+    display: block;
+    flex: 1 100%;
+  }
+}
+
+.footer__partner-image {
+  width: 100%;
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    width: auto;
+    height: 100%;
+  }
+}
+
+.footer__partners {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-direction: column;
+
+  @include media-breakpoint-up(#{$footer-partner-orientation-breakpoint}) {
+    flex-direction: row;
+    gap: spacing(4);
+  }
+
+  @include media-breakpoint-up('lg') {
+    gap: inherit;
+    justify-content: space-evenly;
+  }
+}
+
+.footer__vertical-line {
+  height: 1px;
+  width: 100%;
+  border-bottom: 1px solid var(--color-footer-border);
+
+  @include media-breakpoint-up(#{$footer-partner-orientation-breakpoint}) {
+    flex: 1 0 auto;
+    position: relative;
+    height: auto;
+    width: auto;
+    border-bottom: 0;
+  }
+
+  @include media-breakpoint-up('lg') {
+    flex-grow: 0;
+  }
+}
+
+.footer__partner-images {
+  padding: var(--footer-content-spacing) 0;
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    padding: 0 var(--footer-partner-spacing);
+  }
+}
+
+.footer__brand-logo-title {
+  color: var(--color-white-50);
+}
+
+.footer__brand-logo-link {
+  max-width: 110px;
+
+  img {
+    width: 100%;
+  }
+}
+
+.footer__images {
+  padding-top: var(--footer-spacing);
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    padding-top: 0;
+  }
+}
+
+.footer__content {
+  display: flex;
+  flex-wrap: wrap;
+
+  > * {
+    flex: 0 0 100%;
+  }
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    flex-wrap: nowrap;
+
+    > * {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.footer__address {
+  border-bottom: 1px solid var(--color-footer-border);
+  padding-bottom: var(--footer-content-spacing);
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    padding-right: var(--footer-content-spacing);
+    padding-bottom: 0;
+    border-right: 1px solid var(--color-footer-border);
+    border-bottom: 0;
+    flex-shrink: 1;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+}
+
+.footer__locations {
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    flex-grow: 1;
+  }
+}
+
+.footer__divider {
+  margin-top: 0;
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    margin-top: var(--footer-spacing);
+  }
+}
+
+.footer__highlights {
+  flex: 1 1 auto;
+  width: 100%;
+  overflow: hidden;
+
+  @include media-breakpoint-up('xl') {
+    padding-left: var(--footer-content-spacing);
+  }
+}
+
+.footer__slider-container {
+  width: 100%;
+  padding-top: var(--footer-content-spacing);
+  margin-bottom: var(--footer-content-spacing);
+  border-top: 1px solid var(--color-footer-border);
+
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    border-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    padding: 0 spacing(10);
+  }
+}
+
+.footer__slider {
+  width: 100%;
+  flex: 0 0 100%;
+}
+
+.footer__nav-icon {
+  margin-right: spacing(4);
+  display: flex;
+}
+
+.footer__offices {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 140px;
+}
+
+.footer__logos-link {
+  @include media-breakpoint-up(#{$footer-orientation-breakpoint}) {
+    max-width: 220px;
+  }
+}
+
+.footer__mail {
+  white-space: nowrap;
+}

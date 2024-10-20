@@ -17,7 +17,7 @@ declare namespace _default {
         function handleLetterSwitcherEnded(): void;
     }
     namespace computed {
-        function classList(): any[];
+        function classList(): any;
         function contentClassList(): (string | (() => any))[];
         function cta(): any;
         function isLight(): any;

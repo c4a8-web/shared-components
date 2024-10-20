@@ -1,0 +1,43 @@
+$check-card-spacing-md: 4;
+$check-card-spacing-lg: 4;
+$check-card-margin-lg: calc($check-card-spacing-lg / 2);
+
+.check-card {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: spacing(20);
+
+  &.check-card--products {
+    .check-card__slide {
+      @include media-breakpoint-up(lg) {
+        padding: 0 spacing(8);
+      }
+    }
+  }
+}
+
+.check-card__container {
+  @include utility-animation-options(
+    $distance: 5%,
+    $delay: 150ms,
+    $selector: "&"
+  );
+
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    margin: 0 spacing($size: $check-card-margin-lg, $negative: true);
+  }
+}
+
+.check-card__slide {
+  padding: 0;
+
+  @include media-breakpoint-up(lg) {
+    padding: 0 spacing($check-card-spacing-lg);
+  }
+}
+
+.check-card__subline {
+  @include utility-animation-options($delay: 100ms, $selector: "&");
+}

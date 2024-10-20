@@ -16,7 +16,7 @@ declare namespace _default {
     namespace methods {
         function bindEvents(): void;
         function handleUpdate(event: any): void;
-        function isLowerBreakpoint(): any;
+        function isLowerBreakpoint(): boolean;
         function isExpandable(): any;
         function updateHeight(): void;
         function handleClick(event: any): void;

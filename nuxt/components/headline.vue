@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import Tools from '../assets/js/tools.js';
+import Tools from '../utils/tools.js';
 
 export default {
   tagName: 'headline',

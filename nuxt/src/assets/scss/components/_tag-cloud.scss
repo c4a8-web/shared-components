@@ -1,0 +1,138 @@
+.tag-cloud {
+  background-color: var(--color-blue-dark);
+}
+
+.tag-cloud__container {
+  margin: auto;
+
+  li {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    padding: 5px;
+    color: var(--color-copy-light) !important;
+  }
+}
+
+.tag-cloud__header {
+  margin: spacing(16) 0 spacing(12);
+  color: var(--color-copy-light);
+
+  .tag-cloud__headline {
+    color: var(--color-copy-light);
+  }
+}
+
+.tag-cloud__content {
+  text-align: center;
+  justify-content: center;
+  margin-top: spacing(4);
+  padding-bottom: spacing(8);
+  overflow-x: hidden;
+}
+
+.tag-cloud__slider {
+  display: flex;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+    background: transparent;
+    width: 0;
+  }
+}
+
+.tag-cloud__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 150vw;
+  padding: 0 spacing(4);
+
+  @include media-breakpoint-up(lg) {
+    width: 90%;
+    padding: 0;
+  }
+}
+
+.tag-cloud__item {
+  padding: spacing(4);
+  flex: 1 0 20%;
+
+  &[data-weight='0'] {
+    flex-grow: 0;
+    flex-basis: 15%;
+    display: none;
+
+    @include media-breakpoint-up(lg) {
+      display: block;
+    }
+  }
+
+  &[data-weight='2'] {
+    flex: 1 1 40%;
+  }
+
+  &[data-weight='3'] {
+    flex: 1 1 auto;
+    width: 90vw;
+    font-size: $font-size-3;
+
+    @include media-breakpoint-up(sm) {
+      width: 55vw;
+    }
+
+    @include media-breakpoint-up(lg) {
+      font-size: $font-size-4;
+      width: auto;
+    }
+
+    @include media-breakpoint-up(xl) {
+      font-size: $font-size-5;
+    }
+  }
+
+  &[data-weight] {
+    + [data-weight='0'] {
+      flex-shrink: 0;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    padding: spacing(3);
+    flex: 1 0 15%;
+    font-size: $font-size-2;
+  }
+
+  @include media-breakpoint-up(lg) {
+    font-size: $font-size-3;
+  }
+
+  @include media-breakpoint-up(xl) {
+    font-size: $font-size-4;
+  }
+}
+
+.tag-cloud__item-link {
+  animation: 12.5s 0s ease-in-out blurry-orbit infinite;
+  animation-fill-mode: both;
+  transform: translate(var(--blurry-x1), var(--blurry-y1));
+  display: inline-block;
+
+  &[groupidentifier='1'] {
+    animation-direction: alternate-reverse;
+  }
+
+  &[groupidentifier='2'] {
+    animation-direction: alternate;
+  }
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}

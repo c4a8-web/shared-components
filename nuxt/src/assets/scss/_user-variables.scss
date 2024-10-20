@@ -1,0 +1,80 @@
+$site: 'gk';
+
+$header-logo-spacing-right: 5.7rem;
+$header-nav-link-color-light: var(--color-white);
+$header-nav-offset: 6rem;
+
+$bootstrap-space-3: 6rem;
+
+$container-widths: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1280px,
+  xxl: 1340px,
+);
+
+// theme vars
+
+$theme-colors: (
+  'primary': red,
+  'secondary': red,
+  'danger': red,
+);
+
+$header-floating-inner-padding-x: 2rem;
+$header-navbar-brand-width: 12.5rem;
+$header-nav-link-padding-x: 1rem;
+
+$box-shadow-sm: 0 12px 15px rgba($gray-600, 0.1);
+$header-section-box-shadow: $box-shadow-sm;
+$header-nav-link-color: var(--color-black);
+
+$spacer: 1rem !default;
+$spacers: () !default;
+$spacers: map-merge(
+  (
+    0: 0,
+    1: (
+      $spacer * 0.25,
+    ),
+    2: (
+      $spacer * 0.5,
+    ),
+    3: $spacer,
+    4: (
+      $spacer * 1.5,
+    ),
+    5: (
+      $spacer * 2,
+    ),
+    6: (
+      $spacer * 2.5,
+    ),
+    7: (
+      $spacer * 3,
+    ),
+    8: (
+      $spacer * 3.5,
+    ),
+  ),
+  $spacers
+);
+
+// plain copies
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1340px,
+);
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+$grid-gutter-half-width: 15px; // TODO change it to this after webpack 5 calc($grid-gutter-width / 2);
+
+$shared-components: true !default;

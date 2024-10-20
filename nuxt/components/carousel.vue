@@ -13,8 +13,8 @@
   </div>
 </template>
 <script>
-import Tools from '../assets/js/tools.js';
-import State from '../assets/js/state.js';
+import Tools from '../utils/tools.js';
+import State from '../utils/state.js';
 
 const carouselItem = {
   tagName: 'carousel-item',

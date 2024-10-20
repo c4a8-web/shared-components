@@ -1,0 +1,190 @@
+.hover__parent:hover .testimonial-teaser,
+.shared-components .testimonial-teaser:hover {
+  .icon {
+    svg {
+      @include move-right-left;
+    }
+  }
+}
+
+.testimonial-teaser {
+  --color-testimonial-teaser-foreground: var(--color-white);
+
+  position: relative;
+  max-width: unquote('min(500px, 100vw)');
+  display: inline-block;
+
+  &:hover {
+    img {
+      transform: scale(1.2);
+      transform-origin: center center;
+    }
+
+    .testimonial-teaser__name {
+      text-decoration: underline;
+    }
+
+    .testimonial-teaser__name-background,
+    .testimonial-teaser__title {
+      &::before {
+        background-color: var(--color-testimonial-teaser-background-hover);
+        opacity: 0.9;
+      }
+    }
+  }
+
+  &.testimonial-teaser--aspect-ratio {
+    .testimonial-teaser__img-wrapper {
+      @include aspect-ratio(16, 9);
+
+      height: 100%;
+      width: 100%;
+
+      @include media-breakpoint-up(lg) {
+        @include aspect-ratio(
+          var(--width-testimonial-teaser-aspect-ratio),
+          var(--height-testimonial-teaser-aspect-ratio)
+        );
+      }
+    }
+  }
+
+  &.testimonial-teaser--16x9 {
+    .testimonial-teaser__content {
+      bottom: 5%;
+
+      @include media-breakpoint-up(lg) {
+        bottom: 25%;
+      }
+    }
+  }
+
+  &.testimonial-teaser--4x3 {
+    .testimonial-teaser__content {
+      bottom: 5%;
+    }
+  }
+}
+
+.testimonial-teaser__img-wrapper {
+  overflow: hidden;
+}
+
+.testimonial-teaser__img {
+  padding-left: spacing(6);
+  padding-bottom: spacing(8);
+
+  img {
+    transition: transform 0.7s $animation-transition;
+    will-change: transform;
+  }
+}
+
+.testimonial-teaser__corner {
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  margin-top: 1.5rem;
+
+  &.testimonial-teaser__corner--left {
+    margin-left: 3rem;
+  }
+
+  &.testimonial-teaser__corner--right {
+    text-align: end;
+    margin-left: -2rem;
+  }
+
+  img {
+    height: auto;
+    width: 60px;
+
+    @include media-breakpoint-up(md) {
+      width: 100px;
+    }
+  }
+}
+
+.testimonial-teaser__content {
+  position: absolute;
+  bottom: 0;
+}
+
+.testimonial-teaser__name,
+.testimonial-teaser__title {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--color-testimonial-teaser-foreground);
+  z-index: 1;
+}
+
+.testimonial-teaser__title {
+  padding: spacing(2);
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+
+  @include media-breakpoint-up(md) {
+    display: block;
+  }
+}
+
+.testimonial-teaser__name-background,
+.testimonial-teaser__title {
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-testimonial-teaser-background);
+    opacity: 0.8;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    transition: opacity 0.7s $animation-transition, background-color 0.7s $animation-transition;
+    will-change: opacity, background-color;
+  }
+}
+
+.testimonial-teaser__name {
+  margin-bottom: spacing(1);
+  display: inline-block;
+}
+
+.testimonial-teaser__name-background {
+  padding-top: spacing(1);
+  padding-right: spacing(4);
+  padding-bottom: spacing(1);
+  padding-left: spacing(2);
+  display: inline-flex;
+  position: relative;
+
+  // TODO refactor this selector because it is very fragile
+  + br + .testimonial-teaser__name-background {
+    padding-top: 0;
+  }
+}
+
+.testimonial-teaser__name-icon {
+  display: flex;
+  width: 2.1em;
+  overflow: hidden;
+  position: relative;
+  left: spacing(1);
+}
+
+.testimonial-teaser__icon {
+  &.icon {
+    position: absolute;
+    padding-top: spacing(1);
+    padding-left: spacing(4);
+    padding-right: spacing(2);
+    width: 100%;
+    height: 100%;
+    inset: 0;
+  }
+}

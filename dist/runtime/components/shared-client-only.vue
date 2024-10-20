@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import Tools from '../assets/js/tools.js';
+import Tools from '../utils/tools.js';
 
 // TODO this should be nuxt ClientOnly
 

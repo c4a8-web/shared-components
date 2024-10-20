@@ -49,7 +49,7 @@
 </template>
 
 <script>
-import UtilityAnimation from '../assets/js/utility-animation.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   props: {

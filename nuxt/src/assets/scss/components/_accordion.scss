@@ -1,0 +1,233 @@
+.accordion {
+  .accordion__text,
+  .accordion__btn,
+  .accordion__fallback-image-wrapper {
+    @include animation-start-state;
+  }
+
+  @include utility-animation-in-viewport {
+    .accordion__text,
+    .accordion__btn,
+    .accordion__fallback-image-wrapper {
+      @include fade-in-X($from: 'bottom');
+    }
+
+    .accordion__text,
+    .accordion__btn {
+      animation-delay: calc((var(--utility-animation-index) * 120ms));
+    }
+
+    .accordion__floating-image-wrapper {
+      @include animation-end-state;
+
+      transition-delay: 0.5s;
+    }
+  }
+
+  &.accordion--has-image {
+    .accordion__fallback-container,
+    .accordion__floating-container {
+      @include media-breakpoint-up(lg) {
+        display: block;
+      }
+    }
+
+    .accordion__floating-container {
+      display: none;
+      opacity: 0;
+    }
+  }
+
+  .btn-link {
+    &:not(.collapsed),
+    &:hover {
+      color: var(--color-primary-accent);
+    }
+
+    &:not(.collapsed) {
+      border-bottom-color: transparent;
+    }
+  }
+
+  .accordion__btn {
+    &:not(.collapsed) {
+      .card-btn-toggle-default {
+        display: none;
+      }
+    }
+
+    &.collapsed {
+      .card-btn-toggle-default {
+        display: inline-flex;
+      }
+
+      .card-btn-toggle-active {
+        display: none;
+      }
+    }
+  }
+
+  .card-btn-toggle {
+    color: currentColor;
+    margin-left: spacing(4);
+  }
+
+  .accordion__icon-toggle.icon {
+    width: spacing(6);
+    height: spacing(6);
+    overflow: hidden;
+  }
+
+  .card-collapse {
+    &:hover {
+      background-color: var(--color-accordion-hover-background);
+    }
+  }
+}
+
+.accordion__container {
+  @include animation-start-state;
+
+  @include utility-animation-in-viewport {
+    @include fade-in-X($from: 'bottom');
+  }
+
+  overflow: hidden;
+
+  &.accordion--has-image {
+    .accordion__image {
+      display: block;
+
+      @include media-breakpoint-up(lg) {
+        display: none;
+      }
+    }
+  }
+
+  + .accordion {
+    .accordion__fallback-container {
+      display: none;
+
+      @include media-breakpoint-up(lg) {
+        display: block;
+      }
+    }
+  }
+}
+
+.accordion__image-spacer {
+  display: none;
+  opacity: 0;
+  pointer-events: none;
+
+  @include media-breakpoint-up(lg) {
+    display: block;
+  }
+}
+
+.accordion__image {
+  margin-top: spacing(4);
+  display: none;
+}
+
+.accordion__fallback-container {
+  z-index: 1;
+}
+
+.accordion__fallback-container,
+.accordion__floating-container {
+  width: 100%;
+
+  @include media-breakpoint-up(lg) {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}
+
+.accordion__fallback-image-wrapper,
+.accordion__floating-image-wrapper {
+  img {
+    @include media-breakpoint-up(lg) {
+      opacity: 0;
+      display: block;
+      position: sticky;
+      left: 0;
+      top: 25vh;
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    position: relative;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.accordion__fallback-image-wrapper {
+  img {
+    @include media-breakpoint-up(lg) {
+      .show & {
+        opacity: 1;
+        transition: opacity 250ms ease-in-out;
+      }
+    }
+  }
+}
+
+.accordion__btn {
+  padding: spacing(4);
+  color: var(--color-copy);
+  border-bottom: 1px solid var(--color-border-light);
+  border-radius: 0;
+
+  &.btn {
+    text-align: left;
+  }
+}
+
+.accordion__card {
+  &.is-expanded {
+    .collapsing {
+      .accordion__richtext {
+        opacity: 0.7;
+      }
+    }
+
+    .show {
+      .accordion__richtext {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.accordion__card-header {
+  padding-top: spacing(1);
+}
+
+.accordion__richtext {
+  padding: spacing(6) spacing(4) spacing(10);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.accordion__content {
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.accordion__fallback-image-wrapper {
+  &.show {
+    img {
+      opacity: 1;
+      transition: opacity 250ms ease-in-out;
+    }
+  }
+}
+
+.accordion__headline {
+  + .accordion__subline {
+    margin-top: spacing(6);
+  }
+}

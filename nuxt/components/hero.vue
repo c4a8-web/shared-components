@@ -68,8 +68,8 @@
 </template>
 
 <script>
-import Tools from '../assets/js/tools.js';
-import StickyScroller from '../assets/js/sticky-scroller.js';
+import Tools from '../utils/tools.js';
+import StickyScroller from '../utils/sticky-scroller.js';
 
 const heroPattern = {
   tagName: 'hero-pattern',

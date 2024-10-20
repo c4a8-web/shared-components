@@ -125,7 +125,7 @@
   </div>
 </template>
 <script>
-import State from '../assets/js/state.js';
+import State from '../utils/state.js';
 
 export default {
   tagName: 'contact',

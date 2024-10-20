@@ -1,0 +1,195 @@
+$richtext-offset-spacing-xl: 7.5rem;
+$richtext-headline-top-spacing: spacing(20);
+$richtext-conclusion-spacing-sm: spacing(4);
+$richtext-conclusion-spacing-lg: $spacing-content-default;
+
+.richtext {
+  @include font-style($style: 'font-size-2', $line: 'wide');
+
+  container-type: inline-size;
+
+  &.richtext__small {
+    @include font-style($style: 'font-size-1', $line: 'wide');
+  }
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include richtext-width;
+  }
+
+  > blockquote,
+  > p {
+    &:first-of-type {
+      img {
+        margin-top: 0;
+      }
+    }
+  }
+
+  p {
+    + * {
+      margin-top: spacing(12);
+    }
+
+    + h2,
+    + h3,
+    + h4,
+    + h5,
+    + h6 {
+      margin-top: $richtext-headline-top-spacing;
+    }
+  }
+
+  ul {
+    @include richtext-width;
+    @include bulletpoints;
+
+    list-style: none;
+    margin-bottom: 0;
+
+    &.dashed {
+      li {
+        &::before {
+          margin-left: 0;
+          content: '';
+        }
+      }
+    }
+
+    + * {
+      margin-top: spacing(12);
+    }
+
+    li {
+      margin-bottom: spacing(4);
+
+      &::before {
+        top: 16px;
+      }
+    }
+  }
+
+  blockquote {
+    border-left: 6px solid var(--color-green-blue);
+    padding-left: 1.5em;
+  }
+
+  h2,
+  h3,
+  h4 {
+    &[id='über'],
+    &[id='Über'],
+    &[id^='über-'],
+    &[id^='Über-'],
+    &[id='about'],
+    &[id='About'],
+    &[id^='about-'],
+    &[id^='About-'],
+    &#Fazit,
+    &#fazit,
+    &#Conclusion,
+    &#conclusion {
+      @include richtext-width;
+
+      background-color: var(--color-green-blue);
+      color: var(--color-white);
+      padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
+      margin: $richtext-headline-top-spacing 0 0 0;
+
+      ~ p {
+        background-color: var(--color-green-blue);
+        color: var(--color-white);
+        padding: 0 $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm;
+        margin-top: -1px;
+        margin-bottom: 0;
+      }
+
+      @include media-breakpoint-up(lg) {
+        padding: $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg spacing(10);
+
+        ~ p {
+          padding: 0 $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg;
+        }
+      }
+    }
+
+    &#fazit,
+    &#conclusion {
+      margin: spacing(8) 0 0 0;
+    }
+  }
+
+  h6:last-of-type {
+    margin-top: $spacing-content-default;
+    margin-bottom: 0;
+    padding-top: spacing(14);
+    font-size: $font-size-4;
+
+    + ul {
+      margin-bottom: $spacing-content-default;
+      list-style: none;
+      padding-top: $spacing-content-default;
+      padding-bottom: spacing(8);
+
+      li {
+        padding-bottom: spacing(4);
+        width: calc(100% - #{spacing(4)});
+
+        @include media-breakpoint-up(md) {
+          width: 75%;
+        }
+
+        @include media-breakpoint-up(xl) {
+          width: 60%;
+        }
+      }
+
+      a {
+        &::before {
+          content: '';
+          background-image: assets('../svg/arrow-right.svg');
+          background-repeat: no-repeat;
+          width: 28px;
+          height: 17px;
+          float: right;
+          transform: translateX(spacing(4)) translateY(spacing(1)) rotate(-45deg);
+        }
+
+        &:hover {
+          &::before {
+            background-image: assets('../svg/arrow-right-blue-medium.svg');
+          }
+        }
+      }
+    }
+  }
+
+  h6:last-of-type + ul,
+  h6 {
+    &:last-of-type {
+      background-color: var(--color-black-4);
+      width: 100%;
+      padding-left: spacing(8);
+      padding-right: spacing(8);
+
+      @include media-breakpoint-up(xl) {
+        width: calc(100% + (2 * #{$richtext-offset-spacing-xl}));
+        margin-left: -#{$richtext-offset-spacing-xl};
+        padding-left: $richtext-offset-spacing-xl;
+        padding-right: $richtext-offset-spacing-xl;
+      }
+    }
+  }
+
+  h2,
+  h3 {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    margin: spacing(8) 0;
+  }
+}

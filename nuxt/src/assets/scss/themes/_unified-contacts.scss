@@ -1,0 +1,30 @@
+// unified-contacts theme related styling here
+
+:root {
+  --site: 'unifiedcontacts';
+  // Theme colors
+  --color-headlines: var(--color-midnight);
+  --color-copy: var(--color-midnight);
+  --color-primary: var(--color-green-blue);
+  --color-primary-accent: var(--color-cyprus);
+  --color-primary-accent-light: var(--color-ziggurat);
+  --color-secondary: var(--color-cream-can);
+  --color-secondary-accent: var(--color-cream-can);
+  --color-copy-highlight: var(--color-cream-can);
+
+  // Element colors
+  --color-bg-grey: var(--color-porcelain);
+  --color-bg-dark-grey: var(--color-regent-grey);
+  --color-svg-icon: var(--color-primary);
+  --color-svg-icon--hover: var(--color-primary-accent);
+  --color-bg-checkbox: var(--color-blue-medium);
+  --color-border: red;
+  --color-loading: red;
+  --color-loading--1: var(--color-primary);
+  --color-loading--2: var(--color-yellow);
+  --color-loading--3: var(--color-conifer);
+  --color-loading--4: var(--color-orange);
+
+  // fonts
+  --font-family: 'Miriam Libre', sans-serif;
+}

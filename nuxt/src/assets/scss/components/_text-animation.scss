@@ -1,0 +1,36 @@
+.text-animation {
+  position: relative;
+}
+
+.text-animation__subline {
+  margin-top: spacing(6);
+  transition: opacity $animation-transition 1.5s;
+}
+
+.text-animation__placeholder {
+  opacity: 0;
+  pointer-events: none;
+
+  @include media-breakpoint-up(lg) {
+    min-height: 300px;
+  }
+
+  @include media-breakpoint-down(md) {
+    min-height: none !important;
+  }
+}
+
+.text-animation__visible {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.text-animation__cta {
+  margin-top: spacing(6);
+  transition: opacity $animation-transition 1.5s;
+
+  @include media-breakpoint-up(lg) {
+    margin-top: spacing(12);
+  }
+}

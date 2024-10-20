@@ -1,0 +1,319 @@
+$animation-transition: cubic-bezier(0.19, 1, 0.2, 1);
+$transition-tween-t1: 0.2s ease-in-out;
+
+@mixin animation-start-state {
+  opacity: 0;
+}
+
+@mixin animation-end-state {
+  opacity: 1;
+}
+
+@mixin background-grow($color, $spacing: 0, $half: false) {
+  position: relative;
+  z-index: 1;
+
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    height: calc(var(--type-default-line-height) * 1em + (2 * #{$spacing}));
+    width: 0;
+    left: 0;
+    top: 0;
+    background-color: $color;
+    animation: grow;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: $animation-transition;
+    z-index: -1;
+
+    @if $half {
+      height: 1rem;
+      top: 1rem;
+    }
+  }
+}
+
+@mixin fade-in-X($from: 'bottom', $duration: 0.5s) {
+  @if ($from == 'bottom') {
+    transform: translate3d(0, var(--utility-animation-distance), 0);
+    animation: fade-in-from-bottom $duration forwards;
+  } @else {
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
+    animation: fade-in-from-top $duration forwards;
+  }
+
+  animation-timing-function: $animation-transition;
+}
+
+@keyframes fade-in-from-bottom {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, var(--utility-animation-distance), 0);
+  }
+  100% {
+    opacity: var(--utility-animation-to-opacity);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes fade-in-from-top {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, calc(-1 * var(--utility-animation-distance)), 0);
+  }
+  100% {
+    opacity: var(--utility-animation-to-opacity);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes grow {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: unquote('min(30vw, 150px)');
+  }
+}
+
+@keyframes growFull {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes slideIn {
+  0% {
+    opacity: 0;
+    top: 100px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes moveRightLeft {
+  0% {
+    transform: translateX(0%);
+  }
+
+  30% {
+    transform: translateX(20%);
+  }
+
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes moveTopRight {
+  0% {
+    transform: scale(1);
+    transform-origin: left bottom;
+    position: relative;
+  }
+
+  100% {
+    transform: scale(1.2);
+    transform-origin: left bottom;
+    position: relative;
+    top: 1px;
+  }
+}
+
+/**
+* Animation for Background Shapes
+*/
+@mixin svg-shape-animation($shapeCount: 4) {
+  @for $i from 1 through $shapeCount {
+    path {
+      &:nth-child(#{$i}n) {
+        animation: svgShape#{$i} #{$i + 8}s ease-in-out alternate infinite;
+        transform-origin: center;
+      }
+    }
+  }
+}
+
+@keyframes svgShape1 {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  100% {
+    transform: translateY(50px) rotate(-5deg) scale(1.1);
+  }
+}
+@keyframes svgShape2 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(50px) rotate(-5deg);
+  }
+}
+@keyframes svgShape3 {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+  }
+  100% {
+    transform: translateY(-50px) rotate(2deg) scale(0.8);
+  }
+}
+@keyframes svgShape4 {
+  0% {
+    transform: translateX(0) rotate(0deg);
+  }
+  100% {
+    transform: translateX(-50px) rotate(-2deg);
+  }
+}
+
+.svg-shape-animation {
+  @include svg-shape-animation;
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+
+@mixin move-top-right {
+  animation: moveTopRight;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
+}
+
+@mixin move-right-left {
+  animation: moveRightLeft;
+  animation-duration: 0.4s;
+  animation-fill-mode: forwards;
+  animation-timing-function: $animation-transition;
+}
+
+@keyframes blurry-orbit {
+  0% {
+    transform: translate(var(--blurry-x1), var(--blurry-y1));
+  }
+  20% {
+    filter: blur(var(--blurry-blur));
+    transform: translate(var(--blurry-x2), var(--blurry-y2));
+  }
+  70% {
+    filter: blur(0);
+    transform: translate(var(--blurry-x3), var(--blurry-y3));
+  }
+  100% {
+    filter: blur(var(--blurry-blur));
+    transform: translate(var(--blurry-x1), var(--blurry-y1));
+  }
+}
+
+.fade-in-bottom,
+.fade-in-top {
+  @include animation-start-state;
+}
+
+.fade-in-bottom {
+  &.is-starting {
+    @include fade-in-X($from: 'bottom');
+  }
+}
+
+.fade-in-top {
+  &.is-starting {
+    @include fade-in-X($from: 'top');
+  }
+}
+
+.zoom-in-out {
+  &.is-starting {
+    transform: scale(1);
+    animation: zoom-in-out 3s forwards;
+  }
+}
+
+.bouncing {
+  &.is-starting {
+    transform: translateY(0);
+    animation: bouncing 2s forwards;
+  }
+}
+
+.fill-in-left {
+  width: 0%;
+  overflow: hidden;
+  animation: fill-in-from-left 3s forwards;
+}
+
+@keyframes zoom-in-out {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fill-in-from-left {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes bouncing {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-50px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(var(--animation-scroll-width));
+  }
+}
+
+@keyframes scroll-infinite {
+  to {
+    transform: translate(calc(-50% - 0.5rem));
+  }
+}

@@ -1,0 +1,90 @@
+.testimonials-slider {
+  width: 100%;
+  overflow: hidden;
+
+  @include media-breakpoint-up(md) {
+    .testimonials-slider__slides {
+      column-width: inherit;
+      column-gap: inherit;
+      width: auto;
+
+      .testimonial-teaser {
+        max-width: 60%;
+        width: 60%;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(lg) {
+    overflow: visible;
+
+    .testimonials-slider__slides {
+      .testimonial-teaser {
+        max-width: 50%;
+        width: 50%;
+
+        &:nth-child(2n) {
+          .testimonial-teaser__wrapper {
+            margin-top: spacing(30);
+            margin-left: spacing(10);
+            margin-right: spacing(10);
+          }
+        }
+      }
+    }
+  }
+}
+
+.testimonials-slider__subline {
+  @include media-breakpoint-up(lg) {
+    width: 55%;
+  }
+}
+
+.testimonials-slider__slides {
+  // column-width: 350px;
+  // column-gap: 0;
+  // width: 2000px;
+
+  // TODO mobile grid with 2 rows and the items align where they fit. free swiping mode without the dots.
+
+  .testimonial-teaser__img {
+    width: calc(100vw - 180px);
+  }
+
+  .slick-list,
+  .slick-track {
+    align-items: flex-start;
+  }
+
+  .testimonial-teaser {
+    max-width: 75%;
+    width: 75%;
+
+    &:nth-child(2n) {
+      .testimonial-teaser__wrapper {
+        margin-top: spacing(22);
+        margin-right: spacing(6);
+      }
+    }
+
+    .testimonial-teaser__wrapper {
+      margin-right: 1px;
+      margin-left: spacing(7);
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    .slick-slide {
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+
+  @include media-breakpoint-up(sm) {
+    .testimonial-teaser__img {
+      width: auto;
+    }
+  }
+}

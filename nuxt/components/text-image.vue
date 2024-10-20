@@ -91,8 +91,8 @@
   </div>
 </template>
 <script>
-import StickyScroller from '../assets/js/sticky-scroller.js';
-import UtilityAnimation from '../assets/js/utility-animation.js';
+import StickyScroller from '../utils/sticky-scroller.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   tagName: 'text-image',

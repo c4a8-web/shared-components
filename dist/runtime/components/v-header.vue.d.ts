@@ -22,7 +22,7 @@ declare namespace _default {
         function setActiveNavigation(): void;
         function setLinkWidth(): void;
         function showFlyoutBlock(children: any): any;
-        function isLowerBreakpoint(): any;
+        function isLowerBreakpoint(): boolean;
         function bindEvents(): void;
         function handleResize(): void;
         function handleScroll(): void;
@@ -58,7 +58,7 @@ declare namespace _default {
         function getHrefLang(lang: any): string | null | undefined;
         function getParentLink(key: any): any;
         function setActiveLinks(): void;
-        function headerItemClasses(item: any): any[];
+        function headerItemClasses(item: any): string[];
         function isLinkListHidden(item: any, index: any): boolean;
         function headerLinkClasses(item: any, index: any): any[];
         function headerProductListClasses(item: any, index: any): any[];

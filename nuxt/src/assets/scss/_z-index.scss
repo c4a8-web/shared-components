@@ -1,0 +1,60 @@
+$z-indexed-elements: (
+  '.hero__pattern',
+  '.hero__background-img',
+  '.hero__background-shape',
+  '.hero__container',
+  '.hero__background-shape-wrapper',
+  '.logo-list.logo-list--is-overlapping',
+  '.content-scroller',
+  '.dropdown__background-shim',
+  '.dropdown',
+  '.dropdown__items',
+  '.hero-text-image__cta',
+  '.hero-text-image__icon.icon',
+  '.event-overview.event-overview--overlap',
+  '.scroll-arrow',
+  '.service-overview',
+  '.event-list',
+  '.people-square.people-square--absolute',
+  '.back-to-top',
+  '.fab-button',
+  '.fab-hint',
+  '.fab-hint__content',
+  '.google-map-card',
+  '.tool-tip__content'
+);
+
+$static-z-indexed-elements: (
+  '.shared-components.header': 1001,
+);
+
+$z-index-map: $static-z-indexed-elements;
+$z-index-counter: 10;
+
+@each $element in $z-indexed-elements {
+  $z-index-map: map-merge(
+    $z-index-map,
+    (
+      $element: $z-index-counter,
+    )
+  );
+  $z-index-counter: $z-index-counter + 10;
+}
+
+@mixin z-index($selector: &, $important: false) {
+  $component: to-string($selector);
+  $value: map-get($z-index-map, $component);
+
+  @if $value {
+    z-index: $value #{if($important, '!important', '')};
+  } @else {
+    background: #f00 !important;
+    color: #000 !important;
+    z-index: 1000 !important;
+    display: block !important;
+
+    &::before {
+      content: 'Missing item: `#{$component}` in $z-indexed-elements' !important;
+    }
+  }
+}

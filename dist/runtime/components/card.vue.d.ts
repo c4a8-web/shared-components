@@ -7,7 +7,7 @@ declare namespace _default {
                 maxTags: number;
             };
             computed: {
-                lang(): any;
+                lang(): string;
                 tagsList(): any;
                 dataAuthorsList(): any;
             };
