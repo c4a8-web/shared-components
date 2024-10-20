@@ -1,8 +1,18 @@
-import { defineNuxtModule, addPlugin, addComponentsDir, createResolver, addComponent } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  // addPlugin,
+  addComponentsDir,
+  createResolver,
+  // addComponent,
+  addTemplate,
+  addLayout,
+} from '@nuxt/kit';
 
-export interface ModuleOptions {}
+import type { NuxtTemplate, NuxtTypeTemplate, ResolvedNuxtTemplate } from '@nuxt/schema';
 
-export default defineNuxtModule<ModuleOptions>({
+// export interface ModuleOptions {}
+
+export default defineNuxtModule({
   meta: {
     name: 'shared-components-nuxt',
     configKey: 'sharedComponentsNuxt',
@@ -21,5 +31,12 @@ export default defineNuxtModule<ModuleOptions>({
     addComponentsDir({
       path: resolve('./runtime/components'),
     });
+
+    const template = addTemplate<NuxtTemplate>({
+      src: resolve('./runtime/components/layouts/default.vue'),
+      write: true,
+    });
+
+    addLayout(template, 'default');
   },
 });

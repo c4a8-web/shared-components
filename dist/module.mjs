@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponentsDir } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addComponentsDir, addTemplate, addLayout } from '@nuxt/kit';
 
 const module = defineNuxtModule({
   meta: {
@@ -15,6 +15,11 @@ const module = defineNuxtModule({
     addComponentsDir({
       path: resolve("./runtime/components")
     });
+    const template = addTemplate({
+      src: resolve("./runtime/components/layouts/default.vue"),
+      write: true
+    });
+    addLayout(template, "default");
   }
 });
 
