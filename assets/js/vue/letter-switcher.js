@@ -129,6 +129,13 @@ export default {
         <div :class="letterSwitchAnimationClassList" ref="animation">
           <div class="letter-switcher__container-animation">
             <span>S</span><div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">e</span>
+              <span class="letter-switcher__letter letter-switcher__middle">d</span>
+              <span class="letter-switcher__letter letter-switcher__middle">c</span>
+              <span class="letter-switcher__letter letter-switcher__middle">b</span>
+              <span class="letter-switcher__letter letter-switcher__middle">a</span>
+              <span class="letter-switcher__letter letter-switcher__default">_</span>
+            </div>cur<div class="letter-switcher__group" ref="group">
               <span class="letter-switcher__letter letter-switcher__letter-end">i</span>
               <span class="letter-switcher__letter letter-switcher__middle">h</span>
               <span class="letter-switcher__letter letter-switcher__middle">g</span>
@@ -139,12 +146,11 @@ export default {
               <span class="letter-switcher__letter letter-switcher__middle">b</span>
               <span class="letter-switcher__letter letter-switcher__middle">a</span>
               <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>cherhei<div class="letter-switcher__group" ref="group">
-              <span class="letter-switcher__letter letter-switcher__letter-end">t</span>
-              <span class="letter-switcher__letter letter-switcher__middle">s</span>
-              <span class="letter-switcher__letter letter-switcher__middle">r</span>
-              <span class="letter-switcher__letter letter-switcher__middle">q</span>
-              <span class="letter-switcher__letter letter-switcher__middle">p</span>
+            </div>ty <template v-if="isLower">-<br/></template>
+          </div>
+          <div class="letter-switcher__container-animation">
+          Ga<div class="letter-switcher__group" ref="group">
+              <span class="letter-switcher__letter letter-switcher__letter-end">p</span>
               <span class="letter-switcher__letter letter-switcher__middle">o</span>
               <span class="letter-switcher__letter letter-switcher__middle">n</span>
               <span class="letter-switcher__letter letter-switcher__middle">m</span>
@@ -161,23 +167,7 @@ export default {
               <span class="letter-switcher__letter letter-switcher__middle">b</span>
               <span class="letter-switcher__letter letter-switcher__middle">a</span>
               <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>s<template v-if="isLower">-<br/></template>
-          </div>
-          <div class="letter-switcher__container-animation">
-          lüc<div class="letter-switcher__group" ref="group">
-              <span class="letter-switcher__letter letter-switcher__letter-end">k</span>
-              <span class="letter-switcher__letter letter-switcher__middle">j</span>
-              <span class="letter-switcher__letter letter-switcher__middle">i</span>
-              <span class="letter-switcher__letter letter-switcher__middle">h</span>
-              <span class="letter-switcher__letter letter-switcher__middle">g</span>
-              <span class="letter-switcher__letter letter-switcher__middle">f</span>
-              <span class="letter-switcher__letter letter-switcher__middle">e</span>
-              <span class="letter-switcher__letter letter-switcher__middle">d</span>
-              <span class="letter-switcher__letter letter-switcher__middle">c</span>
-              <span class="letter-switcher__letter letter-switcher__middle">b</span>
-              <span class="letter-switcher__letter letter-switcher__middle">a</span>
-              <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>e!
+            </div>!
           </div>
         </div>
         <div :class="letterSwitchEndClassList">
