@@ -146,7 +146,7 @@ export default {
               <span class="letter-switcher__letter letter-switcher__middle">b</span>
               <span class="letter-switcher__letter letter-switcher__middle">a</span>
               <span class="letter-switcher__letter letter-switcher__default">_</span>
-            </div>ty <template v-if="isLower">-<br/></template>
+            </div>ty&nbsp;<template v-if="isLower">-<br/></template>
           </div>
           <div class="letter-switcher__container-animation">
           Ga<div class="letter-switcher__group" ref="group">
