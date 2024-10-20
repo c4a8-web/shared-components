@@ -22,7 +22,6 @@ export default defineNuxtModule({
     // prefix: 'shared'
   },
   setup(_options, _nuxt) {
-    console.log('🚀 ~ setup ~ _options:', _options);
     const { resolve } = createResolver(import.meta.url);
 
     // addPlugin(resolve('./runtime/plugin'));
