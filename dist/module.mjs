@@ -10,7 +10,6 @@ const module = defineNuxtModule({
     // prefix: 'shared'
   },
   setup(_options, _nuxt) {
-    console.log("\u{1F680} ~ setup ~ _options:", _options);
     const { resolve } = createResolver(import.meta.url);
     _nuxt.options.css.push(resolve("./styles/index.min.css"));
     if (_options) {

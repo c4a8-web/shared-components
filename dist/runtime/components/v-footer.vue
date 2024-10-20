@@ -157,7 +157,7 @@
 </template>
 <script>
 import Tools from '../utils/tools.js';
-import FooterData from '../data/footer-data.js';
+import FooterData from '../utils/data/footer-data.js';
 
 const footerSlider = {
   tagName: 'v-footer-slider',

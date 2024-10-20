@@ -2,13 +2,13 @@
   <div id="app" :class="computedClass">
     <v-header v-bind="headerData" :lang="lang"></v-header>
     <slot />
+    <v-footer v-bind="footerData" :lang="lang"></v-footer>
   </div>
 </template>
 
 <script setup>
 /*
-<v-footer v-bind="footerData" :lang="lang"></v-footer>
-*/
+ */
 const props = defineProps({
   headerData: Object,
   footerData: Object,
