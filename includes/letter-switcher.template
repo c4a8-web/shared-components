@@ -1,10 +1,10 @@
 
 
 <letter-switcher
-  text-start="Sicherheitslücke!"
-  text-end="beste Verteidigung!"
-  overline-start="Tschüss"
-  overline-end="Hallo"
+  text-start="Security Gap!"
+  text-end="Best Defence!"
+  overline-start="Goodbye"
+  overline-end="Hello"
 >
 
 </letter-switcher>
