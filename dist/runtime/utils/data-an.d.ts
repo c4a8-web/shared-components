@@ -9,7 +9,7 @@ declare class Analytics {
     root: any;
     code: any;
     parent: any;
-    formInstance: any;
+    formInstance: import("./components/base-component.js").default;
     form: any;
     isInForm(): boolean;
     bindEvents(): void;
