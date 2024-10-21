@@ -9,6 +9,8 @@ const Lang = {
     withAuthor: 'Mit',
     onlyLanguage: 'German only',
     socialsTitle: 'Socials',
+    vatInfo:
+      'Weitere Informationen zu den <a data-trigger-id="product-stage-modal" data-trigger="modal">Preiskonditionen.</a>',
   },
   en: {
     tags: 'Tags',
@@ -31,6 +33,8 @@ const Lang = {
     withAuthor: 'Con',
     onlyLanguage: 'Sólo español',
     socialsTitle: 'Sociales',
+    vatInfo:
+      'More information about the <a data-trigger-id="product-stage-modal" data-trigger="modal">pricing conditions.</a>',
   },
 };
 
