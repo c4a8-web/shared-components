@@ -6,6 +6,6 @@ declare namespace _default {
             export { _default as default };
         }
     }
-    function render(): any[];
+    function render(h: any): any[];
 }
 export default _default;

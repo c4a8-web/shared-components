@@ -6,8 +6,7 @@ export default {
       default: [],
     },
   },
-  render() {
-    const h = window.vueH;
+  render(h) {
     const items = this.items();
 
     const renderList = [];
