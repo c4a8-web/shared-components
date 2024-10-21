@@ -44,7 +44,7 @@
           hasAnimation=true
         %}
       {% endfor %}
-      <div class="pt-5">{{ site.data.lang[lang].vatInfo }}</div>
+      <div class="pricing-details__infos pt-5">{{ site.data.lang[lang].vatInfo }}</div>
     </div>
   </div>
 </section>
