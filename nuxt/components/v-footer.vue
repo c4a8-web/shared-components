@@ -99,15 +99,14 @@
                 <div class="footer__vertical-line" v-if="index < dataValue.partners.length - 1"></div>
               </template>
             </div>
-
-            <footer-slider :items="dataValue.highlights" :bg-color="bgColorRgbaValue" v-if="!isCorporate" />
+            <v-footer-slider :items="dataValue.highlights" :bg-color="bgColorRgbaValue" v-if="!isCorporate" />
           </div>
         </div>
       </div>
 
       <div v-if="isCorporate" class="footer__content-row row">
         <div class="footer__content col-lg-12">
-          <footer-slider :items="dataValue.highlights" :bg-color="bgColorRgbaValue" />
+          <v-footer-slider :items="dataValue.highlights" :bg-color="bgColorRgbaValue" />
         </div>
       </div>
 
@@ -159,28 +158,8 @@
 import Tools from '../utils/tools.js';
 import FooterData from '../utils/data/footer-data.js';
 
-const footerSlider = {
-  tagName: 'v-footer-slider',
-  template: `
-    <div class="footer__slider-container">
-      <carousel
-        :items="items"
-        :bg-color="bgColor"
-      >
-      </carousel>
-    </div>
-  `,
-  props: {
-    items: Array,
-    bgColor: String,
-  },
-};
-
 export default {
   tagName: 'v-footer',
-  components: {
-    'footer-slider': footerSlider,
-  },
   data() {
     return {
       bgColorRgbaValue: null,

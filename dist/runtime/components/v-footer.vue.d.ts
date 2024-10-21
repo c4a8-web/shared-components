@@ -1,15 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'footer-slider': {
-            tagName: string;
-            template: string;
-            props: {
-                items: ArrayConstructor;
-                bgColor: StringConstructor;
-            };
-        };
-    };
     function data(): {
         bgColorRgbaValue: null;
     };

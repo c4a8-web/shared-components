@@ -1,14 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'carousel-item': {
-            tagName: string;
-            template: string;
-            props: {
-                item: ObjectConstructor;
-            };
-        };
-    };
     function data(): {
         clientWidth: null;
         resizeObserver: null;
