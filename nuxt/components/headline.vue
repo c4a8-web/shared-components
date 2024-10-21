@@ -1,11 +1,6 @@
 <template>
-  <component
-    :is="tag"
-    :class="classList"
-    v-html="text"
-    v-if="text"
-    :data-utility-animation-step="dataUtilityAnimationStep"
-  >
+  <component :is="tag" :class="classList" v-if="text" :data-utility-animation-step="dataUtilityAnimationStep">
+    <span v-html="text"></span>
   </component>
   <component :is="tag" :class="classList" v-else :data-utility-animation-step="dataUtilityAnimationStep">
     <slot></slot>

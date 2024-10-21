@@ -21,7 +21,7 @@
         <div class="hero__intro row" v-if="overline || headlineText || subline" ref="intro">
           <div class="hero__intro-col col">
             <span class="hero__overline" v-if="overline">{{ overline }}</span>
-            <headline :class="headlineClassList" v-if="headlineText" :level="level" v-html="headlineText"></headline>
+            <headline :class="headlineClassList" v-if="headlineText" :level="level">{{ headlineText }}</headline>
             <div class="hero__content-shape" v-if="shapeInContent">
               <v-img
                 v-if="showShape"

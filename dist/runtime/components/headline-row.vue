@@ -2,7 +2,7 @@
   <div :class="classList">
     <div class="row">
       <div :class="['col-sm-12', animationStepClass, headlineRowClassesValue]" data-utility-animation-step="1">
-        <headline :level="level" :text="text" :classes="headlineClasses" />
+        <headline :level="level" :classes="headlineClasses">{{ text }}</headline>
       </div>
     </div>
   </div>
