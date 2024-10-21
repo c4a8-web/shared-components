@@ -40296,11 +40296,6 @@ svg.streamline-icon {
 .contact + footer {
   margin-top: 0 !important;
 }
-@media (min-width: 992px) {
-  .contact + footer {
-    margin-top: 0 !important;
-  }
-}
 
 .contact__detail {
   flex-wrap: wrap;

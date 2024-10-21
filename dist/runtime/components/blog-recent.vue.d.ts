@@ -35,7 +35,7 @@ declare namespace _default {
         let sublineClasses: StringConstructor;
         let spacing: StringConstructor;
         namespace posts {
-            export let type: (StringConstructor | ArrayConstructor)[];
+            export let type: (ArrayConstructor | StringConstructor)[];
             let _default: never[];
             export { _default as default };
         }
