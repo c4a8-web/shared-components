@@ -7,8 +7,6 @@
 </template>
 
 <script setup>
-/*
- */
 const props = defineProps({
   headerData: Object,
   footerData: Object,
