@@ -1,22 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'logo-list-items': {
-            tagName: string;
-            computed: {};
-            methods: {
-                getItemComponent(item: any): "a" | "span";
-                getDelay(index: any): string;
-                getIndex(index: any): any;
-            };
-            template: string;
-            props: {
-                list: ArrayConstructor;
-                isOverlapping: BooleanConstructor;
-                isClone: BooleanConstructor;
-            };
-        };
-    };
     function mounted(): void;
     namespace computed {
         function defaultSpacing(): void;

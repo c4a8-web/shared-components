@@ -49,7 +49,7 @@ declare namespace _default {
     }
     namespace props {
         export namespace imgSrcSets {
-            export let type: (StringConstructor | ObjectConstructor)[];
+            export let type: (ObjectConstructor | StringConstructor)[];
             let _default: null;
             export { _default as default };
         }
