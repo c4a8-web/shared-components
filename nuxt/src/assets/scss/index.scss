@@ -1,14 +1,14 @@
 @charset 'UTF-8';
 
 // TODO move this to real dependences or get rid of it
-@layer vendor {
-  @import '../front/assets/vendor/leaflet/dist/leaflet';
-  @import '../front/assets/css/theme';
-  @import '../front/assets/vendor/slick-carousel/slick/slick';
-  @import '../front/assets/vendor/fontawesome/css/all';
-  @import '../front/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox';
-  @import '../front/assets/vendor/ion-range-slider/ion.rangeSlider';
-}
+// @layer vendor {
+@import '../front/assets/vendor/leaflet/dist/leaflet';
+@import '../front/assets/css/theme';
+@import '../front/assets/vendor/slick-carousel/slick/slick';
+@import '../front/assets/vendor/fontawesome/css/all';
+@import '../front/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox';
+@import '../front/assets/vendor/ion-range-slider/ion.rangeSlider';
+// }
 
 @import 'colors';
 @import 'user-variables-type';
