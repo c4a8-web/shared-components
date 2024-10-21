@@ -1,4 +1,23 @@
 const ImgSrcSets = {
+  highlightTeaser: {
+    srcSets: [
+      {
+        params: 'c_fill,g_face,h_600,w_600,x_0,y_0/',
+        media: '(max-width: 576px)',
+      },
+      {
+        params: 'c_fill,g_face,h_800,w_800,x_0,y_0/',
+        media: '(max-width: 765px)',
+      },
+      {
+        params: 'c_fill,g_face,h_1000,w_1000,x_0,y_0/',
+        media: '(max-width: 1200px)',
+      },
+      {
+        params: 'c_fill,g_face,h_1300,w_1300,x_0,y_0/',
+      },
+    ],
+  },
   heroStudy: {
     srcSets: [
       {
