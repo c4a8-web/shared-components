@@ -1,6 +1,6 @@
 import {
   defineNuxtModule,
-  // addPlugin,
+  addPlugin,
   addComponentsDir,
   createResolver,
   // addComponent,
@@ -24,7 +24,7 @@ export default defineNuxtModule({
   setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
-    // addPlugin(resolve('./runtime/plugin'));
+    addPlugin(resolve('./runtime/plugin'));
 
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 

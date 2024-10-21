@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponentsDir, addTemplate, addLayout } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addPlugin, addComponentsDir, addTemplate, addLayout } from '@nuxt/kit';
 
 const module = defineNuxtModule({
   meta: {
@@ -11,6 +11,7 @@ const module = defineNuxtModule({
   },
   setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
+    addPlugin(resolve("./runtime/plugin"));
     _nuxt.options.css.push(resolve("./styles/index.min.css"));
     if (_options) {
       const { theme } = _options;

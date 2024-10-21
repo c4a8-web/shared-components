@@ -29,6 +29,7 @@
     "@nuxt/kit": "^3.13.2",
     "@nuxt/module-builder": "^0.8.4",
     "autoprefixer": "^10.4.20",
+    "bootstrap": "^4.5.3",
     "cssnano": "^7.0.6",
     "nuxt": "3.13.2",
     "postcss": "^8.4.47",

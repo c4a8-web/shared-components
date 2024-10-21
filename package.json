@@ -41,6 +41,7 @@
     "cssnano-preset-advanced": "^7.0.6",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
+    "bootstrap": "^4.5.3",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5",
     "vue3-lottie": "^3.3.1"
