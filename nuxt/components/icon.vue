@@ -8,10 +8,12 @@ import Tools from '../utils/tools.js';
 
 // TODO figure out why auto-import does not work here correctly. rendering it manually works fine.
 import ComputerShield from './icons/computer-shield.vue';
+import PlusMinus from './icons/plus-minus.vue';
 
 export default {
   components: {
     'computer-shield': ComputerShield,
+    'plus-minus': PlusMinus,
   },
   tagName: 'icon',
   data() {
