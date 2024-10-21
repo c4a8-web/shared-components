@@ -19,6 +19,7 @@ declare namespace _default {
         let footer: StringConstructor;
         let centered: BooleanConstructor;
         let headlineClasses: StringConstructor;
+        let headlineLevel: StringConstructor;
         let spacing: StringConstructor;
     }
     function mounted(): void;

@@ -7,6 +7,7 @@
         :classes="featureGridHeadlineRowClasses"
         utilityAnimationStep="1"
         :noContainer="true"
+        :level="headlineLevel"
       ></headline-row>
 
       <p class="feature-grid__description w-lg-50 text-center mt-3 mx-auto" v-if="description">{{ description }}</p>
@@ -55,6 +56,7 @@ export default {
     footer: String,
     centered: Boolean,
     headlineClasses: String,
+    headlineLevel: String,
     spacing: String,
   },
   mounted() {
