@@ -4,6 +4,7 @@ import {
   addComponentsDir,
   createResolver,
   // addComponent,
+  resolveModule,
   addTemplate,
   addLayout,
 } from '@nuxt/kit';
@@ -21,10 +22,13 @@ export default defineNuxtModule({
     // TODO add prefix and rename components
     // prefix: 'shared'
   },
-  setup(_options, _nuxt) {
+  async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
     addPlugin(resolve('./runtime/plugin'));
+
+    _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
+    _nuxt.options.build.transpile.push(resolve('runtime'), 'node-html-parser');
 
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 

@@ -40,7 +40,7 @@ declare namespace _default {
         function variant(): "card--long" | "card--products" | "card--event" | "card--row" | "card--default";
         function classList(): any[];
         function productValue(): any;
-        function truncatedExcerpt(): any;
+        function truncatedExcerpt(): string;
         function strippedExcerpt(): any;
         function cardDate(): any;
         function hasExtension(): any;

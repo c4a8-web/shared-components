@@ -31,6 +31,7 @@
     "autoprefixer": "^10.4.20",
     "bootstrap": "^4.5.3",
     "cssnano": "^7.0.6",
+    "node-html-parser": "^6.1.13",
     "nuxt": "3.13.2",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",

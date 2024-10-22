@@ -1,4 +1,4 @@
-// import { parse } from 'node-html-parser';
+import { parse } from 'node-html-parser';
 
 class Tools {
   static defaultLang = 'de';
@@ -11,8 +11,6 @@ class Tools {
   static storybookPath = '/shared-components';
 
   static decodeHTML = (input) => {
-    return '// TODO fix-html-parser';
-
     const document = parse(input, 'text/html');
 
     return document.textContent;

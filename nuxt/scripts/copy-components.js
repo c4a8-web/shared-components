@@ -48,7 +48,7 @@ const copyFiles = (source, destination, extension, recursive) => {
           if (err) {
             console.error(`Error copying file ${file.name} from ${source} to ${destination}:`, err);
           } else {
-            console.log(`Copied ${file.name} from ${source} to ${destination}`);
+            // console.log(`Copied ${file.name} from ${source} to ${destination}`);
           }
         });
       }

@@ -5,7 +5,7 @@ declare class Tools {
     static priceFormatter: Intl.NumberFormat;
     static storagePrefix: string;
     static storybookPath: string;
-    static decodeHTML: (input: any) => any;
+    static decodeHTML: (input: any) => string;
     static intersection: (r1: any, r2: any) => number;
     static isInViewportPercent(element: any, percent: any): boolean;
     static getScrollTop(element: any): number | undefined;
