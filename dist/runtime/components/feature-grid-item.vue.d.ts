@@ -19,7 +19,7 @@ declare namespace _default {
         let classes: StringConstructor;
         let item: ObjectConstructor;
         let index: NumberConstructor;
-        let centered: StringConstructor;
+        let centered: BooleanConstructor;
     }
 }
 export default _default;

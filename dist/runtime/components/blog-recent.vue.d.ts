@@ -1,6 +1,6 @@
 declare namespace _default {
     namespace components {
-        export { markdownFiles };
+        export { MarkdownFiles };
     }
     let tagName: string;
     namespace computed {
@@ -60,5 +60,8 @@ declare namespace _default {
             export { _default_5 as default };
         }
     }
+    function data(): {
+        hideData: string[];
+    };
 }
 export default _default;

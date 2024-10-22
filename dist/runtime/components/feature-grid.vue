@@ -69,7 +69,7 @@ export default {
       return 'col-lg-' + 12 / this.gridSize;
     },
     featureGridHeadlineRowClasses() {
-      return ['fade-in-bottom', this.headlineClasses];
+      return ['fade-in-bottom', this.headlineClasses ? this.headlineClasses : null].join(' ');
     },
     containerClasses() {
       return ['container', this.spacing];

@@ -2,6 +2,7 @@ declare namespace _default {
     let components: {
         'computer-shield': any;
         'plus-minus': any;
+        'arrow-narrow': any;
     };
     let tagName: string;
     function data(): {

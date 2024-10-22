@@ -85,7 +85,7 @@ export default {
     classes: String,
     item: Object,
     index: Number,
-    centered: String,
+    centered: Boolean,
   },
 };
 </script>

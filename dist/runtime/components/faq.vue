@@ -1,5 +1,5 @@
 <template>
-  <div :class="classList" :style="style">
+  <div :class="classList" :style="style" ref="root">
     <div class="row">
       <div class="col-lg-8">
         <headline
@@ -35,6 +35,7 @@
 </template>
 <script>
 import State from '../utils/state.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   tagName: 'faq',
@@ -67,6 +68,11 @@ export default {
     headlineLevel() {
       return this.headline?.level ? this.headline.level : 'h2';
     },
+  },
+  mounted() {
+    if (!this.$refs.root) return;
+
+    UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
     getDelay(entry) {

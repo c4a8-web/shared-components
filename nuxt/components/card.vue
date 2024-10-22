@@ -71,9 +71,9 @@
       </div>
 
       <div class="card__body card-body mt-0 pt-0 z-index-2">
-        <template v-for="(info, index) in subPointsList(productValue)">
-          <headline :class="headlineClassValue(index)" level="h6" :text="info.title" />
-          <template v-for="points in info.subpoints">
+        <template v-for="(info, index) in subPointsList(productValue)" v-bind:key="index">
+          <headline :class="headlineClassValue(index)" level="h6">{{ info.title }}</headline>
+          <template v-for="(points, pointsIndex) in info.subpoints" v-bind:key="pointsIndex">
             <div class="card__check-mark-row">
               <span class="card__check-placeholder" v-if="points.hideIcon"></span>
               <icon class="card__check-mark-icon" v-else :icon="isIncluded(points.included)" size="medium" />
@@ -103,7 +103,7 @@
         <p class="mb-4 mt-4" v-html="truncatedExcerpt"></p>
 
         <ul class="card__points text-black">
-          <template v-for="points in subPointsList(subPoints)">
+          <template v-for="(points, index) in subPointsList(subPoints)" v-bind:key="index">
             <li class="mb-4">
               <span>{{ points }}</span>
             </li>

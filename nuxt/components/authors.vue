@@ -1,6 +1,6 @@
 <template>
   <template v-if="hasDataAndAuthors">
-    <span :class="classList" v-for="(author, index) in authorArray" :key="index">
+    <span :class="classList" v-for="(author, index) in authorArray" v-bind:key="index">
       <template v-if="!noLink">
         <a
           :href="authorLink(author)"

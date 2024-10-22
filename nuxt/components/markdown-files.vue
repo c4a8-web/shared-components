@@ -9,7 +9,14 @@ export default {
       const updatedList = this.list.map((item) => {
         const { description, _path, ...rest } = item;
 
-        return { url: _path, excerpt: description, ...rest };
+        const filteredRest = Object.keys(rest)
+          .filter((key) => !this.hideData.includes(key))
+          .reduce((obj, key) => {
+            obj[key] = rest[key];
+            return obj;
+          }, {});
+
+        return { url: _path, date: this.extractDate(_path), excerpt: description, ...filteredRest };
       });
 
       console.log('Structured list:', updatedList);
@@ -17,8 +24,20 @@ export default {
       return updatedList;
     },
   },
+  methods: {
+    extractDate(path) {
+      const datePattern = /\d{4}-\d{2}-\d{2}/;
+      const match = path.match(datePattern);
+
+      return match ? match[0] : null;
+    },
+  },
   props: {
     list: Array,
+    hideData: {
+      type: Array,
+      default: () => [],
+    },
   },
 };
 </script>

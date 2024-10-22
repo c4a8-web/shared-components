@@ -1,6 +1,6 @@
 <template>
   <template v-if="postsArray.length > 0">
-    <markdown-files :list="postsArray" v-slot="{ files }">
+    <markdown-files :list="postsArray" v-slot="{ files }" :hide-data="hideData">
       <div :class="classList" ref="root">
         <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
         <wrapper :hideContainer="hiddenContainer">
@@ -51,10 +51,10 @@ import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
-import markdownFiles from './markdown-files.vue';
+import MarkdownFiles from './markdown-files.vue';
 
 export default {
-  components: { markdownFiles },
+  components: { MarkdownFiles },
   tagName: 'blog-recent',
   computed: {
     classList() {
@@ -154,6 +154,8 @@ export default {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     imgUrl() {
+      console.log('config', Tools.getConfig());
+
       // TODO placeholder before this is used from useRuntimeConfig();
       return 'blog/heads/';
     },
@@ -209,6 +211,11 @@ export default {
     sticky: {
       default: null,
     },
+  },
+  data() {
+    return {
+      hideData: ['tags'],
+    };
   },
 };
 </script>

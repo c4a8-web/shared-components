@@ -10,6 +10,7 @@ declare namespace _default {
         function headlineClasses(): any;
         function headlineLevel(): any;
     }
+    function mounted(): void;
     namespace methods {
         function getDelay(entry: any): string;
         function handleClick(entry: any): void;
