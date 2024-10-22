@@ -532,6 +532,19 @@ class Tools {
   static getHash() {
     return window.location.hash;
   }
+
+  static getConfig() {
+    let config = {};
+
+    if (typeof process !== 'undefined' && process.server) {
+      const runetimeConfig = useRuntimeConfig();
+
+      config = { ...runetimeConfig };
+    } else {
+    }
+
+    return config;
+  }
 }
 
 export default Tools;

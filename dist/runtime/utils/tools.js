@@ -11,8 +11,6 @@ class Tools {
   static storybookPath = '/shared-components';
 
   static decodeHTML = (input) => {
-    // return '// TODO fix-html-parser';
-
     const document = parse(input, 'text/html');
 
     return document.textContent;
@@ -533,6 +531,19 @@ class Tools {
 
   static getHash() {
     return window.location.hash;
+  }
+
+  static getConfig() {
+    let config = {};
+
+    if (typeof process !== 'undefined' && process.server) {
+      const runetimeConfig = useRuntimeConfig();
+
+      config = { ...runetimeConfig };
+    } else {
+    }
+
+    return config;
   }
 }
 

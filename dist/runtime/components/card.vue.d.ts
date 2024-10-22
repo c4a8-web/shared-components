@@ -1,29 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    let components: {
-        'card-footer': {
-            tagName: string;
-            data(): {
-                maxTags: number;
-            };
-            computed: {
-                lang(): string;
-                tagsList(): any;
-                dataAuthorsList(): any;
-            };
-            template: string;
-            props: {
-                classes: StringConstructor;
-                date: StringConstructor;
-                author: StringConstructor;
-                authorsList: ArrayConstructor;
-                hasNoLink: BooleanConstructor;
-                dataAuthors: ObjectConstructor;
-                isRow: BooleanConstructor;
-                tags: ArrayConstructor;
-            };
-        };
-    };
     function data(): {
         wordsToTruncate: number;
         activeView: null;

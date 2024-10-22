@@ -51,10 +51,10 @@ import Tools from '../assets/js/tools.js';
 import State from '../assets/js/state.js';
 import StickyScroller from '../assets/js/sticky-scroller.js';
 import UtilityAnimation from '../assets/js/utility-animation.js';
-import markdownFiles from './markdown-files.vue';
+import MarkdownFiles from './markdown-files.vue';
 
 export default {
-  components: { markdownFiles },
+  components: { MarkdownFiles },
   tagName: 'blog-recent',
   computed: {
     classList() {
@@ -154,6 +154,8 @@ export default {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     imgUrl() {
+      console.log('config', Tools.getConfig());
+
       // TODO placeholder before this is used from useRuntimeConfig();
       return 'blog/heads/';
     },
