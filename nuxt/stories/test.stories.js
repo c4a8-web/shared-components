@@ -1,4 +1,4 @@
-import TestComponent from './test.vue';
+import TestComponent from '../components/test.vue';
 
 const meta = {
   title: 'Example/Test',

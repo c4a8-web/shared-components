@@ -4,14 +4,11 @@ import {
   addComponentsDir,
   createResolver,
   // addComponent,
-  resolveModule,
   addTemplate,
   addLayout,
 } from '@nuxt/kit';
 
-import type { NuxtTemplate, NuxtTypeTemplate, ResolvedNuxtTemplate } from '@nuxt/schema';
-
-// export interface ModuleOptions {}
+import type { NuxtTemplate } from '@nuxt/schema';
 
 export default defineNuxtModule({
   meta: {
@@ -28,7 +25,13 @@ export default defineNuxtModule({
     addPlugin(resolve('./runtime/plugin'));
 
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
-    _nuxt.options.build.transpile.push(resolve('runtime'), 'node-html-parser');
+    _nuxt.options.build.transpile.push(
+      resolve('runtime'),
+      'node-html-parser',
+      'vue-slick-carousel',
+      'vue-slick-ts',
+      'slick-carousel'
+    );
 
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 

@@ -26,6 +26,8 @@ export default {
   },
   methods: {
     extractDate(path) {
+      if (!path) return null;
+
       const datePattern = /\d{4}-\d{2}-\d{2}/;
       const match = path.match(datePattern);
 

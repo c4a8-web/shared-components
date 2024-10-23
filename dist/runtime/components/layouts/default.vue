@@ -1,8 +1,8 @@
 <template>
   <div id="app" :class="computedClass">
-    <v-header v-bind="headerData" :lang="lang"></v-header>
+    <v-header v-bind="headerData" :lang="lang" v-if="headerData"></v-header>
     <slot />
-    <v-footer v-bind="footerData" :lang="lang"></v-footer>
+    <v-footer v-bind="footerData" :lang="lang" v-if="footerData"></v-footer>
   </div>
 </template>
 

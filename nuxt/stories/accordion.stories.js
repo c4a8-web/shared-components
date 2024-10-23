@@ -1,7 +1,7 @@
-import Accordion from './accordion.vue';
+import AccordionComponent from '../components/accordion.vue';
 
 export default {
-  component: Accordion,
+  component: AccordionComponent,
   argTypes: {
     accordion: {
       description: 'Object of the Accordion',

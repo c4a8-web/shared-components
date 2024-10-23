@@ -1,6 +1,7 @@
 declare namespace _default {
     namespace components {
         export { MarkdownFiles };
+        export { VueSlickCarousel };
     }
     let tagName: string;
     namespace computed {
@@ -13,7 +14,36 @@ declare namespace _default {
         function itemClass(): any;
         function postsArray(): any;
         function caseStudies(): any;
-        function carouselOptions(): string;
+        function carouselOptions(): {
+            slidesToShow: number;
+            slidesToScroll: number;
+            prevArrow: string;
+            nextArrow: string;
+            dots: boolean;
+            centerMode: boolean;
+            dotsClass: string;
+            responsive: ({
+                breakpoint: number;
+                settings: {
+                    slidesToShow: number;
+                    slidesToScroll: number;
+                    centerMode?: undefined;
+                    infinite?: undefined;
+                    centerPadding?: undefined;
+                    dots?: undefined;
+                };
+            } | {
+                breakpoint: number;
+                settings: {
+                    centerMode: boolean;
+                    infinite: boolean;
+                    centerPadding: string;
+                    slidesToShow: number;
+                    slidesToScroll: number;
+                    dots: boolean;
+                };
+            })[];
+        };
         function headlineLevelValue(): any;
         function headlineClassesValue(): any;
         function sublineClassesValue(): string;
@@ -26,7 +56,11 @@ declare namespace _default {
         function target(post: any): "_blank" | "_self";
     }
     namespace props {
-        let bgColor: StringConstructor;
+        namespace bgColor {
+            export let type: StringConstructor;
+            let _default: string;
+            export { _default as default };
+        }
         let dataAuthors: ObjectConstructor;
         let headline: StringConstructor;
         let headlineLevel: StringConstructor;
@@ -35,29 +69,30 @@ declare namespace _default {
         let sublineClasses: StringConstructor;
         let spacing: StringConstructor;
         namespace posts {
-            export let type: (ArrayConstructor | StringConstructor)[];
-            let _default: never[];
-            export { _default as default };
-        }
-        namespace cta {
-            let _default_1: null;
+            let type_1: (ArrayConstructor | StringConstructor)[];
+            export { type_1 as type };
+            let _default_1: never[];
             export { _default_1 as default };
         }
-        namespace hideContainer {
-            let _default_2: boolean;
+        namespace cta {
+            let _default_2: null;
             export { _default_2 as default };
         }
-        namespace limit {
-            let _default_3: null;
+        namespace hideContainer {
+            let _default_3: boolean;
             export { _default_3 as default };
         }
-        namespace slider {
+        namespace limit {
             let _default_4: null;
             export { _default_4 as default };
         }
-        namespace sticky {
+        namespace slider {
             let _default_5: null;
             export { _default_5 as default };
+        }
+        namespace sticky {
+            let _default_6: null;
+            export { _default_6 as default };
         }
     }
     function data(): {
@@ -65,3 +100,4 @@ declare namespace _default {
     };
 }
 export default _default;
+import { VueSlickCarousel } from 'vue-slick-ts';

@@ -13,7 +13,13 @@ const module = defineNuxtModule({
     const { resolve } = createResolver(import.meta.url);
     addPlugin(resolve("./runtime/plugin"));
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
-    _nuxt.options.build.transpile.push(resolve("runtime"), "node-html-parser");
+    _nuxt.options.build.transpile.push(
+      resolve("runtime"),
+      "node-html-parser",
+      "vue-slick-carousel",
+      "vue-slick-ts",
+      "slick-carousel"
+    );
     _nuxt.options.css.push(resolve("./styles/index.min.css"));
     if (_options) {
       const { theme } = _options;

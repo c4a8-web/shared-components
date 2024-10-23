@@ -4,7 +4,11 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxtjs/storybook'],
   storybook: {
-    host: 'http://localhost',
     port: 6006,
   },
+  // vite: {
+  //   server: {
+  //     hmr: true,
+  //   },
+  // },
 });

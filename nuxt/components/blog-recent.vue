@@ -6,15 +6,11 @@
         <wrapper :hideContainer="hiddenContainer">
           <div class="row" v-if="headline">
             <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 fade-in-bottom" data-utility-animation-step="1">
-              <headline :level="headlineLevelValue" :text="headline" :classes="headlineClassesValue" />
+              <headline :level="headlineLevelValue" :classes="headlineClassesValue">{{ headline }}</headline>
               <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
             </div>
           </div>
-          <div
-            :class="blogRecentContainerClass"
-            :data-hs-slick-carousel-options="carouselOptions"
-            data-utility-animation-step="1"
-          >
+          <VueSlickCarousel :class="blogRecentContainerClass" data-utility-animation-step="1" v-bind="carouselOptions">
             <template v-for="(post, index) in files">
               <div :class="itemClass" v-if="index <= limit">
                 <card
@@ -30,7 +26,7 @@
                 />
               </div>
             </template>
-          </div>
+          </VueSlickCarousel>
           <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
             <cta
               :text="cta?.text"
@@ -47,6 +43,26 @@
   </template>
 </template>
 <script>
+/*
+    <ContentList :query="postsQuery" v-slot="{ list }">
+      <blog-recent
+        v-bind="blogRecentData"
+        :posts="list"
+        :data-authors="AuthorsData"
+      />
+    </ContentList>
+
+*/
+
+// import VueSlickCarousel from 'vue-slick-carousel';
+// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
+
+import { ListSlickMethods, VueSlickCarousel } from 'vue-slick-ts';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
+import 'vue-slick-ts/dist/css/slick.css';
+
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
@@ -54,7 +70,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 
 export default {
-  components: { MarkdownFiles },
+  components: { MarkdownFiles, VueSlickCarousel },
   tagName: 'blog-recent',
   computed: {
     classList() {
@@ -136,7 +152,8 @@ export default {
           },
         ],
       };
-      return JSON.stringify(obj);
+
+      return obj;
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
@@ -181,7 +198,10 @@ export default {
     },
   },
   props: {
-    bgColor: String,
+    bgColor: {
+      type: String,
+      default: 'var(--color-blue-light)',
+    },
     dataAuthors: Object,
     headline: String,
     headlineLevel: String,

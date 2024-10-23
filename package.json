@@ -36,20 +36,24 @@
     "vue": "^3.4.37"
   },
   "dependencies": {
+    "@types/jquery": "^3.5.32",
     "autoprefixer": "^10.4.20",
+    "bootstrap": "^4.5.3",
     "cssnano": "^7.0.6",
     "cssnano-preset-advanced": "^7.0.6",
     "node-html-parser": "^6.1.13",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
-    "bootstrap": "^4.5.3",
+    "slick-carousel": "^1.8.1",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5",
+    "vue-slick-carousel": "^1.0.6",
+    "vue-slick-ts": "^1.1.0",
     "vue3-lottie": "^3.3.1"
   },
   "devDependencies": {
-    "@nuxt/kit": "^3.13.2",
     "@chromatic-com/storybook": "^1.9.0",
+    "@nuxt/kit": "^3.13.2",
     "@storybook/addon-essentials": "^8.2.9",
     "@storybook/addon-interactions": "^8.2.9",
     "@storybook/addon-links": "^8.2.9",
