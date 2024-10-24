@@ -10,7 +10,7 @@
               <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
             </div>
           </div>
-          <div :class="blogRecentContainerClass" data-utility-animation-step="1" v-bind="carouselOptions">
+          <div :class="blogRecentContainerClass" data-utility-animation-step="1">
             <template v-for="(post, index) in files">
               <div :class="itemClass" v-if="index <= limit">
                 <card
@@ -54,15 +54,6 @@
 
 */
 
-// import VueSlickCarousel from 'vue-slick-carousel';
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-
-// import { ListSlickMethods, VueSlickCarousel } from 'vue-slick-ts';
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-// import 'vue-slick-ts/dist/css/slick.css';
-
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
@@ -70,7 +61,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 
 export default {
-  components: { MarkdownFiles }, // , VueSlickCarousel
+  components: { MarkdownFiles },
   tagName: 'blog-recent',
   computed: {
     classList() {
@@ -113,12 +104,14 @@ export default {
     },
     carouselOptions() {
       const obj = {
+        rows: 0,
         slidesToShow: 3,
         slidesToScroll: 3,
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
         dots: this.postsArray.length > 3 ? true : false,
         centerMode: false,
+        infinite: false,
         dotsClass: 'slick-pagination is-default',
         responsive: [
           {
@@ -126,6 +119,7 @@ export default {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
+              infinite: false,
             },
           },
           {
@@ -153,7 +147,7 @@ export default {
         ],
       };
 
-      return obj;
+      return { ...obj, ...this.sliderOptions };
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
@@ -235,15 +229,13 @@ export default {
     hideContainer: {
       default: false,
     },
-    // imgUrl: {
-    //   default: null,
-    // },
     limit: {
       default: null,
     },
     slider: {
       default: null,
     },
+    sliderOptions: Object,
     sticky: {
       default: null,
     },

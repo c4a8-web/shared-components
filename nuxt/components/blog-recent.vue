@@ -10,7 +10,7 @@
               <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
             </div>
           </div>
-          <div :class="blogRecentContainerClass" data-utility-animation-step="1" v-bind="carouselOptions">
+          <div :class="blogRecentContainerClass" data-utility-animation-step="1">
             <template v-for="(post, index) in files">
               <div :class="itemClass" v-if="index <= limit">
                 <card
@@ -104,6 +104,7 @@ export default {
     },
     carouselOptions() {
       const obj = {
+        rows: 0,
         slidesToShow: 3,
         slidesToScroll: 3,
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
@@ -146,7 +147,7 @@ export default {
         ],
       };
 
-      return obj;
+      return { ...obj, ...this.sliderOptions };
     },
     headlineLevelValue() {
       return this.headlineLevel ? this.headlineLevel : 'h3';
@@ -228,15 +229,13 @@ export default {
     hideContainer: {
       default: false,
     },
-    // imgUrl: {
-    //   default: null,
-    // },
     limit: {
       default: null,
     },
     slider: {
       default: null,
     },
+    sliderOptions: Object,
     sticky: {
       default: null,
     },

@@ -13,36 +13,7 @@ declare namespace _default {
         function itemClass(): any;
         function postsArray(): any;
         function caseStudies(): any;
-        function carouselOptions(): {
-            slidesToShow: number;
-            slidesToScroll: number;
-            prevArrow: string;
-            nextArrow: string;
-            dots: boolean;
-            centerMode: boolean;
-            dotsClass: string;
-            responsive: ({
-                breakpoint: number;
-                settings: {
-                    slidesToShow: number;
-                    slidesToScroll: number;
-                    centerMode?: undefined;
-                    infinite?: undefined;
-                    centerPadding?: undefined;
-                    dots?: undefined;
-                };
-            } | {
-                breakpoint: number;
-                settings: {
-                    centerMode: boolean;
-                    infinite: boolean;
-                    centerPadding: string;
-                    slidesToShow: number;
-                    slidesToScroll: number;
-                    dots: boolean;
-                };
-            })[];
-        };
+        function carouselOptions(): any;
         function headlineLevelValue(): any;
         function headlineClassesValue(): any;
         function sublineClassesValue(): string;
@@ -89,6 +60,7 @@ declare namespace _default {
             let _default_5: null;
             export { _default_5 as default };
         }
+        let sliderOptions: ObjectConstructor;
         namespace sticky {
             let _default_6: null;
             export { _default_6 as default };
