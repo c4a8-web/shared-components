@@ -1,73 +1,55 @@
 <template>
   <template v-if="showCompoent">
-    contentlist:
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
       <template v-if="list">
         <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData">
-          <template v-if="files">
-            {{ files[0].title }}
-            {{ files.length }}
-          </template>
+          <div :class="classList" ref="root" v-if="files">
+            <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
+            <wrapper :hideContainer="hiddenContainer">
+              <div class="row" v-if="headline">
+                <div
+                  class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 fade-in-bottom"
+                  data-utility-animation-step="1"
+                >
+                  <headline :level="headlineLevelValue" :classes="headlineClassesValue">{{ headline }}</headline>
+                  <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
+                </div>
+              </div>
+              <div :class="blogRecentContainerClass" data-utility-animation-step="1">
+                <template v-for="(post, index) in files">
+                  <div :class="itemClass" v-if="index <= limit" v-bind:key="index">
+                    <card
+                      v-bind="post"
+                      :blog-title-pic="blogTitleUrl(post)"
+                      :youtube-url="post.youtubeUrl"
+                      :date="post.date"
+                      :author="post.author"
+                      :target="target(post)"
+                      :event="event(post)"
+                      :dataAuthors="dataAuthors"
+                      :external-language="post.externalLanguage"
+                    />
+                  </div>
+                </template>
+              </div>
+              <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
+                <cta
+                  :text="cta?.text"
+                  :button="cta?.button"
+                  :target="cta?.target"
+                  :width="cta?.width"
+                  :href="cta?.href"
+                  :external="cta?.external"
+                />
+              </div>
+            </wrapper>
+          </div>
         </markdown-files>
       </template>
     </SharedContentList>
-    <markdown-files :list="postsArray" v-slot="{ files }" :hide-data="hideData">
-      <div :class="classList" ref="root">
-        <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
-        <wrapper :hideContainer="hiddenContainer">
-          <div class="row" v-if="headline">
-            <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 mb-4 mb-lg-6 fade-in-bottom" data-utility-animation-step="1">
-              <headline :level="headlineLevelValue" :classes="headlineClassesValue">{{ headline }}</headline>
-              <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
-            </div>
-          </div>
-          <div :class="blogRecentContainerClass" data-utility-animation-step="1">
-            <template v-for="(post, index) in files">
-              <div :class="itemClass" v-if="index <= limit" v-bind:key="index">
-                <card
-                  v-bind="post"
-                  :blog-title-pic="blogTitleUrl(post)"
-                  :youtube-url="post.youtubeUrl"
-                  :date="post.date"
-                  :author="post.author"
-                  :target="target(post)"
-                  :event="event(post)"
-                  :dataAuthors="dataAuthors"
-                  :external-language="post.externalLanguage"
-                />
-              </div>
-            </template>
-          </div>
-          <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
-            <cta
-              :text="cta?.text"
-              :button="cta?.button"
-              :target="cta?.target"
-              :width="cta?.width"
-              :href="cta?.href"
-              :external="cta?.external"
-            />
-          </div>
-        </wrapper>
-      </div>
-    </markdown-files>
   </template>
 </template>
 <script>
-/*
-
-
-
-    <ContentList :query="postsQuery" v-slot="{ list }">
-      <blog-recent
-        v-bind="blogRecentData"
-        :posts="list"
-        :data-authors="AuthorsData"
-      />
-    </ContentList>
-
-*/
-
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
@@ -93,20 +75,32 @@ export default {
       return this.postsArray.length > 0 || this.query;
     },
     query() {
+      let query = {};
+
+      query.limit = this.limit;
+      query.sort = [{ date: -1 }];
+
       if (this.combine === true) {
-        this.hasEvents = true;
-        this.hasCaseStudies = false;
+        query.path = /^\/(events|casestudies)\//;
       } else {
-        this.hasEvents = this.events;
-        this.hasCaseStudies = this.caseStudies;
+        if (this.events === true) {
+          query.path = '/events';
+        } else if (this.caseStudies === true) {
+          query.path = '/casestudies';
+        } else {
+          query.path = '/posts';
+        }
       }
+
+      console.log('🚀 ~ query ~ query:', query);
 
       // const news = await queryContent().where({ _path: /^\/(news|blog)\// }).find()
       // const { data } = await useAsyncData('home', () => queryContent('/').findOne())
 
       // const postsQuery = { path: "/events", limit: 9, sort: [{ date: -1 }] };
 
-      return { path: '/events', limit: 9, sort: [{ date: -1 }] };
+      // return { path: '/events', limit: 9, sort: [{ date: -1 }] };
+      return query;
     },
     getSpacing() {
       return this.spacing ? this.spacing : '';
@@ -261,7 +255,8 @@ export default {
       default: false,
     },
     limit: {
-      default: null,
+      type: Number,
+      default: 3,
     },
     slider: {
       default: null,
@@ -277,8 +272,6 @@ export default {
   data() {
     return {
       hideData: ['tags'],
-      hasEvents: false,
-      hasCaseStudies: false,
     };
   },
 };

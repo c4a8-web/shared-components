@@ -19,8 +19,6 @@ export default {
         return { url: _path, date: this.extractDate(_path), excerpt: description, ...filteredRest };
       });
 
-      console.log('Structured list:', updatedList);
-
       return updatedList;
     },
   },

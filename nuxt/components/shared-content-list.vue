@@ -1,7 +1,10 @@
 <template>
   <template v-if="!isStorybook">
-    <ContentList :query="query" v-slot="{ list }">
-      <slot v-bind:list="list" />
+    <ContentList :query="query">
+      <template #default="{ list }">
+        <slot v-bind:list="list" />
+      </template>
+      <template #not-found></template>
     </ContentList>
   </template>
   <template v-else>
@@ -11,6 +14,8 @@
 
 <script>
 import Tools from '../utils/tools.js';
+
+// v-slot="{ list }"
 
 export default {
   name: 'SharedContentList',

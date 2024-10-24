@@ -11,6 +11,8 @@ class Tools {
   static storybookPath = '/shared-components';
 
   static decodeHTML = (input) => {
+    if (!input) return '';
+
     const document = parse(input, 'text/html');
 
     return document.textContent;

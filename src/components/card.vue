@@ -276,6 +276,9 @@ export default {
       return this.formatDate(this.date);
     },
     hasExtension() {
+      // TODO fix url pointing to events page
+      console.log('hasExtension', this.youtubeUrl);
+
       if (this.youtubeUrl) {
         return Tools.getYoutubeThumbnail(this.youtubeUrl);
       } else {

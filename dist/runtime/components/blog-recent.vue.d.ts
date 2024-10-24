@@ -6,21 +6,21 @@ declare namespace _default {
     namespace computed {
         function classList(): any;
         function showCompoent(): true | (() => {
-            path: string;
-            limit: number;
+            limit: any;
             sort: {
                 date: number;
             }[];
+            path: string | RegExp;
         });
         function query(): {
-            path: string;
-            limit: number;
+            limit: any;
             sort: {
                 date: number;
             }[];
+            path: string | RegExp;
         };
         function getSpacing(): any;
-        function hasBackground(): any;
+        function hasBackground(): string;
         function blogRecentContainerClass(): string[];
         function hiddenContainer(): any;
         function skinClass(): string;
@@ -66,7 +66,9 @@ declare namespace _default {
             export { _default_3 as default };
         }
         namespace limit {
-            let _default_4: null;
+            let type_2: NumberConstructor;
+            export { type_2 as type };
+            let _default_4: number;
             export { _default_4 as default };
         }
         namespace slider {
@@ -84,8 +86,6 @@ declare namespace _default {
     }
     function data(): {
         hideData: string[];
-        hasEvents: boolean;
-        hasCaseStudies: boolean;
     };
 }
 export default _default;
