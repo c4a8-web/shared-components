@@ -5,6 +5,13 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classList(): any;
+        function showCompoent(): true | (() => {
+            path: string;
+            limit: number;
+            sort: {
+                date: number;
+            }[];
+        });
         function query(): {
             path: string;
             limit: number;
@@ -14,9 +21,9 @@ declare namespace _default {
         };
         function getSpacing(): any;
         function hasBackground(): any;
-        function blogRecentContainerClass(): any;
+        function blogRecentContainerClass(): string[];
         function hiddenContainer(): any;
-        function skinClass(): any;
+        function skinClass(): string;
         function itemClass(): string;
         function postsArray(): any;
         function carouselOptions(): any;

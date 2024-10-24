@@ -43,7 +43,9 @@ export default {
   props: {
     classes: String,
     date: String,
-    author: String,
+    author: {
+      type: [String, Array],
+    },
     authorsList: Array,
     hasNoLink: Boolean,
     dataAuthors: Object,

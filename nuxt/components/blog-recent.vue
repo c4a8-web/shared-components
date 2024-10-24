@@ -1,12 +1,16 @@
 <template>
-  <template v-if="postsArray.length > 0">
+  <template v-if="showCompoent">
     contentlist:
-    <ContentList :query="query" v-slot="{ tests }">
-      <template v-if="tests">
-        {{ tests }}
+    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
+      <template v-if="list">
+        <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData">
+          <template v-if="files">
+            {{ files[0].title }}
+            {{ files.length }}
+          </template>
+        </markdown-files>
       </template>
-    </ContentList>
-
+    </SharedContentList>
     <markdown-files :list="postsArray" v-slot="{ files }" :hide-data="hideData">
       <div :class="classList" ref="root">
         <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
@@ -19,7 +23,7 @@
           </div>
           <div :class="blogRecentContainerClass" data-utility-animation-step="1">
             <template v-for="(post, index) in files">
-              <div :class="itemClass" v-if="index <= limit">
+              <div :class="itemClass" v-if="index <= limit" v-bind:key="index">
                 <card
                   v-bind="post"
                   :blog-title-pic="blogTitleUrl(post)"
@@ -83,6 +87,10 @@ export default {
         this.sticky === true ? StickyScroller.rootSelector.substring(1) : '',
         'vue-component',
       ];
+    },
+    showCompoent() {
+      // TODO adjust this to match params that actually query something
+      return this.postsArray.length > 0 || this.query;
     },
     query() {
       if (this.combine === true) {

@@ -41,7 +41,9 @@ declare namespace _default {
         let title: StringConstructor;
         let target: StringConstructor;
         let excerpt: StringConstructor;
-        let author: ArrayConstructor;
+        namespace author {
+            let type: (ArrayConstructor | StringConstructor)[];
+        }
         let date: StringConstructor;
         let footer: StringConstructor;
         namespace tag {

@@ -338,7 +338,9 @@ export default {
     title: String,
     target: String,
     excerpt: String,
-    author: Array,
+    author: {
+      type: [String, Array],
+    },
     date: String,
     footer: String,
     tag: {

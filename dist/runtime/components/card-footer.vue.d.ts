@@ -11,7 +11,9 @@ declare namespace _default {
     namespace props {
         let classes: StringConstructor;
         let date: StringConstructor;
-        let author: StringConstructor;
+        namespace author {
+            let type: (ArrayConstructor | StringConstructor)[];
+        }
         let authorsList: ArrayConstructor;
         let hasNoLink: BooleanConstructor;
         let dataAuthors: ObjectConstructor;
