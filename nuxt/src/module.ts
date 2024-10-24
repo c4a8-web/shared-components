@@ -1,12 +1,4 @@
-import {
-  defineNuxtModule,
-  addPlugin,
-  addComponentsDir,
-  createResolver,
-  // addComponent,
-  addTemplate,
-  addLayout,
-} from '@nuxt/kit';
+import { defineNuxtModule, addPlugin, addComponentsDir, createResolver, addTemplate, addLayout } from '@nuxt/kit';
 
 import type { NuxtTemplate } from '@nuxt/schema';
 
@@ -25,13 +17,7 @@ export default defineNuxtModule({
     addPlugin(resolve('./runtime/plugin'));
 
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
-    _nuxt.options.build.transpile.push(
-      resolve('runtime'),
-      'node-html-parser',
-      'vue-slick-carousel',
-      'vue-slick-ts',
-      'slick-carousel'
-    );
+    _nuxt.options.build.transpile.push(resolve('runtime'), 'node-html-parser', 'jquery', 'slick-carousel');
 
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 

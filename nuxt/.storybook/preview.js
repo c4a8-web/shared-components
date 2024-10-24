@@ -15,10 +15,6 @@ export const decorators = [
 
     return story();
   },
-  // (story) => ({
-  //   components: { story },
-  //   template: '<story />',
-  // }),
 ];
 
 const preview = {

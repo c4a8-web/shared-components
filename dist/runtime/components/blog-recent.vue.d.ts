@@ -1,7 +1,6 @@
 declare namespace _default {
     namespace components {
         export { MarkdownFiles };
-        export { VueSlickCarousel };
     }
     let tagName: string;
     namespace computed {
@@ -100,4 +99,3 @@ declare namespace _default {
     };
 }
 export default _default;
-import { VueSlickCarousel } from 'vue-slick-ts';

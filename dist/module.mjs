@@ -16,8 +16,9 @@ const module = defineNuxtModule({
     _nuxt.options.build.transpile.push(
       resolve("runtime"),
       "node-html-parser",
-      "vue-slick-carousel",
-      "vue-slick-ts",
+      "jquery",
+      // 'vue-slick-carousel',
+      // 'vue-slick-ts',
       "slick-carousel"
     );
     _nuxt.options.css.push(resolve("./styles/index.min.css"));

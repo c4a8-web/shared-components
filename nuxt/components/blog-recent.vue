@@ -10,7 +10,7 @@
               <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
             </div>
           </div>
-          <VueSlickCarousel :class="blogRecentContainerClass" data-utility-animation-step="1" v-bind="carouselOptions">
+          <div :class="blogRecentContainerClass" data-utility-animation-step="1" v-bind="carouselOptions">
             <template v-for="(post, index) in files">
               <div :class="itemClass" v-if="index <= limit">
                 <card
@@ -26,7 +26,7 @@
                 />
               </div>
             </template>
-          </VueSlickCarousel>
+          </div>
           <div class="blog-recent__cta-row row col-lg-12" v-if="cta">
             <cta
               :text="cta?.text"
@@ -54,15 +54,6 @@
 
 */
 
-// import VueSlickCarousel from 'vue-slick-carousel';
-// import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-
-import { ListSlickMethods, VueSlickCarousel } from 'vue-slick-ts';
-import 'vue-slick-carousel/dist/vue-slick-carousel.css';
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
-import 'vue-slick-ts/dist/css/slick.css';
-
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import StickyScroller from '../utils/sticky-scroller.js';
@@ -70,7 +61,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 
 export default {
-  components: { MarkdownFiles, VueSlickCarousel },
+  components: { MarkdownFiles },
   tagName: 'blog-recent',
   computed: {
     classList() {
@@ -178,6 +169,22 @@ export default {
     },
   },
   mounted() {
+    import('jquery')
+      .then((module) => {
+        window.$ = module.default;
+
+        import('slick-carousel')
+          .then(() => {
+            $('.js-slick-carousel').slick(this.carouselOptions);
+          })
+          .catch((error) => {
+            console.error('Failed to load Slick Carousel in blog recent:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Failed to load jQuery in blog recent:', error);
+      });
+
     if (!this.$refs.root) return;
 
     if (this.sticky) {
