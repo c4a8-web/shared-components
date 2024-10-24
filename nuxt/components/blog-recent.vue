@@ -110,6 +110,7 @@ export default {
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
         dots: this.postsArray.length > 3 ? true : false,
         centerMode: false,
+        infinite: false,
         dotsClass: 'slick-pagination is-default',
         responsive: [
           {
@@ -117,6 +118,7 @@ export default {
             settings: {
               slidesToShow: 3,
               slidesToScroll: 3,
+              infinite: false,
             },
           },
           {

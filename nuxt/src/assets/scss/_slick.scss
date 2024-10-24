@@ -157,17 +157,32 @@ $slick-arrow-offset: 2;
   }
 
   .slick-pagination {
+    li {
+      button {
+        border: 0;
+        appearance: none;
+        width: 0.9375rem;
+        height: 0.9375rem;
+        box-sizing: border-box;
+        border-radius: 50%;
+        font-size: 0;
+        transition: all 0.3s;
+      }
+    }
+
     &:not(.is-default) {
       display: flex !important;
 
       li {
         &.slick-active {
-          span {
+          span,
+          button {
             opacity: 0.6;
           }
         }
 
-        span {
+        span,
+        button {
           background-color: var(--color-white);
           border: 0;
           transform: scale(0.6);
@@ -187,14 +202,16 @@ $slick-arrow-offset: 2;
         margin: 0 spacing(1);
 
         &.slick-active {
-          span {
+          span,
+          button {
             background-color: var(--color-blue-medium);
             transform: scale(0.7);
             border-color: var(--color-blue-medium);
           }
         }
 
-        span {
+        span,
+        button {
           background-color: var(--color-black-40);
           transform: scale(0.6);
         }
@@ -236,7 +253,8 @@ $slick-arrow-offset: 2;
             }
 
             &:nth-of-type(1n + 3) {
-              span {
+              span,
+              button {
                 background-color: var(--color-black-40);
                 transform: scale(0.6);
                 border-color: transparent;
