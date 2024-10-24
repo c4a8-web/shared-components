@@ -173,16 +173,17 @@ class Form extends BaseComponent {
     return string;
   }
 
-  static getFormData(form) {
-    const formData = new FormData(form);
-    const data = [];
+  // TODO for some reason this is duplicated. figure out if this is needed somewhere else or which code is used normally
+  // static getFormData(form) {
+  //   const formData = new FormData(form);
+  //   const data = [];
 
-    for (let fieldData of formData) {
-      data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
-    }
+  //   for (let fieldData of formData) {
+  //     data.push(encodeURIComponent(fieldData[0]) + '=' + encodeURIComponent(fieldData[1]));
+  //   }
 
-    return data.join('&');
-  }
+  //   return data.join('&');
+  // }
 
   ajaxSubmit() {
     const data = Form.getFormData(this.form);
