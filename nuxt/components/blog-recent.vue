@@ -1,5 +1,12 @@
 <template>
   <template v-if="postsArray.length > 0">
+    contentlist:
+    <ContentList :query="query" v-slot="{ tests }">
+      <template v-if="tests">
+        {{ tests }}
+      </template>
+    </ContentList>
+
     <markdown-files :list="postsArray" v-slot="{ files }" :hide-data="hideData">
       <div :class="classList" ref="root">
         <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
@@ -44,6 +51,9 @@
 </template>
 <script>
 /*
+
+
+
     <ContentList :query="postsQuery" v-slot="{ list }">
       <blog-recent
         v-bind="blogRecentData"
@@ -74,6 +84,22 @@ export default {
         'vue-component',
       ];
     },
+    query() {
+      if (this.combine === true) {
+        this.hasEvents = true;
+        this.hasCaseStudies = false;
+      } else {
+        this.hasEvents = this.events;
+        this.hasCaseStudies = this.caseStudies;
+      }
+
+      // const news = await queryContent().where({ _path: /^\/(news|blog)\// }).find()
+      // const { data } = await useAsyncData('home', () => queryContent('/').findOne())
+
+      // const postsQuery = { path: "/events", limit: 9, sort: [{ date: -1 }] };
+
+      return { path: '/events', limit: 9, sort: [{ date: -1 }] };
+    },
     getSpacing() {
       return this.spacing ? this.spacing : '';
     },
@@ -98,9 +124,6 @@ export default {
     },
     postsArray() {
       return typeof this.posts === 'string' ? JSON.parse(this.posts) : this.posts;
-    },
-    caseStudies() {
-      return this.caseStudies === true ? true : false;
     },
     carouselOptions() {
       const obj = {
@@ -239,10 +262,15 @@ export default {
     sticky: {
       default: null,
     },
+    events: Boolean,
+    combine: Boolean,
+    caseStudies: Boolean,
   },
   data() {
     return {
       hideData: ['tags'],
+      hasEvents: false,
+      hasCaseStudies: false,
     };
   },
 };

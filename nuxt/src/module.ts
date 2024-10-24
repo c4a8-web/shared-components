@@ -1,3 +1,4 @@
+import { promises as fs } from 'fs';
 import { defineNuxtModule, addPlugin, addComponentsDir, createResolver, addTemplate, addLayout } from '@nuxt/kit';
 
 import type { NuxtTemplate } from '@nuxt/schema';
@@ -31,11 +32,20 @@ export default defineNuxtModule({
       path: resolve('./runtime/components'),
     });
 
-    const template = addTemplate<NuxtTemplate>({
-      src: resolve('./runtime/components/layouts/default.vue'),
-      write: true,
-    });
+    const layoutsDir = resolve('./runtime/components/layouts');
 
-    addLayout(template, 'default');
+    const layoutFiles = await fs.readdir(layoutsDir);
+
+    layoutFiles.forEach((file) => {
+      if (file.endsWith('.vue')) {
+        const name = file.replace('.vue', '');
+        const template = addTemplate<NuxtTemplate>({
+          src: resolve(`${layoutsDir}/${file}`),
+          write: true,
+        });
+
+        addLayout(template, name);
+      }
+    });
   },
 });

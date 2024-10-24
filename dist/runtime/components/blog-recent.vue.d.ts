@@ -5,14 +5,20 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classList(): any;
+        function query(): {
+            path: string;
+            limit: number;
+            sort: {
+                date: number;
+            }[];
+        };
         function getSpacing(): any;
         function hasBackground(): any;
         function blogRecentContainerClass(): any;
         function hiddenContainer(): any;
         function skinClass(): any;
-        function itemClass(): any;
+        function itemClass(): string;
         function postsArray(): any;
-        function caseStudies(): any;
         function carouselOptions(): any;
         function headlineLevelValue(): any;
         function headlineClassesValue(): any;
@@ -65,9 +71,14 @@ declare namespace _default {
             let _default_6: null;
             export { _default_6 as default };
         }
+        let events: BooleanConstructor;
+        let combine: BooleanConstructor;
+        let caseStudies: BooleanConstructor;
     }
     function data(): {
         hideData: string[];
+        hasEvents: boolean;
+        hasCaseStudies: boolean;
     };
 }
 export default _default;

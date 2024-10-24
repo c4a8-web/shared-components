@@ -2,13 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-08-03',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/storybook'],
+  modules: ['@nuxtjs/storybook', '@nuxt/content'],
   storybook: {
     port: 6006,
   },
-  // vite: {
-  //   server: {
-  //     hmr: true,
-  //   },
-  // },
 });

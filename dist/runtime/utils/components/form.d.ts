@@ -6,12 +6,11 @@ declare class Form extends BaseComponent {
     static reset(form: any): void;
     static getId(fieldId: any): string;
     static getName(string: any): any;
-    static getFormData(form: any): string;
+    static isOptionalInputInvisible(input: any): any;
     static getFormData(form: any): {
         input: any;
         value: any;
     }[];
-    static isOptionalInputInvisible(input: any): any;
     formSelector: string | undefined;
     gotchaSelector: string | undefined;
     attachmentSelector: string | undefined;
