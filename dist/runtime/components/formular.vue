@@ -164,7 +164,15 @@ export default {
       return this.errors[field.id];
     },
     getOptions(field) {
-      return typeof field.options === 'string' ? this.options[field.options] : field.options;
+      if (!field.options) return null;
+
+      if (typeof field.options === 'string') {
+        console.error('Invalid options format for field' + field.id);
+
+        return null;
+      }
+
+      return typeof field.options === 'object' && field.options.list ? field.options.list : field.options;
     },
     getBlockClassList(block) {
       return ['row mx-n3', `${block?.rowClass ? block.rowClass : ''}`];

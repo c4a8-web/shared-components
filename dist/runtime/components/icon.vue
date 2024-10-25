@@ -7,15 +7,19 @@
 import Tools from '../utils/tools.js';
 
 // TODO figure out why auto-import does not work here correctly. rendering it manually works fine.
+import ArrowCurl from './icons/arrow-curl.vue';
+import ArrowExternal from './icons/arrow-external.vue';
+import ArrowNarrow from './icons/arrow-narrow.vue';
 import ComputerShield from './icons/computer-shield.vue';
 import PlusMinus from './icons/plus-minus.vue';
-import ArrowNarrow from './icons/arrow-narrow.vue';
 
 export default {
   components: {
+    'arrow-curl': ArrowCurl,
+    'arrow-external': ArrowExternal,
+    'arrow-narrow': ArrowNarrow,
     'computer-shield': ComputerShield,
     'plus-minus': PlusMinus,
-    'arrow-narrow': ArrowNarrow,
   },
   tagName: 'icon',
   data() {

@@ -80,16 +80,16 @@
             { 'px-1 px-lg-3 nav-item': cards.tabs, 'mb-6 mb-md-8 mb-lg-0': !cards.tabs },
           ]"
         >
-          <a
-            v-if="card.link"
-            :href="card.link.href"
-            :target="card.link.target"
+          <conditional-link
+            :link="hasLink(card)"
+            :href="card?.link?.href"
+            :target="card?.link?.target"
             class="product-stage__tab h-100 rounded position-relative d-block"
             :class="{ active: cards.tabs && index === 0 }"
-            :id="card.id ? card.id + '-tab' : ''"
+            :id="card?.id ? card?.id + '-tab' : ''"
             data-toggle="pill"
             role="tab"
-            :aria-controls="card.id"
+            :aria-controls="card?.id"
             :aria-selected="cards.tabs && index === 0"
           >
             <div
@@ -116,7 +116,7 @@
                 </div>
               </div>
             </div>
-          </a>
+          </conditional-link>
         </li>
       </ul>
     </div>
@@ -159,6 +159,11 @@ export default {
     },
     overlapping() {
       return (this.cards && this.stage.headline) || this.stage.description;
+    },
+  },
+  methods: {
+    hasLink(card) {
+      return card.link ? true : false;
     },
   },
 };

@@ -16,5 +16,8 @@ declare namespace _default {
         function cards(): any;
         function overlapping(): any;
     }
+    namespace methods {
+        function hasLink(card: any): boolean;
+    }
 }
 export default _default;

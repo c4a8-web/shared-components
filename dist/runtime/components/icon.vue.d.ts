@@ -1,8 +1,10 @@
 declare namespace _default {
     let components: {
+        'arrow-curl': any;
+        'arrow-external': any;
+        'arrow-narrow': any;
         'computer-shield': any;
         'plus-minus': any;
-        'arrow-narrow': any;
     };
     let tagName: string;
     function data(): {
