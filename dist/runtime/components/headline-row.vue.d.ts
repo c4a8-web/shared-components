@@ -19,6 +19,7 @@ declare namespace _default {
         let headlineClasses: StringConstructor;
         let noContainer: BooleanConstructor;
     }
+    function mounted(): void;
     namespace computed {
         function headlineRowClassesValue(): any;
         function containerClass(): any;

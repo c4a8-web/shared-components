@@ -16,6 +16,7 @@ declare namespace _default {
             export { type_2 as type };
         }
     }
+    function mounted(): void;
     namespace computed {
         function toggleSwitchTextLeft(): any;
         function toggleSwitchTextRight(): any;

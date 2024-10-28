@@ -10,6 +10,7 @@
     ]"
     :style="index ? { '--utility-animation-index': index } : null"
     data-utility-animation-step="1"
+    ref="root"
   >
     <div class="pricing-product__description pl-0 mb-2 mb-md-0 col-12 col-md-4 col-lg-5">
       <h3 class="font-size-4 font-size-3-md">{{ title }}</h3>
@@ -24,7 +25,7 @@
             data-currency-format
             :data-toggle-switch-item-options="JSON.stringify({ monthly: price.monthly, annual: price.annual })"
           >
-            {{ price[defaultPlan] }}
+            {{ price[selectedPlan] }}
           </span>
         </span>
         <span class="font-size-1 text-muted d-inline-block ml-1">| {{ price.per }}</span>
@@ -42,7 +43,7 @@
               JSON.stringify({ monthly: additionalUsersFee.monthly, annual: additionalUsersFee.annual })
             "
           >
-            {{ additionalUsersFee[defaultPlan] }}
+            {{ additionalUsersFee[selectedPlan] }}
           </span>
         </span>
         <span class="font-size-1 text-muted d-inline-block ml-1">| {{ price.per }}</span>
@@ -55,21 +56,26 @@
   </div>
 </template>
 <script>
+import UtilityAnimation from '../utils/utility-animation.js';
+
 export default {
+  tagName: 'pricing-product',
   props: {
     product: Object,
     index: Number,
     hasAnimation: Boolean,
-    targetSelectorClass: {
-      type: String,
-      default: 'pricingSwitch',
-    },
+    targetSelectorClass: String,
     visibleTab: {
       type: String,
       default: null,
     },
     pageTitle: String,
-    defaultPlan: String,
+    selectedPlan: String,
+  },
+  mounted() {
+    if (!this.$refs.root) return;
+
+    UtilityAnimation.init([this.$refs.root]);
   },
   computed: {
     title() {

@@ -1,6 +1,7 @@
 declare namespace _default {
+    let tagName: string;
     namespace props {
-        let products: ArrayConstructor;
+        let products: ObjectConstructor;
         let headline: StringConstructor;
         let description: StringConstructor;
         namespace bgColor {
@@ -22,6 +23,8 @@ declare namespace _default {
         function pricingDetailTargetSelector(): any;
         function langData(): any;
         function vatInfo(): any;
+        function list(): any;
+        function selectedPlan(): any;
     }
 }
 export default _default;

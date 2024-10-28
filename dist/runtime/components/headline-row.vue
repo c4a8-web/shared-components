@@ -1,13 +1,19 @@
 <template>
   <div :class="classList">
     <div class="row">
-      <div :class="['col-sm-12', animationStepClass, headlineRowClassesValue]" data-utility-animation-step="1">
+      <div
+        :class="['col-sm-12', animationStepClass, headlineRowClassesValue]"
+        data-utility-animation-step="1"
+        ref="row"
+      >
         <headline :level="level" :classes="headlineClasses">{{ text }}</headline>
       </div>
     </div>
   </div>
 </template>
 <script>
+import UtilityAnimation from '../utils/utility-animation.js';
+
 export default {
   tagName: 'headline-row',
   props: {
@@ -25,6 +31,11 @@ export default {
     classes: String,
     headlineClasses: String,
     noContainer: Boolean,
+  },
+  mounted() {
+    if (!this.$refs.row) return;
+
+    UtilityAnimation.init([this.$refs.row]);
   },
   computed: {
     headlineRowClassesValue() {

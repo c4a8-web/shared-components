@@ -41,7 +41,8 @@ const LangData = {
             <div class="ad-block-info__text">To keep our website running smoothly, add us to the whitelist. We won't annoy you with ads. Promise!</div>
           </div>
         </div>`,
-    vatInfo: '*All prices are excluding VAT. Our offers are addressing professional customers, only.',
+    vatInfo:
+      'More information about the <a data-trigger-id="product-stage-modal" data-trigger="modal">pricing conditions.</a>',
   },
   es: {
     tags: 'Tags',

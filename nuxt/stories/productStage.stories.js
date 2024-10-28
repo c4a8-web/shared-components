@@ -77,3 +77,47 @@ export const NoDescription = {
     products: Products,
   },
 };
+
+export const Tabs = {
+  args: {
+    stage: {
+      bgColor: 'var(--color-primary)',
+      headline: 'Start now',
+      description: 'Try SCEPman for free or buy it now. We would also be happy to create an individual quote for you.',
+      background: {
+        img: 'svg/product-backgrounds/radiusaas-background.svg',
+        alt: 'Alt text',
+      },
+      cards: {
+        tabs: true,
+        list: [
+          {
+            title: 'Buy now',
+            id: 'buy',
+            link: {
+              href: '#buy',
+            },
+          },
+          {
+            title: 'Try for free',
+            id: 'try',
+            link: {
+              href: '#try',
+            },
+          },
+          {
+            title: 'Get quote',
+            id: 'quote',
+            link: {
+              href: '#quote',
+            },
+          },
+        ],
+      },
+      shape: {
+        isActive: true,
+        color: 'var(--color-white)',
+      },
+    },
+  },
+};

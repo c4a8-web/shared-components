@@ -62,6 +62,19 @@
         :modal-id="stage.modalId"
         :products="products"
       />
+      <modal
+        v-else-if="stage.modalId && stage.tooltip"
+        :slim="true"
+        :center="true"
+        class="pricing-slider__modal"
+        :modal-id="stage.modalId"
+      >
+        <div class="container">
+          <div class="row">
+            <div class="col" v-html="stage.tooltip"></div>
+          </div>
+        </div>
+      </modal>
 
       <div v-if="stage.additionalCopy" class="row justify-content-center py-6">
         <div class="text-center" v-html="stage.additionalCopy"></div>

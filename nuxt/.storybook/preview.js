@@ -1,6 +1,10 @@
 import '../src/assets/scss/index.scss';
 import '../src/assets/scss/themes/_gk.scss';
 
+import { h } from 'vue';
+
+import GlobalApp from '../components/global-app.vue';
+
 const loadPlugins = () => {
   import('jquery')
     .then((module) => {
@@ -20,7 +24,7 @@ const loadPlugins = () => {
 loadPlugins();
 
 export const decorators = [
-  (story, params) => {
+  (storyFn, params) => {
     const rootElement = document.getElementById('storybook-root');
 
     if (rootElement) {
@@ -31,7 +35,12 @@ export const decorators = [
       rootElement.classList.add(theme);
     }
 
-    return story();
+    return {
+      components: { GlobalApp },
+      setup() {
+        return () => h(GlobalApp, {}, () => h(storyFn(), params.args));
+      },
+    };
   },
 ];
 

@@ -1,5 +1,5 @@
 <template>
-  <div :class="toggleSwitchClasses" data-utility-animation-step="1">
+  <div :class="toggleSwitchClasses" data-utility-animation-step="1" ref="root">
     <span class="font-size-1 text-muted toggle-switch__text" :class="toggleSwitchLimitLeftClass">{{
       toggleSwitchTextLeft
     }}</span>
@@ -27,6 +27,9 @@
   </div>
 </template>
 <script>
+// TODO move this inside the vue component
+import ToggleSwitch from '../utils/toggle-switch.js';
+
 export default {
   props: {
     toggleSwitch: {
@@ -40,6 +43,11 @@ export default {
     products: {
       type: Object,
     },
+  },
+  mounted() {
+    if (!this.$refs.root) return;
+
+    new ToggleSwitch(this.$refs.root);
   },
   computed: {
     toggleSwitchTextLeft() {

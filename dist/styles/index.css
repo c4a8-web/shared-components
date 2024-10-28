@@ -46787,6 +46787,15 @@ job-list-detail {
   }
 }
 
+.pricing-details .pricing-product:not(.bg-white) + .pricing-details__infos {
+  padding: 0 0.75rem;
+}
+@media (min-width: 768px) {
+  .pricing-details .pricing-product:not(.bg-white) + .pricing-details__infos {
+    padding: 0 2.5rem;
+  }
+}
+
 .pricing-product[data-utility-animation-step].is-starting {
   animation-delay: calc(var(--utility-animation-index) * 80ms + 0ms);
 }
@@ -50431,6 +50440,13 @@ ul.dashed li::before {
 
 .text-shadow {
   text-shadow: 7px 5px 7px #ffffff;
+}
+
+.shared-components .text-primary {
+  color: var(--color-primary) !important;
+}
+.shared-components .text-secondary {
+  color: var(--color-secondary) !important;
 }
 
 strong[id]:target::before {

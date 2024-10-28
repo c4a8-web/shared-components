@@ -17,17 +17,16 @@
           <toggle-switch :toggle-switch="toggleSwitch" :has-animation="true" />
         </div>
         <pricing-product
-          v-for="(product, index) in products"
+          v-for="(product, index) in list"
           :key="index"
           :product="product"
           :target-selector-class="pricingDetailTargetSelector"
           :visible-tab="visibleTab"
           :index="index + 1"
           :has-animation="true"
+          :selected-plan="selectedPlan"
         />
-        <div class="pricing-details__infos pt-5">
-          {{ vatInfo }}
-        </div>
+        <div class="pricing-details__infos pt-5" v-html="vatInfo"></div>
       </div>
     </div>
   </section>
@@ -38,8 +37,9 @@ import Lang from '../utils/lang.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
+  tagName: 'pricing-details',
   props: {
-    products: Array,
+    products: Object,
     headline: String,
     description: String,
     bgColor: {
@@ -47,6 +47,7 @@ export default {
       default: 'var(--color-bg-grey)',
     },
     toggleSwitch: Object,
+    // TODO visible tab does not seem to work as expected
     visibleTab: String,
     lang: {
       type: String,
@@ -67,6 +68,12 @@ export default {
     },
     vatInfo() {
       return this.langData?.vatInfo;
+    },
+    list() {
+      return this.products?.list || [];
+    },
+    selectedPlan() {
+      return this.products?.pricing?.defaultPlan || 'monthly';
     },
   },
 };

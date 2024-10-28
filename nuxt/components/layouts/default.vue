@@ -1,9 +1,9 @@
 <template>
-  <div id="app" :class="computedClass">
+  <global-app id="app" :classes="computedClass">
     <v-header v-bind="headerData" :lang="lang" v-if="headerData"></v-header>
     <slot />
     <v-footer v-bind="footerData" :lang="lang" v-if="footerData"></v-footer>
-  </div>
+  </global-app>
 </template>
 
 <script setup>

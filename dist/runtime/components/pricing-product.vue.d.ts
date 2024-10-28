@@ -1,22 +1,19 @@
 declare namespace _default {
+    let tagName: string;
     namespace props {
         let product: ObjectConstructor;
         let index: NumberConstructor;
         let hasAnimation: BooleanConstructor;
-        namespace targetSelectorClass {
+        let targetSelectorClass: StringConstructor;
+        namespace visibleTab {
             export let type: StringConstructor;
-            let _default: string;
+            let _default: null;
             export { _default as default };
         }
-        namespace visibleTab {
-            let type_1: StringConstructor;
-            export { type_1 as type };
-            let _default_1: null;
-            export { _default_1 as default };
-        }
         let pageTitle: StringConstructor;
-        let defaultPlan: StringConstructor;
+        let selectedPlan: StringConstructor;
     }
+    function mounted(): void;
     namespace computed {
         function title(): any;
         function description(): any;

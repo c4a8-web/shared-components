@@ -101,6 +101,16 @@ ul {
   text-shadow: 7px 5px 7px #ffffff;
 }
 
+.shared-components {
+  .text-primary {
+    color: var(--color-primary) !important;
+  }
+
+  .text-secondary {
+    color: var(--color-secondary) !important;
+  }
+}
+
 strong[id] {
   &:target {
     &::before {

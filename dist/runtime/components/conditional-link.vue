@@ -12,7 +12,7 @@
 <script>
 export default {
   props: {
-    href: Boolean,
+    href: String,
   },
 };
 </script>
