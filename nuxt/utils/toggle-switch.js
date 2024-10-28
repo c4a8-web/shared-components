@@ -90,9 +90,7 @@ class ToggleSwitch {
   }
 
   updatePrices(element, state) {
-    // TODO check what is wrong with the initial calculation state
     const cleanedValue = state.replace ? parseFloat(state.replace(/,/, '.')) : state;
-    console.log('🚀 ~ ToggleSwitch ~ updatePrices ~ cleanedValue:', cleanedValue);
     const formatter = this.priceFormatter();
     const formattedResult = formatter.format(cleanedValue);
 
