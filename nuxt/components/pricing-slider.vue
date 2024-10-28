@@ -1,15 +1,16 @@
 <template>
-  <div class="pricing-slider">
+  <div class="pricing-slider" ref="root">
     <div
       v-if="pricingSliderRange"
       class="js-slider-data"
       :data-range="JSON.stringify(pricingSliderRange)"
-      :data-products="JSON.stringify(products)"
+      :data-products="JSON.stringify(products?.list)"
     >
       <input
         class="js-ion-range-slider"
         type="text"
         :data-hs-ion-range-slider-options="JSON.stringify(hsIonRangeSliderOptions)"
+        ref="slider"
       />
     </div>
     <div class="product-stage__result-container">
@@ -35,6 +36,8 @@
   </div>
 </template>
 <script>
+import PricingSlider from '../utils/components/pricing-slider.js';
+
 export default {
   tagName: 'pricing-slider',
   props: {
@@ -42,6 +45,40 @@ export default {
     tooltip: String,
     modalId: String,
     products: Object,
+  },
+  data() {
+    return {
+      options: {
+        type: 'single',
+        hide_min_max: !0,
+        foreground_target_el: null,
+        secondary_target_el: null,
+        secondary_val: { steps: null, values: null },
+        result_min_target_el: null,
+        result_max_target_el: null,
+        hide_from_to: false,
+        result_min_target_el: '.js-result-price',
+        extra_classes: 'range-slider-custom',
+      },
+    };
+  },
+  mounted() {
+    if (!window.$) return;
+
+    const { min, max, from, step, unit } = this.pricingSliderRange;
+
+    Object.assign(this.options, { min, max, from, step, postfix: ` ${unit}` });
+
+    this.options.onStart = this.handleRangeSliderStart;
+    this.options.onChange = this.handleRangeSliderChange;
+
+    if (this.$refs.root) {
+      new PricingSlider(this.$refs.root);
+
+      // PricingSlider.init(this.$refs.root);
+    }
+
+    this.initRangeSlider();
   },
   computed: {
     pricingSliderRange() {
@@ -57,6 +94,26 @@ export default {
         step: this.pricingSliderRange.step,
         result_min_target_el: '.js-result-price',
       };
+    },
+  },
+  methods: {
+    handleRangeSliderStart(slider) {
+      if (!window.prepareSlider || !window.handleChange) return;
+
+      console.log('🚀 ~ handleRangeSliderStart ~ slider:', slider);
+      window.prepareSlider(slider);
+      window.handleChange(slider);
+    },
+    handleRangeSliderChange(slider) {
+      if (!window.handleChange) return;
+
+      console.log('🚀 ~ handleRangeSliderChange ~ slider:', slider);
+      window.handleChange(slider);
+    },
+    initRangeSlider() {
+      if (!this.$refs.slider) return;
+
+      window.$(this.$refs.slider).ionRangeSlider(this.options);
     },
   },
 };

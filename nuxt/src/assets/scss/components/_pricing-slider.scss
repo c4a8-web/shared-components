@@ -1,3 +1,50 @@
+.pricing-slider {
+  .range-slider-custom {
+    height: 3.5rem;
+    margin-top: 2.5rem;
+
+    .irs-line,
+    .irs-bar {
+      cursor: pointer;
+      height: 7px;
+    }
+
+    .irs-bar,
+    .irs-handle {
+      background-color: var(--color-midnight);
+    }
+
+    .irs-handle {
+      width: 50px;
+      height: 50px;
+      top: 3px;
+
+      > i:first-child {
+        display: none;
+      }
+    }
+
+    .irs-from,
+    .irs-to,
+    .irs-single {
+      background-color: transparent;
+      box-shadow: none;
+      color: inherit;
+
+      &::before {
+        display: none;
+      }
+    }
+
+    .irs-single {
+      font-size: 1.4rem;
+      font-family: 'Miriam Libre', sans-serif;
+      font-weight: bold;
+      top: -2.75rem;
+    }
+  }
+}
+
 .pricing-slider__info {
   position: relative;
   transform: translateY(50%);

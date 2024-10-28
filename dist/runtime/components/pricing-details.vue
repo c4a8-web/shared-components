@@ -2,27 +2,28 @@
   <section id="pricingDetails" class="pricing-details" :style="{ backgroundColor: bgColor }">
     <div class="container">
       <div v-if="headline">
-        <headline-row :text="headline" :centered="true" :hasAnimation="true" />
+        <headline-row :text="headline" :centered="true" :has-animation="true" />
       </div>
       <p
         v-if="description"
         class="pricing-details__description w-75 mt-5 ml-auto mr-auto text-center utility-animation fade-in-bottom"
         data-utility-animation-step="1"
+        ref="description"
       >
         {{ description }}
       </p>
       <div class="pricing-details__content pt-6 pt-lg-8 pb-10">
         <div v-if="toggleSwitch">
-          <toggle-switch :toggleSwitch="toggleSwitch" :hasAnimation="true" />
+          <toggle-switch :toggle-switch="toggleSwitch" :has-animation="true" />
         </div>
         <pricing-product
           v-for="(product, index) in products"
           :key="index"
           :product="product"
-          :targetSelectorClass="pricingDetailTargetSelector"
-          :visibleTab="visibleTab"
+          :target-selector-class="pricingDetailTargetSelector"
+          :visible-tab="visibleTab"
           :index="index + 1"
-          :hasAnimation="true"
+          :has-animation="true"
         />
         <div class="pricing-details__infos pt-5">
           {{ vatInfo }}
@@ -34,6 +35,7 @@
 <script>
 import Tools from '../utils/tools.js';
 import Lang from '../utils/lang.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   props: {
@@ -50,6 +52,11 @@ export default {
       type: String,
       default: 'de',
     },
+  },
+  mounted() {
+    if (!this.$refs.description) return;
+
+    UtilityAnimation.init([this.$refs.description]);
   },
   computed: {
     pricingDetailTargetSelector() {

@@ -60,6 +60,7 @@
         :slider="stage.slider"
         :tooltip="stage.tooltip"
         :modal-id="stage.modalId"
+        :products="products"
       />
 
       <div v-if="stage.additionalCopy" class="row justify-content-center py-6">

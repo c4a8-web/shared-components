@@ -17,6 +17,7 @@ declare namespace _default {
             export { _default_1 as default };
         }
     }
+    function mounted(): void;
     namespace computed {
         function pricingDetailTargetSelector(): any;
         function langData(): any;

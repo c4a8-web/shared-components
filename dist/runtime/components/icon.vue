@@ -10,6 +10,8 @@ import Tools from '../utils/tools.js';
 import ArrowCurl from './icons/arrow-curl.vue';
 import ArrowExternal from './icons/arrow-external.vue';
 import ArrowNarrow from './icons/arrow-narrow.vue';
+import Arrow from './icons/arrow.vue';
+import Bin from './icons/bin.vue';
 import ComputerShield from './icons/computer-shield.vue';
 import PlusMinus from './icons/plus-minus.vue';
 
@@ -18,6 +20,8 @@ export default {
     'arrow-curl': ArrowCurl,
     'arrow-external': ArrowExternal,
     'arrow-narrow': ArrowNarrow,
+    arrow: Arrow,
+    bin: Bin,
     'computer-shield': ComputerShield,
     'plus-minus': PlusMinus,
   },

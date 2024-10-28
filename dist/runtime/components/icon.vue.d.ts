@@ -3,6 +3,8 @@ declare namespace _default {
         'arrow-curl': any;
         'arrow-external': any;
         'arrow-narrow': any;
+        arrow: any;
+        bin: any;
         'computer-shield': any;
         'plus-minus': any;
     };

@@ -1,6 +1,24 @@
 import '../src/assets/scss/index.scss';
 import '../src/assets/scss/themes/_gk.scss';
 
+const loadPlugins = () => {
+  import('jquery')
+    .then((module) => {
+      if (!window) return;
+
+      window.$ = module.default;
+    })
+    .catch((error) => {
+      console.error('Failed to load jQuery:', error);
+    });
+
+  import('ion-rangeslider').catch((error) => {
+    console.error('Failed to load Ion Rangeslider:', error);
+  });
+};
+
+loadPlugins();
+
 export const decorators = [
   (story, params) => {
     const rootElement = document.getElementById('storybook-root');
