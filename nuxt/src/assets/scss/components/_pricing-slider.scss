@@ -43,6 +43,11 @@
       top: -2.75rem;
     }
   }
+
+  .js-ion-range-slider:not(.irs-hidden-input) {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
 
 .pricing-slider__info {

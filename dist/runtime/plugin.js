@@ -19,5 +19,9 @@ export default defineNuxtPlugin((_nuxtApp) => {
     import('slick-carousel').catch((error) => {
       console.error('Failed to load Slick Carousel:', error);
     });
+
+    import('ion-rangeslider').catch((error) => {
+      console.error('Failed to load Ion Rangeslider:', error);
+    });
   }
 });

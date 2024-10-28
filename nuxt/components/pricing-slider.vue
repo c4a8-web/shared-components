@@ -28,7 +28,7 @@
       <modal :slim="true" :center="true" class="pricing-slider__modal" :modal-id="modalId">
         <div class="container">
           <div class="row">
-            <div class="col">{{ tooltip }}</div>
+            <div class="col" v-html="tooltip"></div>
           </div>
         </div>
       </modal>
@@ -74,8 +74,6 @@ export default {
 
     if (this.$refs.root) {
       new PricingSlider(this.$refs.root);
-
-      // PricingSlider.init(this.$refs.root);
     }
 
     this.initRangeSlider();
@@ -98,16 +96,15 @@ export default {
   },
   methods: {
     handleRangeSliderStart(slider) {
+      // TODO move JS inside the vue component
       if (!window.prepareSlider || !window.handleChange) return;
 
-      console.log('🚀 ~ handleRangeSliderStart ~ slider:', slider);
       window.prepareSlider(slider);
       window.handleChange(slider);
     },
     handleRangeSliderChange(slider) {
       if (!window.handleChange) return;
 
-      console.log('🚀 ~ handleRangeSliderChange ~ slider:', slider);
       window.handleChange(slider);
     },
     initRangeSlider() {

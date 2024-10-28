@@ -13,6 +13,7 @@ import ArrowNarrow from './icons/arrow-narrow.vue';
 import Arrow from './icons/arrow.vue';
 import Bin from './icons/bin.vue';
 import ComputerShield from './icons/computer-shield.vue';
+import Info from './icons/info.vue';
 import PlusMinus from './icons/plus-minus.vue';
 
 export default {
@@ -23,6 +24,7 @@ export default {
     arrow: Arrow,
     bin: Bin,
     'computer-shield': ComputerShield,
+    info: Info,
     'plus-minus': PlusMinus,
   },
   tagName: 'icon',

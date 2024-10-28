@@ -6,6 +6,7 @@ declare namespace _default {
         arrow: any;
         bin: any;
         'computer-shield': any;
+        info: any;
         'plus-minus': any;
     };
     let tagName: string;
