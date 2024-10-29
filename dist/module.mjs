@@ -23,11 +23,12 @@ const module = defineNuxtModule({
     const { resolve } = createResolver(import.meta.url);
     console.log("Shared components module setup");
     const runtimeDir = resolve(__dirname, "./runtime");
+    const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
-    _nuxt.options.build.transpile.push(runtimeDir, "node-html-parser", "jquery", "slick-carousel");
+    _nuxt.options.build.transpile.push(...optimizeDeps);
     _nuxt.options.vite.optimizeDeps ||= {};
     _nuxt.options.vite.optimizeDeps.include ||= [];
-    _nuxt.options.vite.optimizeDeps.include.push("node-html-parser", "jquery", "slick-carousel");
+    _nuxt.options.vite.optimizeDeps.include.push(...optimizeDeps);
     _nuxt.options.css.push(resolve("./styles/index.min.css"));
     if (_options) {
       const { theme } = _options;
