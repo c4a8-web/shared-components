@@ -22,6 +22,10 @@ export default defineNuxtModule({
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(runtimeDir, 'node-html-parser', 'jquery', 'slick-carousel');
 
+    _nuxt.options.vite.optimizeDeps ||= {};
+    _nuxt.options.vite.optimizeDeps.include ||= [];
+    _nuxt.options.vite.optimizeDeps.include.push('node-html-parser', 'jquery', 'slick-carousel');
+
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 
     if (_options) {
