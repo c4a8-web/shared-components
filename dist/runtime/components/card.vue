@@ -153,6 +153,7 @@ export default {
     return {
       wordsToTruncate: 20,
       activeView: null,
+      // TODO pass this down from blog-recent
       imgSrcSets: null,
     };
   },

@@ -1,5 +1,5 @@
 {
-  "name": "shared-components-nuxt",
+  "name": "shared-components",
   "private": true,
   "type": "module",
   "exports": {

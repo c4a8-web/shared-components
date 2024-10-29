@@ -5,8 +5,8 @@ import type { NuxtTemplate } from '@nuxt/schema';
 
 export default defineNuxtModule({
   meta: {
-    name: 'shared-components-nuxt',
-    configKey: 'sharedComponentsNuxt',
+    name: 'shared-components',
+    configKey: 'sharedComponents',
   },
   defaults: {
     // TODO add prefix and rename components
@@ -14,6 +14,8 @@ export default defineNuxtModule({
   },
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
+
+    console.log('Shared components module setup');
 
     addPlugin(resolve('./runtime/plugin'));
 

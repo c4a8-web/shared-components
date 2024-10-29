@@ -3,8 +3,8 @@ import { defineNuxtModule, createResolver, addPlugin, addComponentsDir, addTempl
 
 const module = defineNuxtModule({
   meta: {
-    name: "shared-components-nuxt",
-    configKey: "sharedComponentsNuxt"
+    name: "shared-components",
+    configKey: "sharedComponents"
   },
   defaults: {
     // TODO add prefix and rename components
@@ -12,6 +12,7 @@ const module = defineNuxtModule({
   },
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
+    console.log("Shared components module setup");
     addPlugin(resolve("./runtime/plugin"));
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
     _nuxt.options.build.transpile.push(resolve("runtime"), "node-html-parser", "jquery", "slick-carousel");
