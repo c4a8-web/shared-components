@@ -17,10 +17,10 @@ export default defineNuxtModule({
 
     console.log('Shared components module setup');
 
-    addPlugin(resolve('./runtime/plugin'));
+    const runtimeDir = resolve(__dirname, './runtime');
 
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
-    _nuxt.options.build.transpile.push(resolve('runtime'), 'node-html-parser', 'jquery', 'slick-carousel');
+    _nuxt.options.build.transpile.push(runtimeDir, 'node-html-parser', 'jquery', 'slick-carousel');
 
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 
@@ -49,5 +49,11 @@ export default defineNuxtModule({
         addLayout(template, name);
       }
     });
+
+    addPlugin(resolve('./runtime/plugin'));
+
+    // _nuxt.hook('autoImports:dirs', (dirs) => {
+    //   dirs.push(resolve(runtimeDir, 'composables'))
+    // })
   },
 });
