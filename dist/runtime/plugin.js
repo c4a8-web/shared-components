@@ -6,7 +6,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
       .then((module) => {
         if (!window) return;
 
-        window.$ = module.default;
+        window.jQuery = window.$ = module.default;
 
         return Promise.all([
           import('bootstrap/dist/js/bootstrap.bundle.min.js'),
