@@ -7,21 +7,18 @@ export default defineNuxtPlugin((_nuxtApp) => {
         if (!window) return;
 
         window.$ = module.default;
+
+        return Promise.all([
+          import('bootstrap/dist/js/bootstrap.bundle.min.js'),
+          import('slick-carousel'),
+          import('ion-rangeslider'),
+        ]);
+      })
+      .then(() => {
+        console.debug('All libraries loaded successfully.');
       })
       .catch((error) => {
-        console.error('Failed to load jQuery:', error);
+        console.error('Failed to load a library:', error);
       });
-
-    import('bootstrap/dist/js/bootstrap.bundle.min.js').catch((error) => {
-      console.error('Failed to load Bootstrap JS:', error);
-    });
-
-    import('slick-carousel').catch((error) => {
-      console.error('Failed to load Slick Carousel:', error);
-    });
-
-    import('ion-rangeslider').catch((error) => {
-      console.error('Failed to load Ion Rangeslider:', error);
-    });
   }
 });
