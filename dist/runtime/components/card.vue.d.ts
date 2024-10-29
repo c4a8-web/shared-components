@@ -3,6 +3,7 @@ declare namespace _default {
     function data(): {
         wordsToTruncate: number;
         activeView: null;
+        imgSrcSets: null;
     };
     namespace computed {
         function blogView(): any;

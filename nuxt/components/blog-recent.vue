@@ -92,7 +92,7 @@ export default {
         }
       }
 
-      console.log('🚀 ~ query ~ query:', query);
+      // console.log('🚀 ~ query ~ query:', query);
 
       // const news = await queryContent().where({ _path: /^\/(news|blog)\// }).find()
       // const { data } = await useAsyncData('home', () => queryContent('/').findOne())

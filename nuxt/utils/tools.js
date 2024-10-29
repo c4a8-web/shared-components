@@ -1,4 +1,6 @@
-import { parse } from 'node-html-parser';
+import nodeHtmlParser from 'node-html-parser';
+
+const { parse } = nodeHtmlParser;
 
 class Tools {
   static defaultLang = 'de';
