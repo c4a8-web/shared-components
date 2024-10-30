@@ -30,7 +30,7 @@ declare namespace _default {
         function headlineLevelValue(): any;
         function headlineClassesValue(): any;
         function sublineClassesValue(): string;
-        function imgUrl(): string;
+        function imgUrl(): any;
     }
     function mounted(): void;
     namespace methods {

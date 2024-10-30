@@ -539,8 +539,8 @@ class Tools {
     let config = {};
 
     if (typeof process !== 'undefined' && process.server) {
-      // const runetimeConfig = useRuntimeConfig();
-      // config = { ...runetimeConfig };
+      const runetimeConfig = useRuntimeConfig();
+      config = { ...runetimeConfig };
     } else {
     }
 

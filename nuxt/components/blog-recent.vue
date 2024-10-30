@@ -72,7 +72,6 @@ export default {
       ];
     },
     showCompoent() {
-      // TODO adjust this to match params that actually query something
       return this.postsArray.length > 0 || this.query;
     },
     query() {
@@ -93,14 +92,6 @@ export default {
         }
       }
 
-      // console.log('🚀 ~ query ~ query:', query);
-
-      // const news = await queryContent().where({ _path: /^\/(news|blog)\// }).find()
-      // const { data } = await useAsyncData('home', () => queryContent('/').findOne())
-
-      // const postsQuery = { path: "/events", limit: 9, sort: [{ date: -1 }] };
-
-      // return { path: '/events', limit: 9, sort: [{ date: -1 }] };
       return query;
     },
     getSpacing() {
@@ -191,10 +182,11 @@ export default {
       return `blog-recent__subline ${this.sublineClasses ? this.sublineClasses : 'font-size-2'}`;
     },
     imgUrl() {
-      console.log('config', Tools.getConfig());
+      const config = Tools.getConfig();
+      console.log('config', config);
 
       // TODO placeholder before this is used from useRuntimeConfig();
-      return 'blog/heads/';
+      return config.public?.blogImagePath || 'blog/heads/';
     },
   },
   mounted() {
