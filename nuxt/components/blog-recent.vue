@@ -1,6 +1,5 @@
 <template>
   <template v-if="showCompoent">
-    imgUrl: {{ imgUrl }}
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
       <template v-if="list">
         <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData">
