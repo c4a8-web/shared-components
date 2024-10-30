@@ -1,4 +1,5 @@
 import { parse } from 'node-html-parser';
+import { useRuntimeConfig } from '#imports';
 
 class Tools {
   static defaultLang = 'de';
@@ -538,7 +539,7 @@ class Tools {
   static getConfig() {
     let config = {};
 
-    if (typeof process !== 'undefined' && process.server) {
+    if (typeof process !== 'undefined' && process.server && useRuntimeConfig) {
       const runetimeConfig = useRuntimeConfig();
       config = { ...runetimeConfig };
     } else {
