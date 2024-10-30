@@ -20,6 +20,7 @@
                   <div :class="itemClass" v-if="index <= limit" v-bind:key="index">
                     <card
                       v-bind="post"
+                      :url="postUrl(post)"
                       :blog-title-pic="blogTitleUrl(post)"
                       :youtube-url="post.youtubeUrl"
                       :date="post.date"
@@ -230,6 +231,9 @@ export default {
     },
     target(post) {
       return post.external ? '_blank' : '_self';
+    },
+    postUrl(post) {
+      return post?.cta?.href || post.url;
     },
   },
   props: {

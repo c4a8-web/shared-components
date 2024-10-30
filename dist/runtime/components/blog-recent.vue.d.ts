@@ -37,6 +37,7 @@ declare namespace _default {
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";
+        function postUrl(post: any): any;
     }
     namespace props {
         namespace bgColor {

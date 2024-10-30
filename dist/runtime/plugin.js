@@ -1,6 +1,8 @@
 import { defineNuxtPlugin } from '#app';
 
 export default defineNuxtPlugin((_nuxtApp) => {
+  // TODO add gdpr
+
   if (process.client) {
     import('jquery')
       .then((module) => {
