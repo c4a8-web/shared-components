@@ -539,10 +539,10 @@ class Tools {
   static getConfig() {
     let config = {};
 
-    if (typeof process !== 'undefined' && process.server && useRuntimeConfig) {
+    if (typeof useRuntimeConfig === 'function') {
       const runetimeConfig = useRuntimeConfig();
+
       config = { ...runetimeConfig };
-    } else {
     }
 
     return config;
