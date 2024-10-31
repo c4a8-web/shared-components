@@ -53,5 +53,8 @@
     "@storybook/blocks": "8.3.0",
     "@storybook/test": "8.3.0",
     "storybook": "8.3.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "4.9.5"
   }
 }
