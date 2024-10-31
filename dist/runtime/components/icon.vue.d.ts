@@ -5,9 +5,15 @@ declare namespace _default {
         'arrow-narrow': any;
         arrow: any;
         bin: any;
+        'check-mark': any;
+        check: any;
+        close: any;
         'computer-shield': any;
+        'email-action-unread': any;
+        emergency: any;
         info: any;
         'plus-minus': any;
+        world: any;
     };
     let tagName: string;
     function data(): {

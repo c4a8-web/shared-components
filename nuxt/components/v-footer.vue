@@ -47,14 +47,14 @@
                 </a>
               </li>
               <li v-if="dataValue.offices" class="footer__nav-item nav-item">
-                <a class="footer__nav-link nav-link">
+                <span class="footer__nav-link nav-link">
                   <icon icon="world" class="footer__nav-icon footer__office-icon" />
                   <div class="footer__offices">
-                    <span class="footer__office" v-for="(office, index) in dataValue.offices">
+                    <span class="footer__office" v-for="(office, index) in dataValue.offices" v-bind:key="index">
                       {{ office }}<span v-if="index < dataValue.offices.length - 1">,&nbsp;</span>
                     </span>
                   </div>
-                </a>
+                </span>
               </li>
               <li :class="['nav-item', locations.length > 1 ? 'pt-4' : '']" v-if="location.mail">
                 <a class="footer__nav-link nav-link" :href="'mailto:' + location.mail">
@@ -169,7 +169,7 @@ export default {
     classList() {
       return [
         'footer text-white',
-        !Tools.isTrue(this.noMargin) ? 'mt-8 mt-lg-11' : '',
+        this.noMargin === false ? 'mt-8 mt-lg-11' : '',
         this.isCorporate ? 'footer--corporate' : '',
         'vue-component',
       ];
@@ -233,7 +233,7 @@ export default {
   props: {
     data: Object,
     noMargin: {
-      default: null,
+      type: Boolean,
     },
     lang: String,
   },

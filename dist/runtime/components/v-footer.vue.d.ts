@@ -18,8 +18,7 @@ declare namespace _default {
     namespace props {
         let data: ObjectConstructor;
         namespace noMargin {
-            let _default: null;
-            export { _default as default };
+            let type: BooleanConstructor;
         }
         let lang: StringConstructor;
     }

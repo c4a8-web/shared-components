@@ -12,9 +12,15 @@ import ArrowExternal from './icons/arrow-external.vue';
 import ArrowNarrow from './icons/arrow-narrow.vue';
 import Arrow from './icons/arrow.vue';
 import Bin from './icons/bin.vue';
+import CheckMark from './icons/check-mark.vue';
+import Check from './icons/check.vue';
+import Close from './icons/close.vue';
 import ComputerShield from './icons/computer-shield.vue';
+import EmailActionUnread from './icons/email-action-unread.vue';
+import Emergency from './icons/emergency.vue';
 import Info from './icons/info.vue';
 import PlusMinus from './icons/plus-minus.vue';
+import World from './icons/world.vue';
 
 export default {
   components: {
@@ -23,9 +29,15 @@ export default {
     'arrow-narrow': ArrowNarrow,
     arrow: Arrow,
     bin: Bin,
+    'check-mark': CheckMark,
+    check: Check,
+    close: Close,
     'computer-shield': ComputerShield,
+    'email-action-unread': EmailActionUnread,
+    emergency: Emergency,
     info: Info,
     'plus-minus': PlusMinus,
+    world: World,
   },
   tagName: 'icon',
   data() {

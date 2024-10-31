@@ -1,9 +1,30 @@
 import { promises as fs } from 'fs';
-import { defineNuxtModule, addPlugin, addComponentsDir, createResolver, addTemplate, addLayout } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  addPlugin,
+  addImportsDir,
+  addComponentsDir,
+  createResolver,
+  addTemplate,
+  addLayout,
+  extendPages,
+} from '@nuxt/kit';
 
 import type { NuxtTemplate } from '@nuxt/schema';
 
 export default defineNuxtModule({
+  // TODO prereder collections
+  // https://nuxt.com/docs/getting-started/prerendering#prerenderroutes-nuxt-hook
+  // hooks: {
+  //   async "prerender:routes"(ctx) {
+  //     const { pages } = await fetch("https://api.some-cms.com/pages").then(
+  //       (res) => res.json(),
+  //     );
+  //     for (const page of pages) {
+  //       ctx.routes.add(`/${page.name}`);
+  //     }
+  //   },
+  // },
   meta: {
     name: 'shared-components',
     configKey: 'sharedComponents',
@@ -15,7 +36,7 @@ export default defineNuxtModule({
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
-    console.log('Shared components module setup');
+    console.log('✔ Shared components module setup');
 
     const runtimeDir = resolve(__dirname, './runtime');
 
@@ -58,8 +79,22 @@ export default defineNuxtModule({
 
     addPlugin(resolve('./runtime/plugin'));
 
-    // _nuxt.hook('autoImports:dirs', (dirs) => {
-    //   dirs.push(resolve(runtimeDir, 'composables'))
-    // })
+    extendPages((pages) => {
+      pages.unshift({
+        name: 'slug-all',
+        path: '/:slug(.*)*',
+        file: resolve('./runtime/pages/[...slug].vue'),
+      });
+    });
+
+    extendPages((pages) => {
+      pages.unshift({
+        name: 'slug-events',
+        path: '/events/:slug(.*)*',
+        file: resolve('./runtime/pages/events/[...slug].vue'),
+      });
+    });
+
+    addImportsDir(resolve('./runtime/composables'));
   },
 });

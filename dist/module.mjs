@@ -1,5 +1,5 @@
 import { promises } from 'fs';
-import { defineNuxtModule, createResolver, addComponentsDir, addTemplate, addLayout, addPlugin } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages, addImportsDir } from '@nuxt/kit';
 
 
 
@@ -11,6 +11,18 @@ const __filename = __cjs_url__.fileURLToPath(import.meta.url);
 const __dirname = __cjs_path__.dirname(__filename);
 const require = __cjs_mod__.createRequire(import.meta.url);
 const module = defineNuxtModule({
+  // TODO prereder collections
+  // https://nuxt.com/docs/getting-started/prerendering#prerenderroutes-nuxt-hook
+  // hooks: {
+  //   async "prerender:routes"(ctx) {
+  //     const { pages } = await fetch("https://api.some-cms.com/pages").then(
+  //       (res) => res.json(),
+  //     );
+  //     for (const page of pages) {
+  //       ctx.routes.add(`/${page.name}`);
+  //     }
+  //   },
+  // },
   meta: {
     name: "shared-components",
     configKey: "sharedComponents"
@@ -21,7 +33,7 @@ const module = defineNuxtModule({
   },
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
-    console.log("Shared components module setup");
+    console.log("\u2714 Shared components module setup");
     const runtimeDir = resolve(__dirname, "./runtime");
     const optimizeDeps = [runtimeDir, "node-html-parser", "jquery", "slick-carousel"];
     _nuxt.options.build.transpile = _nuxt.options.build.transpile || [];
@@ -50,6 +62,21 @@ const module = defineNuxtModule({
       }
     });
     addPlugin(resolve("./runtime/plugin"));
+    extendPages((pages) => {
+      pages.unshift({
+        name: "slug-all",
+        path: "/:slug(.*)*",
+        file: resolve("./runtime/pages/[...slug].vue")
+      });
+    });
+    extendPages((pages) => {
+      pages.unshift({
+        name: "slug-events",
+        path: "/events/:slug(.*)*",
+        file: resolve("./runtime/pages/events/[...slug].vue")
+      });
+    });
+    addImportsDir(resolve("./runtime/composables"));
   }
 });
 
