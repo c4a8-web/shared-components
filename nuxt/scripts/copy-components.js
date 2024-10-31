@@ -19,6 +19,12 @@ const directories = [
     recursive: true,
   },
   {
+    source: path.join(__dirname, '../pages'),
+    destination: path.join(__dirname, '../src/runtime/pages'),
+    extension: '.vue',
+    recursive: true,
+  },
+  {
     source: path.join(__dirname, '../utils'),
     destination: path.join(__dirname, '../src/runtime/utils'),
     extension: '.js',

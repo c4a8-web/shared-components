@@ -1,5 +1,13 @@
 import { promises as fs } from 'fs';
-import { defineNuxtModule, addPlugin, addComponentsDir, createResolver, addTemplate, addLayout } from '@nuxt/kit';
+import {
+  defineNuxtModule,
+  addPlugin,
+  addComponentsDir,
+  createResolver,
+  addTemplate,
+  addLayout,
+  extendPages,
+} from '@nuxt/kit';
 
 import type { NuxtTemplate } from '@nuxt/schema';
 
@@ -57,6 +65,14 @@ export default defineNuxtModule({
     });
 
     addPlugin(resolve('./runtime/plugin'));
+
+    extendPages((pages) => {
+      pages.unshift({
+        name: 'slug-all',
+        path: '/:slug(.*)*',
+        file: resolve('./runtime/pages/[...slug].vue'),
+      });
+    });
 
     // _nuxt.hook('autoImports:dirs', (dirs) => {
     //   dirs.push(resolve(runtimeDir, 'composables'))
