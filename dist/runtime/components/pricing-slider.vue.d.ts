@@ -16,9 +16,9 @@ declare namespace _default {
                 steps: null;
                 values: null;
             };
-            result_min_target_el: string;
             result_max_target_el: null;
             hide_from_to: boolean;
+            result_min_target_el: string;
             extra_classes: string;
         };
     };

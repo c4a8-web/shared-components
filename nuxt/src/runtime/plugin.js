@@ -1,4 +1,4 @@
-import { defineNuxtPlugin } from '#app';
+import { defineNuxtPlugin, addRouteMiddleware } from '#app';
 
 export default defineNuxtPlugin((_nuxtApp) => {
   // TODO add gdpr

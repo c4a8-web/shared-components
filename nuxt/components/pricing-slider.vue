@@ -54,7 +54,6 @@ export default {
         foreground_target_el: null,
         secondary_target_el: null,
         secondary_val: { steps: null, values: null },
-        result_min_target_el: null,
         result_max_target_el: null,
         hide_from_to: false,
         result_min_target_el: '.js-result-price',
