@@ -7,6 +7,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 const props = defineProps({
   headerData: Object,
   footerData: Object,
