@@ -1,5 +1,5 @@
 import { promises } from 'fs';
-import { defineNuxtModule, createResolver, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages, addImportsDir } from '@nuxt/kit';
+import { defineNuxtModule, createResolver, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages } from '@nuxt/kit';
 
 
 
@@ -69,14 +69,6 @@ const module = defineNuxtModule({
         file: resolve("./runtime/pages/[...slug].vue")
       });
     });
-    extendPages((pages) => {
-      pages.unshift({
-        name: "slug-events",
-        path: "/events/:slug(.*)*",
-        file: resolve("./runtime/pages/events/[...slug].vue")
-      });
-    });
-    addImportsDir(resolve("./runtime/composables"));
   }
 });
 
