@@ -26,7 +26,7 @@ const additionalFields = [
 const page = ref({});
 const eventForm = ref(null);
 
-console.log('i am here in the events slug of the module');
+// console.log('i am here in the events slug of the module');
 
 const route = useRoute();
 const cleanPath = route.path.substring(0, route.path.length - 1);
@@ -40,14 +40,6 @@ const { data } = await useAsyncData('events', () =>
     .findOne()
 );
 
-// const { data } = await queryContent('events')
-//   .where({
-//     _path: cleanPath,
-//   })
-//   .findOne();
-
-console.log('🚀 ~ page:', page);
-
 if (data.value) {
   page.value = data.value;
 
@@ -55,8 +47,4 @@ if (data.value) {
     eventForm.value = data.value.form;
   }
 }
-
-// if (data?.value) {
-//   console.log('stopfe data in contentdoc');
-// }
 </script>
