@@ -551,7 +551,7 @@ class Tools {
   static getEnvironment() {
     const config = Tools.getConfig();
 
-    return config?.public?.ENVIRONMENT || 'development';
+    return config?.public?.environment || 'development';
   }
 }
 

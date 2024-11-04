@@ -28,6 +28,9 @@ export default defineNuxtModule({
   meta: {
     name: 'shared-components',
     configKey: 'sharedComponents',
+    compatibility: {
+      nuxt: '>=3.0.0',
+    },
   },
   defaults: {
     // TODO add prefix and rename components

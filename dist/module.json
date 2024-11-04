@@ -1,6 +1,9 @@
 {
   "name": "shared-components",
   "configKey": "sharedComponents",
+  "compatibility": {
+    "nuxt": ">=3.0.0"
+  },
   "builder": {
     "@nuxt/module-builder": "0.8.4",
     "unbuild": "2.0.0"

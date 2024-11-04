@@ -36,40 +36,28 @@ const copyFiles = (source, destination, extension, recursive) => {
   if (!fs.existsSync(destination)) {
     fs.mkdirSync(destination, { recursive: true });
   } else {
-    fs.readdir(destination, (err, files) => {
-      if (err) {
-        console.error(`Error reading destination directory ${destination}:`, err);
-        return;
-      }
-      files.forEach((file) => {
-        const destinationFile = path.join(destination, file);
-        fs.rmSync(destinationFile, { recursive: true, force: true });
-      });
+    const files = fs.readdirSync(destination);
+    files.forEach((file) => {
+      const destinationFile = path.join(destination, file);
+      fs.rmSync(destinationFile, { recursive: true, force: true });
     });
   }
 
-  fs.readdir(source, { withFileTypes: true }, (err, files) => {
-    if (err) {
-      console.error(`Error reading source directory ${source}:`, err);
-      return;
-    }
+  const files = fs.readdirSync(source, { withFileTypes: true });
+  files.forEach((file) => {
+    const sourceFile = path.join(source, file.name);
+    const destinationFile = path.join(destination, file.name);
 
-    files.forEach((file) => {
-      const sourceFile = path.join(source, file.name);
-      const destinationFile = path.join(destination, file.name);
-
-      if (file.isDirectory() && recursive) {
-        copyFiles(sourceFile, destinationFile, extension, recursive);
-      } else if (file.isFile() && file.name.endsWith(extension)) {
-        fs.copyFile(sourceFile, destinationFile, (err) => {
-          if (err) {
-            console.error(`Error copying file ${file.name} from ${source} to ${destination}:`, err);
-          } else {
-            // console.log(`Copied ${file.name} from ${source} to ${destination}`);
-          }
-        });
+    if (file.isDirectory() && recursive) {
+      copyFiles(sourceFile, destinationFile, extension, recursive);
+    } else if (file.isFile() && file.name.endsWith(extension)) {
+      try {
+        fs.copyFileSync(sourceFile, destinationFile);
+        // console.log(`Copied ${file.name} from ${source} to ${destination}`);
+      } catch (err) {
+        console.error(`Error copying file ${file.name} from ${source} to ${destination}:`, err);
       }
-    });
+    }
   });
 };
 
