@@ -62,4 +62,5 @@ declare class Tools {
     static hexToRgb(hex: any): string;
     static getHash(): string;
     static getConfig(): {};
+    static getEnvironment(): any;
 }

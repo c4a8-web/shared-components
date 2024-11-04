@@ -547,6 +547,12 @@ class Tools {
 
     return config;
   }
+
+  static getEnvironment() {
+    const config = Tools.getConfig();
+
+    return config?.public?.ENVIRONMENT || 'development';
+  }
 }
 
 export default Tools;

@@ -35,6 +35,17 @@ const directories = [
 const copyFiles = (source, destination, extension, recursive) => {
   if (!fs.existsSync(destination)) {
     fs.mkdirSync(destination, { recursive: true });
+  } else {
+    fs.readdir(destination, (err, files) => {
+      if (err) {
+        console.error(`Error reading destination directory ${destination}:`, err);
+        return;
+      }
+      files.forEach((file) => {
+        const destinationFile = path.join(destination, file);
+        fs.rmSync(destinationFile, { recursive: true, force: true });
+      });
+    });
   }
 
   fs.readdir(source, { withFileTypes: true }, (err, files) => {

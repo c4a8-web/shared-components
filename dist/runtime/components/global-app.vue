@@ -1,4 +1,5 @@
 <template>
+  <tracking />
   <div id="app" :class="classes">
     <slot />
   </div>
