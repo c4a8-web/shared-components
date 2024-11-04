@@ -550,7 +550,6 @@ class Tools {
 
   static getEnvironment() {
     const config = Tools.getConfig();
-    console.log('🚀 ~ Tools ~ getEnvironment ~ config:', config);
 
     return config?.public?.environment || 'development';
   }

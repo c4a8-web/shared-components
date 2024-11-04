@@ -9,7 +9,6 @@ const config = Tools.getConfig();
 const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
 const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
 
-console.log('🚀 ~ Tools.getEnvironment():', Tools.getEnvironment());
 if (Tools.getEnvironment() !== 'development') {
   useHead({
     script: [
