@@ -163,7 +163,9 @@ export default {
       return this.overlapping ? 'position-absolute bottom-0 left-0 z-index-1 w-100' : 'position-relative z-index-1';
     },
     bgColor() {
-      return this.stage.bgColor || 'var(--color-primary)';
+      const bgColor = this.stage.bgColor || 'var(--color-primary)';
+
+      return bgColor.replace(';', '');
     },
     shape() {
       return this.stage.shape || null;
