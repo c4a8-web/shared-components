@@ -29,9 +29,7 @@
         </div>
       </div>
 
-      <div v-if="footer" class="container pb-6">
-        {{ footer }}
-      </div>
+      <div v-if="footer" class="container pb-6" v-html="footer"></div>
     </div>
   </div>
 </template>
