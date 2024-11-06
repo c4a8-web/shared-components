@@ -11,7 +11,7 @@
           </div>
         </div>
         <form
-          class="form__form js-validate mt-6"
+          class="form__form mt-6"
           :method="method"
           :action="formAction"
           :novalidate="novalidate"

@@ -126,8 +126,6 @@ class Form extends BaseComponent {
 
   handleDefaultSubmit(e) {
     e.preventDefault();
-
-    console.log('default submit');
   }
 
   handleSubmit(e) {
@@ -215,17 +213,18 @@ class Form extends BaseComponent {
   triggerExternalValidation() {
     let result = false;
 
-    if (window.$) {
-      const form = $(this.form);
+    // TODO check if we actually need this anymore. since we have moved away from jquery validate.
+    // if (window.$) {
+    //   const form = $(this.form);
 
-      if (typeof form.validate !== 'function') {
-        console.error('form.validate is not a function');
+    //   if (typeof form.validate !== 'function') {
+    //     console.error('form.validate is not a function');
 
-        return true;
-      }
+    //     return true;
+    //   }
 
-      result = form.validate().form();
-    }
+    //   result = form.validate().form();
+    // }
 
     return result;
   }

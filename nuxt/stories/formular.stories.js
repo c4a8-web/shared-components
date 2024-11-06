@@ -1,6 +1,6 @@
-import FormularComponent from '../../components/formular.vue';
-import { analytics } from '../globalArgTypes';
-import options from '../../../.storybook/data/options';
+import FormularComponent from '../components/formular.vue';
+import { analytics } from './globalArgTypes.js';
+import options from '../.storybook/data/options';
 
 export default {
   component: FormularComponent,
@@ -75,7 +75,7 @@ const baseArgs = {
     ctaText: 'Bewerbung absenden',
     ctaPosition: 'justify-content-center',
     method: 'post',
-    action: '',
+    action: '../',
     fields: [
       {
         label: 'Vorname',
@@ -152,8 +152,6 @@ const baseArgs = {
     ],
   },
 };
-
-const Template = (args) => createComponent(args, component);
 
 export const BaseValidation = {
   args: {
