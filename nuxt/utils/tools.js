@@ -1,5 +1,5 @@
 import { parse } from 'node-html-parser';
-import { useRuntimeConfig } from '#imports';
+import { useRuntimeConfig, useRoute } from '#imports';
 
 class Tools {
   static defaultLang = 'de';

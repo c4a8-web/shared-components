@@ -6,7 +6,6 @@ class Anchor {
 
   constructor() {
     const hash = this.getHash();
-    console.log('🚀 ~ Anchor ~ constructor ~ hash:', hash);
 
     this.idSelector = `[id="${hash.substring(1)}"]:not([role="tabpanel"])`;
     this.idTarget = document.querySelector(this.idSelector);
@@ -19,7 +18,6 @@ class Anchor {
     this.productStageSelector = '.product-stage';
     this.target = document.querySelector(this.targetSelector);
     this.links = document.querySelectorAll('a[href^="#"]:not([data-toggle])');
-    console.log('🚀 ~ Anchor ~ constructor ~ this.links:', this.links);
 
     this.handleTargetClick();
     this.bindEvents();
