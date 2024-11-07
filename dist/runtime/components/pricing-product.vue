@@ -57,6 +57,7 @@
 </template>
 <script>
 import UtilityAnimation from '../utils/utility-animation.js';
+import Tools from '../utils/tools.js';
 
 export default {
   tagName: 'pricing-product',
@@ -69,7 +70,6 @@ export default {
       type: String,
       default: null,
     },
-    pageTitle: String,
     selectedPlan: String,
   },
   mounted() {
@@ -107,7 +107,7 @@ export default {
       }
     },
     filterExpression() {
-      return (item) => item.pages && item.pages.includes(this.pageTitle);
+      return (item) => item.pages && item.pages.includes(Tools.getPageTitle());
     },
     filteredButtons() {
       return this.buttons.filter(this.filterExpression);
@@ -117,10 +117,11 @@ export default {
     },
     buttonClasses() {
       const classes = ['row', 'justify-content-end', 'ml-md-4', 'ml-lg-6'];
+
       if (this.visibleTabButtons.length > 1) {
         classes.push('mb-2');
       }
-      return classes;
+      return classes.join(' ');
     },
     pricingProductClasses() {
       if (this.visibleTabButtons.length > 0) {

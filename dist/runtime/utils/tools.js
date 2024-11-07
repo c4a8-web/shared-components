@@ -553,6 +553,27 @@ class Tools {
 
     return config?.public?.environment || 'development';
   }
+
+  static getCurrentPath() {
+    let path = '';
+
+    if (typeof process !== 'undefined' && process.server) {
+      const route = useRoute();
+
+      path = route.fullPath;
+    } else {
+      path = window.location.pathname;
+    }
+
+    return path;
+  }
+
+  static getPageTitle() {
+    const currentPath = Tools.getCurrentPath().replace(/\//g, '');
+    const lowerCasePath = currentPath ? currentPath.toLowerCase() : '';
+
+    return lowerCasePath;
+  }
 }
 
 export default Tools;

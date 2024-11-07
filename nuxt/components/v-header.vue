@@ -217,7 +217,6 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
-        // this.activeNavigation.length > 0 ? '' : State.LOADING,
         'vue-component',
       ];
     },
@@ -504,23 +503,8 @@ export default {
 
       document.location.href = gotoUrl;
     },
-    getCurrentPath() {
-      let path = '/';
-
-      if (typeof process !== 'undefined' && process.server) {
-        path = this.$route.fullPath;
-      } else {
-        path = window.location.pathname;
-      }
-
-      if (path[path.length - 1] !== '/') {
-        path += '/';
-      }
-
-      return path;
-    },
     getActiveUrlByLang(lang, update) {
-      const currentPath = this.getCurrentPath();
+      const currentPath = Tools.getCurrentPath();
       const lastCharacter = '/';
 
       const matcher = (obj, parentKey) => {

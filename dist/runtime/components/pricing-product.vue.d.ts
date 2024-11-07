@@ -10,7 +10,6 @@ declare namespace _default {
             let _default: null;
             export { _default as default };
         }
-        let pageTitle: StringConstructor;
         let selectedPlan: StringConstructor;
     }
     function mounted(): void;
@@ -26,7 +25,7 @@ declare namespace _default {
         function filterExpression(): (item: any) => any;
         function filteredButtons(): any;
         function visibleTabButtons(): any;
-        function buttonClasses(): string[];
+        function buttonClasses(): string;
         function pricingProductClasses(): string[];
         function pricingProductPriceColumns(): string[];
     }
