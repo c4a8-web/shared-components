@@ -41,3 +41,22 @@ export const PricingConditions = {
     products: Products,
   },
 };
+
+export const Buttos = {
+  args: {
+    headline: 'Pricing Details',
+    toggleSwitch: {
+      textLeft: 'Monthly',
+      textRight: 'Annual',
+      hint: {
+        text: 'Save up to 10%',
+        color: 'var(--color-white)',
+        bgColor: 'var(--color-secondary)',
+      },
+      id: 'pricingToggleSwitch',
+      targetSelector: '.pricingSwitch',
+    },
+    visibleTabs: 'quote',
+    products: Products,
+  },
+};

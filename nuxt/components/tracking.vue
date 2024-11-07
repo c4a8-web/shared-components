@@ -8,9 +8,8 @@ import Tools from '../utils/tools';
 const config = Tools.getConfig();
 const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
 const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
-const disabled = false;
 
-if (!disabled && Tools.getEnvironment() !== 'development') {
+if (Tools.getEnvironment() !== 'development') {
   useHead({
     script: [
       {

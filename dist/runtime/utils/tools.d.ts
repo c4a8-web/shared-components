@@ -63,4 +63,6 @@ declare class Tools {
     static getHash(): string;
     static getConfig(): {};
     static getEnvironment(): any;
+    static getCurrentPath(): string;
+    static getPageTitle(): string;
 }

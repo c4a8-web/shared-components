@@ -48,7 +48,6 @@ declare namespace _default {
         function getTarget(item: any): any;
         function getNextLanguage(): string | undefined;
         function handleLanguageSwitch(nextLang: any): void;
-        function getCurrentPath(): string;
         function getActiveUrlByLang(lang: any, update: any): any;
         function getTranslatedUrl(currentPath: any, lang: any): any;
         function getFolderSwitchSegment(currentPath: any): any;

@@ -47,7 +47,6 @@ export default {
       default: 'var(--color-bg-grey)',
     },
     toggleSwitch: Object,
-    // TODO visible tab does not seem to work as expected
     visibleTab: String,
     lang: {
       type: String,
