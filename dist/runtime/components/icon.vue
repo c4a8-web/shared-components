@@ -19,8 +19,10 @@ import ComputerShield from './icons/computer-shield.vue';
 import EmailActionUnread from './icons/email-action-unread.vue';
 import Emergency from './icons/emergency.vue';
 import Info from './icons/info.vue';
+import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
 import World from './icons/world.vue';
+import XMark from './icons/x-mark.vue';
 
 export default {
   components: {
@@ -36,8 +38,10 @@ export default {
     'email-action-unread': EmailActionUnread,
     emergency: Emergency,
     info: Info,
+    'v-menu': VMenu,
     'plus-minus': PlusMinus,
     world: World,
+    'x-mark': XMark,
   },
   tagName: 'icon',
   data() {

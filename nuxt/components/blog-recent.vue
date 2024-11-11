@@ -15,7 +15,7 @@
                   <span v-if="subline" :class="sublineClassesValue">{{ subline }}</span>
                 </div>
               </div>
-              <div :class="blogRecentContainerClass" data-utility-animation-step="1">
+              <div :class="blogRecentContainerClass" data-utility-animation-step="1" ref="container">
                 <template v-for="(post, index) in files">
                   <div :class="itemClass" v-if="index <= limit" v-bind:key="index">
                     <card
@@ -188,21 +188,23 @@ export default {
     },
   },
   mounted() {
-    import('jquery')
-      .then((module) => {
-        window.$ = module.default;
+    Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+    // $('.js-slick-carousel').slick(this.carouselOptions);
+    // import('jquery')
+    //   .then((module) => {
+    //     window.$ = module.default;
 
-        import('slick-carousel')
-          .then(() => {
-            $('.js-slick-carousel').slick(this.carouselOptions);
-          })
-          .catch((error) => {
-            console.error('Failed to load Slick Carousel in blog recent:', error);
-          });
-      })
-      .catch((error) => {
-        console.error('Failed to load jQuery in blog recent:', error);
-      });
+    //     import('slick-carousel')
+    //       .then(() => {
+    //         $('.js-slick-carousel').slick(this.carouselOptions);
+    //       })
+    //       .catch((error) => {
+    //         console.error('Failed to load Slick Carousel in blog recent:', error);
+    //       });
+    //   })
+    //   .catch((error) => {
+    //     console.error('Failed to load jQuery in blog recent:', error);
+    //   });
 
     if (!this.$refs.root) return;
 

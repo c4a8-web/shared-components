@@ -255,7 +255,7 @@
 </template>
 <script>
 export default {
-  tagName: 'menu',
+  tagName: 'v-menu',
   computed: {
     strokeWidth() {
       return 2;

@@ -574,6 +574,24 @@ class Tools {
 
     return lowerCasePath;
   }
+
+  static initSlickSlider(element, options) {
+    import('jquery')
+      .then((module) => {
+        window.$ = module.default;
+
+        import('slick-carousel')
+          .then(() => {
+            $(element).slick(options);
+          })
+          .catch((error) => {
+            console.error('Failed to load Slick Carousel:', error);
+          });
+      })
+      .catch((error) => {
+        console.error('Failed to load jQuery:', error);
+      });
+  }
 }
 
 export default Tools;

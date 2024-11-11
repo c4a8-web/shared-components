@@ -65,4 +65,5 @@ declare class Tools {
     static getEnvironment(): any;
     static getCurrentPath(): string;
     static getPageTitle(): string;
+    static initSlickSlider(element: any, options: any): void;
 }

@@ -12,8 +12,10 @@ declare namespace _default {
         'email-action-unread': any;
         emergency: any;
         info: any;
+        'v-menu': any;
         'plus-minus': any;
         world: any;
+        'x-mark': any;
     };
     let tagName: string;
     function data(): {
