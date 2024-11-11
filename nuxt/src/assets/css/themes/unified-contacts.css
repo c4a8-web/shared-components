@@ -25,6 +25,9 @@
   --color-loading--3: var(--color-conifer);
   --color-loading--4: var(--color-orange);
 
+  --color-link: var(--color-yellow-medium);
+  --color-link-hover: var(--color-sahara);
+
   /* fonts */
   --font-family: 'Miriam Libre', sans-serif;
 }

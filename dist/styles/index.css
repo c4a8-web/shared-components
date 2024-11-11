@@ -31951,6 +31951,8 @@ body.compensate-for-scrollbar {
   --color-input-placeholder: var(--color-bombay);
   --color-highlight-underline: var(--color-secondary);
   --color-highlight-animated: var(--color-secondary);
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-accent);
 }
 
 .bg-grey {
@@ -46186,12 +46188,12 @@ job-list-detail {
 .hover__parent:hover a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .shared-components .link:hover:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .shared-components a:hover:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
-  color: var(--color-primary-accent);
+  color: var(--color-link-hover);
 }
 
 .shared-components .link:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item),
 .shared-components a:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
-  color: var(--color-primary);
+  color: var(--color-link);
 }
 
 .list-container {

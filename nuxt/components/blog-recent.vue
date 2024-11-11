@@ -189,22 +189,6 @@ export default {
   },
   mounted() {
     Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
-    // $('.js-slick-carousel').slick(this.carouselOptions);
-    // import('jquery')
-    //   .then((module) => {
-    //     window.$ = module.default;
-
-    //     import('slick-carousel')
-    //       .then(() => {
-    //         $('.js-slick-carousel').slick(this.carouselOptions);
-    //       })
-    //       .catch((error) => {
-    //         console.error('Failed to load Slick Carousel in blog recent:', error);
-    //       });
-    //   })
-    //   .catch((error) => {
-    //     console.error('Failed to load jQuery in blog recent:', error);
-    //   });
 
     if (!this.$refs.root) return;
 

@@ -214,6 +214,9 @@ $gray-600: #8c98a4;
 
   --color-highlight-underline: var(--color-secondary);
   --color-highlight-animated: var(--color-secondary);
+
+  --color-link: var(--color-primary);
+  --color-link-hover: var(--color-primary-accent);
 }
 
 .bg-grey {

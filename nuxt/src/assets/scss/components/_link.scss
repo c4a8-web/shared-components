@@ -3,7 +3,7 @@
 .shared-components .link:hover,
 .shared-components a:hover {
   &:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
-    color: var(--color-primary-accent);
+    color: var(--color-link-hover);
   }
 }
 
@@ -11,7 +11,7 @@
   .link,
   a {
     &:not(.btn):not(.custom):not(.nav-link):not(.cta):not(.page-link):not(.dropdown-item) {
-      color: var(--color-primary);
+      color: var(--color-link);
 
       // TODO style the lighter version of a link
       // &.is-light {

@@ -5,6 +5,7 @@ declare namespace _default {
     }
     namespace methods {
         function extractDate(path: any): any;
+        function cleanDate(date: any): any;
     }
     namespace props {
         let list: ArrayConstructor;

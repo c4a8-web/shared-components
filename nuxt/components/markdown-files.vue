@@ -7,7 +7,7 @@ export default {
   computed: {
     structuredList() {
       const updatedList = this.list.map((item) => {
-        const { description, _path, ...rest } = item;
+        const { description, _path, date, ...rest } = item;
 
         const filteredRest = Object.keys(rest)
           .filter((key) => !this.hideData.includes(key))
@@ -16,7 +16,12 @@ export default {
             return obj;
           }, {});
 
-        return { url: _path, date: this.extractDate(_path), excerpt: description, ...filteredRest };
+        return {
+          url: _path,
+          date: this.cleanDate(date ? date : this.extractDate(_path)),
+          excerpt: description,
+          ...filteredRest,
+        };
       });
 
       return updatedList;
@@ -30,6 +35,13 @@ export default {
       const match = path.match(datePattern);
 
       return match ? match[0] : null;
+    },
+    cleanDate(date) {
+      if (typeof date === 'string' && date.includes('T')) {
+        return date.split('T')[0];
+      }
+
+      return date;
     },
   },
   props: {
