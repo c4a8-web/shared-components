@@ -210,7 +210,7 @@ export default {
             naturalWidth: width ? width : preset?.fallback_max_width,
           };
 
-          if (height && width && !this.isSvg()) {
+          if (height && width) {
             this.buildSrcSet(preset, transformationsString);
           }
         } else {
@@ -218,6 +218,8 @@ export default {
             naturalHeight: height,
             naturalWidth: width,
           };
+
+          this.srcset = null;
         }
 
         this.dimensions = dimensions;
