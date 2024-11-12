@@ -1,5 +1,6 @@
 <template>404</template>
 <script setup>
+import { useRoute, createError } from '#imports';
 /*
 <NuxtLayout :name="layout" :page="data" :footer-data="mergedFooterData"></NuxtLayout>*/
 // definePageMeta({
@@ -19,8 +20,8 @@ console.debug('slug module 404');
 
 // const mergedFooterData = ref({ ...props.footerData });
 // const layout = ref(defaultLayout);
-// const route = useRoute();
-// const cleanPath = route.path.substring(0, route.path.length - 1);
+const route = useRoute();
+const cleanPath = route.path.substring(0, route.path.length - 1);
 
 // // TODO adjust this so it works with multiple collections not just events
 // const { data } = await useAsyncData('events', () =>
