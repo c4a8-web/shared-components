@@ -13,6 +13,7 @@ declare namespace _default {
         emergency: any;
         expand: any;
         info: any;
+        mail: any;
         phone: any;
         'v-menu': any;
         'plus-minus': any;

@@ -20,6 +20,7 @@ import EmailActionUnread from './icons/email-action-unread.vue';
 import Emergency from './icons/emergency.vue';
 import Expand from './icons/expand.vue';
 import Info from './icons/info.vue';
+import Mail from './icons/mail.vue';
 import Phone from './icons/phone.vue';
 import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
@@ -42,6 +43,7 @@ export default {
     emergency: Emergency,
     expand: Expand,
     info: Info,
+    mail: Mail,
     phone: Phone,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,
