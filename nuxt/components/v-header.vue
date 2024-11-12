@@ -11,7 +11,7 @@
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
-            <icon icon="menu" class="header__menu-icon" :closed="closed" />
+            <icon icon="v-menu" class="header__menu-icon" :closed="closed" />
           </div>
           <nav class="header__nav" v-on:mouseout="handleMouseOut">
             <ul class="header__list" ref="list">

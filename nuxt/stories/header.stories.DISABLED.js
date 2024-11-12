@@ -1,5 +1,5 @@
-import HeaderComponent from '../../components/v-header.vue';
-import HeaderData from '../../../.storybook/data/header';
+import HeaderComponent from '../components/v-header.vue';
+import HeaderData from '../.storybook/data/header';
 
 export default {
   title: 'Components/Header',

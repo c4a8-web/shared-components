@@ -11,6 +11,7 @@ declare namespace _default {
         'computer-shield': any;
         'email-action-unread': any;
         emergency: any;
+        expand: any;
         info: any;
         'v-menu': any;
         'plus-minus': any;
