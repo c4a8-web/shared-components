@@ -254,3 +254,57 @@ export const AnimatedImage = {
     },
   },
 };
+
+export const SvgToPixel = {
+  args: {
+    accordion: {
+      headline: 'Vorteile von AzERE',
+      subline:
+        'Mit AzERE bauen wir eine Disaster Recovery Infrastruktur für geschäftskritische Tools und Services auf, um diese im Falle einer erfolgreichen Cyberattacke schnell und automatisiert wiederherstellen zu können. Damit ist euer Unternehmen für das Worst-Case-Szenario abgesichert. Euer Vorteil: Ihr schont eure Nerven und könnt wieder ruhig schlafen.',
+      id: 'featureAccordion',
+      image: '/azure/icon-azere-dark-tenant.png',
+      tabs: [
+        {
+          headline: 'Unabhängige, entkoppelte Umgebung',
+          content:
+            'Keine Chance für Lateral Movement: Eine isolierte Backup-Umgebung bewahrt kritische Anwendungen und Daten vor der Ausbreitung einer potenziellen Attacke.',
+          expanded: true,
+          image: '/azure/icon-azere-dark-tenant.svg',
+          alt: 'Eine isolierte Backup-Umgebung',
+        },
+        {
+          headline: 'Kommunikationsplattform für Notfälle',
+          content:
+            'Schneller Informationsaustausch ist das A und O in Krisensituationen: Die sofortige Bereitstellung wichtiger Kommunikationstools wie Teams und Exchange für bestimmte Benutzergruppen gewährleistet die Geschäftskontinuität.',
+          expanded: false,
+          image: '/azure/icon-azere-war-room-communication.svg',
+          alt: 'Schneller Informationsaustausch in Krisensituationen',
+        },
+        {
+          headline: 'Geschützter Datenspeicher',
+          content:
+            'Die Integrität und Verfügbarkeit von wichtigen Dokumenten und Daten ist essenziell für die Wiederherstellung im Katastrophenfall. Ein unveränderlicher, versionierter Speicher stellt genau das sicher.',
+          expanded: false,
+          image: '/azure/icon-azere-protected-data-storage.svg',
+          alt: 'Ein unveränderlicher, versionierter Speicher',
+        },
+        {
+          headline: 'Autonome Wiederherstellung',
+          content:
+            'Abhängigkeiten führen zu Fehlerpotential. AzERE verfügt deshalb über eine saubere und sichere Infrastruktur zur Wiederherstellung wichtiger Anwendungen und Daten, ohne dafür andere Systeme, Tools oder Prozesse zu benötigen.',
+          expanded: false,
+          image: '/azure/icon-azere-ground-zero-environment.svg',
+          alt: 'Autonome Wiederherstellung',
+        },
+        {
+          headline: 'Monatliche Fire Tests',
+          content:
+            'Das beste System ist wirkungslos, wenn es nicht funktioniert. Aus diesem Grund testen wir regelmäßig die Konsistenz der Sicherungsdaten und trainieren die Wachsamkeit aller Beteiligten im Sicherungs- und Wiederherstellungsprozess.',
+          expanded: false,
+          image: '/azure/icon-azere-monthly-fire-tests.svg',
+          alt: 'Monatliche Fire Tests',
+        },
+      ],
+    },
+  },
+};
