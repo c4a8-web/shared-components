@@ -13,8 +13,10 @@ declare namespace _default {
         emergency: any;
         expand: any;
         info: any;
+        phone: any;
         'v-menu': any;
         'plus-minus': any;
+        quote: any;
         world: any;
         'x-mark': any;
     };

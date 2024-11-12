@@ -20,8 +20,10 @@ import EmailActionUnread from './icons/email-action-unread.vue';
 import Emergency from './icons/emergency.vue';
 import Expand from './icons/expand.vue';
 import Info from './icons/info.vue';
+import Phone from './icons/phone.vue';
 import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
+import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
 
@@ -40,8 +42,10 @@ export default {
     emergency: Emergency,
     expand: Expand,
     info: Info,
+    phone: Phone,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,
+    quote: Quote,
     world: World,
     'x-mark': XMark,
   },
