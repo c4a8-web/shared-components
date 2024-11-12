@@ -113,9 +113,16 @@ export const WithImage = {
             src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
             alt: 'ISO 27001',
           },
+          copy: 'lorem ipsum dolor sit amet',
           list: [
             'Our development and operations teams are certified',
             '<a href="https://www.datenschutz-cert.de/uploads/tx_dsnordreferenzen/glueckkanja_ISO27001_Urkunde_20211203_digital.pdf">ISO 27001 Certificate</a>',
+          ],
+          copy_1: 'Provide an easy to use web interface for your help desk staff',
+          list_1: [
+            'Leverage the power of Intune in your help desk',
+            'Execute important tasks with "just a click"',
+            'Integration of remote support tools and help desk tickets',
           ],
         },
       ],
