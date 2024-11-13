@@ -111,7 +111,32 @@
   <!-- CSS -->
   <link type="text/css" rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
 
-  {% include google-tag-manager.html %}
+  {% if site.google_tag_manager_test %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_tag_manager_test }}"></script>
+    <script>
+      console.debug('GTAG Integration Test')
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+          dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+          ad_user_data: "denied",
+          ad_personalization: "denied",
+          ad_storage: "denied",
+          personalization_storage: "denied",
+          functionality_storage: "denied",
+          security_storage: "denied",
+          analytics_storage: "granted",
+          wait_for_update: 500,
+      });
+      gtag("set", "ads_data_redaction", true);
+
+      gtag('config', '{{ site.google_tag_manager_test }}');
+    </script>
+  {% else google_tag_manager_test %}
+    {% include google-tag-manager.html %}
+  {% endif %}
 
 </head>
 <!-- End Shared Head Section -->
