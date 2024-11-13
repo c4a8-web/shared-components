@@ -12,7 +12,7 @@
       const cookieNames = Object.keys(sessionStorage);
       const interceptedCookies = {};
       for (const cookieName of cookieNames) {
-        const storedCookieValue = sessionStorage.getItem(cookieName);   
+        const storedCookieValue = sessionStorage.getItem(cookieName);
         if (storedCookieValue !== null) {
           interceptedCookies[cookieName] = storedCookieValue;
         }
@@ -20,7 +20,7 @@
       const interceptedCookieString = Object.entries(interceptedCookies)
         .map(([name, value]) => `${name}=${value}`)
         .join('; ');
-    
+
       if (Object.keys(interceptedCookies).length > 0) {
         return interceptedCookieString;
       }
@@ -52,6 +52,12 @@
         wait_for_update: 500,
     });
     gtag("set", "ads_data_redaction", true);
+
+    {% if site.google_tag_manager_test_analytics %}
+      console.debug('gtag analytics test');
+
+      gtag('config', '{{ site.google_tag_manager_test_analytics }}');
+    {% endif %}
 
   (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
