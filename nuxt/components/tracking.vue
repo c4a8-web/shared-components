@@ -1,7 +1,6 @@
 <template></template>
 
 <script setup>
-// import { useHead } from 'nuxt/app';
 import { useHead } from '#app';
 
 import Tools from '../utils/tools';
