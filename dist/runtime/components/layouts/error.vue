@@ -40,7 +40,7 @@ const mergedHeaderData = computed(() => {
 });
 
 // TODO only log error in dev environment
-console.error('Shared Error: ', props.error);
+// console.error('Shared Error: ', props.error);
 
 const event = useRequestEvent();
 
