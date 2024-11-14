@@ -9,30 +9,36 @@ const directories = [
   {
     source: path.join(__dirname, '../components'),
     destination: path.join(__dirname, '../src/runtime/components'),
-    extension: '.vue',
+    extensions: ['.vue'],
+    recursive: true,
+  },
+  {
+    source: path.join(__dirname, '../server'),
+    destination: path.join(__dirname, '../src/runtime/server'),
+    extensions: ['.ts', '.js'],
     recursive: true,
   },
   {
     source: path.join(__dirname, '../composables'),
     destination: path.join(__dirname, '../src/runtime/composables'),
-    extension: '.js',
+    extensions: ['.js'],
     recursive: true,
   },
   {
     source: path.join(__dirname, '../pages'),
     destination: path.join(__dirname, '../src/runtime/pages'),
-    extension: '.vue',
+    extensions: ['.vue'],
     recursive: true,
   },
   {
     source: path.join(__dirname, '../utils'),
     destination: path.join(__dirname, '../src/runtime/utils'),
-    extension: '.js',
+    extensions: ['.js'],
     recursive: true,
   },
 ];
 
-const copyFiles = (source, destination, extension, recursive) => {
+const copyFiles = (source, destination, extensions, recursive) => {
   if (!fs.existsSync(destination)) {
     fs.mkdirSync(destination, { recursive: true });
   } else {
@@ -49,11 +55,10 @@ const copyFiles = (source, destination, extension, recursive) => {
     const destinationFile = path.join(destination, file.name);
 
     if (file.isDirectory() && recursive) {
-      copyFiles(sourceFile, destinationFile, extension, recursive);
-    } else if (file.isFile() && file.name.endsWith(extension)) {
+      copyFiles(sourceFile, destinationFile, extensions, recursive);
+    } else if (file.isFile() && extensions.some((ext) => file.name.endsWith(ext))) {
       try {
         fs.copyFileSync(sourceFile, destinationFile);
-        // console.log(`Copied ${file.name} from ${source} to ${destination}`);
       } catch (err) {
         console.error(`Error copying file ${file.name} from ${source} to ${destination}:`, err);
       }
@@ -61,6 +66,6 @@ const copyFiles = (source, destination, extension, recursive) => {
   });
 };
 
-directories.forEach(({ source, destination, extension, recursive }) => {
-  copyFiles(source, destination, extension, recursive);
+directories.forEach(({ source, destination, extensions, recursive }) => {
+  copyFiles(source, destination, extensions, recursive);
 });

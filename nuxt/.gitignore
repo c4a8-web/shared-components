@@ -28,3 +28,4 @@ src/runtime/components
 src/runtime/composables
 src/runtime/utils
 src/runtime/pages
+src/runtime/server

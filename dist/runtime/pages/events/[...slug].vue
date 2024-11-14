@@ -9,7 +9,6 @@
 </template>
 <script setup>
 definePageMeta({
-  // layout: 'event',
   footer: {
     noMargin: true,
   },
@@ -25,8 +24,6 @@ const additionalFields = [
 
 const page = ref({});
 const eventForm = ref(null);
-
-// console.log('i am here in the events slug of the module');
 
 const route = useRoute();
 const cleanPath = route.path.substring(0, route.path.length - 1);

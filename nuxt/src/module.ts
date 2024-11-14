@@ -8,7 +8,14 @@ import {
   addTemplate,
   addLayout,
   extendPages,
+  installModule,
 } from '@nuxt/kit';
+
+declare module '@nuxt/schema' {
+  interface NuxtOptions {
+    sitemap?: Record<string, any>;
+  }
+}
 
 import type { NuxtTemplate } from '@nuxt/schema';
 
@@ -39,7 +46,34 @@ export default defineNuxtModule({
   async setup(_options, _nuxt) {
     const { resolve } = createResolver(import.meta.url);
 
+    const { theme } = _options;
+
     console.log('✔ Shared components module setup');
+
+    _nuxt.options.runtimeConfig.public.sharedComponents = _options || {};
+
+    const defaultSitemapOptions = {
+      discoverImages: false,
+      discoverVideos: false,
+      autoI18n: false,
+      sitemapName: 'sitemap.xml',
+      credits: false,
+      sitemaps: false,
+      xslColumns: [
+        { label: 'URL', width: '75%' },
+        { label: 'Last Modified', select: 'sitemap:lastmod', width: '25%' },
+        // { label: 'Hreflangs', select: 'count(xhtml:link)', width: '25%' },
+      ],
+    };
+
+    const sitemapOptions = {
+      ...defaultSitemapOptions,
+      ..._nuxt.options.sitemap,
+    };
+
+    _nuxt.options.sitemap = sitemapOptions;
+
+    await installModule('@nuxtjs/sitemap');
 
     const runtimeDir = resolve(__dirname, './runtime');
 
@@ -54,9 +88,7 @@ export default defineNuxtModule({
 
     _nuxt.options.css.push(resolve('./styles/index.min.css'));
 
-    if (_options) {
-      const { theme } = _options;
-
+    if (theme) {
       _nuxt.options.css.push(resolve(`./styles/${theme}.min.css`));
     }
 

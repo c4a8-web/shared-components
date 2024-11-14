@@ -21,7 +21,7 @@ console.debug('slug module 404');
 // const mergedFooterData = ref({ ...props.footerData });
 // const layout = ref(defaultLayout);
 const route = useRoute();
-const cleanPath = route.path.substring(0, route.path.length - 1);
+const cleanPath = route.path;
 
 // // TODO adjust this so it works with multiple collections not just events
 // const { data } = await useAsyncData('events', () =>
