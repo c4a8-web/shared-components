@@ -1,8 +1,8 @@
 <template>
   <global-app :classes="computedClass">
-    <v-header v-bind="headerData" :lang="lang" v-if="headerData"></v-header>
+    <v-header v-bind="headerDataSelected" :lang="lang" v-if="headerDataSelected"></v-header>
     <slot />
-    <v-footer v-bind="footerData" :lang="lang" v-if="footerData"></v-footer>
+    <v-footer v-bind="footerDataSelected" :lang="lang" v-if="footerDataSelected"></v-footer>
   </global-app>
 </template>
 
@@ -12,6 +12,8 @@ import { computed } from 'vue';
 const props = defineProps({
   headerData: Object,
   footerData: Object,
+  layoutHeaderData: Object,
+  layoutFooterData: Object,
   heroData: Object,
   pageData: Object,
   lang: {
@@ -21,6 +23,14 @@ const props = defineProps({
   theme: String,
   hasBackToTop: Boolean,
   hasFabHint: Boolean,
+});
+
+const headerDataSelected = computed(() => {
+  return typeof props.layoutHeaderData !== 'undefined' ? props.layoutHeaderData : props.headerData;
+});
+
+const footerDataSelected = computed(() => {
+  return typeof props.layoutFooterData !== 'undefined' ? props.layoutFooterData : props.footerData;
 });
 
 const computedClass = computed(() => {

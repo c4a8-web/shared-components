@@ -19,8 +19,14 @@ import ComputerShield from './icons/computer-shield.vue';
 import EmailActionUnread from './icons/email-action-unread.vue';
 import Emergency from './icons/emergency.vue';
 import Expand from './icons/expand.vue';
+import Hand from './icons/hand.vue';
+import ImageCredits from './icons/image-credits.vue';
 import Info from './icons/info.vue';
+import ListView from './icons/list-view.vue';
+import Magnifier from './icons/magnifier.vue';
 import Mail from './icons/mail.vue';
+import Meerkat from './icons/meerkat.vue';
+import Minus from './icons/minus.vue';
 import Phone from './icons/phone.vue';
 import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
@@ -42,8 +48,14 @@ export default {
     'email-action-unread': EmailActionUnread,
     emergency: Emergency,
     expand: Expand,
+    hand: Hand,
+    'image-credits': ImageCredits,
     info: Info,
+    'list-view': ListView,
+    magnifier: Magnifier,
     mail: Mail,
+    meerkat: Meerkat,
+    minus: Minus,
     phone: Phone,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,

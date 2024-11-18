@@ -1,5 +1,5 @@
 <template>
-  <page-default :header-data="mergedHeaderData">
+  <page-default :layout-header-data="mergedHeaderData" :layout-footer-data="null">
     <div class="d-lg-flex">
       <div
         class="js-video-bg position-absolute w-100 h-100"

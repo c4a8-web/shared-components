@@ -250,7 +250,7 @@ export default {
       return JSON.parse(JSON.stringify(this.navigation));
     },
     isLight() {
-      return Tools.isTrue(this.light) === true;
+      return this.light === true;
     },
     hasLangSwitch() {
       return Object.keys(this.home?.languages).length > 1;

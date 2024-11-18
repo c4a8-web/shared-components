@@ -1,15 +1,17 @@
-<template>404</template>
+<template>
+  <NuxtLayout name="error"><NuxtPage /></NuxtLayout>
+</template>
 <script setup>
 import { useRoute, createError } from '#imports';
 /*
 <NuxtLayout :name="layout" :page="data" :footer-data="mergedFooterData"></NuxtLayout>*/
-// definePageMeta({
-//   layout: 'event',
-// });
+definePageMeta({
+  layout: 'error',
+});
 
 // TODO almost always send to 404
 
-console.debug('slug module 404');
+console.debug('slug module 404 aaaa');
 
 // const props = defineProps({
 //   headerData: Object,
@@ -51,9 +53,9 @@ const cleanPath = route.path;
 // }
 
 // if (layout.value === defaultLayout) {
-throw createError({
-  statusCode: 404,
-  statusMessage: `Page: ${cleanPath} not found`,
-});
+// throw createError({
+//   statusCode: 404,
+//   statusMessage: `Page: ${cleanPath} not found`,
+// });
 // }
 </script>
