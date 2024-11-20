@@ -42,9 +42,9 @@
         dataLayer.push(arguments);
     }
     gtag("consent", "default", {
-        ad_user_data: "denied",
-        ad_personalization: "denied",
-        ad_storage: "denied",
+        ad_user_data: "{{ site.google_ad_user_data | default: 'denied' }}",
+        ad_personalization:  "{{ site.google_ad_personalization | default: 'denied' }}",
+        ad_storage: "{{ site.google_ad_storage | default: 'denied' }}",
         personalization_storage: "denied",
         functionality_storage: "denied",
         security_storage: "denied",
@@ -53,16 +53,12 @@
     });
     gtag("set", "ads_data_redaction", true);
 
-    {% if site.google_tag_manager_test_analytics %}
-      console.debug('gtag analytics test');
 
-      gtag('config', '{{ site.google_tag_manager_test_analytics }}');
-    {% endif %}
-
-  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://{{ site.google_tag_manager_domain }}/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','{{ site.google_tag_manager_id }}');</script>
+    })(window,document,'script','dataLayer','{{ site.google_tag_manager_id }}');
+  </script>
   <!-- End of Tag Manager -->
 {% endif %}
