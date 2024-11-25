@@ -416,9 +416,15 @@ $header-border-size: 1px;
   }
 
   &.is-expanded {
-    &::after {
-      @include media-breakpoint-up($header-expand-breakpoint) {
+    @include media-breakpoint-up($header-expand-breakpoint) {
+      &::after {
+        --color-header-active: var(--color-primary-accent);
+
         display: block;
+      }
+
+      .header__link-text {
+        font-weight: bold;
       }
     }
 
