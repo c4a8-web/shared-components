@@ -11,7 +11,7 @@ definePageMeta({
 
 // TODO almost always send to 404
 
-console.debug('slug module 404 aaaa');
+// console.debug('slug module 404');
 
 // const props = defineProps({
 //   headerData: Object,

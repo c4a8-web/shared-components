@@ -33,8 +33,6 @@ const props = defineProps({
 
 import HeaderData from '~/content/header.json';
 
-console.debug('error module page');
-
 // TODO ask about the tell us link
 
 const mergedHeaderData = computed(() => {

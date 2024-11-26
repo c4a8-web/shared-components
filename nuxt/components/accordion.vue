@@ -2,7 +2,7 @@
   <div :class="containerClasses" v-if="accordion.headline" ref="container">
     <div class="row">
       <div :class="columnClasses">
-        <headline :classes="headlineClasses">{{ accordion.headline }}</headline>
+        <headline :classes="headlineClasses"><span v-html="accordion.headline"></span></headline>
         <div class="accordion__subline font-size-2" v-if="accordion.subline">{{ accordion.subline }}</div>
       </div>
       <div class="row accordion__image" v-if="accordion.image">
