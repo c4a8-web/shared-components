@@ -1,4 +1,5 @@
 import { defineNuxtPlugin, addRouteMiddleware, useAsyncData } from '#app';
+import Events from './utils/events.js';
 
 export default defineNuxtPlugin((_nuxtApp) => {
   addRouteMiddleware(
@@ -35,7 +36,7 @@ export default defineNuxtPlugin((_nuxtApp) => {
 
   if (process.client) {
     // TODO read this from package.json . could be an issue because of the moving and the relative location of the file
-    console.debug('Shared Components v.0.1.79');
+    console.debug('Shared Components v.0.1.80');
 
     import('jquery')
       .then((module) => {
@@ -51,6 +52,12 @@ export default defineNuxtPlugin((_nuxtApp) => {
       })
       .then(() => {
         console.debug('All libraries loaded successfully.');
+
+        document.dispatchEvent(new CustomEvent(Events.CLIENT_ONLY_LIB_LOADED));
+        // add a data attribute to the body tag to mark that the libraries are loaded
+        window.sharedComponents = {
+          clientOnlyLibLoaded: true,
+        };
       })
       .catch((error) => {
         console.error('Failed to load a library:', error);

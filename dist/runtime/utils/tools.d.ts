@@ -66,4 +66,5 @@ declare class Tools {
     static getCurrentPath(): string;
     static getPageTitle(): string;
     static initSlickSlider(element: any, options: any): void;
+    static isClientOnlyLibLoaded(): any;
 }

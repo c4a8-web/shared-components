@@ -10,7 +10,7 @@ declare namespace _default {
             export { _default as default };
         }
         let toggleSwitch: ObjectConstructor;
-        let visibleTab: StringConstructor;
+        let visibleTabs: ArrayConstructor;
         namespace lang {
             let type_1: StringConstructor;
             export { type_1 as type };

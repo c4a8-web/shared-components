@@ -1,5 +1,5 @@
 <template>
-  <div class="pricing-slider" ref="root">
+  <div :class="['pricing-slider', { 'pricing-slider--loading': loading }]" ref="root">
     <div
       v-if="pricingSliderRange"
       class="js-slider-data"
@@ -7,7 +7,7 @@
       :data-products="JSON.stringify(products?.list)"
     >
       <input
-        class="js-ion-range-slider"
+        class="pricing-slider__slider js-ion-range-slider"
         type="text"
         :data-hs-ion-range-slider-options="JSON.stringify(hsIonRangeSliderOptions)"
         ref="slider"
@@ -36,6 +36,8 @@
   </div>
 </template>
 <script>
+import Tools from '../utils/tools.js';
+import Events from '../utils/events.js';
 import PricingSlider from '../utils/components/pricing-slider.js';
 
 export default {
@@ -48,6 +50,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       options: {
         type: 'single',
         hide_min_max: !0,
@@ -75,7 +78,9 @@ export default {
       new PricingSlider(this.$refs.root);
     }
 
-    this.initRangeSlider();
+    if (Tools.isClientOnlyLibLoaded()) return this.initRangeSlider();
+
+    this.bindEvents();
   },
   computed: {
     pricingSliderRange() {
@@ -106,9 +111,15 @@ export default {
 
       window.handleChange(slider);
     },
+    bindEvents() {
+      document.addEventListener(Events.CLIENT_ONLY_LIB_LOADED, this.initRangeSlider);
+    },
     initRangeSlider() {
-      if (!this.$refs.slider) return;
+      if (!this.$refs.slider || !window.$) return;
 
+      this.loading = false;
+
+      // TODO get rid of ionRangeSlider overall!!
       window.$(this.$refs.slider).ionRangeSlider(this.options);
     },
   },

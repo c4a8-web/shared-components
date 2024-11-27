@@ -21,7 +21,7 @@
           :key="index"
           :product="product"
           :target-selector-class="pricingDetailTargetSelector"
-          :visible-tab="visibleTab"
+          :visible-tabs="visibleTabs"
           :index="index + 1"
           :has-animation="true"
           :selected-plan="selectedPlan"
@@ -47,7 +47,7 @@ export default {
       default: 'var(--color-bg-grey)',
     },
     toggleSwitch: Object,
-    visibleTab: String,
+    visibleTabs: Array,
     lang: {
       type: String,
       default: 'de',

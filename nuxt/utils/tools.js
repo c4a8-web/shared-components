@@ -592,6 +592,10 @@ class Tools {
         console.error('Failed to load jQuery:', error);
       });
   }
+
+  static isClientOnlyLibLoaded() {
+    return window && window.sharedComponents ? window.sharedComponents.clientOnlyLibLoaded : false;
+  }
 }
 
 export default Tools;

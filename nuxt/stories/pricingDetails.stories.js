@@ -42,7 +42,7 @@ export const PricingConditions = {
   },
 };
 
-export const Buttos = {
+export const Buttons = {
   args: {
     headline: 'Pricing Details',
     toggleSwitch: {
@@ -56,7 +56,7 @@ export const Buttos = {
       id: 'pricingToggleSwitch',
       targetSelector: '.pricingSwitch',
     },
-    visibleTabs: 'quote',
+    visibleTabs: ['quote'],
     products: Products,
   },
 };

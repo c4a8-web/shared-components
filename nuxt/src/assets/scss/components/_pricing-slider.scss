@@ -1,4 +1,15 @@
 .pricing-slider {
+  transition: opacity 0.5s ease-in;
+
+  &.pricing-slider--loading {
+    opacity: 0;
+
+    .pricing-slider__slider {
+      // TODO get rid of this after we removed the range slider
+      height: 96px;
+    }
+  }
+
   .range-slider-custom {
     height: 3.5rem;
     margin-top: 2.5rem;

@@ -66,8 +66,8 @@ export default {
     index: Number,
     hasAnimation: Boolean,
     targetSelectorClass: String,
-    visibleTab: {
-      type: String,
+    visibleTabs: {
+      type: Array,
       default: null,
     },
     selectedPlan: String,
@@ -100,8 +100,8 @@ export default {
       return this.product.targetSelectorClass || this.includedTargetSelectorClass;
     },
     visibleTabExpression() {
-      if (this.visibleTab) {
-        return (item) => item.visibleTabs && item.visibleTabs.includes(this.visibleTab);
+      if (this.visibleTabs) {
+        return (item) => item.visibleTabs && item.visibleTabs.some((tab) => this.visibleTabs.includes(tab));
       } else {
         return () => true;
       }

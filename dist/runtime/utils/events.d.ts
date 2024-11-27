@@ -17,4 +17,5 @@ declare namespace Events {
     let DROPDOWN_OPENED: string;
     let CARD_TAG_CLICKED: string;
     let ENDED: string;
+    let CLIENT_ONLY_LIBS_LOADED: string;
 }

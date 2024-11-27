@@ -5,8 +5,8 @@ declare namespace _default {
         let index: NumberConstructor;
         let hasAnimation: BooleanConstructor;
         let targetSelectorClass: StringConstructor;
-        namespace visibleTab {
-            export let type: StringConstructor;
+        namespace visibleTabs {
+            export let type: ArrayConstructor;
             let _default: null;
             export { _default as default };
         }
@@ -21,7 +21,7 @@ declare namespace _default {
         function buttons(): any;
         function includedTargetSelectorClass(): any;
         function computedTargetSelectorClass(): any;
-        function visibleTabExpression(): any;
+        function visibleTabExpression(): (item: any) => any;
         function filterExpression(): (item: any) => any;
         function filteredButtons(): any;
         function visibleTabButtons(): any;

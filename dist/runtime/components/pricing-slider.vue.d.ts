@@ -7,6 +7,7 @@ declare namespace _default {
         let products: ObjectConstructor;
     }
     function data(): {
+        loading: boolean;
         options: {
             type: string;
             hide_min_max: boolean;
@@ -22,7 +23,7 @@ declare namespace _default {
             extra_classes: string;
         };
     };
-    function mounted(): void;
+    function mounted(): any;
     namespace computed {
         function pricingSliderRange(): any;
         function hsIonRangeSliderOptions(): any;
@@ -30,6 +31,7 @@ declare namespace _default {
     namespace methods {
         function handleRangeSliderStart(slider: any): void;
         function handleRangeSliderChange(slider: any): void;
+        function bindEvents(): void;
         function initRangeSlider(): void;
     }
 }
