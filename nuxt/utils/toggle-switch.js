@@ -1,5 +1,6 @@
 import Animate from './animate.js';
 import State from './state.js';
+import Tools from './tools.js';
 
 class ToggleSwitch {
   static rootSelector = '.toggle-switch';
@@ -68,11 +69,7 @@ class ToggleSwitch {
   priceFormatter() {
     const pricingData = this.pricingData();
 
-    return new Intl.NumberFormat(pricingData.format, {
-      style: 'currency',
-      currency: pricingData.currency,
-      maximumFractionDigits: 2,
-    });
+    return Tools.getPriceFormatter(pricingData);
   }
 
   switchAnimation(element, start, end) {
@@ -84,17 +81,9 @@ class ToggleSwitch {
       draw: (progress) => {
         const currentResult = progress * (end - start) + start;
 
-        this.updatePrices(element, currentResult);
+        Tools.updateElementPrice(element, currentResult, this.priceFormatter());
       },
     });
-  }
-
-  updatePrices(element, state) {
-    const cleanedValue = state.replace ? parseFloat(state.replace(/,/, '.')) : state;
-    const formatter = this.priceFormatter();
-    const formattedResult = formatter.format(cleanedValue);
-
-    element.innerHTML = formattedResult;
   }
 
   initPrices() {
@@ -106,7 +95,7 @@ class ToggleSwitch {
       targetElements.forEach((element) => {
         if (element.dataset.currencyFormat === undefined) return;
 
-        this.updatePrices(element, element.innerHTML);
+        Tools.updateElementPrice(element, element.innerHTML, this.priceFormatter());
       });
     });
   }

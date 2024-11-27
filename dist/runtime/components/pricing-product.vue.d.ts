@@ -11,8 +11,12 @@ declare namespace _default {
             export { _default as default };
         }
         let selectedPlan: StringConstructor;
+        let pricing: ObjectConstructor;
     }
     function mounted(): void;
+    namespace methods {
+        function updatePrices(): void;
+    }
     namespace computed {
         function title(): any;
         function description(): any;

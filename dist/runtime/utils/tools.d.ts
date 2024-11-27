@@ -67,4 +67,6 @@ declare class Tools {
     static getPageTitle(): string;
     static initSlickSlider(element: any, options: any): void;
     static isClientOnlyLibLoaded(): any;
+    static getPriceFormatter(pricingData: any): Intl.NumberFormat;
+    static updateElementPrice(element: any, state: any, formatter: any): void;
 }

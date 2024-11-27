@@ -25,6 +25,7 @@
           :index="index + 1"
           :has-animation="true"
           :selected-plan="selectedPlan"
+          :pricing="!toggleSwitch ? pricing : null"
         />
         <div class="pricing-details__infos pt-5" v-html="vatInfo"></div>
       </div>
@@ -71,8 +72,17 @@ export default {
     list() {
       return this.products?.list || [];
     },
+    pricing() {
+      return (
+        this.products?.pricing || {
+          format: 'de-DE',
+          currency: 'EUR',
+          defaultPlan: 'monthly',
+        }
+      );
+    },
     selectedPlan() {
-      return this.products?.pricing?.defaultPlan || 'monthly';
+      return this.pricing?.defaultPlan || 'monthly';
     },
   },
 };

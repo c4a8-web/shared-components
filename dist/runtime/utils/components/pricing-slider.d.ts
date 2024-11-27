@@ -1,8 +1,10 @@
 export default PricingSlider;
 declare class PricingSlider extends BaseComponent {
+    constructor(root: any, options: any, pricing: any);
     selectedValue: number;
     products: any;
     range: any;
+    pricing: any;
     priceFormatter: Intl.NumberFormat;
     selectedPlan: any;
     currentPrice: number;

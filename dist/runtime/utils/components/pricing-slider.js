@@ -4,17 +4,17 @@ import Modal from '../modal.js';
 class PricingSlider extends BaseComponent {
   static rootSelector = '.pricing-slider';
 
-  constructor(root, options) {
+  constructor(root, options, pricing) {
     super(root, options);
 
     this.selectedValue = 0;
     this.products = null;
     this.range = null;
+    this.pricing = pricing;
 
     // TODO move to a product related component
-    const parsePricingData = document.querySelector('[data-pricing]')?.dataset.pricing;
-    const pricingData = parsePricingData
-      ? JSON.parse(parsePricingData)
+    const pricingData = this.pricing
+      ? this.pricing
       : {
           format: 'de-DE',
           currency: 'EUR',
@@ -26,12 +26,6 @@ class PricingSlider extends BaseComponent {
       currency: pricingData.currency,
       maximumFractionDigits: 0,
     });
-
-    // const priceFormatterWithFractionDigits = new Intl.NumberFormat(pricingData.format, {
-    //   style: 'currency',
-    //   currency: pricingData.currency,
-    //   maximumFractionDigits: 2,
-    // });
 
     this.selectedPlan = ['monthly', 'annual'].includes(pricingData.defaultPlan)
       ? pricingData.defaultPlan

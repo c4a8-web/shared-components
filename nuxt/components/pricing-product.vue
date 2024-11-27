@@ -24,6 +24,7 @@
             :class="includedTargetSelectorClass"
             data-currency-format
             :data-toggle-switch-item-options="JSON.stringify({ monthly: price.monthly, annual: price.annual })"
+            ref="price"
           >
             {{ price[selectedPlan] }}
           </span>
@@ -42,6 +43,7 @@
             :data-toggle-switch-item-options="
               JSON.stringify({ monthly: additionalUsersFee.monthly, annual: additionalUsersFee.annual })
             "
+            ref="additionalUsersFee"
           >
             {{ additionalUsersFee[selectedPlan] }}
           </span>
@@ -71,11 +73,28 @@ export default {
       default: null,
     },
     selectedPlan: String,
+    pricing: Object,
   },
   mounted() {
+    this.updatePrices();
+
     if (!this.$refs.root) return;
 
     UtilityAnimation.init([this.$refs.root]);
+  },
+  methods: {
+    updatePrices() {
+      if (!this.pricing) return;
+
+      const elements = [this.$refs.price, this.$refs['additionalUsersFee']];
+      const formatter = Tools.getPriceFormatter(this.pricing);
+
+      elements.forEach((element) => {
+        if (element) {
+          Tools.updateElementPrice(element, element.innerHTML, formatter);
+        }
+      });
+    },
   },
   computed: {
     title() {

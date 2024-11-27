@@ -596,6 +596,22 @@ class Tools {
   static isClientOnlyLibLoaded() {
     return window && window.sharedComponents ? window.sharedComponents.clientOnlyLibLoaded : false;
   }
+
+  static getPriceFormatter(pricingData) {
+    return new Intl.NumberFormat(pricingData.format, {
+      style: 'currency',
+      currency: pricingData.currency,
+      maximumFractionDigits: 2,
+    });
+  }
+
+  static updateElementPrice(element, state, formatter) {
+    const cleanedValue = state.replace ? parseFloat(state.replace(/,/, '.')) : state;
+    const formattedResult = formatter.format(cleanedValue);
+
+    element.setAttribute('data-price-formatted', '');
+    element.innerHTML = formattedResult;
+  }
 }
 
 export default Tools;

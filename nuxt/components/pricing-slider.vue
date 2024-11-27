@@ -75,7 +75,7 @@ export default {
     this.options.onChange = this.handleRangeSliderChange;
 
     if (this.$refs.root) {
-      new PricingSlider(this.$refs.root);
+      new PricingSlider(this.$refs.root, null, this.products?.pricing);
     }
 
     if (Tools.isClientOnlyLibLoaded()) return this.initRangeSlider();

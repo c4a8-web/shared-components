@@ -24,6 +24,7 @@ declare namespace _default {
         function langData(): any;
         function vatInfo(): any;
         function list(): any;
+        function pricing(): any;
         function selectedPlan(): any;
     }
 }
