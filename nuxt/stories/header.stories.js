@@ -6,45 +6,38 @@ export default {
   component: HeaderComponent,
 };
 
-const Template = (args) => ({
-  components: { HeaderComponent },
-  setup() {
-    return { args };
+export const Header = {
+  args: {
+    home: HeaderData.home,
+    navigation: HeaderData.navigation,
+    // lang: 'de', // should be default
   },
-  template: '<HeaderComponent v-bind="args" />',
-});
-
-export const Header = Template.bind({});
-
-Header.args = {
-  home: HeaderData.home,
-  navigation: HeaderData.navigation,
 };
 
-export const HeaderLight = Template.bind({});
-
-HeaderLight.args = {
-  home: HeaderData.home,
-  navigation: HeaderData.navigation,
-  light: true,
-  blendMode: true,
-  bgColor: 'var(--color-blue-dark)',
+export const HeaderLight = {
+  args: {
+    home: HeaderData.home,
+    navigation: HeaderData.navigation,
+    light: true,
+    blendMode: true,
+    bgColor: 'var(--color-blue-dark)',
+  },
 };
 
-export const HeaderEN = Template.bind({});
-
-HeaderEN.args = {
-  home: HeaderData.home,
-  navigation: HeaderData.navigation,
-  lang: 'en',
+export const HeaderEN = {
+  args: {
+    home: HeaderData.home,
+    navigation: HeaderData.navigation,
+    lang: 'en',
+  },
 };
 
-export const HeaderES = Template.bind({});
-
-HeaderES.args = {
-  home: HeaderData.home,
-  navigation: HeaderData.navigation,
-  lang: 'es',
+export const HeaderES = {
+  args: {
+    home: HeaderData.home,
+    navigation: HeaderData.navigation,
+    lang: 'es',
+  },
 };
 
 const productArgs = {
@@ -117,25 +110,23 @@ const productArgs = {
   contact: ' ',
 };
 
-export const HeaderProduct = Template.bind({});
-
-HeaderProduct.args = {
-  ...productArgs,
+export const HeaderProduct = {
+  args: { ...productArgs },
 };
 
-export const HeaderProductLight = Template.bind({});
-
-HeaderProductLight.args = {
-  light: true,
-  blendMode: true,
-  ...productArgs,
+export const HeaderProductLight = {
+  args: {
+    light: true,
+    blendMode: true,
+    ...productArgs,
+  },
 };
 
-export const HeaderSearch = Template.bind({});
-
-HeaderSearch.args = {
-  home: HeaderData.home,
-  navigation: HeaderData.navigation,
-  lang: 'en',
-  search: true,
+export const HeaderSearch = {
+  args: {
+    home: HeaderData.home,
+    navigation: HeaderData.navigation,
+    lang: 'en',
+    search: true,
+  },
 };

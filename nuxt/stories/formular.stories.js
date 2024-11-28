@@ -181,6 +181,13 @@ export const WithCheckboxes = {
       action: '',
       fields: [
         {
+          label: 'Company',
+          type: 'text',
+          id: 'company',
+          required: true,
+          requiredMsg: 'Please enter your company name.',
+        },
+        {
           label: 'Vorname',
           type: 'text',
           col: 6,
@@ -341,6 +348,11 @@ export const WithCheckboxes = {
               label: 'Not managed 4',
             },
           ],
+        },
+        {
+          type: 'hidden',
+          id: '_subject',
+          value: 'Unified Contacts Support Request',
         },
         {
           type: 'hidden',

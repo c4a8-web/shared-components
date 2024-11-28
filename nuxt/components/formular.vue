@@ -151,7 +151,7 @@ export default {
     this.originalAction = this.formAction = this.form.action;
   },
   mounted() {
-    this.formInstance = new Form(this.$refs.root);
+    this.formInstance = new Form(this.$refs.root, null, this.validate.bind(this));
 
     this.novalidateValue = 'novalidate';
 

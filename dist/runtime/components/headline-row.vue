@@ -6,7 +6,7 @@
         data-utility-animation-step="1"
         ref="row"
       >
-        <headline :level="level" :classes="headlineClasses">{{ text }}</headline>
+        <headline :level="level" :classes="headlineClasses"><span v-html="text"></span></headline>
       </div>
     </div>
   </div>

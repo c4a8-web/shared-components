@@ -11,6 +11,7 @@ declare class Form extends BaseComponent {
         input: any;
         value: any;
     }[];
+    constructor(root: any, options: any, vueValidate: any);
     formSelector: string | undefined;
     gotchaSelector: string | undefined;
     attachmentSelector: string | undefined;
@@ -21,6 +22,7 @@ declare class Form extends BaseComponent {
     company: any;
     groups: {} | undefined;
     minLengthOther: number | undefined;
+    vueValidate: any;
     addCustomValidationRules(): void;
     isCompanyForm(): boolean;
     hasUrlParameter(): true | undefined;
@@ -37,8 +39,7 @@ declare class Form extends BaseComponent {
     submit(e: any): void;
     ajaxSubmit(): void;
     ajaxSubmitCompleted(): void;
-    triggerExternalValidation(): boolean;
-    validate(e: any): boolean;
+    validate(e: any): any;
     isValid(e: any): boolean;
     validateAttachments(): boolean;
     addAttachmentError(attachment: any): void;

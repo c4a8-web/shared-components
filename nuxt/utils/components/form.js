@@ -12,7 +12,7 @@ class Form extends BaseComponent {
   static regularExpression =
     /^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z]{2,6})+$/;
 
-  constructor(root, options) {
+  constructor(root, options, vueValidate) {
     super(root, options);
 
     if (!root) return;
@@ -31,6 +31,7 @@ class Form extends BaseComponent {
     this.groups = {};
     this.minLengthOther = 1;
     this.options = options;
+    this.vueValidate = vueValidate;
 
     this.addCustomValidationRules();
 
@@ -210,29 +211,10 @@ class Form extends BaseComponent {
     );
   }
 
-  triggerExternalValidation() {
-    let result = false;
-
-    // TODO check if we actually need this anymore. since we have moved away from jquery validate.
-    // if (window.$) {
-    //   const form = $(this.form);
-
-    //   if (typeof form.validate !== 'function') {
-    //     console.error('form.validate is not a function');
-
-    //     return true;
-    //   }
-
-    //   result = form.validate().form();
-    // }
-
-    return result;
-  }
-
   validate(e) {
-    let result = this.triggerExternalValidation();
+    let result = typeof this.vueValidate === 'function' ? this.vueValidate() : true;
 
-    if (!this.isValid(e) || result === false) {
+    if (!this.isValid(e)) {
       e.stopImmediatePropagation();
       e.preventDefault();
 
