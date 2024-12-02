@@ -5,16 +5,34 @@ import { useHead } from '#app';
 
 import Tools from '../utils/tools';
 
+// if (Tools.getEnvironment() !== 'development') {
 const config = Tools.getConfig();
 const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
 const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
 
-if (Tools.getEnvironment() !== 'development') {
-  useHead({
-    script: [
-      {
-        type: 'text/javascript',
-        children: `
+const defaultGtagConfig = {
+  ad_user_data: 'denied',
+  ad_personalization: 'denied',
+  ad_storage: 'denied',
+  personalization_storage: 'denied',
+  functionality_storage: 'denied',
+  security_storage: 'denied',
+  analytics_storage: 'granted',
+  wait_for_update: 500,
+};
+
+const customGtagConfig = config?.public?.gtag || {};
+
+const gtagConfig = {
+  ...defaultGtagConfig,
+  ...customGtagConfig,
+};
+
+useHead({
+  script: [
+    {
+      type: 'text/javascript',
+      children: `
           function loadGTM() {
             const originalDocumentCookie = document.cookie;
             function interceptCookieWrite(cookieValue) {
@@ -58,16 +76,8 @@ if (Tools.getEnvironment() !== 'development') {
             function gtag() {
                 dataLayer.push(arguments);
             }
-            gtag("consent", "default", {
-                ad_user_data: "denied",
-                ad_personalization: "denied",
-                ad_storage: "denied",
-                personalization_storage: "denied",
-                functionality_storage: "denied",
-                security_storage: "denied",
-                analytics_storage: "granted",
-                wait_for_update: 500,
-            });
+
+            gtag("consent", "default", ${JSON.stringify(gtagConfig)});
             gtag("set", "ads_data_redaction", true);
 
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -79,10 +89,10 @@ if (Tools.getEnvironment() !== 'development') {
 
         loadGTM();
         `,
-      },
-    ],
-  });
-} else {
-  console.debug('Tag Manager not loaded in development');
-}
+    },
+  ],
+});
+// } else {
+//   console.debug('Tag Manager not loaded in development');
+// }
 </script>

@@ -1,5 +1,5 @@
-import { analytics } from '../globalArgTypes';
-import CtaComponent from '../../components/cta.vue';
+import { analytics } from './globalArgTypes';
+import CtaComponent from '../components/cta.vue';
 
 // More on default export: https://storybook.js.org/docs/html/writing-stories/introduction#default-export
 export default {
