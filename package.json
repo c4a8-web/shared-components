@@ -1,7 +1,7 @@
 {
   "name": "shared-components",
   "private": false,
-  "version": "0.1.83",
+  "version": "0.1.84",
   "description": "Shared Vue.js components for use on the product page",
   "type": "module",
   "exports": {
@@ -36,6 +36,7 @@
     "vue": "^3.4.37"
   },
   "dependencies": {
+    "@nuxtjs/sitemap": "^6.1.5",
     "@types/jquery": "^3.5.32",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^4.5.3",
@@ -44,14 +45,14 @@
     "ion-rangeslider": "^2.3.1",
     "jquery": "^3.7.1",
     "node-html-parser": "^6.1.13",
+    "nuxt-seo-utils": "^6.0.3",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
+    "sitemap": "^8.0.0",
     "slick-carousel": "^1.8.1",
     "vue": "^3.4.37",
     "vue-router": "^4.4.5",
-    "vue3-lottie": "^3.3.1",
-    "@nuxtjs/sitemap": "^6.1.5",
-    "sitemap": "^8.0.0"
+    "vue3-lottie": "^3.3.1"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",

@@ -38,6 +38,7 @@ export const PricingConditions = {
       id: 'pricingToggleSwitch',
       targetSelector: '.pricingSwitch',
     },
+    visibleTabs: null,
     products: Products,
   },
 };

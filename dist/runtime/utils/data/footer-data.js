@@ -1,7 +1,7 @@
 const FooterData = {
   bgColor: 'var(--color-midnight)',
   mail: 'info@glueckkanja.com',
-  offices: ['Germany', 'Austria', 'Spain', 'Australia'],
+  offices: ['Germany', 'Switzerland', 'Austria', 'Spain', 'Australia'],
   copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
@@ -84,7 +84,7 @@ const FooterData = {
       alt: 'Kununu Logo',
       url: 'https://www.kununu.com/de/glueck-kanja-consulting',
       target: '_blank',
-    }
+    },
   ],
   socials: [
     {

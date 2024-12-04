@@ -43,6 +43,7 @@
           </div>
         </div>
         <div :class="textImageSecondColClasses" data-utility-animation-step="1">
+          <slot />
           <badge
             v-if="badge"
             :text="badge.text"

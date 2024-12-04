@@ -14,6 +14,7 @@ import {
 declare module '@nuxt/schema' {
   interface NuxtOptions {
     sitemap?: Record<string, any>;
+    seo?: Record<string, any>;
   }
 }
 
@@ -73,7 +74,15 @@ export default defineNuxtModule({
 
     _nuxt.options.sitemap = sitemapOptions;
 
+    // const defaultSeoOptions = {};
+
+    // _nuxt.options.seo = {
+    //   ...defaultSeoOptions,
+    //   ..._nuxt.options.seo,
+    // };
+
     await installModule('@nuxtjs/sitemap');
+    // await installModule('nuxt-seo-utils');
 
     const runtimeDir = resolve(__dirname, './runtime');
 

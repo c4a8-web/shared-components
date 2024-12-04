@@ -27,7 +27,7 @@ const Products = {
           skin: 'primary is-cutoff',
           grow: true,
           target: '_blank',
-          pages: ['Start now', 'Pricing', 'iframe.html'],
+          pages: ['Start now', 'Pricing'],
           visibleTabs: ['buy'],
         },
         {

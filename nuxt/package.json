@@ -37,6 +37,7 @@
     "jquery": "^3.7.1",
     "node-html-parser": "^6.1.13",
     "nuxt": "^3.14.159",
+    "nuxt-seo-utils": "^6.0.3",
     "postcss": "^8.4.47",
     "postcss-cli": "^11.0.0",
     "postcss-url": "^10.1.3",
