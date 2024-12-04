@@ -5,34 +5,34 @@ import { useHead } from '#app';
 
 import Tools from '../utils/tools';
 
-// if (Tools.getEnvironment() !== 'development') {
-const config = Tools.getConfig();
-const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
-const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
+if (Tools.getEnvironment() !== 'development') {
+  const config = Tools.getConfig();
+  const googleTagManagerId = config?.public?.googleTagManagerId || 'NO_ID_PROVIDED';
+  const googleTagManagerDomain = config?.public?.googleTagManagerDomain || 'NO_DOMAIN_PROVIDED';
 
-const defaultGtagConfig = {
-  ad_user_data: 'denied',
-  ad_personalization: 'denied',
-  ad_storage: 'denied',
-  personalization_storage: 'denied',
-  functionality_storage: 'denied',
-  security_storage: 'denied',
-  analytics_storage: 'granted',
-  wait_for_update: 500,
-};
+  const defaultGtagConfig = {
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    ad_storage: 'denied',
+    personalization_storage: 'denied',
+    functionality_storage: 'denied',
+    security_storage: 'denied',
+    analytics_storage: 'granted',
+    wait_for_update: 500,
+  };
 
-const customGtagConfig = config?.public?.gtag || {};
+  const customGtagConfig = config?.public?.gtag || {};
 
-const gtagConfig = {
-  ...defaultGtagConfig,
-  ...customGtagConfig,
-};
+  const gtagConfig = {
+    ...defaultGtagConfig,
+    ...customGtagConfig,
+  };
 
-useHead({
-  script: [
-    {
-      type: 'text/javascript',
-      children: `
+  useHead({
+    script: [
+      {
+        type: 'text/javascript',
+        children: `
           function loadGTM() {
             const originalDocumentCookie = document.cookie;
             function interceptCookieWrite(cookieValue) {
@@ -89,10 +89,10 @@ useHead({
 
         loadGTM();
         `,
-    },
-  ],
-});
-// } else {
-//   console.debug('Tag Manager not loaded in development');
-// }
+      },
+    ],
+  });
+} else {
+  console.debug('Tag Manager not loaded in development');
+}
 </script>
