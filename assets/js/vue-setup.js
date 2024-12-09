@@ -88,6 +88,7 @@ import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
+import Survey from './vue/survey.js';
 
 // Icons
 import ArrowCurl from './vue/icons/arrow-curl.js';
@@ -288,6 +289,7 @@ const addApp = () => {
     XMark,
     Wrapper,
     WrapperSlotItems,
+    Survey,
   ];
 
   components.forEach((component) => {

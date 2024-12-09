@@ -147,6 +147,10 @@ export default {
     hasAnimation: {
       default: null,
     },
+    column: {
+      type: Boolean,
+      default: false,
+    },
   },
   template: `
     <div :class="classList">
@@ -164,11 +168,11 @@ export default {
             <template v-for="block in preparedBlocks">
               <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
                 <div :class="getFieldClassList(field)" v-for="field in block">
-                  <form-fields :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" @action-changed="updateAction" />
+                  <form-fields :column="column" :field='field' :options="getOptions(field)" :replace-value="replaceValue" :id="getId(field)" :has-animation="hasAnimationValue" @action-changed="updateAction" />
                 </div>
               </div>
             </template>
-            <div :class="formClassList">
+            <div :class="formClassList" v-if="form.cta">
               <cta :text="form.ctaText" type="submit" :button="true" :skin="form.cta.skin" :width="form.cta.width" :analytics="analytics" />
             </div>
             <input type="text" class="form__super-field" name="_gotcha">

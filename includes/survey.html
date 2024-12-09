@@ -1,0 +1,10 @@
+{%- assign surveySteps = include.steps -%}
+{%- assign surveyHeadline = include.headline -%}
+{%- assign surveySubline = include.subline -%}
+
+<survey
+  :steps="{{ surveySteps | jsonify | escape }}"
+  :headline="{{ surveyHeadline | jsonify | escape  }}"
+  subline="{{ surveySubline }}"
+>
+</survey>
