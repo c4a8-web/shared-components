@@ -44,7 +44,7 @@ export const Survey = {
           link: true,
         },
         image: {
-          img: getAssetPath('img/image-placeholder-1.jpg'),
+          img: getAssetPath('img/image-placeholder-2.jpg'),
           alt: 'Image Alt',
         },
         maxPercentage: 80,
@@ -60,7 +60,7 @@ export const Survey = {
           link: true,
         },
         image: {
-          img: getAssetPath('img/image-placeholder-1.jpg'),
+          img: getAssetPath('img/image-placeholder-3.jpg'),
           alt: 'Image Alt',
         },
         maxPercentage: 100,
