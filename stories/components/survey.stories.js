@@ -1,4 +1,4 @@
-import { getDefaultSettings } from '../../.storybook/templates';
+import { getAssetPath, getDefaultSettings } from '../../.storybook/templates';
 import { includessurveyhtml as component } from '../../.storybook/generatedIncludes';
 
 export default {
@@ -28,7 +28,7 @@ export const Survey = {
           link: true,
         },
         image: {
-          img: 'images/image-1.jpg',
+          img: getAssetPath('img/image-placeholder-1.jpg'),
           alt: 'Image Alt',
         },
         maxPercentage: 30,
@@ -44,7 +44,7 @@ export const Survey = {
           link: true,
         },
         image: {
-          img: 'images/image-1.jpg',
+          img: getAssetPath('img/image-placeholder-1.jpg'),
           alt: 'Image Alt',
         },
         maxPercentage: 80,
@@ -60,7 +60,7 @@ export const Survey = {
           link: true,
         },
         image: {
-          img: 'images/image-1.jpg',
+          img: getAssetPath('img/image-placeholder-1.jpg'),
           alt: 'Image Alt',
         },
         maxPercentage: 100,
