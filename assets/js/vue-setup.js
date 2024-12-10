@@ -125,6 +125,7 @@ import StrategySplit from './vue/icons/strategy-split.js';
 import TileView from './vue/icons/tile-view.js';
 import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
+import Reload from './vue/icons/reload.js';
 
 // Shapes
 import LBlock from './vue/shapes/l-block.js';
@@ -290,6 +291,7 @@ const addApp = () => {
     Wrapper,
     WrapperSlotItems,
     Survey,
+    Reload,
   ];
 
   components.forEach((component) => {

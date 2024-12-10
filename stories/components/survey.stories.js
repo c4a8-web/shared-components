@@ -29,6 +29,7 @@ export const Survey = {
                 {
                   id: 'not_2',
                   label: 'Not managed 2',
+                  checked: true,
                 },
                 {
                   id: 'not_3',
@@ -55,6 +56,7 @@ export const Survey = {
                 {
                   id: 'not_2',
                   label: 'Not managed 2',
+                  checked: true,
                 },
                 {
                   id: 'not_3',
@@ -81,6 +83,7 @@ export const Survey = {
                 {
                   id: 'not_2',
                   label: 'Not managed 2',
+                  checked: true,
                 },
                 {
                   id: 'not_4',
@@ -103,6 +106,7 @@ export const Survey = {
                 {
                   id: 'not_2',
                   label: 'Not managed 2',
+                  checked: true,
                 },
                 {
                   id: 'not_3',
@@ -129,6 +133,7 @@ export const Survey = {
                 {
                   id: 'not_2',
                   label: 'Not managed 2',
+                  checked: true,
                 },
                 {
                   id: 'not_3',
