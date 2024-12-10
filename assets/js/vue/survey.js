@@ -12,46 +12,16 @@ export default {
       showResult: false,
       slickElement: null,
       currentStepIndex: 0,
+      currentScore: 0,
       options: {
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        // prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
-        // nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
+        // slidesToShow: 1,
+        // slidesToScroll: 1,
         dots: false,
         centerMode: false,
         draggable: false,
-        // dotsClass: 'slick-pagination is-default',
-        responsive: [
-          // {
-          //   breakpoint: 1200,
-          //   settings: {
-          //     slidesToShow: 3,
-          //     slidesToScroll: 3,
-          //   },
-          // },
-          // {
-          //   breakpoint: 992,
-          //   settings: {
-          //     centerMode: true,
-          //     infinite: false,
-          //     centerPadding: centerPadding ? centerPadding : '30px',
-          //     slidesToShow: 1,
-          //     slidesToScroll: 1,
-          //     dots: false,
-          //   },
-          // },
-          {
-            breakpoint: 576,
-            settings: {
-              centerMode: true,
-              infinite: false,
-              centerPadding: '20px',
-              slidesToShow: 1,
-              slidesToScroll: 1,
-              dots: false,
-            },
-          },
-        ],
+        touchMove: false,
+        swipe: false,
+        // adaptiveHeight: true,
       },
     };
   },
@@ -63,6 +33,27 @@ export default {
         this.showResult ? 'survey--show-result' : '',
         this.resetTimeout ? State.IN_TRANSITION : '',
       ];
+    },
+    rule() {
+      const firstRuleIndex = 0;
+      const fallbackRule = this.rules[firstRuleIndex];
+
+      let selectedRule = null;
+
+      for (let i = 0; i < this.rules.length; i++) {
+        const currentRule = this.rules[i];
+        const nextRule = this.rules[i + 1];
+
+        if (!nextRule && !selectedRule) {
+          selectedRule = currentRule;
+        } else if (!selectedRule) {
+          if (this.currentScore <= currentRule.maxPercentage) {
+            selectedRule = currentRule;
+          }
+        }
+      }
+
+      return selectedRule ? selectedRule : fallbackRule;
     },
     copyColor() {
       return this.color ? this.color : 'var(--color-copy)';
@@ -105,7 +96,22 @@ export default {
       return data;
     },
     handleResult() {
+      this.calculateScoring();
+
       this.showResult = true;
+    },
+    resetForms() {
+      const steps = this.$refs.steps;
+
+      if (!steps) return;
+
+      const forms = steps.querySelectorAll('form');
+
+      forms.forEach((form) => {
+        form.reset();
+
+        form.querySelector('input[type="radio"]').setAttribute('checked', true);
+      });
     },
     handleReset() {
       this.showResult = false;
@@ -113,6 +119,7 @@ export default {
 
       this.resetTimeout = setTimeout(() => {
         this.slickElement.slick('slickGoTo', 0);
+        this.resetForms();
 
         this.resetWaitTimeout = setTimeout(() => {
           this.handleResetTimeout();
@@ -120,7 +127,6 @@ export default {
       }, this.resetDelay);
     },
     handleResetTimeout() {
-      console.log('reset survey');
       clearTimeout(this.resetTimeout);
       clearTimeout(this.resetWaitTimeout);
 
@@ -138,6 +144,35 @@ export default {
 
       if (!this.isStartPosition) this.currentStepIndex--;
     },
+    calculatePercentage(points) {
+      const maxPoints = this.maxPoints;
+
+      if (!maxPoints) return 0;
+
+      return (points / maxPoints) * 100;
+    },
+    calculateScoring() {
+      const steps = this.$refs.steps;
+
+      if (!steps) return;
+
+      const radios = steps.querySelectorAll('input[type="radio"]:checked');
+
+      if (!radios.length) return;
+
+      let totalPoints = 0;
+
+      radios.forEach((radio) => {
+        const values = radio.id.split('_');
+        const points = parseInt(values[values.length - 1], 10);
+
+        if (!isNaN(points)) {
+          totalPoints += points;
+        }
+      });
+
+      this.currentScore = this.calculatePercentage(totalPoints);
+    },
   },
   props: {
     steps: {
@@ -149,25 +184,47 @@ export default {
     },
     headline: Object,
     subline: String,
+    maxPoints: {
+      type: Number,
+      required: true,
+    },
+    rules: {
+      type: Array,
+      required: true,
+    },
   },
   template: `
     <div :class="classList" :style="style">
       <div class="container">
         <div class="survey__row row">
-          <div class="survey__col col">
+          <div class="survey__col mx-auto col-lg-9">
             <div class="survey__header">
               <headline :text="headline?.text" :level="headline?.level" classes="survey__headline" />
-              <div class="survey__subline font-size-2" v-if="subline">{{ subline }}</div>
+              <div class="survey__subline font-size-3" v-if="subline">{{ subline }}</div>
             </div>
             <div class="survey__status-bar">BAR</div>
-            <div class="survey__steps" ref="steps">
-              <slider :options="options" :hide-background="true" :hide-container="true">
-                <div class="survey__step" v-for="(step, index) in steps" :key="index">
-                  <div class="survey__step-question">{{ step.question }}</div>
-                  <formular v-bind="formData(step)" :column="true" />
+            <Transition name="survey__fade">
+              <div class="survey__steps slick--no-offset" ref="steps" v-show="!showResult">
+                <slider :options="options" :hide-background="true" :hide-container="true">
+                  <div class="survey__step" v-for="(step, index) in steps" :key="index">
+                    <div class="survey__step-question font-size-2">{{ step.question }}</div>
+                    <formular v-bind="formData(step)" :column="true" classes="font-size-2" :light="true" />
+                  </div>
+                </slider>
+              </div>
+            </Transition>
+            <Transition name="survey__fade">
+              <div class="survey__result" v-show="showResult">
+                <div class="survey__result-image">
+                  <v-img v-bind="rule?.image" />
                 </div>
-              </slider>
-            </div>
+                <div class="survey__result-content">
+                  <headline :text="rule?.headline?.text" :level="rule?.headline?.level || 'h4'" classes="survey__result-headline bold" />
+                  <div class="survey__result-text font-size-2">{{ rule?.text }}</div>
+                  <cta v-bind="rule?.cta" />
+                </div>
+              </div>
+            </Transition>
             <div class="survey__controls">
               <div :class="prevButtonClass" @click="handlePrev">
                 <icon icon="arrow" direction="left" :circle="true" :hover="true" />

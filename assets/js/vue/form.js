@@ -18,6 +18,7 @@ export default {
         `${Tools.isTrue(this.container) === true ? 'container' : ''}`,
         `${Tools.isTrue(this.customValidation) === true ? 'form--custom-validation' : ''}`,
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
+        this.classes,
         'vue-component',
       ];
     },
@@ -150,6 +151,9 @@ export default {
     column: {
       type: Boolean,
       default: false,
+    },
+    classes: {
+      type: String,
     },
   },
   template: `

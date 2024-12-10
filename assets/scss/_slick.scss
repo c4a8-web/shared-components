@@ -96,6 +96,16 @@ $slick-arrow-offset: 2;
         }
       }
     }
+
+    .slick-list {
+      width: 100%;
+      display: block;
+
+      .slick-track {
+        left: 0;
+        display: block;
+      }
+    }
   }
 
   .slick--default {
