@@ -57,7 +57,11 @@
 
 .survey__header {
   text-align: center;
-  margin-bottom: spacing(30);
+  margin-bottom: spacing(20);
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(30);
+  }
 }
 
 .survey__subline {
@@ -73,6 +77,10 @@
     padding-left: 2px;
     padding-right: 2px;
     max-width: calc(var(--survey-max-width) + #{spacing(19)});
+
+    .form__radio-control {
+      padding-right: 0 !important;
+    }
   }
 }
 
@@ -118,8 +126,11 @@
 }
 
 .survey__result-image {
+  margin-bottom: spacing(10);
+
   @include media-breakpoint-up(lg) {
     flex: 1 0 35%;
+    margin-bottom: 0;
   }
 }
 

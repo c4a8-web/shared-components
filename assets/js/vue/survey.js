@@ -14,14 +14,19 @@ export default {
       currentStepIndex: 0,
       currentScore: 0,
       options: {
-        // slidesToShow: 1,
-        // slidesToScroll: 1,
         dots: false,
         centerMode: false,
         draggable: false,
         touchMove: false,
         swipe: false,
-        // adaptiveHeight: true,
+        responsive: [
+          {
+            breakpoint: 576,
+            settings: {
+              adaptiveHeight: true,
+            },
+          },
+        ],
       },
     };
   },
