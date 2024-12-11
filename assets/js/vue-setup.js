@@ -89,6 +89,7 @@ import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
 import Survey from './vue/survey.js';
+import VideoSlider from './vue/video-slider.js';
 
 // Icons
 import ArrowCurl from './vue/icons/arrow-curl.js';
@@ -292,6 +293,7 @@ const addApp = () => {
     WrapperSlotItems,
     Survey,
     Reload,
+    VideoSlider,
   ];
 
   components.forEach((component) => {

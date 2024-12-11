@@ -9,6 +9,20 @@ export default {
 };
 
 export const Survey = {
+  decorators: [
+    (Story) => {
+      const storyElement = Story();
+      const container = document.createElement('div');
+      container.appendChild(storyElement);
+
+      const spacer = document.createElement('div');
+      spacer.style.height = '200vh';
+      spacer.classList.add('dummy-content');
+      container.appendChild(spacer);
+
+      return container;
+    },
+  ],
   args: {
     headline: {
       text: 'glueckkanja Workaholic-Test',

@@ -6,7 +6,8 @@ export default {
   computed: {
     videoClass() {
       return [
-        'video utility-animation',
+        'video',
+        this.noAnimation ? '' : 'utility-animation',
         `${this.videoParsed.id ? 'video--has-video' : 'hover__parent'}`,
         `${this.isVariantRow ? 'container' : 'd-flex flex-column'}`,
         `${Tools.isTrue(this.overlapping) ? 'video--is-overlapping' : ''}`,
@@ -18,7 +19,8 @@ export default {
     },
     videoPlayerClass() {
       return [
-        'video__player fade-in-bottom',
+        'video__player',
+        this.noAnimation ? '' : 'fade-in-bottom',
         `${this.variantClasses}`,
         `${this.isPlayed ? 'video-player-played is-starting' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
@@ -26,13 +28,21 @@ export default {
       ];
     },
     videoContentClass() {
-      const padding = !this.isReversed() ? 'py-4 px-3 p-lg-5' : 'pb-4';
+      const paddingHorizontal = this.isCompact ? 'pt-4' : 'py-4 px-3';
+      const padding = !this.isReversed() ? ` ${paddingHorizontal} p-lg-5` : 'pb-4';
 
       return [
-        'video__content fade-in-bottom',
+        'video__content',
+        this.noAnimation ? '' : 'fade-in-bottom',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
         `${this.isVariantRow ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
       ];
+    },
+    videoTextClasses() {
+      return ['video__text col-lg-12 order-lg-3', this.isCompact ? '' : 'pt-2 pt-lg-4'];
+    },
+    isCompact() {
+      return this.variant === 'compact';
     },
     variantClasses() {
       return !this.variant ? 'bg-dark' : this.isVariantRow ? 'col-md-6 order-md-2' : '';
@@ -56,7 +66,10 @@ export default {
       return this.videoId + '-frame';
     },
     headlineClasses() {
-      return `h4-font-size ${this.isVariantRow ? 'mb-0' : ''}`;
+      const variantClasses = this.isVariantRow || this.isCompact ? 'mb-0' : '';
+      const headlineClasses = this.isCompact ? 'h5-font-size' : 'h4-font-size';
+
+      return `${headlineClasses} ${variantClasses}`;
     },
     dataOptionsLightBox() {
       const options = {
@@ -123,6 +136,10 @@ export default {
     level: {
       default: 'h4',
     },
+    noAnimation: {
+      type: Boolean,
+      default: false,
+    },
   },
   template: `
     <div :class="videoClass" :onclick="onClick">
@@ -172,7 +189,7 @@ export default {
                   <headline :level="level" :text="videoParsed.headline" :classes="headlineClasses">
                 </div>
               </template>
-              <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.text" v-html="videoParsed.text"></div>
+              <div :class="videoTextClasses" v-if="videoParsed.text" v-html="videoParsed.text"></div>
               <div class="col-lg-12 pt-2 pt-lg-4 order-lg-3" v-if="videoParsed.date">
                 {{ videoParsed.date }}
               </div>

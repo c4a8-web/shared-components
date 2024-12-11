@@ -2,6 +2,7 @@
 {%- assign videoInnerOverlapping = include.overlapping | default: false -%}
 {%- assign videoInnerSpacing = include.spacing -%}
 {%- assign videoInnerVariant = include.variant -%}
+{%- assign videoInnerNoAnimation = include.noAnimation -%}
 
 {% assign cta = props.cta %}
 
@@ -21,4 +22,5 @@
   spacing="{{ videoInnerSpacing }}"
   level="{{ videoLevel }}"
   overlapping="{{ videoInnerOverlapping }}"
+  :no-animation="{{ videoInnerNoAnimation }}"
 ></video-inner>
