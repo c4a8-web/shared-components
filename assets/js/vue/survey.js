@@ -1,4 +1,5 @@
 import State from '../state.js';
+import Tools from '../tools.js';
 
 export default {
   tagName: 'survey',
@@ -129,6 +130,10 @@ export default {
       this.calculateScoring();
 
       this.showResult = true;
+
+      setTimeout(() => {
+        this.scrollIntoView(this.$refs['status-bar']);
+      }, 500);
     },
     resetForms() {
       const steps = this.$refs.steps;
@@ -153,8 +158,14 @@ export default {
 
         this.resetWaitTimeout = setTimeout(() => {
           this.handleResetTimeout();
+          this.scrollIntoView(this.$refs['subline']);
         }, this.resetWaitDelay);
       }, this.resetDelay);
+    },
+    scrollIntoView(element) {
+      if (Tools.isUpperBreakpoint()) return;
+
+      Tools.scrollIntoView(element, true);
     },
     handleResetTimeout() {
       clearTimeout(this.resetTimeout);
@@ -230,9 +241,9 @@ export default {
           <div class="survey__col mx-auto col-lg-9">
             <div class="survey__header">
               <headline :text="headline?.text" :level="headline?.level" classes="survey__headline" />
-              <div class="survey__subline font-size-3 thin" v-if="subline">{{ subline }}</div>
+              <div class="survey__subline font-size-3 thin" v-if="subline" ref="subline">{{ subline }}</div>
             </div>
-            <div class="survey__status-bar">
+            <div class="survey__status-bar" ref="status-bar">
               <span class="survey__progress-text font-size-sm">{{ progressText }}</span>
               <div class="survey__progress-bar">
                 <div class="survey__progress-bar-fill" :style="progressStyle"></div>
