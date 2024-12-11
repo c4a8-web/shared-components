@@ -230,7 +230,7 @@ export default {
           <div class="survey__col mx-auto col-lg-9">
             <div class="survey__header">
               <headline :text="headline?.text" :level="headline?.level" classes="survey__headline" />
-              <div class="survey__subline font-size-3" v-if="subline">{{ subline }}</div>
+              <div class="survey__subline font-size-3 thin" v-if="subline">{{ subline }}</div>
             </div>
             <div class="survey__status-bar">
               <span class="survey__progress-text font-size-sm">{{ progressText }}</span>
