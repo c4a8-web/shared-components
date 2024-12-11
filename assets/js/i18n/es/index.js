@@ -26,6 +26,7 @@ const es = {
   jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
   imageCredits: 'Créditos de las fotos',
   question: 'Pregunta',
+  evaluation: 'Evaluación',
 };
 
 export default es;

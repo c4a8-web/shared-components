@@ -26,6 +26,7 @@ const de = {
   jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
   imageCredits: 'Bildnachweis',
   question: 'Frage',
+  evaluation: 'Auswertung',
 };
 
 export default de;

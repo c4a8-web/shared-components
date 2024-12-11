@@ -26,6 +26,7 @@ const en = {
   jobListEmpty: 'We currently have no positions in this language.',
   imageCredits: 'Picture Credits',
   question: 'Question',
+  evaluation: 'Evaluation',
 };
 
 export default en;

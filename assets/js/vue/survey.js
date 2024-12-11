@@ -41,6 +41,8 @@ export default {
       ];
     },
     progressText() {
+      if (this.showResult) return this.translationData['evaluation'];
+
       const question = this.translationData['question'];
 
       if (!question) return '';
@@ -101,7 +103,7 @@ export default {
 
     if (hasLanguageLoader) {
       hasLanguageLoader.then(() => {
-        this.translationData = window.i18n?.getTranslationData(['question']);
+        this.translationData = window.i18n?.getTranslationData(['question', 'evaluation']);
       });
     }
   },
