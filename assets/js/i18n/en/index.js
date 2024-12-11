@@ -25,6 +25,7 @@ const en = {
   reset: 'Reset',
   jobListEmpty: 'We currently have no positions in this language.',
   imageCredits: 'Picture Credits',
+  question: 'Question',
 };
 
 export default en;

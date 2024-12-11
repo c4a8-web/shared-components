@@ -1,7 +1,10 @@
 .survey {
   --color-survey-subline: var(--color-primary-accent);
-  --color-survey-controls: var(--color-primary-accent);
+  --color-survey-controls: var(--color-survey-subline);
   --color-survey-disabled: var(--color-black-50);
+  --color-survey-question: var(--color-survey-subline);
+  --color-survey-progress-bar-background: var(--color-primary-accent-light);
+
   --survey-icon-gap: #{spacing(4)};
   --survey-max-width: 650px;
 
@@ -141,7 +144,27 @@
 }
 
 .survey__status-bar {
-  display: none;
+  @include font-weight('bold');
+
+  margin-bottom: spacing(10);
+  color: var(--color-survey-question);
+}
+
+.survey__progress-bar {
+  position: relative;
+  background-color: var(--color-survey-progress-bar-background);
+  height: 10px;
+  overflow: hidden;
+  margin-top: spacing(2);
+}
+
+.survey__progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease-in-out;
 }
 
 .survey__fade-enter-active,

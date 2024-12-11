@@ -25,6 +25,7 @@ const es = {
   reset: 'Reiniciar',
   jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
   imageCredits: 'Créditos de las fotos',
+  question: 'Pregunta',
 };
 
 export default es;

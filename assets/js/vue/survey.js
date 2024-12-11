@@ -6,6 +6,7 @@ export default {
     return {
       resetTimeout: null,
       resetWaitTimeout: null,
+      translationData: {},
       resetDelay: 300,
       resetWaitDelay: 300,
       isReady: false,
@@ -38,6 +39,19 @@ export default {
         this.showResult ? 'survey--show-result' : '',
         this.resetTimeout ? State.IN_TRANSITION : '',
       ];
+    },
+    progressText() {
+      const question = this.translationData['question'];
+
+      if (!question) return '';
+
+      return question + ` ${this.normalizedStep} / ${this.steps.length}`;
+    },
+    normalizedStep() {
+      return this.currentStepIndex + 1;
+    },
+    progressStyle() {
+      return `width: ${(this.normalizedStep / this.steps.length) * 100}%`;
     },
     rule() {
       const firstRuleIndex = 0;
@@ -81,6 +95,15 @@ export default {
     isStartPosition() {
       return this.currentStepIndex === 0;
     },
+  },
+  beforeMount() {
+    const hasLanguageLoader = window.i18n?.loader;
+
+    if (hasLanguageLoader) {
+      hasLanguageLoader.then(() => {
+        this.translationData = window.i18n?.getTranslationData(['question']);
+      });
+    }
   },
   mounted() {
     // TODO get rid of slick
@@ -207,7 +230,12 @@ export default {
               <headline :text="headline?.text" :level="headline?.level" classes="survey__headline" />
               <div class="survey__subline font-size-3" v-if="subline">{{ subline }}</div>
             </div>
-            <div class="survey__status-bar">BAR</div>
+            <div class="survey__status-bar">
+              <span class="survey__progress-text font-size-sm">{{ progressText }}</span>
+              <div class="survey__progress-bar">
+                <div class="survey__progress-bar-fill" :style="progressStyle"></div>
+              </div>
+            </div>
             <Transition name="survey__fade">
               <div class="survey__steps slick--no-offset" ref="steps" v-show="!showResult">
                 <slider :options="options" :hide-background="true" :hide-container="true">
