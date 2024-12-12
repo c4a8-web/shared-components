@@ -38,6 +38,42 @@ CornerImg.args = {
   },
 };
 
+export const CornerImgOffset = Template.bind({});
+
+CornerImgOffset.args = {
+  thumb: 'shared-components/teaser-dekra.png',
+  alt: 'Video Casestudy Uniper',
+  id: 'ThxpyUOz2R8',
+  container: true,
+  corner: {
+    img: 'it-workaholics/it-workaholics-ransomware-hero-bg.webp',
+    cloudinary: true,
+    alt: 'Lorem ipsum',
+    topOverflow: true,
+  },
+};
+
+CornerImgOffset.decorators = [
+  (Story) => {
+    const storyElement = Story();
+    const container = document.createElement('div');
+
+    const spacer1 = document.createElement('div');
+    spacer1.style.height = '50vh';
+    spacer1.classList.add('dummy-content');
+    container.appendChild(spacer1);
+
+    container.appendChild(storyElement);
+
+    const spacer2 = document.createElement('div');
+    spacer2.style.height = '50vh';
+    spacer2.classList.add('dummy-content');
+    container.appendChild(spacer2);
+
+    return container;
+  },
+];
+
 export const FullWidth = Template.bind({});
 
 FullWidth.args = {
