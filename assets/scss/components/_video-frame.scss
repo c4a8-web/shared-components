@@ -118,11 +118,6 @@
   }
 
   &.video-frame--top-overflow {
-    --video-frame-top-offset: 50%;
-
-    // margin-top: min(var(--video-frame-top-offset), 230px);
-    // margin-top: unquote('min(var(--video-frame-top-offset), 240px)');
-
     .video-frame {
       order: 2;
     }
@@ -131,27 +126,13 @@
       order: 1;
     }
 
-    .video-frame__play-wrapper {
-      // margin-top: 20%;
-    }
-
-    @include media-breakpoint-up(md) {
-      // margin-top: unquote('min(var(--video-frame-top-offset), 290px)');
-    }
-
     @include media-breakpoint-up(lg) {
-      // margin-top: 0;
-
       .video-frame {
         order: 1;
       }
 
       .video-frame__corner-img {
         order: 2;
-      }
-
-      .video-frame__play-wrapper {
-        // margin-top: 0;
       }
     }
   }
@@ -163,51 +144,22 @@
 
   &.video-frame__corner-img--top-overflow {
     position: relative;
-
-    // position: relative;
-    // height: var(--video-frame-top-offset);
     width: 80vw;
-    // max-width: 440px;
-    // max-height: 238px;
     max-height: 43vw;
-
     overflow: hidden;
-    // margin: spacing(32) 0 0 auto;
     margin: 0 0 0 auto;
-
     bottom: 0;
-
-    // top: 0;
     right: 0;
-    // width: 60%;
-    // height: auto;
     z-index: -1;
-    // transform: translateY(calc(-1 * var(--video-frame-top-offset) + 20%)) translateX(0);
-    // transform: translateY(-33%);
 
     @include media-breakpoint-up(sm) {
       width: 80vw;
       max-width: 440px;
       max-height: 238px;
-      // width: 65vw;
-      // height: 35vw;
-      // max-width: none;
-      // max-height: none;
-      // transform: translateY(-37%);
     }
-
-    // @include media-breakpoint-up(md) {
-    // width: 65vw;
-    // // height: 35vw;
-    // max-width: none;
-    // max-width: 530px;
-    // max-height: none;
-    // transform: translateY(-45%);
-    // }
 
     @include media-breakpoint-up(lg) {
       position: absolute;
-      // margin: 0;
       max-width: none;
       max-height: none;
       top: 0;
@@ -215,7 +167,6 @@
       right: 0;
       width: 60%;
       height: auto;
-      z-index: -1;
       transform: translateY(-61%) translateX(27%);
     }
   }
