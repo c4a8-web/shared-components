@@ -120,7 +120,7 @@ export const TextImageOffset = {
         img: getAssetPath('svg/shapes/shape-career.svg'),
         alt: 'Shape',
         bottom: true,
-        offset: '-70px',
+        offset: '5%',
       },
     },
   },

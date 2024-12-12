@@ -82,7 +82,7 @@
     .hero__background-shape {
       top: auto;
       transform: translateY(0);
-      bottom: var(--hero-shape-offset);
+      bottom: 0;
     }
   }
 
@@ -90,7 +90,7 @@
     .hero__background-shape {
       bottom: auto;
       transform: translateY(0);
-      top: var(--hero-shape-offset);
+      top: 0;
     }
   }
 
@@ -366,6 +366,8 @@
   > * {
     object-fit: contain;
     object-position: right;
+    position: relative;
+    transform: translateY(var(--hero-shape-offset));
 
     &.lottie {
       display: inline-flex;
