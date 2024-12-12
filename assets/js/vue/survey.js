@@ -233,13 +233,16 @@ export default {
       type: Array,
       required: true,
     },
+    id: {
+      type: String,
+    },
   },
   template: `
     <div :class="classList" :style="style">
       <div class="container">
         <div class="survey__row row">
           <div class="survey__col mx-auto col-lg-9">
-            <div class="survey__header">
+            <div class="survey__header" :id="id">
               <headline :text="headline?.text" :level="headline?.level" classes="survey__headline" />
               <div class="survey__subline font-size-3 thin" v-if="subline" ref="subline">{{ subline }}</div>
             </div>
