@@ -270,7 +270,7 @@ export default {
                 <div class="survey__result-content">
                   <headline :text="rule?.headline?.text" :level="rule?.headline?.level || 'h4'" classes="survey__result-headline bold" />
                   <div class="survey__result-text font-size-2">{{ rule?.text }}</div>
-                  <cta v-bind="rule?.cta" />
+                  <cta v-bind="rule?.cta" v-if="rule.cta" />
                 </div>
               </div>
             </Transition>

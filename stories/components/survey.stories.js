@@ -52,11 +52,6 @@ export const Survey = {
           text: 'Überschrift',
         },
         text: 'Manchmal würden Sie gerne aus Ihrer Haut fahren, können sich dann aber meisten gerade noch so beherrschen. Unser Tipp: Nutzen Sie in besonders stressigen Momenten unsere „Cool-Down-Art Übung“ und lassen Sie damit alle Ihre negativen Emotionen raus.',
-        cta: {
-          text: 'Primary Link',
-          href: 'javascript:void(0)',
-          link: true,
-        },
         image: {
           img: getAssetPath('img/image-placeholder-2.jpg'),
           alt: 'Image Alt',
