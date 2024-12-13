@@ -80,3 +80,17 @@ VideoRowOverlapping.args = {
     id: 'hV97zDTlDko',
   },
 };
+
+export const VideoCompact = Template.bind({});
+
+VideoCompact.args = {
+  variant: 'compact',
+  overlapping: true,
+  video: {
+    headline: '„Die Kollegen lieben mich wieder!“',
+    text: 'Diane T.',
+    thumb: 'thumbs/video-thumb-haniel.jpg',
+    alt: 'Video Casestudy Franz Haniel',
+    id: 'hV97zDTlDko',
+  },
+};

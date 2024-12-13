@@ -1,5 +1,6 @@
 const State = {
   ACTIVE: 'active',
+  DISABLED: 'is-disabled',
   READY: 'is-ready',
   ERROR: 'is-invalid',
   VALID: 'is-valid',
@@ -9,6 +10,7 @@ const State = {
   DRAGGING: 'is-dragging',
   HIDDEN: 'd-none',
   INVISIBLE: 'is-invisible',
+  INVISIBLE_WITH_SPACE: 'is-invisible-with-space',
   EXPANDED: 'is-expanded',
   EXPANDABLE: 'is-expandable',
   OFF_SCREEN: 'is-off-screen',

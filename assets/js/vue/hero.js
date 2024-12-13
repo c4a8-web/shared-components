@@ -96,6 +96,9 @@ export default {
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
     },
+    overlineClassList() {
+      return ['hero__overline', this.overlineFull ? 'hero__overline--full' : ''];
+    },
     contentClassList() {
       return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
     },
@@ -133,6 +136,9 @@ export default {
     },
     overlineBgColor() {
       return this.heroJson ? this.heroJson.overlineBgColor : null;
+    },
+    overlineFull() {
+      return this.heroJson ? this.heroJson.overlineFull : false;
     },
     subline() {
       return this.heroJson ? this.heroJson.subline : null;
@@ -200,6 +206,9 @@ export default {
     },
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
+    },
+    shapeOffset() {
+      return (this.shape && this.shape.offset) || null;
     },
     shapeTop() {
       return (this.shape && this.shape.top) || null;
@@ -288,7 +297,7 @@ export default {
           </letter-switcher>
           <div class="hero__intro row" v-if="overline || headline || subline" ref="intro">
             <div class="hero__intro-col col">
-              <span class="hero__overline" v-if="overline">{{ overline }}</span>
+              <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
               <headline :class="headlineClassList" v-if="headline" :level="level" v-html="headline"></headline>
               <div class="hero__content-shape" v-if="shapeInContent">
                 <v-img
@@ -332,7 +341,10 @@ export default {
       </div>
       <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
         <wrapper class="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
-          <div class="hero__background-shape">
+          <div
+            class="hero__background-shape"
+            :style="shapeOffset ? { '--hero-shape-offset': shapeOffset } : {}"
+          >
             <v-img
               v-if="showShape"
               :cloudinary="shape.cloudinary"

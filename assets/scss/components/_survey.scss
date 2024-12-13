@@ -1,0 +1,233 @@
+.survey {
+  --color-survey-subline: var(--color-primary-accent);
+  --color-survey-controls: var(--color-survey-subline);
+  --color-survey-disabled: var(--color-black-50);
+  --color-survey-question: var(--color-survey-subline);
+  --color-survey-progress-bar-background: var(--color-primary-accent-light);
+
+  --survey-icon-gap: #{spacing(4)};
+  --survey-max-width: 650px;
+
+  background-color: var(--color-survey-background);
+  color: var(--color-survey-color);
+  min-height: 100vh;
+  padding: spacing(24) 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  &.survey--show-result .survey__controls > .survey__arrow {
+    transition-duration: 0s;
+  }
+
+  &.survey--is-ready.in-transition .survey__controls > *,
+  &.survey--show-result .survey__controls > .survey__arrow,
+  &:not(.survey--is-ready) .survey__controls > * {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .slick-slider {
+    user-select: auto;
+  }
+
+  &.survey--is-ready {
+    .survey__arrow + .survey__arrow {
+      margin-right: calc(-1 * var(--survey-icon-gap));
+    }
+  }
+
+  &.in-transition {
+    .survey__step {
+      opacity: 0;
+    }
+  }
+
+  &.survey--show-result {
+    .survey__status-bar {
+      position: relative;
+      top: auto;
+
+      &::before,
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+
+.survey__controls {
+  display: flex;
+  gap: var(--survey-icon-gap);
+  justify-content: flex-end;
+
+  & > * {
+    transition: opacity 0.5s ease-in-out;
+    color: var(--color-survey-controls);
+
+    &:hover {
+      --color-icon-hover-background: var(--color-survey-controls);
+    }
+  }
+}
+
+.survey__header {
+  text-align: center;
+  margin-bottom: spacing(10);
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(30);
+  }
+}
+
+.survey__subline {
+  color: var(--color-survey-subline);
+  margin-top: spacing(4);
+}
+
+.survey__step {
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: all;
+
+  .form {
+    padding-left: 2px;
+    padding-right: 2px;
+    max-width: calc(var(--survey-max-width) + #{spacing(19)});
+
+    .form__radio-control {
+      padding-right: 0 !important;
+    }
+  }
+}
+
+.survey__reset {
+  transition:
+    width 0.5s ease-in-out,
+    opacity 0.5s ease-in-out;
+
+  &.is-invisible {
+    width: 0;
+    margin-left: spacing($size: 4, $negative: true);
+  }
+}
+
+.survey__arrow {
+  &.is-disabled {
+    pointer-events: none;
+    color: var(--color-survey-disabled);
+
+    .icon {
+      border-color: transparent;
+    }
+  }
+}
+
+.survey__result {
+  margin-bottom: spacing(14);
+
+  &.survey__fade-leave-active {
+    display: none;
+  }
+
+  @include media-breakpoint-up(lg) {
+    display: flex;
+    gap: spacing(8);
+    margin-bottom: spacing(20);
+  }
+}
+
+.survey__result-text {
+  margin-top: spacing(6);
+  margin-bottom: spacing(8);
+}
+
+.survey__result-image {
+  margin-bottom: spacing(10);
+
+  @include media-breakpoint-up(lg) {
+    flex: 1 0 35%;
+    margin-bottom: 0;
+  }
+}
+
+.survey__step-question {
+  @include font-weight('bold');
+
+  max-width: var(--survey-max-width);
+}
+
+.survey__status-bar {
+  @include font-weight('bold');
+
+  margin-bottom: spacing(10);
+  color: var(--color-survey-question);
+  background-color: var(--color-survey-background);
+  z-index: 1;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    width: 100%;
+    height: spacing(10);
+    position: absolute;
+    background: linear-gradient(to bottom, var(--color-survey-background) 20%, rgba(255, 255, 255, 0) 100%);
+  }
+
+  &::before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: spacing(10);
+    bottom: 100%;
+    position: absolute;
+    background: var(--color-survey-background);
+  }
+
+  @include media-breakpoint-down(md) {
+    position: sticky;
+    top: var(--scroll-top);
+  }
+}
+
+.survey__progress-bar {
+  position: relative;
+  background-color: var(--color-survey-progress-bar-background);
+  height: 10px;
+  overflow: hidden;
+  margin-top: spacing(2);
+}
+
+.survey__progress-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: var(--color-primary);
+  transition: width 0.3s ease-in-out;
+}
+
+.survey__fade-enter-active,
+.survey__fade-leave-active {
+  transition-property: opacity;
+  transition-timing-function: ease-in-out;
+}
+
+.survey__fade-enter-active {
+  transition-duration: 0.3s;
+}
+
+.survey__fade-leave-active {
+  transition-delay: 0s;
+  transition-duration: 0s;
+}
+
+.survey__fade-enter-to {
+  transition-duration: 0.3s;
+  transition-delay: 0.2s;
+}
+
+.survey__fade-enter-from,
+.survey__fade-leave-to {
+  opacity: 0;
+}

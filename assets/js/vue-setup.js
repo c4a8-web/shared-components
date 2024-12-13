@@ -88,6 +88,9 @@ import TextTeaser from './vue/text-teaser.js';
 import Timeline from './vue/timeline.js';
 import Wrapper from './vue/wrapper.js';
 import WrapperSlotItems from './vue/wrapper-slot-items.js';
+import Survey from './vue/survey.js';
+import VideoSlider from './vue/video-slider.js';
+import GameWhackAMole from './vue/game-whack-a-mole.js';
 
 // Icons
 import ArrowCurl from './vue/icons/arrow-curl.js';
@@ -124,6 +127,7 @@ import StrategySplit from './vue/icons/strategy-split.js';
 import TileView from './vue/icons/tile-view.js';
 import World from './vue/icons/world.js';
 import XMark from './vue/icons/x-mark.js';
+import Reload from './vue/icons/reload.js';
 
 // Shapes
 import LBlock from './vue/shapes/l-block.js';
@@ -288,6 +292,10 @@ const addApp = () => {
     XMark,
     Wrapper,
     WrapperSlotItems,
+    Survey,
+    Reload,
+    VideoSlider,
+    GameWhackAMole,
   ];
 
   components.forEach((component) => {

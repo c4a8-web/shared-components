@@ -25,6 +25,16 @@ const de = {
   reset: 'Zurücksetzen',
   jobListEmpty: 'Aktuell haben wir keine Stellenangebote in dieser Sprache.',
   imageCredits: 'Bildnachweis',
+  question: 'Frage',
+  evaluation: 'Auswertung',
+  gameStart: 'Spiel starten',
+  gamePlaying: 'Spiel läuft',
+  gameOver: 'Spiel Ende',
+  gameHighScore: 'High Score',
+  gameFinalScore: 'Final Score',
+  gameTryAgain: 'Nochmal spielen',
+  gameScore: 'Score',
+  gameTimeLeft: 'Zeit übrig',
 };
 
 export default de;

@@ -258,3 +258,10 @@ ImageCredits.args = {
   icon: 'image-credits',
   size: 'xxl',
 };
+
+export const Reload = Template.bind({});
+
+Reload.args = {
+  icon: 'reload',
+  size: 'xxl',
+};

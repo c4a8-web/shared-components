@@ -25,6 +25,16 @@ const en = {
   reset: 'Reset',
   jobListEmpty: 'We currently have no positions in this language.',
   imageCredits: 'Picture Credits',
+  question: 'Question',
+  evaluation: 'Evaluation',
+  gameStart: 'Start Game',
+  gamePlaying: 'Game playing',
+  gameOver: 'Game Over',
+  gameHighScore: 'High Score',
+  gameFinalScore: 'Final Score',
+  gameTryAgain: 'Play again',
+  gameScore: 'Score',
+  gameTimeLeft: 'Time left',
 };
 
 export default en;

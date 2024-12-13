@@ -25,6 +25,16 @@ const es = {
   reset: 'Reiniciar',
   jobListEmpty: 'Actualmente no tenemos posiciones en este idioma.',
   imageCredits: 'Créditos de las fotos',
+  question: 'Pregunta',
+  evaluation: 'Evaluación',
+  gameStart: 'Empezar partida',
+  gamePlaying: 'Juego en curso',
+  gameOver: 'Juego terminado',
+  gameHighScore: 'Puntuación máxima',
+  gameFinalScore: 'Puntuación final',
+  gameTryAgain: 'Volver a jugar',
+  gameScore: 'Puntuación',
+  gameTimeLeft: 'Tiempo restante',
 };
 
 export default es;

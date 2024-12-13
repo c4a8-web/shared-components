@@ -10,6 +10,9 @@ export default {
     idValue() {
       return this.id ? this.id : this.radio.id;
     },
+    checked() {
+      return this.radio?.checked ? 'checked' : null;
+    },
   },
   props: {
     radio: Object,
@@ -25,7 +28,7 @@ export default {
   template: `
   <div class="form__radio-control mb-1 vue-component">
     <template v-if="radio?.placeholder">
-      <input class="form__radio" type="radio" :data-form-group="group" :required="required" :name="otherId" :id="otherId">
+      <input class="form__radio" type="radio" :data-form-group="group" :required="required" :name="otherId" :id="otherId" :checked="checked">
       <label class="form__radio-label" :for="otherId"></label>
       <input class="form__input form-control form-control-sm" type="text" :name="name" :id="idValue" :placeholder="radio?.placeholder" :data-form-group="group">
     </template>
@@ -37,6 +40,7 @@ export default {
         :id="idValue"
         :data-form-group="group"
         :required="required"
+        :checked="checked"
         @change="changed(radio)"
       >
       <label class="form__radio-label" :for="idValue" v-html="radio?.label">

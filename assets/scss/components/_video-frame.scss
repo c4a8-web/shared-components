@@ -13,7 +13,7 @@
   &.video-frame--played {
     pointer-events: none;
 
-    .video-frame__corner-img,
+    + .video-frame__corner-img:not(.video-frame__corner-img--top-overflow),
     .video-frame__headline-container {
       display: none;
     }
@@ -28,12 +28,12 @@
   }
 
   &:not(.video-frame--played) {
-    .video-frame__corner-img {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 23%;
-      height: auto;
+    + .video-frame__corner-img {
+      &:not(.video-frame__corner-img--top-overflow) {
+        bottom: 0;
+        right: 0;
+        width: 23%;
+      }
     }
   }
 
@@ -97,17 +97,77 @@
 }
 
 .video-frame__container {
-  &.video-frame__container--spacing {
-    @include media-breakpoint-up(xs) {
-      margin-top: spacing($size: 25, $negative: true);
-    }
+  @include z-index;
 
-    @include media-breakpoint-up(md) {
-      margin-top: spacing($size: 25, $negative: true);
+  position: relative;
+
+  &.video-frame__container--spacing {
+    &:not(.video-frame--top-overflow) {
+      @include media-breakpoint-up(xs) {
+        margin-top: spacing($size: 25, $negative: true);
+      }
+
+      @include media-breakpoint-up(md) {
+        margin-top: spacing($size: 25, $negative: true);
+      }
     }
 
     @include media-breakpoint-up(lg) {
       margin-top: spacing($size: 70, $negative: true);
+    }
+  }
+
+  &.video-frame--top-overflow {
+    .video-frame {
+      order: 2;
+    }
+
+    .video-frame__corner-img {
+      order: 1;
+    }
+
+    @include media-breakpoint-up(lg) {
+      .video-frame {
+        order: 1;
+      }
+
+      .video-frame__corner-img {
+        order: 2;
+      }
+    }
+  }
+}
+
+.video-frame__corner-img {
+  position: absolute;
+  height: auto;
+
+  &.video-frame__corner-img--top-overflow {
+    position: relative;
+    width: 80vw;
+    max-height: 43vw;
+    overflow: hidden;
+    margin: 0 0 0 auto;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+
+    @include media-breakpoint-up(sm) {
+      width: 80vw;
+      max-width: 440px;
+      max-height: 238px;
+    }
+
+    @include media-breakpoint-up(lg) {
+      position: absolute;
+      max-width: none;
+      max-height: none;
+      top: 0;
+      bottom: auto;
+      right: 0;
+      width: 60%;
+      height: auto;
+      transform: translateY(-61%) translateX(27%);
     }
   }
 }

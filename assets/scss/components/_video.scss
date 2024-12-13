@@ -80,6 +80,12 @@
       order: 1;
     }
   }
+
+  &.video--compact {
+    .video__text {
+      @include font-style($style: 'font-size-3', $weight: 'light');
+    }
+  }
 }
 
 .video__content {
