@@ -8,6 +8,7 @@
 {%- assign videoFrameFullWidth = include.fullWidth | default: false -%}
 {%- assign videoFrameHeadline = include.headline | default: false -%}
 {%- assign videoFrameSticky = include.sticky -%}
+{%- assign videoFrameCta = include.cta -%}
 
 {% capture videoFrameParentId %}video-frame__parent-id-{{ videoFrameId }}{% endcapture %}
 {% capture videoFrameTargetId %}video-frame__target-id-{{ videoFrameId }}{% endcapture %}
@@ -27,6 +28,7 @@
 <div class="container utility-animation has-background video-frame__container
   {% if videoFrameSpacingTop %}video-frame__container--spacing {% endif %}
   {% if videoFrameSticky %}is-sticky-scroller {% endif %}
+  {% if videoFrameCornerImg.topOverflow %}video-frame--top-overflow{% endif %}
   "
   style="{% if videoFrameHeadline.color %} --video-frame-headline-color: var({{ videoFrameHeadline.color }}); {% endif %}"
 >
@@ -66,18 +68,7 @@
             <i class="fas fa-play"></i>
           </span>
         </div>
-        {% if videoFrameCornerImg %}
-          <div class="video-frame__corner-img">
-            <v-img
-              img="{{ videoFrameCornerImg.img }}"
-              preset="{{ videoFramePreset }}"
-              cloudinary="{{ videoFrameCornerImg.cloudinary }}"
-              alt="{{ videoFrameCornerImg.alt }}"
-            >
 
-            </v-img>
-          </div>
-        {% endif %}
         <v-img
           img="{{ videoFrameThumb }}"
           cloudinary="{{ true }}"
@@ -88,6 +79,18 @@
 
       </div>
     </div>
+    {% if videoFrameCornerImg %}
+    <div class="video-frame__corner-img{% if videoFrameCornerImg.topOverflow %} video-frame__corner-img--top-overflow{% endif %}">
+      <v-img
+        img="{{ videoFrameCornerImg.img }}"
+        preset="{{ videoFramePreset }}"
+        cloudinary="{{ videoFrameCornerImg.cloudinary }}"
+        alt="{{ videoFrameCornerImg.alt }}"
+      >
+
+      </v-img>
+    </div>
+    {% endif %}
 {% if videoFrameContainer %}
   </div>
 </div>

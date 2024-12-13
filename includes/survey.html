@@ -1,0 +1,19 @@
+{%- assign surveySteps = include.steps -%}
+{%- assign surveyBgColor = include.bgColor -%}
+{%- assign surveyHeadline = include.headline -%}
+{%- assign surveySubline = include.subline -%}
+{%- assign surveyMaxPoints = include.maxPoints -%}
+{%- assign surveyRules = include.rules -%}
+{%- assign surveyId = include.id -%}
+
+<survey
+  :steps="{{ surveySteps | jsonify | escape }}"
+  bg-color="{{ surveyBgColor }}"
+  :headline="{{ surveyHeadline | jsonify | escape  }}"
+  subline="{{ surveySubline }}"
+  :max-points="{{ surveyMaxPoints }}"
+  :rules="{{ surveyRules | jsonify | escape }}"
+  id="{{ surveyId }}"
+></survey
+>
+</survey>
