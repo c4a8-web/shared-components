@@ -47,6 +47,8 @@ $content-scroller-orientation-breakpoint: 'md';
     // --content-scroller-blocks-top: 90vh;
     // --content-scroller-block-space-height: 20vh;
 
+    overflow: clip;
+
     .content-scroller__background {
       --content-scroller-right-width: 60vw;
     }
