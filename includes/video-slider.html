@@ -1,0 +1,11 @@
+{%- assign videoSliderHeadline = include.headline -%}
+{%- assign videoSliderSubline = include.subline -%}
+{%- assign videoSliderTabs = include.tabs -%}
+{%- assign videoSliderCta = include.cta -%}
+
+<video-slider
+  :headline="{{ videoSliderHeadline | jsonify | escape }}"
+  subline="{{ videoSliderSubline | escape }}"
+  :tabs="{{ videoSliderTabs | jsonify | escape }}"
+  :cta="{{ videoSliderCta | jsonify | escape }}"
+></video-slider>

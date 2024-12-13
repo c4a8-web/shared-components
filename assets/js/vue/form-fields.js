@@ -92,6 +92,10 @@ export default {
     hasAnimation: {
       default: null,
     },
+    column: {
+      type: Boolean,
+      default: false,
+    },
   },
   template: `
     <template v-if="field.id !== '_gotcha'">
@@ -113,7 +117,7 @@ export default {
           <form-radio :radio="field" :id="id" />
         </template>
         <template v-else-if="field.radios">
-          <form-radios :field="field" :id="id" @action-changed="$emit('action-changed', $event)" />
+          <form-radios :column="column" :field="field" :id="id" @action-changed="$emit('action-changed', $event)" />
         </template>
         <template v-else-if="field.type === 'file'">
           <form-attachments

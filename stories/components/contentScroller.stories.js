@@ -47,3 +47,46 @@ export const ContentScroller = {
     ],
   },
 };
+
+export const QuestionAndAnswers = {
+  args: {
+    headline: {
+      text: 'Antwort-Guide',
+    },
+    subline: 'Wie Sie bei nervigen Fragen ganz ruhig bleiben!',
+    footerHeadline: 'Pro-Tipp',
+    footerSubline:
+      'Drucken Sie die Antworten auf kleine <strong>Kärtchen</strong>, die Sie bei Bedarf hochhalten können. So sparen Sie sich so zusätzlich die verbale Interaktion mit dem Fragesteller.',
+    blocks: [
+      {
+        content: '...',
+        isLeft: true,
+      },
+      {
+        content: 'Jein!',
+      },
+      {
+        content: 'Danke für den überaus wertvollen Hinweis!',
+      },
+      {
+        content: 'Damit werden Sie leben müssen!',
+      },
+      {
+        content: 'Das haben Sie gut beobachtet!',
+      },
+      {
+        content: 'Sie sollten versuchen, sich daran zu gewöhnen!',
+      },
+      {
+        content: 'Die Vielzahl Ihrer Interessensgebiete ist erstaunlich.',
+      },
+      {
+        content: 'Es stört Sie doch nicht, wenn ich weiter ruhig bleibe?',
+      },
+      {
+        content: 'Der Stecker steckt nicht drin!',
+      },
+    ],
+    skin: 'questions-and-answers',
+  },
+};

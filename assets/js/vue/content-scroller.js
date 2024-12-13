@@ -15,6 +15,13 @@ export default {
     };
   },
   computed: {
+    classList() {
+      return [
+        'content-scroller vue-component',
+        this.overlappingSizeValue,
+        this.skin ? `content-scroller--${this.skin}` : '',
+      ];
+    },
     blocksValue() {
       return Tools.getJSON(this.blocks);
     },
@@ -28,7 +35,7 @@ export default {
       };
     },
     overlappingSizeValue() {
-      return this.overlappingSize || 'mt-md-n10';
+      return this.overlappingSize || this.skin || 'mt-md-n10';
     },
     style() {
       return {
@@ -40,8 +47,24 @@ export default {
     headline: {
       default: null,
     },
+    subline: {
+      type: String,
+      default: '',
+    },
     blocks: Array,
     overlappingSize: String,
+    skin: {
+      type: String,
+      default: '',
+    },
+    footerHeadline: {
+      type: String,
+      default: '',
+    },
+    footerSubline: {
+      type: String,
+      default: '',
+    },
   },
   mounted() {
     this.calcBlockCount();
@@ -179,21 +202,28 @@ export default {
     },
   },
   template: `
-    <div :class="['content-scroller vue-component', overlappingSizeValue]" :style="style">
+    <div :class="classList" :style="style">
       <wrapper class="content-scroller__wrapper">
         <div class="content-scroller__row">
           <div class="content-scroller__grid col">
             <div class="content-scroller__content-wrapper">
               <div class="content-scroller__content">
-                <headline
+                <div class="content-scroller__header">
+                  <headline
                   v-bind="headlineValue"
-                />
+                  />
+                  <p v-if="subline" class="content-scroller__subline">{{ subline }}</p>
+                </div>
+                <div class="content-scroller__footer">
+                  <h v-if="footerHeadline" class="content-scroller__headline-footer" v-html="footerHeadline"/>
+                  <p v-if="footerSubline" class="content-scroller__subline-footer" v-html="footerSubline"/>
+                </div>
               </div>
             </div>
             <div class="content-scroller__blocks">
               <div class="content-scroller__blocks-placeholder" ref="placeholder">
                 <div class="content-scroller__blocks-frame">
-                  <section class="content-scroller__block" v-for="(block, index) in blocksValue" :key="index" ref="block" :style="calcBlockStyle(index)">
+                  <section :class="['content-scroller__block', { 'is-left': block.isLeft }]" v-for="(block, index) in blocksValue" :key="index" ref="block" :style="calcBlockStyle(index)">
                     <main>
                       <div class="content-scroller__block-space">
                         <headline

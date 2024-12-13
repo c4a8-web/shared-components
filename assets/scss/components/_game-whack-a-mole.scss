@@ -1,0 +1,261 @@
+.game-whack-a-mole {
+  --color-game-whack-a-mole-background: var(--color-blue-dark);
+  --color-game-whack-a-mole-color: var(--color-copy-light);
+  --color-game-whack-a-mole-primary: var(--color-gigas);
+  --color-game-whack-a-more-primary-accent: var(--color-electric-violet);
+  --color-game-whack-a-mole-mole-background: var(--color-black-4);
+
+  --color-headlines: var(--color-game-whack-a-mole-color);
+
+  background-color: var(--color-game-whack-a-mole-background);
+  color: var(--color-game-whack-a-mole-color);
+  min-height: 100vh;
+  padding: spacing(24) 0;
+  display: flex;
+  align-items: center;
+  position: relative;
+
+  // TODO refactor css or throw away :D
+  .game-container {
+    width: 100%;
+    max-width: 945px;
+  }
+
+  .stats {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .score,
+  .timer,
+  .high-score {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .label {
+    @include font-style($style: 'font-size-3', $weight: 'light');
+  }
+
+  .mole {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 70%;
+    height: 70%;
+    border-radius: 50% 50% 40% 40%;
+    transform: translateX(-50%) translateY(100%);
+    transition: transform 0.2s ease;
+  }
+
+  .mole.up {
+    transform: translateX(-50%) translateY(-15%);
+  }
+
+  .mole.bonk {
+    animation: bonk 0.3s ease;
+  }
+
+  @keyframes bonk {
+    0% {
+      transform: translateX(-50%) translateY(20%);
+    }
+    50% {
+      transform: translateX(-50%) translateY(40%) scaleY(0.8);
+    }
+    100% {
+      transform: translateX(-50%) translateY(100%);
+    }
+  }
+
+  .face {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-image: assets('../svg/game-whack1.svg');
+    transition: background-image 0.1s 1.2s ease;
+
+    &.game-whack-a-mole__face--2 {
+      background-image: assets('../svg/game-whack2.svg');
+      transition-delay: 0s;
+    }
+  }
+
+  .dirt {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: #7c3aed;
+    border-radius: 0 0 50% 50%;
+    display: none;
+  }
+
+  .game-over {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: all 0.3s ease;
+  }
+
+  .game-over.hidden {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .stats-final {
+    display: flex;
+    justify-content: center;
+    margin-bottom: spacing(4);
+    margin-top: spacing(8);
+    flex-direction: column;
+  }
+
+  .stats-final .value {
+    @include font-style($style: 'font-size-3', $weight: 'bold');
+
+    margin-left: spacing(2);
+  }
+
+  @media (max-width: 768px) {
+    .game-header {
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .stats {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .stats {
+      gap: 1rem;
+    }
+  }
+}
+
+.game-whack-a-mole__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-game-whack-a-mole-primary);
+  flex-direction: column;
+  gap: spacing(4);
+
+  @include media-breakpoint-up(lg) {
+    flex-direction: row;
+  }
+}
+
+.game-whack-a-mole__score-count,
+.game-whack-a-mole__time,
+.game-whack-a-mole__high-score-count {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--color-game-whack-a-mole-primary);
+}
+
+.game-whack-a-mole__play-again-btn,
+.game-whack-a-mole__start-btn {
+  --color-primary: var(--color-game-whack-a-mole-primary);
+  --color-primary-accent: var(--color-game-whack-a-more-primary-accent);
+}
+
+.game-whack-a-mole__hole {
+  position: relative;
+  aspect-ratio: 1;
+  background: var(--color-game-whack-a-mole-mole-background);
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.game-whack-a-mole__game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1.5rem;
+
+  @include media-breakpoint-up(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.game-whack-a-mole__game-over-content {
+  padding: spacing(8);
+  background: var(--color-game-whack-a-mole-background);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  text-align: center;
+  min-width: 80vw;
+
+  @include media-breakpoint-up(md) {
+    min-width: 600px;
+    padding: spacing(14);
+  }
+}
+
+.game-whack-a-mole__game-over-headline {
+  // --color-headlines: var(--color-game-whack-a-mole-color);
+
+  margin-bottom: spacing(14);
+}
+
+.game-whack-a-mole__game-over-image {
+  width: 100px;
+  height: 100px;
+  background-repeat: no-repeat;
+  background-size: 85%;
+  background-position: center center;
+  background-image: assets('../svg/game-whack1.svg');
+  background-color: var(--color-game-whack-a-mole-mole-background);
+  border-radius: 40px;
+
+  @include media-breakpoint-up(md) {
+    width: 150px;
+    height: 150px;
+    border-radius: 60px;
+  }
+}
+
+.game-whack-a-mole__game-over-header {
+  display: flex;
+  gap: spacing(6);
+  margin-bottom: spacing(6);
+  text-align: left;
+
+  @include media-breakpoint-up(md) {
+    gap: spacing(10);
+    margin-bottom: spacing(15);
+  }
+}
+
+.game-whack-a-mole__col {
+  text-align: center;
+  margin-bottom: spacing(10);
+
+  @include media-breakpoint-up(lg) {
+    margin-bottom: spacing(20);
+  }
+}
+
+.game-whack-a-mole__subline {
+  @include font-style($style: 'font-size-3', $weight: 'light', $line: 'thin');
+
+  margin-top: spacing(4);
+  color: var(--color-secondary);
+}

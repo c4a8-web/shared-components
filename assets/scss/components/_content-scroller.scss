@@ -1,4 +1,4 @@
-$content-scroller-orientatio-breakpoint: 'md';
+$content-scroller-orientation-breakpoint: 'md';
 
 // TODO mobile layout
 
@@ -9,9 +9,14 @@ $content-scroller-orientatio-breakpoint: 'md';
   --content-scroller-spacing-small: #{spacing(10)};
   --content-scroller-background: var(--color-surface-background);
   --content-scroller-top-offset: 20vh;
-  --content-scroller-block-offset-xs: 40vh;
   --content-scroller-bottom-spacer: 38vh;
   --content-scroller-content-background: var(--color-white);
+  --content-scroller-block-background: var(--content-scroller-background);
+  --content-scroller-right-width: 50vw;
+  --content-scroller-blocks-min-height: 200vh;
+  --content-scroller-blocks-top: 70vh;
+  --content-scroller-block-space-height: 50vh;
+  --content-scroller-gap: #{spacing(80)};
 
   position: relative;
   padding-bottom: var(--content-scroller-bottom-spacer);
@@ -27,10 +32,140 @@ $content-scroller-orientatio-breakpoint: 'md';
     margin-bottom: 0;
   }
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
+    --content-scroller-block-background: transparent;
+
     border-top: 1px solid transparent;
     padding-bottom: 0;
     background-color: transparent;
+  }
+
+  &.content-scroller--questions-and-answers {
+    --content-scroller-background: var(--color-primary);
+    --content-scroller-block-background: var(--color-secondary);
+    --content-scroller-gap: #{spacing(50)};
+    // --content-scroller-blocks-top: 90vh;
+    // --content-scroller-block-space-height: 20vh;
+
+    overflow: clip;
+
+    .content-scroller__background {
+      --content-scroller-right-width: 60vw;
+    }
+
+    .content-scroller__block {
+      display: table;
+      width: auto;
+      min-width: spacing(40);
+      border-radius: spacing(4);
+      border-bottom-right-radius: 0;
+      margin-left: auto;
+
+      &.is-left {
+        --content-scroller-block-background: var(--color-black-4);
+
+        margin-left: 0;
+        margin-right: auto;
+        border-bottom-right-radius: spacing(4);
+        border-bottom-left-radius: 0;
+
+        .content-scroller__block-content {
+          text-align: end;
+        }
+      }
+
+      &:last-of-type {
+        .content-scroller__block-space {
+          padding-bottom: spacing(4);
+        }
+      }
+
+      @include media-breakpoint-down($content-scroller-orientation-breakpoint) {
+        width: 100%;
+
+        &.is-left {
+          .content-scroller__block-content {
+            border-bottom-left-radius: 0;
+            text-align: start;
+          }
+        }
+
+        .content-scroller__block-content {
+          border-bottom-right-radius: 0;
+          text-align: end;
+        }
+      }
+    }
+
+    .content-scroller__block-space {
+      padding: spacing(4);
+      border: none;
+    }
+
+    .content-scroller__block-content {
+      @include font-style($style: 'font-size-1', $weight: 'bold');
+
+      background-color: var(--content-scroller-block-background);
+
+      @include media-breakpoint-down($content-scroller-orientation-breakpoint) {
+        border-radius: spacing(4);
+        padding: spacing(4);
+      }
+    }
+
+    .content-scroller__grid {
+      @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
+        grid-template-columns: 40% 60%;
+      }
+    }
+
+    .content-scroller__content {
+      display: flex;
+      flex-direction: column;
+      gap: var(--content-scroller-gap);
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: -40%;
+        background-image: assets('../svg/quotes.svg');
+        width: 4rem;
+        height: 4rem;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
+          top: -12%;
+        }
+      }
+    }
+
+    .content-scroller__headline-footer {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+
+      &::before {
+        content: '';
+        width: 2rem;
+        height: 2rem;
+        background-image: assets('../svg/idea.svg');
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .content-scroller__subline-footer {
+      font-size: 0.75rem;
+      max-width: 15rem;
+    }
+
+    @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
+      --content-scroller-block-background: var(--color-secondary);
+    }
   }
 }
 
@@ -40,7 +175,7 @@ $content-scroller-orientatio-breakpoint: 'md';
   height: 100%;
   position: relative;
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     min-height: calc(200vh + 30px);
     margin-top: var(--content-scroller-spacing);
     grid-template-columns: repeat(2, 1fr);
@@ -53,7 +188,7 @@ $content-scroller-orientatio-breakpoint: 'md';
   top: var(--content-scroller-top-offset);
   height: 25vh;
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     height: calc(max(100vh - var(--content-scroller-top-offset), var(--content-scroller-min-height)));
   }
 }
@@ -80,7 +215,7 @@ $content-scroller-orientatio-breakpoint: 'md';
     grid-column: 1 / -1;
   }
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     height: 100%;
     padding: var(--content-scroller-spacing) calc(var(--content-scroller-spacing) * 2) 0 0;
   }
@@ -90,10 +225,10 @@ $content-scroller-orientatio-breakpoint: 'md';
   position: absolute;
   width: 100%;
   height: 100%;
-  min-height: 200vh;
-  top: 70vh;
+  min-height: var(--content-scroller-blocks-min-height);
+  top: var(--content-scroller-blocks-top);
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     padding-left: var(--content-scroller-spacing);
     padding-top: 0;
     position: relative;
@@ -105,7 +240,7 @@ $content-scroller-orientatio-breakpoint: 'md';
 .content-scroller__blocks-frame {
   position: relative;
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     top: calc(-1 * var(--content-scroller-spacing));
     margin-top: calc(var(--content-scroller-spacing) * 3);
   }
@@ -114,7 +249,7 @@ $content-scroller-orientatio-breakpoint: 'md';
 .content-scroller__block-space {
   padding-top: var(--content-scroller-spacing-small);
   padding-bottom: var(--content-scroller-spacing-small);
-  height: 50vh;
+  height: var(--content-scroller-block-space-height);
   position: relative;
 
   &::after,
@@ -139,7 +274,7 @@ $content-scroller-orientatio-breakpoint: 'md';
     background-color: var(--color-primary-accent);
   }
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     height: auto;
     padding-top: 0;
     border-bottom: 1px solid var(--color-primary-accent);
@@ -156,10 +291,10 @@ $content-scroller-orientatio-breakpoint: 'md';
   width: 100%;
   will-change: transform, opacity;
   position: sticky;
-  background-color: var(--content-scroller-background);
+  background-color: var(--content-scroller-block-background);
   top: 50vh;
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     --content-scroller-block-start-position: 10rem;
     --content-scroller-block-position: calc(
       var(--content-scroller-block-start-position) -
@@ -170,8 +305,7 @@ $content-scroller-orientatio-breakpoint: 'md';
     margin-bottom: calc(var(--content-scroller-spacing-small));
     transform: translate3d(0px, var(--content-scroller-block-position), 0px);
     position: initial;
-    background-color: transparent;
-    min-height: none;
+    min-height: auto;
     height: auto;
 
     &:last-of-type {
@@ -191,12 +325,12 @@ $content-scroller-orientatio-breakpoint: 'md';
   top: 0;
   right: 0;
   bottom: 0;
-  width: calc(50vw - 2 * (#{$grid-gutter-half-width}));
+  width: calc(var(--content-scroller-right-width) - 2 * (#{$grid-gutter-half-width}));
   height: 100%;
   z-index: -1;
   display: none;
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     display: block;
   }
 }
@@ -206,7 +340,7 @@ $content-scroller-orientatio-breakpoint: 'md';
   top: auto;
   bottom: 30vh;
 
-  @include media-breakpoint-up($content-scroller-orientatio-breakpoint) {
+  @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
     margin-top: calc(var(--content-scroller-spacing) * 3);
     top: calc(var(--content-scroller-top-offset));
     min-height: calc(100vh - var(--content-scroller-top-offset));

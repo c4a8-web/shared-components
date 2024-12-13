@@ -1,9 +1,17 @@
 {%- assign contentScrollerHeadline = include.headline -%}
 {%- assign contentScrollerBlocks = include.blocks -%}
 {%- assign contentScrollerOverlappingSize = include.overlappingSize -%}
+{%- assign contentScrollerSkin = include.skin -%}
+{%- assign contentScrollerSubline = include.subline -%}
+{%- assign contentScrollerFooterHeadline = include.footerHeadline -%}
+{%- assign contentScrollerFooterSubline = include.footerSubline -%}
 
 <content-scroller
   :headline="{{ contentScrollerHeadline | jsonify | escape }}"
   :blocks="{{ contentScrollerBlocks | jsonify | escape }}"
   overlapping-size="{{ contentScrollerOverlappingSize }}"
-></content-scroller>
+  skin="{{ contentScrollerSkin }}"
+  subline="{{ contentScrollerSubline }}"
+  footer-headline="{{ contentScrollerFooterHeadline }}"
+  footer-subline="{{ contentScrollerFooterSubline }}">
+</content-scroller>

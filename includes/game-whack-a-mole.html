@@ -1,0 +1,9 @@
+{%- assign gameWhackAMoleHeadline = include.headline -%}
+{%- assign gameWhackAMoleSubline = include.subline -%}
+{%- assign gameWhackAMoleMaxTime = include.maxTime -%}
+
+<game-whack-a-mole
+  :headline="{{ gameWhackAMoleHeadline | jsonify | escape }}"
+  subline="{{ gameWhackAMoleSubline }}"
+  max-time="{{ gameWhackAMoleMaxTime }}">
+</game-whack-a-mole>

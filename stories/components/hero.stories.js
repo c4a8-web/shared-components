@@ -102,6 +102,30 @@ export const TextImage = {
   },
 };
 
+export const TextImageOffset = {
+  args: {
+    hero: {
+      v2: true,
+      bgColor: 'var(--color-blue-dark)',
+      light: true,
+      lightOverline: false,
+      headline: 'Komm zu uns. Finde deinen Platz.',
+      subline: 'Erfahrt jetzt in unserem Video, wie wir<br>Bluthochdruck-Diane helfen konnten.',
+      overline: 'Karriere bei einem der führenden',
+      overlineFull: true,
+      background: {
+        spacing: 'hero__content--large',
+      },
+      shape: {
+        img: getAssetPath('svg/shapes/shape-career.svg'),
+        alt: 'Shape',
+        bottom: true,
+        offset: '5%',
+      },
+    },
+  },
+};
+
 export const TextImagePattern = {
   args: {
     hero: {
