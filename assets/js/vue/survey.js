@@ -268,7 +268,6 @@ export default {
                   <v-img v-bind="rule?.image" v-if="showResult" />
                 </div>
                 <div class="survey__result-content">
-                  currentScore: {{ currentScore }}
                   <headline :text="rule?.headline?.text" :level="rule?.headline?.level || 'h4'" classes="survey__result-headline bold" />
                   <div class="survey__result-text font-size-2">{{ rule?.text }}</div>
                   <cta v-bind="rule?.cta" />
