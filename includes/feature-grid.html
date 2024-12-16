@@ -9,7 +9,7 @@
 {% assign footer = props.footer %}
 {%- assign featureGridCentered = include.centered -%}
 {%- assign featureGridHeadlineClasses = props.headlineClasses -%}
-{%- assign featureGridOverline = include.overline -%}
+{%- assign featureGridOverline = props.overline -%}
 
 {% capture columnClass %}
 col-lg-{{ 12 | divided_by: gridSize }}
@@ -23,9 +23,11 @@ col-lg-{{ 12 | divided_by: gridSize }}
     {% capture featureGridHeadlineRowClasses %}fade-in-bottom {{ featureGridHeadlineClasses }}{% endcapture %}
 
     {% if featureGridOverline %}
-      <span class="feature-grid__overline d-inline-block mb-2 font-size-2">
-        {{ featureGridOverline }}
-      </span>
+      <div class="col">
+        <span class="feature-grid__overline d-inline-block mb-2 font-size-2">
+          {{ featureGridOverline }}
+        </span>
+      </div>
     {% endif %}
 
     {%
