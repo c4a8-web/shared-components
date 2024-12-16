@@ -80,7 +80,7 @@
       </div>
     </div>
     {% if videoFrameCornerImg %}
-    <div class="video-frame__corner-img{% if videoFrameCornerImg.topOverflow %} video-frame__corner-img--top-overflow{% endif %}">
+    <div class="video-frame__corner-img{% if videoFrameCornerImg.topOverflow %} video-frame__corner-img--top-overflow{% endif %}{% if videoFrameCornerImg.classes %} {{ videoFrameCornerImg.classes }}{% endif %}">
       <v-img
         img="{{ videoFrameCornerImg.img }}"
         preset="{{ videoFramePreset }}"
