@@ -180,8 +180,14 @@
   aspect-ratio: 1;
   background: var(--color-game-whack-a-mole-mole-background);
   border-radius: 50%;
-  overflow: hidden;
   cursor: pointer;
+}
+
+.game-whack-a-mole__hole-inner {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .game-whack-a-mole__game-board {
@@ -210,8 +216,6 @@
 }
 
 .game-whack-a-mole__game-over-headline {
-  // --color-headlines: var(--color-game-whack-a-mole-color);
-
   margin-bottom: spacing(14);
 }
 
@@ -258,4 +262,21 @@
 
   margin-top: spacing(4);
   color: var(--color-secondary);
+}
+
+.game-whack-a-mole__confetti-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  canvas {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
