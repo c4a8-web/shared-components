@@ -19,7 +19,7 @@ This will then show up on staging or production environments when you trigger a 
 
 # Migration
 
-There are two ways to migrate a component. The basic version and the full version. The basic way should only be used if you need them quickly and don't have the time to fully migrate the component. Full should always be the goal.
+There are two ways to migrate a component. The basic version and the full version. The basic way should only be used if you need them quickly and don't have the time to fully migrate the component. Full should always be the goal. 
 
 ## Basic
 
