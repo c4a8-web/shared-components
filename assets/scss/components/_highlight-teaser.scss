@@ -3,6 +3,7 @@
   --highlight-teaser-animation-duration: 1.5s;
 
   container-type: inline-size;
+  overflow-x: clip;
 
   .slick-slide {
     margin-bottom: spacing(10);
