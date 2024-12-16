@@ -15,6 +15,6 @@ export const GameWhackAMole = {
       level: 'h2',
     },
     subline: 'Wie Sie mit kleinen Kunstwerken große Krisen meistern!',
-    maxTime: 5,
+    maxTime: 10,
   },
 };
