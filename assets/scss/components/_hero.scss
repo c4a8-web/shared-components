@@ -5,7 +5,8 @@
   --hero-overline-background-color: var(--color-secondary);
   --hero-background-width: 100%;
   --hero-background-width-middle: 50%;
-  --hero-shape-offset: 0;
+  --hero-shape-offset-y: 0;
+  --hero-shape-offset-x: 0;
 
   background: var(--hero-background-color);
   color: var(--hero-copy-color);
@@ -360,14 +361,19 @@
   @include z-index;
 
   max-height: unquote('min(23vw, 30%)');
-  display: flex;
+
   grid-area: intro-right / content-right;
+  overflow-x: clip;
+
+  &:not(.is--mobile) {
+    display: flex;
+  }
 
   > * {
     object-fit: contain;
     object-position: right;
     position: relative;
-    transform: translateY(var(--hero-shape-offset));
+    transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
 
     &.lottie {
       display: inline-flex;

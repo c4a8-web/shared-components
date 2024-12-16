@@ -120,7 +120,7 @@ export const TextImageOffset = {
         img: getAssetPath('svg/shapes/shape-career.svg'),
         alt: 'Shape',
         bottom: true,
-        offset: '5%',
+        offsetY: '5%',
       },
     },
   },
@@ -307,6 +307,28 @@ export const ShapeInContent = {
         alt: 'Shape',
         img: getAssetPath('svg/shapes/shape-security-eye.svg'),
         inContent: true,
+      },
+    },
+  },
+};
+
+export const ShapeInContentMobile = {
+  args: {
+    hero: {
+      v2: true,
+      light: true,
+      headline: 'Cloud Security Operations Center',
+      bgColor: 'var(--color-gigas)',
+      subline:
+        'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
+      shape: {
+        alt: 'Shape',
+        img: getAssetPath('svg/shapes/shape-hero-zencat.svg'),
+        inContentMobile: true,
+        bottom: true,
+        offsetY: '6.65%',
+        offsetX: '7%',
+        classes: 'pt-8 pb-6 py-lg-0',
       },
     },
   },

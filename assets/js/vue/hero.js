@@ -52,12 +52,24 @@ export default {
   data() {
     return {
       introHeight: null,
+      isUpperBreakpoint: null,
     };
+  },
+  created() {
+    this.handleResize();
   },
   mounted() {
     this.setIntroStyle();
+
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    handleResize() {
+      this.isUpperBreakpoint = Tools.isUpperBreakpoint();
+    },
     setIntroStyle() {
       if (!this.isCentered) return;
 
@@ -92,9 +104,12 @@ export default {
         this.textShadow ? 'hero--text-shadow' : '',
         this.bgWidth ? 'hero--bg-width' : '',
         this.isCentered ? 'hero--centered' : '',
-        this.shapeInContent ? 'hero--shape-in-content' : '',
+        this.shapeInContentValue ? 'hero--shape-in-content' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
       ];
+    },
+    shapeInContentValue() {
+      return this.shapeInContent ? true : this.shapeInContentMobile && !this.isUpperBreakpoint ? true : false;
     },
     overlineClassList() {
       return ['hero__overline', this.overlineFull ? 'hero__overline--full' : ''];
@@ -207,8 +222,24 @@ export default {
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
     },
-    shapeOffset() {
-      return (this.shape && this.shape.offset) || null;
+    shapeOffsetY() {
+      return (this.shape && this.shape.offsetY) || null;
+    },
+    shapeOffsetX() {
+      return (this.shape && this.shape.offsetX) || null;
+    },
+    shapeStyle() {
+      const style = {};
+
+      if (this.shapeOffsetY) {
+        style['--hero-shape-offset-y'] = this.shapeOffsetY;
+      }
+
+      if (this.shapeOffsetX) {
+        style['--hero-shape-offset-x'] = this.shapeOffsetX;
+      }
+
+      return style;
     },
     shapeTop() {
       return (this.shape && this.shape.top) || null;
@@ -220,8 +251,14 @@ export default {
 
       return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
+    shapeInContentMobile() {
+      return this.shape && this.shape.inContentMobile ? this.shape.inContentMobile : false;
+    },
     shapeInContent() {
       return this.shape && this.shape.inContent ? this.shape.inContent : false;
+    },
+    shapeClasses() {
+      return this.shape && this.shape.classes ? this.shape.classes : null;
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
@@ -235,7 +272,7 @@ export default {
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
     showShapeContainer() {
-      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContent);
+      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue);
     },
     isCentered() {
       return this.letterSwitcher ? true : false;
@@ -299,7 +336,7 @@ export default {
             <div class="hero__intro-col col">
               <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
               <headline :class="headlineClassList" v-if="headline" :level="level" v-html="headline"></headline>
-              <div class="hero__content-shape" v-if="shapeInContent">
+              <div :class="['hero__content-shape', shapeClasses]" v-if="shapeInContentValue">
                 <v-img
                   v-if="showShape"
                   :cloudinary="shape.cloudinary"
@@ -342,8 +379,8 @@ export default {
       <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
         <wrapper class="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
           <div
-            class="hero__background-shape"
-            :style="shapeOffset ? { '--hero-shape-offset': shapeOffset } : {}"
+            :class="['hero__background-shape', shapeClasses]"
+            :style="shapeStyle"
           >
             <v-img
               v-if="showShape"
