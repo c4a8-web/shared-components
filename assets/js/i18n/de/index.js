@@ -29,10 +29,10 @@ const de = {
   evaluation: 'Auswertung',
   gameStart: 'Spiel starten',
   gamePlaying: 'Spiel läuft',
-  gameOver: 'Spiel Ende',
+  gameOver: 'Game Over',
   gameHighScore: 'High Score',
   gameFinalScore: 'Final Score',
-  gameTryAgain: 'Nochmal spielen',
+  gameTryAgain: 'Schließen',
   gameScore: 'Score',
   gameTimeLeft: 'Zeit übrig',
 };
