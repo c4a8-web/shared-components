@@ -113,6 +113,9 @@ export default {
     $?.HSCore?.components?.HSFancyBox?.init($(this.$refs['lightbox']));
   },
   methods: {
+    handleLightboxClick() {
+      this.$emit('lightbox-clicked');
+    },
     isReversed() {
       return this.variant === 'reversed';
     },
@@ -146,7 +149,7 @@ export default {
       <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantRow">
         <div :class="videoPlayerClass" :id="videoId" data-utility-animation-step="1">
           <template v-if="videoParsed.lightbox">
-            <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox">
+            <a class="js-video-button media-viewer video-player-btn" href="javascript:;" :data-src="dataSrc" :data-caption="dataCaption" :data-hs-fancybox-options="dataOptionsLightBox" ref="lightbox" @click="handleLightboxClick">
               <div class="img-fluid" >
                 <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt">
               </div>
