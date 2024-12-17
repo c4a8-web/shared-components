@@ -4,7 +4,9 @@ export default {
   tagName: 'video-slider',
   data() {
     return {
+      triggerButtonClick: false,
       currentTabIndex: 0,
+      currentTab: null,
       slickElement: null,
       options: {
         dots: false,
@@ -53,8 +55,22 @@ export default {
     bindEvents() {
       this.slickElement.on('afterChange', this.handlePositionChange.bind(this));
     },
-    handlePositionChange(_, slick) {
+    handlePositionChange(_, slick, currentSlide) {
       this.currentTabIndex = slick.currentSlide;
+
+      if (!this.triggerButtonClick) return;
+
+      this.triggerButtonClick = false;
+      this.currentTab = slick?.$slides[currentSlide];
+
+      this.handleAfterChangeClick();
+    },
+    handleAfterChangeClick() {
+      const videoButton = this.currentTab?.querySelector('.js-video-button');
+
+      if (!videoButton) return;
+
+      videoButton.click();
     },
     handleCtaClick(e) {
       e.preventDefault();
@@ -73,6 +89,22 @@ export default {
       this.slickElement.slick('slickGoTo', index);
 
       this.currentTabIndex = index;
+    },
+    handleVideoInnerEvent(index) {
+      this.handleTabClick(index);
+    },
+    handleSliderClick(event) {
+      const currentTarget = event.target;
+      const parent = currentTarget.closest('.slick-slide');
+      const isCloned = parent.classList.contains('slick-cloned');
+
+      if (!parent || !isCloned) return;
+
+      const tabIndex = parseInt(parent.dataset.slickIndex);
+
+      this.handleTabClick(tabIndex);
+
+      this.triggerButtonClick = true;
     },
   },
   props: {
@@ -117,10 +149,15 @@ export default {
           </div>
         </div>
       </div>
-      <div class="video-slider__max-width slick--no-offset" ref="max-width">
+      <div class="video-slider__max-width slick--no-offset" ref="max-width" @click="handleSliderClick">
         <slider :options="options" :hide-background="true" :hide-container="true">
           <div class="video-slider__video-tab" v-for="(tab, index) in tabs" :key="index">
-            <video-inner :video="{ ...tab.video, lightbox: true }" variant="compact" :no-animation="true" />
+            <video-inner
+              :video="{ ...tab.video, lightbox: true }"
+              variant="compact"
+              :no-animation="true"
+              @lightboxClicked="handleVideoInnerEvent(index)"
+            />
           </div>
         </slider>
         <div class="video-slider__footer">

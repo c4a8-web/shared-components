@@ -43,9 +43,9 @@ export const VideoSlider = {
       {
         label: 'Cloud',
         video: {
-          thumb: 'thumbs/video-thumb-haniel.jpg',
+          thumb: '/it-workaholics/it-workaholics-cloud-thumb.jpg',
           alt: 'lorem ipsum',
-          id: 'hV97zDTlDko',
+          id: '1K6MSx4A3Dc',
           headline: '„Die Kollegen lieben mich wieder!“',
           text: 'Diane T.',
         },
@@ -53,9 +53,9 @@ export const VideoSlider = {
       {
         label: 'Managed Workplace',
         video: {
-          thumb: 'thumbs/video-thumb-haniel.jpg',
+          thumb: '/it-workaholics/it-workaholics-managed-workplace-thumb.jpg',
           alt: 'lorem ipsum',
-          id: 'hV97zDTlDko',
+          id: 'QBa65NnSLtE',
           headline: '„Die Kollegen lieben mich wieder!“',
           text: 'Diane T.',
         },
@@ -63,9 +63,9 @@ export const VideoSlider = {
       {
         label: 'KI',
         video: {
-          thumb: 'thumbs/video-thumb-haniel.jpg',
+          thumb: '/it-workaholics/it-workaholics-KI-thumb.jpg',
           alt: 'lorem ipsum',
-          id: 'hV97zDTlDko',
+          id: 'fBT9uWXPpzM',
           headline: '„Die Kollegen lieben mich wieder!“',
           text: 'Diane T.',
         },
@@ -73,9 +73,9 @@ export const VideoSlider = {
       {
         label: 'Ransomeware',
         video: {
-          thumb: 'thumbs/video-thumb-haniel.jpg',
+          thumb: '/it-workaholics/it-workaholics-ransomware-thumb.jpg',
           alt: 'lorem ipsum',
-          id: 'hV97zDTlDko',
+          id: 'vB90U93_xOU',
           headline: '„Die Kollegen lieben mich wieder!“',
           text: 'Diane T.',
         },
