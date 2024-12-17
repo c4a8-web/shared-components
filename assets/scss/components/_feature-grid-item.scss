@@ -10,3 +10,9 @@ ul.dashed li.feature-grid-item__text,
     flex-shrink: 0;
   }
 }
+
+.feature-grid-item__figure {
+  &[style] {
+    width: var(--feature-grid-item-figure-width);
+  }
+}

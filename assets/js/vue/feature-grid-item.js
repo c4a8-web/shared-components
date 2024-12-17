@@ -50,6 +50,14 @@ export default {
 
       return `${baseClasses} ${additionalClasses}`;
     },
+    figureClasses() {
+      return ['feature-grid-item__figure mb-5 mx-auto', !this.imageWidth ? 'w-100 max-w-10rem' : ''];
+    },
+    figureStyle() {
+      if (!this.imageWidth) return '';
+
+      return `--feature-grid-item-figure-width: ${this.imageWidth}%;`;
+    },
   },
   methods: {},
   props: {
@@ -57,11 +65,12 @@ export default {
     item: Object,
     index: Number,
     centered: String,
+    imageWidth: String,
   },
   template: `
     <div :class="classList" data-utility-animation-step="1" :style="style">
       <div class="bg-white d-flex flex-column h-100 py-5 px-3">
-        <figure class="w-100 max-w-10rem mb-5 mx-auto" v-if="image" >
+        <figure :class="figureClasses" v-if="image" :style="figureStyle">
           <v-img :img="image.src" :alt="image.alt" :cloudinary="image.cloudinary" />
         </figure>
 

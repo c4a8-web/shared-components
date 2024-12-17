@@ -233,44 +233,47 @@ export const WithAnimation = {
 
 export const WithOverline = {
   args: {
+    centered: true,
     featureGrid: {
       overline: 'This is an overline',
+      overlineClasses: 'highlight-orange',
+      overlinePosition: 'left',
+      lightOverline: true,
       headline: 'Specifications',
+      subline: 'Lorem ipsum dolor sit amet',
+      imageWidth: '80',
       features: [
         {
           title: 'Contact Sources',
           image: {
-            src: 'svg/icons/unifiedcontacts_feature_contactsources.svg',
+            src: getAssetPath('img/image-placeholder-1.jpg'),
             alt: 'Contact Sources',
           },
-          list: ['Azure AD Users', 'Azure AD Contacts (coming soon)', 'Personal Exchange Online Contacts'],
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         },
         {
           title: 'Contact Card',
           image: {
-            src: 'svg/icons/unifiedcontacts_feature_contactcards.svg',
+            src: getAssetPath('img/image-placeholder-1.jpg'),
             alt: 'Contact Card',
           },
-          list: ['Place PSTN calls', 'Place Teams calls', 'Write email', 'Start Teams chat', 'Get presence status'],
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         },
         {
           title: 'Platforms',
           image: {
-            src: 'svg/icons/unifiedcontacts_feature_platforms.svg',
+            src: getAssetPath('img/image-placeholder-1.jpg'),
             alt: 'Platforms',
           },
-          list: ['Teams Desktop Client', 'Teams Web App', 'Teams Mobile App'],
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         },
         {
           title: 'ISO 27001',
           image: {
-            src: 'svg/icons/unifiedcontacts_feature_certificates.svg',
+            src: getAssetPath('img/image-placeholder-1.jpg'),
             alt: 'ISO 27001',
           },
-          list: [
-            'Our development and operations teams are certified',
-            '<a href="https://www.datenschutz-cert.de/uploads/tx_dsnordreferenzen/glueckkanja_ISO27001_Urkunde_20211203_digital.pdf">ISO 27001 Certificate</a>',
-          ],
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
         },
       ],
     },
