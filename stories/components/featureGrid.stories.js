@@ -230,3 +230,52 @@ export const WithAnimation = {
     },
   },
 };
+
+export const WithOverline = {
+  args: {
+    centered: true,
+    featureGrid: {
+      overline: 'This is an overline',
+      overlineClasses: 'highlight-orange',
+      overlinePosition: 'left',
+      lightOverline: true,
+      headline: 'Specifications',
+      subline: 'Lorem ipsum dolor sit amet',
+      imageWidth: '80',
+      features: [
+        {
+          title: 'Contact Sources',
+          image: {
+            src: getAssetPath('img/image-placeholder-1.jpg'),
+            alt: 'Contact Sources',
+          },
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+        },
+        {
+          title: 'Contact Card',
+          image: {
+            src: getAssetPath('img/image-placeholder-1.jpg'),
+            alt: 'Contact Card',
+          },
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+        },
+        {
+          title: 'Platforms',
+          image: {
+            src: getAssetPath('img/image-placeholder-1.jpg'),
+            alt: 'Platforms',
+          },
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+        },
+        {
+          title: 'ISO 27001',
+          image: {
+            src: getAssetPath('img/image-placeholder-1.jpg'),
+            alt: 'ISO 27001',
+          },
+          copy: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',
+        },
+      ],
+    },
+  },
+};

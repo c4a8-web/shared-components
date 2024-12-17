@@ -44,6 +44,10 @@
   --color-primary-accent: var(--color-emergency-accent);
 }
 
+.is-light-overline {
+  --color-overline-color: var(--color-copy-light);
+}
+
 .is-basic-link {
   text-decoration: none !important;
   color: inherit !important;
