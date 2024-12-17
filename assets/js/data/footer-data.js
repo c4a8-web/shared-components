@@ -75,7 +75,7 @@ const FooterData = {
     {
       img: '/logos/iso27001.svg',
       alt: 'ISO 27001',
-      url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
+      url: 'https://www.glueckkanja.com/documents/general/gk-ISO27001Certificate-en.pdf',
       target: '_blank',
       classes: 'max-rem-10 max-lg-rem-11',
     },

@@ -9,10 +9,22 @@
 {% assign footer = props.footer %}
 {%- assign featureGridCentered = include.centered -%}
 {%- assign featureGridHeadlineClasses = props.headlineClasses -%}
+{%- assign featureGridOverline = props.overline -%}
+{%- assign featureGridOverlineClasses = props.overlineClasses -%}
+{%- assign featureGridLightOverline = props.lightOverline -%}
+{%- assign featureGridSubline = props.subline -%}
+{%- assign featureGridImageWidth = props.imageWidth -%}
+{%- assign featureGridOverlinePosition = props.overlinePosition -%}
 
 {% capture columnClass %}
 col-lg-{{ 12 | divided_by: gridSize }}
 {% endcapture %}
+
+{% if featureGridOverline %}
+  {%- assign featureGridHeadlineSpacing = ' ' -%}
+{% else %}
+  {%- assign featureGridHeadlineSpacing = nil -%}
+{% endif %}
 
 <div
   class="feature-grid utility-animation py-7"
@@ -21,14 +33,31 @@ col-lg-{{ 12 | divided_by: gridSize }}
   <div class="container {{ include.spacing }}" >
     {% capture featureGridHeadlineRowClasses %}fade-in-bottom {{ featureGridHeadlineClasses }}{% endcapture %}
 
+    {% if featureGridOverline %}
+      <div class="col {% if featureGridOverlinePosition %}text-{{ featureGridOverlinePosition }}{% else %}text-right{% endif %}">
+        <span class="feature-grid__overline  d-inline-block mb-2 py-1 px-2 {{ featureGridOverlineClasses }}{% if featureGridLightOverline %} is-light-overline{% endif %}">
+          {{ featureGridOverline }}
+        </span>
+      </div>
+    {% endif %}
+
     {%
       include headline-row.html
       text=headline
       centered=true
       classes=featureGridHeadlineRowClasses
+      spacing=featureGridHeadlineSpacing
       utilityAnimationStep="1"
       noContainer=true
     %}
+
+    {% if featureGridSubline %}
+      <div class="col mt-2 pb-6 {% unless featureGridHeadlineClasses contains 'text-left' %}text-center{% endunless %}">
+        <span class="feature-grid__subline font-size-2 ">
+          {{ featureGridSubline }}
+        </span>
+      </div>
+    {% endif %}
 
     {% if image %}
       <figure class="d-flex mt-8 justify-content-center fade-in-bottom" data-utility-animation-step="1">
@@ -50,6 +79,7 @@ col-lg-{{ 12 | divided_by: gridSize }}
             :index="{{ forloop.index }}"
             :item="{{ feature | jsonify | escape }}"
             :centered="{{ featureGridCentered }}"
+            image-width="{{ featureGridImageWidth }}"
           >
           </feature-grid-item>
         {% endfor %}
