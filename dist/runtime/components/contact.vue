@@ -87,8 +87,7 @@
                 </div>
                 <div v-if="contact.person.mail" class="contact__mail w-100 px-5 d-flex align-items-center">
                   <a :href="'mailto:' + contact.person.mail" class="custom">
-                    <site-icons icon="site/mail" />
-                    {{ contact.person.mail }}
+                    <site-icons icon="site/mail" />{{ contact.person.mail }}
                   </a>
                 </div>
               </div>
