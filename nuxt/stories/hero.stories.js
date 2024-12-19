@@ -1,7 +1,7 @@
-import { getParams, getAssetPath } from '../../../.storybook/templates';
-import lottie1 from '../data/lottie1.json';
-import lottieAzure from '../data/lottie-azure.json';
-import HeroComponent from '../../components/hero.vue';
+import { getParams, getAssetPath } from '../.storybook/templates';
+import lottie1 from './data/lottie1.json';
+import lottieAzure from './data/lottie-azure.json';
+import HeroComponent from '../components/hero.vue';
 
 export default {
   ...getParams({ page: true }),
@@ -281,6 +281,28 @@ export const ShapeInContent = {
         alt: 'Shape',
         img: getAssetPath('svg/shapes/shape-security-eye.svg'),
         inContent: true,
+      },
+    },
+  },
+};
+
+export const ShapeInContentMobile = {
+  args: {
+    hero: {
+      v2: true,
+      light: true,
+      headline: 'Cloud Security Operations Center',
+      bgColor: 'var(--color-gigas)',
+      subline:
+        'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
+      shape: {
+        alt: 'Shape',
+        img: getAssetPath('svg/shapes/shape-hero-zencat.svg'),
+        inContentMobile: true,
+        bottom: true,
+        offsetY: '6.65%',
+        offsetX: '7%',
+        classes: 'pt-8 pb-6 py-lg-0',
       },
     },
   },
