@@ -939,11 +939,6 @@ button {
   border-radius: 0;
 }
 
-button:focus {
-  outline: 1px dotted;
-  outline: 5px auto -webkit-focus-ring-color;
-}
-
 button,
 input,
 optgroup,
@@ -20560,6 +20555,66 @@ a:hover .text-hover-primary {
     opacity: 1;
   }
 }
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  color: #677788;
+  text-align: center;
+  vertical-align: middle;
+  user-select: none;
+  background-color: transparent;
+  border: 0.0625rem solid transparent;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  border-radius: 0.3125rem;
+  transition: all 0.2s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    transition: none;
+  }
+}
+.btn:hover {
+  color: #677788;
+  text-decoration: none;
+}
+
+.btn.focus,
+.btn:focus {
+  outline: 0;
+}
+
+.btn.disabled,
+.btn:disabled {
+  opacity: 0.65;
+}
+
+.btn:not(:disabled):not(.disabled) {
+  cursor: pointer;
+}
+
+a.btn.disabled,
+fieldset:disabled a.btn {
+  pointer-events: none;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-block + .btn-block {
+  margin-top: 0.5rem;
+}
+
+input[type=button].btn-block,
+input[type=reset].btn-block,
+input[type=submit].btn-block {
+  width: 100%;
+}
+
 /* Slider */
 .slick-slider {
   position: relative;
@@ -44282,10 +44337,47 @@ div.custom-control .custom-control-input,
   --hero-overline-background-color: var(--color-secondary);
   --hero-background-width: 100%;
   --hero-background-width-middle: 50%;
+  --hero-shape-offset-y: 0;
+  --hero-shape-offset-x: 0;
   background: var(--hero-background-color);
   color: var(--hero-copy-color);
   position: relative;
-  z-index: 0;
+  overflow-x: clip;
+}
+.hero.hero--shape-mobile-order .hero__background-shape {
+  display: none;
+}
+@media (min-width: 992px) {
+  .hero.hero--shape-mobile-order .hero__background-shape {
+    display: flex;
+  }
+}
+@media (max-width: 1199.98px) {
+  .hero.hero--shape-mobile-order .hero__intro-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hero.hero--shape-mobile-order .hero__overline {
+    order: 1;
+  }
+  .hero.hero--shape-mobile-order .hero__headline {
+    order: 2;
+  }
+  .hero.hero--shape-mobile-order .hero__subline {
+    order: 3;
+  }
+  .hero.hero--shape-mobile-order .hero__subline.hero__subline::before {
+    display: none;
+  }
+  .hero.hero--shape-mobile-order .hero__cta-list {
+    order: 4;
+  }
+}
+@media (min-width: 992px) {
+  .hero.hero--shape-mobile-order .hero__background-shape-wrapper.hero__background-shape-wrapper {
+    display: none;
+  }
 }
 .hero.is-light {
   --hero-copy-color: var(--color-copy-light);
@@ -44523,7 +44615,19 @@ div.custom-control .custom-control-input,
   animation-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
   z-index: -1;
 }
+.hero__overline.hero__overline--full::before {
+  animation-name: growFull;
+}
 
+.hero__content {
+  min-height: 400px;
+}
+@media (min-width: 992px) {
+  .hero__content.hero__content--large {
+    min-height: 880px;
+    padding-bottom: 12rem;
+  }
+}
 @media (min-width: 992px) {
   .hero__content {
     min-height: 700px;
@@ -44589,8 +44693,15 @@ div.custom-control .custom-control-input,
 .hero__background-shape {
   z-index: 30;
   max-height: min(23vw, 30%);
-  display: flex;
   grid-area: intro-right/content-right;
+  overflow-x: clip;
+}
+.hero__background-shape:not(.is--mobile) {
+  display: flex;
+}
+.hero__background-shape[style] > * {
+  transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
+  position: relative;
 }
 .hero__background-shape > * {
   object-fit: contain;
@@ -44616,15 +44727,20 @@ div.custom-control .custom-control-input,
 }
 
 .hero__pattern {
-  z-index: 10;
-}
-
-.hero__background-shape,
-.hero__pattern {
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+}
+@media (min-width: 992px) {
+  .hero__pattern {
+    z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.hero__background-shape {
+  position: absolute;
+  right: 0;
 }
 
 .hero__container {
@@ -44661,7 +44777,17 @@ div.custom-control .custom-control-input,
   display: flex;
   justify-content: center;
 }
-.hero__content-shape > * {
+.hero__content-shape[style] {
+  position: relative;
+  left: calc((100vw - 100%) / 2);
+}
+.hero__content-shape[style][style*="order: 5"], .hero__content-shape[style][style*="order: 6"], .hero__content-shape[style][style*="order: 7"], .hero__content-shape[style][style*="order: 8"], .hero__content-shape[style][style*="order: 9"] {
+  margin-top: 2rem;
+}
+.hero__content-shape[style]:not([style*="order: 5"]):not([style*="order: 6"]):not([style*="order: 7"]):not([style*="order: 8"]):not([style*="order: 9"]) {
+  margin: 2rem 0;
+}
+.hero__content-shape:not([style]) > * {
   margin: -2rem 0;
 }
 @media (min-width: 992px) {

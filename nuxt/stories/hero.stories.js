@@ -142,6 +142,7 @@ export const TextImagePattern = {
       headline: 'RADIUSaaS',
       subline: 'Authentication service for your network',
       textShadow: true,
+      bgColor: 'var(--color-white)',
       cta: {
         text: 'Try RADIUSaas now',
         href: 'javascript:void(0);',
@@ -151,6 +152,7 @@ export const TextImagePattern = {
         img: '/products/radius/radius-hero-screen.png',
         alt: 'Home',
         cloudinary: true,
+        mobileOrder: 5,
       },
     },
   },

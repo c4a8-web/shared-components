@@ -90,7 +90,7 @@
           v-for="(card, index) in cards.list"
           :key="index"
           :class="[
-            'col-lg-' + 12 / cards.list.length,
+            'col-' + 12 / cards.list.length,
             { 'px-1 px-lg-3 nav-item': cards.tabs, 'mb-6 mb-md-8 mb-lg-0': !cards.tabs },
           ]"
         >

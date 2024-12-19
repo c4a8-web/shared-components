@@ -22,7 +22,11 @@
           <div class="hero__intro-col col">
             <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
-            <div :class="['hero__content-shape', shapeClasses]" v-if="shapeInContentValue">
+            <div
+              :class="['hero__content-shape', shapeClasses]"
+              v-if="shapeInContentValue"
+              :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"
+            >
               <v-img
                 v-if="showShape"
                 :cloudinary="shape.cloudinary"
@@ -37,7 +41,7 @@
             <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
             <cta-list v-if="ctaList" classes="hero__cta-list" :list="ctaList"> </cta-list>
             <div class="hero__badges" v-if="badges">
-              <div class="hero__badge-container" v-for="badge in badges">
+              <div class="hero__badge-container" v-for="(badge, index) in badges" :key="index">
                 <v-img :cloudinary="true" v-bind="badge" class="hero__badge-image"></v-img>
               </div>
             </div>
@@ -47,6 +51,7 @@
         </text-icon-animation>
       </main>
     </div>
+
     <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
         <div :class="['hero__background-shape', shapeClasses]" :style="shapeStyle">
@@ -187,7 +192,11 @@ export default {
         this.isCentered ? 'hero--centered' : '',
         this.shapeInContentValue ? 'hero--shape-in-content' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
+        this.shapeMobileOrder ? 'hero--shape-mobile-order' : '',
       ];
+    },
+    shape() {
+      return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
     },
     overlineClassList() {
       return ['hero__overline', this.overlineFull ? 'hero__overline--full' : ''];
@@ -252,7 +261,7 @@ export default {
       return this.heroJson && this.background ? this.background.icon : null;
     },
     fullscreen() {
-      return this.heroJson && this.heroJson.fullscreen ? this.heroJson.fullscreen : false;
+      return this.heroJson && this.heroJson.fullscreen ? true : false;
     },
     spacing() {
       return this.heroJson && this.background ? this.background.spacing : null;
@@ -282,11 +291,8 @@ export default {
     showShape() {
       return this.shape.img || this.shape.lottie || this.lottieFileData;
     },
-    shape() {
-      return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
-    },
     shapeFullscreen() {
-      return this.shape && this.shape.fullscreen ? this.shape.fullscreen : false;
+      return this.shape && this.shape.fullscreen ? true : false;
     },
     shapeOffsetY() {
       return (this.shape && this.shape.offsetY) || null;
@@ -313,6 +319,9 @@ export default {
     shapeTop() {
       return (this.shape && this.shape.top) || null;
     },
+    shapeMobileOrder() {
+      return this.shape && this.shape.mobileOrder ? this.shape.mobileOrder : null;
+    },
     shapePosition() {
       if (!this.shape) return null;
 
@@ -321,13 +330,13 @@ export default {
       return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
     shapeInContentMobile() {
-      return this.shape && this.shape.inContentMobile ? this.shape.inContentMobile : false;
+      return this.shape && (this.shape.inContentMobile || this.shapeMobileOrder) ? true : false;
     },
     shapeInContentValue() {
       return this.shapeInContent ? true : this.shapeInContentMobile && !this.isUpperBreakpoint ? true : false;
     },
     shapeInContent() {
-      return this.shape && this.shape.inContent ? this.shape.inContent : false;
+      return this.shape && this.shape.inContent ? true : false;
     },
     shapeClasses() {
       return this.shape && this.shape.classes ? this.shape.classes : null;

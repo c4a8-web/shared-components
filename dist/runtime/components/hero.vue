@@ -20,9 +20,13 @@
         </letter-switcher>
         <div class="hero__intro row" v-if="overline || headlineText || subline" ref="intro">
           <div class="hero__intro-col col">
-            <span class="hero__overline" v-if="overline">{{ overline }}</span>
+            <span :class="overlineClassList" v-if="overline">{{ overline }}</span>
             <headline :class="headlineClassList" v-if="headlineText" :level="level" :text="headlineText"></headline>
-            <div class="hero__content-shape" v-if="shapeInContent">
+            <div
+              :class="['hero__content-shape', shapeClasses]"
+              v-if="shapeInContentValue"
+              :style="{ order: shapeMobileOrder !== false ? shapeMobileOrder : undefined }"
+            >
               <v-img
                 v-if="showShape"
                 :cloudinary="shape.cloudinary"
@@ -37,7 +41,7 @@
             <p class="hero__subline lead" v-if="subline" v-html="subline"></p>
             <cta-list v-if="ctaList" classes="hero__cta-list" :list="ctaList"> </cta-list>
             <div class="hero__badges" v-if="badges">
-              <div class="hero__badge-container" v-for="badge in badges">
+              <div class="hero__badge-container" v-for="(badge, index) in badges" :key="index">
                 <v-img :cloudinary="true" v-bind="badge" class="hero__badge-image"></v-img>
               </div>
             </div>
@@ -47,9 +51,10 @@
         </text-icon-animation>
       </main>
     </div>
+
     <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
-        <div class="hero__background-shape">
+        <div :class="['hero__background-shape', shapeClasses]" :style="shapeStyle">
           <v-img
             v-if="showShape"
             :cloudinary="shape.cloudinary"
@@ -123,13 +128,25 @@ export default {
     return {
       introHeight: null,
       style: null,
+      isUpperBreakpoint: null,
     };
+  },
+  created() {
+    this.handleResize();
   },
   mounted() {
     this.setIntroStyle();
     this.setStyle();
+
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    handleResize() {
+      this.isUpperBreakpoint = Tools.isUpperBreakpoint();
+    },
     setStyle() {
       this.style = [
         this.bgColor
@@ -173,9 +190,16 @@ export default {
         this.textShadow ? 'hero--text-shadow' : '',
         this.bgWidth ? 'hero--bg-width' : '',
         this.isCentered ? 'hero--centered' : '',
-        this.shapeInContent ? 'hero--shape-in-content' : '',
+        this.shapeInContentValue ? 'hero--shape-in-content' : '',
         this.hasStickyScroller ? StickyScroller.getRootClass() : '',
+        this.shapeMobileOrder ? 'hero--shape-mobile-order' : '',
       ];
+    },
+    shape() {
+      return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
+    },
+    overlineClassList() {
+      return ['hero__overline', this.overlineFull ? 'hero__overline--full' : ''];
     },
     contentClassList() {
       return ['hero__content', this.spacing ? this.spacing : this.animation ? '' : 'py-10 py-lg-11'];
@@ -206,6 +230,9 @@ export default {
     overlineBgColor() {
       return this.heroJson ? this.heroJson.overlineBgColor : null;
     },
+    overlineFull() {
+      return this.heroJson ? this.heroJson.overlineFull : false;
+    },
     subline() {
       return this.heroJson ? this.heroJson.subline : null;
     },
@@ -234,7 +261,7 @@ export default {
       return this.heroJson && this.background ? this.background.icon : null;
     },
     fullscreen() {
-      return this.heroJson && this.heroJson.fullscreen ? this.heroJson.fullscreen : false;
+      return this.heroJson && this.heroJson.fullscreen ? true : false;
     },
     spacing() {
       return this.heroJson && this.background ? this.background.spacing : null;
@@ -264,17 +291,36 @@ export default {
     showShape() {
       return this.shape.img || this.shape.lottie || this.lottieFileData;
     },
-    shape() {
-      return this.heroJson && this.heroJson.shape ? this.heroJson.shape : null;
-    },
     shapeFullscreen() {
-      return this.shape && this.shape.fullscreen ? this.shape.fullscreen : false;
+      return this.shape && this.shape.fullscreen ? true : false;
+    },
+    shapeOffsetY() {
+      return (this.shape && this.shape.offsetY) || null;
+    },
+    shapeOffsetX() {
+      return (this.shape && this.shape.offsetX) || null;
+    },
+    shapeStyle() {
+      const style = {};
+
+      if (this.shapeOffsetY) {
+        style['--hero-shape-offset-y'] = this.shapeOffsetY;
+      }
+
+      if (this.shapeOffsetX) {
+        style['--hero-shape-offset-x'] = this.shapeOffsetX;
+      }
+
+      return style;
     },
     shapeBottom() {
       return (this.shape && this.shape.bottom) || null;
     },
     shapeTop() {
       return (this.shape && this.shape.top) || null;
+    },
+    shapeMobileOrder() {
+      return this.shape && this.shape.mobileOrder ? this.shape.mobileOrder : null;
     },
     shapePosition() {
       if (!this.shape) return null;
@@ -283,8 +329,17 @@ export default {
 
       return this.shapeTop ? 'hero--shape-top' : this.shapeBottom ? 'hero--shape-bottom' : 'hero--shape-center';
     },
+    shapeInContentMobile() {
+      return this.shape && (this.shape.inContentMobile || this.shapeMobileOrder) ? true : false;
+    },
+    shapeInContentValue() {
+      return this.shapeInContent ? true : this.shapeInContentMobile && !this.isUpperBreakpoint ? true : false;
+    },
     shapeInContent() {
-      return this.shape && this.shape.inContent ? this.shape.inContent : false;
+      return this.shape && this.shape.inContent ? true : false;
+    },
+    shapeClasses() {
+      return this.shape && this.shape.classes ? this.shape.classes : null;
     },
     variant() {
       return this.heroJson && this.heroJson.variant ? this.heroJson.variant : null;
@@ -298,7 +353,7 @@ export default {
       return this.heroJson.cta ? [this.heroJson.cta] : this.heroJson.ctaList;
     },
     showShapeContainer() {
-      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContent);
+      return this.bgWidth || this.isSmall || (this.showShape && this.shapeInContentValue);
     },
     isCentered() {
       return this.letterSwitcher ? true : false;

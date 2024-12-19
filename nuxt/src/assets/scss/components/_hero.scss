@@ -11,6 +11,51 @@
   background: var(--hero-background-color);
   color: var(--hero-copy-color);
   position: relative;
+  overflow-x: clip;
+
+  &.hero--shape-mobile-order {
+    .hero__background-shape {
+      display: none;
+
+      @include media-breakpoint-up(lg) {
+        display: flex;
+      }
+    }
+
+    @include media-breakpoint-down(lg) {
+      .hero__intro-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero__overline {
+        order: 1;
+      }
+
+      .hero__headline {
+        order: 2;
+      }
+
+      .hero__subline {
+        order: 3;
+
+        &.hero__subline::before {
+          display: none;
+        }
+      }
+
+      .hero__cta-list {
+        order: 4;
+      }
+    }
+
+    @include media-breakpoint-up(lg) {
+      .hero__background-shape-wrapper.hero__background-shape-wrapper {
+        display: none;
+      }
+    }
+  }
 
   &.is-light {
     --hero-copy-color: var(--color-copy-light);
@@ -368,11 +413,16 @@
     display: flex;
   }
 
+  &[style] {
+    > * {
+      transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
+      position: relative;
+    }
+  }
+
   > * {
     object-fit: contain;
     object-position: right;
-    position: relative;
-    transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
 
     &.lottie {
       display: inline-flex;
@@ -395,15 +445,20 @@
 }
 
 .hero__pattern {
-  @include z-index;
-}
-
-.hero__background-shape,
-.hero__pattern {
   position: absolute;
   right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+
+  @include media-breakpoint-up(lg) {
+    @include z-index;
+
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
+
+.hero__background-shape {
+  position: absolute;
+  right: 0;
 }
 
 .hero__container {
@@ -441,8 +496,29 @@
   display: flex;
   justify-content: center;
 
-  > * {
-    margin: spacing($size: 8, $negative: true) 0;
+  &[style] {
+    position: relative;
+    left: calc((100vw - 100%) / 2);
+
+    &[style*='order: 5'],
+    &[style*='order: 6'],
+    &[style*='order: 7'],
+    &[style*='order: 8'],
+    &[style*='order: 9'] {
+      margin-top: spacing(8);
+    }
+
+    &:not([style*='order: 5']):not([style*='order: 6']):not([style*='order: 7']):not([style*='order: 8']):not(
+        [style*='order: 9']
+      ) {
+      margin: spacing(8) 0;
+    }
+  }
+
+  &:not([style]) {
+    > * {
+      margin: spacing($size: 8, $negative: true) 0;
+    }
   }
 
   @include media-breakpoint-up(lg) {
