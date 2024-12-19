@@ -1,5 +1,7 @@
 /** @type { import('storybook-vue').StorybookConfig } */
 
+import { mergeConfig } from 'vite';
+
 // const componentsDir = '../components/';
 
 const config = {
@@ -14,6 +16,15 @@ const config = {
     autodocs: 'tag',
   },
   staticDirs: ['../public', '../static'],
+  async viteFinal(config) {
+    return mergeConfig(config, {
+      resolve: {
+        alias: {
+          vue: 'vue/dist/vue.esm-bundler',
+        },
+      },
+    });
+  },
 };
 
 export default config;

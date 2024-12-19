@@ -1,13 +1,23 @@
-import { getParams, getAssetPath } from '../.storybook/templates';
+import { getAssetPath } from '../.storybook/templates';
 import lottie1 from './data/lottie1.json';
 import lottieAzure from './data/lottie-azure.json';
 import HeroComponent from '../components/hero.vue';
 
 export default {
-  ...getParams({ page: true }),
   component: HeroComponent,
   argTypes: {},
   title: 'Components/Hero',
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: `
+        <div>
+          <story />
+          <div style="height: 200vh;" class="dummy-content"></div>
+        </div>
+      `,
+    }),
+  ],
 };
 
 export const Career = {
@@ -92,9 +102,33 @@ export const TextImage = {
         alt: 'Lorem ipsum',
       },
       shape: {
-        img: getAssetPath('svg/shapes/shape-career.svg'),
+        img: getAssetPath('../svg/shapes/shape-career.svg'),
         alt: 'Shape',
         bottom: true,
+      },
+    },
+  },
+};
+
+export const TextImageOffset = {
+  args: {
+    hero: {
+      v2: true,
+      bgColor: 'var(--color-blue-dark)',
+      light: true,
+      lightOverline: false,
+      headline: 'Komm zu uns. Finde deinen Platz.',
+      subline: 'Erfahrt jetzt in unserem Video, wie wir<br>Bluthochdruck-Diane helfen konnten.',
+      overline: 'Karriere bei einem der führenden',
+      overlineFull: true,
+      background: {
+        spacing: 'hero__content--large',
+      },
+      shape: {
+        img: getAssetPath('../svg/shapes/shape-career.svg'),
+        alt: 'Shape',
+        bottom: true,
+        offsetY: '5%',
       },
     },
   },
@@ -155,7 +189,7 @@ export const ShapeSticky = {
         'Microsoft hat in den letzten Jahren stark in die Skalierbarkeit und Sicherheit seiner Microsoft 365-Plattform investiert. Wir nutzen dies, um die Konfiguration und Bereitstellung von Arbeitsplätzen und Anwendungen zu optimieren und zu vereinfachen.',
       shape: {
         alt: 'Shape',
-        img: getAssetPath('svg/shapes/s-block.svg'),
+        img: getAssetPath('../svg/shapes/s-block.svg'),
         top: true,
       },
     },
@@ -192,7 +226,7 @@ export const Small = {
       headline: 'Danke!',
       light: true,
       shape: {
-        img: getAssetPath('svg/shapes/event-confirmation-message.svg'),
+        img: getAssetPath('../svg/shapes/event-confirmation-message.svg'),
         top: true,
         alt: 'Success Message',
       },
@@ -279,7 +313,7 @@ export const ShapeInContent = {
         'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
       shape: {
         alt: 'Shape',
-        img: getAssetPath('svg/shapes/shape-security-eye.svg'),
+        img: getAssetPath('../svg/shapes/shape-security-eye.svg'),
         inContent: true,
       },
     },
@@ -293,11 +327,12 @@ export const ShapeInContentMobile = {
       light: true,
       headline: 'Cloud Security Operations Center',
       bgColor: 'var(--color-gigas)',
+      textShadow: true,
       subline:
         'Unser zuverlässiges Managed Extended Detection and Response (MXDR) Serviceangebot mit 24/7/365 proaktiven Hunting-, Monitoring- und Response-Funktionen, die auf einer nahtlosen Integration mit der Microsoft Security Plattform basieren',
       shape: {
         alt: 'Shape',
-        img: getAssetPath('svg/shapes/shape-hero-zencat.svg'),
+        img: getAssetPath('../svg/shapes/shape-hero-zencat.svg'),
         inContentMobile: true,
         bottom: true,
         offsetY: '6.65%',
