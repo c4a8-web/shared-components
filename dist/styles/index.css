@@ -44751,6 +44751,14 @@ div.custom-control .custom-control-input,
 .hero__cta-list {
   padding-top: 1.5rem;
 }
+@media (max-width: 991.98px) {
+  .hero__cta-list {
+    width: 100%;
+  }
+  .hero__cta-list .cta-list__item {
+    width: 100%;
+  }
+}
 
 .hero__background-shape-wrapper {
   z-index: 50;

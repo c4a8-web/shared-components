@@ -469,6 +469,14 @@
 
 .hero__cta-list {
   padding-top: spacing(6);
+
+  @include media-breakpoint-down(md) {
+    width: 100%;
+
+    .cta-list__item {
+      width: 100%;
+    }
+  }
 }
 
 .hero__background-shape-wrapper {
