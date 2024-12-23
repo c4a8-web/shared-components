@@ -49,6 +49,16 @@ $content-scroller-orientation-breakpoint: 'md';
 
     overflow: clip;
 
+    .content-scroller__block-space {
+      &::after {
+        display: none;
+      }
+    }
+
+    .content-scroller__footer {
+      display: none;
+    }
+
     .content-scroller__background {
       --content-scroller-right-width: 60vw;
     }
@@ -165,6 +175,10 @@ $content-scroller-orientation-breakpoint: 'md';
 
     @include media-breakpoint-up($content-scroller-orientation-breakpoint) {
       --content-scroller-block-background: var(--color-secondary);
+
+      .content-scroller__footer {
+        display: block;
+      }
     }
   }
 }
