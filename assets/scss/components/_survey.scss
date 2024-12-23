@@ -59,7 +59,7 @@
 .survey__controls {
   display: flex;
   gap: var(--survey-icon-gap);
-  justify-content: flex-end;
+  justify-content: center;
 
   & > * {
     transition: opacity 0.5s ease-in-out;
@@ -68,6 +68,10 @@
     &:hover {
       --color-icon-hover-background: var(--color-survey-controls);
     }
+  }
+
+  @include media-breakpoint-up(lg) {
+    justify-content: flex-end;
   }
 }
 
