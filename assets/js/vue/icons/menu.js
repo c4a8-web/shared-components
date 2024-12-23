@@ -84,7 +84,7 @@ export default {
       }
 
       const animationFunction = start ? 'beginElementAt' : 'beginElement';
-      const animationOffset = start ? 3 : 0;
+      const animationOffset = start ? -10 : 0;
 
       animations.forEach((animation) => {
         animation[animationFunction](animationOffset);
