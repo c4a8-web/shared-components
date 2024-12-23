@@ -73,18 +73,20 @@ export default {
         }
       });
 
-      animations.forEach((animation) => {
-        const attributeName = animation.getAttribute('attributeName');
-        const fromValue = mode ? animation.getAttribute('to') : animation.getAttribute('from');
-        const targetLine = animation.closest('line');
+      if (!start) {
+        animations.forEach((animation) => {
+          const attributeName = animation.getAttribute('attributeName');
+          const fromValue = mode ? animation.getAttribute('to') : animation.getAttribute('from');
+          const targetLine = animation.closest('line');
 
-        targetLine.setAttribute(attributeName, fromValue);
-      });
+          targetLine.setAttribute(attributeName, fromValue);
+        });
+      }
 
       const animationFunction = start ? 'beginElementAt' : 'beginElement';
 
       animations.forEach((animation) => {
-        animation[animationFunction]();
+        animation[animationFunction](0);
       });
     },
   },
