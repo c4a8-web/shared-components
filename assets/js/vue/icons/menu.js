@@ -68,17 +68,23 @@ export default {
       const animations = [];
 
       this.$refs['svg'].querySelectorAll('animate').forEach((animation) => {
-        if (!mode && !animation.classList.contains('closed')) {
-          animations.push(animation);
-        } else if (mode && animation.classList.contains('closed')) {
+        if ((mode && animation.classList.contains('closed')) || (!mode && !animation.classList.contains('closed'))) {
           animations.push(animation);
         }
+      });
+
+      animations.forEach((animation) => {
+        const attributeName = animation.getAttribute('attributeName');
+        const fromValue = mode ? animation.getAttribute('to') : animation.getAttribute('from');
+        const targetLine = animation.closest('line');
+
+        targetLine.setAttribute(attributeName, fromValue);
       });
 
       const animationFunction = start ? 'beginElementAt' : 'beginElement';
 
       animations.forEach((animation) => {
-        animation[animationFunction](1000);
+        animation[animationFunction]();
       });
     },
   },
