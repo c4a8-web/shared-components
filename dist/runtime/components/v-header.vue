@@ -516,7 +516,7 @@ export default {
           url = url + lastCharacter;
         }
 
-        const condition = url === currentPath;
+        const condition = url === currentPath || url === currentPath + lastCharacter;
         const parentLink = this.getParentLink(parentKey);
 
         if (update && condition) {

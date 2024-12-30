@@ -1,7 +1,7 @@
 {
   "name": "shared-components",
   "private": false,
-  "version": "0.1.91",
+  "version": "0.1.92",
   "description": "Shared Vue.js components for use on the product page",
   "type": "module",
   "exports": {
