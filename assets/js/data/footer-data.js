@@ -119,6 +119,11 @@ const FooterData = {
       url: 'https://www.glueckkanja.com/de/impressum',
       target: '_blank',
     },
+    {
+      title: 'Kontakt & Standorte',
+      url: 'https://www.glueckkanja.com/de/unternehmen/kontakt-und-standorte',
+      target: '_blank',
+    },
   ],
   linksEn: [
     {
@@ -129,6 +134,11 @@ const FooterData = {
     {
       title: 'Imprint',
       url: 'https://www.glueckkanja.com/en/imprint',
+      target: '_blank',
+    },
+    {
+      title: 'Contact & Locations',
+      url: 'https://www.glueckkanja.com/en/company/contact-and-locations',
       target: '_blank',
     },
   ],
