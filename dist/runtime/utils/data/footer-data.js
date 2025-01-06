@@ -1,7 +1,7 @@
 const FooterData = {
   bgColor: 'var(--color-midnight)',
   mail: 'info@glueckkanja.com',
-  offices: ['Germany', 'Switzerland', 'Austria', 'Spain', 'Australia'],
+  offices: ['Germany', 'Australia', 'Austria', 'Spain', 'Switzerland'],
   copyright: '2024 glueckkanja AG. All rights reserved.',
   logos: [
     {
@@ -75,7 +75,7 @@ const FooterData = {
     {
       img: '/logos/iso27001.svg',
       alt: 'ISO 27001',
-      url: 'https://www.glueckkanja.com/documents/general/gkgab-ISO27001Certificate-de.pdf',
+      url: 'https://www.glueckkanja.com/documents/general/gk-ISO27001Certificate-en.pdf',
       target: '_blank',
       classes: 'max-rem-10 max-lg-rem-11',
     },
@@ -119,6 +119,11 @@ const FooterData = {
       url: 'https://www.glueckkanja.com/de/impressum',
       target: '_blank',
     },
+    {
+      title: 'Kontakt & Standorte',
+      url: 'https://www.glueckkanja.com/de/unternehmen/kontakt-und-standorte',
+      target: '_blank',
+    },
   ],
   linksEn: [
     {
@@ -129,6 +134,11 @@ const FooterData = {
     {
       title: 'Imprint',
       url: 'https://www.glueckkanja.com/en/imprint',
+      target: '_blank',
+    },
+    {
+      title: 'Contact & Locations',
+      url: 'https://www.glueckkanja.com/en/company/contact-and-locations',
       target: '_blank',
     },
   ],
