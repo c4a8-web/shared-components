@@ -379,7 +379,7 @@ export default {
       <wrapper class="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
         <wrapper class="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
           <div
-            :class="['hero__background-shape', shapeClasses]"
+            :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
             :style="shapeStyle"
           >
             <v-img
