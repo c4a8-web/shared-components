@@ -22,6 +22,8 @@
   {%- assign eventTeaserTeaser = event.teaser -%}
   {%- assign eventTeaserUrl = event.url -%}
   {%- assign eventTeaserIndex = event.index -%}
+  {%- assign eventTeaserTextShadow = event.textShadow -%}
+  {%- assign eventTeaserBgColorRgb = event.bgColorRgb -%}
 {% else %}
   {%- if include.json -%}
     {%- assign eventTeaserHeadline = include.json.headline -%}
@@ -39,6 +41,8 @@
     {%- assign eventTeaserTeaser = include.json.teaser -%}
     {%- assign eventTeaserUrl = include.json.url -%}
     {%- assign eventTeaserIndex = include.json.index -%}
+    {%- assign eventTeaserTextShadow = include.json.textShadow -%}
+    {%- assign eventTeaserBgColorRgb = include.json.bgColorRgb -%}
   {%- else -%}
     {%- assign eventTeaserHeadline = include.headline -%}
     {%- assign eventTeaserContent = include.content -%}
@@ -55,6 +59,8 @@
     {%- assign eventTeaserTeaser = include.teaser -%}
     {%- assign eventTeaserUrl = include.url -%}
     {%- assign eventTeaserIndex = include.index -%}
+    {%- assign eventTeaserTextShadow = include.textShadow -%}
+    {%- assign eventTeaserBgColorRgb = include.bgColorRgb -%}
   {%- endif -%}
 {% endif %}
 
@@ -69,10 +75,12 @@
               {% if eventTeaserWebcast %}event-teaser--webcast
               {% elsif eventTeaserTeaser %}event-teaser--teaser
               {% else %}event-teaser--training
-              {% endif %}"
+              {% endif %}
+              {% if eventTeaserTextShadow %}event-teaser--text-shadow{% endif %}
+              "
           onclick="this.querySelector('a').click()"
           data-utility-animation-step="1"
-          style="{% if eventTeaserIndex %}--utility-animation-index:{{ eventTeaserIndex }};{% endif %}"
+          style="{% if eventTeaserIndex %}--utility-animation-index:{{ eventTeaserIndex }};{% endif %}{% if eventTeaserBgColorRgb %}--event-teaser-background-color-rgb: {{ eventTeaserBgColorRgb }};{% endif %}"
 >
   <header class="event-teaser__header">
     <div class="event-teaser__background">
