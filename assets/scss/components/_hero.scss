@@ -361,9 +361,11 @@
   @include z-index;
 
   max-height: unquote('min(23vw, 30%)');
-
   grid-area: intro-right / content-right;
-  overflow-x: clip;
+
+  &.hero__background-shape--overflow {
+    overflow-x: clip;
+  }
 
   &:not(.is--mobile) {
     display: flex;
