@@ -2,6 +2,8 @@ $event-teaser-default-spacing: 6;
 $event-teaser-content-width: calc(var(--container-width) * 0.6);
 
 .event-teaser {
+  --event-teaser-background-color-rgb: 251, 251, 251;
+
   @include hover-scale;
 
   position: relative;
@@ -9,6 +11,13 @@ $event-teaser-content-width: calc(var(--container-width) * 0.6);
   flex-direction: column;
   background-color: var(--color-event-teaser-background);
   cursor: pointer;
+
+  &.event-teaser--text-shadow {
+    .event-teaser__content {
+      display: inline;
+      background-color: rgba(var(--event-teaser-background-color-rgb), 0.5);
+    }
+  }
 
   &.event-teaser--image-full-width {
     .event-teaser__image {
