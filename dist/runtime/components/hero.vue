@@ -54,7 +54,10 @@
 
     <wrapper classes="hero__background-shape-wrapper" v-if="shape" :hideContainer="!showShapeContainer">
       <wrapper classes="hero__background-shape-content" :hideContainer="!showShapeContainer" :hideContainerClass="true">
-        <div :class="['hero__background-shape', shapeClasses]" :style="shapeStyle">
+        <div
+          :class="['hero__background-shape', shapeClasses, shapeOffsetX ? 'hero__background-shape--overflow' : '']"
+          :style="shapeStyle"
+        >
           <v-img
             v-if="showShape"
             :cloudinary="shape.cloudinary"
