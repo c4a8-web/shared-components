@@ -171,6 +171,8 @@ export const EventTeaserImage = {
 export const EventTeaserFullWidth = {
   args: {
     headline: 'Neue Headline 2. Thema, maximal 2 Zeilig',
+    textShadow: true,
+    bgColorRgb: '255, 255, 255',
     content:
       'Even in the midst of the all the negative influences from family TWhen I was a young man, even a teenager for that matter, I always had an optimism that was even in the midst of the all the negative influences from family TWhen',
     moment: '16.02.2022',
