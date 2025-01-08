@@ -48,6 +48,10 @@
       .hero__cta-list {
         order: 4;
       }
+
+      .hero__badges {
+        order: 5;
+      }
     }
 
     @include media-breakpoint-up(lg) {
