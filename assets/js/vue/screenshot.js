@@ -49,12 +49,12 @@ export default {
             </div>
           </div>
           <div :class="['screenshot__img d-flex align-items-center col-lg-7', leftValue ? null : 'offset-lg-1']" :style="style">
-            <a class="js-fancybox media-viewer" href="javascript:;"
+            <a class="screenshot__img-frame js-fancybox media-viewer py-4" href="javascript:;"
               data-hs-fancybox-options='{"speed": 700}'
               :data-src="source"
               :data-caption="sourceCaption"
             >
-              <v-img :img="image" :alt="alt" :cloudinary="cloudinary" class="py-4 position-relative z-index-2" />
+              <v-img :img="image" :alt="alt" :cloudinary="cloudinary" class="position-relative z-index-2" />
               <span class="media-viewer-container">
                 <span class="media-viewer-icon">
                   <i class="fas fa-plus"></i>
