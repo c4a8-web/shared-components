@@ -24,6 +24,15 @@ $post-content-width-lg: 80%;
       }
     }
   }
+
+  .post__screenshot {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.post__screenshot {
+  @include shadow('light-variant');
 }
 
 .post-content {
@@ -104,7 +113,7 @@ $post-content-width-lg: 80%;
     .img__picture-wrapper img,
     .post__intro-img > img,
     picture > img,
-    p > img {
+    p > img:not(.post__screenshot) {
       left: -#{$post-offset-spacing-xl};
       max-width: calc(#{get-container-width($name: 'xl', $with-padding: true)} - (#{$post-offset-spacing-xl}));
     }
@@ -115,7 +124,7 @@ $post-content-width-lg: 80%;
     .img__picture-wrapper img,
     .post__intro-img > img,
     picture > img,
-    p > img {
+    p > img:not(.post__screenshot) {
       max-width: get-container-width($name: 'xl', $with-padding: true);
     }
   }
