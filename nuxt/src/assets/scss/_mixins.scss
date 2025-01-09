@@ -1,17 +1,9 @@
 // @use 'sass:math'; // still not working for some reason
 
-@function breakpoint-next(
-  $name,
-  $breakpoints: $grid-breakpoints,
-  $breakpoint-names: map-keys($breakpoints)
-) {
+@function breakpoint-next($name, $breakpoints: $grid-breakpoints, $breakpoint-names: map-keys($breakpoints)) {
   $n: index($breakpoint-names, $name);
 
-  @return if(
-    $n != null and $n < length($breakpoint-names),
-    nth($breakpoint-names, $n + 1),
-    null
-  );
+  @return if($n != null and $n < length($breakpoint-names), nth($breakpoint-names, $n + 1), null);
 }
 
 @function breakpoint-min($name, $breakpoints: $grid-breakpoints) {
@@ -27,7 +19,7 @@
 }
 
 @function breakpoint-infix($name, $breakpoints: $grid-breakpoints) {
-  @return if(breakpoint-min($name, $breakpoints) == null, "", "-#{$name}");
+  @return if(breakpoint-min($name, $breakpoints) == null, '', '-#{$name}');
 }
 
 @mixin bulletpoints() {
@@ -37,7 +29,7 @@
     position: relative;
 
     &::before {
-      content: "";
+      content: '';
       position: absolute;
       display: inline-flex;
       height: 2px;
@@ -74,11 +66,7 @@
   }
 }
 
-@mixin media-breakpoint-between(
-  $lower,
-  $upper,
-  $breakpoints: $grid-breakpoints
-) {
+@mixin media-breakpoint-between($lower, $upper, $breakpoints: $grid-breakpoints) {
   $min: breakpoint-min($lower, $breakpoints);
   $max: breakpoint-max($upper, $breakpoints);
 
@@ -147,7 +135,7 @@
 
     &::before {
       background-color: var(--color-secondary);
-      content: "";
+      content: '';
       height: 8px;
       left: 50%;
       position: absolute;
@@ -163,7 +151,7 @@
   position: relative;
 
   &:before {
-    content: "";
+    content: '';
     display: block;
     width: 100%;
     padding-top: calc((#{$height} / #{$width}) * 100%);
@@ -216,7 +204,7 @@
 }
 
 @function shared-assets($url) {
-  @return url("#{$url}");
+  @return url('#{$url}');
 }
 
 @function assets($url) {
@@ -230,10 +218,10 @@
 @function spacing($size, $negative: false) {
   $value: $size * 0.25;
 
-  $prefix: "";
+  $prefix: '';
 
   @if $negative {
-    $prefix: "-";
+    $prefix: '-';
   }
 
   @return #{$prefix}#{$value}rem;
@@ -244,18 +232,18 @@
   @return unquote("\"#{ $fa-var }\"");
 }
 
-@mixin icon($name, $font: "", $weight: 300, $after: true) {
-  $selector: "before";
+@mixin icon($name, $font: '', $weight: 300, $after: true) {
+  $selector: 'before';
 
   @if ($after) {
-    $selector: "after";
+    $selector: 'after';
   }
 
   $icon: map-get($icons, $name);
 
   $icon-font: $icon-font-free;
 
-  @if ($font == "brand") {
+  @if ($font == 'brand') {
     $icon-font: $icon-font-brand;
   }
 
@@ -276,7 +264,7 @@
 @mixin underline($color, $selector: null) {
   @if ($selector) {
   } @else {
-    $selector: "&";
+    $selector: '&';
   }
 
   #{$selector} {
@@ -299,12 +287,10 @@
   $container-width: get-container-width($container, $with-padding);
   $percentage: calc(100 / #{$grid-columns} * #{$columns} / 100);
 
-  @return calc(
-    ((100vw - #{$container-width}) / 2) + (#{$container-width} * #{$percentage})
-  );
+  @return calc(((100vw - #{$container-width}) / 2) + (#{$container-width} * #{$percentage}));
 }
 
-@function to-string($list, $separator: "", $is-nested: false) {
+@function to-string($list, $separator: '', $is-nested: false) {
   $result: null;
 
   @for $i from 1 through length($list) {
@@ -318,18 +304,20 @@
     }
   }
 
-  @return if($result == null, "", $result);
+  @return if($result == null, '', $result);
 }
 
-@mixin shadow($size: "medium", $x-offset: 0) {
-  @if ($size == "medium") {
+@mixin shadow($size: 'medium', $x-offset: 0) {
+  @if ($size == 'medium') {
     box-shadow: #{$x-offset} 0 15px rgba(0, 0, 0, 0.45);
-  } @else if ($size == "light") {
+  } @else if ($size == 'light') {
     box-shadow: #{$x-offset} 0 10px rgba(0, 0, 0, 0.25);
-  } @else if ($size == "medium-light") {
+  } @else if ($size == 'medium-light') {
     box-shadow: #{$x-offset} 0 7px rgba(0, 0, 0, 0.25);
-  } @else if ($size == "super-light") {
+  } @else if ($size == 'super-light') {
     box-shadow: #{$x-offset} 0 5px rgba(0, 0, 0, 0.1);
+  } @else if ($size == 'light-variant') {
+    box-shadow: #{$x-offset} 4px 12px rgba(0, 0, 0, 0.12);
   }
 }
 
@@ -374,13 +362,13 @@
 }
 
 @mixin hover-scale {
-  @include shadow("super-light");
+  @include shadow('super-light');
   @include hover-scale-transform;
 
   transition: box-shadow 1.5s $animation-transition;
 
   &:hover {
-    @include shadow("medium-light");
+    @include shadow('medium-light');
   }
 }
 
@@ -407,20 +395,10 @@
       @if $delay {
         @if $group {
           animation-delay: calc(
-            (
-                (
-                    var(--utility-animation-index) - var(
-                        --utility-animation-items-loaded
-                      )
-                  ) *
-                  #{$delay}
-              ) +
-              #{$delay-offset}
+            ((var(--utility-animation-index) - var(--utility-animation-items-loaded)) * #{$delay}) + #{$delay-offset}
           );
         } @else {
-          animation-delay: calc(
-            (var(--utility-animation-index) * #{$delay}) + #{$delay-offset}
-          );
+          animation-delay: calc((var(--utility-animation-index) * #{$delay}) + #{$delay-offset});
         }
       }
 
@@ -432,7 +410,7 @@
 }
 
 @mixin utility-animation-in-viewport {
-  &[data-utility-animation-in-viewport="true"] {
+  &[data-utility-animation-in-viewport='true'] {
     @content;
   }
 }

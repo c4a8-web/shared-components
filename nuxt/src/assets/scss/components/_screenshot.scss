@@ -48,3 +48,7 @@
     min-height: 500px;
   }
 }
+
+.screenshot__img-frame img {
+  @include shadow('light-variant');
+}
