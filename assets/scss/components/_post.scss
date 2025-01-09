@@ -24,13 +24,15 @@ $post-content-width-lg: 80%;
       }
     }
   }
+
+  .post__screenshot {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 .post__screenshot {
   @include shadow('light-variant');
-
-  left: 50%;
-  transform: translateX(-50%);
 }
 
 .post-content {
