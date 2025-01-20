@@ -54,9 +54,12 @@
           <span v-if="overline" class="text-image__overline d-inline-block mb-2 font-size-2">
             {{ overline }}
           </span>
-          <headline v-if="headlineText" :level="level" :classes="textImageHeadlineClassesComputed">{{
-            headlineText
-          }}</headline>
+          <headline
+            v-if="headlineText"
+            :level="level"
+            :classes="textImageHeadlineClassesComputed"
+            :text="headlineText"
+          ></headline>
           <span v-if="subline" class="richtext">{{ subline }}</span>
           <div v-if="subline" class="text-image__img text-image__img--subline mb-5 mt-5">
             <v-img
