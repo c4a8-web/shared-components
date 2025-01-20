@@ -621,7 +621,7 @@ export default {
     getParentLink(key) {
       const navi = this.clonedNavigation[key];
 
-      return navi.languages[this.lowerLang];
+      return navi?.languages[this.lowerLang];
     },
     setActiveLinks() {
       this.getActiveUrlByLang(this.lowerLang, true);

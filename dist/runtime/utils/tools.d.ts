@@ -63,6 +63,7 @@ declare class Tools {
     static getHash(): string;
     static getConfig(): {};
     static getEnvironment(): any;
+    static getOrigin(): string;
     static getCurrentPath(): string;
     static getPageTitle(): string;
     static initSlickSlider(element: any, options: any): void;

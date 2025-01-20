@@ -1,8 +1,8 @@
 <template>
   <global-app :classes="computedClass">
-    <v-header v-bind="headerDataSelected" :lang="lang" v-if="headerDataSelected"></v-header>
+    <v-header v-bind="headerDataSelected" :lang="langDataSelected" v-if="headerDataSelected"></v-header>
     <slot />
-    <v-footer v-bind="footerDataSelected" :lang="lang" v-if="footerDataSelected"></v-footer>
+    <v-footer v-bind="footerDataSelected" :lang="langDataSelected" v-if="footerDataSelected"></v-footer>
   </global-app>
 </template>
 
@@ -31,6 +31,10 @@ const headerDataSelected = computed(() => {
 
 const footerDataSelected = computed(() => {
   return typeof props.layoutFooterData !== 'undefined' ? props.layoutFooterData : props.footerData;
+});
+
+const langDataSelected = computed(() => {
+  return typeof props.layoutLang !== 'undefined' ? props.layoutLang : props.lang;
 });
 
 const computedClass = computed(() => {

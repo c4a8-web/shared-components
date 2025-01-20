@@ -15,6 +15,7 @@ declare namespace _default {
     function mounted(): void;
     function beforeDestroy(): void;
     namespace methods {
+        function preloadKeyAsset(): void;
         function handleResize(): void;
         function setStyle(): void;
         function setIntroStyle(): void;

@@ -11,6 +11,7 @@ declare namespace _default {
         noCloudinary: null;
         sizes: null;
     };
+    let expose: string[];
     namespace computed {
         function classList(): (string | (() => any))[];
         function classListComponent(): any;

@@ -554,6 +554,18 @@ class Tools {
     return config?.public?.environment || 'development';
   }
 
+  static getOrigin() {
+    let origin = '';
+
+    if (typeof process !== 'undefined' && process.server) {
+      origin = process.env.BASE_URL;
+    } else {
+      origin = window.location.origin + '/';
+    }
+
+    return origin;
+  }
+
   static getCurrentPath() {
     let path = '';
 

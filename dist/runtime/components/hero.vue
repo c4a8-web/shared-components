@@ -1,7 +1,7 @@
 <template>
   <div :class="classList" :style="style">
     <hero-pattern class="hero__pattern" v-if="pattern" />
-    <v-img v-if="img" class="hero__background-img" :cloudinary="background.cloudinary" :img="img"> > </v-img>
+    <v-img v-if="img" class="hero__background-img" :cloudinary="background.cloudinary" :img="img"></v-img>
     <div class="hero__container container">
       <main :class="contentClassList">
         <div class="hero__back-row row" v-if="hasBack">
@@ -76,7 +76,10 @@
 </template>
 
 <script>
+import { useHead } from 'unhead';
+
 import Tools from '../utils/tools.js';
+import CloudinaryTools from '../utils/cloudinary-tools.js';
 import StickyScroller from '../utils/sticky-scroller.js';
 
 const heroPattern = {
@@ -135,6 +138,7 @@ export default {
     };
   },
   created() {
+    this.preloadKeyAsset();
     this.handleResize();
   },
   mounted() {
@@ -147,6 +151,23 @@ export default {
     window.removeEventListener('resize', this.handleResize);
   },
   methods: {
+    preloadKeyAsset() {
+      const keyAssetPath = this.shape.img;
+
+      if (!keyAssetPath || !this.shape.cloudinary) return;
+
+      const cloudinaryLink = CloudinaryTools.getCloudinaryLink({ img: keyAssetPath });
+
+      useHead({
+        link: [
+          {
+            href: cloudinaryLink,
+            rel: 'preload',
+            as: 'image',
+          },
+        ],
+      });
+    },
     handleResize() {
       this.isUpperBreakpoint = Tools.isUpperBreakpoint();
     },

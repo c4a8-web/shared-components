@@ -50,6 +50,8 @@ import ImgSrcSets from '../utils/data/img-src-sets.js';
 
 const basePath = 'https://res.cloudinary.com/c4a8/image/upload/';
 
+// TODO use cloudinary tools and remove logic outside this component
+
 /*
  Known Issues:
  - Chrome does not support jp2 type of images. so if you use devtools to emulate ios, cloudinary will render the images as jp2 which fail.
@@ -70,6 +72,7 @@ export default {
       sizes: null,
     };
   },
+  expose: ['imgSrcSetImg'],
   computed: {
     classList() {
       return ['v-img', 'vue-component', this.classListComponent];
