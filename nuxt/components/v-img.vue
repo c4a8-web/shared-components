@@ -45,6 +45,7 @@
 import DefaultPresets from '../utils/default-presets.js';
 import TransformationOptions from '../utils/transformation-options.js';
 import Cloudinary from '../utils/cloudinary.js';
+import CloudinaryTools from '../utils/cloudinary-tools.js';
 import Tools from '../utils/tools.js';
 import ImgSrcSets from '../utils/data/img-src-sets.js';
 
@@ -185,12 +186,7 @@ export default {
         : this.getCloudinaryLinkWithTransformation();
     },
     getCloudinaryLinkWithTransformation() {
-      const { preset, transformationsString } = this.getSetup();
-      const hasWidth = /w_\d+/.test(this.img);
-      const base = basePath + transformationsString;
-      const end = `/${this.img}`;
-
-      return hasWidth ? `${base}${end}` : `${base},w_${preset.fallback_max_width}${end}`;
+      return CloudinaryTools.getCloudinaryLinkWithTransformation(this.img, this.preset);
     },
     loadImage(link) {
       if (!this.canGenerateSrcSet()) return;
