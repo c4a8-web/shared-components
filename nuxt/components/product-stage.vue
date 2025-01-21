@@ -86,14 +86,7 @@
       <div v-else class="space-bottom-2 space-bottom-lg-3"></div>
 
       <ul v-if="cards" class="row nav nav-pills" :class="{ 'px-1 px-lg-0': cards.tabs }" role="tablist">
-        <li
-          v-for="(card, index) in cards.list"
-          :key="index"
-          :class="[
-            'col-' + 12 / cards.list.length,
-            { 'px-1 px-lg-3 nav-item': cards.tabs, 'mb-6 mb-md-8 mb-lg-0': !cards.tabs },
-          ]"
-        >
+        <li v-for="(card, index) in cards.list" :key="index" :class="cardWrapperClasses">
           <conditional-link
             :link="hasLink(card)"
             :href="card?.link?.href"
@@ -161,6 +154,15 @@ export default {
   computed: {
     shapeClasses() {
       return this.overlapping ? 'position-absolute bottom-0 left-0 z-index-1 w-100' : 'position-relative z-index-1';
+    },
+    cardWrapperClasses() {
+      const cardBreakpoint = this.cards?.tabs ? '' : 'lg-';
+
+      return [
+        'product-stage__card-wrapper',
+        `col-${cardBreakpoint}` + 12 / this.cards.list.length,
+        { 'px-1 px-lg-3 nav-item': this.cards.tabs, 'mb-6 mb-md-8 mb-lg-0': !this.cards.tabs },
+      ];
     },
     bgColor() {
       const bgColor = this.stage.bgColor || 'var(--color-primary)';

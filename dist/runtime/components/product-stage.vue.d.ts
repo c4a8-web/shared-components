@@ -11,6 +11,7 @@ declare namespace _default {
     }
     namespace computed {
         function shapeClasses(): "position-absolute bottom-0 left-0 z-index-1 w-100" | "position-relative z-index-1";
+        function cardWrapperClasses(): any;
         function bgColor(): any;
         function shape(): any;
         function cards(): any;

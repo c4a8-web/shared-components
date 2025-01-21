@@ -121,3 +121,45 @@ export const Tabs = {
     },
   },
 };
+
+export const Cards = {
+  args: {
+    stage: {
+      bgColor: 'var(--color-blue-light);',
+      headline: 'Become a Partner',
+      description:
+        'We aim to build the best technology for enabling Microsoft 365 and Windows workstations in enterprises. To support that goal, we are looking for a global community of trusted partners to help deliver sales, service, and support.',
+      background: {
+        img: 'svg/product-backgrounds/radiusaas-background.svg',
+        alt: 'Alt text',
+      },
+      cards: {
+        list: [
+          {
+            title: 'Register as a Partner',
+            description: 'Do you want to resell TerraProvider? Contact us!',
+            cta: {
+              text: 'Apply now',
+              href: '#partner',
+              skin: 'primary is-cutoff',
+            },
+          },
+          {
+            title: 'Partner Portal',
+            description: 'Already a registered partner? Access the partner center.',
+            cta: {
+              text: 'Sign in',
+              href: '#signin',
+              skin: 'primary is-cutoff',
+              target: '_blank',
+            },
+          },
+        ],
+      },
+      shape: {
+        isActive: true,
+        color: 'var(--color-white)',
+      },
+    },
+  },
+};
