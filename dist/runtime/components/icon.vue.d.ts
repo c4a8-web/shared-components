@@ -12,6 +12,7 @@ declare namespace _default {
         'email-action-unread': any;
         emergency: any;
         expand: any;
+        grid: any;
         hand: any;
         'image-credits': any;
         info: any;
@@ -23,6 +24,8 @@ declare namespace _default {
         phone: any;
         'v-menu': any;
         'plus-minus': any;
+        'strategy-split': any;
+        'tile-view': any;
         quote: any;
         world: any;
         'x-mark': any;

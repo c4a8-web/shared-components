@@ -19,6 +19,7 @@ import ComputerShield from './icons/computer-shield.vue';
 import EmailActionUnread from './icons/email-action-unread.vue';
 import Emergency from './icons/emergency.vue';
 import Expand from './icons/expand.vue';
+import Grid from './icons/grid.vue';
 import Hand from './icons/hand.vue';
 import ImageCredits from './icons/image-credits.vue';
 import Info from './icons/info.vue';
@@ -30,6 +31,8 @@ import Minus from './icons/minus.vue';
 import Phone from './icons/phone.vue';
 import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
+import StrategySplit from './icons/strategy-split.vue';
+import TileView from './icons/tile-view.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
 import XMark from './icons/x-mark.vue';
@@ -48,6 +51,7 @@ export default {
     'email-action-unread': EmailActionUnread,
     emergency: Emergency,
     expand: Expand,
+    grid: Grid,
     hand: Hand,
     'image-credits': ImageCredits,
     info: Info,
@@ -59,6 +63,8 @@ export default {
     phone: Phone,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,
+    'strategy-split': StrategySplit,
+    'tile-view': TileView,
     quote: Quote,
     world: World,
     'x-mark': XMark,

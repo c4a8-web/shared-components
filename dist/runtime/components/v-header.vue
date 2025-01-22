@@ -1,10 +1,16 @@
 <template>
   <div class="header__spacer" :style="spacerBgColor"></div>
   <header :class="classList" v-on:mouseover="handleHeaderMouseOver" v-on:mouseout="handleHeaderMouseOut">
-    <div :class="headerContainerClassList">
+    <div :class="headerContainerClassList" ref="headerContainer">
       <div class="header__row row">
         <div class="header__col col">
-          <div class="header__logo">
+          <div class="header__secondary-navigation" v-if="secondaryNavigation">
+            <div class="header__secondary-navigation-button" ref="secondaryNavigationButton">
+              <icon class="header__secondary-navigation-icon" icon="grid" />
+              <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
+            </div>
+          </div>
+          <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
               <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
               <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
@@ -220,6 +226,11 @@ export default {
         'vue-component',
       ];
     },
+    headerLogoStyle() {
+      if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
+
+      return `padding-left: ${this.logoOffsetPosition}px;`;
+    },
     headerContainerClassList() {
       return ['header__container', this.containerClass];
     },
@@ -271,6 +282,10 @@ export default {
     this.setCtaClasses();
     this.setLinkWidth();
     this.handleScroll();
+
+    if (!this.secondaryNavigation) return;
+
+    this.calculateLogoOffsetPosition();
   },
   updated() {
     if (this.inUpdate) {
@@ -281,6 +296,26 @@ export default {
     }
   },
   methods: {
+    calculateLogoOffsetPosition() {
+      if (!Tools.isUpperBreakpoint()) return;
+
+      const headerContainer = this.$refs.headerContainer;
+      const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
+
+      if (!headerContainer || !secondaryNavigationButton) return { leftSpace: 0 };
+
+      const style = window.getComputedStyle(headerContainer);
+      const containerWidth = parseFloat(style.width);
+      const windowWidth = window.innerWidth;
+      const offsetCorrection = 18;
+
+      const margin = (windowWidth - containerWidth) / 2;
+      const buttonWidth = secondaryNavigationButton.offsetWidth;
+
+      const leftSpace = margin < buttonWidth ? buttonWidth - margin - offsetCorrection : 0;
+
+      this.logoOffsetPosition = leftSpace;
+    },
     setActiveNavigation() {
       this.setActiveLinks();
 
@@ -312,6 +347,7 @@ export default {
     handleResize() {
       this.reset();
       this.setLinkWidth();
+      this.calculateLogoOffsetPosition();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
@@ -689,6 +725,7 @@ export default {
     blendMode: {
       default: null,
     },
+    secondaryNavigation: Object,
   },
   data() {
     return {
@@ -705,6 +742,7 @@ export default {
       ctaClassList: null,
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
+      logoOffsetPosition: null,
     };
   },
 };

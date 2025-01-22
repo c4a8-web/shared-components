@@ -1,4 +1,4 @@
-import IconComponent from '../../components/icon.vue';
+import IconComponent from '../components/icon.vue';
 
 export default {
   title: 'Components/Icon',
@@ -261,6 +261,13 @@ export const StrategySplit = {
 export const ImageCredits = {
   args: {
     icon: 'image-credits',
+    size: 'xxl',
+  },
+};
+
+export const Grid = {
+  args: {
+    icon: 'grid',
     size: 'xxl',
   },
 };

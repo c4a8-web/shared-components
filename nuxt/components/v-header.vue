@@ -1,10 +1,20 @@
 <template>
   <div class="header__spacer" :style="spacerBgColor"></div>
   <header :class="classList" v-on:mouseover="handleHeaderMouseOver" v-on:mouseout="handleHeaderMouseOut">
-    <div :class="headerContainerClassList">
+    <div :class="headerContainerClassList" ref="headerContainer">
       <div class="header__row row">
         <div class="header__col col">
-          <div class="header__logo">
+          <div :class="secondaryNavigationClassList" v-if="secondaryNavigation" ref="secondaryNavigation">
+            <div
+              class="header__secondary-navigation-button"
+              ref="secondaryNavigationButton"
+              @click="toggleSecondaryNavigation"
+            >
+              <icon class="header__secondary-navigation-icon" icon="grid" />
+              <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
+            </div>
+          </div>
+          <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
               <v-img :img="home?.imgLight" class="header__logo-light" :cloudinary="true" alt="logo" />
               <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" alt="logo" />
@@ -220,6 +230,19 @@ export default {
         'vue-component',
       ];
     },
+    secondaryNavigationClassList() {
+      return [
+        'header__secondary-navigation',
+        this.secondaryNavigationInTransition ? State.IN_TRANSITION : '',
+        this.secondaryNavigationDimensions ? State.READY : '',
+        this.secondaryNavigationIsExpanded ? State.IS_EXPANDED : '',
+      ];
+    },
+    headerLogoStyle() {
+      if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
+
+      return `padding-left: ${this.logoOffsetPosition}px;`;
+    },
     headerContainerClassList() {
       return ['header__container', this.containerClass];
     },
@@ -265,12 +288,25 @@ export default {
   created() {
     this.setActiveNavigation();
   },
+  watch: {
+    secondaryNavigationDimensions(newVal) {
+      if (newVal !== null) {
+        this.$nextTick(() => {
+          this.calculateLogoOffsetPosition();
+        });
+      }
+    },
+  },
   mounted() {
     this.bindEvents();
 
     this.setCtaClasses();
     this.setLinkWidth();
     this.handleScroll();
+
+    if (!this.secondaryNavigation) return;
+
+    this.getSecondaryNavigationDimensions();
   },
   updated() {
     if (this.inUpdate) {
@@ -281,6 +317,78 @@ export default {
     }
   },
   methods: {
+    getSecondaryNavigationDimensions() {
+      if (!this.secondaryNavigation) return;
+
+      this.secondaryNavigationDimensions = null;
+
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      this.secondaryNavigationDimensions = {
+        width: secondaryNavigation.offsetWidth,
+        height: secondaryNavigation.offsetHeight,
+      };
+    },
+    toggleSecondaryNavigation() {
+      if (!this.secondaryNavigation) return;
+
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+      const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
+
+      if (!secondaryNavigation || !secondaryNavigationButton) return;
+
+      clearTimeout(this.secondaryNavigationTimeout);
+
+      this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
+      this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
+
+      secondaryNavigation.style.width = null;
+      secondaryNavigation.removeAttribute('data-expanded');
+
+      if (!this.secondaryNavigationInTransition) return;
+
+      const dimensions = this.secondaryNavigationDimensions;
+      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+      const delay = 100;
+
+      secondaryNavigation.style.width = `${buttonWidth}px`;
+
+      this.secondaryNavigationTimeout = setTimeout(() => {
+        secondaryNavigation.style.width = `${dimensions.width}px`;
+        this.expandSecondaryNavigation();
+      }, delay);
+    },
+    expandSecondaryNavigation() {
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      if (!secondaryNavigation) return;
+
+      secondaryNavigation.dataset.expanded = true;
+    },
+    calculateLogoOffsetPosition() {
+      if (!Tools.isUpperBreakpoint()) return;
+
+      const headerContainer = this.$refs.headerContainer;
+
+      if (!headerContainer) return { leftSpace: 0 };
+
+      const style = window.getComputedStyle(headerContainer);
+      const containerWidth = parseFloat(style.width);
+      const windowWidth = window.innerWidth;
+      const offsetCorrection = 20;
+
+      const margin = (windowWidth - containerWidth) / 2;
+      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+
+      const leftSpace = margin < buttonWidth ? buttonWidth - margin - offsetCorrection : 0;
+
+      this.logoOffsetPosition = leftSpace;
+    },
+    getSecondaryNavigationButtonWidth() {
+      const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
+
+      return secondaryNavigationButton.offsetWidth;
+    },
     setActiveNavigation() {
       this.setActiveLinks();
 
@@ -312,6 +420,7 @@ export default {
     handleResize() {
       this.reset();
       this.setLinkWidth();
+      this.getSecondaryNavigationDimensions();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
@@ -689,6 +798,7 @@ export default {
     blendMode: {
       default: null,
     },
+    secondaryNavigation: Object,
   },
   data() {
     return {
@@ -705,6 +815,11 @@ export default {
       ctaClassList: null,
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
+      logoOffsetPosition: null,
+      secondaryNavigationInTransition: false,
+      secondaryNavigationIsExpanded: false,
+      secondaryNavigationDimensions: null,
+      secondaryNavigationTimeout: null,
     };
   },
 };

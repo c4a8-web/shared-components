@@ -43588,6 +43588,40 @@ div.custom-control .custom-control-input,
   color: var(--color-emergency);
 }
 
+.header__secondary-navigation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 4px 0px 12px 0px rgba(0, 0, 0, 0.08);
+}
+.header__secondary-navigation .header__secondary-navigation-icon {
+  margin: 1.5rem;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.header__secondary-navigation .header__secondary-navigation-icon.icon {
+  width: 2rem;
+  height: 2rem;
+}
+@media (min-width: 992px) {
+  .header__secondary-navigation {
+    display: flex;
+  }
+}
+
+.header__secondary-navigation-text {
+  display: none;
+}
+
+.header__secondary-navigation-button {
+  cursor: pointer;
+}
+.header__secondary-navigation-button:hover .header__secondary-navigation-icon {
+  transform: scale(1.05);
+}
+
 .shared-components .hero-text-image h1.h2-font-size {
   font-size: calc(3.75rem / 1.8);
   font-weight: bold;

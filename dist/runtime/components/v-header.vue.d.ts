@@ -2,13 +2,14 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classList(): any;
+        function headerLogoStyle(): any;
         function headerContainerClassList(): (string | (() => any))[];
         function containerClass(): any;
         function homeObj(): any;
         function lowerLang(): any;
         function searchValue(): any;
         function metaList(): any;
-        function spacerBgColor(): any;
+        function spacerBgColor(): string;
         function clonedNavigation(): any;
         function isLight(): boolean;
         function hasLangSwitch(): boolean;
@@ -19,6 +20,9 @@ declare namespace _default {
     function mounted(): void;
     function updated(): void;
     namespace methods {
+        function calculateLogoOffsetPosition(): {
+            leftSpace: number;
+        } | undefined;
         function setActiveNavigation(): void;
         function setLinkWidth(): void;
         function showFlyoutBlock(children: any): any;
@@ -93,6 +97,7 @@ declare namespace _default {
             let _default_4: null;
             export { _default_4 as default };
         }
+        let secondaryNavigation: ObjectConstructor;
     }
     function data(): {
         inUpdate: boolean;
@@ -108,6 +113,7 @@ declare namespace _default {
         ctaClassList: null;
         maxLinkListsInFlyout: number;
         activeNavigation: {};
+        logoOffsetPosition: null;
     };
 }
 export default _default;
