@@ -1,9 +1,22 @@
+// import { getParams } from '../.storybook/templates';
 import HeaderComponent from '../components/v-header.vue';
 import HeaderData from '../.storybook/data/header';
 
 export default {
   title: 'Components/Header',
+  // ...getParams({ page: true }), // TODO make sure padding is removed for that
   component: HeaderComponent,
+  decorators: [
+    (story) => ({
+      components: { story },
+      template: `
+        <div>
+          <story />
+          <div style="margin-top: 50vh;height: 200vh;" class="dummy-content"></div>
+        </div>
+      `,
+    }),
+  ],
 };
 
 export const Header = {
@@ -117,7 +130,7 @@ const productArgs = {
         children: [
           {
             name: 'realmjoin',
-            img: 'products/realmjoin/realmjoin-nav-logo.svg',
+            img: 'logos/RealmJoin-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -139,7 +152,7 @@ const productArgs = {
           },
           {
             name: 'scepman',
-            img: 'products/scepman/scepman-nav-logo.svg',
+            img: 'logos/SCEPman-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -161,7 +174,7 @@ const productArgs = {
           },
           {
             name: 'konnekt',
-            img: 'products/konnekt/konnekt-nav-logo.svg',
+            img: 'logos/KONNEKT-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -189,7 +202,7 @@ const productArgs = {
         children: [
           {
             name: 'realmigrator',
-            img: 'products/realmigrator/realmigrator-nav-logo.svg',
+            img: 'logos/RealMigrator-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -211,7 +224,7 @@ const productArgs = {
           },
           {
             name: 'radiusaas',
-            img: 'products/radius/radius-nav-logo.svg',
+            img: 'logos/RADIUSaaS-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -233,7 +246,7 @@ const productArgs = {
           },
           {
             name: 'unifiedcontacts',
-            img: 'products/unified-contacts/unifiedcontact-nav-logo.svg',
+            img: 'logos/UnifiedContact-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -250,6 +263,28 @@ const productArgs = {
                 title: 'Unified Contacts',
                 subtitle: 'Find contacts in Microsoft Teams',
                 url: 'https://www.unified-contacts.com/',
+              },
+            },
+          },
+          {
+            name: 'terraprovider',
+            img: 'products/terraprovider/logo-terraprovider.svg',
+            target: '_blank',
+            languages: {
+              de: {
+                title: 'TerraProvider',
+                subtitle: 'Terraform Provider für Microsoft 365',
+                url: 'https://www.terraprovider.com/',
+              },
+              en: {
+                title: 'TerraProvider',
+                subtitle: 'Terraform Provider for Microsoft 365',
+                url: 'https://www.terraprovider.com/',
+              },
+              es: {
+                title: 'TerraProvider',
+                subtitle: 'Terraform Provider para Microsoft 365',
+                url: 'https://www.terraprovider.com/',
               },
             },
           },

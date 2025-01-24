@@ -4,10 +4,26 @@
     <div :class="headerContainerClassList" ref="headerContainer">
       <div class="header__row row">
         <div class="header__col col">
-          <div class="header__secondary-navigation" v-if="secondaryNavigation">
-            <div class="header__secondary-navigation-button" ref="secondaryNavigationButton">
+          <div :class="secondaryNavigationClassList" v-if="secondaryNavigation" ref="secondaryNavigation">
+            <div
+              class="header__secondary-navigation-button"
+              ref="secondaryNavigationButton"
+              @click="toggleSecondaryNavigation"
+            >
               <icon class="header__secondary-navigation-icon" icon="grid" />
               <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
+            </div>
+            <div class="header__secondary-navigation-content">
+              <template v-for="(item, index) in secondaryNavigation.children" :key="index">
+                <div
+                  class="header__secondary-navigation-item"
+                  v-for="(child, itemIndex) in item.children"
+                  :key="itemIndex"
+                >
+                  <v-img :img="child.img" class="header__secondary-navigation-item-img" :cloudinary="true" alt="logo" />
+                  <span class="header__secondary-navigation-item-title">{{ child.languages[lowerLang]?.title }}</span>
+                </div>
+              </template>
             </div>
           </div>
           <div class="header__logo" :style="headerLogoStyle">
@@ -226,6 +242,14 @@ export default {
         'vue-component',
       ];
     },
+    secondaryNavigationClassList() {
+      return [
+        'header__secondary-navigation',
+        this.secondaryNavigationInTransition ? State.IN_TRANSITION : '',
+        this.secondaryNavigationDimensions ? State.READY : '',
+        this.secondaryNavigationIsExpanded ? State.IS_EXPANDED : '',
+      ];
+    },
     headerLogoStyle() {
       if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
 
@@ -276,6 +300,15 @@ export default {
   created() {
     this.setActiveNavigation();
   },
+  watch: {
+    secondaryNavigationDimensions(newVal) {
+      if (newVal !== null) {
+        this.$nextTick(() => {
+          this.calculateLogoOffsetPosition();
+        });
+      }
+    },
+  },
   mounted() {
     this.bindEvents();
 
@@ -285,7 +318,7 @@ export default {
 
     if (!this.secondaryNavigation) return;
 
-    this.calculateLogoOffsetPosition();
+    this.getSecondaryNavigationDimensions();
   },
   updated() {
     if (this.inUpdate) {
@@ -296,25 +329,77 @@ export default {
     }
   },
   methods: {
+    getSecondaryNavigationDimensions() {
+      if (!this.secondaryNavigation) return;
+
+      this.secondaryNavigationDimensions = null;
+
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      this.secondaryNavigationDimensions = {
+        width: secondaryNavigation.offsetWidth,
+        height: secondaryNavigation.offsetHeight,
+      };
+    },
+    toggleSecondaryNavigation() {
+      if (!this.secondaryNavigation) return;
+
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+      const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
+
+      if (!secondaryNavigation || !secondaryNavigationButton) return;
+
+      clearTimeout(this.secondaryNavigationTimeout);
+
+      this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
+      this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
+
+      secondaryNavigation.style.width = null;
+      secondaryNavigation.removeAttribute('data-expanded');
+
+      if (!this.secondaryNavigationInTransition) return;
+
+      const dimensions = this.secondaryNavigationDimensions;
+      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+      const delay = 100;
+
+      secondaryNavigation.style.width = `${buttonWidth}px`;
+
+      this.secondaryNavigationTimeout = setTimeout(() => {
+        secondaryNavigation.style.width = `${dimensions.width}px`;
+        this.expandSecondaryNavigation();
+      }, delay);
+    },
+    expandSecondaryNavigation() {
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      if (!secondaryNavigation) return;
+
+      secondaryNavigation.dataset.expanded = true;
+    },
     calculateLogoOffsetPosition() {
       if (!Tools.isUpperBreakpoint()) return;
 
       const headerContainer = this.$refs.headerContainer;
-      const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
 
-      if (!headerContainer || !secondaryNavigationButton) return { leftSpace: 0 };
+      if (!headerContainer) return { leftSpace: 0 };
 
       const style = window.getComputedStyle(headerContainer);
       const containerWidth = parseFloat(style.width);
       const windowWidth = window.innerWidth;
-      const offsetCorrection = 18;
+      const offsetCorrection = 20;
 
       const margin = (windowWidth - containerWidth) / 2;
-      const buttonWidth = secondaryNavigationButton.offsetWidth;
+      const buttonWidth = this.getSecondaryNavigationButtonWidth();
 
       const leftSpace = margin < buttonWidth ? buttonWidth - margin - offsetCorrection : 0;
 
       this.logoOffsetPosition = leftSpace;
+    },
+    getSecondaryNavigationButtonWidth() {
+      const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
+
+      return secondaryNavigationButton.offsetWidth;
     },
     setActiveNavigation() {
       this.setActiveLinks();
@@ -347,7 +432,7 @@ export default {
     handleResize() {
       this.reset();
       this.setLinkWidth();
-      this.calculateLogoOffsetPosition();
+      this.getSecondaryNavigationDimensions();
     },
     handleScroll() {
       this.isScrolled = window.scrollY > this.scrollThreshold;
@@ -743,6 +828,10 @@ export default {
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
       logoOffsetPosition: null,
+      secondaryNavigationInTransition: false,
+      secondaryNavigationIsExpanded: false,
+      secondaryNavigationDimensions: null,
+      secondaryNavigationTimeout: null,
     };
   },
 };

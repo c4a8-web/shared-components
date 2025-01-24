@@ -13,6 +13,24 @@
               <icon class="header__secondary-navigation-icon" icon="grid" />
               <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
             </div>
+            <div class="header__secondary-navigation-content">
+              <div class="header__secondary-navigation-inner-content" ref="secondaryNavigationInnerContent">
+                <template v-for="(item, index) in secondaryNavigation.children" :key="index">
+                  <div
+                    class="header__secondary-navigation-item"
+                    v-for="(child, itemIndex) in item.children"
+                    :key="itemIndex"
+                  >
+                    <v-img
+                      :img="child.img"
+                      class="header__secondary-navigation-item-img"
+                      :cloudinary="true"
+                      :alt="child.languages[lowerLang]?.title"
+                    />
+                  </div>
+                </template>
+              </div>
+            </div>
           </div>
           <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
@@ -290,7 +308,8 @@ export default {
   },
   watch: {
     secondaryNavigationDimensions(newVal) {
-      if (newVal !== null) {
+      if (newVal !== null && newVal.width) {
+        console.log('🚀 ~ secondaryNavigationDimensions ~ newVal:', newVal);
         this.$nextTick(() => {
           this.calculateLogoOffsetPosition();
         });
@@ -326,7 +345,6 @@ export default {
 
       this.secondaryNavigationDimensions = {
         width: secondaryNavigation.offsetWidth,
-        height: secondaryNavigation.offsetHeight,
       };
     },
     toggleSecondaryNavigation() {
@@ -343,27 +361,43 @@ export default {
       this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
 
       secondaryNavigation.style.width = null;
-      secondaryNavigation.removeAttribute('data-expanded');
+      secondaryNavigation.style.height = null;
+      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.removeAttribute('data-height-expanded');
 
       if (!this.secondaryNavigationInTransition) return;
 
       const dimensions = this.secondaryNavigationDimensions;
       const buttonWidth = this.getSecondaryNavigationButtonWidth();
-      const delay = 100;
 
       secondaryNavigation.style.width = `${buttonWidth}px`;
 
       this.secondaryNavigationTimeout = setTimeout(() => {
         secondaryNavigation.style.width = `${dimensions.width}px`;
         this.expandSecondaryNavigation();
-      }, delay);
+      }, this.secondaryNaivgationTransitionDelay);
     },
     expandSecondaryNavigation() {
       const secondaryNavigation = this.$refs.secondaryNavigation;
 
       if (!secondaryNavigation) return;
 
-      secondaryNavigation.dataset.expanded = true;
+      secondaryNavigation.dataset.widthExpanded = true;
+
+      const secondaryNavigationInnerContent = this.$refs.secondaryNavigationInnerContent;
+      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+
+      secondaryNavigation.style.height = `${buttonWidth}px`;
+
+      this.secondaryNavigationTimeout = setTimeout(() => {
+        this.secondaryNavigationDimensions['height'] = secondaryNavigationInnerContent.offsetHeight;
+
+        const dimensions = this.secondaryNavigationDimensions;
+
+        secondaryNavigation.dataset.heightExpanded = true;
+
+        secondaryNavigation.style.height = `${buttonWidth + dimensions.height}px`;
+      }, this.secondaryNaivgationTransitionDelay * 4);
     },
     calculateLogoOffsetPosition() {
       if (!Tools.isUpperBreakpoint()) return;
@@ -505,6 +539,7 @@ export default {
       this.resetAllFlyouts();
 
       this.hover = true;
+      console.log('🚀 ~ handleMouseOver ~ this.hover:', this.hover);
 
       const link = this.getLinkRef(index);
 
@@ -820,6 +855,7 @@ export default {
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
       secondaryNavigationTimeout: null,
+      secondaryNaivgationTransitionDelay: 100,
     };
   },
 };

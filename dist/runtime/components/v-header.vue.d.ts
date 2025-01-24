@@ -2,12 +2,13 @@ declare namespace _default {
     let tagName: string;
     namespace computed {
         function classList(): any;
+        function secondaryNavigationClassList(): any;
         function headerLogoStyle(): any;
         function headerContainerClassList(): (string | (() => any))[];
         function containerClass(): any;
         function homeObj(): any;
         function lowerLang(): any;
-        function searchValue(): any;
+        function searchValue(): boolean;
         function metaList(): any;
         function spacerBgColor(): string;
         function clonedNavigation(): any;
@@ -17,15 +18,22 @@ declare namespace _default {
         function hasMeta(): any;
     }
     function created(): void;
+    namespace watch {
+        function secondaryNavigationDimensions(newVal: any): void;
+    }
     function mounted(): void;
     function updated(): void;
     namespace methods {
+        function getSecondaryNavigationDimensions(): void;
+        function toggleSecondaryNavigation(): void;
+        function expandSecondaryNavigation(): void;
         function calculateLogoOffsetPosition(): {
             leftSpace: number;
         } | undefined;
+        function getSecondaryNavigationButtonWidth(): any;
         function setActiveNavigation(): void;
         function setLinkWidth(): void;
-        function showFlyoutBlock(children: any): any;
+        function showFlyoutBlock(children: any): boolean;
         function isLowerBreakpoint(): boolean;
         function bindEvents(): void;
         function handleResize(): void;
@@ -114,6 +122,10 @@ declare namespace _default {
         maxLinkListsInFlyout: number;
         activeNavigation: {};
         logoOffsetPosition: null;
+        secondaryNavigationInTransition: boolean;
+        secondaryNavigationIsExpanded: boolean;
+        secondaryNavigationDimensions: null;
+        secondaryNavigationTimeout: null;
     };
 }
 export default _default;
