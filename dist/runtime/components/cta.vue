@@ -10,6 +10,7 @@
     :target="targetValue ? targetValue : null"
     :data-alternative-href="alternativeHref ? alternativeHref : null"
     :data-trigger="trigger ? trigger : null"
+    @click="handleClick"
   >
     <span class="cta__text">{{ text }}</span>
     <icon :icon="iconName" v-if="hasIcon" :size="sizeValue" />
@@ -96,6 +97,20 @@ export default {
       return 'medium';
     },
   },
+  methods: {
+    handleClick(e) {
+      if (!this.javascript) return;
+
+      e.preventDefault();
+
+      const functionName = this.javascript.split('(')[0];
+      const params = this.javascript.match(/\(([^)]+)\)/)[1].replace(/'/g, '');
+
+      if (!window[functionName]) return console.debug(`Function ${functionName} not found.`);
+
+      window[functionName](params);
+    },
+  },
   props: {
     href: {
       default: null,
@@ -140,6 +155,10 @@ export default {
     },
     hasBackground: {
       default: null,
+    },
+    javascript: {
+      default: null,
+      type: String,
     },
   },
 };

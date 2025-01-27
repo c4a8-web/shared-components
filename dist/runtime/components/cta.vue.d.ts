@@ -13,6 +13,9 @@ declare namespace _default {
         function targetValue(): any;
         function sizeValue(): string;
     }
+    namespace methods {
+        function handleClick(e: any): any;
+    }
     namespace props {
         namespace href {
             let _default: null;
@@ -69,6 +72,12 @@ declare namespace _default {
         namespace hasBackground {
             let _default_10: null;
             export { _default_10 as default };
+        }
+        namespace javascript {
+            let _default_11: null;
+            export { _default_11 as default };
+            let type_2: StringConstructor;
+            export { type_2 as type };
         }
     }
 }
