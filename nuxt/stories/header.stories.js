@@ -129,52 +129,8 @@ const productArgs = {
         products: true,
         children: [
           {
-            name: 'realmjoin',
-            img: 'logos/RealmJoin-logo-rgb.svg',
-            target: '_blank',
-            languages: {
-              de: {
-                title: 'RealmJoin',
-                subtitle: 'Cloudbasierte Softwareverteilung',
-                url: 'https://www.realmjoin.com/',
-              },
-              en: {
-                title: 'RealmJoin',
-                subtitle: 'Cloudbased Software distribution',
-                url: 'https://www.realmjoin.com/',
-              },
-              es: {
-                title: 'RealmJoin',
-                subtitle: 'Cloudbased Software distribution',
-                url: 'https://www.realmjoin.com/',
-              },
-            },
-          },
-          {
-            name: 'scepman',
-            img: 'logos/SCEPman-logo-rgb.svg',
-            target: '_blank',
-            languages: {
-              de: {
-                title: 'SCEPman',
-                subtitle: 'Zertifikatsverteilung aus der Cloud',
-                url: 'https://www.scepman.com/',
-              },
-              en: {
-                title: 'SCEPman',
-                subtitle: 'Certificate distribution from the cloud',
-                url: 'https://www.scepman.com/',
-              },
-              es: {
-                title: 'SCEPman',
-                subtitle: 'Certificate distribution from the cloud',
-                url: 'https://www.scepman.com/',
-              },
-            },
-          },
-          {
             name: 'konnekt',
-            img: 'logos/KONNEKT-logo-rgb.svg',
+            img: 'products/konnekt/KONNEKT-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -194,37 +150,9 @@ const productArgs = {
               },
             },
           },
-        ],
-      },
-      {
-        name: 'lorem ipsum 2',
-        products: true,
-        children: [
-          {
-            name: 'realmigrator',
-            img: 'logos/RealMigrator-logo-rgb.svg',
-            target: '_blank',
-            languages: {
-              de: {
-                title: 'RealMigrator',
-                subtitle: 'Migrieren Sie alle Ihre Datenressourcen',
-                url: 'https://www.realmigrator.com/',
-              },
-              en: {
-                title: 'RealMigrator',
-                subtitle: 'Migrate your data from one server to another',
-                url: 'https://www.realmigrator.com/',
-              },
-              es: {
-                title: 'RealMigrator',
-                subtitle: 'Migrate your data from one server to another',
-                url: 'https://www.realmigrator.com/',
-              },
-            },
-          },
           {
             name: 'radiusaas',
-            img: 'logos/RADIUSaaS-logo-rgb.svg',
+            img: 'products/radius/radius-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -245,8 +173,80 @@ const productArgs = {
             },
           },
           {
+            name: 'scepman',
+            img: 'products/scepman/scepman-logo-rgb.svg',
+            target: '_blank',
+            languages: {
+              de: {
+                title: 'SCEPman',
+                subtitle: 'Zertifikatsverteilung aus der Cloud',
+                url: 'https://www.scepman.com/',
+              },
+              en: {
+                title: 'SCEPman',
+                subtitle: 'Certificate distribution from the cloud',
+                url: 'https://www.scepman.com/',
+              },
+              es: {
+                title: 'SCEPman',
+                subtitle: 'Certificate distribution from the cloud',
+                url: 'https://www.scepman.com/',
+              },
+            },
+          },
+        ],
+      },
+      {
+        name: 'lorem ipsum 2',
+        products: true,
+        children: [
+          {
+            name: 'realmjoin',
+            img: 'products/realmjoin/realmjoin-logo-orange.svg',
+            target: '_blank',
+            languages: {
+              de: {
+                title: 'RealmJoin',
+                subtitle: 'Cloudbasierte Softwareverteilung',
+                url: 'https://www.realmjoin.com/',
+              },
+              en: {
+                title: 'RealmJoin',
+                subtitle: 'Cloudbased Software distribution',
+                url: 'https://www.realmjoin.com/',
+              },
+              es: {
+                title: 'RealmJoin',
+                subtitle: 'Cloudbased Software distribution',
+                url: 'https://www.realmjoin.com/',
+              },
+            },
+          },
+          {
+            name: 'realmigrator',
+            img: 'products/realmigrator/RealMigrator.svg',
+            target: '_blank',
+            languages: {
+              de: {
+                title: 'RealMigrator',
+                subtitle: 'Migrieren Sie alle Ihre Datenressourcen',
+                url: 'https://www.realmigrator.com/',
+              },
+              en: {
+                title: 'RealMigrator',
+                subtitle: 'Migrate your data from one server to another',
+                url: 'https://www.realmigrator.com/',
+              },
+              es: {
+                title: 'RealMigrator',
+                subtitle: 'Migrate your data from one server to another',
+                url: 'https://www.realmigrator.com/',
+              },
+            },
+          },
+          {
             name: 'unifiedcontacts',
-            img: 'logos/UnifiedContact-logo-rgb.svg',
+            img: 'products/unified-contacts/unified-contacts-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {
@@ -268,7 +268,7 @@ const productArgs = {
           },
           {
             name: 'terraprovider',
-            img: 'products/terraprovider/logo-terraprovider.svg',
+            img: 'products/terraprovider/TerraProvider-logo-rgb.svg',
             target: '_blank',
             languages: {
               de: {

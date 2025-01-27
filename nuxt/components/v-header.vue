@@ -16,7 +16,9 @@
             <div class="header__secondary-navigation-content">
               <div class="header__secondary-navigation-inner-content" ref="secondaryNavigationInnerContent">
                 <template v-for="(item, index) in secondaryNavigation.children" :key="index">
-                  <div
+                  <a
+                    :href="getHref(child)"
+                    :target="getTarget(child)"
                     class="header__secondary-navigation-item"
                     v-for="(child, itemIndex) in item.children"
                     :key="itemIndex"
@@ -27,7 +29,7 @@
                       :cloudinary="true"
                       :alt="child.languages[lowerLang]?.title"
                     />
-                  </div>
+                  </a>
                 </template>
               </div>
             </div>
@@ -309,7 +311,6 @@ export default {
   watch: {
     secondaryNavigationDimensions(newVal) {
       if (newVal !== null && newVal.width) {
-        console.log('🚀 ~ secondaryNavigationDimensions ~ newVal:', newVal);
         this.$nextTick(() => {
           this.calculateLogoOffsetPosition();
         });
@@ -620,7 +621,9 @@ export default {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
-      const target = item.languages[this.lowerLang]?.target;
+      if (!item || !item.languages) return null;
+
+      const target = item?.languages[this.lowerLang]?.target || item.target;
 
       return target ? target : null;
     },
