@@ -14,16 +14,24 @@
               <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
             </div>
             <div class="header__secondary-navigation-content">
-              <template v-for="(item, index) in secondaryNavigation.children" :key="index">
-                <div
-                  class="header__secondary-navigation-item"
-                  v-for="(child, itemIndex) in item.children"
-                  :key="itemIndex"
-                >
-                  <v-img :img="child.img" class="header__secondary-navigation-item-img" :cloudinary="true" alt="logo" />
-                  <span class="header__secondary-navigation-item-title">{{ child.languages[lowerLang]?.title }}</span>
-                </div>
-              </template>
+              <div class="header__secondary-navigation-inner-content" ref="secondaryNavigationInnerContent">
+                <template v-for="(item, index) in secondaryNavigation.children" :key="index">
+                  <a
+                    :href="getHref(child)"
+                    :target="getTarget(child)"
+                    class="header__secondary-navigation-item"
+                    v-for="(child, itemIndex) in filterSecondaryNavigationItems(item.children)"
+                    :key="itemIndex"
+                  >
+                    <v-img
+                      :img="child.img"
+                      class="header__secondary-navigation-item-img"
+                      :cloudinary="true"
+                      :alt="child.languages[lowerLang]?.title"
+                    />
+                  </a>
+                </template>
+              </div>
             </div>
           </div>
           <div class="header__logo" :style="headerLogoStyle">
@@ -226,6 +234,7 @@
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
+import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 
 export default {
   tagName: 'v-header',
@@ -249,6 +258,11 @@ export default {
         this.secondaryNavigationDimensions ? State.READY : '',
         this.secondaryNavigationIsExpanded ? State.IS_EXPANDED : '',
       ];
+    },
+    secondaryNavigation() {
+      if (!this.showSecondaryNavigation) return null;
+
+      return SecondaryNavigation;
     },
     headerLogoStyle() {
       if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
@@ -302,7 +316,7 @@ export default {
   },
   watch: {
     secondaryNavigationDimensions(newVal) {
-      if (newVal !== null) {
+      if (newVal !== null && newVal.width >= 0) {
         this.$nextTick(() => {
           this.calculateLogoOffsetPosition();
         });
@@ -329,17 +343,28 @@ export default {
     }
   },
   methods: {
+    filterSecondaryNavigationItems(items) {
+      return items.filter((item) => item.name !== this.theme);
+    },
     getSecondaryNavigationDimensions() {
       if (!this.secondaryNavigation) return;
 
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      secondaryNavigation.dataset.updating = true;
+
       this.secondaryNavigationDimensions = null;
 
-      const secondaryNavigation = this.$refs.secondaryNavigation;
+      secondaryNavigation.style.width = null;
+      secondaryNavigation.style.height = null;
+      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.removeAttribute('data-height-expanded');
 
       this.secondaryNavigationDimensions = {
         width: secondaryNavigation.offsetWidth,
-        height: secondaryNavigation.offsetHeight,
       };
+
+      secondaryNavigation.removeAttribute('data-updating');
     },
     toggleSecondaryNavigation() {
       if (!this.secondaryNavigation) return;
@@ -355,29 +380,47 @@ export default {
       this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
 
       secondaryNavigation.style.width = null;
-      secondaryNavigation.removeAttribute('data-expanded');
+      secondaryNavigation.style.height = null;
+      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.removeAttribute('data-height-expanded');
 
       if (!this.secondaryNavigationInTransition) return;
 
       const dimensions = this.secondaryNavigationDimensions;
       const buttonWidth = this.getSecondaryNavigationButtonWidth();
-      const delay = 100;
 
       secondaryNavigation.style.width = `${buttonWidth}px`;
 
       this.secondaryNavigationTimeout = setTimeout(() => {
         secondaryNavigation.style.width = `${dimensions.width}px`;
         this.expandSecondaryNavigation();
-      }, delay);
+      }, this.secondaryNaivgationTransitionDelay);
     },
     expandSecondaryNavigation() {
       const secondaryNavigation = this.$refs.secondaryNavigation;
 
       if (!secondaryNavigation) return;
 
-      secondaryNavigation.dataset.expanded = true;
+      secondaryNavigation.dataset.widthExpanded = true;
+
+      const secondaryNavigationInnerContent = this.$refs.secondaryNavigationInnerContent;
+      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+
+      secondaryNavigation.style.height = `${buttonWidth}px`;
+
+      this.secondaryNavigationTimeout = setTimeout(() => {
+        this.secondaryNavigationDimensions['height'] = secondaryNavigationInnerContent.offsetHeight;
+
+        const dimensions = this.secondaryNavigationDimensions;
+
+        secondaryNavigation.dataset.heightExpanded = true;
+
+        secondaryNavigation.style.height = `${buttonWidth + dimensions.height}px`;
+      }, this.secondaryNaivgationTransitionDelay * 4);
     },
     calculateLogoOffsetPosition() {
+      this.logoOffsetPosition = 0;
+
       if (!Tools.isUpperBreakpoint()) return;
 
       const headerContainer = this.$refs.headerContainer;
@@ -597,7 +640,9 @@ export default {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
     },
     getTarget(item) {
-      const target = item.languages[this.lowerLang]?.target;
+      if (!item || !item.languages) return null;
+
+      const target = item?.languages[this.lowerLang]?.target || item.target;
 
       return target ? target : null;
     },
@@ -810,7 +855,11 @@ export default {
     blendMode: {
       default: null,
     },
-    secondaryNavigation: Object,
+    showSecondaryNavigation: {
+      default: false,
+      type: Boolean,
+    },
+    theme: String,
   },
   data() {
     return {
@@ -832,6 +881,7 @@ export default {
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
       secondaryNavigationTimeout: null,
+      secondaryNaivgationTransitionDelay: 100,
     };
   },
 };

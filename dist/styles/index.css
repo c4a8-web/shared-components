@@ -42749,6 +42749,7 @@ div.custom-control .custom-control-input,
 
 .header {
   --header-vertical-spacing: 1.25rem;
+  --header-secondary-navigation-shadow: 4px 0px 12px 0px rgba(0, 0, 0, 0.08);
 }
 .header.is-loading {
   opacity: 0;
@@ -42767,6 +42768,9 @@ div.custom-control .custom-control-input,
 }
 .header.vue-component.is-scrolled {
   transition: background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.header.vue-component:hover .header__secondary-navigation-button, .header.vue-component.is-scrolled .header__secondary-navigation-button {
+  box-shadow: var(--header-secondary-navigation-shadow);
 }
 .header.vue-component.header--product {
   box-shadow: none;
@@ -42892,6 +42896,9 @@ div.custom-control .custom-control-input,
 @media (min-width: 992px) {
   .header.vue-component.is-hovering .header__container::after {
     background-color: transparent;
+  }
+  .header.vue-component.is-hovering .header__secondary-navigation-button {
+    opacity: 0.4;
   }
 }
 .header.vue-component .header__menu .icon {
@@ -43597,22 +43604,33 @@ div.custom-control .custom-control-input,
   left: 0;
   display: none;
   flex-direction: column;
-  justify-content: center;
-  box-shadow: 4px 0px 12px 0px rgba(0, 0, 0, 0.08);
   background-color: var(--header-secondary-background);
 }
-.header__secondary-navigation.is-ready {
+.header__secondary-navigation.is-ready:not([data-updating]) {
   opacity: 1;
-  transition: width 0.4s cubic-bezier(0.19, 1, 0.2, 1);
+  transition-property: width, height;
+  transition-duration: 0.4s, 0.7s;
+  transition-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
 }
-.header__secondary-navigation.is-ready:not([data-expanded]):not(.in-transition) .header__secondary-navigation-text {
+.header__secondary-navigation.is-ready:not([data-updating]):not([data-expanded]):not(.in-transition) .header__secondary-navigation-content,
+.header__secondary-navigation.is-ready:not([data-updating]):not([data-expanded]):not(.in-transition) .header__secondary-navigation-text {
   display: none;
 }
-.header__secondary-navigation.is-ready[data-expanded] {
+.header__secondary-navigation.is-ready:not([data-updating])[data-width-expanded] {
   --header-secondary-background: var(--header-secondary-background-expanded);
+  box-shadow: var(--header-secondary-navigation-shadow);
 }
-.header__secondary-navigation.is-ready[data-expanded] .header__secondary-navigation-text {
+.header__secondary-navigation.is-ready:not([data-updating])[data-width-expanded] .header__secondary-navigation-content {
+  height: 0;
+}
+.header__secondary-navigation.is-ready:not([data-updating])[data-width-expanded] .header__secondary-navigation-text {
   opacity: 1;
+  pointer-events: all;
+}
+.header__secondary-navigation.is-ready:not([data-updating])[data-height-expanded] .header__secondary-navigation-content {
+  opacity: 1;
+  pointer-events: all;
+  height: auto;
 }
 .header__secondary-navigation .header__secondary-navigation-icon {
   margin: 1.5rem;
@@ -43630,10 +43648,9 @@ div.custom-control .custom-control-input,
 
 .header__secondary-navigation-text {
   font-weight: bold;
-  opacity: 0;
+  font-size: 1.25rem;
   transition: opacity 0.5s ease-in-out;
   padding-right: 2.5rem;
-  white-space: nowrap;
 }
 
 .header__secondary-navigation-button {
@@ -43645,8 +43662,37 @@ div.custom-control .custom-control-input,
   transform: scale(1.05);
 }
 
+.header__secondary-navigation-text,
 .header__secondary-navigation-content {
-  display: none;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.header__secondary-navigation-content {
+  background-color: var(--header-secondary-background);
+  overflow: hidden;
+  height: 0;
+}
+
+.header__secondary-navigation-inner-content {
+  padding: 1.75rem 1.75rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.header__secondary-navigation-item {
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.header__secondary-navigation-item:hover {
+  transform: scale(1.05);
+}
+.header__secondary-navigation-item .header__secondary-navigation-item-img {
+  max-height: 42px;
+  width: auto;
 }
 
 .shared-components .hero-text-image h1.h2-font-size {

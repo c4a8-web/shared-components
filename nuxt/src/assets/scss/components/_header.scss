@@ -979,7 +979,7 @@ $header-border-size: 1px;
   flex-direction: column;
   background-color: var(--header-secondary-background);
 
-  &.is-ready {
+  &.is-ready:not([data-updating]) {
     opacity: 1;
     transition-property: width, height;
     transition-duration: 0.4s, 0.7s;

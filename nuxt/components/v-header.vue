@@ -20,7 +20,7 @@
                     :href="getHref(child)"
                     :target="getTarget(child)"
                     class="header__secondary-navigation-item"
-                    v-for="(child, itemIndex) in item.children"
+                    v-for="(child, itemIndex) in filterSecondaryNavigationItems(item.children)"
                     :key="itemIndex"
                   >
                     <v-img
@@ -234,6 +234,7 @@
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
+import SecondaryNavigation from '../utils/data/secondary-navigation.js';
 
 export default {
   tagName: 'v-header',
@@ -257,6 +258,11 @@ export default {
         this.secondaryNavigationDimensions ? State.READY : '',
         this.secondaryNavigationIsExpanded ? State.IS_EXPANDED : '',
       ];
+    },
+    secondaryNavigation() {
+      if (!this.showSecondaryNavigation) return null;
+
+      return SecondaryNavigation;
     },
     headerLogoStyle() {
       if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
@@ -310,7 +316,7 @@ export default {
   },
   watch: {
     secondaryNavigationDimensions(newVal) {
-      if (newVal !== null && newVal.width) {
+      if (newVal !== null && newVal.width >= 0) {
         this.$nextTick(() => {
           this.calculateLogoOffsetPosition();
         });
@@ -337,16 +343,28 @@ export default {
     }
   },
   methods: {
+    filterSecondaryNavigationItems(items) {
+      return items.filter((item) => item.name !== this.theme);
+    },
     getSecondaryNavigationDimensions() {
       if (!this.secondaryNavigation) return;
 
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      secondaryNavigation.dataset.updating = true;
+
       this.secondaryNavigationDimensions = null;
 
-      const secondaryNavigation = this.$refs.secondaryNavigation;
+      secondaryNavigation.style.width = null;
+      secondaryNavigation.style.height = null;
+      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.removeAttribute('data-height-expanded');
 
       this.secondaryNavigationDimensions = {
         width: secondaryNavigation.offsetWidth,
       };
+
+      secondaryNavigation.removeAttribute('data-updating');
     },
     toggleSecondaryNavigation() {
       if (!this.secondaryNavigation) return;
@@ -401,6 +419,8 @@ export default {
       }, this.secondaryNaivgationTransitionDelay * 4);
     },
     calculateLogoOffsetPosition() {
+      this.logoOffsetPosition = 0;
+
       if (!Tools.isUpperBreakpoint()) return;
 
       const headerContainer = this.$refs.headerContainer;
@@ -540,7 +560,6 @@ export default {
       this.resetAllFlyouts();
 
       this.hover = true;
-      console.log('🚀 ~ handleMouseOver ~ this.hover:', this.hover);
 
       const link = this.getLinkRef(index);
 
@@ -836,7 +855,11 @@ export default {
     blendMode: {
       default: null,
     },
-    secondaryNavigation: Object,
+    showSecondaryNavigation: {
+      default: false,
+      type: Boolean,
+    },
+    theme: String,
   },
   data() {
     return {

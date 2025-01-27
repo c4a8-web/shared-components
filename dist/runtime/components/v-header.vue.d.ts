@@ -3,9 +3,38 @@ declare namespace _default {
     namespace computed {
         function classList(): any;
         function secondaryNavigationClassList(): any;
-        function headerLogoStyle(): any;
-        function headerContainerClassList(): (string | (() => any))[];
-        function containerClass(): any;
+        function secondaryNavigation(): {
+            text: string;
+            children: {
+                name: string;
+                products: boolean;
+                children: {
+                    name: string;
+                    img: string;
+                    target: string;
+                    languages: {
+                        de: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                        };
+                        en: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                        };
+                        es: {
+                            title: string;
+                            subtitle: string;
+                            url: string;
+                        };
+                    };
+                }[];
+            }[];
+        } | null;
+        function headerLogoStyle(): string | undefined;
+        function headerContainerClassList(): (string | (() => "container" | "container-xxl"))[];
+        function containerClass(): "container" | "container-xxl";
         function homeObj(): any;
         function lowerLang(): any;
         function searchValue(): boolean;
@@ -24,6 +53,7 @@ declare namespace _default {
     function mounted(): void;
     function updated(): void;
     namespace methods {
+        function filterSecondaryNavigationItems(items: any): any;
         function getSecondaryNavigationDimensions(): void;
         function toggleSecondaryNavigation(): void;
         function expandSecondaryNavigation(): void;
@@ -105,7 +135,12 @@ declare namespace _default {
             let _default_4: null;
             export { _default_4 as default };
         }
-        let secondaryNavigation: ObjectConstructor;
+        namespace showSecondaryNavigation {
+            let _default_5: boolean;
+            export { _default_5 as default };
+            export let type: BooleanConstructor;
+        }
+        let theme: StringConstructor;
     }
     function data(): {
         inUpdate: boolean;
@@ -126,6 +161,7 @@ declare namespace _default {
         secondaryNavigationIsExpanded: boolean;
         secondaryNavigationDimensions: null;
         secondaryNavigationTimeout: null;
+        secondaryNaivgationTransitionDelay: number;
     };
 }
 export default _default;
