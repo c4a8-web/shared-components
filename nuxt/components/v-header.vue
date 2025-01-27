@@ -45,58 +45,18 @@
           </div>
           <nav class="header__nav" v-on:mouseout="handleMouseOut">
             <ul class="header__list" ref="list">
-              <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
-                <a
-                  :class="headerLinkClasses(item, index)"
-                  :href="getHref(item)"
-                  :target="getTarget(item)"
-                  v-on:click="handleClick(item, index)"
-                  v-if="item?.languages"
-                  ref="link"
-                >
-                  <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
-                    <span class="header__link-text">{{ item.languages[lowerLang]?.title }}</span>
-                    <span class="header__link-text-spacer">{{ item.languages[lowerLang]?.title }}</span>
-                    <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
-                  </div>
-                </a>
-
-                <template v-for="list in item.children">
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    :hidden="isLinkListHidden(item, index)"
-                    classes="header__link-list"
-                    :no-animation="true"
-                    v-if="item.children && !list.products"
-                  />
-                  <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
-                    <a
-                      :href="subChild?.languages[lowerLang]?.url"
-                      :target="subChild.target"
-                      class="header__product-list-item custom"
-                      v-for="subChild in list.children"
-                    >
-                      <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
-                      <div class="header__product-list-data">
-                        <div class="header__product-list-title font-size-8 bold">
-                          {{ subChild?.languages[lowerLang]?.title }}
-                        </div>
-                        <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>
-                      </div>
-                    </a>
-                  </div>
-                </template>
-
-                <a
-                  :href="item.languages[lowerLang]?.emergency.href"
-                  :class="navHighlightClasses(item, index)"
-                  v-if="item.languages[lowerLang]?.emergency"
-                >
-                  <icon :icon="item.languages[lowerLang]?.emergency.icon" size="medium" />
-                  {{ item.languages[lowerLang]?.emergency.text }}
-                </a>
-              </li>
+              <v-header-item
+                :activeNavigation="activeNavigation"
+                :lowerLang="lowerLang"
+                :handleMouseOver="handleMouseOver"
+                :handleClick="handleClick"
+                :getHref="getHref"
+                :getTarget="getTarget"
+                :linkLists="linkLists"
+                :getId="getId"
+                :inTransition="inTransition"
+                ref="headerItem"
+              ></v-header-item>
             </ul>
             <div class="header__footer">
               <link-list
@@ -132,7 +92,8 @@
               </div>
               <div class="header__language-switch" v-if="hasLangSwitch">
                 <a
-                  v-for="(language, key) in home.languages"
+                  :key="key"
+                  v-for="(_, key) in home.languages"
                   :class="{ 'header__language-link custom': true, active: key === lowerLang }"
                   v-on:click="handleLanguageSwitch(key)"
                   >{{ key }}</a
@@ -450,7 +411,8 @@ export default {
       this.activeNavigation = this.clonedNavigation;
     },
     setLinkWidth() {
-      const links = this.$refs['link'];
+      const headerItems = this.$refs['headerItem'];
+      const links = headerItems?.$refs['link'];
 
       if (!links) return;
 
@@ -630,7 +592,7 @@ export default {
       return this.getRef('link', refName);
     },
     getRef(name, refName) {
-      const ref = this.$refs[name][refName];
+      const ref = this.$refs[name] ? this.$refs[name][refName] : this.$refs['headerItem']?.$refs[name][refName];
 
       if (!ref) return;
 
@@ -792,27 +754,9 @@ export default {
     setActiveLinks() {
       this.getActiveUrlByLang(this.lowerLang, true);
     },
-    headerItemClasses(item) {
-      return ['header__item', item.languages[this.lowerLang]?.active ? State.ACTIVE : ''];
-    },
-    isLinkListHidden(item, index) {
-      const id = this.getId(item, index);
-
-      return !this.linkLists[id] ? true : false;
-    },
-    headerLinkClasses(item, index) {
-      return this.getListClasses(item, index, ['header__link custom']);
-    },
-    headerProductListClasses(item, index) {
-      return this.getListClasses(item, index, ['header__product-list', this.inTransition ? State.IN_TRANSITION : '']);
-    },
-    getListClasses(item, index, classes) {
-      const isLinkListHidden = this.isLinkListHidden(item, index);
-
-      return [...classes, isLinkListHidden ? '' : State.EXPANDED];
-    },
     updateProductListHeight() {
-      const productList = this.$refs['product-list'];
+      const headerItems = this.$refs['headerItem'];
+      const productList = headerItems?.$refs['product-list'];
 
       if (!productList) return;
 
@@ -823,11 +767,6 @@ export default {
 
         list.style.height = newHeight;
       }
-    },
-    navHighlightClasses(item, index) {
-      const isHidden = this.isLinkListHidden(item, index);
-
-      return ['header__nav-highlight custom', isHidden ? 'is-hidden' : ''];
     },
     hasContactLink(item) {
       return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
