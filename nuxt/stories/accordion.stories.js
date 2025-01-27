@@ -252,7 +252,7 @@ export const AnimatedImage = {
   },
 };
 
-export const SvgToPixel = {
+export const MixedAssets = {
   args: {
     accordion: {
       headline: 'Vorteile von AzERE',
