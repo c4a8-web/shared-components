@@ -119,8 +119,6 @@ const productArgs = {
       },
     },
   ],
-  meta: ' ',
-  contact: ' ',
   showSecondaryNavigation: true,
   theme: 'radiusaas',
 };

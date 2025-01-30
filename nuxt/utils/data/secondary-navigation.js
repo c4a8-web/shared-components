@@ -1,8 +1,21 @@
 const secondaryNavigation = {
   text: 'Discover our products',
+  name: 'secondary-navigation',
+  skin: 'header__item--is-slim',
+  languages: {
+    de: {
+      title: 'Entdecke unsere Produkte',
+    },
+    en: {
+      title: 'Discover our products',
+    },
+    es: {
+      title: 'Descubra nuestros productos',
+    },
+  },
   children: [
     {
-      name: 'lorem ipsum 1',
+      name: 'secondary-products-1',
       products: true,
       children: [
         {
@@ -74,7 +87,7 @@ const secondaryNavigation = {
       ],
     },
     {
-      name: 'lorem ipsum 2',
+      name: 'secondary-products-2',
       products: true,
       children: [
         {

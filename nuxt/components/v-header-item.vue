@@ -23,7 +23,7 @@
         :hidden="isLinkListHidden(item, index)"
         classes="header__link-list"
         :no-animation="true"
-        v-if="item.children && !list.products"
+        v-if="list && item.children && !list.products"
       />
       <div :class="headerProductListClasses(item, index)" ref="product-list" v-else :key="`product-list-${listIndex}`">
         <a
@@ -47,7 +47,7 @@
     <a
       :href="item.languages[lowerLang]?.emergency.href"
       :class="navHighlightClasses(item, index)"
-      v-if="item.languages[lowerLang]?.emergency"
+      v-if="item.languages && item.languages[lowerLang]?.emergency"
     >
       <icon :icon="item.languages[lowerLang]?.emergency.icon" size="medium" />
       {{ item.languages[lowerLang]?.emergency.text }}
@@ -66,7 +66,12 @@ export default {
   },
   methods: {
     headerItemClasses(item) {
-      return ['header__item', item.languages[this.lowerLang]?.active ? State.ACTIVE : ''];
+      return [
+        'header__item',
+        item.languages && item.languages[this.lowerLang]?.active ? State.ACTIVE : '',
+        item.isMobile ? 'is--mobile' : '',
+        item.skin,
+      ];
     },
     headerLinkClasses(item, index) {
       return this.getListClasses(item, index, ['header__link custom']);
