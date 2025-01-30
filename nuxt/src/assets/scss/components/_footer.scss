@@ -40,6 +40,10 @@ footer {
     }
   }
 
+  .list-inline-item .btn {
+    display: inline-flex;
+  }
+
   hr {
     border-color: var(--color-footer-border);
   }
