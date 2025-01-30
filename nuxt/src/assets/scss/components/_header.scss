@@ -1009,15 +1009,17 @@ $header-border-size: 1px;
   --header-secondary-background-expanded: var(--color-white);
 
   position: fixed;
-  opacity: 0.2;
+  opacity: 0;
+  flex-direction: column;
   top: 0;
   left: 0;
   display: none;
-  flex-direction: column;
   background-color: var(--header-secondary-background);
+  pointer-events: none;
 
   &.is-ready:not([data-updating]) {
     opacity: 1;
+    pointer-events: all;
     transition-property: width, height;
     transition-duration: 0.4s, 0.7s;
     transition-timing-function: $animation-transition;
@@ -1050,10 +1052,6 @@ $header-border-size: 1px;
         pointer-events: all;
         height: auto;
       }
-    }
-
-    &.is-expanded {
-      // --header-secondary-background: var(--header-secondary-background-expanded);
     }
   }
 

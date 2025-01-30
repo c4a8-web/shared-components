@@ -62,21 +62,6 @@
                 :inTransition="inTransition"
                 ref="headerItem"
               ></v-header-item>
-
-              <v-header-item
-                style="DISABLED"
-                :activeNavigation="[secondaryNavigation]"
-                :lowerLang="lowerLang"
-                :handleMouseOver="handleMouseOver"
-                :handleClick="handleClick"
-                :getHref="getHref"
-                :getTarget="getTarget"
-                :linkLists="linkLists"
-                :getId="getId"
-                :inTransition="inTransition"
-                ref="headerItem"
-                v-if="false && secondaryNavigation"
-              ></v-header-item>
             </ul>
             <div class="header__footer">
               <link-list
