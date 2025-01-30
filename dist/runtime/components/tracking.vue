@@ -1,7 +1,7 @@
 <template></template>
 
 <script setup>
-import { useHead } from '#app';
+import { useHead } from '#imports';
 
 import Tools from '../utils/tools';
 

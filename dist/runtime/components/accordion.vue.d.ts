@@ -20,7 +20,7 @@ declare namespace _default {
         function allTabsClosed(): boolean;
         function getStateByIndex(index: any): any;
         function getId(accordion: any, index: any, name: any): string;
-        function isExpanded(tab: any): "true" | "false";
+        function isExpanded(tab: any): "false" | "true";
         function buttonClasses(tab: any): (string | null)[];
         function contentClasses(tab: any): (string | null)[];
         function cardClasses(index: any): (string | null)[];

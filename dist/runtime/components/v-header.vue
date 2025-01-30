@@ -4,7 +4,12 @@
     <div :class="headerContainerClassList" ref="headerContainer">
       <div class="header__row row">
         <div class="header__col col">
-          <div :class="secondaryNavigationClassList" v-if="secondaryNavigation" ref="secondaryNavigation">
+          <div
+            :class="secondaryNavigationClassList"
+            v-if="secondaryNavigation"
+            @transitionend="handleSecondaryNavigationTransitionEnd"
+            ref="secondaryNavigation"
+          >
             <div
               class="header__secondary-navigation-button"
               ref="secondaryNavigationButton"
@@ -20,7 +25,7 @@
                     :href="getHref(child)"
                     :target="getTarget(child)"
                     class="header__secondary-navigation-item"
-                    v-for="(child, itemIndex) in filterSecondaryNavigationItems(item.children)"
+                    v-for="(child, itemIndex) in item.children"
                     :key="itemIndex"
                   >
                     <v-img
@@ -45,58 +50,18 @@
           </div>
           <nav class="header__nav" v-on:mouseout="handleMouseOut">
             <ul class="header__list" ref="list">
-              <li :class="headerItemClasses(item)" v-for="(item, index) in activeNavigation">
-                <a
-                  :class="headerLinkClasses(item, index)"
-                  :href="getHref(item)"
-                  :target="getTarget(item)"
-                  v-on:click="handleClick(item, index)"
-                  v-if="item?.languages"
-                  ref="link"
-                >
-                  <div class="header__link-content" v-on:mouseover="handleMouseOver(item, index, $event)">
-                    <span class="header__link-text">{{ item.languages[lowerLang]?.title }}</span>
-                    <span class="header__link-text-spacer">{{ item.languages[lowerLang]?.title }}</span>
-                    <icon class="header__link-icon" icon="expand" size="small" v-if="item.children" />
-                  </div>
-                </a>
-
-                <template v-for="list in item.children">
-                  <link-list
-                    :list="list"
-                    :lang="lowerLang"
-                    :hidden="isLinkListHidden(item, index)"
-                    classes="header__link-list"
-                    :no-animation="true"
-                    v-if="item.children && !list.products"
-                  />
-                  <div :class="headerProductListClasses(item, index)" ref="product-list" v-else>
-                    <a
-                      :href="subChild?.languages[lowerLang]?.url"
-                      :target="subChild.target"
-                      class="header__product-list-item custom"
-                      v-for="subChild in list.children"
-                    >
-                      <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
-                      <div class="header__product-list-data">
-                        <div class="header__product-list-title font-size-8 bold">
-                          {{ subChild?.languages[lowerLang]?.title }}
-                        </div>
-                        <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>
-                      </div>
-                    </a>
-                  </div>
-                </template>
-
-                <a
-                  :href="item.languages[lowerLang]?.emergency.href"
-                  :class="navHighlightClasses(item, index)"
-                  v-if="item.languages[lowerLang]?.emergency"
-                >
-                  <icon :icon="item.languages[lowerLang]?.emergency.icon" size="medium" />
-                  {{ item.languages[lowerLang]?.emergency.text }}
-                </a>
-              </li>
+              <v-header-item
+                :activeNavigation="activeNavigation"
+                :lowerLang="lowerLang"
+                :handleMouseOver="handleMouseOver"
+                :handleClick="handleClick"
+                :getHref="getHref"
+                :getTarget="getTarget"
+                :linkLists="linkLists"
+                :getId="getId"
+                :inTransition="inTransition"
+                ref="headerItem"
+              ></v-header-item>
             </ul>
             <div class="header__footer">
               <link-list
@@ -104,7 +69,7 @@
                 :lang="lowerLang"
                 classes="header__meta-list"
                 :no-animation="true"
-                v-if="hasMeta"
+                v-if="metaList && hasMeta"
               />
 
               <div class="header__contact header__contact--mobile" v-if="hasContact">
@@ -132,7 +97,8 @@
               </div>
               <div class="header__language-switch" v-if="hasLangSwitch">
                 <a
-                  v-for="(language, key) in home.languages"
+                  :key="key"
+                  v-for="(_, key) in home.languages"
                   :class="{ 'header__language-link custom': true, active: key === lowerLang }"
                   v-on:click="handleLanguageSwitch(key)"
                   >{{ key }}</a
@@ -165,6 +131,7 @@
                 v-for="(language, key) in home.languages"
                 :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
                 v-on:click="handleLanguageSwitch(key)"
+                :key="key"
                 >{{ key }}</a
               >
             </div>
@@ -176,7 +143,12 @@
       <div :class="containerClass">
         <div class="row">
           <div class="col">
-            <div class="header__flyout-content" v-for="(item, index) in activeNavigation" ref="flyout">
+            <div
+              class="header__flyout-content"
+              v-for="(item, itemIndex) in activeNavigation"
+              ref="flyout"
+              :key="itemIndex"
+            >
               <div class="header__flyout-items" v-if="item.children">
                 <figure class="header__flyout-block" v-if="showFlyoutBlock(item.children)">
                   <figcaption class="header__flyout-caption">
@@ -197,7 +169,7 @@
                   </div>
                 </figure>
 
-                <template v-for="list in item.children">
+                <template v-for="(list, listIndex) in item.children" :key="listIndex">
                   <link-list
                     :list="list"
                     :lang="lowerLang"
@@ -209,7 +181,8 @@
                       :href="subChild.languages[lowerLang]?.url"
                       :target="subChild.target"
                       class="header__product-list-item custom"
-                      v-for="subChild in list.children"
+                      v-for="(subChild, subchildIndex) in list.children"
+                      :key="subchildIndex"
                     >
                       <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
                       <div class="header__product-list-data">
@@ -248,6 +221,7 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.inUpdate ? 'is-updating' : '',
         'vue-component',
       ];
     },
@@ -262,7 +236,13 @@ export default {
     secondaryNavigation() {
       if (!this.showSecondaryNavigation) return null;
 
-      return SecondaryNavigation;
+      return {
+        ...SecondaryNavigation,
+        children: SecondaryNavigation.children.map((item) => ({
+          ...item,
+          children: item.children.filter((child) => child.name !== this.theme),
+        })),
+      };
     },
     headerLogoStyle() {
       if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
@@ -285,6 +265,8 @@ export default {
       return Tools.isTrue(this.search);
     },
     metaList() {
+      if (!this.meta || typeof this.meta !== 'object') return null;
+
       return {
         ...this.meta,
         children: this.meta,
@@ -296,7 +278,15 @@ export default {
       return `--color-header-spacer-background: ${color}; background-color: var(--color-header-spacer-background);`;
     },
     clonedNavigation() {
-      return JSON.parse(JSON.stringify(this.navigation));
+      const clonedNavigation = JSON.parse(JSON.stringify(this.navigation));
+
+      if (this.secondaryNavigation) {
+        this.secondaryNavigation.isMobile = true;
+
+        clonedNavigation.push(this.secondaryNavigation);
+      }
+
+      return clonedNavigation;
     },
     isLight() {
       return this.light === true;
@@ -343,9 +333,6 @@ export default {
     }
   },
   methods: {
-    filterSecondaryNavigationItems(items) {
-      return items.filter((item) => item.name !== this.theme);
-    },
     getSecondaryNavigationDimensions() {
       if (!this.secondaryNavigation) return;
 
@@ -379,20 +366,46 @@ export default {
       this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
       this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
 
-      secondaryNavigation.style.width = null;
-      secondaryNavigation.style.height = null;
-      secondaryNavigation.removeAttribute('data-width-expanded');
-      secondaryNavigation.removeAttribute('data-height-expanded');
+      if (this.secondaryNavigationInTransition) return this.expandWidthSecondaryNavigation(secondaryNavigation);
 
+      this.shrinkSecondaryNavigation(secondaryNavigation, secondaryNavigationButton);
+    },
+    shrinkWidthSecondaryNavigation() {
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      if (!secondaryNavigation) return;
+
+      secondaryNavigation.removeAttribute('data-height-expanded');
+      secondaryNavigation.style.height = null;
+
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonHeight = buttonDimensions.height;
+
+      secondaryNavigation.style.width = `${buttonHeight}px`;
+
+      secondaryNavigation.removeAttribute('data-width-expanded');
+      this.secondaryNavigationTransitionState = null;
+    },
+    shrinkSecondaryNavigation(secondaryNavigation) {
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonHeight = buttonDimensions.height;
+
+      secondaryNavigation.style.height = `${buttonHeight}px`;
+
+      this.secondaryNavigationTransitionState = this.secondaryNavigationTransitionStates.SHRINKING_HEIGHT;
+    },
+    expandWidthSecondaryNavigation(secondaryNavigation) {
       if (!this.secondaryNavigationInTransition) return;
 
       const dimensions = this.secondaryNavigationDimensions;
-      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonWidth = buttonDimensions.width;
 
       secondaryNavigation.style.width = `${buttonWidth}px`;
 
       this.secondaryNavigationTimeout = setTimeout(() => {
         secondaryNavigation.style.width = `${dimensions.width}px`;
+
         this.expandSecondaryNavigation();
       }, this.secondaryNaivgationTransitionDelay);
     },
@@ -404,9 +417,10 @@ export default {
       secondaryNavigation.dataset.widthExpanded = true;
 
       const secondaryNavigationInnerContent = this.$refs.secondaryNavigationInnerContent;
-      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonHeight = buttonDimensions.height;
 
-      secondaryNavigation.style.height = `${buttonWidth}px`;
+      secondaryNavigation.style.height = `${buttonHeight}px`;
 
       this.secondaryNavigationTimeout = setTimeout(() => {
         this.secondaryNavigationDimensions['height'] = secondaryNavigationInnerContent.offsetHeight;
@@ -415,8 +429,19 @@ export default {
 
         secondaryNavigation.dataset.heightExpanded = true;
 
-        secondaryNavigation.style.height = `${buttonWidth + dimensions.height}px`;
+        secondaryNavigation.style.height = `${buttonHeight + dimensions.height}px`;
       }, this.secondaryNaivgationTransitionDelay * 4);
+    },
+    handleSecondaryNavigationTransitionEnd(event) {
+      if (
+        this.secondaryNavigationTransitionState &&
+        (event?.propertyName !== 'height' || event?.propertyName !== 'width')
+      )
+        return;
+
+      if (this.secondaryNavigationTransitionState === this.secondaryNavigationTransitionStates.SHRINKING_HEIGHT) {
+        this.shrinkWidthSecondaryNavigation();
+      }
     },
     calculateLogoOffsetPosition() {
       this.logoOffsetPosition = 0;
@@ -433,16 +458,17 @@ export default {
       const offsetCorrection = 20;
 
       const margin = (windowWidth - containerWidth) / 2;
-      const buttonWidth = this.getSecondaryNavigationButtonWidth();
+      const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
+      const buttonWidth = buttonDimensions.width;
 
       const leftSpace = margin < buttonWidth ? buttonWidth - margin - offsetCorrection : 0;
 
       this.logoOffsetPosition = leftSpace;
     },
-    getSecondaryNavigationButtonWidth() {
+    getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
 
-      return secondaryNavigationButton.offsetWidth;
+      return { width: secondaryNavigationButton.offsetWidth, height: secondaryNavigationButton.offsetHeight };
     },
     setActiveNavigation() {
       this.setActiveLinks();
@@ -450,7 +476,8 @@ export default {
       this.activeNavigation = this.clonedNavigation;
     },
     setLinkWidth() {
-      const links = this.$refs['link'];
+      const headerItems = this.$refs['headerItem'];
+      const links = headerItems?.$refs['link'];
 
       if (!links) return;
 
@@ -471,6 +498,13 @@ export default {
       window.addEventListener('scroll', this.handleScroll.bind(this));
 
       document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
+
+      // if (this.secondaryNavigation) {
+      //   this.$refs['secondaryNavigation'].addEventListener(
+      //     'transitionend',
+      //     this.handleSecondaryNavigationTransitionEnd.bind(this)
+      //   );
+      // }
     },
     handleResize() {
       this.reset();
@@ -615,7 +649,10 @@ export default {
       languageSwitch.classList.remove(State.EXPANDED);
     },
     resetAllFlyouts() {
-      this.$refs['link']?.forEach((link) => {
+      const headerItems = this.$refs['headerItem'];
+      const links = headerItems?.$refs['link'];
+
+      links?.forEach((link) => {
         link.classList.remove(State.EXPANDED);
       });
 
@@ -630,11 +667,15 @@ export default {
       return this.getRef('link', refName);
     },
     getRef(name, refName) {
-      const ref = this.$refs[name][refName];
+      let ref = null;
 
-      if (!ref) return;
+      if (this.$refs[name]) {
+        ref = this.$refs[name][refName];
+      } else if (this.$refs['headerItem'] && this.$refs['headerItem'].$refs[name]) {
+        ref = this.$refs['headerItem'].$refs[name][refName];
+      }
 
-      return ref;
+      return ref || null;
     },
     getHref(item) {
       return item.children ? 'javascript:void(0);' : item.languages[this.lowerLang]?.url;
@@ -792,27 +833,9 @@ export default {
     setActiveLinks() {
       this.getActiveUrlByLang(this.lowerLang, true);
     },
-    headerItemClasses(item) {
-      return ['header__item', item.languages[this.lowerLang]?.active ? State.ACTIVE : ''];
-    },
-    isLinkListHidden(item, index) {
-      const id = this.getId(item, index);
-
-      return !this.linkLists[id] ? true : false;
-    },
-    headerLinkClasses(item, index) {
-      return this.getListClasses(item, index, ['header__link custom']);
-    },
-    headerProductListClasses(item, index) {
-      return this.getListClasses(item, index, ['header__product-list', this.inTransition ? State.IN_TRANSITION : '']);
-    },
-    getListClasses(item, index, classes) {
-      const isLinkListHidden = this.isLinkListHidden(item, index);
-
-      return [...classes, isLinkListHidden ? '' : State.EXPANDED];
-    },
     updateProductListHeight() {
-      const productList = this.$refs['product-list'];
+      const headerItems = this.$refs['headerItem'];
+      const productList = headerItems?.$refs['product-list'];
 
       if (!productList) return;
 
@@ -823,11 +846,6 @@ export default {
 
         list.style.height = newHeight;
       }
-    },
-    navHighlightClasses(item, index) {
-      const isHidden = this.isLinkListHidden(item, index);
-
-      return ['header__nav-highlight custom', isHidden ? 'is-hidden' : ''];
     },
     hasContactLink(item) {
       return this.contact?.languages && !item.languages[this.lowerLang]?.emergency;
@@ -882,6 +900,11 @@ export default {
       secondaryNavigationDimensions: null,
       secondaryNavigationTimeout: null,
       secondaryNaivgationTransitionDelay: 100,
+      secondaryNavigationTransitionState: null,
+      secondaryNavigationTransitionStates: {
+        SHRINKING_HEIGHT: 0,
+        SHRINKING_WIDTH: 1,
+      },
     };
   },
 };

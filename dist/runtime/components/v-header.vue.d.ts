@@ -3,38 +3,10 @@ declare namespace _default {
     namespace computed {
         function classList(): any;
         function secondaryNavigationClassList(): any;
-        function secondaryNavigation(): {
-            text: string;
-            children: {
-                name: string;
-                products: boolean;
-                children: {
-                    name: string;
-                    img: string;
-                    target: string;
-                    languages: {
-                        de: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                        };
-                        en: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                        };
-                        es: {
-                            title: string;
-                            subtitle: string;
-                            url: string;
-                        };
-                    };
-                }[];
-            }[];
-        } | null;
-        function headerLogoStyle(): string | undefined;
-        function headerContainerClassList(): (string | (() => "container" | "container-xxl"))[];
-        function containerClass(): "container" | "container-xxl";
+        function secondaryNavigation(): any;
+        function headerLogoStyle(): any;
+        function headerContainerClassList(): (string | (() => any))[];
+        function containerClass(): any;
         function homeObj(): any;
         function lowerLang(): any;
         function searchValue(): boolean;
@@ -53,14 +25,20 @@ declare namespace _default {
     function mounted(): void;
     function updated(): void;
     namespace methods {
-        function filterSecondaryNavigationItems(items: any): any;
         function getSecondaryNavigationDimensions(): void;
-        function toggleSecondaryNavigation(): void;
+        function toggleSecondaryNavigation(): any;
+        function shrinkWidthSecondaryNavigation(): void;
+        function shrinkSecondaryNavigation(secondaryNavigation: any): void;
+        function expandWidthSecondaryNavigation(secondaryNavigation: any): void;
         function expandSecondaryNavigation(): void;
+        function handleSecondaryNavigationTransitionEnd(event: any): void;
         function calculateLogoOffsetPosition(): {
             leftSpace: number;
         } | undefined;
-        function getSecondaryNavigationButtonWidth(): any;
+        function getSecondaryNavigationButtonDimensions(): {
+            width: any;
+            height: any;
+        };
         function setActiveNavigation(): void;
         function setLinkWidth(): void;
         function showFlyoutBlock(children: any): boolean;
@@ -99,13 +77,7 @@ declare namespace _default {
         function getHrefLang(lang: any): string | null | undefined;
         function getParentLink(key: any): any;
         function setActiveLinks(): void;
-        function headerItemClasses(item: any): string[];
-        function isLinkListHidden(item: any, index: any): boolean;
-        function headerLinkClasses(item: any, index: any): any[];
-        function headerProductListClasses(item: any, index: any): any[];
-        function getListClasses(item: any, index: any, classes: any): any[];
         function updateProductListHeight(): void;
-        function navHighlightClasses(item: any, index: any): string[];
         function hasContactLink(item: any): any;
     }
     namespace props {
@@ -162,6 +134,11 @@ declare namespace _default {
         secondaryNavigationDimensions: null;
         secondaryNavigationTimeout: null;
         secondaryNaivgationTransitionDelay: number;
+        secondaryNavigationTransitionState: null;
+        secondaryNavigationTransitionStates: {
+            SHRINKING_HEIGHT: number;
+            SHRINKING_WIDTH: number;
+        };
     };
 }
 export default _default;
