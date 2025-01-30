@@ -5,6 +5,12 @@ export default defineNuxtPlugin((_nuxtApp) => {
   addRouteMiddleware(
     'global-collection-layouts',
     async () => {
+      // TODO fix cleanPath issue here
+      // const route = useRoute();
+      // const cleanPath = route.path.substring(0, route.path.length - 1);
+
+      // const cleanPath = '';
+
       // TODO adjust this so it works with the collections defined in your nuxt.config.js
       const { data } = await useAsyncData('events', () =>
         queryContent('events')
