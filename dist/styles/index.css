@@ -43200,7 +43200,7 @@ div.custom-control .custom-control-input,
 }
 .header__item.header__item--is-slim .header__product-list-image {
   max-width: none;
-  max-height: 42px;
+  max-height: 38px;
   object-fit: contain;
   object-position: left;
 }
@@ -43685,7 +43685,8 @@ div.custom-control .custom-control-input,
 
 .header__secondary-navigation-text {
   font-weight: bold;
-  font-size: 1.25rem;
+  font-size: 1rem;
+  line-height: 1.6;
   transition: opacity 0.5s ease-in-out;
   padding-right: 2.5rem;
 }
