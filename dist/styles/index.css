@@ -43200,7 +43200,7 @@ div.custom-control .custom-control-input,
 }
 .header__item.header__item--is-slim .header__product-list-image {
   max-width: none;
-  max-height: 38px;
+  max-height: 34px;
   object-fit: contain;
   object-position: left;
 }
@@ -43714,7 +43714,7 @@ div.custom-control .custom-control-input,
 }
 
 .header__secondary-navigation-inner-content {
-  padding: 1.75rem 1.75rem 2rem;
+  padding: 1.75rem 1.75rem 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -43729,8 +43729,10 @@ div.custom-control .custom-control-input,
   transform: scale(1.05);
 }
 .header__secondary-navigation-item .header__secondary-navigation-item-img {
-  max-height: 42px;
+  max-height: 38px;
   width: auto;
+  object-fit: contain;
+  object-position: left;
 }
 
 .shared-components .hero-text-image h1.h2-font-size {

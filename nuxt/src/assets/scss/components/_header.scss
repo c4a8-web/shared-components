@@ -560,7 +560,7 @@ $header-border-size: 1px;
 
     .header__product-list-image {
       max-width: none;
-      max-height: 38px;
+      max-height: 34px;
       object-fit: contain;
       object-position: left;
     }
@@ -1104,7 +1104,7 @@ $header-border-size: 1px;
 }
 
 .header__secondary-navigation-inner-content {
-  padding: spacing(7) spacing(7) spacing(8);
+  padding: spacing(7) spacing(7) spacing(8) spacing(6);
   display: flex;
   flex-direction: column;
   gap: spacing(8);
@@ -1120,7 +1120,9 @@ $header-border-size: 1px;
   }
 
   .header__secondary-navigation-item-img {
-    max-height: 42px;
+    max-height: 38px;
     width: auto;
+    object-fit: contain;
+    object-position: left;
   }
 }
