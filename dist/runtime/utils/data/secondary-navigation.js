@@ -20,7 +20,7 @@ const secondaryNavigation = {
       children: [
         {
           name: 'konnekt',
-          img: 'products/global/GK-Products-Logo-ListView-Konnekt.svg',
+          img: 'products/global/KONNEKT-ListView.svg',
           target: '_blank',
           languages: {
             de: {
@@ -42,7 +42,7 @@ const secondaryNavigation = {
         },
         {
           name: 'radiusaas',
-          img: 'products/global/GK-Products-Logo-ListView-RADIUSaaS.svg',
+          img: 'products/global/RADIUSaaS-ListView.svg',
           target: '_blank',
           languages: {
             de: {
@@ -64,7 +64,7 @@ const secondaryNavigation = {
         },
         {
           name: 'scepman',
-          img: 'products/global/GK-Products-Logo-ListView-SCEPman.svg',
+          img: 'products/global/SCEPman-ListView.svg',
           target: '_blank',
           languages: {
             de: {
@@ -92,7 +92,7 @@ const secondaryNavigation = {
       children: [
         {
           name: 'realmjoin',
-          img: 'products/global/GK-Products-Logo-ListView-RealmJoin.svg',
+          img: 'products/global/RealmJoin-ListView.svg',
           target: '_blank',
           languages: {
             de: {
@@ -113,30 +113,8 @@ const secondaryNavigation = {
           },
         },
         {
-          name: 'realmigrator',
-          img: 'products/global/GK-Products-Logo-ListView-RealMigrator.svg',
-          target: '_blank',
-          languages: {
-            de: {
-              title: 'RealMigrator',
-              subtitle: 'Migrieren Sie alle Ihre Datenressourcen',
-              url: 'https://www.realmigrator.com/',
-            },
-            en: {
-              title: 'RealMigrator',
-              subtitle: 'Migrate your data from one server to another',
-              url: 'https://www.realmigrator.com/',
-            },
-            es: {
-              title: 'RealMigrator',
-              subtitle: 'Migrate your data from one server to another',
-              url: 'https://www.realmigrator.com/',
-            },
-          },
-        },
-        {
           name: 'unifiedcontacts',
-          img: 'products/global/GK-Products-Logo-ListView-UnifiedContacts.svg',
+          img: 'products/global/UnifiedContacts-ListView.svg',
           target: '_blank',
           languages: {
             de: {
@@ -158,7 +136,7 @@ const secondaryNavigation = {
         },
         {
           name: 'terraprovider',
-          img: 'products/global/GK-Products-Logo-ListView-TerraProvider.svg',
+          img: 'products/global/TerraProvider-ListView.svg',
           target: '_blank',
           languages: {
             de: {

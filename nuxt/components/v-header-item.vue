@@ -35,7 +35,7 @@
         >
           <v-img :img="subChild.img" class="header__product-list-image" :cloudinary="true" />
           <div class="header__product-list-data">
-            <div class="header__product-list-title font-size-8 bold">
+            <div :class="['header__product-list-title', !item.isMobile ? 'font-size-8 bold' : '']">
               {{ subChild?.languages[lowerLang]?.title }}
             </div>
             <div class="header__product-list-subtitle">{{ subChild?.languages[lowerLang]?.subtitle }}</div>

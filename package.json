@@ -1,7 +1,7 @@
 {
   "name": "shared-components",
   "private": false,
-  "version": "0.1.106",
+  "version": "0.1.107",
   "description": "Shared Vue.js components for use on the product page",
   "type": "module",
   "exports": {
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@nuxtjs/sitemap": "^6.1.5",
+    "@nuxt/image": "^1.9.0",
     "@types/jquery": "^3.5.32",
     "autoprefixer": "^10.4.20",
     "bootstrap": "^4.5.3",

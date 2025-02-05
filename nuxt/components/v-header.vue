@@ -24,7 +24,7 @@
                   <a
                     :href="getHref(child)"
                     :target="getTarget(child)"
-                    class="header__secondary-navigation-item"
+                    class="header__secondary-navigation-item custom"
                     v-for="(child, itemIndex) in item.children"
                     :key="itemIndex"
                   >
@@ -34,6 +34,7 @@
                       :cloudinary="true"
                       :alt="child.languages[lowerLang]?.title"
                     />
+                    <span class="header__secondary-navigation-item-text">{{ child.languages[lowerLang]?.title }}</span>
                   </a>
                 </template>
               </div>
@@ -353,6 +354,21 @@ export default {
 
       secondaryNavigation.removeAttribute('data-updating');
     },
+    closeSecondaryNavigation() {
+      if (!this.secondaryNavigation || !this.secondaryNavigationIsExpanded) return;
+
+      this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
+      this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
+
+      const secondaryNavigation = this.$refs.secondaryNavigation;
+
+      secondaryNavigation.removeAttribute('data-height-expanded');
+      secondaryNavigation.removeAttribute('data-width-expanded');
+      secondaryNavigation.style.height = null;
+      secondaryNavigation.style.width = null;
+
+      this.secondaryNavigationTransitionState = null;
+    },
     toggleSecondaryNavigation() {
       if (!this.secondaryNavigation) return;
 
@@ -366,7 +382,7 @@ export default {
       this.secondaryNavigationInTransition = !this.secondaryNavigationInTransition;
       this.secondaryNavigationIsExpanded = !this.secondaryNavigationIsExpanded;
 
-      if (this.secondaryNavigationInTransition) return this.expandWidthSecondaryNavigation(secondaryNavigation);
+      if (this.secondaryNavigationIsExpanded) return this.expandWidthSecondaryNavigation(secondaryNavigation);
 
       this.shrinkSecondaryNavigation(secondaryNavigation, secondaryNavigationButton);
     },
@@ -498,17 +514,11 @@ export default {
       window.addEventListener('scroll', this.handleScroll.bind(this));
 
       document.addEventListener(Events.WINDOW_RESIZE, this.handleResize.bind(this));
-
-      // if (this.secondaryNavigation) {
-      //   this.$refs['secondaryNavigation'].addEventListener(
-      //     'transitionend',
-      //     this.handleSecondaryNavigationTransitionEnd.bind(this)
-      //   );
-      // }
     },
     handleResize() {
       this.reset();
       this.setLinkWidth();
+      this.closeSecondaryNavigation();
       this.getSecondaryNavigationDimensions();
     },
     handleScroll() {

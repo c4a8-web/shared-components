@@ -26,6 +26,7 @@ declare namespace _default {
     function updated(): void;
     namespace methods {
         function getSecondaryNavigationDimensions(): void;
+        function closeSecondaryNavigation(): void;
         function toggleSecondaryNavigation(): any;
         function shrinkWidthSecondaryNavigation(): void;
         function shrinkSecondaryNavigation(secondaryNavigation: any): void;
