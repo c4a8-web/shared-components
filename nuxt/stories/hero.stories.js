@@ -277,6 +277,7 @@ export const Lottie = {
         alt: 'Shape',
         lottie: lottie1,
       },
+      // textShadow: true, // TODO this is buggy
     },
   },
 };

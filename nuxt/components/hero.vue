@@ -152,6 +152,8 @@ export default {
   },
   methods: {
     preloadKeyAsset() {
+      if (!this.shape || !this.shape.img) return;
+
       const keyAssetPath = this.shape.img;
 
       if (!keyAssetPath || !this.shape.cloudinary) return;

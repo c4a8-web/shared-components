@@ -1,6 +1,6 @@
 <template>
   <template v-if="!isStorybook">
-    <ContentList :query="query">
+    <ContentList :query="localeQuery">
       <template #default="{ list }">
         <slot v-bind:list="list" />
       </template>
@@ -14,14 +14,24 @@
 
 <script>
 import Tools from '../utils/tools.js';
-
-// v-slot="{ list }"
+import { useI18n } from 'vue-i18n';
 
 export default {
   name: 'SharedContentList',
   computed: {
     isStorybook() {
       return Tools.isStorybook();
+    },
+    localeQuery() {
+      const { locale } = useI18n();
+
+      return {
+        ...this.query,
+        where: {
+          ...this.query.where,
+          _locale: locale.value,
+        },
+      };
     },
   },
   props: {

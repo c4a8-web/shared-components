@@ -129,7 +129,7 @@
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
-                v-for="(language, key) in home.languages"
+                v-for="(_, key) in home.languages"
                 :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
                 v-on:click="handleLanguageSwitch(key)"
                 :key="key"

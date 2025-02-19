@@ -65,6 +65,8 @@ export default {
     };
   },
   mounted() {
+    console.log(window.$);
+
     if (!window.$) return;
 
     const { min, max, from, step, unit } = this.pricingSliderRange;
@@ -77,6 +79,7 @@ export default {
     if (this.$refs.root) {
       new PricingSlider(this.$refs.root, null, this.products?.pricing);
     }
+    console.log('🚀 ~ mounted ~ Tools.isClientOnlyLibLoaded():', Tools.isClientOnlyLibLoaded());
 
     if (Tools.isClientOnlyLibLoaded()) return this.initRangeSlider();
 

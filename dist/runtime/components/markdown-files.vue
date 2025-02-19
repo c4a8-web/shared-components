@@ -7,7 +7,7 @@ export default {
   computed: {
     structuredList() {
       const updatedList = this.list.map((item) => {
-        const { description, _path, date, ...rest } = item;
+        const { description, _path, date, moment, ...rest } = item;
 
         const filteredRest = Object.keys(rest)
           .filter((key) => !this.hideData.includes(key))
@@ -16,9 +16,12 @@ export default {
             return obj;
           }, {});
 
+        const dateValue = this.cleanDate(moment ? moment : date ? date : this.extractDate(_path));
+
         return {
           url: _path,
-          date: this.cleanDate(date ? date : this.extractDate(_path)),
+          date: dateValue,
+          moment: dateValue,
           excerpt: description,
           ...filteredRest,
         };
