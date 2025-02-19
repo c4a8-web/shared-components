@@ -10,6 +10,7 @@ import {
   extendPages,
   installModule,
 } from '@nuxt/kit';
+import translations from '../locales/global.js';
 
 declare module '@nuxt/schema' {
   interface NuxtOptions {
@@ -50,6 +51,20 @@ export default defineNuxtModule({
     const { theme } = _options;
 
     console.log('✔ Shared components module setup');
+
+    // TODO merge messages
+
+    const i18nOptions = {
+      legacy: false,
+      locale: 'de',
+      fallbackLocale: 'en',
+      messages: translations,
+    };
+
+    _nuxt.options.i18n = {
+      ...i18nOptions,
+      ..._nuxt.options.i18n,
+    };
 
     _nuxt.options.runtimeConfig.public.sharedComponents = _options || {};
 

@@ -1,5 +1,7 @@
 import Tools from '../tools.js';
 
+// TODO remove completely
+
 class i18n {
   constructor() {
     this.init();

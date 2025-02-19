@@ -16,16 +16,30 @@ export default {
             return obj;
           }, {});
 
-        const dateValue = this.cleanDate(moment ? moment : date ? date : this.extractDate(_path));
+        const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(_path));
+        const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
         return {
           url: _path,
-          date: dateValue,
-          moment: dateValue,
+          date: dateValueOrFallback,
+          moment: dateValueOrFallback,
           excerpt: description,
           ...filteredRest,
         };
       });
+
+      if (this.sort) {
+        const [key, order] = Object.entries(this.sort)[0];
+        updatedList.sort((a, b) => {
+          if (a[key] < b[key]) return order === -1 ? 1 : -1;
+          if (a[key] > b[key]) return order === -1 ? -1 : 1;
+          return 0;
+        });
+      }
+
+      if (this.limit) {
+        return updatedList.slice(-this.limit);
+      }
 
       return updatedList;
     },
@@ -34,10 +48,16 @@ export default {
     extractDate(path) {
       if (!path) return null;
 
+      return this.getDate(path);
+    },
+    getDate(dateString) {
       const datePattern = /\d{4}-\d{2}-\d{2}/;
-      const match = path.match(datePattern);
+      const match = dateString.match(datePattern);
 
       return match ? match[0] : null;
+    },
+    isDate(dateString) {
+      return dateString ? this.getDate(dateString) !== null : null;
     },
     cleanDate(date) {
       if (typeof date === 'string' && date.includes('T')) {
@@ -53,6 +73,8 @@ export default {
       type: Array,
       default: () => [],
     },
+    sort: Object,
+    limit: Number,
   },
 };
 </script>

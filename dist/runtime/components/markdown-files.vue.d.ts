@@ -5,6 +5,8 @@ declare namespace _default {
     }
     namespace methods {
         function extractDate(path: any): any;
+        function getDate(dateString: any): any;
+        function isDate(dateString: any): boolean | null;
         function cleanDate(date: any): any;
     }
     namespace props {
@@ -14,6 +16,8 @@ declare namespace _default {
             function _default(): never[];
             export { _default as default };
         }
+        let sort: ObjectConstructor;
+        let limit: NumberConstructor;
     }
 }
 export default _default;
