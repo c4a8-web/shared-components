@@ -29,8 +29,15 @@ import Mail from './icons/mail.vue';
 import Meerkat from './icons/meerkat.vue';
 import Minus from './icons/minus.vue';
 import Phone from './icons/phone.vue';
+import PhoneCharger from './icons/phone-charger.vue';
+import PhoneMail from './icons/phone-mail.vue';
+import Pin from './icons/pin.vue';
+import Plus from './icons/plus.vue';
 import VMenu from './icons/v-menu.vue';
 import PlusMinus from './icons/plus-minus.vue';
+import Rocket from './icons/rocket.vue';
+import Reload from './icons/reload.vue';
+import Smile from './icons/smile.vue';
 import StrategySplit from './icons/strategy-split.vue';
 import TileView from './icons/tile-view.vue';
 import Quote from './icons/quote.vue';
@@ -61,8 +68,15 @@ export default {
     meerkat: Meerkat,
     minus: Minus,
     phone: Phone,
+    'phone-charger': PhoneCharger,
+    'phone-mail': PhoneMail,
+    pin: Pin,
+    plus: Plus,
     'v-menu': VMenu,
     'plus-minus': PlusMinus,
+    rocket: Rocket,
+    reload: Reload,
+    smile: Smile,
     'strategy-split': StrategySplit,
     'tile-view': TileView,
     quote: Quote,

@@ -22,8 +22,15 @@ declare namespace _default {
         meerkat: any;
         minus: any;
         phone: any;
+        'phone-charger': any;
+        'phone-mail': any;
+        pin: any;
+        plus: any;
         'v-menu': any;
         'plus-minus': any;
+        rocket: any;
+        reload: any;
+        smile: any;
         'strategy-split': any;
         'tile-view': any;
         quote: any;

@@ -80,6 +80,13 @@ export const Rocket = {
   },
 };
 
+export const Reload = {
+  args: {
+    icon: 'reload',
+    size: 'xxl',
+  },
+};
+
 export const Smile = {
   args: {
     icon: 'smile',
@@ -108,9 +115,9 @@ export const Quote = {
   },
 };
 
-export const Menu = {
+export const VMenu = {
   args: {
-    icon: 'menu',
+    icon: 'v-menu',
     size: 'large',
   },
 };

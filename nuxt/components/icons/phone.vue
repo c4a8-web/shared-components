@@ -7,6 +7,7 @@
     </g>
   </svg>
 </template>
+
 <script>
 export default {
   tagName: 'phone',
