@@ -1,7 +1,14 @@
 import { defineNuxtPlugin, addRouteMiddleware, useAsyncData } from '#app';
 import Events from './utils/events.js';
+import translations from './locales/global.js';
 
 export default defineNuxtPlugin((_nuxtApp) => {
+  const i18n = _nuxtApp.$i18n;
+
+  for (const [locale, messages] of Object.entries(translations)) {
+    i18n.mergeLocaleMessage(locale, messages);
+  }
+
   addRouteMiddleware(
     'global-collection-layouts',
     async () => {
