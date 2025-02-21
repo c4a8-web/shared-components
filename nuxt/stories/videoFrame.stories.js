@@ -51,26 +51,18 @@ export const CornerImgOffset = {
   },
 };
 
-// CornerImgOffset.decorators = [
-//   (Story) => {
-//     const storyElement = Story();
-//     const container = document.createElement('div');
-
-//     const spacer1 = document.createElement('div');
-//     spacer1.style.height = '50vh';
-//     spacer1.classList.add('dummy-content');
-//     container.appendChild(spacer1);
-
-//     container.appendChild(storyElement);
-
-//     const spacer2 = document.createElement('div');
-//     spacer2.style.height = '50vh';
-//     spacer2.classList.add('dummy-content');
-//     container.appendChild(spacer2);
-
-//     return container;
-//   },
-// ];
+CornerImgOffset.decorators = [
+  (story) => ({
+    components: { story },
+    template: `
+        <div>
+          <div style="height: 50vh;" class="dummy-content"></div>
+          <story />
+          <div style="height: 50vh;" class="dummy-content"></div>
+        </div>
+      `,
+  }),
+];
 
 export const FullWidth = {
   args: {

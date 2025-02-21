@@ -1,11 +1,21 @@
 <template>
   <div>
-    <div v-if="container" :class="containerClass" :style="headlineStyle" ref="root">
+    <div v-if="container" :class="containerClass" :style="headlineStyle" ref="root" @click="handleClick">
       <div :class="rowClass">
         <div :id="parentId" :class="mainClass" :style="headlineStyle">
-          <div :class="playerClass" :data-hs-video-player-options="videoPlayerOptions" data-utility-animation-step="1">
+          <div :class="playerClass" data-utility-animation-step="1">
             <div class="video-frame__target embed-responsive">
-              <div :id="targetId"></div>
+              <div :id="targetId" v-if="openIframe">
+                <iframe
+                  frameborder="0"
+                  allowfullscreen="1"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  width="640"
+                  height="360"
+                  :src="embedSrc"
+                  sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
+                ></iframe>
+              </div>
             </div>
             <div v-if="headline" class="video-frame__headline-container px-4" :class="headline.alignment">
               <headline :text="headline.text" :classes="'video-frame__headline'" />
@@ -24,10 +34,20 @@
       </div>
     </div>
     <template v-else>
-      <div :id="parentId" :class="mainClass" :style="headlineStyle" ref="root">
-        <div :class="playerClass" :data-hs-video-player-options="videoPlayerOptions" data-utility-animation-step="1">
+      <div :id="parentId" :class="mainClass" :style="headlineStyle" ref="root" @click="handleClick">
+        <div :class="playerClass" data-utility-animation-step="1">
           <div class="video-frame__target embed-responsive">
-            <div :id="targetId"></div>
+            <div :id="targetId" v-if="openIframe">
+              <iframe
+                frameborder="0"
+                allowfullscreen="1"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                width="640"
+                height="360"
+                :src="embedSrc"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
+              ></iframe>
+            </div>
           </div>
           <div v-if="headline" class="video-frame__headline-container px-4" :class="headline.alignment">
             <headline :text="headline.text" :classes="'video-frame__headline'" />
@@ -49,6 +69,7 @@
 
 <script>
 import UtilityAnimation from '../utils/utility-animation.js';
+import YoutubePlayer from '../utils/youtube-player.js';
 
 export default {
   tagName: 'video-frame',
@@ -114,6 +135,7 @@ export default {
           'video-frame__container--spacing': this.spacingTop,
           'is-sticky-scroller': this.sticky,
           'video-frame--top-overflow': this.corner && this.corner.topOverflow,
+          'video-frame--played': this.isPlayed,
         },
       ];
     },
@@ -128,6 +150,7 @@ export default {
         {
           'video-frame--full-width': this.fullWidth,
           'is-sticky-scroller': !this.container && this.sticky,
+          'video-frame--played': this.isPlayed,
         },
       ];
     },
@@ -150,8 +173,9 @@ export default {
       return {};
     },
     videoPlayerOptions() {
-      if (!this.id) return null;
-      return JSON.stringify({
+      if (!this.id) return {};
+
+      return {
         videoId: this.id,
         parentSelector: `#${this.parentId}`,
         targetSelector: `#${this.targetId}`,
@@ -159,8 +183,28 @@ export default {
         classMap: {
           toggle: 'video-frame--played',
         },
-      });
+      };
     },
+    embedSrc() {
+      return YoutubePlayer.getEmbedSrc(this.videoPlayerOptions.videoId, this.videoPlayerOptions.isAutoplay);
+    },
+  },
+  methods: {
+    handleClick() {
+      this.setPlayed();
+
+      this.openIframe = true;
+    },
+    setPlayed() {
+      this.isPlayed = true;
+    },
+  },
+  data() {
+    return {
+      isPlayed: false,
+      options: {},
+      openIframe: false,
+    };
   },
 };
 </script>
