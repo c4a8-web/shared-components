@@ -191,6 +191,8 @@ export default {
   },
   methods: {
     handleClick() {
+      if (!this.id) return;
+
       this.setPlayed();
 
       this.openIframe = true;
