@@ -5,7 +5,7 @@
 @import '../front/assets/vendor/leaflet/dist/leaflet';
 @import '../front/assets/css/theme';
 @import '../front/assets/vendor/slick-carousel/slick/slick';
-@import '../front/assets/vendor/fontawesome/css/all';
+
 @import '../front/assets/vendor/@fancyapps/fancybox/dist/jquery.fancybox';
 @import '../front/assets/vendor/ion-range-slider/ion.rangeSlider';
 // }
@@ -17,6 +17,7 @@
 @import 'mixins';
 @import 'type';
 @import 'fonts';
+@import 'font-awesome';
 @import 'spacings';
 @import 'theme';
 @import 'bootstrap/bootstrap';
