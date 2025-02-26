@@ -17,10 +17,10 @@ declare class UtilityAnimation {
     static observeElementIfNotAlready(element: any): void;
     static getIndexStyle(index: any): string;
     constructor(root: any);
-    root: any;
-    count: number;
-    selector: string;
-    currentElements: any;
+    root: Element | undefined;
+    count: number | undefined;
+    selector: string | undefined;
+    currentElements: any[] | NodeListOf<Element> | undefined;
     resetAnimation(): void;
     mergeNodes(Node: any, NodeList: any): any[];
     getCurrentSelector(): string;

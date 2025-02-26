@@ -24,6 +24,7 @@ declare namespace _default {
     }
     function mounted(): void;
     namespace methods {
+        function updatedEvent(event: any): any;
         function isVisible(index: any): any;
         function handleShowMore(): void;
         function updateFiles(files: any): boolean;

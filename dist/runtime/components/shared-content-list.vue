@@ -1,15 +1,11 @@
 <template>
-  <template v-if="!isStorybook">
-    <ContentList :query="localeQuery">
-      <template #default="{ list }">
-        <slot v-bind:list="list" />
-      </template>
-      <template #not-found></template>
-    </ContentList>
-  </template>
-  <template v-else>
-    <slot v-bind:list="dataList"></slot>
-  </template>
+  <ContentList :query="localeQuery" v-if="!isStorybook">
+    <template #default="{ list }">
+      <slot v-bind:list="list" />
+    </template>
+    <template #not-found><div></div></template>
+  </ContentList>
+  <slot v-bind:list="dataList" v-else></slot>
 </template>
 
 <script>

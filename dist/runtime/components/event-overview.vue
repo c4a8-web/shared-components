@@ -2,16 +2,16 @@
   <wrapper :class="classList" ref="root">
     <headline class="event-overview__headline" :text="headline" :level="headlineLevel" v-if="headline" />
     <transition-group name="event-overview__item">
-      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list }">
-        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :limit="maxLimitValue">
-          <template v-for="(event, index) in files" :key="index" v-if="updateFiles(files)">
+      <SharedContentList :data-list="eventsValue" :query="query" v-slot="{ list }" :key="0">
+        <markdown-files :list="list" v-slot="{ files }" :sort="sort" :limit="maxLimitValue" v-if="updateFiles(files)">
+          <template v-for="(event, index) in files" :key="index">
             <div :class="{ 'is-visible': isVisible(index), 'event-overview__item': true }">
               <div
                 class="fade-in-bottom"
                 data-utility-animation-step="1"
                 :style="{ '--utility-animation-index': index + 1 }"
               >
-                <event :key="event.url" v-bind="event" />
+                <event :key="event.url" v-bind="updatedEvent(event)" />
               </div>
             </div>
           </template>
@@ -92,6 +92,16 @@ export default {
     UtilityAnimation.init([this.$refs.root]);
   },
   methods: {
+    updatedEvent(event) {
+      if (event.cta) {
+        event.url = event.cta.href;
+        event.external = event.cta.external || false;
+      } else {
+        event.external = false;
+      }
+
+      return event;
+    },
     isVisible(index) {
       return this.showMore || index + 1 <= this.limitValue;
     },

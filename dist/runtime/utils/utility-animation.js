@@ -10,6 +10,8 @@ class UtilityAnimation {
   static groupItemsLoadedProperty = '--utility-animation-items-loaded';
 
   constructor(root) {
+    if (!(root instanceof Element)) return console.debug('Invalid root element');
+
     this.root = root;
     this.count = 1;
     this.selector = this.getCurrentSelector();
@@ -190,7 +192,9 @@ class UtilityAnimation {
     const domElement = element.$el ? element.$el : element;
     const instance = new this(domElement);
 
-    this.instances.push(instance);
+    if (instance.root) {
+      this.instances.push(instance);
+    }
 
     return instance;
   }
