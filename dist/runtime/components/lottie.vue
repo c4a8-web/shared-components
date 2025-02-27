@@ -1,16 +1,18 @@
 <template>
-  <div :class="classList"></div>
+  <div :class="classList">
+    <Vue3Lottie class="lottie__container" :animationData="data" v-bind="options" />
+  </div>
 </template>
 
 <script>
 // TODO use a differentn lib that does't use defineComponent
-// import { Vue3Lottie } from 'vue3-lottie';
+import { Vue3Lottie } from 'vue3-lottie';
 
 export default {
   tagName: 'lottie',
-  // components: {
-  //   Vue3Lottie,
-  // },
+  components: {
+    Vue3Lottie,
+  },
   computed: {
     classList() {
       return ['lottie', 'vue-component'];
@@ -44,6 +46,7 @@ export default {
         width: this.getSize(this.widthValue),
         height: this.getSize(this.heightValue),
         animationData: this.data,
+        noMargin: true,
       };
     },
   },
@@ -64,7 +67,9 @@ export default {
       };
     },
     getSize(size) {
-      return !size.indexOf || (size.indexOf('px') === -1 && size.indexOf('%') === -1) ? `${size}px` : size;
+      return !size.indexOf || (size.indexOf('px') === -1 && size.indexOf('%') === -1 && size.indexOf('auto'))
+        ? `${size}px`
+        : size;
     },
   },
   props: {

@@ -1,5 +1,6 @@
-import ImgComponent from '../../components/v-img.vue';
-import lottie1 from '../data/lottie1.json';
+import { getAssetPath } from '../.storybook/templates';
+import ImgComponent from '../components/v-img.vue';
+import lottie1 from './data/lottie1.json';
 
 export default {
   title: 'Components/Img',
@@ -9,10 +10,11 @@ export default {
   },
 };
 
+// TODO check why load is not triggered here?
 export const Img = {
   args: {
     alt: 'Image Alt Text',
-    img: 'img/image-placeholder-1.jpg',
+    img: getAssetPath('img/image-placeholder-1.jpg'),
   },
 };
 

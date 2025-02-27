@@ -1,5 +1,5 @@
-import lottie1 from '../data/lottie1.json';
-import EventTeaserComponent from '../../components/event-teaser';
+import lottie1 from './data/lottie1.json';
+import EventTeaserComponent from '../components/event-teaser.vue';
 
 export default {
   component: EventTeaserComponent,
@@ -125,7 +125,6 @@ export const EventTeaserBackground = {
     },
     badge: {
       text: 'Neuer Webcast',
-      icon: '',
     },
     cta: {
       text: 'Jetzt anmelden',
@@ -153,7 +152,6 @@ export const EventTeaserImage = {
     },
     badge: {
       text: 'Neuer Webcast',
-      icon: '',
     },
     cta: {
       text: 'Jetzt anmelden',
@@ -185,7 +183,6 @@ export const EventTeaserFullWidth = {
     },
     badge: {
       text: 'Neuer Webcast',
-      icon: '',
     },
     cta: {
       text: 'Jetzt anmelden',

@@ -419,16 +419,11 @@
     display: flex;
   }
 
-  &[style] {
-    > * {
-      transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
-      position: relative;
-    }
-  }
-
   > * {
     object-fit: contain;
     object-position: right;
+    position: relative;
+    transform: translateY(var(--hero-shape-offset-y)) translateX(var(--hero-shape-offset-x));
 
     &.lottie {
       display: inline-flex;
@@ -451,20 +446,15 @@
 }
 
 .hero__pattern {
-  position: absolute;
-  right: 0;
-
-  @include media-breakpoint-up(lg) {
-    @include z-index;
-
-    top: 50%;
-    transform: translateY(-50%);
-  }
+  @include z-index;
 }
 
-.hero__background-shape {
+.hero__background-shape,
+.hero__pattern {
   position: absolute;
   right: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .hero__container {

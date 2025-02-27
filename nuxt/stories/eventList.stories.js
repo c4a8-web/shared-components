@@ -1,4 +1,4 @@
-import EventListComponent from '../../../components/event-list';
+import EventListComponent from '../components/event-list.vue';
 
 export default {
   component: EventListComponent,

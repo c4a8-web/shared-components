@@ -23,7 +23,6 @@ export default {
 export const Career = {
   args: {
     hero: {
-      v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
       lightOverline: false,
@@ -61,7 +60,6 @@ export const Career = {
 export const CareerHand = {
   args: {
     hero: {
-      v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
       lightOverline: false,
@@ -89,7 +87,6 @@ export const CareerHand = {
 export const TextImage = {
   args: {
     hero: {
-      v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
       headline: 'Komm zu uns. Finde deinen Platz.',
@@ -113,7 +110,6 @@ export const TextImage = {
 export const TextImageOffset = {
   args: {
     hero: {
-      v2: true,
       bgColor: 'var(--color-blue-dark)',
       light: true,
       lightOverline: false,
@@ -137,7 +133,6 @@ export const TextImageOffset = {
 export const TextImagePattern = {
   args: {
     hero: {
-      v2: true,
       pattern: true,
       headline: 'RADIUSaaS',
       subline: 'Authentication service for your network',
@@ -161,7 +156,6 @@ export const TextImagePattern = {
 export const Casestudy = {
   args: {
     hero: {
-      v2: true,
       back: true,
       bgColor: 'var(--color-hero-study-background)',
       bgWidth: 70,
@@ -181,7 +175,6 @@ export const Casestudy = {
 export const ShapeSticky = {
   args: {
     hero: {
-      v2: true,
       sticky: true,
       headline: 'Consulting Services',
       overline: 'Lorem ipsum',
@@ -266,7 +259,6 @@ export const Text = {
 export const Lottie = {
   args: {
     hero: {
-      v2: true,
       headline: 'Consulting Services',
       overline: 'Lorem ipsum',
       overlineBgColor: 'var(--color-gigas)',
@@ -285,7 +277,6 @@ export const Lottie = {
 export const LottieFullscreen = {
   args: {
     hero: {
-      v2: true,
       light: true,
       bgColor: 'var(--color-blue-medium)',
       headline: '<span class="highlight">Ihre Cloud Strategie</span>',
@@ -308,7 +299,6 @@ export const LottieFullscreen = {
 export const ShapeInContent = {
   args: {
     hero: {
-      v2: true,
       light: true,
       headline: 'Cloud Security Operations Center',
       bgColor: 'var(--color-gigas)',
@@ -326,7 +316,6 @@ export const ShapeInContent = {
 export const ShapeInContentMobile = {
   args: {
     hero: {
-      v2: true,
       light: true,
       headline: 'Cloud Security Operations Center',
       bgColor: 'var(--color-gigas)',
@@ -349,7 +338,6 @@ export const ShapeInContentMobile = {
 export const TextShadow = {
   args: {
     hero: {
-      v2: true,
       light: true,
       bgColor: 'var(--color-blue-medium)',
       headline: 'Ihre Cloud Strategie',

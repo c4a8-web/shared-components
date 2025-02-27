@@ -29,7 +29,7 @@ declare namespace _default {
         function imgSrcSetImg(): any;
     }
     namespace watch {
-        function animated(newAnimated: any, oldAnimated: any): void;
+        function animated(): void;
     }
     function created(): void;
     namespace methods {
