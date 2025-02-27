@@ -33,6 +33,7 @@ export default {
         'normal',
         { 'badge--overlapping': this.overlapping },
         { 'badge--uppercase': this.uppercase },
+        { 'badge--icon': this.icon && this.icon !== '' },
         this.classes,
       ];
     },
