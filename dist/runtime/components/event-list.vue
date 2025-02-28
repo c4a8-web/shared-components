@@ -7,11 +7,8 @@
     }"
   >
     <div class="event-list__row row col-lg-12">
-      <template v-for="(event, index) in list" :key="index">
-        <template v-if="settings[index]?.teaser">
-          <event-teaser v-bind="getTeaserProps(settings[index].teaser, event, settings[index]?.variant, index)" />
-        </template>
-        <event-teaser v-bind="getTeaserProps(event, event, settings[index]?.variant, index)" />
+      <template v-for="(teaserProps, i) in mergedTeasers" :key="i">
+        <event-teaser v-bind="teaserProps" />
       </template>
     </div>
   </div>
@@ -19,7 +16,7 @@
 
 <script>
 export default {
-  tagName: 'event-list',
+  name: 'EventList',
   props: {
     list: {
       type: Array,
@@ -38,27 +35,50 @@ export default {
       default: false,
     },
   },
+  computed: {
+    mergedTeasers() {
+      let pointer = 0;
+
+      const result = [];
+
+      this.list?.forEach((event, i) => {
+        const forloopIndex = i + 1;
+
+        let currentSetting = this.settings[pointer] || {};
+        let variant = event.variant || currentSetting.variant;
+
+        if (currentSetting.teaser) {
+          const extraTeaserProps = this.getTeaserProps(currentSetting.teaser, {}, variant, forloopIndex);
+
+          result.push(extraTeaserProps);
+
+          pointer++;
+
+          currentSetting = this.settings[pointer] || {};
+          variant = event.variant || currentSetting.variant;
+        }
+
+        const eventTeaserProps = this.getTeaserProps(event, event, variant, forloopIndex);
+
+        result.push(eventTeaserProps);
+
+        pointer++;
+      });
+
+      return result;
+    },
+  },
   methods: {
-    getTeaserProps(teaserData, event, variant, index) {
-      return {
-        headline: teaserData.headline || event.headline,
-        content: teaserData.content || event.content,
-        moment: teaserData.moment || event.moment,
-        time: teaserData.time || event.time,
-        shapes: teaserData.shapes || event.shapes,
-        author: teaserData.author || event.author,
-        image: teaserData.image || event.image,
-        badge: teaserData.badge || event.badge,
-        price: teaserData.price || event.price,
-        cta: teaserData.cta || event.cta,
-        variant: variant || event.variant,
-        webcast: teaserData.webcast || event.webcast,
-        teaser: teaserData.teaser || event.teaser,
-        url: teaserData.url || event.url,
-        textShadow: teaserData.textShadow || event.textShadow,
-        bgColorRgb: teaserData.bgColorRgb || event.bgColorRgb,
-        index: index + 1,
+    getTeaserProps(teaserData, event, variant, forloopIndex) {
+      let merged = {
+        ...event,
+        ...teaserData,
       };
+
+      merged.variant = variant || event.variant;
+      merged.index = forloopIndex;
+
+      return merged;
     },
   },
 };

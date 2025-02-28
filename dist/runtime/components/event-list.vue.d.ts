@@ -1,5 +1,5 @@
 declare namespace _default {
-    let tagName: string;
+    let name: string;
     namespace props {
         namespace list {
             let type: ArrayConstructor;
@@ -24,26 +24,11 @@ declare namespace _default {
             export { _default_2 as default };
         }
     }
+    namespace computed {
+        function mergedTeasers(): any[];
+    }
     namespace methods {
-        function getTeaserProps(teaserData: any, event: any, variant: any, index: any): {
-            headline: any;
-            content: any;
-            moment: any;
-            time: any;
-            shapes: any;
-            author: any;
-            image: any;
-            badge: any;
-            price: any;
-            cta: any;
-            variant: any;
-            webcast: any;
-            teaser: any;
-            url: any;
-            textShadow: any;
-            bgColorRgb: any;
-            index: any;
-        };
+        function getTeaserProps(teaserData: any, event: any, variant: any, forloopIndex: any): any;
     }
 }
 export default _default;
