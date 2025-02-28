@@ -189,7 +189,6 @@ export default {
       return CloudinaryTools.getCloudinaryLinkWithTransformation(this.img, this.preset);
     },
     loadImage(link) {
-      console.log('🚀 ~ loadImage ~ link:', link);
       if (!this.canGenerateSrcSet()) return;
 
       const img = document.createElement('img');
