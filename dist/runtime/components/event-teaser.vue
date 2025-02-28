@@ -14,7 +14,7 @@
   >
     <header class="event-teaser__header">
       <div class="event-teaser__background">
-        <div class="event-teaser__shapes is-background" v-if="shapes">
+        <div class="event-teaser__shapes is-background" v-if="shapes && shapes.length > 0">
           <div
             v-for="(shape, index) in shapes"
             :key="index"
@@ -29,6 +29,7 @@
             />
           </div>
         </div>
+
         <div class="event-teaser__image is-foreground">
           <v-img
             :img="image.img"
@@ -100,7 +101,6 @@ import UtilityAnimation from '../utils/utility-animation.js';
 export default {
   props: {
     id: String,
-    json: Object,
     headline: String,
     content: String,
     moment: String,
@@ -142,7 +142,7 @@ export default {
       };
     },
     eventTeaserImageFullWidth() {
-      return !this.shapes ? 'event-teaser--image-full-width' : '';
+      return !this.shapes || this.shapes.length === 0 ? 'event-teaser--image-full-width' : '';
     },
     ctaHref() {
       return this.cta?.href || this.url;
@@ -188,6 +188,7 @@ export default {
           shapeSettings.peak = shape.peak || 'left';
           shapeSettings.height = shape.height || 10;
           shapeSettings.width = shape.width || 80;
+          shapeSettings.obliquity = shape.obliquity || 4;
         }
       }
 

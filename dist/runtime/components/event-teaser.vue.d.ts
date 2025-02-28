@@ -1,7 +1,6 @@
 declare namespace _default {
     namespace props {
         let id: StringConstructor;
-        let json: ObjectConstructor;
         let headline: StringConstructor;
         let content: StringConstructor;
         let moment: StringConstructor;
