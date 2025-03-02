@@ -1,18 +1,17 @@
 <template>
-  <div :class="classList">
-    <Vue3Lottie class="lottie__container" :animationData="data" v-bind="options" />
-  </div>
+  <div :class="classList"></div>
 </template>
 
 <script>
+// <Vue3Lottie class="lottie__container" :animationData="data" v-bind="options" />
 // TODO use a differentn lib that does't use defineComponent
-import { Vue3Lottie } from 'vue3-lottie';
+// import { Vue3Lottie } from 'vue3-lottie';
 
 export default {
   tagName: 'lottie',
-  components: {
-    Vue3Lottie,
-  },
+  // components: {
+  //   Vue3Lottie,
+  // },
   computed: {
     classList() {
       return ['lottie', 'vue-component'];

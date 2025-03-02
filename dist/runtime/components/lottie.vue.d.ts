@@ -1,8 +1,5 @@
 declare namespace _default {
     let tagName: string;
-    namespace components {
-        export { Vue3Lottie };
-    }
     namespace computed {
         function classList(): string[];
         function widthValue(): any;
@@ -54,4 +51,3 @@ declare namespace _default {
     }
 }
 export default _default;
-import { Vue3Lottie } from 'vue3-lottie';
