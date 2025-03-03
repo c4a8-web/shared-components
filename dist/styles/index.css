@@ -50084,5 +50084,3 @@ strong[id]:target::before {
   height: var(--scroll-top);
   margin: calc(-1 * (var(--scroll-top))) 0 0;
 }
-
-/*# sourceMappingURL=index.css.map */

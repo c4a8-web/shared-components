@@ -17,17 +17,17 @@ const staticCssFiles = fs
   .map((file) => resolve(cssDirectory, file));
 
 console.log('Compiling SCSS to CSS...');
-execSync(`sass ${scssInput} ${cssOutput}`, { stdio: 'inherit' });
+execSync(`sass ${scssInput} ${cssOutput} --no-source-map`, { stdio: 'inherit' });
 
 console.log('Optimizing CSS with PostCSS...');
-execSync(`postcss ${cssOutput} -o ${optimizedCssOutput}`, { stdio: 'inherit' });
+execSync(`postcss ${cssOutput} --no-map -o ${optimizedCssOutput}`, { stdio: 'inherit' });
 
 staticCssFiles.forEach((file) => {
   const fileName = basename(file).replace('.css', '.min.css');
   const optimizedFile = resolve(__dirname, `../dist/styles/${fileName}`);
 
   console.log(`Optimizing ${fileName} with PostCSS...`);
-  execSync(`postcss ${file} -o ${optimizedFile}`, { stdio: 'inherit' });
+  execSync(`postcss ${file} --no-map -o ${optimizedFile}`, { stdio: 'inherit' });
 });
 
 console.log('CSS build completed successfully.');

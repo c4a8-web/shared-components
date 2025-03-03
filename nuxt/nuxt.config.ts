@@ -2,7 +2,17 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-08-03',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/storybook', '@nuxt/content', '@nuxtjs/i18n'], // , '@nuxt/image'
+  modules: [
+    '@nuxtjs/storybook',
+    '@nuxt/content',
+    '@nuxtjs/i18n',
+    // [
+    //   'shared-components',
+    //   {
+    //     theme: 'gk',
+    //   },
+    // ],
+  ], // , '@nuxt/image'
   storybook: {
     port: 6006,
   },
@@ -26,3 +36,4 @@ export default defineNuxtConfig({
 });
 
 // TODO try to fix nuxt content inside storybook. right now query is not working and returns a 404
+// TODO fix lottie inside storybook

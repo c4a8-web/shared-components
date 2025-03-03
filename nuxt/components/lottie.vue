@@ -1,9 +1,10 @@
 <template>
-  <div :class="classList"></div>
+  <div :class="classList">
+    <Vue3Lottie class="lottie__container" :animationData="data" v-bind="options" />
+  </div>
 </template>
 
 <script>
-// <Vue3Lottie class="lottie__container" :animationData="data" v-bind="options" />
 // TODO use a differentn lib that does't use defineComponent
 // import { Vue3Lottie } from 'vue3-lottie';
 

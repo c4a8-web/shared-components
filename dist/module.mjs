@@ -84,6 +84,7 @@ const module = defineNuxtModule({
       }
     });
     addPlugin(resolve("./runtime/plugin"));
+    addPlugin({ src: resolve("./runtime/Vue3Lottie.client"), mode: "client" });
     extendPages((pages) => {
       pages.unshift({
         name: "slug-all",
