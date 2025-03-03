@@ -154,3 +154,19 @@ FooterImage.args = {
     ],
   },
 };
+
+export const NoFullscreen = Template.bind({});
+
+NoFullscreen.args = {
+  noFullscreen: true,
+  quotes: {
+    items: [
+      {
+        text: 'Lorem ipsum dolor sit amet, consetetur sadipscing',
+        name: 'Ronnie Kolk',
+        position: 'Projektmanager',
+        company: 'Pöppelmann GmbH & Co.KG',
+      },
+    ],
+  },
+};
