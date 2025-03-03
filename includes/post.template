@@ -137,6 +137,11 @@
     secondColWidth=page.textImageTeaser.secondColWidth
     reduceSpacing=page.textImageTeaser.reduceSpacing
     cta=page.textImageTeaser.cta
+    spacing=page.textImageTeaser.spacing
+    list=page.textImageTeaser.list
+    subline=page.textImageTeaser.subline
+    headline=page.textImageTeaser.headline
+    cloudinary=page.textImageTeaser.cloudinary
   %}
 {% endif %}
 
