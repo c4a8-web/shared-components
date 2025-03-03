@@ -8,6 +8,7 @@
         utilityAnimationStep="1"
         :noContainer="true"
         :level="headlineLevel"
+        v-if="headline"
       ></headline-row>
 
       <p class="feature-grid__description w-lg-50 text-center mt-3 mx-auto" v-if="description">{{ description }}</p>
