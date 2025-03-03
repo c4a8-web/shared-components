@@ -124,6 +124,22 @@
 
 {% assign headline = site.data.lang[lang].similarPosts %}
 
+{% if page.textImageTeaser %}
+  {%
+    include text-image.html
+    image=page.textImageTeaser.image
+    left=page.textImageTeaser.left
+    bgColor=page.textImageTeaser.bgColor
+    white=page.textImageTeaser.white
+    copy=page.textImageTeaser.copy
+    copyClasses=page.textImageTeaser.copyClasses
+    firstColWidth=page.textImageTeaser.firstColWidth
+    secondColWidth=page.textImageTeaser.secondColWidth
+    reduceSpacing=page.textImageTeaser.reduceSpacing
+    cta=page.textImageTeaser.cta
+  %}
+{% endif %}
+
 {%
   include blog-recent.html
   tag=page.tags
