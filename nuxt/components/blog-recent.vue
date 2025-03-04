@@ -3,7 +3,7 @@
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
       <template v-if="list">
         <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData">
-          <div :class="classList" ref="root" v-if="files">
+          <div :class="classList" ref="root" v-if="updateFiles(files)">
             <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
             <wrapper :hideContainer="hiddenContainer">
               <div class="row" v-if="headline">
@@ -29,6 +29,7 @@
                       :event="event(post)"
                       :dataAuthors="dataAuthors"
                       :external-language="post.externalLanguage"
+                      :excerpt="excerpt(post)"
                     />
                   </div>
                 </template>
@@ -60,6 +61,12 @@ import MarkdownFiles from './markdown-files.vue';
 export default {
   components: { MarkdownFiles },
   tagName: 'blog-recent',
+  data() {
+    return {
+      hideData: ['tags'],
+      filesValue: [],
+    };
+  },
   computed: {
     classList() {
       return [
@@ -78,7 +85,7 @@ export default {
       let query = {};
 
       query.limit = this.limit;
-      query.sort = [{ date: -1 }];
+      query.sort = [{ moment: this.reversed ? 1 : -1 }];
 
       if (this.combine === true) {
         query.path = /^\/(events|casestudies)\//;
@@ -126,7 +133,7 @@ export default {
         slidesToScroll: 3,
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
-        dots: this.postsArray.length > 3 ? true : false,
+        dots: this.filesValue?.length > 3 ? true : false,
         centerMode: false,
         infinite: false,
         dotsClass: 'slick-pagination is-default',
@@ -147,7 +154,7 @@ export default {
               centerPadding: '30px',
               slidesToShow: 2,
               slidesToScroll: 2,
-              dots: this.postsArray.length > 2 ? true : false,
+              dots: this.filesValue?.length > 2 ? true : false,
             },
           },
           {
@@ -158,7 +165,7 @@ export default {
               centerPadding: '20px',
               slidesToShow: 1,
               slidesToScroll: 1,
-              dots: this.postsArray.length > 1 ? true : false,
+              dots: this.filesValue?.length > 1 ? true : false,
             },
           },
         ],
@@ -187,29 +194,52 @@ export default {
       return config.public?.blogImagePath || 'blog/heads/';
     },
   },
-  mounted() {
-    Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
-
-    if (!this.$refs.root) return;
-
-    if (this.sticky) {
-      StickyScroller.init([this.$refs.root]);
-    }
-
-    UtilityAnimation.init([this.$refs.root]);
+  watch: {
+    filesValue(newValue) {
+      if (newValue.length > 0) {
+        this.$nextTick(() => {
+          this.init();
+        });
+      }
+    },
   },
   methods: {
+    init() {
+      Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+
+      if (!this.$refs.root) return;
+
+      if (this.sticky) {
+        StickyScroller.init([this.$refs.root]);
+      }
+
+      UtilityAnimation.init([this.$refs.root]);
+    },
     event(post) {
       return post.layout === 'post' ? false : true;
     },
     blogTitleUrl(post) {
-      return post.layout === 'casestudies' ? post.blogtitlepic : this.imgUrl + post.blogtitlepic;
+      if (post.layout === 'casestudies') {
+        return post.hero?.v2 ? post.hero.shape.img : post.hero.background.img;
+      } else {
+        return this.imgUrl + post.blogtitlepic;
+      }
     },
     target(post) {
-      return post.external ? '_blank' : '_self';
+      return post.external || post.cta?.external ? '_blank' : '_self';
     },
     postUrl(post) {
       return post?.cta?.href || post.url;
+    },
+    excerpt(post) {
+      return post.excerpt || post.hero?.subline;
+    },
+    updateFiles(files) {
+      if (!files) return;
+
+      this.filesValue = files;
+
+      return true;
     },
   },
   props: {
@@ -248,11 +278,7 @@ export default {
     events: Boolean,
     combine: Boolean,
     caseStudies: Boolean,
-  },
-  data() {
-    return {
-      hideData: ['tags'],
-    };
+    reversed: Boolean,
   },
 };
 </script>
