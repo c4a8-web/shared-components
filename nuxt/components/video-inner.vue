@@ -1,8 +1,41 @@
 <template>
-  <div :class="videoClass" :onclick="onClick" ref="root">
+  <div :class="videoClass" :onclick="onClick" ref="root" data-utility-animation-ref="root">
     <wrapper class="row align-items-end no-gutters" :hideContainer="!isVariantRow">
-      <div :class="videoPlayerClass" :id="videoId" data-utility-animation-step="1">
+      <div
+        :class="videoPlayerClass"
+        :id="videoId"
+        data-utility-animation-step="1"
+        data-utility-animation-ref="video-player"
+      >
         <template v-if="videoParsed.lightbox">
+          <lightbox
+            classes="video__lightbox-frame media-viewer"
+            :source="dataSrc"
+            :source-caption="dataCaption"
+            :cloudinary="cloudinary"
+            @click="handleLightboxClick"
+            @lightbox-close="handleLightboxClose"
+          >
+            <template #lightbox-content>
+              <iframe
+                v-if="isPlayed"
+                frameborder="0"
+                allowfullscreen="1"
+                allow="autoplay; fullscreen"
+                :src="embedSrc"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-presentation"
+              ></iframe>
+            </template>
+            <div class="img-fluid">
+              <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
+            </div>
+            <span class="media-viewer-container">
+              <span class="video-player-icon">
+                <i class="fas fa-play"></i>
+              </span>
+            </span>
+          </lightbox>
+
           <a
             class="js-video-button media-viewer video-player-btn"
             href="javascript:;"
@@ -11,6 +44,7 @@
             :data-hs-fancybox-options="dataOptionsLightBox"
             ref="lightbox"
             @click="handleLightboxClick"
+            style="display: none"
           >
             <div class="img-fluid">
               <v-img :img="videoParsed.thumb" :cloudinary="true" :alt="videoParsed.alt" />
@@ -54,7 +88,12 @@
         </template>
       </div>
       <template v-if="videoParsed.headline">
-        <div :class="videoContentClass" :onclick="onClickVideoContent" data-utility-animation-step="1">
+        <div
+          :class="videoContentClass"
+          :onclick="onClickVideoContent"
+          data-utility-animation-step="1"
+          data-utility-animation-ref="video-content"
+        >
           <div class="row no-gutters d-flex flex-wrap">
             <template v-if="videoParsed.logo">
               <div class="video__logo col-lg-5 order-lg-2 pb-3 pb-lg-0">
@@ -106,6 +145,7 @@ export default {
         `${this.spacing ? this.spacing : 'space-bottom-1 space-bottom-lg-0'}`,
         `${!this.isReversed() ? 'h-100' : ''}`,
         `${this.variant ? 'video--' + this.variant : ''}`,
+        this.elementClasses.root,
         'vue-component',
       ];
     },
@@ -116,6 +156,7 @@ export default {
         `${this.variantClasses}`,
         `${this.isPlayed ? 'video-player-played is-starting' : ''}`,
         `${this.videoParsed.ctaText ? 'video__player--has-link' : ''}`,
+        this.elementClasses['video-player'],
         'vue-component',
       ];
     },
@@ -128,6 +169,7 @@ export default {
         this.noAnimation ? '' : 'fade-in-bottom',
         `${this.videoParsed.ctaText ? 'hover__parent' : ''}`,
         `${this.isVariantRow ? 'col-md-6 ' : 'flex-grow-1 ' + padding}`,
+        this.elementClasses['video-content'],
       ];
     },
     videoTextClasses() {
@@ -202,13 +244,9 @@ export default {
     },
   },
   mounted() {
-    // TODO use new lightbox component
-
-    $?.HSCore?.components?.HSFancyBox?.init($(this.$refs['lightbox']));
-
     if (!this.$refs.root) return;
 
-    UtilityAnimation.init([this.$refs.root]);
+    UtilityAnimation.init([this.$refs.root], this);
   },
   methods: {
     isReversed() {
@@ -217,6 +255,12 @@ export default {
     handleButtonClick() {
       this.isPlayed = true;
     },
+    handleLightboxClick() {
+      this.handleButtonClick();
+    },
+    handleLightboxClose() {
+      this.handleClose();
+    },
     handleClose() {
       this.isPlayed = false;
     },
@@ -224,6 +268,7 @@ export default {
   data() {
     return {
       isPlayed: false,
+      elementClasses: {},
     };
   },
   props: {
