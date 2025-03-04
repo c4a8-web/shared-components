@@ -9,7 +9,7 @@ export const Right = {
   args: {
     spacing: 'space-top-3 space-bottom-2',
     image: 'azure/cloud-trafo-assessment.png',
-    source: 'https://res.cloudinary.com/c4a8/image/upload/v1624262444/azure/cloud-trafo-assessment.png',
+    source: 'azure/cloud-trafo-assessment.png',
     sourceCaption: 'Cloud Readiness Assessment',
     cloudinary: true,
     alt: 'Alt text 3',
@@ -23,7 +23,7 @@ export const Right = {
 export const Left = {
   args: {
     image: 'azure/reports-migration-waves.png',
-    source: 'https://res.cloudinary.com/c4a8/image/upload/v1624262444/azure/reports-migration-waves.png',
+    source: 'azure/reports-migration-waves.png',
     sourceCaption: 'Migration Roadmap Planning',
     left: true,
     cloudinary: true,
