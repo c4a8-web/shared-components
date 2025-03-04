@@ -16,7 +16,7 @@ class UtilityAnimation {
     this.count = 1;
     this.selector = this.getCurrentSelector();
     this.vueInstance = vueInstance;
-    this.elementClasses = this.vueInstance.elementClasses;
+    this.elementClasses = this.vueInstance?.elementClasses;
     this.currentElements = this.root.querySelectorAll(this.selector);
 
     if (this.root.matches(this.selector)) {
