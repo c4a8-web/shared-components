@@ -9,7 +9,10 @@
             <icon name="close" size="24" :hover="true" :circle="true" />
           </button>
         </div>
-        <v-img :img="source" :alt="alt" :cloudinary="cloudinary" class="lightbox__img" />
+        <template v-if="$slots['lightbox-content'] && isOpen">
+          <slot name="lightbox-content" />
+        </template>
+        <v-img v-else :img="source" :alt="alt" :cloudinary="cloudinary" class="lightbox__img" />
         <div class="lightbox__caption font-size-1" v-if="sourceCaption">{{ sourceCaption }}</div>
       </dialog>
     </Teleport>
@@ -55,6 +58,8 @@ export default {
       if (!modal) return;
 
       modal.close();
+
+      this.$emit('lightbox-close');
     },
   },
 };
