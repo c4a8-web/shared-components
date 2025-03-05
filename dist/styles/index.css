@@ -45615,6 +45615,11 @@ job-list-detail {
 .lightbox__modal img {
   width: auto;
 }
+.lightbox__modal iframe {
+  margin: 1rem;
+  width: 100%;
+  aspect-ratio: 16/9;
+}
 
 .lightbox__close {
   appearance: none;
@@ -49354,6 +49359,24 @@ shape {
 .video.video--reversed .video__content {
   background-color: transparent;
   order: 1;
+}
+.video.video--compact .video__text {
+  font-size: 1.25rem;
+  line-height: 2.5rem;
+  font-weight: 100 !important;
+}
+@media (min-width: 992px) {
+  .video.video--compact .video__text {
+    font-size: 1.25rem;
+  }
+}
+@media (min-width: 1200px) {
+  .video.video--compact .video__text {
+    font-size: 1.5625rem;
+  }
+}
+.video.video--compact .video__text strong {
+  font-weight: inherit;
 }
 
 .video__content {

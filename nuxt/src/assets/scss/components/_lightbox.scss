@@ -58,6 +58,12 @@
   img {
     width: auto;
   }
+
+  iframe {
+    margin: spacing(4);
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
 }
 
 .lightbox__close {
