@@ -12,12 +12,22 @@ declare namespace _default {
         function showCompoent(): true | (() => {
             limit: any;
             sort: any;
-            path: string | RegExp;
+            reversed: any;
+            where: {
+                _path: RegExp;
+            };
+            path: string;
+            limitEvents: any;
         });
         function query(): {
             limit: any;
             sort: any;
-            path: string | RegExp;
+            reversed: any;
+            where: {
+                _path: RegExp;
+            };
+            path: string;
+            limitEvents: any;
         };
         function getSpacing(): any;
         function hasBackground(): string;
@@ -71,6 +81,7 @@ declare namespace _default {
             let _default_3: boolean;
             export { _default_3 as default };
         }
+        let limitEvents: NumberConstructor;
         namespace limit {
             let type_2: NumberConstructor;
             export { type_2 as type };

@@ -1,8 +1,9 @@
 <template>
   <template v-if="showCompoent">
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
+      list: {{ list.length }}
       <template v-if="list">
-        <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData">
+        <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData" :query="query" :limit="limit">
           <div :class="classList" ref="root" v-if="updateFiles(files)">
             <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
             <wrapper :hideContainer="hiddenContainer">
@@ -86,9 +87,13 @@ export default {
 
       query.limit = this.limit;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];
+      query.reversed = this.reversed;
 
       if (this.combine === true) {
-        query.path = /^\/(events|casestudies)\//;
+        query.where = { _path: /^\/(posts|events|casestudies)\// };
+        query.path = '/';
+        query.limit = null;
+        query.limitEvents = this.limitEvents;
       } else {
         if (this.events === true) {
           query.path = '/events';
@@ -221,6 +226,8 @@ export default {
     blogTitleUrl(post) {
       if (post.layout === 'casestudies') {
         return post.hero?.v2 ? post.hero.shape.img : post.hero.background.img;
+      } else if (post.image?.img) {
+        return post.image.img;
       } else {
         return this.imgUrl + post.blogtitlepic;
       }
@@ -264,6 +271,7 @@ export default {
     hideContainer: {
       default: false,
     },
+    limitEvents: Number,
     limit: {
       type: Number,
       default: 3,

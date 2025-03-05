@@ -6,8 +6,26 @@ export default {
   tagName: 'markdown-files',
   computed: {
     structuredList() {
-      const updatedList = this.list.map((item) => {
-        const { description, _path, date, moment, ...rest } = item;
+      const updatedList = [];
+      const limitEvents = this.query?.limitEvents;
+      const reversed = this.query?.reversed;
+      const sort = this.query?.sort[0] || this.sort;
+
+      let eventCount = 0;
+
+      for (const item of this.list) {
+        const { description, _path, date, moment, _dir, hideInRecent, webcast, ...rest } = item;
+
+        if (hideInRecent || (_dir === 'events' && webcast !== true)) {
+          continue;
+        }
+
+        if (_dir === 'events' && limitEvents !== undefined) {
+          if (eventCount >= limitEvents) {
+            continue;
+          }
+          eventCount++;
+        }
 
         const filteredRest = Object.keys(rest)
           .filter((key) => !this.hideData.includes(key))
@@ -19,26 +37,30 @@ export default {
         const dateValue = this.cleanDate(this.isDate(moment) ? moment : date ? date : this.extractDate(_path));
         const dateValueOrFallback = dateValue ? dateValue : '2000-01-01';
 
-        return {
+        updatedList.push({
           url: _path,
           date: dateValueOrFallback,
           moment: dateValueOrFallback,
           excerpt: description,
           ...filteredRest,
-        };
-      });
+        });
+      }
 
-      if (this.sort) {
-        const [key, order] = Object.entries(this.sort)[0];
+      if (sort) {
+        const [key, order] = Object.entries(sort)[0];
+
         updatedList.sort((a, b) => {
           if (a[key] < b[key]) return order === -1 ? 1 : -1;
           if (a[key] > b[key]) return order === -1 ? -1 : 1;
+
           return 0;
         });
       }
 
       if (this.limit) {
-        return updatedList.slice(-this.limit);
+        const combinedLimit = this.limit + limitEvents;
+
+        return reversed ? updatedList.slice(-combinedLimit) : updatedList.slice(0, combinedLimit);
       }
 
       return updatedList;
@@ -75,6 +97,7 @@ export default {
     },
     sort: Object,
     limit: Number,
+    query: Object,
   },
 };
 </script>
