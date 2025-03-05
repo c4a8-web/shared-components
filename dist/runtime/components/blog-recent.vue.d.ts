@@ -3,20 +3,20 @@ declare namespace _default {
         export { MarkdownFiles };
     }
     let tagName: string;
+    function data(): {
+        hideData: string[];
+        filesValue: never[];
+    };
     namespace computed {
         function classList(): any;
         function showCompoent(): true | (() => {
             limit: any;
-            sort: {
-                date: number;
-            }[];
+            sort: any;
             path: string | RegExp;
         });
         function query(): {
             limit: any;
-            sort: {
-                date: number;
-            }[];
+            sort: any;
             path: string | RegExp;
         };
         function getSpacing(): any;
@@ -32,12 +32,17 @@ declare namespace _default {
         function sublineClassesValue(): string;
         function imgUrl(): any;
     }
-    function mounted(): void;
+    namespace watch {
+        function filesValue(newValue: any): void;
+    }
     namespace methods {
+        function init(): void;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";
         function postUrl(post: any): any;
+        function excerpt(post: any): any;
+        function updateFiles(files: any): true | undefined;
     }
     namespace props {
         namespace bgColor {
@@ -84,9 +89,7 @@ declare namespace _default {
         let events: BooleanConstructor;
         let combine: BooleanConstructor;
         let caseStudies: BooleanConstructor;
+        let reversed: BooleanConstructor;
     }
-    function data(): {
-        hideData: string[];
-    };
 }
 export default _default;

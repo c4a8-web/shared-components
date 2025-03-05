@@ -9,26 +9,39 @@ class UtilityAnimation {
   static instances = [];
   static groupItemsLoadedProperty = '--utility-animation-items-loaded';
 
-  constructor(root) {
+  constructor(root, vueInstance) {
     if (!(root instanceof Element)) return console.debug('Invalid root element');
 
     this.root = root;
     this.count = 1;
     this.selector = this.getCurrentSelector();
-
+    this.vueInstance = vueInstance;
+    this.elementClasses = this.vueInstance?.elementClasses;
     this.currentElements = this.root.querySelectorAll(this.selector);
 
     if (this.root.matches(this.selector)) {
       this.currentElements = this.mergeNodes(this.root, this.currentElements);
     }
 
-    this.resetAnimation();
+    // TODO get rid of new and old switch, after overall migration
+    if (vueInstance) {
+      this.resetAnimationNew();
+    } else {
+      this.resetAnimation();
+    }
+
     this.initialize();
   }
 
   resetAnimation() {
     this.root.querySelectorAll(`.${State.IS_STARTING}`).forEach((element) => {
       element.classList.remove(State.IS_STARTING);
+    });
+  }
+
+  resetAnimationNew() {
+    this.root.querySelectorAll(`.${State.IS_STARTING}`).forEach((element) => {
+      this.updateClassState(element, State.IS_STARTING, false);
     });
   }
 
@@ -74,10 +87,16 @@ class UtilityAnimation {
     this.currentElements = this.root.querySelectorAll(this.getCurrentSelector());
 
     if (this.currentElements !== null && this.currentElements.length > 0) {
-      this.startStepAnimation(this.currentElements);
+      this.startAnimation();
     } else {
       this.setEnd();
     }
+  }
+
+  startStepAnimationNew(elements) {
+    elements.forEach((element) => {
+      this.updateClassState(element, State.IS_STARTING, true);
+    });
   }
 
   startStepAnimation(elements) {
@@ -91,7 +110,19 @@ class UtilityAnimation {
   }
 
   startAnimation() {
-    this.startStepAnimation(this.currentElements);
+    if (this.vueInstance) {
+      this.startStepAnimationNew(this.currentElements);
+    } else {
+      this.startStepAnimation(this.currentElements);
+    }
+  }
+
+  updateClassState(element, className, add) {
+    const refName = element.dataset.utilityAnimationRef;
+
+    if (!refName) return;
+
+    this.elementClasses[refName] = add ? className : null;
   }
 
   static getGroup(element) {
@@ -188,9 +219,9 @@ class UtilityAnimation {
     });
   }
 
-  static initElement(element) {
+  static initElement(element, vueInstance) {
     const domElement = element.$el ? element.$el : element;
-    const instance = new this(domElement);
+    const instance = new this(domElement, vueInstance);
 
     if (instance.root) {
       this.instances.push(instance);
@@ -199,11 +230,11 @@ class UtilityAnimation {
     return instance;
   }
 
-  static init(elements) {
+  static init(elements, vueInstance) {
     this.instances = [];
 
     [].forEach.call(elements || document.querySelectorAll(this.rootSelector), (element) => {
-      this.initElement(element);
+      this.initElement(element, vueInstance);
     });
 
     this.addObserver();

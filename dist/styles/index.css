@@ -47163,6 +47163,9 @@ shape {
 .slider {
   overflow: hidden;
 }
+.slider.slider--overflow {
+  overflow: visible;
+}
 .slider.has-background {
   position: relative;
   padding-bottom: 4rem;
