@@ -1,9 +1,15 @@
 <template>
   <template v-if="showCompoent">
     <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
-      list: {{ list.length }}
       <template v-if="list">
-        <markdown-files :list="list" v-slot="{ files }" :hide-data="hideData" :query="query" :limit="limit">
+        <markdown-files
+          :list="list"
+          v-slot="{ files }"
+          :hide-data="hideData"
+          :query="query"
+          :limit="limit"
+          :is-recent="true"
+        >
           <div :class="classList" ref="root" v-if="updateFiles(files)">
             <div class="blog-recent__bg" :style="{ 'background-color': bgColor }" v-if="skinClass !== ''"></div>
             <wrapper :hideContainer="hiddenContainer">

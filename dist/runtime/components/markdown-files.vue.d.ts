@@ -19,6 +19,7 @@ declare namespace _default {
         let sort: ObjectConstructor;
         let limit: NumberConstructor;
         let query: ObjectConstructor;
+        let isRecent: BooleanConstructor;
     }
 }
 export default _default;

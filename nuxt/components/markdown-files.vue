@@ -16,7 +16,7 @@ export default {
       for (const item of this.list) {
         const { description, _path, date, moment, _dir, hideInRecent, webcast, ...rest } = item;
 
-        if (hideInRecent || (_dir === 'events' && webcast !== true)) {
+        if (this.isRecent && (hideInRecent || (_dir === 'events' && webcast !== true))) {
           continue;
         }
 
@@ -58,7 +58,7 @@ export default {
       }
 
       if (this.limit) {
-        const combinedLimit = this.limit + limitEvents;
+        const combinedLimit = limitEvents ? this.limit + limitEvents : this.limit;
 
         return reversed ? updatedList.slice(-combinedLimit) : updatedList.slice(0, combinedLimit);
       }
@@ -98,6 +98,7 @@ export default {
     sort: Object,
     limit: Number,
     query: Object,
+    isRecent: Boolean,
   },
 };
 </script>
