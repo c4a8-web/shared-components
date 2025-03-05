@@ -3,6 +3,7 @@
     <div
       class="list-container__container utility-animation container headline-sticky__target fade-in-bottom"
       data-utility-animation-step="1"
+      ref="container"
     >
       <div class="row">
         <div class="col-sm-12">
@@ -15,6 +16,7 @@
 </template>
 <script>
 import Tools from '../utils/tools.js';
+import UtilityAnimation from '../utils/utility-animation.js';
 
 export default {
   tagName: 'list-container',
@@ -36,6 +38,11 @@ export default {
         : '';
       return [bgColor, headlineColor];
     },
+  },
+  mounted() {
+    if (!this.$refs.container) return;
+
+    UtilityAnimation.init([this.$refs.container]);
   },
   props: {
     classes: String,
