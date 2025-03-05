@@ -79,6 +79,7 @@ export default {
         'slider',
         `${Tools.isTrue(this.hideContainer) === true ? '' : this.getSpacing}`,
         `${this.backgroundClass}`,
+        this.overflow ? 'slider--overflow' : '',
         'vue-component',
       ];
     },
@@ -169,6 +170,7 @@ export default {
     hideBackground: {
       default: false,
     },
+    overflow: Boolean,
     bgColor: String,
     centerPadding: Number,
     options: Object,

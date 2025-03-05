@@ -1,6 +1,10 @@
 .slider {
   overflow: hidden;
 
+  &.slider--overflow {
+    overflow: visible;
+  }
+
   &.has-background {
     position: relative;
     padding-bottom: spacing(16);

@@ -100,6 +100,7 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
+        let overflow: BooleanConstructor;
         let bgColor: StringConstructor;
         let centerPadding: NumberConstructor;
         let options: ObjectConstructor;
