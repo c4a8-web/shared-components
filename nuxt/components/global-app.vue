@@ -10,41 +10,6 @@ import Anchor from '../utils/anchor.js';
 import Modal from '../utils/modal.js';
 import Events from '../utils/events.js';
 
-// TODO find a better way to handle this events
-
-const triggerResizeEvent = () => {
-  const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
-
-  document.dispatchEvent(customEvent);
-};
-
-const handleBodyMutation = (mutations) => {
-  const heightTolleranceRange = 3;
-  let once = false;
-
-  mutations.forEach((mutation) => {
-    if (once) return;
-
-    if (
-      mutation.contentRect.height > lastBodyHeight + heightTolleranceRange ||
-      mutation.contentRect.height < lastBodyHeight - heightTolleranceRange
-    ) {
-      lastBodyHeight = mutation.contentRect.height;
-      once = true;
-
-      triggerResizeEvent();
-
-      return;
-    }
-  });
-};
-
-const captureBodyMutation = () => {
-  const observer = new ResizeObserver(handleBodyMutation);
-
-  observer.observe(document.body);
-};
-
 export default {
   tagName: 'global-app',
   mounted() {
@@ -53,11 +18,50 @@ export default {
     document.querySelectorAll('.modal').forEach((node) => new Modal(node));
 
     window.addEventListener('resize', () => {
-      triggerResizeEvent();
+      this.triggerResizeEvent();
     });
+
+    this.captureBodyMutation();
+  },
+  methods: {
+    captureBodyMutation() {
+      const observer = new ResizeObserver(this.handleBodyMutation);
+
+      observer.observe(document.body);
+    },
+    handleBodyMutation(mutations) {
+      const heightTolleranceRange = 3;
+      let once = false;
+
+      mutations.forEach((mutation) => {
+        if (once) return;
+
+        if (
+          mutation.contentRect.height > this.lastBodyHeight + heightTolleranceRange ||
+          mutation.contentRect.height < this.lastBodyHeight - heightTolleranceRange
+        ) {
+          this.lastBodyHeight = mutation.contentRect.height;
+          once = true;
+
+          this.triggerResizeEvent();
+
+          return;
+        }
+      });
+    },
+    triggerResizeEvent() {
+      const customEvent = new CustomEvent(Events.WINDOW_RESIZE, {});
+
+      document.dispatchEvent(customEvent);
+    },
   },
   props: {
     classes: Array,
+  },
+  data() {
+    return {
+      lastBodyHeight: null,
+    };
   },
 };
 </script>
