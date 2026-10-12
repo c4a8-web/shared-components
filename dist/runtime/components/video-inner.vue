@@ -68,7 +68,7 @@
               href="javascript:;"
               :data-hs-video-player-options="dataOptionsRegular"
               ref="video-player"
-              :onclick="handleButtonClick"
+              @click="handleButtonClick"
             >
               <span class="video-player-icon video__player-icon">
                 <i class="fas fa-play"></i>
@@ -293,7 +293,7 @@ export default {
     video: Object,
     variant: String,
     spacing: String,
-    overlapping: String,
+    overlapping: [String, Boolean],
     level: {
       default: 'h4',
     },
