@@ -136,12 +136,12 @@ export default {
 
   .team-cards-item__area {
     position: absolute;
-    top: 1.25rem;
+    top: 0.9375rem;
     left: 0;
-    padding: 0.375rem 0.75rem;
+    padding: 0.28125rem 0.5625rem;
     background-color: rgba(255, 255, 255, 0.82);
     color: var(--color-gk-dark-blue);
-    font-size: 0.9375rem;
+    font-size: 0.703125rem;
     line-height: 1.3;
   }
 
@@ -149,11 +149,19 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 2rem 1.5rem 1.75rem;
+    padding: 1.5rem 1.125rem 1.3125rem;
   }
 
   .team-cards-item__name {
-    margin-bottom: 0.25rem;
+    margin-bottom: 0.1875rem;
+    font-size: 1.875rem;
+    line-height: 1.2;
+  }
+
+  .team-cards-item__job,
+  .team-cards-item__text {
+    font-size: 0.75rem;
+    line-height: 1.6;
   }
 
   .team-cards-item__job {
@@ -161,12 +169,12 @@ export default {
   }
 
   .team-cards-item__text {
-    margin: 1.5rem 0 0;
+    margin: 1.125rem 0 0;
   }
 
   .team-cards-item__cta {
     margin-top: auto;
-    padding-top: 2.5rem;
+    padding-top: 1.875rem;
   }
 }
 </style>

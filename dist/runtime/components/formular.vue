@@ -23,9 +23,9 @@
           @submit="handleSubmit"
           ref="form"
         >
-          <template v-for="block in preparedBlocks">
+          <template v-for="block in preparedBlocks" :key="getId(block[0])">
             <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
-              <div :class="getFieldClassList(field)" v-for="field in block">
+              <div :class="getFieldClassList(field)" v-for="field in block" :key="getId(field)">
                 <form-fields
                   :field="field"
                   :options="getOptions(field)"
@@ -37,6 +37,7 @@
                   @action-changed="updateAction"
                   :has-error="hasError(field)"
                   @form-field-updated="handleFormFieldUpdate($event)"
+                  @field-action="$emit('field-action', $event)"
                 />
               </div>
             </div>
@@ -75,7 +76,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 import Loading from '../utils/loading.js';
 
 export default {
-  emits: ['submit', 'error'],
+  emits: ['submit', 'error', 'field-action'],
   tagName: 'formular',
   data() {
     return {
