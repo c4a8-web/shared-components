@@ -31,3 +31,32 @@ export const TeamCards = {
         },
     },
 };
+
+export const TeamCardsArea = {
+    args: {
+        teamCards: {
+            items: [
+                {
+                    variant: "area",
+                    area: "Managed SOC",
+                    color: "var(--color-gk-violet)",
+                    name: "Patrick Treptau",
+                    job: "Lead Cloud Architect",
+                    description: "Patrick Treptau arbeitet als Lead Cloud Architect und Trainer mit mehr als 15 Jahren Erfahrung im Microsoft Enterprise Umfeld mit Schwerpunkt Microsoft Azure.",
+                    img: "https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-patrick-treptau.png",
+                    cta: { text: "Jetzt anfragen", href: "#" }
+                },
+                {
+                    variant: "area",
+                    area: "Azure Foundation",
+                    color: "var(--color-denim)",
+                    name: "Matti Puolitaival",
+                    job: "Senior Consultant",
+                    description: "Matti Puolitaival ist Berater und Trainer für Microsoft IT Infrastrukturen und Microsoft Cloud Technologien.",
+                    img: "https://res.cloudinary.com/c4a8/image/upload/q_auto:best/people/people-matti-puolitaival.png",
+                    cta: { text: "Jetzt anfragen", href: "#" }
+                }
+            ],
+        },
+    },
+};
