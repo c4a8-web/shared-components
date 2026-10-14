@@ -61,11 +61,7 @@ export default {
 
       window.Cal('init', this.calendarId, { origin: 'https://app.cal.com' });
 
-      window.Cal.ns[this.calendarId]('inline', {
-        elementOrSelector: `#${this.calendarElementId}`,
-        config: { layout: this.layout, theme: 'auto' },
-        calLink: this.calLink,
-      });
+      this.renderCalendar();
 
       window.Cal.ns[this.calendarId]('ui', {
         cssVarsPerTheme: {
@@ -74,6 +70,19 @@ export default {
         },
         hideEventTypeDetails: false,
         layout: this.layout,
+      });
+    },
+    renderCalendar() {
+      if (!this.hasCal()) return;
+
+      const element = document.getElementById(this.calendarElementId);
+
+      if (element) element.innerHTML = '';
+
+      window.Cal.ns[this.calendarId]('inline', {
+        elementOrSelector: `#${this.calendarElementId}`,
+        config: { layout: this.layout, theme: 'auto' },
+        calLink: this.calLink,
       });
     },
     initCal() {
