@@ -82,7 +82,10 @@ export default {
   },
   props: {
     ctaList: Array,
-    spacing: String,
+    spacing: {
+      type: String,
+      default: '',
+    },
     background: String,
     bgColor: String,
     logo: Object,

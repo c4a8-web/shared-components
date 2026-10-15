@@ -1,6 +1,6 @@
 <template>
   <div class="product-blocks utility-animation container-fluid" :style="backgroundColorStyle" ref="root">
-    <div class="container space-2">
+    <div :class="['container', spacing]">
       <div
         v-if="headline"
         class="container pb-4 pb-lg-6 fade-in-bottom"
@@ -61,6 +61,7 @@ export default {
   props: {
     productBlocks: Object,
     headline: String || Object,
+    spacing: { type: String, default: 'space-top-2 space-bottom-2' },
   },
   computed: {
     backgroundColorStyle() {

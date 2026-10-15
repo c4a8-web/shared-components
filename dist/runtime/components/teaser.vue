@@ -13,7 +13,7 @@
           </div>
           <div class="teaser__text font-size-2 fade-in-bottom" data-utility-animation-step="1">{{ computedText }}</div>
           <div class="teaser__cta fade-in-bottom" data-utility-animation-step="1">
-            <cta
+            <cta 
               :text="ctaText"
               :href="ctaHref"
               :link="link"
@@ -57,7 +57,10 @@ export default {
       type: String,
       default: 'teaser',
     },
-    spacing: String,
+    spacing: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     classList() {

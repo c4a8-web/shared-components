@@ -57,7 +57,10 @@ export default {
       type: String,
       default: 'teaser',
     },
-    spacing: String,
+    spacing: {
+      type: String,
+      default: '',
+    },
   },
   computed: {
     classList() {

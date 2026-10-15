@@ -1,5 +1,6 @@
 <template>
     <div :class="classList">
+      <headline v-if="headline" :text="headline" class="mb-8" />
       <div class="row justify-content-lg-center align-items-md-center">
         <template v-for="item in itemsWithFallback">
           <div class="col-lg-10">
@@ -24,7 +25,7 @@ export default {
   },
   computed: {
     classList() {
-      return ['feature-list container space-2 vue-component'];
+      return ['feature-list container vue-component', this.spacing];
     },
     itemsWithFallback() {
       const items = [];
@@ -57,6 +58,11 @@ export default {
 
   props: {
     items: Array,
+    headline: {
+      type: String,
+      default: 'Features',
+    },
+    spacing: { type: String, default: 'space-top-2 space-bottom-2' },
   }
 };
 </script>

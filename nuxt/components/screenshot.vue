@@ -55,7 +55,10 @@ export default {
     },
   },
   props: {
-    spacing: String,
+    spacing: {
+      type: String,
+      default: '',
+    },
     level: String,
     headline: String,
     copy: String,
