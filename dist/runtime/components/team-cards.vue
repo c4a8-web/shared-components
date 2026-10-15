@@ -1,8 +1,9 @@
 <template>
-  <div v-if="teamCards">
-    <div class="team-cards container space-2">
-      <div class="row mx-n2 mb-5">
-        <team-cards-item v-for="(item, index) in teamCards.items" :key="index" v-bind="item" />
+  <div v-if="teamCards" :class="spacing">
+    <div class="team-cards container">
+      <headline v-if="headline" :text="headline" class="row mb-8" />
+      <div class="row">
+        <team-cards-item v-for="(item, index) in teamCards.items" :key="index" v-bind="item"  />
       </div>
     </div>
   </div>
@@ -15,6 +16,14 @@ export default {
     teamCards: {
       type: Object,
       required: true,
+    },
+    headline: {
+      type: String,
+      default: 'dxfcgztuhiojpk',
+    },
+    spacing: {
+      type: String,
+      default: 'space-top-2 space-bottom-2',
     },
   },
 };
