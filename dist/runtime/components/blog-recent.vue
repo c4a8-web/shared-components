@@ -77,6 +77,7 @@ export default {
     return {
       hideData: ['tags', 'footer'],
       filesValue: [],
+      isMounted: false,
     };
   },
   setup() {
@@ -243,20 +244,36 @@ export default {
   },
   watch: {
     filesValue(newValue) {
-      if (newValue.length > 0) {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => this.init());
-        } else {
-          this.$nextTick(() => setTimeout(() => this.init(), 50));
-        }
+      // Before mount the refs do not exist yet; mounted() schedules the init then.
+      if (newValue.length > 0 && this.isMounted) {
+        this.scheduleInit();
       }
     },
   },
+  mounted() {
+    // Under a pending <Suspense> (e.g. a page still loading an async component) the
+    // template refs are only set once the boundary resolves, which is also when
+    // mounted() runs. Scheduling from here guarantees init() finds its refs.
+    this.isMounted = true;
+
+    if (this.filesValue.length > 0) {
+      this.scheduleInit();
+    }
+  },
   methods: {
+    scheduleInit() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => this.init());
+      } else {
+        this.$nextTick(() => setTimeout(() => this.init(), 50));
+      }
+    },
     init() {
       if (!this.$refs.container || !this.$refs.root) return;
 
-      Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+      if (!this.$refs.container.classList.contains('slick-initialized')) {
+        Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+      }
 
       if (this.sticky) {
         StickyScroller.init([this.$refs.root]);
