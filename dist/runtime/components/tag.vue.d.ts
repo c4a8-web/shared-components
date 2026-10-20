@@ -10,7 +10,7 @@ declare namespace _default {
         function hasIcon(): any;
     }
     function setup(): {
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: any;
         strategy: any;
     };
     namespace props {

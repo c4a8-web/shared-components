@@ -27,9 +27,9 @@ import { useI18n } from '#imports';
 export default {
   tagName: 'authors',
   setup() {
-    const { locale } = useI18n();
+    const { $getLocale } = useI18n();
 
-    return { locale };
+    return { locale: $getLocale() };
   },
   computed: {
     classList() {

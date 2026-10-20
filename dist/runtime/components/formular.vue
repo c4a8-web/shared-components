@@ -161,16 +161,14 @@ export default {
       let index = 0;
       let tempBlock = [];
 
-      this.form?.fields?.forEach((field) => {
-        if (this.useTranslation) {
-          if (field.label) {
-            field.label = this.$t(field.label);
-          }
-
-          if (field.requiredMsg) {
-            field.requiredMsg = this.$t(field.requiredMsg);
-          }
-        }
+      this.form?.fields?.forEach((sourceField) => {
+        const field = this.useTranslation
+          ? {
+              ...sourceField,
+              ...(sourceField.label && { label: this.$t(sourceField.label) }),
+              ...(sourceField.requiredMsg && { requiredMsg: this.$t(sourceField.requiredMsg) }),
+            }
+          : sourceField;
 
         if (field.rowStart || field.rowEnd) {
           if (field.rowStart) {

@@ -1,4 +1,6 @@
 import { promises } from 'fs';
+import { pathToFileURL } from 'url';
+import { join } from 'path';
 import { defineNuxtModule, createResolver, installModule, addComponentsDir, addTemplate, addLayout, addPlugin, extendPages, addImportsDir } from '@nuxt/kit';
 
 
@@ -27,6 +29,9 @@ const module = defineNuxtModule({
     const { theme } = _options;
     console.log("\u2714 Shared components module setup");
     _nuxt.options.runtimeConfig.public.sharedComponents = _options || {};
+    const headerLayoutScript = "(function(){try{var raw=window.sessionStorage.getItem('vHeaderLayout');if(!raw)return;var cache=JSON.parse(raw);if(!cache||cache.viewport!==window.innerWidth)return;var apply=function(header,logo){if(cache.condensed)header.classList.add('is-condensed');if(cache.collapsed)header.classList.add('is-logo-collapsed');header.classList.remove('is-measuring');if(cache.naturalWidth)logo.style.setProperty('--header-logo-natural-width',cache.naturalWidth+'px');if(cache.logoOffset)logo.style.paddingLeft=cache.logoOffset+'px';};var find=function(){var header=document.querySelector('.header.vue-component');var logo=header&&header.querySelector('.header__logo');if(logo)apply(header,logo);return !!logo;};if(find())return;var observer=new MutationObserver(function(){if(find())observer.disconnect();});observer.observe(document.documentElement,{childList:true,subtree:true});window.addEventListener('DOMContentLoaded',function(){observer.disconnect();});}catch(e){}})();";
+    _nuxt.options.app.head.script = _nuxt.options.app.head.script || [];
+    _nuxt.options.app.head.script.push({ innerHTML: headerLayoutScript, tagPosition: "head" });
     const defaultSitemapOptions = {
       discoverImages: false,
       discoverVideos: false,
@@ -147,7 +152,54 @@ const module = defineNuxtModule({
       });
     });
     addImportsDir(resolve("./runtime/composables"));
+    try {
+      await registerSharedI18n(_nuxt, resolve);
+      console.log("\u2714 [sc-i18n] shared translations layer registered");
+    } catch (e) {
+      console.error("\u2716 [sc-i18n] FAILED:", e && e.stack || e);
+    }
+    _nuxt.hook("nitro:build:public-assets", (nitro) => writeSecurityTxt(_nuxt, nitro.options.output.publicDir));
   }
 });
+async function registerSharedI18n(_nuxt, resolve) {
+  const globalUrl = pathToFileURL(resolve("./runtime/locales/global.js")).href;
+  const { default: translations } = await import(globalUrl);
+  const translationDirName = _nuxt.options.i18n?.translationDir || "locales";
+  const layerDir = resolve("./sc-i18n-layer");
+  const localesDir = join(layerDir, translationDirName);
+  await promises.mkdir(localesDir, { recursive: true });
+  for (const [code, messages] of Object.entries(translations)) {
+    await promises.writeFile(join(localesDir, `${code}.json`), JSON.stringify(messages));
+  }
+  const base = _nuxt.options._layers[0];
+  _nuxt.options._layers.push({
+    ...base,
+    cwd: layerDir,
+    config: { ...base.config, rootDir: layerDir, srcDir: layerDir }
+  });
+}
+async function writeSecurityTxt(_nuxt, publicDir) {
+  const siteUrl = _nuxt.options.site?.url;
+  if (!siteUrl)
+    return;
+  const origin = /^https?:\/\//.test(siteUrl) ? siteUrl : `https://${siteUrl}`;
+  const now = /* @__PURE__ */ new Date();
+  const expires = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth() + 7, 1));
+  const wellKnownDir = join(publicDir, ".well-known");
+  await promises.mkdir(wellKnownDir, { recursive: true });
+  await promises.writeFile(
+    join(wellKnownDir, "security.txt"),
+    [
+      "# glueckkanja AG security contact",
+      "# Report security vulnerabilities responsibly. Thank you.",
+      "",
+      "Contact: mailto:c4a8-support@glueckkanja.com",
+      `Expires: ${expires.toISOString()}`,
+      "Preferred-Languages: en, de",
+      `Canonical: ${origin.replace(/\/$/, "")}/.well-known/security.txt`,
+      ""
+    ].join("\n")
+  );
+}
 
 export { module as default };

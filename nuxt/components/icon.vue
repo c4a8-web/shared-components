@@ -43,6 +43,7 @@ import TileView from './icons/tile-view.vue';
 import User from './icons/user.vue';
 import Quote from './icons/quote.vue';
 import World from './icons/world.vue';
+import WorldDetailed from './icons/world-detailed.vue';
 
 export default {
   components: {
@@ -88,6 +89,7 @@ export default {
     user: User,
     quote: Quote,
     world: World,
+    'world-detailed': WorldDetailed,
     'x-mark': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/x-mark.vue') }),
     heart: defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/heart.vue') }),
     'charging-station': defineAsyncComponent({ suspensible: false, hydrate: hydrateOnIdle(), loader: () => import('./icons/charging-station.vue') }),

@@ -50,10 +50,10 @@ export default {
     };
   },
   setup() {
-    const { locale } = useI18n();
+    const { $getLocale } = useI18n();
     const store = useAppStore();
 
-    return { locale, store };
+    return { locale: $getLocale(), store };
   },
   computed: {
     postCount() {

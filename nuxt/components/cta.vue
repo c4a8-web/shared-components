@@ -46,6 +46,7 @@ export default {
         this.icon ? `cta--has-icon cta--icon-${this.icon}` : '',
         Tools.isTrue(this.reversed) === true ? 'cta--reversed' : '',
         Tools.isTrue(this.monochrome) === true ? 'cta--monochrome' : '',
+        Tools.isTrue(this.small) === true ? 'cta--small' : '',
         this.link && Tools.isTrue(this.active) === true ? State.ACTIVE : '',
         Tools.isTrue(this.loading) ? State.LOADING : '',
         Tools.isTrue(this.hasBackground) === true ? 'cta--has-background' : '',
@@ -144,6 +145,9 @@ export default {
       default: null,
     },
     monochrome: {
+      default: null,
+    },
+    small: {
       default: null,
     },
     active: {
@@ -470,6 +474,30 @@ export default {
           stroke: currentColor;
         }
       }
+    }
+  }
+
+  &.cta--small {
+    &::after,
+    &.btn {
+      padding: spacing(2);
+    }
+
+    &.cta--has-icon,
+    &.cta--download,
+    &.cta--external {
+      &::after,
+      &.btn {
+        padding-right: spacing(10);
+      }
+    }
+
+    &:not(.link) .icon {
+      transform: translateY(-50%) scale(0.75);
+    }
+
+    &.cta--download:not(.link) .icon {
+      transform: translateY(-50%) rotate(135deg) scale(0.75);
     }
   }
 }

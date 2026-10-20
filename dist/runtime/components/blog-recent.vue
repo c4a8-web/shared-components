@@ -1,6 +1,6 @@
 <template>
   <template v-if="showComponent">
-    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list }">
+    <SharedContentList :data-list="postsArray" :query="query" v-slot="{ list, authors }">
       <template v-if="list">
         <markdown-files
           :list="list"
@@ -36,7 +36,7 @@
                       :author="post.author"
                       :target="target(post)"
                       :event="event(post)"
-                      :dataAuthors="dataAuthorsValue"
+                      :dataAuthors="dataAuthors || authors"
                       :external-language="post.externalLanguage"
                       :excerpt="excerpt(post)"
                     />
@@ -67,28 +67,25 @@ import StickyScroller from '../utils/sticky-scroller.js';
 import UtilityAnimation from '../utils/utility-animation.js';
 import MarkdownFiles from './markdown-files.vue';
 import useConfig from '../composables/useConfig.js';
-import useAuthors from '../composables/useAuthors.js';
 
-import { useI18n } from 'vue-i18n';
+import { useNuxtApp } from '#imports';
 
 export default {
   components: { MarkdownFiles },
   tagName: 'blog-recent',
   data() {
     return {
-      hideData: ['tags'],
+      hideData: ['tags', 'footer'],
       filesValue: [],
-      dataAuthorsValue: null,
+      isMounted: false,
     };
   },
   setup() {
     const config = useConfig();
-    const { authors } = useAuthors();
-    const { strategy } = useI18n();
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
 
     return {
       config,
-      authors,
       strategy,
     };
   },
@@ -109,7 +106,7 @@ export default {
     query() {
       let query = {};
 
-      const maxItemsToFetch = 21;
+      const maxItemsToFetch = 15;
 
       query.limit = this.limit;
       query.sort = [{ moment: this.reversed ? 1 : -1 }];
@@ -247,34 +244,42 @@ export default {
   },
   watch: {
     filesValue(newValue) {
-      if (newValue.length > 0) {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => this.init());
-        } else {
-          this.$nextTick(() => setTimeout(() => this.init(), 50));
-        }
+      // Before mount the refs do not exist yet; mounted() schedules the init then.
+      if (newValue.length > 0 && this.isMounted) {
+        this.scheduleInit();
       }
     },
   },
-  created() {
-    this.getDataAuthors();
+  mounted() {
+    // Under a pending <Suspense> (e.g. a page still loading an async component) the
+    // template refs are only set once the boundary resolves, which is also when
+    // mounted() runs. Scheduling from here guarantees init() finds its refs.
+    this.isMounted = true;
+
+    if (this.filesValue.length > 0) {
+      this.scheduleInit();
+    }
   },
   methods: {
+    scheduleInit() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => this.init());
+      } else {
+        this.$nextTick(() => setTimeout(() => this.init(), 50));
+      }
+    },
     init() {
       if (!this.$refs.container || !this.$refs.root) return;
 
-      Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+      if (!this.$refs.container.classList.contains('slick-initialized')) {
+        Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
+      }
 
       if (this.sticky) {
         StickyScroller.init([this.$refs.root]);
       }
 
       UtilityAnimation.init([this.$refs.root]);
-    },
-    async getDataAuthors() {
-      if (this.dataAuthors) return (this.dataAuthorsValue = this.dataAuthors);
-
-      this.dataAuthorsValue = this.authors;
     },
     event(post) {
       return post.layout === 'post' ? false : true;
@@ -300,7 +305,7 @@ export default {
       return post.excerpt || post.hero?.subline;
     },
     updateFiles(files) {
-      if (!files) return;
+      if (!files || files.length === 0) return false;
 
       this.filesValue = files;
 

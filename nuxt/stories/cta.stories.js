@@ -119,6 +119,10 @@ export default {
       description: 'Sets a semi transparent background for the secondary skin',
       type: 'boolean',
     },
+    small: {
+      description: 'Reduces the padding and scales the icon down',
+      type: 'boolean',
+    },
     classes: {
       description: 'Adds classes:',
       table: {
@@ -161,6 +165,22 @@ const overviewRows = [
       { ...ctaBase, text: 'Primary external', skin: 'primary', button: true, external: true },
       { ...ctaBase, text: 'Primary download', skin: 'primary', button: true, download: true },
       { ...ctaBase, text: 'Secondary external', skin: 'secondary', button: true, external: true },
+    ],
+  },
+  {
+    label: 'Small buttons',
+    variants: [
+      { ...ctaBase, text: 'Primary small', skin: 'primary', button: true, small: true },
+      { ...ctaBase, text: 'Secondary small', skin: 'secondary', button: true, small: true },
+      { ...ctaBase, text: 'Primary small external', skin: 'primary', button: true, small: true, external: true },
+      {
+        ...ctaBase,
+        text: 'Primary small cutoff external',
+        skin: 'primary is-cutoff',
+        button: true,
+        small: true,
+        external: true,
+      },
     ],
   },
   // {
@@ -286,6 +306,18 @@ export const SecondaryButton = {
     button: true,
   },
 };
+
+export const PrimaryButtonSmall = {
+  args: {
+    text: 'Primary Button',
+    href: 'javascript:void(0)',
+    skin: 'primary',
+    button: true,
+    small: true,
+    external: true,
+  },
+};
+
 export const SecondaryButtonMonochrome = {
   args: {
     text: 'Secondary Button',

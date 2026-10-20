@@ -27,16 +27,16 @@
   ></page-default>
 </template>
 <script setup>
+import { useHeaderData } from '#imports';
+
 const props = defineProps({
   error: Object,
 });
 
-import HeaderData from '~/content/header.json';
-
-// TODO ask about the tell us link
+const { data: headerData } = await useHeaderData();
 
 const mergedHeaderData = computed(() => {
-  return { ...HeaderData, ...{ light: true } };
+  return { ...headerData.value, light: true };
 });
 
 // TODO only log error in dev environment

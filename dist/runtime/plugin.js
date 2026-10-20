@@ -1,22 +1,23 @@
-import { defineNuxtPlugin, addRouteMiddleware, useAsyncData, useHead } from '#app';
+import { defineNuxtPlugin, addRouteMiddleware, useAsyncData, useHead, useRuntimeConfig } from '#app';
 import Events from './utils/events.js';
-import translations from './locales/global.js';
 import { version } from '../../package.json';
 
+// Global UI translations (locales/global.js) are no longer merged here: the
+// module contributes them to nuxt-i18n-micro as a layer at build time, so $t
+// resolves them natively. See registerSharedI18n in the module.
 export default defineNuxtPlugin((_nuxtApp) => {
-  useHead({
-    htmlAttrs: {
-      'data-shared-components-version': version,
-    },
-  });
+  const sharedComponentsConfig = useRuntimeConfig().public.sharedComponents || {};
 
-  const i18n = _nuxtApp.$i18n;
+  const htmlAttrs = {
+    'data-shared-components-version': version,
+  };
 
-  if (i18n) {
-    for (const [locale, messages] of Object.entries(translations)) {
-      i18n?.mergeLocaleMessage(locale, messages);
-    }
+  // Opt-out for the richtext conclusion box (see _richtext.scss).
+  if (sharedComponentsConfig.richtextConclusionBox === false) {
+    htmlAttrs['data-richtext-conclusion-box'] = 'false';
   }
+
+  useHead({ htmlAttrs });
 
   addRouteMiddleware(
     'global-collection-layouts',

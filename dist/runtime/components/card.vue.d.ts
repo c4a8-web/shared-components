@@ -19,7 +19,7 @@ declare namespace _default {
         function classList(): any[];
         function productValue(): any;
         function truncatedExcerpt(): any;
-        function strippedExcerpt(): any;
+        function strippedExcerpt(): string | undefined;
         function cardDate(): any;
         function hasExtension(): any;
         function hasBlogTitlePic(): boolean;

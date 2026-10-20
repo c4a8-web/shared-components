@@ -12,7 +12,6 @@ import {
   useNuxtApp,
   useRequestURL,
   useRuntimeConfig,
-  useLocalePath,
   navigateTo,
   useDynamicPageMeta,
   useSeo,
@@ -27,15 +26,15 @@ import { parseEventTime, resolveEventEndDate, personSlug, decodeEntities } from 
 
 const route = useRoute();
 const nuxtApp = useNuxtApp();
-const currentLocale = nuxtApp.$i18n.locale;
+const currentLocale = nuxtApp.$getLocale();
 
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = Tools.getDataKey('event', null, currentLocale.value, path);
+const dataKey = Tools.getDataKey('event', null, currentLocale, path);
 
 const { data: event } = await useAsyncData(dataKey, () => {
-  const collectionName = 'content_' + currentLocale.value;
+  const collectionName = 'content_' + currentLocale;
   const query = queryCollection(collectionName).path(path);
 
   return query.first();
@@ -45,7 +44,7 @@ const { sharedComponents } = useRuntimeConfig().public;
 const isDetailPage = computed(() => event.value?.detailPage ?? event.value?.meta?.detailPage ?? false);
 
 if (sharedComponents?.requireEventDetailPage && event.value && !isDetailPage.value) {
-  await navigateTo(useLocalePath()('/'), { redirectCode: 301, replace: true });
+  await navigateTo(nuxtApp.$localePath('/'), { redirectCode: 301, replace: true });
 }
 
 const nextRoute = EventForm.action;

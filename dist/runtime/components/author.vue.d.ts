@@ -6,7 +6,7 @@ declare namespace _default {
         };
     };
     function setup(): {
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: any;
         store: import("pinia").Store<"app", {
             loading: boolean;
             hero: {};

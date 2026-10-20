@@ -286,6 +286,13 @@ export const World = {
   },
 };
 
+export const WorldDetailed = {
+  args: {
+    icon: 'world-detailed',
+    size: 'xxl',
+  },
+};
+
 export const StrategySplit = {
   args: {
     icon: 'strategy-split',

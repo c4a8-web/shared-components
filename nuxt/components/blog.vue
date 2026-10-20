@@ -4,7 +4,7 @@
       <!-- Search is currently not used -->
     </div>
 
-    <SharedContentList :data-list="posts" :query="query" v-slot="{ list }">
+    <SharedContentList :data-list="posts" :query="query" v-slot="{ list, authors }">
       <template v-if="list">
         <markdown-files :list="list" v-slot="{ files }" :query="query" :is-recent="true" :strategy="strategy">
           <template v-if="updateFiles(files)">
@@ -44,11 +44,10 @@
   </div>
 </template>
 <script>
-import { useI18n } from '#imports';
+import { useI18n, useNuxtApp } from '#imports';
 
 import Tools from '../utils/tools.js';
 import useConfig from '../composables/useConfig.js';
-import useAuthors from '../composables/useAuthors.js';
 
 export default {
   tagName: 'blog',
@@ -59,14 +58,13 @@ export default {
   },
   setup() {
     const config = useConfig();
-    const { locale, strategy } = useI18n();
-    const { authors } = useAuthors();
+    const { $getLocale } = useI18n();
+    const strategy = useNuxtApp().$getI18nConfig?.().strategy ?? 'prefix';
 
     return {
       config,
-      locale,
+      locale: $getLocale(),
       strategy,
-      authors,
     };
   },
   computed: {

@@ -99,9 +99,9 @@ export default {
     },
   },
   setup() {
-    const { locale } = useI18n();
+    const { $getLocale } = useI18n();
 
-    return { locale };
+    return { locale: $getLocale() };
   },
   mounted() {
     this.loading = new Loading(this.$refs['job-list-detail'], () => {

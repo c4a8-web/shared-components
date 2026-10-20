@@ -14,15 +14,15 @@ import { useAppStore } from '../../stores/app';
 const store = useAppStore();
 const route = useRoute();
 const nuxtApp = useNuxtApp();
-const currentLocale = nuxtApp.$i18n.locale;
+const currentLocale = nuxtApp.$getLocale();
 
 const dynamicMeta = useDynamicPageMeta();
 
 const path = route.path.replace(/^\/[a-z]{2}\//, '/');
-const dataKey = Tools.getDataKey('testimonial', null, currentLocale.value, path);
+const dataKey = Tools.getDataKey('testimonial', null, currentLocale, path);
 
 const { data: testimonial } = await useAsyncData(dataKey, () => {
-  const collectionName = 'content_' + currentLocale.value;
+  const collectionName = 'content_' + currentLocale;
   const query = queryCollection(collectionName).path(path);
 
   return query.first();

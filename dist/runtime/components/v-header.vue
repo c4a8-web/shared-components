@@ -16,7 +16,9 @@
               @click="toggleSecondaryNavigation"
             >
               <icon class="header__secondary-navigation-icon" icon="grid" />
-              <span class="header__secondary-navigation-text">{{ secondaryNavigation.text }}</span>
+              <span class="header__secondary-navigation-text">{{
+                secondaryNavigation.languages?.[lowerLang]?.title || secondaryNavigation.text
+              }}</span>
             </div>
             <div class="header__secondary-navigation-content">
               <div
@@ -35,7 +37,7 @@
                     <v-img
                       :img="child.img"
                       class="header__secondary-navigation-item-img"
-                      :cloudinary="true"
+                      :cloudinary="child.cloudinary ?? true"
                       :alt="child.languages[lowerLang]?.alt || child.languages[lowerLang]?.title"
                     />
                     <span class="header__secondary-navigation-item-text">{{ child.languages[lowerLang]?.title }}</span>
@@ -46,14 +48,22 @@
           </div>
           <div class="header__logo" :style="headerLogoStyle">
             <a :href="homeObj?.url">
-              <v-img
-                :img="home?.imgLight"
-                class="header__logo-light"
-                :cloudinary="true"
-                :alt="logoAlt"
-                fetchpriority="high"
-              />
-              <v-img :img="home?.img" class="header__logo-default" :cloudinary="true" :alt="logoAlt" fetchpriority="high" />
+              <span class="header__logo-media" ref="logoMedia">
+                <v-img
+                  :img="home?.imgLight"
+                  class="header__logo-light"
+                  :cloudinary="home?.cloudinary ?? true"
+                  :alt="logoAlt"
+                  fetchpriority="high"
+                />
+                <v-img
+                  :img="home?.img"
+                  class="header__logo-default"
+                  :cloudinary="home?.cloudinary ?? true"
+                  :alt="logoAlt"
+                  fetchpriority="high"
+                />
+              </span>
             </a>
           </div>
           <div class="header__menu" v-on:click="handleCloseClick">
@@ -101,19 +111,42 @@
               <div class="header__button" v-if="button">
                 <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
               </div>
-              <div class="header__language-switch" v-if="hasLangSwitch">
-                <a
-                  :key="key"
-                  v-for="(_, key) in home.languages"
-                  :class="{ 'header__language-link custom': true, active: key === lowerLang }"
-                  v-on:click="handleLanguageSwitch(key)"
-                  >{{ key }}</a
-                >
+              <div
+                :class="{
+                  'header__language-switch header__language-switch--mobile': true,
+                  'is-expanded': languageListExpanded,
+                }"
+                v-if="hasLangSwitch"
+              >
+                <a class="header__link custom" v-on:click="toggleLanguageList">
+                  <div class="header__link-content">
+                    <span class="header__language-label">
+                      <icon icon="world-detailed" :size="22" />
+                      {{ $t('changeLanguage') }}
+                    </span>
+                    <icon class="header__link-icon" icon="expand" size="small" />
+                  </div>
+                </a>
+                <div class="header__language-switch-list">
+                  <a
+                    v-for="option in languageOptions"
+                    :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
+                    v-on:click="handleLanguageSwitch(option.code)"
+                    :key="option.code"
+                  >
+                    <span class="header__language-names">
+                      <span class="header__language-native">{{ option.native }}</span>
+                      <span class="header__language-translated" v-if="option.translated">{{ option.translated }}</span>
+                    </span>
+                    <span class="header__language-code">{{ option.label }}</span>
+                  </a>
+                  <p class="header__language-note">{{ languageNote }}</p>
+                </div>
               </div>
             </div>
           </nav>
           <div class="header__button" v-if="button">
-            <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" />
+            <cta :classes="ctaClassList" :on-surface="onSurfaceCta" v-bind="button" :small="true" />
           </div>
           <search v-if="searchValue" class="header__search" language="de" placeholder="search" />
           <div
@@ -123,17 +156,23 @@
             v-if="hasLangSwitch"
             ref="languageSwitch"
           >
-            <span class="header__link-text">{{ lang }}</span>
-            <span class="header__link-text-spacer">{{ lang }}</span>
+            <span class="header__link-text">{{ lowerLang }}</span>
+            <span class="header__link-text-spacer">{{ lowerLang }}</span>
             <icon class="header__link-icon" icon="expand" size="small" />
             <div class="header__language-switch-flyout" ref="languageSwitchFlyout">
               <a
-                v-for="(_, key) in home.languages"
-                :class="{ 'header__language-link custom': true, 'd-none': key === lowerLang }"
-                v-on:click="handleLanguageSwitch(key)"
-                :key="key"
-                >{{ key }}</a
+                v-for="option in languageOptions"
+                :class="{ 'header__language-link custom': true, active: option.code === lowerLang }"
+                v-on:click="handleLanguageSwitch(option.code)"
+                :key="option.code"
               >
+                <span class="header__language-names">
+                  <span class="header__language-native">{{ option.native }}</span>
+                  <span class="header__language-translated" v-if="option.translated">{{ option.translated }}</span>
+                </span>
+                <span class="header__language-code">{{ option.label }}</span>
+              </a>
+              <p class="header__language-note">{{ languageNote }}</p>
             </div>
           </div>
         </div>
@@ -187,7 +226,7 @@
                       <v-img
                         :img="subChild.img"
                         class="header__product-list-image"
-                        :cloudinary="true"
+                        :cloudinary="subChild.cloudinary ?? true"
                         :alt="subChild.languages[lowerLang]?.alt || subChild.languages[lowerLang]?.title"
                       />
                       <div class="header__product-list-data">
@@ -209,18 +248,45 @@
 </template>
 
 <script>
+import { computed } from 'vue';
+import { useI18n, useNuxtApp } from '#imports';
 import { useAppStore } from '../stores/app.js';
 import Tools from '../utils/tools.js';
 import State from '../utils/state.js';
 import Events from '../utils/events.js';
 import SecondaryNavigation from '../utils/data/secondary-navigation.js';
+import Languages from '../utils/languages.js';
+
+const HEADER_LAYOUT_CACHE_KEY = 'vHeaderLayout';
+const HEADER_COLLAPSE_MAX_VIEWPORT = 1400;
+
+const isOutsideCollapseMeasureRange = () => {
+  if (typeof window === 'undefined') return false;
+
+  return !Tools.isAboveBreakpoint('lg') || window.innerWidth >= HEADER_COLLAPSE_MAX_VIEWPORT;
+};
+
+const readHeaderLayoutCache = () => {
+  if (typeof window === 'undefined') return null;
+
+  try {
+    const cache = JSON.parse(window.sessionStorage.getItem(HEADER_LAYOUT_CACHE_KEY));
+
+    return cache && cache.viewport === window.innerWidth ? cache : null;
+  } catch {
+    return null;
+  }
+};
 
 export default {
   tagName: 'v-header',
   setup() {
     const store = useAppStore();
 
-    return { store };
+    const { $switchLocalePath: switchLocalePath, $getLocales } = useI18n();
+    const availableLocales = computed(() => ($getLocales() || []).map((l) => (typeof l === 'string' ? l : l.code)));
+
+    return { store, switchLocalePath, availableLocales };
   },
   computed: {
     classList() {
@@ -232,6 +298,10 @@ export default {
         Tools.isTrue(this.product) ? 'header--product' : '',
         !Tools.isTrue(this.closed) ? State.EXPANDED : '',
         Tools.isTrue(this.blendMode) ? 'header--blending' : '',
+        this.collapseRatio ? 'header--collapsible' : '',
+        this.collapseRatio && !this.logoCollapseReady ? 'is-measuring' : '',
+        this.logoCollapsed ? 'is-logo-collapsed' : '',
+        this.headerCondensed ? 'is-condensed' : '',
         this.onSurface ? State.ON_SURFACE : '',
         this.inUpdate ? 'is-updating' : '',
         'vue-component',
@@ -256,10 +326,29 @@ export default {
         })),
       };
     },
-    headerLogoStyle() {
-      if (!this.secondaryNavigation || !this.logoOffsetPosition) return;
+    collapseRatio() {
+      const ratio = parseFloat(this.collapse);
 
-      return `padding-left: ${this.logoOffsetPosition}px;`;
+      if (!ratio || ratio <= 0) return null;
+
+      return ratio > 1 ? ratio / 100 : ratio;
+    },
+    headerLogoStyle() {
+      const styles = [];
+
+      if (this.secondaryNavigation && this.logoOffsetPosition) {
+        styles.push(`padding-left: ${this.logoOffsetPosition}px`);
+      }
+
+      if (this.collapseRatio) {
+        styles.push(`--header-logo-collapse: ${this.collapseRatio}`);
+      }
+
+      if (this.collapseRatio && this.logoNaturalWidth) {
+        styles.push(`--header-logo-natural-width: ${this.logoNaturalWidth}px`);
+      }
+
+      return styles.length ? `${styles.join(';')};` : undefined;
     },
     headerContainerClassList() {
       return ['header__container', this.containerClass];
@@ -277,6 +366,16 @@ export default {
     },
     lowerLang() {
       return this.lang ? this.lang.toLowerCase() : this.defaultLang;
+    },
+    languageNote() {
+      // The source language is the site's default locale: German on corporate, English
+      // on the product sites. Its name is itself translated, so the sentence reads
+      // naturally in every language.
+      const source = useNuxtApp().$getI18nConfig?.().defaultLocale ?? 'en';
+      const sourceKey = `languageSource${Tools.capitalize(source)}`;
+      const sourceName = this.$t(sourceKey);
+
+      return this.$t('languageNote', { source: sourceName === sourceKey ? this.$t('languageSourceEn') : sourceName });
     },
     searchValue() {
       return Tools.isTrue(this.search);
@@ -309,7 +408,10 @@ export default {
       return this.light === true;
     },
     hasLangSwitch() {
-      return Object.keys(this.home?.languages).length > 1;
+      return this.availableLocales.length > 1;
+    },
+    languageOptions() {
+      return Languages.getOptions(this.availableLocales, this.lowerLang);
     },
     hasContact() {
       return this.contact;
@@ -366,6 +468,7 @@ export default {
 
     this.setCtaClasses();
     this.setLinkWidth();
+    this.setLogoNaturalWidth();
     this.handleScroll();
 
     if (this.secondaryNavigation) {
@@ -375,6 +478,10 @@ export default {
     this.initEvents.forEach((event) =>
       window.addEventListener(event, this.initMegaMenu, { once: true, passive: true })
     );
+
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => this.setLogoNaturalWidth());
+    }
   },
   updated() {
     if (this.inUpdate) {
@@ -389,6 +496,14 @@ export default {
       if (this.renderMegaMenu) return;
 
       this.renderMegaMenu = true;
+
+      if (this.secondaryNavigation) {
+        this.$nextTick(() => {
+          if (this.secondaryNavigationIsExpanded || this.secondaryNavigationInTransition) return;
+
+          this.getSecondaryNavigationDimensions();
+        });
+      }
 
       this.initEvents.forEach((event) => window.removeEventListener(event, this.initMegaMenu));
     },
@@ -517,27 +632,151 @@ export default {
         this.shrinkWidthSecondaryNavigation();
       }
     },
+    setLogoNaturalWidth() {
+      const media = this.$refs.logoMedia;
+
+      if (!media) return;
+
+      const images = [...media.querySelectorAll('img')];
+      const width = Math.max(0, ...images.map((image) => image.getBoundingClientRect().width));
+
+      if (!width) {
+        const pending = images.filter((image) => !image.complete);
+
+        if (!pending.length) {
+          this.logoCollapseReady = true;
+
+          return;
+        }
+
+        pending.forEach((image) => {
+          image.addEventListener('load', this.setLogoNaturalWidth, { once: true });
+          image.addEventListener('error', () => (this.logoCollapseReady = true), { once: true });
+        });
+
+        return;
+      }
+
+      this.logoNaturalWidth = width;
+
+      this.evaluateLogoCollapse();
+    },
     calculateLogoOffsetPosition() {
       this.logoOffsetPosition = 0;
 
-      if (!Tools.isUpperBreakpoint()) return;
+      if (Tools.isUpperBreakpoint() && !this.headerCondensed) {
+        this.logoOffsetPosition = this.getLogoOffsetSpace();
+      }
+
+      this.saveHeaderLayoutCache();
+    },
+    getLogoOffsetSpace() {
+      if (!this.secondaryNavigation) return 0;
 
       const headerContainer = this.$refs.headerContainer;
 
-      if (!headerContainer) return { leftSpace: 0 };
+      if (!headerContainer) return 0;
 
-      const style = window.getComputedStyle(headerContainer);
-      const containerWidth = parseFloat(style.width);
-      const windowWidth = window.innerWidth;
       const offsetCorrection = 20;
 
-      const margin = (windowWidth - containerWidth) / 2;
+      const margin = headerContainer.getBoundingClientRect().left;
       const buttonDimensions = this.getSecondaryNavigationButtonDimensions();
       const buttonWidth = buttonDimensions.width;
 
-      const leftSpace = margin < buttonWidth ? buttonWidth - margin - offsetCorrection : 0;
+      return margin < buttonWidth ? Math.max(0, buttonWidth - margin - offsetCorrection) : 0;
+    },
+    evaluateLogoCollapse() {
+      if (isOutsideCollapseMeasureRange()) {
+        this.logoCollapsed = false;
+        this.headerCondensed = false;
+        this.logoCollapseReady = true;
+        this.saveHeaderLayoutCache();
+        return;
+      }
 
-      this.logoOffsetPosition = leftSpace;
+      const media = this.$refs.logoMedia;
+      const header = media?.closest('.header');
+      const col = media?.closest('.header__col');
+      const logo = media?.closest('.header__logo');
+
+      if (!header || !col || !logo) return;
+
+      const wasCondensed = header.classList.contains('is-condensed');
+
+      if (wasCondensed) header.classList.remove('is-condensed');
+
+      const imageWidth = [...media.querySelectorAll('img')]
+        .map((image) => image.getBoundingClientRect().width)
+        .reduce((widest, width) => Math.max(widest, width), 0);
+
+      let measurements = null;
+
+      if (imageWidth) {
+        const colStyle = window.getComputedStyle(col);
+        const available =
+          col.getBoundingClientRect().width - parseFloat(colStyle.paddingLeft) - parseFloat(colStyle.paddingRight);
+
+        const logoStyle = window.getComputedStyle(logo);
+        const logoPadding = parseFloat(logoStyle.paddingRight) + this.getLogoOffsetSpace();
+
+        const siblingsRequired = [...col.children]
+          .filter((child) => child !== logo && child.offsetParent)
+          .reduce((total, child) => {
+            const childStyle = window.getComputedStyle(child);
+            const margins = child.classList.contains('header__language-switch')
+              ? 0
+              : parseFloat(childStyle.marginLeft) + parseFloat(childStyle.marginRight);
+            const width = Math.max(child.scrollWidth, child.getBoundingClientRect().width);
+
+            return total + width + margins;
+          }, 0);
+
+        measurements = {
+          available,
+          expanded: imageWidth + logoPadding + siblingsRequired,
+          collapsed: imageWidth * (this.collapseRatio || 1) + logoPadding + siblingsRequired,
+        };
+      }
+
+      if (wasCondensed) header.classList.add('is-condensed');
+
+      if (!measurements) return;
+
+      const condensed = measurements.collapsed > measurements.available + 1;
+      const collapsed = !condensed && measurements.expanded > measurements.available + 1;
+
+      this.logoCollapsed = collapsed;
+
+      if (!this.logoCollapseReady && collapsed) {
+        this.$nextTick(() => requestAnimationFrame(() => requestAnimationFrame(() => (this.logoCollapseReady = true))));
+      } else {
+        this.logoCollapseReady = true;
+      }
+
+      if (condensed !== this.headerCondensed) {
+        this.headerCondensed = condensed;
+        this.reset();
+        this.$nextTick(() => {
+          this.setLogoNaturalWidth();
+          this.getSecondaryNavigationDimensions();
+        });
+      }
+
+      this.saveHeaderLayoutCache();
+    },
+    saveHeaderLayoutCache() {
+      try {
+        window.sessionStorage.setItem(
+          HEADER_LAYOUT_CACHE_KEY,
+          JSON.stringify({
+            viewport: window.innerWidth,
+            condensed: this.headerCondensed,
+            collapsed: this.logoCollapsed,
+            naturalWidth: this.collapseRatio ? this.logoNaturalWidth : null,
+            logoOffset: this.logoOffsetPosition,
+          })
+        );
+      } catch {}
     },
     getSecondaryNavigationButtonDimensions() {
       const secondaryNavigationButton = this.$refs.secondaryNavigationButton;
@@ -566,7 +805,7 @@ export default {
       return children.length > this.maxLinkListsInFlyout ? false : true;
     },
     isLowerBreakpoint() {
-      return Tools.isBelowBreakpoint('md');
+      return this.headerCondensed || Tools.isBelowBreakpoint('md');
     },
     bindEvents() {
       window.addEventListener('scroll', this.handleScroll.bind(this));
@@ -576,6 +815,7 @@ export default {
     handleResize() {
       this.reset();
       this.setLinkWidth();
+      this.setLogoNaturalWidth();
       this.closeSecondaryNavigation();
       this.getSecondaryNavigationDimensions();
     },
@@ -661,6 +901,7 @@ export default {
       }
     },
     handleMouseOver(item, index) {
+      if (this.headerCondensed) return;
       if (!item.children) return;
 
       this.resetAllFlyouts();
@@ -698,6 +939,9 @@ export default {
 
       ref.classList.remove(State.EXPANDED);
     },
+    toggleLanguageList() {
+      this.languageListExpanded = !this.languageListExpanded;
+    },
     handleLanguageOver() {
       this.resetAllFlyouts();
 
@@ -710,7 +954,7 @@ export default {
       languageSwitch.classList.add(State.EXPANDED);
     },
     handleLanguageOut(event) {
-      if (event.relatedTarget?.closest('.header__flyout')) return;
+      if (event.relatedTarget?.closest('.header__language-switch')) return;
 
       this.hover = false;
 
@@ -731,6 +975,8 @@ export default {
       this.$refs['flyout']?.forEach((flyout) => {
         flyout.classList.remove(State.EXPANDED);
       });
+
+      this.$refs['languageSwitch']?.classList.remove(State.EXPANDED);
     },
     getFlyoutRef(refName) {
       return this.getRef('flyout', refName);
@@ -774,13 +1020,27 @@ export default {
 
       return nextLang[0];
     },
-    handleLanguageSwitch(nextLang) {
-      const activeUrl = this.getActiveUrlByLang(nextLang);
-      const gotoUrl = activeUrl ? activeUrl : this.home.languages[nextLang]?.url;
+    async handleLanguageSwitch(nextLang) {
+      if (nextLang === this.lowerLang) return;
 
       Tools.storageSave('preferedLanguage', nextLang, false);
 
-      document.location.href = gotoUrl;
+      const target = this.switchLocalePath(nextLang);
+      const stem = window.location.pathname.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
+
+      const alternates = await this.loadContentAlternates();
+      const missing = alternates[stem] && !alternates[stem].includes(nextLang);
+
+      document.location.href = missing || !target ? `/${nextLang}` : target;
+    },
+    loadContentAlternates() {
+      if (!this._contentAlternates) {
+        this._contentAlternates = fetch('/i18n-content-alternates.json')
+          .then((res) => (res.ok ? res.json() : {}))
+          .catch(() => ({}));
+      }
+
+      return this._contentAlternates;
     },
     getActiveUrlByLang(lang, update) {
       const currentPath = Tools.getCurrentPath();
@@ -887,7 +1147,9 @@ export default {
 
       if (!hrefLang) return;
 
-      return hrefLang.getAttribute('href');
+      const url = new URL(hrefLang.getAttribute('href'), document.location.origin);
+
+      return url.pathname + url.search + url.hash;
     },
     getParentLink(key) {
       const navi = this.clonedNavigation[key];
@@ -943,8 +1205,13 @@ export default {
     },
     theme: String,
     onSurface: Boolean,
+    collapse: {
+      default: null,
+    },
   },
   data() {
+    const layoutCache = readHeaderLayoutCache();
+
     return {
       hoverHeader: false,
       inUpdate: false,
@@ -960,7 +1227,11 @@ export default {
       ctaClassList: null,
       maxLinkListsInFlyout: 3,
       activeNavigation: {},
-      logoOffsetPosition: null,
+      logoNaturalWidth: layoutCache?.naturalWidth || null,
+      logoOffsetPosition: layoutCache?.logoOffset || 0,
+      logoCollapsed: layoutCache?.collapsed || false,
+      headerCondensed: layoutCache?.condensed || false,
+      logoCollapseReady: !!layoutCache || isOutsideCollapseMeasureRange(),
       secondaryNavigationInTransition: false,
       secondaryNavigationIsExpanded: false,
       secondaryNavigationDimensions: null,
@@ -973,6 +1244,7 @@ export default {
       },
       initEvents: ['mousemove', 'scroll', 'touchstart', 'click'],
       renderMegaMenu: false,
+      languageListExpanded: false,
     };
   },
 };
@@ -985,8 +1257,8 @@ export default {
   transition-duration: 0s;
 }
 @media (min-width: 992px) {
-  .shared-components .header.vue-component .header__language-switch .icon,
-  .shared-components .header.vue-component .header__link-content .icon {
+  .shared-components .header.vue-component:not(.is-condensed) .header__language-switch .icon,
+  .shared-components .header.vue-component:not(.is-condensed) .header__link-content .icon {
     width: 0.75rem;
     height: 0.75rem;
   }
@@ -1040,6 +1312,18 @@ export default {
 .header.vue-component:not(:hover):not(.is-scrolled):not(.is-expanded).header--light::after {
   background-color: var(--color-black);
 }
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .header.vue-component:not(.header--product):not(.is-condensed) .header__nav {
+    flex-shrink: 0;
+  }
+  .header.vue-component:not(.header--product):not(.is-condensed) .header__logo {
+    padding-right: 1rem;
+  }
+  .header.vue-component:not(.header--product):not(.is-condensed) .header__link-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
 .header.vue-component.header--product {
   --header-logo-height-small: 38px;
   --header-logo-height-medium: 34px;
@@ -1055,14 +1339,20 @@ export default {
 .header.vue-component.header--product .header__item.active .header__link::after {
   display: none;
 }
+.header.vue-component.header--product .header__link {
+  border-bottom: 0;
+}
+.header.vue-component.header--product nav {
+  bottom: 0;
+}
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__item {
+  .header.vue-component.header--product:not(.is-condensed) .header__item {
     position: relative;
   }
-  .header.vue-component.header--product .header__item.active {
+  .header.vue-component.header--product:not(.is-condensed) .header__item.active {
     color: inherit;
   }
-  .header.vue-component.header--product .header__item.active::before {
+  .header.vue-component.header--product:not(.is-condensed) .header__item.active::before {
     background-color: var(--color-highlight);
     content: "";
     height: 8px;
@@ -1074,22 +1364,81 @@ export default {
     z-index: -1;
   }
 }
-.header.vue-component.header--product .header__link {
-  border-bottom: 0;
-}
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__row {
+  .header.vue-component.header--product:not(.is-condensed) .header__row {
     padding-left: 2rem;
     padding-right: 2rem;
     margin: 0 -1rem;
   }
 }
-.header.vue-component.header--product nav {
-  bottom: 0;
+@media (min-width: 992px) and (max-width: 1339.98px) {
+  .header.vue-component.header--product:not(.is-condensed) {
+    --header-container-width: 960px;
+  }
+  .header.vue-component.header--product:not(.is-condensed) .header__container {
+    max-width: none;
+    width: auto;
+    flex-grow: 1;
+    margin-left: calc((100% - var(--header-container-width)) / 2);
+    margin-right: 0;
+  }
+}
+@media (min-width: 1200px) and (max-width: 1339.98px) {
+  .header.vue-component.header--product:not(.is-condensed) {
+    --header-container-width: 1140px;
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .header.vue-component.header--product:not(.is-condensed) {
+    --header-logo-height-large: 38px;
+  }
+  .header.vue-component.header--product:not(.is-condensed) .header__logo {
+    flex-basis: 20%;
+    padding-right: 1rem;
+  }
+  .header.vue-component.header--product:not(.is-condensed) .header__language-switch {
+    --header-language-spacing: 1rem;
+  }
+  .header.vue-component.header--product:not(.is-condensed) .header__link-content {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  .header.vue-component.header--product:not(.is-condensed) .header__button {
+    margin-left: 0.75rem;
+  }
 }
 @media (min-width: 992px) {
-  .header.vue-component.header--product .header__logo {
+  .header.vue-component.header--product:not(.is-condensed) .header__logo {
     flex-grow: 1;
+  }
+}
+@media (min-width: 992px) {
+  .header.vue-component.header--product:not(.is-condensed) .header__nav {
+    flex-shrink: 0;
+  }
+}
+.header.vue-component.header--collapsible .header__logo-media {
+  width: var(--header-logo-natural-width, max-content);
+  transition: width 0.5s cubic-bezier(0.19, 1, 0.2, 1);
+}
+.header.vue-component.header--collapsible.is-measuring .header__logo-media {
+  transition: none;
+}
+@media (min-width: 992px) and (max-width: 1399.98px) {
+  .header.vue-component.header--collapsible.is-measuring .header__nav,
+  .header.vue-component.header--collapsible.is-measuring .header__button,
+  .header.vue-component.header--collapsible.is-measuring .header__language-switch,
+  .header.vue-component.header--collapsible.is-measuring .header__menu {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+@media (min-width: 992px) {
+  .header.vue-component.header--collapsible.is-logo-collapsed .header__logo {
+    flex: 1 1 auto;
+  }
+  .header.vue-component.header--collapsible.is-logo-collapsed .header__logo-media {
+    width: calc(var(--header-logo-natural-width) * var(--header-logo-collapse));
   }
 }
 .header.vue-component.is-expanded nav {
@@ -1107,22 +1456,22 @@ export default {
   backdrop-filter: blur(30px);
 }
 @media (min-width: 992px) {
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light {
     --color-header-background: transparent;
     --color-header-border: transparent;
     box-shadow: none;
     color: var(--color-copy-light);
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__link {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__link {
     color: inherit;
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__link .icon {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__link .icon {
     color: inherit;
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__logo-light {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__logo-light {
     display: block;
   }
-  .header.vue-component:not(:hover):not(.is-scrolled).header--light .header__logo-default {
+  .header.vue-component:not(:hover):not(.is-scrolled):not(.is-condensed).header--light .header__logo-default {
     display: none;
   }
 }
@@ -1138,6 +1487,20 @@ export default {
     pointer-events: none;
     transform: translateY(-100%) translateX(-50%);
   }
+}
+.header.vue-component:not(.is-expanded).is-condensed nav {
+  visibility: collapse;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  margin: 0 !important;
+  padding: 0 !important;
+  border-width: 0;
+  pointer-events: none;
+  transform: translateY(-100%) translateX(-50%);
+}
+.header.vue-component.is-condensed .header__item.is--mobile {
+  display: block;
 }
 @media (min-width: 992px) {
   .header.vue-component:not(.is-hovering) .header__flyout {
@@ -1180,83 +1543,79 @@ export default {
   display: flex;
 }
 @media (min-width: 992px) {
-  .header.vue-component nav {
-    bottom: 0;
-    transition: none;
-  }
-  .header.vue-component nav .header__item:hover .header__link-text {
-    font-weight: bold;
-  }
-}
-@media (min-width: 992px) {
-  .header.vue-component {
+  .header.vue-component:not(.is-condensed) {
     --header-vertical-spacing: 1.25rem;
   }
-  .header.vue-component .header__contact.header__contact--mobile,
-  .header.vue-component nav .header__language-switch,
-  .header.vue-component .header__meta-list,
-  .header.vue-component .header__menu,
-  .header.vue-component .header__footer {
+  .header.vue-component:not(.is-condensed) .header__contact.header__contact--mobile,
+  .header.vue-component:not(.is-condensed) nav .header__language-switch,
+  .header.vue-component:not(.is-condensed) .header__meta-list,
+  .header.vue-component:not(.is-condensed) .header__menu,
+  .header.vue-component:not(.is-condensed) .header__footer {
     display: none;
   }
-  .header.vue-component .header__link {
+  .header.vue-component:not(.is-condensed) .header__link {
     display: flex;
   }
-  .header.vue-component .header__link::after {
+  .header.vue-component:not(.is-condensed) .header__link::after {
     bottom: 0;
   }
-  .header.vue-component .header__button,
-  .header.vue-component nav {
+  .header.vue-component:not(.is-condensed) .header__button,
+  .header.vue-component:not(.is-condensed) nav {
     display: block;
   }
-  .header.vue-component .header__button {
+  .header.vue-component:not(.is-condensed) .header__button {
     flex-shrink: 0;
   }
-  .header.vue-component .header__language-switch {
+  .header.vue-component:not(.is-condensed) .header__language-switch {
     padding-top: var(--header-vertical-spacing);
     display: flex;
     gap: 0;
   }
-  .header.vue-component nav {
+  .header.vue-component:not(.is-condensed) nav {
     position: relative;
     width: auto;
     left: auto;
+    bottom: 0;
     transform: translateY(0);
     background-color: transparent;
     box-shadow: none;
     overflow: visible;
     z-index: 1;
+    transition: none;
   }
-  .header.vue-component .header__list {
+  .header.vue-component:not(.is-condensed) nav .header__item:hover .header__link-text {
+    font-weight: bold;
+  }
+  .header.vue-component:not(.is-condensed) .header__list {
     flex-wrap: nowrap;
   }
-  .header.vue-component .header__item {
+  .header.vue-component:not(.is-condensed) .header__item {
     flex: 0 0 auto;
   }
-  .header.vue-component .header__col {
+  .header.vue-component:not(.is-condensed) .header__col {
     padding: 0;
     justify-content: left;
   }
-  .header.vue-component .header__col::after {
+  .header.vue-component:not(.is-condensed) .header__col::after {
     display: none;
   }
-  .header.vue-component .header__flyout .col {
+  .header.vue-component:not(.is-condensed) .header__flyout .col {
     padding: 0;
   }
-  .header.vue-component .header__link {
+  .header.vue-component:not(.is-condensed) .header__link {
     width: auto;
     border: 0;
     padding: 0;
   }
-  .header.vue-component .header__link-content {
+  .header.vue-component:not(.is-condensed) .header__link-content {
     width: auto;
     pointer-events: all;
     padding: calc(var(--header-vertical-spacing) + 0.5rem) 1rem;
   }
-  .header.vue-component.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
+  .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) {
     mix-blend-mode: difference;
   }
-  .header.vue-component.header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) .header__link-text {
+  .header.vue-component:not(.is-condensed).header--blending:not(.is-hovering):not(.is-scrolled):not(:hover) .header__link-text {
     font-weight: 300;
   }
 }
@@ -1275,15 +1634,20 @@ export default {
   }
 }
 @media (min-width: 992px) {
-  .header__logo img {
+  :where(.header:not(.is-condensed)) .header__logo img {
     height: var(--header-logo-height-large);
   }
 }
 @media (min-width: 992px) {
-  .header__logo {
+  :where(.header:not(.is-condensed)) .header__logo {
     flex: 0 1 25%;
     padding-right: 2rem;
   }
+}
+
+.header__logo-media {
+  display: block;
+  overflow: hidden;
 }
 
 .header__logo-light {
@@ -1298,11 +1662,11 @@ export default {
   justify-content: space-between;
   position: relative;
 }
-.header__col > .header__search + .header__language-switch {
-  margin-left: 1.25rem;
-}
 .header__col > .header__language-switch {
   margin-left: auto;
+}
+.header__col > .header__search + .header__language-switch {
+  margin-left: 0;
 }
 .header__col::after {
   position: absolute;
@@ -1364,12 +1728,12 @@ export default {
   transition: background-color 0.5s cubic-bezier(0.19, 1, 0.2, 1), height 0.5s cubic-bezier(0.19, 1, 0.2, 1), width 0.5s cubic-bezier(0.19, 1, 0.2, 1), left 0.5s cubic-bezier(0.19, 1, 0.2, 1);
 }
 @media (min-width: 992px) {
-  .header__link::before {
+  :where(.header:not(.is-condensed)) .header__link::before {
     display: none;
   }
 }
 @media (min-width: 992px) {
-  .header__link.is-expanded::after {
+  :where(.header:not(.is-condensed)) .header__link.is-expanded::after {
     display: block;
   }
 }
@@ -1380,26 +1744,29 @@ export default {
   height: 3px;
 }
 @media (min-width: 992px) {
-  .header__link.is-expanded {
+  :where(.header:not(.is-condensed)) .header__link.is-expanded {
     border-bottom-width: 1px;
     padding-bottom: var(--header-vertical-spacing);
   }
 }
 @media (min-width: 992px) {
-  .header__link:hover::after {
+  :where(.header:not(.is-condensed)) .header__link:hover::after {
     --color-header-active: var(--color-primary-accent);
     display: block;
   }
 }
 
+.header__link.is-expanded .header__link-icon,
+.header__language-switch.is-expanded .header__link-icon {
+  --icon-rotation: 180deg !important;
+}
 .header__link.is-expanded .icon,
 .header__language-switch.is-expanded .icon {
-  --icon-rotation: 180deg !important;
   color: var(--color-header-active);
 }
 @media (min-width: 992px) {
-  .header__link.is-expanded .icon,
-  .header__language-switch.is-expanded .icon {
+  :where(.header:not(.is-condensed)) .header__link.is-expanded .icon,
+  :where(.header:not(.is-condensed)) .header__language-switch.is-expanded .icon {
     color: inherit;
   }
 }
@@ -1430,14 +1797,14 @@ export default {
   color: var(--color-copy);
 }
 @media (min-width: 992px) {
-  .header__item.active .header__link {
+  :where(.header:not(.is-condensed)) .header__item.active .header__link {
     color: inherit;
   }
-  .header__item.active .header__link:not(:hover)::after {
+  :where(.header:not(.is-condensed)) .header__item.active .header__link:not(:hover)::after {
     display: block;
     background-color: var(--color-active);
   }
-  .header__item.active .header__link.is-expanded .header__link-icon {
+  :where(.header:not(.is-condensed)) .header__item.active .header__link.is-expanded .header__link-icon {
     color: var(--color-copy);
   }
 }
@@ -1552,10 +1919,15 @@ export default {
 }
 
 .header__language-switch {
+  --header-language-flyout-width: 580px;
+  --header-language-bridge-width: 100%;
+  --header-language-underline-offset: -0.5rem;
+  --header-language-name-width: 160px;
+  --header-language-spacing: 2rem;
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
-  padding: 0 0 var(--header-vertical-spacing) 0;
+  padding: 0 0 var(--header-vertical-spacing) var(--header-language-spacing);
   display: none;
   order: 1;
   gap: 2.5rem;
@@ -1565,12 +1937,44 @@ export default {
 .header__language-switch .header__link-icon {
   pointer-events: none;
 }
+.header__language-switch::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--header-language-bridge-width);
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+.header__language-switch::before {
+  display: none;
+  content: "";
+  position: absolute;
+  bottom: var(--header-language-underline-offset);
+  left: var(--header-language-spacing);
+  width: calc(100% - var(--header-language-spacing));
+  height: 3px;
+  background-color: var(--color-header-active);
+  z-index: 10;
+  pointer-events: none;
+}
+@media (min-width: 992px) {
+  .header__language-switch:hover::before {
+    --color-header-active: var(--color-primary-accent);
+    display: block;
+  }
+}
 @media (min-width: 992px) {
   .header__language-switch.is-expanded .header__link-text {
     font-weight: bold;
   }
+  .header__language-switch.is-expanded::after {
+    pointer-events: auto;
+  }
 }
-.header__language-switch:not(.is-expanded) .header__language-switch-flyout {
+.header__language-switch:not(.is-expanded) .header__language-switch-flyout,
+.header__language-switch:not(.is-expanded) .header__language-switch-list {
   visibility: collapse;
   opacity: 0;
   height: 0;
@@ -1579,7 +1983,25 @@ export default {
   padding: 0 !important;
   border-width: 0;
   pointer-events: none;
-  transform: translateY(-100%);
+}
+.header__language-switch:not(.is-expanded) .header__language-switch-flyout .header__language-link {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition-delay: 0s;
+}
+.header__language-switch.header__language-switch--mobile {
+  flex-direction: column;
+  place-items: stretch;
+  gap: 0;
+  padding: 0;
+  text-transform: none;
+}
+.header__language-switch.header__language-switch--mobile::after {
+  content: none;
+}
+.header__language-switch.header__language-switch--mobile .header__link {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .header__search {
@@ -1693,7 +2115,7 @@ export default {
   margin-bottom: 1.5rem;
 }
 @media (min-width: 992px) {
-  .header__link-list {
+  :where(.header:not(.is-condensed)) .header__link-list {
     margin-top: 2.5rem;
     width: 70%;
   }
@@ -1768,7 +2190,7 @@ export default {
   margin-right: 0.5rem;
 }
 @media (min-width: 992px) {
-  .header__link-icon {
+  :where(.header:not(.is-condensed)) .header__link-icon {
     margin-right: 0;
   }
 }
@@ -1809,59 +2231,112 @@ export default {
 .header__language-link {
   color: var(--color-copy);
 }
-.header__language-link.active {
+.header__language-link:hover {
+  color: var(--color-copy);
+}
+.header__language-link.active, .header__language-link.active:hover {
   color: var(--color-active);
+}
+.header__language-link.active .header__language-code, .header__language-link.active:hover .header__language-code {
+  color: inherit;
 }
 @media (min-width: 992px) {
   .header__language-link:hover {
-    color: var(--color-copy);
     font-weight: bold;
+  }
+  .header__language-link:hover:not(.active) {
+    color: var(--color-copy-hover);
+  }
+  .header__language-link:hover .header__language-code {
+    color: inherit;
   }
 }
 
+.header__language-switch-flyout,
+.header__language-switch-list {
+  text-transform: none;
+}
+.header__language-switch-flyout .header__language-link,
+.header__language-switch-list .header__language-link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  break-inside: avoid;
+}
+
 .header__language-switch-flyout {
-  padding: 0 2rem 1rem;
+  padding: 1.5rem 2rem;
   bottom: 0;
   right: -0.75rem;
   z-index: 5;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
+  min-width: var(--header-language-flyout-width);
+  columns: 2;
+  column-gap: 4rem;
   transition: transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s 0.1s;
+}
+.header__language-switch-flyout .header__language-link {
+  grid-template-columns: var(--header-language-name-width) auto;
+  transition: opacity 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.header__language-switch-list {
+  width: 100%;
+  padding: 0.5rem 0 1rem;
+  transition: height 0.4s cubic-bezier(0.19, 1, 0.2, 1), opacity 0.5s 0.15s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.15s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.header__language-label {
+  font-size: 1.125rem;
+  display: flex;
+  place-items: center;
+  gap: 0.5rem;
+}
+.header__language-label .icon {
+  margin-left: 0;
+  color: var(--color-secondary-accent);
+}
+
+.header__language-names {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.header__language-native {
+  font-size: 1rem;
+  line-height: 1.3;
+}
+
+.header__language-translated {
+  font-size: 0.75rem;
+  color: var(--color-copy-reduced);
+  line-height: 1.3;
+}
+
+.header__language-code {
+  font-size: 0.75rem;
+  justify-self: end;
+  padding: 1px 0.25rem;
+  border: 1px solid var(--color-header-border);
+  border-radius: 2px;
+  color: var(--color-copy-reduced);
+  line-height: 1.4;
+  text-transform: uppercase;
+}
+.header__language-code {
+  font-weight: bold;
 }
 
 .header__highlight-cta {
   display: none;
 }
 @media (min-width: 992px) {
-  .header__highlight-cta {
+  :where(.header:not(.is-condensed)) .header__highlight-cta {
     margin-top: 3rem;
     display: block;
   }
-}
-
-.header__language-link {
-  color: var(--color-copy);
-}
-.header__language-link.active {
-  color: var(--color-active);
-}
-@media (min-width: 992px) {
-  .header__language-link:hover {
-    color: var(--color-copy);
-    font-weight: bold;
-  }
-}
-
-.header__language-switch-flyout {
-  padding: 0 2rem 1rem;
-  bottom: 0;
-  right: -0.75rem;
-  z-index: 5;
-  display: flex;
-  gap: 1rem;
-  flex-direction: column;
-  transition: transform cubic-bezier(0.19, 1, 0.2, 1) 0.5s, opacity cubic-bezier(0.19, 1, 0.2, 1) 0.4s 0.1s;
 }
 
 .header__nav-highlight {
@@ -1896,6 +2371,7 @@ export default {
   flex-direction: column;
   top: 0;
   left: 0;
+  z-index: 2;
   display: none;
   background-color: var(--header-secondary-background);
   pointer-events: none;
@@ -1936,7 +2412,7 @@ export default {
   height: 2rem;
 }
 @media (min-width: 992px) {
-  .header__secondary-navigation {
+  :where(.header:not(.is-condensed)) .header__secondary-navigation {
     display: flex;
   }
 }
@@ -2002,8 +2478,9 @@ export default {
   transform: scale(1.05);
 }
 .header__secondary-navigation-item .header__secondary-navigation-item-img {
-  max-height: 38px;
-  width: auto;
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
   object-fit: contain;
   object-position: left;
 }
@@ -2012,5 +2489,23 @@ export default {
   color: var(--color-copy);
   display: inline-block;
   margin-left: 0.75rem;
+}
+
+.header__language-note {
+  color: var(--color-copy);
+  font-size: 0.625rem;
+  line-height: 1.45;
+  margin: 1rem 0 0;
+  opacity: 0.45;
+  text-transform: none;
+  white-space: normal;
+  column-span: all;
+  transition: opacity 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1), transform 0.4s 0.25s cubic-bezier(0.19, 1, 0.2, 1);
+}
+
+.header__language-switch:not(.is-expanded) .header__language-note {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition-delay: 0s;
 }
 </style>

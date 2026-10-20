@@ -1,14 +1,14 @@
 declare const _default: import("vue").DefineComponent<import("vue").ExtractPropTypes<{
     items: {
-        type: ArrayConstructor;
+        type: FunctionConstructor;
         default: () => never[];
     };
 }>, {}, {}, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
     items: {
-        type: ArrayConstructor;
+        type: FunctionConstructor;
         default: () => never[];
     };
 }>> & Readonly<{}>, {
-    items: unknown[];
+    items: Function;
 }, {}, {}, {}, string, import("vue").ComponentProvideOptions, true, {}, any>;
 export default _default;

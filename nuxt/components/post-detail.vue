@@ -104,8 +104,8 @@ export default {
   components: {
     ContentRendererLink,
   },
-  setup() {
-    const { authors } = useAuthors();
+  setup(props) {
+    const { authors } = useAuthors(props.post?.author);
     const isAtEnd = ref(false);
     const endPoint = ref(null);
     const stickyContentHeight = ref(0);

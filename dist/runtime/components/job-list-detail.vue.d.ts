@@ -9,7 +9,7 @@ declare namespace _default {
         function getUuid(): string;
     }
     function setup(): {
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: any;
     };
     function mounted(): void;
     function data(): {
