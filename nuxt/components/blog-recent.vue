@@ -244,12 +244,9 @@ export default {
   },
   watch: {
     filesValue(newValue) {
-      if (newValue.length > 0) {
-        if ('requestIdleCallback' in window) {
-          window.requestIdleCallback(() => this.init());
-        } else {
-          this.$nextTick(() => setTimeout(() => this.init(), 50));
-        }
+      // Before mount the refs do not exist yet; mounted() schedules the init then.
+      if (newValue.length > 0 && this.isMounted) {
+        this.scheduleInit();
       }
     },
   },
@@ -260,6 +257,13 @@ export default {
     this.$nextTick(() => this.init());
   },
   methods: {
+    scheduleInit() {
+      if ('requestIdleCallback' in window) {
+        window.requestIdleCallback(() => this.init());
+      } else {
+        this.$nextTick(() => setTimeout(() => this.init(), 50));
+      }
+    },
     init() {
       if (this.initialized) return;
       if (!this.$refs.container || !this.$refs.root) return;

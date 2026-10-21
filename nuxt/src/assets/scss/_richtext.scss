@@ -89,80 +89,85 @@ $richtext-conclusion-spacing-lg: $spacing-content-default;
     margin-top: spacing(12);
   }
 
-  h2,
-  h3,
-  h4 {
-    &[id='über'],
-    &[id='Über'],
-    &[id^='über-'],
-    &[id^='Über-'],
-    &[id='about'],
-    &[id='About'],
-    &[id^='about-'],
-    &[id^='About-'],
-    &#Fazit,
-    &#fazit,
-    &#Conclusion,
-    &#conclusion,
-    &#Slutsats,
-    &#slutsats,
-    &#Konklusjon,
-    &#konklusjon,
-    &#Johtopäätös,
-    &#johtopäätös,
-    &#Yhteenveto,
-    &#yhteenveto,
-    &#Konklusion,
-    &#konklusion,
-    &#Niðurstaða,
-    &#niðurstaða,
-    &#Conclusione,
-    &#conclusione,
-    &#Conclusie,
-    &#conclusie,
-    &#결론,
-    &#結論,
-    &#まとめ {
-      @include richtext-width;
+  // Conclusion box (petrol block under a "## Fazit" / "## Conclusion" heading).
+  // Sites opt out via the module option `richtextConclusionBox: false`, which
+  // sets data-richtext-conclusion-box="false" on <html> (see runtime/plugin.js).
+  html:not([data-richtext-conclusion-box='false']) & {
+    h2,
+    h3,
+    h4 {
+      &[id='über'],
+      &[id='Über'],
+      &[id^='über-'],
+      &[id^='Über-'],
+      &[id='about'],
+      &[id='About'],
+      &[id^='about-'],
+      &[id^='About-'],
+      &#Fazit,
+      &#fazit,
+      &#Conclusion,
+      &#conclusion,
+      &#Slutsats,
+      &#slutsats,
+      &#Konklusjon,
+      &#konklusjon,
+      &#Johtopäätös,
+      &#johtopäätös,
+      &#Yhteenveto,
+      &#yhteenveto,
+      &#Konklusion,
+      &#konklusion,
+      &#Niðurstaða,
+      &#niðurstaða,
+      &#Conclusione,
+      &#conclusione,
+      &#Conclusie,
+      &#conclusie,
+      &#결론,
+      &#結論,
+      &#まとめ {
+        @include richtext-width;
 
-      & {
-        background-color: var(--color-gk-petrol);
-        color: var(--color-gk-white);
-        padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
-        margin: $richtext-headline-top-spacing 0 0 0;
-      }
-
-      ~ p {
-        background-color: var(--color-gk-petrol);
-        color: var(--color-gk-white);
-        padding: 0 $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm;
-        margin-top: -1px;
-        margin-bottom: 0;
-      }
-
-      @include media-breakpoint-up(lg) {
-        padding: $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg spacing(10);
+        & {
+          background-color: var(--color-gk-petrol);
+          color: var(--color-gk-white);
+          padding: $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm spacing(10);
+          margin: $richtext-headline-top-spacing 0 0 0;
+        }
 
         ~ p {
-          padding: 0 $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg;
+          background-color: var(--color-gk-petrol);
+          color: var(--color-gk-white);
+          padding: 0 $richtext-conclusion-spacing-sm $richtext-conclusion-spacing-sm;
+          margin-top: -1px;
+          margin-bottom: 0;
+        }
+
+        @include media-breakpoint-up(lg) {
+          padding: $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg spacing(10);
+
+          ~ p {
+            padding: 0 $richtext-conclusion-spacing-lg $richtext-conclusion-spacing-lg;
+          }
         }
       }
-    }
 
-    &#fazit,
-    &#conclusion,
-    &#slutsats,
-    &#konklusjon,
-    &#johtopäätös,
-    &#yhteenveto,
-    &#konklusion,
-    &#niðurstaða,
-    &#conclusione,
-    &#conclusie,
-    &#결론,
-    &#結論,
-    &#まとめ {
-      margin: spacing(8) 0 0 0;
+      &#fazit,
+      &#conclusion,
+      &#slutsats,
+      &#konklusjon,
+      &#johtopäätös,
+      &#yhteenveto,
+      &#konklusion,
+      &#niðurstaða,
+      &#conclusione,
+      &#conclusie,
+      &#결론,
+      &#結論,
+      &#まとめ {
+        margin: spacing(8) 0 0 0;
+      }
     }
   }
 
