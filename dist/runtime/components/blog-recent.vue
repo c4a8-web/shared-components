@@ -77,6 +77,7 @@ export default {
     return {
       hideData: ['tags', 'footer'],
       filesValue: [],
+      initialized: false,
     };
   },
   setup() {
@@ -252,9 +253,18 @@ export default {
       }
     },
   },
+  // the filesValue watcher can fire during hydration, before the template refs exist —
+  // init() then bails on its ref guard and never retries, leaving the slider
+  // uninitialized and the fade-in elements stuck at opacity 0
+  mounted() {
+    this.$nextTick(() => this.init());
+  },
   methods: {
     init() {
+      if (this.initialized) return;
       if (!this.$refs.container || !this.$refs.root) return;
+
+      this.initialized = true;
 
       Tools.initSlickSlider(this.$refs.container, this.carouselOptions);
 

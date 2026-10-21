@@ -3,7 +3,9 @@
     :class="['success-story utility-animation', successStorySpacing, { 'is-sticky-scroller': successStorySticky }]"
     ref="root"
   >
-    <div class="success-story__bg" :style="{ backgroundColor: successStory.bgColor }"></div>
+    <div class="success-story__bg-clip">
+      <div class="success-story__bg" :style="{ backgroundColor: successStory.bgColor }"></div>
+    </div>
     <div class="container">
       <div class="row">
         <div class="col-lg-12 col-md-10 mt-6 mt-lg-8 fade-in-bottom" data-utility-animation-step="1">
@@ -97,7 +99,8 @@ export default {
         slidesToScroll: 2,
         prevArrow: '<span class="slick__arrow-left rounded-circle"></span>',
         nextArrow: '<span class="slick__arrow-right rounded-circle"></span>',
-        dots: true,
+        // opt-out per instance via the successStory config (e.g. embedded in narrow post content)
+        dots: this.successStory?.dots !== false,
         centerMode: false,
         dotsClass: 'slick-pagination is-default',
         responsive: [
@@ -142,11 +145,27 @@ export default {
   position: relative;
   overflow: hidden;
 
+  // below lg the slick-list intentionally overhangs the container by 400px, so the
+  // section has to clip; from lg on the list is back to 100% and the only oversized
+  // child is the rotated __bg, which clips itself via __bg-clip — releasing the
+  // section here keeps the slider arrows (which hang outside the container and only
+  // render from lg up) from being cut off in narrow layouts like the post content
+  @include media-breakpoint-up(lg) {
+    overflow: visible;
+  }
+
   [data-utility-animation-step] {
     --utility-animation-distance: 15%;
 
     animation-duration: 0.8s;
   }
+}
+
+.success-story__bg-clip {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
 }
 
 .success-story__bg {
