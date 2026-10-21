@@ -52,7 +52,7 @@
     "node-html-parser": "^6.1.13",
     "nuxt": "^3.16.1",
     "nuxt-schema-org": "^5.0.6",
-    "nuxt-seo-utils": "^6.0.3",
+    "nuxt-seo-utils": "^9.0.1",
     "postcss-merge-rules": "^7.0.4",
     "postcss-nested": "^6.2.0",
     "sitemap": "^8.0.0",
