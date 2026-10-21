@@ -2,6 +2,7 @@ const Events = {
   REFRESH_ANIMATE_NUMBERS: 'refresh-animate-numbers',
   FAB_BUTTON_CLOSE: 'fab-button-close',
   FORM_AJAX_SUBMIT: 'form-ajax-submit',
+  FORM_AJAX_ERROR: 'form-ajax-error',
   FORM_RESET: 'form-reset',
   FORM_ATTACHMENT_ERROR: 'form-attachment-error',
   FORM_FIELD_UPDATED: 'form-field-updated',

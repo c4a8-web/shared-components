@@ -17,6 +17,12 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
+        namespace overlapping {
+            let type_3: BooleanConstructor;
+            export { type_3 as type };
+            let _default_2: boolean;
+            export { _default_2 as default };
+        }
     }
     function mounted(): void;
     namespace computed {
