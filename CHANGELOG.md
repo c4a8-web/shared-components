@@ -1,5 +1,16 @@
 # Releases
 
+# Release 0.4.124
+
+- Adds pipeline-based web translation with new languages (Swedish, Norwegian, Finnish, Danish, Icelandic, Italian, Dutch, Korean, Japanese) and locale-aware header, footer, secondary navigation and content links
+- Adds a collapsible header with a new flyout design, info text, small CTA and an option to disable Cloudinary
+- Adds a small CTA variant, a quote overlap option and a richtext conclusion box variant with a module option to opt out
+- Adds a module hook for security.txt generation
+- Reduces the page payload by passing only the active locale's header, footer and content data
+- Fixes hydration issues in v-img, the lightbox and the blog-recent slider
+- Fixes form labels mutating the shared form object when translated
+- Removes stale SCSS components left over from the SFC migration
+
 # Release 0.4.123
 
 - Removes the 500 ms wait for update from the default gtag consent settings
