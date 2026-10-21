@@ -1,1 +1,0 @@
-import{_ as o,c as r,o as s}from"./C0g5ktH3.js";const e={};function n(c,t){return s(),r("hr")}const d=o(e,[["render",n]]);e.__docgenInfo={displayName:"ProseHr",description:"",tags:{},sourceFiles:["/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxtjs/mdc/dist/runtime/components/prose/ProseHr.vue"]};export{d as default};

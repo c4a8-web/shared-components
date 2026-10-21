@@ -124,7 +124,7 @@
               "postcssPlugin": "cssnano-util-raw-cache"
             }
           ],
-          "version": "8.5.6"
+          "version": "8.5.21"
         }
       ]
     },
@@ -137,11 +137,8 @@
     "hasWarned": false
   },
   "define": {
-    "__DEBUG__": "false",
     "__NUXT_ASYNC_CONTEXT__": false,
-    "__NUXT_I18N_VERSION__": "\"9.5.5\"",
     "__NUXT_VERSION__": "\"3.16.2\"",
-    "__TEST__": "undefined",
     "__VUE_PROD_HYDRATION_MISMATCH_DETAILS__": false,
     "import.meta.browser": true,
     "import.meta.client": "true",
@@ -191,7 +188,6 @@
       "vue-demi",
       "@sqlite.org/sqlite-wasm",
       "pinia",
-      "vue-i18n",
       "@nuxtjs/mdc",
       "vue",
       "@vue/runtime-core",
@@ -327,6 +323,10 @@
       "name": "nuxt:server-devonly:transform"
     },
     {
+      "enforce": "pre",
+      "name": "nuxt-i18n-micro-define-route"
+    },
+    {
       "enforce": "post",
       "name": "nuxt:head:unhead-imports"
     },
@@ -337,20 +337,6 @@
     {
       "enforce": "post",
       "name": "unctx:transform"
-    },
-    {
-      "enforce": "pre",
-      "name": "nuxtjs:i18n-resource"
-    },
-    {
-      "enforce": "pre",
-      "name": "unplugin-vue-i18n:resource",
-      "vite": {
-      }
-    },
-    {
-      "enforce": "pre",
-      "name": "nuxtjs:i18n-macros-transform"
     },
     {
       "name": "nuxt-scripts:check-scripts"
@@ -479,15 +465,12 @@
       "#build": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt",
       "#content/components": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/components.ts",
       "#content/manifest": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/content/manifest.ts",
-      "#i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxtjs/i18n/dist/runtime/composables/index",
       "#imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/imports",
-      "#internal-i18n-types": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxtjs/i18n/dist/types",
       "#internal/nitro": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/nitro.client.mjs",
       "#internal/nuxt/paths": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/paths.mjs",
       "#mdc-configs": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-configs.mjs",
       "#mdc-highlighter": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-highlighter.mjs",
       "#mdc-imports": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/mdc-imports.mjs",
-      "#nuxt-i18n/logger": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/nuxt-i18n-logger.mjs",
       "#nuxt-scripts": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime",
       "#nuxt-scripts-validator": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@nuxt/scripts/dist/runtime/validation/mock.js",
       "#schema-org": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt-schema-org/dist/runtime",
@@ -497,18 +480,11 @@
       "#vue-router": "vue-router",
       "@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
       "@@": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
-      "@intlify/core": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/core/dist/core.node.mjs",
-      "@intlify/core-base": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/core-base/dist/core-base.mjs",
-      "@intlify/message-compiler": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/message-compiler/dist/message-compiler.mjs",
-      "@intlify/shared": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/shared/dist/shared.mjs",
-      "@intlify/utils/h3": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/@intlify/utils/dist/h3.mjs",
       "@vue/composition-api": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/compat/capi",
       "abort-controller": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
       "assets": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/assets",
       "public": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/public",
-      "ufo": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/ufo/dist/index.mjs",
       "vue-demi": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/nuxt/dist/app/compat/vue-demi",
-      "vue-i18n": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/vue-i18n/dist/vue-i18n.mjs",
       "web-streams-polyfill/ponyfill/es2018": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/node_modules/mocked-exports/lib/empty.mjs",
       "~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt",
       "~~": "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt"
@@ -580,6 +556,9 @@
     "isProduction": true,
     "script": {
       "globalTypeFiles": [
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/i18n-plugin.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/h3.d.ts",
+        "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/types/i18n-internal.d.ts",
         "/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/.nuxt/module/nuxt-scripts.d.ts"
       ],
       "hoistStatic": {

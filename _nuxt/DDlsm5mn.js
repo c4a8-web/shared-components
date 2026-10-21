@@ -1,1 +1,0 @@
-import{_ as s,h as t}from"./C0g5ktH3.js";const e={};function o(n,r){return t(n.$slots,"default")}const c=s(e,[["render",o]]);e.__docgenInfo={displayName:"event",description:"",tags:{},slots:[{name:"default"}],sourceFiles:["/home/runner/work/c4a8-web-shared-components/c4a8-web-shared-components/nuxt/layouts/event.vue"]};export{c as default};
