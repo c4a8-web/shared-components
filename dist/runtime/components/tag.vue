@@ -12,7 +12,7 @@
   </a>
 </template>
 <script>
-import { useI18n } from '#imports';
+import { useNuxtApp } from '#imports';
 
 import Tools from '../utils/tools.js';
 
@@ -40,7 +40,9 @@ export default {
     },
   },
   setup() {
-    const { locale, strategy } = useI18n();
+    const nuxtApp = useNuxtApp();
+    const locale = nuxtApp.$getLocale?.();
+    const strategy = nuxtApp.$getI18nConfig?.().strategy ?? 'prefix';
 
     return { locale, strategy };
   },

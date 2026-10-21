@@ -33,19 +33,16 @@ import State from '../utils/state.js';
 import Tools from '../utils/tools.js';
 
 import { useAppStore } from '../stores/app';
-import useAuthors from '../composables/useAuthors.js';
 import { ref } from 'vue';
 
 export default {
   name: 'page-detail',
   setup() {
-    const { authors } = useAuthors();
     const isAtEnd = ref(false);
     const endPoint = ref(null);
     const store = useAppStore();
 
     return {
-      authors,
       isAtEnd,
       endPoint,
       State,

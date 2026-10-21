@@ -5,9 +5,8 @@ declare namespace _default {
     };
     function setup(): {
         config: {};
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: any;
         strategy: any;
-        authors: any;
     };
     namespace computed {
         function blogContainerClassList(): string[];

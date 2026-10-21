@@ -24,7 +24,13 @@ dist-ssr
 
 *storybook.log
 
+# Generated at consumer build time by registerSharedI18n (module.mjs) — the
+# shared-translations layer nuxt-i18n-micro reads. Never part of the shipped
+# source; move-module.js wipes it on every `npm run update`.
+dist/sc-i18n-layer/
+
 .notion-*
 
 # macOS files
 .DS_Store
+AGENTS.local.md

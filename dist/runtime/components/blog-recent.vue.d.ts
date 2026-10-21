@@ -6,11 +6,10 @@ declare namespace _default {
     function data(): {
         hideData: string[];
         filesValue: never[];
-        dataAuthorsValue: null;
+        isMounted: boolean;
     };
     function setup(): {
         config: {};
-        authors: any;
         strategy: any;
     };
     namespace computed {
@@ -93,16 +92,16 @@ declare namespace _default {
     namespace watch {
         function filesValue(newValue: any): void;
     }
-    function created(): void;
+    function mounted(): void;
     namespace methods {
+        function scheduleInit(): void;
         function init(): void;
-        function getDataAuthors(): any;
         function event(post: any): boolean;
         function blogTitleUrl(post: any): any;
         function target(post: any): "_blank" | "_self";
         function postUrl(post: any): any;
         function excerpt(post: any): any;
-        function updateFiles(files: any): true | undefined;
+        function updateFiles(files: any): boolean;
     }
     namespace props {
         namespace bgColor {

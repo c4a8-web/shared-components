@@ -3,7 +3,7 @@ declare namespace _default {
     namespace components {
         export { ContentRendererLink };
     }
-    function setup(): {
+    function setup(props: any): {
         authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
         endPoint: import("vue").Ref<null, null>;

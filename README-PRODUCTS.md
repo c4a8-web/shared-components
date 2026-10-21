@@ -29,3 +29,7 @@ In the new Site:
 In all products sites:
 
 - [ ] (optional) Rebuild all sites for secondary nav to update, if there were updates to it.
+
+## House style of the product sites
+
+The visual and structural system that sendman.com, realmjoin.com and konnekt.io share is documented in [docs/products-house-style.md](docs/products-house-style.md): section anatomy, tokens, recipes, the block catalogue, naming and content rules, what the web pipeline lints, and the known divergences between the sites.

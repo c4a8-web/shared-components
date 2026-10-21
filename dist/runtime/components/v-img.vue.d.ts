@@ -35,6 +35,7 @@ declare namespace _default {
         function animated(): void;
     }
     function created(): void;
+    function mounted(): void;
     namespace methods {
         function getSourceSetMedia(srcSet: any): any;
         function canGenerateSrcSet(): any;

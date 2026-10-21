@@ -56,33 +56,37 @@ declare namespace _default {
             let _default_6: null;
             export { _default_6 as default };
         }
-        namespace active {
+        namespace small {
             let _default_7: null;
             export { _default_7 as default };
         }
-        namespace classes {
-            let _default_8: string;
+        namespace active {
+            let _default_8: null;
             export { _default_8 as default };
+        }
+        namespace classes {
+            let _default_9: string;
+            export { _default_9 as default };
             let type_1: StringConstructor;
             export { type_1 as type };
         }
         namespace loading {
-            let _default_9: null;
-            export { _default_9 as default };
-        }
-        namespace hasBackground {
             let _default_10: null;
             export { _default_10 as default };
         }
-        namespace javascript {
+        namespace hasBackground {
             let _default_11: null;
             export { _default_11 as default };
+        }
+        namespace javascript {
+            let _default_12: null;
+            export { _default_12 as default };
             let type_2: StringConstructor;
             export { type_2 as type };
         }
         namespace onSurface {
-            let _default_12: null;
-            export { _default_12 as default };
+            let _default_13: null;
+            export { _default_13 as default };
             let type_3: BooleanConstructor;
             export { type_3 as type };
         }

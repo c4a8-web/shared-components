@@ -80,7 +80,7 @@
             />
           </svg>
           <div class="pb-5 pt-5 mx-11 d-flex justify-content-center">
-            <v-img itemprop="image" :img="logo.img" :cloudinary="logo.cloudinary" class="w-100" />
+            <v-img itemprop="image" :img="logo?.img" :cloudinary="logo?.cloudinary" class="w-100" />
           </div>
           <div class="card-img-cutoff" />
         </div>
@@ -483,280 +483,260 @@ export default {
   },
 };
 </script>
-<style>
-.card.vue-component.utility-animation[data-utility-animation-step] {
-  --utility-animation-distance: 25%;
-}
-.card.vue-component.utility-animation[data-utility-animation-step].is-starting {
-  animation-delay: calc(var(--utility-animation-index) * 50ms + 0ms);
-  animation-duration: 1s;
-}
-.utility-animation__group .card.vue-component.utility-animation[data-utility-animation-step] {
-  --utility-animation-distance: 25%;
-}
-.utility-animation__group .card.vue-component.utility-animation[data-utility-animation-step].is-starting {
-  animation-delay: calc((var(--utility-animation-index) - var(--utility-animation-items-loaded)) * 28ms + 0ms);
-  animation-duration: 1s;
-}
-.card.vue-component:not(.card--no-link) {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-}
-.card.vue-component:not(.card--no-link) .is-foreground :is(img, svg, .lottie),
-.card.vue-component:not(.card--no-link) .is-background {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
-  transition-duration: 0.4s;
-}
-.card.vue-component:not(.card--no-link):hover .is-foreground :is(img, svg, .lottie),
-.card.vue-component:not(.card--no-link):hover .is-background {
-  transform: scale(1.025);
-  transition-duration: 1.3s;
-}
-.card.vue-component:not(.card--no-link):hover {
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-.card.vue-component:not(.card--no-link):hover {
-  cursor: pointer;
-}
-.card.vue-component.card--row:not(.card--no-aspect-ratio) .card__img-top img {
-  aspect-ratio: 16/9;
-}
-.card.vue-component.card--row .card__body {
-  padding-bottom: 1rem;
-}
-@media (min-width: 992px) {
-  .card.vue-component.card--row {
-    --color-card-background: transparent;
-    --card-img-width: 43%;
-    box-shadow: none;
-    border-radius: 0;
-    max-width: none;
-    display: flex;
-    flex-direction: row;
+<style lang="scss">
+.card {
+  &.vue-component {
+    &.utility-animation {
+      @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 50ms, $selector: '&');
+
+      .utility-animation__group & {
+        @include utility-animation-options($distance: 25%, $duration: 1s, $delay: 28ms, $selector: '&', $group: true);
+      }
+    }
+
+    &:not(.card--no-link) {
+      @include hover-scale;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &.card--row {
+      &:not(.card--no-aspect-ratio) {
+        .card__img-top {
+          img {
+            aspect-ratio: 16/9;
+          }
+        }
+      }
+
+      .card__body {
+        padding-bottom: spacing(4);
+      }
+
+      @include media-breakpoint-up(lg) {
+        --color-card-background: transparent;
+        --card-img-width: 43%;
+
+        box-shadow: none;
+        border-radius: 0;
+        max-width: none;
+        display: flex;
+        flex-direction: row;
+
+        &:hover {
+          box-shadow: none;
+        }
+
+        .card__img-top {
+          width: var(--card-img-width);
+
+          img {
+            flex: 1;
+            height: auto;
+          }
+        }
+
+        .card__content {
+          display: flex;
+          flex-direction: column;
+          left: var(--card-img-width);
+          position: absolute;
+          overflow: hidden;
+          height: 100%;
+          justify-content: space-between;
+
+          .card-footer {
+            padding-bottom: 0;
+          }
+        }
+
+        .card__body {
+          padding-bottom: 0;
+          padding-top: spacing(0.5);
+
+          p {
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+          }
+        }
+      }
+
+      @include media-breakpoint-up(xl) {
+        --card-img-width: 34%;
+      }
+    }
+
+    &:not(.card--large):not(.card--long):not(.card--products) {
+      max-width: unquote('min(480px, 100%)');
+
+      &.card--default,
+      &.card--row {
+        max-width: none;
+      }
+
+      @include media-breakpoint-up(md) {
+        max-width: unquote('min(480px, 100vw)');
+
+        &.card--default,
+        &.card--row {
+          max-width: none;
+        }
+      }
+    }
+
+    &.card--products,
+    &.card--long {
+      max-width: 100%;
+
+      @include media-breakpoint-up(lg) {
+        max-width: unquote('min(580px, 100%)');
+      }
+    }
+
+    &.card--event {
+      .card__authors {
+        text-align: right;
+      }
+    }
+
+    &.card--products {
+      .card__img-top {
+        &::before {
+          display: none;
+        }
+
+        .card__img-headline {
+          padding: spacing(4) spacing(5) spacing(6);
+        }
+
+        .card__img-headline-container {
+          height: 100%;
+          position: relative;
+          top: 0%;
+
+          .headline {
+            @include font-style($style: 'font-size-4', $line: 'wide');
+
+            & {
+              min-height: 70%;
+            }
+          }
+        }
+      }
+
+      .card-body {
+        .headline {
+          color: var(--color-products-dark-grey);
+          text-transform: uppercase;
+        }
+      }
+    }
+
+    &.card--large {
+      .headline {
+        @include line-height('thin');
+      }
+
+      @include media-breakpoint-up(lg) {
+        .card__img-top {
+          height: 100%;
+        }
+      }
+    }
+
+    &:not(.card--no-aspect-ratio) {
+      .card__img-top {
+        @include aspect-ratio(16, 9);
+      }
+    }
+
+    .richtext {
+      p + .card__link {
+        margin-top: spacing(2);
+      }
+    }
+
+    article {
+      margin: 0;
+    }
+
+    .ie-curved-x,
+    .ie-curved-y {
+      display: none;
+    }
+
+    .card__img-top {
+      overflow: hidden;
+
+      &:not(.card-img--long) {
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+
+      .card-img--long {
+        object-fit: cover;
+      }
+    }
+
+    .card-img {
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .card__img-tag {
+      @include font-style($style: 'font-size-3', $weight: 'bold');
+
+      & {
+        display: inline-block;
+        position: absolute;
+        right: 13%;
+        line-height: 1em !important; // TODO there is an issue with font-style when this issue is fixed important can go away
+        padding: spacing(2) spacing(3);
+        text-transform: uppercase;
+      }
+    }
+
+    .card-img-cutoff {
+      height: spacing(12);
+      background: linear-gradient(
+        4deg,
+        var(--color-card-background) 0%,
+        var(--color-card-background) 55%,
+        rgba(255, 0, 0, 0) 56%,
+        rgba(255, 0, 0, 0) 100%
+      );
+    }
+
+    .card-footer {
+      &:last-child {
+        border-radius: 0;
+      }
+    }
+
+    .card-footer,
+    .card-body {
+      background-color: var(--color-card-background);
+    }
+
+    h4 {
+      line-height: 1.2em;
+    }
   }
-  .card.vue-component.card--row:hover {
-    box-shadow: none;
-  }
-  .card.vue-component.card--row .card__img-top {
-    width: var(--card-img-width);
-  }
-  .card.vue-component.card--row .card__img-top img {
-    flex: 1;
-    height: auto;
-  }
-  .card.vue-component.card--row .card__content {
-    display: flex;
-    flex-direction: column;
-    left: var(--card-img-width);
-    position: absolute;
-    overflow: hidden;
-    height: 100%;
-    justify-content: space-between;
-  }
-  .card.vue-component.card--row .card__content .card-footer {
-    padding-bottom: 0;
-  }
-  .card.vue-component.card--row .card__body {
-    padding-bottom: 0;
-    padding-top: 0.125rem;
-  }
-  .card.vue-component.card--row .card__body p {
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-  }
-}
-@media (min-width: 1200px) {
-  .card.vue-component.card--row {
-    --card-img-width: 34%;
-  }
-}
-.card.vue-component:not(.card--large):not(.card--long):not(.card--products) {
-  max-width: min(480px, 100%);
-}
-.card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--default,
-.card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--row {
-  max-width: none;
-}
-@media (min-width: 768px) {
-  .card.vue-component:not(.card--large):not(.card--long):not(.card--products) {
-    max-width: min(480px, 100vw);
-  }
-  .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--default,
-  .card.vue-component:not(.card--large):not(.card--long):not(.card--products).card--row {
-    max-width: none;
-  }
-}
-.card.vue-component.card--products,
-.card.vue-component.card--long {
-  max-width: 100%;
-}
-@media (min-width: 992px) {
-  .card.vue-component.card--products,
-  .card.vue-component.card--long {
-    max-width: min(580px, 100%);
-  }
-}
-.card.vue-component.card--event .card__authors {
-  text-align: right;
-}
-.card.vue-component.card--products .card__img-top::before {
-  display: none;
-}
-.card.vue-component.card--products .card__img-top .card__img-headline {
-  padding: 1rem 1.25rem 1.5rem;
-}
-.card.vue-component.card--products .card__img-top .card__img-headline-container {
-  height: 100%;
-  position: relative;
-  top: 0%;
-}
-.card.vue-component.card--products .card__img-top .card__img-headline-container .headline {
-  font-size: 1.375rem;
-  line-height: 1.6365em;
-}
-@media (min-width: 992px) {
-  .card.vue-component.card--products .card__img-top .card__img-headline-container .headline {
-    font-size: 1.5625rem;
-    line-height: 1.7em;
-  }
-}
-@media (min-width: 1200px) {
-  .card.vue-component.card--products .card__img-top .card__img-headline-container .headline {
-    font-size: 1.95313rem;
-    line-height: 1.7em;
-  }
-}
-.card.vue-component.card--products .card__img-top .card__img-headline-container .headline {
-  line-height: 1.7em !important;
-}
-.card.vue-component.card--products .card__img-top .card__img-headline-container .headline {
-  min-height: 70%;
-}
-.card.vue-component.card--products .card-body .headline {
-  color: var(--color-products-dark-grey);
-  text-transform: uppercase;
-}
-.card.vue-component.card--large .headline {
-  line-height: 1.2em;
-}
-@media (min-width: 992px) {
-  .card.vue-component.card--large .card__img-top {
-    height: 100%;
-  }
-}
-.card.vue-component:not(.card--no-aspect-ratio) .card__img-top {
-  position: relative;
-}
-.card.vue-component:not(.card--no-aspect-ratio) .card__img-top:before {
-  content: '';
-  display: block;
-  width: 100%;
-  padding-top: calc(9 / 16 * 100%);
-}
-.card.vue-component:not(.card--no-aspect-ratio) .card__img-top > * {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
-.card.vue-component .richtext p + .card__link {
-  margin-top: 0.5rem;
-}
-.card.vue-component article {
-  margin: 0;
-}
-.card.vue-component .ie-curved-x,
-.card.vue-component .ie-curved-y {
-  display: none;
-}
-.card.vue-component .card__img-top {
-  overflow: hidden;
-}
-.card.vue-component .card__img-top:not(.card-img--long) img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.card.vue-component .card__img-top .card-img--long {
-  object-fit: cover;
-}
-.card.vue-component .card-img {
-  border-bottom-right-radius: 0;
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
-}
-.card.vue-component .card__img-tag {
-  font-size: 1.25rem;
-  line-height: 1.6em;
-}
-@media (min-width: 992px) {
-  .card.vue-component .card__img-tag {
-    font-size: 1.25rem;
-    line-height: 1.6em;
-  }
-}
-@media (min-width: 1200px) {
-  .card.vue-component .card__img-tag {
-    font-size: 1.5625rem;
-    line-height: 1.6em;
-  }
-}
-.card.vue-component .card__img-tag {
-  font-weight: bold !important;
-}
-.card.vue-component .card__img-tag {
-  display: inline-block;
-  position: absolute;
-  right: 13%;
-  line-height: 1em !important;
-  padding: 0.5rem 0.75rem;
-  text-transform: uppercase;
-}
-.card.vue-component .card-img-cutoff {
-  height: 3rem;
-  background: linear-gradient(
-    4deg,
-    var(--color-card-background) 0%,
-    var(--color-card-background) 55%,
-    rgba(255, 0, 0, 0) 56%,
-    rgba(255, 0, 0, 0) 100%
-  );
-}
-.card.vue-component .card-footer:last-child {
-  border-radius: 0;
-}
-.card.vue-component .card-footer,
-.card.vue-component .card-body {
-  background-color: var(--color-card-background);
-}
-.card.vue-component h4 {
-  line-height: 1.2em;
 }
 
 .card__scope,
 .card__points {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-@media (min-width: 992px) {
-  .card__scope,
-  .card__points {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-}
-@media (min-width: 1200px) {
-  .card__scope,
-  .card__points {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
+  @include font-size-1;
 }
 
 .card__scope {
@@ -764,33 +744,17 @@ export default {
 }
 
 .card-warning {
-  font-size: 1rem;
-  line-height: 1.6;
-}
-@media (min-width: 992px) {
-  .card-warning {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-}
-@media (min-width: 1200px) {
-  .card-warning {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-}
-.card-warning {
-  line-height: 1.7em !important;
+  @include font-style($style: 'font-size-1', $line: 'wide');
 }
 
 .card__check-mark-row {
   display: flex;
-  margin-bottom: 0.5rem;
+  margin-bottom: spacing(2);
 }
 
 .card__check-mark-icon {
-  padding-bottom: 0.5rem;
-  margin-right: 1.25rem;
+  padding-bottom: spacing(2);
+  margin-right: spacing(5);
 }
 
 .card__link {
@@ -798,33 +762,22 @@ export default {
   justify-content: flex-end;
 }
 
-.card:not(.vue-component):not(.card--no-link) {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 1.5s cubic-bezier(0.19, 1, 0.2, 1);
-}
-.card:not(.vue-component):not(.card--no-link) .is-foreground :is(img, svg, .lottie),
-.card:not(.vue-component):not(.card--no-link) .is-background {
-  transition-property: transform;
-  transition-timing-function: cubic-bezier(0.19, 1, 0.2, 1);
-  transition-duration: 0.4s;
-}
-.card:not(.vue-component):not(.card--no-link):hover .is-foreground :is(img, svg, .lottie),
-.card:not(.vue-component):not(.card--no-link):hover .is-background {
-  transform: scale(1.025);
-  transition-duration: 1.3s;
-}
-.card:not(.vue-component):not(.card--no-link):hover {
-  box-shadow: 0 0 7px rgba(0, 0, 0, 0.25);
-}
-.card:not(.vue-component):not(.card--no-link):hover {
-  cursor: pointer;
+.card:not(.vue-component) {
+  &:not(.card--no-link) {
+    @include hover-scale;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }
 
 .card__check-placeholder {
   --card-check-icon-size: 28px;
+
   display: inline-block;
   height: var(--card-check-icon-size);
-  margin-bottom: 0.5rem;
+  margin-bottom: spacing(2);
 }
 
 .card__date {
@@ -842,7 +795,7 @@ export default {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
-  margin: 0 -0.5rem;
+  margin: 0 spacing($size: 2, $negative: true);
 }
 
 .card__authors {
@@ -862,7 +815,7 @@ export default {
 }
 
 .card__img-products {
-  padding-bottom: 1.25rem;
+  padding-bottom: spacing(5);
   background: var(--color-card-background);
 }
 </style>

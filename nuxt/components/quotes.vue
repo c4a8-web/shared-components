@@ -23,7 +23,8 @@
         <slider
           :options="slickOptions"
           :hide-background="true"
-          class="quotes__slider col-sm-12 mb-lg-n8"
+          class="quotes__slider col-sm-12"
+          :class="overlapping ? 'mb-lg-n8' : 'pb-8'"
           :hide-container="true"
         >
           <quotes-entry
@@ -66,6 +67,10 @@ export default {
     noFullscreen: {
       type: Boolean,
       default: false,
+    },
+    overlapping: {
+      type: Boolean,
+      default: true,
     },
   },
   mounted() {

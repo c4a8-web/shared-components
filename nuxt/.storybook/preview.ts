@@ -11,6 +11,8 @@ import terraproviderTheme from '../src/assets/scss/themes/_terraprovider.scss?in
 import unifiedcontactsTheme from '../src/assets/scss/themes/_unified-contacts.scss?inline';
 
 import { h } from 'vue';
+import { useNuxtApp } from '#imports';
+import globalTranslations from '../locales/global.js';
 // import { createPinia } from 'pinia';
 // import { setup } from '@storybook/vue3';
 // import { createI18n } from 'vue-i18n';
@@ -139,6 +141,22 @@ export const decorators = [
       components: { GlobalApp },
 
       setup() {
+        // nuxt-i18n-micro lazy-loads translations from Nitro `_locales` routes,
+        // which don't exist in the storybook preview — so $t returns raw keys
+        // (e.g. "loadMorePosts"). Inject the shared UI strings directly into
+        // micro's store for the active locale so $t resolves in stories.
+        try {
+          const nuxtApp = useNuxtApp();
+          const locale = nuxtApp.$getLocale?.() ?? 'de';
+          const messages =
+            (globalTranslations as Record<string, any>)[locale] ??
+            (globalTranslations as Record<string, any>).de ??
+            {};
+          nuxtApp.$mergeTranslations?.(messages);
+        } catch {
+          // Nuxt runtime not ready in this context — skip.
+        }
+
         if (params.parameters?.isPage) {
           return () => h(storyFn(), params.args);
         }

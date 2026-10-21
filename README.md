@@ -50,3 +50,9 @@ or
 ```
 npm run new-version
 ```
+
+# Adding a New Language
+
+Follow the agent contract in [contracts/add-language.md](contracts/add-language.md). It
+covers the translation catalogs, the `onlyLanguage*` cross-keys, the conclusion-word
+selectors in `_richtext.scss`, and regenerating `dist/`.

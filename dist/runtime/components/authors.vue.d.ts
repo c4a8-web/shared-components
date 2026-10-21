@@ -1,7 +1,7 @@
 declare namespace _default {
     let tagName: string;
     function setup(): {
-        locale: import("vue").WritableComputedRef<string, string>;
+        locale: any;
     };
     namespace computed {
         function classList(): string[];

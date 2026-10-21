@@ -1,7 +1,7 @@
 import { useI18n } from '#imports';
 
 export default function useImageContent() {
-  const { t } = useI18n();
+  const { $t: t } = useI18n();
   const defaultAltKey = 'defaultImageAltFallback';
 
   return ({ img, cloudinary = true, alt = defaultAltKey } = {}) => {

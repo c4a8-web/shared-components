@@ -39,16 +39,16 @@ const Header = {
   },
   navigation: [
     {
-      name: 'portfolio',
+      name: 'workplace',
       languages: {
         de: {
-          title: 'Portfolio',
+          title: 'Workplace',
         },
         en: {
-          title: 'Portfolio',
+          title: 'Workplace',
         },
         es: {
-          title: 'Portfolio',
+          title: 'Workplace',
         },
       },
       children: [
@@ -391,10 +391,10 @@ const Header = {
       ],
     },
     {
-      name: 'services',
+      name: 'azure',
       languages: {
         de: {
-          title: 'Services',
+          title: 'Azure',
           active: true,
           emergency: {
             text: 'Notfall-Service',
@@ -404,7 +404,7 @@ const Header = {
           },
         },
         en: {
-          title: 'Services',
+          title: 'Azure',
           active: true,
           description: 'lorem ipsum services dolor sit amet, consectetur adipiscing elit',
           emergency: {
@@ -415,7 +415,7 @@ const Header = {
           },
         },
         es: {
-          title: 'Services',
+          title: 'Azure',
           active: true,
         },
       },
@@ -538,49 +538,37 @@ const Header = {
       ],
     },
     {
-      name: 'cases',
+      name: 'security',
       languages: {
         de: {
-          title: 'Cases',
-          url: '/cases-de/',
+          title: 'Security',
+          active: true,
+          emergency: {
+            text: 'Notfall-Service',
+            href: 'javascript:void(0);',
+            skin: 'primary',
+            icon: 'emergency',
+          },
         },
         en: {
-          title: 'Cases',
-          url: '/cases-en/',
+          title: 'Security',
+          active: true,
+          description: 'lorem ipsum services dolor sit amet, consectetur adipiscing elit',
+          emergency: {
+            text: 'Emergency-Service',
+            href: 'javascript:void(0);',
+            skin: 'primary',
+            icon: 'emergency',
+          },
         },
         es: {
-          title: 'Cases',
-          url: '/cases-es/',
-        },
-      },
-    },
-    {
-      name: 'company',
-      languages: {
-        de: {
-          title: 'Unternehmen',
-        },
-        en: {
-          title: 'Company',
-        },
-        es: {
-          title: 'Empresa',
+          title: 'Security',
+          active: true,
         },
       },
       children: [
         {
-          name: 'lorem ipsum 1',
-          languages: {
-            de: {
-              title: 'lorem ipsum 1 DE',
-            },
-            en: {
-              title: 'lorem ipsum 1 EN',
-            },
-            es: {
-              title: 'lorem ipsum 1 ES',
-            },
-          },
+          name: 'lorem ipsum services 1',
           children: [
             {
               name: 'lorem1',
@@ -588,14 +576,17 @@ const Header = {
                 de: {
                   title: 'lorem ipsum',
                   url: 'javascript:void(0);',
+                  active: true,
                 },
                 en: {
                   title: 'dolor sit',
                   url: 'javascript:void(0);',
+                  active: true,
                 },
                 es: {
                   title: 'lorem ipsum',
                   url: 'javascript:void(0);',
+                  active: true,
                 },
               },
             },
@@ -636,85 +627,7 @@ const Header = {
           ],
         },
         {
-          name: 'lorem ipsum 2',
-          languages: {
-            de: {
-              title: 'lorem ipsum 2 DE',
-            },
-            en: {
-              title: 'lorem ipsum 2 EN',
-            },
-            es: {
-              title: 'lorem ipsum 2 ES',
-            },
-          },
-          children: [
-            {
-              name: 'lorem1',
-              languages: {
-                de: {
-                  title: 'lorem ipsum',
-                  url: 'javascript:void(0);',
-                },
-                en: {
-                  title: 'dolor sit',
-                  url: 'javascript:void(0);',
-                },
-                es: {
-                  title: 'lorem ipsum',
-                  url: 'javascript:void(0);',
-                },
-              },
-            },
-            {
-              name: 'lorem2',
-              languages: {
-                de: {
-                  title: 'lorem ipsum 2',
-                  url: 'javascript:void(0);',
-                },
-                en: {
-                  title: 'dolor sit 2',
-                  url: 'javascript:void(0);',
-                },
-                es: {
-                  title: 'lorem ipsum 2',
-                  url: 'javascript:void(0);',
-                },
-              },
-            },
-            {
-              name: 'lorem3',
-              languages: {
-                de: {
-                  title: 'lorem ipsum 3',
-                  url: 'javascript:void(0);',
-                },
-                en: {
-                  title: 'dolor sit 3',
-                  url: 'javascript:void(0);',
-                },
-                es: {
-                  title: 'lorem ipsum 3',
-                  url: 'javascript:void(0);',
-                },
-              },
-            },
-          ],
-        },
-        {
-          name: 'lorem ipsum 3',
-          languages: {
-            de: {
-              title: 'lorem ipsum 3 DE',
-            },
-            en: {
-              title: 'lorem ipsum 3 EN',
-            },
-            es: {
-              title: 'lorem ipsum 3 ES',
-            },
-          },
+          name: 'lorem ipsum services 2',
           children: [
             {
               name: 'lorem1',
@@ -930,6 +843,240 @@ const Header = {
                   title: 'Unified Contacts',
                   subtitle: 'Find contacts in Microsoft Teams',
                   url: 'https://www.unified-contacts.com/',
+                },
+              },
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'cases',
+      languages: {
+        de: {
+          title: 'Case Studies',
+          url: '/cases-de/',
+        },
+        en: {
+          title: 'Case Studies',
+          url: '/cases-en/',
+        },
+        es: {
+          title: 'Case Studies',
+          url: '/cases-es/',
+        },
+      },
+    },
+    {
+      name: 'company',
+      languages: {
+        de: {
+          title: 'Unternehmen',
+        },
+        en: {
+          title: 'Company',
+        },
+        es: {
+          title: 'Empresa',
+        },
+      },
+      children: [
+        {
+          name: 'lorem ipsum 1',
+          languages: {
+            de: {
+              title: 'lorem ipsum 1 DE',
+            },
+            en: {
+              title: 'lorem ipsum 1 EN',
+            },
+            es: {
+              title: 'lorem ipsum 1 ES',
+            },
+          },
+          children: [
+            {
+              name: 'lorem1',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem2',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 2',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem3',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+          ],
+        },
+        {
+          name: 'lorem ipsum 2',
+          languages: {
+            de: {
+              title: 'lorem ipsum 2 DE',
+            },
+            en: {
+              title: 'lorem ipsum 2 EN',
+            },
+            es: {
+              title: 'lorem ipsum 2 ES',
+            },
+          },
+          children: [
+            {
+              name: 'lorem1',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem2',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 2',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem3',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+          ],
+        },
+        {
+          name: 'lorem ipsum 3',
+          languages: {
+            de: {
+              title: 'lorem ipsum 3 DE',
+            },
+            en: {
+              title: 'lorem ipsum 3 EN',
+            },
+            es: {
+              title: 'lorem ipsum 3 ES',
+            },
+          },
+          children: [
+            {
+              name: 'lorem1',
+              languages: {
+                de: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem2',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 2',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 2',
+                  url: 'javascript:void(0);',
+                },
+              },
+            },
+            {
+              name: 'lorem3',
+              languages: {
+                de: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
+                },
+                en: {
+                  title: 'dolor sit 3',
+                  url: 'javascript:void(0);',
+                },
+                es: {
+                  title: 'lorem ipsum 3',
+                  url: 'javascript:void(0);',
                 },
               },
             },

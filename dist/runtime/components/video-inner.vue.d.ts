@@ -43,7 +43,7 @@ declare namespace _default {
         let video: ObjectConstructor;
         let variant: StringConstructor;
         let spacing: StringConstructor;
-        let overlapping: StringConstructor;
+        let overlapping: (BooleanConstructor | StringConstructor)[];
         namespace level {
             let _default: string;
             export { _default as default };

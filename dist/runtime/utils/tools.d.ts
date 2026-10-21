@@ -41,7 +41,7 @@ declare class Tools {
     static isUpperBreakpoint(): boolean;
     static getYoutubeThumbnail(videoURL: any): string;
     static truncateWords(string: any, number: any): any;
-    static stripHtml(string: any): any;
+    static stripHtml(string: any): string | undefined;
     static isGermanDate(date: any): boolean;
     static isStorybook(): boolean;
     static isTestingStorybook(): boolean;

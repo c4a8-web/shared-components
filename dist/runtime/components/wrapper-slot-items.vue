@@ -4,8 +4,9 @@ import { h, defineComponent } from 'vue';
 export default defineComponent({
   tagName: 'wrapper-slot-items',
   props: {
+    // A slot render function, called in render().
     items: {
-      type: Array,
+      type: Function,
       default: () => [],
     },
   },

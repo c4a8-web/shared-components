@@ -1,7 +1,6 @@
 declare namespace _default {
     let name: string;
     function setup(): {
-        authors: any;
         isAtEnd: import("vue").Ref<boolean, boolean>;
         endPoint: import("vue").Ref<null, null>;
         State: {

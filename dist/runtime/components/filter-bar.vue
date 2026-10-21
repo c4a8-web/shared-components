@@ -76,7 +76,7 @@ export default {
     },
     normalizedItems() {
       return this.storedItems.slice(this.itemStartPoint).map((item) => {
-        if (item.lang !== this.locale) {
+        if (item.lang && item.lang !== this.locale) {
           item.externalLanguage = Tools.getExternalLanguageText(this.locale, item.lang, this.$t);
         }
 
@@ -122,9 +122,9 @@ export default {
     },
   },
   setup() {
-    const { locale } = useI18n();
+    const { $getLocale } = useI18n();
 
-    return { locale };
+    return { locale: $getLocale() };
   },
   created() {
     const blogStore = useBlogStore();
