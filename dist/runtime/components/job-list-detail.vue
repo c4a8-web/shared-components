@@ -14,9 +14,7 @@
                 "stickyOffsetBottom": 20
               }'
           >
-            <div class="job-list__detail-back page-detail__back page-detail__animation-3 back back--animated">
-              <icon icon="arrow" direction="left" hover="true" circle="true" />
-            </div>
+            <back classes="job-list__detail-back page-detail__back page-detail__animation-3" :fallback="backUrl" />
             <headline :text="entryData?.title" :level="headlineLevelValue" :classes="headlineClassList" />
             <span class="job-list__detail-gender">{{ entryData?.gender }}</span>
             <div class="job-list__detail-share">
@@ -257,6 +255,7 @@ export default {
     detailColor: String,
     clientName: String,
     jobId: String,
+    backUrl: String,
     apiUrl: String,
     headlineLevel: String,
     headlineClasses: String,

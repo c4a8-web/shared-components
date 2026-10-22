@@ -14,20 +14,33 @@ export default {
       type: String,
       default: '',
     },
+    // target for direct entries (no same-host referrer, e.g. a shared deep link):
+    // instead of hiding, the button navigates here
+    fallback: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
       State,
       canGoBack: false,
+      hasInternalHistory: false,
     };
   },
   mounted() {
-    this.canGoBack = document.referrer.indexOf(document.location.host) !== -1;
+    this.hasInternalHistory = document.referrer.indexOf(document.location.host) !== -1;
+    this.canGoBack = this.hasInternalHistory || this.fallback !== '';
   },
   methods: {
     handleClick(e) {
       e.stopImmediatePropagation();
-      window.history.back();
+
+      if (this.hasInternalHistory) {
+        window.history.back();
+      } else if (this.fallback) {
+        window.location.href = this.fallback;
+      }
     },
   },
 };
