@@ -1,5 +1,12 @@
 # Releases
 
+# Release 0.4.125
+
+- Adds an area variant to the team cards with an area label, accent color and CTA
+- Adds an optional button field type to the form that emits a field-action event
+- Adds a success slot and success/error handling for ajax form submissions
+- Allows the cal-calendar to re-render its inline calendar
+
 # Release 0.4.124
 
 - Adds pipeline-based web translation with new languages (Swedish, Norwegian, Finnish, Danish, Icelandic, Italian, Dutch, Korean, Japanese) and locale-aware header, footer, secondary navigation and content links

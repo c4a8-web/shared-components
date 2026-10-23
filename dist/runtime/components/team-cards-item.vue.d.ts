@@ -1,5 +1,8 @@
 declare namespace _default {
     let name: string;
+    namespace computed {
+        function isArea(): any;
+    }
     namespace props {
         export let img: StringConstructor;
         export let alt: StringConstructor;
@@ -21,6 +24,15 @@ declare namespace _default {
             let _default_1: boolean;
             export { _default_1 as default };
         }
+        export namespace variant {
+            let type_2: StringConstructor;
+            export { type_2 as type };
+            let _default_2: null;
+            export { _default_2 as default };
+        }
+        export let area: StringConstructor;
+        export let color: StringConstructor;
+        export let cta: ObjectConstructor;
     }
 }
 export default _default;

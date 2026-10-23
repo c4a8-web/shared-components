@@ -14,6 +14,7 @@ declare namespace _default {
         hasLoading: boolean;
         hasLoader: boolean;
         turnstileReady: boolean;
+        isSubmitted: boolean;
     };
     function setup(): {
         config: {};
@@ -22,6 +23,7 @@ declare namespace _default {
     namespace computed {
         function loaderClasses(): string[];
         function classList(): string[];
+        function hasSuccessSlot(): boolean;
         function reCaptchaField(): any;
         function novalidate(): any;
         function hasAnimationValue(): boolean;
@@ -39,6 +41,9 @@ declare namespace _default {
     namespace methods {
         function startLoading(): void;
         function stopLoading(): void;
+        function handleAjaxSuccess(): void;
+        function animateHeight(element: any, startHeight: any): void;
+        function handleAjaxError(error: any): void;
         function getTranslatedText(text: any): any;
         function hasError(field: any): any;
         function getOptions(field: any): any;

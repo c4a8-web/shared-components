@@ -6,7 +6,7 @@
   >
     <div class="form__loader position-absolute mr-5 mr-lg-10 h-50" ref="loader"></div>
     <div :class="rowClassList">
-      <div :class="['form__wrapper', wrapperClassList, hasLoading ? 'loading' : '']" v-if="form">
+      <div :class="['form__wrapper', wrapperClassList, hasLoading ? 'loading' : '']" v-if="form" ref="wrapper">
         <div v-if="form.headline" :class="headlineClassList" data-utility-animation-step="1" ref="headline">
           <div class="row">
             <div class="col-sm-12">
@@ -15,7 +15,13 @@
             </div>
           </div>
         </div>
+        <transition name="form__success">
+          <div v-if="isSubmitted && hasSuccessSlot" class="form__success">
+            <slot name="success" />
+          </div>
+        </transition>
         <form
+          v-show="!isSubmitted || !hasSuccessSlot"
           class="form__form mt-6"
           :method="method"
           :action="formAction"
@@ -23,9 +29,9 @@
           @submit="handleSubmit"
           ref="form"
         >
-          <template v-for="block in preparedBlocks">
+          <template v-for="block in preparedBlocks" :key="getId(block[0])">
             <div :class="getBlockClassList(block[0])" v-if="block.length > 0">
-              <div :class="getFieldClassList(field)" v-for="field in block">
+              <div :class="getFieldClassList(field)" v-for="field in block" :key="getId(field)">
                 <form-fields
                   :field="field"
                   :options="getOptions(field)"
@@ -37,6 +43,7 @@
                   @action-changed="updateAction"
                   :has-error="hasError(field)"
                   @form-field-updated="handleFormFieldUpdate($event)"
+                  @field-action="$emit('field-action', $event)"
                 />
               </div>
             </div>
@@ -75,7 +82,7 @@ import UtilityAnimation from '../utils/utility-animation.js';
 import Loading from '../utils/loading.js';
 
 export default {
-  emits: ['submit', 'error'],
+  emits: ['submit', 'error', 'success', 'field-action'],
   tagName: 'formular',
   data() {
     return {
@@ -92,6 +99,7 @@ export default {
       hasLoading: false,
       hasLoader: true,
       turnstileReady: false,
+      isSubmitted: false,
     };
   },
   setup() {
@@ -120,6 +128,9 @@ export default {
         this.form?.noCustomSubmit === true ? Form.noCustomSubmitClass : '',
         'vue-component',
       ];
+    },
+    hasSuccessSlot() {
+      return !!this.$slots.success;
     },
     reCaptchaField() {
       return this.formInstance?.reCaptchaField;
@@ -208,6 +219,9 @@ export default {
 
     Form.expose(this.formInstance);
 
+    this.formInstance.onAjaxSuccess = this.handleAjaxSuccess.bind(this);
+    this.formInstance.onAjaxError = this.handleAjaxError.bind(this);
+
     this.novalidateValue = 'novalidate';
 
     if (this.hasRecaptcha) {
@@ -243,6 +257,48 @@ export default {
       this.loading.on(false);
     },
 
+    handleAjaxSuccess() {
+      const wrapper = this.$refs.wrapper;
+      const startHeight = wrapper?.offsetHeight;
+
+      this.stopLoading();
+      this.isSubmitted = true;
+      this.$emit('success');
+
+      if (!this.hasSuccessSlot || !wrapper) return;
+
+      this.$nextTick(() => {
+        this.animateHeight(wrapper, startHeight);
+
+        if (wrapper.getBoundingClientRect().top >= 0) return;
+
+        wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    },
+    animateHeight(element, startHeight) {
+      const endHeight = element.offsetHeight;
+
+      if (!startHeight || startHeight === endHeight) return;
+
+      const cleanup = (event) => {
+        if (event.target !== element || event.propertyName !== 'height') return;
+
+        element.removeEventListener('transitionend', cleanup);
+        element.classList.remove('form__wrapper--resizing');
+        element.style.height = '';
+      };
+
+      element.style.height = `${startHeight}px`;
+      element.offsetHeight;
+      element.classList.add('form__wrapper--resizing');
+      element.style.height = `${endHeight}px`;
+      element.addEventListener('transitionend', cleanup);
+    },
+    handleAjaxError(error) {
+      this.stopLoading();
+      this.$refs.turnstile?.reset?.();
+      this.$emit('error', error);
+    },
     getTranslatedText(text) {
       return this.useTranslation ? this.$t(text) : text;
     },
@@ -717,6 +773,20 @@ div.custom-control .custom-control-input,
 .form__wrapper.loading {
   opacity: 0.6;
   pointer-events: none;
+}
+
+.form__wrapper--resizing {
+  overflow: hidden;
+  transition: height 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form__success-enter-active {
+  transition: opacity 0.4s ease, transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.form__success-enter-from {
+  opacity: 0;
+  transform: translateY(24px);
 }
 
 .form__loader {

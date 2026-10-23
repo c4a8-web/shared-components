@@ -3,6 +3,7 @@ declare namespace Events {
     let REFRESH_ANIMATE_NUMBERS: string;
     let FAB_BUTTON_CLOSE: string;
     let FORM_AJAX_SUBMIT: string;
+    let FORM_AJAX_ERROR: string;
     let FORM_RESET: string;
     let FORM_ATTACHMENT_ERROR: string;
     let FORM_FIELD_UPDATED: string;

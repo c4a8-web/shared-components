@@ -47,6 +47,7 @@ declare class Form extends BaseComponent {
     submit(e: any): void;
     submitOdooForm(): void;
     ajaxSubmit(): void;
+    ajaxSubmitFailed(error: any): void;
     ajaxSubmitCompleted(): void;
     validate(e: any): any;
     isValid(e: any): boolean;

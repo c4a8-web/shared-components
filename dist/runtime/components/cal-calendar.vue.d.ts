@@ -43,6 +43,7 @@ declare namespace _default {
     namespace methods {
         function hasCal(): any;
         function initCalendar(): void;
+        function renderCalendar(): void;
         function initCal(): void;
     }
 }

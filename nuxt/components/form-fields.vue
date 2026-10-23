@@ -24,6 +24,9 @@
           @form-field-updated="handleFormFieldUpdate($event)"
         />
       </template>
+      <template v-else-if="field.type === 'button'">
+        <cta v-bind="field.cta" :text="field.label" type="button" @click="$emit('field-action', field)" />
+      </template>
       <template v-else-if="field.type === 'hidden'">
         <input type="hidden" :name="name" :value="value" />
       </template>
