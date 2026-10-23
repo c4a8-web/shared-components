@@ -336,16 +336,32 @@ class Form extends BaseComponent {
       },
       redirect: 'follow',
       body: data,
-    }).then((response) => {
-      if (response.status === 200 || response.status === 302) {
-        this.ajaxSubmitCompleted();
-      } else {
-        // TODO handle error
-      }
-    });
+    })
+      .then((response) => {
+        if (response.ok || response.status === 302) {
+          this.ajaxSubmitCompleted();
+        } else {
+          this.ajaxSubmitFailed(response);
+        }
+      })
+      .catch((error) => {
+        this.ajaxSubmitFailed(error);
+      });
+  }
+
+  ajaxSubmitFailed(error) {
+    this.onAjaxError?.(error);
+
+    document.dispatchEvent(
+      new CustomEvent(Events.FORM_AJAX_ERROR, {
+        detail: { target: this.root, error },
+      })
+    );
   }
 
   ajaxSubmitCompleted() {
+    this.onAjaxSuccess?.();
+
     document.dispatchEvent(
       new CustomEvent(Events.FORM_AJAX_SUBMIT, {
         detail: { target: this.root },

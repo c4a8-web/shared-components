@@ -5,7 +5,7 @@ declare namespace _default {
     };
     function setup(): {
         config: {};
-        locale: any;
+        locale: string;
         strategy: any;
     };
     namespace computed {

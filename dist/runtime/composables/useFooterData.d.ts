@@ -1,1 +1,1 @@
-export function useFooterData(options?: {}): import("#app").AsyncData<any, import("#app").NuxtError<unknown> | null>;
+export function useFooterData(options?: {}): import("nuxt/app").AsyncData<any, import("nuxt/app").NuxtError<unknown> | null>;

@@ -1,1 +1,1 @@
-export function useHeaderData(options?: {}): import("#app").AsyncData<any, import("#app").NuxtError<unknown> | null>;
+export function useHeaderData(options?: {}): import("nuxt/app").AsyncData<any, import("nuxt/app").NuxtError<unknown> | null>;

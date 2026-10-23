@@ -6,7 +6,7 @@ declare namespace _default {
         };
     };
     function setup(): {
-        locale: any;
+        locale: string;
         store: import("pinia").Store<"app", {
             loading: boolean;
             hero: {};
